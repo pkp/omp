@@ -1,8 +1,8 @@
 /**
  * @file cypress/tests/data/60-content/AclarkSubmission.spec.js
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2000-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @ingroup tests_data
@@ -43,7 +43,7 @@ describe('Data suite tests', function() {
 		});
 		cy.logout();
 
-		cy.findSubmissionAsEditor('dbarnes', null, title);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Clark');
 		cy.sendToReview('External');
 		cy.assignReviewer('Gonzalo Favio');
 		cy.recordEditorialDecision('Accept Submission');

@@ -649,9 +649,6 @@ msgstr "Des rappels peuvent être envoyés automatiquement par courriel aux éva
 msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
 msgstr "<strong>Note:</strong> Pour activer ces options, l'administrateur du site doit activer l'option <tt>scheduled_tasks</tt> dans le fichier de configuration OMP. Il pourrait s'avérer nécessaire d'intégrer d'autres configurations au serveur pour supporter cette fonctionnalité (qui n'est peut-être pas possible sur tous les serveurs), tel qu'indiqué dans les documents d'OMP."
 
-msgid "manager.setup.reviewOptions.blindReview"
-msgstr "Évaluation aveugle"
-
 msgid "manager.setup.reviewOptions.noteOnModification"
 msgstr "Ces valeurs par défaut peuvent être modifiées pour toute les soumissions tout au long du processus éditorial."
 
@@ -672,9 +669,6 @@ msgstr "Rappels aux évaluateurs"
 
 msgid "manager.setup.reviewOptions.reviewTime"
 msgstr "Délai d'évaluation"
-
-msgid "manager.setup.reviewOptions.showEnsuringLink"
-msgstr "Fournir les liens concernant l'évaluation aveugle sur les pages où les auteurs et les évaluateurs téléchargent les fichiers."
 
 msgid "manager.setup.reviewPolicy"
 msgstr "Politique concernant l'évaluation"

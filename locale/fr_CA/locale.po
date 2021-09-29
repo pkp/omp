@@ -2,14 +2,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
+"PO-Revision-Date: 2020-06-05 16:39+0000\n"
+"Last-Translator: Marie-Hélène Vézina [UdeMontréal] <marie-"
+"helene.vezina@umontreal.ca>\n"
+"Language-Team: French (Canada) <http://translate.pkp.sfu.ca/projects/omp/"
+"locale/fr_CA/>\n"
+"Language: fr_CA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2019-09-30T06:23:44-07:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "monograph.audience"
 msgstr "Public"
@@ -39,7 +43,7 @@ msgid "monograph.publicationFormats"
 msgstr "Formats de publication "
 
 msgid "monograph.carousel.publicationFormats"
-msgstr "Formats:"
+msgstr "Formats :"
 
 msgid "monograph.type"
 msgstr "Type de soumission"
@@ -48,7 +52,12 @@ msgid "submission.pageProofs"
 msgstr "Épreuves en page"
 
 msgid "monograph.proofReadingDescription"
-msgstr "Le rédacteur metteur en page télécharge les fichiers prêts pour la production préparés ici afin de les rendre publiables. Utilisez <em>+Assigner</em> pour assigner les auteurs et les autres individus qui réviseront les épreuves en page. Les fichiers corrigés doivent être téléchargés pour approbation avant la publication."
+msgstr ""
+"Le rédacteur ou la rédactrice responsable de la mise en page téléverse ici "
+"les fichiers préparés en vue de les rendre publiables. Utiliser "
+"<em>+Assigner</em> pour assigner les auteurs-es et les autres individus qui "
+"réviseront les épreuves en page. Les fichiers corrigés doivent être "
+"téléversés pour approbation avant la publication."
 
 msgid "monograph.task.addNote"
 msgstr "Ajouter à la tâche"
@@ -854,9 +863,11 @@ msgstr "À propos de ce système de publication"
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "Processus de redaction et de publication d'OMP"
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr "Cette presse utilise Open Monograph Press {$ompVersion}, un logiciel de gestion de presse et de publication ouvert conçu, encadré et distribué gratuitement par <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> sous une licence publique GNU."
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr "Ce site utilise Open Monograph Press {$ompVersion}, un logiciel de gestion de presse et de publication ouvert conçu, encadré et distribué gratuitement par <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> sous une licence publique GNU."
 
@@ -875,6 +886,7 @@ msgstr "Mise à jour d'OMP"
 msgid "installer.installApplication"
 msgstr "Installer Open Monograph Press"
 
+#, fuzzy
 msgid "installer.installationInstructions"
 msgstr ""
 "\n"
@@ -882,7 +894,7 @@ msgstr ""
 "\n"
 "<h4>Upgrade</h4>\n"
 "\n"
-"<p>S'il s'agit d'une mise à jour d'OMP 0.x, <a href=\"{$upgradeUrl}\">cliquez ici</a> pour continuer.</p>"
+"<p>S'il s'agit d'une mise à jour d'OMP, <a href=\"{$upgradeUrl}\">cliquez ici</a> pour continuer.</p>"
 
 msgid "installer.preInstallationInstructionsTitle"
 msgstr "Étapes de Pré-installation"
@@ -1201,9 +1213,6 @@ msgstr "Acheter la monographie ou le chapitre téléchargeable"
 msgid "payment.directSales.monograph.description"
 msgstr "Cette transaction représente l'achat d'un téléchargement direct d'une seule monographie ou d'un chapitre."
 
-msgid "debug.notes.currencyListLoad"
-msgstr "La liste des devises \"{$filename}\" fut téléchargée à partir de XML"
-
 msgid "debug.notes.helpMappingLoad"
 msgstr "Le fichier de mappage d'aide XML {$filename} a été téléchargé à nouveau pour trouver {$id}."
 
@@ -1225,3 +1234,11 @@ msgstr "Ajouter des utilisateurs sans rôle à cette presse."
 msgid "submission.round"
 msgstr "Cycle {$round}"
 
+msgid "monograph.miscellaneousDetails"
+msgstr "Renseignements à propos de cette monographie"
+
+msgid "monograph.publicationFormat"
+msgstr "Format"
+
+msgid "monograph.audience.success"
+msgstr "Les renseignements de l'auditoire ont été mis à jour."

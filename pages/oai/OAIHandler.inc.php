@@ -3,8 +3,8 @@
 /**
  * @file pages/oai/OAIHandler.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class OAIHandler
@@ -15,41 +15,38 @@
 
 define('SESSION_DISABLE_INIT', 1); // FIXME?
 
+use PKP\oai\OAIConfig;
+
 import('classes.oai.omp.PressOAI');
 import('classes.handler.Handler');
 
-class OAIHandler extends Handler {
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
+class OAIHandler extends Handler
+{
+    /**
+     * @copydoc PKPHandler::authorize
+     */
+    public function authorize($request, &$args, $roleAssignments)
+    {
+        $returner = parent::authorize($request, $args, $roleAssignments);
 
-	/**
-	 * @copydoc PKPHandler::authorize
-	 */
-	function authorize($request, &$args, $roleAssignments) {
-		$returner = parent::authorize($request, $args, $roleAssignments);
+        if (!Config::getVar('oai', 'oai')) {
+            return false;
+        } else {
+            return $returner;
+        }
+    }
 
-		if (!Config::getVar('oai', 'oai')) {
-			return false;
-		} else {
-			return $returner;
-		}
-	}
+    /**
+     * Handle an OAI request.
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     */
+    public function index($args, $request)
+    {
+        PluginRegistry::loadCategory('oaiMetadataFormats', true);
 
-	/**
-	 * Handle an OAI request.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function index($args, $request) {
-		PluginRegistry::loadCategory('oaiMetadataFormats', true);
-
-		$oai = new PressOAI(new OAIConfig($request->url(null, 'oai'), Config::getVar('oai', 'repository_id')));
-		$oai->execute();
-	}
+        $oai = new PressOAI(new OAIConfig($request->url(null, 'oai'), Config::getVar('oai', 'repository_id')));
+        $oai->execute();
+    }
 }
-
-

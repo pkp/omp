@@ -1,0 +1,128 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-04-10 22:55+0000\n"
+"Last-Translator: Muhammad Ahmad Ibrahim Aljahsh <mibrahim@alqasimia.ac.ae>\n"
+"Language-Team: Arabic (Saudi Arabia) <http://translate.pkp.sfu.ca/projects/"
+"omp/default/ar_SA/>\n"
+"Language: ar_SA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "default.genres.table"
+msgstr "جدول"
+
+msgid "default.genres.preface"
+msgstr "تقديم"
+
+msgid "default.genres.index"
+msgstr "الفهرس"
+
+msgid "default.genres.glossary"
+msgstr "المفردات"
+
+msgid "default.genres.chapter"
+msgstr "ملف الفصل"
+
+msgid "default.genres.manuscript"
+msgstr "ملف الكتاب"
+
+msgid "default.genres.bibliography"
+msgstr "المصادر"
+
+msgid "default.genres.appendix"
+msgstr "الملحقات"
+
+#, fuzzy
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+"سيتم استخدام الأسماء وعناوين البريد الإلكتروني التي تم إدخالها في هذا الطبعة "
+"حصريًا للأغراض المذكورة في هذه الطبعة، ولن يتم إتاحتها لأي غرض آخر أو لأي "
+"طرف آخر."
+
+#, fuzzy
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr ""
+"يلتزم النص بالمتطلبات الأسلوبية والببليوغرافية الموضحة في <   > إرشادات "
+"المؤلف <   > الموجودة في \"حول الطباعة\"."
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr ""
+"النص ذو مسافة واحدة ؛ بخط مقاس 12؛ وخط مائل ، بدون تسطير (باستثناء عناوين "
+"URL) ؛ وتم وضع جميع الرسوم التوضيحية والأشكال والجداول داخل النص في الأماكن "
+"المناسبة ، وليس في نهايته."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr "تم توفير عناوين URL للمراجع، إذا كان ذلك متاحًا ."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr "ملف التقديم هو بتنسيق Microsoft Word أو RTF أو OpenDocument."
+
+#, fuzzy
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr ""
+"لم يتم نشر البحث مسبقًا ، وليس قيد النشر  في هيئة أخرى (أو تم تقديم توضيح في "
+"التعليقات للمحرر)."
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "VE"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "محرروا الجزء"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "محرر الجزء"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "CA"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "مؤلف الفصل"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "مؤلفوا الفصول"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "المسؤول التنفيذي عن الاستحواذ والتحكم"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "محرروا السلسلة"
+
+msgid "default.groups.abbrev.editor"
+msgstr "PE"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "محرر السلسلة"
+
+msgid "default.groups.plural.manager"
+msgstr "مديروا الطباعة"
+
+msgid "default.groups.plural.editor"
+msgstr "محررون"
+
+msgid "default.groups.name.editor"
+msgstr "محرر  الطباعة"
+
+msgid "default.groups.abbrev.manager"
+msgstr "مساء"
+
+msgid "default.groups.name.manager"
+msgstr "مدير الطباعة"
+
+msgid "default.genres.other"
+msgstr "أخرى"
+
+msgid "default.genres.illustration"
+msgstr "توضيح"
+
+msgid "default.genres.photo"
+msgstr "صورة"
+
+msgid "default.genres.figure"
+msgstr "شكل"
+
+msgid "default.genres.prospectus"
+msgstr "بيان تمهيدي"

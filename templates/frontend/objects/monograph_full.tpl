@@ -1,8 +1,8 @@
 {**
  * templates/frontend/objects/monograph_full.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Display a full view of a monograph. Expected to be primary object on
@@ -101,7 +101,7 @@
 				{assign var="authors" value=$publication->getData('authors')}
 
 				{* Only show editors for edited volumes *}
-				{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
+				{if $monograph->getWorkType() == $monograph::WORK_TYPE_EDITED_VOLUME && $editors|@count}
 					{assign var="authors" value=$editors}
 					{assign var="identifyAsEditors" value=true}
 				{/if}
@@ -180,10 +180,10 @@
 			{* Keywords *}
 			{if !empty($publication->getLocalizedData('keywords'))}
 			<div class="item keywords">
-				<span class="label">
+				<h2 class="label">
 					{capture assign=translatedKeywords}{translate key="common.keywords"}{/capture}
 					{translate key="semicolon" label=$translatedKeywords}
-				</span>
+				</h2>
 				<span class="value">
 					{foreach name="keywords" from=$publication->getLocalizedData('keywords') item=keyword}
 						{$keyword|escape}{if !$smarty.foreach.keywords.last}, {/if}
@@ -194,9 +194,9 @@
 
 			{* Abstract *}
 			<div class="item abstract">
-				<h3 class="label">
+				<h2 class="label">
 					{translate key="submission.synopsis"}
-				</h3>
+				</h2>
 				<div class="value">
 					{$publication->getLocalizedData('abstract')|strip_unsafe_html}
 				</div>
@@ -205,9 +205,9 @@
 			{* Chapters *}
 			{if $chapters|@count}
 				<div class="item chapters">
-					<h3 class="pkp_screen_reader">
+					<h2 class="pkp_screen_reader">
 						{translate key="submission.chapters"}
-					</h3>
+					</h2>
 					<ul>
 						{foreach from=$chapters item=chapter}
 							{assign var=chapterId value=$chapter->getId()}
@@ -279,13 +279,13 @@
 			{/foreach}
 			{if $hasBiographies}
 				<div class="item author_bios">
-					<h3 class="label">
+					<h2 class="label">
 						{if $hasBiographies > 1}
 							{translate key="submission.authorBiographies"}
 						{else}
 							{translate key="submission.authorBiography"}
 						{/if}
-					</h3>
+					</h2>
 					{foreach from=$publication->getData('authors') item=author}
 						{if $author->getLocalizedBiography()}
 							<div class="sub_item">
@@ -310,16 +310,16 @@
 			{* References *}
 			{if $citations || $publication->getData('citationsRaw')}
 				<div class="item references">
-					<h3 class="label">
+					<h2 class="label">
 						{translate key="submission.citations"}
-					</h3>
+					</h2>
 					<div class="value">
 						{if $citations}
 							{foreach from=$citations item=$citation}
 								<p>{$citation->getCitationWithLinks()|strip_unsafe_html}</p>
 							{/foreach}
 						{else}
-							{$publication->getData('citationsRaw')|nl2br}
+							{$publication->getData('citationsRaw')|escape|nl2br}
 						{/if}
 					</div>
 				</div>
@@ -342,6 +342,9 @@
 			{pluck_files assign=nonChapterFiles files=$availableFiles by="chapter" value=0}
 			{if $nonChapterFiles|@count || $remotePublicationFormats|@count}
 				<div class="item files">
+					<h2 class="pkp_screen_reader">
+						{translate key="submission.downloads"}
+					</h2>
 					{foreach from=$publicationFormats item=format}
 						{assign var=publicationFormatId value=$format->getId()}
 
@@ -379,7 +382,7 @@
 											{foreach from=$pubFormatFiles item=file}
 												<li>
 													<span class="name">
-														{$file->getLocalizedName()|escape}
+														{$file->getLocalizedData('name')|escape}
 													</span>
 													<span class="link">
 														{include file="frontend/components/downloadLink.tpl" downloadFile=$file monograph=$monograph publication=$publication publicationFormat=$format currency=$currency useFilename=true}
@@ -399,16 +402,16 @@
 			{if $publication->getData('datePublished')}
 				<div class="item date_published">
 					<div class="sub_item">
-						<div class="label">
+						<h2 class="label">
 							{if $publication->getData('datePublished')|date_format:$dateFormatShort > $smarty.now|date_format:$dateFormatShort}
 								{translate key="catalog.forthcoming"}
 							{else}
 								{translate key="catalog.published"}
 							{/if}
-						</div>
+						</h2>
 						<div class="value">
 							{* If this is the original version *}
-							{if $firstPublication->getID() === $publication->getId()}
+							{if $firstPublication->getId() === $publication->getId()}
 								<span>{$firstPublication->getData('datePublished')|date_format:$dateFormatLong}</span>
 							{* If this is an updated version *}
 							{else}
@@ -418,9 +421,9 @@
 					</div>
 					{if count($monograph->getPublishedPublications()) > 1}
 						<div class="sub_item versions">
-							<div class="label">
+							<h2 class="label">
 								{translate key="submission.versions"}
-							</div>
+							</h2>
 							<ul class="value">
 								{foreach from=array_reverse($monograph->getPublishedPublications()) item=iPublication}
 									{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatShort version=$iPublication->getData('version')}{/capture}
@@ -444,9 +447,9 @@
 			{if $series}
 				<div class="item series">
 					<div class="sub_item">
-						<div class="label">
+						<h2 class="label">
 							{translate key="series.series"}
-						</div>
+						</h2>
 						<div class="value">
 							<a href="{url page="catalog" op="series" path=$series->getPath()}">
 								{$series->getLocalizedFullTitle()|escape}
@@ -455,13 +458,13 @@
 					</div>
 					{if $series->getOnlineISSN()}
 						<div class="sub_item">
-							<div class="label">{translate key="catalog.manage.series.onlineIssn"}</div>
+							<h3 class="label">{translate key="catalog.manage.series.onlineIssn"}</h3>
 							<div class="value">{$series->getOnlineISSN()|escape}</div>
 						</div>
 					{/if}
 					{if $series->getPrintISSN()}
 						<div class="sub_item">
-							<div class="label">{translate key="catalog.manage.series.printIssn"}</div>
+							<h3 class="label">{translate key="catalog.manage.series.printIssn"}</h3>
 							<div class="value">{$series->getPrintISSN()|escape}</div>
 						</div>
 					{/if}
@@ -471,9 +474,9 @@
 			{* Categories *}
 			{if $categories}
 				<div class="item categories">
-					<div class="label">
+					<h2 class="label">
 						{translate key="catalog.categories"}
-					</div>
+					</h2>
 					<div class="value">
 						<ul>
 							{foreach from=$categories item="category"}
@@ -498,6 +501,9 @@
 			{* License *}
 			{if $publication->getData('licenseUrl')}
 				<div class="item license">
+					<h2 class="label">
+						{translate key="submission.license"}
+					</h2>
 					{if $ccLicenseBadge}
 						{$ccLicenseBadge}
 					{else}
@@ -535,10 +541,10 @@
 
 							{* Only add the format-specific heading if multiple publication formats exist *}
 							{if count($publicationFormats) > 1}
-								<h3 class="pkp_screen_reader">
+								<h2 class="pkp_screen_reader">
 									{assign var=publicationFormatName value=$publicationFormat->getLocalizedName()}
 									{translate key="monograph.publicationFormatDetails" format=$publicationFormatName|escape}
-								</h3>
+								</h2>
 
 								<div class="sub_item item_heading format">
 									<div class="label">
@@ -546,9 +552,9 @@
 									</div>
 								</div>
 							{else}
-								<h3 class="pkp_screen_reader">
+								<h2 class="pkp_screen_reader">
 									{translate key="monograph.miscellaneousDetails"}
-								</h3>
+								</h2>
 							{/if}
 
 
@@ -556,9 +562,9 @@
 							{if $identificationCodes}
 								{foreach from=$identificationCodes item=identificationCode}
 									<div class="sub_item identification_code">
-										<div class="label">
+										<h3 class="label">
 											{$identificationCode->getNameForONIXCode()|escape}
-										</div>
+										</h3>
 										<div class="value">
 											{$identificationCode->getValue()|escape}
 										</div>
@@ -570,9 +576,9 @@
 							{if $publicationDates}
 								{foreach from=$publicationDates item=publicationDate}
 									<div class="sub_item date">
-										<div class="label">
+										<h3 class="label">
 											{$publicationDate->getNameForONIXCode()|escape}
-										</div>
+										</h3>
 										<div class="value">
 											{assign var=dates value=$publicationDate->getReadableDates()}
 											{* note: these dates have dateFormatShort applied to them in getReadableDates() if they need it *}
@@ -598,9 +604,9 @@
 								{assign var=storedPubId value=$publicationFormat->getStoredPubId($pubIdType)}
 								{if $storedPubId != ''}
 									<div class="sub_item pubid {$publicationFormat->getId()|escape}">
-										<div class="label">
+										<h2 class="label">
 											{$pubIdType}
-										</div>
+										</h2>
 										<div class="value">
 											{$storedPubId|escape}
 										</div>
@@ -611,9 +617,9 @@
 							{* Physical dimensions *}
 							{if $publicationFormat->getPhysicalFormat()}
 								<div class="sub_item dimensions">
-									<div class="label">
+									<h2 class="label">
 										{translate key="monograph.publicationFormat.productDimensions"}
-									</div>
+									</h2>
 									<div class="value">
 										{$publicationFormat->getDimensions()|escape}
 									</div>

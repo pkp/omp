@@ -1,4 +1,4 @@
-; <?php exit(); // DO NOT DELETE ?>
+; <?php exit(); // DO NOT DELETE?>
 ; DO NOT DELETE THE ABOVE LINE!!!
 ; Doing so will expose this configuration file through your web site!
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -7,8 +7,8 @@
 ;
 ; config.TEMPLATE.inc.php
 ;
-; Copyright (c) 2014-2020 Simon Fraser University
-; Copyright (c) 2003-2020 John Willinsky
+; Copyright (c) 2014-2021 Simon Fraser University
+; Copyright (c) 2003-2021 John Willinsky
 ; Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
 ;
 ; OMP Configuration settings.
@@ -30,6 +30,10 @@ installed = Off
 
 ; The canonical URL to the OMP installation (excluding the trailing slash)
 base_url = "http://pkp.sfu.ca/omp"
+
+; Enable strict mode. This will more aggressively cause errors/warnings when
+; deprecated behaviour exists in the codebase.
+strict = Off
 
 ; Session cookie name
 session_cookie_name = OMPSID
@@ -61,16 +65,15 @@ scheduled_tasks_report_error_only = On
 time_zone = "UTC"
 
 ; Short and long date formats
-date_format_trunc = "%m-%d"
 date_format_short = "%Y-%m-%d"
 date_format_long = "%B %e, %Y"
 datetime_format_short = "%Y-%m-%d %I:%M %p"
 datetime_format_long = "%B %e, %Y - %I:%M %p"
 time_format = "%I:%M %p"
 
-; Use URL parameters instead of CGI PATH_INFO. This is useful for
-; broken server setups that don't support the PATH_INFO environment
-; variable.
+; Use URL parameters instead of CGI PATH_INFO. This is useful for broken server
+; setups that don't support the PATH_INFO environment variable.
+; WARNING: This option is DEPRECATED and will be removed in the future.
 disable_path_info = Off
 
 ; Use fopen(...) for URL-based reads. Modern versions of dspace
@@ -81,14 +84,15 @@ allow_url_fopen = Off
 
 ; Base URL override settings: Entries like the following examples can
 ; be used to override the base URLs used by OMP. If you want to use a
-; proxy to rewrite URLs to OMP, configure your proxy's URL here.
-; Syntax: base_url[press_path] = http://www.myUrl.com
-; To override URLs that aren't part of a particular press, use a
-; press_path of "index".
-; Examples:
-; base_url[index] = http://www.myUrl.com
-; base_url[myPress] = http://www.myUrl.com/myPress
-; base_url[myOtherPress] = http://myOtherPress.myUrl.com
+; proxy to rewrite URLs to OMP, configure your proxy's URL with this format.
+; Syntax: base_url[press_path] = http://www.example.com
+;
+; Example1: URLs that aren't part of a particular press.
+;    Example1: base_url[index] = http://www.example.com
+; Example2: URLs that map to a subdirectory.
+;    Example2: base_url[myPress] = http://www.example.com/myPress
+; Example3: URLs that map to a subdomain.
+;    Example3: base_url[myOtherPress] = http://myOtherPress.example.com
 
 ; Generate RESTful URLs using mod_rewrite.  This requires the
 ; rewrite directive to be enabled in your .htaccess or httpd.conf.
@@ -100,10 +104,6 @@ restful_urls = Off
 ; X_FORWARDED_FOR header.
 ; Warning: This defaults to "On" if unset for backwards compatibility.
 trust_x_forwarded_for = Off
-
-; Allow javascript files to be served through a content delivery network (set to
-; off to use local files)
-enable_cdn = On
 
 ; Set the following parameter to off if you want to work with the uncompiled
 ; (non-minified) JavaScript source for debugging or if you are working off a
@@ -126,13 +126,13 @@ host = localhost
 username = omp
 password = omp
 name = omp
+
 ; Set the non-standard port and/or socket, if used
 ; port = 3306
 ; unix_socket = /var/run/mysqld/mysqld.sock
 
-
-; Enable persistent connections (recommended)
-persistent = Off
+; Database collation
+; collation = utf8_general_ci
 
 ; Enable database debug output (very verbose!)
 debug = Off
@@ -186,10 +186,7 @@ locale = en_US
 client_charset = utf-8
 
 ; Database connection character set
-; Must be set to "Off" if not supported by the database server
-; If enabled, must be the same character set as "client_charset"
-; (although the actual name may differ slightly depending on the server)
-connection_charset = Off
+connection_charset = utf8
 
 
 ;;;;;;;;;;;;;;;;;
@@ -209,7 +206,7 @@ files_dir = files
 ; Windows users should use forward slashes
 public_files_dir = public
 
-; The maximum allowed size in bytes of each user's public files
+; The maximum allowed size in kilobytes of each user's public files
 ; directory. This is where user's can upload images through the
 ; tinymce editor to their bio. Editors can upload images for
 ; some of the settings.
@@ -257,6 +254,9 @@ encryption = sha1
 ; The unique salt to use for generating password reset hashes
 salt = "YouMustSetASecretKeyHere!!"
 
+; The unique secret used for encoding and decoding API keys
+api_key_secret = ""
+
 ; The number of seconds before a password reset hash expires (defaults to
 ; 7200 seconds (2 hours)
 reset_seconds = 7200
@@ -296,6 +296,9 @@ allowed_html = "a[href|target|title],em,strong,cite,code,ul,ol,li[class],dl,dt,d
 
 [email]
 
+; Path to the sendmail, -bs argument is for using SMTP protocol
+sendmail_path = "/usr/sbin/sendmail -bs"
+
 ; Use SMTP for sending mail instead of mail()
 ; smtp = On
 
@@ -304,10 +307,22 @@ allowed_html = "a[href|target|title],em,strong,cite,code,ul,ol,li[class],dl,dt,d
 ; smtp_port = 25
 
 ; Enable SMTP authentication
-; Supported mechanisms: ssl, tls
+; Supported smtp_auth: ssl, tls (see PHPMailer SMTPSecure)
 ; smtp_auth = ssl
 ; smtp_username = username
 ; smtp_password = password
+;
+; Supported smtp_authtype: RAM-MD5, LOGIN, PLAIN, XOAUTH2 (see PHPMailer AuthType)
+; (Leave blank to try them in that order)
+; smtp_authtype =
+
+; The following are required for smtp_authtype = XOAUTH2 (e.g. GMail OAuth)
+; (See https://github.com/PHPMailer/PHPMailer/wiki/Using-Gmail-with-XOAUTH2)
+; smtp_oauth_provider = Google
+; smtp_oauth_email =
+; smtp_oauth_clientid =
+; smtp_oauth_clientsecret =
+; smtp_oauth_refreshtoken =
 
 ; Allow envelope sender to be specified
 ; (may not be possible with some server configurations)
@@ -434,6 +449,9 @@ recaptcha = off
 ; Whether or not to use Captcha on user registration
 captcha_on_register = on
 
+; Whether or not to use Captcha on user login
+captcha_on_login = on
+
 ; Validate the hostname in the ReCaptcha response
 recaptcha_enforce_hostname = Off
 
@@ -447,9 +465,6 @@ recaptcha_enforce_hostname = Off
 ; certain plug-ins or advanced program features.
 
 ; Using full paths to the binaries is recommended.
-
-; perl (used in paracite citation parser)
-perl = /usr/bin/perl
 
 ; tar (used in backup plugin, translation packaging)
 tar = /bin/tar
@@ -483,14 +498,9 @@ xslt_parameter_option = "-PARAM %n %v "
 
 [proxy]
 
-; Note that allow_url_fopen must be set to Off before these proxy settings
-; will take effect.
-
 ; The HTTP proxy configuration to use
-; http_host = localhost
-; http_port = 80
-; proxy_username = username
-; proxy_password = password
+; http_proxy = "http://username:password@192.168.1.1:8080"
+; https_proxy = "https://username:password@192.168.1.1:8080"
 
 
 ;;;;;;;;;;;;;;;;;;
@@ -512,3 +522,8 @@ deprecation_warnings = Off
 
 ; Log web service request information for debugging
 log_web_service_info = Off
+
+; declare a cainfo path if a certificate other than PHP's default should be used for curl calls.
+; This setting overrides the 'curl.cainfo' parameter of the php.ini configuration file.
+[curl]
+; cainfo = ""

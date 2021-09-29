@@ -1,8 +1,8 @@
 /**
  * @file plugins/themes/default/styles/head.less
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @ingroup pkp_structure_head
@@ -56,16 +56,17 @@
 
 	.is_img {
 		display: inline-block;
-		padding-top: 5px;
-		padding-bottom: 5px;
+		margin-top: @half;
+		margin-bottom: @half;
+		padding: 0;
 
 		&:focus {
-			box-shadow: 0 0 1px @text-bg-base;
+			outline: 1px solid @text-bg-base;
 		}
 
 		img {
 			display: block;
-			max-height: @nav-menu-height - 10px;
+			max-height: @nav-menu-height - @base;
 			max-width: 100%;
 			width: auto;
 			height: auto;
@@ -96,7 +97,7 @@
 	position: absolute;
 	width: 100%;
 	top: 100%;
-	background: @bg-base;
+	background:@bg-base;
 	left: 0;
 	padding: @base;
 	z-index: 9999;
@@ -117,36 +118,44 @@
 	a {
 		display: inline-block;
 		padding: 0.125rem 0;
-		color: #fff;
+		color: @text-bg-base;
 		text-decoration: none;
 
 		&:hover,
 		&:focus {
-			color: #fff;
+			color: @text-bg-base;
 			text-decoration: underline;
 		}
+	}
+
+	#siteNav {
+		position: absolute;
+		top: 0;
+		height: 0;
 	}
 }
 
 .pkp_navigation_user {
+
 	&.pkp_navigation_user {
 		margin-left: auto;
 		margin-right: auto;
 		margin-top: 1rem;
 		padding-top: 1rem;
-		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		border-top: 1px solid @bg-base-border-color;
 	}
 
 	.task_count {
 		display: inline-block;
-		width: 20px;
-		height: 20px;
+		width: @double;
+		height: @double;
 		margin-left: 0.5em;
 		border-radius: 50%;
-		background: rgba(255, 255, 255, 0.3);
-		line-height: 20px;
+		background: @bg-base-border-color;
+		line-height: @double;
 		text-align: center;
-		font-size: 12px; // helps visually center the number
+		font-size: 0.857rem;
+		position: relative;
 	}
 
 	// Hide the top-level task count in mobile nav
@@ -157,20 +166,26 @@
 	> li > ul a {
 		.task_count {
 			display: inline-block;
-			background: rgba(255, 255, 255, 0.8);
-			color: @primary;
+			background: @bg-base-border-color;
+			color: @text-bg-base;
 		}
 
 		&:hover .task_count,
 		&:focus .task_count {
-			background: #fff;
+			background: @text;
 		}
 	}
 }
 
+.pkp_navigation_search_wrapper {
+	margin-top: 1rem;
+	padding-top: 1rem;
+	border-top: 1px solid @bg-base-border-color;
+}
+
 // The padding to apply to top-level items in the navigation row
 // Total height - line height (divided by 2 since it will be applied to top and bottom)
-@pkp_nav_primary_row_el_padding: (@quadruple - @double) / 2;
+@pkp_nav_primary_row_el_padding: @base;
 
 @media (min-width: @screen-desktop) {
 	.pkp_head_wrapper {
@@ -190,6 +205,7 @@
 		white-space: normal;
 		font-size: 2em; // Prevents extra vertical space after logos
 		background: transparent;
+		overflow: visible;
 
 		.is_text {
 			font-family: @font-site-title;
@@ -309,36 +325,46 @@
 
 		> li {
 			> a {
-				margin: 0 1em;
-				padding: @pkp_nav_primary_row_el_padding 0
-					(@pkp_nav_primary_row_el_padding - 2); // -2 to account for border size
+				margin: @half 0.5em 0;
+				padding: @half 0.5em
+					calc(~"@{pkp_nav_primary_row_el_padding} - 2px"); // -2 to account for border size
 				border-bottom: 2px solid transparent;
 				color: @text-bg-base;
 				text-decoration: none;
 
-				&:hover,
-				&:focus {
+				&:hover {
 					color: @text-bg-base;
 					outline: 0;
 					border-color: @text-bg-base;
+				}
+
+				&:focus {
+					background: @text-bg-base;
+					color: @bg-base;
+					outline: 0;
 				}
 			}
 
 			&:first-child {
 				a {
-					margin-left: 0;
+					margin-left: -0.5em;
 				}
 			}
 
 			&:last-child {
 				a {
-					margin-right: 0;
+					margin-right: -0.5em;
 				}
 			}
 		}
 
+		// Reproduce positioning of dropdown menu from Popper.js
 		> li:hover ul {
-			left: 14px;
+			position: absolute;
+			transform: translate3d(7px, 40px, 0px);
+			top: 0;
+			left: 0;
+			will-change: transform;
 		}
 
 		ul a {
@@ -414,28 +440,29 @@
 
 		> li > a:focus {
 			outline: 0;
-			border-bottom: 2px solid;
+			background: @text-bg-base;
+			color: @bg-base;
 		}
 
 		ul {
 			width: 10em;
 		}
 
+		// Reproduce positioning of dropdown menu from Popper.js
+		// There can still be some shifting when the parent item is focused
+		// because Popper.js will adjust if it is too close to the edge of
+		// the screen.
 		> li:hover ul {
-			right: 0;
-			left: auto;
-		}
-
-		> li > a,
-		> li.in_focus > a,
-		> li > a:hover,
-		> li > a:focus {
-			color: @text-bg-base;
+			position: absolute;
+			top: 0;
+			left: 0;
+			transform: translate3d(0px, 30px, 0px);
+			will-change: transform;
 		}
 
 		// Align to the right edge of the container
 		> li:last-child > a {
-			padding-right: 0;
+			margin-right: -@base;
 		}
 
 		// Show the top-level task count in desktop nav
@@ -443,9 +470,44 @@
 			display: inline-block;
 		}
 
+		> li > a:focus .task_count {
+			background: @bg-base;
+			color: @text-bg-base;
+		}
+
 		> li > ul a {
 			.task_count {
-				background: rgba(0, 0, 0, 0.2);
+				display: none;
+			}
+		}
+	}
+
+	.pkp_navigation_search_wrapper {
+		float: right;
+		margin: 0;
+		padding: 0;
+		border: none;
+
+		a {
+			margin: @half 0.5em 0;
+			padding: @half 0.5em
+				calc(~"@{pkp_nav_primary_row_el_padding} - 2px"); // -2 to account for border size
+			border-bottom: 2px solid transparent;
+			color: @text-bg-base;
+			text-decoration: none;
+
+			&:hover {
+				color: @text-bg-base;
+				outline: 0;
+				border-color: @text-bg-base;
+				text-decoration: none;
+			}
+
+			&:focus {
+				background: @text-bg-base;
+				color: @bg-base;
+				outline: 0;
+				text-decoration: none;
 			}
 		}
 	}

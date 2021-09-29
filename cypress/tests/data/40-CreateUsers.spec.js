@@ -1,8 +1,8 @@
 /**
  * @file cypress/tests/data/40-CreateUsers.spec.js
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2000-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  */
@@ -13,7 +13,6 @@ describe('Data suite tests', function() {
 		cy.get('a:contains("admin"):visible').click();
 		cy.get('a:contains("Dashboard")').click();
 		cy.get('a:contains("Users & Roles")').click();
-		cy.get('a').contains(new RegExp('^Users$')).click();
 
 		var users = [
 			{

@@ -3,8 +3,8 @@
 /**
  * @file plugins/generic/htmlMonographFile/HtmlMonographFilePlugin.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class HtmlMonographFilePlugin
@@ -13,216 +13,255 @@
  * @brief Class for HtmlMonographFile plugin
  */
 
+use APP\file\PublicFileManager;
+
+use APP\template\TemplateManager;
+use PKP\submission\SubmissionFile;
+
 import('lib.pkp.classes.plugins.GenericPlugin');
 
-class HtmlMonographFilePlugin extends GenericPlugin {
-	/**
-	 * @copydoc Plugin::register()
-	 */
-	function register($category, $path, $mainContextId = null) {
-		if (parent::register($category, $path, $mainContextId)) {
-			if ($this->getEnabled($mainContextId)) {
-				HookRegistry::register('CatalogBookHandler::view', array($this, 'viewCallback'));
-				HookRegistry::register('CatalogBookHandler::download', array($this, 'downloadCallback'));
-			}
-			return true;
-		}
-		return false;
-	}
+class HtmlMonographFilePlugin extends GenericPlugin
+{
+    /**
+     * @copydoc Plugin::register()
+     *
+     * @param null|mixed $mainContextId
+     */
+    public function register($category, $path, $mainContextId = null)
+    {
+        if (parent::register($category, $path, $mainContextId)) {
+            if ($this->getEnabled($mainContextId)) {
+                HookRegistry::register('CatalogBookHandler::view', [$this, 'viewCallback']);
+                HookRegistry::register('CatalogBookHandler::download', [$this, 'downloadCallback']);
+            }
+            return true;
+        }
+        return false;
+    }
 
-	/**
-	 * Install default settings on press creation.
-	 * @return string
-	 */
-	function getContextSpecificPluginSettingsFile() {
-		return $this->getPluginPath() . '/settings.xml';
-	}
+    /**
+     * Install default settings on press creation.
+     *
+     * @return string
+     */
+    public function getContextSpecificPluginSettingsFile()
+    {
+        return $this->getPluginPath() . '/settings.xml';
+    }
 
-	/**
-	 * Get the display name of this plugin.
-	 * @return String
-	 */
-	function getDisplayName() {
-		return __('plugins.generic.htmlMonographFile.displayName');
-	}
+    /**
+     * Get the display name of this plugin.
+     *
+     * @return String
+     */
+    public function getDisplayName()
+    {
+        return __('plugins.generic.htmlMonographFile.displayName');
+    }
 
-	/**
-	 * Get a description of the plugin.
-	 */
-	function getDescription() {
-		return __('plugins.generic.htmlMonographFile.description');
-	}
+    /**
+     * Get a description of the plugin.
+     */
+    public function getDescription()
+    {
+        return __('plugins.generic.htmlMonographFile.description');
+    }
 
-	/**
-	 * Callback to view the HTML content rather than downloading.
-	 * @param $hookName string
-	 * @param $args array
-	 * @return boolean
-	 */
-	function viewCallback($hookName, $params) {
-		$submission =& $params[1];
-		$publicationFormat =& $params[2];
-		$submissionFile =& $params[3];
-		$inline =& $params[4];
-		$request = Application::get()->getRequest();
+    /**
+     * Callback to view the HTML content rather than downloading.
+     *
+     * @param $hookName string
+     *
+     * @return boolean
+     */
+    public function viewCallback($hookName, $params)
+    {
+        $submission = & $params[1];
+        $publicationFormat = & $params[2];
+        $submissionFile = & $params[3];
+        $inline = & $params[4];
+        $request = Application::get()->getRequest();
 
-		if ($submissionFile && $submissionFile->getFileType() == 'text/html') {
-			foreach ($submission->getData('publications') as $publication) {
-				if ($publication->getId() === $publicationFormat->getData('publicationId')) {
-					$filePublication = $publication;
-					break;
-				}
-			}
-			$templateMgr = TemplateManager::getManager($request);
-			$templateMgr->assign(array(
-				'pluginUrl' => $request->getBaseUrl() . '/' . $this->getPluginPath(),
-				'monograph' => $submission,
-				'publicationFormat' => $publicationFormat,
-				'downloadFile' => $submissionFile,
-				'isLatestPublication' => $submission->getData('currentPublicationId') === $publicationFormat->getData('publicationId'),
-				'filePublication' => $filePublication,
-			));
-			$templateMgr->display($this->getTemplateResource('display.tpl'));
-			return true;
-		}
+        $mimetype = $submissionFile->getData('mimetype');
+        if ($submissionFile && $mimetype == 'text/html') {
+            foreach ($submission->getData('publications') as $publication) {
+                if ($publication->getId() === $publicationFormat->getData('publicationId')) {
+                    $filePublication = $publication;
+                    break;
+                }
+            }
+            $templateMgr = TemplateManager::getManager($request);
+            $templateMgr->assign([
+                'pluginUrl' => $request->getBaseUrl() . '/' . $this->getPluginPath(),
+                'monograph' => $submission,
+                'publicationFormat' => $publicationFormat,
+                'downloadFile' => $submissionFile,
+                'isLatestPublication' => $submission->getData('currentPublicationId') === $publicationFormat->getData('publicationId'),
+                'filePublication' => $filePublication,
+            ]);
+            $templateMgr->display($this->getTemplateResource('display.tpl'));
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	/**
-	 * Callback to rewrite and serve HTML content.
-	 * @param string $hookName
-	 * @param array $args
-	 */
-	function downloadCallback($hookName, $params) {
-		$submission =& $params[1];
-		$publicationFormat =& $params[2];
-		$submissionFile =& $params[3];
-		$inline =& $params[4];
-		$request = Application::get()->getRequest();
+    /**
+     * Callback to rewrite and serve HTML content.
+     *
+     * @param string $hookName
+     */
+    public function downloadCallback($hookName, $params)
+    {
+        $submission = & $params[1];
+        $publicationFormat = & $params[2];
+        $submissionFile = & $params[3];
+        $inline = & $params[4];
+        $request = Application::get()->getRequest();
 
-		if ($submissionFile && $submissionFile->getFileType() == 'text/html') {
-			if (!HookRegistry::call('HtmlMonographFilePlugin::monographDownload', array(&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline))) {
-				echo $this->_getHTMLContents($request, $submission, $publicationFormat, $submissionFile);
-				$returner = true;
-				HookRegistry::call('HtmlMonographFilePlugin::monographDownloadFinished', array(&$returner));
-				return true;
-			}
-		}
+        $mimetype = $submissionFile->getData('mimetype');
+        if ($submissionFile && $mimetype == 'text/html') {
+            if (!HookRegistry::call('HtmlMonographFilePlugin::monographDownload', [&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline])) {
+                echo $this->_getHTMLContents($request, $submission, $publicationFormat, $submissionFile);
+                $returner = true;
+                HookRegistry::call('HtmlMonographFilePlugin::monographDownloadFinished', [&$returner]);
+                return true;
+            }
+        }
 
-		return false;
-	}
-	/**
-	 * Return string containing the contents of the HTML file.
-	 * This function performs any necessary filtering, like image URL replacement.
-	 * @param $request PKPRequest
-	 * @param $monograph Monograph
-	 * @param $publicationFormat PublicationFormat
-	 * @param $submissionFile SubmissionFile
-	 * @return string
-	 */
-	function _getHTMLContents($request, $monograph, $publicationFormat, $submissionFile) {
-		$contents = file_get_contents($submissionFile->getFilePath());
+        return false;
+    }
+    /**
+     * Return string containing the contents of the HTML file.
+     * This function performs any necessary filtering, like image URL replacement.
+     *
+     * @param $request PKPRequest
+     * @param $monograph Monograph
+     * @param $publicationFormat PublicationFormat
+     * @param $submissionFile SubmissionFile
+     *
+     * @return string
+     */
+    public function _getHTMLContents($request, $monograph, $publicationFormat, $submissionFile)
+    {
+        $contents = Services::get('file')->fs->read($submissionFile->getData('path'));
 
-		// Replace media file references
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
-		$embeddableFiles = array_merge(
-			$submissionFileDao->getLatestRevisions($submissionFile->getSubmissionId(), SUBMISSION_FILE_PROOF),
-			$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_SUBMISSION_FILE, $submissionFile->getFileId(), $submissionFile->getSubmissionId(), SUBMISSION_FILE_DEPENDENT)
-		);
+        // Replace media file references
+        import('lib.pkp.classes.submission.SubmissionFile'); // Constants
+        $proofFiles = Services::get('submissionFile')->getMany([
+            'submissionIds' => [$monograph->getId()],
+            'fileStages' => [SubmissionFile::SUBMISSION_FILE_PROOF],
+        ]);
+        $dependentFiles = Services::get('submissionFile')->getMany([
+            'submissionIds' => [$monograph->getId()],
+            'fileStages' => [SubmissionFile::SUBMISSION_FILE_DEPENDENT],
+            'assocTypes' => [ASSOC_TYPE_SUBMISSION_FILE],
+            'assocIds' => [$submissionFile->getId()],
+        ]);
+        $embeddableFiles = array_merge(
+            iterator_to_array($proofFiles),
+            iterator_to_array($dependentFiles)
+        );
 
-		foreach ($embeddableFiles as $embeddableFile) {
-			$fileUrl = $request->url(null, 'catalog', 'download', array($monograph->getBestId(), $publicationFormat->getBestId(), $embeddableFile->getBestId()), array('inline' => true));
-			$pattern = preg_quote($embeddableFile->getOriginalFileName());
+        foreach ($embeddableFiles as $embeddableFile) {
+            $fileUrl = $request->url(null, 'catalog', 'download', [$monograph->getBestId(), $publicationFormat->getBestId(), $embeddableFile->getBestId()], ['inline' => true]);
+            $pattern = preg_quote($embeddableFile->getLocalizedData('name'));
 
-			$contents = preg_replace(
-					'/([Ss][Rr][Cc]|[Hh][Rr][Ee][Ff]|[Dd][Aa][Tt][Aa])\s*=\s*"([^"]*' . $pattern . ')"/',
-					'\1="' . $fileUrl . '"',
-					$contents
-			);
+            $contents = preg_replace(
+                '/([Ss][Rr][Cc]|[Hh][Rr][Ee][Ff]|[Dd][Aa][Tt][Aa])\s*=\s*"([^"]*' . $pattern . ')"/',
+                '\1="' . $fileUrl . '"',
+                $contents
+            );
 
-			// Replacement for Flowplayer
-			$contents = preg_replace(
-					'/[Uu][Rr][Ll]\s*\:\s*\'(' . $pattern . ')\'/',
-					'url:\'' . $fileUrl . '\'',
-					$contents
-			);
+            // Replacement for Flowplayer
+            $contents = preg_replace(
+                '/[Uu][Rr][Ll]\s*\:\s*\'(' . $pattern . ')\'/',
+                'url:\'' . $fileUrl . '\'',
+                $contents
+            );
 
-			// Replacement for other players (tested with odeo; yahoo and google player won't work w/ OJS URLs, might work for others)
-			$contents = preg_replace(
-					'/[Uu][Rr][Ll]=([^"]*' . $pattern . ')/',
-					'url=' . $fileUrl ,
-					$contents
-			);
+            // Replacement for other players (tested with odeo; yahoo and google player won't work w/ OJS URLs, might work for others)
+            $contents = preg_replace(
+                '/[Uu][Rr][Ll]=([^"]*' . $pattern . ')/',
+                'url=' . $fileUrl,
+                $contents
+            );
+        }
 
-		}
+        // Perform replacement for ojs://... URLs
+        $contents = preg_replace_callback(
+            '/(<[^<>]*")[Oo][Mm][Pp]:\/\/([^"]+)("[^<>]*>)/',
+            [&$this, '_handleOmpUrl'],
+            $contents
+        );
 
-		// Perform replacement for ojs://... URLs
-		$contents = preg_replace_callback(
-				'/(<[^<>]*")[Oo][Mm][Pp]:\/\/([^"]+)("[^<>]*>)/',
-				array(&$this, '_handleOmpUrl'),
-				$contents
-		);
+        $templateMgr = TemplateManager::getManager($request);
+        $contents = $templateMgr->loadHtmlGalleyStyles($contents, $embeddableFiles);
 
-		$templateMgr = TemplateManager::getManager($request);
-		$contents = $templateMgr->loadHtmlGalleyStyles($contents, $embeddableFiles);
+        // Perform variable replacement for press, publication format, site info
+        $press = $request->getPress();
+        $site = $request->getSite();
 
-		// Perform variable replacement for press, publication format, site info
-		$press = $request->getPress();
-		$site = $request->getSite();
+        $paramArray = [
+            'pressTitle' => $press->getLocalizedName(),
+            'siteTitle' => $site->getLocalizedTitle(),
+            'currentUrl' => $request->getRequestUrl()
+        ];
 
-		$paramArray = array(
-				'pressTitle' => $press->getLocalizedName(),
-				'siteTitle' => $site->getLocalizedTitle(),
-				'currentUrl' => $request->getRequestUrl()
-		);
+        foreach ($paramArray as $key => $value) {
+            $contents = str_replace('{$' . $key . '}', $value, $contents);
+        }
 
-		foreach ($paramArray as $key => $value) {
-			$contents = str_replace('{$' . $key . '}', $value, $contents);
-		}
+        return $contents;
+    }
 
-		return $contents;
-	}
-
-	function _handleOmpUrl($matchArray) {
-		$request = Application::get()->getRequest();
-		$url = $matchArray[2];
-		$anchor = null;
-		if (($i = strpos($url, '#')) !== false) {
-			$anchor = substr($url, $i+1);
-			$url = substr($url, 0, $i);
-		}
-		$urlParts = explode('/', $url);
-		if (isset($urlParts[0])) switch(strtolower_codesafe($urlParts[0])) {
-			case 'press':
-				$url = $request->url(
-					isset($urlParts[1]) ? $urlParts[1] : $request->getRequestedPressPath(),
-					null, null, null, null, $anchor
-				);
-				break;
-			case 'monograph':
-				if (isset($urlParts[1])) {
-					$url = $request->url(
-						null, 'catalog', 'book',
-						$urlParts[1], null, $anchor
-					);
-				}
-				break;
-			case 'sitepublic':
-				array_shift($urlParts);
-				import ('classes.file.PublicFileManager');
-				$publicFileManager = new PublicFileManager();
-				$url = $request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath() . '/' . implode('/', $urlParts) . ($anchor?'#' . $anchor:'');
-				break;
-			case 'public':
-				array_shift($urlParts);
-				$press = $request->getPress();
-				import ('classes.file.PublicFileManager');
-				$publicFileManager = new PublicFileManager();
-				$url = $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($press->getId()) . '/' . implode('/', $urlParts) . ($anchor?'#' . $anchor:'');
-				break;
-		}
-		return $matchArray[1] . $url . $matchArray[3];
-	}
+    public function _handleOmpUrl($matchArray)
+    {
+        $request = Application::get()->getRequest();
+        $url = $matchArray[2];
+        $anchor = null;
+        if (($i = strpos($url, '#')) !== false) {
+            $anchor = substr($url, $i + 1);
+            $url = substr($url, 0, $i);
+        }
+        $urlParts = explode('/', $url);
+        if (isset($urlParts[0])) {
+            switch (strtolower_codesafe($urlParts[0])) {
+            case 'press':
+                $url = $request->url(
+                    $urlParts[1] ?? $request->getRequestedPressPath(),
+                    null,
+                    null,
+                    null,
+                    null,
+                    $anchor
+                );
+                break;
+            case 'monograph':
+                if (isset($urlParts[1])) {
+                    $url = $request->url(
+                        null,
+                        'catalog',
+                        'book',
+                        $urlParts[1],
+                        null,
+                        $anchor
+                    );
+                }
+                break;
+            case 'sitepublic':
+                array_shift($urlParts);
+                $publicFileManager = new PublicFileManager();
+                $url = $request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath() . '/' . implode('/', $urlParts) . ($anchor ? '#' . $anchor : '');
+                break;
+            case 'public':
+                array_shift($urlParts);
+                $press = $request->getPress();
+                $publicFileManager = new PublicFileManager();
+                $url = $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($press->getId()) . '/' . implode('/', $urlParts) . ($anchor ? '#' . $anchor : '');
+                break;
+        }
+        }
+        return $matchArray[1] . $url . $matchArray[3];
+    }
 }

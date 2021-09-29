@@ -1,8 +1,8 @@
 {**
  * templates/controllers/grid/manageCatalog/form/catalogMonographsFilterForm.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Catalog monographs grid filter form.
@@ -22,7 +22,7 @@
 		{elseif $filterData.seriesId}
 			{fbvElement type="select" label="catalog.selectSeries" id=seriesId from=$filterData.seriesOptions selected=$filterData.seriesId translate=false size=$fbvStyles.size.SMALL inline=true}
 		{/if}
-			{fbvElement type="text" id="searchText" value=$filterData.searchText label="catalog.manage.filter.searchByAuthorOrTitle" size=$fbvStyles.size.SMALL inline=true}
+			{fbvElement type="search" id="searchText" value=$filterData.searchText label="catalog.manage.filter.searchByAuthorOrTitle" size=$fbvStyles.size.SMALL inline=true}
 			{fbvElement type="checkbox" id="featured" checked=$filterData.featured value=1 label="common.feature" inline=true}
 			{fbvElement type="checkbox" id="newReleased" checked=$filterData.newReleased value=1 label="catalog.manage.newReleases" inline=true}
 			{fbvFormButtons submitText="common.search" hideCancel=true}

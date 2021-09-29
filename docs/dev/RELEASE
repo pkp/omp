@@ -13,6 +13,7 @@ OMP release:
     dbscripts/xml/version.xml
     dbscripts/xml/install.xml
     dbscripts/xml/upgrade.xml
+    package.json (and package-lock.json, using `npm install`)
     docs/dev/omp.doxygen (for version number)
 
     Commands that may be helpful in determining what bugs have been closed
@@ -68,7 +69,7 @@ compiled when `tools/buildpkg.sh` is run. Remove js/build.js from the .gitignore
 file and commit it to the new stable branch.
 
     sh tools/buildpkg.sh <VERSION> <TAG>-<BRANCH>
-    
+
 
 7. Place the new package, patches, version descriptor, and Doxygen docs on the
    OMP web site:

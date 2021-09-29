@@ -3,9 +3,10 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2020-02-28 23:00+0000\n"
+"PO-Revision-Date: 2021-04-09 19:43+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
-"Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/locale/da/>\n"
+"Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/locale/da_DK/"
+">\n"
 "Language: da_DK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1037,7 +1038,8 @@ msgid "about.pressSponsorship"
 msgstr "Forlagssponsorering"
 
 msgid "about.aboutThisPublishingSystem"
-msgstr "Om dette publiceringssystem"
+msgstr ""
+"Mere information om publiceringssystemet, platform og workflow fra OMP / PKP."
 
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "OMP redaktions- og publiceringsproces"
@@ -1045,10 +1047,13 @@ msgstr "OMP redaktions- og publiceringsproces"
 msgid "about.aboutOMPPress"
 msgstr ""
 "Dette forlag bruger Open Monograph Press {$ompVersion}, som er open source-"
-"redigerings- og publiceringssoftware udviklet, understøttet og frit "
-"distribueret af <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> "
-"under GNU General Public License."
+"redigerings- og publiceringssoftware, udviklet, understøttet og frit "
+"distribueret af Public Knowledge Project under GNU General Public License. "
+"Besøg PKP's websted for at <a href=\"http://pkp.sfu.ca/\">lære mere om "
+"softwaren</a>. <a href=\"{$contactUrl}\">Kontakt forlaget</a> direkte med "
+"spørgsmål om forlaget og indsendelser til forlaget."
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr ""
 "Dette websted bruger Open Monograph Press {$ompVersion}, som er open source-"
@@ -1086,11 +1091,6 @@ msgstr ""
 "reporting system</a>. Selvom supportforummet er den foretrukne kontaktform, "
 "kan du også e-maile teamet via <a href=\"mailto:pkp.contact@gmail.com\""
 ">pkp.contact@gmail.com</a>.</p>\n"
-"\n"
-"<h4>Upgradér</h4>\n"
-"\n"
-"<p>Hvis du opgraderer en eksisterende installation af OMP 0.x, <a href=\""
-"{$upgradeUrl}\">klik her</a> for at fortsætte. </p>"
 
 msgid "installer.preInstallationInstructionsTitle"
 msgstr "Før-installations-foranstaltninger"
@@ -1217,7 +1217,9 @@ msgid "log.editor.decision"
 msgstr "En redaktørbeslutning ({$decision}) i forbindelse med monografi {$submissionId} blev registreret af {$editorName}."
 
 msgid "log.editor.recommendation"
-msgstr "En redaktøranbefaling ({$decision}) i forbindelse med monografi {$submissionId} blev regostreret af {$editorName}."
+msgstr ""
+"En redaktøranbefaling ({$decision}) i forbindelse med monografi "
+"{$submissionId} blev registreret af {$editorName}."
 
 msgid "log.editor.archived"
 msgstr "Indsendelsen {$submissionId} er blevet arkiveret."
@@ -1360,6 +1362,7 @@ msgstr "Der er ikke konfigureret nogen betalingsmetode."
 msgid "notification.type.configurePaymentMethod"
 msgstr "En konfigureret betalingsmetode er påkrævet, før du kan definere indstillinger for e-handel."
 
+#, fuzzy
 msgid "notification.type.visitCatalog"
 msgstr "Monografien er godkendt. Gå til 'Katalog' for at indskrive dets katalogoplysninger ved hjælp af katalog-linket ovenfor."
 
@@ -1455,9 +1458,6 @@ msgstr "Køb download af monografi eller kapitel"
 msgid "payment.directSales.monograph.description"
 msgstr "Denne transaktion er til køb af et direkte download af en enkelt monografi eller et monografi-kapitel."
 
-msgid "debug.notes.currencyListLoad"
-msgstr "Indlæst valutaliste \"{$filename}\" fra XML"
-
 msgid "debug.notes.helpMappingLoad"
 msgstr "Genindlæst XML-hjælp til at kortlægge fil {$filename} på søgning efter {$id}."
 
@@ -1518,3 +1518,47 @@ msgstr "Forsidebillede"
 
 msgid "user.authorization.invalidPublishedSubmission"
 msgstr "En ugyldig publiceret indsendelse blev angivet."
+
+msgid "submissionGroup.assignedSubEditors"
+msgstr "Valgte redaktører"
+
+msgid "site.noPresses"
+msgstr "Der er ingen forlag (udgivere) tilgængelige."
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Ja, jeg accepterer at få mine data indsamlet og opbevaret i overensstemmelse "
+"med vores  <a href=\"{$privacyUrl}\" target=\"_blank\">Erklæring om "
+"beskyttelse af personlige oplysninger</a>."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Ingen indsendelse blev udvalgt til kataloget."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Find monografier til kataloget"
+
+msgid "user.authorization.representationNotFound"
+msgstr "Det ønskede publiceringsformat blev ikke fundet."
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "En eller flere af indsendelserne blev ikke fundet."
+
+msgid "about.aboutSoftware"
+msgstr "Om Open Monograph Press"
+
+msgid "common.payments"
+msgstr "Betalinger"
+
+msgid "installer.updatingInstructions"
+msgstr ""
+"Såfremt du opgraderer en eksisterende installation af OMP, skal du <a href=\""
+"{$upgradeUrl}\"> klikke her </a> for at fortsætte."
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "En 10-ciffer lang ISBN kode, som f.eks. 951-98548-9-4."
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "En 13-ciffer lang ISBN-kode, som f.eks. 978-951-98548-9-2."
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"

@@ -995,9 +995,11 @@ msgstr "O postopku objave"
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "Uredniški postopek in postopek objave OMP"
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr "Ta založba uporablja sistem Open Monograph Press {$ompVersion}, ki je odprtokodna programska oprema za založništvo in upravljanje založb, ki jo podpira in distribuira <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> z licenco GNU General Public License."
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr "To spletišče uporablja sistem Open Monograph Press {$ompVersion}, ki je odprtokodna programska oprema za založništvo in upravljanje založb, ki jo podpira in distribuira <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> z licenco GNU General Public License."
 
@@ -1016,10 +1018,11 @@ msgstr "Nadgradnja OMP"
 msgid "installer.installApplication"
 msgstr "Namestitev Open Monograph Press"
 
+#, fuzzy
 msgid "installer.installationInstructions"
 msgstr ""
 "\n"
-"<p>Hvala za prenos <strong>Open Monograph Press {$version}</strong> v lasti Public Knowledge Project. Preden nadaljujete, preberite datoteko <a href=\"{$baseUrl}/docs/README\">README</a>, ki je priložena tej programski opremi. Za več informacij o platformi Public Knowledge Project in njihovi programski opremi obiščite <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">spletišče PKP</a>. Če imate vprašanja o tehnični podpori ali poročila o napakah v sistemu v zvezi s projektom Open Monograph Press, obiščite <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">podporni forum</a> ali spletni sistem PKP <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">za poročila o napakah</a>. Čeprav je zaželjeno, da nas kontaktirate preko podpornega foruma, lahko ekipo kontaktirate na <a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>. </p> <h4>Upgrade</h4> <p>Če nadgrajujete obstoječo nastavitev OMP 0.x, <a href=\"{$upgradeUrl}\">kliknite tukaj</a> za nadaljevanje.</p>"
+"<p>Hvala za prenos <strong>Open Monograph Press {$version}</strong> v lasti Public Knowledge Project. Preden nadaljujete, preberite datoteko <a href=\"{$baseUrl}/docs/README\">README</a>, ki je priložena tej programski opremi. Za več informacij o platformi Public Knowledge Project in njihovi programski opremi obiščite <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">spletišče PKP</a>. Če imate vprašanja o tehnični podpori ali poročila o napakah v sistemu v zvezi s projektom Open Monograph Press, obiščite <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">podporni forum</a> ali spletni sistem PKP <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">za poročila o napakah</a>. Čeprav je zaželjeno, da nas kontaktirate preko podpornega foruma, lahko ekipo kontaktirate na <a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>. </p> <h4>Upgrade</h4> <p>Če nadgrajujete obstoječo nastavitev OMP, <a href=\"{$upgradeUrl}\">kliknite tukaj</a> za nadaljevanje.</p>"
 
 msgid "installer.preInstallationInstructionsTitle"
 msgstr "Koraki pred namestitvijo"
@@ -1322,9 +1325,6 @@ msgstr "Nakup monografske publikacije ali prenos poglavja"
 
 msgid "payment.directSales.monograph.description"
 msgstr "Prenos sredstev je za nakup direktnega prenosa ene monografske publikacije ali njenega poglavja."
-
-msgid "debug.notes.currencyListLoad"
-msgstr "Seznam valut je bil prebran iz XML datoteke \"{$filename}\""
 
 msgid "debug.notes.helpMappingLoad"
 msgstr "XML datoteka preslikav pomoči {$filename} za iskanje {$id} je bila ponovno naložena."

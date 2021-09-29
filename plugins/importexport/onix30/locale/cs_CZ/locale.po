@@ -1,0 +1,75 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-11-27 09:21+0000\n"
+"Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
+"Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-onix30/cs_CZ/>\n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.importexport.onix30.displayName"
+msgstr "Plugin pro export monografií ve standardu ONIX 3.0"
+
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
+msgstr ""
+"Pro obecný export nechte pole prázdné. Ve výsledku exportu ONIX nebude nikdo "
+"adresován. "
+
+msgid "plugins.importexport.onix30.form.addresseeField"
+msgstr "Adresovat příjemce pro tento export"
+
+msgid "plugins.importexport.onix30.pressMissingFields"
+msgstr ""
+"V nakladatelství je potřeba vyplnit nějaké chybějící informace. Prosím, "
+"jděte do  <a href=\"{$url}\">Nastavení nakladatelství</a> a vyplňte "
+"chybějící detaily."
+
+msgid "plugins.importexport.onix30.formatInvalid"
+msgstr "Neplatný"
+
+msgid "plugins.importexport.onix30.formatValid"
+msgstr "Platný"
+
+msgid "plugins.importexport.onix30.validityStatus"
+msgstr "Status ONIX"
+
+msgid "plugins.importexport.onix30.unavailable"
+msgstr "Nedostupné"
+
+msgid "plugins.importexport.onix30.exportFormats"
+msgstr "Dostupné formáty"
+
+msgid "plugins.importexport.onix30.exportButton"
+msgstr "Exportovat"
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr "Zvolte monografii pro export:"
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Zvolte monografie pro export"
+
+msgid "plugins.importexport.onix30.noFormats"
+msgstr "Monografie bez publikačních formátů nejsou v seznamu zobrazeny."
+
+msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgstr "Zadanému ID monografie \"{$monographId}\" neodpovídá žádná monografie."
+
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr "Do souboru \"{$fileName}\" nelze zapisovat."
+
+msgid "plugins.importexport.onix30.error.unknownPress"
+msgstr "Vybraná cesta nakladatelství  \"{$contextPath}\" neexistuje."
+
+msgid "plugins.importexport.onix30.cliError"
+msgstr "CHYBA:"
+
+msgid "plugins.importexport.onix30.cliUsage"
+msgstr ""
+"Použití: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId] "
+
+msgid "plugins.importexport.onix30.description"
+msgstr "Exportovat metadata monografie ve formátu ONIX 3.0"

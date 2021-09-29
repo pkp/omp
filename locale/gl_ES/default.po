@@ -1,0 +1,182 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-02-16 19:23+0000\n"
+"Last-Translator: Real Academia Galega <reacagal@gmail.com>\n"
+"Language-Team: Galician <http://translate.pkp.sfu.ca/projects/omp/default/"
+"gl_ES/>\n"
+"Language: gl_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "RE"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Revisores/as externos"
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Revisor/a externo"
+
+msgid "default.contextSettings.forLibrarians"
+msgstr ""
+"Animamos aos bibliotecarios/as a que listen esta editorial nos seus "
+"catálogos de recursos electrónicos. Ademais, este sistema de publicación de "
+"código aberto é adecuado para bibliotecas que queiran aloxar editoriais para "
+"os membros que están implicados en procesos de edición e publicación ("
+"consulte <a href=\"http://pkp.sfu.ca/omp\"> Open Monograph Press </a>)."
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+"Estás interesado/a en facer un envío a esta editorial? Recomendámoslle que "
+"revise a páxina <a href=\"{$indexUrl}/{$contextPath}/about\">Acerca da "
+"editorial</a> para ver as políticas da editorial e as <a href=\""
+"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\">Directrices "
+"aos autores/as</a>. Os autores/as precisan <a href=\""
+"{$indexUrl}/{$contextPath}/user/register\">rexistrarse</a> na editorial "
+"antes de facer un envío ou, se xa están rexistrados, poden simplemente <a "
+"href=\"{$indexUrl}/index/login\">iniciar sesión</a> e comezar o proceso de 5 "
+"pasos."
+
+msgid "default.contextSettings.forReaders"
+msgstr ""
+"Animamos aos lectores a rexistrarse no servizo de notificación desta "
+"editorial. Use a ligazón <a href=\"{$indexUrl}/{$contextPath}/user/register\""
+">Rexistrarse</a> na parte superior da páxina de inicio. Este rexistro "
+"permitirá que o lector reciba por correo electrónico a táboa de contidos "
+"para cada nova monografía da editorial. Vexa a <a href=\""
+"{$indexUrl}/{$contextPath}/about/submissions#privacyStatement\">Declaración "
+"de privacidade</a> que garante aos lectores que o seu nome e enderezo de "
+"correo electrónico non se usarán para outros fins."
+
+msgid "default.contextSettings.emailSignature"
+msgstr ""
+"<br/>\n"
+"________________________________________________________________________<br/>"
+"\n"
+"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr ""
+"Esta editorial fornece acceso aberto inmediato ao seu contido seguindo o "
+"principio de que facer que a investigación estea dispoñible gratuitamente "
+"para o público apoia un maior intercambio global de coñecemento."
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+"<p>Os nomes e enderezos de correo electrónico inseridos nesta editorial "
+"utilizaranse exclusivamente para os fins indicados e non estarán dispoñibles "
+"para ningún outro propósito nin para terceiras partes.</p>"
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr ""
+"O texto adhírese aos requirimentos estilísticos e bibliográficos descritos "
+"nas <a href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\""
+" target=\"_blank\">Directrices aos autores</a>, que se atopan en Sobre a "
+"Editorial."
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr ""
+"O texto está formatado con interliñado simple, usa unha fonte de 12 puntos, "
+"emprega cursiva, en lugar de subliñado (excepto con enderezos URL), e todas "
+"as ilustracións, figuras e táboas colócanse dentro do texto nos puntos "
+"apropiados en lugar de ao final."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr "Cando estean dispoñibles proporcionáronse URL para as referencias."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr ""
+"O arquivo de envío está en formato de ficheiro Microsoft Word, RTF ou "
+"OpenDocument."
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr ""
+"O envío non se publicou previamente e non está noutra editora para a súa "
+"consideración (ou se proporcionou unha explicación en Comentarios ao editor)."
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Editores/as da serie"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "EV"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Editores/as de volume"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Editor/a de volume"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "AC"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Autores/as de capítulo"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Autor/a de capítulo"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "ES"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Editor/a da serie"
+
+msgid "default.groups.abbrev.editor"
+msgstr "Ed"
+
+msgid "default.groups.name.editor"
+msgstr "Editor/a"
+
+msgid "default.groups.plural.editor"
+msgstr "Editores/as"
+
+msgid "default.groups.abbrev.manager"
+msgstr "JE"
+
+msgid "default.groups.plural.manager"
+msgstr "Xefes/as editoriais"
+
+msgid "default.groups.name.manager"
+msgstr "Xefe/a editorial"
+
+msgid "default.genres.other"
+msgstr "Outros"
+
+msgid "default.genres.illustration"
+msgstr "Ilustración"
+
+msgid "default.genres.photo"
+msgstr "Foto"
+
+msgid "default.genres.figure"
+msgstr "Figura"
+
+msgid "default.genres.table"
+msgstr "Táboa"
+
+msgid "default.genres.prospectus"
+msgstr "Folleto"
+
+msgid "default.genres.preface"
+msgstr "Prefacio"
+
+msgid "default.genres.index"
+msgstr "Índice"
+
+msgid "default.genres.glossary"
+msgstr "Glosario"
+
+msgid "default.genres.chapter"
+msgstr "Manuscrito de capítulo"
+
+msgid "default.genres.manuscript"
+msgstr "Manuscrito do libro"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliografía"
+
+msgid "default.genres.appendix"
+msgstr "Apéndice"

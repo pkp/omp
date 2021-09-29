@@ -1,8 +1,8 @@
 {**
  * templates/frontend/pages/catalogCategory.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Display the page to view a category of the catalog.
@@ -39,8 +39,8 @@
 	{assign var="description" value=$category->getLocalizedDescription()|strip_unsafe_html}
 	<div class="about_section{if $image} has_image{/if}{if $description} has_description{/if}">
 		{if $image}
-			<div class="cover" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="fullSize" type="category" id=$category->getId()}">
-				<img src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="category" id=$category->getId()}" alt="{$category->getLocalizedTitle()|escape|default:''}" />
+			<div class="cover" href="{url router=PKPApplication::ROUTE_PAGE page="catalog" op="fullSize" type="category" id=$category->getId()}">
+				<img src="{url router=PKPApplication::ROUTE_PAGE page="catalog" op="thumbnail" type="category" id=$category->getId()}" alt="{$category->getLocalizedTitle()|escape|default:''}" />
 			</div>
 		{/if}
 		<div class="description">
@@ -48,19 +48,19 @@
 		</div>
 	</div>
 
-	{if !$subcategories->wasEmpty()}
+	{if $subcategories|@count}
 	<nav class="subcategories" role="navigation">
 		<h2>
 			{translate key="catalog.category.subcategories"}
 		</h2>
 		<ul>
-			{iterate from=subcategories item=subcategory}
+			{foreach from=$subcategories item=subcategory}
 				<li>
 					<a href="{url op="category" path=$subcategory->getPath()}">
 						{$subcategory->getLocalizedTitle()|escape}
 					</a>
 				</li>
-			{/iterate}
+			{/foreach}
 		</ul>
 	</nav>
 	{/if}
@@ -70,7 +70,7 @@
 		<h2>
 			{translate key="catalog.category.heading"}
 		</h2>
-		<p>{translate key="catalog.noTitlesSection"}</p>
+		<p>{translate key="catalog.noTitles"}</p>
 
 	{else}
 
@@ -84,12 +84,12 @@
 
 		{* Pagination *}
 		{if $prevPage > 1}
-			{capture assign=prevUrl}{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path=$category->getPath()|to_array:$prevPage}{/capture}
+			{capture assign=prevUrl}{url router=PKPApplication::ROUTE_PAGE page="catalog" op="category" path=$category->getPath()|to_array:$prevPage}{/capture}
 		{elseif $prevPage === 1}
-			{capture assign=prevUrl}{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path=$category->getPath()}{/capture}
+			{capture assign=prevUrl}{url router=PKPApplication::ROUTE_PAGE page="catalog" op="category" path=$category->getPath()}{/capture}
 		{/if}
 		{if $nextPage}
-			{capture assign=nextUrl}{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path=$category->getPath()|to_array:$nextPage}{/capture}
+			{capture assign=nextUrl}{url router=PKPApplication::ROUTE_PAGE page="catalog" op="category" path=$category->getPath()|to_array:$nextPage}{/capture}
 		{/if}
 		{include
 			file="frontend/components/pagination.tpl"

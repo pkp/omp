@@ -47,21 +47,6 @@ msgstr "Are you sure you want to uninstall this locale? This may affect any host
 msgid "admin.languages.installNewLocalesInstructions"
 msgstr "Select any additional locales to install support for in this system. Locales must be installed before they can be used by hosted presses. See the OMP documentation for information on adding support for new languages."
 
-msgid "admin.languages.noLocalesToDownload"
-msgstr "No locales are available for download."
-
-msgid "admin.languages.downloadFailed"
-msgstr "The locale download failed. The error message(s) below describe the failure."
-
-msgid "admin.languages.downloadUnavailable"
-msgstr ""
-"<p>Downloading language packs from the Public Knowledge Project web server is not currently available because:</p>\n"
-"\t<ul>\n"
-"\t\t<li>Your server does not have or allow execution of the GNU \"tar\" utility</li>\n"
-"\t\t<li>OMP is unable to modify the locale registry file, typically \"registry/locales.xml\".</li>\n"
-"\t</ul>\n"
-"<p>Language packs can be manually downloaded from the <a href=\"http://pkp.sfu.ca\" target=\"_blank\">PKP web site</a>.</p>"
-
 msgid "admin.languages.confirmDisable"
 msgstr "Are you sure you want to disable this locale? This may affect any hosted presses currently using the locale."
 
@@ -92,6 +77,9 @@ msgstr "The path can only include letters, numbers and the characters _ and -. I
 msgid "admin.contexts.form.pathExists"
 msgstr "The selected path is already in use by another press."
 
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr "The primary locale must be one of the press's supported locales."
+
 msgid "admin.contexts.form.create.success"
 msgstr "{$name} was created successfully."
 
@@ -108,3 +96,24 @@ msgid "admin.overwriteConfigFileInstructions"
 msgstr ""
 "<h4>NOTE!</div>\n"
 "<p>The system could not automatically overwrite the configuration file. To apply your configuration changes you must open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>"
+
+msgid "admin.settings.enableBulkEmails.description"
+msgstr ""
+"Select the hosted presses that should be allowed to send bulk emails. When this feature is enabled, "
+"a press manager will be able to send an email to all users registered with their press."
+"<br><br>"
+"Misuse of this feature to send unsolicited email may violate anti-spam laws in some jurisdictions and "
+"may result in your server's emails being blocked as spam. Seek technical advice before "
+"enabling this feature and consider consulting with press managers to ensure it is used appropriately."
+"<br><br>"
+"Further restrictions on this feature can be enabled for each press by visiting its settings wizard in "
+"the list of <a href=\"{$hostedContextsUrl}\">Hosted Presses</a>."
+
+msgid "admin.settings.disableBulkEmailRoles.description"
+msgstr ""
+"A press manager will be unable to send bulk emails to any of the roles selected below. Use this setting to limit abuse of the email notification feature. For example, it may be safer to disable bulk emails to readers, authors, or other large user groups that have not consented to receive such emails."
+"<br><br>"
+"The bulk email feature can be disabled completely for this press in <a href=\"{$siteSettingsUrl}\">Admin > Site Settings</a>."
+
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgstr "The bulk email feature has been disabled for this press. Enable this feature in <a href=\"{$siteSettingsUrl}\">Admin > Site Settings</a>."

@@ -1,0 +1,210 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-12-01 14:05+0000\n"
+"Last-Translator: rl <biuro@fimagis.pl>\n"
+"Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/editor/pl_PL/"
+">\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr ""
+"Identyfikator publiczny '{$publicIdentifier}' już istnieje dla innego "
+"przedmiotu tego rodzaju. Proszę, wybierz identyfikatory będące przeznaczone "
+"dla przedmiotów zgodnych z rodzajem Twojego wydania."
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr ""
+"Pliki, które już zostały załadowane do stanu zgłoszenia mogą być dodane do "
+"Plików korektorskich poprzez zaznaczenie poniższego pola \"Uwzględnij\" oraz "
+"poprzez kliknięcie \"Szukaj\": wszystkie dostępne pliki zostaną umieszczone "
+"na liście i mogą być wybrane do uwzględnienia."
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Dodaj odpowiedź"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Ustaw warunki"
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Ustaw warunki pobierania"
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr ""
+"Dodaj format publikacji (np. cyfrowy, broszurowa oprawa), dla których "
+"redaktor składu przygotuje odbitki do korekty.   <em>Wersja próbna</em> musi "
+"być sprawdzona, zatwierdzona, a pozycja katalogowa <em></em>  formatu musi "
+"być sprawdzona i zamieszczona w pozycji katalogowej książki, zanim format "
+"zostanie udostępniony.<em></em> (tj.opublikowany)."
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr ""
+"Różne formaty publikacji, takie jak: twarda okładka, miękka okładka i wersja "
+"cyfrowa, mogą być załadowane w sekcji poniżej Formaty publikacji. Możesz "
+"użyć  poniższego pola formatów publikacji jako listę kontrolną dla "
+"brakujących czynności przed publikacją formatu."
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Zatwierdzenie i opublikowanie"
+
+msgid "editor.monograph.proofs"
+msgstr "Korekty"
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Czystopis"
+
+msgid "editor.submission.introduction"
+msgstr ""
+"W zgłoszeniu, redaktor po skonsultowaniu zgłoszonych plików, zaznaczył "
+"odpowiednie czynności (w które wlicza się powiadomienie autora): wysłanie do "
+"wewnętrznej recenzji (co wiąże się z wybraniem plików do wewnętrznej "
+"recenzji); wysłanie do zewnętrznej recenzji (co wiąże się z wybraniem plików "
+"do zewnętrznej recenzji); zaakceptowanie zgłoszenia (co wiąże się z "
+"wybraniem pliku do procesu redakcyjnego); lub odrzucenie zgłoszenia ("
+"archiwizacja zgłoszenia)."
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Plik załadowany w polu kolumny tytułowej"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Ukończono czynności"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Czynności są w trakcie lub jeszcze nie zostały ukończone"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Usuń pozycję"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Edytuj pozycję"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr ""
+"Informacje o pliku: uwagi, możliwości powiadomień i historia (dodano nowe "
+"uwagi od ostatniej wizyty)"
+
+msgid "editor.monograph.legend.notes"
+msgstr ""
+"Informacje o pliku: uwagi, możliwości powiadomień i historia (uwagi są "
+"dostępne)"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr ""
+"Informacje o pliku: uwagi, możliwości powiadomień i historia (nie dodano "
+"uwag)"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Więcej informacji: uwagi o pliku, możliwości powiadomień i historia"
+
+msgid "editor.monograph.legend.settings"
+msgstr ""
+"Wyświetl i udostępnij ustawienia pozycji, takie jak informacje i możliwość "
+"wykasowania"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Dodaj użytkownika do sekcji"
+
+msgid "editor.monograph.legend.add"
+msgstr "Załaduj plik do sekcji"
+
+msgid "editor.monograph.legend.participants"
+msgstr ""
+"Wyświetl i zarządzaj uczestnikami tego zgłoszenia: autorami, redaktorami, "
+"projektantami i innymi"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr ""
+"Wyświetl i zarządzaj metadanymi, uwagami, powiadomieniami i historią "
+"zgłoszenia"
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr ""
+"Wyświetl i zarządzaj zgłoszoną pozycją katalogową, włączając metadane i "
+"formaty publikacji"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Czynności i możliwości charakterystyczne dla indywidualnego pliku."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Czynności na pozycji"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr ""
+"Możliwości charakterystyczne dla wybranej sekcji, na przykład załadowanie "
+"plików lub dodanie użytkowników."
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Sekcja czynności"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Całościowe czynności i możliwości do dokonania zgłoszenia."
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Czynności, aby dokonać zgłoszenia"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Wiadomość dla użytkownika"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Obecne pliki"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Obecna wersja robocza pliku"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Wybierz ostateczną wersję roboczą pliku"
+
+msgid "editor.monograph.externalReview"
+msgstr "Rozpocznij zewnętrzną recenzję"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr "Wybierz pliki poniżej, aby wysłać je do recenzji wewnętrznej."
+
+msgid "editor.monograph.internalReview"
+msgstr "Rozpocznij wewnętrzną recenzje"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Pliki do korekty"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Możliwości recenzji naukowych"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Załaduj recenzję"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Edytor do wprowadzenia rekomendacji i komentarzy dla recenzenta"
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Zastąp recenzenta"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr ""
+"Wybierz recenzenta powyżej i naciśnij \"wybierz recenzenta\", aby "
+"kontynuować."
+
+msgid "editor.monograph.recommendation"
+msgstr "Rekomendacja"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Wprowadź rekomendację recenzenta"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Wprowadź rekomendację"
+
+msgid "editor.monograph.clearReview"
+msgstr "Wymaż recenzenta"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Anuluj zapytanie"
+
+msgid "editor.submissionArchive"
+msgstr "Archiwum zgłoszeń"
+
+msgid "editor.submissions.assignedTo"
+msgstr "Przypisano do redaktora"

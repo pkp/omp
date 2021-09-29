@@ -3,40 +3,45 @@
 <!--
   * dbscripts/xml/install.xml
   *
-  * Copyright (c) 2014-2020 Simon Fraser University
-  * Copyright (c) 2003-2020 John Willinsky
+  * Copyright (c) 2014-2021 Simon Fraser University
+  * Copyright (c) 2003-2021 John Willinsky
   * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
   *
   * Installation descriptor file.
   -->
 
-<install version="3.2.0.0">
+<install version="3.4.0.0">
 	<code function="checkPhpVersion" />
 
 	<code function="createDirectories" />
-	<code function="createDatabase" />
 
-	<schema file="lib/pkp/xml/schema/common.xml" />
-	<schema file="lib/pkp/xml/schema/scheduledTasks.xml" />
-	<schema file="lib/pkp/xml/schema/temporaryFiles.xml" />
-	<schema file="lib/pkp/xml/schema/log.xml" />
-	<schema file="lib/pkp/xml/schema/notes.xml" />
-	<schema file="lib/pkp/xml/schema/controlledVocab.xml" />
-	<schema file="lib/pkp/xml/schema/metadata.xml" />
-	<schema file="lib/pkp/xml/schema/announcements.xml" />
-	<schema file="lib/pkp/xml/schema/reviews.xml" />
-	<schema file="lib/pkp/xml/schema/reviewForms.xml" />
-	<schema file="lib/pkp/xml/schema/submissions.xml" />
-	<schema file="lib/pkp/xml/schema/submissionFiles.xml" />
-	<schema file="lib/pkp/xml/schema/tombstone.xml" />
-	<schema file="lib/pkp/xml/schema/rolesAndUserGroups.xml" />
-	<schema file="lib/pkp/xml/schema/genres.xml" />
-	<schema file="lib/pkp/xml/schema/libraryFiles.xml" />
-	<schema file="lib/pkp/xml/schema/views.xml" />
-	<schema file="lib/pkp/xml/schema/metrics.xml" />
-	<schema file="lib/pkp/xml/schema/categories.xml" />
-	<schema file="dbscripts/xml/omp_schema.xml" />
-	<schema file="lib/pkp/xml/schema/navigationMenus.xml" />
+	<!-- PKP schema components -->
+	<migration class="PKP\migration\install\CategoriesMigration" />
+	<migration class="PKP\migration\install\CommonMigration" />
+	<migration class="PKP\migration\install\ControlledVocabMigration" />
+	<migration class="PKP\migration\install\FilesMigration" />
+	<migration class="PKP\migration\install\GenresMigration" />
+	<migration class="PKP\migration\install\JobsMigration" />
+	<migration class="PKP\migration\install\LibraryFilesMigration" />
+	<migration class="PKP\migration\install\LogMigration" />
+	<migration class="PKP\migration\install\MetadataMigration" />
+	<migration class="PKP\migration\install\MetricsMigration" />
+	<migration class="PKP\migration\install\NavigationMenusMigration" />
+	<migration class="PKP\migration\install\NotesMigration" />
+	<migration class="PKP\migration\install\ReviewFormsMigration" />
+	<migration class="PKP\migration\install\SubmissionFilesMigration" />
+	<migration class="PKP\migration\install\RolesAndUserGroupsMigration" />
+	<migration class="PKP\migration\install\ScheduledTasksMigration" />
+	<migration class="PKP\migration\install\SubmissionsMigration" />
+	<migration class="PKP\migration\install\ReviewsMigration" />
+	<migration class="PKP\migration\install\TemporaryFilesMigration" />
+	<migration class="PKP\migration\install\TombstoneMigration" />
+	<migration class="PKP\migration\install\ViewsMigration" />
+
+	<!-- OMP schema -->
+	<migration class="APP\migration\install\OMPMigration" />
+
+	<migration class="PKP\migration\install\AnnouncementsMigration" />
 
 	<code function="createData" />
 	<code function="createConfig" />

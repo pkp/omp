@@ -1,15 +1,19 @@
+# cicilia conceiçao de maria <ccmaria@uem.br>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
+"PO-Revision-Date: 2021-06-29 12:03+0000\n"
+"Last-Translator: cicilia conceiçao de maria <ccmaria@uem.br>\n"
+"Language-Team: English (United States) <http://translate.pkp.sfu.ca/projects/"
+"omp/manager/en_US/>\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
-"PO-Revision-Date: 2019-09-30T06:23:43-07:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr "This will replace any locale-specific press settings you had for this locale"
@@ -94,6 +98,9 @@ msgstr "Series Title"
 
 msgid "manager.series.restricted"
 msgstr "Don't allow authors to submit directly to this series."
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr "At least one series must be active. Visit the workflow settings to disable all submissions to this press."
 
 msgid "manager.payment.generalOptions"
 msgstr "General Options"
@@ -289,7 +296,11 @@ msgid "manager.setup.contextAbout"
 msgstr "About the Press"
 
 msgid "manager.setup.contextAbout.description"
-msgstr "Include any information about your press which may be of interest to readers, authors or reviewers. This could include your open access policy, the focus and scope of the press, sponsorship disclosure, and the history of the journal."
+msgstr ""
+"Include any information about your press which may be of interest to "
+"readers, authors or reviewers. This could include your open access policy, "
+"the focus and scope of the press, sponsorship disclosure, and the history of "
+"the press."
 
 msgid "manager.setup.contextSummary"
 msgstr "Press Summary"
@@ -532,7 +543,7 @@ msgid "manager.setup.lists"
 msgstr "Lists"
 
 msgid "manager.setup.lists.success"
-msgstr "The list settings for this journal have been updated."
+msgstr "The list settings have been updated."
 
 msgid "manager.setup.look"
 msgstr "Look & Feel"
@@ -633,6 +644,9 @@ msgstr "The press homepage consists of navigation links by default. Additional h
 msgid "manager.setup.contextInitials"
 msgstr "Press Initials"
 
+msgid "manager.setup.selectCountry"
+msgstr "Select the country where this press is located, or the country of the mailing address for the press or publisher."
+
 msgid "manager.setup.layout"
 msgstr "Press Layout"
 
@@ -640,7 +654,7 @@ msgid "manager.setup.pageHeader"
 msgstr "Press Page Header"
 
 msgid "manager.setup.pageHeaderDescription"
-msgstr ""
+msgstr "Configuração do cabeçalho da página"
 
 msgid "manager.setup.pressPolicies"
 msgstr "Step 2. Press Policies"
@@ -656,6 +670,12 @@ msgstr "Invalid style sheet format. Accepted format is .css."
 
 msgid "manager.setup.pressTheme"
 msgstr "Press Theme"
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Press thumbnail"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr "A small logo or representation of the press that can be used in lists of presses."
 
 msgid "manager.setup.contextTitle"
 msgstr "Press Name"
@@ -714,9 +734,6 @@ msgstr "Automated Email Reminders"
 msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
 msgstr "To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation."
 
-msgid "manager.setup.reviewOptions.blindReview"
-msgstr "Blind Review"
-
 msgid "manager.setup.reviewOptions.onQuality"
 msgstr "Editors will rate reviewers on a five-point quality scale after each review."
 
@@ -743,9 +760,6 @@ msgstr "Reviewer Ratings"
 
 msgid "manager.setup.reviewOptions.reviewerReminders"
 msgstr "Reviewer Reminders"
-
-msgid "manager.setup.reviewOptions.showEnsuringLink"
-msgstr "Provide links about ensuring a blind review on pages where authors and reviewers upload files."
 
 msgid "manager.setup.reviewPolicy"
 msgstr "Review Policy"
@@ -896,6 +910,12 @@ msgstr "These genres are used for file-naming purposes and are presented in a pu
 
 msgid "manager.setup.reviewProcessEmailDescription"
 msgstr "Editors send\tReviewers the request to review with the submission attached to the email. Reviewers email editors their assent (or regrets), as well as the review and recommendation. Editors enter Reviewers' assent (or regrets), as well as the review and recommendation on the submission's Review page, to record the review process."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr "This press is not accepting submissions at this time. Visit the workflow settings to allow submissions."
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr "Prevent users from submitting new articles to the press. Submissions can be disabled for individual press series on the <a href="{$url}">press series</a> settings page."
 
 msgid "manager.setup.genres"
 msgstr "Genres"
@@ -1076,3 +1096,60 @@ msgstr "{$count} of {$total} monographs"
 
 msgid "stats.publications.abstracts"
 msgstr "Catalog Entries"
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "No objects selected."
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Could not convert selected objects."
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "Invalid XML:"
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Export Submissions"
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr "Send a copy of the submission acknowledgement email to this press's primary contact."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr "No primary contact has been defined for this press. You can enter a primary contact in the <a href="{$url}">press settings</a>."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "The specified objects could not be found."
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "The specified user, \"{$userName}\", does not exist."
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "Process failed to parse publicationformats"
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "Process failed to parse chapters"
+
+msgid "emailTemplate.variable.context.contextName"
+msgstr "The press's name"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "The URL to the press's homepage"
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "The name of the press's primary contact"
+
+msgid "emailTemplate.variable.context.principalContactSignature"
+msgstr "The press's email signature for automated emails"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "The email address of the press's primary contact"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "The name of the type of payment"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "The payment amount"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "The currency of the payment amount, such as USD"
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr "Name of the website when more than one press is hosted"

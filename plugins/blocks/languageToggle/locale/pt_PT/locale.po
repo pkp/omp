@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-07 10:35+0000\n"
+"PO-Revision-Date: 2020-06-16 12:39+0000\n"
 "Last-Translator: Carla Marques <carla.marques@sdum.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/blocks-languageToggle/pt_PT/>\n"
@@ -15,4 +15,4 @@ msgid "plugins.block.languageToggle.description"
 msgstr "O plugin fornece a ferramenta de alteração de idioma na barra lateral."
 
 msgid "plugins.block.languageToggle.displayName"
-msgstr "Bloco de Alteração de Idiomas"
+msgstr "Bloco de Alteração de Idioma"

@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-09 18:35+0000\n"
+"PO-Revision-Date: 2021-04-30 12:34+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/"
-"themes-default/da/>\n"
+"themes-default/da_DK/>\n"
 "Language: da_DK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,3 +68,9 @@ msgstr "Dette tema implementerer standardtemaet."
 
 msgid "plugins.themes.default.name"
 msgstr "Standard-tema"
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
+msgstr "Tilføj liste over links til alle forlagets serier på katalogsiden"
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
+msgstr "Vis serier"

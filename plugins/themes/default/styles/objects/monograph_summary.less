@@ -1,8 +1,8 @@
 /**
  * @file plugins/themes/default/styles/objects/monograph_summary.less
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Styles applying to a summary view of a monograph, used in lists
@@ -38,10 +38,13 @@
 	}
 
 	.title {
-		display: block;
 		font-family: @font-heading;
 		font-size: @font-base;
 		font-weight: @bold;
+		margin-top: 0;
+		margin-bottom: 0;
+		margin-left: 0;
+		line-height: @line-base;
 	}
 
 	.author {
@@ -65,7 +68,7 @@
 
 	@media(min-width: @screen-tablet) {
 
-		> * {
+		> *, .title {
 			display: block;
 			margin-left: @base * 11;
 		}

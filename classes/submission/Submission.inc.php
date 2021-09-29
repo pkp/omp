@@ -7,266 +7,334 @@
 /**
  * @file classes/submission/Submission.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Submission
  * @ingroup submission
- * @see SubmissionDAO
+ *
+ * @see DAO
  *
  * @brief Class for a Submission.
  */
 
-define('WORK_TYPE_EDITED_VOLUME', 1);
-define('WORK_TYPE_AUTHORED_WORK', 2);
+namespace APP\submission;
 
-import('lib.pkp.classes.submission.PKPSubmission');
-import('classes.monograph.Author');
+use APP\core\Services;
+use PKP\db\DAORegistry;
 
-class Submission extends PKPSubmission {
-	/**
-	 * get press id
-	 * @return int
-	 * @deprecated 3.2.0.0
-	 */
-	function getPressId() {
-		return $this->getContextId();
-	}
+use PKP\submission\PKPSubmission;
+use APP\facades\Repo;
 
-	/**
-	 * set press id
-	 * @param $pressId int
-	 * @deprecated 3.2.0.0
-	 */
-	function setPressId($pressId) {
-		return $this->setContextId($pressId);
-	}
+class Submission extends PKPSubmission
+{
+    public const WORK_TYPE_EDITED_VOLUME = 1;
+    public const WORK_TYPE_AUTHORED_WORK = 2;
 
-	/**
-	 * Get the series id.
-	 * @return int
-	 * @deprecated 3.2.0.0
-	 */
-	function getSeriesId() {
-		return $this->getSectionId();
-	}
+    /**
+     * get press id
+     *
+     * @return int
+     *
+     * @deprecated 3.2.0.0
+     */
+    public function getPressId()
+    {
+        return $this->getContextId();
+    }
 
-	/**
-	 * @see Submission::getSectionId()
-	 * @deprecated 3.2.0.0
-	 */
-	function getSectionId() {
-		$publication = $this->getCurrentPublication();
-		if (!$publication) {
-			return 0;
-		}
-		return $publication->getData('seriesId');
-	}
+    /**
+     * set press id
+     *
+     * @param $pressId int
+     *
+     * @deprecated 3.2.0.0
+     */
+    public function setPressId($pressId)
+    {
+        return $this->setContextId($pressId);
+    }
 
-	/**
-	 * Set the series id.
-	 * @param $id int
-	 * @deprecated 3.2.0.0
-	 */
-	function setSeriesId($id) {
-		$publication = $this->getCurrentPublication();
-		if ($publication) {
-			$publication->setData('seriesId', $id);
-		}
-	}
+    /**
+     * Get the series id.
+     *
+     * @return int
+     *
+     * @deprecated 3.2.0.0
+     */
+    public function getSeriesId()
+    {
+        return $this->getSectionId();
+    }
 
-	/**
-	 * Get the position of this monograph within a series.
-	 * @return string
-	 * @deprecated 3.2.0.0
-	 */
-	function getSeriesPosition() {
-		$publication = $this->getCurrentPublication();
-		if (!$publication) {
-			return '';
-		}
-		return $publication->getData('seriesPosition');
-	}
+    /**
+     * @see Submission::getSectionId()
+     * @deprecated 3.2.0.0
+     */
+    public function getSectionId()
+    {
+        $publication = $this->getCurrentPublication();
+        if (!$publication) {
+            return 0;
+        }
+        return $publication->getData('seriesId');
+    }
 
-	/**
-	 * Set the series position for this monograph.
-	 * @param $seriesPosition string
-	 * @deprecated 3.2.0.0
-	 */
-	function setSeriesPosition($seriesPosition) {
-		$publication = $this->getCurrentPublication();
-		if ($publication) {
-			$publication->setData('seriesPosition', $seriesPosition);
-		}
-	}
+    /**
+     * Set the series id.
+     *
+     * @param $id int
+     *
+     * @deprecated 3.2.0.0
+     */
+    public function setSeriesId($id)
+    {
+        $publication = $this->getCurrentPublication();
+        if ($publication) {
+            $publication->setData('seriesId', $id);
+        }
+    }
 
-	/**
-	 * Get the work type (constant in WORK_TYPE_...)
-	 * @return int
-	 * @deprecated 3.2.0.0
-	 */
-	function getWorkType() {
-		return $this->getData('workType');
-	}
+    /**
+     * Get the position of this monograph within a series.
+     *
+     * @return string
+     *
+     * @deprecated 3.2.0.0
+     */
+    public function getSeriesPosition()
+    {
+        $publication = $this->getCurrentPublication();
+        if (!$publication) {
+            return '';
+        }
+        return $publication->getData('seriesPosition');
+    }
 
-	/**
-	 * Set the work type (constant in WORK_TYPE_...)
-	 * @param $workType int
-	 * @deprecated 3.2.0.0
-	 */
-	function setWorkType($workType) {
-		$this->setData('workType', $workType);
-	}
+    /**
+     * Set the series position for this monograph.
+     *
+     * @param $seriesPosition string
+     *
+     * @deprecated 3.2.0.0
+     */
+    public function setSeriesPosition($seriesPosition)
+    {
+        $publication = $this->getCurrentPublication();
+        if ($publication) {
+            $publication->setData('seriesPosition', $seriesPosition);
+        }
+    }
 
-	/**
-	 * Get localized supporting agencies array.
-	 * @return array
-	 * @deprecated 3.2.0.0
-	 */
-	function getLocalizedSupportingAgencies() {
-		$publication = $this->getCurrentPublication();
-		if (!$publication) {
-			return [];
-		}
-		return $publication->getLocalizedData('supportingAgencies');
-	}
+    /**
+     * Get the work type (constant in WORK_TYPE_...)
+     *
+     * @return int
+     *
+     * @deprecated 3.2.0.0
+     */
+    public function getWorkType()
+    {
+        return $this->getData('workType');
+    }
 
-	/**
-	 * Get supporting agencies.
-	 * @param $locale
-	 * @return array
-	 * @deprecated 3.2.0.0
-	 */
-	function getSupportingAgencies($locale) {
-		$publication = $this->getCurrentPublication();
-		if (!$publication) {
-			return [];
-		}
-		return $publication->getData('supportingAgencies', $locale);
-	}
+    /**
+     * Set the work type (constant in WORK_TYPE_...)
+     *
+     * @param $workType int
+     *
+     * @deprecated 3.2.0.0
+     */
+    public function setWorkType($workType)
+    {
+        $this->setData('workType', $workType);
+    }
 
-	/**
-	 * Set supporting agencies.
-	 * @param $supportingAgencies array
-	 * @param $locale
-	 * @deprecated 3.2.0.0
-	 */
-	function setSupportingAgencies($supportingAgencies, $locale) {
-		$publication = $this->getCurrentPublication();
-		if ($publication) {
-			$publication->setData('seriesPosition', $supportingAgencies, $locale);
-		}
-	}
+    /**
+     * Get localized supporting agencies array.
+     *
+     * @return array
+     *
+     * @deprecated 3.2.0.0
+     */
+    public function getLocalizedSupportingAgencies()
+    {
+        $publication = $this->getCurrentPublication();
+        if (!$publication) {
+            return [];
+        }
+        return $publication->getLocalizedData('supportingAgencies');
+    }
 
-	/**
-	 * Get the value of a license field from the containing context.
-	 * @param $locale string Locale code
-	 * @param $field PERMISSIONS_FIELD_...
-	 * @param $publication Publication
-	 * @return string|array|null
-	 */
-	function _getContextLicenseFieldValue($locale, $field, $publication = null) {
-		$context = Services::get('context')->get($this->getData('contextId'));
-		$fieldValue = null; // Scrutinizer
-		switch ($field) {
-			case PERMISSIONS_FIELD_LICENSE_URL:
-				$fieldValue = $context->getData('licenseUrl');
-				break;
-			case PERMISSIONS_FIELD_COPYRIGHT_HOLDER:
-				switch($context->getData('copyrightHolderType')) {
-					case 'author':
-						$fieldValue = array($context->getPrimaryLocale() => $this->getAuthorString());
-						break;
-					case 'context':
-					case null:
-						$fieldValue = $context->getName(null);
-						break;
-					default:
-						$fieldValue = $context->getLocalizedData('copyrightHolderOther');
-						break;
-				}
-				break;
-			case PERMISSIONS_FIELD_COPYRIGHT_YEAR:
-				$fieldValue = date('Y');
-				if (!$publication) {
-					$publication = $this->getCurrentPublication();
-				}
-				if ($publication->getData('datePublished')) {
-					$fieldValue = date('Y', strtotime($publication->getData('datePublished')));
-				}
-				break;
-			default: assert(false);
-		}
+    /**
+     * Get supporting agencies.
+     *
+     * @param $locale
+     *
+     * @return array
+     *
+     * @deprecated 3.2.0.0
+     */
+    public function getSupportingAgencies($locale)
+    {
+        $publication = $this->getCurrentPublication();
+        if (!$publication) {
+            return [];
+        }
+        return $publication->getData('supportingAgencies', $locale);
+    }
 
-		// Return the fetched license field
-		if ($locale === null) return $fieldValue;
-		if (isset($fieldValue[$locale])) return $fieldValue[$locale];
-		return null;
-	}
+    /**
+     * Set supporting agencies.
+     *
+     * @param $supportingAgencies array
+     * @param $locale
+     *
+     * @deprecated 3.2.0.0
+     */
+    public function setSupportingAgencies($supportingAgencies, $locale)
+    {
+        $publication = $this->getCurrentPublication();
+        if ($publication) {
+            $publication->setData('seriesPosition', $supportingAgencies, $locale);
+        }
+    }
 
-	/**
-	 * get cover page server-side file name
-	 * @return string
-	 * @deprecated 3.2.0.0
-	 */
-	function getCoverImage() {
-		$publication = $this->getCurrentPublication();
-		if (!$publication) {
-			return '';
-		}
-		return $publication->getData('coverImage');
-	}
+    /**
+     * Get the value of a license field from the containing context.
+     *
+     * @param $locale string Locale code
+     * @param $field PERMISSIONS_FIELD_...
+     * @param $publication Publication
+     *
+     * @return string|array|null
+     */
+    public function _getContextLicenseFieldValue($locale, $field, $publication = null)
+    {
+        $context = Services::get('context')->get($this->getData('contextId'));
+        $fieldValue = null; // Scrutinizer
+        switch ($field) {
+            case PERMISSIONS_FIELD_LICENSE_URL:
+                $fieldValue = $context->getData('licenseUrl');
+                break;
+            case PERMISSIONS_FIELD_COPYRIGHT_HOLDER:
+                switch ($context->getData('copyrightHolderType')) {
+                    case 'author':
+                        $fieldValue = [$context->getPrimaryLocale() => $this->getAuthorString()];
+                        break;
+                    case 'context':
+                    case null:
+                        $fieldValue = $context->getName(null);
+                        break;
+                    default:
+                        $fieldValue = $context->getData('copyrightHolderOther');
+                        break;
+                }
+                break;
+            case PERMISSIONS_FIELD_COPYRIGHT_YEAR:
+                $fieldValue = date('Y');
+                if (!$publication) {
+                    $publication = $this->getCurrentPublication();
+                }
+                if ($publication->getData('datePublished')) {
+                    $fieldValue = date('Y', strtotime($publication->getData('datePublished')));
+                }
+                break;
+            default: assert(false);
+        }
 
-	/**
-	 * get cover page alternate text
-	 * @return string
-	 * @deprecated 3.2.0.0
-	 */
-	function getCoverImageAltText() {
-		$publication = $this->getCurrentPublication();
-		if (!$publication) {
-			return '';
-		}
-		$coverImage = $publication->getData('coverImage');
-		return empty($coverImage['altText']) ? '' : $coverImage['altText'];
-	}
+        // Return the fetched license field
+        if ($locale === null) {
+            return $fieldValue;
+        }
+        if (isset($fieldValue[$locale])) {
+            return $fieldValue[$locale];
+        }
+        return null;
+    }
 
-	/**
-	 * Get a string indicating all authors or, if it is an edited volume, editors.
-	 * @param $preferred boolean If the preferred public name should be used, if exist
-	 * @return string
-	 * @deprecated 3.2.0.0
-	 */
-	public function getAuthorOrEditorString($preferred = true) {
+    /**
+     * get cover page server-side file name
+     *
+     * @return string
+     *
+     * @deprecated 3.2.0.0
+     */
+    public function getCoverImage()
+    {
+        $publication = $this->getCurrentPublication();
+        if (!$publication) {
+            return '';
+        }
+        return $publication->getData('coverImage');
+    }
 
-		if ($this->getWorkType() != WORK_TYPE_EDITED_VOLUME) {
-			$userGroupIds = array_map(function($author) {
-				return $author->getData('userGroupId');
-			}, $this->getAuthors(true));
-			$userGroups = array_map(function($userGroupId) {
-				return DAORegistry::getDAO('UserGroupDAO')->getbyId($userGroupId);
-			}, array_unique($userGroupIds));
-			return $this->getCurrentPublication()->getAuthorString($userGroups);
-		}
+    /**
+     * get cover page alternate text
+     *
+     * @return string
+     *
+     * @deprecated 3.2.0.0
+     */
+    public function getCoverImageAltText()
+    {
+        $publication = $this->getCurrentPublication();
+        if (!$publication) {
+            return '';
+        }
+        $coverImage = $publication->getData('coverImage');
+        return empty($coverImage['altText']) ? '' : $coverImage['altText'];
+    }
 
-		return $this->getCurrentPublication()->getEditorString();
-	}
+    /**
+     * Get a string indicating all authors or, if it is an edited volume, editors.
+     *
+     * @param $preferred boolean If the preferred public name should be used, if exist
+     *
+     * @return string
+     *
+     * @deprecated 3.2.0.0
+     */
+    public function getAuthorOrEditorString($preferred = true)
+    {
+        if ($this->getWorkType() != self::WORK_TYPE_EDITED_VOLUME) {
+            $userGroupIds = array_map(function ($author) {
+                return $author->getData('userGroupId');
+            }, Repo::author()->getSubmissionAuthors($this, true)->toArray());
 
-	/**
-	 * get enableChapterPublicationDates status
-	 * @return int
-	 */
-	function getEnableChapterPublicationDates() {
-		return $this->getData('enableChapterPublicationDates');
-	}
+            $userGroups = array_map(function ($userGroupId) {
+                return DAORegistry::getDAO('UserGroupDAO')->getbyId($userGroupId);
+            }, array_unique($userGroupIds));
+            return $this->getCurrentPublication()->getAuthorString($userGroups);
+        }
 
-	/**
-	 * set  enableChapterPublicationDates status
-	 * @param $enableChapterPublicationDates int
-	 */
-	function setEnableChapterPublicationDates($enableChapterPublicationDates) {
-		$this->setData('enableChapterPublicationDates', $enableChapterPublicationDates);
-	}
+        return $this->getCurrentPublication()->getEditorString();
+    }
 
+    /**
+     * get enableChapterPublicationDates status
+     *
+     * @return int
+     */
+    public function getEnableChapterPublicationDates()
+    {
+        return $this->getData('enableChapterPublicationDates');
+    }
+
+    /**
+     * set  enableChapterPublicationDates status
+     *
+     * @param $enableChapterPublicationDates int
+     */
+    public function setEnableChapterPublicationDates($enableChapterPublicationDates)
+    {
+        $this->setData('enableChapterPublicationDates', $enableChapterPublicationDates);
+    }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\submission\Submission', '\Submission');
+    define('WORK_TYPE_EDITED_VOLUME', \Submission::WORK_TYPE_EDITED_VOLUME);
+    define('WORK_TYPE_AUTHORED_WORK', \Submission::WORK_TYPE_AUTHORED_WORK);
 }

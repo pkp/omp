@@ -1,0 +1,88 @@
+/**
+ * @file  plugins/themes/default/styles/pages/indexSite.less
+ *
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+ *
+ * @brief Styles applying to the front page of the site
+ * @link templates/frontend/pages/indexSite.tpl
+ */
+.pkp_page_index {
+
+	.presses {
+		margin-top: @triple;
+
+		h2 {
+			&:extend(.pkp_screen_reader);
+		}
+
+		ul {
+			&:extend(.pkp_unstyled_list);
+		}
+
+		> ul > li {
+			margin: @triple 0;
+		}
+
+		img {
+			display: block;
+			max-height: 20em;
+		}
+
+		h3 {
+			margin: @base 0;
+			font-size: @font-base;
+			font-weight: @bold;
+
+			a {
+				text-decoration: none;
+			}
+		}
+
+		p {
+			margin: @base 0;
+		}
+
+		.links {
+
+			li {
+				display: inline-block;
+				margin: 0 @base @base 0;
+			}
+		}
+
+		@media(min-width: @screen-tablet) {
+
+			> ul > li {
+				.pkp_helpers_clear;
+				margin: 0 -@double;
+				padding: @double;
+				border-top: @bg-border;
+			}
+
+			.thumb {
+				float: left;
+				width: 25%;
+				padding-right: @double;
+
+				+ .body {
+					float: right;
+					width: 75%;
+				}
+			}
+		}
+
+		@media(min-width: @screen-desktop) {
+
+			> ul > li {
+				margin: 0 -@triple;
+				padding: @triple;
+			}
+
+			.thumb {
+				padding-right: @triple;
+			}
+		}
+	}
+}

@@ -3,8 +3,8 @@
 /**
  * @file controllers/tab/workflow/ReviewRoundTabHandler.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ReviewRoundTabHandler
@@ -13,48 +13,51 @@
  * @brief Handle AJAX operations for review round tabs on review stages workflow pages.
  */
 
-import('classes.handler.Handler');
 
-// Import the base class.
-import('lib.pkp.classes.controllers.tab.workflow.PKPReviewRoundTabHandler');
+use APP\handler\Handler;
+use PKP\controllers\tab\workflow\PKPReviewRoundTabHandler;
+use PKP\security\authorization\WorkflowStageAccessPolicy;
 
-class ReviewRoundTabHandler extends PKPReviewRoundTabHandler {
+use PKP\security\Role;
 
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-		$this->addRoleAssignment(
-			array(ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT),
-			array('internalReviewRound', 'externalReviewRound')
-		);
-	}
+class ReviewRoundTabHandler extends PKPReviewRoundTabHandler
+{
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->addRoleAssignment(
+            [Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_MANAGER, Role::ROLE_ID_ASSISTANT],
+            ['internalReviewRound', 'externalReviewRound']
+        );
+    }
 
 
-	//
-	// Extended methods from Handler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize($request, &$args, $roleAssignments) {
-		$stageId = (int) $request->getUserVar('stageId'); // This is validated in WorkflowStageAccessPolicy.
+    //
+    // Extended methods from Handler
+    //
+    /**
+     * @see PKPHandler::authorize()
+     */
+    public function authorize($request, &$args, $roleAssignments)
+    {
+        $stageId = (int) $request->getUserVar('stageId'); // This is validated in WorkflowStageAccessPolicy.
 
-		import('lib.pkp.classes.security.authorization.WorkflowStageAccessPolicy');
-		$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
+        $this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 
-		return parent::authorize($request, $args, $roleAssignments);
-	}
+        return parent::authorize($request, $args, $roleAssignments);
+    }
 
-	/**
-	 * JSON fetch the internal review round info (tab).
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function internalReviewRound($args, $request) {
-		return $this->_reviewRound($args, $request);
-	}
+    /**
+     * JSON fetch the internal review round info (tab).
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     */
+    public function internalReviewRound($args, $request)
+    {
+        return $this->_reviewRound($args, $request);
+    }
 }
-
-

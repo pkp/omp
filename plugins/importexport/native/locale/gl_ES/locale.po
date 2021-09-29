@@ -1,0 +1,58 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-06-19 08:03+0000\n"
+"Last-Translator: Real Academia Galega <reacagal@gmail.com>\n"
+"Language-Team: Galician <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-native/gl_ES/>\n"
+"Language: gl_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.importexport.native.error.unknownSeries"
+msgstr "Series descoñecidas {$param}"
+
+msgid "plugins.importexport.native.onix30.pressMissingFields"
+msgstr ""
+"Esta editorial non ten a información necesaria para os metadatos de ONIX "
+"empregados nesta exportación. Vai a <a href=\"{$url}\">Configuración da "
+"Editorial</a> e complete os datos que faltan."
+
+msgid "plugins.importexport.native.importComplete"
+msgstr ""
+"A importación completouse correctamente. Importáronse os seguintes elementos:"
+
+msgid "plugins.inportexport.native.uploadFile"
+msgstr "Carga un arquivo en \"Importar\" para continuar."
+
+msgid "plugins.importexport.native.results"
+msgstr "Resultados"
+
+msgid "plugins.importexport.native.exportSubmissionsSelect"
+msgstr "Selecciona monografías para exportar"
+
+msgid "plugins.importexport.native.export"
+msgstr "Exportar"
+
+msgid "plugins.importexport.native.import.instructions"
+msgstr "Cargar un arquivo XML para importar"
+
+msgid "plugins.importexport.native.import"
+msgstr "Importar"
+
+msgid "plugins.importexport.native.description"
+msgstr "Importar e exportar libros no formato XML nativo de OMP."
+
+msgid "plugins.importexport.native.displayName"
+msgstr "Complemento XML nativo"
+
+msgid "plugins.importexport.native.cliUsage"
+msgstr ""
+"Uso: {$scriptName} {$pluginName} [command] ...\n"
+"Comando:\n"
+"\timport [xmlFileName] [press_path] [user_name] ...\n"
+"\texport [xmlFileName] [press_path] monographs [monographId1] [monographId2] "
+"...\n"
+"\texport [xmlFileName] [press_path] monograph [monographId]\n"

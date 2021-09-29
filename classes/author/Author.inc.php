@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @file classes/author/Author.inc.php
+ *
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+ *
+ * @class Author
+ * @ingroup monograph
+ *
+ * @see DAO
+ *
+ * @brief Monograph author metadata class.
+ */
+
+namespace APP\author;
+
+class Author extends \PKP\author\Author
+{
+    /**
+     * Get whether or not this author should be displayed as a volume editor
+     *
+     * @return boolean
+     */
+    public function getIsVolumeEditor()
+    {
+        return $this->getData('isVolumeEditor');
+    }
+
+    /**
+     * Set whether or not this author should be displayed as a volume editor
+     *
+     * @param $isVolumeEditor boolean
+     */
+    public function setIsVolumeEditor($isVolumeEditor)
+    {
+        $this->setData('isVolumeEditor', $isVolumeEditor);
+    }
+}

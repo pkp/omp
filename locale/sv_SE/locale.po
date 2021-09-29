@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-08 03:32+0000\n"
+"PO-Revision-Date: 2021-03-11 11:28+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
-"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/locale/sv/>"
-"\n"
+"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/locale/"
+"sv_SE/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -521,7 +521,6 @@ msgstr "Typ av beskattning"
 msgid "monograph.publicationFormat.taxRate"
 msgstr "Beskattningsprocent"
 
-#, fuzzy
 msgid "monograph.publicationFormat.productRegion"
 msgstr "Region för distribution"
 
@@ -735,7 +734,9 @@ msgid "about.aboutThisPublishingSystem.altText"
 msgstr "Redaktions- och publiceringsprocess i OMP"
 
 msgid "about.aboutThisPublishingSystem"
-msgstr "Om detta publiceringssystem"
+msgstr ""
+"Mer information om detta publiceringssystem, plattform och arbetsflöde "
+"utvecklat av OMP/PKP."
 
 msgid "about.pressSponsorship"
 msgstr "Sponsorer"
@@ -941,9 +942,6 @@ msgstr "Registrera dig vid andra pressar"
 msgid "submission.pdf.download"
 msgstr "Ladda ned denna PDF-fil"
 
-msgid "debug.notes.currencyListLoad"
-msgstr "Valutalista \"{$filename}\" från XML"
-
 msgid "payment.directSales.monograph.description"
 msgstr ""
 "Denna transaktion gäller för köp av en direktnedladdning av en enskild bok "
@@ -1053,7 +1051,7 @@ msgid "notification.type.layouteditorRequest"
 msgstr "Du har ombetts att granska layouter för \"{$title}\"."
 
 msgid "notification.type.copyeditorRequest"
-msgstr ""
+msgstr "Du har ombetts att granska det redigerade manuset för \"{$file}\"."
 
 msgid "notification.type.submissions"
 msgstr "Status för bidrag"
@@ -1250,12 +1248,14 @@ msgstr ""
 msgid "spotlight.title.homePage"
 msgstr "I spotlight"
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr ""
 "Denna sidan använder Open Monograph Press {$ompVersion}, som är en open "
 "source-programvara för bokpublicering, utvecklat av <a href=\"http://pkp.sfu."
 "ca/\">Public Knowledge Project</a> under GNU General Public License."
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr ""
 "Denna press använder Open Monograph Press {$ompVersion}, som är en open "
@@ -1266,7 +1266,7 @@ msgid "about.submissionPreparationChecklist.description"
 msgstr ""
 "Författare som skickar in bidrag måste kontrollera att bidraget uppfyller "
 "följande riktlinjer. Bidrag som inte efterlever riktlinjerna kan komma att "
-"skickas tillbaka till författaren. "
+"skickas tillbaka till författaren."
 
 msgid "navigation.skip.spotlights"
 msgstr "Gå till spotlight"
@@ -1299,3 +1299,77 @@ msgstr ""
 
 msgid "monograph.audience.rangeQualifier"
 msgstr "Kvalificering av publikintervallet"
+
+msgid "submissionGroup.assignedSubEditors"
+msgstr "Tilldelade redaktörer"
+
+msgid "grid.action.featureMonograph"
+msgstr "Visa i katalogkarusellen"
+
+msgid "common.payments"
+msgstr "Betalningar"
+
+msgid "log.editor.recommendation"
+msgstr ""
+"En redaktionell rekommendation ({$decision}) för boken {$submissionId} har "
+"givits av {$editorName}."
+
+msgid "log.editor.decision"
+msgstr ""
+"Ett redaktionellt beslut ({$decision}) för boken {$submissionId} har tagits "
+"av {$editorName}."
+
+msgid "log.review.reviewUnconsidered"
+msgstr ""
+"{$editorName} har markerat granskningsrunda {$round} för bidrag "
+"{$submissionId} som ej läst."
+
+msgid "log.review.reviewAccepted"
+msgstr ""
+"{$reviewerName} har accepterat granskningsrunda {$round} för bidrag "
+"{$submissionId}."
+
+msgid "log.review.reviewDeclined"
+msgstr ""
+"{$reviewerName} har nekat granskningsrunda {$round} för bidrag "
+"{$submissionId}."
+
+msgid "log.review.reviewDueDateSet"
+msgstr ""
+"Sista datumet för granskningsomgång {$round} för bidrag {$submissionId} av "
+"{$reviewerName} är {$dueDate}."
+
+msgid "notification.type.visitCatalog"
+msgstr ""
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "Ett ogiltigt publicerat bidrag valdes."
+
+msgid "catalog.coverImageTitle"
+msgstr "Omslag"
+
+msgid "about.aboutSoftware"
+msgstr "Om Open Monograph Press"
+
+msgid "about.focusAndScope"
+msgstr "Inriktning och omfattning"
+
+msgid "site.noPresses"
+msgstr "Det finns inga tillgängliga pressar."
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Ja, jag samtycker till att min data samlas in och lagras i enlighet med "
+"pressens <a href=\"{$privacyUrl}\" target=\"_blank\">integritetspolicy</a>."
+
+msgid "user.authorization.representationNotFound"
+msgstr "Publiceringsformatet kunde ej hittas."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Hitta böcker att lägga till i katalogen"
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Ett eller flera bidrag kunde ej hittas."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Inga bidrag som ska läggas till i katalogen har blivit valda."

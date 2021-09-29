@@ -3,8 +3,8 @@
 /**
  * @file classes/mail/MonographMailTemplate.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class MonographMailTemplate
@@ -15,50 +15,64 @@
  * This allows for submission-specific functionality like logging, etc.
  */
 
-import('lib.pkp.classes.mail.SubmissionMailTemplate');
-import('lib.pkp.classes.log.SubmissionEmailLogEntry'); // Bring in log constants
+namespace APP\mail;
 
-class MonographMailTemplate extends SubmissionMailTemplate {
-	/**
-	 * Assign parameters to the mail template.
-	 * @param $paramArray array
-	 */
-	function assignParams($paramArray = array()) {
-		$submission = $this->submission;
-		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-		$series = $seriesDao->getById($submission->getSeriesId());
-		$paramArray['seriesPath'] = $series ? $series->getPath() : '';
-		$paramArray['seriesName'] = $series ? $series->getLocalizedTitle() : '';
-		parent::assignParams($paramArray);
-	}
+use PKP\db\DAORegistry;
+use PKP\mail\SubmissionMailTemplate;
 
-	/**
-	 *  Send this email to all assigned series editors in the given stage
-	 * @param $submissionId int
-	 * @param $stageId int
-	 */
-	function toAssignedSeriesEditors($submissionId, $stageId) {
-		return $this->toAssignedSubEditors($submissionId, $stageId);
-	}
+class MonographMailTemplate extends SubmissionMailTemplate
+{
+    /**
+     * Assign parameters to the mail template.
+     *
+     * @param $paramArray array
+     */
+    public function assignParams($paramArray = [])
+    {
+        $submission = $this->submission;
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $series = $seriesDao->getById($submission->getSeriesId());
+        $paramArray['seriesPath'] = $series ? $series->getPath() : '';
+        $paramArray['seriesName'] = $series ? $series->getLocalizedTitle() : '';
+        parent::assignParams($paramArray);
+    }
 
-	/**
-	 * CC this email to all assigned series editors in the given stage
-	 * @param $submissionId int
-	 * @param $stageId int
-	 * @return array of Users (note, this differs from OxS which returns EditAssignment objects)
-	 */
-	function ccAssignedSeriesEditors($submissionId, $stageId) {
-		return $this->ccAssignedSubEditors($submissionId, $stageId);
-	}
+    /**
+     *  Send this email to all assigned series editors in the given stage
+     *
+     * @param $submissionId int
+     * @param $stageId int
+     */
+    public function toAssignedSeriesEditors($submissionId, $stageId)
+    {
+        return $this->toAssignedSubEditors($submissionId, $stageId);
+    }
 
-	/**
-	 * BCC this email to all assigned series editors in the given stage
-	 * @param $submissionId int
-	 * @param $stageId int
-	 */
-	function bccAssignedSeriesEditors($submissionId, $stageId) {
-		return $this->bccAssignedSubEditors($submissionId, $stageId);
-	}
+    /**
+     * CC this email to all assigned series editors in the given stage
+     *
+     * @param $submissionId int
+     * @param $stageId int
+     *
+     * @return array of Users (note, this differs from OxS which returns EditAssignment objects)
+     */
+    public function ccAssignedSeriesEditors($submissionId, $stageId)
+    {
+        return $this->ccAssignedSubEditors($submissionId, $stageId);
+    }
+
+    /**
+     * BCC this email to all assigned series editors in the given stage
+     *
+     * @param $submissionId int
+     * @param $stageId int
+     */
+    public function bccAssignedSeriesEditors($submissionId, $stageId)
+    {
+        return $this->bccAssignedSubEditors($submissionId, $stageId);
+    }
 }
 
-
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\mail\MonographMailTemplate', '\MonographMailTemplate');
+}

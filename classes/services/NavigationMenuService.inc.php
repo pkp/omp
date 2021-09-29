@@ -3,8 +3,8 @@
 /**
  * @file classes/services/NavigationMenuService.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2000-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class NavigationMenuService
@@ -13,198 +13,226 @@
  * @brief Helper class that encapsulates NavigationMenu business logic
  */
 
-namespace APP\Services;
+namespace APP\services;
 
-/** types for all omp default navigationMenuItems */
-define('NMI_TYPE_CATALOG', 'NMI_TYPE_CATALOG');
-define('NMI_TYPE_SERIES', 'NMI_TYPE_SERIES');
-define('NMI_TYPE_CATEGORY', 'NMI_TYPE_CATEGORY');
-define('NMI_TYPE_NEW_RELEASE', 'NMI_TYPE_NEW_RELEASE');
+use APP\core\Application;
+use APP\i18n\AppLocale;
+use APP\template\TemplateManager;
 
-class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
+use PKP\core\PKPApplication;
+use PKP\db\DAORegistry;
+use PKP\plugins\HookRegistry;
 
-	/**
-	 * Initialize hooks for extending PKPSubmissionService
-	 */
-  public function __construct() {
-		\HookRegistry::register('NavigationMenus::itemTypes', array($this, 'getMenuItemTypesCallback'));
-		\HookRegistry::register('NavigationMenus::displaySettings', array($this, 'getDisplayStatusCallback'));
-		\HookRegistry::register('NavigationMenus::itemCustomTemplates', array($this, 'getMenuItemCustomEditTemplatesCallback'));
-	}
+// FIXME: Add namespacing
+use Validation;
 
-	/**
-	 * Return all default navigationMenuItemTypes.
-	 * @param $hookName string
-	 * @param $args array of arguments passed
-	 */
-	public function getMenuItemTypesCallback($hookName, $args) {
-		$types =& $args[0];
+class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
+{
+    /** types for all omp default navigationMenuItems */
+    public const NMI_TYPE_CATALOG = 'NMI_TYPE_CATALOG';
+    public const NMI_TYPE_SERIES = 'NMI_TYPE_SERIES';
+    public const NMI_TYPE_CATEGORY = 'NMI_TYPE_CATEGORY';
+    public const NMI_TYPE_NEW_RELEASE = 'NMI_TYPE_NEW_RELEASE';
 
-		\AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_USER);
+    /**
+     * Initialize hooks for extending PKPSubmissionService
+     */
+    public function __construct()
+    {
+        HookRegistry::register('NavigationMenus::itemTypes', [$this, 'getMenuItemTypesCallback']);
+        HookRegistry::register('NavigationMenus::displaySettings', [$this, 'getDisplayStatusCallback']);
+        HookRegistry::register('NavigationMenus::itemCustomTemplates', [$this, 'getMenuItemCustomEditTemplatesCallback']);
+    }
 
-		$ompTypes = array(
-			NMI_TYPE_CATALOG => array(
-				'title' => __('navigation.catalog'),
-				'description' => __('navigation.navigationMenus.catalog.description'),
-			),
-			NMI_TYPE_NEW_RELEASE => array(
-				'title' => __('navigation.navigationMenus.newRelease'),
-				'description' => __('navigation.navigationMenus.newRelease.description'),
-			),
-		);
+    /**
+     * Return all default navigationMenuItemTypes.
+     *
+     * @param $hookName string
+     * @param $args array of arguments passed
+     */
+    public function getMenuItemTypesCallback($hookName, $args)
+    {
+        $types = & $args[0];
 
-		$request = \Application::get()->getRequest();
-		$context = $request->getContext();
-		$contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
+        AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_USER);
 
-		$seriesDao = \DAORegistry::getDAO('SeriesDAO');
-		$series = $seriesDao->getByContextId($contextId);
+        $ompTypes = [
+            self::NMI_TYPE_CATALOG => [
+                'title' => __('navigation.catalog'),
+                'description' => __('navigation.navigationMenus.catalog.description'),
+            ],
+            self::NMI_TYPE_NEW_RELEASE => [
+                'title' => __('navigation.navigationMenus.newRelease'),
+                'description' => __('navigation.navigationMenus.newRelease.description'),
+            ],
+        ];
 
-		if ($series->count) {
-			$newArray = array(
-				NMI_TYPE_SERIES => array(
-					'title' => __('navigation.navigationMenus.series.generic'),
-					'description' => __('navigation.navigationMenus.series.description'),
-				),
-			);
+        $request = Application::get()->getRequest();
+        $context = $request->getContext();
+        $contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
 
-			$ompTypes = array_merge($ompTypes, $newArray);
+        $seriesDao = DAORegistry::getDAO('SeriesDAO');
+        $series = $seriesDao->getByContextId($contextId);
 
-		}
+        if ($series->count) {
+            $newArray = [
+                self::NMI_TYPE_SERIES => [
+                    'title' => __('navigation.navigationMenus.series.generic'),
+                    'description' => __('navigation.navigationMenus.series.description'),
+                ],
+            ];
 
-		$categoryDao = \DAORegistry::getDAO('CategoryDAO');
-		$categories = $categoryDao->getByParentId(null, $contextId);
+            $ompTypes = array_merge($ompTypes, $newArray);
+        }
 
-		if ($categories->count) {
-			$newArray = array(
-				NMI_TYPE_CATEGORY => array(
-					'title' => __('navigation.navigationMenus.category.generic'),
-					'description' => __('navigation.navigationMenus.category.description'),
-				),
-			);
+        $categoryDao = DAORegistry::getDAO('CategoryDAO');
+        $categories = $categoryDao->getByParentId(null, $contextId);
 
-			$ompTypes = array_merge($ompTypes, $newArray);
-		}
+        if ($categories->count) {
+            $newArray = [
+                self::NMI_TYPE_CATEGORY => [
+                    'title' => __('navigation.navigationMenus.category.generic'),
+                    'description' => __('navigation.navigationMenus.category.description'),
+                ],
+            ];
 
-		$types = array_merge($types, $ompTypes);
-	}
+            $ompTypes = array_merge($ompTypes, $newArray);
+        }
 
-	/**
-	 * Return all navigationMenuItem Types custom edit templates.
-	 * @param $hookName string
-	 * @param $args array of arguments passed
-	 */
-	public function getMenuItemCustomEditTemplatesCallback($hookName, $args) {
-		$templates =& $args[0];
+        $types = array_merge($types, $ompTypes);
+    }
 
-		\AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_USER);
+    /**
+     * Return all navigationMenuItem Types custom edit templates.
+     *
+     * @param $hookName string
+     * @param $args array of arguments passed
+     */
+    public function getMenuItemCustomEditTemplatesCallback($hookName, $args)
+    {
+        $templates = & $args[0];
 
-		$ompTemplates = array(
-			NMI_TYPE_CATEGORY => array(
-				'template' => 'controllers/grid/navigationMenus/categoriesNMIType.tpl',
-			),
-			NMI_TYPE_SERIES => array(
-				'template' => 'controllers/grid/navigationMenus/seriesNMIType.tpl',
-			),
-		);
+        AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_USER);
 
-		$templates = array_merge($templates, $ompTemplates);
-	}
+        $ompTemplates = [
+            self::NMI_TYPE_CATEGORY => [
+                'template' => 'controllers/grid/navigationMenus/categoriesNMIType.tpl',
+            ],
+            self::NMI_TYPE_SERIES => [
+                'template' => 'controllers/grid/navigationMenus/seriesNMIType.tpl',
+            ],
+        ];
 
-	/**
-	 * Callback for display menu item functionallity
-	 * @param $hookName string
-	 * @param $args array of arguments passed
-	 */
-	function getDisplayStatusCallback($hookName, $args) {
-		$navigationMenuItem =& $args[0];
+        $templates = array_merge($templates, $ompTemplates);
+    }
 
-		$request = \Application::get()->getRequest();
-		$dispatcher = $request->getDispatcher();
-		$templateMgr = \TemplateManager::getManager(\Application::get()->getRequest());
+    /**
+     * Callback for display menu item functionallity
+     *
+     * @param $hookName string
+     * @param $args array of arguments passed
+     */
+    public function getDisplayStatusCallback($hookName, $args)
+    {
+        $navigationMenuItem = & $args[0];
 
-		$isUserLoggedIn = \Validation::isLoggedIn();
-		$isUserLoggedInAs = \Validation::isLoggedInAs();
-		$context = $request->getContext();
-		$contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
+        $request = Application::get()->getRequest();
+        $dispatcher = $request->getDispatcher();
+        $templateMgr = TemplateManager::getManager(Application::get()->getRequest());
 
-		$this->transformNavMenuItemTitle($templateMgr, $navigationMenuItem);
+        $isUserLoggedIn = Validation::isLoggedIn();
+        $isUserLoggedInAs = Validation::isLoggedInAs();
+        $context = $request->getContext();
+        $contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
 
-		$menuItemType = $navigationMenuItem->getType();
+        $this->transformNavMenuItemTitle($templateMgr, $navigationMenuItem);
 
-		if ($navigationMenuItem->getIsDisplayed()) {
-			$menuItemType = $navigationMenuItem->getType();
+        $menuItemType = $navigationMenuItem->getType();
 
-			$relatedObject = null;
+        if ($navigationMenuItem->getIsDisplayed()) {
+            $menuItemType = $navigationMenuItem->getType();
 
-			switch ($menuItemType) {
-				case NMI_TYPE_SERIES:
-					$seriesId = $navigationMenuItem->getPath();
+            $relatedObject = null;
 
-					$seriesDao = \DAORegistry::getDAO('SeriesDAO');
-					$relatedObject = $seriesDao->getById($seriesId, $contextId);
+            switch ($menuItemType) {
+                case self::NMI_TYPE_SERIES:
+                    $seriesId = $navigationMenuItem->getPath();
 
-					break;
-				case NMI_TYPE_CATEGORY:
-					$categoryId = $navigationMenuItem->getPath();
+                    $seriesDao = DAORegistry::getDAO('SeriesDAO');
+                    $relatedObject = $seriesDao->getById($seriesId, $contextId);
 
-					$categoryDao = \DAORegistry::getDAO('CategoryDAO');
-					$relatedObject = $categoryDao->getById($categoryId, $contextId);
+                    break;
+                case self::NMI_TYPE_CATEGORY:
+                    $categoryId = $navigationMenuItem->getPath();
 
-					break;
-			}
+                    $categoryDao = DAORegistry::getDAO('CategoryDAO');
+                    $relatedObject = $categoryDao->getById($categoryId, $contextId);
 
-			// Set the URL
-			switch ($menuItemType) {
-				case NMI_TYPE_CATALOG:
-					$navigationMenuItem->setUrl($dispatcher->url(
-						$request,
-						ROUTE_PAGE,
-						null,
-						'catalog',
-						null,
-						null
-					));
-					break;
-				case NMI_TYPE_NEW_RELEASE:
-					$navigationMenuItem->setUrl($dispatcher->url(
-						$request,
-						ROUTE_PAGE,
-						null,
-						'catalog',
-						'newReleases',
-						null
-					));
-					break;
-				case NMI_TYPE_SERIES:
-					if ($relatedObject) {
-						$navigationMenuItem->setUrl($dispatcher->url(
-							$request,
-							ROUTE_PAGE,
-							null,
-							'catalog',
-							'series',
-							$relatedObject->getPath()
-						));
-					} else {
-						$navigationMenuItem->setIsDisplayed(false);
-					}
-					break;
-				case NMI_TYPE_CATEGORY:
-					if ($relatedObject) {
-						$navigationMenuItem->setUrl($dispatcher->url(
-							$request,
-							ROUTE_PAGE,
-							null,
-							'catalog',
-							'category',
-							$relatedObject->getPath()
-						));
-					} else {
-						$navigationMenuItem->setIsDisplayed(false);
-					}
-					break;
-			}
-		}
-	}
+                    break;
+            }
+
+            // Set the URL
+            switch ($menuItemType) {
+                case self::NMI_TYPE_CATALOG:
+                    $navigationMenuItem->setUrl($dispatcher->url(
+                        $request,
+                        PKPApplication::ROUTE_PAGE,
+                        null,
+                        'catalog',
+                        null,
+                        null
+                    ));
+                    break;
+                case self::NMI_TYPE_NEW_RELEASE:
+                    $navigationMenuItem->setUrl($dispatcher->url(
+                        $request,
+                        PKPApplication::ROUTE_PAGE,
+                        null,
+                        'catalog',
+                        'newReleases',
+                        null
+                    ));
+                    break;
+                case self::NMI_TYPE_SERIES:
+                    if ($relatedObject) {
+                        $navigationMenuItem->setUrl($dispatcher->url(
+                            $request,
+                            PKPApplication::ROUTE_PAGE,
+                            null,
+                            'catalog',
+                            'series',
+                            $relatedObject->getPath()
+                        ));
+                    } else {
+                        $navigationMenuItem->setIsDisplayed(false);
+                    }
+                    break;
+                case self::NMI_TYPE_CATEGORY:
+                    if ($relatedObject) {
+                        $navigationMenuItem->setUrl($dispatcher->url(
+                            $request,
+                            PKPApplication::ROUTE_PAGE,
+                            null,
+                            'catalog',
+                            'category',
+                            $relatedObject->getPath()
+                        ));
+                    } else {
+                        $navigationMenuItem->setIsDisplayed(false);
+                    }
+                    break;
+            }
+        }
+    }
+}
+
+if (!PKP_STRICT_MODE) {
+    foreach ([
+        'NMI_TYPE_CATALOG',
+        'NMI_TYPE_SERIES',
+        'NMI_TYPE_CATEGORY',
+        'NMI_TYPE_NEW_RELEASE',
+    ] as $constantName) {
+        define($constantName, constant('\APP\services\NavigationMenuService::' . $constantName));
+    }
 }

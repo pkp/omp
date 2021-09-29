@@ -1,0 +1,124 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-04-23 16:55+0000\n"
+"Last-Translator: Dobrica Pavlinušić <dpavlin@ffzg.hr>\n"
+"Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/locale/"
+"hr_HR/>\n"
+"Language: hr_HR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "user.register.privacyStatement"
+msgstr "Izjava o privatnosti"
+
+msgid "about.privacyStatement"
+msgstr "Izjava o privatnosti"
+
+msgid "about.authorGuidelines"
+msgstr "Upute za autore"
+
+msgid "about.submissions"
+msgstr "Prijave"
+
+msgid "about.editorialTeam"
+msgstr "Uredništvo"
+
+msgid "about.aboutContext"
+msgstr "O nakladi"
+
+msgid "about.pressContact"
+msgstr "Kontakt"
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Poveznica na katalog."
+
+msgid "navigation.linksAndMedia"
+msgstr "Društvene mreže"
+
+msgid "navigation.published"
+msgstr "Objavljeno"
+
+msgid "navigation.newReleases"
+msgstr "Nova izdanja"
+
+msgid "navigation.catalog"
+msgstr "Katalog"
+
+msgid "common.searchCatalog"
+msgstr "Pretraži katalog"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Informacije za knjižničare"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Informacije za autore"
+
+msgid "navigation.infoForLibrarians"
+msgstr "Za knjižničare"
+
+msgid "navigation.infoForAuthors"
+msgstr "Za autore"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
+
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Posto popusta, ako ga ima"
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "Tip cijene"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "Cijena je obavezna."
+
+msgid "monograph.publicationFormat.price"
+msgstr "Cijena"
+
+msgid "monograph.type"
+msgstr "Tip prijave"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Formati:"
+
+msgid "monograph.publicationFormat"
+msgstr "Format"
+
+msgid "monograph.publicationFormats"
+msgstr "Formati izdanja"
+
+msgid "common.payments"
+msgstr "Plaćanja"
+
+msgid "catalog.newReleases"
+msgstr "Nova izdanja"
+
+msgid "catalog.manage.newRelease"
+msgstr "Nova izdanja"
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "catalog.manage.series"
+msgstr "Nizovi"
+
+msgid "catalog.manage.category"
+msgstr "Kategorija"
+
+msgid "catalog.manage.newReleases"
+msgstr "Nova izdanja"
+
+msgid "catalog.manage"
+msgstr "Uređivanje kataloga"
+
+msgid "series.series"
+msgstr "Nizovi"
+
+msgid "catalog.published"
+msgstr "Objavljeno"
+
+msgid "catalog.categories"
+msgstr "Kategorije"

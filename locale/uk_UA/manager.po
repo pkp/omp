@@ -1,0 +1,332 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-05-02 02:23+0000\n"
+"Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
+"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"uk_UA/>\n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Інструкції з Літературного Редагування"
+
+msgid "manager.setup.copyediting"
+msgstr "Літературні Редактори"
+
+msgid "manager.setup.contextAbout"
+msgstr "Про Видавництво"
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(для появи в \"Про Видавництво\") "
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Додаткова Інформація"
+
+msgid "manager.setup.announcements.success"
+msgstr "Налаштування оголошень оновлено."
+
+msgid "manager.setup.announcements"
+msgstr "Оголошення"
+
+msgid "manager.setup.addSponsor"
+msgstr "Додати Організацію-Спонсора"
+
+msgid "manager.setup.addNavItem"
+msgstr "Додати матеріал"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Додати матеріал, що з'явиться на сторіці \"Про Видавництво\""
+
+msgid "manager.setup.addItem"
+msgstr "Додати Матеріал"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Додати Інформацію Про"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Контент"
+
+msgid "manager.setup"
+msgstr "Інсталяція"
+
+msgid "manager.pressManagement"
+msgstr "Керування Видавництвом"
+
+msgid "user.authorization.pluginLevel"
+msgstr "У вас недостатньо прав для керування цим плагіном."
+
+msgid "manager.system.payments"
+msgstr "Платежі"
+
+msgid "manager.system.archiving"
+msgstr "Архівування"
+
+msgid "manager.system"
+msgstr "Системні Налаштування"
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Деактивувати цього користувача? Це зробить неможливим вхід користовуча до "
+"системи.\n"
+"\n"
+"Ви можете вказати користувачу причину деактивування облікового запису."
+
+msgid "manager.people.allPresses"
+msgstr "Усі Видавництва"
+
+msgid "manager.users.selectRole"
+msgstr "Обрати Роль"
+
+msgid "manager.users.availableRoles"
+msgstr "Доступні Ролі"
+
+msgid "manager.tools"
+msgstr "Інструменти"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Переглядів Анотації Монографії"
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Завантаження файлів Монографії"
+
+msgid "manager.settings.publisherCode"
+msgstr "Код Видавця"
+
+msgid "manager.settings.location"
+msgstr "Географічне місцезнаходження"
+
+msgid "manager.settings.publisher"
+msgstr "Ім'я Видавця"
+
+msgid "manager.settings.publisher.identity"
+msgstr "Ідентифікатор Видавця"
+
+msgid "manager.settings.press"
+msgstr "Видавництво"
+
+msgid "manager.settings.pressSettings"
+msgstr "Налаштування Видавництва"
+
+msgid "manager.settings"
+msgstr "Налаштування"
+
+msgid "manager.payment.success"
+msgstr "Налаштування оплати оновлено."
+
+msgid "manager.payment.generalOptions"
+msgstr "Загальні Налаштування"
+
+msgid "manager.series.seriesTitle"
+msgstr "Назва Серії"
+
+msgid "manager.series.existingUsers"
+msgstr "Існуючі Користувачі"
+
+msgid "manager.series.noneCreated"
+msgstr "Жодної серії не створено."
+
+msgid "manager.series.form.titleRequired"
+msgstr "Необхідно ввести назву для Серії."
+
+msgid "manager.series.unassigned"
+msgstr "Доступні Редактори Серій"
+
+msgid "manager.series.assigned"
+msgstr "Редактори для Серій"
+
+msgid "manager.series.policy"
+msgstr "Опис Серії"
+
+msgid "manager.series.create"
+msgstr "Створити Серії"
+
+msgid "manager.series.book"
+msgstr "Серії Книг"
+
+msgid "manager.series.disableComments"
+msgstr "Заблокувати можливість коментування для цих Серій."
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Не вимагати анотації"
+
+msgid "manager.series.indexed"
+msgstr "Індексовано"
+
+msgid "manager.series.open"
+msgstr "Відкрити Подання"
+
+msgid "manager.setup.emailSignature"
+msgstr "Підпис"
+
+msgid "manager.setup.emails"
+msgstr "Ідентифікація за адресою електронної пошти"
+
+msgid "manager.setup.editorDecision"
+msgstr "Рішення Редактора"
+
+msgid "manager.setup.doiPrefix"
+msgstr "Префікс DOI"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Нові Видання"
+
+msgid "manager.setup.details"
+msgstr "Детальніше"
+
+msgid "manager.setup.customTags"
+msgstr "Користувацькі Теги"
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Максимальна ширина зображення обкладинки"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Максимальна довжина зображення обкладинки"
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Будь ласка, переконайтеся, що обрано принаймні по одному прапорцю для "
+"кожного призначення Редактора Серій."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Ця мова буде встановлена за замовчуванням для сайту цього видавництва."
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Вибачте, відсутні додаткові мовні пакети. Напишіть адміністратору вашого "
+"сайтк якщо хочете мати додаткові мови для вашого видавництва."
+
+msgid "manager.setup.generalInformation"
+msgstr "Загальна Інформація"
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Вкажіть основні відомості про видавництво, що зацікавлять читачів, авторів "
+"або рецензентів. Це можуть бути положення про відкритий доступ, концепція "
+"видавництва, умови передачі авторських прав, інформація про спонсорів, "
+"історія видавництва."
+
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Оголошення можна публікувати для інформування читачів про новини та події "
+"видавництва. Оприлюднені оголошення з'являться на сторінці \"Оголошення\"."
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Додати пункт вимог"
+
+msgid "manager.system.readingTools"
+msgstr "Інструментарій для читання"
+
+msgid "manager.system.reviewForms"
+msgstr "Форми рецензування"
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Вибачте, але Ви не маєте прав для управління цим користувачем, з огляду на "
+"те, що:\n"
+"\t       <ul>\n"
+"\t               <li>Користувач є адміністратором сайту</li>\n"
+"\t               <li>Користувач активнований у видавництвах, якими Ви не "
+"керуєте</li>\n"
+"\t       </ul>\n"
+"\tЦе завдання може виконати адміністратор сайту.\n"
+"\t"
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"Синхронізація реєстрацій дозволяє зареєструвати усіх користувачів, які "
+"виконують певну роль у певному видавництві, у тих же ролях у цьому "
+"видавництві. Дана функція дозволяє синхронізувати між видавництвами певні "
+"групи користувачів, наприклад рецензентів."
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Оберіть користувача, якому слід передати права попереднього користувача ("
+"авторство, редакційні призначення, тощо)."
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Оберіть користувача, якого потрібно включити до облікового запису іншого "
+"користувача (наприклад, якщо одна особа має два облікові записи). Перший "
+"обраний обліковий запис буде видалений, а його подання, редакційні "
+"призначення, тощо будуть асоційовані з другим обраним обліковим записом."
+
+msgid "manager.people.enrollSyncPress"
+msgstr "З Видавництвом"
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Надати нову роль існуючому користувачу"
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Видалити цього користувача з цього видавництва? Ця дія скасує всі "
+"призначення користувача в межах цього видавництва."
+
+msgid "manager.people.allUsers"
+msgstr "Всі користувачі, які мають ролі"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Надати роль у цьому журналі користувачу, зареєстрованому у видавництві"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Користувачі, які мають ролі у цьому видавництві"
+
+msgid "manager.users.currentRoles"
+msgstr "Поточні ролі"
+
+msgid "manager.statistics.reports.filters.byObject.description"
+msgstr ""
+"Фільтрувати результати за типом об'єкта (видавництво, серії, монографія, "
+"типи файлів) та/або по одному або декільком ID об'єктів."
+
+msgid "manager.statistics.reports.filters.byContext.description"
+msgstr "Фільтрувати результати по контексту (серії та/або монографії)."
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Перегляди головної сторінки Видавництва"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Перегляди головної сторінки Серій"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Анотація монографії та скачування"
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Тип Коду Видавця"
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Платежі будуть включені для цього Видавництва. Зауважте, що користувачі "
+"повинні увійти до системи, щоб здійснити платіж."
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "Необхідно вказати абревіатуру для серій."
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Рукописи, подані до цих серій"
+
+msgid "manager.series.submissionReview"
+msgstr "Не будуть рецензуватись"
+
+msgid "manager.series.readingTools"
+msgstr "Інструментарій для читання"
+
+msgid "manager.series.confirmDelete"
+msgstr "Ви впевнені, що хочете назавжди видалити ці Серії?"
+
+msgid "manager.series.editorRestriction"
+msgstr "Об'єкти можуть надсилатись лише Редакторами та Редакторами Серій."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Не будуть індексуватись у видавництві"
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Будь ласка, переконайтеся, що Ви коректно обрали форму рецензування."
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"Ця дія скасує всі налаштування видавництва, повязані з цією локалізацією"

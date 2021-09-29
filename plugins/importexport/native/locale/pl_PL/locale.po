@@ -1,0 +1,49 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-12-01 14:05+0000\n"
+"Last-Translator: rl <biuro@fimagis.pl>\n"
+"Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-native/pl_PL/>\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.importexport.native.error.unknownSeries"
+msgstr "Nieznane serie {$param}"
+
+msgid "plugins.importexport.native.onix30.pressMissingFields"
+msgstr ""
+"W tym wydaniu brakuje wymaganych informacji dla metadanych ONIX używanych do "
+"eksportu. Proszę przejdź do <a href=\"{$url}\">Ustawienia wydania</a> i "
+"uzupełnij brakujące szczegóły."
+
+msgid "plugins.importexport.native.importComplete"
+msgstr "Import zakończony pomyślnie. Następujące pozycje zostały importowane:"
+
+msgid "plugins.inportexport.native.uploadFile"
+msgstr "Proszę załaduj plik \"Do importu\", aby kontynuować."
+
+msgid "plugins.importexport.native.results"
+msgstr "Wyniki"
+
+msgid "plugins.importexport.native.exportSubmissionsSelect"
+msgstr "Wybierz monografie do eksportu"
+
+msgid "plugins.importexport.native.export"
+msgstr "\"Do eksportu\""
+
+msgid "plugins.importexport.native.import.instructions"
+msgstr "Załaduj plik XML do importu"
+
+msgid "plugins.importexport.native.import"
+msgstr "\"Do importu\""
+
+msgid "plugins.importexport.native.description"
+msgstr "Importuj i eksportuj książki dla OMP w natywnym formacie XML."
+
+msgid "plugins.importexport.native.displayName"
+msgstr "Natywna wtyczka XML"

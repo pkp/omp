@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-07 10:35+0000\n"
-"Last-Translator: Carla Marques <carla.marques@sdum.uminho.pt>\n"
+"PO-Revision-Date: 2021-01-22 11:36+0000\n"
+"Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/api/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -27,3 +27,14 @@ msgstr "A publicação que solicitou não faz parte desta editora."
 
 msgid "api.emailTemplates.403.notAllowedChangeContext"
 msgstr "Não tem permissões para mover este e-mail padrão para outra editora."
+
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "Uma ou mais submissões que especificou não foram encontradas."
+
+msgid "api.submissions.400.submissionIdsRequired"
+msgstr ""
+"Deve forneceere um ou mais IDs de submissões para serem adicionados ao "
+"catálogo."
+
+msgid "api.emails.403.disabled"
+msgstr "O recurso de notificação de e-mail não foi ativado para esta editora."

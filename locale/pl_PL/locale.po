@@ -1,0 +1,1626 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-12-15 13:16+0000\n"
+"Last-Translator: rl <biuro@fimagis.pl>\n"
+"Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/locale/pl_PL/"
+">\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "catalog.coverImageTitle"
+msgstr "Okładka"
+
+msgid "submission.pdf.download"
+msgstr "Pobierz ten plik PDF"
+
+msgid "debug.notes.helpMappingLoad"
+msgstr ""
+"Ponowne załadowanie XML pomoże plikowi mapowanemu {$filename} w poszukiwaniu "
+"{$id}."
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Książka"
+
+msgid "payment.directSales.monograph.description"
+msgstr ""
+"Ta transakcja została przeprowadzona, aby nabyć pojedynczą monografię lub "
+"jej rozdział poprzez bezpośrednie pobranie."
+
+msgid "payment.directSales.monograph.name"
+msgstr "Zakup monografię lub pobierz rozdział"
+
+msgid "payment.directSales.download"
+msgstr "Pobierz {$format}"
+
+msgid "payment.directSales.purchase"
+msgstr "Zakup{$format} ({$amount} {$currency})"
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "Aktualna cena jest wymagana."
+
+msgid "payment.directSales.price.description"
+msgstr ""
+"Format pliku może być dostępny do pobrania ze strony wydawnictwa poprzez "
+"otwarty dostęp bez kosztów dla czytelników i w trakcie sprzedaży "
+"bezpośredniej (używając płatności online jak ustalono w dziale dystrybucji). "
+"Dla tego pliku oznacz podstawę dostępu."
+
+msgid "payment.directSales.openAccess"
+msgstr "Otwarty dostęp"
+
+msgid "payment.directSales.notSet"
+msgstr "Nie ustawiono"
+
+msgid "payment.directSales.notAvailable"
+msgstr "Niedostępny"
+
+msgid "payment.directSales.amount"
+msgstr "{$amount} ({$currency})"
+
+msgid "payment.directSales.directSales"
+msgstr "Sprzedaż bezpośrednia"
+
+msgid "payment.directSales.numericOnly"
+msgstr "Ceny nie powinny zawierać symboli walut."
+
+msgid "payment.directSales.priceCurrency"
+msgstr "Cena ({$currency})"
+
+msgid "payment.directSales.approved"
+msgstr "Zatwierdzono"
+
+msgid "payment.directSales.catalog"
+msgstr "Katalog"
+
+msgid "payment.directSales.availability"
+msgstr "Dostępność"
+
+msgid "payment.directSales.price"
+msgstr "Cena"
+
+msgid "payment.directSales"
+msgstr "Ściągnij ze strony wydawnictwa"
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+"Odmowa dostępu! Grupa użytkowników, do której obecnie należysz, nie została "
+"przypisana do tego etapu pracy. Sprawdź swoje ustawienia zlecenia."
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr "Odmowa dostępu! Nie przypisano Cię do tego etapu prac."
+
+msgid "user.authorization.seriesAssignment"
+msgstr ""
+"Próbujesz uzyskać dostęp do monografii, która nie jest częścią twojej serii."
+
+msgid "user.authorization.noContext"
+msgstr "Brak wydań w kontekście!"
+
+msgid "user.authorization.invalidMonograph"
+msgstr "Nieważna lub niewymagana monografia!"
+
+msgid "user.authorization.monographFile"
+msgstr "Odmówiono dostępu do określonego pliku monografii."
+
+msgid "user.authorization.monographReviewer"
+msgstr "Odmówiono dostępu. Nie jesteś przypisanym recenzentem tej monografii."
+
+msgid "user.authorization.monographAuthor"
+msgstr "Odmówiono dostępu. Nie jesteś autorem tej monografii."
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr "Odmówiono dostępu. Nie jesteś adekwatnym recenzentem do tej monografii."
+
+#, fuzzy
+msgid "notification.type.visitCatalog"
+msgstr ""
+"Monografia została zatwierdzona. Proszę odwiedź katalog, używając powyższego "
+"linku, aby zarządzać szczegółami katalogu."
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "Zarządzanie katalogiem"
+
+msgid "notification.type.configurePaymentMethod"
+msgstr ""
+"Wymagana jest konfiguracja płatności zanim zdefiniujesz ustawienia "
+"e-commerce."
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "Nie skonfigurowano metody płatności."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+"Monografia nie zostanie umieszczona w katalogu do momentu publikacji. Aby "
+"dodać książkę do katalogu, kliknij zakładkę publikacji."
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "Oczekuje na zatwierdzenie."
+
+msgid "notification.type.approveSubmission"
+msgstr ""
+"Zgłoszenie obecnie oczekuje zatwierdzenia w narzędziu pozycji katalogowej "
+"zanim pojawi się w publicznym katalogu."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "Rozpoczęto proces recenzji wewnętrznych."
+
+msgid "notification.type.indexRequest"
+msgstr "Zostałeś poproszony o stworzenie indeksu dla \"{$title}\"."
+
+msgid "notification.type.layouteditorRequest"
+msgstr "Zostałeś poproszony o recenzję składu  \"{$title}\"."
+
+msgid "notification.type.copyeditorRequest"
+msgstr "Zostałeś poproszony o sprawdzenie redakcji \"{$file}\"."
+
+msgid "notification.type.editorAssignmentTask"
+msgstr "Zgłoszono nową monografię, do której należy przypisać redaktora."
+
+msgid "notification.type.public"
+msgstr "Ogłoszenia publiczne"
+
+msgid "notification.type.userComment"
+msgstr "Czytelnik skomentował   \"{$title}\"."
+
+msgid "notification.type.submissions"
+msgstr "Działania zgłoszeniowe"
+
+msgid "notification.type.site"
+msgstr "Działania na stronie"
+
+msgid "notification.type.reviewing"
+msgstr "Działania recenzenckie"
+
+msgid "notification.type.editing"
+msgstr "Działania redakcyjne"
+
+msgid "notification.type.submissionSubmitted"
+msgstr "Została zgłoszona nowa monografia  \"{$title},\"."
+
+msgid "notification.removedSubmission"
+msgstr "Anulowano zgłoszenie."
+
+msgid "notification.proofsApproved"
+msgstr "Zatwierdzono korektę."
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "Zapisano metadane formatu publikacji."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "Zapisano metadane katalogu."
+
+msgid "notification.removedSpotlight"
+msgstr "Usunięto wyróżnione."
+
+msgid "notification.editedSpotlight"
+msgstr "Zmieniono wyróżnione."
+
+msgid "notification.addedSpotlight"
+msgstr "Dodano wyróżnione."
+
+msgid "notification.removedMarket"
+msgstr "Usunięto rynek."
+
+msgid "notification.editedMarket"
+msgstr "Zmieniono rynek."
+
+msgid "notification.addedMarket"
+msgstr "Dodano rynek."
+
+msgid "notification.editedRepresentative"
+msgstr "Zmieniono przedstawiciela."
+
+msgid "notification.addedRepresentative"
+msgstr "Dodano przedstawiciela."
+
+msgid "notification.removedSalesRights"
+msgstr "Usunięto prawa sprzedaży."
+
+msgid "notification.editedSalesRights"
+msgstr "Zmieniono prawa sprzedaży."
+
+msgid "notification.addedSalesRights"
+msgstr "Dodano prawa sprzedaży."
+
+msgid "notification.removedPublicationFormat"
+msgstr "Usunięto format publikacji."
+
+msgid "notification.editedPublicationFormat"
+msgstr "Zmieniono format publikacji."
+
+msgid "notification.addedPublicationFormat"
+msgstr "Dodano format publikacji."
+
+msgid "notification.removedPublicationDate"
+msgstr "Usunięto datę publikacji."
+
+msgid "notification.editedPublicationDate"
+msgstr "Zmieniono datę publikacji."
+
+msgid "notification.addedPublicationDate"
+msgstr "Dodano datę publikacji."
+
+msgid "notification.removedIdentificationCode"
+msgstr "Usunięto kod identyfikacyjny."
+
+msgid "notification.editedIdentificationCode"
+msgstr "Zmieniono kod identyfikacyjny."
+
+msgid "notification.addedIdentificationCode"
+msgstr "Dodano kod identyfikacyjny."
+
+msgid "log.imported"
+msgstr "{$userName} wprowadził monografię {$submissionId}."
+
+msgid "log.proofread.complete"
+msgstr "{$proofreaderName} zgłosił {$submissionId} do rozplanowania."
+
+msgid "log.proofread.assign"
+msgstr ""
+"{$assignerName} przypisał {$proofreaderName} do korekty zgłoszenia "
+"{$submissionId}."
+
+msgid "log.editor.editorAssigned"
+msgstr ""
+"{$editorName} został przypisane do zgłoszenia {$submissionId} jako redaktor."
+
+msgid "log.editor.restored"
+msgstr "Zgłoszenie  {$submissionId} zostało przywrócone do kolejki."
+
+msgid "log.editor.archived"
+msgstr "Zgłoszenie {$submissionId} zostało zarchiwizowane."
+
+msgid "log.editor.recommendation"
+msgstr ""
+"Rekomendacja redaktorska ({$decision}) dla monografii {$submissionId} "
+"została odnotowana przez {$editorName}."
+
+msgid "log.editor.decision"
+msgstr ""
+"Decyzja redaktorska ({$decision}) dla monografii {$submissionId} została "
+"zanotowana przez {$editorName}."
+
+msgid "log.review.reviewUnconsidered"
+msgstr ""
+"{$editorName} oznaczył rundę {$round} recenzji zgłoszenia {$submissionId} "
+"jako nierozstrzygniętą."
+
+msgid "log.review.reviewAccepted"
+msgstr ""
+"{$reviewerName} weźmie udział w rundzie {$round} recenzji dla zgłoszenia "
+"{$submissionId}."
+
+msgid "log.review.reviewDeclined"
+msgstr ""
+"{$reviewerName} odmówił udziału w rundzie {$round} recenzji dla zgłoszenia "
+"{$submissionId}."
+
+msgid "log.review.reviewDueDateSet"
+msgstr ""
+"Końcowy termin rundy {$round} recenzji zgłoszenia  {$submissionId} przez "
+"{$reviewerName} został ustalony na {$dueDate}."
+
+msgid "installer.upgradeComplete"
+msgstr ""
+"<p>Aktualizacja wersji {$version} OMP została pomyślnie zakończona. </p>\n"
+"<p>Nie zapomnij ustawić zainstalowanych ustawień w konfiguracji Twojej kopii "
+"zapasowej pliku config.inc.php z powrotem do<em>On</em>.</p>\n"
+"<p>Jeśli się jeszcze nie zarejestrowałeś i chciałbyś otrzymywać wiadomości i "
+"najnowsze doniesienia, <strong>zarejestruj się na <a href=\"http://pkp.sfu."
+"ca/omp/register\" target=\"_blank\">http://pkp.sfu.ca/omp/"
+"register</a>.</strong> Jeśli masz pytania lub komentarze odwiedź forum "
+"wsparcia. visit the <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">"
+"support forum</a>.</p>"
+
+msgid "installer.installationComplete"
+msgstr ""
+"<p>Pomyślnie zakończone instalację OMP.</p>\n"
+"<p>Aby zacząć korzystać z systemu <a href=\"{$loginUrl}\">zaloguj się</a> "
+"loginem i hasłem wprowadzonymi na poprzedniej stronie.</p>\n"
+"<p>Jeśli chciałbyś otrzymywać wiadomości i ostatnie doniesienia <strong>"
+"zarejestruj się na <a href=\"http://pkp.sfu.ca/omp/register\" target=\""
+"_blank\">http://pkp.sfu.ca/omp/register</a>.</strong> Jeśli masz pytania lub "
+"komentarze, odwiedź <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">"
+"forum wsparcia</a>.</p>"
+
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>WAŻNE!</h4>\n"
+"<p>Program instalacyjny nie mógł automatycznie zastąpić pliku konfiguracji. "
+"Zanim spróbujesz korzystać z systemu, proszę otwórz <tt>config.inc.php</tt> "
+"w odpowiednim edytorze tekstu i zastąp jego zawartość tekstem z poniższego "
+"pola.</p>"
+
+msgid "installer.upgradeApplication"
+msgstr "Aktualizuj Open Mongraph Press"
+
+msgid "installer.databaseSettingsInstructions"
+msgstr ""
+"OMP wymaga dostępu do SQL bazy danych aby zachować swoje dane. Zobacz "
+"wymagania systemu powyżej, aby otrzymać listę obsługiwanych baz danych. W "
+"polach poniżej podaj ustawienia, które będą użyte do połączenia się z bazą "
+"danych."
+
+msgid "installer.filesDirInstructions"
+msgstr ""
+"Wprowadź pełną ścieżkę dostępu do istniejącego foldery, gdzie są "
+"przechowywane ściągnięte pliki. Ten folder nie powinien mieć bezpośredniego "
+"dostępu do sieci. <strong>Przed instalacją upewnij się, że folder istnieje i "
+"jest możliwy do zapisania.</strong> Nazwa  ścieżki dostępu Windowsa powinna "
+"być poprzedzona ukośnikami, np. \"C:/mypress/files\"."
+
+msgid "installer.additionalLocalesInstructions"
+msgstr ""
+"Wybierz dodatkowy język do obsługi systemu. Te języki będą dostępne do "
+"użytkowania dla wydawnictw obsługiwanych przez stronie. Dodatkowe języki "
+"mogą być zainstalowane w dowolnym momencie przez interfejs administracji "
+"strony. Ustawienia regionalne oznaczone * mogą być niekompletne."
+
+msgid "installer.localeInstructions"
+msgstr ""
+"Główny język stosowany w tym systemie. Proszę, zapoznaj się z dokumentacją "
+"OMP, jeśli jesteś zainteresowany obsługą w językach spoza listy."
+
+msgid "installer.maxFileUploadSize"
+msgstr ""
+"Twój serwer obecnie zezwala na maksymalny rozmiar plików:  "
+"<strong>{$maxFileUploadSize}</strong>"
+
+msgid "installer.localeSettingsInstructions"
+msgstr ""
+"Aby uzyskać pełną obsługę Unikodu (UTF-8), wybierz UTF-8 dla ustawień "
+"wszystkich zestawów znaków. Zauważ, że ta obsługa wymaga obecnie  MySQL >= "
+"4.1.1 lub PostgreSQL >= 9.1.5 serweru bazy danych. Zauważ także, że pełna "
+"wersja Unikodu wymaga <a href=\"http://www.php.net/mbstring\" target=\""
+"_blank\">mbstring</a> biblioteki (włączoną domyślnie dla większości "
+"najnowszych oprogramowań PHP). Możesz napotkać problemy używając "
+"rozszerzonego zestawu znaków, jeśli Twój serwer nie spełnia tych wymagań.\n"
+"<br /><br />\n"
+"Twój serwer jest obecnie obsługiwany przez  mbstring: "
+"<strong>{$supportsMBString}</strong>"
+
+msgid "installer.upgradeInstructions"
+msgstr ""
+"<h4>OMP Version {$version}</h4>\n"
+"\n"
+"<p> Dziękujemy za pobranie Projektu Wiedzy Publicznej   <strong>Open "
+"Monograph Press </strong>. Przed rozpoczęciem procedury, zapoznaj się z  <a "
+"href=\"{$baseUrl}/docs/README\">README</a>plikiem załączonym w tym "
+"oprogramowaniu.  <a href=\"{$baseUrl}/docs/UPGRADE\">UPGRADE</a>  Więcej "
+"informacji o Projekcie Wiedzy Publicznej i jego projektach oprogramowania na "
+"stronie <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">PKP web site</a>. W "
+"celu zgłoszenia błędów lub uzyskania technicznych informacji na temat Open "
+"Monograph Press, zobacz <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\""
+">support forum</a> lub odwiedź Projekt Wiedzy Publicznej online <a href=\""
+"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">bug reporting system</a>. "
+"Chociaż forum wsparcia jest preferowaną metodą kontaktu, możesz również "
+"skontaktować się z zespołem  emailem <a href=\"mailto:pkp.contact@gmail.com\""
+">pkp.contact@gmail.com</a>.</p>\n"
+"<p> <strong>Zdecydowanie zalecamy </strong> stworzenie kopii zapasowej bazy "
+"danych, katalogu plików i katalogu instalacji OMP przed kontynuowaniem "
+"procedury.</p>\n"
+"<p>Jeśli korzystasz z <a href=\"http://www.php.net/features.safe-mode\" "
+"target=\"_blank\">PHP Safe Mode</a>, upewnij się, że dyrektywa "
+"max_execution_time w konfiguracji Twojego pliku php.ini configuration jest "
+"ustawiona na najwyższy limit. Jeśli teraz lub później zostanie osiągnięty "
+"limiet (e.g. Apache's \"Timeout\" directive) i proces aktualizacji zostanie "
+"przerwany, będzie wymagana konfiguracja manualna.</p>"
+
+#, fuzzy
+msgid "installer.installationInstructions"
+msgstr ""
+"\n"
+"<p> Dziękujemy za pobranie Projektu Wiedzy Publicznej   <strong>Open "
+"Monograph Press {$version}</strong>. Przed rozpoczęciem procedury, zapoznaj "
+"się z  <a href=\"{$baseUrl}/docs/README\">README</a>plikiem załączonym w tym "
+"oprogramowaniu. Więcej informacji o Projekcie Wiedzy Publicznej i jego "
+"projektach oprogramowania na stronie <a href=\"http://pkp.sfu.ca/\" target=\""
+"_blank\">PKP web site</a>. W celu zgłoszenia błędów lub uzyskania "
+"technicznych informacji na temat Open Monograph Press, zobacz <a href=\""
+"http://forum.pkp.sfu.ca\" target=\"_blank\">support forum</a> lub odwiedź "
+"Projekt Wiedzy Publicznej online <a href=\"http://pkp.sfu.ca/bugzilla/\" "
+"target=\"_blank\">bug reporting system</a>. Chociaż forum wsparcia jest "
+"preferowaną metodą kontaktu, możesz również skontaktować się z zespołem poe "
+"emailem <a href=\"mailto:pkp.contact@gmail.com\""
+">pkp.contact@gmail.com</a>.</p>\n"
+"\n"
+"<h4>Upgrade</h4>\n"
+"\n"
+"<p> Jeśli aktualizujesz istniejącą instalację OMP.  <a href=\""
+"{$upgradeUrl}\">kliknij tutaj</a> aby kontynuować.</p>"
+
+msgid "installer.allowFileUploads"
+msgstr ""
+"Serwer obecnie zezwala na załadowanie plików: "
+"<strong>{$allowFileUploads}</strong>"
+
+msgid "installer.preInstallationInstructions"
+msgstr ""
+"<p>1. Następujące pliki i foldery (oraz ich zawartość) muszą być możliwe do "
+"zapisania:</p>\n"
+"<ul>\n"
+"\t<li><tt>config.inc.php</tt> jest możliwy do zapisania (opcjonalnie): "
+"{$writable_config}</li>\n"
+"\t<li><tt>public/</tt> jest możliwy do zapisania: {$writable_public}</li>\n"
+"\t<li><tt>cache/</tt> jest możliwy do zapisania: {$writable_cache}</li>\n"
+"\t<li><tt>cache/t_cache/</tt> jest możliwy do zapisania: "
+"{$writable_templates_cache}</li>\n"
+"\t<li><tt>cache/t_compile/</tt> jest możliwy do zapisania: "
+"{$writable_templates_compile}</li>\n"
+"\t<li><tt>cache/_db</tt> jest możliwy do zapisania: {$writable_db_cache}</li>"
+"\n"
+"</ul>\n"
+"\n"
+"<p>2. Aby zachować załadowane pliki stwórz folder możliwy do zapisania ("
+"popatrz na \"ustawienia plików\" poniżej).</p>"
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "Kroki preinstalacyjne"
+
+msgid "installer.installApplication"
+msgstr "Zainstaluj Open Monograph Press"
+
+msgid "installer.ompUpgrade"
+msgstr "Aktualizacja OMP"
+
+msgid "installer.appInstallation"
+msgstr "Instalowanie OMP"
+
+msgid "help.goToEditPage"
+msgstr "Otwórz nową stronę, aby zmienić tę informację"
+
+msgid "help.searchReturnResults"
+msgstr "Wróć do wyników wyszukiwania"
+
+#, fuzzy
+msgid "about.aboutOMPSite"
+msgstr ""
+"Ta strona korzysta z Open Monograph Press {$ompVersion}, które jest otwartym "
+"oprogramowaniem do zarządzania wydawnictwem i publikowania rozwijane, "
+"wspierane i darmowo dystrybuowane przez  <a href=\"http://pkp.sfu.ca/\">"
+"Public Knowledge Project</a> z licencja wolnego i darmowego oprogramowania "
+"GNU."
+
+msgid "about.aboutOMPPress"
+msgstr ""
+"To wydawnictwo korzysta z Open Monograph Press {$ompVersion}, które jest "
+"otwartym oprogramowaniem do zarządzania wydawnictwem i publikowania "
+"rozwijane, wspierane i darmowo dystrybuowane przez  <a href=\"http://pkp.sfu."
+"ca/\">dowiedz się więcej o programie</a> z licencja wolnego i darmowego "
+"oprogramowania GNU. Proszę, <a href=\"{$contactUrl}\">skontaktuj się z "
+"wydawnictwem</a> bezpośrednio w razie pytań o wydawnictwo lub zgłoszony do "
+"niego tekst."
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "Proces redakcyjny i wydawniczy OMP"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr ""
+"Więcej informacji o systemie wydawniczym, platformie i Workflow OMP/PKP."
+
+msgid "about.openAccessPolicy"
+msgstr "Polityka otwartego dostępu"
+
+msgid "about.pressSponsorship"
+msgstr "Patronat wydawniczy"
+
+msgid "about.publicationFrequency"
+msgstr "Częstotliwość publikacji"
+
+msgid "about.reviewPolicy"
+msgstr "Proces recenzji naukowej"
+
+msgid "about.privacyStatement"
+msgstr "Oświadczenie o ochronie prywatności"
+
+msgid "about.copyrightNotice"
+msgstr "Informacja o prawach autorskich"
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr ""
+"Jako element procesu zgłoszenia autorzy są proszeni o skompletowanie "
+"zgłoszenia poprzez  załączenie następujących pozycji. Zgłoszenia mogą być "
+"zwrócona do autorów, jeśli nie zastosują podanych wskazówek."
+
+msgid "about.submissionPreparationChecklist"
+msgstr "Lista kontrolna stanu przygotowania zgłoszenia"
+
+msgid "about.authorGuidelines"
+msgstr "Wskazówki dla autora"
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "Wyświetl zaległe zgłoszenia"
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Nowe zgłoszenie"
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} lub {$viewSubmissions}."
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "{$login} lub {$register}, aby dokonać zgłoszenia."
+
+msgid "about.onlineSubmissions.register"
+msgstr "Zarejestruj się"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Zaloguj się"
+
+msgid "about.onlineSubmissions"
+msgstr "Zgłoszenia online"
+
+msgid "about.submissions"
+msgstr "Zgłoszenia"
+
+msgid "about.focusAndScope"
+msgstr "Cel i zakres"
+
+msgid "about.editorialPolicies"
+msgstr "Polityka wydawnicza"
+
+msgid "about.editorialTeam"
+msgstr "Zespół redakcyjny"
+
+msgid "about.aboutContext"
+msgstr "O wydawnictwie"
+
+msgid "about.pressContact"
+msgstr "Dane kontaktowe wydawnictwa"
+
+msgid "site.pressView"
+msgstr "Wyświetl stronę wydawnictwa"
+
+msgid "user.register.form.userGroupRequired"
+msgstr "Wybierz przynajmniej jedną rolę"
+
+msgid "user.register.reviewerInterests"
+msgstr ""
+"Określ zainteresowania naukowe (obszary merytoryczne i metody badawcze):"
+
+msgid "user.register.reviewerDescription"
+msgstr ""
+"Chętny do przeprowadzenia recenzji naukowej zgłoszenia na stronę internetową."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr "Chętny do przeprowadzenia recenzji naukowej zgłoszenia do druku."
+
+msgid "user.register.authorDescription"
+msgstr "Możliwość zgłoszenia obiektów do zlecenia."
+
+msgid "user.register.readerDescription"
+msgstr "Powiadomienie emailem o publikacji monografii."
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "Twoje hasło zawiera za mało znaków."
+
+msgid "user.register.registrationDisabled"
+msgstr "Użytkownicy obecnie nie mogą się zarejestrować do tego zlecenia."
+
+msgid "user.register.privacyStatement"
+msgstr "Oświadczenie o ochronie prywatności"
+
+msgid "user.register.noContexts"
+msgstr "Nie ma żadnych zleceń, do których mógłbyś się zarejestrować."
+
+msgid "user.register.selectContext"
+msgstr "Wybierz zlecenie, do którego chcesz się zarejestrować:"
+
+msgid "user.role.productionEditors"
+msgstr "Redaktorzy prowadzący"
+
+msgid "user.role.proofreaders"
+msgstr "Redaktorzy merytoryczni"
+
+msgid "user.role.copyeditors"
+msgstr "Korektorzy"
+
+msgid "user.role.editors"
+msgstr "Redaktorzy"
+
+msgid "user.role.subEditors"
+msgstr "Redaktorzy serii"
+
+msgid "user.role.managers"
+msgstr "Menadżerowie wydania"
+
+msgid "user.role.productionEditor"
+msgstr "Redaktor prowadzący"
+
+msgid "user.role.copyeditor"
+msgstr "Korektor"
+
+msgid "user.role.proofreader"
+msgstr "Redaktor merytoryczny"
+
+msgid "user.role.manager"
+msgstr "Menadżer wydania"
+
+msgid "user.role.subEditor"
+msgstr "Redaktor serii"
+
+msgid "user.role.pressEditor"
+msgstr "Redaktor wydania"
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+"Jeśli poprosiłeś o rolę recenzenta, proszę wprowadź swój obszar "
+"zainteresowań."
+
+msgid "user.register.otherContextRoles"
+msgstr "Poproś o następującą rolę."
+
+msgid "user.register.contextsPrompt"
+msgstr "Do ilu zleceń na tej stronie chciałbyś być zarejestrowany?"
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+"Tak, chciałbym, aby się ze mną skontaktowano w sprawie recenzji tego "
+"zgłoszenia."
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Tak, zgłoś  {$userGroup} swoją rolę."
+
+msgid "user.reviewerPrompt"
+msgstr "Czy chciałbyś/ chciałabyś zrecenzować zgłoszenie dla tego wydawnictwa?"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr ""
+"Zarejestruj się jako recenzent: rejestracja recenzenta jest obecnie "
+"nieaktywna."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Zarejestruj się jako recenzent"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr "Zgłoś monografię: rejestracja autora jest obecnie nieaktywna."
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "Dołącz użytkowników, którzy nie pełnią żadnej roli w tym zleceniu."
+
+msgid "context.select"
+msgstr "Przejdź do innego zlecenia:"
+
+msgid "context.current"
+msgstr "Bieżące zlecenie:"
+
+msgid "context.context"
+msgstr "Zlecenie"
+
+msgid "context.contexts"
+msgstr "Zlecenia"
+
+msgid "user.noRoles.submitMonograph"
+msgstr "Zgłoś propozycję"
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Link do nowych wydań."
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Nowe wydania"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Link do kategorii."
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Kategoria"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Linki do serii."
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Serie"
+
+msgid "navigation.skip.spotlights"
+msgstr "Przejdź do wyróżnionych"
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Link do Twojego katalogu."
+
+msgid "navigation.linksAndMedia"
+msgstr "Linki i media społecznościowe"
+
+msgid "navigation.wizard"
+msgstr "Kreator"
+
+msgid "navigation.published"
+msgstr "Opublikowane"
+
+msgid "navigation.newReleases"
+msgstr "Nowe wydania"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Informacje dla bibliotekarzy"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Informacje dla autorów"
+
+msgid "navigation.infoForLibrarians"
+msgstr "Dla bibliotekarzy"
+
+msgid "navigation.infoForAuthors"
+msgstr "Dla autorów"
+
+msgid "navigation.catalog.administration.series"
+msgstr "Serie"
+
+msgid "navigation.catalog.administration.categories"
+msgstr "Kategorie"
+
+msgid "navigation.catalog.administration"
+msgstr "Zarządzanie katalogiem"
+
+msgid "navigation.catalog.administration.short"
+msgstr "Administracja"
+
+msgid "navigation.catalog.manage"
+msgstr "Zarządzaj"
+
+msgid "navigation.catalog.allMonographs"
+msgstr "Wszystkie monografie"
+
+msgid "navigation.competingInterestPolicy"
+msgstr "Polityka uczciwej konkurencji"
+
+msgid "navigation.catalog"
+msgstr "Katalog"
+
+msgid "common.homePageHeader.altText"
+msgstr "Nagłówek strony głównej"
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "common.software"
+msgstr "Open Monograph Press"
+
+msgid "common.listbuilder.itemExists"
+msgstr "Nie możesz dodać dwa razy tego samego przedmiotu."
+
+msgid "common.searchCatalog"
+msgstr "Katalog wyszukiwania"
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "Wybierz aktualną możliwość z listy."
+
+msgid "common.listbuilder.completeForm"
+msgstr "Wypełnij formularz w całości."
+
+msgid "common.moreInfo"
+msgstr "Więcej informacji"
+
+msgid "common.preview"
+msgstr "Podgląd"
+
+msgid "common.prefix"
+msgstr "Tytuł"
+
+msgid "common.publications"
+msgstr "Monografie"
+
+msgid "common.publication"
+msgstr "Monografia"
+
+msgid "submission.search"
+msgstr "Wyszukiwanie książek"
+
+msgid "catalog.viewableFile.return"
+msgstr "Wróć, aby wyświetlić szczegóły o  {$monographTitle}"
+
+msgid "catalog.viewableFile.title"
+msgstr "{$type} widok pliku {$title}"
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr "Pozycja w serii (od najwyższej)"
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr "Pozycja w serii (od najniższej)"
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr "Wybierz jak zamówić książki w tej kategorii."
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr "Wybierz jak zamówić książki w tej serii."
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr "Wybierz jak zamówić książki w tym katalogu."
+
+msgid "catalog.sortBy"
+msgstr "Zamówienie monografii"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr ""
+"Zwróć uwagę: aby dokonać zakupu, wymagane jest zalogowanie. Po wybraniu "
+"towaru zostaniesz automatycznie przekierowany na stronę logowania. Każdy "
+"przedmiot oznaczany ikoną \"otwarty dostęp\" możesz pobrać za darmo bez "
+"logowania."
+
+msgid "catalog.aboutTheAuthor"
+msgstr "O {$roleName}"
+
+msgid "catalog.category.subcategories"
+msgstr "Podkategorie"
+
+msgid "catalog.parentCategory"
+msgstr "Główna kategoria"
+
+msgid "catalog.categories"
+msgstr "Kategorie"
+
+msgid "catalog.forthcoming"
+msgstr "Zapowiedzi"
+
+msgid "catalog.published"
+msgstr "Opublikowane"
+
+msgid "catalog.publicationInfo"
+msgstr "Informacje o publikacji"
+
+msgid "catalog.dateAdded"
+msgstr "Dodano"
+
+msgid "catalog.newReleases"
+msgstr "Nowe wydania"
+
+msgid "catalog.category.heading"
+msgstr "Wszystkie książki"
+
+msgid "catalog.foundTitlesSearch"
+msgstr ""
+"{$number} tytuły/ tytułów zostało znalezionych dla Twojego wyszukiwania \""
+"{$searchQuery}\"."
+
+msgid "catalog.foundTitleSearch"
+msgstr ""
+"Znaleziono jeden pasujący tytuł dla Twojego wyszukiwania \"{$searchQuery}\"."
+
+msgid "catalog.featuredBooks"
+msgstr "Polecane książki"
+
+msgid "catalog.featured"
+msgstr "Polecane"
+
+msgid "catalog.feature"
+msgstr "Cecha"
+
+msgid "catalog.noTitlesSearch"
+msgstr ""
+"Nie znaleziono pasującego tytułu dla Twojego wyszukiwania \"{$searchQuery}\"."
+
+msgid "catalog.noTitlesNew"
+msgstr "Brak dostępnych nowych wydań w tym momencie."
+
+msgid "catalog.noTitles"
+msgstr "Nie opublikowano jeszcze żadnego tytułu."
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr "Ta monografia nie widnieje jako nowe wydanie. Oznacz jako nowe wydanie."
+
+msgid "catalog.manage.isNewRelease"
+msgstr ""
+"Ta monografia widnieje jako nowe wydanie. Odznacz te monografię jako nowe "
+"wydanie."
+
+msgid "catalog.manage.isNotFeatured"
+msgstr "Monografia jest niepolecana. Oznacz jako polecaną."
+
+msgid "catalog.manage.isFeatured"
+msgstr "Monografia jest polecana. Oznacz jako niepolecaną."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Szukaj po tytule lub autorze"
+
+msgid "catalog.manage.nonOrderable"
+msgstr "Tej monografii nie da się zamówić, jeśli nie została zamieszczona."
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Nowe wydanie w serii"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "Nowe wydanie w kategorii"
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "Nowe wydanie"
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "Monografia nie jest oznaczona jako nowe wydanie."
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "Monografia oznaczona jako nowe wydanie."
+
+msgid "catalog.manage.categoryDescription"
+msgstr ""
+"Kliknij \"zamieść\", następnie gwiazdkę, aby wybrać oznaczoną książkę dla "
+"tej kategorii; przeciągnij i upuść, aby zamówić."
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "Monografia nie jest polecana."
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "Monografia jest polecana."
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "Polecane w serii"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "Polecane w kategorii"
+
+msgid "catalog.manage.featured"
+msgstr "Polecane"
+
+msgid "catalog.manage.noMonographs"
+msgstr "Brak przypisanych monografii."
+
+msgid "catalog.manage.newRelease"
+msgstr "Wydanie"
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "Karuzela"
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "Wyróżniony tytuł jest wymagany."
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "Pozycja jest wymagana."
+
+msgid "grid.content.spotlights.form.title"
+msgstr "Wyróżniony tytuł"
+
+msgid "grid.content.spotlights.form.item"
+msgstr "Wprowadź wyróżniony tytuł (autouzupełniane)"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "Lokalizacja wyróżnionej pozycji"
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "Wyróżniony przedmiot"
+
+msgid "spotlight.title.homePage"
+msgstr "Wyróżnione"
+
+msgid "spotlight.noneExist"
+msgstr "Brak aktualnie wyróżnionych."
+
+msgid "spotlight.spotlights"
+msgstr "Wyróżnione"
+
+msgid "grid.action.formatAvailable"
+msgstr "Przełączaj dostępność tego formatu"
+
+msgid "grid.action.createContext"
+msgstr "Utwórz nowe zlecenie"
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "Ukryj inne zlecenia"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "Zarejestruj się dla kolejnego zlecenia"
+
+msgid "submission.round"
+msgstr "Runda &nbsp;{$round}"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "Nieważne zgłoszenie publikacji zostało określone."
+
+msgid "catalog.manage.seriesDescription"
+msgstr ""
+"Kliknij \"zamieść\", następnie gwiazdkę, aby wybrać oznaczoną książkę dla "
+"tej serii; przeciągnij i upuść, aby zamówić. Serie są zidentyfikowane z "
+"redaktorem (lub redaktorami) i tytułem serii, zależnie lub niezależnie od "
+"kategorii."
+
+msgid "catalog.manage.homepageDescription"
+msgstr ""
+"Okładki wybranych książek pojawią się u góry strony głównej jako zestawienie "
+"do przejrzenia. Kliknij \"oznacz\"; następnie gwiazdkę; aby dodać książkę do "
+"karuzeli; kliknij wykrzyknik, aby oznaczyć jako nowo wydane; przeciągnij i "
+"upuść, aby zamówić."
+
+msgid "catalog.selectCategory"
+msgstr "Wybierz kategorię"
+
+msgid "catalog.selectSeries"
+msgstr "Wybrane serie"
+
+msgid "catalog.manage.series.printIssn"
+msgstr "ISSN druku"
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "ISSN wersji online"
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "ISSN druku i ISSN wersji online nie mogą być takie same."
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Proszę, wprowadź prawidłowy ISSN."
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "catalog.manage.series"
+msgstr "Serie"
+
+msgid "catalog.manage.category"
+msgstr "Kategoria"
+
+msgid "catalog.manage.newReleases"
+msgstr "Nowe wydania"
+
+msgid "series.path"
+msgstr "Ścieżka"
+
+msgid "series.featured.description"
+msgstr "Seria wyświetli się w głównym menu"
+
+msgid "series.series"
+msgstr "Serie"
+
+msgid "submissionGroup.assignedSubEditors"
+msgstr "Przypisani edytorzy"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Dostępne pliki"
+
+msgid "grid.reviewAttachments.add"
+msgstr "Dodaj załącznik do recenzji"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Zatwierdź/ odrzuć format"
+
+msgid "grid.action.proofApproved"
+msgstr "Format został poddany korekcie"
+
+msgid "grid.action.approveProofs"
+msgstr "Wyświetl wersję ostateczną"
+
+msgid "grid.action.submissionEmail"
+msgstr "Kliknij, aby przeczytać email"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Idź do ogłoszeń wydawnictwa"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Pokaż zakładkę formatu publikacji"
+
+msgid "grid.action.deleteDate"
+msgstr "Usuń datę"
+
+msgid "grid.action.editDate"
+msgstr "Edytuj datę"
+
+msgid "grid.action.addDate"
+msgstr "Dodaj datę publikacji"
+
+msgid "grid.action.deleteMarket"
+msgstr "Usuń rynek"
+
+msgid "grid.action.editMarket"
+msgstr "Edytuj rynek"
+
+msgid "grid.action.addMarket"
+msgstr "Dodaj rynek"
+
+msgid "grid.action.deleteRights"
+msgstr "Usuń te prawa"
+
+msgid "grid.action.editRights"
+msgstr "Edytuj te prawa"
+
+msgid "grid.action.addRights"
+msgstr "Dodaj prawa sprzedaży"
+
+msgid "grid.action.deleteCode"
+msgstr "Usuń kod"
+
+msgid "grid.action.editCode"
+msgstr "Edytuj kod"
+
+msgid "grid.action.addCode"
+msgstr "Dodaj kod"
+
+msgid "grid.action.manageSeries"
+msgstr "Skonfiguruj serię dla wydawnictwa"
+
+msgid "grid.action.manageCategories"
+msgstr "Skonfiguruj kategorie dla  wydawnictwa"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Oznacz jako \"nowe zgłoszenie\""
+
+msgid "grid.action.publicCatalog"
+msgstr "Wyświetl ten przedmiot w katalogu"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "Nowa pozycja katalogowa"
+
+msgid "grid.action.feature"
+msgstr "Przełącz wyświetlaną funkcję"
+
+msgid "grid.action.featureMonograph"
+msgstr "Pokaż to jako katalog karuzelowy"
+
+msgid "grid.action.addAnnouncement"
+msgstr "Dodaj ogłoszenie"
+
+msgid "grid.action.addFormat"
+msgstr "Dodaj format publikacji"
+
+msgid "grid.action.deleteFormat"
+msgstr "Usuń ten format"
+
+msgid "grid.action.pageProofApproved"
+msgstr "Wersja pliku po ostatecznych korektach jest gotowa do publikacji"
+
+msgid "grid.action.approveProof"
+msgstr "Zatwierdź korektę do zaindeksowania i załączenia w katalogu"
+
+msgid "manager.series.indexed"
+msgstr "Zaindeksowano"
+
+msgid "grid.action.editFormat"
+msgstr "Edytuj ten format"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "Format ukazuje się w pozycji katalogowej"
+
+msgid "grid.action.catalogEntry"
+msgstr "Wyświetl formularz pozycji katalogowej"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Pliki"
+
+msgid "manager.series.open"
+msgstr "Otwarte zgłoszenia"
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Książka"
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "Strona główna"
+
+msgid "spotlight.author"
+msgstr "Autor "
+
+msgid "spotlight"
+msgstr "Wyróżnione"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Usuń przedstawiciela"
+
+msgid "grid.action.editRepresentative"
+msgstr "Zmień przedstawiciela"
+
+msgid "grid.action.addRepresentative"
+msgstr "Dodaj przedstawiciela"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+"Możesz zostawić poniższą sekcję pustą jeśli samodzielnie świadczysz usługi "
+"swoim klientom."
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Typ numeru identyfikacyjnego przedstawiciela (GLN jest rekomendowany)"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "Numer identyfikacyjny przedstawiciela"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Strona internetowa"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "Adres email"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Numer telefonu"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Nazwa"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Funkcja"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Wybierz funkcję:"
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Dostawca"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"Możesz wyznaczyć agenta do reprezentowania Cię na wyznaczonym obszarze.  To "
+"nie jest wymagane."
+
+msgid "grid.catalogEntry.agent"
+msgstr "Agent"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Dostawcy"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Agenci"
+
+msgid "grid.catalogEntry.representativeType"
+msgstr "Typ przedstawiciela"
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Przedstawiciele"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr ""
+"Data jest wymagana i wartość daty musi zgadzać się z wybranym formatem daty."
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Format daty"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Funkcja"
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Data"
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "Format daty jest wymagany."
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr "Przedstawiciel jest wymagany."
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Daty publikacji"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Obszar"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Obszar handlu"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "Wyłączone"
+
+msgid "grid.catalogEntry.included"
+msgstr "Załączone"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Regiony"
+
+msgid "grid.catalogEntry.countries"
+msgstr "Kraje"
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr "Istnieje już zdefiniowany typ sprzedaży formatu tej publikacji dla RŚ."
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+"Zaznacz to pole, aby zastosować pozycję prawa sprzedaży jako catch-all dla "
+"Twojego formatu.  Kraje i regiony nie muszą być wybrane w tym przypadku."
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Reszta świata?"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Rodzaj prawa sprzedaży"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Wartość kodu"
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Prawo sprzedaży"
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Wartość jest wymagana."
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Wartość kodu"
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "Typ kodu ONIX"
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "Kod identyfikacyjny jest wymagany."
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "Kod składu produktu musi być wybrany."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Brak formatu w pozycji katalogowej."
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p>Ten format <em>będzie niedostępny dla czytelników</em>. Pliki do pobrania "
+"lub wszystkie inne dystrybucje nie będą już widoczne w pozycji katalogowej "
+"książki. </p>"
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Skład produktu"
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "Kod dostępności produktu jest wymagany."
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "Cyfrowe rozmiary pliku wymagane."
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Oczekuje na zatwierdzenie"
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Zatwierdzone"
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Korekta niezatwierdzona."
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Pozycja katalogowa niezatwierdzona."
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p>Udostępnij ten format<em>czytelnikom</em>.Pliki do pobrania i wszystkie "
+"inne dystrybucje pojawią się w pozycji katalogowej książki.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Dostępność formatu"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr "<p>Metadane dla tego formatu nie zostały zatwierdzone.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p>Zatwierdź metadane dla tego formatu. Metadane mogą być sprawdzone przez "
+"redakcyjny dla każdego formatu. </p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Zatwierdzenie formatu"
+
+msgid "grid.catalogEntry.proof"
+msgstr "Korekta"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Niedostępny"
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Dostępny"
+
+msgid "grid.catalogEntry.availability"
+msgstr "Dostępność"
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Format publikacji musi zostać wybrany."
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "ID monografii jest wymagane."
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr "Adres URL zdalnie zarządzanych treści"
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Ten format będzie dostępny na osobnej stronie"
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Fizyczne wymiary"
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Szczegóły formatu"
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "Aktualna cena jest wymagana."
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "Nazwa jest wymagana."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Format publikacji"
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "Otwórz zakładkę z formatem publikacji."
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr ""
+"<p>Format publikacji, który wybrałeś nie istnieje już dla tej monografii. "
+"</p>"
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Brakuje niektórych pól z metadanymi."
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Brakuje kodu identyfikacyjnego."
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Brakujące dane o rynkach i cenach."
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr ""
+"Załącz metadane dla formatu publikacji w pozycji katalogu dla tej książki."
+
+msgid "monograph.publicationFormat.taxType"
+msgstr "Rodzaj podatku"
+
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Stawka podatku"
+
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Kraj dystrybucji produktu"
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Cyfrowe zabezpieczenia techniczne"
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Wprowadź rozmiar swojego pliku?"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Kraj pochodzenia"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Szerokość"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Waga"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Grubość"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Wysokość"
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "Rozmiar pliku w MB"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Wymiary fizyczne"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Dane cyfrowe"
+
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Instrukcja zwrotu"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Dostępność produktu"
+
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Procent rabatu, jeśli dotyczy"
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "Cena druku"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "Cena jest wymagana."
+
+msgid "monograph.publicationFormat.price"
+msgstr "Cena"
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Materiały pomocnicze i informacyjne"
+
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Materiały wprowadzające"
+
+msgid "submission.pageProofs"
+msgstr "Wersja do ostatecznej weryfikacji"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Otwarty dostęp"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Liczba stron"
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "Znak firmowy (nazwa handlowa)"
+
+msgid "monograph.proofReadingDescription"
+msgstr ""
+"Edytor układu wydruku załadował plik gotowy do wydania.  Użyj "
+"<em>+Assign</em>, aby wyznaczyć autorów i innych do sprawdzenia wersji po "
+"ostatnich korektach łącznie ze skorygowanymi plikami załadowanymi do "
+"zatwierdzenia przez publikację."
+
+msgid "monograph.task.addNote"
+msgstr "Dodaj do zadania"
+
+msgid "monograph.type"
+msgstr "Rodzaj zgłoszenia"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Wymiary:"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Zakres grupy odbiorczej (dokładnie)"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Zakres grupy odbiorczej (do)"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Zakres grupy odbiorczej (od)"
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Kwalifikator zakresu grupy odbiorczej"
+
+msgid "monograph.audience.success"
+msgstr "Szczegóły dotyczące grupy odbiorczej zostały zaktualizowane."
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Szczegóły dotyczące monografii"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "Szczegóły dotyczące dostępnego formatu publikacji: {$format}"
+
+msgid "monograph.publicationFormat"
+msgstr "Format"
+
+msgid "monograph.publicationFormats"
+msgstr "Formaty publikacji"
+
+msgid "monograph.languages"
+msgstr "Języki (angielski, francuski, hiszpański)"
+
+msgid "monograph.audience"
+msgstr "Grupa odbiorcza"
+
+msgid "notification.removedRepresentative"
+msgstr "Usunięto przedstawiciela."
+
+msgid "about.seriesPolicies"
+msgstr "Zasady zarządzania seriami i kategoriami"
+
+msgid "common.feature"
+msgstr "Cecha"
+
+msgid "catalog.manage.manageCategories"
+msgstr "Zarządzaj kategoriami"
+
+msgid "catalog.manage.manageSeries"
+msgstr "Zarządzaj serią"
+
+msgid "catalog.manage"
+msgstr "Zarządzanie katalogiem"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Identyfikacja produktu"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Szczegóły produktu (niewymagane)"
+
+msgid "monograph.coverImage"
+msgstr "Okładka"
+
+msgid "grid.action.addSpotlight"
+msgstr "Dodaj wyróżnione"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Usuń wyróżnioną pozycję"
+
+msgid "grid.action.editSpotlight"
+msgstr "Zmień wyróżnioną pozycję"
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Proszę wybierz lokalizację dla wyróżnionej pozycji."
+
+msgid "site.noPresses"
+msgstr "Brak dostępnych wydawnictw."
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Wyrażam zgodę na przechowywanie i przetwarzanie moich danych na potrzeby "
+"tego wydawnictwa <a href=\"{$privacyUrl}\" target=\"_blank\"></a>."
+
+msgid "about.aboutSoftware"
+msgstr "O Open Monograph Press"
+
+msgid "user.authorization.representationNotFound"
+msgstr "Nie odnaleziono wymaganego formatu publikacji."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Znajdź monografie, aby je zamieścić w katalogu"
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Nie udało się znaleźć zgłoszenia."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Nie wybrano żadnego zgłoszenia do umieszczenia w katalogu."
+
+msgid "common.payments"
+msgstr "Płatności"

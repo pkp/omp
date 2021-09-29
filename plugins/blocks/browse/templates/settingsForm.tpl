@@ -1,8 +1,8 @@
 {**
  * plugins/blocks/browse/settingsForm.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Browse block plugin settings
@@ -15,7 +15,7 @@
 		$('#browseBlockSettingsForm').pkpHandler('$.pkp.plugins.blocks.browse.BrowseBlockSettingsFormHandler');
 	{rdelim});
 </script>
-<form class="pkp_form" id="browseBlockSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="manage" category="blocks" plugin=$pluginName verb="settings" save="true"}">
+<form class="pkp_form" id="browseBlockSettingsForm" method="post" action="{url router=PKPApplication::ROUTE_COMPONENT op="manage" category="blocks" plugin=$pluginName verb="settings" save="true"}">
 	{csrf}
 	{include file="common/formErrors.tpl"}
 	{fbvFormArea id="browseBlockSettingsFormArea" class="border" title="plugins.block.browse.settings.title"}

@@ -24,6 +24,8 @@ msgstr ""
 "<br />\n"
 "This is an automatically generated email; please do not reply to this message.<br />\n"
 "{$principalContactSignature}"
+"<hr />"
+"{$unsubscribeLink}"
 
 msgid "emails.notification.description"
 msgstr "The email is sent to registered users that have selected to have this type of notification emailed to them."
@@ -755,3 +757,17 @@ msgstr ""
 
 msgid "emails.statisticsReportNotification.description"
 msgstr "This email is automatically sent monthly to editors and journal managers to provide them a system health overview."
+
+msgid "emails.announcement.subject"
+msgstr "{$title}"
+
+msgid "emails.announcement.body"
+msgstr ""
+"<b>{$title}</b><br />\n"
+"<br />\n"
+"{$summary}<br />\n"
+"<br />\n"
+"Visit our website to read the <a href=\"{$url}\">full announcement</a>."
+
+msgid "emails.announcement.description"
+msgstr "This email is sent when a new announcement is created."

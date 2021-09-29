@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-04 11:35+0000\n"
+"PO-Revision-Date: 2020-06-18 18:39+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
-"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/default/sv/>"
-"\n"
+"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/default/"
+"sv_SE/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,9 +14,8 @@ msgstr ""
 msgid "default.groups.abbrev.sectionEditor"
 msgstr "AcqE"
 
-#, fuzzy
 msgid "default.groups.plural.sectionEditor"
-msgstr "Redaktörer för serie"
+msgstr "Redaktörer för serier"
 
 msgid "default.groups.name.sectionEditor"
 msgstr "Redaktör för serie"
@@ -54,11 +53,9 @@ msgstr "Ordlista"
 msgid "default.genres.appendix"
 msgstr "Bilaga"
 
-#, fuzzy
 msgid "default.groups.plural.volumeEditor"
 msgstr "Redaktörer"
 
-#, fuzzy
 msgid "default.groups.name.volumeEditor"
 msgstr "Redaktör"
 
@@ -91,3 +88,88 @@ msgstr "Föreståndare"
 
 msgid "default.groups.name.manager"
 msgstr "Föreståndare"
+
+msgid "default.genres.table"
+msgstr "Tabell"
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+"<p>De namn och e-postadresser som används på den här pressens webbplats "
+"kommer endast att användas för pressens arbete och inte göras tillgängliga "
+"för något annat syfte eller till tredje part.</p>"
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr ""
+"Texten följer de stilistiska och bibliografiska kraven som specificeras i <a "
+"href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" "
+"target=\"_blank\">Riktlinjer för författare</a>, som hittas under Om pressen."
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr ""
+"Texten har enkelt radavstånd; fonten är 12 punkter; använder kursivering "
+"istället för understrykning (förutom vid URL-adresser); alla illustrationer, "
+"figurer och tabeller är placerade på lämpliga platser i texten, inte sist i "
+"dokumentet."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr "I förekommande fall har URL för referenser bifogats."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr "Bidragsfilen är i Microsoft Word-, RTF-, eller OpenDocument-filformat."
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr ""
+"Bidraget är inte publicerat sedan tidigare, det övervägs inte heller för "
+"publicering av annat förlag (eller så har en förklaring bifogats som en "
+"kommentar till redaktören)."
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "Red."
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "EG"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Externa granskare"
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Extern granskare"
+
+msgid "default.contextSettings.forLibrarians"
+msgstr ""
+"Vi uppmuntrar bibliotekarier vid forskningsbibliotek att lista den här "
+"pressen i sitt biblioteks bestånd av elektroniska böcker. Det kan också vara "
+"värt att notera att den här pressens publiceringssystem, som utgör fri och "
+"öppen programvara, är ett passande system för bibliotek att drifta för sina "
+"forskare och de tidskrifter de arbetar med (se <a href=\"http://pkp.sfu.ca/"
+"ojs\">Open Journal Systems</a>)."
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+"Är du intresserad av att skicka in ett bidrag till den här pressen? Då "
+"rekommenderar vi att du läser igenom <a href=\"{$indexUrl}/{$contextPath}/"
+"about\">Om pressen</a>-sidan för att få en uppfattning om pressens "
+"sektionspolicyer, samt <a href=\"{$indexUrl}/{$contextPath}/about/submissions#"
+"authorGuidelines\">Riktlinjer för författare</a>. För att skicka in ett "
+"bidrag måste du som författare <a href=\"{$indexUrl}/{$contextPath}/user/"
+"register\">registrera dig</a> hos pressen. Om du redan har ett konto kan du "
+"bara <a href=\"{$indexUrl}/index/login\">logga in</a> och påbörja processen, "
+"som består av fem steg."
+
+msgid "default.contextSettings.forReaders"
+msgstr ""
+"Vi uppmuntrar våra läsare att registrera sig för att få aviseringar från den "
+"här pressen. Använd <a href=\"{$indexUrl}/{$contextPath}/user/register\">"
+"Registrera dig</a>-länken överst på pressens webbsida. Genom att registrera "
+"sig där kan du som läsare få ett e-postmeddelande med innehållsförteckning "
+"för varje nytt bok som publiceras. Listan gör också att pressen kan peka på "
+"ett visst läsarunderlag. Se pressens <a href=\"{$indexUrl}/{$contextPath}/"
+"about/submissions#privacyStatement\">Integritetspolicy</a>, som försäkrar "
+"dig som läsare att ditt namn eller e-postadress inte kommer användas för "
+"andra syften."
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr ""
+"Den här pressen gör sitt innehåll fritt tillgängligt omedelbart vid "
+"publicering enligt open access-principen om att det främjar ett ökat "
+"kunskapsutbyte världen över om forskning är fritt tillgänglig."

@@ -1,0 +1,153 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-04-29 11:38+0000\n"
+"Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
+"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/default/"
+"uk_UA/>\n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Зовнішні Рецензенти"
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Зовнішній Рецензент"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Редактори Томів"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Редактор Тому"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Автори Розділів"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Автор Розділу"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Редактори Серій"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Редактор Серії"
+
+msgid "default.groups.plural.editor"
+msgstr "Редактори Видавництва"
+
+msgid "default.groups.name.editor"
+msgstr "Редактор Видавництва"
+
+msgid "default.groups.plural.manager"
+msgstr "Менеджери видавництва"
+
+msgid "default.groups.name.manager"
+msgstr "Менеджер видавництва"
+
+msgid "default.genres.other"
+msgstr "Інше"
+
+msgid "default.genres.illustration"
+msgstr "Ілюстрація"
+
+msgid "default.genres.photo"
+msgstr "Фото"
+
+msgid "default.genres.figure"
+msgstr "Рисунок"
+
+msgid "default.genres.table"
+msgstr "Таблиця"
+
+msgid "default.genres.preface"
+msgstr "Передмова"
+
+msgid "default.genres.glossary"
+msgstr "Глосарій"
+
+msgid "default.genres.chapter"
+msgstr "Рукопис Розділу"
+
+msgid "default.genres.manuscript"
+msgstr "Рукопис Книги"
+
+msgid "default.genres.bibliography"
+msgstr "Бібліографія"
+
+msgid "default.contextSettings.forLibrarians"
+msgstr ""
+"Ми пропонуємо науковим бібліотекам включити це видавництво до списків своїх "
+"електронних колекцій. Додатково, в цій видавничій системі передбачено засоби "
+"інтеграції з бібліотечним програмним забезпеченням, що дозволяє бібліотекам "
+"забезпечувати архівне збереження електронного контенту видавництв та/або "
+"безпосередньо брати участь у видавничому процесі. Більш детально про ці "
+"можливості див. на сайті <a href=\"http://pkp.sfu.ca/omp\">Open Monograph "
+"Press</a>)."
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+"Бажаєте опублікувати свою роботу у цьому видавництві? Рекомендуємо "
+"ознайомитись з нашою редакційною політикою на сторінці <a href=\""
+"{$indexUrl}/{$contextPath}/about\">Про Видавництво</a> та переглянути <a href="
+"\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\">Керівництво "
+"для авторів</a>. Для того, щоб мати можливість подавати рукописи до нашого "
+"видавництва, автори повинні <a href=\"{$indexUrl}/{$contextPath}/user/"
+"register\">зареєструватися</a> на сайті видавництва. Якщо Ви вже "
+"зареєстровані, просто <a href=\"{$indexUrl}/index/login\">увійдіть на "
+"сайт</a> та пройдіть 5 кроків подання рукопису на розгляд."
+
+msgid "default.contextSettings.forReaders"
+msgstr ""
+"Ми пропонуємо авторам реєструватися на сайті, щоб скористатись службою "
+"повідомлень цього видавництва. Для реєстрації використайте посилання <a href="
+"\"{$indexUrl}/{$contextPath}/user/register\">Зареєструватися</a> у верхньому "
+"меню домашньої сторінки сайту видавництва. У Вас буде можливість оперативно "
+"отримувати поштою сторінки змісту нових опублікованих монографій нашого "
+"видавництва, та дозволите редакції відстежувати читацькі пріоритети та "
+"інтереси. Будь ласка, ознайомтеся з нашим <a href=\""
+"{$indexUrl}/{$contextPath}/about/submissions#privacyStatement\">Положенням "
+"про конфіденційність</a>, у якому йдеться про те, що видавництво гарантує "
+"нерозповсюдження імен та електронних адрес своїх читачів стороннім особам."
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr ""
+"Це видавництво підтримує політику миттєвого відкритого доступу до "
+"опублікованого контенту, слідуючи принципам вільного поширення наукової "
+"інформації та глобального обміну знаннями задля загального суспільного "
+"прогресу."
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+"<p>Імена та електронні адреси, вказані користувачами на сайті цього "
+"видавництва, будуть використані виключно для виконання внутрішніх технічних "
+"завдань цього видавництва; вони не будуть поширюватись та передаватись "
+"стороннім особам.</p>"
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr ""
+"Текст набраний 12-м розміром кеглю з одинарним міжрядковим інтервалом; "
+"авторські акценти виділені курсивом, а не підкресленням (всюди, крім адрес "
+"URL); всі ілюстрації, графіки та таблиці розміщені безпосередньо у тексті, "
+"там, де вони повинні бути за змістом (а не у кінці документу)."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr "Веб-посилання у тексті супроводжуються повними коректними адресами URL."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr ""
+"Файл подання є документом у форматі Microsoft Word, RTF або OpenDocument."
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr ""
+"Це подання раніше не було опубліковане і не надсилалося на розгляд до "
+"редакцій інших журналів (або вкажіть пояснення у коментарях для редактора)."
+
+msgid "default.genres.prospectus"
+msgstr "Проспект"
+
+msgid "default.genres.index"
+msgstr "Індекс"

@@ -1,15 +1,19 @@
+# Jordi LC <jordi.lacruz@uab.cat>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2019-11-28T15:10:03-08:00\n"
+"PO-Revision-Date: 2021-08-03 10:18+0000\n"
+"Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
+"Language-Team: Catalan <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"ca_ES/>\n"
+"Language: ca_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-11-28T15:10:03-08:00\n"
-"PO-Revision-Date: 2019-11-28T15:10:03-08:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr "Aquesta acció reemplaça els paràmetres de la publicació determinats per a aquesta configuració regional"
@@ -93,7 +97,8 @@ msgid "manager.series.seriesTitle"
 msgstr "Títol de la sèrie"
 
 msgid "manager.series.restricted"
-msgstr "Restringit"
+msgstr ""
+"No permetre que els autors/ores facin trameses directament a aquesta sèrie."
 
 msgid "manager.settings"
 msgstr "Configuració"
@@ -105,7 +110,9 @@ msgid "manager.settings.press"
 msgstr "Publicació"
 
 msgid "manager.settings.publisher.identity.description"
-msgstr "Aquests camps no són necessaris per a l'ús general de l'OMP, però sí que ho són per crear metadades ONIX vàlides.  Incloeu-los-hi si voleu utilitzar la funcionalitat d'ONIX."
+msgstr ""
+"Aquests camps són obligatoris per publicar <a href=\"https://en.wikipedia."
+"org/wiki/ONIX_for_Books\">metadades ONIX</a> vàlides."
 
 msgid "manager.settings.publisher"
 msgstr "Nom de la institució publicadora"
@@ -193,10 +200,14 @@ msgstr ""
 
 msgid "manager.people.noAdministrativeRights"
 msgstr ""
-"No disposeu dels permisos administratius per a aquest usuari/ària. Les raons poden ser:<ul>\n"
+"No disposeu dels permisos administratius sobre aquest usuari/ària. Les raons "
+"poden ser:\n"
+"\t\t<ul>\n"
 "\t\t\t<li>L'usuari/ària és administrador/a del lloc web</li>\n"
-"\t\t\t<li>L'usuari/ària està actiu en publicacions que no gestioneu</li>\n"
-"\t\t</ul>Només l'administrador/a del lloc pot efectuar aquesta tasca."
+"\t\t\t<li>L'usuari/ària està actiu en editorials que no gestioneu</li>\n"
+"\t\t</ul>\n"
+"\tNomés l'administrador/a del lloc pot efectuar aquesta tasca.\n"
+"\t"
 
 msgid "manager.system"
 msgstr "Configuració del sistema"
@@ -307,13 +318,13 @@ msgid "manager.setup.displayCurrentMonograph"
 msgstr "Afegeix la taula de continguts per a la monografia actual (si està disponible)."
 
 msgid "manager.setup.displayFeaturedBooks"
-msgstr "Mostra llibres destacats a la pàgina d'inici."
+msgstr "Mostrar els llibres destacats a la pàgina d'inici"
 
 msgid "manager.setup.displayInSpotlight"
-msgstr "Mostra llibres en primer pla a la pàgina d'inici."
+msgstr "Mostrar els llibres en els destacats de la pàgina d'inici"
 
 msgid "manager.setup.displayNewReleases"
-msgstr "Mostra les publicacions noves a la pàgina d'inici."
+msgstr "Mostrar les novetats a la pàgina d'inici"
 
 msgid "manager.setup.doiPrefix"
 msgstr "Prefix DOI"
@@ -340,7 +351,7 @@ msgid "manager.setup.emailSignatureDescription"
 msgstr "Les plantilles dels missatges de correu electrònic enviats pel sistema en nom de la publicació tindran la següent signatura al final. Podeu editar el cos de les plantilles de correus electrònics a continuació."
 
 msgid "manager.setup.enableAnnouncements.enable"
-msgstr "Habilita els avisos."
+msgstr "Habilitar els avisos"
 
 msgid "manager.setup.enablePressInstructions"
 msgstr "Permet que aquesta publicació aparegui públicament al lloc web"
@@ -352,16 +363,18 @@ msgid "manager.setup.enablePublicGalleyId"
 msgstr "S’utilitzen identificadors personalitzats per identificar galerades (com ara fitxers HTML o PDF) per a elements publicats."
 
 msgid "manager.setup.enableUserRegistration"
-msgstr "Els usuaris/àries es poden registrar a la publicació amb un o més dels rols següents:"
+msgstr "Els visitants poden crear un compte d'usuari/ària en l'editorial."
 
 msgid "manager.setup.focusAndScope"
-msgstr "Objectius i temàtica de la publicació"
+msgstr "Enfocament i abast de l'editorial"
 
 msgid "manager.setup.focusAndScope.description"
-msgstr "Introduïu-hi un text informatiu perquè els autors/ores, lectors/ores i bibliotecaris/àries sàpiguen quins tipus d’articles i d'altres elements es publiquen a la publicació."
+msgstr ""
+"Informeu els autors/ores, lectors/ores i bibliotecaris/àries sobre la "
+"temàtica de les monografies i dels altres elements que publicarà l'editorial."
 
 msgid "manager.setup.focusScope"
-msgstr "Objectius i temàtica"
+msgstr "Enfocament i abast"
 
 msgid "manager.setup.focusScopeDescription"
 msgstr "<strong>EXEMPLE DE DADES HTML</strong>"
@@ -424,10 +437,17 @@ msgid "manager.setup.layoutInstructions"
 msgstr "Instruccions de maquetació"
 
 msgid "manager.setup.layoutInstructionsDescription"
-msgstr "Podeu preparar les instruccions de maquetació per formatar els elements que es publicaran a la publicació i introduir-les a continuació en format HTML o de text net. Aquestes instruccions estan disponibles per al maquetista i l’editor/a de secció a la pàgina d’edició de cada tramesa. (Tingueu en compte que no es proporcionen instruccions predeterminades perquè cada publicació pot utilitzar els seus propis formats de fitxer, normes bibliogràfiques, fulls d’estil, etc.)."
+msgstr ""
+"Podeu preparar les instruccions de maquetació per formatar els elements que "
+"l'editorial publica i introduir-les a continuació en format HTML o en text "
+"pla. Aquestes instruccions estaran disponibles per al maquetista i per a l’"
+"editor/a de secció a la pàgina d’edició de cada tramesa. (Tingueu en compte "
+"que no es proporcionen instruccions predeterminades perquè cada editorial "
+"pot utilitzar diferents formats de fitxer, normes bibliogràfiques, fulls d’"
+"estil, etc.)"
 
 msgid "manager.setup.layoutTemplates"
-msgstr "Plantilles per a la maquetació"
+msgstr "Plantilles de maquetació"
 
 msgid "manager.setup.layoutTemplatesDescription"
 msgstr "Podeu carregar plantilles perquè apareguin a la maquetació de cadascun dels formats estàndard publicats a la publicació (monografies, ressenyes literàries, etc.). Les plantilles poden tenir qualsevol format de fitxer (PDF, DOC, etc.) i poden incloure anotacions addicionals per indicar el tipus i la mida de la lletra, la mida dels marges, etc. als maquetistes i als correctors/ores de proves."
@@ -532,7 +552,7 @@ msgid "manager.setup.pageHeader"
 msgstr "Capçalera de la pàgina de la publicació"
 
 msgid "manager.setup.pageHeaderDescription"
-msgstr "Podeu carregar una versió gràfica del títol i del logotip de la publicació (en format .gif, .jpg o .png), si pot ser d'una mida més petita que la que heu fet servir per a la pàgina inicial, per tal que aparegui a la capçalera de pàgina de la publicació. Aquesta imatge reemplaça el text que es mostra per defecte."
+msgstr "Configuració de la capçalera de la pàgina"
 
 msgid "manager.setup.pressPolicies"
 msgstr "Pas 2. Polítiques de la publicació"
@@ -604,13 +624,15 @@ msgid "manager.setup.reviewOptions"
 msgstr "Opcions de revisió"
 
 msgid "manager.setup.reviewOptions.automatedReminders"
-msgstr "És possible enviar recordatoris automàtics per correu electrònic als revisors/ores (disponibles a les plantilles de missatges de correu electrònic de l’OMP) en dues ocasions (però l'editor/a pot enviar missatges de correu electrònic als revisors/ores directament sempre que ho vulgui)."
+msgstr "Recordatoris de correu electrònic automàtics"
 
 msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
-msgstr "<strong>Nota:</strong> Per activar aquestes opcions, l'administrador/a del lloc web ha d'activar l'opció <tt>scheduled_tasks</tt> del fitxer de configuració de l'OMP. Pot ser necessària una configuració del servidor addicional perquè aquesta funcionalitat estigui disponible (la qual cosa pot no ser possible en tots els servidors), tal com s'indica en la documentació de l'OMP."
-
-msgid "manager.setup.reviewOptions.blindReview"
-msgstr "Avaluació anònima"
+msgstr ""
+"Per activar aquestes opcions, l'administrador/a del lloc web ha d'habilitar "
+"l'opció <tt>scheduled_tasks</tt> en l'arxiu de configuració de l'OMP. Pot "
+"ser necessària una configuració del servidor addicional perquè aquesta "
+"funcionalitat sigui compatible (cosa que pot no ser possible en tots els "
+"servidors), tal com s'indica en la documentació de l'OMP."
 
 msgid "manager.setup.reviewOptions.onQuality"
 msgstr "Després de cada revisió, els editors/ores han de puntuar els revisors/ores segons una escala de qualitat de cinc punts."
@@ -626,9 +648,6 @@ msgstr "Valoració dels revisors/ores"
 
 msgid "manager.setup.reviewOptions.reviewerReminders"
 msgstr "Recordatoris per a la revisió"
-
-msgid "manager.setup.reviewOptions.showEnsuringLink"
-msgstr "Afegiu enllaços a informació sobre com fer una avaluació anònima en pàgines on els autors/ores i revisors/ores carreguen fitxers."
 
 msgid "manager.setup.reviewPolicy"
 msgstr "Política de revisió"
@@ -652,13 +671,18 @@ msgid "manager.setup.searchEngineIndexing"
 msgstr "Indexació per als motors de cerca"
 
 msgid "manager.setup.searchEngineIndexing.description"
-msgstr "Per ajudar els usuaris/àries dels motors de cerca a trobar aquesta publicació, indiqueu-ne una breu descripció i les paraules clau més importants (separades per punt i coma)."
+msgstr ""
+"Ajudeu els motors de cerca com Google a descobrir i mostrar el vostre lloc. "
+"Per això us animem a enviar el vostre <a href=\"{$sitemapUrl}\" target=\""
+"_blank\">mapa del lloc</a>."
 
 msgid "manager.setup.sectionsAndSectionEditors"
 msgstr "Seccions i editors/ores de secció"
 
 msgid "manager.setup.sectionsDefaultSectionDescription"
-msgstr "(Si no s’afegeix cap secció, les trameses s’assignen per defecte a la secció Monografies)."
+msgstr ""
+"(Si no s’afegeix cap secció, els elements tramesos s’assignen a la secció "
+"Monografies de manera predeterminada.)"
 
 msgid "manager.setup.sectionsDescription"
 msgstr "Per crear o modificar seccions de la publicació (p. ex. articles, ressenyes literàries, etc.), entreu a l’Administració de seccions.<br /><br />Els autors/ores que facin trameses a la publicació han de designar..."
@@ -865,7 +889,12 @@ msgstr ""
 "</ol>"
 
 msgid "manager.setup.basicEditorialStepsDescription"
-msgstr "Passos: Cua de trameses> Revisió de trameses> Edició de trameses> Taula de continguts.<br /><br /> Seleccioneu un model per gestionar aquests aspectes del procés editorial. (Per al nomenament d'un secretari/ària de redacció i editors/ores de sèries, aneu a Gestió de la publicació i Editors/ores)."
+msgstr ""
+"Passos: Cua de trameses &gt; Revisió de trameses &gt; Edició de trameses &gt;"
+" Taula de continguts.<br /><br />\n"
+"Seleccioneu un model per gestionar aquests aspectes del procés editorial. ("
+"Per designar un editor/a de gestió i un editor/ora de sèries, aneu a "
+"l'apartat \"Editors/ores\" de la \"Gestió editorial\".)"
 
 msgid "manager.setup.referenceLinkingDescription"
 msgstr ""
@@ -878,3 +907,323 @@ msgstr ""
 
 msgid "manager.publication.library"
 msgstr "Biblioteca de la publicació"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Usuaris/àries inscrits en aquesta publicació"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Eines per generar informes relacionats amb estadístiques d'ús (visualització "
+"de la pàgina d'índex del catàleg, visualitzacions de pàgina de resum de la "
+"monografia, descàrregues d'arxius de monografies)"
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Aquest no és un tipus de codi d'editorial vàlid."
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Tipus de codi de l'editorial"
+
+msgid "manager.settings.publisher.identity"
+msgstr "Identitat de l'editorial"
+
+msgid "manager.payment.success"
+msgstr "La configuració dels pagaments s'ha actualitzat."
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"S'ha activat el pagament per a aquesta publicació. Els usuaris/àries hauran "
+"d'iniciar sessió per fer els pagaments."
+
+msgid "manager.payment.generalOptions"
+msgstr "Opcions generals"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Novetats"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Focus"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Llibres destacats"
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Contingut de la pàgina d'inici"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Les imatges es reduiran quan siguin més grans d'aquesta mida, però mai "
+"s'ampliaran ni s'estiraran per ajustar-se a aquestes dimensions."
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Amplada màxima de la imatge de coberta"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Alçària màxima de la imatge de coberta"
+
+msgid "manager.setup.contextSummary"
+msgstr "Resum de la publicació"
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Incloeu tota la informació sobre la vostra editorial que considereu "
+"d'interès per a lectors/ores, autors/ores o revisors/ores. Això podria "
+"incloure la política d'accés obert, el focus i l'abast de la publicació, la "
+"divulgació del patrocini i la història de l'editorial."
+
+msgid "manager.setup.contextAbout"
+msgstr "Quant a la publicació"
+
+msgid "manager.setup.announcements.success"
+msgstr "La configuració dels avisos s'ha actualitzat."
+
+msgid "user.authorization.pluginLevel"
+msgstr "No teniu suficients privilegis per gestionar aquest mòdul."
+
+msgid "stats.publications.abstracts"
+msgstr "Entrades del catàleg"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$count} de {$total} monografies"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Visualitzacions totals d'arxiu per data"
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Visualitzacions totals del catàleg per data"
+
+msgid "stats.publications.none"
+msgstr ""
+"No s'ha trobat cap monografia amb estadístiques d'ús que coincideixin amb "
+"aquests paràmetres."
+
+msgid "stats.publications.details"
+msgstr "Detalls de la monografia"
+
+msgid "stats.publicationStats"
+msgstr "Estadístiques de la monografia"
+
+msgid "grid.series.urlWillBe"
+msgstr "L'URL de la sèrie serà: {$sampleUrl}"
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Seleccionar categoria"
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Seleccionar sèrie"
+
+msgid "grid.series.pathExists"
+msgstr "La ruta de la sèrie ja existeix. Introduïu una ruta única."
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr "La ruta de les sèries només admet lletres i números."
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr ""
+"Enviar una còpia al contacte principal, identificat en la configuració de la "
+"publicació."
+
+msgid "grid.genres.title"
+msgstr "Components de la monografia"
+
+msgid "grid.genres.title.short"
+msgstr "Components"
+
+msgid "manager.setup.resetPermissions.success"
+msgstr "Els permisos de monografia s'han reiniciat correctament."
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr ""
+"Segur que voleu reiniciar les dades de permisos ja associades a les "
+"monografies?"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Reiniciar els permisos de monografia"
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Veure el contingut de la monografia"
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Accés al lloc"
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr "La configuració d'indexació del motor de cerca s'ha actualitzat."
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Proporcioneu una descripció breu (50-300 caràcters) de la publicació que els "
+"motors de cerca puguin mostrar quan llistin la publicació en els resultats "
+"de cerca."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr ""
+"Incloure un enllaç segur en el correu electrònic d'invitació als revisors/"
+"ores."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Accés del revisor/a amb un sol clic"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Restringir l'accés a l'arxiu"
+
+msgid "manager.setup.aboutPress"
+msgstr "Quant a la publicació"
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "La declaració de privacitat s'ha actualitzat."
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Limitar el nombre d'enllaços que es mostren en les pàgines successives en "
+"una llista."
+
+msgid "manager.setup.masthead.success"
+msgstr "Els detalls de la capçalera d'aquesta publicació s'han actualitzat."
+
+msgid "manager.setup.lists.success"
+msgstr "La configuració de llista s'ha actualitzat."
+
+msgid "manager.setup.keyInfo"
+msgstr "Informació clau"
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Elements per pàgina"
+
+msgid "manager.setup.information.success"
+msgstr "La informació d'aquesta publicació s'ha actualitzat."
+
+msgid "manager.setup.information"
+msgstr "Informació"
+
+msgid "manager.setup.identity"
+msgstr "Identitat de la publicació"
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Mostrar a la pàgina d'inici"
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr ""
+"Seleccioneu la categoria a la qual voleu vincular aquest element del menú."
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr "Seleccioneu la sèrie a la qual voleu vincular aquest element del menú."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
+msgstr ""
+"El correu electrònic d'invitació per als revisors/ores pot incloure un "
+"enllaç segur que els permetrà accedir a la revisió sense haver d'iniciar "
+"sessió. L'accés a altres pàgines requerirà que iniciïn sessió."
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr ""
+"Un petit logotip o representació de l'editorial que pugui fer-se servir en "
+"llistats d'editorials."
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Miniatura de l'editorial"
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+"Incloeu qualsevol informació sobre l'editorial que pugui ser d'interès per a "
+"lectors/ores, autors/ores o revisors/ores. Aixo pot incloure la política "
+"d'accés obert, l'enfocament i l'abast de l'editorial, informació sobre drets "
+"d'autor/a, la divulgació dels patrocinadors, la història de l'editorial i la "
+"declaració de privacitat."
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Proporcioneu una breu descripció de la vostra editorial i identifiqueu els "
+"editors/ores, els directors/ores de gestió i els altres membres del vostre "
+"equip editorial."
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Limitar el nombre d'elements (per exemple, trameses, usuaris/àries o "
+"assignacions editorials) que es mostren en una llista abans de mostrar els "
+"elements successius en una altra pàgina."
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Nombre d'avisos que s'haurien de mostrar a la pàgina d'inici. Deixeu-ho buit "
+"per no mostrar-ne cap."
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Es poden publicar avisos per informar els lectors/ores de noticies i "
+"esdeveniments. Els avisos publicats apareixeran a la pàgina d'avisos."
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"Els correus electrònics predefinits que envia el sistema en nom de "
+"l'editorial tindran la següent signatura al final."
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Per enviar els correus electrònics que no s'han pogut entregar a una adreça "
+"de rebot, l'administrador/a del lloc ha d'activar l'opció "
+"<code>allow_envelope_sender</code> en l'arxiu de configuració del lloc. "
+"Podria ser necessària la configuració del servidor, tal com s'indica en la "
+"documentació d'OMP."
+
+msgid "manager.setup.resetPermissions.description"
+msgstr ""
+"La declaració de drets d'autor i la informació de llicència estaran unides "
+"permanentment al contingut publicat, fet que assegura que aquestes dades no "
+"es modificaran en el cas que es produeixi un canvi en les polítiques "
+"editorials per a noves trameses. Per reiniciar la informació sobre permisos "
+"emmagatzemada i ja lligada amb el contingut publicat, feu servir el botó "
+"següent."
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Exportar trameses"
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "XML invàlid:"
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "No s'ha pogut convertir els objectes seleccionats."
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "No s'ha seleccionat cap objecte."
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Impedeix que els usuaris/àries enviïn articles nous a l'editorial. Les "
+"trameses es poden desactivar individualment en cada sèrie editorial a la "
+"pàgina de configuració de <a href=\"{$url}\">sèries editorials</a>."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"L'editorial no accepta trameses en aquest moment. Visiteu la configuració "
+"del flux de treball per habilitar les trameses."
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"Com a mínim ha d'estar activa una sèrie. Visiteu la configuració del flux de "
+"treball per desactivar totes les trameses a aquesta editorial."
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "El procés ha fallat en analitzar els capítols"
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "El procés ha fallat en analitzar els formats de publicació"
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "L'usuari/ària especificat, \"{$userName}\", no existeix."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Els objectes especificats no es poden trobar."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"No s'ha definit el contacte principal d'aquesta publicació. Podeu introduir-"
+"lo en la <a href=\"{$url}\">configuració de la publicació</a>."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Enviar una còpia del correu electrònic d'agraïment per la tramesa al "
+"contacte principal de la publicació."
+
+msgid "manager.setup.selectCountry"
+msgstr ""
+"Seleccioneu el país en que s'ubica l'editorial, o el país de l'adreça postal "
+"de l'editorial o de l'editor/a."

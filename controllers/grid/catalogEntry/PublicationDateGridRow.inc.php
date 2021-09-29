@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/catalogEntry/PublicationDateGridRow.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2000-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationDateGridRow
@@ -13,82 +13,95 @@
  * @brief Publication Date grid row definition
  */
 
-import('lib.pkp.classes.controllers.grid.GridRow');
+use PKP\controllers\grid\GridRow;
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\AjaxModal;
+use PKP\linkAction\request\RemoteActionConfirmationModal;
 
-class PublicationDateGridRow extends GridRow {
-	/** @var Monograph **/
-	var $_monograph;
+class PublicationDateGridRow extends GridRow
+{
+    /** @var Monograph **/
+    public $_monograph;
 
-	/**
-	 * Constructor
-	 * @param $monograph Monograph
-	 */
-	function __construct($monograph) {
-		$this->_monograph = $monograph;
-		parent::__construct();
-	}
+    /** @var Publication **/
+    public $_publication;
 
-	//
-	// Overridden methods from GridRow
-	//
-	/**
-	 * @copydoc GridRow::initialize()
-	 */
-	function initialize($request, $template = null) {
-		// Do the default initialization
-		parent::initialize($request, $template);
+    /**
+     * Constructor
+     *
+     * @param $monograph Monograph
+     */
+    public function __construct($monograph, $publication)
+    {
+        $this->_monograph = $monograph;
+        $this->_publication = $publication;
+        parent::__construct();
+    }
 
-		$monograph = $this->getMonograph();
+    //
+    // Overridden methods from GridRow
+    //
+    /**
+     * @copydoc GridRow::initialize()
+     *
+     * @param null|mixed $template
+     */
+    public function initialize($request, $template = null)
+    {
+        // Do the default initialization
+        parent::initialize($request, $template);
 
-		// Is this a new row or an existing row?
-		$publicationDate = $this->_data;
+        $monograph = $this->getMonograph();
 
-		if ($publicationDate != null && is_numeric($publicationDate->getId())) {
-			$router = $request->getRouter();
-			$actionArgs = array(
-				'submissionId' => $monograph->getId(),
-				'publicationDateId' => $publicationDate->getId()
-			);
+        // Is this a new row or an existing row?
+        $publicationDate = $this->_data;
 
-			// Add row-level actions
-			import('lib.pkp.classes.linkAction.request.AjaxModal');
-			$this->addAction(
-				new LinkAction(
-					'editDate',
-					new AjaxModal(
-						$router->url($request, null, null, 'editDate', null, $actionArgs),
-						__('grid.action.edit'),
-						'modal_edit'
-					),
-					__('grid.action.edit'),
-					'edit'
-				)
-			);
+        if ($publicationDate != null && is_numeric($publicationDate->getId())) {
+            $router = $request->getRouter();
+            $actionArgs = [
+                'submissionId' => $monograph->getId(),
+                'publicationId' => $this->_publication->getId(),
+                'publicationDateId' => $publicationDate->getId()
+            ];
 
-			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
-			$this->addAction(
-				new LinkAction(
-					'deleteDate',
-					new RemoteActionConfirmationModal(
-						$request->getSession(),
-						__('common.confirmDelete'),
-						__('common.delete'),
-						$router->url($request, null, null, 'deleteDate', null, $actionArgs),
-						'modal_delete'
-					),
-					__('grid.action.delete'),
-					'delete'
-				)
-			);
-		}
-	}
+            // Add row-level actions
+            $this->addAction(
+                new LinkAction(
+                    'editDate',
+                    new AjaxModal(
+                        $router->url($request, null, null, 'editDate', null, $actionArgs),
+                        __('grid.action.edit'),
+                        'modal_edit'
+                    ),
+                    __('grid.action.edit'),
+                    'edit'
+                )
+            );
 
-	/**
-	 * Get the monograph for this row (already authorized)
-	 * @return Monograph
-	 */
-	function &getMonograph() {
-		return $this->_monograph;
-	}
+            $this->addAction(
+                new LinkAction(
+                    'deleteDate',
+                    new RemoteActionConfirmationModal(
+                        $request->getSession(),
+                        __('common.confirmDelete'),
+                        __('common.delete'),
+                        $router->url($request, null, null, 'deleteDate', null, $actionArgs),
+                        'modal_delete'
+                    ),
+                    __('grid.action.delete'),
+                    'delete'
+                )
+            );
+        }
+    }
+
+    /**
+     * Get the monograph for this row (already authorized)
+     *
+     * @return Monograph
+     */
+    public function getMonograph()
+    {
+        return $this->_monograph;
+    }
 }
-

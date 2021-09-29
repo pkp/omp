@@ -2,14 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
+"PO-Revision-Date: 2021-06-12 13:02+0000\n"
+"Last-Translator: Antti-Jussi Nygård <ajnyga@gmail.com>\n"
+"Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/locale/"
+"fi_FI/>\n"
+"Language: fi_FI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
-"PO-Revision-Date: 2020-02-13T19:56:53+00:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "submission.round"
 msgstr "Kierros {$round}"
@@ -189,7 +192,7 @@ msgid "grid.catalogEntry.physicalFormat"
 msgstr "Fyysinen muoto"
 
 msgid "grid.catalogEntry.remotelyHostedContent"
-msgstr "Tämä muoto tulee saataville erilliselle verkkosivustolle."
+msgstr "Tämä muoto tulee saataville erilliselle verkkosivustolle"
 
 msgid "grid.catalogEntry.remoteURL"
 msgstr "Etä-ylläpidetyn sisällön URL-osoite"
@@ -480,10 +483,10 @@ msgid "grid.action.releaseMonograph"
 msgstr "Merkitse tämä käsikirjoitus uutuudeksi"
 
 msgid "grid.action.manageCategories"
-msgstr "Määritä kategoriat tälle painolle"
+msgstr "Määritä kategoriat tälle julkaisijalle"
 
 msgid "grid.action.manageSeries"
-msgstr "Määritä sarjat tälle painolle"
+msgstr "Määritä sarjat tälle julkaisijalle"
 
 msgid "grid.action.addCode"
 msgstr "Lisää koodi"
@@ -522,13 +525,13 @@ msgid "grid.action.deleteDate"
 msgstr "Poista tämä päivämäärä"
 
 msgid "grid.action.createContext"
-msgstr "Luo uusi paino"
+msgstr "Luo uusi julkaisija"
 
 msgid "grid.action.publicationFormatTab"
 msgstr "Näytä julkaisumuodon välilehti"
 
 msgid "grid.action.moreAnnouncements"
-msgstr "Siirry painon Ilmoitukset-sivulle"
+msgstr "Siirry julkaisijan Ilmoitukset-sivulle"
 
 msgid "grid.action.submissionEmail"
 msgstr "Klikkaa lukeaksesi tämän sähköpostin"
@@ -864,16 +867,16 @@ msgid "press.path"
 msgstr "Polku"
 
 msgid "context.context"
-msgstr "Paino"
+msgstr "Julkaisija"
 
 msgid "context.current"
-msgstr "Nykyinen paino:"
+msgstr "Nykyinen julkaisija:"
 
 msgid "context.select"
-msgstr "Vaihda toiseen painoon:"
+msgstr "Vaihda toiseen julkaisijaan:"
 
 msgid "user.noRoles.selectUsersWithoutRoles"
-msgstr "Sisällytä käyttäjät, joilla ei ole roolia tässä painossa."
+msgstr "Sisällytä käyttäjät, joilla ei ole roolia tämän julkaisijan sivustolla."
 
 msgid "user.noRoles.submitMonograph"
 msgstr "Lähetä ehdotus"
@@ -888,28 +891,34 @@ msgid "user.noRoles.regReviewerClosed"
 msgstr "Rekisteröidy arvioijaksi: Arvioijaksi rekisteröityminen ei juuri nyt ole mahdollista."
 
 msgid "user.reviewerPrompt"
-msgstr "Haluaisitko arvioida tähän painoon lähetettyjä käsikirjoituksia?"
+msgstr "Haluaisitko arvioida tälle julkaisijalle lähetettyjä käsikirjoituksia?"
 
 msgid "user.reviewerPrompt.userGroup"
 msgstr "Kyllä, pyydä {$userGroup}-roolia."
 
 msgid "user.reviewerPrompt.optin"
-msgstr "Kyllä, haluan, että minulle lähetetään pyyntöjä tämän painon käsikirjoitusten arvioinnista."
+msgstr ""
+"Kyllä, haluan, että minulle lähetetään pyyntöjä tämän julkaisijan "
+"käsikirjoitusten arvioinnista."
 
 msgid "user.register.contextsPrompt"
-msgstr "Minkä tällä sivustolla olevien painojen käyttäjäksi haluat rekisteröityä?"
+msgstr ""
+"Minkä tällä sivustolla olevien julkaisijoiden sivustojen käyttäjäksi haluat "
+"rekisteröityä?"
 
 msgid "user.register.otherContextRoles"
 msgstr "Pyydä seuraavia rooleja."
 
 msgid "user.register.noContextReviewerInterests"
-msgstr "Jos pyysit jonkin painon arvioijan roolia, anna sinua kiinnostavat aiheet."
+msgstr ""
+"Jos pyysit jonkin julkaisijan arvioijan roolia, anna sinua kiinnostavat "
+"aiheet."
 
 msgid "user.role.manager"
-msgstr "Painon hallinnoija"
+msgstr "Julkaisijan sivuston hallinnoija"
 
 msgid "user.role.pressEditor"
-msgstr "Painon toimittaja"
+msgstr "Toimittaja"
 
 msgid "user.role.subEditor"
 msgstr "Sarjan toimittaja"
@@ -924,7 +933,7 @@ msgid "user.role.productionEditor"
 msgstr "Tuotantotoimittaja"
 
 msgid "user.role.managers"
-msgstr "Painon hallinnoijat"
+msgstr "Julkaisijan sivuston hallinnoijat"
 
 msgid "user.role.subEditors"
 msgstr "Sarjan toimittajat"
@@ -942,16 +951,17 @@ msgid "user.role.productionEditors"
 msgstr "Tuotantotoimittajat"
 
 msgid "user.register.selectContext"
-msgstr "Valitse paino, johon rekisteröidyt:"
+msgstr "Valitse julkaisijan sivusto, johon rekisteröidyt:"
 
 msgid "user.register.noContexts"
-msgstr "Et voi rekisteröityä tämän sivuston painoihin."
+msgstr ""
+"Et voi rekisteröityä tällä sivustolla olevien julkaisijoiden sivustoille."
 
 msgid "user.register.privacyStatement"
 msgstr "Tietosuojaseloste"
 
 msgid "user.register.registrationDisabled"
-msgstr "Tämän painon käyttäjäksi ei voi rekisteröityä juuri nyt."
+msgstr "Tämän julkaisijan sivuston käyttäjäksi ei voi rekisteröityä juuri nyt."
 
 msgid "user.register.form.passwordLengthTooShort"
 msgstr "Kirjoittamasi salasana ei ole tarpeeksi pitkä."
@@ -960,10 +970,10 @@ msgid "user.register.readerDescription"
 msgstr "Kirjan julkaisemisesta ilmoitetaan sähköpostitse."
 
 msgid "user.register.authorDescription"
-msgstr "Kohteiden lähetys painolle sallittu."
+msgstr "Kohteiden lähetys julkaisijalle sallittu."
 
 msgid "user.register.reviewerDescriptionNoInterests"
-msgstr "Halukas vertaisarvioimaan painolle lähetettyjä käsikirjoituksia."
+msgstr "Halukas vertaisarvioimaan julkaisijalle lähetettyjä käsikirjoituksia."
 
 msgid "user.register.reviewerDescription"
 msgstr "Halukas vertaisarvioimaan sivustolle lähetettyjä käsikirjoituksia."
@@ -975,13 +985,13 @@ msgid "user.register.form.userGroupRequired"
 msgstr "Valitse vähintään yksi rooli"
 
 msgid "site.pressView"
-msgstr "Näytä painon verkkosivusto"
+msgstr "Näytä julkaisijan verkkosivusto"
 
 msgid "about.pressContact"
-msgstr "Painon yhteystiedot"
+msgstr "Julkaisijan yhteystiedot"
 
 msgid "about.aboutContext"
-msgstr "Tietoa painosta"
+msgstr "Tietoa julkaisijasta"
 
 msgid "about.editorialTeam"
 msgstr "Toimituskunta"
@@ -1044,17 +1054,24 @@ msgid "about.openAccessPolicy"
 msgstr "Avoimen saatavuuden periaate"
 
 msgid "about.pressSponsorship"
-msgstr "Painon tukijana toimiminen"
+msgstr "Julkaisijan tukijana toimiminen"
 
 msgid "about.aboutThisPublishingSystem"
-msgstr "Tietoja julkaisujärjestelmästä"
+msgstr "Tietoja julkaisujärjestelmästä."
 
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "OMP:n toimitus- ja julkaisuprosessit"
 
 msgid "about.aboutOMPPress"
-msgstr "Tämä paino käyttää Open Monograph Press {$ompVersion} -järjestelmää, joka on <a href=\"http://pkp.sfu.ca/\">Public Knowledge Projectin</a> kehittämä, tukema ja GNU General Public License -lisenssillä vapaasti jakama avoimen lähdekoodin toimitus- ja julkaisuohjelmisto."
+msgstr ""
+"Tämä julkaisija käyttää Open Monograph Press {$ompVersion} -järjestelmää, "
+"joka on <a href=\"http://pkp.sfu.ca/\">Public Knowledge Projectin</a> "
+"kehittämä, tukema ja GNU General Public License -lisenssillä vapaasti jakama "
+"avoimen lähdekoodin toimitus- ja julkaisuohjelmisto. Julkaisijaa ja "
+"käsikirjoituksia koskevissa kysymyksissä tulee olla <a href=\"{$contactUrl}\""
+">yhteydessä suoraan julkaisijaan</a>."
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr "Tämä sivusto käyttää Open Monograph Press {$ompVersion} -järjestelmää, joka on <a href=\"http://pkp.sfu.ca/\">Public Knowledge Projectin</a> kehittämä, tukema ja GNU General Public License -lisenssillä vapaasti jakama avoimen lähdekoodin toimitus- ja julkaisuohjelmisto."
 
@@ -1073,6 +1090,7 @@ msgstr "OMP:n päivitys"
 msgid "installer.installApplication"
 msgstr "Asenna Open Monograph Press"
 
+#, fuzzy
 msgid "installer.installationInstructions"
 msgstr ""
 "\n"
@@ -1080,7 +1098,7 @@ msgstr ""
 "\n"
 "<h4>Päivitys</h4>\n"
 "\n"
-"<p>Jos olet päivittämässä OMP 0.x -järjestelmän aiempaa asennusta, <a href=\"{$upgradeUrl}\">klikkaa tästä</a> edetäksesi.</p>"
+"<p>Jos olet päivittämässä OMP -järjestelmän aiempaa asennusta, <a href=\"{$upgradeUrl}\">klikkaa tästä</a> edetäksesi.</p>"
 
 msgid "installer.preInstallationInstructionsTitle"
 msgstr "Esiasennuksen vaiheet"
@@ -1123,7 +1141,11 @@ msgid "installer.localeInstructions"
 msgstr "Pääkieli, jota käytetään tässä järjestelmässä. Jos olet kiinnostunut muiden kuin tässä lueteltujen kielten tuesta, katso lisätietoja OMP:n käyttöohjeista."
 
 msgid "installer.additionalLocalesInstructions"
-msgstr "Valitse muita tässä järjestelmässä tuettavia kieliä. Nämä kielet ovat sivustolla ylläpidettyjen painojen käytettävissä. Lisää kieliä voidaan asentaa milloin tahansa myös sivuston ylläpitokäyttöliittymän kautta. Tähdellä (*) merkityt kielialueet saattavat olla vaillinaisia."
+msgstr ""
+"Valitse muita tässä järjestelmässä tuettavia kieliä. Nämä kielet ovat "
+"sivustolla ylläpidettyjen julkaisijoiden sivustojen käytettävissä. Lisää "
+"kieliä voidaan asentaa milloin tahansa myös sivuston ylläpitokäyttöliittymän "
+"kautta. Tähdellä (*) merkityt kielialueet saattavat olla vaillinaisia."
 
 msgid "installer.filesDirInstructions"
 msgstr "Anna koko polun nimi olemassa olevaan hakemistoon, jossa ladattavia tiedostoja tullaan säilyttämään. Tähän hakemistoon ei tulisi olla suoraa pääsyä verkosta. <strong>Varmista ennen asennusta, että tämä hakemisto on olemassa ja kirjoituskelpoinen.</strong> Windowsin polkujen nimissä tulee käyttää vinoviivaa, esim. \"C:/mypress/files\"."
@@ -1170,7 +1192,9 @@ msgid "log.editor.decision"
 msgstr "Toimittaja {$editorName} on tallentanut toimittajan päätöksen ({$decision}) kirjalle {$submissionId}."
 
 msgid "log.editor.recommendation"
-msgstr "Toimittaja {$editorName} on tallentanut toimittajan suosituksen ({$decision}) kirjalle {$submissionId}."
+msgstr ""
+"Toimittaja {$editorName} on tallentanut toimittajan suosituksen ({$decision})"
+" teokselle {$submissionId}."
 
 msgid "log.editor.archived"
 msgstr "Käsikirjoitus {$submissionId} on arkistoitu."
@@ -1251,7 +1275,7 @@ msgid "notification.editedSpotlight"
 msgstr "Nostoa muokattu."
 
 msgid "notification.removedSpotlight"
-msgstr "Nosto poistettu"
+msgstr "Nosto poistettu."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Luettelon metatiedot tallennettu."
@@ -1316,6 +1340,7 @@ msgstr "Maksutapaa ei ole määritetty."
 msgid "notification.type.configurePaymentMethod"
 msgstr "Määritetty maksutapa vaaditaan, ennen kuin voit määritellä verkkokaupan asetukset."
 
+#, fuzzy
 msgid "notification.type.visitCatalog"
 msgstr "Kirja on hyväksytty. Hallinnoidaksesi sen luettelotietoja, siirry Luetteloon yläpuolella olevan luettelolinkin kautta."
 
@@ -1338,7 +1363,7 @@ msgid "user.authorization.invalidMonograph"
 msgstr "Virheellinen kirja tai ei pyydettyä kirjaa!"
 
 msgid "user.authorization.noContext"
-msgstr "Ei painoa valittuna!"
+msgstr "Ei julkaisijaa valittuna!"
 
 msgid "user.authorization.seriesAssignment"
 msgstr "Yrität päästä kirjaan, joka ei kuulu omaan sarjaasi."
@@ -1347,10 +1372,12 @@ msgid "user.authorization.workflowStageAssignmentMissing"
 msgstr "Pääsy evätty! Sinua ei ole valittu tähän työnkulun vaiheeseen."
 
 msgid "user.authorization.workflowStageSettingMissing"
-msgstr "Pääsy evätty! Käyttäjäryhmää, johon tällä hetkellä kuulut, ei ole valittu tähän työnkulun vaiheeseen. Tarkista painon asetukset."
+msgstr ""
+"Pääsy evätty! Käyttäjäryhmää, johon tällä hetkellä kuulut, ei ole valittu "
+"tähän työnkulun vaiheeseen. Tarkista julkaisijan asetukset."
 
 msgid "payment.directSales"
-msgstr "Lataa painon verkkosivustolta"
+msgstr "Lataa julkaisijan verkkosivustolta"
 
 msgid "payment.directSales.price"
 msgstr "Hinta"
@@ -1386,7 +1413,11 @@ msgid "payment.directSales.openAccess"
 msgstr "Avoin saatavuus"
 
 msgid "payment.directSales.price.description"
-msgstr "Tiedostomuotoja voidaan tarjota ladattaviksi painon verkkosivustolta joko avoimen saatavuuden periaatteen mukaisesti tai suoramyynnin kautta (kun käytetään asetusten Jakelu-kohdassa määriteltyä maksulisäosaa). Määritä tämän tiedostomuodon lähtökohtainen saatavuus."
+msgstr ""
+"Tiedostomuotoja voidaan tarjota ladattaviksi julkaisijan verkkosivustolta "
+"joko avoimen saatavuuden periaatteen mukaisesti tai suoramyynnin kautta (kun "
+"käytetään asetusten Jakelu-kohdassa määriteltyä maksulisäosaa). Määritä "
+"tämän tiedostomuodon lähtökohtainen saatavuus."
 
 msgid "payment.directSales.validPriceRequired"
 msgstr "Kelvollinen numeerinen hinta vaaditaan."
@@ -1403,9 +1434,6 @@ msgstr "Osta kirjan tai luvun lataus"
 msgid "payment.directSales.monograph.description"
 msgstr "Tämä tapahtuma liittyy kirjan tai kirjan luvun suoralatauksen ostoon."
 
-msgid "debug.notes.currencyListLoad"
-msgstr "XML-muodosta ladattu valuuttaluettelo \"{$filename}\""
-
 msgid "debug.notes.helpMappingLoad"
 msgstr "XML-tiedosto {$filename} ladattiin uudelleen haulla {$id}."
 
@@ -1416,10 +1444,97 @@ msgid "submission.pdf.download"
 msgstr "Lataa tämä PDF-tiedosto"
 
 msgid "user.profile.form.showOtherContexts"
-msgstr "Rekisteröidy muihin painoihin"
+msgstr "Rekisteröidy muiden julkaisijoiden sivustoille"
 
 msgid "user.profile.form.hideOtherContexts"
-msgstr "Piilota muut painot"
+msgstr "Piilota muut julkaisijat"
 
 msgid "grid.category.categories"
 msgstr "Kategoriat"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "Virheellinen julkaistu käsikirjoitus."
+
+msgid "context.contexts"
+msgstr "Julkaisijat"
+
+msgid "navigation.skip.spotlights"
+msgstr "Siirry uutuuslistaan"
+
+msgid "common.software"
+msgstr "Open Monograph Press"
+
+msgid "common.publications"
+msgstr "Kirjat"
+
+msgid "common.publication"
+msgstr "Kirja"
+
+msgid "submission.search"
+msgstr "Kirjahaku"
+
+msgid "catalog.category.subcategories"
+msgstr "Alakategoriat"
+
+msgid "catalog.category.heading"
+msgstr "Kaikki kirjat"
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr "Tämä teos ei ole uutuus. Lisää uutuusmerkintä."
+
+msgid "catalog.manage.isNewRelease"
+msgstr "Tämä teos on uutuus. Poista uutuusmerkintä."
+
+msgid "catalog.manage.isNotFeatured"
+msgstr ""
+"Tämä teos ei ole esittelyssä etusivulla. Siirrä tämä teos esittelyyn "
+"etusivulle."
+
+msgid "catalog.manage.isFeatured"
+msgstr "Tämä teos on esittelyssä etusivulla. Poista tämä teos esittelystä."
+
+msgid "submissionGroup.assignedSubEditors"
+msgstr "Osoitetut toimittajat"
+
+msgid "monograph.audience.success"
+msgstr "Kohderyhmäasetukset päivitetty."
+
+msgid "site.noPresses"
+msgstr "Julkaisijoita ei löytynyt."
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Kyllä, annan luvan tallentaa tietojani tämän julkaisijan <a href=\""
+"{$privacyUrl}\" target=\"_blank\">tietosuojaselosteen</a> kuvaamalla tavalla."
+
+msgid "about.aboutSoftware"
+msgstr "Tietoa Open Monograph Press -järjestelmästä"
+
+msgid "user.authorization.representationNotFound"
+msgstr "Pyydettyä julkaisumuotoa ei löytynyt."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Etsi teokset, jotka lisätään luetteloon"
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Yhtä tai useampaa käsikirjoitusta ei löytynyt."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Yhtään käsikirjoitusta ei valittu luetteloon liitettäväksi."
+
+msgid "common.payments"
+msgstr "Maksut"
+
+msgid "installer.updatingInstructions"
+msgstr ""
+"Jos olet päivittämässä vanhaa OMP-asennusta, <a href=\"{$upgradeUrl}\">"
+"klikkaa tästä</a> päästäksesi eteenpäin."
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "10-numeroinen ISBN, esimerkiksi 951-98548-9-4."
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "13-numeroinen ISBN, esimerkiksi 978-951-98548-9-2."
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"

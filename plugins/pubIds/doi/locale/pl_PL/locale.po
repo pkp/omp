@@ -1,0 +1,216 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-07-17 11:47+0000\n"
+"Last-Translator: rl <biuro@fimagis.pl>\n"
+"Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/pubIds-doi/"
+"pl_PL/>\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.pubIds.doi.editor.preview.objects"
+msgstr "Pozycja"
+
+msgid "plugins.pubIds.doi.editor.preview.files"
+msgstr "Plik: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.publicationFormats"
+msgstr "Format publikacji: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.chapters"
+msgstr "Rozdział: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.publication.none"
+msgstr "DOI nie zostało nie zostało przypisane dla tej publikacji."
+
+msgid "plugins.pubIds.doi.editor.preview.publication"
+msgstr "DOI dla tej publikacji to {$doi}."
+
+msgid "plugins.pubIds.doi.editor.missingPrefix"
+msgstr "DOI musi rozpoczynać się  {$doiPrefix}."
+
+msgid "plugins.pubIds.doi.editor.assignDoi.assigned"
+msgstr "DOI {$pubId} został przypisany."
+
+msgid "plugins.pubIds.doi.editor.assignDoi.pattern"
+msgstr "DOI {$pubId} nie może być przypisane, ponieważ zawiera nieznany wzór."
+
+msgid "plugins.pubIds.doi.editor.assignDoi.emptySuffix"
+msgstr "DOI nie może być przypisane, ponieważ brakuje standardowego sufiksu."
+
+msgid "plugins.pubIds.doi.editor.assignDoi"
+msgstr "Przypisz DOI {$pubId} do {$pubObjectType}"
+
+msgid "plugins.pubIds.doi.editor.clearObjectsDoi.confirm"
+msgstr "Czy jesteś pewien, że chcesz usunąć istniejące DOI?"
+
+msgid "plugins.pubIds.doi.editor.clearObjectsDoi"
+msgstr "Wyczyść"
+
+msgid "plugins.pubIds.doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Podany sufiks DOI jest już w użyciu przez inną publikowaną pozycję. Proszę "
+"wprowadź unikatowy sufiks DOI dla każdej pozycji."
+
+msgid "plugins.pubIds.doi.editor.assigned"
+msgstr "DOI jest przypisane do {$pubObjectType}."
+
+msgid "plugins.pubIds.doi.editor.canBeAssigned"
+msgstr ""
+"Widzisz podgląd DOI. Uzupełnij pola wyboru, aby zapisać formę przypisaną do "
+"DOI."
+
+msgid "plugins.pubIds.doi.editor.patternNotResolved"
+msgstr "DOI nie może być przypisany, ponieważ zawiera nieznany wzór."
+
+msgid "plugins.pubIds.doi.editor.missingParts"
+msgstr ""
+"Nie możesz wygenerować DOI, ponieważ jedna albo więcej części wzoru DOI to "
+"brakujące dane."
+
+msgid "plugins.pubIds.doi.editor.customSuffixMissing"
+msgstr ""
+"DOI nie może być przypisany, ponieważ brakuje niestandardowego sufiiksu."
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeSubmissionFile"
+msgstr "Plik"
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeRepresentation"
+msgstr "Format publikacji"
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeChapter"
+msgstr "Rozdział"
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeSubmission"
+msgstr "Monografia"
+
+msgid "plugins.pubIds.doi.editor.doi.assignDoi"
+msgstr "Przypisz"
+
+msgid "plugins.pubIds.doi.editor.doi.description"
+msgstr "DOI musi rozpocząć się  {$prefix}."
+
+msgid "plugins.pubIds.doi.editor.doi"
+msgstr "DOI"
+
+msgid "plugins.pubIds.doi.manager.settings.doiReassign.confirm"
+msgstr "Czy jesteś pewien, że chcesz usunąć wszystkie istniejące DOIs?"
+
+msgid "plugins.pubIds.doi.manager.settings.doiReassign.description"
+msgstr ""
+"Jeśli zmieniłeś konfigurację DOI, DOIs, które zostały już przypisane nie "
+"zmienią się. W momencie, kiedy konfiguracja DOI zostanie zapisana, użyj tego "
+"przycisku, aby wyczyścić wszystkie istniejące DOI, wówczas nowe ustawienia "
+"będą obowiązywały dla istniejących pozycji."
+
+msgid "plugins.pubIds.doi.manager.settings.doiReassign"
+msgstr "Zmień przypisany DOIs"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Proszę wprowadź wzór sufiksu DOI dla plików."
+
+msgid "plugins.pubIds.doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Proszę wprowadź wzór sufiksu DOI dla formatów publikacji."
+
+msgid "plugins.pubIds.doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Proszę wprowadź wzór sufiksu DOI dla rozdziałów."
+
+msgid "plugins.pubIds.doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Wprowadź wzór sufiksu DOI dla monografii."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier"
+msgstr ""
+"Wprowadź indywidualny sufiks DOI dla każdej publikowanej pozycji. Znajdziesz "
+"dodatkowy pole wejściowe DOI dla każdej pozycji na jego stronie z metadanymi."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixDefault.description"
+msgstr ""
+"%p.%m dla monografii <br />%p.%m.c%c for chapters<br />%p.%m.%f dla formatów "
+"publikacji<br />%p.%m.%f.%s dla plików."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixDefault"
+msgstr "Zastosuj domyślne wzory."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.files"
+msgstr "Dla plików"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.representations"
+msgstr "Dla formatów publikacji"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "Dla rozdziałów"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "Dla monografii"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.example"
+msgstr ""
+"Na przykład, press%ppub%r mogą stworzyć DOI takie jak 10.1234/pressESPpub100"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Zastosuj wzór wprowadzony poniżej, aby wygenerować sufiks DOI. Użyj %p dla "
+"inicjałów wydawnictwa, %m dla ID monografii, %c dla ID rozdziału, %f  dla ID "
+"formatu publikacji, %s dla ID pliku i %x  dla niestandardowego "
+"identyfikatora."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffix.description"
+msgstr ""
+"Sufiks DOI może mieć każdą formę, ale musi być unikatowy wśród publikowanych "
+"pozycji, które mają przypisany ten sam prefiks DOI:"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffix"
+msgstr "Sufiks DOI"
+
+msgid "plugins.pubIds.doi.manager.settings.doiPrefixPattern"
+msgstr "Prefiks DOI jest obowiązkowy i musi mieć format 10.xxxx."
+
+msgid "plugins.pubIds.doi.manager.settings.doiPrefix.description"
+msgstr ""
+"Prefiks DOI jest przepisany do zarejestrowanych agencji (np.<a href=\""
+"http://www.crossref.org\" target=\"_new\">CrossRef</a>) i jest w formacie "
+"10.xxxx (e.g. 10.1234):"
+
+msgid "plugins.pubIds.doi.manager.settings.doiPrefix"
+msgstr "Prefiks DOI"
+
+msgid "plugins.pubIds.doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Pliki"
+
+msgid "plugins.pubIds.doi.manager.settings.enableRepresentationDoi"
+msgstr "Formaty publikacji"
+
+msgid "plugins.pubIds.doi.manager.settings.enableChapterDoi"
+msgstr "Rozdziały"
+
+msgid "plugins.pubIds.doi.manager.settings.enablePublicationDoi"
+msgstr "Monografie"
+
+msgid "plugins.pubIds.doi.manager.settings.explainDois"
+msgstr "Wybierz publikowane przedmioty, które będą miały przypisany DOI:"
+
+msgid "plugins.pubIds.doi.manager.settings.doiObjectsRequired"
+msgstr "Proszę wybierz przedmioty, do których chcesz przypisać DOI."
+
+msgid "plugins.pubIds.doi.manager.settings.doiObjects"
+msgstr "Zawartość wydania"
+
+msgid "plugins.pubIds.doi.manager.settings.description"
+msgstr ""
+"Proszę skonfiguruj wtyczkę DOI, aby umożliwić zarządzanie i używannie DOI w "
+"OMP:"
+
+msgid "plugins.pubIds.doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "plugins.pubIds.doi.description"
+msgstr ""
+"Wtyczka umożliwia przypisanie DOI do monografii, rozdziałów, formatów "
+"publikacji i plików w OMP."
+
+msgid "plugins.pubIds.doi.displayName"
+msgstr "DOI"

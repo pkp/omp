@@ -3,8 +3,8 @@
 /**
  * @file classes/services/QueryBuilders/StatsEditorialQueryBuilder.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2000-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class StatsEditorialQueryBuilder
@@ -13,12 +13,12 @@
  * @brief Editorial statistics list query builder
  */
 
-namespace APP\Services\QueryBuilders;
+namespace APP\services\queryBuilders;
 
-use \PKP\Services\QueryBuilders\PKPStatsEditorialQueryBuilder;
+use PKP\services\queryBuilders\PKPStatsEditorialQueryBuilder;
 
-class StatsEditorialQueryBuilder extends PKPStatsEditorialQueryBuilder {
-
-	/** @var string The table column name for section IDs */
-	public $sectionIdsColumn = 'series_id';
+class StatsEditorialQueryBuilder extends PKPStatsEditorialQueryBuilder
+{
+    /** @var string The table column name for section IDs */
+    public $sectionIdsColumn = 'series_id';
 }

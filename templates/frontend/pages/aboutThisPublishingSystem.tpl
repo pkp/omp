@@ -1,25 +1,27 @@
 {**
  * templates/frontend/pages/aboutThisPublishingSystem.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @brief Display the page to view details about the OMP software.
+ * @brief Display the page to view details about the OJS software.
  *
- * @uses $currentPress Press The press currently being viewed
- * @uses $appVersion string Current version of OMP
+ * @uses $currentContext Journal The journal currently being viewed
+ * @uses $appVersion string Current version of OJS
+ * @uses $contactUrl string URL to the journal's contact page
  *}
-{include file="frontend/components/header.tpl" pageTitle="about.aboutThisPublishingSystem"}
+{include file="frontend/components/header.tpl" pageTitle="about.aboutSoftware"}
 
 <div class="page page_about_publishing_system">
-	<h1 class="page_title">
-		{translate key="about.aboutThisPublishingSystem"}
+	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="about.aboutSoftware"}
+	<h1>
+		{translate key="about.aboutSoftware"}
 	</h1>
 
 	<p>
-		{if $currentPress}
-			{translate key="about.aboutOMPPress" ompVersion=$appVersion}
+		{if $currentContext}
+			{translate key="about.aboutOMPPress" ompVersion=$appVersion contactUrl=$contactUrl}
 		{else}
 			{translate key="about.aboutOMPSite" ompVersion=$appVersion}
 		{/if}

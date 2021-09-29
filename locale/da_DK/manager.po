@@ -1,12 +1,13 @@
+# Niels Erik Frederiksen <nef@kb.dk>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2020-02-11 07:30+0000\n"
+"PO-Revision-Date: 2021-07-07 11:03+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
-"Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/manager/da/>"
-"\n"
+"Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"da_DK/>\n"
 "Language: da_DK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -366,7 +367,7 @@ msgid "manager.setup.contextAbout.description"
 msgstr ""
 "Inkludér de oplysninger om dit forlag, som kan være af interesse for læsere, "
 "forfattere eller bedømmere. Dette kan omfatte din open access-politik, fokus "
-"og sigte med forlaget, sponsorering og tidsskriftets historie."
+"og sigte med forlaget, sponsorering og forlagets historie."
 
 msgid "manager.setup.contextAbout"
 msgstr "Om forlaget"
@@ -460,11 +461,6 @@ msgstr "Bedømmelsesproces"
 msgid "manager.setup.reviewPolicy"
 msgstr "Bedømmelsespolitik"
 
-msgid "manager.setup.reviewOptions.showEnsuringLink"
-msgstr ""
-"Indsæt link til \"Sikring af blind review\" på sider hvor forfattere og "
-"bedømmere uploader filer."
-
 msgid "manager.setup.reviewOptions.reviewerReminders"
 msgstr "Påmindelser om bedømmelse"
 
@@ -506,9 +502,6 @@ msgstr ""
 "Understøttelse af denne funktionalitet (som eventuelt ikke er muligt på alle "
 "servere) kan kræve yderligere konfiguration af serveren som angivet i "
 "dokumentationen til OMP."
-
-msgid "manager.setup.reviewOptions.blindReview"
-msgstr "Blind review"
 
 msgid "manager.setup.reviewOptions.automatedReminders"
 msgstr "Automatiske e-mail-påmindelser"
@@ -733,7 +726,7 @@ msgid "manager.setup.look"
 msgstr "Udseende (Look & Feel)"
 
 msgid "manager.setup.lists.success"
-msgstr "Listeindstillingerne til dette tidsskrift er blevet opdateret."
+msgstr "Listeindstillingerne er blevet opdateret."
 
 msgid "manager.setup.lists"
 msgstr "Lister"
@@ -1365,3 +1358,69 @@ msgstr ""
 "Vælg en model til håndtering af disse trin i den redaktionelle proces. (Gå "
 "til Redaktører under Forlagsadministration for at udpege en hovedredaktør og "
 "serieredaktører.)"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr ""
+"Et lille logo eller repræsentation af forlaget, der kan bruges i oversigter "
+"over forlag."
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Forlagsminiaturebillede"
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Afhold brugere fra at sende nye indlæg til forlaget. Indsendelser kan "
+"deaktiveres for individuelle forlagsserier på siden <a href=\"{$url}\">"
+"forlagsserier </a>."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Dette forlag accepterer ikke indsendelser på nuværende tidspunkt. Gå til "
+"workflow-indstillingerne for at tillade indsendelser."
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"Mindst én serie skal være aktiv. Gå til workflow-indstillingerne for at "
+"deaktivere alle indsendelser til dette forlag."
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Eksporter indsendelser"
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "Ugyldig XML:"
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Kunne ikke konvertere valgte objekter."
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Ingen objekter er blevet valgt."
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "Processen kunne ikke analysere kapitler"
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "Processen kunne ikke analysere publikationsformater"
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "Den angivne bruger, \"{$userName}\", findes ikke."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "De angivne objekter kunne ikke findes."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"Der er ikke valgt nogen primær kontakt til dette forlag. Du kan indskrive en "
+"primær kontakt i <a href=\"{$url}\">forlagsindstillinger</a>."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Send en kopi af bekræftelses-e-mailen i forbindelse med indsendelser til "
+"dette forlags primære kontaktperson."
+
+msgid "manager.setup.selectCountry"
+msgstr ""
+"Vælg det land, hvor dette forlag er beliggende, eller det land, der er "
+"tilknyttet forlagets eller udgiverens postadresse."
+
+msgid "manager.setup.pageHeaderDescription"
+msgstr "Konfiguration af sidehovedet"

@@ -2,14 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
+"PO-Revision-Date: 2020-11-13 14:49+0000\n"
+"Last-Translator: Gabriele Höfler <gabriele.hoefler@univie.ac.at>\n"
+"Language-Team: English (United States) <http://translate.pkp.sfu.ca/projects/"
+"omp/locale/en_US/>\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
-"PO-Revision-Date: 2019-09-30T06:23:43-07:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "common.payments"
+msgstr "Payments"
 
 msgid "monograph.audience"
 msgstr "Audience"
@@ -184,6 +190,15 @@ msgstr "This format will be available at a separate website"
 
 msgid "grid.catalogEntry.remoteURL"
 msgstr "URL of remotely-hosted content"
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "A 13-digit ISBN code, such as 978-951-98548-9-2."
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "A 10-digit ISBN code, such as 951-98548-9-4."
 
 msgid "grid.catalogEntry.monographRequired"
 msgstr "A monograph id is required."
@@ -542,6 +557,9 @@ msgstr "Add Attachment to Review"
 msgid "grid.reviewAttachments.availableFiles"
 msgstr "Available Files"
 
+msgid "submissionGroup.assignedSubEditors"
+msgstr "Assigned editors"
+
 msgid "series.series"
 msgstr "Series"
 
@@ -655,6 +673,15 @@ msgstr "This monograph is a new release. Make this monograph not a new release."
 
 msgid "catalog.manage.isNotNewRelease"
 msgstr "This monograph is not a new release. Make this monograph a new release."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "No submissions were selected to be added to the catalog."
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "One or more of the submissions could not be found."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Find monographs to add to the catalog"
 
 msgid "catalog.noTitles"
 msgstr "No titles have been published yet."
@@ -863,6 +890,9 @@ msgstr "Current Press:"
 msgid "context.select"
 msgstr "Switch to another press:"
 
+msgid "user.authorization.representationNotFound"
+msgstr "The requested publication format could not be found."
+
 msgid "user.noRoles.selectUsersWithoutRoles"
 msgstr "Include users with no roles in this press."
 
@@ -965,6 +995,12 @@ msgstr "Identify reviewing interests (substantive areas and research methods):"
 msgid "user.register.form.userGroupRequired"
 msgstr "You must select at least one role"
 
+msgid "user.register.form.privacyConsentThisContext"
+msgstr "Yes, I agree to have my data collected and stored according to this press's <a href=\"{$privacyUrl}\" target=\"_blank\">privacy statement</a>."
+
+msgid "site.noPresses"
+msgstr "There are no presses available."
+
 msgid "site.pressView"
 msgstr "View Press Website"
 
@@ -1038,16 +1074,19 @@ msgid "about.pressSponsorship"
 msgstr "Press Sponsorship"
 
 msgid "about.aboutThisPublishingSystem"
-msgstr "About this Publishing System"
+msgstr "More information about the publishing system, Platform and Workflow by OMP/PKP."
 
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "OMP Editorial and Publishing Process"
 
+msgid "about.aboutSoftware"
+msgstr "About Open Monograph Press"
+
 msgid "about.aboutOMPPress"
-msgstr "This press uses Open Monograph Press {$ompVersion}, which is open source press management and publishing software developed, supported, and freely distributed by the <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> under the GNU General Public License."
+msgstr "This press uses Open Monograph Press {$ompVersion}, which is open source press management and publishing software developed, supported, and freely distributed by the Public Knowledge Project under the GNU General Public License. Visit PKP's website to <a href=\"http://pkp.sfu.ca/\">learn more about the software</a>. Please <a href=\"{$contactUrl}\">contact the press</a> directly with questions about the press and submissions to the press."
 
 msgid "about.aboutOMPSite"
-msgstr "This site uses Open Monograph Press {$ompVersion}, which is open source press management and publishing software developed, supported, and freely distributed by the <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> under the GNU General Public License."
+msgstr "This site uses Open Monograph Press {$ompVersion}, which is open source press management and publishing software developed, supported, and freely distributed by the Public Knowledge Project under the GNU General Public License. Visit PKP's website to <a href=\"http://pkp.sfu.ca/\">learn more about the software</a>. Please contact the site directly with questions about its presses and submissions to its presses."
 
 msgid "help.searchReturnResults"
 msgstr "Return to Search Results"
@@ -1064,14 +1103,13 @@ msgstr "OMP Upgrade"
 msgid "installer.installApplication"
 msgstr "Install Open Monograph Press"
 
+msgid "installer.updatingInstructions"
+msgstr "If you are upgrading an existing installation of OMP, <a href=\"{$upgradeUrl}\">click here</a> to proceed."
+
 msgid "installer.installationInstructions"
 msgstr ""
 "\n"
 "<p>Thank you for downloading the Public Knowledge Project's <strong>Open Monograph Press {$version}</strong>. Before proceeding, please read the <a href=\"{$baseUrl}/docs/README\">README</a> file included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">PKP web site</a>. If you have bug reports or technical support inquiries about Open Monograph Press, see the <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">support forum</a> or visit PKP's online <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>\n"
-"\n"
-"<h4>Upgrade</h4>\n"
-"\n"
-"<p>If you are upgrading an existing installation of OMP 0.x, <a href=\"{$upgradeUrl}\">click here</a> to proceed.</p>"
 
 msgid "installer.preInstallationInstructionsTitle"
 msgstr "Pre-Installation Steps"
@@ -1158,7 +1196,9 @@ msgid "log.editor.decision"
 msgstr "An editor decision ({$decision}) for monograph {$submissionId} was recorded by {$editorName}."
 
 msgid "log.editor.recommendation"
-msgstr "An editor recommndation ({$decision}) for monograph {$submissionId} was recorded by {$editorName}."
+msgstr ""
+"An editor recommendation ({$decision}) for monograph {$submissionId} was "
+"recorded by {$editorName}."
 
 msgid "log.editor.archived"
 msgstr "The submission {$submissionId} has been archived."
@@ -1308,7 +1348,7 @@ msgid "notification.type.visitCatalogTitle"
 msgstr "Catalog Management"
 
 msgid "notification.type.visitCatalog"
-msgstr "The monograph has been approved. Please visit Catalog to manage its catalog details, using the catalog link just above."
+msgstr "The monograph has been approved. Please visit Marketing and Publication to manage its catalog details, using the links just above."
 
 msgid "user.authorization.invalidReviewAssignment"
 msgstr "You have been denied access because you do not seem to be a valid reviewer for this monograph."
@@ -1390,9 +1430,6 @@ msgstr "Purchase Monograph or Chapter Download"
 
 msgid "payment.directSales.monograph.description"
 msgstr "This transaction is for the purchase of a direct download of a single monograph or monograph chapter."
-
-msgid "debug.notes.currencyListLoad"
-msgstr "Loaded currency list \"{$filename}\" from XML"
 
 msgid "debug.notes.helpMappingLoad"
 msgstr "Reloaded XML help mapping file {$filename} in search of {$id}."

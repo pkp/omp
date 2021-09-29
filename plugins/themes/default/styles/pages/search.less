@@ -1,0 +1,65 @@
+/**
+ * @file plugins/themes/default/styles/pages/search.less
+ *
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+ *
+ * @brief Styles applying to the search page
+ * @link templates/frontend/pages/search.tpl
+ */
+.page_search {
+
+	.search_results {
+		margin-bottom: 2rem;
+	}
+
+	.search_results a {
+		margin-left: 0.5em;
+	}
+
+	.cmp_monographs_list {
+		margin-top: @triple;
+		border-bottom: @bg-border;
+
+		@media(min-width: @screen-lg-desktop) {
+			border-bottom: none;
+		}
+	}
+
+	.cmp_search {
+		margin: 0 -@base;
+		padding: @triple @base;
+		text-align: center;
+
+		button {
+			&:extend( .cmp_button );
+			width: 100%;
+			margin-top: @base;
+
+			&:hover,
+			&:focus {
+				&:extend(.cmp_button:hover);
+			}
+
+
+			@media(min-width: @screen-phone) {
+				width: auto;
+				margin-top: 0;
+			}
+		}
+
+		.search_controls {
+			display: none;
+		}
+
+		@media(min-width: @screen-phone) {
+			margin: 0 -@double;
+			padding: @triple;
+		}
+
+		@media(min-width: @screen-desktop) {
+			margin: 0 -@triple;
+		}
+	}
+}

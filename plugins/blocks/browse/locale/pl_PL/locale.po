@@ -1,0 +1,37 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-07-09 17:40+0000\n"
+"Last-Translator: rl <biuro@fimagis.pl>\n"
+"Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/"
+"blocks-browse/pl_PL/>\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.block.browse.displayName"
+msgstr "Dział przeglądu"
+
+msgid "plugins.block.browse.description"
+msgstr "Wtyczka zawiera pasek boczny narzędzi przeglądania."
+
+msgid "plugins.block.browse.settings.title"
+msgstr "Przeglądaj według"
+
+msgid "plugins.block.browse"
+msgstr "Przeglądaj"
+
+msgid "plugins.block.browse.newReleases"
+msgstr "Nowe wydania"
+
+msgid "plugins.block.browse.series"
+msgstr "Serie"
+
+msgid "plugins.block.browse.category"
+msgstr "Kategorie"
+
+msgid "plugins.block.browse.settings"
+msgstr "Ustawienia"

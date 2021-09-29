@@ -1,12 +1,13 @@
+# Jordi LC <jordi.lacruz@uab.cat>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-08T17:42:31+00:00\n"
-"PO-Revision-Date: 2020-02-28 23:00+0000\n"
+"PO-Revision-Date: 2021-08-04 11:04+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/"
-"themes-default/es/>\n"
+"themes-default/es_ES/>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,7 +19,7 @@ msgid "plugins.themes.default.name"
 msgstr "Tema predeterminado"
 
 msgid "plugins.themes.default.description"
-msgstr "El tema predeterminado se aplica en esta parte."
+msgstr "Este tema implementa el tema predeterminado."
 
 msgid "plugins.themes.default.option.typography.label"
 msgstr "Tipografía"
@@ -64,3 +65,11 @@ msgstr ""
 
 msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
 msgstr "Imagen de fondo de la cabecera"
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
+msgstr ""
+"Añadir una lista de enlaces a todas las series de la editorial en la página "
+"del catálogo"
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
+msgstr "Mostrar series"

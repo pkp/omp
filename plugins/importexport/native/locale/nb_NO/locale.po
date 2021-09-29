@@ -1,0 +1,48 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-01-20 02:01+0000\n"
+"Last-Translator: Eirik Hanssen <eirikh@oslomet.no>\n"
+"Language-Team: Norwegian Bokmål <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-native/nb_NO/>\n"
+"Language: nb_NO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.importexport.native.error.unknownSeries"
+msgstr "Ukjent serie {$param}"
+
+msgid "plugins.importexport.native.onix30.pressMissingFields"
+msgstr ""
+"Denne utgiveren mangler nødvendig informasjon om ONIX-metadataene som brukes "
+"til denne eksporten. Gå til  <a href=\"{$url}\">Press Settings</a> og legg "
+"inn den manglende informasjonen."
+
+msgid "plugins.importexport.native.importComplete"
+msgstr "Importen var vellykket. Disse elementene ble importert:"
+
+msgid "plugins.inportexport.native.uploadFile"
+msgstr "Last opp en fil under «Import» for å fortsette."
+
+msgid "plugins.importexport.native.results"
+msgstr "Resultater"
+
+msgid "plugins.importexport.native.exportSubmissionsSelect"
+msgstr "Velg artikler"
+
+msgid "plugins.importexport.native.export"
+msgstr "Eksporter"
+
+msgid "plugins.importexport.native.import.instructions"
+msgstr "Last opp en XML-fil for import"
+
+msgid "plugins.importexport.native.import"
+msgstr "Importer"
+
+msgid "plugins.importexport.native.description"
+msgstr "Importer og eksporter artikler og hefter i OJS lokale XML format."
+
+msgid "plugins.importexport.native.displayName"
+msgstr "Programtillegg for Lokal XML"

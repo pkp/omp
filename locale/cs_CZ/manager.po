@@ -1,0 +1,955 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-05-09 14:35+0000\n"
+"Last-Translator: Jiří Podhorecký <j.podhorecky@gmail.com>\n"
+"Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/manager/cs_CZ/"
+">\n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "manager.setup.lists.success"
+msgstr "Tento seznam nastavení byl aktualizován."
+
+msgid "manager.series.indexed"
+msgstr "Indexované"
+
+msgid "manager.series.open"
+msgstr "Otevřít příspěvky"
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Toto bude výchozí jazyk pro stránky vašeho nakladatelství."
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Promiňte, žádné další jazyky nejsou dostupné. Pokud chcete v nakladatelství "
+"používat další jazyky, kontaktujte svého administrátora stránek."
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"Toto nahradí všechna nastavení specifická pro danou lokalizaci v "
+"nakladatelství"
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Vyberte uživatele, který má být sloučen s jiným uživatelským účtem (např. "
+"když má někdo dva uživatelské účty). Účet vybraný jako první bude smazán a "
+"jeho podání, úkoly atd. budou přiřazeny druhému účtu."
+
+msgid "manager.people.enrollSyncPress"
+msgstr "S tiskem"
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Registrace stávajícího uživatele"
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Odebrat tohoto uživatele z tohoto tisku? Tato akce odhlásí uživatele ze "
+"všech rolí v rámci tohoto tisku."
+
+msgid "manager.people.allUsers"
+msgstr "Všichni zapsaní uživatelé"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Zapsat uživatele z této stránky do tohoto tisku"
+
+msgid "manager.people.allPresses"
+msgstr "Všechny tisky"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Uživatelé zapsaní do tohoto tisku"
+
+msgid "manager.users.selectRole"
+msgstr "Vyberte roli"
+
+msgid "manager.users.currentRoles"
+msgstr "Současné role"
+
+msgid "manager.users.availableRoles"
+msgstr "Dostupné role"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Nástroje pro generování zpráv týkajících se statistik používání (zobrazení "
+"stránek indexu katalogu, zobrazení stránek abstraktů monografií, stažení "
+"souborů monografií)"
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Všechny nástroje specifické pro import a export dat (tisky, monografie, "
+"uživatelé)"
+
+msgid "manager.tools"
+msgstr "Nástroje"
+
+msgid "manager.statistics.reports.filters.byObject.description"
+msgstr ""
+"Zúžení výsledků podle typu objektu (tisk, série, monografie, typy souborů) a/"
+"nebo podle jednoho či více identifikátorů objektu."
+
+msgid "manager.statistics.reports.filters.byContext.description"
+msgstr "Zúžení výsledků podle kontextu (série a/nebo monografie)."
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Zobrazení hlavní stránky tisku"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Zobrazení hlavní stránky série"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Abstrakt monografie a soubory ke stažení"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Zobrazení abstraktu monografie"
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Soubory monografií ke stažení"
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Všechna nastavení specifická pro proces distribuce (oznámení, indexování, "
+"archivace, platby, nástroje pro čtení)."
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Toto není platný typ kódu vydavatele."
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Typ kódu vydavatele"
+
+msgid "manager.settings.publisherCode"
+msgstr "Kód vydavatele"
+
+msgid "manager.settings.location"
+msgstr "Zeměpisná poloha"
+
+msgid "manager.settings.publisher"
+msgstr "Název vydavatele Tisku"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Tato pole jsou vyžadována pro zveřejnění platných <a href=\""
+"https://en.wikipedia.org/wiki/ONIX_for_Books\">metadat systému ONIX</a>."
+
+msgid "manager.settings.publisher.identity"
+msgstr "Identita vydavatele"
+
+msgid "manager.settings.press"
+msgstr "Tisk"
+
+msgid "manager.settings.pressSettings"
+msgstr "Nastavení Tisku"
+
+msgid "manager.settings"
+msgstr "Nastavení"
+
+msgid "manager.payment.success"
+msgstr "Nastavení plateb bylo aktualizováno."
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Pro tento tisk budou povoleny platby. Všimněte si, že uživatelé se budou "
+"muset přihlásit, aby mohli provádět platby."
+
+msgid "manager.payment.generalOptions"
+msgstr "Obecné možnosti"
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"Alespoň jedna série musí být aktivní. Navštivte nastavení pracovního postupu "
+"a zakažte všechna odesílání do tohoto tisku."
+
+msgid "manager.series.restricted"
+msgstr "Neumožnit autorům zasílat příspěvky přímo do této série."
+
+msgid "manager.series.seriesTitle"
+msgstr "Název série"
+
+msgid "manager.series.existingUsers"
+msgstr "Stávající uživatelé"
+
+msgid "manager.series.noneCreated"
+msgstr "Nebyly vytvořeny žádné série."
+
+msgid "manager.series.form.titleRequired"
+msgstr "Pro sérii je vyžadován název."
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "Pro sérii je vyžadován zkrácený název."
+
+msgid "manager.series.unassigned"
+msgstr "Dostupní editoři sérií"
+
+msgid "manager.series.hideAbout"
+msgstr "Vynechejte tuto sérii v části O tisku."
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Přidejte k této sérii editor řady z dostupných editorů Serií. Po přidání "
+"určete, zda bude editor série dohlížet na RECENZI (vzájemné hodnocení) a/"
+"nebo REDAKCI (kopírování, sazbu a korektury) příspěvků zasílaných do této "
+"série. Redaktory seriálů vytvoříte kliknutím na <a href=\"{$seriesEditorsUrl}"
+"\">Editoři Serií</a> v části Role ve Správě tisku."
+
+msgid "manager.series.assigned"
+msgstr "Editoři této série"
+
+msgid "manager.series.policy"
+msgstr "Popis série"
+
+msgid "manager.series.create"
+msgstr "Vytvořit sérii"
+
+msgid "manager.series.book"
+msgstr "Knižní série"
+
+msgid "manager.series.disableComments"
+msgstr "Zakázat komentáře čtenářů k této sérii."
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Nevyžadovat abstrakty"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Příspěvky do této série"
+
+msgid "manager.series.submissionReview"
+msgstr "Nebude recenzováno"
+
+msgid "manager.series.readingTools"
+msgstr "Nástroje pro čtení"
+
+msgid "manager.series.confirmDelete"
+msgstr "Opravdu chcete tuto sérii trvale odstranit?"
+
+msgid "manager.series.editorRestriction"
+msgstr "Položky mohou zadávat pouze editoři a editoři Serie."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Nebudou zahrnuty do indexace tisku"
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Ujistěte se, že jste zvolili platný formulář recenze."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Ujistěte se, že je u každého přiřazení Editor Serie zaškrtnuto alespoň jedno "
+"políčko."
+
+msgid "manager.setup.securitySettings"
+msgstr "Nastavení přístupu a zabezpečení"
+
+msgid "manager.setup.sectionsDescription"
+msgstr ""
+"Chcete-li vytvořit nebo upravit sekce pro tisk (např. Monografie, Recenze "
+"knih atd.), přejděte do sekce Správa sekcí.<br /><br />Autoři při odesílání "
+"položek do tisku určí..."
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr ""
+"(Pokud sekce nejsou přidány, jsou položky standardně odesílány do sekce "
+"Monografie.)"
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr "Bylo aktualizováno nastavení indexu vyhledávače."
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr ""
+"Pomozte vyhledávačům, jako je Google, objevit a zobrazit vaše stránky. "
+"Doporučujeme vám odeslat svou <a href=\"{$sitemapUrl}\" target=\"_blank\">"
+"mapu stránek</a>."
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Indexování vyhledávání"
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Uveďte stručný popis tisku (50-300 znaků), který mohou vyhledávače zobrazit "
+"při výpisu tisku ve výsledcích vyhledávání."
+
+msgid "manager.setup.reviewProcessStandardDescription"
+msgstr ""
+"Editoři zašlou vybraným recenzentům e-mailem název a abstrakt příspěvku a "
+"také pozvánku k přihlášení na webové stránky tisku, aby mohli recenzi "
+"dokončit. Recenzenti vstoupí na webové stránky tisku, aby odsouhlasili "
+"provedení recenze, stáhli si předložené příspěvky, zaslali své připomínky a "
+"vybrali doporučení."
+
+msgid "manager.setup.reviewProcessStandard"
+msgstr "Standardní recenzní proces"
+
+msgid "manager.setup.reviewProcessEmail"
+msgstr "E-mailová příloha recenzního procesu"
+
+msgid "manager.setup.reviewProcessDescription"
+msgstr ""
+"OMP podporuje dva modely řízení recenzního procesu. Standardní recenzní "
+"proces je doporučován, protože provádí recenzenty celým procesem, zajišťuje "
+"kompletní historii recenzí pro každé podání a využívá výhod automatického "
+"upozornění na upomínky a standardních doporučení pro podání (Přijmout; "
+"Přijmout s revizemi; Předat k přezkoumání; Předat jinam; Zamítnout; Viz "
+"komentáře).<br /><br />Zvolte jednu z následujících možností:"
+
+msgid "manager.setup.reviewProcess"
+msgstr "Recenzní proces"
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Zásady recenzování"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Připomínky pro recenzenty"
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Hodnocení recenzenta"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr "V e-mailové pozvánce pro recenzenty uveďte zabezpečený odkaz."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
+msgstr ""
+"Recenzentům lze v e-mailové pozvánce zaslat zabezpečený odkaz, který jim "
+"umožní přístup k recenzi bez přihlášení. Přístup k ostatním stránkám "
+"vyžaduje, aby se přihlásili."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Přístup recenzenta jedním kliknutím"
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Přístup recenzenta"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr ""
+"Recenzenti budou mít přístup k předloženému souboru pouze po odsouhlasení "
+"jeho recenze."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Omezení přístupu k souborům"
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr ""
+"Editoři budou po každé recenzi hodnotit recenzenty na pětibodové stupnici "
+"kvality."
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr ""
+"Chcete-li tyto možnosti aktivovat, musí správce webu povolit možnost "
+"<tt>scheduled_tasks</tt> v konfiguračním souboru OMP. Pro podporu této "
+"funkce může být nutná další konfigurace serveru (což nemusí být možné na "
+"všech serverech), jak je uvedeno v dokumentaci k OMP."
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Automatické e-mailové upomínky"
+
+msgid "manager.setup.reviewOptions"
+msgstr "Možnosti recenze"
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Pokyny pro interní hodnocení"
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr ""
+"Poskytněte externím recenzentům kritéria pro posouzení vhodnosti příspěvku "
+"pro zveřejnění v tisku, která mohou zahrnovat pokyny pro přípravu efektivní "
+"a užitečné recenze. Recenzenti budou mít možnost poskytnout připomínky "
+"určené autorovi a redaktorovi, jakož i samostatné připomínky pouze pro "
+"redaktora."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Pokyny pro externí hodnocení"
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr ""
+"Pro zobrazení tiskových stránek musí být uživatelé zaregistrováni a "
+"přihlášeni."
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr ""
+"Pro zobrazení obsahu s otevřeným přístupem musí být uživatelé zaregistrováni "
+"a přihlášeni."
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Pokyny pro rozvržení referenčního propojení"
+
+msgid "manager.setup.referenceLinking"
+msgstr "Propojení odkazů"
+
+msgid "manager.setup.publisherDescription"
+msgstr "Název organizace, která tisk vydává, se objeví v části O tisku."
+
+msgid "manager.setup.publisher"
+msgstr "Vydavatel"
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr ""
+"Položky tisku mohou být publikovány souhrnně jako součást monografie s "
+"vlastním obsahem. Případně lze jednotlivé položky publikovat, jakmile jsou "
+"hotové, a to tak, že je přidáte do \"aktuálního\" svazku s Obsahem. "
+"Poskytněte čtenářům v části O tisku prohlášení o systému, který bude tento "
+"tisk používat, a o předpokládané frekvenci jeho vydávání."
+
+msgid "manager.setup.proofreading"
+msgstr "Korektoři"
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr ""
+"Pokyny pro korektury budou zpřístupněny korektorům, autorům, editorům "
+"layoutu a editorům sekcí ve fázi editace příspěvků. Níže je uvedena výchozí "
+"sada pokynů v jazyce HTML, kterou může Správce tisku kdykoli upravit nebo "
+"nahradit (v jazyce HTML nebo v prostém textu)."
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Pokyny ke korekturám"
+
+msgid "manager.setup.printIssn"
+msgstr "ISSN Tisku"
+
+msgid "manager.setup.contextTitle"
+msgstr "Název Tisku"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr "Malé logo nebo vyobrazení tisku, které lze použít v seznamech tisků."
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Miniatura Tisku"
+
+msgid "manager.setup.pressTheme"
+msgstr "Téma tisku"
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Nesprávný formát stylopisu. Přijatelný formát je .css."
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Nastavení tisku bylo aktualizováno."
+
+msgid "manager.setup.pressPolicies"
+msgstr "Krok 2. zásady Tisku"
+
+msgid "manager.setup.pageHeader"
+msgstr "Záhlaví strany tisku"
+
+msgid "manager.setup.layout"
+msgstr "Rozvržení tisku"
+
+msgid "manager.setup.selectCountry"
+msgstr ""
+"Vyberte zemi, ve které se tisk nachází, nebo zemi poštovní adresy tisku či "
+"vydavatele."
+
+msgid "manager.setup.contextInitials"
+msgstr "Iniciály tisku"
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr ""
+"Domovská stránka tisku se ve výchozím nastavení skládá z navigačních odkazů. "
+"Další obsah domovské stránky lze doplnit pomocí jedné nebo všech "
+"následujících možností, které se zobrazí v uvedeném pořadí."
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Obsah úvodní stránky tisku"
+
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+"Domovská stránka tisku se ve výchozím nastavení skládá z navigačních odkazů. "
+"Další obsah domovské stránky lze doplnit pomocí jedné nebo všech "
+"následujících možností, které se zobrazí v uvedeném pořadí."
+
+msgid "manager.setup.homepageContent"
+msgstr "Obsah úvodní stránky tisku"
+
+msgid "manager.setup.pressArchiving"
+msgstr "Archivace tisku"
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+"Uveďte veškeré informace o vašem tisku, které by mohly zajímat čtenáře, "
+"autory nebo recenzenty. Mohlo by se jednat o zásady otevřeného přístupu, "
+"zaměření a rozsah tisku, upozornění na autorská práva, informace o "
+"sponzorování, historii tisku a prohlášení o ochraně osobních údajů."
+
+msgid "manager.setup.aboutPress"
+msgstr "O tisku"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "Stručný popis vašeho tisku."
+
+msgid "manager.setup.pressDescription"
+msgstr "Shrnutí pro tisk"
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+"Na této stránce lze konfigurovat různé součásti vzhledu tisku, včetně prvků "
+"záhlaví a zápatí, stylu a motivu tisku a způsobu zobrazení seznamů informací "
+"uživatelům."
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "Prohlášení o ochraně osobních údajů bylo aktualizováno."
+
+msgid "manager.setup.policies.description"
+msgstr ""
+"Zaměření, vzájemné hodnocení, sekce, soukromí, zabezpečení a další informace."
+
+msgid "manager.setup.policies"
+msgstr "Zásady"
+
+#, fuzzy
+msgid "manager.setup.onlineIssn"
+msgstr "Online ISSN"
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Přístup k obsahu tisku"
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Omezit počet odkazů, které se mají zobrazit na následující stránky v seznamu."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Odkazy na stránky"
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+"Soubory HTML, PDF atd. připraví redaktor nebo redaktor sekce, kterému je "
+"příspěvek přidělen."
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+"Při použití e-mailu Upozornit autora uveďte u příspěvků s více autory e-"
+"mailové adresy všech spoluautorů, nikoli pouze odesílajícího uživatele."
+
+msgid "manager.setup.note"
+msgstr "Poznámka"
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Není nahrán žádný stylopis."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Nebyl nahrán žádný soubor s obrázkem."
+
+msgid "manager.setup.masthead.success"
+msgstr "Údaje v záhlaví tohoto tisku byly aktualizovány."
+
+msgid "manager.setup.managingThePress"
+msgstr "Krok 4. Správa nastavení"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Nastavení správy a publikování"
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Správa základních redakčních kroků"
+
+msgid "manager.setup.management.description"
+msgstr ""
+"Přístup a zabezpečení, plánování, oznámení, kopírování, rozvržení a "
+"korektury."
+
+msgid "manager.setup.settings"
+msgstr "Nastavení"
+
+msgid "manager.setup.look.description"
+msgstr ""
+"Záhlaví domovské stránky, obsah, záhlaví tisku, zápatí, navigační panel a "
+"stylopis."
+
+msgid "manager.setup.look"
+msgstr "Vzhled a funkce"
+
+msgid "manager.setup.lists"
+msgstr "Seznamy"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Nadpis"
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Soubor šablony"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"Pro každý ze standardních formátů publikovaných v tisku (např. monografie, "
+"recenze knihy atd.) lze nahrát šablony, které se zobrazí v modulu Rozvržení, "
+"a to v libovolném formátu souboru (např. pdf, doc atd.) s přidanými "
+"poznámkami určujícími písmo, velikost, okraje atd., které slouží jako "
+"vodítko pro editory a korektory rozvržení."
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Šablony rozvržení"
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"Pokyny k rozvržení lze připravit pro formátování publikačních položek v "
+"tisku a zadat je níže v HTML nebo v prostém textu. Budou k dispozici "
+"editorům rozvržení a editorům sekcí na stránce pro úpravu každého podání. ("
+"Vzhledem k tomu, že každý tisk může používat vlastní formáty souborů, "
+"bibliografické standardy, styly atd., není k dispozici výchozí sada pokynů.)"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Pokyny k rozvržení"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Editoři rozvržení"
+
+msgid "manager.setup.labelName"
+msgstr "Název štítku"
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Uveďte stručný popis svého tisku a jmenujte redaktory, ředitele a další "
+"členy redakčního týmu."
+
+msgid "manager.setup.keyInfo"
+msgstr "Klíčová informace"
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Omezit počet položek (například podání, uživatelů nebo úprav úkolů), které "
+"se mají zobrazit v seznamu před zobrazením dalších položek na jiné stránce."
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Položek na stránku"
+
+msgid "manager.setup.institution"
+msgstr "Instituce"
+
+msgid "manager.setup.information.success"
+msgstr "Informace o tomto tisku byly aktualizovány."
+
+msgid "manager.setup.information.forReaders"
+msgstr "Pro čtenáře"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Pro knihovníky"
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Pro autory"
+
+msgid "manager.setup.information.description"
+msgstr ""
+"Stručný popis tisku pro knihovníky a budoucí autory a čtenáře. Ty jsou k "
+"dispozici v postranním panelu webu po přidání bloku Informace."
+
+msgid "manager.setup.information"
+msgstr "Informace"
+
+msgid "manager.setup.identity"
+msgstr "Identita tisku"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Krok 3. Příprava pracovního postupu"
+
+msgid "manager.setup.guidelines"
+msgstr "Pokyny"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Krok 1. Zjištění podrobností"
+
+msgid "manager.setup.generalInformation"
+msgstr "Obecné informace"
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Je vyžadován název podpory."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "Je vyžadován e-mail podpory."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Požaduje se počet recenzentů na jedno podání."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Je vyžadováno jméno primárního kontaktu."
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "Je vyžadován primární kontaktní e-mail."
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"OMP dodržuje <a href=\"http://www.openarchives.org/\" target=\"_blank\">"
+"Protokol pro sběr metadat iniciativy Open Archives</a>, který je novým "
+"standardem pro poskytování dobře indexovaného přístupu k elektronickým "
+"výzkumným zdrojům v celosvětovém měřítku. Autoři budou používat podobnou "
+"šablonu pro poskytování metadat pro svá podání. Tiskový manažer by měl "
+"vybrat kategorie pro indexaci a předložit autorům příslušné příklady, které "
+"jim pomohou při indexaci jejich práce, přičemž termíny oddělí středníkem ("
+"např. termín1; termín2). Záznamy by měly být uváděny jako příklady pomocí \""
+"Např.\" nebo \"Například\"."
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Pro autory k indexování jejich děl"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>EXAMPLE HTML DATA</strong>"
+
+msgid "manager.setup.focusScope"
+msgstr "Zaměření a rozsah"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr ""
+"Popište autorům, čtenářům a knihovníkům nabídku monografií a dalších "
+"publikací, které bude nakladatelství vydávat."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Zaměření a rozsah tisku"
+
+msgid "manager.setup.enableUserRegistration"
+msgstr "Návštěvníci si mohou u tisku zaregistrovat uživatelský účet."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+"Vlastní identifikátory budou použity k identifikaci galerií (např. souborů "
+"HTML nebo PDF) pro publikované položky."
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr "K identifikaci zveřejněných položek se použijí vlastní identifikátory."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Povolení veřejného zobrazení tohoto tisku na webu"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Kolik oznámení se má zobrazit na domovské stránce. Pokud nechcete zobrazovat "
+"žádná, nechte tuto položku prázdnou."
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Zobrazení na úvodní stránce"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"K informování čtenářů o novinkách a událostech mohou být zveřejňována "
+"oznámení. Zveřejněná oznámení se objeví na stránce Oznámení."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Povolit oznámení"
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"Připravené e-maily, které systém odesílá jménem tisku, budou na konci "
+"opatřeny následujícím podpisem."
+
+msgid "manager.setup.emailSignature"
+msgstr "Podpis"
+
+msgid "manager.setup.emails"
+msgstr "Identifikace e-mailu"
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Aby bylo možné odesílat nedoručitelné e-maily na kontrolní adresu, musí "
+"správce webu povolit v konfiguračním souboru webu možnost "
+"<code>allow_envelope_sender</code>. Může být vyžadována konfigurace serveru, "
+"jak je uvedeno v dokumentaci OMP."
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"V případě nedoručitelných e-mailů bude na tuto adresu zaslána chybová zpráva."
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Kontrolní adresa"
+
+msgid "manager.setup.editorDecision"
+msgstr "Rozhodnutí editora"
+
+msgid "manager.setup.doiPrefixDescription"
+msgstr ""
+"Předčíslí DOI (Digital Object Identifier) přiděluje <a href=\""
+"http://www.crossref.org\" target=\"_blank\">CrossRef</a> a je ve formátu "
+"10.xxxx (např. 10.1234)."
+
+msgid "manager.setup.doiPrefix"
+msgstr "Předčíslí DOI"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Nové publikace"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Zobrazení nových verzí na domovské stránce"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Upozornění"
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Zobrazení zvýrazněných knih na domovské stránce"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Doporučené knihy"
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Zobrazení doporučených knih na domovské stránce"
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Obsah úvodní stránky"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Přidejte obsah aktuální monografie (je-li k dispozici)."
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr "Uveďte příklady relevantních akademických disciplín pro tento tisk"
+
+msgid "manager.setup.disciplineExamples"
+msgstr ""
+"(např. historie, pedagogika, sociologie, psychologie, kulturní studia, právo)"
+
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Užitečné, pokud tisk překračuje hranice oborů a/nebo autoři předkládají "
+"multidisciplinární položky."
+
+msgid "manager.setup.discipline"
+msgstr "Akademický obor a podobory"
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+"Tiskový manažer zaregistruje všechny uživatelské účty. Redaktoři, nebo "
+"redaktoři sekcí mohou registrovat uživatelské účty pro recenzenty."
+
+msgid "manager.setup.details.description"
+msgstr "Název tisku, kontakty, sponzoři a vyhledávače."
+
+msgid "manager.setup.details"
+msgstr "Detaily"
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Vlastní značky záhlaví HTML, které se vkládají do záhlaví každé stránky ("
+"např. značky META)."
+
+msgid "manager.setup.customTags"
+msgstr "Vlastní značky"
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Krok 5. Přizpůsobení vzhledu a chování"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Obrázky budou zmenšeny, pokud jsou větší než tato velikost, ale nikdy "
+"nebudou zvětšeny nebo roztaženy na tyto rozměry."
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Maximální šířka obrázku na obálce"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Maximální výška obrázku na obálce"
+
+msgid "manager.setup.coverage"
+msgstr "Pokrytí"
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Upozornění na autorská práva"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+"Pokyny pro kopírování budou zpřístupněny kopírovacím redaktorům, autorům a "
+"editorům sekcí ve fázi editace příspěvků. Níže je uvedena výchozí sada "
+"pokynů v jazyce HTML, kterou může správce tisku kdykoli upravit nebo "
+"nahradit (v jazyce HTML nebo prostém textu)."
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Pokyny ke kopírování"
+
+msgid "manager.setup.copyediting"
+msgstr "Copyeditoři"
+
+msgid "manager.setup.contextSummary"
+msgstr "Shrnutí tisku"
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Uveďte veškeré informace o vašem tisku, které by mohly zajímat čtenáře, "
+"autory nebo recenzenty. Může se jednat o zásady otevřeného přístupu, "
+"zaměření a rozsah tisku, informace o sponzorování a historii tisku."
+
+msgid "manager.setup.contextAbout"
+msgstr "O tisku"
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Zobrazí se v rubrice O tisku) "
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+"Zadejte jakékoli další informace, které by se měly zobrazit čtenářům na "
+"stránce Oznámení."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Dodatečné informace"
+
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Mohou být zveřejňována oznámení, která čtenáře informují o novinkách a "
+"událostech v tisku. Zveřejněná oznámení se objeví na stránce Oznámení."
+
+msgid "manager.setup.announcements.success"
+msgstr "Nastavení oznámení bylo aktualizováno."
+
+msgid "manager.setup.announcements"
+msgstr "Oznámení"
+
+msgid "manager.setup.addSponsor"
+msgstr "Přidat sponzorskou organizaci"
+
+msgid "manager.setup.addNavItem"
+msgstr "Přidat položku"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Přidání položky do sekce \"O tisku\""
+
+msgid "manager.setup.addItem"
+msgstr "Přidat položku"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Přidat položku kontrolního seznamu"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Přidat O položce"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Obsah"
+
+msgid "manager.setup"
+msgstr "Nastavení"
+
+msgid "manager.pressManagement"
+msgstr "Správa tisku"
+
+msgid "user.authorization.pluginLevel"
+msgstr "Nemáte dostatečná oprávnění ke správě tohoto zásuvného modulu."
+
+msgid "manager.system.payments"
+msgstr "Platby"
+
+msgid "manager.system.readingTools"
+msgstr "Čtecí nástroje"
+
+msgid "manager.system.reviewForms"
+msgstr "Recenzní formuláře"
+
+msgid "manager.system.archiving"
+msgstr "Archivace"
+
+msgid "manager.system"
+msgstr "Nastavení systému"
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Omlouváme se, ale k tomuto uživateli nemáte práva správce. Důvodem může být:"
+"\n"
+"\t\t<ul>\n"
+"\t\t\t<li>Uživatel je správcem webu</li>.\n"
+"\t\t\t<li>Uživatel je aktivní v tiskovinách, které nespravujete</li>.\n"
+"\t\t</ul>\n"
+"\tTuto úlohu musí provést správce webu.\n"
+"\t"
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Zakázat tohoto uživatele? Tím se uživateli zabrání v přihlášení do systému.\n"
+"\n"
+"Volitelně můžete uživateli zadat důvod zakázání jeho účtu."
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"Synchronizace zápisu zapíše všechny uživatele zapsané v zadané roli v "
+"zadaném tisku do stejné role v tomto tisku. Tato funkce umožňuje "
+"synchronizovat společnou sadu uživatelů (např. Recenzenti) mezi jednotlivými "
+"tisky."
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Vyberte uživatele, kterému chcete přiřadit autorství předchozího uživatele, "
+"jeho editační úkoly atd."

@@ -1,0 +1,153 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-02-16 19:22+0000\n"
+"Last-Translator: Real Academia Galega <reacagal@gmail.com>\n"
+"Language-Team: Galician <http://translate.pkp.sfu.ca/projects/omp/admin/"
+"gl_ES/>\n"
+"Language: gl_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgstr ""
+"A función de correo electrónico masivo desactivouse para esta editorial. "
+"Habilita esta función en <a href=\"{$siteSettingsUrl}\">Administrador > "
+"Configuración do sitio</a>."
+
+msgid "admin.settings.disableBulkEmailRoles.description"
+msgstr ""
+"Un xestor editorial non poderá enviar correos electrónicos masivos a ningún "
+"dos roles seleccionados a continuación. Use esta configuración para limitar "
+"o abuso da función de notificación por correo electrónico. Por exemplo, pode "
+"ser máis seguro deshabilitar os correos electrónicos masivos para lectores, "
+"autores ou outros grandes grupos de usuarios que non consentiron recibir "
+"tales correos electrónicos.<br><br>A función de correo electrónico masivo "
+"pode deshabilitarse completamente para esta editorial en <a href = \""
+"{$siteSettingsUrl}\">Administrador > Configuración do sitio</a>."
+
+msgid "admin.settings.enableBulkEmails.description"
+msgstr ""
+"Seleccione as editoriais aloxadas ás que se debería permitir enviar correos "
+"electrónicos masivos. Cando esta función estea habilitada, un xestor "
+"editorial poderá enviar un correo electrónico a todos os usuarios "
+"rexistrados na súa editorial. <br> <br> O uso indebido desta función para "
+"enviar correos electrónicos non solicitados pode violar as leis anti-spam "
+"nalgunhas xurisdicións e os correos electrónicos poden quedar bloqueados "
+"como spam. Busque asesoramento técnico antes de habilitar esta función e "
+"considere a posibilidade de consultar cos xestores da editorial para "
+"asegurarse de que se usa adecuadamente. <br> <br> Pódense activar máis "
+"restricións nesta función para cada editorial visitando o seu asistente de "
+"configuración na lista de <a href=\"{$hostedContextsUrl}\">Editoriais "
+"aloxadas</a>."
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>NOTA!</h4>\n"
+"<p> O sistema non puido sobrescribir o arquivo de configuración. Para "
+"aplicar os cambios da configuración debe abrir <tt>config.inc.php</tt> nun "
+"editor de texto axeitado e substituír o seu contido polo contido do campo de "
+"texto a continuación.</p>"
+
+msgid "admin.presses.addPress"
+msgstr "Engadir editorial"
+
+msgid "admin.contexts.contextDescription"
+msgstr "Detalles da editorial"
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} modificouse correctamente."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} creouse correctamente."
+
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr "O idioma principal debe ser un dos idiomas compatibles coa editorial."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "A ruta seleccionada xa está a ser usada por outra editorial."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"A ruta só pode incluír letras, números, guións e guións baixos. Debe comezar "
+"e rematar cunha letra ou número."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "É necesaria unha ruta."
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "É necesario un título."
+
+msgid "admin.contexts.create"
+msgstr "Crear editorial"
+
+msgid "admin.presses.noneCreated"
+msgstr "Non se creou ningunha editorial."
+
+msgid "admin.presses.pressSettings"
+msgstr "Axustes da editorial"
+
+msgid "admin.systemConfiguration"
+msgstr "Configuración OMP"
+
+msgid "admin.systemVersion"
+msgstr "Versión OMP"
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Seguro que queres desactivar este idioma? Isto pode afectar as editoriais "
+"aloxadas que o empregan actualmente."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Seleccione calquera idioma para instalar soporte neste sistema. Os idiomas "
+"deben instalarse antes de que poidan ser empregados polas editoriais "
+"aloxadas. Consulte a documentación OMP para obter información sobre como "
+"engadir soporte para novos idiomas."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"Seguro que queres desinstalar este idioma? Isto pode afectar as editoriais "
+"aloxadas que empregan actualmente o idioma."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Os idiomas marcados poden estar incompletos."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr ""
+"Seleccione todas as configuracións locais que admite no sitio. As "
+"configuracións seleccionadas estarán dispoñibles para o seu uso en todas as "
+"editoriais aloxadas e tamén aparecerán no menú de selección de idioma que "
+"figura en cada páxina (que se pode anular nas páxinas específicas da "
+"editorial). Se non se seleccionan varias configuracións locais, o menú de "
+"alternancia de idioma non aparecerá e os axustes de idioma estendidos non "
+"estarán dispoñibles para as editoriais."
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr ""
+"Este será o idioma predeterminado para o sitio e as editoriais aloxadas."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Non redirixir"
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"As solicitudes da páxina principal redirixiranse a esta editorial. Isto pode "
+"ser útil se o sitio só aloxa unha editorial, por exemplo."
+
+msgid "admin.settings.redirect"
+msgstr "Redirección das editoriais"
+
+msgid "admin.settings.info.success"
+msgstr "A información do sitio actualizouse con éxito."
+
+msgid "admin.settings.config.success"
+msgstr "A configuración do sitio actualizouse correctamente."
+
+msgid "admin.settings.appearance.success"
+msgstr "A configuración do aspecto do sitio actualizouse correctamente."
+
+msgid "admin.hostedContexts"
+msgstr "Editoriais aloxadas"

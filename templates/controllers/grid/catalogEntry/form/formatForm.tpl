@@ -1,8 +1,8 @@
 {**
  * templates/controllers/grid/catalogEntry/form/formatForm.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Assigned Publication Format form.
@@ -23,7 +23,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="addPublicationFormatForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="updateFormat"}">
+<form class="pkp_form" id="addPublicationFormatForm" method="post" action="{url router=PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="updateFormat"}">
 	{csrf}
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="representationId" value="{$representationId|escape}" />
@@ -39,11 +39,15 @@
 		{fbvFormSection for="remotelyHostedContent" list=true}
 			{fbvElement type="checkbox" label="grid.catalogEntry.remotelyHostedContent" id="remotelyHostedContent"}
 			<div id="remote" style="display:none">
-				{fbvElement type="text" id="remoteURL" label="grid.catalogEntry.remoteURL" value=$remoteURL}
+				{fbvElement type="url" id="remoteURL" label="grid.catalogEntry.remoteURL" value=$remoteURL}
 			</div>
 		{/fbvFormSection}
 		{fbvFormSection id="urlPathSection" title="publication.urlPath"}
 			{fbvElement type="text" label="publication.urlPath.description" value=$urlPath id="urlPath" size=$fbvStyles.size.MEDIUM inline=true}
+		{/fbvFormSection}
+		{fbvFormSection for="isbn" title="grid.catalogEntry.isbn"}
+			{fbvElement type="text" label="grid.catalogEntry.isbn13.description" value=$isbn13 id="isbn13" size=$fbvStyles.size.MEDIUM inline=true}
+			{fbvElement type="text" label="grid.catalogEntry.isbn10.description" value=$isbn10 id="isbn10" size=$fbvStyles.size.MEDIUM inline=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>

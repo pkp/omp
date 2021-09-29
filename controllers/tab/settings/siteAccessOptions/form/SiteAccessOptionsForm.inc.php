@@ -3,8 +3,8 @@
 /**
  * @file controllers/tab/settings/siteAccessOptions/form/SiteAccessOptionsForm.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SiteAccessOptionsForm
@@ -15,21 +15,19 @@
 
 import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
 
-class SiteAccessOptionsForm extends ContextSettingsForm {
+class SiteAccessOptionsForm extends ContextSettingsForm
+{
+    /**
+     * Constructor.
+     */
+    public function __construct($wizardMode = false)
+    {
+        $settings = [
+            'disableUserReg' => 'bool',
+            'restrictSiteAccess' => 'bool',
+            'restrictMonographAccess' => 'bool',
+        ];
 
-	/**
-	 * Constructor.
-	 */
-	function __construct($wizardMode = false) {
-		$settings = array(
-			'disableUserReg' => 'bool',
-			'restrictSiteAccess' => 'bool',
-			'restrictMonographAccess' => 'bool',
-		);
-
-		parent::__construct($settings, 'controllers/tab/settings/siteAccessOptions/form/siteAccessOptionsForm.tpl', $wizardMode);
-	}
-
+        parent::__construct($settings, 'controllers/tab/settings/siteAccessOptions/form/siteAccessOptionsForm.tpl', $wizardMode);
+    }
 }
-
-

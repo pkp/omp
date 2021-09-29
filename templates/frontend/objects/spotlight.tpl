@@ -1,8 +1,8 @@
 {**
  * templates/frontend/objects/spotlight.tpl.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Display a spotlight
@@ -31,7 +31,7 @@
 			{$spotlight->getLocalizedTitle()|escape}
 		</h3>
 		<div class="type">
-			{if $assocType == $smarty.const.SPOTLIGHT_TYPE_SERIES}
+			{if $assocType == \APP\spotlight\Spotlight::SPOTLIGHT_TYPE_SERIES}
 				{translate key="series.series"}
 			{else}
 				{translate key="spotlight"}

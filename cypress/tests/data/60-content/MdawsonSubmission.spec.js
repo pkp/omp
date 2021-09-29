@@ -1,8 +1,8 @@
 /**
  * @file cypress/tests/data/60-content/MdawsonSubmission.spec.js
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2000-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @ingroup tests_data
@@ -82,7 +82,7 @@ describe('Data suite tests', function() {
 					'fileTitle': 'The Canadian Nutrient File: Nutrient Value of Some Common Foods',
 					'fileName': 'The Canadian Nutrient File: Nutrient Value of Some Common Foods'.substr(0, 40) + '.pdf',
 					'file': 'dummy.pdf',
-					'genre': 'Other',
+					'genre': 'Table',
 					'metadata': {
 						'creator-en_US': 'Health Canada',
 						'publisher-en_US': 'Health Canada',
@@ -97,7 +97,7 @@ describe('Data suite tests', function() {
 		});
 		cy.logout();
 
-		cy.findSubmissionAsEditor('dbarnes', null, title);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Dawson');
 		cy.sendToReview('Internal');
 		cy.get('li.ui-state-active a:contains("Internal Review")');
 		cy.assignReviewer('Julie Janssen');

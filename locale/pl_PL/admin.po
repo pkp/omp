@@ -1,0 +1,138 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-07-09 17:40+0000\n"
+"Last-Translator: rl <biuro@fimagis.pl>\n"
+"Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/admin/pl_PL/>"
+"\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "admin.hostedContexts"
+msgstr "Obsługiwane wydawnictwa"
+
+msgid "admin.settings.info.success"
+msgstr "Informacje o stronie zostały pomyślnie zaktualizowane."
+
+msgid "admin.settings.config.success"
+msgstr "Ustawienia konfiguracyjne strony zostały pomyślnie zaktualizowane."
+
+msgid "admin.settings.appearance.success"
+msgstr "Ustawienia widoku strony zostały pomyślnie zaktualizowane."
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>ZWRÓĆ UWAGĘ!</div>\n"
+"<p> System mógł automatycznie nadpisać plik konfiguracji. Aby zastosować "
+"zmiany musisz otworzyć <tt>config.inc.php</tt> w odpowiednim edytorze tekstu "
+"i zasątpić jego zawartość tekstem pola poniżej. </p>"
+
+msgid "admin.presses.addPress"
+msgstr "Dodaj wydawnictwo"
+
+msgid "admin.contexts.contextDescription"
+msgstr "Opis wydawnictwa"
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name}  zostało pomyślnie edytowane."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name}zostało pomyślnie utworzone."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Wybrana ścieżka jest już używana przez inne wydawnictwo."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"Ścieżka może zawierać tylko litery, liczby oraz znaki _ i -. Musi zaczynać i "
+"kończyć się literą lub liczbą."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Ścieżka jest wymagana."
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Tytuł jest wymagany."
+
+msgid "admin.contexts.create"
+msgstr "Utwórz stronę wydawnictwa"
+
+msgid "admin.presses.noneCreated"
+msgstr "Nie utworzono strony wydawnictwa."
+
+msgid "admin.presses.pressSettings"
+msgstr "Ustawienia dla wydawnictwa"
+
+msgid "admin.systemConfiguration"
+msgstr "Konfiguracja OMP"
+
+msgid "admin.systemVersion"
+msgstr "Wersja OMP"
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Czy jesteś pewien, że chcesz wyłączyć te ustawienia regionalne? To może mieć "
+"wpływ na każde obsługiwane wydawnictwo, które z nich korzysta."
+
+msgid "admin.languages.downloadUnavailable"
+msgstr ""
+"<p>Pobranie pakietu językowego ze strony Projektu Wiedzy Publicznej jest "
+"obecnie niedostępne ponieważ: </p>\n"
+"\t<ul>\n"
+"\t\t<li>Twój serwer nie posiada lub nie ma dostępu do uruchomienia GNU \""
+"tar\" utility</li>\n"
+"\t\t<li>OMP nie ma możliwości modyfikacji ustawień regionalnych pliku, "
+"typowych dla \"registry/locales.xml\".</li>\n"
+"\t</ul>\n"
+"<p>Pakiet językowy może zostać pobrany ręcznie z: <a href=\"http://pkp.sfu."
+"ca\" target=\"_blank\">PKP web site</a>.</p>"
+
+msgid "admin.languages.downloadFailed"
+msgstr ""
+"Pobieranie ustawień regionalnych nie powiodło się.  Poniższa wiadomość "
+"opisuje błąd operacji."
+
+msgid "admin.languages.noLocalesToDownload"
+msgstr "Brak ustawień regionalnych dostępnych do pobrania."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Wybierz dodatkowe ustawienia regionalne do obsługi tego systemu. Ustawienia "
+"regionalne muszą być zainstalowane zanim będą stosowane przez wydawnictwa. "
+"Zobacz dokumentację OMP, aby zdobyć informacje o dodaniu obsługi dla nowych "
+"języków."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"Czy jesteś pewien, że chcesz odinstalować zaznaczone ustawienia lokalne? To "
+"może mieć wpływ na każde obsługiwane wydawnictwo, które z nich korzysta."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "Ustawienia lokalne oznaczone *mogą być niepełne."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr ""
+"Wybierz ustawienia regionalne do obsługi ten strony. Wybrane ustawienia "
+"regionalne będą dostępne do użytku dla obsługiwanych wydawnictw przez tę "
+"stronę i również pojawią się w menu wyboru języka, znajdującego się na "
+"stronie internetowej (który może być nadpisany na technicznych stronach "
+"wydawnictwa). Jeśli zostanie wybrany jeden typ ustawień lokalnych, nie "
+"pojawi się przełącznik zmiany języka, a także nie będą dostępne dla tych "
+"wydawnictw rozszerzone ustawienia językowe."
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "To będzie domyślny język dla tej strony i obsługiwanych wydawnictw."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Nie przekierowuj"
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Zapytanie na stronie głównej będzie przekierowane do wydawnictwa. To może "
+"być przydatne, jeśli strona np. obsługuje tylko jedno wydawnictwo."
+
+msgid "admin.settings.redirect"
+msgstr "Przekieruj do wydawnictwa"

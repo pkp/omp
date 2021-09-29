@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-04 11:35+0000\n"
+"PO-Revision-Date: 2021-03-11 11:28+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
-"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/editor/sv/>"
-"\n"
+"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/editor/"
+"sv_SE/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -164,3 +164,37 @@ msgstr "Aktuella filer"
 
 msgid "editor.monograph.final.currentFiles"
 msgstr "Aktuella slutgiltiga utkastfiler"
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr ""
+"Filer som redan har laddats upp till de olika bidragsstegen kan läggas till "
+"som korrekturfiler genom att kryssa i \"Inkludera\" nedan och därefter Sök. "
+"Alla tillgängliga filer kommer listas och kan väljas som korrektur."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr ""
+"Lägg till publiceringsformat (t.ex. digital, paperback) som ska sättas av "
+"layoutredaktören. Korrekturer och katalogpost för formatet måste kontrollers "
+"innan det kan publiceras."
+
+msgid "editor.submission.introduction"
+msgstr ""
+"Under bidrag ska redaktören, efter att ha granskat de inskickade filerna, "
+"välja en åtgärd (vilket inkluderar besked till författaren): Skicka till "
+"intern granskning; Skicka till extern granskning; Acceptera bidrag; eller "
+"Avslå bidrag (bidraget arkiveras)."
+
+msgid "editor.submissions.assignedTo"
+msgstr "Tilldelad redaktör"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Fil uppladdad av rollen i tabellöversiktens titel"
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Åtgärder för objekt"
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Åtgärder för sektion"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Åtgärder för bidrag"

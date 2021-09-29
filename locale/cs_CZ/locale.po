@@ -1,0 +1,1627 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-05-06 16:44+0000\n"
+"Last-Translator: Jiří Podhorecký <j.podhorecky@gmail.com>\n"
+"Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/locale/cs_CZ/>"
+"\n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "submission.round"
+msgstr "Kolo&nbsp;{$round}"
+
+msgid "monograph.coverImage"
+msgstr "Titulní obrázek"
+
+msgid "monograph.audience.success"
+msgstr "Informace o publiku byly aktualizovány."
+
+msgid "monograph.audience"
+msgstr "Publikum"
+
+msgid "catalog.coverImageTitle"
+msgstr "Titulní obrázek"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "Byl specifikován neplatný příspěvek."
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "Skrýt ostatní nakladatelství"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "Registrovat do jiného nakladatelství"
+
+msgid "submission.pdf.download"
+msgstr "Stáhnout PDF soubor"
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Kniha"
+
+msgid "debug.notes.helpMappingLoad"
+msgstr "Obnovený instrukční soubor XML {$filename}: Hledání {$id}."
+
+msgid "payment.directSales.notAvailable"
+msgstr "Není k dispozici"
+
+msgid "payment.directSales.amount"
+msgstr "{$amount} ({$currency})"
+
+msgid "payment.directSales.directSales"
+msgstr "Přímý prodej"
+
+msgid "payment.directSales.numericOnly"
+msgstr "Jako cenu uveďte pouze hodnotu. Nevkládejte symboly měn."
+
+msgid "payment.directSales.priceCurrency"
+msgstr "Cena (v {$currency})"
+
+msgid "payment.directSales.approved"
+msgstr "Schváleno"
+
+msgid "payment.directSales.catalog"
+msgstr "Katalog"
+
+msgid "payment.directSales.availability"
+msgstr "Dostupnost"
+
+msgid "payment.directSales.price"
+msgstr "Cena"
+
+msgid "payment.directSales"
+msgstr "Stáhnout z webových stránek nakladatelství"
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+"Přístup odepřen! Uživatelské skupině, kterou právě zastupujete, nebyla "
+"přiřazena žádná funkce v této fázi publikačního procesu. Zkontrolujte prosím "
+"nastavení Vašeho nakladatelství."
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr ""
+"Přístup odepřen! Nebyla Vám přiřazena žádná funkce v této fázi publikačního "
+"procesu."
+
+msgid "user.authorization.seriesAssignment"
+msgstr ""
+"Pokoušíte se získat přístup k monografii, která není součástí edice, jíž "
+"spravujete."
+
+msgid "user.authorization.noContext"
+msgstr "Žádné nakladatelství nenalezeno!"
+
+msgid "user.authorization.invalidMonograph"
+msgstr "Monografie je neplatná nebo nebyl zadán požadavek na monografii!"
+
+msgid "user.authorization.monographFile"
+msgstr "Přístup k požadovanému souboru monografie byl odepřen."
+
+msgid "user.authorization.monographReviewer"
+msgstr ""
+"Přístup byl odepřen. Zdá se, že nejste recenzentem, který byl přiřazen "
+"tomuto rukopisu."
+
+msgid "user.authorization.monographAuthor"
+msgstr "Přístup byl odepřen. Zdá se, že nejste autorem tohoto rukopisu."
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr ""
+"Přístup byl odepřen. Zdá se, že nejste platným recenzentem tohoto rukopisu."
+
+#, fuzzy
+msgid "notification.type.visitCatalog"
+msgstr ""
+"Monografie byla schválena. Navštivte prosím katalog kliknutím na odkaz výše, "
+"kde můžete spravovat katalogové informace."
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "Správa katalogu"
+
+msgid "notification.type.configurePaymentMethod"
+msgstr "Konfigurace platební metody je vyžadována pro nastavení e-komerce."
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "Nebyla nastavena žádná platební metoda."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+"Monografie nebude zahrnuta do katalogu dokud nebude publikována. Pro přidání "
+"knihy do katalogu klikněte na záločku Publikace."
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "Čeká na schválení."
+
+msgid "notification.type.approveSubmission"
+msgstr ""
+"Tento návrh aktuálně čeká na odsouhlasení katalogové položky. Poté se objeví "
+"ve veřejném katalogu."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "Vnitřní recenzní řízení bylo zahájeno."
+
+msgid "notification.type.indexRequest"
+msgstr "Byl/a jste požádán/a, abyste vytvořil resjtřík titulu \"{$title}\"."
+
+msgid "notification.type.layouteditorRequest"
+msgstr ""
+"Byl/a jste požádán/a, abyste schválil/a grafické návrhy titulu \"{$title}\"."
+
+msgid "notification.type.copyeditorRequest"
+msgstr "Byl/a jste požádán/a, abyste schválil/a korektury souboru \"{$file}\"."
+
+msgid "notification.type.editorAssignmentTask"
+msgstr "Byl předložen nový rukopis, k němuž je třeba přiřadit editora."
+
+msgid "notification.type.public"
+msgstr "Veřejná oznámení"
+
+msgid "notification.type.userComment"
+msgstr "Čtenář zanechal komentář u titulu \"{$title}\"."
+
+msgid "notification.type.submissions"
+msgstr "Události týkající se příspěvků"
+
+msgid "notification.type.site"
+msgstr "Události týkající se systému"
+
+msgid "notification.type.reviewing"
+msgstr "Události týkající se recenzního řízení"
+
+msgid "notification.type.editing"
+msgstr "Události týkající se redakce"
+
+msgid "notification.type.submissionSubmitted"
+msgstr "Nová monografie, \"{$title},\" byla vložena."
+
+msgid "notification.removedSubmission"
+msgstr "Příspěvek byl odstraněn."
+
+msgid "notification.proofsApproved"
+msgstr "Korektury byly schváleny."
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "Metadata formátu publikace byla uložena."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "Metadata katalogu byla uložena."
+
+msgid "notification.removedSpotlight"
+msgstr "Doporučená položka byla odstraněna."
+
+msgid "notification.editedSpotlight"
+msgstr "Doporučená položka byla upravena."
+
+msgid "notification.addedSpotlight"
+msgstr "Doporučená položka byla přidána."
+
+msgid "notification.removedMarket"
+msgstr "Trh byl odstraněn."
+
+msgid "notification.editedMarket"
+msgstr "Trh byl upraven."
+
+msgid "notification.addedMarket"
+msgstr "Trh byl přidán."
+
+msgid "notification.removedRepresentative"
+msgstr "Zástupce byl odstraněn."
+
+msgid "notification.editedRepresentative"
+msgstr "Zástupce byl upraven."
+
+msgid "notification.addedRepresentative"
+msgstr "Zástupce byl přidán."
+
+msgid "notification.removedSalesRights"
+msgstr "Práva na prodej byla odstraněna."
+
+msgid "notification.editedSalesRights"
+msgstr "Práva na prodej byla upravena."
+
+msgid "notification.addedSalesRights"
+msgstr "Práva na prodej byla přidána."
+
+msgid "notification.removedPublicationFormat"
+msgstr "Formát publikace byl odstraněn."
+
+msgid "notification.editedPublicationFormat"
+msgstr "Formát publikace byl upraven."
+
+msgid "notification.addedPublicationFormat"
+msgstr "Formát publikace byl přidán."
+
+msgid "notification.removedPublicationDate"
+msgstr "Datum vydání bylo odstraněno."
+
+msgid "notification.editedPublicationDate"
+msgstr "Datum vydání bylo upraveno."
+
+msgid "notification.addedPublicationDate"
+msgstr "Datum vydání bylo přidáno."
+
+msgid "notification.removedIdentificationCode"
+msgstr "Identifikační kód byl odstraněn."
+
+msgid "notification.editedIdentificationCode"
+msgstr "Identifikační kód byl upraven."
+
+msgid "notification.addedIdentificationCode"
+msgstr "Identifikační kód byl přidán."
+
+msgid "log.imported"
+msgstr "Uživatel {$userName} importoval monografii č. {$submissionId}."
+
+msgid "log.proofread.complete"
+msgstr ""
+"Korektor {$proofreaderName} přijal příspěšvek č. {$submissionId} do "
+"harmonogramu."
+
+msgid "log.proofread.assign"
+msgstr ""
+"{$assignerName} přiřadil korektora {$proofreaderName} ke korekci příspěvku "
+"č. {$submissionId}."
+
+msgid "log.editor.editorAssigned"
+msgstr ""
+"Editor {$editorName} byl přiřazen jako editor příspěvku č. {$submissionId}."
+
+msgid "log.editor.restored"
+msgstr "Příspěvek {$submissionId} byl obnoven do fronty."
+
+msgid "log.editor.archived"
+msgstr "Příspěvek {$submissionId} byl archivován."
+
+msgid "log.editor.recommendation"
+msgstr ""
+"Doporučení editora č. ({$decision}) pro rukopis č. {$submissionId} "
+"zaznamenal redaktor{$editorName}."
+
+msgid "log.editor.decision"
+msgstr ""
+"Rozhodnutí editora č. ({$decision}) pro rukopis č. {$submissionId} "
+"zaznamenal editor {$editorName}."
+
+msgid "log.review.reviewUnconsidered"
+msgstr ""
+"Editor {$editorName} označil kolo č. {$round} recenzního řízení pro návrh č. "
+"{$submissionId} za nerozhodnuté."
+
+msgid "log.review.reviewAccepted"
+msgstr ""
+"Recenzent {$reviewerName} odsouhlasil kolo č. {$round} recenzního řízení pro "
+"návrh č. {$submissionId}."
+
+msgid "log.review.reviewDeclined"
+msgstr ""
+"Recenzent {$reviewerName} odmítl kolo č. {$round} recenzního řízení pro "
+"návrh č. {$submissionId}."
+
+msgid "log.review.reviewDueDateSet"
+msgstr ""
+"Termín pro kolo č. {$round} recenzního řízení příspěvku č. {$submissionId} "
+"(Recenzent: {$reviewerName}) byl nastaven na datum {$dueDate}."
+
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>POZOR!</h4> \n"
+"<p>Instalátoru se nezdařilo připojit se automaticky ke konfiguračnímu "
+"souboru. Před prvním použitím systému prosím otevřete soubor "
+"<tt>config.inc.php</tt> ve vhodném textovém editoru a nahraďte jeho obsah "
+"textem, který je uveden v poli níže.</p>"
+
+msgid "installer.upgradeApplication"
+msgstr "Aktualizovat Open Monograph Press"
+
+msgid "installer.databaseSettingsInstructions"
+msgstr ""
+"OMP pro ukládání svých dat vyžaduje přístup do SQL databáze. Seznam "
+"podporovaných databází je uveden mezi systémovými požadavky výše. Do pole "
+"níže zadejte nastavení, která se mají použít pro přístup do databáze."
+
+msgid "installer.filesDirInstructions"
+msgstr ""
+"Zadejte plnou adresu existujícího adresáře, ve kterém se nachází nahrané "
+"soubory. Tento adresář by neměl být přímo dostupný z webu. <strong>Před "
+"instalací se prosím ujistěte, že tento adresář existuje a je "
+"zapisovatelný.</strong> Cesty ve Windows by měly používat lomítka, např. \""
+"C:/mypress/files\"."
+
+msgid "installer.additionalLocalesInstructions"
+msgstr ""
+"Vyberte jakákoli dodatečné jazyky, které má systém podporovat. Tyto jazyky "
+"budou k dispozici pro nakladatelství, která budoutento systém používat. "
+"Další jazyky mohou být také kdykoli přidány v administračním rozhraní. "
+"Místní nastavení označená * mohou být nekompletní."
+
+msgid "installer.localeInstructions"
+msgstr ""
+"Výchozí jazyk pro použití tohoto systému. Pokud Vás zajímá podpora jazyků "
+"zde neuvedených, prostudujte si dokumentaci k OMP."
+
+msgid "installer.maxFileUploadSize"
+msgstr ""
+"Váš server v současnosti dovoluje nahrávání souborů o maximální velikosti "
+"<strong>{$maxFileUploadSize}</strong>"
+
+msgid "installer.allowFileUploads"
+msgstr ""
+"Váš server v současnosti umožňuje nahrávání souborů: "
+"<strong>{$allowFileUploads}</strong>"
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "Kroky před instalací"
+
+msgid "installer.installApplication"
+msgstr "Instalovat Open Monograph Press"
+
+msgid "installer.ompUpgrade"
+msgstr "Aktualizace OMP"
+
+msgid "installer.appInstallation"
+msgstr "Instalace OMP"
+
+msgid "help.goToEditPage"
+msgstr "Upravit tyto informace na nové stránce"
+
+msgid "help.searchReturnResults"
+msgstr "Zpět k výsledkům vyhledávání"
+
+#, fuzzy
+msgid "about.aboutOMPSite"
+msgstr ""
+"Tato stránka využívá systém Open Monograph Press {$ompVersion}, což je open "
+"source software pro správu a publikování nakladatelství vyvinutý, "
+"podporovaný a volně šířený v rámci projektu <a href=\"http://pkp.sfu.ca/\">"
+"Public Knowledge Project</a> pod GNU General Public licencí."
+
+#, fuzzy
+msgid "about.aboutOMPPress"
+msgstr ""
+"Toto nakladatelství využívá systém Open Monograph Press {$ompVersion}, což "
+"je open source software pro správu a publikování nakladatelství vyvinutý, "
+"podporovaný a volně šířený v rámci projektu <a href=\"http://pkp.sfu.ca/\">"
+"Public Knowledge Project</a> pod GNU General Public licencí."
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "Proces redakce a publikace v OMP"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr "Informace o tomto publikačním systému. Platforma a workflow OMP/PKP."
+
+msgid "about.pressSponsorship"
+msgstr "Informace o sponzorech"
+
+msgid "about.openAccessPolicy"
+msgstr "Politika otevřeného přístupu"
+
+msgid "about.publicationFrequency"
+msgstr "Frekvence publikování"
+
+msgid "about.reviewPolicy"
+msgstr "Recenzní řízení"
+
+msgid "about.privacyStatement"
+msgstr "Prohlášení o osobních údajích"
+
+msgid "about.copyrightNotice"
+msgstr "Poznámka k copyrightu"
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr ""
+"Jako součást procesu odesílání příspěvku je požadováno, aby autoři "
+"zaškrnutím potvrdili, že jejich příspěvek je v souladu se všemi "
+"následujícími položkami. Příspěvky, které nebudou v souladu s těmito "
+"pravidly, mohou být autorům vráceny."
+
+msgid "about.submissionPreparationChecklist"
+msgstr "Kontrolní seznam pro přípravu příspěvku"
+
+msgid "about.authorGuidelines"
+msgstr "Pokyny pro autory"
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "zobrazit vaše rozpracované příspěvky"
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Vytvořit nový příspěvek"
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} nebo {$viewSubmissions}."
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "Pro zaslání příspěvku je potřeba se {$login} nebo {$register}."
+
+msgid "about.onlineSubmissions.register"
+msgstr "Registrujte se"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Přihlaste se"
+
+msgid "about.onlineSubmissions"
+msgstr "Online příspěvky"
+
+msgid "about.submissions"
+msgstr "Příspěvky"
+
+msgid "about.seriesPolicies"
+msgstr "Zásady pro edice a kategorie"
+
+msgid "about.focusAndScope"
+msgstr "Zaměření a oblast působnosti"
+
+msgid "about.editorialPolicies"
+msgstr "Ediční zásady"
+
+msgid "about.editorialTeam"
+msgstr "Redakční tým"
+
+msgid "about.aboutContext"
+msgstr "O nakladatelství"
+
+msgid "about.pressContact"
+msgstr "Kontakt"
+
+msgid "site.pressView"
+msgstr "Navštívit stránku nakladatelství"
+
+msgid "site.noPresses"
+msgstr "Nejsou dostupná žádná nakladatelství."
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Ano, souhlasím se zpracováním mých osobních údajů v tomto nakladatelství dle "
+"<a href=\"{$privacyUrl}\" target=\"_blank\">Prohlášení o osobních "
+"údajích</a>."
+
+msgid "user.register.form.userGroupRequired"
+msgstr "Musíte vybrat alespoň jednu roli"
+
+msgid "user.register.reviewerInterests"
+msgstr "Zadejte recenzní zájmy (výzkumné oblasti a metody):"
+
+msgid "user.register.reviewerDescription"
+msgstr "Ochoten účastnit se recenzního řízení pro publikace vložené do systému."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr ""
+"Ochoten účastnit se recenzního řízení pro publikace předložené tomuto "
+"nakladatelství."
+
+msgid "user.register.readerDescription"
+msgstr "Přijímá e-mailová upozornění o nových publikacích."
+
+msgid "user.register.authorDescription"
+msgstr "Smí předkládat nakladatelství nové příspěvky."
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "Zadané heslo není dostatečně dlouhé."
+
+msgid "user.register.registrationDisabled"
+msgstr "Toto nakladatelství aktuálně nepřijímá uživatelské registrace."
+
+msgid "user.register.privacyStatement"
+msgstr "Prohlášení o osobních údajích"
+
+msgid "user.register.noContexts"
+msgstr "V systému aktuálně nejsou žádná nakladatelství k registraci."
+
+msgid "user.register.selectContext"
+msgstr "Vyberte nakladatelství, do kterého se chcete registrovat:"
+
+msgid "user.role.productionEditors"
+msgstr "Produkční editoři"
+
+msgid "user.role.proofreaders"
+msgstr "Korektoři"
+
+msgid "user.role.copyeditors"
+msgstr "Redaktoři"
+
+msgid "user.role.editors"
+msgstr "Editoři"
+
+msgid "user.role.subEditors"
+msgstr "Odpovědní redaktoři"
+
+msgid "user.role.managers"
+msgstr "Vedoucí vydavatelství"
+
+msgid "user.role.productionEditor"
+msgstr "Výrobní editor/ka"
+
+msgid "user.role.proofreader"
+msgstr "Korektor/ka"
+
+msgid "user.role.copyeditor"
+msgstr "Redaktor/ka"
+
+msgid "user.role.subEditor"
+msgstr "Odpovědný redaktor/ka"
+
+msgid "user.role.pressEditor"
+msgstr "Vedoucí editor/ka"
+
+msgid "user.role.manager"
+msgstr "Vedoucí nakladatelství"
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+"Pokud chcete v nakladatelství rezenzovat publikace, napište prosím níže své "
+"oblasti zájmu."
+
+msgid "user.register.otherContextRoles"
+msgstr "Požádat o následující role."
+
+msgid "user.register.contextsPrompt"
+msgstr "Do kterého nakladatelství na této stránce se budete chtít registrovat?"
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+"Ano, chci být kontaktován se žádostmi o recenzování v tomto nakladatelství."
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Ano, požádat o roli {$userGroup}."
+
+msgid "user.reviewerPrompt"
+msgstr "Budete chtít recenzovat pro toto nakladatelství?"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr ""
+"Registrace recenzenta: Registrace recenzentů v tuto chvíli není povolena."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Registrace recenzenta"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr "Předložit rukopis: Registrace autorů v tuto chvíli není povolena."
+
+msgid "user.noRoles.submitMonograph"
+msgstr "Předložit příspěvek"
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "Zahrnout uživatele, kteří v nakladatelství nemají stanovenou roli."
+
+msgid "context.select"
+msgstr "Vybrat nakladatelství:"
+
+msgid "context.current"
+msgstr "Současné nakladatelství:"
+
+msgid "context.context"
+msgstr "Nakladatelství"
+
+msgid "context.contexts"
+msgstr "Nakladatelství"
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Odkázat do novinek."
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Novinky"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Odkázat do kategorie."
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Kategorie"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Odkázat do edice."
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Edice"
+
+msgid "navigation.skip.spotlights"
+msgstr "Přeskočit k doporučeným"
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Odkázat do katalogu."
+
+msgid "navigation.linksAndMedia"
+msgstr "Odkazy a sociální média"
+
+msgid "navigation.wizard"
+msgstr "Průvodce"
+
+msgid "navigation.published"
+msgstr "Publikováno"
+
+msgid "navigation.newReleases"
+msgstr "Novinky"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Informace pro knihovníky"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Informace pro autory"
+
+msgid "navigation.infoForLibrarians"
+msgstr "Pro knihovníky"
+
+msgid "navigation.infoForAuthors"
+msgstr "Pro autory"
+
+msgid "navigation.catalog.administration.series"
+msgstr "Edice"
+
+msgid "navigation.catalog.administration.categories"
+msgstr "Kategorie"
+
+msgid "navigation.catalog.administration"
+msgstr "Správa katalogu"
+
+msgid "navigation.catalog.administration.short"
+msgstr "Správa"
+
+msgid "navigation.catalog.manage"
+msgstr "Spravovat"
+
+msgid "navigation.catalog.allMonographs"
+msgstr "Všechny monografie"
+
+msgid "navigation.competingInterestPolicy"
+msgstr "Zásady týkající se střetu zájmů"
+
+msgid "navigation.catalog"
+msgstr "Katalog"
+
+msgid "common.homePageHeader.altText"
+msgstr "Záhlaví domovské stránky"
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "common.software"
+msgstr "Open Monograph Press"
+
+msgid "common.listbuilder.itemExists"
+msgstr "Stejnou položku nelze přidat dvakrát."
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "Vyberte prosím platnou položku ze seznamu."
+
+msgid "common.listbuilder.completeForm"
+msgstr "Vyplňte prosím celý formulář."
+
+msgid "common.moreInfo"
+msgstr "Více informací"
+
+msgid "common.searchCatalog"
+msgstr "Prohledat katalog"
+
+msgid "common.feature"
+msgstr "Důležité"
+
+msgid "common.preview"
+msgstr "Náhled"
+
+msgid "common.prefix"
+msgstr "Prefix"
+
+msgid "common.publications"
+msgstr "Monografie"
+
+msgid "common.publication"
+msgstr "Monografie"
+
+msgid "submission.search"
+msgstr "Hledat knihu"
+
+msgid "catalog.viewableFile.return"
+msgstr "Zpět na detail publikace {$monographTitle}"
+
+msgid "catalog.viewableFile.title"
+msgstr "{$type} prohlížení souboru {$title}"
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr "Pozice v edici (od nejvyšší)"
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr "Pozice v edici (od nejnižší)"
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr "Vyberte jak se budou řadit monografie v katalogu."
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr "Vyberte jak se budou řadit monografie v kategoriích."
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr "Vyberte jak se budou řadit monografie v edicích."
+
+msgid "catalog.sortBy"
+msgstr "Řazení monografií"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr ""
+"Poznámka: Před nákupem se nejprve musíte přihlásit. Výběr položky k nákupu "
+"Vás přesměruje na přihlašovací stránku. Jakoukoli položku označenou ikonou "
+"Otevřený zdroj (Open Access) můžete stáhnout zdarma a bez přihlášení."
+
+msgid "catalog.aboutTheAuthor"
+msgstr "O {$roleName}"
+
+msgid "catalog.category.subcategories"
+msgstr "Podkategorie"
+
+msgid "catalog.parentCategory"
+msgstr "Rodičovská kategorie"
+
+msgid "catalog.categories"
+msgstr "Kategorie"
+
+msgid "catalog.forthcoming"
+msgstr "Připravujeme"
+
+msgid "catalog.published"
+msgstr "Publikováno"
+
+msgid "catalog.publicationInfo"
+msgstr "Informace o publikaci"
+
+msgid "catalog.dateAdded"
+msgstr "Přidáno"
+
+msgid "catalog.newReleases"
+msgstr "Novinky"
+
+msgid "catalog.category.heading"
+msgstr "Všechny knihy"
+
+msgid "catalog.foundTitlesSearch"
+msgstr "{$number} publikací bylo nalezeno pro dotaz \"{$searchQuery}\"."
+
+msgid "catalog.foundTitleSearch"
+msgstr "Byla nalezena jedna publikace odpovídající dotazu \"{$searchQuery}\"."
+
+msgid "catalog.featuredBooks"
+msgstr "Doporučené knihy"
+
+msgid "catalog.featured"
+msgstr "Doporučené"
+
+msgid "catalog.feature"
+msgstr "Důležité"
+
+msgid "catalog.noTitlesSearch"
+msgstr "Nebyla nalezena žádná publikace odpovídající dotazu \"{$searchQuery}\"."
+
+msgid "catalog.noTitlesNew"
+msgstr "V tuto chvíli nejsou dostupné žádné novinky."
+
+msgid "catalog.noTitles"
+msgstr "Momentálně nebyla publikována žádná publikace."
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr "Monografie není označená jako novinka. Označit za novinku."
+
+msgid "catalog.manage.isNewRelease"
+msgstr "Monografie je označená jako novinka. Zrušit označení."
+
+msgid "catalog.manage.isNotFeatured"
+msgstr "Monografie není označená jako doporučená. Doporučit."
+
+msgid "catalog.manage.isFeatured"
+msgstr "Monografie je označená jako doporučená. Zrušit označení."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Vyhledat podle názvu nebo autora"
+
+msgid "catalog.manage.nonOrderable"
+msgstr ""
+"Tuto monografii není možné třídit dokud nebude označená jako doporučená."
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Novinka v edici"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "Novinka v kategorii"
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "Novinka"
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "Monografie již není označena jako novinka."
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "Monografie je označena jako novinka."
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "Monografie není doporučená."
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "Monografie je doporučená."
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "Doporučené v edici"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "Doporučené v kategorii"
+
+msgid "catalog.manage.featured"
+msgstr "Doporučené"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
+
+msgid "catalog.manage.noMonographs"
+msgstr "Nejsou přiděleny žádné monografie."
+
+msgid "catalog.manage.manageCategories"
+msgstr "Spravovat kategorie"
+
+msgid "catalog.manage.manageSeries"
+msgstr "Spravovat edice"
+
+msgid "catalog.manage.newRelease"
+msgstr "Publikace"
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "Kolotoč"
+
+msgid "catalog.manage.seriesDescription"
+msgstr ""
+"Klikněte na \"Důležité\". Hvězdičkou označíte danou knihu jako důležitou v "
+"rámci její kategorie. Kliknutím a tažením můžete měnit pořadí. Edice se "
+"vyznačují tím, že je spravuje jeden editor a že mají společný název řady - "
+"buď v rámci kategorie nebo nezávisle."
+
+msgid "catalog.manage.categoryDescription"
+msgstr ""
+"Klikněte na \"Důležité\". Hvězdičkou označíte danou knihu jako důležitou v "
+"rámci její kategorie. Kliknutím a tažením můžete měnit pořadí."
+
+msgid "catalog.manage.homepageDescription"
+msgstr ""
+"Obálky vybraných knih se zobrazují v horní části úvodní stránky - jako "
+"skupina obrázků, které lze posouvat. Klikněte na \"Důležité\". Hvězdičkou "
+"přidáte knihu do kolotoče, pomocí vykřičníku ji zařadíte do skupiny \"právě "
+"vydáno\". Kliknutím a tažením můžete měnit pořadí."
+
+msgid "catalog.selectCategory"
+msgstr "Vybrat kategorii"
+
+msgid "catalog.selectSeries"
+msgstr "Vybrat edici"
+
+msgid "catalog.manage.series.printIssn"
+msgstr "ISSN tisk"
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "Online ISSN"
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "Tištěné a online ISSN nemohou být stejné."
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Prosím vložte platné ISSN."
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "catalog.manage.series"
+msgstr "Edice"
+
+msgid "catalog.manage.category"
+msgstr "Kategorie"
+
+msgid "catalog.manage.newReleases"
+msgstr "Novinky"
+
+msgid "catalog.manage"
+msgstr "Správa katalogu"
+
+msgid "series.path"
+msgstr "Cesta"
+
+msgid "series.featured.description"
+msgstr "Tato edice se zobrazí v hlavní nabídce"
+
+msgid "series.series"
+msgstr "Edice"
+
+msgid "submissionGroup.assignedSubEditors"
+msgstr "Přidělit editory"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Dostupné soubory"
+
+msgid "grid.reviewAttachments.add"
+msgstr "Přidat přílohu k posouzení"
+
+msgid "grid.action.formatAvailable"
+msgstr "Přepinač dostupnosti formátu - vypnout/zapnout"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Schválit / odmítnout tento formát"
+
+msgid "grid.action.proofApproved"
+msgstr "Formát byl zkontrolován"
+
+msgid "grid.action.approveProofs"
+msgstr "Zobrazit tabulku sazeb"
+
+msgid "grid.action.submissionEmail"
+msgstr "Kliknutím přečtete tuto e-mailovou zprávu"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Přejít na stránku oznámení nakladatelství"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Zobrazit kartu publikačních formátů"
+
+msgid "grid.action.createContext"
+msgstr "Vytvořit nové nakladatelství"
+
+msgid "grid.action.deleteDate"
+msgstr "Odstranit toto datum"
+
+msgid "grid.action.editDate"
+msgstr "Upravit toto datum"
+
+msgid "grid.action.addDate"
+msgstr "Přidat datum vydání"
+
+msgid "grid.action.deleteMarket"
+msgstr "Odstranit tento trh"
+
+msgid "grid.action.editMarket"
+msgstr "Upravit tento trh"
+
+msgid "grid.action.addMarket"
+msgstr "Přidat trh"
+
+msgid "grid.action.deleteRights"
+msgstr "Odstranit tato práva"
+
+msgid "grid.action.editRights"
+msgstr "Upravit tato práva"
+
+msgid "grid.action.addRights"
+msgstr "Přidat prodejní práva"
+
+msgid "grid.action.deleteCode"
+msgstr "Odstranit tento kód"
+
+msgid "grid.action.editCode"
+msgstr "Upravit tento kód"
+
+msgid "grid.action.addCode"
+msgstr "Přidat identifikační kód"
+
+msgid "grid.action.manageSeries"
+msgstr "Nastavit edice tohoto nakladatelství"
+
+msgid "grid.action.manageCategories"
+msgstr "Nastavit kategorie tohoto nakladatelství"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Označit tento příspěvek jako \"právě vydáno\""
+
+msgid "grid.action.featureMonograph"
+msgstr "Přidat tuto položku do katalogového kolotoče"
+
+msgid "grid.action.feature"
+msgstr "Přepnout zobrazení funkce"
+
+msgid "grid.action.publicCatalog"
+msgstr "Zobrazit tuto položku v katalogu"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "Nová katalogová položka"
+
+msgid "grid.action.addAnnouncement"
+msgstr "Přidat oznámení"
+
+msgid "grid.action.pageProofApproved"
+msgstr "Sazby jsou připraveny pro zveřejnění"
+
+msgid "grid.action.approveProof"
+msgstr "Schválit indexování sazby a začlenění do katalogu"
+
+msgid "grid.action.addFormat"
+msgstr "Přidat formát publikace"
+
+msgid "grid.action.deleteFormat"
+msgstr "Odstranit tento formát"
+
+msgid "grid.action.editFormat"
+msgstr "Upravit tento formát"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "Formát je přiřazen katalogové položce"
+
+msgid "grid.action.catalogEntry"
+msgstr "Zobrazit formulář katalogové položky"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Soubory"
+
+msgid "manager.series.indexed"
+msgstr "Indexované"
+
+msgid "manager.series.open"
+msgstr "Otevřít příspěvky"
+
+msgid "grid.action.addSpotlight"
+msgstr "Přidat doporučenou položku"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Odstranit tuto doporučenou položku"
+
+msgid "grid.action.editSpotlight"
+msgstr "Upravit tuto doporučenou položku"
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Vyberte prosím umístění této doporučené položky."
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "Je třeba zadat jméno doporučené položky."
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "Tuto položku je třeba zadat."
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Kniha"
+
+msgid "grid.content.spotlights.form.title"
+msgstr "Doporučený titul"
+
+msgid "grid.content.spotlights.form.item"
+msgstr "Zadejte jméno doporučeného titulu (dokončuje se automaticky)"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "Umístění doporučených položek"
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "Domovská stránka"
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "Doporučená položka"
+
+msgid "spotlight.author"
+msgstr "Autor, "
+
+msgid "spotlight.title.homePage"
+msgstr "V doporučených publikacích"
+
+msgid "spotlight.noneExist"
+msgstr "Aktuálně nemáte zvoleny žádné doporučené publikace."
+
+msgid "spotlight.spotlights"
+msgstr "Doporučujeme"
+
+msgid "spotlight"
+msgstr "Doporučení"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Odstranit tohoto zástupce"
+
+msgid "grid.action.editRepresentative"
+msgstr "Upravit tohoto zástupce"
+
+msgid "grid.action.addRepresentative"
+msgstr "Přidat zástupce"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+"Následujcí sekci můžete ponechat prázdnou, pokud své služby zákazníkům "
+"poskytujete přímo."
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Typ identifikačního čísla zástupce (Doporučuje se číslo GLN)"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "Identifikační číslo zástupce"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Webová stránka"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "E-mailová adresa"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Telefon"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Jméno"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Role"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Vyberte roli:"
+
+msgid "debug.notes.currencyListLoad"
+msgstr "Seznam měn \"{$filename}\" načtený z XML"
+
+msgid "payment.directSales.monograph.description"
+msgstr ""
+"Touto transakcí čtenář zaplatí za stažení jednotlivé monografie nebo její "
+"kapitoly."
+
+msgid "payment.directSales.monograph.name"
+msgstr "Zakoupit monografii nebo kapitolu ke stažení"
+
+msgid "payment.directSales.download"
+msgstr "Stáhnout {$format}"
+
+msgid "payment.directSales.purchase"
+msgstr "Nákup {$format}: ({$amount} {$currency})"
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "Platná cena je povinná položka."
+
+msgid "payment.directSales.price.description"
+msgstr ""
+"Formáty souborů mohou být čtenářům zpřístupněny ke stažení z webových "
+"stránek nakladatelství - buď zdarma v režimu Open Access, nebo "
+"prostřednictvím přímého prodeje (za použití online platební brány podle "
+"nastavení v sekci Distribuce). Nastavte režim přístupu pro tento soubor."
+
+msgid "payment.directSales.openAccess"
+msgstr "Otevřený přístup (Open Access)"
+
+msgid "payment.directSales.notSet"
+msgstr "Není nastaveno"
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Dodavatel"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"Můžete vybrat prodejce, který vás bude zastupovat na daném území (volitelné)."
+
+msgid "grid.catalogEntry.agent"
+msgstr "Zástupce"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Dodavatelé"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Zástupci"
+
+msgid "grid.catalogEntry.representativeType"
+msgstr "Typ zástupce"
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Zástupci"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr "Je třeba zadat datum a to tak, aby odpovídatlo zvolenému formátu."
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Formát data"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Role"
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Datum"
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "Je třeba zadat formát data."
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr "Je třeba zadat datum."
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Data publikace"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Území"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Trhy"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "Vyloučeno"
+
+msgid "grid.catalogEntry.included"
+msgstr "Zahrnuto"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Regiony"
+
+msgid "grid.catalogEntry.countries"
+msgstr "Země"
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr ""
+"Pro tento publikační formát byl již zadán typ prodejních práv pro zbytek "
+"světa."
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+"Zaškrtnutím této volby označíte prodejní práva této položky jako univerzální "
+"pro daný formát. Není pak třeba vybírat země a regiony."
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Zbytek světa?"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Typ prodejních práv"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Hodnota kódu"
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Prodejní práva"
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Je třeba zadat hodnotu."
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "Je třeba zadat identifikační kód."
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "Typ kódu ONIX"
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Hodnota kódu"
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "Je třeba zvolit kód skladby produktu."
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "Je třeba zadat kód dostupnosti publikace."
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "U digitálních souborů je třeba zadat velikost souboru."
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Čeká se na schválení"
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Schváleno"
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Korektura nebyla schválena."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Katalogová položka není schválena."
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Katalogová položka není schválena."
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p>Tento formát bude nyní označen za <em>nepřístupný</em> čtenářům "
+"prostřednictvím souborů i pomocí dalších kanálů.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p>Tento formát bude nyní <em>zpřístupněn</em> čtenářům prostřednictvím "
+"souborů, které se nyní objeví v katalogu a které bude možno stáhnout, a také "
+"pomocí dalších kanálů, které si nakladatesltví pro distribuci knihy "
+"zvolí.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Schválení formátu"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr "<p>Indikuje, že byla upravena metadata pro tento formát.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p>Schvalte metadata pro tento formát. Metadata pro každý formát je možné "
+"zkontrolovat přes panel pro úpravu.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Schválení formátu"
+
+msgid "grid.catalogEntry.proof"
+msgstr "Korektura"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Nedostupný"
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "K dispozici"
+
+msgid "grid.catalogEntry.availability"
+msgstr "Dostupnost"
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Je třeba zvolit publikační formát."
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "Je třeba zadat identifikační kód monografie."
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr "URL adresa vzdáleně hostovaného obsahu"
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Formát bude dostupný na samostatné webové stránce"
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Fyzický formát"
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Podrobnosti formátu"
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "Je třeba zadat platnou cenu."
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "Je třeba zadat jméno."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Publikační formát"
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "Otevřít kartu publikačních formátů."
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr ""
+"<p>Zvolený publikační formát již pro tuto monografii již není k "
+"dispozici.</p>"
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Chybí některé informace z metadat."
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Chybí identifikační kód."
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Chybí informace o trzích a cenách."
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr "Připojte ke katalogové položce metadata pro tento publikační formát."
+
+msgid "monograph.publicationFormat.taxType"
+msgstr "Typ zdanění"
+
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Daňová sazba"
+
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Region distribuce"
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Digitální ochrana"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Země původu"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Šířka"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Šířka"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Tloušťka"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Výška"
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Zadat vlastní velikost souboru?"
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "Velikost souboru v MB"
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Fyzická velikost"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Digitální informace"
+
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Návratnost"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Dostupnost produktu"
+
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Sleva v procentech (volitelná)"
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "Typ ceny"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "Je třeba zadat cenu."
+
+msgid "monograph.publicationFormat.price"
+msgstr "Cena"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Identifikace publikace (veřejné)"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Detaily publikace (volitelné)"
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Skladba publikace"
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Koncové stránky"
+
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Úvodní stránky"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Počet stránek"
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "Imprint (Jméno značky)"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Otevřený přístup"
+
+msgid "monograph.task.addNote"
+msgstr "Přidat k úkolu"
+
+msgid "monograph.proofReadingDescription"
+msgstr ""
+"Zde grafik nahraje celkově připravené soubory v tiskové kvalitě. Pomocí "
+"funkce <em>+ Přiřadit</em> označte autory a další uživatele, kteří budou "
+"provádět korektury. Ti zkorigované soubory před publikací nahrají ke "
+"schválení."
+
+msgid "submission.pageProofs"
+msgstr "Sazby ke korektuře"
+
+msgid "monograph.type"
+msgstr "Typ příspěvku"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Formáty:"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Detaily o této monografii"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "Detaily o dostupném publikačním formátu: {$format}"
+
+msgid "monograph.publicationFormat"
+msgstr "Format"
+
+msgid "monograph.publicationFormats"
+msgstr "Publikační formáty"
+
+msgid "monograph.languages"
+msgstr "Jazyky (angličtina, francouzština, španělština)"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Rozsah publika (přesná hodnota)"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Rozsah publika (do)"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Rozsah publika (od)"
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Rozsah publika (kvalifikátor)"
+
+msgid "user.authorization.representationNotFound"
+msgstr "Požadovaný publikační formát nejde nalézt."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Najít monografie, které mají být přidány do katalogu"
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Nelze nalézt jeden či více příspěvků."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Nebyly vybrány žádné příspěvky k přidání do katalogu."
+
+msgid "installer.upgradeComplete"
+msgstr ""
+"<p>Upgrade programu OMP na verzi {$version} byl úspěšně dokončen.</p>\n"
+"<p>Nezapomeňte nastavit nastavení \"installed\" v konfiguračním souboru "
+"config.inc.php zpět na <em>On</em>.</p>\n"
+"<p>Pokud jste se ještě nezaregistrovali a chcete dostávat novinky a "
+"aktualizace, <strong>registrujte se na <a href=\"http://pkp.sfu.ca/omp/"
+"register\" target=\"_blank\">http://pkp.sfu.ca/omp/register</a>.</strong> "
+"Pokud máte dotazy nebo připomínky, navštivte <a href=\"http://forum.pkp.sfu."
+"ca\" target=\"_blank\">fórum podpory</a>.</p>"
+
+msgid "installer.installationComplete"
+msgstr ""
+"<p>Instalace programu OMP byla úspěšně dokončena.</p>\n"
+"<p>Chcete-li začít používat systém, <a href=\"{$loginUrl}\">přihlaste se</a> "
+"pomocí uživatelského jména a hesla zadaných na předchozí stránce.</p>\n"
+"<p>Pokud si přejete dostávat novinky a aktualizace, <strong>zaregistrujte se "
+"na <a href=\"http://pkp.sfu.ca/omp/register\" target=\"_blank\""
+">http://pkp.sfu.ca/omp/register</a>.</strong> Pokud máte dotazy nebo "
+"připomínky, navštivte <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">"
+"fórum podpory</a>.</p>"
+
+msgid "installer.localeSettingsInstructions"
+msgstr ""
+"Pro úplnou podporu Unicode (UTF-8) vyberte pro všechna nastavení znakové "
+"sady možnost UTF-8. Všimněte si, že tato podpora v současné době vyžaduje "
+"databázový server MySQL >= 4.1.1 nebo PostgreSQL >= 9.1.5. Upozorňujeme "
+"také, že plná podpora Unicode vyžaduje knihovnu <a href=\"http://www.php.net/"
+"mbstring\" target=\"_blank\">mbstring</a> (ve výchozím nastavení je povolena "
+"ve většině posledních instalací PHP). Pokud váš server tyto požadavky "
+"nesplňuje, může dojít k problémům při používání rozšířených znakových sad.\n"
+"<br /><br />\n"
+"Váš server v současné době podporuje knihovnu mbstring: "
+"<strong>{$supportsMBString}</strong>"
+
+msgid "installer.upgradeInstructions"
+msgstr ""
+"<h4>Verze OMP {$version}</h4>\n"
+"\n"
+"<p>Děkujeme, že jste si stáhli <strong>Open Monograph Press</strong> "
+"projektu Public Knowledge. Než budete pokračovat, přečtěte si prosím <a href="
+"\"{$baseUrl}/docs/README\">README</a> a <a href=\"{$baseUrl}/docs/UPGRADE\""
+">UPGRADE</a> soubory, které jsou součástí tohoto softwaru. Další informace o "
+"projektu Public Knowledge Project a jeho softwarových projektech naleznete "
+"na <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">webové stránce PKP</a>. "
+"Máte-li dotazy týkající se hlášení chyb nebo technické podpory pro Open "
+"Monograph Press, podívejte se na <a href=\"http://forum.pkp.sfu.ca\" target="
+"\"_blank\">fórum podpory</a> nebo navštivte online <a href=\"http://pkp.sfu."
+"ca/bugzilla/\" target=\"_blank\">systém hlášení chyb</a> PKP. Ačkoli je "
+"fórum podpory preferovaným způsobem kontaktu, můžete také poslat e-mail týmu "
+"na adresu <a href=\"mailto:pkp.contact@gmail.com\""
+">pkp.contact@gmail.com</a>.</p>\n"
+"<p>Před pokračováním v práci <p>důrazně doporučujeme</strong> zálohovat "
+"databázi, adresář se soubory a instalační adresář OMP.</p>\n"
+"<p>Pokud pracujete v <a href=\"http://www.php.net/features.safe-mode\" "
+"target=\"_blank\">bezpečném režimu PHP</a>, ujistěte se, že je směrnice "
+"max_execution_time v konfiguračním souboru php.ini nastavena na vysoký "
+"limit. Pokud dojde k dosažení tohoto nebo jiného časového limitu (např. "
+"směrnice \"Timeout\" aplikace Apache) a proces aktualizace bude přerušen, "
+"bude nutný ruční zásah.</p>"
+
+msgid "installer.preInstallationInstructions"
+msgstr ""
+"<p>1. Následující soubory a adresáře (a jejich obsah) musí být přístupné pro "
+"zápis:</p>\n"
+"<ul>\n"
+"\t<li><tt>config.inc.php</tt> je zapisovatelný (nepovinné): "
+"{$writable_config}</li>\n"
+"\t {$writable_public}</li>.\n"
+"\t<li><tt>cache/</tt> je zapisovatelný: {$writable_cache}</li>\n"
+"\t<li><tt>cache/t_cache/</tt> je zapisovatelná: "
+"{$writable_templates_cache}</li>\n"
+"\t<li><tt>cache/t_compile/</tt> je zapisovatelná: "
+"{$writable_templates_compile}</li>\n"
+"\t<li><tt>cache/_db</tt> je zapisovatelná: {$writable_db_cache}</li>\n"
+"</ul>\n"
+"\n"
+"<p>2. Adresář pro ukládání nahraných souborů musí být vytvořen a nastaven "
+"jako zapisovatelný (viz \"Nastavení souborů\" níže).</p>"
+
+msgid "installer.installationInstructions"
+msgstr ""
+"\n"
+"<p>Děkujeme, že jste si stáhli publikaci <strong>Open Monograph Press "
+"{$version}</strong> projektu Public Knowledge. Než budete pokračovat, "
+"přečtěte si prosím soubor <a href=\"{$baseUrl}/docs/README\">README</a>, "
+"který je součástí tohoto softwaru. Další informace o projektu Public "
+"Knowledge Project a jeho softwarových projektech naleznete na <a href=\""
+"http://pkp.sfu.ca/\" target=\"_blank\">webových stránkách PKP</a>. Máte-li "
+"dotazy týkající se hlášení chyb nebo technické podpory pro Open Monograph "
+"Press, podívejte se na <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">"
+"fórum podpory</a> nebo navštivte online <a href=\"http://pkp.sfu.ca/bugzilla/"
+"\" target=\"_blank\">systém hlášení chyb</a> PKP. Ačkoli je fórum podpory "
+"preferovaným způsobem kontaktu, můžete také poslat e-mail týmu na adresu <a "
+"href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>\n"
+
+msgid "installer.updatingInstructions"
+msgstr ""
+"Pokud aktualizujete stávající instalaci OMP, pokračujte <a href=\""
+"{$upgradeUrl}\">kliknutím sem</a>."
+
+msgid "about.aboutSoftware"
+msgstr "O nakladatelství Open Monograph Press"
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "Desetimístný kód ISBN, například 951-98548-9-4."
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "13ti místný kód ISBN, například 978-951-98548-9-2."
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"
+
+msgid "common.payments"
+msgstr "Platby"

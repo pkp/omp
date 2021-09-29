@@ -1,0 +1,41 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-02-05 18:07+0000\n"
+"Last-Translator: Teodora Fildishevska <t.fildishevska@gmail.com>\n"
+"Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/api/"
+"mk_MK/>\n"
+"Language: mk_MK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "api.submissions.403.contextRequired"
+msgstr ""
+"За да направите или измените поднесок, мора да поднесете барање до крајната "
+"точка на API за изданието."
+
+msgid "api.submissions.403.cantChangeContext"
+msgstr "Не можете да го промените изданието на поднесокот."
+
+msgid "api.publications.403.submissionsDidNotMatch"
+msgstr "Публикацијата што ја побаравте не е дел од овој поднесок."
+
+msgid "api.publications.403.contextsDidNotMatch"
+msgstr "Публикацијата што ја побаравте не е дел од ова издание."
+
+msgid "api.emailTemplates.403.notAllowedChangeContext"
+msgstr ""
+"Немате дозвола да го преместите овој образец за е-пошта на друго издание."
+
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "Не може да се најдат еден или повеќе од поднесоците што ги наведовте."
+
+msgid "api.submissions.400.submissionIdsRequired"
+msgstr ""
+"Мора да наведете еден или повеќе легитимации за поднесување што ќе бидат "
+"додадени во каталогот."
+
+msgid "api.emails.403.disabled"
+msgstr "Функцијата за известување преку е-пошта не е овозможена за ова издание."

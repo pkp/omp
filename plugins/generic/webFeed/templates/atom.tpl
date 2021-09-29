@@ -1,8 +1,8 @@
 {**
  * plugins/generic/webFeed/templates/atom.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Atom feed template
@@ -40,7 +40,7 @@
 	{* <category/> *}
 	{* <contributor/> *}
 
-	<generator uri="http://pkp.sfu.ca/ojs/" version="{$ojsVersion|escape}">Open Monograph Press</generator>
+	<generator uri="http://pkp.sfu.ca/omp/" version="{$ompVersion|escape}">Open Monograph Press</generator>
 	{if $currentPress->getLocalizedDescription()}
 		{assign var="description" value=$currentPress->getLocalizedDescription()}
 	{elseif $currentPress->getLocalizedSetting('searchDescription')}

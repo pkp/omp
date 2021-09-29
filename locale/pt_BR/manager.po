@@ -1,18 +1,24 @@
+# Diego José Macêdo <diegojmacedo@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2019-09-30T12:00:53-07:00\n"
+"PO-Revision-Date: 2021-08-19 14:05+0000\n"
+"Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
+"manager/pt_BR/>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-09-30T12:00:53-07:00\n"
-"PO-Revision-Date: 2019-09-30T12:00:53-07:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "manager.language.confirmDefaultSettingsOverwrite"
-msgstr "Isto substituirá qualquer configuração de idioma específica desta editora para este idioma."
+msgstr ""
+"Isto substituirá qualquer configuração de idioma específica desta editora "
+"para este idioma"
 
 msgid "manager.languages.noneAvailable"
 msgstr "Nenhum idioma adicional disponível. Enter em contato com o administrador do site caso deseje usar idiomas adicionais nesta editora."
@@ -93,7 +99,7 @@ msgid "manager.series.seriesTitle"
 msgstr "Título da séries"
 
 msgid "manager.series.restricted"
-msgstr "Restrito"
+msgstr "Não permita que os autores enviem diretamente para esta série."
 
 msgid "manager.settings"
 msgstr "Configurações"
@@ -105,7 +111,10 @@ msgid "manager.settings.press"
 msgstr "Editora"
 
 msgid "manager.settings.publisher.identity.description"
-msgstr "Estes campos não são obrigatórios para uso do OMP, porém são obrigatórios para criar mentados ONIX válidos. Inclua-os caso deseje usar a funcionalidade ONIX."
+msgstr ""
+"Estes campos não são obrigatórios para uso do OMP, porém são obrigatórios "
+"para criar <a href=\"https://en.wikipedia.org/wiki/ONIX_for_Books\">"
+"metadados ONIX</a> válidos. Inclua-os caso deseje usar a funcionalidade ONIX."
 
 msgid "manager.settings.publisher"
 msgstr "Nome da editora"
@@ -337,7 +346,8 @@ msgid "manager.setup.disciplineExamples"
 msgstr "(Ex.: História; Educação; Sociologia; Psicologia; Estudos Culturais; Direito)"
 
 msgid "manager.setup.disciplineProvideExamples"
-msgstr "Ofereça exemplos de termos de áreas do conhecimento relevantes a esta editora."
+msgstr ""
+"Ofereça exemplos de termos de áreas do conhecimento relevantes a esta editora"
 
 msgid "manager.setup.displayCurrentMonograph"
 msgstr "Incluir o sumário da monografia atual, caso esteja disponível."
@@ -370,7 +380,7 @@ msgid "manager.setup.emailSignatureDescription"
 msgstr "Os modelos de mensagens são enviados pelo sistema em nome da editora, apresentando a seguinte assinatura no final. O corpo das mensagens está disponível para personalização mais adiante."
 
 msgid "manager.setup.enableAnnouncements.enable"
-msgstr "Permitir a Gerentes da editora incluir notícias."
+msgstr "Permitir a Gerentes da editora incluir notícias"
 
 msgid "manager.setup.enablePressInstructions"
 msgstr "Apresentar esta editora publicamente no site"
@@ -457,7 +467,13 @@ msgid "manager.setup.layoutInstructions"
 msgstr "Instruções"
 
 msgid "manager.setup.layoutInstructionsDescription"
-msgstr "Instruções sobre como prepara o layout de formatação dos itens publicados na editora pode ser informaqui a seguir em HTML texto puro. Elas serão apresentadas ao editor d e layout e de seção no estágio de edição da submissão. Não é apresentado um modelo, já que editoras adotam seus formatos próprios de publicação, padrões bibliográficos, folhas de estilo, etc."
+msgstr ""
+"As instruções de layout podem ser preparadas para a formatação dos itens "
+"publicados na editora e inseridas abaixo em HTML ou texto sem formatação. "
+"Eles serão disponibilizados para o Editor de layout e o Editor de seção na "
+"página Edição de cada submissão. Não é apresentado um modelo, já que cada "
+"editora pode adotar seus formatos próprios de publicação, padrões "
+"bibliográficos, folhas de estilo, etc."
 
 msgid "manager.setup.layoutTemplates"
 msgstr "Modelos de layout"
@@ -598,7 +614,11 @@ msgid "manager.setup.pageHeader"
 msgstr "Cabeçalho interno"
 
 msgid "manager.setup.pageHeaderDescription"
-msgstr "Versões gráficas do título e logoti (arquivos permitidos são .gif, .jpg, ou .png), possivelmente em tamanhos menores que os usados na página inicial, podem ser enviados aqui e serão apresentados nas páginas internas do site, substituindo a versão em texto que aparece."
+msgstr ""
+"Versões gráficas do título e logotipo (arquivos permitidos são .gif, .jpg, "
+"ou .png), possivelmente em tamanhos menores que os usados na página inicial, "
+"podem ser enviados aqui e serão apresentados nas páginas internas do site, "
+"substituindo a versão em texto que aparece."
 
 msgid "manager.setup.pressPolicies"
 msgstr "Passo 2. Políticas"
@@ -682,16 +702,13 @@ msgid "manager.setup.internalReviewGuidelinesDescription"
 msgstr "Como as Diretrizes de Avaliação Externa, estas instruções informam os revisores sobre a avaliação da submissão. Estas instruções são para Revisores Internos, que geralmente realizam um processo de revisão usando revisores internos para a editora."
 
 msgid "manager.setup.reviewOptions"
-msgstr "Opções de Revisão"
+msgstr "Opções de Avaliação"
 
 msgid "manager.setup.reviewOptions.automatedReminders"
 msgstr "Lembretes automáticos (disponíveis nos modelos de mensagens do OMP) podem ser enviados aos avaliadores em dois momentos (enquanto o editor pode sempre se comunicar diretamente com o avaliador, a qualquer momento)."
 
 msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
 msgstr "<strong>Nota:</strong> Para ativar estas opções, o administrador do site deve habilitar a opção <tt>scheduled_tasks</tt> no arquivo de configuração do OMP. Configurações adicionais no servidor podem ser necessárias para oferecer suporte à funcionalidade (que pode não ser possível em todos os servidores), conforme indicado na documentação do OMP."
-
-msgid "manager.setup.reviewOptions.blindReview"
-msgstr "Avaliação cega"
 
 msgid "manager.setup.reviewOptions.noteOnModification"
 msgstr "Os valores padrão podem ser alterados para qualquer submissão durante o processo editorial."
@@ -713,9 +730,6 @@ msgstr "Lembretes ao avaliador"
 
 msgid "manager.setup.reviewOptions.reviewTime"
 msgstr "Tempo de avaliação"
-
-msgid "manager.setup.reviewOptions.showEnsuringLink"
-msgstr "Oferecer links sobre como assegurar uma avaliação cega segura a autores e avaliadores ao enviar arquivos."
 
 msgid "manager.setup.reviewPolicy"
 msgstr "Política de avaliação"
@@ -748,7 +762,10 @@ msgid "manager.setup.sectionsDefaultSectionDescription"
 msgstr "(Caso não tenha incluído seções, os itens serão submetidos, por padrão, à seção Monografias.)"
 
 msgid "manager.setup.sectionsDescription"
-msgstr "Para criar ou alterar seções da editora (ex.: Monografias, Revisões de livros, etc.) acesse a administração de seções.<br /><br />Ao submter itens, os autores designarão..."
+msgstr ""
+"Para criar ou alterar seções da editora (ex.: Monografias, Revisões de "
+"livros, etc.) acesse a administração de seções.<br /><br />Ao submeter "
+"itens, os autores designarão..."
 
 msgid "manager.setup.securitySettings"
 msgstr "Configurações de segurança de acesso"
@@ -1000,13 +1017,13 @@ msgid "user.authorization.pluginLevel"
 msgstr "Você não possui permissões adequadas para gerenciar este plugin."
 
 msgid "manager.setup.displayFeaturedBooks"
-msgstr "Mostrar publicações aprimoradas na página inicial."
+msgstr "Mostrar publicações aprimoradas na página inicial"
 
 msgid "manager.setup.displayInSpotlight"
-msgstr "Mostrar publicações em destaque na página inicial."
+msgstr "Mostrar publicações em destaque na página inicial"
 
 msgid "manager.setup.displayNewReleases"
-msgstr "Mostrar novos lançamentos na página inicial."
+msgstr "Mostrar novos lançamentos na página inicial"
 
 msgid "manager.setup.enableUserRegistration"
 msgstr "Visitantes podem criar contas de usuário na editora."
@@ -1025,3 +1042,280 @@ msgstr "Componentes"
 
 msgid "grid.genres.title"
 msgstr "Componentes da Publicação"
+
+msgid "stats.publications.abstracts"
+msgstr "Entradas do catálogo"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$count} de {$total} monografias"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Total de visualizações de arquivo por data"
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Total de visualizações de catálogo por data"
+
+msgid "stats.publications.none"
+msgstr ""
+"Não foram encontradas monografias com estatísticas de uso correspondentes a "
+"esses parâmetros."
+
+msgid "stats.publications.details"
+msgstr "Detalhes da monografia"
+
+msgid "stats.publicationStats"
+msgstr "Estatísticas da monografia"
+
+msgid "grid.series.urlWillBe"
+msgstr "A URL da série será: {$sampleUrl}"
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr "Selecione a categoria à qual você deseja vincular este item de menu."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Selecione a Categoria"
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr "Selecione a série à qual você deseja vincular este item de menu."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Selecionar Série"
+
+msgid "grid.series.pathExists"
+msgstr "O caminho das series já existe. Por favor, insira um caminho único."
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr "O caminho das series devem consistir apenas em letras e números."
+
+msgid "manager.setup.resetPermissions.success"
+msgstr "As permissões da monografia foram redefinidas com sucesso."
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Exibir conteúdo da monografia"
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Acesso ao site"
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr "A configuração do índice do motor de busca foi atualizada."
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Forneça uma breve descrição (50 a 300 caracteres) da editora, para que os "
+"mecanismos de pesquisa podem exibir ao listar a editora nos resultados da "
+"busca."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr "Inclua um link seguro no convite por e-mail aos avaliadores."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
+msgstr ""
+"Os Avaliadores podem receber um link seguro no convite por e-mail, o que "
+"permitirá que eles acessem a avaliação sem fazer login. O acesso a outras "
+"páginas exige que eles façam login."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Acesso de Avaliadores com um clique"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Restringir acesso a arquivos"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr ""
+"Um pequeno logotipo ou representação da editora que pode ser usado em listas "
+"de editoras."
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Thumbnail"
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+"Inclua qualquer informação sobre sua editora que possa interessar aos "
+"leitores, autores ou avaliadores. Isso pode incluir sua política de acesso "
+"aberto, o foco e o escopo da editora, aviso de direitos autorais, divulgação "
+"de patrocínios, histórico da editora e uma declaração de privacidade."
+
+msgid "manager.setup.aboutPress"
+msgstr "Sobre a Editora"
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "A declaração de privacidade foi atualizada."
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Limite o número de links a serem exibidos nas páginas subsequentes em uma "
+"lista."
+
+msgid "manager.setup.masthead.success"
+msgstr "Os detalhes do cabeçalho desta editora foram atualizados."
+
+msgid "manager.setup.lists.success"
+msgstr "As configurações de lista foram atualizadas."
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Forneça uma breve descrição da sua editora e identifique editores, diretores "
+"executivos e outros membros da sua equipe editorial."
+
+msgid "manager.setup.keyInfo"
+msgstr "Informação chave"
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Limite o número de itens (por exemplo, submissões, usuários ou atribuições "
+"de edição) a serem exibidos em uma lista antes de mostrar os itens "
+"subsequentes em outra página."
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Items por página"
+
+msgid "manager.setup.information.success"
+msgstr "As informações desta editora foram atualizadas."
+
+msgid "manager.setup.information"
+msgstr "Informação"
+
+msgid "manager.setup.identity"
+msgstr "Identidade da editora"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Quantas notícias serão exibidos na página inicial. Deixe em branco para não "
+"exibir nenhum."
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Exibir na página inicial"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Notícias podem ser publicados para informar os leitores sobre eventos e "
+"novidades. As notícias publicadas aparecerão na Página de Notícias."
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"Os e-mails preparados que são enviados pelo sistema em nome da editora terão "
+"a seguinte assinatura adicionada ao final."
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Para enviar e-mails não entregues a um endereço de devolução, o "
+"administrador do site deve ativar a opção <code>allow_envelope_sender</code> "
+"no arquivo de configuração do site. A configuração do servidor pode ser "
+"necessária, conforme indicado na documentação do OMP."
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Novos lançamentos"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Destaque"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Livros em destaque"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"As imagens serão reduzidas quando maiores que esse tamanho, mas nunca serão "
+"ampliadas ou esticadas para se ajustar a essas dimensões."
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Largura máxima da imagem de capa"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Altura máxima da imagem de capa"
+
+msgid "manager.setup.contextSummary"
+msgstr "Sumário"
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Inclua qualquer informação sobre sua editora que possa interessar aos "
+"leitores, autores ou avaliadores. Isso pode incluir sua política de acesso "
+"aberto, o foco e o escopo da editora, a divulgação de patrocínios e o "
+"histórico."
+
+msgid "manager.setup.contextAbout"
+msgstr "Sobre a Editora"
+
+msgid "manager.setup.announcements.success"
+msgstr "As configurações de notícias foram atualizadas."
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Usuários cadastrados nesta Editora"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Ferramentas para gerar relatórios relacionados a estatísticas de uso ("
+"exibição de página de índice de catálogo, exibição de página abstrata de "
+"monografia, downloads de arquivo de monografia)"
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Este não é um tipo de código de editor válido."
+
+msgid "manager.settings.publisher.identity"
+msgstr "Identidade do Editor"
+
+msgid "manager.payment.success"
+msgstr "As configurações de pagamento foram atualizadas."
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Os pagamentos serão ativados para esta editora. Observe que os usuários "
+"deverão fazer login para efetuar pagamentos."
+
+msgid "manager.payment.generalOptions"
+msgstr "Opções gerais"
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Exportar submissões"
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "XML inválido:"
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Não foi possível converter os objetos selecionados."
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Nenhum objeto selecionado."
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Impedir que os usuários submetem novos artigos para a editora. As submissões "
+"podem ser desabilitadas para séries individuais da editora na página de "
+"configurações da <a href=\"{$url}\"> série da editora </a>."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Esta editora não está aceitando submissões no momento. Visite as "
+"configurações do fluxo de trabalho para permitir submissões."
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"Pelo menos uma série deve estar ativa. Visite as configurações do fluxo de "
+"trabalho para desativar todas as submissões para esta editora."
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "O processo falhou ao analisar capítulos"
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "O processo falhou ao analisar os formatos de publicação"
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "O usuário especificado, \"{$userName}\", não existe."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Os objetos especificados não foram encontrados."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"Nenhum contato principal foi definido para esta editora. Você pode inserir o "
+"contato principal nas <a href=\"{$url}\">configurações da editora</a>."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Envie uma cópia do e-mail de confirmação da submissão para o contato "
+"principal desta editora."
+
+msgid "manager.setup.selectCountry"
+msgstr ""
+"Selecione o país onde esta editora está localizada ou o país do endereço de "
+"correspondência da editora."

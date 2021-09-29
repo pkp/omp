@@ -22,12 +22,12 @@ and other documentation in the docs directory before performing an upgrade.
 Obtaining the latest OMP code
 -----------------------------
 
-The OMP source code is available in two forms: a complete stand-alone 
+The OMP source code is available in two forms: a complete stand-alone
 package, and from read-only github access.
 
 1. Full Package
 
-If you have not made local code modifications to the system, upgrade by 
+If you have not made local code modifications to the system, upgrade by
 downloading the complete package for the latest release of OMP:
 
     - Download and decompress the package from the OMP web site into an empty
@@ -57,7 +57,7 @@ you can update the OMP code using a git client.
 To update the OMP code from a git check-out, run the following command from
 your OMP directory:
 
-    $ git rebase --onto <new-release-tag> <previous-release-tag>
+    git rebase --onto <new-release-tag> <previous-release-tag>
 
 This assumes that you have made local changes and committed them on top of
 the old release tag. The command will take your custom changes and apply
@@ -77,11 +77,22 @@ than OMP or third-party developers; using experimental code on a production
 deployment is strongly discouraged and will not be supported in any way by
 the OMP team.
 
+After obtaining to the latest OMP code, additional steps are required to
+update OMP's dependencies.
+
+Firstly, update all submodules and libraries like so:
+
+    git submodule update --init --recursive
+
+Then, install and update dependencies via Composer:
+
+    composer --working-dir=lib/pkp install
+    composer --working-dir=plugins/paymethod/paypal install
 
 Upgrading the OMP database
 --------------------------
 
-After obtaining the latest OMP code, an additional script must be run to
+After updating your OMP installation, an additional script must be run to
 complete the upgrade process by upgrading the OMP database and potentially
 executing additional upgrade code.
 
@@ -93,8 +104,8 @@ If you have the CLI version of PHP installed (e.g., /usr/bin/php), you can
 upgrade the database as follows:
 
     - Edit config.inc.php and change "installed = On" to "installed = Off"
-    - Run the following command from the OMP directory (not including the $):
-      $ php tools/upgrade.php upgrade
+    - Run the following command from the OMP directory:
+      php tools/upgrade.php upgrade
     - Re-edit config.inc.php and change "installed = Off" back to
        "installed = On"
 

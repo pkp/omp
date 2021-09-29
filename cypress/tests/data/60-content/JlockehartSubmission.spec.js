@@ -1,8 +1,8 @@
 /**
  * @file cypress/tests/data/60-content/JlockehartSubmission.spec.js
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2000-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @ingroup tests_data
@@ -39,7 +39,7 @@ describe('Data suite tests', function() {
 		});
 		cy.logout();
 
-		cy.findSubmissionAsEditor('dbarnes', null, title);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Locke Hart');
 		cy.sendToReview('Internal');
 		cy.get('li.ui-state-active a:contains("Internal Review")');
 		cy.assignReviewer('Aisla McCrae');
@@ -52,7 +52,7 @@ describe('Data suite tests', function() {
 		cy.performReview('agallego', null, title, null, 'I recommend that the author revise this submission.');
 		cy.performReview('gfavio', null, title, null, 'I recommend that the author resubmit this submission.');
 
-		cy.findSubmissionAsEditor('dbarnes', null, title);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Locke Hart');
 		cy.recordEditorialDecision('Accept Submission');
 		cy.get('li.ui-state-active a:contains("Copyediting")');
 	});

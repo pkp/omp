@@ -1,0 +1,250 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-06-20 09:39+0000\n"
+"Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
+"Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/pubIds-urn/"
+"es_ES/>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.pubIds.urn.editor.preview.objects"
+msgstr "Elemento"
+
+msgid "plugins.pubIds.urn.editor.preview.galleys"
+msgstr "Galerada: {$galleyLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.publication.none"
+msgstr "No se ha asignado ningún URN a esta publicación."
+
+msgid "plugins.pubIds.urn.editor.preview.publication"
+msgstr "El URN para esta publicación será {$urn}."
+
+msgid "plugins.pubIds.urn.editor.missingPrefix"
+msgstr "El URN debe empezar con {$urnPrefix}."
+
+msgid "plugins.pubIds.urn.editor.missingParts"
+msgstr ""
+"No puede generar un URN porque faltan datos en una o más partes del patrón "
+"URN. Puede que sea necesario asignar la publicación a un número, establecer "
+"un identificador editorial o introducir el número de páginas."
+
+msgid "plugins.pubIds.urn.editor.missingIssue"
+msgstr ""
+"No puede generar un URN hasta que esta publicación se asigne a un número."
+
+msgid "plugins.pubIds.urn.editor.urn.assignUrn"
+msgstr "Asignar"
+
+msgid "plugins.pubIds.urn.editor.urn.description"
+msgstr "El URN debe empezar con {$prefix}."
+
+msgid "plugins.pubIds.urn.form.checkNoRequired"
+msgstr "Falta el número de comprobación."
+
+msgid "plugins.pubIds.urn.editor.assignURN.assigned"
+msgstr "El URN {$pubId} se ha asignado."
+
+msgid "plugins.pubIds.urn.editor.assignURN.pattern"
+msgstr ""
+"El URN {$pubId} no se ha podido asignar porque contiene un patrón no "
+"resuelto."
+
+msgid "plugins.pubIds.urn.editor.assignURN.emptySuffix"
+msgstr ""
+"El URN no se ha podido asignar porque no se encuentra el sufijo "
+"personalizado."
+
+msgid "plugins.pubIds.urn.editor.assignURN"
+msgstr "Asignar el URN {$pubId} a este {$pubObjectType}"
+
+msgid "plugins.pubIds.urn.editor.addCheckNo"
+msgstr "Añadir número de comprobación"
+
+msgid "plugins.pubIds.urn.editor.clearObjectsURN.confirm"
+msgstr "Seguro que desea eliminar el URN existente?"
+
+msgid "plugins.pubIds.urn.editor.clearObjectsURN"
+msgstr "Limpiar"
+
+msgid "plugins.pubIds.urn.editor.urnSuffixCustomIdentifierNotUnique"
+msgstr ""
+"El sufijo URN proporcionado ya está en uso en otro elemento publicado. "
+"Introduzca un sufijo URN único para cada elemento."
+
+msgid "plugins.pubIds.urn.editor.assigned"
+msgstr "El URN se ha asignado a este {$pubObjectType}."
+
+msgid "plugins.pubIds.urn.editor.canBeAssigned"
+msgstr ""
+"Lo que ve es una previsualización del URN. Seleccione la casilla y guarde el "
+"formulario para asignar el URN."
+
+msgid "plugins.pubIds.urn.editor.patternNotResolved"
+msgstr "No se ha podido asignar el URN porque contiene un patrón no resuelto."
+
+msgid "plugins.pubIds.urn.editor.customSuffixMissing"
+msgstr ""
+"No se ha podido asignar el URN porque no se encuentra el sufijo "
+"personalizado."
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeSubmissionFile"
+msgstr "archivo"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeRepresentation"
+msgstr "formato de publicación"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeChapter"
+msgstr "capítulo"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeSubmission"
+msgstr "monografía"
+
+msgid "plugins.pubIds.urn.editor.urn"
+msgstr "URN"
+
+msgid "plugins.pubIds.urn.manager.settings.urnReassign.confirm"
+msgstr "Seguro que desea eliminar todos los URN existentes?"
+
+msgid "plugins.pubIds.urn.manager.settings.urnReassign.description"
+msgstr ""
+"Si modifica su configuración URN, los URN ya asignados no se verán "
+"afectados. Una vez guardada la configuración URN, utilice este botón para "
+"limpiar todos los URN existentes, y así los nuevos ajustes se aplicarán en "
+"todos los objectos existentes."
+
+msgid "plugins.pubIds.urn.manager.settings.urnReassign"
+msgstr "Reasignar URN"
+
+msgid "plugins.pubIds.urn.manager.settings.form.urnResolverRequired"
+msgstr "Introduzca la URL resolvedora."
+
+msgid "plugins.pubIds.urn.manager.settings.urnResolver.description"
+msgstr "(p. ej. http://nbn-resolving.de/)"
+
+msgid "plugins.pubIds.urn.manager.settings.urnResolver"
+msgstr "Resolvedor URL"
+
+msgid "plugins.pubIds.urn.manager.settings.namespace.description"
+msgstr ""
+"El identificador de espacio de nombres persistente normalmente necesita "
+"registro (p. ej. en la Deutsche Nationalbibliothek)."
+
+msgid "plugins.pubIds.urn.manager.settings.namespace.choose"
+msgstr "Escoger"
+
+msgid "plugins.pubIds.urn.manager.settings.namespace"
+msgstr "Espacio de nombres"
+
+msgid "plugins.pubIds.urn.manager.settings.checkNo.label"
+msgstr ""
+"El número de comprobación será calculado y añadido automáticamente al final, "
+"como el último dígito de un URN."
+
+msgid "plugins.pubIds.urn.manager.settings.checkNo"
+msgstr "Número de comprobación"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSubmissionFileSuffixPatternRequired"
+msgstr "Introduzca el patrón de sufijo URN para archivos."
+
+msgid "plugins.pubIds.urn.manager.settings.urnRepresentationSuffixPatternRequired"
+msgstr "Introduzca el patrón de sufijo URN para formatos de publicación."
+
+msgid "plugins.pubIds.urn.manager.settings.urnChapterSuffixPatternRequired"
+msgstr "Introduzca el patrón de sufijo URN para capítulos."
+
+msgid "plugins.pubIds.urn.manager.settings.urnPublicationSuffixPatternRequired"
+msgstr "Introduzca el patrón de sufijo URN para monografías."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixCustomIdentifier"
+msgstr ""
+"Introduzca un sufijo URN individual para cada elemento publicado. Encontrará "
+"un campo de entrada URN adicional en la página de metadatos de cada elemento."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixDefault.description"
+msgstr ""
+"%p.%m para monografías<br />%p.%m.c%c para capítuloss<br />%p.%m.%f para "
+"formatos de publicación<br />%p.%m.%f.%s para archivos."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixDefault"
+msgstr "Utilizar patrones predeterminados."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.files"
+msgstr "para archivos"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.representations"
+msgstr "para formatos de publicación"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.chapters"
+msgstr "para capítulos"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.submissions"
+msgstr "para monografías"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.example"
+msgstr "Por ejemplo, press%ppub%r crearía el sufijo URN \"pressESPpub100\"."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern"
+msgstr ""
+"Utilice el patrón introducido a continuación para generar sufijos URN. Use %"
+"p para iniciales editoriales, %m para el identificador de la monografía, %c "
+"para el identificador del capítulo, %f para el identificador del formato de "
+"publicación, %s para el archivo y %x para \"identificador personalizado\"."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffix.description"
+msgstr ""
+"El sufijo URN puede tener cualquier forma, pero debe ser único entre todos "
+"los objetos editoriales con el mismo prefijo URN asignado:"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffix"
+msgstr "Sufijo URN"
+
+msgid "plugins.pubIds.urn.manager.settings.form.urnPrefixPattern"
+msgstr ""
+"El patrón del prefijo URN debe tener la forma \"urn:\"&lt;NID&gt;\":\""
+"&lt;NSS&gt;."
+
+msgid "plugins.pubIds.urn.manager.settings.urnPrefix.description"
+msgstr ""
+"El prefijo URN es la parte fija que nunca cambia del URN (p. ej. \""
+"urn:nbn:de:0000-\")."
+
+msgid "plugins.pubIds.urn.manager.settings.urnPrefix"
+msgstr "Prefijo URN"
+
+msgid "plugins.pubIds.urn.manager.settings.enableSubmissionFileURN"
+msgstr "Archivos"
+
+msgid "plugins.pubIds.urn.manager.settings.enableRepresentationURN"
+msgstr "Formatos de publicación"
+
+msgid "plugins.pubIds.urn.manager.settings.enableChapterURN"
+msgstr "Capítulos"
+
+msgid "plugins.pubIds.urn.manager.settings.enablePublicationURN"
+msgstr "Monografías"
+
+msgid "plugins.pubIds.urn.manager.settings.explainURNs"
+msgstr ""
+"Seleccione los objetos editoriales que tendrán asignados nombres de recurso "
+"uniforme (URN):"
+
+msgid "plugins.pubIds.urn.manager.settings.urnObjectsRequired"
+msgstr "Escoja los objetos a los que se deberían asignar URN."
+
+msgid "plugins.pubIds.urn.manager.settings.urnObjects"
+msgstr "Contenido editorial"
+
+msgid "plugins.pubIds.urn.manager.settings.description"
+msgstr "Configure el módulo URN para poder gestionar y usar URN en OMP:"
+
+msgid "plugins.pubIds.urn.description"
+msgstr ""
+"Este módulo habilita la asignación de nombres de recurso uniforme (URN) a "
+"monografías, capítulos, formatos de publicación y archivos en OMP."
+
+msgid "plugins.pubIds.urn.displayName"
+msgstr "URN"

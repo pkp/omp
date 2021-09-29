@@ -2,8 +2,8 @@
 /**
  * @file controllers/grid/files/proof/form/ApprovedProofForm.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ApprovedProofForm
@@ -12,105 +12,110 @@
  * @brief Form for editing approved proofs (available for direct sales).
  */
 
+use APP\template\TemplateManager;
 
-import('lib.pkp.classes.form.Form');
+use PKP\form\Form;
 
-class ApprovedProofForm extends Form {
-	/** @var $approvedProof SubmissionFile */
-	var $approvedProof;
+class ApprovedProofForm extends Form
+{
+    /** @var SubmissionFile $approvedProof */
+    public $approvedProof;
 
-	/** @var $monograph Monograph */
-	var $monograph;
+    /** @var Monograph $monograph */
+    public $monograph;
 
-	/** @var $publicationFormat PublicationFormat */
-	var $publicationFormat;
+    /** @var PublicationFormat $publicationFormat */
+    public $publicationFormat;
 
-	/**
-	 * Constructor
-	 * @param $monograph Monograph
-	 * @param $publicationFormat PublicationFormat
-	 * @param $fileId string fileId-revision
-	 */
-	public function __construct($monograph, $publicationFormat, $fileIdAndRevision) {
-		parent::__construct('controllers/grid/files/proof/form/approvedProofForm.tpl');
+    /**
+     * Constructor
+     *
+     * @param $monograph Monograph
+     * @param $publicationFormat PublicationFormat
+     * @param $submissionFileId int
+     */
+    public function __construct($monograph, $publicationFormat, $submissionFileId)
+    {
+        parent::__construct('controllers/grid/files/proof/form/approvedProofForm.tpl');
 
-		$this->monograph = $monograph;
-		$this->publicationFormat = $publicationFormat;
+        $this->monograph = $monograph;
+        $this->publicationFormat = $publicationFormat;
+        $this->approvedProof = Services::get('submissionFile')->get($submissionFileId);
 
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		list($fileId, $revision) = explode('-', $fileIdAndRevision);
-		$this->approvedProof = $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF, $this->monograph->getId());
-
-		// matches currencies like:  1,500.50 1500.50 1,112.15 5,99 .99
-		$this->addCheck(new FormValidatorRegExp($this, 'price', 'optional', 'grid.catalogEntry.validPriceRequired', '/^(([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?|([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?)$/'));
-		$this->addCheck(new FormValidatorPost($this));
-		$this->addCheck(new FormValidatorCSRF($this));
-	}
+        // matches currencies like:  1,500.50 1500.50 1,112.15 5,99 .99
+        $this->addCheck(new \PKP\form\validation\FormValidatorRegExp($this, 'price', 'optional', 'grid.catalogEntry.validPriceRequired', '/^(([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?|([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?)$/'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
+    }
 
 
-	//
-	// Extended methods from Form
-	//
-	/**
-	 * @copydoc Form::fetch
-	 */
-	public function fetch($request, $template = null, $display = false) {
-		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('fileId', $this->approvedProof->getFileIdAndRevision());
-		$templateMgr->assign('submissionId', $this->monograph->getId());
-		$templateMgr->assign('representationId', $this->publicationFormat->getId());
-		$templateMgr->assign('publicationId', $this->publicationFormat->getData('publicationId'));
+    //
+    // Extended methods from Form
+    //
+    /**
+     * @copydoc Form::fetch
+     *
+     * @param null|mixed $template
+     */
+    public function fetch($request, $template = null, $display = false)
+    {
+        $templateMgr = TemplateManager::getManager($request);
+        $templateMgr->assign('submissionFileId', $this->approvedProof->getId());
+        $templateMgr->assign('submissionId', $this->monograph->getId());
+        $templateMgr->assign('representationId', $this->publicationFormat->getId());
+        $templateMgr->assign('publicationId', $this->publicationFormat->getData('publicationId'));
 
-		$salesTypes = array(
-			'openAccess' => 'payment.directSales.openAccess',
-			'directSales' => 'payment.directSales.directSales',
-			'notAvailable' => 'payment.directSales.notAvailable',
-		);
+        $salesTypes = [
+            'openAccess' => 'payment.directSales.openAccess',
+            'directSales' => 'payment.directSales.directSales',
+            'notAvailable' => 'payment.directSales.notAvailable',
+        ];
 
-		$templateMgr->assign('salesTypes', $salesTypes);
-		$templateMgr->assign('salesType', $this->approvedProof->getSalesType());
-		return parent::fetch($request, $template, $display);
-	}
+        $templateMgr->assign('salesTypes', $salesTypes);
+        $templateMgr->assign('salesType', $this->approvedProof->getSalesType());
+        return parent::fetch($request, $template, $display);
+    }
 
-	/**
-	 * @see Form::readInputData()
-	 */
-	public function readInputData() {
-		$this->readUserVars(array('price', 'salesType'));
-	}
+    /**
+     * @see Form::readInputData()
+     */
+    public function readInputData()
+    {
+        $this->readUserVars(['price', 'salesType']);
+    }
 
-	/**
-	 * @see Form::initData()
-	 */
-	public function initData() {
-		$this->_data = array(
-			'price' => $this->approvedProof->getDirectSalesPrice(),
-			'salesType' => $this->approvedProof->getSalesType(),
-		);
-	}
+    /**
+     * @see Form::initData()
+     */
+    public function initData()
+    {
+        $this->_data = [
+            'price' => $this->approvedProof->getDirectSalesPrice(),
+            'salesType' => $this->approvedProof->getSalesType(),
+        ];
+    }
 
-	/**
-	 * @copydoc Form::execute()
-	 */
-	public function execute(...$functionArgs) {
-		parent::execute(...$functionArgs);
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$salesType = $this->getData('salesType');
-		if ($salesType === 'notAvailable') {
-			// Not available
-			$this->approvedProof->setDirectSalesPrice(null);
-		} elseif ($salesType === 'openAccess') {
-			// Open access
-			$this->approvedProof->setDirectSalesPrice(0);
-		} else { /* $salesType === 'directSales' */
-			// Direct sale
-			$this->approvedProof->setDirectSalesPrice($this->getData('price'));
-		}
-		$this->approvedProof->setSalesType($salesType);
-		$submissionFileDao->updateObject($this->approvedProof);
+    /**
+     * @copydoc Form::execute()
+     */
+    public function execute(...$functionArgs)
+    {
+        parent::execute(...$functionArgs);
+        $submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+        $salesType = $this->getData('salesType');
+        if ($salesType === 'notAvailable') {
+            // Not available
+            $this->approvedProof->setDirectSalesPrice(null);
+        } elseif ($salesType === 'openAccess') {
+            // Open access
+            $this->approvedProof->setDirectSalesPrice(0);
+        } else { /* $salesType === 'directSales' */
+            // Direct sale
+            $this->approvedProof->setDirectSalesPrice($this->getData('price'));
+        }
+        $this->approvedProof->setSalesType($salesType);
+        $submissionFileDao->updateObject($this->approvedProof);
 
-		return $this->approvedProof->getFileIdAndRevision();
-	}
+        return $this->approvedProof->getId();
+    }
 }
-
-

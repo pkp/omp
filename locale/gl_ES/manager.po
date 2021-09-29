@@ -1,0 +1,1440 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-06-19 08:03+0000\n"
+"Last-Translator: Real Academia Galega <reacagal@gmail.com>\n"
+"Language-Team: Galician <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"gl_ES/>\n"
+"Language: gl_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "manager.series.form.titleRequired"
+msgstr "É necesario un título para a colección."
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "É necesario un título abreviado para a colección."
+
+msgid "manager.series.unassigned"
+msgstr "Editores de Coleccións dispoñibeis"
+
+msgid "manager.series.hideAbout"
+msgstr "Omite esta colección na páxina Sobre a editorial."
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Engade un editor/a de colección a esta serie dos Editores/as de Colección "
+"dispoñibles. Unha vez engadido, designe se o Editor/a da colección "
+"supervisará a REVISIÓN (revisión por pares) e/ou a EDICIÓN (redacción, "
+"maquetación e corrección de probas) dos envíos a esta colección. Os editores/"
+"as de colección créanse facendo clic en <a href=\"{$seriesEditorsUrl}\">"
+"Editores de Coleccións</a> en Roles na xestión de editorial."
+
+msgid "manager.series.assigned"
+msgstr "Editores desta colección"
+
+msgid "manager.series.policy"
+msgstr "Descrición da colección"
+
+msgid "manager.series.create"
+msgstr "Crear colección"
+
+msgid "manager.series.book"
+msgstr "Coleccións de libros"
+
+msgid "manager.series.disableComments"
+msgstr "Desactiva os comentarios dos lectores/as desta colección."
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Non se precisan resumos"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Envíos feitos a esta colección"
+
+msgid "manager.series.submissionReview"
+msgstr "Non será revisado por pares"
+
+msgid "manager.series.readingTools"
+msgstr "Ferramentas de lectura"
+
+msgid "manager.series.open"
+msgstr "Envíos abertos"
+
+msgid "manager.series.indexed"
+msgstr "Indexado"
+
+msgid "manager.series.confirmDelete"
+msgstr "Seguro que queres eliminar permanentemente esta colección?"
+
+msgid "manager.series.editorRestriction"
+msgstr "Só os Editores/as e os Editores/as de Coleccións poden enviar artigos."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Non se incluirá na indexación da editorial"
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Asegúrese de que escolleu un formulario de revisión válido."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Asegúrese de que está marcada polo menos unha caixa de verificación para "
+"cada tarefa do Editor de Coleccións."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Este será o idioma predeterminado para o sitio da editorial."
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Non hai idiomas adicionais dispoñibles. Póñase en contacto co administrador/"
+"a do sitio se desexa empregar idiomas adicionais con esta editorial."
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"Isto substituirá calquera configuración específica de esta editorial para "
+"este idioma"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"As imaxes reduciranse cando sexan maiores que este tamaño, pero nunca serán "
+"ampliadas ou estiradas para axustalas a estas dimensións."
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Ancho máximo da imaxe da capa"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Altura máxima da imaxe da capa"
+
+msgid "manager.setup.coverage"
+msgstr "Cobertura"
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Aviso de dereitos de autor"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+"As instrucións de corrección estarán dispoñibles para correctores/as, "
+"autores/as e editores/as de seccións na fase de edición do envío. A "
+"continuación móstrase un conxunto predeterminado de instrucións en HTML, que "
+"pode ser modificado ou substituído polo xefe editorial en calquera momento ("
+"en HTML ou texto plano)."
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Instrucións para a corrección dos orixinais"
+
+msgid "manager.setup.copyediting"
+msgstr "Correctores/as"
+
+msgid "manager.setup.contextSummary"
+msgstr "Resumo da publicación"
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Inclúa calquera información sobre a editorial que poida interesar aos "
+"lectores/as, autores/as ou revisores/as. Isto podería incluír a súa política "
+"de acceso aberto, o enfoque e alcance da mesma, a divulgación do patrocinio "
+"e a historia da editorial."
+
+msgid "manager.setup.contextAbout"
+msgstr "Acerca da publicación"
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Para aparecer en Acerca da editorial) "
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+"Introduza calquera información adicional que debe mostrarse aos lectores na "
+"páxina de anuncios."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Información adicional"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Visualizacións da páxina principal da colección"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Resumo e descargas da monografía"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Visualizacións da páxina do resumo da monografía"
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Descargar o arquivo da monografía"
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Todas as opcións específicas do proceso de distribución (notificación, "
+"indexación, arquivo, pago, ferramentas de lectura)."
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Este non é un tipo de código editorial válido."
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Tipo de código da editorial"
+
+msgid "manager.settings.publisherCode"
+msgstr "Código da Editorial"
+
+msgid "manager.settings.location"
+msgstr "Localización xeográfica"
+
+msgid "manager.settings.publisher"
+msgstr "Nome da Editorial"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Estes campos son necesarios para publicar <a href=\"https://en.wikipedia.org/"
+"wiki/ONIX_for_Books\">metadatos ONIX</a> válidos."
+
+msgid "manager.settings.publisher.identity"
+msgstr "Identidade da editorial"
+
+msgid "manager.settings.press"
+msgstr "Editorial"
+
+msgid "manager.settings.pressSettings"
+msgstr "Configuraciones da editorial"
+
+msgid "manager.settings"
+msgstr "Configuraciones"
+
+msgid "manager.payment.success"
+msgstr "Actualizáronse as opcións de pagamento."
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Os pagamentos habilitaranse para esta editorial. Ten en conta que os "
+"usuarios terán que iniciar sesión para realizar pagamentos."
+
+msgid "manager.payment.generalOptions"
+msgstr "Opcións xerais"
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"Polo menos unha serie debe estar activa. Visita a configuración do fluxo de "
+"traballo para desactivar todos os envíos a esta editorial."
+
+msgid "manager.series.restricted"
+msgstr "Non permitir aos autores enviar directamente a esta colección."
+
+msgid "manager.series.seriesTitle"
+msgstr "Título da colección"
+
+msgid "manager.series.existingUsers"
+msgstr "Usuarios existentes"
+
+msgid "manager.series.noneCreated"
+msgstr "Non se creou ningunha colección."
+
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Pódense publicar anuncios para informar aos lectores de noticias e eventos "
+"da editorial. Os anuncios publicados aparecerán na páxina de anuncios."
+
+msgid "manager.setup.announcements.success"
+msgstr "Actualizáronse os axustes dos anuncios."
+
+msgid "manager.setup.announcements"
+msgstr "Anuncios"
+
+msgid "manager.setup.addSponsor"
+msgstr "Engadir patrocinador"
+
+msgid "manager.setup.addNavItem"
+msgstr "Engadir elemento"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Engadir elemento para aparecer en \"Acerca da editorial\""
+
+msgid "manager.setup.addItem"
+msgstr "Engadir elemento"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Engadir un elemento \"Lista de verificación\""
+
+msgid "manager.setup.addAboutItem"
+msgstr "Engadir un elemento \"Acerca de\""
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Contido"
+
+msgid "manager.setup"
+msgstr "Configuración"
+
+msgid "manager.pressManagement"
+msgstr "Administración da editorial"
+
+msgid "user.authorization.pluginLevel"
+msgstr "Non tes privilexios suficientes para xestionar este complemento."
+
+msgid "manager.system.payments"
+msgstr "Pagamentos"
+
+msgid "manager.system.readingTools"
+msgstr "Ferramentas de lectura"
+
+msgid "manager.system.reviewForms"
+msgstr "Formularios de revisión"
+
+msgid "manager.system.archiving"
+msgstr "Arquivado"
+
+msgid "manager.system"
+msgstr "Configuración do sistema"
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Non tes dereitos administrativos sobre este usuario/a. Isto pode ser porque:"
+"\n"
+"\t\t<ul>\n"
+"\t\t\t<li>O usuario/a é administrador do sitio</li>\n"
+"\t\t\t<li>O usuario/a está activo en publicacións que ti non xestionas</li>\n"
+"\t\t</ul>\n"
+"\tEsta tarefa debe ser realizada por un administrador do sitio.\n"
+"\t"
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Deshabilitar ao usuario/a? Isto evitará que o usuario inicie sesión no "
+"sistema.\n"
+"\n"
+"Opcionalmente, pode proporcionarlle ao usuario unha razón para desactivar a "
+"súa conta."
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"A sincronización da inscrición atribuirá a todos os usuarios/as inscritos "
+"nun rol específico na publicación no mesmo rol nesta publicación. Esta "
+"función permite sincronizar un conxunto común de usuarios (por exemplo, "
+"revisores) entre publicacións."
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Seleccione un usuario ao que atribuirlle as autorías do usuario anterior, as "
+"tarefas de edición, etc."
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Selecciona un usuario para fusionalo noutra conta de usuario (por exemplo, "
+"se alguén ten dúas contas). Eliminarase a conta seleccionada primeiro e os "
+"seus envíos, tarefas, etc. atribuiranse á segunda conta."
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Con editorial"
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Inscribir un usuario existente"
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Queres eliminar este usuario/a desta publicación? Esta acción cancelará a "
+"inscrición do usuario/a de todos os roles na publicación."
+
+msgid "manager.people.allUsers"
+msgstr "Todos os usuarios inscritos"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Inscriba un usuario deste sitio nesta editorial"
+
+msgid "manager.people.allPresses"
+msgstr "Todas as editoriais"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Usuarios/as inscritos/as nesta editorial"
+
+msgid "manager.users.selectRole"
+msgstr "Seleccionar rol"
+
+msgid "manager.users.currentRoles"
+msgstr "Roles actuais"
+
+msgid "manager.users.availableRoles"
+msgstr "Roles dispoñibeis"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Ferramentas para xerar informes relacionados coas estatísticas de uso ("
+"visualizacións da páxina indice de catálogo, visualizacións da páxina do "
+"resumo de monografía, descargas do arquivo da monografía)"
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Todas as ferramentas específicas para importar e exportar datos ("
+"publicacións, monografías, usuarios)"
+
+msgid "manager.tools"
+msgstr "Ferramentas"
+
+msgid "manager.statistics.reports.filters.byObject.description"
+msgstr ""
+"Restrinxir resultados por tipo de obxecto (publicación, colección, "
+"monografía, tipos de arquivo) e/ou por un ou máis identificadores de obxecto."
+
+msgid "manager.statistics.reports.filters.byContext.description"
+msgstr "Restrinxir resultados por contexto (colección e/ou monografía)."
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Visualizacións da páxina principal da editorial"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Modelos de maquetación"
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"As instrucións de maquetación pódense preparar para o formato dos elementos "
+"publicados na editorial e introducirse a continuación en HTML ou texto "
+"plano. Estarán dispoñibles para o maquetador e o editor de sección na páxina "
+"de edición de cada envío. (Como cada editorial pode empregar os seus propios "
+"formatos de arquivo, estándares bibliográficos, follas de estilo, etc., non "
+"se fornece un conxunto de instrucións predeterminado.)"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Instrucións de maquetación"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Maquetadores"
+
+msgid "manager.setup.labelName"
+msgstr "Nome da etiqueta"
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Ofrece unha breve descrición da túa editorial e identifica aos membros do "
+"teu equipo editorial."
+
+msgid "manager.setup.keyInfo"
+msgstr "Información clave"
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Limita o número de elementos (por exemplo, envíos, usuarios ou tarefas de "
+"edición) para mostrar nunha lista antes de amosar os elementos posteriores "
+"noutra páxina."
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Elementos por páxina"
+
+msgid "manager.setup.institution"
+msgstr "Institución"
+
+msgid "manager.setup.information.success"
+msgstr "A información desta editorial actualizouse."
+
+msgid "manager.setup.information.forReaders"
+msgstr "Para lectores/as"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Para bibliotecarios/as"
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Para autores/as"
+
+msgid "manager.setup.information.description"
+msgstr ""
+"Breves descricións da editorial para bibliotecarios e futuros autores e "
+"lectores. Están dispoñibles na barra lateral do sitio na sección de \""
+"Información\"."
+
+msgid "manager.setup.information"
+msgstr "Información"
+
+msgid "manager.setup.identity"
+msgstr "Identidade da editorial"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Paso 3. Preparando o fluxo de traballo"
+
+msgid "manager.setup.guidelines"
+msgstr "Directrices"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Paso 1. Detalles"
+
+msgid "manager.setup.generalInformation"
+msgstr "Información xeral"
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "É obrigatorio o nome do soporte técnico."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "É necesario un correo electrónico de soporte técnico."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "É necesario o número de revisores por envío."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "O nome do contacto principal é obrigatorio."
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "É necesario o correo electrónico do contacto principal."
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"OMP adhírese ao protocolo <a href=\"http://www.openarchives.org/\" target=\""
+"_blank\">Open Archives Initiative</a> para a recolección de metadatos, que é "
+"o estándar emerxente para proporcionar acceso ben indexado a recursos "
+"electrónicos de investigación a escala mundial. Os autores utilizarán un "
+"modelo similar para proporcionar metadatos para o seu envío. O xefe/a "
+"editorial debería seleccionar as categorías para indexar, e presentar aos "
+"autores exemplos relevantes para axudalos a indexar o seu traballo, "
+"separando os termos cun punto e coma (por exemplo, term1; term2). As "
+"entradas deben introducirse como exemplos usando \"P. ex.\" ou \"Por "
+"exemplo\"."
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Para que os autores indexen o seu traballo"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>EXEMPLO DE DATOS HTML</strong>"
+
+msgid "manager.setup.focusScope"
+msgstr "Enfoque e alcance"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr ""
+"Describa aos autores, lectores e bibliotecarios a temática das monografías e "
+"outros elementos que publicará a editorial."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Enfoque e alcance da editorial"
+
+msgid "manager.setup.enableUserRegistration"
+msgstr "Os visitantes poden rexistrar unha conta de usuario coa editorial."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+"Usaranse identificadores personalizados para identificar as galeradas (por "
+"exemplo, arquivos HTML ou PDF) dos elementos publicados."
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr ""
+"Usaranse identificadores personalizados para identificar os elementos "
+"publicados."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Permite que esta editorial apareza publicamente no sitio"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Cantos anuncios se amosan na páxina de inicio. Deixa isto baleiro para non "
+"mostrar ningún."
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Amosar na páxina principal"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Pódense publicar avisos para informar aos lectores de novas e eventos. Os "
+"anuncios publicados aparecerán na páxina de avisos."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Habilitar avisos"
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"Os correos electrónicos predefinidos que o sistema envíe en nome da "
+"editorial engadirán ao final a seguinte sinatura."
+
+msgid "manager.setup.emailSignature"
+msgstr "Sinatura"
+
+msgid "manager.setup.emails"
+msgstr "Identificación de correo electrónico"
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Para enviar os correos electrónicos que non puideron entregarse a un "
+"enderezo de rebote, o administrador do sitio debe habilitar a opción "
+"<code>allow_envelope_sender</code> no arquivo de configuración do sitio. "
+"Pode ser necesaria a configuración do servidor, como se indica na "
+"documentación de OMP."
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"Calquera correo electrónico que non se poida entregar enviará unha mensaxe "
+"de erro a este enderezo."
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Remitente"
+
+msgid "manager.setup.editorDecision"
+msgstr "Decisión do editor/a"
+
+msgid "manager.setup.doiPrefixDescription"
+msgstr ""
+"O prefixo DOI (Digital Object Identifier) está asignado por <a href=\""
+"http://www.crossref.org\" target=\"_blank\">CrossRef</a> e ten o formato "
+"10.xxxx (por exemplo, 10.1234)."
+
+msgid "manager.setup.doiPrefix"
+msgstr "Prefixo DOI"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Novidades"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Mostrar novidades na páxina de inicio"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Destaque"
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Mostrar libros no destaque na páxina de inicio"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Libros destacados"
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Mostrar libros destacados na páxina de inicio"
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Contido da páxina de inicio"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Engade a táboa de contidos da monografía actual (se está dispoñibel)."
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr ""
+"Proporcione exemplos de disciplinas académicas relevantes para esta editorial"
+
+msgid "manager.setup.disciplineExamples"
+msgstr ""
+"(P.ex., historia; educación; socioloxía; psicoloxía; estudos culturais; "
+"dereito)"
+
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Útil cando a editorial traspasa os límites dunha disciplinaria e/ou os "
+"autores/as envían elementos multidisciplinares."
+
+msgid "manager.setup.discipline"
+msgstr "Disciplina académica e subdisciplinas"
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+"O xestor/a editorial rexistrará todas as contas de usuario/a. Os editores/as "
+"ou os editores/as de sección poden rexistrar aos revisores/as."
+
+msgid "manager.setup.details.description"
+msgstr "Nome da editorial, contactos, patrocinadores e motores de busca."
+
+msgid "manager.setup.details"
+msgstr "Detalles"
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Etiquetas de cabeceira HTML personalizadas que se inserirán na cabeceira de "
+"cada páxina (por exemplo, etiquetas META)."
+
+msgid "manager.setup.customTags"
+msgstr "Etiquetas personalizadas"
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Paso 5. Personalización do aspecto"
+
+msgid "manager.setup.pageHeader"
+msgstr "Cabeceira da páxina da publicación"
+
+msgid "manager.setup.layout"
+msgstr "Maquetación da publicación"
+
+msgid "manager.setup.contextInitials"
+msgstr "Sigla da editorial"
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr ""
+"A páxina de inicio de editorial consiste de forma predeterminada en ligazóns "
+"de navegación. Pódese engadir contido adicional á páxina de inicio usando "
+"unha ou todas as seguintes opcións, que aparecerán na orde mostrada."
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Contido de páxina de inicio da editorial"
+
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+"A páxina de inicio de editorial consiste de forma predeterminada en ligazóns "
+"de navegación. Pódese engadir contido adicional á páxina de inicio usando "
+"unha ou todas as seguintes opcións, que aparecerán na orde mostrada."
+
+msgid "manager.setup.homepageContent"
+msgstr "Contido de páxina de inicio da editorial"
+
+msgid "manager.setup.pressArchiving"
+msgstr "Arquivamento da publicación"
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+"Inclúe calquera información sobre a túa editorial que poida interesar aos "
+"lectores/as, autores/as ou revisores/as. Isto podería incluír a política de "
+"acceso aberto, a temática e o alcance da editorial, o aviso de copyright, a "
+"divulgación de patrocinios, o historial e unha declaración de privacidade."
+
+msgid "manager.setup.aboutPress"
+msgstr "Sobre a editorial"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "Unha breve descrición da súa editorial."
+
+msgid "manager.setup.pressDescription"
+msgstr "Descrición da editorial"
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+"Desde esta páxina pódense configurar varios compoñentes do aspecto da "
+"editorial, incluídos os elementos da cabeceira e pé de páxina, o estilo e o "
+"tema e como se presentan as listas de información aos usuarios/as."
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "A declaración de privacidade actualizouse."
+
+msgid "manager.setup.policies.description"
+msgstr ""
+"Obxecto da publicación, proceso de revisión por pares, seccións, "
+"privacidade, seguridade e outros."
+
+msgid "manager.setup.policies"
+msgstr "Políticas"
+
+msgid "manager.setup.onlineIssn"
+msgstr "ISSN en liña"
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Acceso ao contido da editorial"
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Limitar o número de ligazóns que se amosarán nas páxinas sucesivas dunha "
+"lista."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Ligazóns da páxina"
+
+msgid "manager.setup.noUseProofreaders"
+msgstr ""
+"Un editor/a ou un editor/a de sección asignado ao envío comprobará as "
+"galeradas."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+"Un editor/a ou editor/a de sección asignado ao envío preparará os ficheiros "
+"HTML, PDF, etc."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr ""
+"A corrección dos orixinais correrá a cargo dun editor/a ou editor/a de "
+"sección asignado ao envío."
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+"Ao usar o correo electrónico de Notificación ao autor, inclúe os enderezos "
+"de correo electrónico de todos os coautores, non só o do usuario que fai o "
+"envío."
+
+msgid "manager.setup.note"
+msgstr "Nota"
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Non se cargou ningunha folla de estilo."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Non se cargou ningún arquivo de imaxe."
+
+msgid "manager.setup.masthead.success"
+msgstr "Actualizáronse os detalles da cabeceira desta editorial."
+
+msgid "manager.setup.managingThePress"
+msgstr "Paso 4. Administración da configuración"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Configuración da administración e publicación"
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Xestión dos pasos editoriais básicos"
+
+msgid "manager.setup.management.description"
+msgstr ""
+"Acceso e seguridade, programación, anuncios, corrección, maquetación e "
+"corrección de probas."
+
+msgid "manager.setup.settings"
+msgstr "Configuración"
+
+msgid "manager.setup.look.description"
+msgstr ""
+"Cabeceira da páxina de inicio, contido, cabeceira da editorial, pé de "
+"páxina, barra de navegación e folla de estilo."
+
+msgid "manager.setup.look"
+msgstr "Visualización"
+
+msgid "manager.setup.lists.success"
+msgstr "A configuración da lista actualizouse."
+
+msgid "manager.setup.lists"
+msgstr "Listas"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Título"
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Arquivo de modelo"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"Os modelos pódense cargar para que aparezan na maquetación para cada un dos "
+"formatos estándar publicados na editorial (por exemplo, monografía, revisión "
+"de libros, etc.) empregando calquera formato de arquivo (por exemplo, pdf, "
+"doc, etc.) con anotacións engadidas especificando a fonte, o tamaño , "
+"marxes, etc. para servir de guía para os maquetadores/as e correctores/as de "
+"probas."
+
+msgid "manager.setup.submissionPreparationChecklist"
+msgstr "Lista de verificación do envío"
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Directrices para o envío"
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr ""
+"Proporcione exemplos de palabras clave ou temas como guía para os autores/as"
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Palabras clave"
+
+msgid "manager.setup.subjectExamples"
+msgstr ""
+"(Por exemplo, fotosíntese; buratos negros; Teorema de los cuatro colores; "
+"Teorema de Bayes)"
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Cinco pasos para crear o sitio web da editorial"
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Ver o contido da monografía"
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Acceso ao sitio"
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr ""
+"Amosa sempre as ligazóns das galeradas e indica que o acceso é restrinxido."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr "A sección da publicación para a que se considerará o elemento."
+
+msgid "manager.setup.selectEditorDescription"
+msgstr "O editor/a o verá a través do proceso editorial."
+
+msgid "manager.setup.securitySettings.note"
+msgstr ""
+"Outras opcións relacionadas coa seguridade e o acceso pódense configurar "
+"desde a páxina <a href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\""
+"action\">Acceso e seguridade</a>."
+
+msgid "manager.setup.securitySettings"
+msgstr "Configuración de acceso e seguridade"
+
+msgid "manager.setup.sectionsDescription"
+msgstr ""
+"Para crear ou modificar seccións da editorial (por exemplo, monografías, "
+"comentarios de libros, etc.), vaia a Administración de seccións.<br /><br />"
+"Os autores/as que envíen elementos designarán..."
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr ""
+"(Se non se engaden seccións, os elementos envíanse á sección Monografías por "
+"defecto.)"
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Seccións e editores/as de sección"
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr "A configuración da indexación do motor de busca actualizouse."
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr ""
+"Axude aos motores de busca como Google a descubrir e amosar o seu sitio. "
+"Animámosche a enviar o teu <a href=\"{$sitemapUrl}\" target=\"_blank\">mapa "
+"do sitio</a>."
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Indexación nos motores de busca"
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Proporcione unha breve descrición (50-300 caracteres) da editorial que os "
+"motores de busca poden mostrar ao listar a nos resultados da busca."
+
+msgid "manager.setup.reviewProcessStandardDescription"
+msgstr ""
+"Os editores/as enviarán por correo electrónico aos revisores/as "
+"seleccionados/as o título e o resumo do envío, así como unha invitación para "
+"iniciar sesión no sitio web da editorial para completar a revisión. Os "
+"revisores/as entran na páxina web da editorial para aceptar facer a "
+"revisión, descargar envíos, enviar os seus comentarios e seleccionar unha "
+"recomendación."
+
+msgid "manager.setup.reviewProcessStandard"
+msgstr "Proceso de revisión estándar"
+
+msgid "manager.setup.reviewProcessEmail"
+msgstr "Proceso de revisión mediante arquivos adxuntos ao correo electrónico"
+
+msgid "manager.setup.reviewProcessDescription"
+msgstr ""
+"OMP admite dous modelos para xestionar o proceso de revisión. Recoméndase o "
+"proceso de revisión estándar porque guía aos revisores durante o proceso, "
+"garante un historial de revisión completo para cada envío e aproveita as "
+"notificacións de recordatorio automático e as recomendacións estándar para "
+"as entregas (Aceptar, Aceptar con revisións, Enviar para revisión, Enviar "
+"noutro lugar, Rexeitar, ver comentarios).<br /> <br />Seleccione un dos "
+"seguintes:"
+
+msgid "manager.setup.reviewProcess"
+msgstr "Proceso de revisión"
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Política de evaluación"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Recordatorios para os revisores/as"
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Calificación dos revisores/as"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr ""
+"Inclúe unha ligazón segura na invitación por correo electrónico aos "
+"revisores/as."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
+msgstr ""
+"Aos revisores/as pódeselles enviar unha ligazón segura na invitación por "
+"correo electrónico, que lles permitirá acceder á revisión sen iniciar "
+"sesión. Para acceder a outras páxinas, é necesario que inicien sesión."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Acceso do revisor/a cun clic"
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Acceso para os revisores/as"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr ""
+"Os revisores/as só terán acceso ao arquivo de envío despois de acordar "
+"revisalo."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Restrinxir o acceso ao arquivo"
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr ""
+"Despois de cada revisión os editores/as valorarán aos revisores/as nunha "
+"escala de cinco puntos."
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr ""
+"Para activar estas opcións, o administrador/a do sitio debe habilitar a "
+"opción <tt>scheduled_tasks</tt> no arquivo de configuración de OMP. É "
+"posible que sexa necesaria unha configuración no servidor para soportar esta "
+"funcionalidade (que pode non ser posible en todos os servidores), como se "
+"indica na documentación OMP."
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Recordatorios de correo electrónico automatizados"
+
+msgid "manager.setup.reviewOptions"
+msgstr "Opcións de revisión"
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Directrices de revisión interna"
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr ""
+"Proporcione aos revisores/as externos/as criterios para xulgar a idoneidade "
+"dun envío para a súa publicación, que poden incluír instrucións para "
+"preparar unha revisión eficaz e útil. Os revisores/as terán a oportunidade "
+"de proporcionar comentarios destinados ao autor/a e ao editor/a, así como "
+"comentarios separados só para o editor/a."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Directrices de revisión externa"
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr ""
+"Os usuarios deben estar rexistrados e iniciar sesión para ver o sitio da "
+"editorial."
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr ""
+"Os usuarios/as deben estar rexistrados e iniciar sesión para ver o contido "
+"de acceso aberto."
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Instrucións de maquetación para as ligazóns de referencia"
+
+msgid "manager.setup.referenceLinking"
+msgstr "Ligazóns de referencia"
+
+msgid "manager.setup.publisherDescription"
+msgstr ""
+"O nome da organización que publica aparecerá na páxina Acerca da editorial."
+
+msgid "manager.setup.publisher"
+msgstr "Editor"
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr ""
+"Os elementos da publicación pódense publicar colectivamente, como parte "
+"dunha monografía coa súa propia táboa de contidos. Como alternativa, pódense "
+"publicar elementos individuais en canto estean listos engadíndoos á táboa de "
+"contidos do volume \"actual\". Proporcione aos lectores, en Acerca da "
+"editorial, unha declaración sobre o sistema que empregará esta prensa e a "
+"súa frecuencia de publicación prevista."
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Proporcione instrucións aos maquetadores."
+
+msgid "manager.setup.proofreading"
+msgstr "Correctores de probas"
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr ""
+"As instrucións de corrección de probas estarán dispoñibles para correctores/"
+"as, autores/as, editores/as na etapa de edición do envío. A continuación "
+"móstrase un conxunto predeterminado de instrucións en HTML, que pode ser "
+"editado ou substituído polo xefe/a editorial en calquera momento (en HTML ou "
+"texto plano)."
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Instrucións  de corrección de probas"
+
+msgid "manager.setup.printIssn"
+msgstr "ISSN de impresión"
+
+msgid "manager.setup.contextTitle"
+msgstr "Nome da editorial"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr ""
+"Un pequeno logotipo ou representación da editorial que se pode empregar nas "
+"listaxes de editoriais."
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Miniatura da editorial"
+
+msgid "manager.setup.pressTheme"
+msgstr "Tema"
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Formato de folla de estilo non válido. O formato aceptado é .css."
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "A configuración da editorial actualizouse."
+
+msgid "manager.setup.pressSetup"
+msgstr "Configuración"
+
+msgid "manager.setup.pressPolicies"
+msgstr "Paso 2. Políticas da editorial"
+
+msgid "manager.files.note"
+msgstr ""
+"Nota: O explorador de arquivos é unha función avanzada que permite ver e "
+"manipular directamente os arquivos e cartafoles asociados a unha editorial."
+
+msgid "manager.setup.productionTemplates"
+msgstr "Modelos de produción"
+
+msgid "manager.setup.files"
+msgstr "Arquivos"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr ""
+"Lista de editores/as, directores/as e outras persoas asociadas á editorial."
+
+msgid "manager.setup.editorialTeam"
+msgstr "Equipo editorial"
+
+msgid "manager.setup.masthead"
+msgstr "Cabeceira"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Roles de revisión interna"
+
+msgid "manager.setup.currentRoles"
+msgstr "Roles actuais"
+
+msgid "manager.setup.availableRoles"
+msgstr "Roles dispoñibeis"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Roles administrativos"
+
+msgid "manager.setup.authorRoles"
+msgstr "Roles de autor/a"
+
+msgid "manager.setup.roleType"
+msgstr "Tipo de rol"
+
+msgid "manager.setup.reviewForms"
+msgstr "Formularios de revisión"
+
+msgid "manager.setup.series.description"
+msgstr ""
+"Podes crear calquera número de coleccións para axudarche a organizar as túas "
+"publicacións. Unha colección representa un conxunto especial de libros "
+"dedicados a un tema ou temas. Os visitantes poderán buscar e navegar pola "
+"editorial por coleccións."
+
+msgid "manager.setup.categories.description"
+msgstr ""
+"Podes crear unha lista de categorías para axudarche a organizar as túas "
+"publicacións. As categorías son agrupacións de libros segundo a materia, por "
+"exemplo Economía, Literatura, Poesía, etcétera. As categorías pódense anidar "
+"dentro de categorías \"pais\": por exemplo, unha categoría principal de "
+"Economía pode incluír categorías individuais de Microeconomía e "
+"Macroeconomía. Os visitantes poderán buscar e navegar pola editorial por "
+"categoría."
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Categorías e Coleccións"
+
+msgid "manager.setup.currentFormats"
+msgstr "Formatos actuais"
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"O ISSN (International Standard Serial Number) é un número de oito díxitos "
+"que identifica publicacións incluíndo series electrónicas. Pódese obter un "
+"número no <a href=\"http://www.issn.org\" target=\"_blank\">ISSN "
+"International Center</a>."
+
+msgid "manager.setup.submitToSeries"
+msgstr "Permitir envíos a coleccións"
+
+msgid "manager.setup.submitToCategories"
+msgstr "Permitir envíos por categoría"
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"O folleto guía é un documento preparado pola editorial que axuda ao autor/a "
+"a describir os materiais enviados de xeito que permite a unha editorial "
+"determinar o valor do envío. Un folleto pode incluír moitos elementos, desde "
+"o potencial de mercado ata o valor teórico; en calquera caso, unha editorial "
+"debería crear un folleto guía que complemente a súa axenda de publicación."
+
+msgid "manager.setup.prospectus"
+msgstr "Guía do folleto"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Restaurar a configuración por defecto"
+
+msgid "manager.setup.deleteSelected"
+msgstr "Eliminar selección"
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"Para crear un novo xénero, enche o seguinte formulario e preme no botón \""
+"Crear\"."
+
+msgid "manager.setup.newGenre"
+msgstr "Novo xénero de monografía"
+
+msgid "manager.setup.genres"
+msgstr "Xéneros"
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Evitar que os usuarios envíen novos artigos á editorial. Os envíos pódense "
+"desactivar para cada serie editorial na páxina de configuración de <a href=\""
+"{$url}\">series editoriais</a>."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Esta editorial non acepta envíos neste momento. Visita a configuración do "
+"fluxo de traballo para permitir envíos."
+
+msgid "manager.setup.reviewProcessEmailDescription"
+msgstr ""
+"Os editores/as envían aos revisores/as a solicitude de revisión co envío "
+"adxunto ao correo electrónico. Os revisores/as envían aos editores/as por "
+"correo electrónico o seu consentimento (ou rexeitamento), así como a "
+"revisión e recomendación. Os editores/as introducen o consentimento (ou "
+"rexeitamento) dos revisores, así como a revisión e recomendación na páxina "
+"de revisión do envío, para rexistrar o proceso de revisión."
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Estes xéneros úsanse con fins de nomeamento de arquivos e preséntanse nun "
+"menú despregable ao cargarlos. Os xéneros designados ## permiten ao usuario "
+"asociar o arquivo con todo o libro 99Z ou cun capítulo concreto por número ("
+"por exemplo, 02)."
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+"Para crear un novo formato de publicación, enche o seguinte formulario e "
+"preme no botón \"Crear\"."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Novo formato de publicación"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+"Debido a que este formato de publicación está a ser usado actualmente por "
+"unha monografía na súa editorial, non se pode eliminar."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "É este un formato físico (non dixital)?"
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Debe asignar un nome a este formato."
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Debe escollerse un formato."
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Formato"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Volumes por ano"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Título"
+
+msgid "manager.setup.userRegistration"
+msgstr "Rexistro de usuarios/as"
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+"Asignarase un corrector/a de probas para comprobar (xunto cos autores/as) as "
+"galeradas antes da publicación."
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+"Asignarase un maquetador para preparar os arquivos HTML, PDF, etc. para a "
+"publicación electrónica."
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Folla de estilo da editorial"
+
+msgid "manager.setup.useImageTitle"
+msgstr "Imaxe do título"
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "A editorial empregará un consello editorial/de revisión."
+
+msgid "manager.setup.useCopyeditors"
+msgstr "Asignarase un corrector/a para traballar con cada envío."
+
+msgid "manager.setup.typeProvideExamples"
+msgstr ""
+"Proporcione exemplos de tipos, métodos e enfoques de investigación "
+"relevantes para este campo"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Tipo (método/enfoque)"
+
+msgid "manager.setup.typeExamples"
+msgstr ""
+"(Por exemplo, investigación histórica; case-experimental; análise literaria; "
+"enquisa/entrevista)"
+
+msgid "manager.setup.submissions.description"
+msgstr ""
+"Directrices para o autor/a, dereitos de autor/a e indexación (incluído o "
+"rexistro)."
+
+msgid "manager.setup.workflow"
+msgstr "Fluxo de traballo"
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "O elemento da lista de verificación é necesario."
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Exportar envíos"
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "XML non válido:"
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Non se puideron converter os obxectos seleccionados."
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Non hai obxectos seleccionados."
+
+msgid "stats.publications.abstracts"
+msgstr "Entradas do catálogo"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$count} de {$total} monografías"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Total de visualizacións de arquivos por data"
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Vistas totais do catálogo por data"
+
+msgid "stats.publications.none"
+msgstr ""
+"Non se atoparon monografías con estatísticas de uso que coincidan con estes "
+"parámetros."
+
+msgid "stats.publications.details"
+msgstr "Detalles da monografía"
+
+msgid "stats.publicationStats"
+msgstr "Estatísticas da monografía"
+
+msgid "grid.series.urlWillBe"
+msgstr "O URL da serie será: {$sampleUrl}"
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr "Seleccione a categoría á que desexa ligar este elemento do menú."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Seleccionar Categoría"
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr "Seleccione a serie á que desexa ligar este elemento do menú."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Seleccionar Series"
+
+msgid "grid.series.pathExists"
+msgstr "A ruta da serie xa existe. Insira unha ruta única."
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr "A ruta da serie debe consistir só en letras e números."
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr ""
+"Envíe unha copia ao contacto principal, identificado na Configuración da "
+"editorial."
+
+msgid "grid.genres.title"
+msgstr "Compoñentes da monografía"
+
+msgid "grid.genres.title.short"
+msgstr "Compoñentes"
+
+msgid "manager.setup.resetPermissions.success"
+msgstr "Restablecéronse correctamente os permisos da monografía."
+
+msgid "manager.setup.resetPermissions.description"
+msgstr ""
+"A declaración de dereitos de autor e a información da licenza xuntaranse "
+"permanentemente ao contido publicado, asegurando que estes datos non "
+"cambiarán no caso de que a editorial cambie as políticas para os novos "
+"envíos. Para restablecer a información de permisos almacenados xa unida ao "
+"contido publicado, use o botón seguinte."
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr ""
+"Seguro/a que desexas restablecer os datos de permisos xa asociados ás "
+"monografías?"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Reiniciar os permisos da monografía"
+
+msgid "manager.publication.library"
+msgstr "Biblioteca da publicación"
+
+msgid "manager.setup.referenceLinkingDescription"
+msgstr ""
+"<p>Para permitir aos lectores localizar versións en liña da obra citada por "
+"un autor, están dispoñibles as seguintes opcións.</p>\n"
+"\n"
+"<ol>\n"
+"\t<li><strong>Engadir unha ferramenta de lectura</strong><p> O xefe/a "
+"editorial pode engadir \"Buscar referencias\" ás ferramentas de lectura que "
+"acompañan os elementos publicados, o que permite aos lectores/as pegar o "
+"título dunha referencia e buscar en bases de datos académicas "
+"preseleccionadas o traballo citado.</p></li>\n"
+"\t<li><strong>Inserir ligazóns nas referencias</strong><p>O maquetador/a "
+"pode engadir unha ligazón ás referencias que se poden atopar en liña "
+"empregando as seguintes instrucións (que se poden editar).</p></li>\n"
+"</ol>"
+
+msgid "manager.setup.basicEditorialStepsDescription"
+msgstr ""
+"Pasos: Cola de envío &gt; Revisión de envíos &gt; Edición de envíos &gt; "
+"Táboa de contidos.<br /><br />\n"
+"Seleccione un modelo para tratar estes aspectos do proceso editorial. (Para "
+"designar un editor/a de xestión ou editores/as de series, vaia a Editores en "
+"Xestión da editorial.)"
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+"<h3>Avisos de dereitos de autor de Creative Commons</h3>\n"
+"<h4>Política para publicacións que ofrecen acceso aberto</h4>\n"
+"Os autores/as que publican nesta editorial aceptan os seguintes termos:\n"
+"<ol type=\"a\">\n"
+"\t<li>Os autores/as conservan os dereitos de autor e outorgan á editorial o "
+"dereito á primeira publicación do traballo baixo unha <a target=\"_blank\" "
+"href=\"http://creativecommons.org/licenses/by/3.0/\">licenza de "
+"recoñecemento Creative Commons</a> que permite a outros compartir a obra cun "
+"recoñecemento da autoría da obra e a publicación inicial nesta prensa.</li>\n"
+"\t<li>Os autores/as poden subscribir series contractuais adicionais "
+"separadas para a distribución non exclusiva da versión da obra publicada "
+"pola editorial (por exemplo, publicala nun repositorio institucional ou "
+"publicala nun libro), cun recoñecemento da inicial publicación nesta "
+"editorial.</li>\n"
+"\t<li>Permíteselles aos autores/as a publicar o seu traballo en liña (por "
+"exemplo, en repositorios institucionais ou no seu sitio web) antes e durante "
+"o proceso de envío, xa que pode levar a intercambios produtivos, así como "
+"unha maior citación dos traballos publicados (Ver <a target=\"_blank\" href="
+"\"http://opcit.eprints.org/oacitation-biblio.html\">O efecto do acceso "
+"aberto</a>).</li>\n"
+"</ol>\n"
+"\n"
+"<h4>Política para editoriais que ofrecen un acceso aberto adiado</h4>\n"
+"Os autores/as que publican con esta editorial aceptan os seguintes termos:\n"
+"<ol type=\"a\">\n"
+"\t<li>Os autores/as conservan os dereitos de autor e outorgan á editorial o "
+"dereito á primeira publicación do traballo [ESPECIFICAR O PERÍODO DE TEMPO] "
+"despois da publicación baixo <a target=\"_blank\" href=\""
+"http://creativecommons.org/licenses/by/3.0 /\">Licenza Creative Commons "
+"Attribution</a> que permite a outras persoas compartir a obra cun "
+"recoñecemento da autoría e publicación inicial nesta editorial.</li>\n"
+"\t <li>Os autores/as poden subscribir series contractuais adicionais "
+"separadas para a distribución non exclusiva da versión da obra publicada "
+"pola editorial (por exemplo, publicala nun repositorio institucional ou "
+"publicala nun libro), cun recoñecemento da súa inicial publicación nesta "
+"editorial.</li>\n"
+"\t <li>Permíteselles aos autores/as a publicar o seu traballo en liña (por "
+"exemplo, en repositorios institucionais ou no seu sitio web) antes e durante "
+"o proceso de envío, xa que pode levar a intercambios produtivos, así como "
+"unha maior citación dos traballos publicados (Ver <a target=\"_blank\" href="
+"\"http://opcit.eprints.org/oacitation-biblio.html\">O efecto do acceso "
+"aberto</a>).</li>\n"
+"</ol>"
+
+msgid "manager.setup.selectCountry"
+msgstr ""
+"Selecione o país onde está a editorial ou o país do enderezo da "
+"correspondencia."
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "O proceso fallou ao analizar capítulos"
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "O proceso fallou ao analizar os formatos de publicación"
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "O usuario \"{$userName}\" non existe."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Non se atoparon os obxectos especificados."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"Ningún contacto principal foi definido para esta editorial. Vostede pode "
+"inserir o contacto principal na <a href=\"{$url}\">configuración da "
+"editorial</a>."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Envia unha cópia do correo electrónico de confirmación do envío ao contacto "
+"principal desta editorial."

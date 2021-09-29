@@ -1,0 +1,212 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-01-04 22:32+0000\n"
+"Last-Translator: Blagoja Grozdanovski <blagoja.grozdanovski@gmail.com>\n"
+"Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/editor/"
+"mk_MK/>\n"
+"Language: mk_MK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "editor.submissions.assignedTo"
+msgstr "Додели на Уредник"
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr ""
+"Јавниот идентификатор '{$ publicIdentifier}' веќе постои за друг објект од "
+"ист тип. Ве молиме изберете уникатни идентификатори за објекти од ист тип во "
+"вашиот печат."
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr ""
+"Сите датотеки што веќе се поставени во која било фаза на поднесување може да "
+"се додадат во списокот Доказни датотеки со обележување на изборното поле "
+"подолу и кликнување на Пребарување: ќе бидат наведени сите достапни датотеки "
+"и може да бидат избрани за вклучување."
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Додадете одговор"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Поставете Услови"
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Поставете Услови за преземање"
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr ""
+"Додадете формати за објавување (на пример, дигитални, меки) за кои уредникот "
+"за распоред подготвува докази за страницата за лекторирање. <em> Доказите "
+"</em> треба да се проверат како одобрени и записот <em> Каталог </em> за "
+"форматот треба да се провери како што е објавен во записот на каталогот на "
+"книгата, пред да може да се направи формат <em> Достапно </em> (т.е. "
+"објавено)."
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr ""
+"Различни формати на публикации, како што се тврда корица, мека корица и "
+"дигитални, може да се постават во делот Формати на публикации подолу. Можете "
+"да ја користите табелата за формати на објавување подолу како список за "
+"проверка за тоа што сè уште треба да се направи за да се објави формат на "
+"публикација."
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Одобрување и објавување"
+
+msgid "editor.monograph.proofs"
+msgstr "Докази"
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Добра Копија"
+
+msgid "editor.submission.introduction"
+msgstr ""
+"Во Поднесувањето, уредникот, по консултација со доставените датотеки, избира "
+"соодветно дејство (што вклучува известување за авторот): Испрати до "
+"внатрешен преглед (вклучува избор на датотеки за внатрешен преглед); "
+"Испратете до надворешен преглед (вклучува избор на датотеки за надворешен "
+"преглед); Прифатете го поднесувањето (вклучува избор на датотеки за "
+"уредничката фаза); или Одбијте го поднесувањето (поднесување архива)."
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Датотеката е поставена според улогата во насловот на мрежната колона"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Акцијата заврши"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Акцијата е во тек или сè уште не е завршена"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Избришете ставка"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Уредете ставка"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr ""
+"Информации за датотеката: белешки, опции за известување и историја (додадени "
+"нови белешки од последната посета)"
+
+msgid "editor.monograph.legend.notes"
+msgstr ""
+"Информации за датотеката: белешки, опции за известување и историја ("
+"Белешките се достапни)"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr ""
+"Информации за датотеката: белешки, опции за известување и историја (сè уште "
+"не се додадени белешки)"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Повеќе информации: белешки за датотеки, опции за известување и историја"
+
+msgid "editor.monograph.legend.settings"
+msgstr ""
+"Прегледувај и пристапи до поставките на ставките, како што се информации и "
+"опции за бришење"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Додадете корисник во секцијата"
+
+msgid "editor.monograph.legend.add"
+msgstr "Поставете датотека во секцијата"
+
+msgid "editor.monograph.legend.participants"
+msgstr ""
+"Прегледај ги и управувај со учесниците на овој поднесок: автори, уредници, "
+"дизајнери и многу повеќе"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr ""
+"Прегледувајте и управувајте со метаподатоците за поднесување, белешките, "
+"известувањата и историјата"
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr ""
+"Прегледувајте и управувајте со записот во каталогот за поднесување, "
+"вклучувајќи метаподатоци и формати за објавување"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Дејства и опции определени за индивидуална датотека."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Акции за Артикл"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr ""
+"Опции определени за даден дел, на пример, поставување датотеки или додавање "
+"корисници."
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Акции на Дел"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Целосни активности и опции за поднесување."
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Акции за Поднесување"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Порака до корисник"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Тековни Датотеки"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Тековни Датотеки за Конечни Нацрти"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Изберете Конечни Датотеки за Нацрт"
+
+msgid "editor.monograph.externalReview"
+msgstr "Иницирајте Надворешен Преглед"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr ""
+"Изберете датотеки подолу за да ги испратите во фазата на внатрешно "
+"разгледување."
+
+msgid "editor.monograph.internalReview"
+msgstr "Иницирајте Внатрешен Преглед"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Лекторирање Датотеки"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Опции за преглед на врсници"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Прегледајте преглед"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Уредник за внесување препорака / коментари за рецензент"
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Замени го Рецензентот"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr ""
+"Изберете рецензент погоре и притиснете го копчето „Избери рецензент“ за да "
+"продолжите."
+
+msgid "editor.monograph.recommendation"
+msgstr "Препорака"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Внеси Препорака на Рецензент"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Внеси Препорака"
+
+msgid "editor.monograph.clearReview"
+msgstr "Исчисти Рецензент"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Откажи го Барањето"
+
+msgid "editor.submissionArchive"
+msgstr "Архива на Поднесување"

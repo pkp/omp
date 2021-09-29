@@ -3,165 +3,204 @@
 /**
  * @file classes/spotlight/Spotlight.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2000-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Spotlight
  * @ingroup spotlight
+ *
  * @see SpotlightDAO
  *
  * @brief Basic class describing a spotlight.
  */
 
-// type constants for spotlights
-define('SPOTLIGHT_TYPE_BOOK',	3);
-define('SPOTLIGHT_TYPE_SERIES',	4);
-define('MAX_SPOTLIGHTS_VISIBLE', 3);
+namespace APP\spotlight;
 
-class Spotlight extends DataObject {
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
+use APP\facades\Repo;
+use PKP\core\DataObject;
 
-	//
-	// Get/set methods
-	//
+class Spotlight extends DataObject
+{
+    // type constants for spotlights
+    public const SPOTLIGHT_TYPE_BOOK = 3;
+    public const SPOTLIGHT_TYPE_SERIES = 4;
+    public const MAX_SPOTLIGHTS_VISIBLE = 3;
 
-	/**
-	 * Get assoc ID for this spotlight.
-	 * @return int
-	 */
-	function getAssocId() {
-		return $this->getData('assocId');
-	}
+    //
+    // Get/set methods
+    //
 
-	/**
-	 * Set assoc ID for this spotlight.
-	 * @param $assocId int
-	 */
-	function setAssocId($assocId) {
-		return $this->setData('assocId', $assocId);
-	}
+    /**
+     * Get assoc ID for this spotlight.
+     *
+     * @return int
+     */
+    public function getAssocId()
+    {
+        return $this->getData('assocId');
+    }
 
-	/**
-	 * Get assoc type for this spotlight.
-	 * @return int
-	 */
-	function getAssocType() {
-		return $this->getData('assocType');
-	}
+    /**
+     * Set assoc ID for this spotlight.
+     *
+     * @param $assocId int
+     */
+    public function setAssocId($assocId)
+    {
+        return $this->setData('assocId', $assocId);
+    }
 
-	/**
-	 * Set assoc type for this spotlight.
-	 * @param $assocType int
-	 */
-	function setAssocType($assocType) {
-		return $this->setData('assocType', $assocType);
-	}
+    /**
+     * Get assoc type for this spotlight.
+     *
+     * @return int
+     */
+    public function getAssocType()
+    {
+        return $this->getData('assocType');
+    }
 
-	/**
-	 * Get the press id for this spotlight.
-	 * @return int
-	 */
-	function getPressId() {
-		return $this->getData('pressId');
-	}
+    /**
+     * Set assoc type for this spotlight.
+     *
+     * @param $assocType int
+     */
+    public function setAssocType($assocType)
+    {
+        return $this->setData('assocType', $assocType);
+    }
 
-	/**
-	 * Set press Id for this spotlight.
-	 * @param $pressId int
-	 */
-	function setPressId($pressId) {
-		return $this->setData('pressId', $pressId);
-	}
+    /**
+     * Get the press id for this spotlight.
+     *
+     * @return int
+     */
+    public function getPressId()
+    {
+        return $this->getData('pressId');
+    }
 
-	/**
-	 * Get localized spotlight title
-	 * @return string
-	 */
-	function getLocalizedTitle() {
-		return $this->getLocalizedData('title');
-	}
+    /**
+     * Set press Id for this spotlight.
+     *
+     * @param $pressId int
+     */
+    public function setPressId($pressId)
+    {
+        return $this->setData('pressId', $pressId);
+    }
 
-	/**
-	 * Get spotlight title.
-	 * @param $locale
-	 * @return string
-	 */
-	function getTitle($locale) {
-		return $this->getData('title', $locale);
-	}
+    /**
+     * Get localized spotlight title
+     *
+     * @return string
+     */
+    public function getLocalizedTitle()
+    {
+        return $this->getLocalizedData('title');
+    }
 
-	/**
-	 * Set spotlight title.
-	 * @param $title string
-	 * @param $locale string
-	 */
-	function setTitle($title, $locale) {
-		return $this->setData('title', $title, $locale);
-	}
+    /**
+     * Get spotlight title.
+     *
+     * @param $locale
+     *
+     * @return string
+     */
+    public function getTitle($locale)
+    {
+        return $this->getData('title', $locale);
+    }
 
-	/**
-	 * Get localized full description
-	 * @return string
-	 */
-	function getLocalizedDescription() {
-		return $this->getLocalizedData('description');
-	}
+    /**
+     * Set spotlight title.
+     *
+     * @param $title string
+     * @param $locale string
+     */
+    public function setTitle($title, $locale)
+    {
+        return $this->setData('title', $title, $locale);
+    }
 
-	/**
-	 * Get spotlight description.
-	 * @param $locale string
-	 * @return string
-	 */
-	function getDescription($locale) {
-		return $this->getData('description', $locale);
-	}
+    /**
+     * Get localized full description
+     *
+     * @return string
+     */
+    public function getLocalizedDescription()
+    {
+        return $this->getLocalizedData('description');
+    }
 
-	/**
-	 * Set spotlight description.
-	 * @param $description string
-	 * @param $locale string
-	 */
-	function setDescription($description, $locale) {
-		return $this->setData('description', $description, $locale);
-	}
+    /**
+     * Get spotlight description.
+     *
+     * @param $locale string
+     *
+     * @return string
+     */
+    public function getDescription($locale)
+    {
+        return $this->getData('description', $locale);
+    }
 
-	/**
-	 * Fetch a plain text (localized) string for this Spotlight type
-	 * @return string
-	 */
-	function getLocalizedType() {
-		$spotlightTypes = array(
-				SPOTLIGHT_TYPE_BOOK => __('grid.content.spotlights.form.type.book'),
-				SPOTLIGHT_TYPE_SERIES => __('series.series'),
-		);
+    /**
+     * Set spotlight description.
+     *
+     * @param $description string
+     * @param $locale string
+     */
+    public function setDescription($description, $locale)
+    {
+        return $this->setData('description', $description, $locale);
+    }
 
-		return $spotlightTypes[$this->getAssocType()];
-	}
+    /**
+     * Fetch a plain text (localized) string for this Spotlight type
+     *
+     * @return string
+     */
+    public function getLocalizedType()
+    {
+        $spotlightTypes = [
+            self::SPOTLIGHT_TYPE_BOOK => __('grid.content.spotlights.form.type.book'),
+            self::SPOTLIGHT_TYPE_SERIES => __('series.series'),
+        ];
 
-	/**
-	 * Returns the associated item with this spotlight.
-	 * @return DataObject
-	 */
-	function getSpotlightItem() {
-		switch ($this->getAssocType()) {
-			case SPOTLIGHT_TYPE_BOOK:
-				return Services::get('submission')->get($this->getAssocId());
-				break;
-			case SPOTLIGHT_TYPE_SERIES:
-				$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-				return $seriesDao->getById($this->getAssocId(), $this->getPressId());
-				break;
-			default:
-				assert(false);
-				break;
-		}
-	}
+        return $spotlightTypes[$this->getAssocType()];
+    }
+
+    /**
+     * Returns the associated item with this spotlight.
+     *
+     * @return DataObject
+     */
+    public function getSpotlightItem()
+    {
+        switch ($this->getAssocType()) {
+            case self::SPOTLIGHT_TYPE_BOOK:
+                return Repo::submission()->get($this->getAssocId());
+                break;
+            case self::SPOTLIGHT_TYPE_SERIES:
+                $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+                return $seriesDao->getById($this->getAssocId(), $this->getPressId());
+                break;
+            default:
+                assert(false);
+                break;
+        }
+    }
 }
 
-
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\spotlight\Spotlight', '\Spotlight');
+    foreach ([
+        'SPOTLIGHT_TYPE_BOOK',
+        'SPOTLIGHT_TYPE_SERIES',
+        'MAX_SPOTLIGHTS_VISIBLE',
+    ] as $constantName) {
+        define($constantName, constant('\Spotlight::' . $constantName));
+    }
+}

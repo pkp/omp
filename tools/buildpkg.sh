@@ -3,8 +3,8 @@
 #
 # buildpkg.sh
 #
-# Copyright (c) 2014-2020 Simon Fraser University
-# Copyright (c) 2003-2020 John Willinsky
+# Copyright (c) 2014-2021 Simon Fraser University
+# Copyright (c) 2003-2021 John Willinsky
 # Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
 #
 # Script to create an OMP package for distribution.
@@ -45,13 +45,13 @@ plugins/paymethod/paypal/vendor/omnipay/paypal/tests/					\
 plugins/paymethod/paypal/vendor/guzzle/guzzle/docs/					\
 plugins/paymethod/paypal/vendor/guzzle/guzzle/tests/					\
 plugins/paymethod/paypal/vendor/symfony/http-foundation/Tests/				\
+plugins/paymethod/paypal/vendor/clue/stream-filter/tests/				\
 lib/pkp/plugins/*/*/tests								\
 lib/pkp/tests										\
 .git											\
 .openshift										\
 .travis.yml										\
 lib/pkp/.git										\
-lib/pkp/lib/vendor/components								\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/art						\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/benchmarks					\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/configdog					\
@@ -68,6 +68,8 @@ lib/pkp/lib/vendor/phpmailer/phpmailer/examples						\
 lib/pkp/lib/vendor/phpmailer/phpmailer/test						\
 lib/pkp/lib/vendor/robloach								\
 lib/pkp/lib/vendor/smarty/smarty/demo							\
+lib/pkp/lib/vendor/pimple/pimple/ext/pimple/tests					\
+lib/pkp/lib/vendor/adodb/adodb-php/.git							\
 lib/pkp/lib/vendor/phpunit								\
 lib/pkp/lib/vendor/phpdocumentor/reflection-docblock					\
 lib/pkp/lib/vendor/doctrine/instantiator/tests						\
@@ -75,6 +77,10 @@ lib/pkp/lib/vendor/sebastian/global-state/tests						\
 lib/pkp/lib/vendor/sebastian/comparator/tests						\
 lib/pkp/lib/vendor/sebastian/diff/tests							\
 lib/pkp/lib/vendor/oyejorge/less.php/test						\
+lib/pkp/lib/vendor/dragonmantank/cron-expression/tests/					\
+lib/pkp/lib/vendor/cweagans/composer-patches/tests					\
+lib/pkp/lib/vendor/moxiecode/plupload/examples/						\
+lib/pkp/lib/vendor/swiftmailer/swiftmailer/tests/					\
 lib/pkp/js/lib/pnotify/build-tools							\
 lib/pkp/lib/vendor/alex198710/pnotify/.git						\
 node_modules										\

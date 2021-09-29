@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T12:00:54-07:00\n"
-"PO-Revision-Date: 2020-01-25 16:35+0000\n"
-"Last-Translator: Felipe Saldanha <fgsaldanha@gmail.com>\n"
+"PO-Revision-Date: 2021-06-15 13:02+0000\n"
+"Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -45,7 +45,7 @@ msgid "submission.monograph"
 msgstr "Monografia"
 
 msgid "submission.published"
-msgstr "Pronto para produção"
+msgstr "Pronto para editoração"
 
 msgid "submission.fairCopy"
 msgstr "Cópia limpa"
@@ -96,7 +96,7 @@ msgid "manuscript.submissions"
 msgstr "Submissões de manuscritos"
 
 msgid "submission.confirmSubmit"
-msgstr "Deseja realmente enviar este manuscrito para o prelo?"
+msgstr "Deseja realmente enviar este manuscrito para a editora?"
 
 msgid "submission.metadata"
 msgstr "Metadados"
@@ -142,12 +142,6 @@ msgstr "Livros em séries são normalmente mantidos na ordem inversa em que são
 
 msgid "submission.submit.form.localeRequired"
 msgstr "Escolha o idioma da submissão."
-
-msgid "submission.submit.submissionChecklist"
-msgstr "Itens de verificação para submissão"
-
-msgid "submission.submit.submissionChecklistDescription"
-msgstr "É necessário concluir os seguintes requisitos para submissão a esta editora, assim como marcá-los antes de prosseguir (comentários ao editor podem ser inluídos a seguir)."
 
 msgid "submission.submit.privacyStatement"
 msgstr "Declaração de Privacidade"
@@ -295,3 +289,210 @@ msgstr "Enviar ao Avaliador Externo"
 
 msgid "submission.upload.fileContents"
 msgstr "Componente da Submissão"
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Volume Editado"
+
+msgid "publication.scheduledIn"
+msgstr "Programado para publicação em <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Todos os requisitos de publicação foram atendidos. Tem certeza de que deseja "
+"tornar pública essa entrada no catálogo?"
+
+msgid "publication.publishedIn"
+msgstr "Publicado em <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.required.issue"
+msgstr "A publicação deve ser atribuída a uma edição antes de ser publicada."
+
+msgid "publication.invalidSeries"
+msgstr "Não foi possível encontrar a série desta publicação."
+
+msgid "publication.catalogEntry.success"
+msgstr "Os detalhes da entrada do catálogo foram atualizados."
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} Títulos"
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Salvar pedido"
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"Arraste e solte ou toque nos botões para cima e para baixo para alterar a "
+"ordem dos recursos em {$title}."
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Arraste e solte ou toque nos botões para cima e para baixo para alterar a "
+"ordem dos recursos na página inicial."
+
+msgid "submission.list.orderFeatures"
+msgstr "Recursos de pedidos"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} de {$total} monografias"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} monografias"
+
+msgid "submission.list.monographs"
+msgstr "Monografias"
+
+msgid "section.any"
+msgstr "Qualquer Série"
+
+msgid "submission.metadataDescription"
+msgstr ""
+"Estas especificações estão baseadas no conjunto de metadados Dublin Core, um "
+"padrão internacional utilizado para descrever conteúdo."
+
+msgid "submission.dependentFiles"
+msgstr "Arquivos Dependentes"
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Cada capítulo pode ter sua própria data de publicação."
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Todos os capítulos usarão a data de publicação da monografia."
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Datas de publicação"
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Ver Submissão"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr ""
+"Você deve selecionar ao menos uma monografia para adicionar ao catálogo."
+
+msgid "submission.catalogEntry.select"
+msgstr "Selecione monografias para adicionar ao catálogo"
+
+msgid "submission.catalogEntry.add"
+msgstr "Adicionar Seleção ao Catálogo"
+
+msgid "submission.submit.noContext"
+msgstr "Não foi possível encontrar a editora desta submissão."
+
+msgid "author.submit.seriesRequired"
+msgstr "Uma série válida é necessária."
+
+msgid "author.isVolumeEditor"
+msgstr "Identifique esse colaborador como o editor deste volume."
+
+msgid "submission.chapter.pages"
+msgstr "Páginas"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.editorName"
+msgstr "{$editorName} (ed)"
+
+msgid "submission.workflowType.change"
+msgstr "Mudar"
+
+msgid "submission.publication"
+msgstr "Publicação"
+
+msgid "publication.status.published"
+msgstr "Publicado"
+
+msgid "submission.status.scheduled"
+msgstr "Agendado"
+
+msgid "publication.status.unscheduled"
+msgstr "Não Agendado"
+
+msgid "submission.publications"
+msgstr "Publicações"
+
+msgid "publication.copyrightYearBasis.issueDescription"
+msgstr ""
+"O ano dos direitos autorais serão definido automaticamente quando for "
+"publicado em um fascículo."
+
+msgid "publication.copyrightYearBasis.submissionDescription"
+msgstr ""
+"O ano dos direitos autorais será definido automaticamente com base na data "
+"de publicação."
+
+msgid "publication.datePublished"
+msgstr "Data de Publicação"
+
+msgid "publication.editDisabled"
+msgstr "Esta versão foi publicada e não pode ser editada."
+
+msgid "publication.event.published"
+msgstr "A submissão foi publicada."
+
+msgid "publication.event.scheduled"
+msgstr "A submissão foi agendada para publicação."
+
+msgid "publication.event.unpublished"
+msgstr "A submissão foi despublicada."
+
+msgid "publication.event.versionPublished"
+msgstr "Uma nova versão foi publicada."
+
+msgid "publication.event.versionScheduled"
+msgstr "Uma nova versão foi agendada para publicação."
+
+msgid "publication.event.versionUnpublished"
+msgstr "Uma versão foi despublicada."
+
+msgid "publication.invalidSubmission"
+msgstr "A submissão para esta publicação não foi encontrada."
+
+msgid "publication.publish"
+msgstr "Publicar"
+
+msgid "publication.publish.requirements"
+msgstr ""
+"Os seguintes requisitos devem ser atendidos antes que isso possa ser "
+"publicado."
+
+msgid "publication.required.declined"
+msgstr "Uma submissão recusada não pode ser publicada."
+
+msgid "publication.required.reviewStage"
+msgstr ""
+"A submissão precisa estar nos estágios de Edição ou Editoração para que ela "
+"possa ser publicada."
+
+msgid "submission.license.description"
+msgstr ""
+"A licença será definida automaticamente como <a href='{$licenseUrl}' "
+"target='_blank'> {$licenseName} </a> quando publicada."
+
+msgid "submission.copyrightHolder.description"
+msgstr ""
+"Os direitos autorais serão atribuídos automaticamente a {$copyright} quando "
+"publicados."
+
+msgid "submission.copyrightOther.description"
+msgstr "Atribua direitos autorais para submissões publicadas à parte seguinte."
+
+msgid "publication.unpublish"
+msgstr "Despublicar"
+
+msgid "publication.unpublish.confirm"
+msgstr "Tem certeza que não gostaria de publicar isto?"
+
+msgid "publication.unschedule.confirm"
+msgstr "Tem certeza que não deseja agendar isto para publicação?"
+
+msgid "publication.version.details"
+msgstr "Detalhes da publicação da versão {$version}"
+
+msgid "submission.queries.production"
+msgstr "Discussão da Editoração"
+
+msgid "publication.inactiveSeries"
+msgstr "{$series} (Inativa)"
+
+msgid "submission.list.viewEntry"
+msgstr "Ver entrada"

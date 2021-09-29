@@ -40,13 +40,13 @@
  * To learn more about developing OMP, there are several additional resources
  * that may be useful:
  * - The docs/README document
- * - The PKP support forum at http://forum.pkp.sfu.ca
- * - Documentation available at http://pkp.sfu.ca/omp_documentation
+ * - The PKP support forum at https://forum.pkp.sfu.ca
+ * - Documentation available at https://docs.pkp.sfu.ca/dev/
  *
  * @file index.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @ingroup index
@@ -62,5 +62,3 @@ $application = require('./lib/pkp/includes/bootstrap.inc.php');
 
 // Serve the request
 $application->execute();
-
-

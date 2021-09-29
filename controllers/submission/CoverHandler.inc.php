@@ -3,8 +3,8 @@
 /**
  * @file controllers/submission/CoverHandler.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2000-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class CoverHandler
@@ -13,95 +13,107 @@
  * @brief Component serving up cover images for submissions.
  */
 
-import('lib.pkp.classes.handler.PKPHandler');
+use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 
-class CoverHandler extends PKPHandler {
-	/** @var $press Press */
-	var $_press;
+use PKP\handler\PKPHandler;
 
-	/** @var The monograph ID for this handler */
-	var $monographId;
+class CoverHandler extends PKPHandler
+{
+    /** @var Press $press */
+    public $_press;
 
-	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
-	 */
-	function authorize($request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpPublishedSubmissionAccessPolicy');
-		$this->addPolicy(new OmpPublishedSubmissionAccessPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
+    /** @var The monograph ID for this handler */
+    public $monographId;
 
-	/**
-	 * Set the monograph ID
-	 * @param $monographId int
-	 */
-	function setMonographId($monographId) {
-		$this->monographId = $monographId;
-	}
+    /**
+     * @see PKPHandler::authorize()
+     *
+     * @param $request PKPRequest
+     * @param $args array
+     * @param $roleAssignments array
+     */
+    public function authorize($request, &$args, $roleAssignments)
+    {
+        $this->addPolicy(new OmpPublishedSubmissionAccessPolicy($request, $args, $roleAssignments));
+        return parent::authorize($request, $args, $roleAssignments);
+    }
 
-	/**
-	 * Get the monograph ID
-	 * @return int
-	 */
-	function getMonographId() {
-		return $this->monographId;
-	}
+    /**
+     * Set the monograph ID
+     *
+     * @param $monographId int
+     */
+    public function setMonographId($monographId)
+    {
+        $this->monographId = $monographId;
+    }
 
-	/**
-	 * Set the current press
-	 * @param $press Press
-	 */
-	function setPress($press) {
-		$this->_press = $press;
-	}
+    /**
+     * Get the monograph ID
+     *
+     * @return int
+     */
+    public function getMonographId()
+    {
+        return $this->monographId;
+    }
 
-	/**
-	 * Get the current press
-	 * @return Press
-	 */
-	function getPress() {
-		return $this->_press;
-	}
+    /**
+     * Set the current press
+     *
+     * @param $press Press
+     */
+    public function setPress($press)
+    {
+        $this->_press = $press;
+    }
 
-	/**
-	 * Serve the cover image for a published submission.
-	 */
-	function cover($args, $request) {
-		// this function is only used on the book page i.e. for published submissiones
-		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+    /**
+     * Get the current press
+     *
+     * @return Press
+     */
+    public function getPress()
+    {
+        return $this->_press;
+    }
 
-		$coverImageUrl = $submission->getCurrentPublication()->getLocalizedCoverImageUrl($submission->getData('contextId'));
-		if (!$coverImageUrl) {
-			$coverImageUrl = $request->getBaseUrl() . '/templates/images/book-default.png';
-		}
+    /**
+     * Serve the cover image for a published submission.
+     */
+    public function cover($args, $request)
+    {
+        // this function is only used on the book page i.e. for published submissiones
+        $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		// Can't use Request::redirectUrl; FireFox doesn't
-		// seem to like it for images.
-		header('Location: ' . $coverImageUrl);
-		exit;
-	}
+        $coverImageUrl = $submission->getCurrentPublication()->getLocalizedCoverImageUrl($submission->getData('contextId'));
+        if (!$coverImageUrl) {
+            $coverImageUrl = $request->getBaseUrl() . '/templates/images/book-default.png';
+        }
 
-	/**
-	 * Serve the cover thumbnail for a published submission.
-	 */
-	function thumbnail($args, $request) {
-		// use ASSOC_TYPE_MONOGRAPH to set the cover at any workflow stage
-		// i.e. also if the monograph has not been published yet
-		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+        // Can't use Request::redirectUrl; FireFox doesn't
+        // seem to like it for images.
+        header('Location: ' . $coverImageUrl);
+        exit;
+    }
 
-		$coverImageThumbnailUrl = $submission->getCurrentPublication()->getLocalizedCoverImageThumbnailUrl($submission->getData('contextId'));
-		if (!$coverImageThumbnailUrl) {
-			$coverImageThumbnailUrl = $request->getBaseUrl() . '/templates/images/book-default_t.png';
-		}
+    /**
+     * Serve the cover thumbnail for a published submission.
+     */
+    public function thumbnail($args, $request)
+    {
+        // use ASSOC_TYPE_MONOGRAPH to set the cover at any workflow stage
+        // i.e. also if the monograph has not been published yet
+        $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		// Can't use Request::redirectUrl; FireFox doesn't
-		// seem to like it for images.
-		header('Location: ' . $coverImageThumbnailUrl);
-		exit;
-	}
+        $coverImageThumbnailUrl = $submission->getCurrentPublication()->getLocalizedCoverImageThumbnailUrl($submission->getData('contextId'));
+        if (!$coverImageThumbnailUrl) {
+            $coverImageThumbnailUrl = $request->getBaseUrl() . '/templates/images/book-default_t.png';
+        }
+
+        // Can't use Request::redirectUrl; FireFox doesn't
+        // seem to like it for images.
+        header('Location: ' . $coverImageThumbnailUrl);
+        exit;
+    }
 }
-
-

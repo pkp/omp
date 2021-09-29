@@ -3,8 +3,8 @@
 /**
  * @file plugins/importexport/native/filter/NativeXmlPublicationFormatFilter.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2000-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class NativeXmlPublicationFormatFilter
@@ -15,418 +15,467 @@
 
 import('lib.pkp.plugins.importexport.native.filter.NativeXmlRepresentationFilter');
 
-class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
-	/**
-	 * Constructor
-	 * @param $filterGroup FilterGroup
-	 */
-	function __construct($filterGroup) {
-		parent::__construct($filterGroup);
-	}
+use APP\facades\Repo;
+use APP\submission\Submission;
 
-	//
-	// Implement template methods from NativeImportFilter
-	//
-	/**
-	 * Return the plural element name
-	 * @return string
-	 */
-	function getPluralElementName() {
-		return 'publication_formats'; // defined if needed in the future.
-	}
+class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
+{
+    //
+    // Implement template methods from NativeImportFilter
+    //
+    /**
+     * Return the plural element name
+     *
+     * @return string
+     */
+    public function getPluralElementName()
+    {
+        return 'publication_formats'; // defined if needed in the future.
+    }
 
-	/**
-	 * Get the singular element name
-	 * @return string
-	 */
-	function getSingularElementName() {
-		return 'publication_format';
-	}
+    /**
+     * Get the singular element name
+     *
+     * @return string
+     */
+    public function getSingularElementName()
+    {
+        return 'publication_format';
+    }
 
-	//
-	// Implement template methods from PersistableFilter
-	//
-	/**
-	 * @copydoc PersistableFilter::getClassName()
-	 */
-	function getClassName() {
-		return 'plugins.importexport.native.filter.NativeXmlPublicationFormatFilter';
-	}
+    //
+    // Implement template methods from PersistableFilter
+    //
+    /**
+     * @copydoc PersistableFilter::getClassName()
+     */
+    public function getClassName()
+    {
+        return 'plugins.importexport.native.filter.NativeXmlPublicationFormatFilter';
+    }
 
 
-	/**
-	 * Handle a submission element
-	 * @param $node DOMElement
-	 * @return array Array of PublicationFormat objects
-	 */
-	function handleElement($node) {
-		$deployment = $this->getDeployment();
-		$context = $deployment->getContext();
-		$submission = $deployment->getSubmission();
-		assert(is_a($submission, 'Submission'));
+    /**
+     * Handle a submission element
+     *
+     * @param $node DOMElement
+     *
+     * @return array Array of PublicationFormat objects
+     */
+    public function handleElement($node)
+    {
+        $deployment = $this->getDeployment();
+        $context = $deployment->getContext();
+        $submission = $deployment->getSubmission();
+        assert($submission instanceof Submission);
 
-		$representation = parent::handleElement($node);
+        $representation = parent::handleElement($node);
 
-		if ($node->getAttribute('approved') == 'true') $representation->setIsApproved(true);
-		if ($node->getAttribute('available') == 'true') $representation->setIsAvailable(true);
-		if ($node->getAttribute('physical_format') == 'true') $representation->setPhysicalFormat(true);
-		if ($node->getAttribute('entry_key')) $representation->setEntryKey($node->getAttribute('entry_key'));
-		
+        if ($node->getAttribute('approved') == 'true') {
+            $representation->setIsApproved(true);
+        }
+        if ($node->getAttribute('available') == 'true') {
+            $representation->setIsAvailable(true);
+        }
+        if ($node->getAttribute('physical_format') == 'true') {
+            $representation->setPhysicalFormat(true);
+        }
+        if ($node->getAttribute('entry_key')) {
+            $representation->setEntryKey($node->getAttribute('entry_key'));
+        }
 
-		$representationDao = Application::getRepresentationDAO();
-		$representationDao->insertObject($representation);
 
-		// Handle metadata in subelements.  Do this after the insertObject() call because it
-		// creates other DataObjects which depend on a representation id.
-		for ($n = $node->firstChild; $n !== null; $n=$n->nextSibling) if (is_a($n, 'DOMElement')) switch($n->tagName) {
-			case 'Product': $this->_processProductNode($n, $this->getDeployment(), $representation); break;
-			case 'submission_file_ref': $this->_processFileRef($n, $deployment, $representation); break;
-			default:
-		}
+        $representationDao = Application::getRepresentationDAO();
+        $representationDao->insertObject($representation);
 
-		// Update the object.
-		$representationDao->updateObject($representation);
+        // Handle metadata in subelements.  Do this after the insertObject() call because it
+        // creates other DataObjects which depend on a representation id.
+        for ($n = $node->firstChild; $n !== null; $n = $n->nextSibling) {
+            if (is_a($n, 'DOMElement')) {
+                switch ($n->tagName) {
+            case 'Product': $this->_processProductNode($n, $this->getDeployment(), $representation); break;
+            case 'submission_file_ref': $this->_processFileRef($n, $deployment, $representation); break;
+            default:
+        }
+            }
+        }
 
-		return $representation;
-	}
+        // Update the object.
+        $representationDao->updateObject($representation);
 
-	/**
-	 * Process the self_file_ref node found inside the publication_format node.
-	 * @param $node DOMElement
-	 * @param $deployment Onix30ExportDeployment
-	 * @param $representation PublicationFormat
-	 */
-	function _processFileRef($node, $deployment, &$representation) {
-		$fileId = $node->getAttribute('id');
-		$revisionId = $node->getAttribute('revision');
-		$DBId = $deployment->getFileDBId($fileId, $revisionId);
-		if ($DBId) {
-			// Update the submission file.
-			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-			$submissionFile = $submissionFileDao->getRevision($DBId, $revisionId);
-			$submissionFile->setAssocType(ASSOC_TYPE_REPRESENTATION);
-			$submissionFile->setAssocId($representation->getId());
-			$submissionFileDao->updateObject($submissionFile);
-		}
-	}
+        return $representation;
+    }
 
-	/**
-	 * Process the Product node found inside the publication_format node.  There may be many of these.
-	 * @param $node DOMElement
-	 * @param $representation PublicationFormat
-	 */
-	function _processProductNode($node, $deployment, &$representation) {
+    /**
+     * Process the self_file_ref node found inside the publication_format node.
+     *
+     * @param $node DOMElement
+     * @param $deployment Onix30ExportDeployment
+     * @param $representation PublicationFormat
+     */
+    public function _processFileRef($node, $deployment, &$representation)
+    {
+        $fileId = $node->getAttribute('id');
+        $DBId = $deployment->getFileDBId($fileId);
+        if ($DBId) {
+            // Update the submission file.
+            $submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+            $submissionFile = Services::get('submissionFile')->get($DBId);
+            $submissionFile->setAssocType(ASSOC_TYPE_REPRESENTATION);
+            $submissionFile->setAssocId($representation->getId());
+            $submissionFileDao->updateObject($submissionFile);
+        }
+    }
 
-		$request = Application::get()->getRequest();
-		$onixDeployment = new Onix30ExportDeployment($request->getContext(), $request->getUser());
+    /**
+     * Process the Product node found inside the publication_format node.  There may be many of these.
+     *
+     * @param $node DOMElement
+     * @param $deployment PKPImportExportDeployment
+     * @param $representation PublicationFormat
+     */
+    public function _processProductNode($node, $deployment, &$representation)
+    {
+        $request = Application::get()->getRequest();
+        $onixDeployment = new Onix30ExportDeployment($request->getContext(), $request->getUser());
 
-		$representation->setProductCompositionCode($this->_extractTextFromNode($node, $onixDeployment, 'ProductComposition'));
-		$representation->setEntryKey($this->_extractTextFromNode($node, $onixDeployment, 'ProductForm'));
-		$representation->setProductFormDetailCode($this->_extractTextFromNode($node, $onixDeployment, 'ProductFormDetail'));
-		$representation->setImprint($this->_extractTextFromNode($node, $onixDeployment, 'ImprintName'));
-		$representation->setTechnicalProtectionCode($this->_extractTextFromNode($node, $onixDeployment, 'EpubTechnicalProtection'));
-		$representation->setCountryManufactureCode($this->_extractTextFromNode($node, $onixDeployment, 'CountryOfManufacture'));
-		$this->_extractMeasureContent($node, $onixDeployment, $representation);
-		$this->_extractExtentContent($node, $onixDeployment, $representation);
+        $submission = $deployment->getSubmission();
 
-		$submission = Services::get('submission')->get($representation->getSubmissionId());
-		if ($submission) {
-			$submission->setAudience($this->_extractTextFromNode($node, $onixDeployment, 'AudienceCodeType'));
-			$submission->setAudienceRangeQualifier($this->_extractTextFromNode($node, $onixDeployment, 'AudienceRangeQualifier'));
-			$this->_extractAudienceRangeContent($node, $onixDeployment, $representation);
-			DAORegistry::getDAO('SubmissionDAO')->updateObject($submission);
-		}
+        $representation->setProductCompositionCode($this->_extractTextFromNode($node, $onixDeployment, 'ProductComposition'));
+        $representation->setEntryKey($this->_extractTextFromNode($node, $onixDeployment, 'ProductForm'));
+        $representation->setProductFormDetailCode($this->_extractTextFromNode($node, $onixDeployment, 'ProductFormDetail'));
+        $representation->setImprint($this->_extractTextFromNode($node, $onixDeployment, 'ImprintName'));
+        $representation->setTechnicalProtectionCode($this->_extractTextFromNode($node, $onixDeployment, 'EpubTechnicalProtection'));
+        $representation->setCountryManufactureCode($this->_extractTextFromNode($node, $onixDeployment, 'CountryOfManufacture'));
+        $this->_extractMeasureContent($node, $onixDeployment, $representation);
+        $this->_extractExtentContent($node, $onixDeployment, $representation);
 
-		// Things below here require a publication format id since they are dependent on the PublicationFormat.
+        if ($submission) {
+            $submission->setData('audience', $this->_extractTextFromNode($node, $onixDeployment, 'AudienceCodeType'));
+            $submission->setData('audienceRangeQualifier', $this->_extractTextFromNode($node, $onixDeployment, 'AudienceRangeQualifier'));
+            $this->_extractAudienceRangeContent($node, $onixDeployment, $submission);
 
-		// Extract ProductIdentifier elements.
-		$nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'ProductIdentifier');
+            Repo::submission()->dao->update($submission);
+        }
 
-		if ($nodeList->length > 0) {
-			$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
-			for ($i = 0 ; $i < $nodeList->length ; $i++) {
-				$n = $nodeList->item($i);
-				$identificationCode = $identificationCodeDao->newDataObject();
-				$identificationCode->setPublicationFormatId($representation->getId());
-				for ($o = $n->firstChild; $o !== null; $o=$o->nextSibling) if (is_a($o, 'DOMElement')) switch($o->tagName) {
-					case 'onix:ProductIDType': $identificationCode->setCode($o->textContent); break;
-					case 'onix:IDValue': $identificationCode->setValue($o->textContent); break;
-				}
-				// if this is a DOI, use the DOI-plugin structure instead.
-				if ($identificationCode->getCode() == '06') { // DOI code
-					$representation->setStoredPubId('doi', $identificationCode->getValue());
-				} else {
-					$identificationCodeDao->insertObject($identificationCode);
-				}
+        // Things below here require a publication format id since they are dependent on the PublicationFormat.
 
-				unset($identificationCode);
-			}
-		}
+        // Extract ProductIdentifier elements.
+        $nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'ProductIdentifier');
 
-		// Extract PublishingDate elements.
-		$nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'PublishingDate');
+        if ($nodeList->length > 0) {
+            $identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
+            for ($i = 0 ; $i < $nodeList->length ; $i++) {
+                $n = $nodeList->item($i);
+                $identificationCode = $identificationCodeDao->newDataObject();
+                $identificationCode->setPublicationFormatId($representation->getId());
+                for ($o = $n->firstChild; $o !== null; $o = $o->nextSibling) {
+                    if (is_a($o, 'DOMElement')) {
+                        switch ($o->tagName) {
+                    case 'onix:ProductIDType': $identificationCode->setCode($o->textContent); break;
+                    case 'onix:IDValue': $identificationCode->setValue($o->textContent); break;
+                }
+                    }
+                }
+                // if this is a DOI, use the DOI-plugin structure instead.
+                if ($identificationCode->getCode() == '06') { // DOI code
+                    $representation->setStoredPubId('doi', $identificationCode->getValue());
+                } else {
+                    $identificationCodeDao->insertObject($identificationCode);
+                }
 
-		if ($nodeList->length > 0) {
-			$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
-			for ($i = 0 ; $i < $nodeList->length ; $i++) {
-				$n = $nodeList->item($i);
-				$date = $publicationDateDao->newDataObject();
-				$date->setPublicationFormatId($representation->getId());
-				for ($o = $n->firstChild; $o !== null; $o=$o->nextSibling) if (is_a($o, 'DOMElement')) switch($o->tagName) {
-					case 'onix:PublishingDateRole': $date->setRole($o->textContent); break;
-					case 'onix:Date':
-						$date->setDate($o->textContent);
-						$date->setDateFormat($o->getAttribute('dateformat'));
-						break;
-				}
+                unset($identificationCode);
+            }
+        }
 
-				$publicationDateDao->insertObject($date);
-				unset($date);
-			}
-		}
+        // Extract PublishingDate elements.
+        $nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'PublishingDate');
 
-		// Extract SalesRights elements.
-		$nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'SalesRights');
-		if ($nodeList->length > 0) {
-			$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
-			for ($i = 0 ; $i < $nodeList->length ; $i ++) {
-				$salesRights = $salesRightsDao->newDataObject();
-				$salesRights->setPublicationFormatId($representation->getId());
-				$salesRightsNode = $nodeList->item($i);
-				$salesRightsROW = $this->_extractTextFromNode($salesRightsNode, $onixDeployment, 'ROWSalesRightsType');
-				if ($salesRightsROW) {
-					$salesRights->setROWSetting(true);
-					$salesRights->setType($salesRightsROW);
-				} else {
-					// Not a 'rest of world' sales rights entry.  Parse the Territory elements as well.
-					$salesRights->setType($this->_extractTextFromNode($salesRightsNode, $onixDeployment, 'SalesRightsType'));
-					$salesRights->setROWSetting(false);
-					$territoryNodeList = $salesRightsNode->getElementsByTagNameNS($onixDeployment->getNamespace(), 'Territory');
-					assert($territoryNodeList->length == 1);
-					$territoryNode = $territoryNodeList->item(0);
-					for ($o = $territoryNode->firstChild; $o !== null; $o=$o->nextSibling) if (is_a($o, 'DOMElement')) switch($o->tagName) {
-						case 'onix:RegionsIncluded': $salesRights->setRegionsIncluded(preg_split('/\s+/', $o->textContent)); break;
-						case 'onix:CountriesIncluded': $salesRights->setCountriesIncluded(preg_split('/\s+/', $o->textContent)); break;
-						case 'onix:RegionsExcluded': $salesRights->setRegionsExcluded(preg_split('/\s+/', $o->textContent)); break;
-						case 'onix:CountriesExcluded': $salesRights->setCountriesExcluded(preg_split('/\s+/', $o->textContent)); break;
-					}
-				}
-				$salesRightsDao->insertObject($salesRights);
-				unset($salesRights);
-			}
-		}
+        if ($nodeList->length > 0) {
+            $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
+            for ($i = 0 ; $i < $nodeList->length ; $i++) {
+                $n = $nodeList->item($i);
+                $date = $publicationDateDao->newDataObject();
+                $date->setPublicationFormatId($representation->getId());
+                for ($o = $n->firstChild; $o !== null; $o = $o->nextSibling) {
+                    if (is_a($o, 'DOMElement')) {
+                        switch ($o->tagName) {
+                    case 'onix:PublishingDateRole': $date->setRole($o->textContent); break;
+                    case 'onix:Date':
+                        $date->setDate($o->textContent);
+                        $date->setDateFormat($o->getAttribute('dateformat'));
+                        break;
+                }
+                    }
+                }
 
-		// Extract ProductSupply elements.  Contains Markets, Pricing, Suppliers, and Sales Agents.
-		$nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'ProductSupply');
-		if ($nodeList->length > 0) {
-			$marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
-			$representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
+                $publicationDateDao->insertObject($date);
+                unset($date);
+            }
+        }
 
-			for ($i = 0 ; $i < $nodeList->length ; $i ++) {
-				$productSupplyNode = $nodeList->item($i);
-				$market = $marketDao->newDataObject();
-				$market->setPublicationFormatId($representation->getId());
-				// parse out the Territory for this market.
-				$territoryNodeList = $productSupplyNode->getElementsByTagNameNS($onixDeployment->getNamespace(), 'Territory');
-				assert($territoryNodeList->length == 1);
-				$territoryNode = $territoryNodeList->item(0);
-				for ($o = $territoryNode->firstChild; $o !== null; $o=$o->nextSibling) if (is_a($o, 'DOMElement')) switch($o->tagName) {
-					case 'onix:RegionsIncluded': $market->setRegionsIncluded(preg_split('/\s+/', $o->textContent)); break;
-					case 'onix:CountriesIncluded': $market->setCountriesIncluded(preg_split('/\s+/', $o->textContent)); break;
-					case 'onix:RegionsExcluded': $market->setRegionsExcluded(preg_split('/\s+/', $o->textContent)); break;
-					case 'onix:CountriesExcluded': $market->setCountriesExcluded(preg_split('/\s+/', $o->textContent)); break;
-				}
+        // Extract SalesRights elements.
+        $nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'SalesRights');
+        if ($nodeList->length > 0) {
+            $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
+            for ($i = 0 ; $i < $nodeList->length ; $i ++) {
+                $salesRights = $salesRightsDao->newDataObject();
+                $salesRights->setPublicationFormatId($representation->getId());
+                $salesRightsNode = $nodeList->item($i);
+                $salesRightsROW = $this->_extractTextFromNode($salesRightsNode, $onixDeployment, 'ROWSalesRightsType');
+                if ($salesRightsROW) {
+                    $salesRights->setROWSetting(true);
+                    $salesRights->setType($salesRightsROW);
+                } else {
+                    // Not a 'rest of world' sales rights entry.  Parse the Territory elements as well.
+                    $salesRights->setType($this->_extractTextFromNode($salesRightsNode, $onixDeployment, 'SalesRightsType'));
+                    $salesRights->setROWSetting(false);
+                    $territoryNodeList = $salesRightsNode->getElementsByTagNameNS($onixDeployment->getNamespace(), 'Territory');
+                    assert($territoryNodeList->length == 1);
+                    $territoryNode = $territoryNodeList->item(0);
+                    for ($o = $territoryNode->firstChild; $o !== null; $o = $o->nextSibling) {
+                        if (is_a($o, 'DOMElement')) {
+                            switch ($o->tagName) {
+                        case 'onix:RegionsIncluded': $salesRights->setRegionsIncluded(preg_split('/\s+/', $o->textContent)); break;
+                        case 'onix:CountriesIncluded': $salesRights->setCountriesIncluded(preg_split('/\s+/', $o->textContent)); break;
+                        case 'onix:RegionsExcluded': $salesRights->setRegionsExcluded(preg_split('/\s+/', $o->textContent)); break;
+                        case 'onix:CountriesExcluded': $salesRights->setCountriesExcluded(preg_split('/\s+/', $o->textContent)); break;
+                    }
+                        }
+                    }
+                }
+                $salesRightsDao->insertObject($salesRights);
+                unset($salesRights);
+            }
+        }
 
-				// Market date information.
-				$market->setDate($this->_extractTextFromNode($productSupplyNode, $onixDeployment, 'Date'));
-				$market->setDateRole($this->_extractTextFromNode($productSupplyNode, $onixDeployment, 'MarketDateRole'));
-				$market->setDateFormat($this->_extractTextFromNode($productSupplyNode, $onixDeployment, 'DateFormat'));
+        // Extract ProductSupply elements.  Contains Markets, Pricing, Suppliers, and Sales Agents.
+        $nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'ProductSupply');
+        if ($nodeList->length > 0) {
+            $marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+            $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
 
-				// A product supply may have an Agent.  Look for the PublisherRepresentative element and parse if found.
-				$publisherRepNodeList = $productSupplyNode->getElementsByTagNameNS($onixDeployment->getNamespace(), 'PublisherRepresentative');
-				if ($publisherRepNodeList->length == 1) {
-					$publisherRepNode = $publisherRepNodeList->item(0);
-					$representative = $representativeDao->newDataObject();
-					$representative->setMonographId($deployment->getSubmission()->getId());
-					$representative->setRole($this->_extractTextFromNode($publisherRepNode, $onixDeployment, 'AgentRole'));
-					$representative->setName($this->_extractTextFromNode($publisherRepNode, $onixDeployment, 'AgentName'));
-					$representative->setUrl($this->_extractTextFromNode($publisherRepNode, $onixDeployment, 'WebsiteLink'));
+            for ($i = 0 ; $i < $nodeList->length ; $i ++) {
+                $productSupplyNode = $nodeList->item($i);
+                $market = $marketDao->newDataObject();
+                $market->setPublicationFormatId($representation->getId());
+                // parse out the Territory for this market.
+                $territoryNodeList = $productSupplyNode->getElementsByTagNameNS($onixDeployment->getNamespace(), 'Territory');
+                assert($territoryNodeList->length == 1);
+                $territoryNode = $territoryNodeList->item(0);
+                for ($o = $territoryNode->firstChild; $o !== null; $o = $o->nextSibling) {
+                    if (is_a($o, 'DOMElement')) {
+                        switch ($o->tagName) {
+                    case 'onix:RegionsIncluded': $market->setRegionsIncluded(preg_split('/\s+/', $o->textContent)); break;
+                    case 'onix:CountriesIncluded': $market->setCountriesIncluded(preg_split('/\s+/', $o->textContent)); break;
+                    case 'onix:RegionsExcluded': $market->setRegionsExcluded(preg_split('/\s+/', $o->textContent)); break;
+                    case 'onix:CountriesExcluded': $market->setCountriesExcluded(preg_split('/\s+/', $o->textContent)); break;
+                }
+                    }
+                }
 
-					// to prevent duplicate Agent creation, check to see if this agent already exists.  If it does, use it instead of creating a new one.
-					$existingAgents = $representativeDao->getAgentsByMonographId($deployment->getSubmission()->getId());
-					$foundAgent = false;
-					while ($agent = $existingAgents->next()) {
-						if ($agent->getRole() == $representative->getRole() && $agent->getName() == $representative->getName() && $agent->getUrl() == $representative->getUrl()) {
-							$market->setAgentId($agent->getId());
-							$foundAgent = true;
-							break;
-						}
-					}
-					if (!$foundAgent) {
-						$market->setAgentId($representativeDao->insertObject($representative));
-					}
-				}
+                // Market date information.
+                $market->setDate($this->_extractTextFromNode($productSupplyNode, $onixDeployment, 'Date'));
+                $market->setDateRole($this->_extractTextFromNode($productSupplyNode, $onixDeployment, 'MarketDateRole'));
+                $market->setDateFormat($this->_extractTextFromNode($productSupplyNode, $onixDeployment, 'DateFormat'));
 
-				// Now look for a SupplyDetail element, for the Supplier information.
-				$supplierNodeList = $productSupplyNode->getElementsByTagNameNS($onixDeployment->getNamespace(), 'Supplier');
-				if ($supplierNodeList->length == 1) {
-					$supplierNode = $supplierNodeList->item(0);
-					$representative = $representativeDao->newDataObject();
-					$representative->setMonographId($deployment->getSubmission()->getId());
-					$representative->setRole($this->_extractTextFromNode($supplierNode, $onixDeployment, 'SupplierRole'));
-					$representative->setName($this->_extractTextFromNode($supplierNode, $onixDeployment, 'SupplierName'));
-					$representative->setPhone($this->_extractTextFromNode($supplierNode, $onixDeployment, 'TelephoneNumber'));
-					$representative->setEmail($this->_extractTextFromNode($supplierNode, $onixDeployment, 'EmailAddress'));
-					$representative->setUrl($this->_extractTextFromNode($supplierNode, $onixDeployment, 'WebsiteLink'));
-					$representative->setIsSupplier(true);
+                // A product supply may have an Agent.  Look for the PublisherRepresentative element and parse if found.
+                $publisherRepNodeList = $productSupplyNode->getElementsByTagNameNS($onixDeployment->getNamespace(), 'PublisherRepresentative');
+                if ($publisherRepNodeList->length == 1) {
+                    $publisherRepNode = $publisherRepNodeList->item(0);
+                    $representative = $representativeDao->newDataObject();
+                    $representative->setMonographId($deployment->getSubmission()->getId());
+                    $representative->setRole($this->_extractTextFromNode($publisherRepNode, $onixDeployment, 'AgentRole'));
+                    $representative->setName($this->_extractTextFromNode($publisherRepNode, $onixDeployment, 'AgentName'));
+                    $representative->setUrl($this->_extractTextFromNode($publisherRepNode, $onixDeployment, 'WebsiteLink'));
 
-					// Again, to prevent duplicate Supplier creation, check to see if this rep already exists.  If it does, use it instead of creating a new one.
-					$existingSuppliers = $representativeDao->getSuppliersByMonographId($deployment->getSubmission()->getId());
-					$foundSupplier = false;
-					while ($supplier = $existingSuppliers->next()) {
-						if ($supplier->getRole() == $representative->getRole() && $supplier->getName() == $representative->getName() &&
-							$supplier->getUrl() == $representative->getUrl() &&
-							$supplier->getPhone() == $representative-> getPhone() && $supplier->getEmail() == $representative->getEmail()) {
-							$market->setSupplierId($supplier->getId());
-							$foundSupplier = true;
-							break;
-						}
-					}
-					if (!$foundSupplier) {
-						$market->setSupplierId($representativeDao->insertObject($representative));
-					}
+                    // to prevent duplicate Agent creation, check to see if this agent already exists.  If it does, use it instead of creating a new one.
+                    $existingAgents = $representativeDao->getAgentsByMonographId($deployment->getSubmission()->getId());
+                    $foundAgent = false;
+                    while ($agent = $existingAgents->next()) {
+                        if ($agent->getRole() == $representative->getRole() && $agent->getName() == $representative->getName() && $agent->getUrl() == $representative->getUrl()) {
+                            $market->setAgentId($agent->getId());
+                            $foundAgent = true;
+                            break;
+                        }
+                    }
+                    if (!$foundAgent) {
+                        $market->setAgentId($representativeDao->insertObject($representative));
+                    }
+                }
 
-					$priceNodeList = $productSupplyNode->getElementsByTagNameNS($onixDeployment->getNamespace(), 'Price');
-					if ($priceNodeList->length == 1) {
-						$priceNode = $priceNodeList->item(0);
-						$market->setPriceTypeCode($this->_extractTextFromNode($priceNode, $onixDeployment, 'PriceType'));
-						$market->setDiscount($this->_extractTextFromNode($priceNode, $onixDeployment, 'DiscountPercent'));
-						$market->setPrice($this->_extractTextFromNode($priceNode, $onixDeployment, 'PriceAmount'));
-						$market->setTaxTypeCode($this->_extractTextFromNode($priceNode, $onixDeployment, 'TaxType'));
-						$market->setTaxRateCode($this->_extractTextFromNode($priceNode, $onixDeployment, 'TaxRateCode'));
-						$market->setCurrencyCode($this->_extractTextFromNode($priceNode, $onixDeployment, 'CurrencyCode'));
-					}
-				}
+                // Now look for a SupplyDetail element, for the Supplier information.
+                $supplierNodeList = $productSupplyNode->getElementsByTagNameNS($onixDeployment->getNamespace(), 'Supplier');
+                if ($supplierNodeList->length == 1) {
+                    $supplierNode = $supplierNodeList->item(0);
+                    $representative = $representativeDao->newDataObject();
+                    $representative->setMonographId($deployment->getSubmission()->getId());
+                    $representative->setRole($this->_extractTextFromNode($supplierNode, $onixDeployment, 'SupplierRole'));
+                    $representative->setName($this->_extractTextFromNode($supplierNode, $onixDeployment, 'SupplierName'));
+                    $representative->setPhone($this->_extractTextFromNode($supplierNode, $onixDeployment, 'TelephoneNumber'));
+                    $representative->setEmail($this->_extractTextFromNode($supplierNode, $onixDeployment, 'EmailAddress'));
+                    $representative->setUrl($this->_extractTextFromNode($supplierNode, $onixDeployment, 'WebsiteLink'));
+                    $representative->setIsSupplier(true);
 
-				// Extract Pricing information for this format.
-				$representation->setReturnableIndicatorCode($this->_extractTextFromNode($supplierNode, $onixDeployment, 'ReturnsCode'));
-				$representation->getProductAvailabilityCode($this->_extractTextFromNode($supplierNode, $onixDeployment, 'ProductAvailability'));
+                    // Again, to prevent duplicate Supplier creation, check to see if this rep already exists.  If it does, use it instead of creating a new one.
+                    $existingSuppliers = $representativeDao->getSuppliersByMonographId($deployment->getSubmission()->getId());
+                    $foundSupplier = false;
+                    while ($supplier = $existingSuppliers->next()) {
+                        if ($supplier->getRole() == $representative->getRole() && $supplier->getName() == $representative->getName() &&
+                            $supplier->getUrl() == $representative->getUrl() &&
+                            $supplier->getPhone() == $representative-> getPhone() && $supplier->getEmail() == $representative->getEmail()) {
+                            $market->setSupplierId($supplier->getId());
+                            $foundSupplier = true;
+                            break;
+                        }
+                    }
+                    if (!$foundSupplier) {
+                        $market->setSupplierId($representativeDao->insertObject($representative));
+                    }
 
-				$marketDao->insertObject($market);
-			}
-		}
-	}
+                    $priceNodeList = $productSupplyNode->getElementsByTagNameNS($onixDeployment->getNamespace(), 'Price');
+                    if ($priceNodeList->length == 1) {
+                        $priceNode = $priceNodeList->item(0);
+                        $market->setPriceTypeCode($this->_extractTextFromNode($priceNode, $onixDeployment, 'PriceType'));
+                        $market->setDiscount($this->_extractTextFromNode($priceNode, $onixDeployment, 'DiscountPercent'));
+                        $market->setPrice($this->_extractTextFromNode($priceNode, $onixDeployment, 'PriceAmount'));
+                        $market->setTaxTypeCode($this->_extractTextFromNode($priceNode, $onixDeployment, 'TaxType'));
+                        $market->setTaxRateCode($this->_extractTextFromNode($priceNode, $onixDeployment, 'TaxRateCode'));
+                        $market->setCurrencyCode($this->_extractTextFromNode($priceNode, $onixDeployment, 'CurrencyCode'));
+                    }
+                }
 
-	/**
-	 * Extracts the text content from a node.
-	 * @param $node DOMElement
-	 * @param $onixDeployment Onix30ExportDeployment
-	 * @param $nodeName String the name of the node.
-	 * @return String
-	 */
-	function _extractTextFromNode($node, $onixDeployment, $nodeName) {
-		$nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), $nodeName);
-		if ($nodeList->length == 1) {
-			$n = $nodeList->item(0);
-			return $n->textContent;
-		} else
-			return null;
-	}
+                // Extract Pricing information for this format.
+                $representation->setReturnableIndicatorCode($this->_extractTextFromNode($supplierNode, $onixDeployment, 'ReturnsCode'));
+                $representation->getProductAvailabilityCode($this->_extractTextFromNode($supplierNode, $onixDeployment, 'ProductAvailability'));
 
-	/**
-	 * Extracts the elements of the Extent nodes.
-	 * @param $node DOMElement
-	 * @param $onixDeployment Onix30ExportDeployment
-	 * @param PublicationFormat $representation
-	 */
-	function _extractExtentContent($node, $onixDeployment, &$representation) {
-		$nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'Extent');
+                $marketDao->insertObject($market);
+            }
+        }
+    }
 
-		for ($i = 0 ; $i < $nodeList->length ; $i++) {
-			$n = $nodeList->item($i);
-			$extentType = $this->_extractTextFromNode($node, $onixDeployment, 'ExtentType');
-			$extentValue = $this->_extractTextFromNode($node, $onixDeployment, 'ExtentValue');
+    /**
+     * Extracts the text content from a node.
+     *
+     * @param $node DOMElement
+     * @param $onixDeployment Onix30ExportDeployment
+     * @param $nodeName String the name of the node.
+     *
+     * @return String
+     */
+    public function _extractTextFromNode($node, $onixDeployment, $nodeName)
+    {
+        $nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), $nodeName);
+        if ($nodeList->length == 1) {
+            $n = $nodeList->item(0);
+            return $n->textContent;
+        } else {
+            return null;
+        }
+    }
 
-			switch ($extentType) {
-				case '08': // Digital
-					$representation->setFileSize($extentValue);
-					break;
-				case '00': // Physical, front matter.
-					$representation->setFrontMatter($extentValue);
-					break;
-				case '04': // Physical, back matter.
-					$representation->setBackMatter($extentValue);
-					break;
-			}
-		}
-	}
+    /**
+     * Extracts the elements of the Extent nodes.
+     *
+     * @param $node DOMElement
+     * @param $onixDeployment Onix30ExportDeployment
+     * @param PublicationFormat $representation
+     */
+    public function _extractExtentContent($node, $onixDeployment, &$representation)
+    {
+        $nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'Extent');
 
-	/**
-	 * Extracts the elements of the Measure nodes.
-	 * @param $node DOMElement
-	 * @param $onixDeployment Onix30ExportDeployment
-	 * @param PublicationFormat $representation
-	 */
-	function _extractMeasureContent($node, $onixDeployment, &$representation) {
-		$nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'Measure');
-		for ($i = 0 ; $i < $nodeList->length ; $i++) {
-			$n = $nodeList->item($i);
-			$measureType = $this->_extractTextFromNode($node, $onixDeployment, 'MeasureType');
-			$measurement = $this->_extractTextFromNode($node, $onixDeployment, 'Measurement');
-			$measureUnitCode = $this->_extractTextFromNode($node, $onixDeployment, 'MeasureUnitCode');
+        for ($i = 0 ; $i < $nodeList->length ; $i++) {
+            $n = $nodeList->item($i);
+            $extentType = $this->_extractTextFromNode($node, $onixDeployment, 'ExtentType');
+            $extentValue = $this->_extractTextFromNode($node, $onixDeployment, 'ExtentValue');
 
-			// '01' => 'Height', '02' => 'Width', '03' => 'Thickness', '08' => 'Weight'
-			switch ($measureType) {
-				case '01':
-					$representation->setHeight($measurement);
-					$representation->setHeightUnitCode($measureUnitCode);
-					break;
-				case '02':
-					$representation->setWidth($measurement);
-					$representation->setWidthUnitCode($measureUnitCode);
-					break;
-				case '03':
-					$representation->setThickness($measurement);
-					$representation->setThicknessUnitCode($measureUnitCode);
-					break;
-				case '08':
-					$representation->setWeight($measurement);
-					$representation->setWeightUnitCode($measureUnitCode);
-					break;
-			}
-		}
-	}
+            switch ($extentType) {
+                case '08': // Digital
+                    $representation->setFileSize($extentValue);
+                    break;
+                case '00': // Physical, front matter.
+                    $representation->setFrontMatter($extentValue);
+                    break;
+                case '04': // Physical, back matter.
+                    $representation->setBackMatter($extentValue);
+                    break;
+            }
+        }
+    }
 
-	/**
-	 * Extracts the AudienceRange elements, which vary depending on whether
-	 * a submission defines a specific range, or a to/from pair.
-	 * @param $node DOMElement
-	 * @param $onixDeployment Onix30ExportDeployment
-	 * @param PublicationFormat $representation
-	 */
-	function _extractAudienceRangeContent($node, $onixDeployment, &$representation) {
-		$nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'AudienceRange');
-		for ($i = 0 ; $i < $nodeList->length ; $i++) {
-			$n = $nodeList->item($i);
-			$audienceRangePrecision = 0;
-			for ($o = $n->firstChild; $o !== null; $o=$o->nextSibling) if (is_a($o, 'DOMElement')) switch($o->tagName) {
-				case 'AudienceRangePrecision': $audienceRangePrevision = $o->textContent; break;
-				case 'AudienceRangeValue':
-					switch ($audienceRangePrecision) {
-						case '01':
-							$representation->setAudienceRangeExact($o->textContent);
-							break;
-						case '03':
-							$representation->setAudienceRangeTo($o->textContent);
-							break;
-						case '04':
-							$representation->setAudienceRangeFrom($o->textContent);
-							break;
-					}
-					break;
-			}
-		}
-	}
+    /**
+     * Extracts the elements of the Measure nodes.
+     *
+     * @param $node DOMElement
+     * @param $onixDeployment Onix30ExportDeployment
+     * @param PublicationFormat $representation
+     */
+    public function _extractMeasureContent($node, $onixDeployment, &$representation)
+    {
+        $nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'Measure');
+        for ($i = 0 ; $i < $nodeList->length ; $i++) {
+            $n = $nodeList->item($i);
+            $measureType = $this->_extractTextFromNode($node, $onixDeployment, 'MeasureType');
+            $measurement = $this->_extractTextFromNode($node, $onixDeployment, 'Measurement');
+            $measureUnitCode = $this->_extractTextFromNode($node, $onixDeployment, 'MeasureUnitCode');
+
+            // '01' => 'Height', '02' => 'Width', '03' => 'Thickness', '08' => 'Weight'
+            switch ($measureType) {
+                case '01':
+                    $representation->setHeight($measurement);
+                    $representation->setHeightUnitCode($measureUnitCode);
+                    break;
+                case '02':
+                    $representation->setWidth($measurement);
+                    $representation->setWidthUnitCode($measureUnitCode);
+                    break;
+                case '03':
+                    $representation->setThickness($measurement);
+                    $representation->setThicknessUnitCode($measureUnitCode);
+                    break;
+                case '08':
+                    $representation->setWeight($measurement);
+                    $representation->setWeightUnitCode($measureUnitCode);
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Extracts the AudienceRange elements, which vary depending on whether
+     * a submission defines a specific range, or a to/from pair.
+     *
+     * @param $node DOMElement
+     * @param $onixDeployment Onix30ExportDeployment
+     * @param Submission $submission
+     */
+    public function _extractAudienceRangeContent($node, $onixDeployment, &$submission)
+    {
+        $nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'AudienceRange');
+        for ($i = 0 ; $i < $nodeList->length ; $i++) {
+            $n = $nodeList->item($i);
+            $audienceRangePrecision = 0;
+            for ($o = $n->firstChild; $o !== null; $o = $o->nextSibling) {
+                if (is_a($o, 'DOMElement')) {
+                    switch ($o->tagName) {
+                case 'AudienceRangePrecision': $audienceRangePrevision = $o->textContent; break;
+                case 'AudienceRangeValue':
+                    switch ($audienceRangePrecision) {
+                        case '01':
+                            $submission->setData('audienceRangeExact', $o->textContent);
+                            break;
+                        case '03':
+                            $submission->setData('audienceRangeTo', $o->textContent);
+                            break;
+                        case '04':
+                            $submission->setData('audienceRangeFrom', $o->textContent);
+                            break;
+                    }
+                    break;
+            }
+                }
+            }
+        }
+    }
 }
-
-

@@ -1,8 +1,8 @@
 {**
  * plugins/generic/htmlMonographFile/templates/display.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Embedded viewing of a HTML galley.
@@ -12,7 +12,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset|escape}" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{translate key="catalog.viewableFile.title" type=$publicationFormat->getLocalizedName()|escape title=$submissionFile->getLocalizedName()|escape}</title>
+	<title>{translate key="catalog.viewableFile.title" type=$publicationFormat->getLocalizedName()|escape title=$submissionFile->getLocalizedData('name')|escape}</title>
 
 	{load_header context="frontend" headers=$headers}
 	{load_stylesheet context="frontend" stylesheets=$stylesheets}
@@ -44,7 +44,7 @@
 				</div>
 			</div>
 		{/if}
-		<iframe name="htmlFrame" src="{$downloadUrl}" allowfullscreen webkitallowfullscreen></iframe>
+		<iframe name="htmlFrame" src="{$downloadUrl}" title="{translate key="submission.representationOfTitle" representation=$publicationFormat->getLocalizedName() title=$filePublication->getLocalizedFullTitle()|escape}" allowfullscreen webkitallowfullscreen></iframe>
 	</div>
 	{call_hook name="Templates::Common::Footer::PageFooter"}
 </body>

@@ -1,8 +1,8 @@
 /**
  * @file cypress/tests/data/60-content/DbernnardSubmission.spec.js
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2000-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @ingroup tests_data
@@ -76,7 +76,7 @@ describe('Data suite tests', function() {
 
 		cy.logout();
 
-		cy.findSubmissionAsEditor('dbarnes', null, title);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Bernnard');
 		cy.sendToReview('Internal');
 		cy.get('li.ui-state-active a:contains("Internal Review")');
 		// Assign a recommendOnly section editor
@@ -84,12 +84,12 @@ describe('Data suite tests', function() {
 		cy.logout();
 		// Find the submission as the section editor
 		cy.login('minoue', null, 'publicknowledge'),
-		cy.get('div[id=myQueue]').find('div').contains(title).parent().parent().click();
+		cy.get('#myQueue').find('a').contains('View Bernnard').click({force: true});
 		// Recommend
 		cy.recordEditorialRecommendation('Send to External Review');
 		cy.logout();
 		// Log in as editor and see the existing recommendation
-		cy.findSubmissionAsEditor('dbarnes', null, title);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Bernnard');
 		cy.get('div.pkp_workflow_recommendations:contains("Recommendations: Send to External Review")');
 	});
 });

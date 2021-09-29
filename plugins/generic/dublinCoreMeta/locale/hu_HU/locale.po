@@ -1,0 +1,21 @@
+# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-08-19 14:05+0000\n"
+"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
+"Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
+"generic-dublinCoreMeta/hu_HU/>\n"
+"Language: hu_HU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.generic.dublinCoreMeta.description"
+msgstr ""
+"Ez a bővítmény indexelés céljából Dublin Core metacímkéket ágyaz be a "
+"monográfiai nézetekbe."
+
+msgid "plugins.generic.dublinCoreMeta.name"
+msgstr "Dublin Core Indexing Bővítmény"

@@ -1,0 +1,1658 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-11-18 20:49+0000\n"
+"Last-Translator: Michael Bauer <fios@igaidhlig.net>\n"
+"Language-Team: Gaelic <http://translate.pkp.sfu.ca/projects/omp/locale/gd_GB/"
+">\n"
+"Language: gd_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
+"(n > 2 && n < 20) ? 2 : 3;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "submission.round"
+msgstr "Cuairt&nbsp;{$round}"
+
+msgid "payment.directSales.amount"
+msgstr "{$amount} ({$currency})"
+
+msgid "payment.directSales.catalog"
+msgstr "Catalog"
+
+msgid "installer.installationComplete"
+msgstr ""
+"<p>Chaidh OMP a stàladh.</p>\n"
+"<p>Airson tòiseachadh air an siostam a chleachdadh, <a href=\"{$loginUrl}\">"
+"clàraich a-steach</a> leis an ainm-chleachdaiche is facal-faire a chuir thu "
+"a-steach air an duilleag roimhpe.</p>\n"
+"<p>Ma tha thu airson naidheachdan is ùrachaidhean fhaighinn, <strong>dèan "
+"clàradh aig <a href=\"http://pkp.sfu.ca/omp/register\" target=\"_blank\""
+">http://pkp.sfu.ca/omp/register</a>.</strong> Ma tha ceistean no beachdan "
+"agad mu dhèidhinn, tadhail air an <a href=\"http://forum.pkp.sfu.ca\" target="
+"\"_blank\">fhòram taice</a>.</p>"
+
+msgid "navigation.catalog"
+msgstr "Catalog"
+
+msgid "common.software"
+msgstr "Open Monograph Press"
+
+msgid "installer.upgradeComplete"
+msgstr ""
+"<p>Chaidh tionndadh {$version} de OMP a stàladh.</p>\n"
+"<p>Na dìochuimhnich an roghainn “stàlaichte” a chur gu <em>Air</em> a-"
+"rithist san fhaidhle rèiteachaidh config.inc.php agad.</p>\n"
+"<p>Mur eil thu air clàradh agus ma tha thu ag iarraidh naidheachdan is "
+"ùrachaidhean fhaighinn, <strong>dèan clàradh aig <a href=\"http://pkp.sfu.ca/"
+"omp/register\" target=\"_blank\">http://pkp.sfu.ca/omp/register</a>.</strong>"
+" Ma tha ceistean no beachdan agad mu dhèidhinn, tadhail air an <a href=\""
+"http://forum.pkp.sfu.ca\" target=\"_blank\">fhòram taice</a>.</p>"
+
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>CUDROMACH!</h4>\n"
+"<p>Cha b’ urrainn dhan stàlaichear sgrìobhadh thairis air an fhaidhle "
+"rèiteachaidh. Mus cleachd thu an siostam, fosgail <tt>config.inc.php</tt> "
+"ann an deasaiche teacsa iomchaidh agus cuir na tha san raon teacsa gu h-"
+"ìosal an àite na susbaint ann.</p>"
+
+msgid "installer.filesDirInstructions"
+msgstr ""
+"Cuir a-steach ainm slàn na slighe gu pasgan làithreach far an tèid na "
+"faidhlichean a chumail a thèid a luchdadh suas. Cha bu chòir dha a bhith na "
+"phasgan a ruigear calg-dhìreach on lìon. <strong>Dèan cinnteach gu bheil am "
+"pasgan seo ann agus gun gabh sgrìobhadh ann mus tòisich thu air an "
+"stàladh.</strong> Bu chòir do shlaisichean air adhart a bhith ann an ainmean "
+"slighean Windows, m.e. “C:/mypress/files”."
+
+msgid "installer.maxFileUploadSize"
+msgstr ""
+"Tha am frithealaiche agad a’ ceadachadh luchdadh suas de dh’fhaidhlichean "
+"suas chun a’ mheud a leanas aig an àm seo: "
+"<strong>{$maxFileUploadSize}</strong>"
+
+msgid "installer.allowFileUploads"
+msgstr ""
+"Tha am frithealaiche agad a’ ceadachadh luchdadh suas de dh’fhaidhlichean "
+"aig an àm seo: <strong>{$allowFileUploads}</strong>"
+
+msgid "installer.localeSettingsInstructions"
+msgstr ""
+"Airson làn-taic Unicode (UTF-8), tagh UTF-8 airson gach roghainn a thaobh "
+"nan seataichean charactaran. Thoir an aire gum feum an taic seo "
+"frithealaiche stòir-dhàta MySQL >= 4.1.1 no PostgreSQL >= 9.1.5 aig an àm "
+"seo. Thoir an aire cuideachd gum feum làn-taic Unicode leabhar-lann <a href="
+"\"http://www.php.net/mbstring\" target=\"_blank\">mbstring</a> (rud a bhios "
+"an comas a ghnàth anns gach stàladh PHP o chionn greis). Dh’fhaoidte gum bi "
+"duilgheadasas agad le seataichean charactaran sònraichte mur eil am "
+"frithealaiche agad a’ coileanadh nan riatanasan seo.\n"
+"<br /><br />\n"
+"Tha taic aig an fhrithealaiche agad ri mbstring: "
+"<strong>{$supportsMBString}</strong>"
+
+msgid "installer.upgradeInstructions"
+msgstr ""
+"<h4>Tionndadh OMP {$version}</h4>\n"
+"\n"
+"<p>Mòran taing airson <strong>Open Monograph Press</strong> aig a’ Public "
+"Knowledge Project a luchdadh a-nuas. Mus lean thu air adhart, leugh na "
+"faidhlichean <a href=\"{$baseUrl}/docs/README\">README</a> agus <a href=\""
+"{$baseUrl}/docs/UPGRADE\">UPGRADE</a> a tha gan gabhail a-staigh leis a’ "
+"bhathar-bhog seo. Airson barrachd fiosrachaidh mun Public Knowledge Project "
+"agus na pròiseactan bathair-bhog aca, tadhail air <a href=\"http://pkp.sfu."
+"ca/\" target=\"_blank\">làrach-lìn PKP</a>. Ma tha thu airson aithris a "
+"dhèanamh aig buga no ma tha ceist agad mu Open Monograph Press, faic am <a "
+"href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">fòram taice</a> no "
+"tadhail air an t-siostam aig PKP airson <a href=\"http://pkp.sfu.ca/bugzilla/"
+"\" target=\"_blank\">aithris a dhèanamh aig bugaichean</a>. Ge b’ fheàrr "
+"leinn cluinntinn o dhaoine slighe an fhòraim, ’s urrainn dhut post-d a chur "
+"chun an sgioba cuideachd aig <a href=\"mailto:pkp.contact@gmail.com\""
+">pkp.contact@gmail.com</a>.</p>\n"
+"<p><strong>Mholamaid dhut gu mòr</strong> gun dèan thu lethbhreac-glèidhidh "
+"dhen stòr-dàta, pasgan nam faidhlichean agus pasgan stàladh OMP agad mus "
+"lean thu air adhart.</p>\n"
+"<p>Ma tha thu a’ ruith <a href=\"http://www.php.net/features.safe-mode\" "
+"target=\"_blank\">sa mhodh sàbhailte PHP</a>, dèan cinnteach gu bheil crìoch "
+"àrd aig steòrnadh max_execution_time san fhaidhle rèiteachaidh php.ini agad."
+"\n"
+"Ma ruigear a’ chrìoch-ama seo no tè sam bith eile (m.e. an steòrnadh "
+"“Timeout” aig Apache) agus ma bhriseas sin a-steach air an àrdachadh, bidh "
+"agad ris a chur ceart de làimh.</p>"
+
+msgid "installer.preInstallationInstructions"
+msgstr ""
+"<p>1. Feumaidh tu na faidhlichean is pasganan a leans (agus an t-susbaint "
+"annta) a dhèanamh so-sgrìobhte:</p>\n"
+"<ul>\n"
+"\t<li>Tha <tt>config.inc.php</tt> so-sgrìobhte (roghainneil): "
+"{$writable_config}\n"
+"</li>\n"
+"\t<li>Tha <tt>public/</tt> so-sgrìobhte: {$writable_public}\n"
+"</li>\n"
+"\t<li>Tha <tt>cache/</tt> so-sgrìobhte: {$writable_cache}\n"
+"</li>\n"
+"\t<li>Tha <tt>cache/t_cache/</tt> so-sgrìobhte: {$writable_templates_cache}\n"
+"</li>\n"
+"\t<li>Tha <tt>cache/t_compile/</tt> so-sgrìobhte: "
+"{$writable_templates_compile}\n"
+"</li>\n"
+"\t<li>Tha <tt>cache/_db</tt> so-sgrìobhte: {$writable_db_cache}\n"
+"</li>\n"
+"</ul>\n"
+"\n"
+"<p>2. Feumaidh tu pasgan a chruthachadh far an cumar na faidhlichean a thèid "
+"a luchdadh suas agus feumaidh e a bhith so-sgrìobhte (faic “Roghainnean "
+"faidhle” gu h-ìosal.</p>"
+
+msgid "series.featured.description"
+msgstr "Nochdaidh an sreath seo sa phrìomh sheòladaireachd"
+
+msgid "series.path"
+msgstr "Slighe"
+
+msgid "catalog.manage"
+msgstr "Stiùireadh a’ chatalog"
+
+msgid "catalog.manage.newReleases"
+msgstr "Air ùr-fhoillseachadh"
+
+msgid "catalog.manage.category"
+msgstr "Roinn-seòrsa"
+
+msgid "catalog.manage.series"
+msgstr "Sreath"
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Cuir a-steach ISSN dligheach."
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr ""
+"Chan fhaod an ISSN clò-bhualaidh agus an ISSN air loidhne a bhith co-ionann."
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "ISSN air loidhne"
+
+msgid "catalog.manage.series.printIssn"
+msgstr "ISSN clò-bhualaidh"
+
+msgid "catalog.selectSeries"
+msgstr "Tagh sreath"
+
+msgid "catalog.selectCategory"
+msgstr "Tagh roinn-seòrsa"
+
+msgid "catalog.manage.homepageDescription"
+msgstr ""
+"Nochdaidh dealbh còmhdachadh nan leabhraichean a thagh thu mu bhàrr na "
+"duilleige-dachaigh ann an seata as urrainnear sgroladh tromhpa. Briog air "
+"“Brosnaich” agus an uairsin air an rionnag airson leabhar a chur ris an "
+"timcheallan; briog air a’ chlisg-phuing airson a bhrosnachadh mar sgaoileadh "
+"ùr; dèan slaodadh is leigeil às airson an t-òrdugh atharrachadh."
+
+msgid "catalog.manage.categoryDescription"
+msgstr ""
+"Briog air “Brosnaich” agus an uairsin air an rionnag airson leabhar "
+"brosnaichte a thaghadh dhan roinn-seòrsa seo; dèan slaodadh is leigeil às "
+"airson an t-òrdugh atharrachadh."
+
+msgid "catalog.manage.seriesDescription"
+msgstr ""
+"Briog air “Brosnaich” agus an uairsin air an rionnag airson leabhar "
+"brosnaichte a thaghadh dhan t-sreath seo; dèan slaodadh is leigeil às airson "
+"an t-òrdugh atharrachadh. Tha deasaiche(an) agus tiotal an t-sreatha co-"
+"cheangailte ri sreath, am broinn roinn-seòrsa no an neo-eisimeileachd."
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "An timcheallan"
+
+msgid "catalog.manage.newRelease"
+msgstr "Sgaoil"
+
+msgid "catalog.manage.manageSeries"
+msgstr "Stiùirich an sreath"
+
+msgid "catalog.manage.manageCategories"
+msgstr "Stiùirich na roinnean-seòrsa"
+
+msgid "catalog.manage.noMonographs"
+msgstr "Chan eil monograf ann a chaidh iomruineadh."
+
+msgid "catalog.manage.featured"
+msgstr "Brosnaichte"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "Brosnaichte san roinn-seòrsa"
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "Brosnaichte san t-sreath"
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "’S e monograf brosnaichte a tha seo."
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "Chan e monograf brosnaichte a tha seo."
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "Chaidh am monograf a chomharradh mar sgaoileadh ùr."
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "Cha deach am monograf a chomharradh mar sgaoileadh ùr."
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "Air ùr-fhoillseachadh"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "Sgaoileadh ùr san roinn-seòrsa"
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Sgaoileadh ùr san t-sreath"
+
+msgid "catalog.manage.nonOrderable"
+msgstr ""
+"Chan urrainnear òrdan a chur airson a’ mhonograf seo gus am bi e na "
+"mhonograf brosnaichte."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Lorg a-rèir tiotail no ùghdair"
+
+msgid "catalog.manage.isFeatured"
+msgstr ""
+"’S e monograf brosnaichte a tha seo. Na brosnaich am monograf seo tuilleadh."
+
+msgid "catalog.manage.isNotFeatured"
+msgstr "Chan e monograf brosnaichte a tha seo. Dèan monograf brosnaichte dheth."
+
+msgid "catalog.manage.isNewRelease"
+msgstr ""
+"’S e sgaoileadh ùr a tha sa mhonograf seo. Comharraich nach e sgaoileadh ùr "
+"a sa mhonograf seo."
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr ""
+"Chan e sgaoileadh ùr a tha sa mhonograf seo. Dèan sgaoileadh ùr dhen "
+"mhonograf seo."
+
+msgid "catalog.noTitles"
+msgstr "Cha deach tiotal sam bith fhoillseachadh fhathast."
+
+msgid "notification.type.reviewing"
+msgstr "Lèirmheasadh thachartasan"
+
+msgid "notification.type.site"
+msgstr "Tachartasan na làraich"
+
+msgid "notification.type.submissions"
+msgstr "Tachartas tagraidh"
+
+msgid "notification.type.userComment"
+msgstr "Thug leughadair seachad beachd air “{$title}”."
+
+msgid "notification.type.public"
+msgstr "Fiosan-naidheachd poblach"
+
+msgid "notification.type.editorAssignmentTask"
+msgstr "Chaidh monograf ùr a chur agus tha e feumach air deasaiche."
+
+msgid "notification.type.copyeditorRequest"
+msgstr ""
+"Chaidh iarraidh ort lèirmheas a dhèanamh air a’ ghrinn-deasachadh a rinneadh "
+"air “{$title}”."
+
+msgid "notification.type.layouteditorRequest"
+msgstr ""
+"Chaidh iarraidh ort lèirmheas a dhèanamh air a’ cho-dhealbhachd aig "
+"“{$title}”."
+
+msgid "notification.type.indexRequest"
+msgstr "Chaidh iarraidh ort clàr-amais a chruthachadh dha “{$title}”."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "Thòisich an lèirmheas inntearnail."
+
+msgid "notification.type.approveSubmission"
+msgstr ""
+"Tha an tagradh seo a’ feitheamh ri aonta fhathast ann an inneal innteartan a’"
+" chatalog agus nochdaidh e sa chatalog phoblach an uairsin."
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "A’ feitheamh ri aonta."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+"Cha nochd am monograf sa chatalog gus an deach fhoillseachadh. Airson an "
+"leabhar seo a chur ris a’ chatalog, briog air an taba “Foillseachadh”."
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "Cha deach dòigh pàighidh a rèiteachadh."
+
+msgid "notification.type.configurePaymentMethod"
+msgstr ""
+"Feumaidh tu dòigh pàighidh a rèiteachadh mus urrainn dhut roghainnean "
+"malairt-d a shònrachadh."
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "Stiùireadh a’ chatalog"
+
+#, fuzzy
+msgid "notification.type.visitCatalog"
+msgstr ""
+"Fhuair am monograf aonta. Tadhail air a’ chatalog a stiùireadh mion-"
+"fhiosrachadh a’ chatalog leis na ceanglaichean gu h-àrd."
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr ""
+"Chaidh inntrigeadh dha diùltadh ort oir chan eil coltas gu bheil thu nad "
+"lèirmheasaiche dligheach airson a’ mhonograf seo."
+
+msgid "user.authorization.monographAuthor"
+msgstr ""
+"Chaidh inntrigeadh dha diùltadh ort oir chan eil coltas gu bheil thu nad "
+"ùghdar a’ mhonograf seo."
+
+msgid "user.authorization.monographReviewer"
+msgstr ""
+"Chaidh inntrigeadh dha diùltadh ort oir chan eil coltas nach deach d’ "
+"iomruineadh mar lèirmheasaiche airson a’ mhonograf seo."
+
+msgid "user.authorization.monographFile"
+msgstr ""
+"Chaidh inntrigeadh do dh’fhaidhle a’ mhonograf a dh’iarr thu diùltadh ort."
+
+msgid "user.authorization.invalidMonograph"
+msgstr "Chan eil am monograf dligheach no cha deach monograf sam bith iarraidh!"
+
+msgid "user.authorization.noContext"
+msgstr "Chan eil clò sa cho-theacsa!"
+
+msgid "user.authorization.seriesAssignment"
+msgstr ""
+"Tha thu a’ feuchainn ri cothrom fhaighinn air monograf nach eil na phàirt "
+"dhen t-sreath agad-sa."
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr ""
+"Chaidh inntrigeadh a dhiùltadh! Cha deach d’ iomruineadh do cheum seo an t"
+"-sruth-obrach."
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+"Chaidh inntrigeadh a dhiùltadh! Tha comas gnìomh agad ann am buidheann "
+"chleachdaichean nach deach iomruineadh do cheum seo an t-sruth-obrach. Thoir "
+"sùil air roghainnean a’ chlòtha agad."
+
+msgid "payment.directSales"
+msgstr "Luchdaich a-nuas o làrach-lìn a’ chlòtha"
+
+msgid "payment.directSales.price"
+msgstr "Prìs"
+
+msgid "payment.directSales.availability"
+msgstr "Faotainneachd"
+
+msgid "payment.directSales.approved"
+msgstr "Air aontachadh"
+
+msgid "payment.directSales.priceCurrency"
+msgstr "A’ phrìs ({$currency})"
+
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Roinn-dùthcha sgaoileadh a’ bhathair"
+
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Reat na cìse"
+
+msgid "monograph.publicationFormat.taxType"
+msgstr "Seòrsa na cìse"
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr ""
+"Gabh a-staigh am meata-dàta airson an fhòrmait fhoillseachaidh seo ann an "
+"innteart catalog an leabhair seo."
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Tha margaidean is prìsean a dhìth."
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Tha còd dearbh-aithneachaidh a dhìth."
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Tha cuid dhen mheata-dàta a dhìth."
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "Fosgail taba fòrmat an fhoillseachaidh."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Fòrmat foillseachaidh"
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "Tha feum air ainm."
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "Tha feum air prìs dhligheach."
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Mion-fhiosrachadh mun fhòrmat"
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Fòrmat fiosaigeach"
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Bidh am fòrmat seo ri làimh air làrach-lìn fa leth"
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr "URL de shusbaint air òstair cèin"
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "Tha feum air ID airson a’ mhonograf."
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Feumaidh tu fòrmat foillseachaidh a thaghadh."
+
+msgid "grid.catalogEntry.availability"
+msgstr "Faotainneachd"
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Ri fhaighinn"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Chan eil seo ri làimh"
+
+msgid "grid.catalogEntry.proof"
+msgstr "Dearbhadh"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Aonta an fhòrmait"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Faotainneachd an fhòrmait"
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Cha d’fhuair innteart a’ chatalog aonta."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Chan eil am fòrmat ann an innteart a’ chatalog."
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Cha d’fhuair an dearbh aonta."
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Air aontachadh"
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "A’ feitheamh ri aonta"
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "Tha feum air meud an fhaidhle mu choinneamh fhòrmatan digiteach."
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "Tha feum air còd a dh’innseas a bheil am bathar ri fhaighinn."
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "Feumaidh tu còd co-chur bathair a thaghadh."
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Luach a’ chòd"
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "Seòrsa de chòd ONIX"
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "Tha feum air còd dearbh-aithneachaidh."
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Tha feum air luach."
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Còraichean reic"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Luach a’ chòd"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Seòrsa de chòraichean reic"
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "An còrr dhen t-saoghal?"
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+"Cuir cromag sa bhogsa seo airson innteart nan còraichean reic seo a "
+"chleachdadh anns gach suidheachadh dhan fhòrmat agad.  Cha leigear a leas "
+"dùthchannan is roinnean-dùthcha a thaghadh ma nì thu sin."
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr ""
+"Chaidh seòrsa de reicean ROW a shònrachadh dhan fhòrmat fhoillseachaidh seo "
+"mu thràth."
+
+msgid "grid.catalogEntry.countries"
+msgstr "Dùthchannan"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Roinnean-dùthcha"
+
+msgid "grid.catalogEntry.included"
+msgstr "Ga ghabhail a-staigh"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "Air dùnadh a-mach"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Ranntairean margaide"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Ranntair"
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Chinn-là foillseachaidh"
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr "Tha feum air dreuchd dhan neach-ionaid."
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "Tha feum air fòrmat airson a’ chinn-là."
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Ceann-là"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Dreuchd"
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Fòrmat a’ chinn-là"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr ""
+"Tha feum air ceann-là agus feumaidh luach a’ chinn-là a bhith a-rèir fòrmat "
+"a’ chinn-là a thagh thu."
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Luchd-ionaid"
+
+msgid "grid.catalogEntry.representativeType"
+msgstr "Seòrsa an neach-ionaid"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Àidseantan"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Solaraichean"
+
+msgid "grid.catalogEntry.agent"
+msgstr "Àidseant"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"’S urrainn dhut àidseant ainmeachadh a bhios gad riochdachadh san ranntair "
+"seo.  Chan eil seo riatanach."
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Solaraiche"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Tagh dreuchd:"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Dreuchd"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Ainm"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Fòn"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "Seòladh puist-d"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Làrach-lìn"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "ID an neach-ionaid"
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Seòrsa ID an neach-ionaid (mholamaid GLN)"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+"Faodaidh tu an earrann a leanas fhàgail bàn ma bhios tu a’ solarachadh do "
+"sheirbheisean fhèin dha na custamairean agad."
+
+msgid "grid.action.addRepresentative"
+msgstr "Cuir neach-ionaid ris"
+
+msgid "grid.action.editRepresentative"
+msgstr "Deasaich an neach-ionaid seo"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Sguab an neach-ionaid seo às"
+
+msgid "spotlight"
+msgstr "Prosbaig"
+
+msgid "spotlight.spotlights"
+msgstr "Prosbaigean"
+
+msgid "spotlight.noneExist"
+msgstr "Chan eil prosbaig ann aig an àm seo."
+
+msgid "spotlight.title.homePage"
+msgstr "Fon phrosbaig"
+
+msgid "spotlight.author"
+msgstr "Ùghdar, "
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "Nì fon phrosbaig"
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "An duilleag-dhachaigh"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "Ionad na prosbaig"
+
+msgid "grid.content.spotlights.form.item"
+msgstr "Cuir a-steach tiotal airson na prosbaig (le fèin-choileanadh)"
+
+msgid "grid.content.spotlights.form.title"
+msgstr "Tiotal na prosbaig"
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Leabhar"
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "Tha feum air nì."
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "Tha feum air tiotal airson na prosbaig."
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Tagh ionad dhan phrosbaig seo."
+
+msgid "grid.action.editSpotlight"
+msgstr "Deasaich a’ phrosbaig seo"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Sguab a’ phrosbaig seo às"
+
+msgid "grid.action.addSpotlight"
+msgstr "Cuir prosbaig ris"
+
+msgid "manager.series.open"
+msgstr "Tagraidhean fosgailte"
+
+msgid "manager.series.indexed"
+msgstr "Air inneacsadh"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Faidhlichean"
+
+msgid "grid.action.catalogEntry"
+msgstr "Seall foirm innteart a’ chatalog"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "Tha am fòrmat a’ nochdadh ann an innteart a’ chatalog"
+
+msgid "grid.action.editFormat"
+msgstr "Deasaich am fòrmat seo"
+
+msgid "grid.action.deleteFormat"
+msgstr "Sguab am fòrmat seo às"
+
+msgid "grid.action.addFormat"
+msgstr "Cuir fòrmat foillseachaidh ris"
+
+msgid "grid.action.approveProof"
+msgstr ""
+"Thoir aonta dhan dearbh a thaobh inneacsaidh agus airson a ghabhail a-staigh "
+"sa chatalog"
+
+msgid "grid.action.pageProofApproved"
+msgstr "Tha faidhle dearbhan nan duilleagan deiseil airson foillseachadh"
+
+msgid "grid.action.addAnnouncement"
+msgstr "Cuir fios-naidheachd ris"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "Innteart ùr sa chatalog"
+
+msgid "grid.action.publicCatalog"
+msgstr "Seall an nì seo sa chatalog"
+
+msgid "grid.action.feature"
+msgstr "Toglaich taisbeanadh nan gleus"
+
+msgid "grid.action.featureMonograph"
+msgstr "Nochd seo air timcheallan a’ chatalog"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Comharraich an tagradh seo mar “sgaoileadh ùr”"
+
+msgid "grid.action.manageCategories"
+msgstr "Rèitich an roinn-seòrsa seo dhan chlò seo"
+
+msgid "grid.action.manageSeries"
+msgstr "Rèitich an sreath seo dhan chlò seo"
+
+msgid "grid.action.addCode"
+msgstr "Cuir còd ris"
+
+msgid "grid.action.editCode"
+msgstr "Deasaich an còd seo"
+
+msgid "grid.action.deleteCode"
+msgstr "Sguab an còd seo às"
+
+msgid "grid.action.addRights"
+msgstr "Cuir còraichean reic ris"
+
+msgid "grid.action.editRights"
+msgstr "Deasaich na còraichean seo"
+
+msgid "grid.action.deleteRights"
+msgstr "Sguab na còraichean seo às"
+
+msgid "grid.action.addMarket"
+msgstr "Cuir margaid ris"
+
+msgid "grid.action.editMarket"
+msgstr "Deasaich a’ mhargaid seo"
+
+msgid "grid.action.deleteMarket"
+msgstr "Sguab a’ mhargaid seo às"
+
+msgid "grid.action.addDate"
+msgstr "Cuir ceann-là foillseachaidh ris"
+
+msgid "catalog.noTitlesNew"
+msgstr "Chan eil foillseachadh ùr sam bith ri fhaighinn aig an àm seo."
+
+msgid "catalog.noTitlesSearch"
+msgstr "Cha deach tiotalan a lorg a fhreagair air na lorg thu ({$searchQuery})."
+
+msgid "catalog.feature"
+msgstr "Gleus"
+
+msgid "catalog.featured"
+msgstr "Brosnaichte"
+
+msgid "catalog.featuredBooks"
+msgstr "Leabhraichean brosnaichte"
+
+msgid "catalog.foundTitleSearch"
+msgstr "Chaidh aon tiotal a lorg a fhreagair air na lorg thu ({$searchQuery})."
+
+msgid "catalog.foundTitlesSearch"
+msgstr ""
+"Chaidh tiotalan a lorg ({$number} dhiubh) a fhreagair air na lorg thu "
+"({$searchQuery})."
+
+msgid "catalog.category.heading"
+msgstr "A h-uile leabhar"
+
+msgid "catalog.newReleases"
+msgstr "Air ùr-fhoillseachadh"
+
+msgid "catalog.dateAdded"
+msgstr "Air a chur ris"
+
+msgid "catalog.publicationInfo"
+msgstr "Fiosrachadh mun fhoillseachadh"
+
+msgid "catalog.published"
+msgstr "Foillsichte"
+
+msgid "catalog.forthcoming"
+msgstr "Ri thighinn"
+
+msgid "catalog.categories"
+msgstr "Roinnean-seòrsa"
+
+msgid "catalog.parentCategory"
+msgstr "Roinn-seòrsa pàrant"
+
+msgid "catalog.category.subcategories"
+msgstr "Fo-roinnean-seòrsa"
+
+msgid "catalog.aboutTheAuthor"
+msgstr "Mu dhèidhinn {$roleName}"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr ""
+"Thoir an aire: Feumaidh tu clàradh a-steach an toiseach mus urrainn dhut "
+"rudan a cheannach. Ma thaghas tu rud airson a cheannach, thèid d’ ath-"
+"stiùireadh gu duilleag far an clàraich thu a-steach. Ma tha ìomhaigheag “"
+"Inntrigeadh fosgailte” ri rud, gabhaidh a luchdadh a-nuas saor ’s an-asgaidh "
+"gun fheum air clàradh a-steach."
+
+msgid "catalog.sortBy"
+msgstr "Òrdugh nam monograf"
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr "Tagh òrdugh dha na leabhraichean san t-sreath seo."
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr "Tagh òrdugh dha na leabhraichean san roinn-seòrsa seo."
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr "Tagh òrdugh dha na leabhraichean sa chatalog."
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr "An t-ionad san t-sreath (feadhainn as ìsle an toiseach)"
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr "An t-ionad san t-sreath (feadhainn as àirde an toiseach)"
+
+msgid "catalog.viewableFile.title"
+msgstr "Sealladh ({$type}) dhen fhaidhle {$title}"
+
+msgid "catalog.viewableFile.return"
+msgstr "Till chun a’ mhion-fhiosrachaidh mu dhèidhinn {$monographTitle}"
+
+msgid "submission.search"
+msgstr "Lorg leabhar"
+
+msgid "common.publication"
+msgstr "Monograf"
+
+msgid "common.publications"
+msgstr "Monografaichean"
+
+msgid "common.prefix"
+msgstr "Ro-leasachan"
+
+msgid "common.preview"
+msgstr "Ro-shealladh"
+
+msgid "common.feature"
+msgstr "Gleus"
+
+msgid "common.searchCatalog"
+msgstr "Lorg sa chatalog"
+
+msgid "common.moreInfo"
+msgstr "Barrachd fiosrachaidh"
+
+msgid "common.listbuilder.completeForm"
+msgstr "Lìon am foirm gu lèir."
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "Tagh roghainn dhligheach on liosta."
+
+msgid "common.listbuilder.itemExists"
+msgstr "Chan urrainn dhut an aon rud a chur ris dà thuras."
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "common.homePageHeader.altText"
+msgstr "Bann-cinn na duilleige-dachaigh"
+
+msgid "navigation.competingInterestPolicy"
+msgstr "Am poileasaidh mu chòmhstri ùidhean"
+
+msgid "navigation.catalog.allMonographs"
+msgstr "A h-uile monograf"
+
+msgid "navigation.catalog.manage"
+msgstr "Stiùirich"
+
+msgid "navigation.catalog.administration.short"
+msgstr "Ball sgioba rianachd LibreOffice"
+
+msgid "navigation.catalog.administration"
+msgstr "Rianachd a’ chatalog"
+
+msgid "navigation.catalog.administration.categories"
+msgstr "Roinnean-seòrsa"
+
+msgid "navigation.catalog.administration.series"
+msgstr "Sreath"
+
+msgid "navigation.infoForAuthors"
+msgstr "Do dh’ùghdaran"
+
+msgid "navigation.infoForLibrarians"
+msgstr "Do leabhar-lannaichean"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Fiosrachadh do dh’ùghdaran"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Fiosrachadh do leabhar-lannaichean"
+
+msgid "navigation.newReleases"
+msgstr "Air ùr-fhoillseachadh"
+
+msgid "navigation.published"
+msgstr "Foillsichte"
+
+msgid "navigation.wizard"
+msgstr "An draoidh"
+
+msgid "navigation.linksAndMedia"
+msgstr "Ceanglaichean is meadhanan sòisealta"
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Ceangail ris a’ chatalog agad."
+
+msgid "navigation.skip.spotlights"
+msgstr "Leum chun nam prosbaigean"
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Sreath"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Ceangail ri sreath."
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Roinn-seòrsa"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Ceangail ri roinn-seòrsa."
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Air ùr-fhoillseachadh"
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Ceanglaichean ris na sgaoilidhean ùra agad."
+
+msgid "context.contexts"
+msgstr "Clòthan"
+
+msgid "context.context"
+msgstr "Brùth"
+
+msgid "context.current"
+msgstr "An clò làithreach:"
+
+msgid "context.select"
+msgstr "Geàrr leum gu clò eile:"
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "Gabh a-staigh cleachdaichean aig nach eil dreuchd sa chlò seo."
+
+msgid "user.noRoles.submitMonograph"
+msgstr "Cuir moladh"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr "Cuir monograf: Tha clàradh ùghdaran à comas aig an àm seo."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Clàraich mar lèirmheasaiche"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr ""
+"Clàraich mar lèirmheasaiche: Tha clàradh lèirmheasaichean à comas aig an àm "
+"seo."
+
+msgid "user.reviewerPrompt"
+msgstr ""
+"A bheil ùidh agad ann a bhith a’ dèanamh lèirmheasan air tagraidhean dhan "
+"chlò seo?"
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Tha, iarr dreuchd {$userGroup}."
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+"Tha, tha mi ag iarraidh gun cuirear fios thugam ma bhios iarrtas ann airson "
+"lèirmheas tagraidh dhan chlò seo."
+
+msgid "user.register.contextsPrompt"
+msgstr "Dè na clòthan air an làrach seo bu toil leat clàradh aca?"
+
+msgid "user.register.otherContextRoles"
+msgstr "Iarr na dreuchdan a leanas."
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+"Ma dh’iarr thu inbhe lèirmheasaiche airson clò sam bith, cuir a-steach na "
+"cuspairean sa bheil ùidh agad."
+
+msgid "user.role.manager"
+msgstr "Manaidsear a’ chlòtha"
+
+msgid "user.role.pressEditor"
+msgstr "Deasaiche a’ chlòtha"
+
+msgid "user.role.subEditor"
+msgstr "Deasaiche an t-sreatha"
+
+msgid "user.role.copyeditor"
+msgstr "Grinn-deasaiche"
+
+msgid "user.role.proofreader"
+msgstr "Dearbh-leughadair"
+
+msgid "user.role.productionEditor"
+msgstr "Deasaiche saothrachaidh"
+
+msgid "user.role.managers"
+msgstr "Manaidsearan a’ chlòtha"
+
+msgid "user.role.subEditors"
+msgstr "Deasaichean an t-sreatha"
+
+msgid "user.role.editors"
+msgstr "Deasaichean"
+
+msgid "user.role.copyeditors"
+msgstr "Grinn-deasaichean"
+
+msgid "user.role.proofreaders"
+msgstr "Dearbh-leughadairean"
+
+msgid "user.role.productionEditors"
+msgstr "Deasaichean saothrachaidh"
+
+msgid "user.register.selectContext"
+msgstr "Tagh clò airson clàradh aige:"
+
+msgid "user.register.noContexts"
+msgstr "Chan eil clò sam bith air an làrach seo as urrainn dhut clàradh aige."
+
+msgid "user.register.privacyStatement"
+msgstr "An aithris prìobhaideachd"
+
+msgid "user.register.registrationDisabled"
+msgstr "Chan eil an clò seo a’ clàradh chleachdaichean aig an àm seo."
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "Chan eil am facal-faire a chuir thu a-steach fada gu leòr."
+
+msgid "user.register.readerDescription"
+msgstr "Gheibhear fios air a’ phost-d nuair a thèid monograf fhoillseachadh."
+
+msgid "user.register.authorDescription"
+msgstr "Comasach air nithean a chur dhan chlò."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr "Deònach lèirmheas seise a dhèanamh air tagraidhean dhan chlò."
+
+msgid "user.register.reviewerDescription"
+msgstr "Deònach lèirmheas seise a dhèanamh air tagraidhean dhan làrach."
+
+msgid "user.register.reviewerInterests"
+msgstr ""
+"Aithneachadh de dh’ùidhean lèirmheis (raointean chuspairean agus dòighean "
+"rannsachaidh):"
+
+msgid "user.register.form.userGroupRequired"
+msgstr "Feumaidh tu co-dhiù aon dreuchd a thaghadh"
+
+msgid "site.noPresses"
+msgstr "Chan eil clòth sam bith ri fhaighinn."
+
+msgid "site.pressView"
+msgstr "Seall làrach-lìn a’ chlòtha"
+
+msgid "about.pressContact"
+msgstr "Conaltradh leis a’ chlò"
+
+msgid "about.aboutContext"
+msgstr "Mun chlò"
+
+msgid "about.editorialTeam"
+msgstr "An sgioba deasachaidh"
+
+msgid "about.editorialPolicies"
+msgstr "Poileasaidhean deasachaidh"
+
+msgid "about.focusAndScope"
+msgstr "Fòcas is sgòp"
+
+msgid "about.seriesPolicies"
+msgstr "Poileasaidhean a thaobh shreathan is roinnean-seòrsa"
+
+msgid "about.submissions"
+msgstr "Tagraidhean"
+
+msgid "about.onlineSubmissions"
+msgstr "Tagraidhean air loidhne"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Clàraich a-steach"
+
+msgid "about.onlineSubmissions.register"
+msgstr "Clàraich"
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "{$login} no {$register} a dhèanamh tagradh."
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} no {$viewSubmissions}."
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Dèan tagradh ùr"
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "coimhead air na tagraidhean agad a tha ri dhèiligeadh"
+
+msgid "about.authorGuidelines"
+msgstr "Riaghailtean dha na h-ùghdaran"
+
+msgid "about.submissionPreparationChecklist"
+msgstr "Liosta-chromagan ullachadh an tagraidh"
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr ""
+"Mar phàirt dhen phròiseas tagraidh, bidh aig na h-ùghdaran cromag a chur ris "
+"na nithean a leanas air fad a dh’innse gu bheil an tagradh aca a’ gèilleadh "
+"ri gach aon dhiubh agus mur eil tagradh a’ gèilleadh ris na riaghailtean "
+"seo, dh’fhaoidte gun tèid a thilleadh dha na h-ùghdaran."
+
+msgid "about.copyrightNotice"
+msgstr "Brath na còrach-lethbhreac"
+
+msgid "about.privacyStatement"
+msgstr "An aithris prìobhaideachd"
+
+msgid "about.reviewPolicy"
+msgstr "Pròiseas nan lèirmheas le seise"
+
+msgid "about.publicationFrequency"
+msgstr "Tricead an fhoillseachaidh"
+
+msgid "about.openAccessPolicy"
+msgstr "Poileasaidh an inntrigidh fhosgailte"
+
+msgid "about.pressSponsorship"
+msgstr "Sponsaireachd a’ chlòtha"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr ""
+"Barrachd fiosrachaidh mu na siostaman foillseachaidh, mun ùrlar agus sruth-"
+"obrach le OMP/PKP."
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "Pròiseas foillseachadh is deasachadh OMP"
+
+msgid "help.searchReturnResults"
+msgstr "Till gu toraidhean an luirg"
+
+msgid "help.goToEditPage"
+msgstr "Fosgail duilleag ùr gus am fiosrachadh seo a dheasachadh"
+
+msgid "installer.appInstallation"
+msgstr "Stàladh OMP"
+
+msgid "installer.ompUpgrade"
+msgstr "Àrdachadh OMP"
+
+msgid "installer.installApplication"
+msgstr "Stàlaich Open Monograph Press"
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "Ceuman ro-stàlaidh"
+
+msgid "installer.localeInstructions"
+msgstr ""
+"Am prìomh-chànan a chleachdas an siostam seo. Thoir sùil air an stiùireadh "
+"airson OMP ma tha cànan a dhìth ort nach fhaic thu an-seo."
+
+msgid "installer.additionalLocalesInstructions"
+msgstr ""
+"Tagh na cànain eile a thèid a chleachdadh san t-siostam seo. Bidh na cànain "
+"seo ri làimh chlòthan aig am bi air òstaireachd air an làrach. Gabhaidh "
+"cànain a stàladh o eadar-aghaidh rianachd na làraich uair sam bith "
+"cuideachd. Dh’fhaoidte gu bheil sgeamaichean ionadail ris a bheil * gun "
+"choileanadh."
+
+msgid "installer.databaseSettingsInstructions"
+msgstr ""
+"Feumaidh OMP cothrom air stòr-dàta SQL far an cùm e an dàta aige. Faic "
+"riatanasan an t-siostaim gu h-àrd airson liosta nan stòr-dàta ris a bheil "
+"taic. Cuir na roghainnean a thèid a chleachdadh airson ceangal a dhèanamh "
+"ris an stòr-dàta sna raointean gu h-ìosal."
+
+msgid "installer.upgradeApplication"
+msgstr "Àrdaich Open Monograph Press"
+
+msgid "log.review.reviewDueDateSet"
+msgstr ""
+"Chaidh {$dueDate} a shuidheachadh le {$reviewerName} mar cheann-là "
+"lìbhrigidh airson lèirmheas cuairt {$round} dhen tagradh {$submissionId}."
+
+msgid "log.review.reviewDeclined"
+msgstr ""
+"Dhiùlt {$userName} lèirmheas cuairt {$round} mu choinneamh tagradh "
+"{$submissionId}."
+
+msgid "log.review.reviewAccepted"
+msgstr ""
+"Ghabh {$reviewerName} ri lèirmheas cuairt {$round} mu choinneamh tagraidh "
+"{$submissionId}."
+
+msgid "log.review.reviewUnconsidered"
+msgstr ""
+"Chomharraich {$userName} gu bheil lèirmheas cuairt {$round} mu choinneamh "
+"tagradh {$submissionId} gun chnuasachadh."
+
+msgid "log.editor.decision"
+msgstr ""
+"Chaidh co-dhùnadh le deasaiche ({$decision}) mu choinneamh a’ mhonograf "
+"{$submissionId} a chlàradh le {$editorName}."
+
+msgid "log.editor.recommendation"
+msgstr ""
+"Chaidh moladh le deasaiche ({$decision}) mu choinneamh a’ mhonograf "
+"{$submissionId} a chlàradh le {$editorName}."
+
+msgid "log.editor.archived"
+msgstr "Chaidh an tagradh {$submissionId} a chur dhan tasg-lann."
+
+msgid "log.editor.restored"
+msgstr "Chaidh an tagradh {$submissionId} aiseag dhan chiutha."
+
+msgid "log.editor.editorAssigned"
+msgstr ""
+"Chaidh {$editorName} iomruineadh dhan tagradh {$submissionId} mar dheasaiche."
+
+msgid "log.proofread.assign"
+msgstr ""
+"Dh’iomruin {$assignerName} {$proofreaderName} airson dearbh-leughadh a "
+"dhèanamh air an tagradh {$submissionId}."
+
+msgid "log.proofread.complete"
+msgstr "Chuir {$proofreaderName} {$submissionId} airson sgeidealachadh."
+
+msgid "log.imported"
+msgstr "Thug {$userName} a-steach am monograf {$submissionId}."
+
+msgid "notification.addedIdentificationCode"
+msgstr "Chaidh an còd ID a chur ris."
+
+msgid "notification.editedIdentificationCode"
+msgstr "Chaidh an còd ID a dheasachadh."
+
+#, fuzzy
+msgid "installer.installationInstructions"
+msgstr ""
+"\n"
+"<p>Mòran taing airson <strong>Open Monograph Press {$version}</strong> aig a’"
+" Public Knowledge Project a luchdadh a-nuas. Mus lean thu air adhart, leugh "
+"am faidhle <a href=\"{$baseUrl}/docs/README\">README</a> a tha ga ghabhail a-"
+"staigh leis a’ bhathar-bhog seo. Airson barrachd fiosrachaidh mun Public "
+"Knowledge Project agus na pròiseactan bathair-bhog aca, tadhail air <a href="
+"\"http://pkp.sfu.ca/\" target=\"_blank\">làrach-lìn PKP</a>. Ma tha thu "
+"airson aithris a dhèanamh aig buga no ma tha ceist agad mu Open Monograph "
+"Press, faic am <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">fòram "
+"taice</a> no tadhail air an t-siostam aig PKP airson <a href=\""
+"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">aithris a dhèanamh aig "
+"bugaichean</a>. Ge b’ fheàrr leinn cluinntinn o dhaoine slighe an fhòraim, ’"
+"s urrainn dhut post-d a chur chun an sgioba cuideachd <a href=\""
+"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>\n"
+"\n"
+"<h4>Àrdachadh</h4>\n"
+"\n"
+"<p>Ma tha thu ag àrdachadh stàladh làithreach de OMP, <a href=\"{$upgradeUrl}"
+"\">briog an-seo</a> a leantainn air adhart.</p>"
+
+#, fuzzy
+msgid "about.aboutOMPSite"
+msgstr ""
+"Tha an làrach seo a’ cleachdadh Open Monograph Press {$ompVersion}, bathar-"
+"bog le còd fosgailte airson stiùireadh clòthan is foillseachadh, le taic a’ <"
+"a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> agus ga "
+"sgaoileadh gu saor fo cheadachas coitcheann poblach GNU."
+
+#, fuzzy
+msgid "about.aboutOMPPress"
+msgstr ""
+"Tha an clò seo a’ cleachdadh Open Monograph Press {$ompVersion}, bathar-bog "
+"le còd fosgailte airson stiùireadh chlòthan is foillseachadh, le taic a’ <a "
+"href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> agus ga sgaoileadh "
+"gu saor fo cheadachas coitcheann poblach GNU."
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Tha, tha mi ag aontachadh gun tèid an dàta agam a chruinneachadh is a "
+"stòradh a rèir <a href=\"{$privacyUrl}\" target=\"_blank\">aithris "
+"prìobhaideachd</a> a’ chlò seo."
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p><em>Cha bhi am fòrmat seo ri làimh leughadairean</em>. Cha nochd "
+"faidhlichean a bha ri luchdadh a-nuas no sgaoileadh sam bith eile ann an "
+"innteart catalog an leabhair tuilleadh.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p>Cuir am fòrmat seo <em>ri làimh leughadairean</em>. Nochdaidh "
+"faidhlichean a bha ri luchdadh a-nuas agus sgaoilidhean eile ann an innteart "
+"catalog an leabhair.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr "<p>Nochd nach d’fhuair meata-dàta an fhòrmait seo aonta fhathast.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p>Thoir aonta dhan mheata-dàta airson an fhòrmait seo. Gabhaidh am meata-"
+"dàta a sgrùdadh on phanail deasachaidh airson gach fòrmat.</p>"
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr ""
+"<p>Chan eil am fòrmat foillseachaidh a thagh thu ri làimh airson a’ "
+"mhonograf seo tuilleadh.</p>"
+
+msgid "monograph.proofReadingDescription"
+msgstr ""
+"Bidh deasaiche na co-dhealbhachd a’ luchdadh suas faidhlichean a tha deiseil "
+"airson foillseachadh an-seo. Cleachd <em>+Iomruin</em> airson ùghdaran agus "
+"daoine eile ainmeachadh a nì dearbh-leughadh air dearbhan nan duilleagan; "
+"thèid na faidhlichean dearbhte a luchdadh suas airson aontachadh mus tèid am "
+"foillseachadh."
+
+msgid "monograph.audience"
+msgstr "Luchd-leughaidh"
+
+msgid "monograph.audience.success"
+msgstr "Chaidh mion-fhiosrachadh nan ìrean leughaidh ùrachadh."
+
+msgid "monograph.coverImage"
+msgstr "Dealbh a’ chòmhdachaidh"
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Adhbhar na h-ìre leughaidh"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Ìre leughaidh (agus nas àirde)"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Ìre leughaidh (gu ruige)"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Ìre leughaidh (pongail)"
+
+msgid "monograph.languages"
+msgstr "Cànain (Beurla, Fraingis, Spàinntis)"
+
+msgid "monograph.publicationFormats"
+msgstr "Fòrmatan foillseachaidh"
+
+msgid "monograph.publicationFormat"
+msgstr "Fòrmat"
+
+msgid "monograph.publicationFormatDetails"
+msgstr ""
+"Mion-fhiosrachadh mun fhòrmatan an fhoillseachaidh a tha ri fhaighinn: "
+"{$format}"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Mion-fhiosrachadh mun mhonograf seo"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Fòrmatan:"
+
+msgid "monograph.type"
+msgstr "Seòrsa an tagraidh"
+
+msgid "submission.pageProofs"
+msgstr "Dearbhan dhuilleagan"
+
+msgid "monograph.task.addNote"
+msgstr "Cuir ris an t-saothair"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Inntrigeadh fosgailte"
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "Fiosrachadh mun fhoillseachadh (Ainm a’ bhrannd/an fhoillsicheir)"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Cunntas nan duilleagan"
+
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Stuthan a’ bheulaibh"
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Stuthan a’ chùlaibh"
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Co-chur a’ bhathair"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Mion-fhiosrachadh mun bhathar (chan eil seo riatanach)"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Dearbh-aithneachadh a’ bhathair"
+
+msgid "monograph.publicationFormat.price"
+msgstr "A’ phrìs"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "Tha feum air prìs."
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "Seòrsa na prìse"
+
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Ceudad an ìsleachaidh, ma bhios seo iomchaidh"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Faotainneachd a’ bhathair"
+
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Tilleadh bathair"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Fiosrachadh digiteach"
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Meud fiosaigeach"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "Meud an fhaidhle ann am Mbytes"
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "A bheil thu airson meud faidhle a chur a-steach thu fhèin?"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Àirde"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Tiughad"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Cudrom"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Leud"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Dùthaich an t-saothrachaidh"
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Dìon digiteach"
+
+msgid "grid.action.editDate"
+msgstr "Deasaich an ceann-là seo"
+
+msgid "grid.action.deleteDate"
+msgstr "Sguab an ceann-là seo às"
+
+msgid "grid.action.createContext"
+msgstr "Cruthaich clò ùr"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Seall taba fòrmat an fhoillseachaidh"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Tadhail air duilleag fiosan-naidheachd a’ chlòtha"
+
+msgid "grid.action.submissionEmail"
+msgstr "Dèan briogadh airson am post-d seo a leughadh"
+
+msgid "grid.action.approveProofs"
+msgstr "Seall griod nan dearbhan"
+
+msgid "grid.action.proofApproved"
+msgstr "Chaidh am fòrmat a dhearbhadh"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Thoir aonta ris an fhòrmat seo no thoirt air falbh an t-aonta"
+
+msgid "grid.action.formatAvailable"
+msgstr "Toglaich faotainneachd an fhòrmat air is dheth"
+
+msgid "grid.reviewAttachments.add"
+msgstr "Cuir ceanglachan ris an lèirmheas"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Faidhlichean a tha ri làimh"
+
+msgid "submissionGroup.assignedSubEditors"
+msgstr "Deasaichean iomruinte"
+
+msgid "series.series"
+msgstr "Sreath"
+
+msgid "notification.removedIdentificationCode"
+msgstr "Chaidh an còd ID a thoirt air falbh."
+
+msgid "notification.addedPublicationDate"
+msgstr "Chaidh ceann-là an fhoillseachaidh a chur ris."
+
+msgid "notification.editedPublicationDate"
+msgstr "Chaidh ceann-là an fhoillseachaidh a dheasachadh."
+
+msgid "notification.removedPublicationDate"
+msgstr "Chaidh ceann-là an fhoillseachaidh a thoirt air falbh."
+
+msgid "notification.addedPublicationFormat"
+msgstr "Chaidh fòrmat an fhoillseachaidh a chur ris."
+
+msgid "notification.editedPublicationFormat"
+msgstr "Chaidh fòrmat an fhoillseachaidh a dheasachadh."
+
+msgid "notification.removedPublicationFormat"
+msgstr "Chaidh fòrmat an fhoillseachaidh a thoirt air falbh."
+
+msgid "notification.addedSalesRights"
+msgstr "Chaidh na còraichean reic a chur ris."
+
+msgid "notification.editedSalesRights"
+msgstr "Chaidh na còraichean reic a dheasachadh."
+
+msgid "notification.removedSalesRights"
+msgstr "Chaidh na còraichean reic a thoirt air falbh."
+
+msgid "notification.addedRepresentative"
+msgstr "Chaidh an neach-ionaid a chur ris."
+
+msgid "notification.editedRepresentative"
+msgstr "Chaidh an neach-ionaid a dheasachadh."
+
+msgid "notification.removedRepresentative"
+msgstr "Chaidh an neach-ionaid a thoirt air falbh."
+
+msgid "notification.addedMarket"
+msgstr "Chaidh a’ mhargaid a chur ris."
+
+msgid "notification.editedMarket"
+msgstr "Chaidh a’ mhargaid a dheasachadh."
+
+msgid "notification.removedMarket"
+msgstr "Chaidh a’ mhargaid a thoirt air falbh."
+
+msgid "notification.addedSpotlight"
+msgstr "Chaidh prosbaig a chur ris."
+
+msgid "notification.editedSpotlight"
+msgstr "Chaidh a’ phrosbaig a dheasachadh."
+
+msgid "notification.removedSpotlight"
+msgstr "Chaidh a’ phrosbaig a thoirt air falbh."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "Chaidh meata-dàta a’ chatalog a shàbhaladh."
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "Chaidh meata-dàta fòrmat an fhoillseachaidh a shàbhaladh."
+
+msgid "notification.proofsApproved"
+msgstr "Fhuair na dearbhan aonta."
+
+msgid "notification.removedSubmission"
+msgstr "Chaidh an tagradh a sguabadh às."
+
+msgid "notification.type.submissionSubmitted"
+msgstr "Chaidh monograf ùr, “{$title}”, a chur."
+
+msgid "notification.type.editing"
+msgstr "Tachartasan deasachaidh"
+
+msgid "payment.directSales.numericOnly"
+msgstr "Feumaidh prìs a bhith na àireamh. Na cuir ann samhla an airgeadra."
+
+msgid "payment.directSales.directSales"
+msgstr "Reicean dìreach"
+
+msgid "payment.directSales.notAvailable"
+msgstr "Chan eil seo ri làimh"
+
+msgid "payment.directSales.notSet"
+msgstr "Cha deach a shuidheachadh"
+
+msgid "payment.directSales.openAccess"
+msgstr "Inntrigeadh fosgailte"
+
+msgid "payment.directSales.price.description"
+msgstr ""
+"Gabhaidh fòrmatan faidhle a chur ri làimh airson luchdadh a-nuas o làrach-"
+"lìn a’ chlòtha slighe inntrigidh fhosgailte gun chosgais sam bith do "
+"leughadairean no slighe reicean dìreach (a’ cleachdadh làimhsichear pàighidh "
+"air loidhne mar a chaidh a rèiteachadh ann an roghainn an sgaoilidh). "
+"Sònraich an dòigh inntrigidh airson an fhaidhle seo."
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "Tha feum air prìs mar àireamh dhligheach."
+
+msgid "payment.directSales.purchase"
+msgstr "Ceannaich {$format} ({$amount} {$currency})"
+
+msgid "payment.directSales.download"
+msgstr "Luchdaich a-nuas {$format}"
+
+msgid "payment.directSales.monograph.name"
+msgstr "Ceannaich monograf no luchdadh a-nuas de chaibideil"
+
+msgid "payment.directSales.monograph.description"
+msgstr ""
+"Bidh tu a’ ceannach luchdadh a-nuas dìreach de mhonograf no caibideil de "
+"mhonograf leis an tar-chur seo."
+
+msgid "debug.notes.currencyListLoad"
+msgstr "Chaidh liosta nan airgeadra “{$filename}” on XML"
+
+msgid "debug.notes.helpMappingLoad"
+msgstr ""
+"Chaidh faidhle mapadh XML na cobharach “{$filename}” ath-luchdadh an tòir "
+"{$id}."
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Leabhar"
+
+msgid "submission.pdf.download"
+msgstr "Luchdaich a-nuas am faidhle PDF seo"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "Clàraich aig clòthan eile"
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "Falaich na clòthan eile"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "Chaidh tagradh foillsichte mì-dhligheach a shònrachadh."
+
+msgid "catalog.coverImageTitle"
+msgstr "Dealbh a’ chòmhdachaidh"

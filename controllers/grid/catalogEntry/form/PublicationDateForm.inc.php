@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/catalogEntry/form/PublicationDateForm.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationDateForm
@@ -13,218 +13,253 @@
  * @brief Form for adding/editing a publication date
  */
 
-import('lib.pkp.classes.form.Form');
+use APP\template\TemplateManager;
 
-class PublicationDateForm extends Form {
-	/** The submission associated with the format being edited **/
-	var $_submission;
+use PKP\form\Form;
 
-	/** The publication associated with the format being edited **/
-	var $_publication;
+class PublicationDateForm extends Form
+{
+    /** The submission associated with the format being edited **/
+    public $_submission;
 
-	/** PublicationDate the code being edited **/
-	var $_publicationDate;
+    /** The publication associated with the format being edited **/
+    public $_publication;
 
-	/**
-	 * Constructor.
-	 */
-	public function __construct($submission, $publication, $publicationDate) {
-		parent::__construct('controllers/grid/catalogEntry/form/pubDateForm.tpl');
-		$this->setSubmission($submission);
-		$this->setPublication($publication);
-		$this->setPublicationDate($publicationDate);
+    /** PublicationDate the code being edited **/
+    public $_publicationDate;
 
-		// Validation checks for this form
-		$form = $this;
-		$this->addCheck(new FormValidator($this, 'role', 'required', 'grid.catalogEntry.roleRequired'));
-		$this->addCheck(new FormValidator($this, 'dateFormat', 'required', 'grid.catalogEntry.dateFormatRequired'));
+    /**
+     * Constructor.
+     */
+    public function __construct($submission, $publication, $publicationDate)
+    {
+        parent::__construct('controllers/grid/catalogEntry/form/pubDateForm.tpl');
+        $this->setSubmission($submission);
+        $this->setPublication($publication);
+        $this->setPublicationDate($publicationDate);
 
-		$this->addCheck(new FormValidatorCustom(
-			$this, 'date', 'required', 'grid.catalogEntry.dateRequired',
-			function($date) use ($form) {
-				$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
-				$dateFormat = $form->getData('dateFormat');
-				if (!$dateFormat) return false;
-				$dateFormats = $onixCodelistItemDao->getCodes('List55');
-				$format = $dateFormats[$dateFormat];
-				if (stristr($format, 'string') && $date != '') return true;
-				$format = trim(preg_replace('/\s*\(.*?\)/i', '', $format));
-				if (count(str_split($date)) == count(str_split($format))) return true;
-				return false;
-			}
-		));
+        // Validation checks for this form
+        $form = $this;
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'role', 'required', 'grid.catalogEntry.roleRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'dateFormat', 'required', 'grid.catalogEntry.dateFormatRequired'));
 
-		$this->addCheck(new FormValidator($this, 'representationId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
-		$this->addCheck(new FormValidatorPost($this));
-		$this->addCheck(new FormValidatorCSRF($this));
-	}
+        $this->addCheck(new \PKP\form\validation\FormValidatorCustom(
+            $this,
+            'date',
+            'required',
+            'grid.catalogEntry.dateRequired',
+            function ($date) use ($form) {
+                $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+                $dateFormat = $form->getData('dateFormat');
+                if (!$dateFormat) {
+                    return false;
+                }
+                $dateFormats = $onixCodelistItemDao->getCodes('List55');
+                $format = $dateFormats[$dateFormat];
+                if (stristr($format, 'string') && $date != '') {
+                    return true;
+                }
+                $format = trim(preg_replace('/\s*\(.*?\)/i', '', $format));
+                if (count(str_split($date)) == count(str_split($format))) {
+                    return true;
+                }
+                return false;
+            }
+        ));
 
-	//
-	// Getters and Setters
-	//
-	/**
-	 * Get the date
-	 * @return PublicationDate
-	 */
-	public function getPublicationDate() {
-		return $this->_publicationDate;
-	}
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'representationId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
+    }
 
-	/**
-	 * Set the date
-	 * @param @publicationDate PublicationDate
-	 */
-	public function setPublicationDate($publicationDate) {
-		$this->_publicationDate = $publicationDate;
-	}
+    //
+    // Getters and Setters
+    //
+    /**
+     * Get the date
+     *
+     * @return PublicationDate
+     */
+    public function getPublicationDate()
+    {
+        return $this->_publicationDate;
+    }
 
-	/**
-	 * Get the Submission
-	 * @return Submission
-	 */
-	public function getSubmission() {
-		return $this->_submission;
-	}
+    /**
+     * Set the date
+     *
+     * @param @publicationDate PublicationDate
+     */
+    public function setPublicationDate($publicationDate)
+    {
+        $this->_publicationDate = $publicationDate;
+    }
 
-	/**
-	 * Set the Submission
-	 * @param Submission
-	 */
-	public function setSubmission($submission) {
-		$this->_submission = $submission;
-	}
+    /**
+     * Get the Submission
+     *
+     * @return Submission
+     */
+    public function getSubmission()
+    {
+        return $this->_submission;
+    }
 
-	/**
-	 * Get the Publication
-	 * @return Publication
-	 */
-	public function getPublication() {
-		return $this->_publication;
-	}
+    /**
+     * Set the Submission
+     *
+     * @param Submission
+     */
+    public function setSubmission($submission)
+    {
+        $this->_submission = $submission;
+    }
 
-	/**
-	 * Set the Publication
-	 * @param Publication
-	 */
-	public function setPublication($publication) {
-		$this->_publication = $publication;
-	}
+    /**
+     * Get the Publication
+     *
+     * @return Publication
+     */
+    public function getPublication()
+    {
+        return $this->_publication;
+    }
+
+    /**
+     * Set the Publication
+     *
+     * @param Publication
+     */
+    public function setPublication($publication)
+    {
+        $this->_publication = $publication;
+    }
 
 
-	//
-	// Overridden template methods
-	//
-	/**
-	 * Initialize form data from the publication date.
-	 */
-	public function initData() {
-		$date = $this->getPublicationDate();
+    //
+    // Overridden template methods
+    //
+    /**
+     * Initialize form data from the publication date.
+     */
+    public function initData()
+    {
+        $date = $this->getPublicationDate();
 
-		if ($date) {
-			$this->_data = array(
-				'publicationDateId' => $date->getId(),
-				'role' => $date->getRole(),
-				'dateFormat' => $date->getDateFormat(),
-				'date' => $date->getDate(),
-			);
-		}
-	}
+        if ($date) {
+            $this->_data = [
+                'publicationDateId' => $date->getId(),
+                'role' => $date->getRole(),
+                'dateFormat' => $date->getDateFormat(),
+                'date' => $date->getDate(),
+            ];
+        }
+    }
 
-	/**
-	 * @copydoc Form::fetch()
-	 */
-	public function fetch($request, $template = null, $display = false) {
-		$templateMgr = TemplateManager::getManager($request);
-		$submission = $this->getSubmission();
-		$templateMgr->assign('submissionId', $submission->getId());
-		$templateMgr->assign('publicationId', $this->getPublication()->getId());
-		$publicationDate = $this->getPublicationDate();
+    /**
+     * @copydoc Form::fetch()
+     *
+     * @param null|mixed $template
+     */
+    public function fetch($request, $template = null, $display = false)
+    {
+        $templateMgr = TemplateManager::getManager($request);
+        $submission = $this->getSubmission();
+        $templateMgr->assign('submissionId', $submission->getId());
+        $templateMgr->assign('publicationId', $this->getPublication()->getId());
+        $publicationDate = $this->getPublicationDate();
 
-		if ($publicationDate) {
-			$templateMgr->assign('publicationDateId', $publicationDate->getId());
-			$templateMgr->assign('role', $publicationDate->getRole());
-			$templateMgr->assign('dateFormat', $publicationDate->getDateFormat());
-			$templateMgr->assign('date', $publicationDate->getDate());
-			$representationId = $publicationDate->getPublicationFormatId();
-		} else { // loading a blank form
-			$representationId = (int) $request->getUserVar('representationId');
-			$templateMgr->assign('dateFormat', '20'); // YYYYMMDD Onix code as a default
-		}
+        if ($publicationDate) {
+            $templateMgr->assign('publicationDateId', $publicationDate->getId());
+            $templateMgr->assign('role', $publicationDate->getRole());
+            $templateMgr->assign('dateFormat', $publicationDate->getDateFormat());
+            $templateMgr->assign('date', $publicationDate->getDate());
+            $representationId = $publicationDate->getPublicationFormatId();
+        } else { // loading a blank form
+            $representationId = (int) $request->getUserVar('representationId');
+            $templateMgr->assign('dateFormat', '20'); // YYYYMMDD Onix code as a default
+        }
 
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
-		$publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+        $publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
 
-		if ($publicationFormat) { // the format exists for this submission
-			$templateMgr->assign('representationId', $representationId);
-			$publicationDates = $publicationFormat->getPublicationDates();
-			$assignedRoles = array_keys($publicationDates->toAssociativeArray('role')); // currently assigned roles
-			if ($publicationDate) $assignedRoles = array_diff($assignedRoles, array($publicationDate->getRole())); // allow existing roles to keep their value
-			$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
-			$roles = $onixCodelistItemDao->getCodes('List163', $assignedRoles); // ONIX list for these
-			$templateMgr->assign('publicationDateRoles', $roles);
+        if ($publicationFormat) { // the format exists for this submission
+            $templateMgr->assign('representationId', $representationId);
+            $publicationDates = $publicationFormat->getPublicationDates();
+            $assignedRoles = array_keys($publicationDates->toAssociativeArray('role')); // currently assigned roles
+            if ($publicationDate) {
+                $assignedRoles = array_diff($assignedRoles, [$publicationDate->getRole()]);
+            } // allow existing roles to keep their value
+            $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+            $roles = $onixCodelistItemDao->getCodes('List163', $assignedRoles); // ONIX list for these
+            $templateMgr->assign('publicationDateRoles', $roles);
 
-			//load our date formats
-			$dateFormats = $onixCodelistItemDao->getCodes('List55');
-			$templateMgr->assign('publicationDateFormats', $dateFormats);
-		} else {
-			fatalError('Format not in authorized submission');
-		}
+            //load our date formats
+            $dateFormats = $onixCodelistItemDao->getCodes('List55');
+            $templateMgr->assign('publicationDateFormats', $dateFormats);
+        } else {
+            fatalError('Format not in authorized submission');
+        }
 
-		return parent::fetch($request, $template, $display);
-	}
+        return parent::fetch($request, $template, $display);
+    }
 
-	/**
-	 * Assign form data to user-submitted data.
-	 * @see Form::readInputData()
-	 */
-	public function readInputData() {
-		$this->readUserVars(array(
-			'publicationDateId',
-			'representationId',
-			'role',
-			'dateFormat',
-			'date',
-		));
-	}
+    /**
+     * Assign form data to user-submitted data.
+     *
+     * @see Form::readInputData()
+     */
+    public function readInputData()
+    {
+        $this->readUserVars([
+            'publicationDateId',
+            'representationId',
+            'role',
+            'dateFormat',
+            'date',
+        ]);
+    }
 
-	/**
-	 * @copydoc Form::execute()
-	 */
-	public function execute(...$functionArgs) {
-		parent::execute(...$functionArgs);
-		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+    /**
+     * @copydoc Form::execute()
+     */
+    public function execute(...$functionArgs)
+    {
+        parent::execute(...$functionArgs);
+        $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 
-		$submission = $this->getSubmission();
-		$publicationDate = $this->getPublicationDate();
-		$publicationFormat = $publicationFormatDao->getById($this->getData('representationId'), $this->getPublication()->getId());
+        $submission = $this->getSubmission();
+        $publicationDate = $this->getPublicationDate();
+        $publicationFormat = $publicationFormatDao->getById($this->getData('representationId'), $this->getPublication()->getId());
 
-		if (!$publicationDate) {
-			// this is a new publication date for this published submission
-			$publicationDate = $publicationDateDao->newDataObject();
-			$existingFormat = false;
-			if ($publicationFormat != null) { // ensure this assigned format is in this submission
-				$publicationDate->setPublicationFormatId($publicationFormat->getId());
-			} else {
-				fatalError('This assigned format not in authorized submission context!');
-			}
-		} else {
-			$existingFormat = true;
-			if ($publicationFormat->getId() !== $publicationDate->getPublicationFormatId()) fatalError('Invalid format!');
-		}
+        if (!$publicationDate) {
+            // this is a new publication date for this published submission
+            $publicationDate = $publicationDateDao->newDataObject();
+            $existingFormat = false;
+            if ($publicationFormat != null) { // ensure this assigned format is in this submission
+                $publicationDate->setPublicationFormatId($publicationFormat->getId());
+            } else {
+                fatalError('This assigned format not in authorized submission context!');
+            }
+        } else {
+            $existingFormat = true;
+            if ($publicationFormat->getId() != $publicationDate->getPublicationFormatId()) {
+                throw new Exception('Invalid format!');
+            }
+        }
 
-		$publicationDate->setRole($this->getData('role'));
-		$publicationDate->setDateFormat($this->getData('dateFormat'));
-		$publicationDate->setDate($this->getData('date'));
+        $publicationDate->setRole($this->getData('role'));
+        $publicationDate->setDateFormat($this->getData('dateFormat'));
+        $publicationDate->setDate($this->getData('date'));
 
-		if ($existingFormat) {
-			$publicationDateDao->updateObject($publicationDate);
-			$publicationDateId = $publicationDate->getId();
-		} else {
-			$publicationDateId = $publicationDateDao->insertObject($publicationDate);
-		}
+        if ($existingFormat) {
+            $publicationDateDao->updateObject($publicationDate);
+            $publicationDateId = $publicationDate->getId();
+        } else {
+            $publicationDateId = $publicationDateDao->insertObject($publicationDate);
+        }
 
-		return $publicationDateId;
-	}
+        return $publicationDateId;
+    }
 }
-

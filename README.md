@@ -17,8 +17,8 @@ Checkout submodules and copy default configuration :
 
 Install or update dependencies via Composer (https://getcomposer.org/):
 
-    composer --working-dir=lib/pkp update
-    composer --working-dir=plugins/paymethod/paypal update
+    composer --working-dir=lib/pkp install
+    composer --working-dir=plugins/paymethod/paypal install
 
 Install or update dependencies via [NPM](https://www.npmjs.com/):
 
@@ -39,6 +39,10 @@ See https://github.com/pkp/pkp-lib/#issues for information on reporting issues.
 ## Running Tests
 
 See [Unit Tests](https://pkp.sfu.ca/wiki/index.php?title=Unit_Tests), and also [Github Documentation for PKP Contributors](https://pkp.sfu.ca/wiki/index.php?title=Github_Documentation_for_PKP_Contributors) for Travis-based continuous integration testing.
+
+## Community Code of Conduct
+
+This repository is one of PKP's community spaces and all activities here are guided by [PKP's Code of Conduct](https://pkp.sfu.ca/code-of-conduct/). Please review the Code and help us create a welcoming environment for all participants.
 
 ## License
 

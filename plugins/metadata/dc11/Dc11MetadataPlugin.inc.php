@@ -3,8 +3,8 @@
 /**
  * @file plugins/metadata/dc11/Dc11MetadataPlugin.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Dc11MetadataPlugin
@@ -16,13 +16,13 @@
 
 import('lib.pkp.plugins.metadata.dc11.PKPDc11MetadataPlugin');
 
-class Dc11MetadataPlugin extends PKPDc11MetadataPlugin {
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
+class Dc11MetadataPlugin extends PKPDc11MetadataPlugin
+{
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 }
-
-

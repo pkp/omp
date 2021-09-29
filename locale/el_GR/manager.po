@@ -632,9 +632,6 @@ msgstr "Αυτοματοποιημένες υπενθυμίσεις μέσω η�
 msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
 msgstr "<strong>Σημείωση:</strong> Για να ενεργοποίησετε τις συγκεκριμένες επιλογές, ο διαχειριστής του ιστοτόπου πρέπει να ενεργοποιήσει την επιλογή <tt>scheduled_tasks</tt> στο αρχείο ρυθμίσεων του OMP. Ενδέχεται να απαιτούνται πρόσθετες ρυθμίσεις διακομιστή για υποστήριξη της συγκεκριμένης λειτουργίας (που ενδέχεται να μην είναι διαθέσιμες σε όλους τους διακομιστές), όπως διευκρινίζεται στα τεκμηριωτικά έγγραφα του OMP."
 
-msgid "manager.setup.reviewOptions.blindReview"
-msgstr "Τυφλή Αξιολόγηση"
-
 msgid "manager.setup.reviewOptions.noteOnModification"
 msgstr "Μπορεί να τροποποιηθεί για κάθε υποβολή κατά την εκδοτική διαδικασία."
 
@@ -655,9 +652,6 @@ msgstr "Υπενθυμίσεις προς τους αξιολογητές"
 
 msgid "manager.setup.reviewOptions.reviewTime"
 msgstr "Χρόνος αξιολόγησης"
-
-msgid "manager.setup.reviewOptions.showEnsuringLink"
-msgstr "Παρέχει συνδέσμους για την εξασφάλιση \"τυφλής\" αξιολόγησης σε σελίδες όπου συγραφείς και αξιολογητές ανεβάζουν αρχεία."
 
 msgid "manager.setup.reviewPolicy"
 msgstr "Πολιτική Αξιολόγησης"

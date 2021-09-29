@@ -1,0 +1,154 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-02-05 18:07+0000\n"
+"Last-Translator: Teodora Fildishevska <t.fildishevska@gmail.com>\n"
+"Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/admin/"
+"mk_MK/>\n"
+"Language: mk_MK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4> ЗАБЕЛЕШКА! </div>\n"
+"<p> Системот не може автоматски да ја замени конфигурациската датотека. За "
+"да ги примените промените во конфигурацијата, мора да отворите <tt> "
+"config.inc.php </tt> во соодветен уредувач на текст и да ја замените "
+"неговата содржина со содржината на полето за текст подолу. </p>"
+
+msgid "admin.presses.addPress"
+msgstr "Додади Издание"
+
+msgid "admin.contexts.contextDescription"
+msgstr "Опис на издание"
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$ name} е успешно изменето."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$ name} е успешно креирано."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Селектираната патека веќе се користи за друго издание."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"Патеката може да вклучува само букви, броеви и знаци _ и -. Мора да започне "
+"и да заврши со буква или број."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Потребна е патека."
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Потребен е наслов."
+
+msgid "admin.contexts.create"
+msgstr "Креирај Издание"
+
+msgid "admin.presses.noneCreated"
+msgstr "Не се создадени изданија."
+
+msgid "admin.presses.pressSettings"
+msgstr "Подесувања на Издание"
+
+msgid "admin.systemConfiguration"
+msgstr "ОМП Конфигурација"
+
+msgid "admin.systemVersion"
+msgstr "ОМП Верзија"
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Дали сте сигурни дека сакате да ја оневозможите оваа локација? Ова може да "
+"влијае на сите зачувани изданија кои ја користат локацијата."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Изберете дополнителни локации за инсталирање поддршка на овој систем. "
+"Локациите мора да бидат инсталирани пред да можат да се користат од "
+"зачуваните изданија. Погледнете ја документацијата на ОМП за информации за "
+"додавање поддршка за нови јазици."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"Дали сте сигурни дека сакате да ја избришете оваа локација? Ова може да "
+"влијае на сите изданија што се зачувани на оваа локација."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Означените локации може да бидат нецелосни."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr ""
+"Изберете ги сите локации за поддршка на страницата. Избраните локации ќе "
+"бидат достапни за употреба од сите изданија зачувани на страницата, и исто "
+"така ќе се појават во менито за избирање на јазик на секоја страница на "
+"страната(што може да се пребрише на страници специфични за изданието). Ако "
+"повеќе локации не се избрани, менито за промена на јазик нема да се појави и "
+"проширените поставки за јазик нема да бидат достапни за изданијата."
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr ""
+"Ова ќе биде основниот јазик за страната и сите изданија што се зачувани на "
+"страната."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Не пренасочувај"
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Барањата до главната страница ќе бидат пренасочени кон ова издание. Ова може "
+"да биде корисно доколку страницата има само едно издание, на пример."
+
+msgid "admin.settings.redirect"
+msgstr "Пренасочување кон издание"
+
+msgid "admin.settings.info.success"
+msgstr "Информациите за страницата се успешно ажурирани."
+
+msgid "admin.settings.config.success"
+msgstr "Поставките за конфигурација на страницата се успешно ажурирани."
+
+msgid "admin.settings.appearance.success"
+msgstr "Подесувањата за изгледот на страната се успешно ажурирани."
+
+msgid "admin.hostedContexts"
+msgstr "Наши Изданија"
+
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgstr ""
+"Функцијата за испраќање е-пошта во големи количини е оневозможена за ова "
+"издание. Овозможете ја оваа функција преку <a href=\"{$siteSettingsUrl}\">"
+"Администратор > Поставки на веб-страницата</a>."
+
+msgid "admin.settings.disableBulkEmailRoles.description"
+msgstr ""
+"Менаџерот на изданието нема да може да испраќа е-пошта во големи количини до "
+"било која од избраните улоги подолу. Користете ја оваа поставка за да ја "
+"ограничите злоупотребата на функцијата за известувања преку е-пошта. На "
+"пример, можно е да биде побезбедно да оневозможите испраќање на е-пошта во "
+"големи количини до читатели, автори, или други големи групи на корисници кои "
+"не се согласиле да примаат таква е-пошта.<br><br>Функцијата за испраќање е-"
+"пошта во големи количини за ова издание може да биде целосно оневозможена "
+"преку <a href=\"{$siteSettingsUrl}\">Администратор > Поставки на "
+"веб-страницата</a>."
+
+msgid "admin.settings.enableBulkEmails.description"
+msgstr ""
+"Изберете ги хостираните изданија на кои треба да им биде дозволено да "
+"испраќаат и-меил во големи количини. Кога е овозможена оваа функција, "
+"менаџерот на изданието ќе може да испраќа и-меил до сите корисници "
+"регистрирани на нивното издание.<br><br>Злоупотреба на оваа функција како би "
+"се испраќала непосакувана е-пошта може да ги прекрши анти-спам законите во "
+"некои подрачја и може да доведе до блокирање на е-поштата од вашиот сервер "
+"како спам. Побарајте техничко мислење пред да ја овозможите оваа функција и "
+"размислете за консултација до менџери на изданија за да се уверите дека е "
+"правилно користена. <br><br>Дополнителни ограничувања на оваа функција може "
+"да бидат овозможени за секое издание со посета на неговиот волшебник за "
+"поставки во листата со <a href=\"{$hostedContextsUrl}\">Хостирани "
+"изданија</a>."
+
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr "Главниот локал мора да биде еден од поддржаните локали на изданието."

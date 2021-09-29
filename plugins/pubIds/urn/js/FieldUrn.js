@@ -4,8 +4,8 @@
 /**
  * @file plugins/pubIds/urn/js/FieldUrn.js
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief A Vue.js component for a URN form field that adds a check number.
@@ -16,7 +16,7 @@ var template = pkp.Vue.compile('<div class="pkpFormField pkpFormField--text pkpF
 '				:label="label"' +
 '				:localeLabel="localeLabel"' +
 '				:isRequired="isRequired"' +
-'				:requiredLabel="i18n.required"' +
+'				:requiredLabel="__(\'common.required\')"' +
 '				:multilingualLabel="multilingualLabel"' +
 '			/>' +
 '			<div' +
@@ -42,7 +42,7 @@ var template = pkp.Vue.compile('<div class="pkpFormField pkpFormField--text pkpF
 '					class="pkpButton pkpFormField--urn__button"' +
 '					@click.prevent="addCheckNumber"' +
 '				>' +
-'					{{ i18n.addCheckNumber }}' +
+'					{{ addCheckNumberLabel }}' +
 '				</button>' +
 '				<field-error' +
 '					v-if="errors.length"' +

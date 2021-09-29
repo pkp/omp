@@ -1,0 +1,77 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-01-06 17:52+0000\n"
+"Last-Translator: Blagoja Grozdanovski <blagoja.grozdanovski@gmail.com>\n"
+"Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-onix30/mk_MK/>\n"
+"Language: mk_MK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
+msgstr ""
+"Може да го оставите ова поле празно и да создадете општ извоз. Ова ќе "
+"резултира во извозот на ONIX да нема &lt;Addressee&gt; composite. "
+
+msgid "plugins.importexport.onix30.form.addresseeField"
+msgstr "Наведете (примател) за овој извоз"
+
+msgid "plugins.importexport.onix30.pressMissingFields"
+msgstr ""
+"На ова издание недостасуваат некои потребни информации. Одете на <a href=\""
+"{$url}\"> Притиснете Поставки </a> и пополнете ги деталите што недостасуваат."
+
+msgid "plugins.importexport.onix30.formatInvalid"
+msgstr "Невалидно"
+
+msgid "plugins.importexport.onix30.formatValid"
+msgstr "Валидно"
+
+msgid "plugins.importexport.onix30.validityStatus"
+msgstr "Статус на ONIX"
+
+msgid "plugins.importexport.onix30.unavailable"
+msgstr "Недостапно"
+
+msgid "plugins.importexport.onix30.exportFormats"
+msgstr "Достапни формати"
+
+msgid "plugins.importexport.onix30.exportButton"
+msgstr "Извоз"
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr "Изберете монографија за извоз:"
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Изберете монографии за извоз"
+
+msgid "plugins.importexport.onix30.noFormats"
+msgstr "Не се прикажуваат монографии без формати на објавување."
+
+msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgstr ""
+"Ниту една монографија не одговара на наведениот монографската идентификација "
+"\"{$monographId}\"."
+
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr "Не може да се пишува во датотеката „{$fileName}“."
+
+msgid "plugins.importexport.onix30.error.unknownPress"
+msgstr "Наведената патека за изданието, \"{$contextPath}\" не постои."
+
+msgid "plugins.importexport.onix30.cliError"
+msgstr "ГРЕШКА:"
+
+msgid "plugins.importexport.onix30.cliUsage"
+msgstr ""
+"Употреба: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId]"
+" "
+
+msgid "plugins.importexport.onix30.description"
+msgstr "Извоз на метаподатоци за монографија во формат ONIX 3.0"
+
+msgid "plugins.importexport.onix30.displayName"
+msgstr "Приклучок за извоз на монографија ONIX 3.0"

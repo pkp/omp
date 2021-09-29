@@ -1,0 +1,36 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-10-18 16:48+0000\n"
+"Last-Translator: Antti-Jussi Nygård <ajnyga@gmail.com>\n"
+"Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/"
+"blocks-browse/fi_FI/>\n"
+"Language: fi_FI\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.block.browse.newReleases"
+msgstr "Uutuudet"
+
+msgid "plugins.block.browse.series"
+msgstr "Sarjat"
+
+msgid "plugins.block.browse.category"
+msgstr "Kategoriat"
+
+msgid "plugins.block.browse.settings.title"
+msgstr "Selausvaihtoehdot"
+
+msgid "plugins.block.browse.settings"
+msgstr "Asetukset"
+
+msgid "plugins.block.browse.description"
+msgstr "Tämä lohkolisäosa näyttää sivupalkissa arkiston selaustoiminnot."
+
+msgid "plugins.block.browse.displayName"
+msgstr "Selauslohko"
+
+msgid "plugins.block.browse"
+msgstr "Selaa"
