@@ -3,8 +3,8 @@
 # Kiss Jázmin <kissfjazmin@gmail.com>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-29 11:06+0000\n"
-"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
+"PO-Revision-Date: 2021-10-02 02:41+0000\n"
+"Last-Translator: Kiss Jázmin <kissfjazmin@gmail.com>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "hu_HU/>\n"
 "Language: hu_HU\n"
@@ -787,7 +787,6 @@ msgstr ""
 msgid "grid.catalogEntry.identificationCodeValue"
 msgstr "Kód értéke"
 
-#, fuzzy
 msgid "manager.series.open"
 msgstr "Beadványok megnyitása"
 
