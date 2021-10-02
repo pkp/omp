@@ -14,9 +14,9 @@
 
 namespace APP\facades;
 
-use Illuminate\Support\Facades\App;
+use APP\submissionFile\Repository as SubmissionFileRepository;
 
-use PKP\submissionFile\Repository as SubmissionFileRepository;
+use Illuminate\Support\Facades\App;
 
 class Repo extends \PKP\facades\Repo
 {
@@ -42,6 +42,6 @@ class Repo extends \PKP\facades\Repo
 
     public static function submissionFiles(): SubmissionFileRepository
     {
-        return App::make(\APP\submissionFile\Repository::class);
+        return app()->make(SubmissionFileRepository::class);
     }
 }
