@@ -18,7 +18,6 @@ use APP\facades\Repo;
 use APP\template\TemplateManager;
 
 use PKP\form\Form;
-use APP\facades\Repo;
 
 class ChapterForm extends Form
 {
