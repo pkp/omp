@@ -24,12 +24,10 @@ class Repository extends BaseRepository
     public $dao;
 
     public function __construct(
-        DAO $dao,
-        Request $request,
-        PKPSchemaService $schemaService
+        Request $request
     ) {
-        parent::__construct($dao, $request, $schemaService);
+        parent::__construct($request);
 
-        $this->dao = $dao;
+        $this->dao = new DAO(new PKPSchemaService());
     }
 }
