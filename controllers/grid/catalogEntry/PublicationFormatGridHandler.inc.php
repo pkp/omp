@@ -584,7 +584,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler
     {
         $submission = $this->getSubmission();
         import('lib.pkp.classes.submissionFile.SubmissionFile'); // Constants
-        $submissionFile = Repo::submissionFiles()->get($request->getUserVar('submissionFileId'));
+        $submissionFileId = $request->getUserVar('submissionFileId');
+        $submissionFile = Repo::submissionFiles()->get($submissionFileId);
         if ($submissionFile->getData('fileStage') !== SubmissionFile::SUBMISSION_FILE_PROOF || $submissionFile->getData('submissionId') != $submission->getId()) {
             return new JSONMessage(false);
         }
@@ -608,8 +609,10 @@ class PublicationFormatGridHandler extends CategoryGridHandler
             }
             // Update the approval flag
             $params = ['viewable' => (bool) $request->getUserVar('approval')];
-            $submissionFile = Repo::submissionFiles()
+            Repo::submissionFiles()
                 ->edit($submissionFile, $params);
+
+            $submissionFile = Repo::submissionFiles()->get($submissionFileId);
 
             // Log the event
             import('lib.pkp.classes.log.SubmissionFileLog');
@@ -619,6 +622,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
 
             return DAO::getDataChangedEvent();
         }
+
         return new JSONMessage(false);
     }
 
