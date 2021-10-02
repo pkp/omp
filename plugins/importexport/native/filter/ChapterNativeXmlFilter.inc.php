@@ -1,5 +1,4 @@
 <?php
-use APP\facades\Repo;
 
 /**
  * @file plugins/importexport/native/filter/ChapterNativeXmlFilter.inc.php
