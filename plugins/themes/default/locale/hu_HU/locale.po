@@ -1,11 +1,12 @@
 # Molnár Tamás <molnart@bibl.u-szeged.hu>, 2021.
+# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-08-04 11:04+0000\n"
-"Last-Translator: Molnár Tamás <molnart@bibl.u-szeged.hu>\n"
+"PO-Revision-Date: 2021-09-14 10:05+0000\n"
+"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
-"themes-default/hu/>\n"
-"Language: hu\n"
+"themes-default/hu_HU/>\n"
+"Language: hu_HU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +21,7 @@ msgstr "Tipográfia"
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
 msgstr ""
-"A közreadó összes sorozatára mutató linkek listájának hozzáadása a "
+"A kiadó összes sorozatára mutató linkek listájának hozzáadása a "
 "katalógusoldalon"
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
@@ -45,7 +46,7 @@ msgstr "Szín"
 
 msgid "plugins.themes.default.option.typography.lora_openSans"
 msgstr ""
-"Lora/Open Sans: egy komplementer páríosítása talpas betűtípusú fejléc, "
+"Lora/Open Sans: egy komplementer párosítása talpas betűtípusú fejléc, "
 "talpatlan betűtípusú szöveggel."
 
 msgid "plugins.themes.default.option.typography.lora"
@@ -66,7 +67,8 @@ msgstr ""
 
 msgid "plugins.themes.default.option.typography.notoSerif"
 msgstr ""
-"Noto Serif: A Google digitális-bennszülött betűtípusának egy talpas változata"
+"Noto Serif: A Google digitális-bennszülött betűtípusának egy talpas "
+"változata."
 
 msgid "plugins.themes.default.option.typography.notoSans"
 msgstr ""

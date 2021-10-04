@@ -1,0 +1,503 @@
+# Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>, 2021.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-09-17 20:32+0000\n"
+"Last-Translator: Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>\n"
+"Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
+"submission/hu_HU/>\n"
+"Language: hu_HU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "manuscript.submission"
+msgstr "Kézirat benyújtása"
+
+msgid "submission.sharing"
+msgstr "Megosztás"
+
+msgid "submission.download"
+msgstr "Letöltés"
+
+msgid "submission.proofs"
+msgstr "Kefelevonatok"
+
+msgid "submission.publicationFormats"
+msgstr "Publikáció formátumok"
+
+msgid "submission.copyedit"
+msgstr "Olvasószerkesztés"
+
+msgid "submission.chapter.pages"
+msgstr "Oldalak"
+
+msgid "submission.chapter.editChapter"
+msgstr "Fejezet szerkesztése"
+
+msgid "submission.chapter.addChapter"
+msgstr "Fejezet hozzáadása"
+
+msgid "submission.chaptersDescription"
+msgstr ""
+"Itt felsorolhatja a fejezeteket és közreműködőket rendelhet a közreműködők "
+"fenti listájából. Ezek a közreműködők hozzáférhetnek a fejezethez a "
+"publikációs folyamat különböző szakaszaiban."
+
+msgid "submission.chapters"
+msgstr "Fejezetek"
+
+msgid "submission.chapter"
+msgstr "Fejezet"
+
+msgid "submission.artwork.permissions"
+msgstr "Engedélyek"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.fairCopy"
+msgstr "Tisztázat"
+
+msgid "submission.published"
+msgstr "Készültség"
+
+msgid "submission.monograph"
+msgstr "Monográfia"
+
+msgid "submission.workflowType.change"
+msgstr "Változtatás"
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monográfia: A szerzők a könyv egészéhez vannak rendelve."
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Szerkesztett kötet: A szerzők saját fejezetükhöz vannak rendelve."
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Szerkesztett kötet"
+
+msgid "submission.workflowType.description"
+msgstr ""
+"A monográfia olyan mű, amelyet teljes egészében egy vagy több szerző írt. A "
+"szerkesztett kötetben az egyes fejezetek szerzői különbözőek (a fejezetek "
+"adatai később kerülnek be )"
+
+msgid "submission.workflowType"
+msgstr "Benyújtás típusa"
+
+msgid "submission.synopsis"
+msgstr "Szinopszis"
+
+msgid "submission.select"
+msgstr "Benyújtás kiválasztása"
+
+msgid "submission.title"
+msgstr "Könyv címe"
+
+msgid "submission.upload.selectComponent"
+msgstr "Válassza ki az elemeket"
+
+msgid "submission.submit.title"
+msgstr "Kézirat beküldése"
+
+msgid "submission.submit.generalInformation"
+msgstr "Általános információ"
+
+msgid "submission.submit.coverNote"
+msgstr "Üzenet a szerkesztőnek"
+
+msgid "submission.submit.nextSteps"
+msgstr "Következő"
+
+msgid "submission.submit.confirmation"
+msgstr "Megerősítés"
+
+msgid "submission.submit.finishingUp"
+msgstr "Befejezés"
+
+msgid "submission.submit.metadata"
+msgstr "Metaadat"
+
+msgid "submission.submit.catalog"
+msgstr "Katalógus"
+
+msgid "submission.submit.prepare"
+msgstr "Előkészít"
+
+msgid "submission.submit.submissionFile"
+msgstr "Beadandó file"
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Kérjük, válassza ki a közreműködő szerepkörét."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Kérjük, adja meg a monográfia rövid összefoglalóját."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Kérjük, adja meg a monográfia címét."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "Minden szerző keresztnevét, vezetéknevét és e-mail címét meg kell adni."
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Legalább egy szerző megadás kötelező."
+
+msgid "submission.submit.contributorRole"
+msgstr "Közreműködő szerepkör"
+
+msgid "submission.submit.privacyStatement"
+msgstr "Adatvédelmi nyilatkozat"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Válassza ki a beküldés nyelvét."
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Példa: Könyv 2, Kötet 2"
+
+msgid "submission.submit.seriesPosition"
+msgstr "Sorozat pozíciója"
+
+msgid "author.submit.seriesRequired"
+msgstr "Érvényes sorozat szükséges."
+
+msgid "author.isVolumeEditor"
+msgstr "Ez a közreműködő a kötet szerkesztője."
+
+msgid "submission.submit.selectSeries"
+msgstr "Sorozat megadása (opcionális)"
+
+msgid "submission.submit.cancelSubmission"
+msgstr ""
+"A beküldést később is befejezheti, ha a szerzői honlapon az  'Aktív "
+"beküldések' menüpontot választja."
+
+msgid "submission.submit.upload"
+msgstr "Feltöltés"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Új beküldés"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Új beküldés indítása"
+
+msgid "submission.submit"
+msgstr "Új könyv beküldése"
+
+msgid "grid.action.deleteChapter"
+msgstr "Fejezet törlése"
+
+msgid "grid.action.editChapter"
+msgstr "Fejezet szerkesztése"
+
+msgid "grid.action.addChapter"
+msgstr "Új fejezet"
+
+msgid "submission.supportingAgencies"
+msgstr "Finanszírozó szervezetek"
+
+msgid "submission.metadata"
+msgstr "Mataadat"
+
+msgid "submission.confirmSubmit"
+msgstr "Biztos benne, hogy ezt a kéziratot be kívánja nyújtani?"
+
+msgid "manuscript.submissions"
+msgstr "Kézirat benyújtás"
+
+msgid "submissions.queuedReview"
+msgstr "Lektorálás alatt"
+
+msgid "submission.round"
+msgstr "Round&nbsp;{$round}"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (ed)"
+
+msgid "submission.queries.production"
+msgstr "Megbeszélések"
+
+msgid "publication.version.details"
+msgstr "A {$verzió} verzió publikációs adatai"
+
+msgid "publication.unschedule.confirm"
+msgstr "Biztos nem akarja közzétenni?"
+
+msgid "publication.unpublish.confirm"
+msgstr "Biztos, hogy nem akarja publikálni?"
+
+msgid "publication.unpublish"
+msgstr "Nem publikálandó"
+
+msgid "submission.copyrightOther.description"
+msgstr "A közzétettkéziratok szerzői jogait a következő félre ruházza át."
+
+msgid "submission.copyrightHolder.description"
+msgstr ""
+"A Copyright automatikusan a {$copyright}-hez kerül hozzárendelésre a "
+"publikáláskor."
+
+msgid "submission.license.description"
+msgstr ""
+"A licenc automatikusan a <a href='{$licenseUrl}' "
+"target='_blank'>{$licenseName}</a> címre kerül beállításra, amikor ez "
+"publikálásra kerül."
+
+msgid "publication.required.reviewStage"
+msgstr ""
+"A kéziratnak át kell esnie az olvasószerkesztésen mielőtt közzé lehet tenni."
+
+msgid "publication.required.declined"
+msgstr "Az elutasított kéziratot nem lehet közzétenni."
+
+msgid "publication.publish.requirements"
+msgstr "A közzétételhez a következő követelményeknek kell megfelelni."
+
+msgid "publication.publish"
+msgstr "Publikálás"
+
+msgid "publication.invalidSubmission"
+msgstr "Nem található a benyújtás."
+
+msgid "publication.event.versionUnpublished"
+msgstr "Ez a verzió törölve lett."
+
+msgid "publication.event.versionScheduled"
+msgstr "Új verzió készült."
+
+msgid "publication.event.versionPublished"
+msgstr "Újabb verzió közzétéve."
+
+msgid "publication.event.unpublished"
+msgstr "Nincs közzétéve."
+
+msgid "publication.event.scheduled"
+msgstr "Közzétételre előkészítve."
+
+msgid "publication.event.published"
+msgstr "Közzétéve."
+
+msgid "publication.editDisabled"
+msgstr "Ez a verzió már nem szerkeszthető, mert közzé van téve."
+
+msgid "publication.datePublished"
+msgstr "Kiadás dátuma"
+
+msgid "publication.copyrightYearBasis.submissionDescription"
+msgstr ""
+"A szerzői jog évét automatikusan beállítjuk, amikor ez megjelenik egy "
+"számban."
+
+msgid "publication.copyrightYearBasis.issueDescription"
+msgstr "A szerzői jog évét automatikusan állítjuk be a megjelenést követően."
+
+msgid "submission.publications"
+msgstr "Publikációk"
+
+msgid "publication.status.unscheduled"
+msgstr "Rendhagyó"
+
+msgid "submission.status.scheduled"
+msgstr "Ütemezett"
+
+msgid "publication.status.published"
+msgstr "Közzétéve"
+
+msgid "submission.publication"
+msgstr "Publikálás"
+
+msgid "publication.scheduledIn"
+msgstr "Megjelenik a  <a href=\"{$issueUrl}\">{$issueName}</a> számban."
+
+msgid "publication.publishedIn"
+msgstr "Közzétéve a  <a href=\"{$issueUrl}\">{$issueName}</a> kötetben."
+
+msgid "publication.required.issue"
+msgstr "A kiadványt egy számhoz kell rendelni, mielőtt közzétehető lenne."
+
+msgid "publication.inactiveSeries"
+msgstr "{$series} (Inaktív)"
+
+msgid "publication.invalidSeries"
+msgstr "A kiadvány sorozatát nem sikerült megtalálni."
+
+msgid "publication.catalogEntry.success"
+msgstr "A katalógusbejegyzés részletei frissítésre kerültek."
+
+msgid "publication.catalogEntry"
+msgstr "Katalógus"
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} Cím"
+
+msgid "submission.list.viewEntry"
+msgstr "Belépés megtekintése"
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Sorrend mentése"
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"A funkciók sorrendjének megváltoztatásához a {$title} mezőben húzza helyére "
+"őket."
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Húzással vagy a felfelé és lefelé gombokra koppintva megváltoztathatja a "
+"funkciók sorrendjét a kezdőlapon."
+
+msgid "submission.list.orderFeatures"
+msgstr "Megrendelés"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "Monográfiák száma {$count} a {$total} -bol"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} monográfiák"
+
+msgid "submission.list.monographs"
+msgstr "Monográfia"
+
+msgid "section.any"
+msgstr "Bármely sorozat"
+
+msgid "submission.metadataDescription"
+msgstr ""
+"Ezek a specifikációk a Dublin Core metaadatkészleten alapulnak, amely a "
+"tartalom feltárására használt nemzetközi szabvány."
+
+msgid "submission.dependentFiles"
+msgstr "Függőben lévő fájlok"
+
+msgid "submission.upload.fileContents"
+msgstr "Beküldendő fájlok"
+
+msgid "workflow.review.externalReview"
+msgstr "Külső lektorálás"
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Külső lektornak küldés"
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Cím és összefoglalás"
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "A \"{$formatName}\" kiadványformátum törlésre került."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Létrejött a \"{$formatName}\" kiadványformátum."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr ""
+"A \"{$formatName}\" publikációs formátum metaadatai frissítésre kerültek."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "A Katalógus metaadatai frissítve lettek."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "A \"{$publicationFormatName}\" kiadványformátum már nincs használatban."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr ""
+"A \"{$publicationFormatName}\" kiadványformátumot jóváhagyták közzétételre ."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "A \"{$publicationFormatName}\" kiadványformátum már nem elérhető."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "A \"{$publicationFormatName}\" kiadványformátum elérhetővé válik."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "A monográfia metaadatait nem teszik közzé."
+
+msgid "submission.event.metadataPublished"
+msgstr "A monográfia metaadatai jóvá vannak hagyva közzétételre."
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Publikáció formátum"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Katalógus"
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Monográfia"
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Minden fejezetnek saját megjelenési dátuma lehet."
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Minden fejezet a monográfia megjelenési dátumát használja."
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Dátumok"
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "A beadás megtekintése"
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "A monográfia készen áll a nyilvános katalógusba való felvételre."
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr ""
+"Kérjük, erősítse meg, hogy a kézirat készen áll a katalógusba való "
+"felvételre."
+
+msgid "submission.catalogEntry.confirm"
+msgstr "A könyv hozzáadása a publikus katalógushoz"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr "Legalább egy könyvet ki kell választania."
+
+msgid "submission.catalogEntry.select"
+msgstr "Válassza ki a katalógushoz adandó könyvet"
+
+msgid "submission.catalogEntry.add"
+msgstr "A kiválasztott elem hozzáadása a katalógushoz"
+
+msgid "submission.catalogEntry.new"
+msgstr "Belépés hozzáadása"
+
+msgid "submission.editCatalogEntry"
+msgstr "Belépés"
+
+msgid "submission.incomplete"
+msgstr "Jóváhagyásra vár"
+
+msgid "submission.complete"
+msgstr "Jóváhagyva"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Olvasószerkesztő feltöltésének törlése"
+
+msgid "grid.chapters.title"
+msgstr "Fejezetek"
+
+msgid "submission.submit.noContext"
+msgstr "A szerkesztőség nem található."
+
+msgid "submission.submit.userGroupDescription"
+msgstr ""
+"Ha szerkesztett kötetet küld be, akkor válassza a kötetszerkesztő szerepkört."
+
+msgid "submission.submit.userGroup"
+msgstr "A szerepköröm a benyújtásban..."
+
+msgid "submission.submit.placement"
+msgstr "A benyújtás elhelyezése"
+
+msgid "submission.submit.checklistErrors"
+msgstr ""
+"Kérjük, olvassa el és pipálja ki a benyújtási ellenőrzőlista pontjait.  "
+"Vannak még {$itemsRemaining} kipipálatlan tételek."
+
+msgid "submission.submit.whatNext.description"
+msgstr ""
+"A szerkesztőséget értesítettük a beadásról, és e-mailben visszaigazolást "
+"küldtünk Önnek.  Amint a szerkesztő átnézte a kéziratot, felveszi Önnel a "
+"kapcsolatot."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Minden publikációs elvárásnak megfelelt. Biztos, hogy nyilvános katalógusba "
+"teszi?"

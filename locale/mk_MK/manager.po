@@ -1,7 +1,7 @@
 # Mirko Spiroski <mspiroski@id-press.eu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-07-01 06:03+0000\n"
+"PO-Revision-Date: 2021-10-04 21:03+0000\n"
 "Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "mk_MK/>\n"
@@ -1445,3 +1445,30 @@ msgid "manager.setup.selectCountry"
 msgstr ""
 "Изберете ја земјата во која се наоѓа изданието, или земјата на поштенската "
 "адреса на изданието или издавачката куќа."
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr "Име на веб страницата ако има хостирано повеќе од еден издавач"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "Вид на платениот износ, како УСД"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "Износ на плаќање"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "Име на видот плаќања"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "И-мејл адреса на примарниот контакт од издавачот"
+
+msgid "emailTemplate.variable.context.principalContactSignature"
+msgstr "И-мејл потпис на издавачот за автоматски писма"
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "Име од примарниот контакт на издавачот"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "УРЛ кон страниците на издавачот"
+
+msgid "emailTemplate.variable.context.contextName"
+msgstr "Име на издавачот"

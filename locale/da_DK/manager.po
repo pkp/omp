@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2021-07-07 11:03+0000\n"
+"PO-Revision-Date: 2021-09-16 13:05+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "da_DK/>\n"
@@ -1424,3 +1424,30 @@ msgstr ""
 
 msgid "manager.setup.pageHeaderDescription"
 msgstr "Konfiguration af sidehovedet"
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr "Webstedets navn, når der er hostet mere end et forlag"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "Betalingsbeløbets valuta, f.eks. USD"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "Betalingsbeløbet"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "Navnet på betalingstypen"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "Forlagets primære kontaktpersons e-mail-adresse"
+
+msgid "emailTemplate.variable.context.principalContactSignature"
+msgstr "Forlaget e-mail-signatur til automatiserede e-mails"
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "Navnet på forlagets primære kontaktperson"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "URL til forlagets hjemmeside"
+
+msgid "emailTemplate.variable.context.contextName"
+msgstr "Forlaget navn"

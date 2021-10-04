@@ -1,0 +1,1732 @@
+# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+# Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>, 2021.
+# Kiss Jázmin <kissfjazmin@gmail.com>, 2021.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-10-02 02:41+0000\n"
+"Last-Translator: Kiss Jázmin <kissfjazmin@gmail.com>\n"
+"Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/locale/"
+"hu_HU/>\n"
+"Language: hu_HU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr ""
+"<p> A kiválasztott publikációs formátum már nem létezik ehhez a "
+"monográfiához. </p>"
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Hiányzik néhány metaadatmező."
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Hiányzik az azonosító kód."
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Hiányzó piacok és árak."
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr ""
+"A könyv katalógusbejegyzésében szerepeltetni kell az adott "
+"kiadványformátumra vonatkozó metaadatokat."
+
+#, fuzzy
+msgid "monograph.publicationFormat.taxType"
+msgstr "Adózás típusa"
+
+#, fuzzy
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Adó mértéke / Adókulcs?"
+
+#, fuzzy
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Termékforgalmazási régió"
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Digitális technikai védelem"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Gyártó ország"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Szélesség"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Súly"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Vastagság"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Magasság"
+
+#, fuzzy
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Saját fájlméretet ad meg?"
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "A fájl mérete MB-ban"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Fizikai méretek"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Digitális információ"
+
+#, fuzzy
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Visszaváltható mutató"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Termék elérhetősége"
+
+#, fuzzy
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Kedvezmény százalékos aránya, ha alkalmazható"
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "Ár típusa"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "Az ár kötelező."
+
+msgid "monograph.publicationFormat.price"
+msgstr "Ár"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Termék azonosítása"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Termék részletezése (nem kötelező)"
+
+#, fuzzy
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Termék összetétel"
+
+#, fuzzy
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Hátoldalak"
+
+#, fuzzy
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Előzékoldalak"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Oldalszám"
+
+#, fuzzy
+msgid "monograph.publicationFormat.imprint"
+msgstr "Könyvkiadó (?Impresszum?) (Márkanév)"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Nyílt hozzáférés (Open Access)"
+
+#, fuzzy
+msgid "monograph.task.addNote"
+msgstr "Hozzáadás a feladathoz"
+
+msgid "monograph.proofReadingDescription"
+msgstr ""
+"A tördelőszerkesztő ide tölti fel a megjelentetésre előkészített, gyártásra "
+"kész fájlokat. A <em>Hozzárendelés</em> gomb segítségével kijelölheti a "
+"szerzőket és másokat, hogy korrektúrázzák a kefelenyomatokat, és a javított "
+"fájlokat a közzététel előtt jóváhagyásra feltöltsék."
+
+msgid "submission.pageProofs"
+msgstr "Kefelenyomatok oldala"
+
+#, fuzzy
+msgid "monograph.type"
+msgstr "Beküldés típusa"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Formátumok:"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Részletek a monográfiáról"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "Részletek a rendelkezésre álló publikációs formátumról: {$format}"
+
+msgid "monograph.publicationFormat"
+msgstr "Formátum"
+
+#, fuzzy
+msgid "monograph.publicationFormats"
+msgstr "Kiadványformátumok"
+
+msgid "monograph.languages"
+msgstr "Nyelvek (Angol, Francia, Spanyol)"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Célközönség köre (pontos)"
+
+#, fuzzy
+msgid "monograph.audience.rangeTo"
+msgstr "Célközönség köre (-ig)"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Célközönség köre (-tól)"
+
+#, fuzzy
+msgid "monograph.audience.rangeQualifier"
+msgstr "Célközönség körének választója"
+
+msgid "monograph.coverImage"
+msgstr "Borítókép"
+
+msgid "monograph.audience.success"
+msgstr "A célközönség adatait frissítettük."
+
+msgid "monograph.audience"
+msgstr "Célközönség"
+
+msgid "common.payments"
+msgstr "Fizetések"
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "A digitális formátumokhoz fájlméret szükséges."
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Jóváhagyásra vár"
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Jóváhagyva"
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "A kefelenyomatot nem hagyták jóvá."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "A formátum nincs benne a katalógusbejegyzésben."
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "A katalógusbejegyzést nem hagyták jóvá."
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p>Ez a formátum <em>nem lesz elérhető az olvasók számára</em>. A letölthető "
+"fájlok vagy egyéb terjesztések többé nem jelennek meg a könyv "
+"katalógusbejegyzésében.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p>Tegye ezt a formátumot <em>elérhetővé az olvasók számára</em>. A "
+"letölthető fájlok és minden más terjesztés megjelenik a könyv "
+"katalógusbejegyzésében.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Formátum elérhetősége"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr "<p>Jelzi, hogy a formátum metaadatait nem hagyták jóvá.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p>Hagyja jóvá a formátum metaadatait. A metaadatokat az egyes formátumok "
+"szerkesztési paneljén lehet ellenőrizni.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Formátum jóváhagyása"
+
+msgid "grid.catalogEntry.proof"
+msgstr "Kefelenyomat"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Nem elérhető"
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Elérhető"
+
+msgid "grid.catalogEntry.availability"
+msgstr "Elérhetőség"
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Ki kell választani a kiadványformátumot."
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "A monográfia azonosító kötelező."
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "10 számjegyű ISBN-kód, például 951-98548-9-4."
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "13 számjegyű ISBN-kód, például 978-951-98548-9-2."
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr "Távoli tárhely tartalmának URL címe"
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Ez a formátum egy külön oldalon lesz elérhető"
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Fizikai formátum"
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Formátum részletek"
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "Érvényes ár szükséges."
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "Név megadása kötelező."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Kiadványformátum"
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "Nyissa meg a kiadványformátumok fület."
+
+msgid "grid.action.addSpotlight"
+msgstr "Kiemelés hozzáadása"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Kiemelés törlése"
+
+msgid "grid.action.editSpotlight"
+msgstr "Kiemelés szerkesztése"
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Kérjük, válasszon egy helyet ennek a kiemelésnek."
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "A kiemelés címe kötelező."
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "Egy tétel kötelező."
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Könyv"
+
+msgid "grid.content.spotlights.form.title"
+msgstr "Kiemelés címe"
+
+msgid "grid.content.spotlights.form.item"
+msgstr "Adja meg a kiemelni kívánt címet (automatikus kitöltés)"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "Kiemelés helye"
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "Kezdőoldal"
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "Kiemelt tétel"
+
+msgid "spotlight.author"
+msgstr "Szerző "
+
+msgid "spotlight.title.homePage"
+msgstr "Kiemelésben"
+
+msgid "spotlight.noneExist"
+msgstr "Nincsenek aktuális kiemelések."
+
+msgid "spotlight.spotlights"
+msgstr "Kiemelések"
+
+msgid "spotlight"
+msgstr "Kiemelés"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Képviselő törlése"
+
+msgid "grid.action.editRepresentative"
+msgstr "Képviselő szerkesztése"
+
+msgid "grid.action.addRepresentative"
+msgstr "Képviselő hozzáadása"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+"A következő részt üresen hagyhatja, ha saját szolgáltatásokat nyújt "
+"ügyfeleinek."
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Képviselő azonosító típusa (ajánlott a GLN)"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "Képviselő azonosítója"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Honlap"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "E-mail cím"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Telefon"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Név"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Szerepkör"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Válasszon szerepkört:"
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Beszállító"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"Ön hozzárendelhet egy ügynököt, hogy képviselje Önt ezen a meghatározott "
+"területen. Ez nem kötelező."
+
+msgid "grid.catalogEntry.agent"
+msgstr "Ügynök"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Beszállítók"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Ügynökök"
+
+#, fuzzy
+msgid "grid.catalogEntry.representativeType"
+msgstr "Képviselő típusa"
+
+#, fuzzy
+msgid "grid.catalogEntry.representatives"
+msgstr "Képviselők"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr ""
+"A dátum megadása kötelező, és a dátum értékének meg kell felelnie a "
+"kiválasztott dátumformátumnak."
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Típus"
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Dátumformátum"
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Dátum"
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "A dátumformátumot meg kell adni."
+
+#, fuzzy
+msgid "grid.catalogEntry.roleRequired"
+msgstr "Reprezentatív szerepkörre van szükség."
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Publikációs dátumok"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Terület"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Piaci területek"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "Kizárva"
+
+msgid "grid.catalogEntry.included"
+msgstr "Beletartozik"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Régiók"
+
+msgid "grid.catalogEntry.countries"
+msgstr "Országok"
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr "Ehhez a kiadványformátumhoz már létezik egy ROW értékesítési típus."
+
+#, fuzzy
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+"Jelölje be ezt a négyzetet, ha ezt az Értékesítési jogot kívánja használni a "
+"formátum gyűjtőcímeként.  Az országokat és régiókat ebben az esetben nem "
+"kell kiválasztani."
+
+#, fuzzy
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "A világ többi része?"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Értékesítési jogok típusa"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Kód értéke"
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Értékesítési jogok"
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Egy érték megadása kötelező."
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "Azonosító kód kötelező."
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "Onix kód típusa"
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "A termék összetételének kódját ki kell választani."
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "A termék elérhetőségének kódja kötelező."
+
+msgid "submission.round"
+msgstr "Forduló&nbsp;{$round}"
+
+msgid "grid.action.addFormat"
+msgstr "Kiadványformátum hozzáadása"
+
+msgid "grid.action.deleteFormat"
+msgstr "Formátum törlése"
+
+msgid "grid.action.editFormat"
+msgstr "Formátum szerkesztése"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "A formátum megjelenik a katalógusbejegyzésben"
+
+#, fuzzy
+msgid "grid.action.catalogEntry"
+msgstr "Katalógusbejegyzés űrlapjának megtekintése"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Fájlok"
+
+msgid "navigation.catalog"
+msgstr "Katalógus"
+
+msgid "common.homePageHeader.altText"
+msgstr "Kezdőlap fejléc"
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "common.software"
+msgstr "Open Monograph Press"
+
+msgid "common.listbuilder.itemExists"
+msgstr "Ugyanazt az elemet nem adhatja hozzá kétszer."
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "Kérjük, válasszon egy érvényes opciót a listából."
+
+msgid "common.listbuilder.completeForm"
+msgstr "Kérjük, töltse ki teljesen az űrlapot."
+
+msgid "common.moreInfo"
+msgstr "További információk"
+
+msgid "common.searchCatalog"
+msgstr "Keresés a katalógusban"
+
+#, fuzzy
+msgid "common.feature"
+msgstr "Kiemelés"
+
+msgid "common.preview"
+msgstr "Előnézet"
+
+msgid "common.prefix"
+msgstr "Előtag"
+
+msgid "common.publications"
+msgstr "Monográfiák"
+
+msgid "common.publication"
+msgstr "Monográfia"
+
+msgid "submission.search"
+msgstr "Könyv keresés"
+
+#, fuzzy
+msgid "catalog.viewableFile.return"
+msgstr "Visszatérés a {$monographTitle} részleteinek megtekintéséhez"
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr "Sorozati pozíció (legmagasabb elöl)"
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr "Sorozati pozíció (legalacsonyabb elöl)"
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr "Válassza ki, hogyan legyenek sorba rendezve a könyvek a katalógusban."
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr ""
+"Válassza ki, hogyan legyenek sorba rendezve a könyvek ebben a kategóriában."
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr "Válassza ki, hogyan legyenek sorba rendezve a sorozat könyveit."
+
+msgid "catalog.sortBy"
+msgstr "Monográfiák sorrendje"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr ""
+"Kérjük, vegye figyelembe: Ahhoz, hogy termékeket vásárolhasson, először be "
+"kell jelentkeznie. A megvásárolni kívánt tétel kiválasztása a bejelentkezési "
+"oldalra irányítja Önt. Minden Open Access ikonnal jelölt tétel ingyenesen "
+"letölthető bejelentkezés nélkül."
+
+#, fuzzy
+msgid "catalog.aboutTheAuthor"
+msgstr "{$roleName}-ról/-ről"
+
+msgid "catalog.category.subcategories"
+msgstr "Alkategóriák"
+
+msgid "catalog.parentCategory"
+msgstr "Szülő kategória"
+
+msgid "catalog.categories"
+msgstr "Kategóriák"
+
+#, fuzzy
+msgid "catalog.forthcoming"
+msgstr "Megjelenés előtti"
+
+msgid "catalog.published"
+msgstr "Megjelent"
+
+#, fuzzy
+msgid "catalog.publicationInfo"
+msgstr "Publikációs információ"
+
+msgid "catalog.dateAdded"
+msgstr "Hozzáadva"
+
+msgid "catalog.newReleases"
+msgstr "Új megjelenések"
+
+msgid "catalog.category.heading"
+msgstr "Összes könyv"
+
+msgid "catalog.foundTitlesSearch"
+msgstr ""
+"{$number} olyan címet találtunk, amely megfelel a(z) \"{$searchQuery}\" "
+"keresésének."
+
+msgid "catalog.foundTitleSearch"
+msgstr ""
+"Egy olyan címet találtunk, amely megfelel az Ön \"{$searchQuery}\" "
+"keresésének."
+
+msgid "catalog.featuredBooks"
+msgstr "Kiemelt könyvek"
+
+msgid "catalog.featured"
+msgstr "Kiemelt"
+
+#, fuzzy
+msgid "catalog.feature"
+msgstr "Kiemelés"
+
+msgid "catalog.noTitlesSearch"
+msgstr ""
+"Nem találhatóak olyan címek, amelyek megfelelnének a(z) \"{$ searchQuery}\" "
+"kifejezésre."
+
+msgid "catalog.noTitlesNew"
+msgstr "Jelenleg nem állnak rendelkezésre új megjelenések."
+
+msgid "catalog.noTitles"
+msgstr "Még nem kerültek megjelentetésre címek."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "A katalógusba felvehető monográfiák kiválasztása"
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Egy vagy több beküldés nem található meg."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Egyetlen beküldést sem választottak ki a katalógusba való felvételre."
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr ""
+"Ez a monográfia nincs új megjelenésként megjelölve. Tegye a monográfiára az "
+"új megjelenés jelölőt."
+
+#, fuzzy
+msgid "catalog.manage.nonOrderable"
+msgstr ""
+"Ez a monográfia nem rendelhető/rendezhető sorrendbe, amíg kiemeltként van "
+"megjelölve."
+
+msgid "catalog.manage.isNewRelease"
+msgstr ""
+"Ez a monográfia új megjelenésként van megjelölve. Vegye le a monográfiáról "
+"az új megjelenés jelölőt."
+
+msgid "catalog.manage.isNotFeatured"
+msgstr ""
+"Ez a monográfia nincs kiemeltként megjelölve. Tegye a monográfiát kiemeltté."
+
+msgid "catalog.manage.isFeatured"
+msgstr ""
+"Ez a monográfia kiemeltként van megjelölve. Vegye le a monográfiáról a "
+"kiemelt jelölőt."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Cím vagy szerző szerinti keresés"
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Új megjelenés a sorozatban"
+
+msgid "catalog.selectSeries"
+msgstr "Sorozat kiválasztása"
+
+msgid "catalog.manage.series.printIssn"
+msgstr "Nyomtatott ISSN"
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "Online ISSN"
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "Az online és a nyomtatott ISSN nem lehet azonos."
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Kérjük, adjon meg egy érvényes ISSN-t."
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "catalog.manage.series"
+msgstr "Sorozatok"
+
+msgid "catalog.manage.category"
+msgstr "Kategória"
+
+msgid "catalog.manage.newReleases"
+msgstr "Új megjelenések"
+
+#, fuzzy
+msgid "catalog.manage"
+msgstr "Katalógus kezelése"
+
+msgid "series.path"
+msgstr "Elérési útvonal"
+
+#, fuzzy
+msgid "series.featured.description"
+msgstr "Ez a sorozat a fő navigációban jelenik meg"
+
+msgid "series.series"
+msgstr "Sorozatok"
+
+#, fuzzy
+msgid "submissionGroup.assignedSubEditors"
+msgstr "Hozzárendelt szerkesztők"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Elérhető fájlok"
+
+#, fuzzy
+msgid "grid.reviewAttachments.add"
+msgstr "Csatolmány hozzáadása a bírálathoz"
+
+msgid "grid.action.formatAvailable"
+msgstr "A formátum elérhetőségének be- és kikapcsolása"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Jóváhagyja/elutasítja ezt a formátumot"
+
+msgid "grid.action.addRights"
+msgstr "Értékesítési jogok hozzáadása"
+
+msgid "grid.action.deleteCode"
+msgstr "Kód törlése"
+
+msgid "grid.action.editCode"
+msgstr "Kód szerkesztése"
+
+msgid "grid.action.addCode"
+msgstr "Kód hozzáadása"
+
+msgid "grid.action.manageSeries"
+msgstr "Sorozatok beállítása ehhez a kiadóhoz"
+
+msgid "grid.action.manageCategories"
+msgstr "Kategóriák beállítása ehhez a kiadóhoz"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Jelölje meg ezt a beküldést mint \"új megjelenés\""
+
+msgid "grid.action.featureMonograph"
+msgstr "Tegye kiemelté ezt a katalógus érdekességei blokkban"
+
+#, fuzzy
+msgid "grid.action.feature"
+msgstr "Váltás a kiemelés megjelenítésre"
+
+msgid "grid.action.publicCatalog"
+msgstr "Tekintse meg ezt az elemet a katalógusban"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "Új katalógusbejegyzés"
+
+msgid "grid.action.addAnnouncement"
+msgstr "Értesítés hozzáadása"
+
+#, fuzzy
+msgid "grid.action.pageProofApproved"
+msgstr "Az oldal kefelenyomat fájljai készen állnak a publikációra"
+
+msgid "grid.action.approveProof"
+msgstr ""
+"Jóváhagyja a kefelenyomatot indexelésre és a katalógusba való felvételre"
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Kód értéke"
+
+msgid "manager.series.open"
+msgstr "Beadványok megnyitása"
+
+#, fuzzy
+msgid "manager.series.indexed"
+msgstr "Indexelve"
+
+#, fuzzy
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Igen, kérje a {$userGroup} szerepet."
+
+msgid "user.reviewerPrompt"
+msgstr "Vállalná a kéziratok bírálatát ennél a kiadónál?"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr "Regisztráció bírálóként: A bírálói regisztráció jelenleg le van tiltva."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Regisztráció bírálóként"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr "Kötet benyújtása: A szerzői regisztráció jelenleg le van tiltva."
+
+#, fuzzy
+msgid "user.noRoles.submitMonograph"
+msgstr "Javaslat beküldése"
+
+#, fuzzy
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr ""
+"A szerepkörrel nem rendelkező felhasználók bevonása/felvétele? a kiadóhoz."
+
+msgid "user.authorization.representationNotFound"
+msgstr "A kért kiadványformátum nem található."
+
+msgid "context.select"
+msgstr "Váltás egy másik kiadóra:"
+
+msgid "context.current"
+msgstr "Aktuális kiadó:"
+
+msgid "context.context"
+msgstr "Kiadó"
+
+msgid "context.contexts"
+msgstr "Kiadók"
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Link az új megjelenésekhez."
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Új megjelenések"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Link a kategóriához."
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Kategória"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Link a sorozathoz."
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Sorozatok"
+
+#, fuzzy
+msgid "navigation.skip.spotlights"
+msgstr "Ugrás az ajánlókhoz."
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Link a katalógushoz."
+
+msgid "navigation.linksAndMedia"
+msgstr "Linkek és közösségi média"
+
+#, fuzzy
+msgid "navigation.wizard"
+msgstr "Varázsló"
+
+#, fuzzy
+msgid "navigation.published"
+msgstr "Megjelent"
+
+msgid "navigation.newReleases"
+msgstr "Új megjelenések"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Információ a könyvtárosoknak"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Információ a szerzőknek"
+
+msgid "navigation.infoForLibrarians"
+msgstr "Könyvtárosoknak"
+
+msgid "navigation.infoForAuthors"
+msgstr "Szerzőknek"
+
+#, fuzzy
+msgid "navigation.catalog.administration.series"
+msgstr "Sorozatok"
+
+msgid "navigation.catalog.administration.categories"
+msgstr "Kategóriák"
+
+msgid "navigation.catalog.administration"
+msgstr "Katalógus adminisztráció"
+
+msgid "navigation.catalog.administration.short"
+msgstr "Adminisztráció"
+
+#, fuzzy
+msgid "navigation.catalog.manage"
+msgstr "Kezelés"
+
+msgid "navigation.catalog.allMonographs"
+msgstr "Minden kötet"
+
+#, fuzzy
+msgid "installer.additionalLocalesInstructions"
+msgstr ""
+"Válassza ki a rendszerben támogatni kívánt további nyelveket. Ezek a nyelvek "
+"a webhelyen elhelyezett kiadók számára lesznek elérhetők. További nyelvek "
+"bármikor telepíthetők a webhely adminisztrációs felületéről is. A *-gal "
+"jelölt nyelvek hiányosak lehetnek."
+
+msgid "installer.localeInstructions"
+msgstr ""
+"A rendszerhez használt elsődleges nyelv. Kérjük, olvassa el az OMP "
+"dokumentációját, ha az itt nem felsorolt nyelvek támogatása érdekli."
+
+msgid "installer.maxFileUploadSize"
+msgstr ""
+"A szervere jelenleg legfeljebb a következő fájlfeltöltési méretet "
+"engedélyezi: <strong>{$maxFileUploadSize}</strong>"
+
+msgid "installer.allowFileUploads"
+msgstr ""
+"A szervere jelenleg engedélyezi a fájlfeltöltést: "
+"<strong>{$allowFileUploads}</strong>"
+
+msgid "installer.localeSettingsInstructions"
+msgstr ""
+"A teljes Unicode (UTF-8) támogatáshoz válassza az UTF-8 beállítást az összes "
+"karakterkészlet beállításához. Vegye figyelembe, hogy ez a támogatás "
+"jelenleg MySQL >= 4.1.1 vagy PostgreSQL >= 9.1.5 verziójú adatbázis szervert "
+"igényel. Kérjük, vegye figyelembe azt is, hogy a teljes Unicode-támogatáshoz "
+"az <a href=\"http://www.php.net/mbstring\" target=\"_blank\">mbstring</a> "
+"könyvtár szükséges (a legújabb PHP-telepítésekben alapértelmezés szerint "
+"engedélyezve). Problémákat okozhat a kiterjesztett karakterkészletek "
+"használata, ha a szervere nem felel meg ezeknek a követelményeknek.\n"
+"<br /><br />\n"
+"Az Ön szervere jelenleg támogatja az mbstringet: "
+"<strong>{$supportsMBString}</strong>"
+
+#, fuzzy
+msgid "installer.upgradeInstructions"
+msgstr ""
+"<h4>OMP verzió  {$version}</h4> \n"
+"\n"
+"<p>Köszönjük, hogy letöltötted a Public Knowledge Project <strong>Open "
+"Monograph Press</strong> szoftverét. Mielőtt folytatná, kérjük, olvassa el a "
+"szoftverhez mellékelt <a href=\"{$baseUrl}/docs/README\">README</a> és <a "
+"href=\"{$baseUrl}/docs/UPGRADE\">FRISSÍTÉS</a> fájlt. A Public Knowledge "
+"Projectről és a szoftverprojektekről további információkat a <a href=\""
+"http://pkp.sfu.ca/\" target=\"_blank\">PKP weboldalán</a> talál. Ha "
+"hibabejelentése vagy technikai támogatási kérdése van az Open Monograph "
+"Press-szel kapcsolatban, keresse fel a <a href=\"http://forum.pkp.sfu.ca\" "
+"target=\"_blank\">támogatási fórumot</a>, vagy látogasson el a PKP online <a "
+"href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">hibabejelentő "
+"rendszerébe</a>. Bár a támogatási fórum az előnyben részesített "
+"kapcsolattartási mód, a <a href=\"mailto:pkp.contact@gmail.com\""
+">pkp.contact@gmail.com</a> címre is küldhet e-mailt a csapatnak.</p>\n"
+"<p>A folytatás előtt <strong>erősen ajánlott</strong> biztonsági másolatot "
+"készíteni az adatbázisról, a fájlkönyvtárról és az OMP telepítési "
+"könyvtáráról.</p>\n"
+"<p>Ha <a href=\"http://www.php.net/features.safe-mode\" target=\"_blank\">"
+"PHP Safe Mode-ban</a> fut, kérjük, győződjön meg arról, hogy a php.ini "
+"konfigurációs fájlban a max_execution_time direktíva(ÉRTÉK?) magas "
+"határértékre van állítva. Ha ez vagy bármely más időkorlát (pl. Apache's \""
+"Timeout\" directive) elérésre kerül, és a frissítési folyamat megszakad, "
+"kézi beavatkozásra lesz szükség.</p>"
+
+msgid "installer.preInstallationInstructions"
+msgstr ""
+"<p>1. The following files and directories (and their contents) must be made "
+"writable:</p>\n"
+"<ul>\n"
+"\t<li><tt>config.inc.php</tt> is writable (optional): {$writable_config}</li>"
+"\n"
+"\t<li><tt>public/</tt> is writable: {$writable_public}</li>\n"
+"\t<li><tt>cache/</tt> is writable: {$writable_cache}</li>\n"
+"\t<li><tt>cache/t_cache/</tt> is writable: {$writable_templates_cache}</li>\n"
+"\t<li><tt>cache/t_compile/</tt> is writable: "
+"{$writable_templates_compile}</li>\n"
+"\t<li><tt>cache/_db</tt> is writable: {$writable_db_cache}</li>\n"
+"</ul>\n"
+"\n"
+"<p>2. A directory to store uploaded files must be created and made writable ("
+"see \"File Settings\" below).</p>"
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "Telepítés előtti lépések"
+
+msgid "installer.installationInstructions"
+msgstr ""
+"\n"
+"<p>Köszönjük, hogy letöltötted a Public Knowledge Project <strong>Open "
+"Monograph Press {$version}</strong> verziójú szoftverét. Mielőtt folytatná, "
+"kérjük, olvassa el a szoftverhez mellékelt <a href=\"{$baseUrl}/docs/README\""
+">README</a> fájlt. A Public Knowledge Projectről és a szoftverprojektekről "
+"további információkat a <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">PKP "
+"weboldalán</a> talál. Ha hibabejelentése vagy technikai támogatási kérdése "
+"van az Open Monograph Press-szel kapcsolatban, keresse fel a <a href=\""
+"http://forum.pkp.sfu.ca\" target=\"_blank\">támogatási fórumot</a>, vagy "
+"látogasson el a PKP online <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\""
+"_blank\">hibabejelentő rendszerébe</a>. Bár a támogatási fórum az előnyben "
+"részesített kapcsolattartási mód, a <a href=\"mailto:pkp.contact@gmail.com\""
+">pkp.contact@gmail.com</a> címre is küldhet e-mailt a csapatnak.</p>\n"
+
+msgid "installer.updatingInstructions"
+msgstr ""
+"Ha az OMP meglévő telepítését frissíti, <a href=\"{$upgradeUrl}\">kattintson "
+"ide</a> a folytatáshoz."
+
+msgid "installer.installApplication"
+msgstr "Open Monograph Press telepítése"
+
+msgid "installer.ompUpgrade"
+msgstr "OMP frissítés"
+
+msgid "installer.appInstallation"
+msgstr "OMP telepítés"
+
+#, fuzzy
+msgid "help.goToEditPage"
+msgstr "Új oldal megnyitása az információ szerkesztéséhez"
+
+msgid "help.searchReturnResults"
+msgstr "Vissza a keresési eredményekhez"
+
+msgid "about.aboutOMPSite"
+msgstr ""
+"Ez az oldal az Open Monograph Press  {$ompVersion} verzióját használja, "
+"amely a Public Knowledge Project által a GNU General Public License alatt "
+"kifejlesztett, támogatott és szabadon terjesztett nyílt forráskódú "
+"sajtómenedzsment és kiadói szoftver. Látogasson el a PKP weboldalára, ha <a "
+"href=\"http://pkp.sfu.ca/\">többet szeretne megtudni a szoftverről</a>. A "
+"kiadókkal kapcsolatos kérdésekkel és a kéziratok beküldésével kapcsolatban "
+"kérjük, forduljon közvetlenül az oldalhoz."
+
+msgid "about.aboutOMPPress"
+msgstr ""
+"Ez a kiadó az Open Monograph Press  {$ompVersion} verzióját használja, amely "
+"a Public Knowledge Project által a GNU General Public License alatt "
+"kifejlesztett, támogatott és szabadon terjesztett nyílt forráskódú "
+"sajtómenedzsment és kiadói szoftver. Látogasson el a PKP weboldalára, ha <a "
+"href=\"http://pkp.sfu.ca/\">többet szeretne megtudni a szoftverről</a>. A "
+"kiadóval kapcsolatos kérdésekkel és a kéziratok beküldésével kapcsolatban "
+"kérjük, <a href=\"{$contactUrl}\">forduljon közvetlenül a kiadóhoz</a>."
+
+msgid "about.aboutSoftware"
+msgstr "Az Open Monograph Pressről"
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "Az OMP szerkesztési és kiadási folyamata"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr ""
+"További információk az OMP/PKP kiadói rendszeréről, platformjáról és "
+"munkafolyamatáról."
+
+#, fuzzy
+msgid "about.pressSponsorship"
+msgstr "Kiadói szponzoráció"
+
+msgid "about.openAccessPolicy"
+msgstr "Nyílt hozzáférési (Open Access) politika"
+
+msgid "about.publicationFrequency"
+msgstr "Megjelenési gyakoriság"
+
+#, fuzzy
+msgid "about.reviewPolicy"
+msgstr "Szakértői bírálati folyamat"
+
+msgid "about.privacyStatement"
+msgstr "Adatvédelmi nyilatkozat"
+
+msgid "about.copyrightNotice"
+msgstr "Szerzői jogi nyilatkozat"
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr ""
+"A beküldési folyamat részeként a szerzőknek be kell jelölniük, hogy a "
+"kéziratuk megfelel-e az alábbi pontoknak, és a kéziratok visszaküldhetők "
+"azoknak a szerzőknek, akik nem tartják be ezeket az irányelveket."
+
+msgid "about.submissionPreparationChecklist"
+msgstr "A beküldés előkészítésének ellenőrzőlistája"
+
+msgid "about.authorGuidelines"
+msgstr "Szerzői útmutatók"
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "függőben lévő beküldések megtekintése"
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Új beküldés készítése"
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} vagy {$viewSubmissions}."
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "{$login} vagy {$register} készítése a beküldéshez."
+
+msgid "about.onlineSubmissions.register"
+msgstr "Regisztráció"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Bejelentkezés"
+
+msgid "about.onlineSubmissions"
+msgstr "Online beküldések"
+
+msgid "about.submissions"
+msgstr "Beküldések"
+
+#, fuzzy
+msgid "about.seriesPolicies"
+msgstr "Sorozat- és kategória szabályzat"
+
+#, fuzzy
+msgid "about.focusAndScope"
+msgstr "Fókusz és alkalmazási kör"
+
+msgid "about.editorialPolicies"
+msgstr "Szerkesztési irányelvek"
+
+msgid "about.editorialTeam"
+msgstr "Szerkesztőség"
+
+msgid "about.aboutContext"
+msgstr "A kiadóról"
+
+msgid "about.pressContact"
+msgstr "Kiadó kapcsolat"
+
+msgid "site.pressView"
+msgstr "Kiadó weboldalának megtekintése"
+
+msgid "site.noPresses"
+msgstr "Nincsenek rendelkezésre álló kiadók."
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Igen, hozzájárulok ahhoz, hogy adataimat a kiadó <a href=\"{$privacyUrl}\" "
+"target=\"_blank\">adatvédelmi nyilatkozatának</a> megfelelően gyűjtsék és "
+"tárolják."
+
+msgid "user.register.form.userGroupRequired"
+msgstr "Legalább egy szerepkört ki kell választani"
+
+#, fuzzy
+msgid "user.register.reviewerInterests"
+msgstr ""
+"A bírálati érdekek/érdeklődés (témakörök és kutatási módszerek) "
+"meghatározása:"
+
+msgid "user.register.reviewerDescription"
+msgstr "Vállalja az oldalra beküldött kéziratok szakértői értékelését."
+
+#, fuzzy
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr "Vállalja a kiadónak küldött kéziratok szakértői értékelését."
+
+#, fuzzy
+msgid "user.register.authorDescription"
+msgstr "Küldhet be tételeket a kiadóhoz."
+
+msgid "user.register.readerDescription"
+msgstr "E -mailben értesítjük a kötet megjelenéséről."
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "A megadott jelszó nem elég hosszú."
+
+msgid "user.register.registrationDisabled"
+msgstr "Ez a kiadó jelenleg nem fogad felhasználói regisztrációkat."
+
+msgid "user.register.privacyStatement"
+msgstr "Adatvédelmi nyilatkozat"
+
+msgid "user.register.noContexts"
+msgstr "Ezen az oldalon nincs olyan kiadó, amelyhez regisztrálhatna."
+
+msgid "user.register.selectContext"
+msgstr "Válasszon ki egy kiadót a regisztrációhoz:"
+
+msgid "user.role.productionEditors"
+msgstr "Megjelentetés szerkesztő"
+
+msgid "user.role.proofreaders"
+msgstr "Korrektorok"
+
+msgid "user.role.copyeditors"
+msgstr "Lektorok"
+
+msgid "user.role.editors"
+msgstr "Szerkesztők"
+
+msgid "user.role.subEditors"
+msgstr "Sorozatszerkesztők"
+
+msgid "user.role.managers"
+msgstr "Kiadó menedzserek"
+
+msgid "user.role.productionEditor"
+msgstr "Megjelentetés szerkesztő"
+
+msgid "user.role.proofreader"
+msgstr "Korrektor"
+
+#, fuzzy
+msgid "user.role.copyeditor"
+msgstr "Lektor"
+
+msgid "user.role.subEditor"
+msgstr "Sorozatszerkesztő"
+
+msgid "user.role.pressEditor"
+msgstr "Kiadó szerkesztő"
+
+msgid "user.role.manager"
+msgstr "Kiadó menedzser"
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+"Ha kérte, hogy valamelyik kiadó bírálója legyen, kérjük, adja meg az "
+"érdeklődési körét."
+
+#, fuzzy
+msgid "user.register.otherContextRoles"
+msgstr "Kérje az alábbi szerepeket."
+
+msgid "user.register.contextsPrompt"
+msgstr "Melyik kiadóknál szeretne regisztrálni ezen az oldalon?"
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+"Igen, szeretném, ha megkeresnének, hogy lektoráljam a kiadóhoz benyújtott "
+"kéziratokat."
+
+msgid "catalog.coverImageTitle"
+msgstr "Borítókép"
+
+#, fuzzy
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "Érvénytelen megjelentetett beküldést adtak meg."
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "További kiadók elrejtése"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "Regisztráció további kiadóknál"
+
+msgid "submission.pdf.download"
+msgstr "Töltse le ezt a PDF fájlt"
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Könyv"
+
+#, fuzzy
+msgid "debug.notes.helpMappingLoad"
+msgstr "Reloaded XML help mapping file {$filename} in search of {$id}."
+
+#, fuzzy
+msgid "payment.directSales.monograph.description"
+msgstr ""
+"Ez a tranzakció egy kötet vagy kötetfejezet közvetlen letöltésének "
+"megvásárlására vonatkozik."
+
+#, fuzzy
+msgid "payment.directSales.monograph.name"
+msgstr "Vásárolt kötet vagy fejezet letöltése"
+
+msgid "payment.directSales.download"
+msgstr "Letöltés {$format}"
+
+#, fuzzy
+msgid "payment.directSales.purchase"
+msgstr "Vásárlás {$format} ({$amount} {$currency})"
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "Érvényes számszerű árat kell megadni."
+
+#, fuzzy
+msgid "payment.directSales.price.description"
+msgstr ""
+"A fájlformátumok a kiadó honlapjáról letölthetők a nyílt hozzáférésen "
+"keresztül, az olvasók számára költségmentesen vagy közvetlen értékesítéssel ("
+"online fizetési folyamat segítségével, ahogy a Terjesztés oldal került "
+"beállításra). Ehhez a fájlhoz adja meg a hozzáférés alapját."
+
+msgid "payment.directSales.openAccess"
+msgstr "Nyílt hozzáférés (Open Access)"
+
+#, fuzzy
+msgid "payment.directSales.notSet"
+msgstr "Nincs megadva"
+
+msgid "payment.directSales.notAvailable"
+msgstr "Nem elérhető"
+
+msgid "payment.directSales.amount"
+msgstr "{$amount} ({$currency})"
+
+#, fuzzy
+msgid "payment.directSales.directSales"
+msgstr "Közvetlen értékesítés"
+
+msgid "payment.directSales.numericOnly"
+msgstr "Az árak csak számjegyek lehetnek. Ne tartalmazzon valuta szimbólumokat."
+
+msgid "payment.directSales.priceCurrency"
+msgstr "Ár ({$currency})"
+
+msgid "payment.directSales.approved"
+msgstr "Jóváhagyva"
+
+msgid "payment.directSales.catalog"
+msgstr "Katalógus"
+
+msgid "payment.directSales.availability"
+msgstr "Elérhetőség"
+
+msgid "payment.directSales.price"
+msgstr "Ár"
+
+msgid "payment.directSales"
+msgstr "Letöltés a kiadó honlapjáról"
+
+#, fuzzy
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+"Hozzáférés megtagadva! Az Ön által használt felhasználói csoport nincs "
+"hozzárendelve ehhez a munkafolyamathoz. Kérjük, ellenőrizze a kiadó "
+"beállításait."
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr ""
+"Hozzáférés megtagadva! Ön nem lett hozzárendelve ehhez a munkafolyamathoz."
+
+msgid "user.authorization.seriesAssignment"
+msgstr "Ön olyan kötethez próbál hozzáférni, amely nem része az Ön sorozatának."
+
+#, fuzzy
+msgid "user.authorization.noContext"
+msgstr "Nincs sajtó!"
+
+#, fuzzy
+msgid "user.authorization.invalidMonograph"
+msgstr "Érvénytelen vagy nincs a kért kötet!"
+
+msgid "user.authorization.monographFile"
+msgstr "Öntől megtagadták a hozzáférést a megadott kötet fájljához."
+
+msgid "user.authorization.monographReviewer"
+msgstr ""
+"Öntől megtagadták a hozzáférést, mert úgy tűnik, hogy Ön nincs hozzárendelve "
+"a kötethez bírálóként."
+
+msgid "user.authorization.monographAuthor"
+msgstr ""
+"Öntől megtagadták a hozzáférést, mert úgy tűnik, hogy Ön nem szerzője ennek "
+"a kötetnek."
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr ""
+"Öntől megtagadták a hozzáférést, mert úgy tűnik, hogy Ön nem rendelkezik "
+"bírálati szerepkörrel ennél a kötetnél."
+
+msgid "notification.type.visitCatalog"
+msgstr ""
+"A kötetet jóváhagyták. Kérjük, látogasson el a Marketing és Kiadvány fülre, "
+"ahol a fenti linkek segítségével kezelheti a katalógus adatait."
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "Katalógus kezelése"
+
+msgid "notification.type.configurePaymentMethod"
+msgstr ""
+"Az e-kereskedelmi beállítások meghatározása előtt szükség van fizetési mód "
+"beállítására."
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "Nincs beállítva fizetési mód."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+"A kötet nem kerül be a katalógusba, amíg nem kerül megjelentetésre. A könyv "
+"katalógusba való felvételéhez kattintson a Kiadvány fülre."
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "Jóváhagyásra vár."
+
+msgid "notification.type.approveSubmission"
+msgstr ""
+"Ez a beküldött anyag jelenleg jóváhagyásra vár a Katalógusbejegyzés "
+"eszközben, mielőtt megjelenne a nyilvános katalógusban."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "A belső bírálati folyamat megkezdődött."
+
+msgid "notification.type.indexRequest"
+msgstr "Felkérték, hogy hozzon létre egy indexet a(z) \"{$cím}\" számára."
+
+#, fuzzy
+msgid "notification.type.layouteditorRequest"
+msgstr "Felkérték, hogy vizsgálja felül a(z) \"{$cím}\" tördelését."
+
+#, fuzzy
+msgid "notification.type.copyeditorRequest"
+msgstr "Felkérték, hogy lektorálja ezt a fájlt: \"{$file}\"."
+
+msgid "notification.type.editorAssignmentTask"
+msgstr "Új kötetet küldtek be, amelyhez szerkesztőt kell hozzárendelni."
+
+msgid "notification.type.public"
+msgstr "Nyilvános hirdetmények"
+
+msgid "notification.type.userComment"
+msgstr "Egy olvasó hozzászólt ehhez: \"{$cím}\"."
+
+msgid "notification.type.submissions"
+msgstr "Beküldési események"
+
+#, fuzzy
+msgid "notification.type.site"
+msgstr "Oldal Események"
+
+#, fuzzy
+msgid "notification.type.reviewing"
+msgstr "Események áttekintése"
+
+#, fuzzy
+msgid "notification.type.editing"
+msgstr "Események szerkesztése"
+
+msgid "notification.type.submissionSubmitted"
+msgstr "Új kötetet küldtek be \"{$title},\" címmel."
+
+msgid "notification.removedSubmission"
+msgstr "Beküldés törölve."
+
+msgid "notification.proofsApproved"
+msgstr "Kefelenyomatok jóváhagyva."
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "Kiadványformátum metaadatok mentve."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "Katalógus metaadatok mentve."
+
+msgid "notification.removedSpotlight"
+msgstr "Ajánló eltávolítva."
+
+msgid "notification.editedSpotlight"
+msgstr "Ajánló szerkesztve."
+
+msgid "notification.addedSpotlight"
+msgstr "Ajánló hozzáadva."
+
+msgid "notification.removedMarket"
+msgstr "Piac eltávolítva."
+
+msgid "notification.editedMarket"
+msgstr "Piac szerkesztve."
+
+msgid "notification.addedMarket"
+msgstr "Piac hozzáadva."
+
+msgid "notification.removedRepresentative"
+msgstr "Képviselő eltávolítva."
+
+msgid "notification.editedRepresentative"
+msgstr "Képviselő szerkesztve."
+
+msgid "notification.addedRepresentative"
+msgstr "Képviselő hozzáadva."
+
+msgid "notification.removedSalesRights"
+msgstr "Értékesítési jogok eltávolítva."
+
+msgid "notification.editedSalesRights"
+msgstr "Értékesítési jogok szerkesztve."
+
+msgid "notification.addedSalesRights"
+msgstr "Értékesítési jogok hozzáadva."
+
+msgid "notification.removedPublicationFormat"
+msgstr "Kiadványformátum eltávolítva."
+
+msgid "notification.editedPublicationFormat"
+msgstr "Kiadványformátum szerkesztve."
+
+msgid "notification.addedPublicationFormat"
+msgstr "Kiadványformátum hozzáadva."
+
+msgid "notification.removedPublicationDate"
+msgstr "Megjelenési dátuma eltávolítva."
+
+msgid "notification.editedPublicationDate"
+msgstr "Megjelenési dátuma szerkesztve."
+
+msgid "notification.addedPublicationDate"
+msgstr "Megjelenési dátuma hozzáadva."
+
+msgid "notification.addedIdentificationCode"
+msgstr "Azonosító kód hozzáadva."
+
+msgid "notification.removedIdentificationCode"
+msgstr "Azonosító kód eltávolítva."
+
+msgid "notification.editedIdentificationCode"
+msgstr "Azonosító kód szerkesztve."
+
+#, fuzzy
+msgid "log.imported"
+msgstr "{$userName} feltöltötte a(z) {$submissionId} számú kötetet."
+
+msgid "log.proofread.complete"
+msgstr ""
+"{$proofreaderName} benyújtotta ütemezésre a(z) {$submissionId} számú "
+"kéziratot."
+
+msgid "log.proofread.assign"
+msgstr ""
+"{$assignerName} hozzárendelte {$proofreaderName} korrektort a(z) "
+"{$submissionId} számú kézirat korrektúrázáshoz."
+
+msgid "log.editor.editorAssigned"
+msgstr ""
+"{$editorName} lett hozzárendelve szerkesztőként a(z) {$submissionId} számú "
+"kézirathoz."
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "Új megjelenés a kategóriában"
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "Új megjelenés"
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "A kötet nincs új megjelenésként megjelölve."
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "A kötet új megjelenésként van megjelölve."
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "A kötet nem kiemelt."
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "A kötet kiemelt."
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "Kiemelt a sorozatban"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "Kiemelt a kategóriában"
+
+msgid "catalog.manage.featured"
+msgstr "Kiemelt"
+
+msgid "catalog.manage.noMonographs"
+msgstr "Nincsenek hozzárendelt kötetek."
+
+msgid "catalog.manage.manageCategories"
+msgstr "Kategóriák kezelése"
+
+msgid "catalog.manage.manageSeries"
+msgstr "Sorozatok kezelése"
+
+#, fuzzy
+msgid "catalog.manage.newRelease"
+msgstr "Megjelenés"
+
+#, fuzzy
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "Görgethető elem"
+
+msgid "catalog.manage.seriesDescription"
+msgstr ""
+"Kattintson a \"Kiemelés\"-re , majd a csillagra, hogy kiválassza a sorozat "
+"kiemelt könyvét; húzással sorba rendezheti őket. A sorozatokat a "
+"szerkesztő(k) és a sorozat címe azonosítja, egy kategórián belül vagy "
+"önállóan."
+
+#, fuzzy
+msgid "catalog.manage.categoryDescription"
+msgstr ""
+"Kattintson a \"Kiemelés\"-re, majd a csillagra, hogy kiválasszon egy kiemelt "
+"könyvet ebben a kategóriában; húzással sorba rendezheti őket."
+
+#, fuzzy
+msgid "catalog.manage.homepageDescription"
+msgstr ""
+"A kiválasztott könyvek borítóképe a honlap tetején, görgethető elemként "
+"jelenik meg. Kattintson a \"Kiemelés\", majd a csillagra, ha egy könyvet "
+"szeretne hozzáadni a listás megjelenítéshez; kattintson a felkiáltójelre, ha "
+"új kiadványként szeretné bemutatni; húzással sorba rendezheti őket."
+
+msgid "catalog.selectCategory"
+msgstr "Kategória kiválasztása"
+
+msgid "log.editor.restored"
+msgstr "A {$submissionId} számú kézirat visszakerült a várólistára."
+
+msgid "log.editor.archived"
+msgstr "A {$submissionId} számú kéziratot archiválták."
+
+msgid "log.editor.recommendation"
+msgstr ""
+"Egy szerkesztői javaslat  ({$decision}) került rögzítésre a {$submissionId} "
+"számú kötethez {$editorName} szerkesztő által."
+
+msgid "log.editor.decision"
+msgstr ""
+"Egy szerkesztői döntés  ({$decision}) került rögzítésre a {$submissionId} "
+"számú kötethez {$editorName} szerkesztő által."
+
+#, fuzzy
+msgid "log.review.reviewUnconsidered"
+msgstr ""
+"{$editorName} a(z) {$submissionId} számú kézirat bírálatának {$round} körét  "
+"megfontolás nélküliként jelölte meg."
+
+msgid "log.review.reviewAccepted"
+msgstr ""
+"{$reviewerName} elfogadta a {$submissionId} számú kézirat {$round} körének "
+"bírálatát."
+
+msgid "log.review.reviewDeclined"
+msgstr ""
+"{$reviewerName} elutasította a {$submissionId} számú kézirat {$round} "
+"körének bírálatát."
+
+msgid "log.review.reviewDueDateSet"
+msgstr ""
+"A(z) {$reviewerName} által bírálandó {$submissionId} számú kézirat {$round} "
+"körének lektorálási határideje megváltozott:  {$dueDate}"
+
+msgid "installer.upgradeComplete"
+msgstr ""
+"<p>Az OMP frissítése a {$version} verzióra sikeresen befejeződött.</p>\n"
+"<p>Ne felejtse el visszaállítani a config.inc.php konfigurációs fájlban az \""
+"installed\" beállítást <em>On</em>-ra.</p>\n"
+"<p>Ha még nem regisztrált és híreket és frissítéseket szeretne kapni, "
+"<strong>kérjük, regisztráljon a <a href=\"http://pkp.sfu.ca/omp/register\" "
+"target=\"_blank\">http://pkp.sfu.ca/omp/register</a> oldalon</strong>. Ha "
+"kérdése vagy észrevétele van, kérjük, látogasson el a <a href=\""
+"http://forum.pkp.sfu.ca\" target=\"_blank\">támogatási fórumra</a>.</p>"
+
+msgid "installer.installationComplete"
+msgstr ""
+"<p>Az OMP telepítése sikeresen befejeződött.</p>\n"
+"<p>A rendszer használatának megkezdéséhez <a href=\"{$loginUrl}\">"
+"jelentkezzen be</a> az előző oldalon megadott felhasználónévvel és "
+"jelszóval.</p>\n"
+"<p>Ha híreket és frissítéseket szeretne kapni, <strong>kérjük, regisztráljon "
+"a <a href=\"http://pkp.sfu.ca/omp/register\" target=\"_blank\""
+">http://pkp.sfu.ca/omp/register</a> oldalon</strong>. Ha kérdése vagy "
+"észrevétele van, kérjük, látogasson el a <a href=\"http://forum.pkp.sfu.ca\" "
+"target=\"_blank\">támogatási fórumra</a>.</p>"
+
+#, fuzzy
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>FONTOS</h4>\n"
+"<p>A telepítő nem tudta automatikusan felülírni a konfigurációs fájlt. "
+"Mielőtt megpróbálná használni a rendszert, kérjük, nyissa meg a "
+"<tt>config.inc.php</tt> fájlt egy megfelelő szövegszerkesztővel, és cserélje "
+"ki a tartalmát az alábbi szövegmező tartalmára.</p>"
+
+msgid "installer.upgradeApplication"
+msgstr "Open Monograph Press frissítése"
+
+msgid "installer.databaseSettingsInstructions"
+msgstr ""
+"Az OMP-nek szüksége van egy SQL-adatbázishoz való hozzáférésre az adatok "
+"tárolásához. A támogatott adatbázisok listáját lásd a fenti "
+"rendszerkövetelményeknél. Az alábbi mezőkben adja meg az adatbázishoz való "
+"csatlakozáshoz használandó beállításokat."
+
+#, fuzzy
+msgid "installer.filesDirInstructions"
+msgstr ""
+"Adja meg egy meglévő könyvtár teljes elérési útvonalát, ahol a feltöltött "
+"fájlokat tárolni kívánja. Ez a könyvtár nem lehet közvetlenül elérhető az "
+"interneten. <strong>A telepítés előtt győződjön meg arról, hogy ez a "
+"könyvtár létezik és írható</strong>. A Windows elérési útvonalak neveiben "
+"perjelet kell használni, pl.: \"C:/mypress/files\"."
+
+msgid "grid.action.proofApproved"
+msgstr "Formátum korrektúrázva"
+
+#, fuzzy
+msgid "grid.action.approveProofs"
+msgstr "A kefelenyomat felület megtekintése"
+
+msgid "grid.action.submissionEmail"
+msgstr "Kattintson az e-mail elolvasásához"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Tovább a kiadó értesítések oldalára"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Kiadványformátum fül megjelenítése"
+
+msgid "grid.action.createContext"
+msgstr "Új kiadó létrehozása"
+
+msgid "grid.action.deleteDate"
+msgstr "Dátum törlése"
+
+msgid "grid.action.editDate"
+msgstr "Dátum szerkesztése"
+
+msgid "grid.action.addDate"
+msgstr "Publikációs dátum hozzáadása"
+
+msgid "grid.action.deleteMarket"
+msgstr "Piac törlése"
+
+msgid "grid.action.editMarket"
+msgstr "Piac szerkesztése"
+
+msgid "grid.action.addMarket"
+msgstr "Piac hozzáadása"
+
+msgid "grid.action.deleteRights"
+msgstr "Ezeknek a jogoknak a törlése"
+
+msgid "grid.action.editRights"
+msgstr "Ezeknek a jogoknak a szerkesztése"

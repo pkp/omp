@@ -1,6 +1,7 @@
+# Hüseyin Körpeoğlu <yoruyenturk@hotmail.com>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-05-08 03:13+0000\n"
+"PO-Revision-Date: 2021-09-16 13:05+0000\n"
 "Last-Translator: Hüseyin Körpeoğlu <yoruyenturk@hotmail.com>\n"
 "Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "tr_TR/>\n"
@@ -1426,3 +1427,30 @@ msgid "manager.setup.selectCountry"
 msgstr ""
 "Bu yayıncının bulunduğu ülkeyi veya yayıncının posta adresinin bulunduğu "
 "ülkeyi seçin."
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr "Birden fazla yayının barındırıldığı web sitesinin adı"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "Ödeme tutarının para birimi, örn; USD gibi"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "Ödeme tutarı"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "Ödeme türünün adı"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "Yayının birincil irtibat kişisinin e-posta adresi"
+
+msgid "emailTemplate.variable.context.principalContactSignature"
+msgstr "Otomatik e-postalar için yayının e-posta imzası"
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "Yayının birincil irtibat kişisinin adı"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "Yayının ana sayfasının URL'si"
+
+msgid "emailTemplate.variable.context.contextName"
+msgstr "Yayının adı"

@@ -1,11 +1,13 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+# Molnár Tamás <molnart@bibl.u-szeged.hu>, 2021.
+# Kiss Jázmin <kissfjazmin@gmail.com>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-08-07 02:49+0000\n"
-"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
+"PO-Revision-Date: 2021-09-23 23:30+0000\n"
+"Last-Translator: Kiss Jázmin <kissfjazmin@gmail.com>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/default/"
-"hu/>\n"
-"Language: hu\n"
+"hu_HU/>\n"
+"Language: hu_HU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,36 +23,33 @@ msgstr "Külső bírálók"
 msgid "default.groups.name.externalReviewer"
 msgstr "Külső bírálat"
 
-#, fuzzy
 msgid "default.contextSettings.forLibrarians"
 msgstr ""
-"Arra biztatjuk a kutató könyvtárakat, hogy ezt a közreadót vegyék fel "
+"Arra biztatjuk a kutató könyvtárakat, hogy ezt a kiadót vegyék fel "
 "könyvtáruk elektronikus állományába. Mint ahogy ez a nyílt forráskódú "
 "publikációs rendszer alkalmas arra is, hogy a könyvtárak elérhetővé tegyék "
-"saját oktatóik számára azokat a közreadókat is, amelyekben szerkesztési "
+"saját oktatóik számára azokat a kiadókat is, amelyekben szerkesztési "
 "munkákat vállalnak (lásd: <a href=\"http://pkp.sfu.ca/omp\">Open Monograph "
 "Press</a>)."
 
-#, fuzzy
 msgid "default.contextSettings.forAuthors"
 msgstr ""
-"Érdeklődik a megjelentetés iránt ennél a közreadónál? Javasoljuk, hogy "
-"olvassa el a <a href=\"{$indexUrl}/{$contextPath}/about\">Közreadóról</a> "
-"szóló oldalt, ahol a közreadó szabályzatát és a <a href=\""
-"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\">Szerzői "
-"útmutatót</a> találja. A szerzőknek a beküldéshez <a href=\""
-"{$indexUrl}/{$contextPath}/user/register\">regisztrálniuk</a> kell, vagy ha "
-"már regisztráltak, egyszerűen <a href=\"{$indexUrl}/index/login\""
-">bejelentkezhetnek</a> és megkezdhetik az 5 lépéses beküldési folyamatot."
+"Érdeklődik a megjelentetés iránt ennél a kiadónál? Javasoljuk, hogy olvassa "
+"el a <a href=\"{$indexUrl}/{$contextPath}/about\">Kiadóról</a> szóló oldalt, "
+"ahol a kiadó szabályzatát és a <a href=\"{$indexUrl}/{$contextPath}/about/"
+"submissions#authorGuidelines\">Szerzői útmutatót</a> találja. A szerzőknek a "
+"beküldéshez <a href=\"{$indexUrl}/{$contextPath}/user/register\""
+">regisztrálniuk</a> kell, vagy ha már regisztráltak, egyszerűen <a href=\""
+"{$indexUrl}/index/login\">bejelentkezhetnek</a> és megkezdhetik az 5 lépéses "
+"beküldési folyamatot."
 
-#, fuzzy
 msgid "default.contextSettings.forReaders"
 msgstr ""
 "Arra biztatjuk olvasóinkat, hogy iratkozzanak fel a megjelenésről értesítő "
 "szolgáltatásra. Használják a kezdőoldal tetején található  <a href=\""
 "{$indexUrl}/{$contextPath}/user/register\">Regisztráció</a> linket. A "
 "regisztráció eredményeként az olvasó e-mailben megkapja az új monográfiák "
-"tartalomjegyzéket. Ez a lista azt is lehetővé teszi a közreadó számára, hogy "
+"tartalomjegyzéket. Ez a lista azt is lehetővé teszi a kiadó számára, hogy "
 "bizonyos szintű támogatást vagy olvasottságot igényeljen. Lásd az <a href=\""
 "{$indexUrl}/{$contextPath}/about/submissions#privacyStatement\">Adatvédelmi "
 "nyilatkozatot</a>, ami biztosítja az olvasókat arról, hogy nevüket és e-mail "
@@ -58,13 +57,13 @@ msgstr ""
 
 msgid "default.contextSettings.openAccessPolicy"
 msgstr ""
-"A közreadó azonnali nyílt hozzáférést biztosít tartalmaihoz, azon az elven "
+"A kiadó azonnali nyílt hozzáférést biztosít tartalmaihoz, azon az elven "
 "alapulva, hogy a kutatások szabadon hozzáférhetővé tétele a nyilvánosság "
 "számára elősegíti a tudás nagyobb mértékű globális cseréjét."
 
 msgid "default.contextSettings.privacyStatement"
 msgstr ""
-"<p>Az ezen az oldalon megadott nevek és email címek kizárólag az oldalon "
+"<p>A kiadónál megadott nevek és email címek kizárólag a kiadó által "
 "megjelölt célokra kerülnek felhasználásra, és azok más célra vagy másik fél "
 "számára nem lesznek rendelkezésre bocsájtva.</p>"
 
@@ -73,7 +72,7 @@ msgstr ""
 "A szöveg betartja azokat a stilisztikai és bibliográfiai irányelveket, "
 "amelyek a  <a href=\"{$indexUrl}/{$contextPath}/about/submissions#"
 "authorGuidelines\" target=\"_blank\">Szerzői útmutatóban</a> kerültek "
-"meghatározásra."
+"meghatározásra, és amelyek a Kiadóról részben találhatóak."
 
 msgid "default.contextSettings.checklist.submissionAppearance"
 msgstr ""
@@ -93,7 +92,7 @@ msgstr ""
 msgid "default.contextSettings.checklist.notPreviouslyPublished"
 msgstr ""
 "A beküldött anyag korábban nem került publikálásra és jelenleg sem áll "
-"elbírálás alatt más közreadónál (vagy magyarázatot adhat a Megjegyzéseknél a "
+"elbírálás alatt más kiadónál (vagy magyarázatot adhat a Megjegyzéseknél a "
 "szerkesztőnek)."
 
 msgid "default.groups.abbrev.volumeEditor"
@@ -124,7 +123,6 @@ msgstr "Sorozat szerkesztők"
 msgid "default.groups.name.sectionEditor"
 msgstr "Sorozat szerkesztő"
 
-#, fuzzy
 msgid "default.groups.abbrev.editor"
 msgstr "KSZ"
 
@@ -132,21 +130,17 @@ msgstr "KSZ"
 msgid "default.groups.abbrev.manager"
 msgstr "KM"
 
-#, fuzzy
 msgid "default.groups.plural.editor"
-msgstr "Kiadó szerkesztők"
+msgstr "Kiadói szerkesztők"
 
-#, fuzzy
 msgid "default.groups.name.editor"
-msgstr "Kiadó szerkesztő"
+msgstr "Kiadói szerkesztő"
 
-#, fuzzy
 msgid "default.groups.plural.manager"
-msgstr "Kiadó menedzserek"
+msgstr "Sajtómenedzserek"
 
-#, fuzzy
 msgid "default.groups.name.manager"
-msgstr "Kiadó menedzser"
+msgstr "Sajtómenedzser"
 
 msgid "default.genres.other"
 msgstr "Egyéb"
@@ -163,9 +157,8 @@ msgstr "Ábra"
 msgid "default.genres.table"
 msgstr "Táblázat"
 
-#, fuzzy
 msgid "default.genres.prospectus"
-msgstr "Tájékoztató/ismertető?"
+msgstr "Tájékoztató"
 
 msgid "default.genres.preface"
 msgstr "Előszó"
