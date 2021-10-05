@@ -111,21 +111,21 @@ class OAIDAO extends PKPOAIDAO
         $sets = [];
         foreach ($presses as $press) {
             $title = $press->getLocalizedName();
-            $abbrev = $press->getPath();
 
             $dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO'); /* @var $dataObjectTombstoneDao DataObjectTombstoneDAO */
             $publicationFormatSets = $dataObjectTombstoneDao->getSets(ASSOC_TYPE_PRESS, $press->getId());
 
-            if (!array_key_exists(urlencode($abbrev), $publicationFormatSets)) {
-                array_push($sets, new OAISet(urlencode($abbrev), $title, ''));
+            if (!array_key_exists(self::setSpec($press), $publicationFormatSets)) {
+                array_push($sets, new OAISet(self::setSpec($press), $title, ''));
             }
 
             $seriesFactory = $this->_seriesDao->getByPressId($press->getId());
             foreach ($seriesFactory->toArray() as $series) {
-                if (array_key_exists(urlencode($abbrev) . ':' . urlencode($series->getPath()), $publicationFormatSets)) {
-                    unset($publicationFormatSets[urlencode($abbrev) . ':' . urlencode($series->getPath())]);
+                $setSpec = self::setSpec($press, $series);
+                if (array_key_exists($setSpec, $publicationFormatSets)) {
+                    unset($publicationFormatSets[$setSpec]);
                 }
-                array_push($sets, new OAISet(urlencode($abbrev) . ':' . urlencode($series->getPath()), $series->getLocalizedTitle(), ''));
+                array_push($sets, new OAISet($setSpec, $series->getLocalizedTitle(), ''));
             }
             foreach ($publicationFormatSets as $publicationFormatSetSpec => $publicationFormatSetName) {
                 array_push($sets, new OAISet($publicationFormatSetSpec, $publicationFormatSetName, ''));
@@ -171,6 +171,14 @@ class OAIDAO extends PKPOAIDAO
         return [$pressId, $seriesId];
     }
 
+    public static function setSpec($press, $series = null): string
+    {
+        // path is restricted to ascii alphanumeric, '-' and '_' so it only contains valid setSpec chars
+        return isset($series)
+            ? $press->getPath() . ':' . $series->getPath()
+            : $press->getPath();
+    }
+
 
     //
     // Protected methods.
@@ -185,7 +193,7 @@ class OAIDAO extends PKPOAIDAO
         $publicationFormatId = $row['data_object_id'];
 
         $record->identifier = $this->oai->publicationFormatIdToIdentifier($publicationFormatId);
-        $record->sets = [urlencode($press->getPath()) . ($series ? ':' . urlencode($series->getPath()) : '')];
+        $record->sets = [self::setSpec($press, $series)];
 
         if ($isRecord) {
             $publicationFormat = $this->_publicationFormatDao->getById($publicationFormatId);

@@ -14,6 +14,7 @@
  */
 
 use APP\facades\Repo;
+use APP\oai\omp\OAIDAO;
 use APP\submission\Submission;
 use PKP\submission\PKPSubmission;
 
@@ -45,10 +46,10 @@ class PublicationFormatTombstoneManager
         $dataObjectTombstoneDao->deleteByDataObjectId($publicationFormat->getId());
         // insert publication format tombstone
         if (is_a($series, 'Series')) {
-            $setSpec = urlencode($press->getPath()) . ':' . urlencode($series->getPath());
+            $setSpec = OAIDAO::setSpec($press, $series);
             $setName = $series->getLocalizedTitle();
         } else {
-            $setSpec = urlencode($press->getPath());
+            $setSpec = OAIDAO::setSpec($press);
             $setName = $press->getLocalizedName();
         }
         $oaiIdentifier = 'oai:' . Config::getVar('oai', 'repository_id') . ':' . 'publicationFormat/' . $publicationFormat->getId();
