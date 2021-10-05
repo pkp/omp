@@ -33,7 +33,7 @@ class SitemapHandler extends PKPSitemapHandler {
 		$submissionsIterator = Services::get('submission')->getMany(['status' => STATUS_PUBLISHED, 'contextId' => $pressId, 'count' => 1000]);
 		foreach ($submissionsIterator as $submission) {
 			// Book
-			$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', array($submission->getBestId()))));
+			$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'book', array($submission->getBestId()))));
 			// Files
 			// Get publication formats
 			$publicationFormats = DAORegistry::getDAO('PublicationFormatDAO')->getApprovedByPublicationId($submission->getCurrentPublication()->getId())->toArray();
