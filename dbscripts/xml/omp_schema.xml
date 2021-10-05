@@ -468,6 +468,7 @@
 			<NOTNULL />
 			<DEFAULT VALUE="0"/>
 		</field>
+		<field name="source_chapter_id" type="I8" />
 		<index name="chapters_chapter_id">
 			<col>chapter_id</col>
 		</index>

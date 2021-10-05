@@ -10,11 +10,12 @@
  * @ingroup classes_controllers_form
  *
  * @brief A preset form for configuring whether chapters get their own
- *  publication dates
+ *  publication dates, landing pages and licenses.
  */
 
 namespace APP\components\forms\submission;
 
+use APP\submission\Submission;
 use PKP\components\forms\FieldOptions;
 use PKP\components\forms\FormComponent;
 
@@ -48,5 +49,15 @@ class PublicationDatesForm extends FormComponent
                 ['value' => true, 'label' => __('submission.catalogEntry.enableChapterPublicationDates')],
             ]
         ]));
+
+		$this->addField(new FieldOptions('enableChapterLandingPages', [
+			'label' => __('submission.catalogEntry.chapterLandingPages'),
+			'type' => 'checkbox',
+			'value' => $submission->getData('enableChapterLandingPages'),
+			'options' => [
+				['value' => true, 'false' => __('submission.catalogEntry.disableChapterLandingPages')],
+				['value' => true, 'label' => __('submission.catalogEntry.enableChapterLandingPages')],
+			]
+		]));
     }
 }

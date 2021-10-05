@@ -294,6 +294,69 @@ class Chapter extends \PKP\core\DataObject
     {
         $this->setData('pages', $pages);
     }
+
+	/**
+	 * Get source chapter id of chapter.
+	 *
+	 * @return int
+	 */
+	public function getSourceChapterId()
+	{
+		if(!$this->getData('sourceChapterId')) {
+			$this->setSourceChapterId((int) $this->getId());
+		}
+		return (int) $this->getData('sourceChapterId');
+	}
+
+	/**
+	 * Set source chapter id of chapter.
+	 *
+	 * @param $sourceChapterId int
+	 */
+	public function setSourceChapterId(int $sourceChapterId) : void
+	{
+		$this->setData('sourceChapterId', $sourceChapterId);
+	}
+
+	/**
+	 * Is a landing page enabled or disabled.
+	 *
+	 * @return null|int
+	 */
+	public function isLandingPageEnabled()
+	{
+		return $this->getData('isLandingPageEnabled');
+	}
+
+	/**
+	 * Enable or disable a landing page.
+	 *
+	 * @param $enable null|int
+	 */
+	public function setLandingPageEnabled(?int $enable) : void
+	{
+		$this->setData('isLandingPageEnabled', $enable);
+	}
+
+	/**
+	 * get license url
+	 *
+	 * @return null|string
+	 */
+	public function getLicenseUrl()
+	{
+		return $this->getData('licenseUrl');
+	}
+
+	/**
+	 * set license url
+	 *
+	 * @param $licenseUrl null|string
+	 */
+	public function setLicenseUrl(?string $licenseUrl) : void
+	{
+		$this->setData('licenseUrl', $licenseUrl);
+	}
 }
 
 if (!PKP_STRICT_MODE) {

@@ -94,6 +94,30 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
         );
     }
 
+	/**
+	 * Retrieve all chapters by source chapter id.
+	 *
+	 * @param $sourceChapterId int
+	 * @param $orderBySequence boolean
+	 *
+	 * @return DAOResultFactory
+	 */
+	public function getBySourceChapterId(int $sourceChapterId, bool $orderByPublicationId = true) : DAOResultFactory
+	{
+		return new DAOResultFactory(
+			$this->retrieve(
+				'SELECT	*
+				FROM submission_chapters
+				WHERE source_chapter_id = ?
+				OR chapter_id = ?'
+				. ($orderByPublicationId ? ' ORDER BY publication_id ASC' : ''),
+				[$sourceChapterId, $sourceChapterId]
+			),
+			$this,
+			'_fromRow'
+		);
+	}
+
     /**
      * Get the list of fields for which locale data is stored.
      *
@@ -117,6 +141,8 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
         $additionalFields[] = 'pub-id::publisher-id';
         $additionalFields[] = 'datePublished';
         $additionalFields[] = 'pages';
+        $additionalFields[] = 'isLandingPageEnabled';
+		$additionalFields[] = 'licenseUrl';
         return $additionalFields;
     }
 
@@ -143,6 +169,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
         $chapter->setId((int) $row['chapter_id']);
         $chapter->setData('publicationId', (int) $row['publication_id']);
         $chapter->setSequence((int) $row['seq']);
+		$chapter->setData('sourceChapterId', (int) ($row['source_chapter_id'] ?? $row['chapter_id']));
 
         $this->getDataObjectSettings('submission_chapter_settings', 'chapter_id', $row['chapter_id'], $chapter);
 
@@ -172,19 +199,21 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
      */
     public function insertChapter($chapter)
     {
-        $this->update(
-            'INSERT INTO submission_chapters
-				(publication_id, seq)
-				VALUES
-				(?, ?)',
-            [
-                (int) $chapter->getData('publicationId'),
-                (int) $chapter->getSequence(),
-            ]
-        );
+		$params = [
+			(int) $chapter->getData('publicationId'),
+			(int) $chapter->getSequence(),
+		];
 
+    	if ($chapter->getData('sourceChapterId')) {
+    		$query = 'INSERT INTO submission_chapters (publication_id, seq, source_chapter_id) VALUES (?, ?, ?)';
+        	$params[] = $chapter->getSourceChapterId();
+		} else {
+			$query = 'INSERT INTO submission_chapters (publication_id, seq) VALUES (?, ?)';
+		}
+
+    	$this->update($query, $params);
         $chapter->setId($this->getInsertId());
-        $this->updateLocaleFields($chapter);
+        $this->updateObject($chapter);
         return $chapter->getId();
     }
 
@@ -193,17 +222,19 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
      *
      * @param $chapter Chapter
      */
-    public function updateObject($chapter)
+    public function updateObject($chapter) : void
     {
         $this->update(
             'UPDATE submission_chapters
 				SET	publication_id = ?,
-					seq = ?
+					seq = ?,
+				    source_chapter_id = ?
 				WHERE
 					chapter_id = ?',
             [
                 (int) $chapter->getData('publicationId'),
                 (int) $chapter->getSequence(),
+				$chapter->getSourceChapterId(),
                 (int) $chapter->getId()
             ]
         );

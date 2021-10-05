@@ -467,3 +467,17 @@ msgstr "Publication details for version {$version}"
 msgid "submission.queries.production"
 msgstr "Production Discussions"
 
+msgid "submission.catalogEntry.chapterLandingPages"
+msgstr "Chapter Landing Pages"
+
+msgid "submission.catalogEntry.disableChapterLandingPages"
+msgstr "Chapters have not there own landing page."
+
+msgid "submission.catalogEntry.enableChapterLandingPages"
+msgstr "Each chapter may have its own landing page."
+
+msgid "publication.chapter.landingPage"
+msgstr "Landing Page"
+
+msgid "publication.chapter.hasLandingPage"
+msgstr "This chapter has a Landing Page"

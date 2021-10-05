@@ -1454,3 +1454,6 @@ msgstr "An invalid published submission was specified."
 
 msgid "catalog.coverImageTitle"
 msgstr "Cover Image"
+
+msgid "grid.catalogEntry.chapters"
+msgstr "Chapters"
