@@ -1,8 +1,9 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+# Molnár Tamás <molnart@bibl.u-szeged.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-08-19 14:05+0000\n"
-"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
+"PO-Revision-Date: 2021-09-22 14:06+0000\n"
+"Last-Translator: Molnár Tamás <molnart@bibl.u-szeged.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-csv/hu_HU/>\n"
 "Language: hu_HU\n"
@@ -37,7 +38,6 @@ msgstr "Nincs kézirat típus.  Kilépés."
 msgid "plugins.importexport.csv.unknownPress"
 msgstr "Ismeretlen oldal: \"{$contextPath}\".  Kihagyás."
 
-#, fuzzy
 msgid "plugins.importexport.csv.unknownLocale"
 msgstr "Ismeretlen nyelv: \"{$locale}\".  Kihagyás."
 
@@ -47,12 +47,11 @@ msgstr "Ismeretlen felhasználó: \"{$felhasználónév}\".  Kilépés."
 msgid "plugins.importexport.csv.fileDoesNotExist"
 msgstr "A \"{$filename}\" fájl nem létezik.  Kilépés."
 
-#, fuzzy
 msgid "plugins.importexport.csv.cliUsage"
 msgstr ""
 "Parancssori eszköz a CSV-adatok OMP-be történő importálásához\n"
 "Használat:\n"
-"{$scriptName} [--dry-run] fileName.csv username\n"
+"{$scriptName} [--dry-run] filenev.csv felhasználónév\n"
 "A --dry-run opcióval változtatások nélkül tesztelhetünk.\n"
 "Adja meg azt a felhasználónevet, amelyhez a beadványokat rendelni kívánja.\n"
 

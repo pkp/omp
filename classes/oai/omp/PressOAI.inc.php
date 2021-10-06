@@ -110,12 +110,9 @@ class PressOAI extends OAI
         $tmpArray = preg_split('/:/', $setSpec);
         if (count($tmpArray) == 1) {
             [$pressSpec] = $tmpArray;
-            $pressSpec = urldecode($pressSpec);
             $seriesSpec = null;
         } elseif (count($tmpArray) == 2) {
             [$pressSpec, $seriesSpec] = $tmpArray;
-            $pressSpec = urldecode($pressSpec);
-            $seriesSpec = urldecode($seriesSpec);
         } else {
             return [0, 0];
         }

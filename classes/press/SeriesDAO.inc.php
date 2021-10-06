@@ -290,11 +290,9 @@ class SeriesDAO extends PKPSectionDAO
         $result = $this->retrieveRange(
             'SELECT s.*
                 FROM series AS s
-                ' . ($withPublicationsOnly ? ' LEFT JOIN publications AS p ON p.series_id = s.series_id ' : '') . '
                 WHERE s.press_id = ?
                 ' . ($submittableOnly ? ' AND s.editor_restricted = 0' : '') . '
-                ' . ($withPublicationsOnly ? ' AND  p.status = ?' : '') . '
-                GROUP BY s.series_id
+                ' . ($withPublicationsOnly ? ' AND (SELECT COUNT(*) FROM publications AS p WHERE p.series_id = s.series_id AND p.status = ?) > 0' : '') . '
                 ORDER BY s.seq',
             $params,
             $rangeInfo

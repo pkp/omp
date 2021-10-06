@@ -1,0 +1,233 @@
+# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-09-30 14:06+0000\n"
+"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
+"Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
+"pubIds-doi/hu_HU/>\n"
+"Language: hu_HU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixDefault.description"
+msgstr ""
+"%p.%m a kötetekhez<br />%p.%m.c%c a fejezetekhez<br />%p.%m.%f a "
+"kiadványformátumokhoz<br />%p.%m.%f.%s a fájlokhoz."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixDefault"
+msgstr "Alapértelmezett minták használata."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.files"
+msgstr "fájloknak"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.representations"
+msgstr "kiadványformátumoknak"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "fejezeteknek"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "köteteknek"
+
+#, fuzzy
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.example"
+msgstr ""
+"Például a press%ppub%r létrehozhat egy DOI-t, például 10.1234/pressESPppub100"
+
+#, fuzzy
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"A DOI-utótagok létrehozásához használja az alábbiakban megadott mintát. "
+"Használja a %p-t a kiadó (press) kezdőbetűihez, a %m-t a kötet (monograph ) "
+"azonosítójához, a %c-t a fejezet (chapter) azonosítójához, a %f-t a "
+"kiadványformátum ( publication format) azonosítójához, a %s-t a fájl (file) "
+"azonosítójához és a %x-t az \"Egyéni azonosítóhoz\" (Custom Identifier)."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffix.description"
+msgstr ""
+"A DOI-utótag bármilyen formájú lehet, de egyedinek kell lennie minden olyan "
+"publikációs objektum között, amelyhez ugyanazt a DOI-előtagot rendelték:"
+
+#, fuzzy
+msgid "plugins.pubIds.doi.manager.settings.doiSuffix"
+msgstr "DOI utótag (suffix)"
+
+#, fuzzy
+msgid "plugins.pubIds.doi.manager.settings.doiPrefixPattern"
+msgstr "A DOI előtag (prefix) kötelező, és 10.xxxx formájúnak kell lennie."
+
+#, fuzzy
+msgid "plugins.pubIds.doi.manager.settings.doiPrefix.description"
+msgstr ""
+"A DOI prefixet a regisztrációs ügynökségek (pl. <a href=\""
+"http://www.crossref.org\" target=\"_new\">CrossRef</a>) osztják ki, és a "
+"10.xxxx (pl. 10.1234) formátumúak:"
+
+#, fuzzy
+msgid "plugins.pubIds.doi.manager.settings.doiPrefix"
+msgstr "DOI előtag (prefix)"
+
+msgid "plugins.pubIds.doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Fájlok"
+
+msgid "plugins.pubIds.doi.manager.settings.enableRepresentationDoi"
+msgstr "Kiadványformátumok"
+
+msgid "plugins.pubIds.doi.manager.settings.enableChapterDoi"
+msgstr "Fejezetek"
+
+#, fuzzy
+msgid "plugins.pubIds.doi.manager.settings.enablePublicationDoi"
+msgstr "Kötetek"
+
+msgid "plugins.pubIds.doi.manager.settings.explainDois"
+msgstr ""
+"Kérjük, válassza ki azokat a publikációs objektumokat, amelyekhez digitális "
+"objektumazonosítót (DOI) rendelnek:"
+
+msgid "plugins.pubIds.doi.manager.settings.doiObjectsRequired"
+msgstr ""
+"Kérjük, válassza ki azokat az objektumokat, amelyekhez DOI-kat kell rendelni."
+
+msgid "plugins.pubIds.doi.manager.settings.doiObjects"
+msgstr "Kiadó tartalma"
+
+msgid "plugins.pubIds.doi.manager.settings.description"
+msgstr ""
+"Kérjük, konfigurálja a DOI bővítményt, hogy képes legyen DOI-kat kezelni és "
+"használni az OMP-ben:"
+
+msgid "plugins.pubIds.doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "plugins.pubIds.doi.description"
+msgstr ""
+"Ez a bővítmény lehetővé teszi a Digitális Objektumazonosítók (DOI) "
+"hozzárendelését kötetekhez, fejezetekhez, kiadványformátumokhoz és fájlokhoz "
+"az OMP-ben."
+
+msgid "plugins.pubIds.doi.displayName"
+msgstr "DOI"
+
+msgid "plugins.pubIds.doi.editor.missingParts"
+msgstr ""
+"Nem tudja létrehozni a DOI-t, mert a DOI mintájából egy vagy több rész "
+"hiányzik."
+
+msgid "plugins.pubIds.doi.editor.customSuffixMissing"
+msgstr "A DOI nem rendelhető hozzá, mert az egyéni utótag hiányzik."
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeSubmissionFile"
+msgstr "fájl"
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeRepresentation"
+msgstr "kiadványformátum"
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeChapter"
+msgstr "fejezet"
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeSubmission"
+msgstr "kötet"
+
+msgid "plugins.pubIds.doi.editor.doi.assignDoi"
+msgstr "Hozzárendelés"
+
+msgid "plugins.pubIds.doi.editor.doi.description"
+msgstr "A DOI-nak ezzel kell kezdődnie: {$prefix}"
+
+msgid "plugins.pubIds.doi.editor.doi"
+msgstr "DOI"
+
+msgid "plugins.pubIds.doi.manager.settings.doiReassign.confirm"
+msgstr "Biztos, hogy az összes meglévő DOI-t törölni kívánja?"
+
+msgid "plugins.pubIds.doi.manager.settings.doiReassign.description"
+msgstr ""
+"Ha módosítja a DOI konfigurációt, a már hozzárendelt DOI-kat ez nem fogja "
+"érinteni. A DOI-konfiguráció mentése után ezzel a gombbal törölheti az "
+"összes meglévő DOI-t, hogy az új beállítások az összes meglévő objektummal "
+"érvénybe lépjenek."
+
+msgid "plugins.pubIds.doi.manager.settings.doiReassign"
+msgstr "DOI-k újbóli hozzárendelése"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Adja meg a fájlok DOI utótag mintáját."
+
+msgid "plugins.pubIds.doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Adja meg a kiadványformátumok DOI utótag mintáját."
+
+msgid "plugins.pubIds.doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Adja meg a fejezetek DOI utótag mintáját."
+
+msgid "plugins.pubIds.doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Adja meg a kötetek DOI utótag mintáját."
+
+#, fuzzy
+msgid "plugins.pubIds.doi.editor.preview.objects"
+msgstr "Elem"
+
+msgid "plugins.pubIds.doi.editor.preview.files"
+msgstr "Fájl: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.publicationFormats"
+msgstr "Kiadványformátum: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.chapters"
+msgstr "Fejezet: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.publication.none"
+msgstr "Ehhez a kiadványhoz nem rendeltek DOI-t."
+
+msgid "plugins.pubIds.doi.editor.preview.publication"
+msgstr "A publikáció DOI-ja lesz: {$doi}"
+
+msgid "plugins.pubIds.doi.editor.missingPrefix"
+msgstr "A DOI-nak ezzel kell kezdődnie: {$doiPrefix}"
+
+msgid "plugins.pubIds.doi.editor.assignDoi.assigned"
+msgstr "A DOI {$pubId} kiosztásra került."
+
+msgid "plugins.pubIds.doi.editor.assignDoi.pattern"
+msgstr "A DOI {$pubId} nem rendelhető hozzá, mert feloldatlan mintát tartalmaz."
+
+#, fuzzy
+msgid "plugins.pubIds.doi.editor.assignDoi.emptySuffix"
+msgstr "A DOI nem rendelhető hozzá, mert az egyéni utótag hiányzik."
+
+#, fuzzy
+msgid "plugins.pubIds.doi.editor.assignDoi"
+msgstr "A DOI {$pubId} hozzárendelése ehhez a {$pubObjectType} elemhez"
+
+msgid "plugins.pubIds.doi.editor.clearObjectsDoi.confirm"
+msgstr "Biztos, hogy törölni kívánja a meglévő DOI-t?"
+
+#, fuzzy
+msgid "plugins.pubIds.doi.editor.clearObjectsDoi"
+msgstr "Törlés?"
+
+msgid "plugins.pubIds.doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Az adott DOI utótag már használatban van egy másik közzétett elemnél. "
+"Kérjük, egyedi DOI utótagot adjon hozzá minden egyes tételhez."
+
+#, fuzzy
+msgid "plugins.pubIds.doi.editor.assigned"
+msgstr "A DOI-t ehhez a {$pubObjectType} elemhez rendelték."
+
+msgid "plugins.pubIds.doi.editor.canBeAssigned"
+msgstr ""
+"Amit lát, az a DOI előnézete. A DOI hozzárendeléséhez jelölje be a "
+"jelölőnégyzetet, és mentse el az űrlapot."
+
+#, fuzzy
+msgid "plugins.pubIds.doi.editor.patternNotResolved"
+msgstr "A DOI nem rendelhető hozzá, mert megoldatlan mintát tartalmaz."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier"
+msgstr ""
+"Adjon meg egy egyedi DOI utótagot (suffix) minden egyes közzétett tételhez. "
+"Az egyes tételek metaadat oldalán találni fog egy további DOI beviteli mezőt."
