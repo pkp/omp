@@ -11,15 +11,18 @@
  * @brief Describe database table structures.
  */
 
-use Illuminate\Database\Migrations\Migration;
+namespace APP\migration\upgrade;
+
+use APP\core\Application;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-
+use PKP\core\EntityDAO;
 use PKP\services\PKPSchemaService;
 use PKP\submission\SubmissionFile;
 
-class OMPv3_3_0UpgradeMigration extends Migration
+class OMPv3_3_0UpgradeMigration extends \PKP\migration\Migration
 {
     /**
      * Run the migrations.
@@ -80,20 +83,35 @@ class OMPv3_3_0UpgradeMigration extends Migration
         $schemaDAOs = [
             'SiteDAO',
             \PKP\announcement\DAO::class,
-            'AuthorDAO',
+            \PKP\author\DAO::class,
             'PressDAO',
             'EmailTemplateDAO',
             \APP\publication\DAO::class,
             \APP\submission\DAO::class
         ];
         $processedTables = [];
+        $application = Application::get();
         foreach ($schemaDAOs as $daoName) {
-            $dao = DAORegistry::getDAO($daoName);
+            $dao = null;
+            if ($application->getQualifiedDAOName($daoName)) {
+                $dao = DAORegistry::getDAO($daoName);
+            }
+
+            // Account for new EntityDAOs
+            if (!$dao) {
+                $dao = App::make($daoName);
+                if (!$dao) {
+                    throw new Exception("${daoName} could not be created when migrating serialized settings");
+                }
+            }
             $schemaService = Services::get('schema');
 
             if (is_a($dao, 'SchemaDAO')) {
                 $schema = $schemaService->get($dao->schemaName);
                 $tableName = $dao->settingsTableName;
+            } elseif (is_a($dao, EntityDAO::class)) {
+                $schema = $schemaService->get($dao->schema);
+                $tableName = $dao->settingsTable;
             } elseif ($daoName === 'SiteDAO') {
                 $schema = $schemaService->get(PKPSchemaService::SCHEMA_SITE);
                 $tableName = 'site_settings';

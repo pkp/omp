@@ -1,9 +1,10 @@
+# Jordi LC <jordi.lacruz@uab.cat>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2020-11-30 18:48+0000\n"
+"PO-Revision-Date: 2021-08-04 11:04+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "es_ES/>\n"
@@ -820,7 +821,7 @@ msgid "manager.setup.pageHeader"
 msgstr "Encabezado de la página de la publicación"
 
 msgid "manager.setup.pageHeaderDescription"
-msgstr "Se puede subir una versión gráfica del título y logo de la publicación (archivo .gif, .jpg o .png), si es posible una versión más pequeña que la usada en la página de inicio, para que aparezca como un encabezado en las páginas de la publicación y que reemplazará la versión textual."
+msgstr "Configuración de la cabecera de la página"
 
 msgid "manager.setup.pressPolicies"
 msgstr "Paso 2. Políticas de la publicación"
@@ -974,7 +975,10 @@ msgstr ""
 "sección Monografías.)"
 
 msgid "manager.setup.sectionsDescription"
-msgstr "Para crear o modificar secciones de la publicación (p. ej. Monografías, Reseñas de libros, etc.) vaya a la sección Gestión.<br /><br />Cuando los autores/as envíen elementos a la publicación designarán..."
+msgstr ""
+"Para crear o modificar secciones de la publicación (p. ej. monografías, "
+"reseñas de libros, etc.) vaya a la sección Gestión.<br /><br />Los autores/"
+"as que envíen elementos a la publicación designarán..."
 
 msgid "manager.setup.securitySettings"
 msgstr "Configuración de acceso y seguridad"
@@ -1376,7 +1380,7 @@ msgid "manager.setup.masthead.success"
 msgstr "Los detalles de la cabecera de este medio se han actualizado."
 
 msgid "manager.setup.lists.success"
-msgstr "La configuración de la lista para esta publicación se ha actualizado."
+msgstr "Los ajustes de lista se han actualizado."
 
 msgid "manager.setup.keyInfo.description"
 msgstr ""
@@ -1498,3 +1502,42 @@ msgid "manager.series.confirmDeactivateSeries.error"
 msgstr ""
 "Debe estar activa como mínimo una serie. Visite los ajustes del flujo de "
 "trabajo para deshabilitar todos los envíos a la editorial."
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "El proceso ha fallado al analizar los capítulos"
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "El proceso ha fallado al analizar los formatos de publicación"
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "El usuario/a especificado, \"{$userName}\", no existe."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Los objetos especificados no se pueden encontrar."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"No se ha definido el contacto principal de esta editorial. Puede "
+"introducirlo en los <a href=\"{$url}\">ajustes de la editorial</a>."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Enviar una copia del correo electrónico de agradecimiento por el envío al "
+"contacto principal de la editorial."
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Exportar envíos"
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "XML inválido:"
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "No se han podido convertir los objetos seleccionados."
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "No se ha seleccionado ningún objeto."
+
+msgid "manager.setup.selectCountry"
+msgstr ""
+"Seleccione el país donde se ubica la editorial, o el país de la dirección "
+"postal de la editorial o del editor/a."

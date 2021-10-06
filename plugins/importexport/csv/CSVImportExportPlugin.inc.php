@@ -109,14 +109,12 @@ class CSVImportExportPlugin extends ImportExportPlugin
         $data = file($filename);
 
         if (is_array($data) && count($data) > 0) {
-            $userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
-            $user = $userDao->getByUsername($username);
+            $user = Repo::user()->getByUsername($username);
             if (!$user) {
                 echo __('plugins.importexport.csv.unknownUser', ['username' => $username]) . "\n";
                 exit();
             }
 
-            $authorDao = DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
             $pressDao = Application::getContextDAO();
             $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
             $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
@@ -190,7 +188,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                                     $emailAddress = $contactEmail;
                                 }
                             }
-                            $author = $authorDao->newDataObject();
+                            $author = Repo::author()->newDataObject();
                             $author->setSubmissionId($submissionId);
                             $author->setUserGroupId($authorGroup->getId());
                             $author->setGivenName($givenName, $locale);
@@ -200,7 +198,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                                 $author->setPrimaryContact(1);
                                 $firstAuthor = false;
                             }
-                            $authorDao->insertObject($author);
+                            Repo::author()->add($author);
                         } // Authors done.
 
                         $submission->setTitle($title, $locale);

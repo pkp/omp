@@ -17,6 +17,7 @@ use APP\submission\Submission;
 
 use APP\template\TemplateManager;
 use PKP\plugins\GenericPlugin;
+use APP\facades\Repo;
 
 class DublinCoreMetaPlugin extends GenericPlugin
 {
@@ -193,7 +194,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
         }
 
         $i = 0;
-        foreach ($chapter ? $chapter->getAuthors()->toArray() : $monograph->getAuthors() as $author) {
+        foreach ($chapter ? $chapter->getAuthors()->toArray() : Repo::author()->getSubmissionAuthors($monograph) as $author) {
             $templateMgr->addHeader('dublinCoreAuthor' . $i++, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
         }
 

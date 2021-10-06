@@ -167,21 +167,23 @@ class SeriesForm extends PKPSectionForm
         $templateMgr->assign('sortOptions', Repo::submission()->getSortSelectOptions());
 
         // Series Editors
-        $usersIterator = Services::get('user')->getMany([
-            'contextId' => $context->getId(),
-            'roleIds' => Role::ROLE_ID_SUB_EDITOR,
-        ]);
+        $usersIterator = Repo::user()->getMany(
+            Repo::user()->getCollector()
+            ->filterByContextIds([$context->getId()])
+            ->filterByRoleIds([Role::ROLE_ID_SUB_EDITOR])
+        );
         $availableSubeditors = [];
         foreach ($usersIterator as $user) {
             $availableSubeditors[(int) $user->getId()] = $user->getFullName();
         }
         $assignedToSeries = [];
         if ($this->getSeriesId()) {
-            $assignedToSeries = Services::get('user')->getIds([
-                'contextId' => $context->getId(),
-                'roleIds' => Role::ROLE_ID_SUB_EDITOR,
-                'assignedToSection' => (int) $this->getSeriesId(),
-            ]);
+            $assignedToSeries = Repo::user()->getIds(
+                Repo::user()->getCollector()
+                ->filterByContextIds([$context->getId()])
+                ->filterByRoleIds([Role::ROLE_ID_SUB_EDITOR])
+                ->assignedToSectionIds([(int) $this->getSeriesId()])
+            );
         }
 
         // Categories list

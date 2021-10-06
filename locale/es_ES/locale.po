@@ -1,9 +1,10 @@
+# Jordi LC <jordi.lacruz@uab.cat>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2021-03-05 15:09+0000\n"
+"PO-Revision-Date: 2021-08-04 11:04+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "es_ES/>\n"
@@ -1603,3 +1604,20 @@ msgstr "No se ha podido encontrar uno o más envíos."
 
 msgid "catalog.manage.noSubmissionsSelected"
 msgstr "No se ha seleccionado ningún envío para añadirse al catálogo."
+
+msgid "installer.updatingInstructions"
+msgstr ""
+"Si está actualizando una instalación existente de OMP, haga <a href=\""
+"{$upgradeUrl}\">clic aquí</a> para continuar."
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "Un código ISBN de 10 dígitos, como por ejemplo 951-98548-9-4."
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "Un código ISBN de 13 dígitos, como por ejemplo 978-951-98548-9-2."
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"
+
+msgid "common.payments"
+msgstr "Pagos"

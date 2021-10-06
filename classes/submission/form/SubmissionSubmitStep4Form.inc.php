@@ -22,6 +22,7 @@ use APP\mail\MonographMailTemplate;
 use APP\notification\NotificationManager;
 use PKP\log\SubmissionLog;
 use PKP\submission\form\PKPSubmissionSubmitStep4Form;
+use APP\facades\Repo;
 
 class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form
 {
@@ -49,8 +50,8 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form
             $user = $request->getUser();
             $primaryAuthor = $this->submission->getPrimaryAuthor();
             if (!isset($primaryAuthor)) {
-                $authors = $this->submission->getAuthors();
-                $primaryAuthor = $authors[0];
+                $authors = Repo::author()->getSubmissionAuthors($this->submission);
+                $primaryAuthor = $authors->first();
             }
             $mail->addRecipient($user->getEmail(), $user->getFullName());
 
@@ -74,7 +75,7 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form
                 $authorMail->addRecipient($primaryAuthor->getEmail(), $primaryAuthor->getFullName());
             }
 
-            $assignedAuthors = $this->submission->getAuthors();
+            $assignedAuthors = Repo::author()->getSubmissionAuthors($this->submission);
 
             foreach ($assignedAuthors as $author) {
                 $authorEmail = $author->getEmail();

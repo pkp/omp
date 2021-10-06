@@ -319,8 +319,7 @@ class ChapterGridHandler extends CategoryGridHandler
      */
     public function loadCategoryData($request, &$chapter, $filter = null)
     {
-        $authorFactory = $chapter->getAuthors(); /* @var $authorFactory DAOResultFactory */
-        return $authorFactory->toAssociativeArray();
+        return $chapter->getAuthors();
     }
 
     /**
@@ -343,12 +342,11 @@ class ChapterGridHandler extends CategoryGridHandler
         $monograph = $this->getMonograph();
 
         // Remove the chapter author id.
-        $chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /* @var $chapterAuthorDao ChapterAuthorDAO */
-        $chapterAuthorDao->deleteChapterAuthorById($author->getId(), $chapterId);
+        Repo::author()->removeFromChapter($author->getId(), $chapterId);
 
         // Add it again with the correct sequence value.
         // FIXME: primary authors not set for chapter authors.
-        $chapterAuthorDao->insertChapterAuthor($author->getId(), $chapterId, false, $newSequence);
+        Repo::author()->addToChapter($author->getId(), $chapterId, false, $newSequence);
     }
 
 
@@ -554,12 +552,7 @@ class ChapterGridHandler extends CategoryGridHandler
         $chapterId = $chapter->getId();
 
         // remove Authors assigned to this chapter first
-        $chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /* @var $chapterAuthorDao ChapterAuthorDAO */
-        $assignedAuthorIds = $chapterAuthorDao->getAuthorIdsByChapterId($chapterId);
-
-        foreach ($assignedAuthorIds as $authorId) {
-            $chapterAuthorDao->deleteChapterAuthorById($authorId, $chapterId);
-        }
+        Repo::author()->removeChapterAuthors($chapter);
 
         $chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
         $chapterDao->deleteById($chapterId);

@@ -56,383 +56,6 @@ class Upgrade extends Installer
     //
     // Specific upgrade actions
     //
-
-    /**
-     * Fix broken submission filenames (bug #8461)
-     *
-     * @param $upgrade Upgrade
-     * @param $params array
-     * @param $dryrun boolean True iff only a dry run (displaying rather than executing changes) should be done.
-     *
-     * @return boolean
-     */
-    public function fixFilenames($upgrade, $params, $dryrun = false)
-    {
-        $pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-        DAORegistry::getDAO('GenreDAO'); // Load constants
-        $siteDao = DAORegistry::getDAO('SiteDAO'); /* @var $siteDao SiteDAO */
-        $site = $siteDao->getSite();
-        $adminEmail = $site->getLocalizedContactEmail();
-        $fileManager = new FileManager();
-
-        $contexts = $pressDao->getAll();
-        while ($context = $contexts->next()) {
-            $submissionIds = Repo::submission()->getIds(
-                Repo::submission()
-                    ->getCollector()
-                    ->filterByContextIds([$context->getId()])
-            );
-            foreach ($submissionIds as $submissionId) {
-                $submissionDir = Services::get('submissionFile')->getSubmissionDir($context->getId(), $submissionId);
-                $rows = DB::table('submission_files')
-                    ->where('submission_id', '=', $submissionId)
-                    ->get();
-                foreach ($rows as $row) {
-                    $generatedFilename = sprintf(
-                        '%d-%s-%d-%d-%d-%s.%s',
-                        $row->submission_id,
-                        $row->genre_id,
-                        $row->file_id,
-                        $row->revision,
-                        $row->file_stage,
-                        date('Ymd', strtotime($row->date_uploaded)),
-                        strtolower_codesafe($fileManager->parseFileExtension($row->original_file_name))
-                    );
-                    $basePath = sprintf(
-                        '%s/%s/%s/',
-                        Config::getVar('files', 'files_dir'),
-                        $submissionDir,
-                        $this->_fileStageToPath($row->file_stage)
-                    );
-                    $globPattern = $$row->submission_id . '-' .
-                        '*' . '-' . // Genre name and designation globbed (together)
-                        $row->file_id . '-' .
-                        $row->revision . '-' .
-                        $row->file_stage . '-' .
-                        date('Ymd', strtotime($row->date_uploaded)) .
-                        '.' . strtolower_codesafe($fileManager->parseFileExtension($row->original_file_name));
-
-                    $matchedResults = glob($basePath . $globPattern);
-                    if (count($matchedResults) > 1) {
-                        error_log("Duplicate potential files for \"${globPattern}\"!", 1, $adminEmail);
-                        continue;
-                    }
-                    if (count($matchedResults) == 1) {
-                        // 1 result matched.
-                        $discoveredFilename = array_shift($matchedResults);
-                        if ($dryrun) {
-                            echo "Need to rename \"${discoveredFilename}\" to \"${generatedFilename}\".\n";
-                        } else {
-                            rename($discoveredFilename, $basePath . $generatedFilename);
-                        }
-                    } else {
-                        // 0 results matched.
-                        error_log("Unable to find a match for \"${globPattern}\".\n", 1, $adminEmail);
-                        continue;
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Enable the default theme plugin for versions < 1.1.
-     *
-     * @return boolean
-     */
-    public function enableDefaultTheme()
-    {
-        $pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-        $contexts = $pressDao->getAll();
-        $pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO'); /* @var $pluginSettingsDao PluginSettingsDAO */
-
-        // Site-wide
-        $pluginSettingsDao->updateSetting(0, 'defaultthemeplugin', 'enabled', '1', 'int');
-
-        // For each press
-        while ($context = $contexts->next()) {
-            $pluginSettingsDao->updateSetting($context->getId(), 'defaultthemeplugin', 'enabled', '1', 'int');
-        }
-        return true;
-    }
-
-    /**
-     * Synchronize the ASSOC_TYPE_SERIES constant to ASSOC_TYPE_SECTION defined in PKPApplication.
-     *
-     * @return boolean
-     */
-    public function syncSeriesAssocType()
-    {
-        // Can be any DAO.
-        $dao = DAORegistry::getDAO('UserDAO'); /* @var $dao DAO */
-        $tablesToUpdate = [
-            'features',
-            'data_object_tombstone_oai_set_objects',
-            'new_releases',
-            'spotlights',
-            'notifications',
-            'email_templates',
-            'email_templates_data',
-            'controlled_vocabs',
-            'event_log',
-            'email_log',
-            'metadata_descriptions',
-            'notes',
-            'item_views'
-        ];
-
-        foreach ($tablesToUpdate as $tableName) {
-            $dao->update('UPDATE ' . $tableName . ' SET assoc_type = ' . ASSOC_TYPE_SERIES . ' WHERE assoc_type = 526');
-        }
-
-        return true;
-    }
-
-    /**
-     * Fix incorrectly stored author settings. (See bug #8663.)
-     *
-     * @return boolean
-     */
-    public function fixAuthorSettings()
-    {
-        $authorDao = DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
-
-        // Get all authors with broken data
-        $result = $authorDao->retrieve(
-            'SELECT DISTINCT author_id
-			FROM	author_settings
-			WHERE	(setting_name = ? OR setting_name = ?)
-				AND setting_type = ?',
-            ['affiliation', 'biography', 'object']
-        );
-
-        foreach ($result as $row) {
-            $authorId = $row->author_id;
-
-            $author = $authorDao->getById($authorId);
-            if (!$author) {
-                continue;
-            } // Bonehead check (DB integrity)
-
-            foreach ((array) $author->getAffiliation(null) as $locale => $affiliation) {
-                if (is_array($affiliation)) {
-                    foreach ($affiliation as $locale => $s) {
-                        $author->setAffiliation($s, $locale);
-                    }
-                }
-            }
-
-            foreach ((array) $author->getBiography(null) as $locale => $biography) {
-                if (is_array($biography)) {
-                    foreach ($biography as $locale => $s) {
-                        $author->setBiography($s, $locale);
-                    }
-                }
-            }
-            $authorDao->updateObject($author);
-        }
-        return true;
-    }
-
-    /**
-     * Convert email templates to HTML.
-     *
-     * @return boolean True indicates success.
-     */
-    public function htmlifyEmailTemplates()
-    {
-        $emailTemplateDao = DAORegistry::getDAO('EmailTemplateDAO'); /* @var $emailTemplateDao EmailTemplateDAO */
-
-        // Convert the email templates in email_templates_data to localized
-        $result = $emailTemplateDao->retrieve('SELECT * FROM email_templates_data');
-        foreach ($result as $row) {
-            $emailTemplateDao->update(
-                'UPDATE	email_templates_data
-				SET	body = ?
-				WHERE	email_key = ? AND
-					locale = ? AND
-					assoc_type = ? AND
-					assoc_id = ?',
-                [
-                    preg_replace('/{\$[a-zA-Z]+Url}/', '<a href="\0">\0</a>', nl2br($row->body)),
-                    $row->email_key,
-                    $row->locale,
-                    $row->assoc_type,
-                    $row->assoc_id
-                ]
-            );
-        }
-
-        // Convert the email templates in email_templates_default_data to localized
-        $result = $emailTemplateDao->retrieve('SELECT * FROM email_templates_default_data');
-        foreach ($result as $row) {
-            $emailTemplateDao->update(
-                'UPDATE	email_templates_default_data
-				SET	body = ?
-				WHERE	email_key = ? AND
-					locale = ?',
-                [
-                    preg_replace('/{\$[a-zA-Z]+Url}/', '<a href="\0">\0</a>', nl2br($row->body)),
-                    $row->email_key,
-                    $row->locale,
-                ]
-            );
-        }
-
-        // Localize the email header and footer fields.
-        $contextDao = DAORegistry::getDAO('PressDAO'); /* @var $contextDao PressDAO */
-        $settingsDao = DAORegistry::getDAO('PressSettingsDAO'); /* @var $settingsDao PressSettingsDAO */
-        $contexts = $contextDao->getAll();
-        while ($context = $contexts->next()) {
-            foreach (['emailFooter', 'emailSignature'] as $settingName) {
-                $settingsDao->updateSetting(
-                    $context->getId(),
-                    $settingName,
-                    $context->getData('emailHeader'),
-                    'string'
-                );
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * Convert signoffs to queries.
-     *
-     * @return boolean True indicates success.
-     */
-    public function convertQueries()
-    {
-        $submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-        import('lib.pkp.classes.submission.SubmissionFile');
-
-        $filesResult = $submissionFileDao->retrieve(
-            'SELECT DISTINCT sf.file_id, sf.assoc_type, sf.assoc_id, sf.submission_id, sf.original_file_name, sf.revision, s.symbolic, s.date_notified, s.date_completed, s.user_id, s.signoff_id FROM submission_files sf, signoffs s WHERE s.assoc_type=? AND s.assoc_id=sf.file_id AND s.symbolic IN (?, ?)',
-            [ASSOC_TYPE_SUBMISSION_FILE, 'SIGNOFF_COPYEDITING', 'SIGNOFF_PROOFING']
-        );
-
-        $queryDao = DAORegistry::getDAO('QueryDAO'); /* @var $queryDao QueryDAO */
-        $noteDao = DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
-        $userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
-        $stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-
-        //
-        // 1. Go through all signoff/file pairs and migrate them into queries.
-        // Queries should be created per file and users should be consolidated
-        // from potentially multiple audit assignments into fewer queries.
-        //
-        foreach ($filesResult as $row) {
-            $fileId = $row->file_id;
-            $symbolic = $row->symbolic;
-            $dateNotified = $row->date_notified ? strtotime($row->date_notified) : null;
-            $dateCompleted = $row->date_completed ? strtotime($row->date_completed) : null;
-            $userId = $row->user_id;
-            $signoffId = $row->signoff_id;
-            $fileAssocType = $row->assoc_type;
-            $fileAssocId = $row->assoc_id;
-            $submissionId = $row->submission_id;
-            $originalFileName = $row->original_file_name;
-            $revision = $row->revision;
-
-            // Reproduces removed SubmissionFile::getFileLabel() method
-            $label = $originalFileName;
-            $filename = DB::table('submission_file_settings')
-                ->where('file_id', '=', $fileId)
-                ->where('setting_name', '=', 'name')
-                ->first();
-            if ($filename) {
-                $label = $filename->setting_value;
-            }
-            if ($revision) {
-                $label .= '(' . $revision . ')';
-            }
-
-            $assocType = $assocId = $query = null; // Prevent PHP scrutinizer warnings
-            switch ($symbolic) {
-                case 'SIGNOFF_COPYEDITING':
-                    $query = $queryDao->newDataObject();
-                    $query->setAssocType($assocType = ASSOC_TYPE_SUBMISSION);
-                    $query->setAssocId($assocId = $submissionId);
-                    $query->setStageId(WORKFLOW_STAGE_ID_EDITING);
-                    break;
-                case 'SIGNOFF_PROOFING':
-                    // We've already migrated a signoff for this file; add this user to it too.
-                    if ($fileAssocType == ASSOC_TYPE_NOTE) {
-                        $note = $noteDao->getById($fileAssocId);
-                        assert($note && $note->getAssocType() == ASSOC_TYPE_QUERY);
-                        if (count($queryDao->getParticipantIds($note->getAssocId(), $userId)) == 0) {
-                            $queryDao->insertParticipant($fileAssocId, $userId);
-                        }
-                        $this->_transferSignoffData($signoffId, $note->getAssocId());
-                        continue 2;
-                    }
-                    $query = $queryDao->newDataObject();
-                    assert($fileAssocType == ASSOC_TYPE_REPRESENTATION);
-                    $query->setAssocType($assocType = ASSOC_TYPE_SUBMISSION);
-                    $query->setAssocId($assocId = $submissionId);
-                    $query->setStageId(WORKFLOW_STAGE_ID_PRODUCTION);
-                    break;
-                default: assert(false);
-            }
-            $query->setSequence(REALLY_BIG_NUMBER);
-            $query->setIsClosed($dateCompleted ? true : false);
-            $queryDao->insertObject($query);
-            $queryDao->resequence($assocType, $assocId);
-
-            // Build a list of all users who should be involved in the query
-            $user = $userDao->getById($userId);
-            $assignedUserIds = [$userId];
-            foreach ([Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT] as $roleId) {
-                $stageAssignments = $stageAssignmentDao->getBySubmissionAndRoleId($submissionId, $roleId, $query->getStageId());
-                while ($stageAssignment = $stageAssignments->next()) {
-                    $assignedUserIds[] = $stageAssignment->getUserId();
-                }
-            }
-            // Add the assigned auditor as a query participant
-            foreach (array_unique($assignedUserIds) as $assignedUserId) {
-                $queryDao->insertParticipant($query->getId(), $assignedUserId);
-            }
-
-            // Create a head note
-            $headNote = $noteDao->newDataObject();
-            $headNote->setAssocType(ASSOC_TYPE_QUERY);
-            $headNote->setAssocId($query->getId());
-            switch ($symbolic) {
-                case 'SIGNOFF_COPYEDITING':
-                    $headNote->setTitle('Copyediting for "' . $label . '"');
-                    $headNote->setContents('Auditing assignment for the file "' . htmlspecialchars($label) . '" (Signoff ID: ' . $signoffId . ')');
-                    break;
-                case 'SIGNOFF_PROOFING':
-                    $headNote->setTitle('Proofreading for ' . $label);
-                    $headNote->setContents('Proofing assignment for the file "' . htmlspecialchars($label) . '" (Signoff ID: ' . $signoffId . ')');
-                    break;
-                default: assert(false);
-            }
-            $noteDao->insertObject($headNote);
-
-            // Correct the creation date (automatically assigned) with the signoff value
-            $headNote->setDateCreated($dateNotified);
-            $noteDao->updateObject($headNote);
-
-            // Add completion as a note
-            if ($dateCompleted) {
-                $completionNote = $noteDao->newDataObject();
-                $completionNote->setAssocType(ASSOC_TYPE_QUERY);
-                $completionNote->setAssocId($query->getId());
-                $completionNote->setContents('The assignment is complete.');
-                $completionNote->setUserId($userId);
-                $noteDao->insertObject($completionNote);
-                $completionNote->setDateCreated($dateCompleted);
-                $noteDao->updateObject($completionNote);
-            }
-
-            $this->_transferSignoffData($signoffId, $query->getId());
-        }
-        return true;
-    }
-
     /**
      * The assoc_type = ASSOC_TYPE_REPRESENTATION (from SIGNOFF_PROOFING migration)
      * should be changed to assoc_type = ASSOC_TYPE_SUBMISSION, for queries to be
@@ -448,12 +71,12 @@ class Upgrade extends Installer
         $queryDao = DAORegistry::getDAO('QueryDAO'); /* @var $queryDao QueryDAO */
         $allQueriesResult = $queryDao->retrieve(
             'SELECT DISTINCT q.*,
-				COALESCE(pf.submission_id, qs.assoc_id) AS submission_id
-			FROM queries q
-			LEFT JOIN publication_formats pf ON (q.assoc_type = ? AND q.assoc_id = pf.publication_format_id AND q.stage_id = ?)
-			LEFT JOIN queries qs ON (qs.assoc_type = ?)
-			WHERE q.assoc_type = ? OR q.assoc_type = ?
-			ORDER BY query_id',
+                COALESCE(pf.submission_id, qs.assoc_id) AS submission_id
+            FROM queries q
+            LEFT JOIN publication_formats pf ON (q.assoc_type = ? AND q.assoc_id = pf.publication_format_id AND q.stage_id = ?)
+            LEFT JOIN queries qs ON (qs.assoc_type = ?)
+            WHERE q.assoc_type = ? OR q.assoc_type = ?
+            ORDER BY query_id',
             [(int) ASSOC_TYPE_REPRESENTATION, (int) WORKFLOW_STAGE_ID_PRODUCTION, (int) ASSOC_TYPE_SUBMISSION, (int) ASSOC_TYPE_SUBMISSION, (int) ASSOC_TYPE_REPRESENTATION]
         );
         $allQueries = [];
@@ -479,125 +102,6 @@ class Upgrade extends Installer
             }
         }
         return true;
-    }
-
-    /**
-     * Convert comments to editors to queries.
-     *
-     * @return boolean True indicates success.
-     */
-    public function convertCommentsToEditor()
-    {
-        $stageAssignmetDao = DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmetDao StageAssignmentDAO */
-        $queryDao = DAORegistry::getDAO('QueryDAO'); /* @var $queryDao QueryDAO */
-        $noteDao = DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
-        $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
-
-        $commentsResult = Repo::submission()->dao->deprecatedDao->retrieve(
-            'SELECT s.submission_id, s.context_id, s.comments_to_ed, s.date_submitted
-			FROM submissions_tmp s
-			WHERE s.comments_to_ed IS NOT NULL AND s.comments_to_ed != \'\''
-        );
-        foreach ($commentsResult as $row) {
-            $commentsToEd = PKPString::stripUnsafeHtml($row->comments_to_ed);
-            if ($commentsToEd == '') {
-                continue;
-            }
-
-            $authorAssignments = $stageAssignmetDao->getBySubmissionAndRoleId($row->submission_id, Role::ROLE_ID_AUTHOR);
-            if ($authorAssignment = $authorAssignments->next()) {
-                // We assume the results are ordered by stage_assignment_id i.e. first author assignemnt is first
-                $userId = $authorAssignment->getUserId();
-            } else {
-                $managerUserGroup = $userGroupDao->getDefaultByRoleId($row->context_id, Role::ROLE_ID_MANAGER);
-                $managerUsers = $userGroupDao->getUsersById($managerUserGroup->getId(), $row->context_id);
-                $userId = $managerUsers->next()->getId();
-            }
-            assert($userId);
-
-            $query = $queryDao->newDataObject();
-            $query->setAssocType(ASSOC_TYPE_SUBMISSION);
-            $query->setAssocId($row->submission_id);
-            $query->setStageId(WORKFLOW_STAGE_ID_SUBMISSION);
-            $query->setSequence(REALLY_BIG_NUMBER);
-
-            $queryDao->insertObject($query);
-            $queryDao->resequence(ASSOC_TYPE_SUBMISSION, $row->submission_id);
-            $queryDao->insertParticipant($query->getId(), $userId);
-
-            $queryId = $query->getId();
-
-            $note = $noteDao->newDataObject();
-            $note->setUserId($userId);
-            $note->setAssocType(ASSOC_TYPE_QUERY);
-            $note->setTitle('Cover Note to Editor');
-            $note->setContents($commentsToEd);
-            $note->setDateCreated(strtotime($row->date_submitted));
-            $note->setDateModified(strtotime($row->date_submitted));
-            $note->setAssocId($queryId);
-            $noteDao->insertObject($note);
-        }
-
-        // remove temporary table
-        Repo::submission()->dao->deprecatedDao->update('DROP TABLE submissions_tmp');
-
-        return true;
-    }
-
-    /**
-     * Private function to reassign signoff notes and files to queries.
-     *
-     * @param $signoffId int Signoff ID
-     * @param $queryId int Query ID
-     */
-    private function _transferSignoffData($signoffId, $queryId)
-    {
-        $noteDao = DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
-        $submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-        $userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
-
-        $notes = $noteDao->getByAssoc(1048582 /* ASSOC_TYPE_SIGNOFF */, $signoffId);
-        while ($note = $notes->next()) {
-            $note->setAssocType(ASSOC_TYPE_QUERY);
-            $note->setAssocId($queryId);
-            $noteDao->updateObject($note);
-
-            // Convert any attached files
-            $submissionFilesIterator = Services::get('submissionFile')->getMany([
-                'assocTypes' => [ASSOC_TYPE_NOTE],
-                'assocIds' => [$note->getId()],
-            ]);
-            foreach ($submissionFilesIterator as $submissionFile) {
-                $submissionFile->setData('fileStage', SubmissionFile::SUBMISSION_FILE_QUERY);
-                $submissionFileDao->updateObject($submissionFile);
-            }
-        }
-
-        // Transfer signoff signoffs into notes
-        $signoffsResult = $submissionFileDao->retrieve(
-            'SELECT * FROM signoffs WHERE symbolic = ? AND assoc_type = ? AND assoc_id = ?',
-            ['SIGNOFF_SIGNOFF', 1048582 /* ASSOC_TYPE_SIGNOFF */, $signoffId]
-        );
-        foreach ($signoffsResult as $row) {
-            $metaSignoffId = $row->signoff_id;
-            $userId = $row->user_id;
-            $dateCompleted = $row->date_completed ? strtotime($row->date_completed) : null;
-
-            if ($dateCompleted) {
-                $user = $userDao->getById($userId);
-                $note = $noteDao->newDataObject();
-                $note->setAssocType(ASSOC_TYPE_QUERY);
-                $note->setAssocId($queryId);
-                $note->setUserId($userId);
-                $note->setContents('The completed task has been reviewed by ' . htmlspecialchars($user->getFullName()) . ' (' . $user->getEmail() . ').');
-                $noteDao->insertObject($note);
-                $note->setDateCreated(Core::getCurrentDate());
-                $noteDao->updateObject($note);
-            }
-            $submissionFileDao->update('DELETE FROM signoffs WHERE signoff_id=?', [$metaSignoffId]);
-        }
-
-        $submissionFileDao->update('DELETE FROM signoffs WHERE signoff_id=?', [$signoffId]);
     }
 
     /**
@@ -639,13 +143,12 @@ class Upgrade extends Installer
      */
     public function migrateUserAndAuthorNames()
     {
-        $userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
         // the user names will be saved in the site's primary locale
-        $userDao->update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT u.user_id, s.primary_locale, ?, u.first_name, 'string' FROM users_tmp u, site s", [Identity::IDENTITY_SETTING_GIVENNAME]);
-        $userDao->update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT u.user_id, s.primary_locale, ?, u.last_name, 'string' FROM users_tmp u, site s", [Identity::IDENTITY_SETTING_FAMILYNAME]);
+        DB::update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT u.user_id, s.primary_locale, ?, u.first_name, 'string' FROM users_tmp u, site s", [Identity::IDENTITY_SETTING_GIVENNAME]);
+        DB::update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT u.user_id, s.primary_locale, ?, u.last_name, 'string' FROM users_tmp u, site s", [Identity::IDENTITY_SETTING_FAMILYNAME]);
         // the author names will be saved in the submission's primary locale
-        $userDao->update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.first_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", [Identity::IDENTITY_SETTING_GIVENNAME]);
-        $userDao->update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.last_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", [Identity::IDENTITY_SETTING_FAMILYNAME]);
+        DB::update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.first_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", [Identity::IDENTITY_SETTING_GIVENNAME]);
+        DB::update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.last_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", [Identity::IDENTITY_SETTING_FAMILYNAME]);
 
         // middle name will be migrated to the given name
         // note that given names are already migrated to the settings table
@@ -653,16 +156,16 @@ class Upgrade extends Installer
             case 'mysql':
             case 'mysqli':
                 // the alias for _settings table cannot be used for some reason -- syntax error
-                $userDao->update("UPDATE user_settings, users_tmp u SET user_settings.setting_value = CONCAT(user_settings.setting_value, ' ', u.middle_name) WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
-                $userDao->update("UPDATE author_settings, authors_tmp a SET author_settings.setting_value = CONCAT(author_settings.setting_value, ' ', a.middle_name) WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
+                DB::update("UPDATE user_settings, users_tmp u SET user_settings.setting_value = CONCAT(user_settings.setting_value, ' ', u.middle_name) WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
+                DB::update("UPDATE author_settings, authors_tmp a SET author_settings.setting_value = CONCAT(author_settings.setting_value, ' ', a.middle_name) WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
                 break;
             case 'postgres':
             case 'postgres64':
             case 'postgres7':
             case 'postgres8':
             case 'postgres9':
-                $userDao->update("UPDATE user_settings SET setting_value = CONCAT(setting_value, ' ', u.middle_name) FROM users_tmp u WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
-                $userDao->update("UPDATE author_settings SET setting_value = CONCAT(setting_value, ' ', a.middle_name) FROM authors_tmp a WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
+                DB::update("UPDATE user_settings SET setting_value = CONCAT(setting_value, ' ', u.middle_name) FROM users_tmp u WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
+                DB::update("UPDATE author_settings SET setting_value = CONCAT(setting_value, ' ', a.middle_name) FROM authors_tmp a WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
                 break;
             default: throw new Exception('Unknown database type!');
         }
@@ -672,10 +175,10 @@ class Upgrade extends Installer
         $siteDao = DAORegistry::getDAO('SiteDAO'); /* @var $siteDao SiteDAO */
         $site = $siteDao->getSite();
         $supportedLocales = $site->getSupportedLocales();
-        $userResult = $userDao->retrieve(
+        $userResult = DB::select(
             "SELECT user_id, first_name, last_name, middle_name, salutation, suffix FROM users_tmp
-			WHERE (salutation IS NOT NULL AND salutation <> '') OR
-				(suffix IS NOT NULL AND suffix <> '')"
+            WHERE (salutation IS NOT NULL AND salutation <> '') OR
+                (suffix IS NOT NULL AND suffix <> '')"
         );
         foreach ($userResult as $row) {
             $userId = $row->user_id;
@@ -689,7 +192,7 @@ class Upgrade extends Installer
                 if (AppLocale::isLocaleWithFamilyFirst($siteLocale)) {
                     $preferredPublicName = "${lastName}, " . ($salutation != '' ? "${salutation} " : '') . $firstName . ($middleName != '' ? " ${middleName}" : '');
                 }
-                $userDao->update(
+                DB::update(
                     "INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, 'preferredPublicName', ?, 'string')",
                     [(int) $userId, $siteLocale, $preferredPublicName]
                 );
@@ -706,11 +209,11 @@ class Upgrade extends Installer
             $pressessSupportedLocales[$press->getId()] = $press->getSupportedLocales();
         }
         // get all authors with a suffix
-        $authorResult = $userDao->retrieve(
+        $authorResult = DB::select(
             "SELECT a.author_id, a.first_name, a.last_name, a.middle_name, a.suffix, p.press_id FROM authors_tmp a
-			LEFT JOIN submissions s ON (s.submission_id = a.submission_id)
-			LEFT JOIN presses p ON (p.press_id = s.context_id)
-			WHERE suffix IS NOT NULL AND suffix <> ''"
+            LEFT JOIN submissions s ON (s.submission_id = a.submission_id)
+            LEFT JOIN presses p ON (p.press_id = s.context_id)
+            WHERE suffix IS NOT NULL AND suffix <> ''"
         );
         foreach ($authorResult as $row) {
             $authorId = $row->author_id;
@@ -725,7 +228,7 @@ class Upgrade extends Installer
                 if (AppLocale::isLocaleWithFamilyFirst($locale)) {
                     $preferredPublicName = "${lastName}, " . $firstName . ($middleName != '' ? " ${middleName}" : '');
                 }
-                $userDao->update(
+                DB::update(
                     "INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, 'preferredPublicName', ?, 'string')",
                     [(int) $authorId, $locale, $preferredPublicName]
                 );
@@ -788,10 +291,10 @@ class Upgrade extends Installer
 
         $result = Repo::submission()->dao->deprecatedDao->retrieve(
             'SELECT	ps.submission_id as submission_id,
-				ps.cover_image as cover_image,
-				s.context_id as context_id
-			FROM	published_submissions ps
-			LEFT JOIN	submissions s ON (s.submission_id = ps.submission_id)'
+                ps.cover_image as cover_image,
+                s.context_id as context_id
+            FROM	published_submissions ps
+            LEFT JOIN	submissions s ON (s.submission_id = ps.submission_id)'
         );
         foreach ($result as $row) {
             if (empty($row->cover_image)) {
@@ -845,7 +348,7 @@ class Upgrade extends Installer
                     $newCoverPathInfo = pathinfo($newCoverPath);
                     Repo::submission()->dao->deprecatedDao->update(
                         'INSERT INTO submission_settings (submission_id, setting_name, setting_value, setting_type, locale)
-						VALUES (?, ?, ?, ?, ?)',
+                        VALUES (?, ?, ?, ?, ?)',
                         [
                             $row->submission_id,
                             'coverImage',

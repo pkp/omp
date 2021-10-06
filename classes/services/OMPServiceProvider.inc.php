@@ -21,12 +21,10 @@ require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pi
 use Pimple\Container;
 
 use PKP\services\PKPAnnouncementService;
-use PKP\services\PKPAuthorService;
 use PKP\services\PKPEmailTemplateService;
 use PKP\services\PKPFileService;
 use PKP\services\PKPSchemaService;
 use PKP\services\PKPSiteService;
-use PKP\services\PKPUserService;
 
 class OMPServiceProvider implements \Pimple\ServiceProviderInterface
 {
@@ -56,11 +54,6 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface
         // NavigationMenus service
         $pimple['navigationMenu'] = function () {
             return new NavigationMenuService();
-        };
-
-        // Author service
-        $pimple['author'] = function () {
-            return new PKPAuthorService();
         };
 
         // User service

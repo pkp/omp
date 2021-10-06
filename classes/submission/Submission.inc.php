@@ -25,8 +25,7 @@ use APP\core\Services;
 use PKP\db\DAORegistry;
 
 use PKP\submission\PKPSubmission;
-
-import('classes.monograph.Author');
+use APP\facades\Repo;
 
 class Submission extends PKPSubmission
 {
@@ -302,7 +301,8 @@ class Submission extends PKPSubmission
         if ($this->getWorkType() != self::WORK_TYPE_EDITED_VOLUME) {
             $userGroupIds = array_map(function ($author) {
                 return $author->getData('userGroupId');
-            }, $this->getAuthors(true));
+            }, Repo::author()->getSubmissionAuthors($this, true)->toArray());
+
             $userGroups = array_map(function ($userGroupId) {
                 return DAORegistry::getDAO('UserGroupDAO')->getbyId($userGroupId);
             }, array_unique($userGroupIds));

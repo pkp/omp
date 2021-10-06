@@ -17,6 +17,7 @@
 use APP\template\TemplateManager;
 
 use PKP\form\Form;
+use APP\facades\Repo;
 
 class ChapterForm extends Form
 {
@@ -164,13 +165,29 @@ class ChapterForm extends Form
         $chapterFileOptions = [];
         $selectedChapterFiles = [];
 
+        $selectedChapterAuthorsArray = [];
         if ($this->getChapter()) {
-            $selectedChapterAuthors = DAORegistry::getDAO('ChapterAuthorDAO')->getAuthors($this->getPublication()->getId(), $this->getChapter()->getId())->toArray();
+            $selectedChapterAuthors = Repo::author()->getMany(
+                Repo::author()
+                    ->getCollector()
+                    ->filterByChapterIds([$this->getChapter()->getId()])
+                    ->filterByPublicationIds([$this->getPublication()->getId()])
+            );
+
             foreach ($selectedChapterAuthors as $selectedChapterAuthor) {
                 $chapterAuthorOptions[$selectedChapterAuthor->getId()] = $selectedChapterAuthor->getFullName();
             }
+
+            if ($selectedChapterAuthors) {
+                $selectedChapterAuthorsArray = iterator_to_array($selectedChapterAuthors);
+            }
         }
-        $authorsIterator = Services::get('author')->getMany(['publicationIds' => $this->getPublication()->getId(), 'count' => 1000]);
+        $authorsIterator = Repo::author()->getMany(
+            Repo::author()
+                ->getCollector()
+                ->filterByPublicationIds([$this->getPublication()->getId()])
+        );
+
         foreach ($authorsIterator as $author) {
             $isIncluded = false;
             foreach ($chapterAuthorOptions as $chapterAuthorOptionId => $chapterAuthorOption) {
@@ -202,7 +219,7 @@ class ChapterForm extends Form
             'chapterAuthorOptions' => $chapterAuthorOptions,
             'selectedChapterAuthors' => array_map(function ($author) {
                 return $author->getId();
-            }, $selectedChapterAuthors),
+            }, $selectedChapterAuthorsArray),
             'chapterFileOptions' => $chapterFileOptions,
             'selectedChapterFiles' => $selectedChapterFiles,
         ]);
@@ -256,10 +273,10 @@ class ChapterForm extends Form
 
         $this->setChapter($chapter);
 
-        // Save the chapter author aassociations
-        DAORegistry::getDAO('ChapterAuthorDAO')->deleteChapterAuthorsByChapterId($this->getChapter()->getId());
+        // Save the chapter author associations
+        Repo::author()->removeChapterAuthors($this->getChapter());
         foreach ((array) $this->getData('authors') as $seq => $authorId) {
-            DAORegistry::getDAO('ChapterAuthorDAO')->insertChapterAuthor($authorId, $this->getChapter()->getId(), false, $seq);
+            Repo::author()->addToChapter($authorId, $this->getChapter()->getId(), false, $seq);
         }
 
         // Save the chapter file associations

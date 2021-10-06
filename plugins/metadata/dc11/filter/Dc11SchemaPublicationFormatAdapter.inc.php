@@ -78,14 +78,11 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $dc11Description = $this->instantiateMetadataDescription();
 
         // Title
-        $titles = [];
-        foreach ($monograph->getTitle(null) as $titleLocale => $title) {
-            $titles[$titleLocale] = $monograph->getFullTitle($titleLocale);
-        }
-        $this->_addLocalizedElements($dc11Description, 'dc:title', $titles);
-
+        $publication = $monograph->getCurrentPublication();
+        $this->_addLocalizedElements($dc11Description, 'dc:title', $publication->getFullTitles());
+         
         // Creator
-        $authors = $monograph->getAuthors();
+        $authors = Repo::author()->getSubmissionAuthors($monograph);
         foreach ($authors as $author) {
             $authorName = $author->getFullName(false, true);
             $affiliation = $author->getLocalizedAffiliation();
@@ -101,8 +98,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO'); /* @var $submissionSubjectDao SubmissionSubjectDAO */
         $supportedLocales = array_keys(AppLocale::getSupportedFormLocales());
         $subjects = array_merge_recursive(
-            (array) $submissionKeywordDao->getKeywords($monograph->getId(), $supportedLocales),
-            (array) $submissionSubjectDao->getSubjects($monograph->getId(), $supportedLocales)
+            (array) $submissionKeywordDao->getKeywords($publication->getId(), $supportedLocales),
+            (array) $submissionSubjectDao->getSubjects($publication->getId(), $supportedLocales)
         );
         $this->_addLocalizedElements($dc11Description, 'dc:subject', $subjects);
 

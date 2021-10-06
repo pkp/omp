@@ -109,8 +109,6 @@ class Application extends \PKP\core\PKPApplication
     public function getDAOMap()
     {
         return array_merge(parent::getDAOMap(), [
-            'AuthorDAO' => 'APP\monograph\AuthorDAO',
-            'ChapterAuthorDAO' => 'APP\monograph\ChapterAuthorDAO',
             'ChapterDAO' => 'APP\monograph\ChapterDAO',
             'FeatureDAO' => 'APP\press\FeatureDAO',
             'IdentificationCodeDAO' => 'APP\publicationFormat\IdentificationCodeDAO',
@@ -124,7 +122,6 @@ class Application extends \PKP\core\PKPApplication
             'OMPCompletedPaymentDAO' => 'APP\payment\omp\OMPCompletedPaymentDAO',
             'ONIXCodelistItemDAO' => 'APP\codelist\ONIXCodelistItemDAO',
             'PressDAO' => 'APP\press\PressDAO',
-            'PressSettingsDAO' => 'APP\press\PressSettingsDAO',
             'ProductionAssignmentDAO' => 'APP\submission\productionAssignment\ProductionAssignmentDAO',
             'PublicationDateDAO' => 'APP\publicationFormat\PublicationDateDAO',
             'PublicationFormatDAO' => 'APP\publicationFormat\PublicationFormatDAO',
