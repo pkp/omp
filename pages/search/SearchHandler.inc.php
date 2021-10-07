@@ -42,10 +42,13 @@ class SearchHandler extends Handler {
 		$query = $request->getUserVar('query');
 		$templateMgr->assign('searchQuery', $query);
 
+		// Get the range info.
+		$rangeInfo = $this->getRangeInfo($request, 'search');
+
 		// Fetch the monographs to display
 		$monographSearch = new MonographSearch();
 		$error = null;
-		$results = $monographSearch->retrieveResults($request, $press, array(null => $query), $error);
+		$results = $monographSearch->retrieveResults($request, $press, array(null => $query), $error, null, null, $rangeInfo);
 		$templateMgr->assign('results', $results);
 
 		// Display

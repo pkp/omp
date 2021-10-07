@@ -63,6 +63,10 @@
 				</div>
 			{/if}
 		</div>
+		<div class="cmp_pagination">
+			{page_info iterator=$results}
+			{page_links anchor="results" iterator=$results name="search" query=$searchQuery}
+		</div>
 	{/if}
 
 	<a name="search-form"></a>
