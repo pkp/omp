@@ -471,7 +471,7 @@ class DOIPubIdPlugin extends PubIdPlugin
                         ->getCollector()
                         ->filterBySubmissionIds([$submission->getId()])
                         ->filterByAssoc(
-                            [ASSOC_TYPE_REPRESENTATION],
+                            ASSOC_TYPE_REPRESENTATION,
                             [$publicationFormat->getId()]
                         );
                     $filesIterator = Repo::submissionFiles()->getMany($collector);

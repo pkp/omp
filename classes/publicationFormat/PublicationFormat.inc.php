@@ -315,7 +315,7 @@ class PublicationFormat extends Representation
             ->filterBySubmissionIds([$publication->getData('submissionId')])
             ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
             ->filterByAssoc(
-                [ASSOC_TYPE_PUBLICATION_FORMAT],
+                ASSOC_TYPE_PUBLICATION_FORMAT,
                 [$this->getId()]
             );
         $stageMonographFiles = Repo::submissionFiles()->getMany($collector);

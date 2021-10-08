@@ -104,7 +104,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
             ->getCollector()
             ->filterBySubmissionIds([$submission->getId()])
             ->filterByAssoc(
-                [ASSOC_TYPE_PUBLICATION_FORMAT],
+                ASSOC_TYPE_PUBLICATION_FORMAT,
                 [$representation->getId()]
             );
 

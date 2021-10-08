@@ -116,7 +116,7 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
             ->getCollector()
             ->filterBySubmissionIds([$this->getPublication()->getData('submissionId')])
             ->filterByAssoc(
-                [ASSOC_TYPE_REPRESENTATION],
+                ASSOC_TYPE_REPRESENTATION,
                 [$categoryDataElement->getId()]
             )
             ->filterByFileStages([$this->getFileStage()]);

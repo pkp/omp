@@ -15,7 +15,6 @@
 namespace APP\services;
 
 use APP\core\Application;
-use APP\core\Services;
 use APP\facades\Repo;
 use PKP\db\DAORegistry;
 
@@ -46,7 +45,7 @@ class PublicationFormatService
             ->getCollector()
             ->filterBySubmissionIds([$submission->getId()])
             ->filterByAssoc(
-                [ASSOC_TYPE_REPRESENTATION],
+                ASSOC_TYPE_REPRESENTATION,
                 [$publicationFormat->getId()]
             );
 

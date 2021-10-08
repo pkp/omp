@@ -218,7 +218,7 @@ class CatalogBookHandler extends Handler
         $collector = Repo::submissionFiles()
             ->getCollector()
             ->filterBySubmissionIds([$submission->getId()])
-            ->filterByAssoc([ASSOC_TYPE_PUBLICATION_FORMAT]);
+            ->filterByAssoc(ASSOC_TYPE_PUBLICATION_FORMAT);
 
         $pubFormatFiles = Repo::submissionFiles()->getMany($collector);
 

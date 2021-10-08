@@ -124,7 +124,7 @@ class Repository extends \PKP\publication\Repository
                 ->getCollector()
                 ->filterBySubmissionIds([$submissionId])
                 ->filterByAssoc(
-                    [Application::ASSOC_TYPE_REPRESENTATION],
+                    Application::ASSOC_TYPE_REPRESENTATION,
                     [$oldPublicationFormat->getId()]
                 );
 
@@ -142,7 +142,7 @@ class Repository extends \PKP\publication\Repository
                     ->getCollector()
                     ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_DEPENDENT])
                     ->filterByAssoc(
-                        [Application::ASSOC_TYPE_SUBMISSION_FILE],
+                        Application::ASSOC_TYPE_SUBMISSION_FILE,
                         [$submissionFile->getId()]
                     )
                     ->filterByIncludeDependentFiles(true);
@@ -174,7 +174,8 @@ class Repository extends \PKP\publication\Repository
             foreach ($newSubmissionFiles as $newSubmissionFile) {
                 if ($newSubmissionFile->getChapterId() == $oldChapter->getId()) {
                     Repo::submissionFiles()
-                        ->edit($newSubmissionFile,
+                        ->edit(
+                            $newSubmissionFile,
                             ['chapterId' => $newChapter->getId()]
                         );
                 }

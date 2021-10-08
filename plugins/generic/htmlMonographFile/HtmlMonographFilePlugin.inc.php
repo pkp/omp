@@ -161,7 +161,7 @@ class HtmlMonographFilePlugin extends GenericPlugin
             ->filterBySubmissionIds([$monograph->getId()])
             ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_DEPENDENT])
             ->filterByAssoc(
-                [ASSOC_TYPE_SUBMISSION_FILE],
+                ASSOC_TYPE_SUBMISSION_FILE,
                 [$submissionFile->getId()]
             );
 

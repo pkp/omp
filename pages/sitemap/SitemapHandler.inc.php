@@ -53,7 +53,7 @@ class SitemapHandler extends PKPSitemapHandler
                     $collector = Repo::submissionFiles()
                         ->getCollector()
                         ->filterByAssoc(
-                            [ASSOC_TYPE_PUBLICATION_FORMAT],
+                            ASSOC_TYPE_PUBLICATION_FORMAT,
                             [$format->getId()]
                         )
                         ->filterBySubmissionIds([$submission->getId()]);
