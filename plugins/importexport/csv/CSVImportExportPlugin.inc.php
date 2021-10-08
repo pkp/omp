@@ -15,7 +15,6 @@
 
 use APP\facades\Repo;
 use APP\submission\Submission;
-use APP\submissionFile\SubmissionFile as SubmissionFileSubmissionFile;
 use APP\template\TemplateManager;
 use PKP\file\FileManager;
 use PKP\plugins\ImportExportPlugin;
@@ -251,7 +250,6 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $submissionFile->setDirectSalesPrice(0);
                         $submissionFile->setSalesType('openAccess');
 
-                        // To do Checking
                         Repo::submissionFiles()
                             ->add($submissionFile, $temporaryFilename);
 
