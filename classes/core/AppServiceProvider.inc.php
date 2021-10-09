@@ -18,7 +18,6 @@ namespace APP\core;
 
 use PKP\core\PKPRequest;
 use PKP\submissionFile\Collector as SubmissionFileCollector;
-use PKP\submissionFile\Repository as SubmissionFileRepository;
 use PKP\submissionFile\SubmissionFile as BaseSubmissionFile;
 
 class AppServiceProvider extends \PKP\core\AppServiceProvider
@@ -34,6 +33,5 @@ class AppServiceProvider extends \PKP\core\AppServiceProvider
 
         $this->app->bind(\APP\submissionFile\Collector::class, SubmissionFileCollector::class);
         $this->app->bind(\APP\submissionFile\SubmissionFile::class, BaseSubmissionFile::class);
-        $this->app->bind(\APP\submissionFile\Repository::class, SubmissionFileRepository::class);
     }
 }
