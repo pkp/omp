@@ -83,7 +83,7 @@
 		{if count($availableSubeditors)}
 			{fbvFormSection list=true title="submissionGroup.assignedSubEditors"}
 				{foreach from=$availableSubeditors item="subEditor" key="id"}
-					{fbvElement type="checkbox" id="subEditors[]" value=$id checked=in_array($id, $assignedToSeries) label=$subEditor translate=false}
+					{fbvElement type="checkbox" id="subEditors[]" value=$id checked=in_array($id, $assignedToSeries) label=$subEditor|escape translate=false}
 				{/foreach}
 			{/fbvFormSection}
 		{/if}
@@ -91,7 +91,7 @@
 		{if count($allCategories)}
 			{fbvFormSection list=true title="grid.category.categories"}
 				{foreach from=$allCategories item="category" key="id"}
-					{fbvElement type="checkbox" id="categories[]" value=$id checked=in_array($id, $selectedCategories) label=$category translate=false}
+					{fbvElement type="checkbox" id="categories[]" value=$id checked=in_array($id, $selectedCategories) label=$category|escape translate=false}
 				{/foreach}
 			{/fbvFormSection}
 		{/if}
