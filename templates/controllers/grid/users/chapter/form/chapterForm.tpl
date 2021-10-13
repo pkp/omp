@@ -50,14 +50,14 @@
 
 	{fbvFormSection list=true title="submission.submit.addAuthor"}
 		{foreach from=$chapterAuthorOptions item="chapterAuthor" key="id"}
-			{fbvElement type="checkbox" id="authors[]" value=$id checked=in_array($id, $selectedChapterAuthors) label=$chapterAuthor translate=false}
+			{fbvElement type="checkbox" id="authors[]" value=$id checked=in_array($id, $selectedChapterAuthors) label=$chapterAuthor|escape translate=false}
 		{/foreach}
 	{/fbvFormSection}
 
 	{if $chapterId}
 		{fbvFormSection list=true title="submission.files"}
 			{foreach from=$chapterFileOptions item="chapterFile" key="id"}
-				{fbvElement type="checkbox" id="files[]" value=$id checked=in_array($id, $selectedChapterFiles) label=$chapterFile translate=false}
+				{fbvElement type="checkbox" id="files[]" value=$id checked=in_array($id, $selectedChapterFiles) label=$chapterFile|escape translate=false}
 			{/foreach}
 		{/fbvFormSection}
 	{/if}

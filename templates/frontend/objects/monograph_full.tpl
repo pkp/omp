@@ -144,7 +144,7 @@
 									{capture assign="authorName"}<span class="label">{$author->getFullName()|escape}</span>{/capture}
 								{/if}
 								{capture assign="authorAffiliation"}<span class="value">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
-								{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
+								{translate key="submission.authorWithAffiliation" name=$authorName|escape affiliation=$authorAffiliation|escape}
 							{else}
 								<span class="label">{$author->getFullName()|escape}</span>
 							{/if}
@@ -293,7 +293,7 @@
 									{if $author->getLocalizedAffiliation()}
 										{capture assign="authorName"}{$author->getFullName()|escape}{/capture}
 										{capture assign="authorAffiliation"}<span class="affiliation">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
-										{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
+										{translate key="submission.authorWithAffiliation" name=$authorName|escape affiliation=$authorAffiliation|escape}
 									{else}
 										{$author->getFullName()|escape}
 									{/if}
