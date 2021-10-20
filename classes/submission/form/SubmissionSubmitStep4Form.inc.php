@@ -22,7 +22,6 @@ use APP\mail\MonographMailTemplate;
 use APP\notification\NotificationManager;
 use PKP\log\SubmissionLog;
 use PKP\submission\form\PKPSubmissionSubmitStep4Form;
-use APP\facades\Repo;
 
 class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form
 {
@@ -48,11 +47,6 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form
             $authorMail->setFrom($this->context->getData('contactEmail'), $this->context->getData('contactName'));
 
             $user = $request->getUser();
-            $primaryAuthor = $this->submission->getPrimaryAuthor();
-            if (!isset($primaryAuthor)) {
-                $authors = Repo::author()->getSubmissionAuthors($this->submission);
-                $primaryAuthor = $authors->first();
-            }
             $mail->addRecipient($user->getEmail(), $user->getFullName());
 
             // Add primary contact and e-mail addresses as specified in the press settings
@@ -71,20 +65,6 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form
                 }
             }
 
-            if ($user->getEmail() != $primaryAuthor->getEmail()) {
-                $authorMail->addRecipient($primaryAuthor->getEmail(), $primaryAuthor->getFullName());
-            }
-
-            $assignedAuthors = Repo::author()->getSubmissionAuthors($this->submission);
-
-            foreach ($assignedAuthors as $author) {
-                $authorEmail = $author->getEmail();
-                // only add the author email if they have not already been added as the primary author
-                // or user creating the submission.
-                if ($authorEmail != $primaryAuthor->getEmail() && $authorEmail != $user->getEmail()) {
-                    $authorMail->addRecipient($author->getEmail(), $author->getFullName());
-                }
-            }
             $mail->bccAssignedSeriesEditors($this->submissionId, WORKFLOW_STAGE_ID_SUBMISSION);
 
             $mail->assignParams([
@@ -94,14 +74,18 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form
                 'submissionUrl' => $router->url($request, null, 'authorDashboard', 'submission', $this->submissionId),
             ]);
 
-            $authorMail->assignParams([
-                'submitterName' => $user->getFullName(),
-                'editorialContactSignature' => $context->getData('contactName') . "\n" . $context->getLocalizedName(),
-            ]);
-
             if (!$mail->send($request)) {
                 $notificationMgr = new NotificationManager();
                 $notificationMgr->createTrivialNotification($request->getUser()->getId(), NOTIFICATION_TYPE_ERROR, ['contents' => __('email.compose.error')]);
+            }
+
+            $authorMail->assignParams([
+                'submitterName' => $user->getFullName(),
+                'editorialContactSignature' => $context->getData('contactName'),
+            ]);
+
+            foreach ($this->emailRecipients as $authorEmailRecipient) {
+                $authorMail->addRecipient($authorEmailRecipient->getEmail(), $authorEmailRecipient->getFullName());
             }
 
             $recipients = $authorMail->getRecipients();
