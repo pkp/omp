@@ -1,10 +1,11 @@
+# Pia Piontkowitz <pia.piontkowitz@rub.de>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T07:09:53-07:00\n"
-"PO-Revision-Date: 2021-01-21 15:49+0000\n"
-"Last-Translator: Heike Riegler <heike.riegler@julius-kuehn.de>\n"
+"PO-Revision-Date: 2021-10-21 11:07+0000\n"
+"Last-Translator: Pia Piontkowitz <pia.piontkowitz@rub.de>\n"
 "Language-Team: German <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-onix30/de_DE/>\n"
 "Language: de_DE\n"
@@ -15,10 +16,10 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 
 msgid "plugins.importexport.onix30.displayName"
-msgstr "ONIX 3.0 Monografie-Export-Plugin"
+msgstr "ONIX 3.0 Monographie-Export-Plugin"
 
 msgid "plugins.importexport.onix30.description"
-msgstr "Exportiere die Monografie-Metadaten in das ONIX 3.0-Format"
+msgstr "Exportiere die Monographie-Metadaten in das ONIX 3.0-Format"
 
 msgid "plugins.importexport.onix30.cliUsage"
 msgstr "Nutzung: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId] "
@@ -33,13 +34,15 @@ msgid "plugins.importexport.onix30.export.error.couldNotWrite"
 msgstr "Die Datei \"{$fileName}\" konnte nicht geschrieben werden."
 
 msgid "plugins.importexport.onix30.export.error.monographNotFound"
-msgstr "Es gibt keine Monografie mit der Monografie-ID \"{$monographId}\"."
+msgstr "Es gibt keine Monographie mit der Monographie-ID \"{$monographId}\"."
 
 msgid "plugins.importexport.onix30.noFormats"
-msgstr "Monografien, für die keine Publikationsformate angelegt wurden, können nicht angezeigt werden."
+msgstr ""
+"Monographien, für die keine Publikationsformate angelegt wurden, können "
+"nicht angezeigt werden."
 
 msgid "plugins.importexport.onix30.selectMonograph"
-msgstr "Wählen Sie eine Monografie für den Export aus:"
+msgstr "Wählen Sie eine Monographie für den Export aus:"
 
 msgid "plugins.importexport.onix30.exportButton"
 msgstr "Exportieren"
@@ -72,4 +75,4 @@ msgid "plugins.importexport.onix30.form.addresseeField.tip"
 msgstr "Sie können dieses Feld leer lassen und einen allgemeinen Export erzeugen. Dies führt dazu, dass der ONIX-Export keine/n &lt;Empfänger/in&gt; enthält. "
 
 msgid "plugins.importexport.onix30.exportSubmissionsSelect"
-msgstr "Wähle Monografie für Export"
+msgstr "Wähle Monographie für Export"
