@@ -1,3 +1,9 @@
+env:
+  global:
+  # Used for saving generated test datasets. See Notion for details.
+  - secure: fRBfUOCW74WoTqn++xJLCL6k0Ug4f8LSD75mbrfMWdP9Wuu5WzTpFH2K0fNOK2Znfg0Vqpr1442Sjjo+C4PxiM65RPIoi36CfFEqEPdhN2EF5kSXEngj97LF3SQzCklDxf/pI9Z9cbr5QgJhiVexLXuBg2Dsru/UvBD871+p4kA=
+  - APPLICATION=omp
+
 # Configure the build matrix
 matrix:
   include:
@@ -5,14 +11,18 @@ matrix:
   - env: TEST=validation
     php: 7.3
   # PostgreSQL / various PHP
-  - env: TEST=pgsql
+  - env:
+    - TEST: pgsql
+    - SAVE_BUILD: true
     php: 7.2
   - env: TEST=pgsql
     php: 7.3
   - env: TEST=pgsql
     php: 7.4
   # MySQL / various PHP
-  - env: TEST=mysql
+  - env:
+    - TEST: mysql
+    - SAVE_BUILD: true
     php: 7.2
   - env: TEST=mysql
     php: 7.3
