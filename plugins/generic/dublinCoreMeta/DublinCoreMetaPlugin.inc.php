@@ -13,11 +13,11 @@
  * @brief Inject Dublin Core meta tags into monograph views to facilitate indexing.
  */
 
-use APP\submission\Submission;
+use APP\facades\Repo;
 
+use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\plugins\GenericPlugin;
-use APP\facades\Repo;
 
 class DublinCoreMetaPlugin extends GenericPlugin
 {
@@ -206,7 +206,12 @@ class DublinCoreMetaPlugin extends GenericPlugin
             $templateMgr->addHeader('dublinCoreDateModified', '<meta name="DC.Date.modified" scheme="ISO8601" content="' . strftime('%Y-%m-%d', strtotime($dateModified)) . '"/>');
         }
         $i = 0;
-        if ($abstracts = $monograph->getAbstract(null)) {
+
+        if ($chapter != null) {
+            foreach ($chapter->getData('abstract') as $locale => $abstract) {
+                $templateMgr->addHeader('dublinCoreAbstract' . $i++, '<meta name="DC.Description" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
+            }
+        } elseif ($abstracts = $monograph->getAbstract(null)) {
             foreach ($abstracts as $locale => $abstract) {
                 $templateMgr->addHeader('dublinCoreAbstract' . $i++, '<meta name="DC.Description" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
             }
