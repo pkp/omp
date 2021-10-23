@@ -4,6 +4,9 @@ env:
   - secure: fRBfUOCW74WoTqn++xJLCL6k0Ug4f8LSD75mbrfMWdP9Wuu5WzTpFH2K0fNOK2Znfg0Vqpr1442Sjjo+C4PxiM65RPIoi36CfFEqEPdhN2EF5kSXEngj97LF3SQzCklDxf/pI9Z9cbr5QgJhiVexLXuBg2Dsru/UvBD871+p4kA=
   - APPLICATION=omp
 
+# Attempt to work around Travis certificate failure problem
+dist: bionic
+
 # Configure the build matrix
 matrix:
   include:
@@ -40,6 +43,7 @@ cache:
     - $HOME/.cache
 addons:
   chrome: beta
+  postgresql: "9.5"
   apt:
     update: true
 before_install:
