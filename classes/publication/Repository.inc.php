@@ -145,7 +145,7 @@ class Repository extends \PKP\publication\Repository
                         Application::ASSOC_TYPE_SUBMISSION_FILE,
                         [$submissionFile->getId()]
                     )
-                    ->filterByIncludeDependentFiles(true);
+                    ->includeDependentFiles();
 
                 $dependentFiles = Repo::submissionFiles()->getMany($collector);
                 foreach ($dependentFiles as $dependentFile) {
