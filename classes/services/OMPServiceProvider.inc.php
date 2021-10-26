@@ -20,8 +20,6 @@ require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pi
 
 use Pimple\Container;
 
-use PKP\services\PKPAnnouncementService;
-use PKP\services\PKPEmailTemplateService;
 use PKP\services\PKPFileService;
 use PKP\services\PKPSchemaService;
 use PKP\services\PKPSiteService;
@@ -31,16 +29,9 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface
     /**
      * Registers services
      *
-     * @param Pimple\Container $pimple
      */
     public function register(Container $pimple)
     {
-
-        // Announcement service
-        $pimple['announcement'] = function () {
-            return new PKPAnnouncementService();
-        };
-
         // File service
         $pimple['file'] = function () {
             return new PKPFileService();
@@ -56,11 +47,6 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface
             return new NavigationMenuService();
         };
 
-        // User service
-        $pimple['user'] = function () {
-            return new PKPUserService();
-        };
-
         // Context service
         $pimple['context'] = function () {
             return new ContextService();
@@ -69,11 +55,6 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface
         // Submission file service
         $pimple['submissionFile'] = function () {
             return new SubmissionFileService();
-        };
-
-        // Email Template service
-        $pimple['emailTemplate'] = function () {
-            return new PKPEmailTemplateService();
         };
 
         // Schema service

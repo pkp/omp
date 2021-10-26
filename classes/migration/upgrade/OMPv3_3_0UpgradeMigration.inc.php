@@ -85,7 +85,7 @@ class OMPv3_3_0UpgradeMigration extends \PKP\migration\Migration
             \PKP\announcement\DAO::class,
             \PKP\author\DAO::class,
             'PressDAO',
-            'EmailTemplateDAO',
+            \PKP\emailTemplate\DAO::class,
             \APP\publication\DAO::class,
             \APP\submission\DAO::class
         ];
