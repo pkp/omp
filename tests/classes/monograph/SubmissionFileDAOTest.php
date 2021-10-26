@@ -212,7 +212,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $submissionFileDao->update($submissionFile2);
         $submissionFile2 = $submissionFileDao->get($submissionFile2->getId());
         self::assertEquals($submissionFile2->getData('fileId'), $fileId3);
-        $revisions = $submissionFileDao->getRevisions($submissionFile2->getId());
+        $revisions = Repo::submissionFiles()->getRevisions($submissionFile2->getId());
         $revisionFileIds = [];
         foreach ($revisions as $revision) {
             $revisionFileIds[] = $revision->fileId;
