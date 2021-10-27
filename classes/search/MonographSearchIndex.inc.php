@@ -32,8 +32,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
      * Index a block of text for an object.
      *
      * @param $objectId int
-     * @param $text string
-     * @param $position int
+     * @param $text string|array
      */
     public function indexObjectKeywords($objectId, $text)
     {
