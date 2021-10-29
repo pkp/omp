@@ -15,7 +15,6 @@
 
 namespace APP\search;
 
-use APP\core\Services;
 use APP\facades\Repo;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
@@ -143,8 +142,6 @@ class MonographSearchIndex extends SubmissionSearchIndex
     public function submissionFilesChanged($monograph)
     {
         // Index galley files
-        import('lib.pkp.classes.submissionFile.SubmissionFile'); // Constants
-        import('classes.search.MonographSearch'); // Constants
         $collector = Repo::submissionFiles()
             ->getCollector()
             ->filterBySubmissionIds([$monograph->getId()])

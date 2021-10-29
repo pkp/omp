@@ -325,7 +325,6 @@ class CatalogBookHandler extends Handler
             $dispatcher->handle404();
         }
 
-        import('lib.pkp.classes.submissionFile.SubmissionFile'); // File constants
         $submissionFile = Repo::submissionFiles()
             ->dao
             ->getByBestId(

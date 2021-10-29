@@ -13,9 +13,12 @@
  * @brief CSV import/export plugin
  */
 
+use APP\core\Application;
 use APP\facades\Repo;
+use APP\i18n\AppLocale;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
+use PKP\db\DAORegistry;
 use PKP\file\FileManager;
 use PKP\plugins\ImportExportPlugin;
 use PKP\security\Role;
@@ -120,7 +123,6 @@ class CSVImportExportPlugin extends ImportExportPlugin
             $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
             $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
             $submissionFileDao = Repo::submissionFiles()->dao;
-            import('lib.pkp.classes.submissionFile.SubmissionFile'); // constants.
             $genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
             $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
 
