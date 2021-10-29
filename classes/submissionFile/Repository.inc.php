@@ -19,8 +19,11 @@ use PKP\submissionFile\Repository as SubmissionFileRepository;
 
 class Repository extends SubmissionFileRepository
 {
-    public function __construct(DAO $dao, Request $request, PKPSchemaService $schemaService)
-    {
+    public function __construct(
+        DAO $dao,
+        Request $request,
+        PKPSchemaService $schemaService
+    ) {
         $this->schemaService = $schemaService;
         $this->dao = $dao;
         $this->request = $request;
