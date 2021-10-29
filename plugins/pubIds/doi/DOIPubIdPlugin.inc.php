@@ -465,8 +465,8 @@ class DOIPubIdPlugin extends PubIdPlugin
                 }
             }
             if ($submissionFileDoiEnabled) {
-                $arrPublicationFormats = (array) $form->publication->getData('publicationFormats');
-                foreach ($arrPublicationFormats as $publicationFormat) {
+                $publicationFormats = (array) $form->publication->getData('publicationFormats');
+                foreach ($publicationFormats as $publicationFormat) {
                     $collector = Repo::submissionFiles()
                         ->getCollector()
                         ->filterBySubmissionIds([$submission->getId()])
@@ -474,8 +474,8 @@ class DOIPubIdPlugin extends PubIdPlugin
                             ASSOC_TYPE_REPRESENTATION,
                             [$publicationFormat->getId()]
                         );
-                    $filesIterator = Repo::submissionFiles()->getMany($collector);
-                    foreach ($filesIterator as $file) {
+                    $submissionFiles = Repo::submissionFiles()->getMany($collector);
+                    foreach ($submissionFiles as $file) {
                         if ($file->getStoredPubId('doi')) {
                             $doiTableRows[] = [$file->getStoredPubId('doi'), __('plugins.pubIds.doi.editor.preview.files', ['title' => $file->getLocalizedData('name')])];
                         } else {
