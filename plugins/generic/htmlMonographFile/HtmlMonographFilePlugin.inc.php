@@ -148,13 +148,10 @@ class HtmlMonographFilePlugin extends GenericPlugin
         $contents = Services::get('file')->fs->read($submissionFile->getData('path'));
 
         // Replace media file references
-        import('lib.pkp.classes.submissionFile.SubmissionFile'); // Constants
         $proofCollector = Repo::submissionFiles()
             ->getCollector()
             ->filterBySubmissionIds([$monograph->getId()])
             ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF]);
-
-        $proofFiles = Repo::submissionFiles()->getMany($proofCollector);
 
         $dependentCollector = Repo::submissionFiles()
             ->getCollector()
@@ -165,11 +162,9 @@ class HtmlMonographFilePlugin extends GenericPlugin
                 [$submissionFile->getId()]
             );
 
-        $dependentFiles = Repo::submissionFiles()->getMany($dependentCollector);
-
         $embeddableFiles = array_merge(
-            iterator_to_array($proofFiles),
-            iterator_to_array($dependentFiles)
+            Repo::submissionFiles()->getMany($proofCollector),
+            Repo::submissionFiles()->getMany($dependentCollector)
         );
 
         foreach ($embeddableFiles as $embeddableFile) {
