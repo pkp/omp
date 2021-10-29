@@ -19,15 +19,12 @@ use APP\core\Application;
 
 use APP\facades\Repo;
 use APP\i18n\AppLocale;
-use APP\submissionFile\SubmissionFile;
 use Illuminate\Support\Facades\DB;
-use PKP\core\PKPString;
 use PKP\db\DAORegistry;
-use PKP\file\FileManager;
 use PKP\identity\Identity;
-
 use PKP\install\Installer;
-use PKP\security\Role;
+
+use PKP\submissionFile\SubmissionFile;
 
 class Upgrade extends Installer
 {
@@ -334,7 +331,6 @@ class Upgrade extends Installer
      */
     public function _fileStageToPath($fileStage)
     {
-        import('lib.pkp.classes.submissionFile.SubmissionFile');
         static $fileStagePathMap = [
             SubmissionFile::SUBMISSION_FILE_SUBMISSION => 'submission',
             SubmissionFile::SUBMISSION_FILE_NOTE => 'note',
