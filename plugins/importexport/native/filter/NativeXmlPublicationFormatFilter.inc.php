@@ -123,8 +123,8 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
             $submissionFile = Repo::submissionFiles()->get($DBId);
 
             $params = [
-                'assoc_type' => PKPApplication::ASSOC_TYPE_REPRESENTATION,
-                'assoc_id' => $representation->getId(),
+                'assocType' => PKPApplication::ASSOC_TYPE_REPRESENTATION,
+                'assocId' => $representation->getId(),
             ];
 
             Repo::submissionFiles()->edit($submissionFile, $params);
