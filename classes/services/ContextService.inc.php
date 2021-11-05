@@ -190,21 +190,25 @@ class ContextService extends \PKP\services\PKPContextService
         $contextFileManager = new ContextFileManager($context->getId());
 
         $objectDaos = [
-            DAORegistry::getDAO('CategoryDAO'),
+            Repo::publication()->dao,
             DAORegistry::getDAO('SeriesDAO'),
             Repo::submission()->dao,
         ];
         foreach ($objectDaos as $objectDao) {
             if ($objectDao instanceof \PKP\submission\DAO) {
-                $objects = Repo::submission()->getMany(
+                $objects = iterator_to_array(Repo::submission()->getMany(
                     Repo::submission()
                         ->getCollector()
                         ->filterByContextIds([$context->getId()])
-                );
+                ));
+            } elseif ($objectDao instanceof \PKP\category\DAO) {
+                $objects = iterator_to_array(Repo::category()->getMany(
+                    Repo::category()->getCollector()
+                    ->filterByContextIds([$context->getId()])));
             } else {
-                $objects = $objectDao->getByContextId($context->getId());
+                $objects = $objectDao->getByContextId($context->getId())->toArray();
             }
-            while ($object = $objects->next()) {
+            foreach ($objects as $object) {
                 if ($object instanceof Submission) {
                     foreach ($object->getData('publications') as $publication) {
                         foreach ((array) $publication->getData('coverImage') as $coverImage) {
@@ -219,9 +223,9 @@ class ContextService extends \PKP\services\PKPContextService
                     }
                 } else {
                     $cover = $object->getImage();
-                    if (is_a($object, 'Series')) {
+                    if ($object instanceof \APP\press\Series) {
                         $basePath = $contextFileManager->getBasePath() . 'series/';
-                    } elseif (is_a($object, 'Category')) {
+                    } elseif ($object instanceof \PKP\category\Category) {
                         $basePath = $contextFileManager->getBasePath() . 'categories/';
                     }
                 }

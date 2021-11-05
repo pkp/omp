@@ -75,14 +75,10 @@ class SeriesForm extends PKPSectionForm
 
         $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
         $seriesId = $this->getSeriesId();
+        $categoryIds = [];
         if ($seriesId) {
             $series = $seriesDao->getById($seriesId, $press->getId());
-        }
-
-        $categories = $seriesDao->getCategories($seriesId, $press->getId());
-        $categoryIds = [];
-        while ($category = $categories->next()) {
-            $categoryIds[] = $category->getId();
+            $categoryIds = array_map('getId', $seriesDao->getCategories($seriesId, $press->getId()));
         }
 
         if (isset($series)) {
@@ -159,8 +155,9 @@ class SeriesForm extends PKPSectionForm
 
         $context = $request->getContext();
 
-        $categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
-        $categoryCount = $categoryDao->getCountByContextId($context->getId());
+        $categoryCount = Repo::category()->getCount(
+            Repo::category()->getCollector()
+            ->filterByContextIds([$context->getId()]));
         $templateMgr->assign('categoryCount', $categoryCount);
 
         // Sort options.
@@ -188,8 +185,8 @@ class SeriesForm extends PKPSectionForm
 
         // Categories list
         $allCategories = [];
-        $categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
-        $categoriesResult = $categoryDao->getByContextId($context->getId())->toAssociativeArray();
+        $categoriesResult = iterator_to_array(Repo::category()->getMany(Repo::category()->getCollector()
+            ->filterByContextIds([$context->getId()])));
         foreach ($categoriesResult as $category) {
             $title = $category->getLocalizedTitle();
             if ($category->getParentId()) {

@@ -66,7 +66,6 @@ class SeriesGridHandler extends SetupGridHandler
 
         // Elements to be displayed in the grid
         $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-        DAORegistry::getDAO('CategoryDAO'); // Load constants?
         $subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /* @var $subEditorsDao SubEditorsDAO */
         $seriesIterator = $seriesDao->getByPressId($press->getId());
 
@@ -75,7 +74,7 @@ class SeriesGridHandler extends SetupGridHandler
             // Get the categories data for the row
             $categories = $seriesDao->getCategories($series->getId(), $press->getId());
             $categoriesString = null;
-            while ($category = $categories->next()) {
+            foreach ($categories as $category) {
                 if (!empty($categoriesString)) {
                     $categoriesString .= ', ';
                 }

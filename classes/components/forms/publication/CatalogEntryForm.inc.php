@@ -21,6 +21,7 @@ use PKP\components\forms\FieldSelect;
 use PKP\components\forms\FieldText;
 use PKP\components\forms\FieldUploadImage;
 use PKP\components\forms\FormComponent;
+use APP\facades\Repo;
 
 define('FORM_CATALOG_ENTRY', 'catalogEntry');
 
@@ -76,7 +77,8 @@ class CatalogEntryForm extends FormComponent
 
         // Categories
         $categoryOptions = [];
-        $categories = \DAORegistry::getDAO('CategoryDAO')->getByContextId($submission->getData('contextId'))->toAssociativeArray();
+        $categories = iterator_to_array(Repo::category()->getMany(Repo::category()->getCollector()
+            ->filterByContextIds([$submission->getData('contextId')])));
         foreach ($categories as $category) {
             $label = $category->getLocalizedTitle();
             if ($category->getParentId()) {
