@@ -49,15 +49,5 @@ class PublicationDatesForm extends FormComponent
                 ['value' => true, 'label' => __('submission.catalogEntry.enableChapterPublicationDates')],
             ]
         ]));
-
-		$this->addField(new FieldOptions('enableChapterLandingPages', [
-			'label' => __('submission.catalogEntry.chapterLandingPages'),
-			'type' => 'checkbox',
-			'value' => $submission->getData('enableChapterLandingPages'),
-			'options' => [
-				['value' => true, 'false' => __('submission.catalogEntry.disableChapterLandingPages')],
-				['value' => true, 'label' => __('submission.catalogEntry.enableChapterLandingPages')],
-			]
-		]));
     }
 }

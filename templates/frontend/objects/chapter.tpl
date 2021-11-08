@@ -1,11 +1,11 @@
 {**
- * templates/frontend/objects/monograph_full.tpl
+ * templates/frontend/objects/chapter.tpl
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @brief Display a full view of a monograph. Expected to be primary object on
+ * @brief Display a full view of a chapter. Expected to be primary object on
  *  the page.
  *
  * Many presses will need to add custom data to this object, either through
@@ -46,61 +46,58 @@
  * Core components are produced manually below, but can also be added via
  * plugins using the hooks provided:
  *
- * Templates::Catalog::Book::Main
- * Templates::Catalog::Book::Details
+ * Templates::Catalog::Chapter::Main
+ * Templates::Catalog::Chapter::Details
  *
  * @uses $currentPress Press The press currently being viewed
  * @uses $monograph Monograph The monograph to be displayed
  * @uses $publication Publication The publication (version) that is being displayed
- * @uses $firstPublication Publication The original publication (version) of this monograph
  * @uses $currentPublication Publication The latest published version of this monograph
- * @uses $authors Array List of authors associated with this monograph
- * @uses $editors Array List of editors for this monograph if this is an edited
- *       volume. Otherwise empty.
  * @uses $dateFormatShort string String defining date format that is passed to
  *       smarty template function
  * @uses $series Series The series this monograph is assigned to, if any.
  * @uses $publicationFormats array List of PublicationFormat objects to display
- * @uses $remotePublicationFormats array List of PublicationFormat objects which
- *       have remote URLs associated
  * @uses $availableFiles array List of available MonographFiles
- * @uses $chapters array List of chapters in monograph. Associative array
- * @uses $sharingCode string Code snippet for a social sharing widget
- * @uses $blocks array List of HTML snippets to display block elements
- * @uses $currency Currency The Currency object representing the press's currency, if configured.
- * @uses $licenseUrl string The URL which provides license information.
  * @uses $ccLicenseBadge string An HTML string containing a CC license image and
  *       text. Only appears when license URL matches a known CC license.
+ * @uses $chapter Chapter The chapter to be displayed.
+ * @uses $chapterAuthors array List of authors associated with this chapter.
+ * @uses $sourceChapter Chapter Earliest published version of the requested chapter.
+ * @uses $datePublished	date Date this chapter was published.
+ * @uses $firstDatePublished date Earliest chapter publishing date.
+ * @uses $chapterPublicationIds array List of publication ids containing this chapter.
  *}
-<div class="obj_monograph_full">
+<div class="obj_monograph_full obj_chapter">
 
 	{* Notification that this is an old version *}
-	{if $currentPublication->getID() !== $publication->getId()}
+	{if $currentPublication->getID() !== $publication->getId() && !$hasVersionChanged}
 		<div class="cmp_notification notice">
-			{capture assign="latestVersionUrl"}{url page="catalog" op="book" path=$monograph->getBestId()}{/capture}
+			{capture assign="latestVersionUrl"}{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"chapter":$chapter->getSourceChapterId()}{/capture}
+
 			{translate key="submission.outdatedVersion"
-			datePublished=$publication->getData('datePublished')|date_format:$dateFormatShort
-			urlRecentVersion=$latestVersionUrl|escape
+				datePublished=$publication->getData('datePublished')|date_format:$dateFormatShort
+				urlRecentVersion=$latestVersionUrl|escape
 			}
 		</div>
 	{/if}
 
 	<h1 class="title">
-		{$publication->getLocalizedFullTitle()|escape}
+		{$chapter->getLocalizedFullTitle()|escape}
 	</h1>
 
 	<div class="row">
 		<div class="main_entry">
 
 			{* Author list *}
-			{include file="frontend/components/authors.tpl" authors=$publication->getData('authors')}
+			{include file="frontend/components/authors.tpl" authors=$chapterAuthors}
 
 			{* DOI (requires plugin) *}
 			{foreach from=$pubIdPlugins item=pubIdPlugin}
 				{if $pubIdPlugin->getPubIdType() != 'doi'}
 					{continue}
 				{/if}
-				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
+				{assign var=pubId value=$chapter->getStoredPubId($pubIdPlugin->getPubIdType())}
+
 				{if $pubId}
 					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
 					<div class="item doi">
@@ -118,17 +115,17 @@
 
 			{* Keywords *}
 			{if !empty($publication->getLocalizedData('keywords'))}
-				<div class="item keywords">
-					<h2 class="label">
-						{capture assign=translatedKeywords}{translate key="common.keywords"}{/capture}
-						{translate key="semicolon" label=$translatedKeywords}
-					</h2>
-					<span class="value">
+			<div class="item keywords">
+				<h2 class="label">
+					{capture assign=translatedKeywords}{translate key="common.keywords"}{/capture}
+					{translate key="semicolon" label=$translatedKeywords}
+				</h2>
+				<span class="value">
 					{foreach name="keywords" from=$publication->getLocalizedData('keywords') item=keyword}
 						{$keyword|escape}{if !$smarty.foreach.keywords.last}, {/if}
 					{/foreach}
 				</span>
-				</div>
+			</div>
 			{/if}
 
 			{* Abstract *}
@@ -137,91 +134,15 @@
 					{translate key="submission.synopsis"}
 				</h2>
 				<div class="value">
-					{$publication->getLocalizedData('abstract')|strip_unsafe_html}
+					{$chapter->getLocalizedData('abstract')|strip_unsafe_html}
 				</div>
 			</div>
 
-			{* Chapters *}
-			{if $chapters|@count}
-				<div class="item chapters">
-					<h2 class="pkp_screen_reader">
-						{translate key="submission.chapters"}
-					</h2>
-					<ul>
-						{foreach from=$chapters item=chapter}
-							{assign var=chapterId value=$chapter->getId()}
-							<li>
-								{if $chapter->isPageEnabled()}
-									{if $publication->getId() === $currentPublication->getId()}
-										<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"chapter":$chapter->getSourceChapterId()}">
-									{else}
-										<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"version":$publication->getId():"chapter":$chapter->getSourceChapterId()}">
-									{/if}
-								{/if}
-								<div class="title">
-									{$chapter->getLocalizedTitle()|escape}
-									{if $chapter->getLocalizedSubtitle() != ''}
-										<div class="subtitle">
-											{$chapter->getLocalizedSubtitle()|escape}
-										</div>
-									{/if}
-								</div>
-								{if $chapter->isPageEnabled()}
-									</a>
-								{/if}
-								{assign var=chapterAuthors value=$chapter->getAuthorNamesAsString()}
-								{if $authorString != $chapterAuthors}
-									<div class="authors">
-										{$chapterAuthors|escape}
-									</div>
-								{/if}
-
-								{* DOI (requires plugin) *}
-								{foreach from=$pubIdPlugins item=pubIdPlugin}
-									{if $pubIdPlugin->getPubIdType() != 'doi'}
-										{continue}
-									{/if}
-									{assign var=pubId value=$chapter->getStoredPubId($pubIdPlugin->getPubIdType())}
-									{if $pubId}
-										{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
-										<div class="doi">{translate key="plugins.pubIds.doi.readerDisplayName"} <a href="{$doiUrl}">{$doiUrl}</a></div>
-									{/if}
-								{/foreach}
-
-								{* Display any files that are assigned to this chapter *}
-								{pluck_files assign="chapterFiles" files=$availableFiles by="chapter" value=$chapterId}
-								{if $chapterFiles|@count}
-									<div class="files">
-
-										{* Display chapter files sorted by publication format so that they are ordered
-										   consistently across all chapters. *}
-										{foreach from=$publicationFormats item=format}
-											{pluck_files assign="pubFormatFiles" files=$chapterFiles by="publicationFormat" value=$format->getId()}
-
-											{foreach from=$pubFormatFiles item=file}
-
-												{* Use the publication format name in the download link unless a pub format has multiple files *}
-												{assign var=useFileName value=false}
-												{if $pubFormatFiles|@count > 1}
-													{assign var=useFileName value=true}
-												{/if}
-
-												{include file="frontend/components/downloadLink.tpl" downloadFile=$file monograph=$monograph publicationFormat=$format currency=$currency useFilename=$useFileName}
-											{/foreach}
-										{/foreach}
-									</div>
-								{/if}
-							</li>
-						{/foreach}
-					</ul>
-				</div>
-			{/if}
-
-			{call_hook name="Templates::Catalog::Book::Main"}
+			{call_hook name="Templates::Catalog::Chapter::Main"}
 
 			{* Determine if any authors have biographies to display *}
 			{assign var="hasBiographies" value=0}
-			{foreach from=$publication->getData('authors') item=author}
+			{foreach from=$chapterAuthors item=author}
 				{if $author->getLocalizedBiography()}
 					{assign var="hasBiographies" value=$hasBiographies+1}
 				{/if}
@@ -235,7 +156,7 @@
 							{translate key="submission.authorBiography"}
 						{/if}
 					</h2>
-					{foreach from=$publication->getData('authors') item=author}
+					{foreach from=$chapterAuthors item=author}
 						{if $author->getLocalizedBiography()}
 							<div class="sub_item">
 								<div class="label">
@@ -280,16 +201,48 @@
 
 			{* Cover image *}
 			<div class="item cover">
+				{if $publication->getId() === $currentPublication->getId()}
+					<a href="{url page="catalog" op="book" path=$monograph->getId()}">
+				{else}
+					<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"version":$publication->getId()}">
+				{/if}
+
 				{assign var="coverImage" value=$publication->getLocalizedData('coverImage')}
 				<img
-						src="{$publication->getLocalizedCoverImageThumbnailUrl($monograph->getData('contextId'))}"
-						alt="{$coverImage.altText|escape|default:''}"
+					src="{$publication->getLocalizedCoverImageThumbnailUrl($monograph->getData('contextId'))}"
+					alt="{$coverImage.altText|escape|default:''}"
 				>
+				</a>
 			</div>
 
-			{* Any non-chapter files and remote resources *}
-			{pluck_files assign=nonChapterFiles files=$availableFiles by="chapter" value=0}
+			{* Any files of the requested chapter*}
+			{pluck_files assign=objectFiles files=$availableFiles by="chapter" value=$chapter->getId()}
 			{include file="frontend/components/objectFiles.tpl"}
+
+
+			{* Monograph *}
+			<div class="item monograph">
+				<div class="sub_item">
+					<h2 class="label">{translate key="chapter.volume"}</h2>
+					<div class="value">
+						{if $publication->getId() === $currentPublication->getId()}
+							<a href="{url page="catalog" op="book" path=$monograph->getId()}">
+						{else}
+							<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"version":$publication->getId()}">
+						{/if}
+								{$publication->getLocalizedFullTitle()|escape}
+							</a>
+					</div>
+				</div>
+				{if $chapter->getPages()}
+					<div class="sub_item">
+						<h2 class="label">{translate key="chapter.pages"}</h2>
+						<div class="value">
+							{$chapter->getPages()|escape}
+						</div>
+					</div>
+				{/if}
+			</div>
 
 			{* Publication Date *}
 			{if $publication->getData('datePublished')}
@@ -304,11 +257,11 @@
 						</h2>
 						<div class="value">
 							{* If this is the original version *}
-							{if $firstPublication->getId() === $publication->getId()}
-								<span>{$firstPublication->getData('datePublished')|date_format:$dateFormatLong}</span>
+							{if $sourceChapter->getId() === $chapter->getId()}
+								<span>{$firstDatePublished|date_format:$dateFormatLong}</span>
 								{* If this is an updated version *}
 							{else}
-								<span>{translate key="submission.updatedOn" datePublished=$firstPublication->getData('datePublished')|date_format:$dateFormatLong dateUpdated=$publication->getData('datePublished')|date_format:$dateFormatLong}</span>
+								<span>{translate key="submission.updatedOn" datePublished=$firstDatePublished|date_format:$dateFormatLong dateUpdated=$datePublished|date_format:$dateFormatLong}</span>
 							{/if}
 						</div>
 					</div>
@@ -318,15 +271,32 @@
 								{translate key="submission.versions"}
 							</h2>
 							<ul class="value">
+								{capture assign="versionCounter"}{count($monograph->getPublishedPublications())}{/capture}
+								{capture assign="chapterCounter"}{count($chapterPublicationIds)}{/capture}
 								{foreach from=array_reverse($monograph->getPublishedPublications()) item=iPublication}
 									{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatShort version=$iPublication->getData('version')}{/capture}
 									<li>
-										{if $iPublication->getId() === $publication->getId()}
-											{$name}
-										{elseif $iPublication->getId() === $currentPublication->getId()}
-											<a href="{url page="catalog" op="book" path=$monograph->getBestId()}">{$name}</a>
+										{capture}{$versionCounter--}{/capture}
+										{if $iPublication->getId()|in_array:$chapterPublicationIds}
+											{capture}{$chapterCounter--}{/capture}
+											{if $chapterCounter === 0 && $versionCounter > 0}
+												{capture assign="versionSuffix"}{translate key="submission.chapterCreated"}{/capture}
+											{else}
+												{capture assign="versionSuffix"}{/capture}
+											{/if}
+											{if $iPublication->getId() === $publication->getId()}
+												{$name}{$versionSuffix}
+											{elseif $iPublication->getId() === $currentPublication->getId()}
+												<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"chapter":$chapter->getSourceChapterId()}">{$name}</a>{$versionSuffix}
+											{else}
+												<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"version":$iPublication->getId():"chapter":$chapter->getSourceChapterId()}">{$name}</a>{$versionSuffix}
+											{/if}
 										{else}
-											<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"version":$iPublication->getId()}">{$name}</a>
+											{if $chapterCounter > 0}
+												{translate key="submission.withoutChapter" name=$name}
+											{else}
+												{$name}
+											{/if}
 										{/if}
 									</li>
 								{/foreach}
@@ -523,7 +493,7 @@
 				{/foreach}
 			{/if}
 
-			{call_hook name="Templates::Catalog::Book::Details"}
+			{call_hook name="Templates::Catalog::Chapter::Details"}
 
 		</div><!-- .details -->
 	</div><!-- .row -->

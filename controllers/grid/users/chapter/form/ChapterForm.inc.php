@@ -131,7 +131,6 @@ class ChapterForm extends Form
         $this->setData('submissionId', $this->getMonograph()->getId());
         $this->setData('publicationId', $this->getPublication()->getId());
         $this->setData('enableChapterPublicationDates', (bool) $this->getMonograph()->getEnableChapterPublicationDates());
-		$this->setData('enableChapterLandingPages', (bool) $this->getMonograph()->getEnableChapterLandingPages());
 
         $chapter = $this->getChapter();
         if ($chapter) {
@@ -140,14 +139,14 @@ class ChapterForm extends Form
             $this->setData('subtitle', $chapter->getSubtitle());
             $this->setData('abstract', $chapter->getAbstract());
             $this->setData('datePublished', $chapter->getDatePublished());
-            $this->setData('isLandingPageEnabled', $chapter->isLandingPageEnabled());
+            $this->setData('isPageEnabled', $chapter->isPageEnabled());
             $this->setData('pages', $chapter->getPages());
         } else {
             $this->setData('title', null);
             $this->setData('subtitle', null);
             $this->setData('abstract', null);
             $this->setData('datePublished', null);
-			$this->setData('isLandingPageEnabled', null);
+            $this->setData('isPageEnabled', null);
             $this->setData('pages', null);
         }
     }
@@ -216,13 +215,13 @@ class ChapterForm extends Form
         }
 
         $templateMgr->assign([
-            'chapterAuthorOptions' => $chapterAuthorOptions,
-            'selectedChapterAuthors' => array_map(function ($author) {
-                return $author->getId();
-            }, $selectedChapterAuthorsArray),
-            'chapterFileOptions' => $chapterFileOptions,
-            'selectedChapterFiles' => $selectedChapterFiles,
-        ]);
+                                 'chapterAuthorOptions' => $chapterAuthorOptions,
+                                 'selectedChapterAuthors' => array_map(function ($author) {
+                                     return $author->getId();
+                                 }, $selectedChapterAuthorsArray),
+                                 'chapterFileOptions' => $chapterFileOptions,
+                                 'selectedChapterFiles' => $selectedChapterFiles,
+                             ]);
 
         return parent::fetch($request, $template, $display);
     }
@@ -234,7 +233,7 @@ class ChapterForm extends Form
      */
     public function readInputData()
     {
-        $this->readUserVars(['title', 'subtitle', 'authors', 'files','abstract','datePublished','pages','isLandingPageEnabled']);
+        $this->readUserVars(['title', 'subtitle', 'authors', 'files','abstract','datePublished','pages','isPageEnabled']);
     }
 
     /**
@@ -244,7 +243,7 @@ class ChapterForm extends Form
      */
     public function execute(...$functionParams)
     {
-		parent::execute(...$functionParams);
+        parent::execute(...$functionParams);
 
         $chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
         $chapter = $this->getChapter();
@@ -255,7 +254,7 @@ class ChapterForm extends Form
             $chapter->setAbstract($this->getData('abstract'), null); //Localized
             $chapter->setDatePublished($this->getData('datePublished'));
             $chapter->setPages($this->getData('pages'));
-            $chapter->setLandingPageEnabled($this->getData('isLandingPageEnabled'));
+            $chapter->setPageEnabled($this->getData('isPageEnabled'));
             $chapterDao->updateObject($chapter);
         } else {
             $chapter = $chapterDao->newDataObject();
@@ -265,7 +264,7 @@ class ChapterForm extends Form
             $chapter->setAbstract($this->getData('abstract'), null); //Localized
             $chapter->setDatePublished($this->getData('datePublished'));
             $chapter->setPages($this->getData('pages'));
-			$chapter->setLandingPageEnabled($this->getData('isLandingPageEnabled'));
+            $chapter->setPageEnabled($this->getData('isPageEnabled'));
             $chapter->setSequence(REALLY_BIG_NUMBER);
             $chapterDao->insertChapter($chapter);
             $chapterDao->resequenceChapters($this->getPublication()->getId());

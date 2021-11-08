@@ -84,7 +84,7 @@ class CatalogBookHandler extends Handler
                     $this->publication = $publication;
                 }
             }
-		} else {
+        } else {
             $this->publication = $submission->getCurrentPublication();
         }
 
@@ -101,35 +101,44 @@ class CatalogBookHandler extends Handler
             $request->redirect(null, $request->getRequestedPage(), $request->getRequestedOp(), $newArgs);
         }
 
-		// If a chapter is requested, set this chapter
-		if ($subPath === 'chapter') {
-			$chapterId = empty($args) ?	0 :	(int) array_shift($args);
-			$this->setChapter($chapterId, $request);
-		} elseif (!empty($args) && $args[0] === 'chapter') {
-			$chapterId = isset($args[1])	?	(int) $args[1]	:	0;
-			$this->setChapter($chapterId, $request);
-		}
+        // If a chapter is requested, set this chapter
+        if ($subPath === 'chapter') {
+            $chapterId = empty($args) ?	0 :	(int) array_shift($args);
+            $this->setChapter($chapterId, $request);
+        } elseif (!empty($args) && $args[0] === 'chapter') {
+            $chapterId = isset($args[1])	?	(int) $args[1]	:	0;
+            $this->setChapter($chapterId, $request);
+        }
 
-		if ($this->isChapterRequest) {
-			if (!(bool) $submission->getEnableChapterLandingPages() || !$this->chapter->isLandingPageEnabled()) {
-				$request->getDispatcher()->handle404();
-			}
-			$chapterAuthors = $this->chapter->getAuthors();
-			$chapterAuthors = $chapterAuthors->toArray();
+        if ($this->isChapterRequest) {
+            if (!$this->chapter->isPageEnabled()) {
+                $request->getDispatcher()->handle404();
+            }
+            $chapterAuthors = $this->chapter->getAuthors();
+            $chapterAuthors = $chapterAuthors->toArray();
 
-			$datePublished = $submission->getEnableChapterPublicationDates() && $this->chapter->getDatePublished()
-				? $this->chapter->getDatePublished()
-				: $this->publication->getData('datePublished');
-			// Get the earliest publishing date of the chapter
-			$firstDatePublished = $this->getChaptersFirstPublishedDate( $submission );
-			$templateMgr->assign([
-				'chapter'	=>	$this->chapter,
-				'chapterAuthors'	=>	$chapterAuthors,
-				'firstDatePublished' => $firstDatePublished ?: $datePublished,
-				'datePublished'	=>	$datePublished,
-				'chapterPublicationIds' => $this->chapterPublicationIds,
-			]);
-		}
+            $datePublished = $submission->getEnableChapterPublicationDates() && $this->chapter->getDatePublished()
+                ? $this->chapter->getDatePublished()
+                : $this->publication->getData('datePublished');
+
+            // Get the earliest published Version of the chapter
+            $sourceChapter = $this->getSourceChapter( $submission );
+            if ($sourceChapter) {
+                // Get the earliest publishing date of the chapter
+                $firstDatePublished = $this->getChaptersFirstPublishedDate( $submission, $sourceChapter );
+            } else {
+                $firstDatePublished = $datePublished;
+            }
+
+            $templateMgr->assign([
+                'chapter' => $this->chapter,
+                'chapterAuthors' => $chapterAuthors,
+                'sourceChapter' => $sourceChapter,
+                'firstDatePublished' => $firstDatePublished ?: $datePublished,
+                'datePublished' => $datePublished,
+                'chapterPublicationIds' => $this->chapterPublicationIds,
+            ]);
+        }
 
         // Get the earliest published publication
         $firstPublication = $submission->getData('publications')->reduce(function ($a, $b) {
@@ -137,7 +146,7 @@ class CatalogBookHandler extends Handler
         }, 0);
 
         $templateMgr->assign([
-			'isChapterRequest'	=>	$this->isChapterRequest,
+            'isChapterRequest' => $this->isChapterRequest,
             'publishedSubmission' => $submission,
             'publication' => $this->publication,
             'firstPublication' => $firstPublication,
@@ -215,7 +224,7 @@ class CatalogBookHandler extends Handler
         // Only pass files in pub formats that are also available
         $filteredAvailableFiles = [];
         /** @var SubmissionFile $submissionFile */
-		foreach ($availableFiles as $submissionFile) {
+        foreach ($availableFiles as $submissionFile) {
             foreach ($availablePublicationFormats as $format) {
                 if ($submissionFile->getData('assocId') == $format->getId()) {
                     $filteredAvailableFiles[] = $submissionFile;
@@ -313,6 +322,8 @@ class CatalogBookHandler extends Handler
         if (!$submissionFile) {
             $dispatcher->handle404();
         }
+
+        $backlink = $submissionFile->getBacklink( $request );
 
         $path = $submissionFile->getData('path');
         $filename = Services::get('file')->formatFilename($path, $submissionFile->getLocalizedData('name'));
@@ -423,95 +434,117 @@ class CatalogBookHandler extends Handler
         parent::setupTemplate($request);
     }
 
-	/**
-	 * Set the requested chapter.
-	 *
-	 * @param int        $chapterId
-	 * @param PKPRequest $request
-	 */
-    private function setChapter(int $chapterId, PKPRequest $request) : void
-	{
-		if ($chapterId > 0) {
-			$this->isChapterRequest = true;
-			$chapterDao = new ChapterDAO();
-			$chapters = $chapterDao->getBySourceChapterId($chapterId);
-			$chapters = $chapters->toAssociativeArray();
-			$chaptersCount = count($chapters);
-			if ($chaptersCount > 0) {
-				/** @var Chapter $chapter */
-				foreach ($chapters as $chapter) {
-					$publicationId = (int) $chapter->getData('publicationId');
-					if ($publicationId === $this->publication->getId()
-						&& $this->publication->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
-						$this->chapter = $chapter;
-						$this->setChapterPublicationIds();
-						break;
-					}
-				}
-			}
+    /**
+     * Set the requested chapter.
+     *
+     * @param int        $chapterId
+     * @param PKPRequest $request
+     */
+    protected function setChapter(int $chapterId, PKPRequest $request) : void
+    {
+        if ($chapterId > 0) {
+            $this->isChapterRequest = true;
+            $chapterDao = DAORegistry::getDAO('ChapterDAO');
+            $chapters = $chapterDao->getBySourceChapterId($chapterId);
+            $chapters = $chapters->toAssociativeArray();
+            $chaptersCount = count($chapters);
+            if ($chaptersCount > 0) {
+                /** @var Chapter $chapter */
+                foreach ($chapters as $chapter) {
+                    $publicationId = (int) $chapter->getData('publicationId');
+                    if ($publicationId === $this->publication->getId()
+                        && $this->publication->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
+                        $this->chapter = $chapter;
+                        $this->setChapterPublicationIds();
+                        break;
+                    }
+                }
+            }
 
-			if (null === $this->chapter) {
-				$request->getDispatcher()->handle404();
-			}
-		}
-	}
+            if (null === $this->chapter) {
+                $request->getDispatcher()->handle404();
+            }
+        }
+    }
 
-	/**
-	 * Set an array with all publication ids of the requested chapter.
-	 */
-	private function setChapterPublicationIds() : void
-	{
-		if ($this->chapter && $this->isChapterRequest) {
-			$chapterDao = new ChapterDAO();
-			$chapters = $chapterDao->getBySourceChapterId($this->chapter->getSourceChapterId());
-			$chapters = $chapters->toAssociativeArray();
-			$publicationIds = array();
-			/** @var Chapter $chapter */
-			foreach ($chapters as $chapter) {
-				if ($chapter->isLandingPageEnabled())
-				{
-					$publicationId = (int) $chapter->getData('publicationId');
-					$publicationIds[] = $publicationId;
-				}
-			}
-			$this->chapterPublicationIds = $publicationIds;
-		}
-	}
+    /**
+     * Set an array with all publication ids of the requested chapter.
+     */
+    protected function setChapterPublicationIds() : void
+    {
+        if ($this->chapter && $this->isChapterRequest) {
+            $chapterDao = DAORegistry::getDAO('ChapterDAO');
+            $chapters = $chapterDao->getBySourceChapterId($this->chapter->getSourceChapterId());
+            $chapters = $chapters->toAssociativeArray();
+            $publicationIds = array();
+            /** @var Chapter $chapter */
+            foreach ($chapters as $chapter) {
+                if ($chapter->isPageEnabled())
+                {
+                    $publicationId = (int) $chapter->getData('publicationId');
+                    $publicationIds[] = $publicationId;
+                }
+            }
+            $this->chapterPublicationIds = $publicationIds;
+        }
+    }
 
-	/**
-	 * Get the earliest publishing date of the chapter
-	 * @param Submission $submission
-	 *
-	 * @return string|null
-	 */
-	private function getChaptersFirstPublishedDate( Submission $submission ) : ?string
-	{
-		$chapterDao = new ChapterDAO();
-		$chapters = $chapterDao->getBySourceChapterId($this->chapter->getSourceChapterId());
-		$chapters = $chapters->toAssociativeArray();
-		$publishedPublications = $submission->getPublishedPublications();
-		$firstPublication = null;
-		$firstChapter = null;
-		/** @var Chapter $chapter */
-		foreach ($chapters as $chapter) {
-			/** @var Publication $publication */
-			foreach ($publishedPublications as $publication) {
-				if ($publication->getId() === (int) $chapter->getData('publicationId')) {
-					$firstPublication = $publication;
-					$firstChapter = $chapter;
-					break 2;
-				}
-			}
-		}
+    /**
+     * Get the earliest version of a chapter
+     * @param Submission $submission
+     *
+     * @return chapter|null
+     */
+    protected function getSourceChapter( Submission $submission ) : ?chapter
+    {
+        $chapterDao = DAORegistry::getDAO('ChapterDAO');
+        $chapters = $chapterDao->getBySourceChapterId($this->chapter->getSourceChapterId());
+        $chapters = $chapters->toAssociativeArray();
+        $publishedPublications = $submission->getPublishedPublications();
 
-		if ($firstPublication && $firstChapter) {
-			if ($submission->getEnableChapterPublicationDates() && $firstChapter->getDatePublished()) {
-				return $firstChapter->getDatePublished();
-			}
+        /** @var Chapter $chapter */
+        foreach ($chapters as $chapter) {
+            /** @var Publication $publication */
+            foreach ($publishedPublications as $publication) {
+                if ($publication->getId() === (int) $chapter->getData('publicationId')) {
+                    return $chapter;
+                }
+            }
+        }
 
-			return $firstPublication->getData('datePublished');
-		}
+        return null;
+    }
 
-		return null;
-	}
+    /**
+     * Get the earliest publishing date of the chapter
+     *
+     * @param Submission $submission
+     * @param Chapter    $sourceChapter
+     *
+     * @return string|null
+     */
+    protected function getChaptersFirstPublishedDate( Submission $submission, Chapter $sourceChapter ) : ?string
+    {
+        $publishedPublications = $submission->getPublishedPublications();
+        $firstPublication = null;
+        $sourceChapterPublicationId = (int) $sourceChapter->getData('publicationId');
+
+        /** @var Publication $publication */
+        foreach ($publishedPublications as $publication) {
+            if ($publication->getId() === $sourceChapterPublicationId) {
+                $firstPublication = $publication;
+                break;
+            }
+        }
+
+        if ($firstPublication) {
+            if ($submission->getEnableChapterPublicationDates() && $sourceChapter->getDatePublished()) {
+                return $sourceChapter->getDatePublished();
+            }
+
+            return $firstPublication->getData('datePublished');
+        }
+
+        return null;
+    }
 }

@@ -48,11 +48,9 @@
 		{/fbvFormSection}
 	{/if}
 
-    {if $enableChapterLandingPages}
-       {fbvFormSection list=true title="publication.chapter.landingPage" for="customExtras"}
-       {fbvElement type="checkbox" name="isLandingPageEnabled" id="isLandingPageEnabled" checked=$isLandingPageEnabled|compare:true label="publication.chapter.hasLandingPage" value="1" translate="true"}
-	   {/fbvFormSection}
-    {/if}
+	{fbvFormSection list=true title="publication.chapter.landingPage" for="customExtras"}
+	{fbvElement type="checkbox" name="isPageEnabled" id="isPageEnabled" checked=$isPageEnabled|compare:true label="publication.chapter.hasLandingPage" value="1" translate="true"}
+	{/fbvFormSection}
 
 	{fbvFormSection list=true title="submission.submit.addAuthor"}
 		{foreach from=$chapterAuthorOptions item="chapterAuthor" key="id"}

@@ -331,26 +331,6 @@ class Submission extends PKPSubmission
     {
         $this->setData('enableChapterPublicationDates', $enableChapterPublicationDates);
     }
-
-	/**
-	 * get enableChapterLandingPages status
-	 *
-	 * @return int
-	 */
-	public function getEnableChapterLandingPages()
-	{
-		return $this->getData('enableChapterLandingPages');
-	}
-
-	/**
-	 * set  enableChapterLandingPages status
-	 *
-	 * @param $enableChapterLandingPages int
-	 */
-	public function setEnableChapterLandingPages(int $enableChapterLandingPages)
-	{
-		$this->setData('enableChapterLandingPages', $enableChapterLandingPages);
-	}
 }
 
 if (!PKP_STRICT_MODE) {
