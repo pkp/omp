@@ -21,6 +21,21 @@ define('ORDERBY_SERIES_POSITION', 'seriesPosition');
 
 class SubmissionDAO extends PKPSubmissionDAO {
 
+	/** @copydoc SchemaDAO::$primaryTableColumns */
+	public $primaryTableColumns = [
+		'id' => 'submission_id',
+		'contextId' => 'context_id',
+		'currentPublicationId' => 'current_publication_id',
+		'dateLastActivity' => 'date_last_activity',
+		'dateSubmitted' => 'date_submitted',
+		'lastModified' => 'last_modified',
+		'locale' => 'locale',
+		'stageId' => 'stage_id',
+		'status' => 'status',
+		'submissionProgress' => 'submission_progress',
+		'workType' => 'work_type',
+	];
+
 	/**
 	 * Get a new data object representing the monograph.
 	 * @return Submission
