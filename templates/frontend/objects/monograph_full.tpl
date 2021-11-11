@@ -79,8 +79,8 @@
 		<div class="cmp_notification notice">
 			{capture assign="latestVersionUrl"}{url page="catalog" op="book" path=$monograph->getBestId()}{/capture}
 			{translate key="submission.outdatedVersion"
-			datePublished=$publication->getData('datePublished')|date_format:$dateFormatShort
-			urlRecentVersion=$latestVersionUrl|escape
+				datePublished=$publication->getData('datePublished')|date_format:$dateFormatShort
+				urlRecentVersion=$latestVersionUrl|escape
 			}
 		</div>
 	{/if}
@@ -242,7 +242,7 @@
 									{if $author->getLocalizedAffiliation()}
 										{capture assign="authorName"}{$author->getFullName()|escape}{/capture}
 										{capture assign="authorAffiliation"}<span class="affiliation">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
-										{translate key="submission.authorWithAffiliation" name=$authorName|escape affiliation=$authorAffiliation|escape}
+										{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
 									{else}
 										{$author->getFullName()|escape}
 									{/if}
@@ -288,8 +288,15 @@
 			</div>
 
 			{* Any non-chapter files and remote resources *}
-			{pluck_files assign=nonChapterFiles files=$availableFiles by="chapter" value=0}
-			{include file="frontend/components/objectFiles.tpl"}
+			{pluck_files assign=bookFiles files=$availableFiles by="chapter" value=0}
+			{if $bookFiles|@count || $remotePublicationFormats|@count}
+				<div class="item files">
+					<h2 class="pkp_screen_reader">
+						{translate key="submission.downloads"}
+					</h2>
+					{include file="frontend/components/publicationFormats.tpl" publicationFiles=$bookFiles}
+				</div>
+			{/if}
 
 			{* Publication Date *}
 			{if $publication->getData('datePublished')}

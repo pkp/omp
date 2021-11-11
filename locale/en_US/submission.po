@@ -471,4 +471,16 @@ msgid "publication.chapter.landingPage"
 msgstr "Chapter Page"
 
 msgid "publication.chapter.hasLandingPage"
-msgstr "This chapter has a separate page with its own URL."
+msgstr "Show this chapter on its own page and link to that page from the book's table of contents."
+
+msgid "chapter.volume"
+msgstr "Volume"
+
+msgid "submission.withoutChapter"
+msgstr "{$name} — Without this chapter"
+
+msgid "submission.chapterCreated"
+msgstr " — Chapter created"
+
+msgid "chapter.pages"
+msgstr "Pages"

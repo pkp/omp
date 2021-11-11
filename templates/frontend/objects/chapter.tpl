@@ -8,41 +8,6 @@
  * @brief Display a full view of a chapter. Expected to be primary object on
  *  the page.
  *
- * Many presses will need to add custom data to this object, either through
- * plugins which attach to hooks on the page or by editing the template
- * themselves. In order to facilitate this, a flexible layout markup pattern has
- * been implemented. If followed, plugins and other content can provide markup
- * in a way that will render consistently with other items on the page. This
- * pattern is used in the .main_entry column and the .entry_details column. It
- * consists of the following:
- *
- * <!-- Wrapper class which provides proper spacing between components -->
- * <div class="item">
- *     <!-- Title/value combination -->
- *     <div class="label">Abstract</div>
- *     <div class="value">Value</div>
- * </div>
- *
- * All styling should be applied by class name, so that titles may use heading
- * elements (eg, <h3>) or any element required.
- *
- * <!-- Example: component with multiple title/value combinations -->
- * <div class="item">
- *     <div class="sub_item">
- *         <div class="label">DOI</div>
- *         <div class="value">12345678</div>
- *     </div>
- *     <div class="sub_item">
- *         <div class="label">Published Date</div>
- *         <div class="value">2015-01-01</div>
- *     </div>
- * </div>
- *
- * <!-- Example: component with no title -->
- * <div class="item">
- *     <div class="value">Whatever you'd like</div>
- * </div>
- *
  * Core components are produced manually below, but can also be added via
  * plugins using the hooks provided:
  *
@@ -70,9 +35,13 @@
 <div class="obj_monograph_full obj_chapter">
 
 	{* Notification that this is an old version *}
-	{if $currentPublication->getID() !== $publication->getId() && !$hasVersionChanged}
+	{if $currentPublication->getID() !== $publication->getId()}
 		<div class="cmp_notification notice">
-			{capture assign="latestVersionUrl"}{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"chapter":$chapter->getSourceChapterId()}{/capture}
+			{if $currentPublication->getID()|in_array:$chapterPublicationIds}
+				{capture assign="latestVersionUrl"}{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"chapter":$chapter->getSourceChapterId()}{/capture}
+			{else}
+				{capture assign="latestVersionUrl"}{url page="catalog" op="book" path=$monograph->getBestId()}{/capture}
+			{/if}
 
 			{translate key="submission.outdatedVersion"
 				datePublished=$publication->getData('datePublished')|date_format:$dateFormatShort
@@ -113,21 +82,6 @@
 				{/if}
 			{/foreach}
 
-			{* Keywords *}
-			{if !empty($publication->getLocalizedData('keywords'))}
-			<div class="item keywords">
-				<h2 class="label">
-					{capture assign=translatedKeywords}{translate key="common.keywords"}{/capture}
-					{translate key="semicolon" label=$translatedKeywords}
-				</h2>
-				<span class="value">
-					{foreach name="keywords" from=$publication->getLocalizedData('keywords') item=keyword}
-						{$keyword|escape}{if !$smarty.foreach.keywords.last}, {/if}
-					{/foreach}
-				</span>
-			</div>
-			{/if}
-
 			{* Abstract *}
 			<div class="item abstract">
 				<h2 class="label">
@@ -163,7 +117,7 @@
 									{if $author->getLocalizedAffiliation()}
 										{capture assign="authorName"}{$author->getFullName()|escape}{/capture}
 										{capture assign="authorAffiliation"}<span class="affiliation">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
-										{translate key="submission.authorWithAffiliation" name=$authorName|escape affiliation=$authorAffiliation|escape}
+										{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
 									{else}
 										{$author->getFullName()|escape}
 									{/if}
@@ -174,24 +128,6 @@
 							</div>
 						{/if}
 					{/foreach}
-				</div>
-			{/if}
-
-			{* References *}
-			{if $citations || $publication->getData('citationsRaw')}
-				<div class="item references">
-					<h2 class="label">
-						{translate key="submission.citations"}
-					</h2>
-					<div class="value">
-						{if $citations}
-							{foreach from=$citations item=$citation}
-								<p>{$citation->getCitationWithLinks()|strip_unsafe_html}</p>
-							{/foreach}
-						{else}
-							{$publication->getData('citationsRaw')|escape|nl2br}
-						{/if}
-					</div>
 				</div>
 			{/if}
 
@@ -216,8 +152,15 @@
 			</div>
 
 			{* Any files of the requested chapter*}
-			{pluck_files assign=objectFiles files=$availableFiles by="chapter" value=$chapter->getId()}
-			{include file="frontend/components/objectFiles.tpl"}
+			{pluck_files assign=chapterFiles files=$availableFiles by="chapter" value=$chapter->getId()}
+			{if $chapterFiles|@count}
+				<div class="item files">
+					<h2 class="pkp_screen_reader">
+						{translate key="submission.downloads"}
+					</h2>
+					{include file="frontend/components/publicationFormats.tpl" publicationFiles=$chapterFiles}
+				</div>
+			{/if}
 
 
 			{* Monograph *}
@@ -375,122 +318,6 @@
 						</a>
 					{/if}
 				</div>
-			{/if}
-
-			{* Publication formats *}
-			{if count($publicationFormats)}
-				{foreach from=$publicationFormats item="publicationFormat"}
-					{if $publicationFormat->getIsApproved()}
-
-						{assign var=identificationCodes value=$publicationFormat->getIdentificationCodes()}
-						{assign var=identificationCodes value=$identificationCodes->toArray()}
-						{assign var=publicationDates value=$publicationFormat->getPublicationDates()}
-						{assign var=publicationDates value=$publicationDates->toArray()}
-						{assign var=hasPubId value=false}
-						{foreach from=$pubIdPlugins item=pubIdPlugin}
-							{assign var=pubIdType value=$pubIdPlugin->getPubIdType()}
-							{if $publicationFormat->getStoredPubId($pubIdType)}
-								{assign var=hasPubId value=true}
-								{break}
-							{/if}
-						{/foreach}
-
-						{* Skip if we don't have any information to print about this pub format *}
-						{if !$identificationCodes && !$publicationDates && !$hasPubId && !$publicationFormat->getPhysicalFormat()}
-							{continue}
-						{/if}
-
-						<div class="item publication_format">
-
-							{* Only add the format-specific heading if multiple publication formats exist *}
-							{if count($publicationFormats) > 1}
-								<h2 class="pkp_screen_reader">
-									{assign var=publicationFormatName value=$publicationFormat->getLocalizedName()}
-									{translate key="monograph.publicationFormatDetails" format=$publicationFormatName|escape}
-								</h2>
-
-								<div class="sub_item item_heading format">
-									<div class="label">
-										{$publicationFormat->getLocalizedName()|escape}
-									</div>
-								</div>
-							{else}
-								<h2 class="pkp_screen_reader">
-									{translate key="monograph.miscellaneousDetails"}
-								</h2>
-							{/if}
-
-
-							{* DOI's and other identification codes *}
-							{if $identificationCodes}
-								{foreach from=$identificationCodes item=identificationCode}
-									<div class="sub_item identification_code">
-										<h3 class="label">
-											{$identificationCode->getNameForONIXCode()|escape}
-										</h3>
-										<div class="value">
-											{$identificationCode->getValue()|escape}
-										</div>
-									</div>
-								{/foreach}
-							{/if}
-
-							{* Dates of publication *}
-							{if $publicationDates}
-								{foreach from=$publicationDates item=publicationDate}
-									<div class="sub_item date">
-										<h3 class="label">
-											{$publicationDate->getNameForONIXCode()|escape}
-										</h3>
-										<div class="value">
-											{assign var=dates value=$publicationDate->getReadableDates()}
-											{* note: these dates have dateFormatShort applied to them in getReadableDates() if they need it *}
-											{if $publicationDate->isFreeText() || $dates|@count == 1}
-												{$dates[0]|escape}
-											{else}
-												{* @todo the &mdash; ought to be translateable *}
-												{$dates[0]|escape}&mdash;{$dates[1]|escape}
-											{/if}
-											{if $publicationDate->isHijriCalendar()}
-												<div class="hijri">
-													{translate key="common.dateHijri"}
-												</div>
-											{/if}
-										</div>
-									</div>
-								{/foreach}
-							{/if}
-
-							{* PubIDs *}
-							{foreach from=$pubIdPlugins item=pubIdPlugin}
-								{assign var=pubIdType value=$pubIdPlugin->getPubIdType()}
-								{assign var=storedPubId value=$publicationFormat->getStoredPubId($pubIdType)}
-								{if $storedPubId != ''}
-									<div class="sub_item pubid {$publicationFormat->getId()|escape}">
-										<h2 class="label">
-											{$pubIdType}
-										</h2>
-										<div class="value">
-											{$storedPubId|escape}
-										</div>
-									</div>
-								{/if}
-							{/foreach}
-
-							{* Physical dimensions *}
-							{if $publicationFormat->getPhysicalFormat()}
-								<div class="sub_item dimensions">
-									<h2 class="label">
-										{translate key="monograph.publicationFormat.productDimensions"}
-									</h2>
-									<div class="value">
-										{$publicationFormat->getDimensions()|escape}
-									</div>
-								</div>
-							{/if}
-						</div>
-					{/if}
-				{/foreach}
 			{/if}
 
 			{call_hook name="Templates::Catalog::Chapter::Details"}

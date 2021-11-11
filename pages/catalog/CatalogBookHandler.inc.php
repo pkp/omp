@@ -323,8 +323,6 @@ class CatalogBookHandler extends Handler
             $dispatcher->handle404();
         }
 
-        $backlink = $submissionFile->getBacklink( $request );
-
         $path = $submissionFile->getData('path');
         $filename = Services::get('file')->formatFilename($path, $submissionFile->getLocalizedData('name'));
         switch ($submissionFile->getData('assocType')) {

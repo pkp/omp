@@ -20,7 +20,7 @@ class I7132_AddSourceChapterId extends \PKP\migration\Migration
     /**
      * Run the migration.
      */
-    public function up()
+    public function up(): void
     {
         // pkp/pkp-lib#7132 Add source_chapter_id
         Schema::table('submission_chapters', function($table)
@@ -33,7 +33,7 @@ class I7132_AddSourceChapterId extends \PKP\migration\Migration
     /**
      * Reverse the downgrades
      */
-    public function down()
+    public function down(): void
     {
         //remove source_chapter_id
         Schema::table('submission_chapters', function($table)
