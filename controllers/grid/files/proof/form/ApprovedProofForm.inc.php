@@ -19,7 +19,7 @@ use PKP\form\Form;
 
 class ApprovedProofForm extends Form
 {
-    /** @var SubmissionFile $approvedProof */
+    /** @var PKP\submissionFile\SubmissionFile $approvedProof */
     public $approvedProof;
 
     /** @var Monograph $monograph */
@@ -105,16 +105,16 @@ class ApprovedProofForm extends Form
         $salesType = $this->getData('salesType');
 
         $params = [
-            'direct_sales_price' => $this->getData('price'),
-            'sales_type' => $salesType,
+            'directSalesPrice' => $this->getData('price'),
+            'salesType' => $salesType,
         ];
 
         if ($salesType === 'notAvailable') {
             // Not available
-            $params['direct_sales_price'] = null;
+            $params['directSalesPrice'] = null;
         } elseif ($salesType === 'openAccess') {
             // Open access
-            $params['direct_sales_price'] = 0;
+            $params['directSalesPrice'] = 0;
         }
 
         Repo::submissionFiles()
