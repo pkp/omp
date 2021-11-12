@@ -20,7 +20,7 @@ class I6807_SetLastModified extends \PKP\migration\Migration
     /**
      * Run the migration.
      */
-    public function up()
+    public function up(): void
     {
         // pkp/pkp-lib#6807 Make sure all issue last modification dates are set
         DB::statement('UPDATE submissions SET last_modified = NOW() WHERE last_modified IS NULL');
@@ -29,7 +29,7 @@ class I6807_SetLastModified extends \PKP\migration\Migration
     /**
      * Reverse the downgrades
      */
-    public function down()
+    public function down(): void
     {
         // We don't have the data to downgrade and downgrades are unwanted here anyway.
     }
