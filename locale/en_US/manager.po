@@ -915,7 +915,7 @@ msgid "manager.setup.disableSubmissions.notAccepting"
 msgstr "This press is not accepting submissions at this time. Visit the workflow settings to allow submissions."
 
 msgid "manager.setup.disableSubmissions.description"
-msgstr "Prevent users from submitting new articles to the press. Submissions can be disabled for individual press series on the <a href="{$url}">press series</a> settings page."
+msgstr "Prevent users from submitting new articles to the press. Submissions can be disabled for individual press series on the <a href=\"{$url}\">press series</a> settings page."
 
 msgid "manager.setup.genres"
 msgstr "Genres"
@@ -1113,7 +1113,7 @@ msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
 msgstr "Send a copy of the submission acknowledgement email to this press's primary contact."
 
 msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
-msgstr "No primary contact has been defined for this press. You can enter a primary contact in the <a href="{$url}">press settings</a>."
+msgstr "No primary contact has been defined for this press. You can enter a primary contact in the <a href=\"{$url}\">press settings</a>."
 
 msgid "plugins.importexport.common.error.unknownObjects"
 msgstr "The specified objects could not be found."
@@ -1153,3 +1153,9 @@ msgstr "The currency of the payment amount, such as USD"
 
 msgid "emailTemplate.variable.site.siteTitle"
 msgstr "Name of the website when more than one press is hosted"
+
+msgid "mailable.validateEmailContext.name"
+msgstr "Validate Email (Press Registration)"
+
+msgid "mailable.validateEmailContext.description"
+msgstr "This email is automatically sent to a new user when they register with the press when the settings require the email address to be validated."
