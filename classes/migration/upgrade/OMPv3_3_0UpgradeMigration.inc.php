@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Schema;
 use PKP\core\EntityDAO;
 use PKP\services\PKPSchemaService;
 use PKP\submission\SubmissionFile;
+use PKP\db\DAORegistry;
 
 class OMPv3_3_0UpgradeMigration extends \PKP\migration\Migration
 {
