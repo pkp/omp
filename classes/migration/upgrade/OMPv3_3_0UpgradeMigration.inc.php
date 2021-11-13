@@ -14,6 +14,7 @@
 namespace APP\migration\upgrade;
 
 use APP\core\Application;
+use APP\core\Services;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
