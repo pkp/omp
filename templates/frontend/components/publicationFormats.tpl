@@ -9,7 +9,7 @@
  *
  * @uses $monograph Monograph The monograph to be displayed
  * @uses $publication Publication The publication (version) that is being displayed
- * @uses publicationFiles array if a chapter is requested files of the requested chapter, else non chapter files
+ * @uses $publicationFiles array if a chapter is requested files of the requested chapter, else non chapter files
  * @uses $publicationFormats array List of PublicationFormat objects to display
  * @uses $currency Currency The Currency object representing the press's currency, if configured.
  * @uses $remotePublicationFormats array List of PublicationFormat objects which

@@ -109,7 +109,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
                 'SELECT	*
                 FROM submission_chapters
                 WHERE source_chapter_id = ?
-                OR ISNULL(source_chapter_id) AND chapter_id = ?'
+                OR (source_chapter_id IS NULL AND chapter_id = ?)'
                 . ($orderByPublicationId ? ' ORDER BY publication_id ASC' : ''),
                 [$sourceChapterId, $sourceChapterId]
             ),
