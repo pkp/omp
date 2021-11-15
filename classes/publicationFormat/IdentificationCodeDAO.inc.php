@@ -19,7 +19,7 @@ namespace APP\publicationFormat;
 
 use APP\publicationFormat\IdentificationCode;
 
-use HookRegistry;
+use PKP\plugins\HookRegistry;
 use PKP\db\DAOResultFactory;
 
 class IdentificationCodeDAO extends \PKP\db\DAO
