@@ -16,7 +16,7 @@
  */
 
 namespace APP\publicationFormat;
-
+use PKP\core\DataObject;
 use PKP\db\DAORegistry;
 
 class IdentificationCode extends DataObject
