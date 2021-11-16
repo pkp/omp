@@ -20,6 +20,7 @@ use APP\payment\omp\OMPPaymentManager;
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 use APP\template\TemplateManager;
 use PKP\submission\PKPSubmission;
+use Sokil\IsoCodes\IsoCodesFactory;
 use APP\monograph\ChapterDAO;
 use APP\monograph\Chapter;
 
@@ -236,7 +237,7 @@ class CatalogBookHandler extends Handler
 
         // Provide the currency to the template, if configured.
         if ($currencyCode = $request->getContext()->getData('currency')) {
-            $isoCodes = new \Sokil\IsoCodes\IsoCodesFactory();
+            $isoCodes = app(IsoCodesFactory::class);
             $templateMgr->assign('currency', $isoCodes->getCurrencies()->getByLetterCode($currencyCode));
         }
 

@@ -14,6 +14,7 @@
 namespace APP\migration\upgrade;
 
 use APP\core\Application;
+use APP\core\Services;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -21,13 +22,14 @@ use Illuminate\Support\Facades\Schema;
 use PKP\core\EntityDAO;
 use PKP\services\PKPSchemaService;
 use PKP\submission\SubmissionFile;
+use PKP\db\DAORegistry;
 
 class OMPv3_3_0UpgradeMigration extends \PKP\migration\Migration
 {
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('press_settings', function (Blueprint $table) {
             // pkp/pkp-lib#6096 DB field type TEXT is cutting off long content
@@ -65,7 +67,7 @@ class OMPv3_3_0UpgradeMigration extends \PKP\migration\Migration
     /**
      * Reverse the downgrades
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('press_settings', function (Blueprint $table) {
             // pkp/pkp-lib#6096 DB field type TEXT is cutting off long content
@@ -85,7 +87,7 @@ class OMPv3_3_0UpgradeMigration extends \PKP\migration\Migration
             \PKP\announcement\DAO::class,
             \PKP\author\DAO::class,
             'PressDAO',
-            'EmailTemplateDAO',
+            \PKP\emailTemplate\DAO::class,
             \APP\publication\DAO::class,
             \APP\submission\DAO::class
         ];

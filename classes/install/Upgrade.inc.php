@@ -57,54 +57,6 @@ class Upgrade extends Installer
     // Specific upgrade actions
     //
     /**
-     * The assoc_type = ASSOC_TYPE_REPRESENTATION (from SIGNOFF_PROOFING migration)
-     * should be changed to assoc_type = ASSOC_TYPE_SUBMISSION, for queries to be
-     * displayed in the production discussions list.
-     * After changing this, the submission queries should be resequenced, in their
-     * order in the DB table.
-     *
-     * @return boolean True indicates success.
-     */
-    public function fixQueriesAssocTypes()
-    {
-        // Get queries by submission ids, in order to resequence them correctly after the assoc_type change
-        $queryDao = DAORegistry::getDAO('QueryDAO'); /* @var $queryDao QueryDAO */
-        $allQueriesResult = $queryDao->retrieve(
-            'SELECT DISTINCT q.*,
-                COALESCE(pf.submission_id, qs.assoc_id) AS submission_id
-            FROM queries q
-            LEFT JOIN publication_formats pf ON (q.assoc_type = ? AND q.assoc_id = pf.publication_format_id AND q.stage_id = ?)
-            LEFT JOIN queries qs ON (qs.assoc_type = ?)
-            WHERE q.assoc_type = ? OR q.assoc_type = ?
-            ORDER BY query_id',
-            [(int) ASSOC_TYPE_REPRESENTATION, (int) WORKFLOW_STAGE_ID_PRODUCTION, (int) ASSOC_TYPE_SUBMISSION, (int) ASSOC_TYPE_SUBMISSION, (int) ASSOC_TYPE_REPRESENTATION]
-        );
-        $allQueries = [];
-        foreach ($allQueriesResult as $row) {
-            $allQueries[$row->submission_id]['queries'][] = $query = $queryDao->_fromRow((array) $row);
-            // mark if this submission queries should be fixed
-            $fix = array_key_exists('fix', $allQueries[$row->submission_id]) ? $allQueries[$row->submission_id]['fix'] : false;
-            $allQueries[$row->submission_id]['fix'] = ($query->getAssocType() == ASSOC_TYPE_REPRESENTATION) || $fix;
-        }
-        foreach ($allQueries as $submissionId => $queriesBySubmission) {
-            // Touch i.e. fix and resequence only the submission queries that contained assoc_type = ASSOC_TYPE_REPRESENTATION
-            if ($allQueries[$submissionId]['fix']) {
-                $i = 1;
-                foreach ($queriesBySubmission['queries'] as $query) {
-                    if ($query->getAssocType() == ASSOC_TYPE_REPRESENTATION) {
-                        $query->setAssocType(ASSOC_TYPE_SUBMISSION);
-                        $query->setAssocId($submissionId);
-                    }
-                    $query->setSequence($i);
-                    $queryDao->updateObject($query);
-                    $i++;
-                }
-            }
-        }
-        return true;
-    }
-
-    /**
      * If StaticPages table exists we should port the data as NMIs
      *
      * @return boolean

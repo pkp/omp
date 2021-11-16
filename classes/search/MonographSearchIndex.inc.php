@@ -32,18 +32,13 @@ class MonographSearchIndex extends SubmissionSearchIndex
      * Index a block of text for an object.
      *
      * @param $objectId int
-     * @param $text string
-     * @param $position int
+     * @param $text string|array
      */
-    public function indexObjectKeywords($objectId, $text, &$position)
+    public function indexObjectKeywords($objectId, $text)
     {
         $searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
         $keywords = $this->filterKeywords($text);
-        for ($i = 0, $count = count($keywords); $i < $count; $i++) {
-            if ($searchDao->insertObjectKeyword($objectId, $keywords[$i], $position) !== null) {
-                ++$position;
-            }
-        }
+        $searchDao->insertObjectKeywords($objectId, $keywords);
     }
 
     /**
@@ -58,8 +53,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
     {
         $searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
         $objectId = $searchDao->insertObject($monographId, $type, $assocId);
-        $position = 0;
-        $this->indexObjectKeywords($objectId, $text, $position);
+        $this->indexObjectKeywords($objectId, $text);
     }
 
     /**
@@ -82,9 +76,8 @@ class MonographSearchIndex extends SubmissionSearchIndex
                 $searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
                 $objectId = $searchDao->insertObject($monographId, $type, $submissionFileId);
 
-                $position = 0;
                 while (($text = $parser->read()) !== false) {
-                    $this->indexObjectKeywords($objectId, $text, $position);
+                    $this->indexObjectKeywords($objectId, $text);
                 }
                 $parser->close();
             } else {
