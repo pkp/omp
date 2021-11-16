@@ -13,7 +13,7 @@
 
 namespace APP\submission;
 
-use APP\core\Application;
+use APP\observers\events\DeleteMonographSearchTextIndex;
 
 use PKP\db\DAORegistry;
 
@@ -44,9 +44,7 @@ class DAO extends \PKP\submission\DAO
         $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /** @var NewReleaseDAO $newReleaseDao */
         $newReleaseDao->deleteByMonographId($id);
 
-        $monographSearchIndex = Application::getSubmissionSearchIndex();
-        $monographSearchIndex->deleteTextIndex($id);
-        $monographSearchIndex->submissionChangesFinished();
+        event(new DeleteMonographSearchTextIndex($id));
 
         parent::deleteById($id);
     }
