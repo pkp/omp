@@ -25,7 +25,7 @@ class I7132_AddSourceChapterId extends \PKP\migration\Migration
         // pkp/pkp-lib#7132 Add source_chapter_id
         Schema::table('submission_chapters', function($table)
         {
-            $table->bigInteger('source_chapter_id')->unsigned()->nullable();
+            $table->bigInteger('source_chapter_id')->nullable();
             $table->foreign('source_chapter_id')->references('chapter_id')->on('submission_chapters');
         });
     }
