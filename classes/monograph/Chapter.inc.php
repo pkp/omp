@@ -300,6 +300,49 @@ class Chapter extends \PKP\core\DataObject
     {
         $this->setData('pages', $pages);
     }
+
+    /**
+     * Get source chapter id of chapter.
+     *
+     * @return null|int
+     */
+    public function getSourceChapterId()
+    {
+        if(!$this->getData('sourceChapterId')) {
+            $this->setSourceChapterId($this->getId());
+        }
+        return $this->getData('sourceChapterId');
+    }
+
+    /**
+     * Set source chapter id of chapter.
+     *
+     * @param $sourceChapterId null|int
+     */
+    public function setSourceChapterId(?int $sourceChapterId) : void
+    {
+        $this->setData('sourceChapterId', $sourceChapterId);
+    }
+
+    /**
+     * Is a landing page enabled or disabled.
+     *
+     * @return null|int
+     */
+    public function isPageEnabled()
+    {
+        return $this->getData('isPageEnabled');
+    }
+
+    /**
+     * Enable or disable a landing page.
+     *
+     * @param $enable null|int
+     */
+    public function setPageEnabled(?int $enable) : void
+    {
+        $this->setData('isPageEnabled', $enable);
+    }
 }
 
 if (!PKP_STRICT_MODE) {

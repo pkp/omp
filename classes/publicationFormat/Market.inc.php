@@ -17,6 +17,8 @@
 
 namespace APP\publicationFormat;
 
+use PKP\core\DataObject;
+
 class Market extends DataObject
 {
     /**

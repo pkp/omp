@@ -20,6 +20,7 @@ namespace APP\publicationFormat;
 use PKP\db\DAORegistry;
 
 use APP\core\Application;
+use PKP\core\DataObject;
 
 class PublicationDate extends DataObject
 {

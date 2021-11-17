@@ -12,11 +12,22 @@
  * @uses $publishedSubmission PublishedSubmission The published submission object.
  * @uses $series Series The series this monograph is assigned to, if any.
  *}
-{include file="frontend/components/header.tpl" pageTitleTranslated=$publishedSubmission->getLocalizedFullTitle()}
+{if $isChapterRequest}
+	{$pageTitle = $chapter->getLocalizedFullTitle()}
+{else}
+	{$pageTitle = $publishedSubmission->getLocalizedFullTitle()}
+{/if}
+
+{include file="frontend/components/header.tpl" pageTitleTranslated=$pageTitle}
 
 <div class="page page_book">
-	{* Display book details *}
-	{include file="frontend/objects/monograph_full.tpl" monograph=$publishedSubmission}
+	{if $isChapterRequest}
+		{* Display chapter details *}
+		{include file="frontend/objects/chapter.tpl" monograph=$publishedSubmission}
+	{else}
+		{* Display book details *}
+		{include file="frontend/objects/monograph_full.tpl" monograph=$publishedSubmission}
+	{/if}
 
 	{call_hook name="Templates::Catalog::Book::Footer::PageFooter"}
 </div><!-- .page -->

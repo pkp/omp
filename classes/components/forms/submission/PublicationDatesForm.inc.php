@@ -10,11 +10,12 @@
  * @ingroup classes_controllers_form
  *
  * @brief A preset form for configuring whether chapters get their own
- *  publication dates
+ *  publication dates, landing pages and licenses.
  */
 
 namespace APP\components\forms\submission;
 
+use APP\submission\Submission;
 use PKP\components\forms\FieldOptions;
 use PKP\components\forms\FormComponent;
 
