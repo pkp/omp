@@ -19,6 +19,21 @@ use PKP\db\DAORegistry;
 
 class DAO extends \PKP\submission\DAO
 {
+    /** @copydoc SchemaDAO::$primaryTableColumns */
+    public $primaryTableColumns = [
+        'id' => 'submission_id',
+        'contextId' => 'context_id',
+        'currentPublicationId' => 'current_publication_id',
+        'dateLastActivity' => 'date_last_activity',
+        'dateSubmitted' => 'date_submitted',
+        'lastModified' => 'last_modified',
+        'locale' => 'locale',
+        'stageId' => 'stage_id',
+        'status' => 'status',
+        'submissionProgress' => 'submission_progress',
+        'workType' => 'work_type',
+    ];
+
     /** @copydoc \PKP\submission\DAO::deleteById() */
     public function deleteById(int $id)
     {
