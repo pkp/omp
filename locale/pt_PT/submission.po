@@ -1,9 +1,10 @@
+# Carla Marques <carla.marques@usdb.uminho.pt>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-22 20:40+0000\n"
-"PO-Revision-Date: 2020-12-24 13:52+0000\n"
+"PO-Revision-Date: 2021-11-18 12:22+0000\n"
 "Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/submission/pt_PT/>\n"
@@ -520,3 +521,23 @@ msgstr "Informações gerais"
 
 msgid "submission.submit.coverNote"
 msgstr "Nota de Capa ao Editor"
+
+msgid "chapter.pages"
+msgstr "Páginas"
+
+msgid "submission.chapterCreated"
+msgstr " — Capítulo criado"
+
+msgid "submission.withoutChapter"
+msgstr "{$name} — Sem este capítulo"
+
+msgid "chapter.volume"
+msgstr "Volume"
+
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+"Disponibilizar este capítulo na sua própria página e inserir link para essa "
+"página no Sumário do livro."
+
+msgid "publication.chapter.landingPage"
+msgstr "Página do Capítulo"
