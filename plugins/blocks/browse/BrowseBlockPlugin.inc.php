@@ -17,6 +17,7 @@ use PKP\core\JSONMessage;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\plugins\BlockPlugin;
+use APP\facades\Repo;
 
 class BrowseBlockPlugin extends BlockPlugin
 {
@@ -121,9 +122,9 @@ class BrowseBlockPlugin extends BlockPlugin
         $categoriesDisplay = $this->getSetting($press->getId(), 'browseCategories');
         if ($categoriesDisplay) {
             // Provide a list of categories to browse
-            $categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
-            $categories = $categoryDao->getByContextId($press->getId());
-            $templateMgr->assign('browseCategories', $categories->toArray());
+            $categories = Repo::category()->getMany(Repo::category()->getCollector()
+                ->filterByContextIds([$press->getId()]));
+            $templateMgr->assign('browseCategories', iterator_to_array($categories));
         }
 
         // If we're currently viewing a series or catalog, detect it

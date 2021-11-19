@@ -73,10 +73,9 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
             $config['contextId'] = $context->getId();
 
             $categories = [];
-            $categoryDao = \DAORegistry::getDAO('CategoryDAO');
-            $categoriesResult = $categoryDao->getByContextId($context->getId());
-            while (!$categoriesResult->eof()) {
-                $category = $categoriesResult->next();
+            $categoriesCollection = Repo::category()->getMany(Repo::category()->getCollector()
+                ->filterByContextIds([$context->getId()]));
+            foreach ($categoriesCollection as $category) {
                 [$categorySortBy, $categorySortDir] = explode('-', $category->getSortOption());
                 $categorySortDir = empty($categorySortDir) ? $catalogSortDir : $categorySortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
                 $categories[] = [

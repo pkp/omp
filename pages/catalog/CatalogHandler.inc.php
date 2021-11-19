@@ -215,9 +215,8 @@ class CatalogHandler extends PKPCatalogHandler
         switch ($type) {
             case 'category':
                 $path = '/categories/';
-                $categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
-                $category = $categoryDao->getById($id, $press->getId());
-                if ($category) {
+                $category = Repo::category()->get((int) $id);
+                if ($category && $category->getContextId() == $press->getId()) {
                     $imageInfo = $category->getImage();
                 }
                 break;
@@ -254,9 +253,8 @@ class CatalogHandler extends PKPCatalogHandler
         switch ($type) {
             case 'category':
                 $path = '/categories/';
-                $categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
-                $category = $categoryDao->getById($id, $press->getId());
-                if ($category) {
+                $category = Repo::category()->get((int) $id);
+                if ($category && $category->getContextId() == $press->getId()) {
                     $imageInfo = $category->getImage();
                 }
                 break;

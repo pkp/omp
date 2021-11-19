@@ -22,6 +22,7 @@ use PKP\context\PKPSectionDAO;
 use PKP\db\DAORegistry;
 use PKP\db\DAOResultFactory;
 use PKP\plugins\HookRegistry;
+use Illuminate\Support\Facades\DB;
 
 use PKP\submission\PKPSubmission;
 
@@ -381,63 +382,38 @@ class SeriesDAO extends PKPSectionDAO
 
     /**
      * Get the categories associated with a given series.
-     *
-     * @param $seriesId int
-     * @param null|mixed $pressId
-     *
-     * @return DAOResultFactory
+     * @return Collection
      */
-    public function getCategories($seriesId, $pressId = null)
+    public function getCategories(int $seriesId, ?int $pressId = null) : array
     {
-        $params = [(int) $seriesId];
-        if ($pressId) {
-            $params[] = (int) $pressId;
-        }
-        return new DAOResultFactory(
-            $this->retrieve(
-                'SELECT	c.*
-				FROM	categories c,
-					series_categories sc,
-					series s
-				WHERE	c.category_id = sc.category_id AND
-					s.series_id = ? AND
-					' . ($pressId ? ' c.context_id = s.press_id AND s.press_id = ? AND' : '') . '
-					s.series_id = sc.series_id',
-                $params
-            ),
-            DAORegistry::getDAO('CategoryDAO'),
-            '_fromRow'
-        );
+        $categoryIds = DB::table('series_categories AS sc')
+            ->join('series AS s', 's.series_id', '=', 'sc.series_id')
+            ->when($pressId !== null, function($q) use ($pressId) {
+                $q->where('s.press_id', '=', $pressId);
+            })
+            ->where('s.series_id', '=', $seriesId)
+            ->pluck('sc.category_id');
+        return array_map([Repo::category(), 'get'], iterator_to_array($categoryIds));
     }
 
     /**
      * Get the categories not associated with a given series.
-     *
-     * @param $seriesId int
-     * @param null|mixed $pressId
-     *
-     * @return DAOResultFactory
      */
-    public function getUnassignedCategories($seriesId, $pressId = null)
+    public function getUnassignedCategories(int $seriesId, ?int $pressId = null) : array
     {
-        $params = [(int) $seriesId];
-        if ($pressId) {
-            $params[] = (int) $pressId;
-        }
-        return new DAOResultFactory(
-            $this->retrieve(
-                'SELECT	c.*
-				FROM	series s
-					JOIN categories c ON (c.context_id = s.press_id)
-					LEFT JOIN series_categories sc ON (s.series_id = sc.series_id AND sc.category_id = c.category_id)
-				WHERE	s.series_id = ? AND
-					' . ($pressId ? ' s.press_id = ? AND' : '') . '
-					sc.series_id IS NULL',
-                $params
-            ),
-            DAORegistry::getDAO('CategoryDAO'),
-            '_fromRow'
-        );
+        $categoryIds = DB::table('series AS s')
+            ->join('categories AS c', 'c.context_id', '=', 's.press_id')
+            ->leftJoin('series_categories AS sc', function($join) {
+                $join->where('s.series_id', '=', 'sc.series_id')
+                     ->where('sc.category_id', '='. 'c.category_id');
+            })
+            ->when($pressId !== null, function($q) {
+                $q->where('s.press_id', '=', $pressId);
+            })
+            ->where('s.series_id', '=', $seriesId)
+            ->whereNull('sc.series_id')
+            ->pluck('c.category_id');
+        return array_map([Repo::category(), 'get'], $categoryIds);
     }
 
     /**

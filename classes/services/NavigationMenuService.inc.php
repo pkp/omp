@@ -85,10 +85,11 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
             $ompTypes = array_merge($ompTypes, $newArray);
         }
 
-        $categoryDao = DAORegistry::getDAO('CategoryDAO');
-        $categories = $categoryDao->getByParentId(null, $contextId);
+        $categoryCount = Repo::category()->count(Repo::category()->getCollector()
+            ->filterByParentIds([null])
+            ->filterByContextIds([$contextId]));
 
-        if ($categories->count) {
+        if ($categoryCount) {
             $newArray = [
                 self::NMI_TYPE_CATEGORY => [
                     'title' => __('navigation.navigationMenus.category.generic'),
@@ -165,8 +166,8 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
                 case self::NMI_TYPE_CATEGORY:
                     $categoryId = $navigationMenuItem->getPath();
 
-                    $categoryDao = DAORegistry::getDAO('CategoryDAO');
-                    $relatedObject = $categoryDao->getById($categoryId, $contextId);
+                    $relatedObject = Repo::category()->get($categoryId);
+                    if ($relatedObject && $relatedObject->getContextId() != $contextId) $relatedObject = null;
 
                     break;
             }

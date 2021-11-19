@@ -182,7 +182,10 @@ class CatalogBookHandler extends Handler
 
         // Categories
         $templateMgr->assign([
-            'categories' => DAORegistry::getDAO('CategoryDAO')->getByPublicationId($this->publication->getId())->toArray(),
+            'categories' => iterator_to_array(
+                Repo::category()->getMany(Repo::category()->getCollector()
+                ->filterByPublicationIds([$this->publication->getId()]))
+            ),
         ]);
 
         // Citations
