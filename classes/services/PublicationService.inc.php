@@ -513,6 +513,7 @@ class PublicationService extends PKPPublicationService {
 			case 'jpg': $cover = imagecreatefromjpeg($filePath); break;
 			case 'png': $cover = imagecreatefrompng($filePath); break;
 			case 'gif': $cover = imagecreatefromgif($filePath); break;
+			case 'webp': $cover = imagecreatefromwebp($filePath); break;
 		}
 		if (!isset($cover)) {
 			throw new \Exception('Can not build thumbnail because the file was not found or the file extension was not recognized.');
@@ -535,6 +536,7 @@ class PublicationService extends PKPPublicationService {
 			case 'jpg': imagejpeg($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
 			case 'png': imagepng($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
 			case 'gif': imagegif($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
+			case 'webp': imagegif($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
 		}
 
 		imagedestroy($thumb);
