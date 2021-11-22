@@ -141,7 +141,6 @@ class OMPMigration extends \PKP\migration\Migration
             $table->bigInteger('publication_id')->autoIncrement();
             $table->date('date_published')->nullable();
             $table->datetime('last_modified')->nullable();
-            $table->string('locale', 14)->nullable();
             $table->bigInteger('primary_contact_id')->nullable();
             $table->string('publication_date_type', 32)->default('pub')->nullable();
             //  PUBLICATION_TYPE_PUBLICATION
