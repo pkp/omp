@@ -122,8 +122,8 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
                 }
 
                 if ($chapter) {
-                    // %c - chapter id
-                    $pubIdSuffix = PKPString::regexp_replace('/%c/', $chapter->getId(), $pubIdSuffix);
+                    // %c - source chapter id
+                    $pubIdSuffix = PKPString::regexp_replace('/%c/', $chapter->getSourceChapterId(), $pubIdSuffix);
                 }
 
                 if ($representation) {
@@ -146,7 +146,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
                 }
 
                 if ($chapter) {
-                    $pubIdSuffix .= '.c' . $chapter->getId();
+                    $pubIdSuffix .= '.c' . $chapter->getSourceChapterId();
                 }
 
                 if ($representation) {

@@ -15,6 +15,7 @@
 
 use APP\facades\Repo;
 use APP\plugins\PubIdPlugin;
+use PKP\core\PKPString;
 use PKP\linkAction\LinkAction;
 
 use PKP\linkAction\request\RemoteActionConfirmationModal;
@@ -39,6 +40,7 @@ class DOIPubIdPlugin extends PubIdPlugin
             HookRegistry::register('Publication::getProperties::values', [$this, 'modifyObjectPropertyValues']);
             HookRegistry::register('Form::config::before', [$this, 'addPublicationFormFields']);
             HookRegistry::register('Form::config::before', [$this, 'addPublishFormNotice']);
+            HookRegistry::register('CitationStyleLanguage::citation', [$this, 'getCitationData']);
         }
         return $success;
     }
@@ -375,7 +377,7 @@ class DOIPubIdPlugin extends PubIdPlugin
                 'value' => $form->publication->getData('pub-id::doi'),
                 'prefix' => $prefix,
                 'pattern' => $pattern,
-                'contextInitials' => $form->submissionContext->getData('acronym', $form->submissionContext->getData('primaryLocale')) ?? '',
+                'contextInitials' => PKPString::strtolower($form->submissionContext->getData('acronym', $form->submissionContext->getData('primaryLocale'))) ?? '',
                 'isPForPress' => true,
                 'separator' => '/',
                 'submissionId' => $form->publication->getData('submissionId'),
@@ -494,6 +496,49 @@ class DOIPubIdPlugin extends PubIdPlugin
                 'description' => $table,
                 'groupId' => 'default',
             ]));
+        }
+    }
+
+    /**
+    * Add DOI to citation data used by the CitationStyleLanguage plugin
+    *
+    * @see CitationStyleLanguagePlugin::getCitation()
+    *
+    * @param $hookname string CitationStyleLanguage::citation
+    * @param $args array
+    */
+    public function getCitationData($hookname, $args): void
+    {
+        /** @var stdClass $citationData */
+        $citationData = $args[0];
+        /** @var Submission $submission */
+        $submission = $args[2];
+        /** @var Publication $publication */
+        $publication = $args[5] ?? $submission->getCurrentPublication();
+
+        if ($citationData->type === 'chapter') {
+            $chapter = null;
+            $chapters = $publication->getData('chapters');
+            /** @var Chapter $ichapter */
+            foreach ($chapters as $ichapter) {
+                if ((int) $ichapter->getSourceChapterId() === (int) $citationData->id) {
+                    $chapter = $ichapter;
+                    break;
+                }
+            }
+
+            if ($chapter && (null !== $chapter->getData('pub-id::'. $this->getPubIdType())
+                    && !empty($chapter->getData('pub-id::'. $this->getPubIdType())))) {
+                $pubId = $chapter->getData('pub-id::'. $this->getPubIdType());
+            }
+        }
+
+        if (!isset($pubId) ) {
+                $pubId = $publication->getData('pub-id::'. $this->getPubIdType());
+        }
+
+        if ($pubId) {
+            $citationData->DOI = $pubId;
         }
     }
 }
