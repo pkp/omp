@@ -94,8 +94,9 @@ class Collector extends \PKP\submission\Collector
 
             // Featured sorting should be the first sort parameter. We sort by
             // the seq parameter, with null values last
-            $this->columns[] = 'sf.seq';
-            $this->columns[] = DB::raw('case when sf.seq is null then 1 else 0 end');
+
+            $q->addSelect('sf.seq');
+            $q->addSelect(DB::raw('case when sf.seq is null then 1 else 0 end'));
             array_unshift(
                 $q->orders,
                 ['type' => 'raw', 'sql' => 'case when sf.seq is null then 1 else 0 end'],
