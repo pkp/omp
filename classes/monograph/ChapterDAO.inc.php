@@ -18,6 +18,7 @@
 
 namespace APP\monograph;
 
+use APP\facades\Repo;
 use PKP\db\DAOResultFactory;
 use PKP\plugins\HookRegistry;
 use PKP\plugins\PKPPubIdPluginDAO;
@@ -97,12 +98,9 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Retrieve all chapters by source chapter id.
      *
-     * @param int $sourceChapterId
-     * @param bool $orderBySequence
      *
-     * @return DAOResultFactory
      */
-    public function getBySourceChapterId(int $sourceChapterId, bool $orderByPublicationId = true) : DAOResultFactory
+    public function getBySourceChapterId(int $sourceChapterId, bool $orderByPublicationId = true): DAOResultFactory
     {
         return new DAOResultFactory(
             $this->retrieve(
@@ -169,6 +167,13 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
         $chapter->setData('publicationId', (int) $row['publication_id']);
         $chapter->setSequence((int) $row['seq']);
         $chapter->setData('sourceChapterId', (int) ($row['source_chapter_id'] ?? $row['chapter_id']));
+        $chapter->setData('doiId', $row['doi_id']);
+
+        if (!empty($chapter->getData('doiId'))) {
+            $chapter->setData('doiObject', Repo::doi()->get($chapter->getData('doiId')));
+        } else {
+            $chapter->setData('doiObject', null);
+        }
 
         $this->getDataObjectSettings('submission_chapter_settings', 'chapter_id', $row['chapter_id'], $chapter);
 
@@ -216,19 +221,21 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
      *
      * @param Chapter $chapter
      */
-    public function updateObject($chapter) : void
+    public function updateObject($chapter): void
     {
         $this->update(
             'UPDATE submission_chapters
                 SET	publication_id = ?,
                     seq = ?,
-                    source_chapter_id = ?
+                    source_chapter_id = ?,
+                    doi_id = ?
                 WHERE
                     chapter_id = ?',
             [
                 (int) $chapter->getData('publicationId'),
                 (int) $chapter->getSequence(),
                 $chapter->getSourceChapterId(),
+                $chapter->getData('doiId'),
                 (int) $chapter->getId()
             ]
         );

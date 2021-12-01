@@ -139,3 +139,9 @@ msgid "manager.setup.noUseLayoutEditors"
 msgstr ""
 "Urednik ili urednik dijela koji je prijavljen pripremit će HTML, PDF, itd. "
 "datoteke."
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "doi.displayName"
+msgstr "DOI"

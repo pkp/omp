@@ -1356,3 +1356,202 @@ msgstr ""
 
 msgid "mailable.validateEmailContext.name"
 msgstr "Validar e-mail (registro de editora)"
+
+msgid "doi.displayName"
+msgstr "DOI"
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "doi.manager.settings.description"
+msgstr ""
+"Por favor, configure o plugin DOI para ser capaz de gerir e utilizar DOIs no "
+"OMP:"
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr "Por favor, escolha os objetos aos quais o DOI deve ser atribuído."
+
+msgid "doi.manager.settings.explainDois"
+msgstr "Por favor, selecione os objetos publicados que terão Identificadores Digitais de Objeto (DOI) atribuídos:"
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "Prefixo DOI"
+
+msgid "doi.manager.settings.doiPrefix.description"
+msgstr ""
+"O prefixo DOI é atribuído por agências de registro (por exemplo <a href=\""
+"http://www.crossref.org\" target=\"_new\"> CrossRef </a>) e está no formato "
+"10.xxxx (por exemplo, 10.1234):"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "O prefixo DOI é obrigatório e deve ser na forma 10.xxxx."
+
+msgid "doi.manager.settings.doiSuffix"
+msgstr "Sufixo DOI"
+
+msgid "doi.manager.settings.doiSuffix.description"
+msgstr "Um sufixo DOI pode assumir qualquer forma, mas deve ser único entre todos os objetos publicados com o mesmo prefixo DOI atribuído:"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "para formatos de publicação"
+
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr "Por exemplo, editora%ppub%f poderia criar um DOI como 10.1234/editoraESPpub100"
+
+msgid "doi.manager.settings.doiSuffixDefault"
+msgstr "Usar padrões predefinidos."
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Por favor entre o padrão de sufixo DOI para formatos de publicação."
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "Reatribuir DOIs"
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Tem certeza que deseja deletar todos DOIs existentes?"
+
+msgid "doi.editor.doi"
+msgstr "DOI"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "formato de publicação"
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr "O sufixo DOI já está em uso por outro item publicado. Por favor insira um sufixo DOI exclusivo para cada item."
+
+msgid "doi.manager.settings.doiSuffixDefault.description"
+msgstr ""
+"%p.%m para monografias<br />%p.%m.c%c para capítulos<br />%p.%m.%f para "
+"formatos de publicação<br />%p.%m.%f.%s para arquivos."
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "para arquivos"
+
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "para capítulos"
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "para monografias"
+
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Use o padrão a seguir para gerar sufixos DOI. Use %p para as iniciais da "
+"editora, %m para a identificação da monografia, %c para a identificação do "
+"capítulo, %f para a identificação do formato de publicação, %s para a "
+"identificação do arquivo e %x para o \"Identificador Personalizado\"."
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Arquivos"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Formatos de publicação"
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Capítulos"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Monografias"
+
+msgid "doi.manager.settings.doiObjects"
+msgstr "Conteúdo da editora"
+
+msgid "doi.description"
+msgstr ""
+"Este plugin permite a atribuição dos Identificadores de Objetos Digitais "
+"(DOIs) a monografias, capítulos, formatos de publicação e arquivos no OMP."
+
+msgid "doi.manager.settings.doiSuffixCustomIdentifier"
+msgstr ""
+"Digite um sufixo DOI individual para cada item publicado. Você encontrará um "
+"campo de entrada DOI adicional na página de metadados de cada item."
+
+msgid "doi.editor.assignDoi"
+msgstr "Atribua o DOI {$pubId} a este {$pubObjectType}"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Tem certeza de que deseja deletar o DOI existente?"
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Limpar"
+
+msgid "doi.editor.assigned"
+msgstr "O DOI é atribuído a este {$pubObjectType}."
+
+msgid "doi.editor.canBeAssigned"
+msgstr ""
+"O que está vendo é uma pré-visualização do DOI. Selecione a caixa de "
+"verificação e salve o formulário para atribuir o DOI."
+
+msgid "doi.editor.patternNotResolved"
+msgstr ""
+"Não é possível atribuir o DOI porque este contém um padrão não resolvido."
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"Não é possível gerar um DOI porque faltam dados em uma ou mais partes do "
+"padrão do DOI."
+
+msgid "doi.editor.customSuffixMissing"
+msgstr "O DOI não pode ser atribuído porque falta o sufixo personalizado."
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "Arquivo"
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "capítulo"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "monografia"
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Atribuir"
+
+msgid "doi.editor.doi.description"
+msgstr "O DOI deve começar com {$prefix}."
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr ""
+"Se você alterar a configuração de seu DOI, os DOIs que já foram atribuídos "
+"não serão afetados.Uma vez que a configuração do DOI for salva, use este "
+"botão para deletar todos os DOIs existentes, para que a nova configuração "
+"surta efeito com os objetos existentes."
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Digite o padrão de sufixo DOI para os arquivos."
+
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Digite o padrão de sufixo DOI para os capítulos."
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Digite o padrão de sufixo DOI para monografias."
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr "O DOI não pode ser atribuído porque falta o sufixo personalizado."
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr ""
+"O DOI {$pubId} não pode ser atribuído porque contém um padrão não resolvido."
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "O DOI {$pubId} foi atribuído."
+
+msgid "doi.editor.missingPrefix"
+msgstr "O DOI deve começar com {$doiPrefix}."
+
+msgid "doi.editor.preview.publication"
+msgstr "O DOI para esta publicação será {$doi}."
+
+msgid "doi.editor.preview.objects"
+msgstr "Item"
+
+msgid "doi.editor.preview.files"
+msgstr "Arquivo: {$title}"
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Formato da publicação: {$title}"
+
+msgid "doi.editor.preview.chapters"
+msgstr "Capítulo: {$title}"
+
+msgid "doi.editor.preview.publication.none"
+msgstr "Um DOI não foi atribuído a esta publicação."

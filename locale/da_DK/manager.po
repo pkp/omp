@@ -1459,3 +1459,207 @@ msgstr ""
 
 msgid "mailable.validateEmailContext.name"
 msgstr "Validér E-mail (Forlagsregistrering)"
+
+msgid "doi.editor.preview.objects"
+msgstr "Element"
+
+msgid "doi.editor.preview.files"
+msgstr "Fil: {$title}"
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Publikationsformat: {$title}"
+
+msgid "doi.editor.preview.chapters"
+msgstr "Kapitel: {$title}"
+
+msgid "doi.editor.preview.publication.none"
+msgstr "Der er ikke blevet tildelt en DOI til denne publikation."
+
+msgid "doi.editor.preview.publication"
+msgstr "DOI'en til denne publikation bliver  {$doi}."
+
+msgid "doi.editor.missingPrefix"
+msgstr "DOI'en skal begynde med {$doiPrefix}."
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "DOI'en {$pubId} er blevet tildelt."
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr ""
+"DOI'en {$pubId} kan ikke tildeles, fordi det indeholder et uopløseligt "
+"mønster."
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr "DOI kan ikke tildeles, fordi det brugerdefinerede suffiks mangler."
+
+msgid "doi.editor.assignDoi"
+msgstr "Tildel DOI'en {$pubId} til dette {$pubObjectType}"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Er du sikker på, at du vil slette den eksisterende DOI?"
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Fjern"
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Det angivne DOI-suffiks er allerede i brug i forbindelse med et andet "
+"publiceret element. Indtast et unikt DOI-suffiks til hvert element."
+
+msgid "doi.editor.assigned"
+msgstr "DOI er tildelt denne {$pubObjectType}."
+
+msgid "doi.editor.canBeAssigned"
+msgstr ""
+"Hvad du ser er en forhåndsvisning af DOI'en. Markér afkrydsningsfeltet, og "
+"gem formularen for at anvende DOI'en."
+
+msgid "doi.editor.patternNotResolved"
+msgstr "DOI'en kan ikke tildeles, fordi den indeholder et uopløseligt mønster."
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"Du kan ikke generere en DOI, fordi en eller flere dele af DOI-mønsteret "
+"mangler data."
+
+msgid "doi.editor.customSuffixMissing"
+msgstr "DOI kan ikke tildeles, fordi det brugerdefinerede suffiks mangler."
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "fil"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "publiceringsformat"
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "kapitel"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "monografi"
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Tildel"
+
+msgid "doi.editor.doi.description"
+msgstr "DOI'en skal begynde med {$prefix}."
+
+msgid "doi.editor.doi"
+msgstr "DOI"
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Er du sikker på, at du vil slette alle eksisterende DOI'er?"
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr ""
+"Hvis du ændrer din DOI-konfiguration, påvirkes DOI'er, der allerede er "
+"tildelt, ikke. Når DOI-konfigurationen er gemt, skal du bruge denne knap til "
+"at rydde alle eksisterende DOI'er, så de nye indstillinger får virkning i "
+"forhold til alle eksisterende elementer."
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "Tildel DOI'er på ny"
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Indtast DOI-suffiks-mønsteret til til filer."
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Indtast DOI-suffiks-mønsteret til publikationsformater."
+
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Indtast DOI-suffiks-mønsteret til kapitler."
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Indtast DOI-suffiks-mønsteret til monografier."
+
+msgid "doi.manager.settings.doiSuffixCustomIdentifier"
+msgstr ""
+"Indtast et individuelt DOI-suffiks til hver publiceret element. Du finder et "
+"supplerende DOI-indtastningsfelt på hvert elements metadataside."
+
+msgid "doi.manager.settings.doiSuffixDefault.description"
+msgstr ""
+"%p.%m til monografier<br />%p.%m.c%c til kapitler<br />%p.%m.%f til "
+"publikationsformater<br />%p.%m.%f.%s til filer."
+
+msgid "doi.manager.settings.doiSuffixDefault"
+msgstr "Anvend standardmønstre."
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "til filer"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "til publikationsformater"
+
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "til kapitler"
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "til monografier"
+
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr ""
+"For eksempel, press%ppub%r ville generere følgende DOI: 10.1234/"
+"pressESPpub100"
+
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Brug det nedenstående mønster til at generere DOI-suffikser. Brug %p til "
+"forlagsinitialer, %m til monografi-id, %c til kapitel-id, %f til "
+"publikations-id, %s til fil-id og %x til \"Custom Identifier\"."
+
+msgid "doi.manager.settings.doiSuffix.description"
+msgstr ""
+"Et DOI-suffiks kan antage en hvilken som helst form, men skal være unikt i "
+"forhold til de publiceringsobjekter, der har samme DOI-præfiks:"
+
+msgid "doi.manager.settings.doiSuffix"
+msgstr "DOI-suffiks"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "DOI-præfikset er obligatorisk og skal være som 10.xxxx."
+
+msgid "doi.manager.settings.doiPrefix.description"
+msgstr ""
+"DOI-præfikset tildeles af registreringsinstitutioner (f.eks. <a href=\""
+"http://www.crossref.org\" target=\"_new\">CrossRef</a>) og er i formatet "
+"10.xxxx (f.eks. 10.1234):"
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "DOI-præfiks"
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Filer"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Pulikationsformater"
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Kapitler"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Monografier"
+
+msgid "doi.manager.settings.explainDois"
+msgstr "Vælg de publiceringsobjekter, der skal have tildelt DOI:"
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr "Vælg de objekter, der skal tildeles DOI."
+
+msgid "doi.manager.settings.doiObjects"
+msgstr "Forlagsindhold"
+
+msgid "doi.manager.settings.description"
+msgstr ""
+"Konfigurér DOI-pluginen så den er i stand til at administrere og anvende "
+"DOI'er i OMP:"
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "doi.description"
+msgstr ""
+"Denne plugin muliggør tildeling af DOI'er til monografier, kapitler, "
+"publikationsformater og filer i OMP."
+
+msgid "doi.displayName"
+msgstr "DOI"

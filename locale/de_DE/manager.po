@@ -1305,3 +1305,206 @@ msgstr ""
 
 msgid "mailable.validateEmailContext.name"
 msgstr "E-Mail überprüfen (Verlagsregistrierung)"
+
+msgid "doi.displayName"
+msgstr "DOI"
+
+msgid "doi.description"
+msgstr "Dieses Plugin ermöglicht die Zuweisung eines Digital Object Identifiers (DOI) zu einem Publikationsformat in OMP."
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "doi.manager.settings.description"
+msgstr ""
+"Bitte konfigurieren Sie das DOI-Plugin, damit Sie in OMP DOIs verwalten und "
+"benutzen können:"
+
+msgid "doi.manager.settings.doiObjects"
+msgstr "Inhalt des Publikationsformat"
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr "Bitte wählen Sie die Objekte aus, denen DOIs zugewiesen werden sollen."
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "DOI-Präfix"
+
+msgid "doi.manager.settings.doiPrefix.description"
+msgstr "Das DOI-Präfix wird von den Regristrierungsagenturen vergeben (z. B. <a href=\"http://www.crossref.org\" target=\"_new\">CrossRef</a>) und hat die Form 10.xxxx (e.g. 10.1234):"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "Das DOI-Präfix ist obligatorisch und muss die Form 10.xxxx haben."
+
+msgid "doi.manager.settings.doiSuffix"
+msgstr "DOI-Suffix"
+
+msgid "doi.manager.settings.doiSuffix.description"
+msgstr ""
+"Ein DOI-Suffix kann jegliche Form haben, darf aber nur ein einziges Mal in "
+"Verbindung mit dem DOI-Präfix vergeben werden, um einen eindeutige Gesamt-"
+"DOI zu erzeugen:"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "für Publikationsformate"
+
+msgid "doi.editor.doi"
+msgstr "DOI"
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr "Der angegebene DOI-Suffix wird bereits für ein anderes veröffentlichtes Element benutzt. Bitte vergeben Sie einen eindeutigen DOI-Suffix für jedes Element."
+
+msgid "doi.editor.preview.objects"
+msgstr "Element"
+
+msgid "doi.editor.preview.files"
+msgstr "Datei: {$title}"
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Publikationsformat: {$title}"
+
+msgid "doi.editor.preview.chapters"
+msgstr "Kapitel: {$title}"
+
+msgid "doi.editor.preview.publication.none"
+msgstr "Dieser Publikation wurde keine DOI zugewiesen."
+
+msgid "doi.editor.preview.publication"
+msgstr "Die DOI für diese Publikation wird {$doi} sein."
+
+msgid "doi.editor.missingPrefix"
+msgstr "Die DOI muss mit {$doiPrefix} beginnen."
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "Die DOI {$pubId} wurde zugewiesen."
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr ""
+"Die DOI {$pubId} kann nicht zugewiesen werden, da sie ein ungelöstes Schema "
+"beinhaltet."
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr "Die DOI kann nicht zugewiesen werden, da das Custom-Suffix fehlt."
+
+msgid "doi.editor.assignDoi"
+msgstr "Die DOI {$pubId} dem Objekt vom Typ {$pubObjectType} zuweisen"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Sind Sie sicher, dass Sie die bereits bestehende DOI entfernen möchten?"
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Entfernen"
+
+msgid "doi.editor.assigned"
+msgstr "Die DOI wurde dem Objekt vom Typ {$pubObjectType} zugewiesen."
+
+msgid "doi.editor.canBeAssigned"
+msgstr ""
+"Dies ist eine Vorschau der DOI. Klicken Sie die Checkbox an und speichern "
+"das Formular um die DOI zuzuweisen."
+
+msgid "doi.editor.patternNotResolved"
+msgstr ""
+"Die DOI kann nicht zugewiesen werden, da sie ein ungelöstes Schema "
+"beinhaltet."
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"Sie können keine DOI generieren, da einem oder mehreren Teilen des DOI-"
+"Schema Daten fehlen."
+
+msgid "doi.editor.customSuffixMissing"
+msgstr "Die DOI kann nicht zugewiesen werden, da das Custom-Suffix fehlt."
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "Datei"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "Publikationsformat"
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "Kapitel"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "Monographie"
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Zuweisen"
+
+msgid "doi.editor.doi.description"
+msgstr "Die DOI muss mit {$prefix} beginnen."
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Sind Sie sicher, dass Sie alle existierenden DOIs entfernen möchten?"
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr ""
+"Wenn Sie Ihre DOI-Konfiguration ändern, werden bereits zugewiesene DOIs "
+"davon nicht beeinflusst. Sobald die Konfiguration gespeichert ist, können "
+"Sie diesen Button verwenden um alle bestehenden DOIs zu entfernen und im "
+"Anschluss die neuen Einstellungen auf alle existierenden Objekte anzuwenden."
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "DOIs neu zuweisen"
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Bitte tragen Sie das DOI-Suffix Schema für Dateien ein."
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Bitte tragen Sie das DOI-Suffix Schema für Publikationsformate ein."
+
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Bitte tragen Sie das DOI-Suffix Schema für Kapitel ein."
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Bitte tragen Sie das DOI-Suffix Schema für Monographien ein."
+
+msgid "doi.manager.settings.doiSuffixCustomIdentifier"
+msgstr ""
+"Ein individuelles DOI-Suffix für jede Publikation eingeben. Ihnen wird in "
+"diesem Fall ein weiteres Feld zur Eintragung der DOI auf den Metadaten-"
+"Seiten jeder Publikation zur Verfügung gestellt."
+
+msgid "doi.manager.settings.doiSuffixDefault.description"
+msgstr ""
+"%p.%m für Monographien<br />%p.%m.c%c für Kapitel<br />%p.%m.%f für "
+"Publikationsformate<br />%p.%m.%f.%s für Dateien."
+
+msgid "doi.manager.settings.doiSuffixDefault"
+msgstr "Verwenden Sie Standard-Schemata."
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "für Dateien"
+
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "für Kapitel"
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "für Monographien"
+
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr ""
+"Beispiel: press%ppub%f würde eine DOI wie 10.1234/pressESPpub100 kreieren"
+
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Benutzen Sie das unten eingetragene Schema um DOI-Suffixe zu generieren. "
+"Verwenden Sie %p für die Verlagsinitialien, %m für die Monographien-ID, %c "
+"für die Kapitel-ID, %f für die Publikationsformat-ID, %s für die Datei-ID "
+"und %x für \"Custom Identifier\"."
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Dateien"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Publikationsformate"
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Kapitel"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Monographien"
+
+msgid "doi.manager.settings.explainDois"
+msgstr ""
+"Bitte wählen Sie die Publikationsobjekte aus, denen Digital Object "
+"Identifier (DOI) zugewiesen werden sollen:"

@@ -73,7 +73,7 @@ class CatalogBookHandler extends Handler
         $templateMgr = TemplateManager::getManager($request);
         $submission = $this->getAuthorizedContextObject(PKPApplication::ASSOC_TYPE_SUBMISSION);
         $this->setupTemplate($request, $submission);
-        AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION); // submission.synopsis; submission.copyrightStatement
+        AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_APP_MANAGER); // submission.synopsis; submission.copyrightStatement
 
         // Get the requested publication or default to the current publication
         $submissionId = array_shift($args);

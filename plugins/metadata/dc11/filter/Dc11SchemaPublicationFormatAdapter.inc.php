@@ -163,6 +163,18 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             }
         }
 
+        $context = $request->getContext();
+        if (!$context) {
+            $contextDao = \APP\core\Application::getContextDAO();
+            $context = $contextDao->getById($monograph->getData('contextId'));
+        }
+        if ($context->getData(\PKP\context\Context::SETTING_ENABLE_DOIS)) {
+            $doi = $publicationFormat->getDoi();
+            if ($doi) {
+                $dc11Description->addStatement('dc:identifier', $doi);
+            }
+        }
+
         // Identifier: others
         $identificationCodeFactory = $publicationFormat->getIdentificationCodes();
         while ($identificationCode = $identificationCodeFactory->next()) {

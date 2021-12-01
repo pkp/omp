@@ -68,6 +68,31 @@
 				"nullable"
 			]
 		},
+		"enabledDoiTypes": {
+			"type": "array",
+			"items": {
+				"type": "string",
+				"validation": [
+					"in:publication,representation,file,chapter"
+				]
+			}
+		},
+		"doiCreationTime": {
+			"type": "string",
+			"default": "copyEditCreationTime"
+		},
+		"doiChapterSuffixPattern": {
+			"type": "string",
+			"validation": [
+				"nullable"
+			]
+		},
+		"doiSubmissionFileSuffixPattern": {
+			"type": "string",
+			"validation": [
+				"nullable"
+			]
+		},
 		"enablePublisherId": {
 			"type": "array",
 			"items": {
