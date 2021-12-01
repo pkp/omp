@@ -388,36 +388,43 @@ class Repository extends \PKP\publication\Repository
     public function makeThumbnail($filePath, $thumbFileName, $maxWidth, $maxHeight)
     {
         $pathParts = pathinfo($filePath);
+        $thumbFilePath = $pathParts['dirname'] . '/' . $thumbFileName;
 
         $cover = null;
         switch ($pathParts['extension']) {
             case 'jpg': $cover = imagecreatefromjpeg($filePath); break;
             case 'png': $cover = imagecreatefrompng($filePath); break;
             case 'gif': $cover = imagecreatefromgif($filePath); break;
+            case 'webp': $cover = imagecreatefromwebp($filePath); break;
+            case 'svg': $cover = copy($filePath, $thumbFilePath); break;
         }
         if (!isset($cover)) {
             throw new \Exception('Can not build thumbnail because the file was not found or the file extension was not recognized.');
         }
 
-        // Calculate the scaling ratio for each dimension.
-        $originalSizeArray = getimagesize($filePath);
-        $xRatio = min(1, $maxWidth / $originalSizeArray[0]);
-        $yRatio = min(1, $maxHeight / $originalSizeArray[1]);
+        if ($pathParts['extension'] != 'svg') {
 
-        // Choose the smallest ratio and create the target.
-        $ratio = min($xRatio, $yRatio);
+            // Calculate the scaling ratio for each dimension.
+            $originalSizeArray = getimagesize($filePath);
+            $xRatio = min(1, $maxWidth / $originalSizeArray[0]);
+            $yRatio = min(1, $maxHeight / $originalSizeArray[1]);
 
-        $thumbWidth = round($ratio * $originalSizeArray[0]);
-        $thumbHeight = round($ratio * $originalSizeArray[1]);
-        $thumb = imagecreatetruecolor($thumbWidth, $thumbHeight);
-        imagecopyresampled($thumb, $cover, 0, 0, 0, 0, $thumbWidth, $thumbHeight, $originalSizeArray[0], $originalSizeArray[1]);
+            // Choose the smallest ratio and create the target.
+            $ratio = min($xRatio, $yRatio);
 
-        switch ($pathParts['extension']) {
-            case 'jpg': imagejpeg($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
-            case 'png': imagepng($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
-            case 'gif': imagegif($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
+            $thumbWidth = round($ratio * $originalSizeArray[0]);
+            $thumbHeight = round($ratio * $originalSizeArray[1]);
+            $thumb = imagecreatetruecolor($thumbWidth, $thumbHeight);
+            imagecopyresampled($thumb, $cover, 0, 0, 0, 0, $thumbWidth, $thumbHeight, $originalSizeArray[0], $originalSizeArray[1]);
+
+            switch ($pathParts['extension']) {
+                case 'jpg': imagejpeg($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
+                case 'png': imagepng($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
+                case 'gif': imagegif($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
+                case 'webp': imagewebp($thumb, $thumbFilePath); break;
+            }
+
+            imagedestroy($thumb);
         }
-
-        imagedestroy($thumb);
     }
 }

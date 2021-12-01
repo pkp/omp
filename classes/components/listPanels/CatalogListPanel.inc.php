@@ -17,6 +17,7 @@ namespace APP\components\listPanels;
 use APP\core\Application;
 
 use APP\i18n\AppLocale;
+use APP\facades\Repo;
 use APP\submission\Collector;
 use PKP\submission\PKPSubmission;
 
