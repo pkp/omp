@@ -70,7 +70,6 @@ class Collector extends \PKP\submission\Collector
         if ($this->orderBy === self::ORDERBY_SERIES_POSITION) {
             $this->columns[] = 'po.series_position';
             $q->leftJoin('publications as po', 's.current_publication_id', '=', 'po.publication_id');
-            $q->groupBy('po.series_position');
         }
 
         if (!empty($this->orderByFeatured)) {
@@ -89,15 +88,12 @@ class Collector extends \PKP\submission\Collector
 
             $q->leftJoin('features as sf', function ($join) use ($assocType, $assocIds) {
                 $join->on('s.submission_id', '=', 'sf.submission_id')
-                    ->on('sf.assoc_type', '=', DB::raw($assocType));
-                foreach ($assocIds as $assocId) {
-                    $join->on('sf.assoc_id', '=', DB::raw(intval($assocId)));
-                }
+                    ->where('sf.assoc_type', '=', $assocType)
+                    ->whereIn('sf.assoc_id', $assocIds);
             });
 
             // Featured sorting should be the first sort parameter. We sort by
             // the seq parameter, with null values last
-            $q->groupBy(DB::raw('sf.seq'));
             $this->columns[] = 'sf.seq';
             $this->columns[] = DB::raw('case when sf.seq is null then 1 else 0 end');
             array_unshift(
