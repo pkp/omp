@@ -16,12 +16,11 @@
 
 namespace APP\publicationFormat;
 
-use PKP\submission\RepresentationDAO;
-use PKP\plugins\PKPPubIdPluginDAO;
-use PKP\plugins\HookRegistry;
+use APP\facades\Repo;
 use PKP\db\DAOResultFactory;
-
-use APP\publicationFormat\PublicationFormat;
+use PKP\plugins\HookRegistry;
+use PKP\plugins\PKPPubIdPluginDAO;
+use PKP\submission\RepresentationDAO;
 
 class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDAO
 {
@@ -60,7 +59,6 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
      * Find publication format by querying publication format settings.
      *
      * @param string $settingName
-     * @param mixed $settingValue
      * @param int $publicationId optional
      * @param int $pressId optional
      *
@@ -307,6 +305,13 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
         $publicationFormat->setRemoteURL($row['remote_url']);
         $publicationFormat->setData('urlPath', $row['url_path']);
         $publicationFormat->setIsAvailable($row['is_available']);
+        $publicationFormat->setData('doiId', $row['doi_id']);
+
+        if (!empty($publicationFormat->getData('doiId'))) {
+            $publicationFormat->setData('doiObject', Repo::doi()->get($publicationFormat->getData('doiId')));
+        } else {
+            $publicationFormat->setData('doiObject', null);
+        }
 
         $this->getDataObjectSettings(
             'publication_format_settings',
@@ -405,7 +410,8 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 				returnable_indicator_code = ?,
 				remote_url = ?,
 				url_path = ?,
-				is_available = ?
+				is_available = ?,
+			    doi_id = ?
 			WHERE	publication_format_id = ?',
             [
                 (int) $publicationFormat->getIsApproved(),
@@ -433,6 +439,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
                 $publicationFormat->getRemoteURL(),
                 $publicationFormat->getData('urlPath'),
                 (int) $publicationFormat->getIsAvailable(),
+                $publicationFormat->getData('doiId'),
                 (int) $publicationFormat->getId()
             ]
         );

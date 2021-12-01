@@ -154,6 +154,8 @@ class OMPMigration extends \PKP\migration\Migration
             $table->bigInteger('version')->nullable();
             $table->index(['submission_id'], 'publications_submission_id');
             $table->index(['series_id'], 'publications_section_id');
+            $table->bigInteger('doi_id')->nullable();
+            $table->foreign('doi_id')->references('doi_id')->on('dois')->nullOnDelete();
         });
 
         // Publication formats assigned to published submissions
@@ -188,6 +190,8 @@ class OMPMigration extends \PKP\migration\Migration
             $table->smallInteger('is_approved')->default(0);
             $table->smallInteger('is_available')->default(0);
             $table->index(['submission_id'], 'publication_format_submission_id');
+            $table->bigInteger('doi_id')->nullable();
+            $table->foreign('doi_id')->references('doi_id')->on('dois')->nullOnDelete();
         });
 
         // Publication Format metadata.
@@ -210,6 +214,8 @@ class OMPMigration extends \PKP\migration\Migration
             $table->index(['chapter_id'], 'chapters_chapter_id');
             $table->index(['publication_id'], 'chapters_publication_id');
             $table->foreign('source_chapter_id')->references('chapter_id')->on('submission_chapters');
+            $table->bigInteger('doi_id')->nullable();
+            $table->foreign('doi_id')->references('doi_id')->on('dois')->nullOnDelete();
         });
 
         // Language dependent monograph chapter metadata.
@@ -241,6 +247,17 @@ class OMPMigration extends \PKP\migration\Migration
             $table->unique(['path'], 'press_path');
         });
 
+        // DOI foreign key references Press, so it needs to be added AFTER the presses table has been created
+        Schema::table('dois', function (Blueprint $table) {
+            $table->foreign('context_id')->references('press_id')->on('presses');
+        });
+
+        // Add doiId to submission files
+        Schema::table('submission_files', function (Blueprint $table) {
+            $table->bigInteger('doi_id')->nullable();
+            $table->foreign('doi_id')->references('doi_id')->on('dois')->nullOnDelete();
+        });
+
         // Press settings.
         Schema::create('press_settings', function (Blueprint $table) {
             $table->bigInteger('press_id');
@@ -251,6 +268,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->index(['press_id'], 'press_settings_press_id');
             $table->unique(['press_id', 'locale', 'setting_name'], 'press_settings_pkey');
         });
+
 
         // Spotlights
         Schema::create('spotlights', function (Blueprint $table) {

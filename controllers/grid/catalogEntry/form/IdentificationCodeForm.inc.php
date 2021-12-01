@@ -166,12 +166,10 @@ class IdentificationCodeForm extends Form
             } // allow existing codes to keep their value
             $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
 
-            // since the pubId DOI plugin may be enabled, we give that precedence and remove DOI from here if that is the case.
-            $pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
-            foreach ($pubIdPlugins as $plugin) {
-                if ($plugin->getEnabled() && $plugin->getPubIdType() == 'doi') {
-                    $assignedCodes[] = '06'; // 06 is DOI in ONIX-speak.
-                }
+            // Since DOIs may be separately enabled, we give that precedence and remove DOI from here if that is the case.
+            $context = $request->getContext();
+            if ($context->areDoisEnabled()) {
+                $assignedCodes[] = '06'; // 06 is DOI in ONIX-speak.
             }
             $codes = $onixCodelistItemDao->getCodes('List5', $assignedCodes); // ONIX list for these
             $templateMgr->assign('identificationCodes', $codes);

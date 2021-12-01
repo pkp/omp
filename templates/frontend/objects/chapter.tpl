@@ -60,27 +60,21 @@
 			{* Author list *}
 			{include file="frontend/components/authors.tpl" authors=$chapterAuthors}
 
-			{* DOI (requires plugin) *}
-			{foreach from=$pubIdPlugins item=pubIdPlugin}
-				{if $pubIdPlugin->getPubIdType() != 'doi'}
-					{continue}
-				{/if}
-				{assign var=pubId value=$chapter->getStoredPubId($pubIdPlugin->getPubIdType())}
-
-				{if $pubId}
-					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
-					<div class="item doi">
-						<span class="label">
-							{translate key="plugins.pubIds.doi.readerDisplayName"}
-						</span>
-						<span class="value">
-							<a href="{$doiUrl}">
-								{$doiUrl}
-							</a>
-						</span>
-					</div>
-				{/if}
-			{/foreach}
+			{* DOIs *}
+			{assign var=doiObject value=$chapter->getData('doiObject')}
+			{if $doiObject}
+				{assign var="doiUrl" value=$doiObject->getData('resolvingUrl')|escape}
+				<div class="item doi">
+					<span class="label">
+						{translate key="doi.readerDisplayName"}
+					</span>
+					<span class="value">
+						<a href="{$doiUrl}">
+							{$doiUrl}
+						</a>
+					</span>
+				</div>
+			{/if}
 
 			{* Abstract *}
 			<div class="item abstract">

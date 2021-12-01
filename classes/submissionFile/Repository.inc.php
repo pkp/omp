@@ -19,6 +19,9 @@ use PKP\submissionFile\Repository as SubmissionFileRepository;
 
 class Repository extends SubmissionFileRepository
 {
+    /** @copydoc \PKP\submissionFile\Repository::$schemaMap */
+    public $schemaMap = maps\Schema::class;
+
     public function __construct(
         DAO $dao,
         Request $request,

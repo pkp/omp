@@ -14,10 +14,10 @@
 namespace APP\publication\maps;
 
 use APP\core\Application;
-use APP\publication\Publication;
-use PKP\db\DAORegistry;
-use PKP\services\PKPSchemaService;
 use APP\facades\Repo;
+use APP\publication\Publication;
+use PKP\services\PKPSchemaService;
+use PKP\submissionFile\SubmissionFile;
 
 class Schema extends \PKP\publication\maps\Schema
 {
@@ -39,18 +39,41 @@ class Schema extends \PKP\publication\maps\Schema
                                 ->filterByChapterIds([$chapter->getId()])
                                 ->filterByPublicationIds([$publication->getId()])
                         )
-                        ->map(function($chapterAuthor) {
+                        ->map(function ($chapterAuthor) {
                             return $chapterAuthor->_data;
                         });
+                }
+                if ($data['doiId'] !== null) {
+                    $data['doiObject'] = Repo::doi()->getSchemaMap()->summarize($data['doiObject']);
                 }
                 return $data;
             }, $publication->getData('chapters'));
         }
 
         if (in_array('publicationFormats', $props)) {
+            // Get all submission files assigned to a publication format
+            $submissionFilesCollector = Repo::submissionFile()
+                ->getCollector()
+                ->filterBySubmissionIds([$publication->getData('submissionId')])
+                ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF]);
+
+            $submissionFiles = Repo::submissionFile()->getMany($submissionFilesCollector);
+
             $output['publicationFormats'] = array_map(
-                function ($publicationFormat) {
-                    return $publicationFormat->_data;
+                function ($publicationFormat) use ($submissionFiles) {
+                    $data = $publicationFormat->_data;
+
+                    if ($data['doiId'] !== null) {
+                        $data['doiObject'] = Repo::doi()->getSchemaMap()->summarize($data['doiObject']);
+                    }
+
+                    // Get SubmissionFiles related to each format and attach
+                    $formatSpecificFiles = $submissionFiles->filter(function ($submissionFile) use ($publicationFormat) {
+                        return $publicationFormat->getId() === $submissionFile->getData('assocId');
+                    });
+                    return array_merge($data, [
+                        'submissionFiles' => Repo::submissionFile()->getSchemaMap()->mapMany($formatSpecificFiles)->values()->toArray()
+                    ]);
                 },
                 $publication->getData('publicationFormats')
             );
