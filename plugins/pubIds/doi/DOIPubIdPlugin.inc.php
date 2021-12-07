@@ -465,13 +465,17 @@ class DOIPubIdPlugin extends PubIdPlugin
                 }
             }
             if ($submissionFileDoiEnabled) {
-                foreach ((array) $form->publication->getData('publicationFormats') as $publicationFormat) {
-                    $filesIterator = Services::get('submissionFile')->getMany([
-                        'submissionIds' => [$submission->getId()],
-                        'assocTypes' => [ASSOC_TYPE_REPRESENTATION],
-                        'assocIds' => [$publicationFormat->getId()],
-                    ]);
-                    foreach ($filesIterator as $file) {
+                $publicationFormats = (array) $form->publication->getData('publicationFormats');
+                foreach ($publicationFormats as $publicationFormat) {
+                    $collector = Repo::submissionFiles()
+                        ->getCollector()
+                        ->filterBySubmissionIds([$submission->getId()])
+                        ->filterByAssoc(
+                            ASSOC_TYPE_REPRESENTATION,
+                            [$publicationFormat->getId()]
+                        );
+                    $submissionFiles = Repo::submissionFiles()->getMany($collector);
+                    foreach ($submissionFiles as $file) {
                         if ($file->getStoredPubId('doi')) {
                             $doiTableRows[] = [$file->getStoredPubId('doi'), __('plugins.pubIds.doi.editor.preview.files', ['title' => $file->getLocalizedData('name')])];
                         } else {

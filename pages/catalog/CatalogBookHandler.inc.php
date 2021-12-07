@@ -14,6 +14,7 @@
  *   catalog.
  */
 
+use APP\facades\Repo;
 use APP\handler\Handler;
 
 use APP\payment\omp\OMPPaymentManager;
@@ -214,10 +215,13 @@ class CatalogBookHandler extends Handler
         $pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
         $templateMgr->assign('pubIdPlugins', $pubIdPlugins);
 
-        $pubFormatFiles = Services::get('submissionFile')->getMany([
-            'submissionIds' => [$submission->getId()],
-            'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT],
-        ]);
+        $collector = Repo::submissionFiles()
+            ->getCollector()
+            ->filterBySubmissionIds([$submission->getId()])
+            ->filterByAssoc(ASSOC_TYPE_PUBLICATION_FORMAT);
+
+        $pubFormatFiles = Repo::submissionFiles()->getMany($collector);
+
         $availableFiles = [];
         foreach ($pubFormatFiles as $pubFormatFile) {
             if ($pubFormatFile->getDirectSalesPrice() !== null) {
@@ -321,8 +325,12 @@ class CatalogBookHandler extends Handler
             $dispatcher->handle404();
         }
 
-        import('lib.pkp.classes.submission.SubmissionFile'); // File constants
-        $submissionFile = DAORegistry::getDAO('SubmissionFileDAO')->getByBestId($bestFileId, $submission->getId());
+        $submissionFile = Repo::submissionFiles()
+            ->dao
+            ->getByBestId(
+                $bestFileId,
+                $submission->getId()
+            );
         if (!$submissionFile) {
             $dispatcher->handle404();
         }

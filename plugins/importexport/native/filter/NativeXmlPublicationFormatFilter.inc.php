@@ -17,6 +17,7 @@ import('lib.pkp.plugins.importexport.native.filter.NativeXmlRepresentationFilter
 
 use APP\facades\Repo;
 use APP\submission\Submission;
+use PKP\core\PKPApplication;
 
 class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
 {
@@ -119,11 +120,14 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
         $DBId = $deployment->getFileDBId($fileId);
         if ($DBId) {
             // Update the submission file.
-            $submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-            $submissionFile = Services::get('submissionFile')->get($DBId);
-            $submissionFile->setAssocType(ASSOC_TYPE_REPRESENTATION);
-            $submissionFile->setAssocId($representation->getId());
-            $submissionFileDao->updateObject($submissionFile);
+            $submissionFile = Repo::submissionFiles()->get($DBId);
+
+            $params = [
+                'assocType' => PKPApplication::ASSOC_TYPE_REPRESENTATION,
+                'assocId' => $representation->getId(),
+            ];
+
+            Repo::submissionFiles()->edit($submissionFile, $params);
         }
     }
 

@@ -13,6 +13,7 @@
  * @brief Class that converts a PublicationFormat to a Native XML document.
  */
 
+use APP\facades\Repo;
 use PKP\xsl\XSLTransformer;
 
 import('lib.pkp.plugins.importexport.native.filter.RepresentationNativeXmlFilter');
@@ -99,10 +100,14 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
     {
         $deployment = $this->getDeployment();
         $submission = $deployment->getSubmission();
-        return Services::get('submissionFile')->getMany([
-            'submissionIds' => [$submission->getId()],
-            'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT],
-            'assocIds' => [$representation->getId()],
-        ]);
+        $collector = Repo::submissionFiles()
+            ->getCollector()
+            ->filterBySubmissionIds([$submission->getId()])
+            ->filterByAssoc(
+                ASSOC_TYPE_PUBLICATION_FORMAT,
+                [$representation->getId()]
+            );
+
+        return Repo::submissionFiles()->getMany($collector);
     }
 }

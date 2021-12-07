@@ -1,5 +1,4 @@
 <?php
-use APP\facades\Repo;
 
 /**
  * @file plugins/generic/googleScholar/GoogleScholarPlugin.inc.php
@@ -16,6 +15,7 @@ use APP\facades\Repo;
 
 import('lib.pkp.classes.plugins.GenericPlugin');
 
+use APP\facades\Repo;
 use APP\template\TemplateManager;
 
 class GoogleScholarPlugin extends GenericPlugin

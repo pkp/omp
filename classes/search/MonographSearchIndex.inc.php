@@ -15,7 +15,6 @@
 
 namespace APP\search;
 
-use APP\core\Services;
 use APP\facades\Repo;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
@@ -24,7 +23,7 @@ use PKP\search\SearchFileParser;
 use PKP\search\SubmissionSearch;
 
 use PKP\search\SubmissionSearchIndex;
-use PKP\submission\SubmissionFile;
+use PKP\submissionFile\SubmissionFile;
 
 class MonographSearchIndex extends SubmissionSearchIndex
 {
@@ -65,7 +64,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
      */
     public function updateFileIndex($monographId, $type, $submissionFileId)
     {
-        $submisssionFile = Services::get('submissionFile')->get($submissionFileId);
+        $submisssionFile = Repo::submissionFiles()->get($submissionFileId);
 
         if (isset($submisssionFile)) {
             $parser = SearchFileParser::fromFile($submisssionFile);
@@ -143,12 +142,13 @@ class MonographSearchIndex extends SubmissionSearchIndex
     public function submissionFilesChanged($monograph)
     {
         // Index galley files
-        import('lib.pkp.classes.submission.SubmissionFile'); // Constants
-        import('classes.search.MonographSearch'); // Constants
-        $submissionFiles = Services::get('submissionFile')->getMany([
-            'submissionIds' => [$monograph->getId()],
-            'fileStages' => [SubmissionFile::SUBMISSION_FILE_PROOF],
-        ]);
+        $collector = Repo::submissionFiles()
+            ->getCollector()
+            ->filterBySubmissionIds([$monograph->getId()])
+            ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF]);
+
+        $submissionFiles = Repo::submissionFiles()
+            ->getMany($collector);
 
         foreach ($submissionFiles as $submissionFile) {
             $this->updateFileIndex($monograph->getId(), SubmissionSearch::SUBMISSION_SEARCH_GALLEY_FILE, $submissionFile->getId());

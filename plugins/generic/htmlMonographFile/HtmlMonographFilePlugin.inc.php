@@ -13,10 +13,11 @@
  * @brief Class for HtmlMonographFile plugin
  */
 
+use APP\facades\Repo;
 use APP\file\PublicFileManager;
 
 use APP\template\TemplateManager;
-use PKP\submission\SubmissionFile;
+use PKP\submissionFile\SubmissionFile;
 
 import('lib.pkp.classes.plugins.GenericPlugin');
 
@@ -147,20 +148,23 @@ class HtmlMonographFilePlugin extends GenericPlugin
         $contents = Services::get('file')->fs->read($submissionFile->getData('path'));
 
         // Replace media file references
-        import('lib.pkp.classes.submission.SubmissionFile'); // Constants
-        $proofFiles = Services::get('submissionFile')->getMany([
-            'submissionIds' => [$monograph->getId()],
-            'fileStages' => [SubmissionFile::SUBMISSION_FILE_PROOF],
-        ]);
-        $dependentFiles = Services::get('submissionFile')->getMany([
-            'submissionIds' => [$monograph->getId()],
-            'fileStages' => [SubmissionFile::SUBMISSION_FILE_DEPENDENT],
-            'assocTypes' => [ASSOC_TYPE_SUBMISSION_FILE],
-            'assocIds' => [$submissionFile->getId()],
-        ]);
+        $proofCollector = Repo::submissionFiles()
+            ->getCollector()
+            ->filterBySubmissionIds([$monograph->getId()])
+            ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF]);
+
+        $dependentCollector = Repo::submissionFiles()
+            ->getCollector()
+            ->filterBySubmissionIds([$monograph->getId()])
+            ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_DEPENDENT])
+            ->filterByAssoc(
+                ASSOC_TYPE_SUBMISSION_FILE,
+                [$submissionFile->getId()]
+            );
+
         $embeddableFiles = array_merge(
-            iterator_to_array($proofFiles),
-            iterator_to_array($dependentFiles)
+            Repo::submissionFiles()->getMany($proofCollector),
+            Repo::submissionFiles()->getMany($dependentCollector)
         );
 
         foreach ($embeddableFiles as $embeddableFile) {
