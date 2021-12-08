@@ -277,7 +277,7 @@ class Repository extends \PKP\publication\Repository
             }
 
             // Remove publication format tombstones for this publication
-            $publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
+            $publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
             $publicationFormatTombstoneMgr->deleteTombstonesByPublicationId($publication->getId());
 
             // Create publication format tombstones for any other published versions
