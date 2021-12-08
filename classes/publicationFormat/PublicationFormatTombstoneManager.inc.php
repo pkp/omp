@@ -20,6 +20,7 @@ use APP\oai\omp\OAIDAO;
 use APP\submission\Submission;
 use PKP\submission\PKPSubmission;
 use PKP\db\DAORegistry;
+use PKP\config\Config;
 
 class PublicationFormatTombstoneManager
 {
