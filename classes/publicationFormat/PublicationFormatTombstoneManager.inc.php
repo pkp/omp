@@ -21,6 +21,7 @@ use APP\submission\Submission;
 use PKP\submission\PKPSubmission;
 use PKP\db\DAORegistry;
 use PKP\config\Config;
+use PKP\plugins\HookRegistry;
 
 class PublicationFormatTombstoneManager
 {
