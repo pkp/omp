@@ -22,6 +22,7 @@ use APP\submission\Submission;
 use PKP\core\Core;
 use PKP\db\DAORegistry;
 use PKP\submissionFile\SubmissionFile;
+use APP\publicationFormat\PublicationFormatTombstoneManager;
 
 class Repository extends \PKP\publication\Repository
 {
@@ -276,7 +277,6 @@ class Repository extends \PKP\publication\Repository
             }
 
             // Remove publication format tombstones for this publication
-            import('classes.publicationFormat.PublicationFormatTombstoneManager');
             $publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
             $publicationFormatTombstoneMgr->deleteTombstonesByPublicationId($publication->getId());
 
@@ -325,8 +325,7 @@ class Repository extends \PKP\publication\Repository
         $submissionContext = Services::get('context')->get($submission->getData('contextId'));
 
         // Create tombstones for this publication
-        import('classes.publicationFormat.PublicationFormatTombstoneManager');
-        $publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
+        $publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
         $publicationFormatTombstoneMgr->insertTombstonesByPublicationId($publication->getId(), $submissionContext);
 
         // Delete tombstones for the new current publication

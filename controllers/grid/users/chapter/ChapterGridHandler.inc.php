@@ -194,7 +194,6 @@ class ChapterGridHandler extends CategoryGridHandler
     {
         if ($this->canAdminister($request->getUser())) {
             $this->setReadOnly(false);
-            import('lib.pkp.classes.controllers.grid.feature.OrderCategoryGridItemsFeature');
             return [new OrderCategoryGridItemsFeature(OrderCategoryGridItemsFeature::ORDER_CATEGORY_GRID_CATEGORIES_AND_ROWS, true, $this)];
         } else {
             $this->setReadOnly(true);

@@ -13,6 +13,8 @@
  * @brief URN plugin class
  */
 
+use APP\form\URNSettingsForm;
+use APP\form\FieldUrn;
 use APP\facades\Repo;
 use APP\plugins\PubIdPlugin;
 use APP\publication\Publication;
@@ -159,7 +161,6 @@ class URNPubIdPlugin extends PubIdPlugin
      */
     public function instantiateSettingsForm($contextId)
     {
-        $this->import('classes.form.URNSettingsForm');
         return new URNSettingsForm($this, $contextId);
     }
 
@@ -413,7 +414,6 @@ class URNPubIdPlugin extends PubIdPlugin
             // Load the checkNumber.js file that is required for this field
             $this->addJavaScript(Application::get()->getRequest(), TemplateManager::getManager(Application::get()->getRequest()));
 
-            $this->import('classes.form.FieldUrn');
             $form->addField(new \Plugins\Generic\URN\FieldUrn('pub-id::other::urn', [
                 'label' => __('plugins.pubIds.urn.displayName'),
                 'description' => __('plugins.pubIds.urn.editor.urn.description', ['prefix' => $prefix]),

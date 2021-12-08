@@ -309,7 +309,6 @@ class PublicationFormat extends Representation
     {
         $fileSize = 0;
         $publication = Repo::publication()->get((int) $this->getData('publicationId'));
-        import('lib.pkp.classes.submissionFile.SubmissionFile'); // File constants
         $collector = Repo::submissionFiles()
             ->getCollector()
             ->filterBySubmissionIds([$publication->getData('submissionId')])

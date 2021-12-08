@@ -18,8 +18,6 @@ namespace APP\i18n;
 
 use PKP\i18n\PKPLocale;
 
-import('lib.pkp.classes.i18n.PKPLocale');
-
 class AppLocale extends PKPLocale
 {
     /**

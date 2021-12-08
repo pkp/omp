@@ -13,10 +13,9 @@
  * @brief Inject Google Scholar meta tags into monograph views to facilitate indexing.
  */
 
-import('lib.pkp.classes.plugins.GenericPlugin');
-
 use APP\facades\Repo;
 use APP\template\TemplateManager;
+use PKP\plugins\GenericPlugin;
 
 class GoogleScholarPlugin extends GenericPlugin
 {

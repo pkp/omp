@@ -16,7 +16,9 @@ namespace APP\services;
 
 use APP\core\Application;
 use APP\facades\Repo;
+use APP\log\SubmissionEventLogEntry;
 use PKP\db\DAORegistry;
+use PKP\log\SubmissionLog;
 
 class PublicationFormatService
 {
@@ -56,8 +58,6 @@ class PublicationFormatService
         }
 
         // Log the deletion of the format.
-        import('lib.pkp.classes.log.SubmissionLog');
-        import('classes.log.SubmissionEventLogEntry');
-        \SubmissionLog::logEvent(Application::get()->getRequest(), $submission, SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE, 'submission.event.publicationFormatRemoved', ['formatName' => $publicationFormat->getLocalizedName()]);
+        SubmissionLog::logEvent(Application::get()->getRequest(), $submission, SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE, 'submission.event.publicationFormatRemoved', ['formatName' => $publicationFormat->getLocalizedName()]);
     }
 }

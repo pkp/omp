@@ -13,7 +13,7 @@
  * @brief Base class for a cell provider that can retrieve labels for publication dates
  */
 
-import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
+use PKP\controllers\grid\DataObjectGridCellProvider;
 
 class PublicationDateGridCellProvider extends DataObjectGridCellProvider
 {

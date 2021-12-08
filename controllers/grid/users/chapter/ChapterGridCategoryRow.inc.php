@@ -13,9 +13,7 @@
  * @brief Chapter grid category row definition
  */
 
-import('lib.pkp.classes.controllers.grid.GridCategoryRow');
-
-// Link actions
+use PKP\controllers\grid\GridCategoryRow;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\RemoteActionConfirmationModal;
 

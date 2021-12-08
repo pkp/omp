@@ -15,13 +15,16 @@
 
 use APP\facades\Repo;
 use APP\notification\NotificationManager;
+use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\template\TemplateManager;
+use APP\log\SubmissionEventLogEntry;
 use PKP\controllers\grid\CategoryGridHandler;
 use PKP\controllers\grid\GridColumn;
 use PKP\core\JSONMessage;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\log\SubmissionLog;
+use PKP\log\SubmissionFileEventLogEntry;
 use PKP\security\authorization\internal\RepresentationRequiredPolicy;
 use PKP\security\authorization\PublicationAccessPolicy;
 use PKP\security\Role;
@@ -406,17 +409,15 @@ class PublicationFormatGridHandler extends CategoryGridHandler
         $representationDao->updateObject($representation);
 
         // log the state changing of the format.
-        import('classes.log.SubmissionEventLogEntry');
         SubmissionLog::logEvent(
             $request,
             $this->getSubmission(),
-            $newApprovedState ? SUBMISSION_LOG_PUBLICATION_FORMAT_PUBLISH : SUBMISSION_LOG_PUBLICATION_FORMAT_UNPUBLISH,
+            $newApprovedState ? SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_PUBLISH : SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_UNPUBLISH,
             $newApprovedState ? 'submission.event.publicationFormatPublished' : 'submission.event.publicationFormatUnpublished',
             ['publicationFormatName' => $representation->getLocalizedName()]
         );
 
         // Update the formats tombstones.
-        import('classes.publicationFormat.PublicationFormatTombstoneManager');
         $publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
         if ($representation->getIsAvailable() && $representation->getIsApproved()) {
             // Delete any existing tombstone.
@@ -453,17 +454,15 @@ class PublicationFormatGridHandler extends CategoryGridHandler
         $publicationFormatDao->updateObject($publicationFormat);
 
         // log the state changing of the format.
-        import('classes.log.SubmissionEventLogEntry');
         SubmissionLog::logEvent(
             $request,
             $this->getSubmission(),
-            $newAvailableState ? SUBMISSION_LOG_PUBLICATION_FORMAT_AVAILABLE : SUBMISSION_LOG_PUBLICATION_FORMAT_UNAVAILABLE,
+            $newAvailableState ? SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_AVAILABLE : SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_UNAVAILABLE,
             $newAvailableState ? 'submission.event.publicationFormatMadeAvailable' : 'submission.event.publicationFormatMadeUnavailable',
             ['publicationFormatName' => $publicationFormat->getLocalizedName()]
         );
 
         // Update the formats tombstones.
-        import('classes.publicationFormat.PublicationFormatTombstoneManager');
         $publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
         if ($publicationFormat->getIsAvailable() && $publicationFormat->getIsApproved()) {
             // Delete any existing tombstone.
@@ -614,10 +613,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler
             $submissionFile = Repo::submissionFiles()->get($submissionFileId);
 
             // Log the event
-            import('lib.pkp.classes.log.SubmissionFileLog');
-            import('lib.pkp.classes.log.SubmissionFileEventLogEntry'); // constants
             $user = $request->getUser();
-            SubmissionFileLog::logEvent($request, $submissionFile, SUBMISSION_LOG_FILE_SIGNOFF_SIGNOFF, 'submission.event.signoffSignoff', ['file' => $submissionFile->getLocalizedData('name'), 'name' => $user->getFullName(), 'username' => $user->getUsername()]);
+            SubmissionFileLog::logEvent($request, $submissionFile, SubmissionFileEventLogEntry::SUBMISSION_LOG_FILE_SIGNOFF_SIGNOFF, 'submission.event.signoffSignoff', ['file' => $submissionFile->getLocalizedData('name'), 'name' => $user->getFullName(), 'username' => $user->getUsername()]);
 
             return DAO::getDataChangedEvent();
         }

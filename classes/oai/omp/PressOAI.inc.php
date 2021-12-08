@@ -21,7 +21,11 @@
  * (based on where the request is directed).
  */
 
-use APP\oai\omp\OAIDAO;
+namespace APP\oai\omp;
+
+use APP\core\Application;
+use PKP\db\DAORegistry;
+use PKP\plugins\HookRegistry;
 use PKP\oai\OAI;
 use PKP\oai\OAIRepository;
 
@@ -271,4 +275,8 @@ class PressOAI extends OAI
     {
         return 'oai:' . $this->config->repositoryId . ':' . 'publicationFormat/';
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\oai\omp\PressOAI', '\PressOAI');
 }

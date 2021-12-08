@@ -15,11 +15,9 @@
 
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
-
 use APP\template\TemplateManager;
+use PKP\plugins\GenericPlugin;
 use PKP\submissionFile\SubmissionFile;
-
-import('lib.pkp.classes.plugins.GenericPlugin');
 
 class HtmlMonographFilePlugin extends GenericPlugin
 {

@@ -13,7 +13,7 @@
  * @brief Handle reviewer grid requests.
  */
 
-import('lib.pkp.classes.controllers.grid.users.reviewer.PKPReviewerGridHandler');
+use PKP\controllers\grid\users\reviewer\PKPReviewerGridHandler;
 
 class ReviewerGridHandler extends PKPReviewerGridHandler
 {

@@ -14,7 +14,8 @@
  */
 
 use APP\template\TemplateManager;
-
+use PKP\log\SubmissionLog;
+use APP\log\SubmissionEventLogEntry;
 use PKP\form\Form;
 
 class PublicationFormatForm extends Form
@@ -256,9 +257,7 @@ class PublicationFormatForm extends Form
 
         if (!$existingFormat) {
             // log the creation of the format.
-            import('lib.pkp.classes.log.SubmissionLog');
-            import('classes.log.SubmissionEventLogEntry');
-            SubmissionLog::logEvent(Application::get()->getRequest(), $this->getMonograph(), SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE, 'submission.event.publicationFormatCreated', ['formatName' => $publicationFormat->getLocalizedName()]);
+            SubmissionLog::logEvent(Application::get()->getRequest(), $this->getMonograph(), SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE, 'submission.event.publicationFormatCreated', ['formatName' => $publicationFormat->getLocalizedName()]);
         }
 
         return $representationId;

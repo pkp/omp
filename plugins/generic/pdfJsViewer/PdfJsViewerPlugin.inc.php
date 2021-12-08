@@ -13,9 +13,8 @@
  * @brief Class for PdfJsViewer plugin
  */
 
-import('lib.pkp.classes.plugins.GenericPlugin');
-
 use APP\template\TemplateManager;
+use PKP\plugins\GenericPlugin;
 
 class PdfJsViewerPlugin extends GenericPlugin
 {
