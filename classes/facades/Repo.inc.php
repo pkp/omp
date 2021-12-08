@@ -42,7 +42,7 @@ class Repo extends \PKP\facades\Repo
         return app()->make(AuthorRepository::class);
     }
 
-    public static function submissionFiles(): SubmissionFileRepository
+    public static function submissionFile(): SubmissionFileRepository
     {
         return app()->make(SubmissionFileRepository::class);
     }

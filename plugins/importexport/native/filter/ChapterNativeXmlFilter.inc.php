@@ -117,10 +117,10 @@ class ChapterNativeXmlFilter extends NativeExportFilter
             $entityNode->appendChild($this->createChapterAuthorNode($doc, $chapterAuthor));
         }
 
-        $collector = Repo::submissionFiles()
+        $collector = Repo::submissionFile()
             ->getCollector()
             ->filterBySubmissionIds([$publication->getData('submissionId')]);
-        $submissionFiles = Repo::submissionFiles()->getMany($collector);
+        $submissionFiles = Repo::submissionFile()->getMany($collector);
         foreach ($submissionFiles as $submissionFile) { /** @var SubmissionFile $submissionFile */
             if ($submissionFile->getData('chapterId') == $chapter->getId()) {
                 $referenceFileNode = $doc->createElementNS($deployment->getNamespace(), 'submission_file_ref');

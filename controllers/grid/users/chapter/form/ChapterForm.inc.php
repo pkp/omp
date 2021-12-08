@@ -199,11 +199,11 @@ class ChapterForm extends Form
             }
         }
 
-        $collector = Repo::submissionFiles()
+        $collector = Repo::submissionFile()
             ->getCollector()
             ->filterBySubmissionIds([$this->getMonograph()->getId()]);
 
-        $submissionFiles = Repo::submissionFiles()->getMany($collector);
+        $submissionFiles = Repo::submissionFile()->getMany($collector);
         foreach ($submissionFiles as $submissionFile) {
             $isIncluded = false;
 
@@ -219,13 +219,13 @@ class ChapterForm extends Form
         }
 
         $templateMgr->assign([
-                                 'chapterAuthorOptions' => $chapterAuthorOptions,
-                                 'selectedChapterAuthors' => array_map(function ($author) {
-                                     return $author->getId();
-                                 }, $selectedChapterAuthorsArray),
-                                 'chapterFileOptions' => $chapterFileOptions,
-                                 'selectedChapterFiles' => $selectedChapterFiles,
-                             ]);
+            'chapterAuthorOptions' => $chapterAuthorOptions,
+            'selectedChapterAuthors' => array_map(function ($author) {
+                return $author->getId();
+            }, $selectedChapterAuthorsArray),
+            'chapterFileOptions' => $chapterFileOptions,
+            'selectedChapterFiles' => $selectedChapterFiles,
+        ]);
 
         return parent::fetch($request, $template, $display);
     }
@@ -284,7 +284,7 @@ class ChapterForm extends Form
 
         // Save the chapter file associations
         $selectedFiles = (array) $this->getData('files');
-        Repo::submissionFiles()
+        Repo::submissionFile()
             ->dao
             ->updateChapterFiles(
                 $selectedFiles,

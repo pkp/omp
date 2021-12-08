@@ -122,7 +122,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
             $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
             $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
             $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
-            $submissionFileDao = Repo::submissionFiles()->dao;
+            $submissionFileDao = Repo::submissionFile()->dao;
             $genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
             $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
 
@@ -252,7 +252,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $submissionFile->setDirectSalesPrice(0);
                         $submissionFile->setSalesType('openAccess');
 
-                        Repo::submissionFiles()
+                        Repo::submissionFile()
                             ->add($submissionFile, $temporaryFilename);
 
                         $fileManager = new FileManager();

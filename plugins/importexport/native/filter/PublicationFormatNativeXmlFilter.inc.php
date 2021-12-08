@@ -100,7 +100,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
     {
         $deployment = $this->getDeployment();
         $submission = $deployment->getSubmission();
-        $collector = Repo::submissionFiles()
+        $collector = Repo::submissionFile()
             ->getCollector()
             ->filterBySubmissionIds([$submission->getId()])
             ->filterByAssoc(
@@ -108,6 +108,6 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
                 [$representation->getId()]
             );
 
-        return Repo::submissionFiles()->getMany($collector);
+        return Repo::submissionFile()->getMany($collector);
     }
 }

@@ -148,7 +148,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         Repo::submission()->dao = $submissionDao;
 
         // Create test files
-        $submissionDir = Repo::submissionFiles()
+        $submissionDir = Repo::submissionFile()
             ->getSubmissionDir(SUBMISSION_FILE_DAO_TEST_PRESS_ID, $submissionId);
         $fileId1 = Services::get('file')->add(
             $this->testFile1,
@@ -175,7 +175,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $submissionFile2->setData('fileId', $fileId2);
 
         // Persist files and check retrieval
-        $submissionFileDao = Repo::submissionFiles()->dao;
+        $submissionFileDao = Repo::submissionFile()->dao;
         $submissionFile1Id = $submissionFileDao->insert($submissionFile1);
         $submissionFile1 = $submissionFileDao->get($submissionFile1Id);
         self::assertTrue(is_a($submissionFile1, 'SubmissionFile'));
@@ -212,7 +212,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $submissionFileDao->update($submissionFile2);
         $submissionFile2 = $submissionFileDao->get($submissionFile2->getId());
         self::assertEquals($submissionFile2->getData('fileId'), $fileId3);
-        $revisions = Repo::submissionFiles()->getRevisions($submissionFile2->getId());
+        $revisions = Repo::submissionFile()->getRevisions($submissionFile2->getId());
         $revisionFileIds = [];
         foreach ($revisions as $revision) {
             $revisionFileIds[] = $revision->fileId;
@@ -241,12 +241,12 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         if (!$submissionId) {
             $submissionId = SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID;
         }
-        $collector = Repo::submissionFiles()
+        $collector = Repo::submissionFile()
             ->getCollector()
             ->filterBySubmissionIds([$submissionId]);
-        $submissionFileIds = Repo::submissionFiles()->getIds($collector);
+        $submissionFileIds = Repo::submissionFile()->getIds($collector);
         foreach ($submissionFileIds as $submissionFileId) {
-            Repo::submissionFiles()->dao->deleteById($submissionFileId);
+            Repo::submissionFile()->dao->deleteById($submissionFileId);
         }
     }
 }

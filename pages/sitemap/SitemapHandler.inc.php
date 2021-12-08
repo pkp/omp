@@ -50,7 +50,7 @@ class SitemapHandler extends PKPSitemapHandler
                 // Consider only available publication formats
                 if ($format->getIsAvailable()) {
                     // Consider only available publication format files
-                    $collector = Repo::submissionFiles()
+                    $collector = Repo::submissionFile()
                         ->getCollector()
                         ->filterByAssoc(
                             ASSOC_TYPE_PUBLICATION_FORMAT,
@@ -58,7 +58,7 @@ class SitemapHandler extends PKPSitemapHandler
                         )
                         ->filterBySubmissionIds([$submission->getId()]);
 
-                    $data = Repo::submissionFiles()->getMany($collector);
+                    $data = Repo::submissionFile()->getMany($collector);
                     $availableFiles = array_filter(
                         iterator_to_array($data),
                         function ($a) {

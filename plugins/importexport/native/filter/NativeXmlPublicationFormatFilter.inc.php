@@ -120,14 +120,14 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
         $DBId = $deployment->getFileDBId($fileId);
         if ($DBId) {
             // Update the submission file.
-            $submissionFile = Repo::submissionFiles()->get($DBId);
+            $submissionFile = Repo::submissionFile()->get($DBId);
 
             $params = [
                 'assocType' => PKPApplication::ASSOC_TYPE_REPRESENTATION,
                 'assocId' => $representation->getId(),
             ];
 
-            Repo::submissionFiles()->edit($submissionFile, $params);
+            Repo::submissionFile()->edit($submissionFile, $params);
         }
     }
 

@@ -17,13 +17,13 @@
 use APP\facades\Repo;
 use APP\handler\Handler;
 
+use APP\monograph\Chapter;
+use APP\monograph\ChapterDAO;
 use APP\payment\omp\OMPPaymentManager;
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 use APP\template\TemplateManager;
 use PKP\submission\PKPSubmission;
 use Sokil\IsoCodes\IsoCodesFactory;
-use APP\monograph\ChapterDAO;
-use APP\monograph\Chapter;
 
 class CatalogBookHandler extends Handler
 {
@@ -34,7 +34,7 @@ class CatalogBookHandler extends Handler
     public $chapter = null;
 
     /** @var array this array contains ids of all publications, those contain the requested chapter */
-    public $chapterPublicationIds = array();
+    public $chapterPublicationIds = [];
 
     /** @var boolean Is this a request for a specific version */
     public $isVersionRequest = false;
@@ -105,10 +105,10 @@ class CatalogBookHandler extends Handler
 
         // If a chapter is requested, set this chapter
         if ($subPath === 'chapter') {
-            $chapterId = empty($args) ?	0 :	(int) array_shift($args);
+            $chapterId = empty($args) ? 0 : (int) array_shift($args);
             $this->setChapter($chapterId, $request);
         } elseif (!empty($args) && $args[0] === 'chapter') {
-            $chapterId = isset($args[1])	?	(int) $args[1]	:	0;
+            $chapterId = isset($args[1]) ? (int) $args[1] : 0;
             $this->setChapter($chapterId, $request);
         }
 
@@ -124,10 +124,10 @@ class CatalogBookHandler extends Handler
                 : $this->publication->getData('datePublished');
 
             // Get the earliest published Version of the chapter
-            $sourceChapter = $this->getSourceChapter( $submission );
+            $sourceChapter = $this->getSourceChapter($submission);
             if ($sourceChapter) {
                 // Get the earliest publishing date of the chapter
-                $firstDatePublished = $this->getChaptersFirstPublishedDate( $submission, $sourceChapter );
+                $firstDatePublished = $this->getChaptersFirstPublishedDate($submission, $sourceChapter);
             } else {
                 $firstDatePublished = $datePublished;
             }
@@ -185,7 +185,7 @@ class CatalogBookHandler extends Handler
         $templateMgr->assign([
             'categories' => iterator_to_array(
                 Repo::category()->getMany(Repo::category()->getCollector()
-                ->filterByPublicationIds([$this->publication->getId()]))
+                    ->filterByPublicationIds([$this->publication->getId()]))
             ),
         ]);
 
@@ -215,12 +215,12 @@ class CatalogBookHandler extends Handler
         $pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
         $templateMgr->assign('pubIdPlugins', $pubIdPlugins);
 
-        $collector = Repo::submissionFiles()
+        $collector = Repo::submissionFile()
             ->getCollector()
             ->filterBySubmissionIds([$submission->getId()])
             ->filterByAssoc(ASSOC_TYPE_PUBLICATION_FORMAT);
 
-        $pubFormatFiles = Repo::submissionFiles()->getMany($collector);
+        $pubFormatFiles = Repo::submissionFile()->getMany($collector);
 
         $availableFiles = [];
         foreach ($pubFormatFiles as $pubFormatFile) {
@@ -325,7 +325,7 @@ class CatalogBookHandler extends Handler
             $dispatcher->handle404();
         }
 
-        $submissionFile = Repo::submissionFiles()
+        $submissionFile = Repo::submissionFile()
             ->dao
             ->getByBestId(
                 $bestFileId,
@@ -447,10 +447,8 @@ class CatalogBookHandler extends Handler
     /**
      * Set the requested chapter.
      *
-     * @param int        $chapterId
-     * @param PKPRequest $request
      */
-    protected function setChapter(int $chapterId, PKPRequest $request) : void
+    protected function setChapter(int $chapterId, PKPRequest $request): void
     {
         if ($chapterId > 0) {
             $this->isChapterRequest = true;
@@ -480,17 +478,16 @@ class CatalogBookHandler extends Handler
     /**
      * Set an array with all publication ids of the requested chapter.
      */
-    protected function setChapterPublicationIds() : void
+    protected function setChapterPublicationIds(): void
     {
         if ($this->chapter && $this->isChapterRequest) {
             $chapterDao = DAORegistry::getDAO('ChapterDAO');
             $chapters = $chapterDao->getBySourceChapterId($this->chapter->getSourceChapterId());
             $chapters = $chapters->toAssociativeArray();
-            $publicationIds = array();
+            $publicationIds = [];
             /** @var Chapter $chapter */
             foreach ($chapters as $chapter) {
-                if ($chapter->isPageEnabled())
-                {
+                if ($chapter->isPageEnabled()) {
                     $publicationId = (int) $chapter->getData('publicationId');
                     $publicationIds[] = $publicationId;
                 }
@@ -501,11 +498,9 @@ class CatalogBookHandler extends Handler
 
     /**
      * Get the earliest version of a chapter
-     * @param Submission $submission
      *
-     * @return chapter|null
      */
-    protected function getSourceChapter( Submission $submission ) : ?chapter
+    protected function getSourceChapter(Submission $submission): ?chapter
     {
         $chapterDao = DAORegistry::getDAO('ChapterDAO');
         $chapters = $chapterDao->getBySourceChapterId($this->chapter->getSourceChapterId());
@@ -528,12 +523,9 @@ class CatalogBookHandler extends Handler
     /**
      * Get the earliest publishing date of the chapter
      *
-     * @param Submission $submission
-     * @param Chapter    $sourceChapter
      *
-     * @return string|null
      */
-    protected function getChaptersFirstPublishedDate( Submission $submission, Chapter $sourceChapter ) : ?string
+    protected function getChaptersFirstPublishedDate(Submission $submission, Chapter $sourceChapter): ?string
     {
         $publishedPublications = $submission->getPublishedPublications();
         $firstPublication = null;
