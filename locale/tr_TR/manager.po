@@ -1,7 +1,7 @@
 # Hüseyin Körpeoğlu <yoruyenturk@hotmail.com>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-16 13:05+0000\n"
+"PO-Revision-Date: 2021-11-21 22:23+0000\n"
 "Last-Translator: Hüseyin Körpeoğlu <yoruyenturk@hotmail.com>\n"
 "Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "tr_TR/>\n"
@@ -1454,3 +1454,6 @@ msgstr "Yayının ana sayfasının URL'si"
 
 msgid "emailTemplate.variable.context.contextName"
 msgstr "Yayının adı"
+
+msgid "mailable.validateEmailContext.name"
+msgstr "E-postayı Doğrula (Basın Kaydı)"

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2021-08-04 11:04+0000\n"
+"PO-Revision-Date: 2021-10-12 12:06+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "es_ES/>\n"
@@ -1541,3 +1541,31 @@ msgid "manager.setup.selectCountry"
 msgstr ""
 "Seleccione el país donde se ubica la editorial, o el país de la dirección "
 "postal de la editorial o del editor/a."
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr "Nombre del sitio web cuando se aloja más de una publicación"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "La moneda del importe del pago, por ejemplo USD"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "El monto del pago"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "El nombre del tipo de pago"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr ""
+"La dirección de correo electrónico del contacto principal de la publicación"
+
+msgid "emailTemplate.variable.context.principalContactSignature"
+msgstr "La firma para los correos electrónicos automatizados de la publicación"
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "El nombre de contacto principal de la publicación"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "La URL a la página de inicio de la publicación"
+
+msgid "emailTemplate.variable.context.contextName"
+msgstr "El nombre de la editorial"

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:05-08:00\n"
-"PO-Revision-Date: 2021-09-14 13:16+0000\n"
+"PO-Revision-Date: 2021-11-27 14:23+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "da_DK/>\n"
@@ -486,3 +486,23 @@ msgstr "Publikationsoplysninger i forbindelse med version {$version}"
 
 msgid "submission.queries.production"
 msgstr "Drøftelser under produktion"
+
+msgid "submission.chapterCreated"
+msgstr " — Kapitel oprettet"
+
+msgid "submission.withoutChapter"
+msgstr "{$name} — Uden dette kapitel"
+
+msgid "chapter.volume"
+msgstr "Bind/årgang"
+
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+"Vis dette kapitel på egen side og link til denne fra bogens "
+"indholdsfortegnelse."
+
+msgid "publication.chapter.landingPage"
+msgstr "Kapitelside"
+
+msgid "chapter.pages"
+msgstr "Sider"
