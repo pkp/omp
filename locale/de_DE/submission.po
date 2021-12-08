@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
-"PO-Revision-Date: 2021-10-21 11:07+0000\n"
+"PO-Revision-Date: 2021-12-08 14:20+0000\n"
 "Last-Translator: Pia Piontkowitz <pia.piontkowitz@rub.de>\n"
 "Language-Team: German <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "de_DE/>\n"
@@ -505,3 +505,23 @@ msgstr "Ändern"
 
 msgid "submission.workflowType.editedVolume.label"
 msgstr "Sammelband"
+
+msgid "chapter.volume"
+msgstr "Band"
+
+msgid "chapter.pages"
+msgstr "Seiten"
+
+msgid "submission.chapterCreated"
+msgstr " — Kapitel kreiert"
+
+msgid "submission.withoutChapter"
+msgstr "{$name} — Ohne dieses Kapitel"
+
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+"Dieses Kapitel auf einer eigenen Seite anzeigen, auf die vom "
+"Inhaltsverzeichnis der Publikation aus verlinkt wird."
+
+msgid "publication.chapter.landingPage"
+msgstr "Kapitelseite"
