@@ -91,5 +91,19 @@ describe('Data suite tests', function() {
 		cy.recordEditorialDecision('Send To Production');
 		cy.get('li.ui-state-active a:contains("Production")');
 		cy.assignParticipant('Layout Editor', 'Graham Cox');
+
+		// Add a publication format with ISBNs
+		cy.get('button[id="publication-button"]').click();
+		cy.get('button[id="publicationFormats-button"]').click();
+		cy.get('*[id^="component-grid-catalogentry-publicationformatgrid-addFormat-button-"]').click();
+		cy.wait(1000); // Avoid occasional failure due to form init taking time
+		cy.get('input[id^="name-en_US-"]').type('PDF', {delay: 0});
+		cy.get('input[id^="remotelyHostedContent"]').click();
+		cy.get('input[id^="remoteURL-"]').type('https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf', {delay: 0});
+		cy.get('input[id^="isbn13-"]').type('978-951-98548-9-2', {delay: 0});
+		cy.get('input[id^="isbn10-"]').type('951-98548-9-4', {delay: 0});
+		cy.get('div.pkp_modal_panel div.header:contains("Add publication format")').click(); // FIXME: Focus problem with multilingual input
+		cy.get('button:contains("OK")').click();
+
 	});
 });
