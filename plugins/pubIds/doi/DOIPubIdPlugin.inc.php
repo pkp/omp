@@ -13,7 +13,6 @@
  * @brief DOI plugin class
  */
 
-use APP\form\DOISettingsForm;
 use APP\facades\Repo;
 use APP\plugins\PubIdPlugin;
 use PKP\linkAction\LinkAction;
@@ -127,6 +126,7 @@ class DOIPubIdPlugin extends PubIdPlugin
      */
     public function instantiateSettingsForm($contextId)
     {
+        $this->import('classes.form.DOISettingsForm');
         return new DOISettingsForm($this, $contextId);
     }
 
