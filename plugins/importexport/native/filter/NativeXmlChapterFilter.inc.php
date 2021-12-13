@@ -175,13 +175,13 @@ class NativeXmlChapterFilter extends NativeImportFilter
             return;
         }
 
-        $submissionFile = Repo::submissionFiles()->get($fileId);
+        $submissionFile = Repo::submissionFile()->get($fileId);
 
         if (!$submissionFile) {
             return;
         }
 
-        Repo::submissionFiles()
+        Repo::submissionFile()
             ->dao
             ->updateChapterFiles(
                 [$submissionFile->getId()],

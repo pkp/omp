@@ -70,7 +70,7 @@ class PressDAO extends ContextDAO
             $dao->deleteAllPubIds($pressId, $pubIdType);
         }
 
-        Repo::submissionFiles()->dao->deleteAllPubIds($pressId, $pubIdType);
+        Repo::submissionFile()->dao->deleteAllPubIds($pressId, $pubIdType);
         Repo::publication()->dao->deleteAllPubIds($pressId, $pubIdType);
     }
 
@@ -103,7 +103,7 @@ class PressDAO extends ContextDAO
             ASSOC_TYPE_SUBMISSION => Repo::submission()->dao,
             ASSOC_TYPE_CHAPTER => DAORegistry::getDAO('ChapterDAO'),
             ASSOC_TYPE_REPRESENTATION => Application::getRepresentationDAO(),
-            ASSOC_TYPE_SUBMISSION_FILE => Repo::submissionFiles()->dao,
+            ASSOC_TYPE_SUBMISSION_FILE => Repo::submissionFile()->dao,
         ];
         if ($forSameType) {
             $dao = $pubObjectDaos[$assocType];

@@ -146,12 +146,12 @@ class HtmlMonographFilePlugin extends GenericPlugin
         $contents = Services::get('file')->fs->read($submissionFile->getData('path'));
 
         // Replace media file references
-        $proofCollector = Repo::submissionFiles()
+        $proofCollector = Repo::submissionFile()
             ->getCollector()
             ->filterBySubmissionIds([$monograph->getId()])
             ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF]);
 
-        $dependentCollector = Repo::submissionFiles()
+        $dependentCollector = Repo::submissionFile()
             ->getCollector()
             ->filterBySubmissionIds([$monograph->getId()])
             ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_DEPENDENT])
@@ -161,8 +161,8 @@ class HtmlMonographFilePlugin extends GenericPlugin
             );
 
         $embeddableFiles = array_merge(
-            Repo::submissionFiles()->getMany($proofCollector),
-            Repo::submissionFiles()->getMany($dependentCollector)
+            Repo::submissionFile()->getMany($proofCollector),
+            Repo::submissionFile()->getMany($dependentCollector)
         );
 
         foreach ($embeddableFiles as $embeddableFile) {

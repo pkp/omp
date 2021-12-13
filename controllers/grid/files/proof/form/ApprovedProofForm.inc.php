@@ -41,7 +41,7 @@ class ApprovedProofForm extends Form
 
         $this->monograph = $monograph;
         $this->publicationFormat = $publicationFormat;
-        $this->approvedProof = Repo::submissionFiles()->get($submissionFileId);
+        $this->approvedProof = Repo::submissionFile()->get($submissionFileId);
 
         // matches currencies like:  1,500.50 1500.50 1,112.15 5,99 .99
         $this->addCheck(new \PKP\form\validation\FormValidatorRegExp($this, 'price', 'optional', 'grid.catalogEntry.validPriceRequired', '/^(([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?|([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?)$/'));
@@ -117,13 +117,13 @@ class ApprovedProofForm extends Form
             $params['directSalesPrice'] = 0;
         }
 
-        Repo::submissionFiles()
+        Repo::submissionFile()
             ->edit(
                 $this->approvedProof,
                 $params
             );
 
-        $id = Repo::submissionFiles()->get($this->approvedProof->getId());
+        $id = Repo::submissionFile()->get($this->approvedProof->getId());
 
         return $id;
     }

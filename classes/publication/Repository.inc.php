@@ -18,11 +18,11 @@ use APP\core\Services;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\notification\NotificationManager;
+use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\submission\Submission;
 use PKP\core\Core;
 use PKP\db\DAORegistry;
 use PKP\submissionFile\SubmissionFile;
-use APP\publicationFormat\PublicationFormatTombstoneManager;
 
 class Repository extends \PKP\publication\Repository
 {
@@ -121,7 +121,7 @@ class Repository extends \PKP\publication\Repository
                 }
             }
 
-            $collector = Repo::submissionFiles()
+            $collector = Repo::submissionFile()
                 ->getCollector()
                 ->filterBySubmissionIds([$submissionId])
                 ->filterByAssoc(
@@ -130,16 +130,16 @@ class Repository extends \PKP\publication\Repository
                 );
 
             // Duplicate publication format files
-            $submissionFiles = Repo::submissionFiles()->getMany($collector);
+            $submissionFiles = Repo::submissionFile()->getMany($collector);
             foreach ($submissionFiles as $submissionFile) {
                 $newSubmissionFile = clone $submissionFile;
                 $newSubmissionFile->setData('id', null);
                 $newSubmissionFile->setData('assocId', $newPublicationFormat->getId());
-                $newSubmissionFileId = Repo::submissionFiles()->add($newSubmissionFile);
-                $newSubmissionFile = Repo::submissionFiles()->get($newSubmissionFileId);
+                $newSubmissionFileId = Repo::submissionFile()->add($newSubmissionFile);
+                $newSubmissionFile = Repo::submissionFile()->get($newSubmissionFileId);
                 $newSubmissionFiles[] = $newSubmissionFile;
 
-                $collector = Repo::submissionFiles()
+                $collector = Repo::submissionFile()
                     ->getCollector()
                     ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_DEPENDENT])
                     ->filterByAssoc(
@@ -148,12 +148,12 @@ class Repository extends \PKP\publication\Repository
                     )
                     ->includeDependentFiles();
 
-                $dependentFiles = Repo::submissionFiles()->getMany($collector);
+                $dependentFiles = Repo::submissionFile()->getMany($collector);
                 foreach ($dependentFiles as $dependentFile) {
                     $newDependentFile = clone $dependentFile;
                     $newDependentFile->setData('id', null);
                     $newDependentFile->setData('assocId', $newSubmissionFile->getId());
-                    Repo::submissionFiles()->add($newDependentFile);
+                    Repo::submissionFile()->add($newDependentFile);
                 }
             }
         }
@@ -174,7 +174,7 @@ class Repository extends \PKP\publication\Repository
             // Update file chapter associations for new files
             foreach ($newSubmissionFiles as $newSubmissionFile) {
                 if ($newSubmissionFile->getChapterId() == $oldChapter->getId()) {
-                    Repo::submissionFiles()
+                    Repo::submissionFile()
                         ->edit(
                             $newSubmissionFile,
                             ['chapterId' => $newChapter->getId()]

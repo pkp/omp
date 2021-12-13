@@ -14,6 +14,7 @@
  */
 
 use APP\facades\Repo;
+use APP\form\DOISettingsForm;
 use APP\plugins\PubIdPlugin;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\RemoteActionConfirmationModal;
@@ -466,14 +467,14 @@ class DOIPubIdPlugin extends PubIdPlugin
             if ($submissionFileDoiEnabled) {
                 $publicationFormats = (array) $form->publication->getData('publicationFormats');
                 foreach ($publicationFormats as $publicationFormat) {
-                    $collector = Repo::submissionFiles()
+                    $collector = Repo::submissionFile()
                         ->getCollector()
                         ->filterBySubmissionIds([$submission->getId()])
                         ->filterByAssoc(
                             ASSOC_TYPE_REPRESENTATION,
                             [$publicationFormat->getId()]
                         );
-                    $submissionFiles = Repo::submissionFiles()->getMany($collector);
+                    $submissionFiles = Repo::submissionFile()->getMany($collector);
                     foreach ($submissionFiles as $file) {
                         if ($file->getStoredPubId('doi')) {
                             $doiTableRows[] = [$file->getStoredPubId('doi'), __('plugins.pubIds.doi.editor.preview.files', ['title' => $file->getLocalizedData('name')])];

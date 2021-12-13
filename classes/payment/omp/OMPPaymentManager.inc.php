@@ -18,11 +18,10 @@
 
 namespace APP\payment\omp;
 
-use APP\core\Services;
 use APP\facades\Repo;
 use PKP\db\DAORegistry;
-use PKP\payment\PaymentManager;
 use PKP\payment\CompletedPayment;
+use PKP\payment\PaymentManager;
 use PKP\payment\QueuedPayment;
 use PKP\plugins\PluginRegistry;
 
@@ -62,7 +61,7 @@ class OMPPaymentManager extends PaymentManager
 
         switch ($type) {
             case self::PAYMENT_TYPE_PURCHASE_FILE:
-                $submissionFile = Repo::submissionFiles()->get($assocId);
+                $submissionFile = Repo::submissionFile()->get($assocId);
                 if ($submissionFile->getData('fileStage') != SubmissionFile::SUBMISSION_FILE_PROOF) {
                     throw new Exception('The submission file for this queued payment is not in the correct file stage.');
                 }
@@ -164,7 +163,7 @@ class OMPPaymentManager extends PaymentManager
     {
         switch ($payment->getType()) {
             case self::PAYMENT_TYPE_PURCHASE_FILE:
-                $submissionFile = Repo::submissionFiles()->get($payment->getAssocId());
+                $submissionFile = Repo::submissionFile()->get($payment->getAssocId());
                 if (!$submissionFile || $submissionFile->getData('assocType') !== ASSOC_TYPE_PUBLICATION_FORMAT) {
                     return false;
                 }

@@ -14,17 +14,17 @@
  */
 
 use APP\facades\Repo;
+use APP\log\SubmissionEventLogEntry;
 use APP\notification\NotificationManager;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\template\TemplateManager;
-use APP\log\SubmissionEventLogEntry;
 use PKP\controllers\grid\CategoryGridHandler;
 use PKP\controllers\grid\GridColumn;
 use PKP\core\JSONMessage;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
-use PKP\log\SubmissionLog;
 use PKP\log\SubmissionFileEventLogEntry;
+use PKP\log\SubmissionLog;
 use PKP\security\authorization\internal\RepresentationRequiredPolicy;
 use PKP\security\authorization\PublicationAccessPolicy;
 use PKP\security\Role;
@@ -583,7 +583,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
     {
         $submission = $this->getSubmission();
         $submissionFileId = (int) $request->getUserVar('submissionFileId');
-        $submissionFile = Repo::submissionFiles()->get($submissionFileId);
+        $submissionFile = Repo::submissionFile()->get($submissionFileId);
         if ($submissionFile->getData('fileStage') !== SubmissionFile::SUBMISSION_FILE_PROOF || $submissionFile->getData('submissionId') != $submission->getId()) {
             return new JSONMessage(false);
         }
@@ -607,10 +607,10 @@ class PublicationFormatGridHandler extends CategoryGridHandler
             }
             // Update the approval flag
             $params = ['viewable' => (bool) $request->getUserVar('approval')];
-            Repo::submissionFiles()
+            Repo::submissionFile()
                 ->edit($submissionFile, $params);
 
-            $submissionFile = Repo::submissionFiles()->get($submissionFileId);
+            $submissionFile = Repo::submissionFile()->get($submissionFileId);
 
             // Log the event
             $user = $request->getUser();
@@ -754,7 +754,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
     public function dependentFiles($args, $request)
     {
         $submission = $this->getSubmission();
-        $submissionFile = Repo::submissionFiles()->get((int) $request->getUserVar('submissionFileId'));
+        $submissionFile = Repo::submissionFile()->get((int) $request->getUserVar('submissionFileId'));
         if ($submissionFile->getData('fileStage') !== SubmissionFile::SUBMISSION_FILE_PROOF || $submissionFile->getData('submissionId') != $submission->getId()) {
             return new JSONMessage(false);
         }
