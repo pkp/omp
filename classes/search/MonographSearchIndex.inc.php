@@ -99,6 +99,14 @@ class MonographSearchIndex extends SubmissionSearchIndex
     }
 
     /**
+     * @copydoc SubmissionSearchIndex::deleteSubmission()
+     */
+    public function deleteSubmission(int $monographId)
+    {
+        $this->deleteTextIndex($monographId);
+    }
+
+    /**
      * Index monograph metadata.
      *
      * @param Submission $submission
