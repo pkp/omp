@@ -125,9 +125,16 @@
 						<pkp-form v-bind="components.{$smarty.const.FORM_TITLE_ABSTRACT}" @set="set" />
 					</tab>
 					<tab id="contributors" label="{translate key="publication.contributors"}">
-						<div id="contributors-grid" ref="contributors">
-							<spinner></spinner>
-						</div>
+						<contributors-list-panel
+							v-bind="components.contributors"
+							class="pkpWorkflow__contributors"
+							@set="set"
+							:items="workingPublication.authors"
+							:publication="workingPublication"
+							:publication-api-url="submissionApiUrl + '/publications/' + workingPublication.id"
+							@updated:publication="setWorkingPublication"
+							@updated:contributors="setContributors"
+						></contributors-list-panel>
 					</tab>
 					<tab id="chapters" label="{translate key="submission.chapters"}">
 						<div id="chapters-grid" ref="chapters">
