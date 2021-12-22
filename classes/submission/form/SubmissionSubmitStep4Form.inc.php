@@ -21,6 +21,7 @@ use APP\log\SubmissionEventLogEntry;
 use APP\mail\MonographMailTemplate;
 use APP\notification\NotificationManager;
 use PKP\log\SubmissionLog;
+use PKP\notification\PKPNotification;
 use PKP\submission\form\PKPSubmissionSubmitStep4Form;
 
 class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form
@@ -68,20 +69,20 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form
             $mail->bccAssignedSeriesEditors($this->submissionId, WORKFLOW_STAGE_ID_SUBMISSION);
 
             $mail->assignParams([
-                'authorName' => $user->getFullName(),
-                'authorUsername' => $user->getUsername(),
-                'editorialContactSignature' => $context->getData('contactName') . "\n" . $context->getLocalizedName(),
+                'recipientName' => $user->getFullName(),
+                'recipientUsername' => $user->getUsername(),
+                'signature' => $context->getData('contactName') . "\n" . $context->getLocalizedName(),
                 'submissionUrl' => $router->url($request, null, 'authorDashboard', 'submission', $this->submissionId),
             ]);
 
             if (!$mail->send($request)) {
                 $notificationMgr = new NotificationManager();
-                $notificationMgr->createTrivialNotification($request->getUser()->getId(), NOTIFICATION_TYPE_ERROR, ['contents' => __('email.compose.error')]);
+                $notificationMgr->createTrivialNotification($request->getUser()->getId(), PKPNotification::NOTIFICATION_TYPE_ERROR, ['contents' => __('email.compose.error')]);
             }
 
             $authorMail->assignParams([
                 'submitterName' => $user->getFullName(),
-                'editorialContactSignature' => $context->getData('contactName'),
+                'signature' => $context->getData('contactName'),
             ]);
 
             foreach ($this->emailRecipients as $authorEmailRecipient) {
@@ -92,7 +93,7 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form
             if (!empty($recipients)) {
                 if (!$authorMail->send($request)) {
                     $notificationMgr = new NotificationManager();
-                    $notificationMgr->createTrivialNotification($request->getUser()->getId(), NOTIFICATION_TYPE_ERROR, ['contents' => __('email.compose.error')]);
+                    $notificationMgr->createTrivialNotification($request->getUser()->getId(), PKPNotification::NOTIFICATION_TYPE_ERROR, ['contents' => __('email.compose.error')]);
                 }
             }
         }
