@@ -1370,3 +1370,6 @@ msgstr "This email notifies the author that their submission is being sent to th
 
 msgid "mailable.decision.initialDecline.notifyAuthor.description"
 msgstr "This email notifies the author that their submission is being declined, before being sent for review, because the submission does not meet the requirements for publication with the press."
+
+msgid "manager.institutions.noContext"
+msgstr "This institution's press could not be found."
