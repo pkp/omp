@@ -44,6 +44,7 @@
 
 	<migration class="PKP\migration\install\AnnouncementsMigration" />
 	<migration class="PKP\migration\install\CategoriesMigration" />
+	<migration class="PKP\migration\install\InstitutionsMigration" />
 
 	<code function="createData" />
 	<code function="createConfig" />
