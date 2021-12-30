@@ -1,10 +1,11 @@
+# paola <pjukic@yahoo.com>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-04-21 13:43+0000\n"
-"Last-Translator: Dobrica Pavlinušić <dpavlin@ffzg.hr>\n"
-"Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/manager/hr/"
-">\n"
-"Language: hr\n"
+"PO-Revision-Date: 2021-12-30 11:33+0000\n"
+"Last-Translator: paola <pjukic@yahoo.com>\n"
+"Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"hr_HR/>\n"
+"Language: hr_HR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,3 +21,9 @@ msgstr "Dodaj stavku"
 
 msgid "manager.system.readingTools"
 msgstr "Alati za čitanje"
+
+msgid "manager.setup.emailSignature"
+msgstr "Potpis"
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Prikaži na naslovnoj stranici"
