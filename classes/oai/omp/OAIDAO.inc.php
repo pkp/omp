@@ -58,7 +58,7 @@ class OAIDAO extends PKPOAIDAO
     /**
      * Cached function to get a press
      *
-     * @param $pressId int
+     * @param int $pressId
      *
      * @return Press
      */
@@ -73,7 +73,7 @@ class OAIDAO extends PKPOAIDAO
     /**
      * Cached function to get a press series
      *
-     * @param $seriesId int
+     * @param int $seriesId
      *
      * @return Series
      */
@@ -92,9 +92,9 @@ class OAIDAO extends PKPOAIDAO
     /**
      * Return hierarchy of OAI sets (presses plus press series).
      *
-     * @param $pressId int
-     * @param $offset int
-     * @param $total int
+     * @param int $pressId
+     * @param int $offset
+     * @param int $total
      *
      * @return array OAISet
      */
@@ -112,7 +112,7 @@ class OAIDAO extends PKPOAIDAO
         foreach ($presses as $press) {
             $title = $press->getLocalizedName();
 
-            $dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO'); /* @var $dataObjectTombstoneDao DataObjectTombstoneDAO */
+            $dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO'); /** @var DataObjectTombstoneDAO $dataObjectTombstoneDao */
             $publicationFormatSets = $dataObjectTombstoneDao->getSets(ASSOC_TYPE_PRESS, $press->getId());
 
             if (!array_key_exists(self::setSpec($press), $publicationFormatSets)) {
@@ -143,9 +143,9 @@ class OAIDAO extends PKPOAIDAO
     /**
      * Return the press ID and series ID corresponding to a press/series pairing.
      *
-     * @param $pressSpec string
-     * @param $seriesSpec string
-     * @param $restrictPressId int
+     * @param string $pressSpec
+     * @param string $seriesSpec
+     * @param int $restrictPressId
      *
      * @return array (int, int, int)
      */

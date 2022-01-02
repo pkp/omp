@@ -26,7 +26,7 @@ class SpotlightsGridRow extends GridRow
     /**
      * Constructor
      *
-     * @param $press Press
+     * @param Press $press
      */
     public function __construct($press)
     {

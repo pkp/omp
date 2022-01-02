@@ -23,7 +23,7 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow
     /** @var Submission **/
     public $_submission;
 
-    /** @var boolean */
+    /** @var bool */
     protected $_canManage;
 
     /** @var Publication **/
@@ -32,10 +32,10 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow
     /**
      * Constructor
      *
-     * @param $submission Submission
-     * @param $cellProvider GridCellProvider
-     * @param $canManage boolean
-     * @param $publication Publication
+     * @param Submission $submission
+     * @param GridCellProvider $cellProvider
+     * @param bool $canManage
+     * @param Publication $publication
      */
     public function __construct($submission, $cellProvider, $canManage, $publication)
     {

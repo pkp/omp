@@ -236,7 +236,7 @@ class Application extends \PKP\core\PKPApplication
     /**
      * Get the payment manager.
      *
-     * @param $context Context
+     * @param Context $context
      *
      * @return OMPPaymentManager
      */

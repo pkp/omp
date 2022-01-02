@@ -49,8 +49,8 @@ class ContextService extends \PKP\services\PKPContextService
     /**
      * Update press-specific settings when a context is edited
      *
-     * @param $hookName string
-     * @param $args array [
+     * @param string $hookName
+     * @param array $args [
      *		@option Press The new context
      *		@option Press The current context
      *		@option array The params to edit
@@ -108,8 +108,8 @@ class ContextService extends \PKP\services\PKPContextService
      * in the database to complete the actions. Otherwise, use
      * ContextService::afterDeleteContext().
      *
-     * @param $hookName string
-     * @param $args array [
+     * @param string $hookName
+     * @param array $args [
      *		@option Context The new context
      *		@option Request
      * ]
@@ -126,8 +126,8 @@ class ContextService extends \PKP\services\PKPContextService
     /**
      * Perform additional actions after a context has been deleted
      *
-     * @param $hookName string
-     * @param $args array [
+     * @param string $hookName
+     * @param array $args [
      *		@option Context The new context
      *		@option Request
      * ]
@@ -154,8 +154,8 @@ class ContextService extends \PKP\services\PKPContextService
     /**
      * Make additional validation checks
      *
-     * @param $hookName string
-     * @param $args array [
+     * @param string $hookName
+     * @param array $args [
      *		@option Context The new context
      *		@option Request
      * ]
@@ -178,9 +178,9 @@ class ContextService extends \PKP\services\PKPContextService
      * Processes all cover images to resize the thumbnails according to the passed
      * width and height maximums.
      *
-     * @param $context Context
-     * @param $maxWidth int The maximum width allowed for a cover image
-     * @param $maxHeight int The maximum width allowed for a cover image
+     * @param Context $context
+     * @param int $maxWidth The maximum width allowed for a cover image
+     * @param int $maxHeight The maximum width allowed for a cover image
      */
     public function resizeCoverThumbnails($context, $maxWidth, $maxHeight)
     {

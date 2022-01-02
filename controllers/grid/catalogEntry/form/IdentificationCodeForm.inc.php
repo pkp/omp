@@ -62,7 +62,7 @@ class IdentificationCodeForm extends Form
     /**
      * Set the code
      *
-     * @param @identificationCode IdentificationCode
+     * @param IdentificationCode $identificationCode
      */
     public function setIdentificationCode($identificationCode)
     {
@@ -154,7 +154,7 @@ class IdentificationCodeForm extends Form
             $representationId = (int) $request->getUserVar('representationId');
         }
 
-        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
         $publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
 
         if ($publicationFormat) { // the format exists for this submission
@@ -164,7 +164,7 @@ class IdentificationCodeForm extends Form
             if ($identificationCode) {
                 $assignedCodes = array_diff($assignedCodes, [$identificationCode->getCode()]);
             } // allow existing codes to keep their value
-            $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+            $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
 
             // since the pubId DOI plugin may be enabled, we give that precedence and remove DOI from here if that is the case.
             $pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
@@ -203,8 +203,8 @@ class IdentificationCodeForm extends Form
     public function execute(...$functionArgs)
     {
         parent::execute(...$functionArgs);
-        $identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
-        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+        $identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /** @var IdentificationCodeDAO $identificationCodeDao */
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
 
         $submission = $this->getSubmission();
         $identificationCode = $this->getIdentificationCode();

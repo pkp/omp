@@ -63,7 +63,7 @@ class PublicationFormatForm extends Form
     /**
      * Set the publication format
      *
-     * @param @format PublicationFormat
+     * @param PublicationFormat $format
      */
     public function setPublicationFormat($publicationFormat)
     {
@@ -125,7 +125,7 @@ class PublicationFormatForm extends Form
         if ($format) {
             $isbn10 = '';
             $isbn13 = '';
-            $identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
+            $identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /** @var IdentificationCodeDAO $identificationCodeDao */
             $identificationCodes = $identificationCodeDao->getByPublicationFormatId($format->getId());
             while ($identificationCode = $identificationCodes->next()) {
                 if ($identificationCode->getCode() == '02') {
@@ -158,7 +158,7 @@ class PublicationFormatForm extends Form
     public function fetch($request, $template = null, $display = false)
     {
         $templateMgr = TemplateManager::getManager($request);
-        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
         $templateMgr->assign('entryKeys', $onixCodelistItemDao->getCodes('List7')); // List7 is for object formats
 
         $monograph = $this->getMonograph();
@@ -200,7 +200,7 @@ class PublicationFormatForm extends Form
     {
         parent::execute(...$functionParams);
 
-        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
         $publicationFormat = $this->getPublicationFormat();
         if (!$publicationFormat) {
             // this is a new format to this published submission
@@ -228,7 +228,7 @@ class PublicationFormatForm extends Form
         }
 
         // Remove existing ISBN-10 or ISBN-13 code
-        $identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
+        $identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /** @var IdentificationCodeDAO $identificationCodeDao */
         $identificationCodes = $identificationCodeDao->getByPublicationFormatId($representationId);
         while ($identificationCode = $identificationCodes->next()) {
             if ($identificationCode->getCode() == '02' || $identificationCode->getCode() == '15') {

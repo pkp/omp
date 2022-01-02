@@ -65,7 +65,7 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm
      */
     public function initData()
     {
-        $navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO'); /* @var $navigationMenuItemDao NavigationMenuItemDAO */
+        $navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO'); /** @var NavigationMenuItemDAO $navigationMenuItemDao */
         $navigationMenuItem = $navigationMenuItemDao->getById($this->navigationMenuItemId);
 
         if ($navigationMenuItem) {
@@ -99,7 +99,7 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm
     {
         parent::execute(...$functionArgs);
 
-        $navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO'); /* @var $navigationMenuItemDao NavigationMenuItemDAO */
+        $navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO'); /** @var NavigationMenuItemDAO $navigationMenuItemDao */
 
         $navigationMenuItem = $navigationMenuItemDao->getById($this->navigationMenuItemId);
         if (!$navigationMenuItem) {

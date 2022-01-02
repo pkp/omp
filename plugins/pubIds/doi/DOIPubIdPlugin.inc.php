@@ -241,7 +241,7 @@ class DOIPubIdPlugin extends PubIdPlugin
     /**
      * Encode DOI according to ANSI/NISO Z39.84-2005, Appendix E.
      *
-     * @param $pubId string
+     * @param string $pubId
      *
      * @return string
      */
@@ -256,8 +256,8 @@ class DOIPubIdPlugin extends PubIdPlugin
     /**
      * Validate a publication's DOI against the plugin's settings
      *
-     * @param $hookName string
-     * @param $args array
+     * @param string $hookName
+     * @param array $args
      */
     public function validatePublicationDoi($hookName, $args)
     {
@@ -294,9 +294,9 @@ class DOIPubIdPlugin extends PubIdPlugin
     /**
      * Add DOI to submission, issue or galley properties
      *
-     * @param $hookName string <Object>::getProperties::summaryProperties or
+     * @param string $hookName <Object>::getProperties::summaryProperties or
      *  <Object>::getProperties::fullProperties
-     * @param $args array [
+     * @param array $args [
      * 		@option $props array Existing properties
      * 		@option $object Submission|Issue|Galley
      * 		@option $args array Request args
@@ -314,8 +314,8 @@ class DOIPubIdPlugin extends PubIdPlugin
     /**
      * Add DOI submission, issue or galley values
      *
-     * @param $hookName string <Object>::getProperties::values
-     * @param $args array [
+     * @param string $hookName <Object>::getProperties::values
+     * @param array $args [
      * 		@option $values array Key/value store of property values
      * 		@option $object Submission|Issue|Galley
      * 		@option $props array Requested properties
@@ -339,8 +339,8 @@ class DOIPubIdPlugin extends PubIdPlugin
     /**
      * Add DOI fields to the publication identifiers form
      *
-     * @param $hookName string Form::config::before
-     * @param $form FormComponent The form object
+     * @param string $hookName Form::config::before
+     * @param FormComponent $form The form object
      */
     public function addPublicationFormFields($hookName, $form)
     {
@@ -404,8 +404,8 @@ class DOIPubIdPlugin extends PubIdPlugin
     /**
      * Show DOI during final publish step
      *
-     * @param $hookName string Form::config::before
-     * @param $form FormComponent The form object
+     * @param string $hookName Form::config::before
+     * @param FormComponent $form The form object
      */
     public function addPublishFormNotice($hookName, $form)
     {

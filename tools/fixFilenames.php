@@ -20,13 +20,13 @@ require(dirname(__FILE__) . '/bootstrap.inc.php');
 
 class fixFilenames extends CommandLineTool
 {
-    /** @var boolean $dryrun True iff the operation should be a "dry run" (no changes made) only. */
+    /** @var bool $dryrun True iff the operation should be a "dry run" (no changes made) only. */
     public $dryrun;
 
     /**
      * Constructor.
      *
-     * @param $argv array command-line arguments
+     * @param array $argv command-line arguments
      */
     public function __construct($argv = [])
     {

@@ -28,9 +28,9 @@ class CoverHandler extends PKPHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param $request PKPRequest
-     * @param $args array
-     * @param $roleAssignments array
+     * @param PKPRequest $request
+     * @param array $args
+     * @param array $roleAssignments
      */
     public function authorize($request, &$args, $roleAssignments)
     {
@@ -41,7 +41,7 @@ class CoverHandler extends PKPHandler
     /**
      * Set the monograph ID
      *
-     * @param $monographId int
+     * @param int $monographId
      */
     public function setMonographId($monographId)
     {
@@ -61,7 +61,7 @@ class CoverHandler extends PKPHandler
     /**
      * Set the current press
      *
-     * @param $press Press
+     * @param Press $press
      */
     public function setPress($press)
     {

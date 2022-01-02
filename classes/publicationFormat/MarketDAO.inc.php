@@ -27,8 +27,8 @@ class MarketDAO extends \PKP\db\DAO
     /**
      * Retrieve a market entry by type id.
      *
-     * @param $marketId int
-     * @param $publicationId optional int
+     * @param int $marketId
+     * @param int $publicationId
      *
      * @return Market|null
      */
@@ -54,7 +54,7 @@ class MarketDAO extends \PKP\db\DAO
     /**
      * Retrieve all market for a publication format
      *
-     * @param $publicationFormatId int
+     * @param int $publicationFormatId
      *
      * @return DAOResultFactory containing matching market.
      */
@@ -83,8 +83,8 @@ class MarketDAO extends \PKP\db\DAO
     /**
      * Internal function to return a Market object from a row.
      *
-     * @param $row array
-     * @param $callHooks boolean
+     * @param array $row
+     * @param bool $callHooks
      *
      * @return Market
      */
@@ -119,7 +119,7 @@ class MarketDAO extends \PKP\db\DAO
     /**
      * Insert a new market entry.
      *
-     * @param $market Market
+     * @param Market $market
      */
     public function insertObject($market)
     {
@@ -155,7 +155,7 @@ class MarketDAO extends \PKP\db\DAO
     /**
      * Update an existing market entry.
      *
-     * @param $market Market
+     * @param Market $market
      */
     public function updateObject($market)
     {
@@ -201,7 +201,7 @@ class MarketDAO extends \PKP\db\DAO
     /**
      * Delete a market entry by id.
      *
-     * @param $market Market
+     * @param Market $market
      */
     public function deleteObject($market)
     {
@@ -211,7 +211,7 @@ class MarketDAO extends \PKP\db\DAO
     /**
      * Delete a market entry by id.
      *
-     * @param $entryId int
+     * @param int $entryId
      */
     public function deleteById($entryId)
     {

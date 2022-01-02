@@ -33,9 +33,9 @@ class ChapterForm extends Form
     /**
      * Constructor.
      *
-     * @param $monograph Monograph
-     * @param $publication Publication
-     * @param $chapter Chapter
+     * @param Monograph $monograph
+     * @param Publication $publication
+     * @param Chapter $chapter
      */
     public function __construct($monograph, $publication, $chapter)
     {
@@ -71,7 +71,7 @@ class ChapterForm extends Form
     /**
      * Set the monograph associated with this chapter grid.
      *
-     * @param $monograph Monograph
+     * @param Monograph $monograph
      */
     public function setMonograph($monograph)
     {
@@ -91,7 +91,7 @@ class ChapterForm extends Form
     /**
      * Set the publication associated with this chapter grid.
      *
-     * @param $publication Publication
+     * @param Publication $publication
      */
     public function setPublication($publication)
     {
@@ -111,7 +111,7 @@ class ChapterForm extends Form
     /**
      * Set the Chapter associated with this form
      *
-     * @param $chapter Chapter
+     * @param Chapter $chapter
      */
     public function setChapter($chapter)
     {
@@ -249,7 +249,7 @@ class ChapterForm extends Form
     {
         parent::execute(...$functionParams);
 
-        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
+        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
         $chapter = $this->getChapter();
 
         if ($chapter) {

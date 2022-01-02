@@ -27,8 +27,8 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Retrieve a chapter by ID.
      *
-     * @param $chapterId int
-     * @param $publicationId int optional
+     * @param int $chapterId
+     * @param int $publicationId optional
      *
      * @return Chapter|null
      */
@@ -50,8 +50,8 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Retrieve all chapters of a publication.
      *
-     * @param $publicationId int
-     * @param $orderBySequence boolean
+     * @param int $publicationId
+     * @param bool $orderBySequence
      *
      * @return DAOResultFactory
      */
@@ -74,7 +74,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Retrieve all chapters of a press.
      *
-     * @param $pressId int
+     * @param int $pressId
      *
      * @return DAOResultFactory
      */
@@ -97,8 +97,8 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Retrieve all chapters by source chapter id.
      *
-     * @param $sourceChapterId int
-     * @param $orderBySequence boolean
+     * @param int $sourceChapterId
+     * @param bool $orderBySequence
      *
      * @return DAOResultFactory
      */
@@ -158,7 +158,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Internal function to return a Chapter object from a row.
      *
-     * @param $row array
+     * @param array $row
      *
      * @return Chapter
      */
@@ -180,7 +180,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Update the settings for this object
      *
-     * @param $chapter object
+     * @param object $chapter
      */
     public function updateLocaleFields($chapter)
     {
@@ -194,7 +194,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Insert a new board chapter.
      *
-     * @param $chapter Chapter
+     * @param Chapter $chapter
      */
     public function insertChapter($chapter)
     {
@@ -214,7 +214,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Update an existing board chapter.
      *
-     * @param $chapter Chapter
+     * @param Chapter $chapter
      */
     public function updateObject($chapter) : void
     {
@@ -238,7 +238,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Delete a board chapter, including membership info
      *
-     * @param $chapter Chapter
+     * @param Chapter $chapter
      */
     public function deleteObject($chapter)
     {
@@ -248,7 +248,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Delete a board chapter, including membership info
      *
-     * @param $chapterId int
+     * @param int $chapterId
      */
     public function deleteById($chapterId)
     {
@@ -261,7 +261,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Sequentially renumber  chapters in their sequence order, optionally by monographId
      *
-     * @param $publicationId int
+     * @param int $publicationId
      */
     public function resequenceChapters($publicationId)
     {

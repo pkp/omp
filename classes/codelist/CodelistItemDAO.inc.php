@@ -29,7 +29,7 @@ class CodelistItemDAO extends DAO
     /**
      * Get the codelist item cache.
      *
-     * @param $locale string Locale code (optional)
+     * @param string $locale Locale code (optional)
      *
      * @return GenericCache
      */
@@ -60,8 +60,8 @@ class CodelistItemDAO extends DAO
     /**
      * Handle a cache miss
      *
-     * @param $cache GenericCache
-     * @param $id mixed ID that wasn't found in the cache
+     * @param GenericCache $cache
+     * @param mixed $id ID that wasn't found in the cache
      */
     public function _cacheMiss($cache, $id)
     {
@@ -110,7 +110,7 @@ class CodelistItemDAO extends DAO
     /**
      * Get the filename of the codelist database
      *
-     * @param $locale string
+     * @param string $locale
      *
      * @return string
      */
@@ -153,7 +153,7 @@ class CodelistItemDAO extends DAO
     /**
      * Retrieve an array of all the codelist items.
      *
-     * @param $locale an optional locale to use
+     * @param string $locale an optional locale to use
      *
      * @return array of CodelistItems
      */
@@ -170,7 +170,7 @@ class CodelistItemDAO extends DAO
     /**
      * Retrieve an array of all codelist names.
      *
-     * @param $locale an optional locale to use
+     * @param string $locale an optional locale to use
      *
      * @return array of CodelistItem names
      */
@@ -190,8 +190,8 @@ class CodelistItemDAO extends DAO
     /**
      * Internal function to construct and populate a Codelist object
      *
-     * @param $code string
-     * @param $entry array
+     * @param string $code
+     * @param array $entry
      *
      * @return CodelistItem
      */

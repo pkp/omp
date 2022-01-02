@@ -124,7 +124,7 @@ class ChapterGridCategoryRow extends GridCategoryRow
     /**
      * Determine if this grid row should be read only.
      *
-     * @return boolean
+     * @return bool
      */
     public function isReadOnly()
     {

@@ -22,7 +22,7 @@ class NativeXmlChapterFilter extends NativeImportFilter
     /**
      * Constructor
      *
-     * @param $filterGroup FilterGroup
+     * @param FilterGroup $filterGroup
      */
     public function __construct($filterGroup)
     {
@@ -68,7 +68,7 @@ class NativeXmlChapterFilter extends NativeImportFilter
     /**
      * Handle a chapter element
      *
-     * @param $node DOMElement
+     * @param DOMElement $node
      *
      * @return Chapter
      */
@@ -140,8 +140,8 @@ class NativeXmlChapterFilter extends NativeImportFilter
     /**
      * Parse an author and add it to the chapter.
      *
-     * @param $n DOMElement
-     * @param $chapter Chapter
+     * @param DOMElement $n
+     * @param Chapter $chapter
      */
     public function parseAuthor($n, $chapter)
     {
@@ -157,8 +157,8 @@ class NativeXmlChapterFilter extends NativeImportFilter
     /**
      * Parse an author and add it to the chapter.
      *
-     * @param $n DOMElement
-     * @param $chapter Chapter
+     * @param DOMElement $n
+     * @param Chapter $chapter
      */
     public function parseSubmissionFileRef($n, $chapter)
     {
@@ -192,7 +192,7 @@ class NativeXmlChapterFilter extends NativeImportFilter
     /**
      * Parse an identifier node and set up the chapter object accordingly
      *
-     * @param $element DOMElement
+     * @param DOMElement $element
      */
     public function parseIdentifier($element, $chapter)
     {

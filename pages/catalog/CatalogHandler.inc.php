@@ -31,8 +31,8 @@ class CatalogHandler extends PKPCatalogHandler
     /**
      * Show the catalog home.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function index($args, $request)
     {
@@ -42,12 +42,12 @@ class CatalogHandler extends PKPCatalogHandler
     /**
      * Show a page of the catalog
      *
-     * @param $args array [
+     * @param array $args [
      *		@option int Page number if available
      * ]
      *
-     * @param $request PKPRequest
-     * @param $isFirstPage boolean Return the first page of results
+     * @param PKPRequest $request
+     * @param bool $isFirstPage Return the first page of results
      */
     public function page($args, $request, $isFirstPage = false)
     {
@@ -82,12 +82,12 @@ class CatalogHandler extends PKPCatalogHandler
         $total = Repo::submission()->getCount($collector);
         $submissions = Repo::submission()->getMany($collector->limit($count)->offset($offset));
 
-        $featureDao = DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
+        $featureDao = DAORegistry::getDAO('FeatureDAO'); /** @var FeatureDAO $featureDao */
         $featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $context->getId());
 
         $this->_setupPaginationTemplate($request, $submissions->count(), $page, $count, $offset, $total);
 
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         $seriesIterator = $seriesDao->getByContextId($context->getId(), null, false, true);
 
         $templateMgr->assign([
@@ -102,8 +102,8 @@ class CatalogHandler extends PKPCatalogHandler
     /**
      * Show the catalog new releases.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function newReleases($args, $request)
     {
@@ -112,7 +112,7 @@ class CatalogHandler extends PKPCatalogHandler
         $press = $request->getPress();
 
         // Provide a list of new releases to browse
-        $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /* @var $newReleaseDao NewReleaseDAO */
+        $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /** @var NewReleaseDAO $newReleaseDao */
         $newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
         $templateMgr->assign('publishedSubmissions', $newReleases);
 
@@ -123,12 +123,12 @@ class CatalogHandler extends PKPCatalogHandler
     /**
      * View the content of a series.
      *
-     * @param $args array [
+     * @param array $args [
      *		@option string Series path
      *		@option int Page number if available
      * ]
      *
-     * @param $request PKPRequest
+     * @param PKPRequest $request
      *
      * @return string
      */
@@ -140,7 +140,7 @@ class CatalogHandler extends PKPCatalogHandler
         $context = $request->getContext();
 
         // Get the series
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         $series = $seriesDao->getByPath($seriesPath, $context->getId());
 
         if (!$series) {
@@ -166,13 +166,13 @@ class CatalogHandler extends PKPCatalogHandler
         $total = Repo::submission()->getCount($collector);
         $submissions = Repo::submission()->getMany($collector->limit($count)->offset($offset));
 
-        $featureDao = DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
+        $featureDao = DAORegistry::getDAO('FeatureDAO'); /** @var FeatureDAO $featureDao */
         $featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_SERIES, $series->getId());
 
         // Provide a list of new releases to browse
         $newReleases = [];
         if ($page === 1) {
-            $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /* @var $newReleaseDao NewReleaseDAO */
+            $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /** @var NewReleaseDAO $newReleaseDao */
             $newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_SERIES, $series->getId());
         }
 
@@ -191,8 +191,8 @@ class CatalogHandler extends PKPCatalogHandler
     /**
      * @deprecated Since OMP 3.2.1, use pages/search instead.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return string
      */
@@ -222,7 +222,7 @@ class CatalogHandler extends PKPCatalogHandler
                 break;
             case 'series':
                 $path = '/series/';
-                $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+                $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
                 $series = $seriesDao->getById($id, $press->getId());
                 if ($series) {
                     $imageInfo = $series->getImage();
@@ -260,7 +260,7 @@ class CatalogHandler extends PKPCatalogHandler
                 break;
             case 'series':
                 $path = '/series/';
-                $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+                $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
                 $series = $seriesDao->getById($id, $press->getId());
                 if ($series) {
                     $imageInfo = $series->getImage();
@@ -293,12 +293,12 @@ class CatalogHandler extends PKPCatalogHandler
     /**
      * Assign the pagination template variables
      *
-     * @param $request PKPRequest
-     * @param $submissionsCount int Number of submissions being shown
-     * @param $page int Page number being shown
-     * @param $count int Max number of monographs being shown
-     * @param $offset int Starting position of monographs
-     * @param $total int Total number of monographs available
+     * @param PKPRequest $request
+     * @param int $submissionsCount Number of submissions being shown
+     * @param int $page Page number being shown
+     * @param int $count Max number of monographs being shown
+     * @param int $offset Starting position of monographs
+     * @param int $total Total number of monographs available
      */
     public function _setupPaginationTemplate($request, $submissionsCount, $page, $count, $offset, $total)
     {

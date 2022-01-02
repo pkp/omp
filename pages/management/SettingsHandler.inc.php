@@ -57,8 +57,8 @@ class SettingsHandler extends ManagementHandler
     /**
      * Add the workflow settings page
      *
-     * @param $args array
-     * @param $request Request
+     * @param array $args
+     * @param Request $request
      */
     public function workflow($args, $request)
     {
@@ -69,8 +69,8 @@ class SettingsHandler extends ManagementHandler
     /**
      * Add the distribution settings page
      *
-     * @param $args array
-     * @param $request Request
+     * @param array $args
+     * @param Request $request
      */
     public function distribution($args, $request)
     {

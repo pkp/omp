@@ -59,7 +59,7 @@ class MarketForm extends Form
     /**
      * Set the entry
      *
-     * @param @market Market
+     * @param Market $market
      */
     public function setMarket($market)
     {
@@ -146,7 +146,7 @@ class MarketForm extends Form
         $templateMgr->assign('submissionId', $submission->getId());
         $templateMgr->assign('publicationId', $this->getPublication()->getId());
         $market = $this->getMarket();
-        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
         $templateMgr->assign([
             'countryCodes' => $onixCodelistItemDao->getCodes('List91'), // countries (CA, US, GB, etc)
             'regionCodes' => $onixCodelistItemDao->getCodes('List49'), // regions (British Columbia, England, etc)
@@ -203,7 +203,7 @@ class MarketForm extends Form
             ]);
         }
 
-        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
         $publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
 
         if ($publicationFormat) { // the format exists for this submission
@@ -249,8 +249,8 @@ class MarketForm extends Form
     public function execute(...$functionArgs)
     {
         parent::execute(...$functionArgs);
-        $marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
-        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+        $marketDao = DAORegistry::getDAO('MarketDAO'); /** @var MarketDAO $marketDao */
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
 
         $submission = $this->getSubmission();
         $market = $this->getMarket();

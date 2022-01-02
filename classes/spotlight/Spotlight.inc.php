@@ -44,7 +44,7 @@ class Spotlight extends DataObject
     /**
      * Set assoc ID for this spotlight.
      *
-     * @param $assocId int
+     * @param int $assocId
      */
     public function setAssocId($assocId)
     {
@@ -64,7 +64,7 @@ class Spotlight extends DataObject
     /**
      * Set assoc type for this spotlight.
      *
-     * @param $assocType int
+     * @param int $assocType
      */
     public function setAssocType($assocType)
     {
@@ -84,7 +84,7 @@ class Spotlight extends DataObject
     /**
      * Set press Id for this spotlight.
      *
-     * @param $pressId int
+     * @param int $pressId
      */
     public function setPressId($pressId)
     {
@@ -104,7 +104,7 @@ class Spotlight extends DataObject
     /**
      * Get spotlight title.
      *
-     * @param $locale
+     * @param string $locale
      *
      * @return string
      */
@@ -116,8 +116,8 @@ class Spotlight extends DataObject
     /**
      * Set spotlight title.
      *
-     * @param $title string
-     * @param $locale string
+     * @param string $title
+     * @param string $locale
      */
     public function setTitle($title, $locale)
     {
@@ -137,7 +137,7 @@ class Spotlight extends DataObject
     /**
      * Get spotlight description.
      *
-     * @param $locale string
+     * @param string $locale
      *
      * @return string
      */
@@ -149,8 +149,8 @@ class Spotlight extends DataObject
     /**
      * Set spotlight description.
      *
-     * @param $description string
-     * @param $locale string
+     * @param string $description
+     * @param string $locale
      */
     public function setDescription($description, $locale)
     {
@@ -184,7 +184,7 @@ class Spotlight extends DataObject
                 return Repo::submission()->get($this->getAssocId());
                 break;
             case self::SPOTLIGHT_TYPE_SERIES:
-                $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+                $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
                 return $seriesDao->getById($this->getAssocId(), $this->getPressId());
                 break;
             default:

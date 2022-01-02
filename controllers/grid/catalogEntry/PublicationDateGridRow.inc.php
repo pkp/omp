@@ -29,7 +29,7 @@ class PublicationDateGridRow extends GridRow
     /**
      * Constructor
      *
-     * @param $monograph Monograph
+     * @param Monograph $monograph
      */
     public function __construct($monograph, $publication)
     {

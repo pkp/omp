@@ -48,7 +48,7 @@ class PdfJsViewerPlugin extends GenericPlugin
     /**
      * Get the display name of this plugin.
      *
-     * @return String
+     * @return string
      */
     public function getDisplayName()
     {
@@ -66,10 +66,10 @@ class PdfJsViewerPlugin extends GenericPlugin
     /**
      * Callback to view the PDF content rather than downloading.
      *
-     * @param $hookName string
-     * @param $args array
+     * @param string $hookName
+     * @param array $args
      *
-     * @return boolean
+     * @return bool
      */
     public function viewCallback($hookName, $args)
     {
@@ -104,10 +104,10 @@ class PdfJsViewerPlugin extends GenericPlugin
     /**
      * Callback for download function
      *
-     * @param $hookName string
-     * @param $params array
+     * @param string $hookName
+     * @param array $params
      *
-     * @return boolean
+     * @return bool
      */
     public function downloadCallback($hookName, $params)
     {
@@ -132,7 +132,7 @@ class PdfJsViewerPlugin extends GenericPlugin
     /**
      * Get the plugin base URL.
      *
-     * @param $request PKPRequest
+     * @param PKPRequest $request
      *
      * @return string
      */

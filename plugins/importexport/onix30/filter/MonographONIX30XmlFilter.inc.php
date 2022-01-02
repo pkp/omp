@@ -23,7 +23,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
     /**
      * Constructor
      *
-     * @param $filterGroup FilterGroup
+     * @param FilterGroup $filterGroup
      */
     public function __construct($filterGroup)
     {
@@ -49,7 +49,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
     /**
      * @see Filter::process()
      *
-     * @param $submissions Submission | array Monographs to export
+     * @param Submission $submissions | array Monographs to export
      *
      * @return DOMDocument
      */
@@ -85,9 +85,9 @@ class MonographONIX30XmlFilter extends NativeExportFilter
     /**
      * Creates a submission node for each input submission.
      *
-     * @param $doc DOMDocument The main XML Document object
-     * @param $rootNode DOMElement The root node of the document, on which the submission node will get attached
-     * @param $submission Submission The submission we want to export and attach.
+     * @param DOMDocument $doc The main XML Document object
+     * @param DOMElement $rootNode The root node of the document, on which the submission node will get attached
+     * @param Submission $submission The submission we want to export and attach.
      */
     public function createSubmissionNode($doc, $rootNode, $submission)
     {
@@ -105,7 +105,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
     /**
      * Create and return a node representing the ONIX Header metadata for this submission.
      *
-     * @param $doc DOMDocument
+     * @param DOMDocument $doc
      *
      * @return DOMElement
      */
@@ -140,9 +140,9 @@ class MonographONIX30XmlFilter extends NativeExportFilter
     /**
      * Create and return a node representing the ONIX Product metadata for this submission.
      *
-     * @param $doc DOMDocument
-     * @param $submission Submission
-     * @param $publicationFormat PublicationFormat
+     * @param DOMDocument $doc
+     * @param Submission $submission
+     * @param PublicationFormat $publicationFormat
      *
      * @return DOMElement
      */
@@ -150,7 +150,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
     {
         $deployment = $this->getDeployment();
         $context = $deployment->getContext();
-        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
 
         $productNode = $doc->createElementNS($deployment->getNamespace(), 'Product');
 
@@ -270,7 +270,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
 
         /* --- Series information, if this monograph is part of one. --- */
 
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         $series = $seriesDao->getById($submission->getCurrentPublication()->getData('seriesId'));
         if ($series != null) {
             if ($submission->getCurrentPublication()->getData('seriesPosition')) {
@@ -325,7 +325,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
             $contributorNode = $doc->createElementNS($deployment->getNamespace(), 'Contributor');
             $contributorNode->appendChild($this->_buildTextNode($doc, 'SequenceNumber', $sequence));
 
-            $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+            $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /** @var UserGroupDAO $userGroupDao */
             $userGroup = $userGroupDao->getById($author->getUserGroupId(), $submission->getContextId());
 
             $userGroupOnixMap = ['AU' => 'A01', 'VE' => 'B01', 'CA' => 'A01', 'Trans' => 'B06', 'PE' => 'B21']; // From List17, ContributorRole types.
@@ -369,7 +369,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
 
         /* --- Add Language elements --- */
 
-        $submissionLanguageDao = DAORegistry::getDAO('SubmissionLanguageDAO'); /* @var $submissionLanguageDao SubmissionLanguageDAO */
+        $submissionLanguageDao = DAORegistry::getDAO('SubmissionLanguageDAO'); /** @var SubmissionLanguageDAO $submissionLanguageDao */
         $allLanguages = $submissionLanguageDao->getLanguages($publication->getId(), array_keys(AppLocale::getSupportedFormLocales()));
         $uniqueLanguages = [];
         foreach ($allLanguages as $locale => $languages) {
@@ -569,7 +569,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
 
         /* --- Product Supply.  We create one of these per defined Market. --- */
 
-        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
+        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /** @var RepresentativeDAO $representativeDao */
         $markets = $publicationFormat->getMarkets();
 
         while ($market = $markets->next()) {
