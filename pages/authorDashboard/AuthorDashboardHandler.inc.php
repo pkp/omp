@@ -28,14 +28,14 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler
     /**
      * Displays the author dashboard.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function submission($args, $request)
     {
         $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
         $templateMgr = TemplateManager::getManager($request);
-        $reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+        $reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /** @var ReviewRoundDAO $reviewRoundDao */
         $internalReviewRounds = $reviewRoundDao->getBySubmissionId($submission->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
         $templateMgr->assign('internalReviewRounds', $internalReviewRounds);
         return parent::submission($args, $request);
@@ -77,7 +77,7 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler
      * Get the SubmissionFile::SUBMISSION_FILE_... file stage based on the current
      * WORKFLOW_STAGE_... workflow stage.
      *
-     * @param $currentStage int WORKFLOW_STAGE_...
+     * @param int $currentStage WORKFLOW_STAGE_...
      *
      * @return int SubmissionFile::SUBMISSION_FILE_...
      */
@@ -94,7 +94,7 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler
     /**
      * Get the notification request options.
      *
-     * @param $submission Submission
+     * @param Submission $submission
      *
      * @return array
      */

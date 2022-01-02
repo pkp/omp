@@ -31,7 +31,7 @@ class Upgrade extends Installer
     /**
      * Constructor.
      *
-     * @param $params array upgrade parameters
+     * @param array $params upgrade parameters
      */
     public function __construct($params, $installFile = 'upgrade.xml', $isPlugin = false)
     {
@@ -42,7 +42,7 @@ class Upgrade extends Installer
     /**
      * Returns true iff this is an upgrade process.
      *
-     * @return boolean
+     * @return bool
      */
     public function isUpgrade()
     {
@@ -56,13 +56,13 @@ class Upgrade extends Installer
     /**
      * If StaticPages table exists we should port the data as NMIs
      *
-     * @return boolean
+     * @return bool
      */
     public function migrateStaticPagesToNavigationMenuItems()
     {
         if ($this->tableExists('static_pages')) {
             $contextDao = Application::getContextDAO();
-            $navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO'); /* @var $navigationMenuItemDao NavigationMenuItemDAO */
+            $navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO'); /** @var NavigationMenuItemDAO $navigationMenuItemDao */
 
             import('plugins.generic.staticPages.classes.StaticPagesDAO');
 
@@ -88,7 +88,7 @@ class Upgrade extends Installer
     /**
      * Migrate first and last user names as multilingual into the DB table user_settings.
      *
-     * @return boolean
+     * @return bool
      */
     public function migrateUserAndAuthorNames()
     {
@@ -121,7 +121,7 @@ class Upgrade extends Installer
 
         // salutation and suffix will be migrated to the preferred public name
         // user preferred public names will be inserted for each supported site locales
-        $siteDao = DAORegistry::getDAO('SiteDAO'); /* @var $siteDao SiteDAO */
+        $siteDao = DAORegistry::getDAO('SiteDAO'); /** @var SiteDAO $siteDao */
         $site = $siteDao->getSite();
         $supportedLocales = $site->getSupportedLocales();
         $userResult = DB::select(
@@ -151,7 +151,7 @@ class Upgrade extends Installer
         // author suffix will be migrated to the author preferred public name
         // author preferred public names will be inserted for each press supported locale
         // get supported locales for the press (there shold actually be only one press)
-        $pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+        $pressDao = DAORegistry::getDAO('PressDAO'); /** @var PressDAO $pressDao */
         $presses = $pressDao->getAll();
         $pressessSupportedLocales = [];
         while ($press = $presses->next()) {
@@ -193,7 +193,7 @@ class Upgrade extends Installer
     /**
      * Update permit_metadata_edit and can_change_metadata for user_groups and stage_assignments tables.
      *
-     * @return boolean True indicates success.
+     * @return bool True indicates success.
      */
     public function changeUserRolesAndStageAssignmentsForStagePermitSubmissionEdit()
     {

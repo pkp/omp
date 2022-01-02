@@ -21,13 +21,13 @@ use PKP\linkAction\request\AjaxModal;
 
 class PublicationFormatGridRow extends SubmissionFilesGridRow
 {
-    /** @var boolean */
+    /** @var bool */
     protected $_canManage;
 
     /**
      * Constructor
      *
-     * @param $canManage boolean
+     * @param bool $canManage
      */
     public function __construct($canManage)
     {
@@ -52,7 +52,7 @@ class PublicationFormatGridRow extends SubmissionFilesGridRow
     {
         parent::initialize($request, $template);
         $submissionFileData = & $this->getData();
-        $submissionFile = & $submissionFileData['submissionFile']; /* @var $submissionFile SubmissionFile */
+        $submissionFile = & $submissionFileData['submissionFile']; /** @var SubmissionFile $submissionFile */
         $router = $request->getRouter();
         $mimetype = $submissionFile->getData('mimetype');
         if ($this->_canManage && in_array($mimetype, ['application/xml', 'text/html'])) {

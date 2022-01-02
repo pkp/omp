@@ -152,7 +152,7 @@ class MonographSearch extends SubmissionSearch
     /**
      * Retrieve the search filters from the request.
      *
-     * @param $request Request
+     * @param Request $request
      *
      * @return array All search filters (empty and active)
      */
@@ -219,7 +219,7 @@ class MonographSearch extends SubmissionSearch
     /**
      * Load the keywords array from a given search filter.
      *
-     * @param $searchFilters array Search filters as returned from
+     * @param array $searchFilters Search filters as returned from
      *  MonographSearch::getSearchFilters()
      *
      * @return array Keyword array as required by SubmissionSearch::retrieveResults()
@@ -248,7 +248,7 @@ class MonographSearch extends SubmissionSearch
     public function formatResults($results, $user = null)
     {
         $contextDao = Application::getContextDAO();
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
 
         $publishedSubmissionCache = [];
         $monographCache = [];

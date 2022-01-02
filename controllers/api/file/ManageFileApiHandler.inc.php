@@ -61,8 +61,8 @@ class ManageFileApiHandler extends PKPManageFileApiHandler
     /**
      * Edit proof submission file pub ids.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -79,8 +79,8 @@ class ManageFileApiHandler extends PKPManageFileApiHandler
     /**
      * Update proof submission file pub ids.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -102,8 +102,8 @@ class ManageFileApiHandler extends PKPManageFileApiHandler
     /**
      * Clear proof submission file pub id.
      *
-     * @param $args array
-     * @param $request Request
+     * @param array $args
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */

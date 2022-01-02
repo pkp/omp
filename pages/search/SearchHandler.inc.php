@@ -22,8 +22,8 @@ class SearchHandler extends Handler
     /**
      * Show the search form
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function index($args, $request)
     {
@@ -33,8 +33,8 @@ class SearchHandler extends Handler
     /**
      * View the results of a search operation.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return string
      */

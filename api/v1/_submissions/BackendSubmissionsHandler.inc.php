@@ -98,9 +98,9 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler
     /**
      * Save changes to a submission's featured or new release flags
      *
-     * @param $slimRequest Request Slim request object
-     * @param $response Response object
-     * @param $args array {
+     * @param Request $slimRequest Slim request object
+     * @param Response $response object
+     * @param array $args {
      * 		@option array featured Optional. Featured flags with assoc type, id
      *		  and seq values.
      * 		@option array newRelease Optional. New release flags assoc type, id
@@ -147,9 +147,9 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler
      * Save changes to the sequence of featured items in the catalog, series or
      * category.
      *
-     * @param $slimRequest Request Slim request object
-     * @param $response Response object
-     * @param $args array {
+     * @param Request $slimRequest Slim request object
+     * @param Response $response object
+     * @param array $args {
      * 		@option int assocType Whether these featured items are for a
      *			press, category or series. Values: ASSOC_TYPE_*
      * 		@option int assocId The press, category or series id
@@ -186,8 +186,8 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler
     /**
      * Add one or more submissions to the catalog
      *
-     * @param $slimRequest Request Slim request object
-     * @param $response Response object
+     * @param Request $slimRequest Slim request object
+     * @param Response $response object
      *
      * @return Response
      */

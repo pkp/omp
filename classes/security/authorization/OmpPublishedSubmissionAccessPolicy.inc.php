@@ -21,10 +21,10 @@ class OmpPublishedSubmissionAccessPolicy extends ContextPolicy
     /**
      * Constructor
      *
-     * @param $request PKPRequest
-     * @param $args array request parameters
-     * @param $roleAssignments array
-     * @param $submissionParameterName string the request parameter we
+     * @param PKPRequest $request
+     * @param array $args request parameters
+     * @param array $roleAssignments
+     * @param string $submissionParameterName the request parameter we
      */
     public function __construct($request, $args, $roleAssignments, $submissionParameterName = 'submissionId')
     {

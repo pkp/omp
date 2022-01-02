@@ -27,8 +27,8 @@ class IdentificationCodeDAO extends \PKP\db\DAO
     /**
      * Retrieve an identification code by type id.
      *
-     * @param $identificationCodeId int
-     * @param $publicationId optional int
+     * @param int $identificationCodeId
+     * @param int $publicationId optional
      *
      * @return IdentificationCode|null
      */
@@ -54,7 +54,7 @@ class IdentificationCodeDAO extends \PKP\db\DAO
     /**
      * Retrieve all identification codes for a publication format
      *
-     * @param $publicationFormatId int
+     * @param int $publicationFormatId
      *
      * @return DAOResultFactory containing matching identification codes
      */
@@ -83,8 +83,8 @@ class IdentificationCodeDAO extends \PKP\db\DAO
     /**
      * Internal function to return a IdentificationCode object from a row.
      *
-     * @param $row array
-     * @param $callHooks boolean
+     * @param array $row
+     * @param bool $callHooks
      *
      * @return IdentificationCode
      */
@@ -106,7 +106,7 @@ class IdentificationCodeDAO extends \PKP\db\DAO
     /**
      * Insert a new identification code.
      *
-     * @param $identificationCode IdentificationCode
+     * @param IdentificationCode $identificationCode
      */
     public function insertObject($identificationCode)
     {
@@ -129,7 +129,7 @@ class IdentificationCodeDAO extends \PKP\db\DAO
     /**
      * Update an existing identification code.
      *
-     * @param $identificationCode IdentificationCode
+     * @param IdentificationCode $identificationCode
      */
     public function updateObject($identificationCode)
     {
@@ -148,7 +148,7 @@ class IdentificationCodeDAO extends \PKP\db\DAO
     /**
      * Delete an identification code by id.
      *
-     * @param $identificationCode IdentificationCode
+     * @param IdentificationCode $identificationCode
      */
     public function deleteObject($identificationCode)
     {
@@ -158,7 +158,7 @@ class IdentificationCodeDAO extends \PKP\db\DAO
     /**
      * delete a identification code by id.
      *
-     * @param $entryId int
+     * @param int $entryId
      */
     public function deleteById($entryId)
     {

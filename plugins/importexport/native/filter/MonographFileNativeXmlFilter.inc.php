@@ -35,8 +35,8 @@ class MonographFileNativeXmlFilter extends SubmissionFileNativeXmlFilter
     /**
      * Create and return a submissionFile node.
      *
-     * @param $doc DOMDocument
-     * @param $submissionFile SubmissionFile
+     * @param DOMDocument $doc
+     * @param SubmissionFile $submissionFile
      *
      * @return DOMElement
      */

@@ -75,7 +75,7 @@ class SitemapHandler extends PKPSitemapHandler
         // New releases
         $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'newReleases')));
         // Browse by series
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         $seriesResult = $seriesDao->getByPressId($pressId);
         while ($series = $seriesResult->next()) {
             $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'series', $series->getPath())));

@@ -26,8 +26,8 @@ class NewReleaseDAO extends \PKP\db\DAO
     /**
      * Get monograph IDs by association.
      *
-     * @param $assocType int ASSOC_TYPE_...
-     * @param $assocId int
+     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocId
      *
      * @return array [monographId => true]
      */
@@ -48,8 +48,8 @@ class NewReleaseDAO extends \PKP\db\DAO
     /**
      * Get monographs by association.
      *
-     * @param $assocType int ASSOC_TYPE_...
-     * @param $assocId int
+     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocId
      *
      * @return array Monograph
      */
@@ -78,9 +78,9 @@ class NewReleaseDAO extends \PKP\db\DAO
     /**
      * Insert a new NewRelease.
      *
-     * @param $monographId int
-     * @param $assocType int ASSOC_TYPE_...
-     * @param $assocId int
+     * @param int $monographId
+     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocId
      */
     public function insertNewRelease($monographId, $assocType, $assocId)
     {
@@ -100,7 +100,7 @@ class NewReleaseDAO extends \PKP\db\DAO
     /**
      * Delete a new release by ID.
      *
-     * @param $monographId int
+     * @param int $monographId
      */
     public function deleteByMonographId($monographId)
     {
@@ -113,8 +113,8 @@ class NewReleaseDAO extends \PKP\db\DAO
     /**
      * Delete a new release by association.
      *
-     * @param $assocType int ASSOC_TYPE_...
-     * @param $assocId int
+     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocId
      */
     public function deleteByAssoc($assocType, $assocId)
     {
@@ -127,9 +127,9 @@ class NewReleaseDAO extends \PKP\db\DAO
     /**
      * Delete a new release.
      *
-     * @param $monographId int
-     * @param $assocType int ASSOC_TYPE_...
-     * @param $assocId int
+     * @param int $monographId
+     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocId
      */
     public function deleteNewRelease($monographId, $assocType, $assocId)
     {
@@ -150,13 +150,13 @@ class NewReleaseDAO extends \PKP\db\DAO
      * Check if the passed monograph id is marked as new release
      * on the passed associated object.
      *
-     * @param $monographId int The monograph id to check the new release state.
-     * @param $assocType int The associated object type that the monograph
+     * @param int $monographId The monograph id to check the new release state.
+     * @param int $assocType The associated object type that the monograph
      * is checked for a new release mark.
-     * @param $assocId int The associated object id that the monograph is
+     * @param int $assocId The associated object id that the monograph is
      * checked for a new release mark.
      *
-     * @return boolean Whether or not the monograph is marked as a new release.
+     * @return bool Whether or not the monograph is marked as a new release.
      */
     public function isNewRelease($monographId, $assocType, $assocId)
     {
@@ -170,7 +170,7 @@ class NewReleaseDAO extends \PKP\db\DAO
     /**
      * Return the monograph's new release settings in all assoc types
      *
-     * @param $monographId int The monograph ID to get the new release state
+     * @param int $monographId The monograph ID to get the new release state
      *
      * @return array
      */

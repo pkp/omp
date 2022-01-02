@@ -25,7 +25,7 @@ class QualifierDAO extends CodelistItemDAO
     /**
      * Get the filename of the qualifier database
      *
-     * @param $locale string
+     * @param string $locale
      *
      * @return string
      */

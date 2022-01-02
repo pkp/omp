@@ -53,8 +53,8 @@ class ReviewRoundTabHandler extends PKPReviewRoundTabHandler
     /**
      * JSON fetch the internal review round info (tab).
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function internalReviewRound($args, $request)
     {

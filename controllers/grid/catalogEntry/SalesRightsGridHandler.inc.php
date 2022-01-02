@@ -118,9 +118,9 @@ class SalesRightsGridHandler extends GridHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param $request PKPRequest
-     * @param $args array
-     * @param $roleAssignments array
+     * @param PKPRequest $request
+     * @param array $args
+     * @param array $roleAssignments
      */
     public function authorize($request, &$args, $roleAssignments)
     {
@@ -140,14 +140,14 @@ class SalesRightsGridHandler extends GridHandler
         // Retrieve the authorized submission.
         $this->setSubmission($this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION));
         $this->setPublication($this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION));
-        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
         $representationId = null;
 
         // Retrieve the associated publication format for this grid.
         $salesRightsId = (int) $request->getUserVar('salesRightsId'); // set if editing or deleting a sales rights entry
 
         if ($salesRightsId != '') {
-            $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
+            $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /** @var SalesRightsDAO $salesRightsDao */
             $salesRights = $salesRightsDao->getById($salesRightsId, $this->getPublication()->getId());
             if ($salesRights) {
                 $representationId = $salesRights->getPublicationFormatId();
@@ -252,7 +252,7 @@ class SalesRightsGridHandler extends GridHandler
     public function loadData($request, $filter = null)
     {
         $publicationFormat = $this->getPublicationFormat();
-        $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
+        $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /** @var SalesRightsDAO $salesRightsDao */
         $data = $salesRightsDao->getByPublicationFormatId($publicationFormat->getId());
         return $data->toArray();
     }
@@ -264,8 +264,8 @@ class SalesRightsGridHandler extends GridHandler
     /**
      * Edit a new (empty) rights entry
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -277,8 +277,8 @@ class SalesRightsGridHandler extends GridHandler
     /**
      * Edit a sales rights entry
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -288,7 +288,7 @@ class SalesRightsGridHandler extends GridHandler
         $salesRightsId = (int) $request->getUserVar('salesRightsId');
         $submission = $this->getSubmission();
 
-        $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
+        $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /** @var SalesRightsDAO $salesRightsDao */
         $salesRights = $salesRightsDao->getById($salesRightsId, $this->getPublication()->getId());
 
         // Form handling
@@ -302,8 +302,8 @@ class SalesRightsGridHandler extends GridHandler
     /**
      * Update a sales rights entry
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -313,7 +313,7 @@ class SalesRightsGridHandler extends GridHandler
         $salesRightsId = $request->getUserVar('salesRightsId');
         $submission = $this->getSubmission();
 
-        $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
+        $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /** @var SalesRightsDAO $salesRightsDao */
         $salesRights = $salesRightsDao->getById($salesRightsId, $this->getPublication()->getId());
 
         // Form handling
@@ -355,8 +355,8 @@ class SalesRightsGridHandler extends GridHandler
     /**
      * Delete a sales rights entry
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -366,7 +366,7 @@ class SalesRightsGridHandler extends GridHandler
         // Identify the sales rights entry to be deleted
         $salesRightsId = $request->getUserVar('salesRightsId');
 
-        $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
+        $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /** @var SalesRightsDAO $salesRightsDao */
         $salesRights = $salesRightsDao->getById($salesRightsId, $this->getPublication()->getId());
         if ($salesRights != null) { // authorized
 

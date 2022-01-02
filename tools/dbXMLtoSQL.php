@@ -25,7 +25,7 @@ class dbXMLtoSQL extends XmlToSqlTool
     /**
      * Constructor.
      *
-     * @param $argv array command-line arguments
+     * @param array $argv command-line arguments
      * 	If specified, the first argument should be the file to parse
      */
     public function __construct($argv = [])

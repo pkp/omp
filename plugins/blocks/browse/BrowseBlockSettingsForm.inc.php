@@ -33,8 +33,8 @@ class BrowseBlockSettingsForm extends Form
     /**
      * Constructor
      *
-     * @param $plugin BrowseBlockPlugin
-     * @param $pressId int
+     * @param BrowseBlockPlugin $plugin
+     * @param int $pressId
      */
     public function __construct($plugin, $pressId)
     {
@@ -66,7 +66,7 @@ class BrowseBlockSettingsForm extends Form
     /**
      * Set the Press ID.
      *
-     * @param $pressId int
+     * @param int $pressId
      */
     public function setPressId($pressId)
     {
@@ -86,7 +86,7 @@ class BrowseBlockSettingsForm extends Form
     /**
      * Set the plugin.
      *
-     * @param $plugin BrowseBlockPlugin
+     * @param BrowseBlockPlugin $plugin
      */
     public function setPlugin($plugin)
     {

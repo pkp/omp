@@ -22,7 +22,7 @@ class Author extends \PKP\author\Author
     /**
      * Get whether or not this author should be displayed as a volume editor
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsVolumeEditor()
     {
@@ -32,7 +32,7 @@ class Author extends \PKP\author\Author
     /**
      * Set whether or not this author should be displayed as a volume editor
      *
-     * @param $isVolumeEditor boolean
+     * @param bool $isVolumeEditor
      */
     public function setIsVolumeEditor($isVolumeEditor)
     {

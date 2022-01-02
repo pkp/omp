@@ -30,7 +30,7 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler
     /** @var string the list being searched for */
     public $_listName = null;
 
-    /** @var boolean to maintain state */
+    /** @var bool to maintain state */
     public $_foundRequestedList = false;
 
     /** @var array of items the parser eventually returns */
@@ -39,13 +39,13 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler
     /** @var string to store the current character data  */
     public $_currentValue = null;
 
-    /** @var boolean currently inside an xs:documentation element */
+    /** @var bool currently inside an xs:documentation element */
     public $_insideDocumentation = false;
 
     /**
      * Constructor.
      *
-     * @param $listName string
+     * @param string $listName
      */
     public function __construct($listName)
     {
@@ -57,9 +57,9 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler
     /**
      * Callback function to act as the start element handler.
      *
-     * @param $parser XMLParser
-     * @param $tag string
-     * @param $attributes array
+     * @param XMLParser $parser
+     * @param string $tag
+     * @param array $attributes
      */
     public function startElement($parser, $tag, $attributes)
     {
@@ -99,8 +99,8 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler
     /**
      * Callback function to act as the character data handler.
      *
-     * @param $parser XMLParser
-     * @param $data string
+     * @param XMLParser $parser
+     * @param string $data
      */
     public function characterData($parser, $data)
     {
@@ -116,8 +116,8 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler
     /**
      * Callback function to act as the end element handler.
      *
-     * @param $parser XMLParser
-     * @param $tag string
+     * @param XMLParser $parser
+     * @param string $tag
      */
     public function endElement($parser, $tag)
     {

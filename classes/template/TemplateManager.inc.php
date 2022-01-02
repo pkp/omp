@@ -30,7 +30,7 @@ class TemplateManager extends PKPTemplateManager
     /**
      * Initialize template engine and assign basic template variables.
      *
-     * @param $request PKPRequest
+     * @param PKPRequest $request
      */
     public function initialize($request)
     {
@@ -60,7 +60,7 @@ class TemplateManager extends PKPTemplateManager
 
             // Get a count of unread tasks.
             if ($user = $request->getUser()) {
-                $notificationDao = DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
+                $notificationDao = DAORegistry::getDAO('NotificationDAO'); /** @var NotificationDAO $notificationDao */
                 // Exclude certain tasks, defined in the notifications grid handler
                 import('lib.pkp.controllers.grid.notifications.TaskNotificationsGridHandler');
                 $this->assign('unreadNotificationCount', $notificationDao->getNotificationCount(false, $user->getId(), null, NOTIFICATION_LEVEL_TASK));

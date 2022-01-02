@@ -19,16 +19,16 @@ use PKP\linkAction\request\RemoteActionConfirmationModal;
 
 class ChapterGridCategoryRow extends GridCategoryRow
 {
-    /** @var Monograph **/
+    /** @var Monograph */
     public $_monograph;
 
-    /** @var Publication **/
+    /** @var Publication */
     public $_publication;
 
-    /** @var Chapter **/
+    /** @var Chapter */
     public $_chapter;
 
-    /** @var * $_readOnly*/
+    /** @var bool $_readOnly */
     public $_readOnly;
 
     /**
@@ -124,7 +124,7 @@ class ChapterGridCategoryRow extends GridCategoryRow
     /**
      * Determine if this grid row should be read only.
      *
-     * @return boolean
+     * @return bool
      */
     public function isReadOnly()
     {
