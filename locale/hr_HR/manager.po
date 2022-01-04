@@ -1,7 +1,7 @@
-# paola <pjukic@yahoo.com>, 2021.
+# paola <pjukic@yahoo.com>, 2021, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-12-30 11:33+0000\n"
+"PO-Revision-Date: 2022-01-05 06:25+0000\n"
 "Last-Translator: paola <pjukic@yahoo.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "hr_HR/>\n"
@@ -27,3 +27,23 @@ msgstr "Potpis"
 
 msgid "manager.setup.numAnnouncementsHomepage"
 msgstr "Prikaži na naslovnoj stranici"
+
+msgid "manager.setup.look.description"
+msgstr ""
+"Zaglavlje naslovne, sadržaj, zaglavlje publikacije, podnožje, navigacijska "
+"traka i stilska tablica"
+
+msgid "manager.setup.look"
+msgstr "Izgled"
+
+msgid "manager.setup.settings"
+msgstr "Postavke"
+
+msgid "manager.setup.lists.success"
+msgstr "Postavke popisa uspješno su ažurirane."
+
+msgid "manager.setup.lists"
+msgstr "Popis"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Naslov"
