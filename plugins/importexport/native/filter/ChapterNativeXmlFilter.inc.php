@@ -1,5 +1,4 @@
 <?php
-use APP\facades\Repo;
 
 /**
  * @file plugins/importexport/native/filter/ChapterNativeXmlFilter.inc.php
@@ -13,6 +12,8 @@ use APP\facades\Repo;
  *
  * @brief Base class that converts a set of authors to a Native XML document
  */
+
+use APP\facades\Repo;
 
 import('lib.pkp.plugins.importexport.native.filter.NativeExportFilter');
 
@@ -116,7 +117,10 @@ class ChapterNativeXmlFilter extends NativeExportFilter
             $entityNode->appendChild($this->createChapterAuthorNode($doc, $chapterAuthor));
         }
 
-        $submissionFiles = Services::get('submissionFile')->getMany(['submissionIds' => [$publication->getData('submissionId')]]);
+        $collector = Repo::submissionFile()
+            ->getCollector()
+            ->filterBySubmissionIds([$publication->getData('submissionId')]);
+        $submissionFiles = Repo::submissionFile()->getMany($collector);
         foreach ($submissionFiles as $submissionFile) { /** @var SubmissionFile $submissionFile */
             if ($submissionFile->getData('chapterId') == $chapter->getId()) {
                 $referenceFileNode = $doc->createElementNS($deployment->getNamespace(), 'submission_file_ref');

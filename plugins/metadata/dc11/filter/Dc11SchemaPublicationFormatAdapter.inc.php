@@ -80,7 +80,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         // Title
         $publication = $monograph->getCurrentPublication();
         $this->_addLocalizedElements($dc11Description, 'dc:title', $publication->getFullTitles());
-         
+
         // Creator
         $authors = Repo::author()->getSubmissionAuthors($monograph);
         foreach ($authors as $author) {
@@ -187,17 +187,18 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             $dc11Description->addStatement('dc:language', AppLocale::getIso3FromLocale($submissionLanguage));
         }
 
+        $collector = Repo::submissionFile()
+            ->getCollector()
+            ->filterBySubmissionIds([$monograph->getId()])
+            ->filterByAssoc(ASSOC_TYPE_PUBLICATION_FORMAT);
         // Relation   (Add publication file format to monograph / edited volume)
-        $pubFormatFiles = Services::get('submissionFile')->getMany([
-            'submissionIds' => [$monograph->getId()],
-            'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT]
-        ]);
+        $pubFormatFiles = Repo::submissionFile()->getMany($collector);
         foreach ($pubFormatFiles as $file) {
             {
-				if ($file->getData('assocId') == $publicationFormat->getData('id')) {
-					$relation = $request->url($press->getData('urlPath'), 'catalog', 'view', [$monograph->getId(), $publicationFormat->getId(), $file->getId()]);
-					$dc11Description->addStatement('dc:relation', $relation);
-				}
+                if ($file->getData('assocId') == $publicationFormat->getData('id')) {
+                    $relation = $request->url($press->getData('urlPath'), 'catalog', 'view', [$monograph->getId(), $publicationFormat->getId(), $file->getId()]);
+                    $dc11Description->addStatement('dc:relation', $relation);
+                }
             }
         }
 

@@ -22,7 +22,7 @@ use APP\facades\Repo;
 use PKP\db\DAORegistry;
 
 use PKP\submission\Representation;
-use PKP\submission\SubmissionFile;
+use PKP\submissionFile\SubmissionFile;
 
 class PublicationFormat extends Representation
 {
@@ -309,13 +309,15 @@ class PublicationFormat extends Representation
     {
         $fileSize = 0;
         $publication = Repo::publication()->get((int) $this->getData('publicationId'));
-        import('lib.pkp.classes.submission.SubmissionFile'); // File constants
-        $stageMonographFiles = Services::get('submissionFile')->getMany([
-            'submissionIds' => [$publication->getData('submissionId')],
-            'fileStages' => [SubmissionFile::SUBMISSION_FILE_PROOF],
-            'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT],
-            'assocIds' => [$this->getId()],
-        ]);
+        $collector = Repo::submissionFile()
+            ->getCollector()
+            ->filterBySubmissionIds([$publication->getData('submissionId')])
+            ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
+            ->filterByAssoc(
+                ASSOC_TYPE_PUBLICATION_FORMAT,
+                [$this->getId()]
+            );
+        $stageMonographFiles = Repo::submissionFile()->getMany($collector);
 
         foreach ($stageMonographFiles as $monographFile) {
             if ($monographFile->getViewable()) {

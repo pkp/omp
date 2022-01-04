@@ -15,8 +15,10 @@
 namespace APP\services;
 
 use APP\core\Application;
-use APP\core\Services;
+use APP\facades\Repo;
+use APP\log\SubmissionEventLogEntry;
 use PKP\db\DAORegistry;
+use PKP\log\SubmissionLog;
 
 class PublicationFormatService
 {
@@ -41,19 +43,21 @@ class PublicationFormatService
             }
         }
 
+        $collector = Repo::submissionFile()
+            ->getCollector()
+            ->filterBySubmissionIds([$submission->getId()])
+            ->filterByAssoc(
+                ASSOC_TYPE_REPRESENTATION,
+                [$publicationFormat->getId()]
+            );
+
         // Delete submission files for this publication format
-        $submissionFiles = Services::get('submissionFile')->getMany([
-            'submissionIds' => [$submission->getId()],
-            'assocTypes' => [ASSOC_TYPE_REPRESENTATION],
-            'assocIds' => [$publicationFormat->getId()],
-        ]);
+        $submissionFiles = Repo::submissionFile()->getMany($collector);
         foreach ($submissionFiles as $submissionFile) {
-            Services::get('submissionFile')->delete($submissionFile);
+            Repo::submissionFile()->delete($submissionFile);
         }
 
         // Log the deletion of the format.
-        import('lib.pkp.classes.log.SubmissionLog');
-        import('classes.log.SubmissionEventLogEntry');
-        \SubmissionLog::logEvent(Application::get()->getRequest(), $submission, SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE, 'submission.event.publicationFormatRemoved', ['formatName' => $publicationFormat->getLocalizedName()]);
+        SubmissionLog::logEvent(Application::get()->getRequest(), $submission, SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE, 'submission.event.publicationFormatRemoved', ['formatName' => $publicationFormat->getLocalizedName()]);
     }
 }

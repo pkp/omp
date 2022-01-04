@@ -13,10 +13,15 @@
  * @brief Class defining basic operations for publication format tombstones.
  */
 
+namespace APP\publicationFormat;
+
 use APP\facades\Repo;
 use APP\oai\omp\OAIDAO;
 use APP\submission\Submission;
 use PKP\submission\PKPSubmission;
+use PKP\db\DAORegistry;
+use PKP\config\Config;
+use PKP\plugins\HookRegistry;
 
 class PublicationFormatTombstoneManager
 {

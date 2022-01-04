@@ -13,9 +13,8 @@
  * @brief ONIX 3.0 XML import/export plugin
  */
 
-import('lib.pkp.classes.plugins.ImportExportPlugin');
-
 use APP\template\TemplateManager;
+use PKP\plugins\ImportExportPlugin;
 
 class Onix30ExportPlugin extends ImportExportPlugin
 {

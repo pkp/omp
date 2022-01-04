@@ -17,6 +17,7 @@ namespace APP\services;
 
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
+use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\submission\Submission;
 use PKP\db\DAORegistry;
 
@@ -66,8 +67,7 @@ class ContextService extends \PKP\services\PKPContextService
         // If the context is enabled or disabled, create or delete publication
         // format tombstones for all published submissions
         if ($newContext->getData('enabled') !== $currentContext->getData('enabled')) {
-            import('classes.publicationFormat.PublicationFormatTombstoneManager');
-            $publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
+            $publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
             if ($newContext->getData('enabled')) {
                 $publicationFormatTombstoneMgr->deleteTombstonesByPressId($newContext->getId());
             } else {
@@ -119,8 +119,7 @@ class ContextService extends \PKP\services\PKPContextService
         $context = $args[0];
 
         // Create publication format tombstones for all published submissions
-        import('classes.publicationFormat.PublicationFormatTombstoneManager');
-        $publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
+        $publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
         $publicationFormatTombstoneMgr->insertTombstonesByPress($context);
     }
 

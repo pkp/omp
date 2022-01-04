@@ -14,10 +14,10 @@
  * stores/retrieves from an associative array
  */
 
+use APP\facades\Repo;
 use APP\template\TemplateManager;
 
 use PKP\form\Form;
-use APP\facades\Repo;
 
 class ChapterForm extends Form
 {
@@ -199,7 +199,11 @@ class ChapterForm extends Form
             }
         }
 
-        $submissionFiles = Services::get('submissionFile')->getMany(['submissionIds' => [$this->getMonograph()->getId()]]);
+        $collector = Repo::submissionFile()
+            ->getCollector()
+            ->filterBySubmissionIds([$this->getMonograph()->getId()]);
+
+        $submissionFiles = Repo::submissionFile()->getMany($collector);
         foreach ($submissionFiles as $submissionFile) {
             $isIncluded = false;
 
@@ -215,13 +219,13 @@ class ChapterForm extends Form
         }
 
         $templateMgr->assign([
-                                 'chapterAuthorOptions' => $chapterAuthorOptions,
-                                 'selectedChapterAuthors' => array_map(function ($author) {
-                                     return $author->getId();
-                                 }, $selectedChapterAuthorsArray),
-                                 'chapterFileOptions' => $chapterFileOptions,
-                                 'selectedChapterFiles' => $selectedChapterFiles,
-                             ]);
+            'chapterAuthorOptions' => $chapterAuthorOptions,
+            'selectedChapterAuthors' => array_map(function ($author) {
+                return $author->getId();
+            }, $selectedChapterAuthorsArray),
+            'chapterFileOptions' => $chapterFileOptions,
+            'selectedChapterFiles' => $selectedChapterFiles,
+        ]);
 
         return parent::fetch($request, $template, $display);
     }
@@ -280,7 +284,12 @@ class ChapterForm extends Form
 
         // Save the chapter file associations
         $selectedFiles = (array) $this->getData('files');
-        DAORegistry::getDAO('SubmissionFileDAO')->updateChapterFiles($selectedFiles, $this->getChapter()->getId());
+        Repo::submissionFile()
+            ->dao
+            ->updateChapterFiles(
+                $selectedFiles,
+                $this->getChapter()->getId()
+            );
 
         return true;
     }

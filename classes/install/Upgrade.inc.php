@@ -20,14 +20,11 @@ use APP\core\Application;
 use APP\facades\Repo;
 use APP\i18n\AppLocale;
 use Illuminate\Support\Facades\DB;
-use PKP\core\PKPString;
 use PKP\db\DAORegistry;
-use PKP\file\FileManager;
 use PKP\identity\Identity;
-
 use PKP\install\Installer;
-use PKP\security\Role;
-use PKP\submission\SubmissionFile;
+
+use PKP\submissionFile\SubmissionFile;
 
 class Upgrade extends Installer
 {
@@ -263,7 +260,8 @@ class Upgrade extends Installer
             $context = $contexts[$row->context_id];
 
             // Get existing image paths
-            $basePath = Services::get('submissionFile')->getSubmissionDir($row->context_id, $row->submission_id);
+            $basePath = Repo::submissionFile()
+                ->getSubmissionDir($row->context_id, $row->submission_id);
             $coverPath = Config::getVar('files', 'files_dir') . '/' . $basePath . '/simple/' . $coverImage['name'];
             $coverPathInfo = pathinfo($coverPath);
             $thumbPath = Config::getVar('files', 'files_dir') . '/' . $basePath . '/simple/' . $coverImage['thumbnailName'];
@@ -333,7 +331,6 @@ class Upgrade extends Installer
      */
     public function _fileStageToPath($fileStage)
     {
-        import('lib.pkp.classes.submission.SubmissionFile');
         static $fileStagePathMap = [
             SubmissionFile::SUBMISSION_FILE_SUBMISSION => 'submission',
             SubmissionFile::SUBMISSION_FILE_NOTE => 'note',

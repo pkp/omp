@@ -1,6 +1,7 @@
+# Hüseyin Körpeoğlu <yoruyenturk@hotmail.com>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-04-09 19:43+0000\n"
+"PO-Revision-Date: 2021-11-21 22:23+0000\n"
 "Last-Translator: Hüseyin Körpeoğlu <yoruyenturk@hotmail.com>\n"
 "Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "tr_TR/>\n"
@@ -1618,3 +1619,6 @@ msgstr "13 haneli ISBN kodu, örn; 978-951-98548-9-2."
 
 msgid "grid.catalogEntry.isbn"
 msgstr "ISBN"
+
+msgid "grid.catalogEntry.chapters"
+msgstr "Kısımlar"

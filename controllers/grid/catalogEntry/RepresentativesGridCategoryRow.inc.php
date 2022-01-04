@@ -13,19 +13,10 @@
  * @brief Representatives grid category row definition
  */
 
-import('lib.pkp.classes.controllers.grid.GridCategoryRow');
-
+use PKP\controllers\grid\GridCategoryRow;
 
 class RepresentativesGridCategoryRow extends GridCategoryRow
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     //
     // Overridden methods from GridCategoryRow
     //

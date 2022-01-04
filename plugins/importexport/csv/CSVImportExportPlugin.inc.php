@@ -13,15 +13,18 @@
  * @brief CSV import/export plugin
  */
 
+use APP\core\Application;
 use APP\facades\Repo;
+use APP\i18n\AppLocale;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
+use PKP\db\DAORegistry;
 use PKP\file\FileManager;
 use PKP\plugins\ImportExportPlugin;
 use PKP\security\Role;
 
 use PKP\submission\PKPSubmission;
-use PKP\submission\SubmissionFile;
+use PKP\submissionFile\SubmissionFile;
 
 class CSVImportExportPlugin extends ImportExportPlugin
 {
@@ -119,8 +122,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
             $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
             $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
             $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
-            $submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-            import('lib.pkp.classes.submission.SubmissionFile'); // constants.
+            $submissionFileDao = Repo::submissionFile()->dao;
             $genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
             $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
 
@@ -234,6 +236,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $temporaryFileManager = new TemporaryFileManager();
                         $temporaryFilename = tempnam($temporaryFileManager->getBasePath(), 'remote');
                         $temporaryFileManager->copyFile($pdfUrl, $temporaryFilename);
+
                         $submissionFile = $submissionFileDao->newDataObject();
                         $submissionFile->setSubmissionId($submissionId);
                         $submissionFile->setSubmissionLocale($submission->getLocale());
@@ -249,7 +252,9 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $submissionFile->setDirectSalesPrice(0);
                         $submissionFile->setSalesType('openAccess');
 
-                        $submissionFileDao->insertObject($submissionFile, $temporaryFilename);
+                        Repo::submissionFile()
+                            ->add($submissionFile, $temporaryFilename);
+
                         $fileManager = new FileManager();
                         $fileManager->deleteByPath($temporaryFilename);
 

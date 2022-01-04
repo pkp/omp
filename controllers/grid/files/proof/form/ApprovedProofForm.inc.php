@@ -12,13 +12,14 @@
  * @brief Form for editing approved proofs (available for direct sales).
  */
 
+use APP\facades\Repo;
 use APP\template\TemplateManager;
 
 use PKP\form\Form;
 
 class ApprovedProofForm extends Form
 {
-    /** @var SubmissionFile $approvedProof */
+    /** @var PKP\submissionFile\SubmissionFile $approvedProof */
     public $approvedProof;
 
     /** @var Monograph $monograph */
@@ -40,7 +41,7 @@ class ApprovedProofForm extends Form
 
         $this->monograph = $monograph;
         $this->publicationFormat = $publicationFormat;
-        $this->approvedProof = Services::get('submissionFile')->get($submissionFileId);
+        $this->approvedProof = Repo::submissionFile()->get($submissionFileId);
 
         // matches currencies like:  1,500.50 1500.50 1,112.15 5,99 .99
         $this->addCheck(new \PKP\form\validation\FormValidatorRegExp($this, 'price', 'optional', 'grid.catalogEntry.validPriceRequired', '/^(([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?|([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?)$/'));
@@ -101,21 +102,29 @@ class ApprovedProofForm extends Form
     public function execute(...$functionArgs)
     {
         parent::execute(...$functionArgs);
-        $submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
         $salesType = $this->getData('salesType');
+
+        $params = [
+            'directSalesPrice' => $this->getData('price'),
+            'salesType' => $salesType,
+        ];
+
         if ($salesType === 'notAvailable') {
             // Not available
-            $this->approvedProof->setDirectSalesPrice(null);
+            $params['directSalesPrice'] = null;
         } elseif ($salesType === 'openAccess') {
             // Open access
-            $this->approvedProof->setDirectSalesPrice(0);
-        } else { /* $salesType === 'directSales' */
-            // Direct sale
-            $this->approvedProof->setDirectSalesPrice($this->getData('price'));
+            $params['directSalesPrice'] = 0;
         }
-        $this->approvedProof->setSalesType($salesType);
-        $submissionFileDao->updateObject($this->approvedProof);
 
-        return $this->approvedProof->getId();
+        Repo::submissionFile()
+            ->edit(
+                $this->approvedProof,
+                $params
+            );
+
+        $id = Repo::submissionFile()->get($this->approvedProof->getId());
+
+        return $id;
     }
 }

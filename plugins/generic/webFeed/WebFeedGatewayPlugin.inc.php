@@ -18,8 +18,7 @@ use APP\facades\Repo;
 use APP\submission\Collector;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
-
-import('lib.pkp.classes.plugins.GatewayPlugin');
+use PKP\plugins\GatewayPlugin;
 
 class WebFeedGatewayPlugin extends GatewayPlugin
 {

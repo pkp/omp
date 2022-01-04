@@ -13,20 +13,24 @@
  * @brief Handle publication format grid requests.
  */
 
+use APP\facades\Repo;
+use APP\log\SubmissionEventLogEntry;
 use APP\notification\NotificationManager;
+use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\template\TemplateManager;
 use PKP\controllers\grid\CategoryGridHandler;
 use PKP\controllers\grid\GridColumn;
 use PKP\core\JSONMessage;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
+use PKP\log\SubmissionFileEventLogEntry;
 use PKP\log\SubmissionLog;
 use PKP\security\authorization\internal\RepresentationRequiredPolicy;
 use PKP\security\authorization\PublicationAccessPolicy;
 use PKP\security\Role;
 
 use PKP\submission\PKPSubmission;
-use PKP\submission\SubmissionFile;
+use PKP\submissionFile\SubmissionFile;
 
 // import format grid specific classes
 import('controllers.grid.catalogEntry.PublicationFormatGridRow');
@@ -405,17 +409,15 @@ class PublicationFormatGridHandler extends CategoryGridHandler
         $representationDao->updateObject($representation);
 
         // log the state changing of the format.
-        import('classes.log.SubmissionEventLogEntry');
         SubmissionLog::logEvent(
             $request,
             $this->getSubmission(),
-            $newApprovedState ? SUBMISSION_LOG_PUBLICATION_FORMAT_PUBLISH : SUBMISSION_LOG_PUBLICATION_FORMAT_UNPUBLISH,
+            $newApprovedState ? SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_PUBLISH : SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_UNPUBLISH,
             $newApprovedState ? 'submission.event.publicationFormatPublished' : 'submission.event.publicationFormatUnpublished',
             ['publicationFormatName' => $representation->getLocalizedName()]
         );
 
         // Update the formats tombstones.
-        import('classes.publicationFormat.PublicationFormatTombstoneManager');
         $publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
         if ($representation->getIsAvailable() && $representation->getIsApproved()) {
             // Delete any existing tombstone.
@@ -452,17 +454,15 @@ class PublicationFormatGridHandler extends CategoryGridHandler
         $publicationFormatDao->updateObject($publicationFormat);
 
         // log the state changing of the format.
-        import('classes.log.SubmissionEventLogEntry');
         SubmissionLog::logEvent(
             $request,
             $this->getSubmission(),
-            $newAvailableState ? SUBMISSION_LOG_PUBLICATION_FORMAT_AVAILABLE : SUBMISSION_LOG_PUBLICATION_FORMAT_UNAVAILABLE,
+            $newAvailableState ? SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_AVAILABLE : SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_UNAVAILABLE,
             $newAvailableState ? 'submission.event.publicationFormatMadeAvailable' : 'submission.event.publicationFormatMadeUnavailable',
             ['publicationFormatName' => $publicationFormat->getLocalizedName()]
         );
 
         // Update the formats tombstones.
-        import('classes.publicationFormat.PublicationFormatTombstoneManager');
         $publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
         if ($publicationFormat->getIsAvailable() && $publicationFormat->getIsApproved()) {
             // Delete any existing tombstone.
@@ -582,8 +582,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler
     public function setProofFileCompletion($args, $request)
     {
         $submission = $this->getSubmission();
-        import('lib.pkp.classes.submission.SubmissionFile'); // Constants
-        $submissionFile = Services::get('submissionFile')->get($request->getUserVar('submissionFileId'));
+        $submissionFileId = (int) $request->getUserVar('submissionFileId');
+        $submissionFile = Repo::submissionFile()->get($submissionFileId);
         if ($submissionFile->getData('fileStage') !== SubmissionFile::SUBMISSION_FILE_PROOF || $submissionFile->getData('submissionId') != $submission->getId()) {
             return new JSONMessage(false);
         }
@@ -607,16 +607,18 @@ class PublicationFormatGridHandler extends CategoryGridHandler
             }
             // Update the approval flag
             $params = ['viewable' => (bool) $request->getUserVar('approval')];
-            $submissionFile = Services::get('submissionFile')->edit($submissionFile, $params, $request);
+            Repo::submissionFile()
+                ->edit($submissionFile, $params);
+
+            $submissionFile = Repo::submissionFile()->get($submissionFileId);
 
             // Log the event
-            import('lib.pkp.classes.log.SubmissionFileLog');
-            import('lib.pkp.classes.log.SubmissionFileEventLogEntry'); // constants
             $user = $request->getUser();
-            SubmissionFileLog::logEvent($request, $submissionFile, SUBMISSION_LOG_FILE_SIGNOFF_SIGNOFF, 'submission.event.signoffSignoff', ['file' => $submissionFile->getLocalizedData('name'), 'name' => $user->getFullName(), 'username' => $user->getUsername()]);
+            SubmissionFileLog::logEvent($request, $submissionFile, SubmissionFileEventLogEntry::SUBMISSION_LOG_FILE_SIGNOFF_SIGNOFF, 'submission.event.signoffSignoff', ['file' => $submissionFile->getLocalizedData('name'), 'name' => $user->getFullName(), 'username' => $user->getUsername()]);
 
             return DAO::getDataChangedEvent();
         }
+
         return new JSONMessage(false);
     }
 
@@ -752,8 +754,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
     public function dependentFiles($args, $request)
     {
         $submission = $this->getSubmission();
-        import('lib.pkp.classes.submission.SubmissionFile'); // Constants
-        $submissionFile = Services::get('submissionFile')->get($request->getUserVar('submissionFileId'));
+        $submissionFile = Repo::submissionFile()->get((int) $request->getUserVar('submissionFileId'));
         if ($submissionFile->getData('fileStage') !== SubmissionFile::SUBMISSION_FILE_PROOF || $submissionFile->getData('submissionId') != $submission->getId()) {
             return new JSONMessage(false);
         }

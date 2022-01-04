@@ -13,11 +13,10 @@
  * @brief CLI tool to fix pre-1.0 filenames that may have been incorrectly generated. See bug #8461.
  */
 
-
+use APP\install\Upgrade;
+use PKP\cliTool\CliTool;
 
 require(dirname(__FILE__) . '/bootstrap.inc.php');
-
-import('lib.pkp.classes.cliTool.CliTool');
 
 class fixFilenames extends CommandLineTool
 {
@@ -59,7 +58,6 @@ class fixFilenames extends CommandLineTool
      */
     public function execute()
     {
-        import('classes.install.Upgrade');
         Upgrade::fixFilenames($this->dryrun);
     }
 }

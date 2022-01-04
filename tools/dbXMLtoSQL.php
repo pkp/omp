@@ -13,11 +13,9 @@
  * @brief CLI tool to output the SQL statements corresponding to an XML database schema.
  */
 
-
+use PKP\cliTool\XmlToSqlTool;
 
 require(dirname(__FILE__) . '/bootstrap.inc.php');
-
-import('lib.pkp.classes.cliTool.XmlToSqlTool');
 
 /** Default XML file to parse if none is specified */
 define('DATABASE_XML_FILE', 'dbscripts/xml/omp_schema.xml');
