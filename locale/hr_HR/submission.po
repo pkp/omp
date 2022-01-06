@@ -1,10 +1,11 @@
+# paola <pjukic@yahoo.com>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-04-22 11:19+0000\n"
-"Last-Translator: Dobrica Pavlinušić <dpavlin@ffzg.hr>\n"
+"PO-Revision-Date: 2022-01-06 10:25+0000\n"
+"Last-Translator: paola <pjukic@yahoo.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "hr_HR/>\n"
-"Language: hr\n"
+"Language: hr_HR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -140,3 +141,12 @@ msgstr "Prijavite Monografiju"
 
 msgid "submission.authorListSeparator"
 msgstr "; "
+
+msgid "submission.chaptersDescription"
+msgstr ""
+"Ovdje možete navesti poglavlja i dodijeliti suradnike s popisa suradnika, "
+"gore. Ovi će suradnici moći pristupiti poglavlju tijekom različitih faza "
+"procesa objavljivanja."
+
+msgid "submission.fairCopy"
+msgstr "Finalna kopija"
