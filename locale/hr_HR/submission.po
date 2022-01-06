@@ -1,7 +1,7 @@
 # paola <pjukic@yahoo.com>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-01-06 10:25+0000\n"
+"PO-Revision-Date: 2022-01-07 04:13+0000\n"
 "Last-Translator: paola <pjukic@yahoo.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "hr_HR/>\n"
@@ -150,3 +150,6 @@ msgstr ""
 
 msgid "submission.fairCopy"
 msgstr "Finalna kopija"
+
+msgid "submission.chapter.pages"
+msgstr "Stranice"
