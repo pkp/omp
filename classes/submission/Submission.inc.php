@@ -47,7 +47,7 @@ class Submission extends PKPSubmission
     /**
      * set press id
      *
-     * @param $pressId int
+     * @param int $pressId
      *
      * @deprecated 3.2.0.0
      */
@@ -84,7 +84,7 @@ class Submission extends PKPSubmission
     /**
      * Set the series id.
      *
-     * @param $id int
+     * @param int $id
      *
      * @deprecated 3.2.0.0
      */
@@ -115,7 +115,7 @@ class Submission extends PKPSubmission
     /**
      * Set the series position for this monograph.
      *
-     * @param $seriesPosition string
+     * @param string $seriesPosition
      *
      * @deprecated 3.2.0.0
      */
@@ -142,7 +142,7 @@ class Submission extends PKPSubmission
     /**
      * Set the work type (constant in WORK_TYPE_...)
      *
-     * @param $workType int
+     * @param int $workType
      *
      * @deprecated 3.2.0.0
      */
@@ -170,7 +170,7 @@ class Submission extends PKPSubmission
     /**
      * Get supporting agencies.
      *
-     * @param $locale
+     * @param string $locale
      *
      * @return array
      *
@@ -188,8 +188,8 @@ class Submission extends PKPSubmission
     /**
      * Set supporting agencies.
      *
-     * @param $supportingAgencies array
-     * @param $locale
+     * @param array $supportingAgencies
+     * @param string $locale
      *
      * @deprecated 3.2.0.0
      */
@@ -204,9 +204,9 @@ class Submission extends PKPSubmission
     /**
      * Get the value of a license field from the containing context.
      *
-     * @param $locale string Locale code
-     * @param $field PERMISSIONS_FIELD_...
-     * @param $publication Publication
+     * @param string $locale Locale code
+     * @param int $field PERMISSIONS_FIELD_...
+     * @param Publication $publication
      *
      * @return string|array|null
      */
@@ -290,7 +290,7 @@ class Submission extends PKPSubmission
     /**
      * Get a string indicating all authors or, if it is an edited volume, editors.
      *
-     * @param $preferred boolean If the preferred public name should be used, if exist
+     * @param bool $preferred If the preferred public name should be used, if exist
      *
      * @return string
      *
@@ -325,7 +325,7 @@ class Submission extends PKPSubmission
     /**
      * set  enableChapterPublicationDates status
      *
-     * @param $enableChapterPublicationDates int
+     * @param int $enableChapterPublicationDates
      */
     public function setEnableChapterPublicationDates($enableChapterPublicationDates)
     {

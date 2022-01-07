@@ -27,7 +27,7 @@ class Repository extends \PKP\user\Repository
         }
 
         // Transfer completed payments.
-        $paymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /* @var $paymentDao OMPCompletedPaymentDAO */
+        $paymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /** @var OMPCompletedPaymentDAO $paymentDao */
         $paymentFactory = $paymentDao->getByUserId($oldUserId);
         while ($payment = $paymentFactory->next()) {
             $payment->setUserId($newUserId);

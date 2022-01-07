@@ -51,7 +51,7 @@ class HtmlMonographFilePlugin extends GenericPlugin
     /**
      * Get the display name of this plugin.
      *
-     * @return String
+     * @return string
      */
     public function getDisplayName()
     {
@@ -69,9 +69,9 @@ class HtmlMonographFilePlugin extends GenericPlugin
     /**
      * Callback to view the HTML content rather than downloading.
      *
-     * @param $hookName string
+     * @param string $hookName
      *
-     * @return boolean
+     * @return bool
      */
     public function viewCallback($hookName, $params)
     {
@@ -134,10 +134,10 @@ class HtmlMonographFilePlugin extends GenericPlugin
      * Return string containing the contents of the HTML file.
      * This function performs any necessary filtering, like image URL replacement.
      *
-     * @param $request PKPRequest
-     * @param $monograph Monograph
-     * @param $publicationFormat PublicationFormat
-     * @param $submissionFile SubmissionFile
+     * @param PKPRequest $request
+     * @param Monograph $monograph
+     * @param PublicationFormat $publicationFormat
+     * @param SubmissionFile $submissionFile
      *
      * @return string
      */

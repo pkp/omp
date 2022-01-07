@@ -34,7 +34,7 @@ class BrowseBlockPlugin extends BlockPlugin
     /**
      * Get the display name of this plugin.
      *
-     * @return String
+     * @return string
      */
     public function getDisplayName()
     {
@@ -99,7 +99,7 @@ class BrowseBlockPlugin extends BlockPlugin
     /**
      * Get the HTML contents of the browse block.
      *
-     * @param $templateMgr PKPTemplateManager
+     * @param PKPTemplateManager $templateMgr
      * @param null|mixed $request
      *
      * @return string
@@ -114,7 +114,7 @@ class BrowseBlockPlugin extends BlockPlugin
         $seriesDisplay = $this->getSetting($press->getId(), 'browseSeries');
         if ($seriesDisplay) {
             // Provide a list of series to browse
-            $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+            $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
             $series = $seriesDao->getByPressId($press->getId());
             $templateMgr->assign('browseSeries', $series->toArray());
         }

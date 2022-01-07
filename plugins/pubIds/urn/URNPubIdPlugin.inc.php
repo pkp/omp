@@ -262,9 +262,9 @@ class URNPubIdPlugin extends PubIdPlugin
     /**
      * Add URN to submission, issue or galley properties
      *
-     * @param $hookName string <Object>::getProperties::summaryProperties or
+     * @param string $hookName <Object>::getProperties::summaryProperties or
      *  <Object>::getProperties::fullProperties
-     * @param $args array [
+     * @param array $args [
      * 		@option $props array Existing properties
      * 		@option $object Submission|Issue|Galley
      * 		@option $args array Request args
@@ -282,8 +282,8 @@ class URNPubIdPlugin extends PubIdPlugin
     /**
      * Add URN submission, issue or galley values
      *
-     * @param $hookName string <Object>::getProperties::values
-     * @param $args array [
+     * @param string $hookName <Object>::getProperties::values
+     * @param array $args [
      * 		@option $values array Key/value store of property values
      * 		@option $object Submission|Issue|Galley
      * 		@option $props array Requested properties
@@ -317,8 +317,8 @@ class URNPubIdPlugin extends PubIdPlugin
     /**
      * Validate a publication's URN against the plugin's settings
      *
-     * @param $hookName string
-     * @param $args array
+     * @param string $hookName
+     * @param array $args
      */
     public function validatePublicationUrn($hookName, $args)
     {
@@ -355,8 +355,8 @@ class URNPubIdPlugin extends PubIdPlugin
     /**
      * Add URN fields to the publication identifiers form
      *
-     * @param $hookName string Form::config::before
-     * @param $form FormComponent The form object
+     * @param string $hookName Form::config::before
+     * @param FormComponent $form The form object
      */
     public function addPublicationFormFields($hookName, $form)
     {
@@ -426,8 +426,8 @@ class URNPubIdPlugin extends PubIdPlugin
     /**
      * Show URN during final publish step
      *
-     * @param $hookName string Form::config::before
-     * @param $form FormComponent The form object
+     * @param string $hookName Form::config::before
+     * @param FormComponent $form The form object
      */
     public function addPublishFormNotice($hookName, $form)
     {

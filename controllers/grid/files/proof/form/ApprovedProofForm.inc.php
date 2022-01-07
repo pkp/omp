@@ -31,9 +31,9 @@ class ApprovedProofForm extends Form
     /**
      * Constructor
      *
-     * @param $monograph Monograph
-     * @param $publicationFormat PublicationFormat
-     * @param $submissionFileId int
+     * @param Monograph $monograph
+     * @param PublicationFormat $publicationFormat
+     * @param int $submissionFileId
      */
     public function __construct($monograph, $publicationFormat, $submissionFileId)
     {

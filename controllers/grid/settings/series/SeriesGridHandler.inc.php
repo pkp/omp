@@ -43,7 +43,7 @@ class SeriesGridHandler extends SetupGridHandler
     //
     // Overridden template methods
     //
-    /*
+    /**
      * @copydoc SetupGridHandler::initialize
      */
     public function initialize($request, $args = null)
@@ -65,8 +65,8 @@ class SeriesGridHandler extends SetupGridHandler
         $this->setTitle('catalog.manage.series');
 
         // Elements to be displayed in the grid
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-        $subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /* @var $subEditorsDao SubEditorsDAO */
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
+        $subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /** @var SubEditorsDAO $subEditorsDao */
         $seriesIterator = $seriesDao->getByPressId($press->getId());
 
         $gridData = [];
@@ -193,7 +193,7 @@ class SeriesGridHandler extends SetupGridHandler
      */
     public function setDataElementSequence($request, $rowId, $gridDataElement, $newSequence)
     {
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         $press = $request->getPress();
         $series = $seriesDao->getById($rowId, $press->getId());
         $series->setSequence($newSequence);
@@ -206,8 +206,8 @@ class SeriesGridHandler extends SetupGridHandler
     /**
      * An action to add a new series
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function addSeries($args, $request)
     {
@@ -219,8 +219,8 @@ class SeriesGridHandler extends SetupGridHandler
     /**
      * An action to edit a series
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -238,8 +238,8 @@ class SeriesGridHandler extends SetupGridHandler
     /**
      * Update a series
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -264,8 +264,8 @@ class SeriesGridHandler extends SetupGridHandler
     /**
      * Delete a series
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -273,7 +273,7 @@ class SeriesGridHandler extends SetupGridHandler
     {
         $press = $request->getPress();
 
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         $series = $seriesDao->getById(
             $request->getUserVar('seriesId'),
             $press->getId()
@@ -303,8 +303,8 @@ class SeriesGridHandler extends SetupGridHandler
     /**
      * Deactivate a series.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -317,7 +317,7 @@ class SeriesGridHandler extends SetupGridHandler
         $context = $request->getContext();
 
         // Get series object
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         // Validate if it can be inactive
         $seriesIterator = $seriesDao->getByContextId($context->getId(), null, false);
         $activeSeriesCount = 0;
@@ -354,8 +354,8 @@ class SeriesGridHandler extends SetupGridHandler
     /**
      * Activate a series.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -369,7 +369,7 @@ class SeriesGridHandler extends SetupGridHandler
         $context = $request->getContext();
 
         // Get series object
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         $series = $seriesDao->getById($seriesId, $context->getId());
 
         if ($request->checkCSRF() && isset($series) && $series->getIsInactive()) {

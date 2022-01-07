@@ -43,7 +43,7 @@ class SettingsPluginGridHandler extends PluginGridHandler
     {
         $plugins = parent::loadCategoryData($request, $categoryDataElement, $filter);
 
-        $pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+        $pressDao = DAORegistry::getDAO('PressDAO'); /** @var PressDAO $pressDao */
         $presses = $pressDao->getAll();
         $firstPress = $presses->next();
         $secondPress = $presses->next();

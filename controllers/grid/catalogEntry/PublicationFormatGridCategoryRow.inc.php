@@ -20,22 +20,22 @@ use PKP\linkAction\request\RemoteActionConfirmationModal;
 
 class PublicationFormatGridCategoryRow extends GridCategoryRow
 {
-    /** @var Submission **/
+    /** @var Submission */
     public $_submission;
 
-    /** @var boolean */
+    /** @var bool */
     protected $_canManage;
 
-    /** @var Publication **/
+    /** @var Publication */
     public $_publication;
 
     /**
      * Constructor
      *
-     * @param $submission Submission
-     * @param $cellProvider GridCellProvider
-     * @param $canManage boolean
-     * @param $publication Publication
+     * @param Submission $submission
+     * @param GridCellProvider $cellProvider
+     * @param bool $canManage
+     * @param Publication $publication
      */
     public function __construct($submission, $cellProvider, $canManage, $publication)
     {

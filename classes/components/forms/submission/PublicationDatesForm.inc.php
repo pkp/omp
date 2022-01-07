@@ -32,8 +32,8 @@ class PublicationDatesForm extends FormComponent
     /**
      * Constructor
      *
-     * @param $action string URL to submit the form to
-     * @param $submission Submission The submission of this publication
+     * @param string $action URL to submit the form to
+     * @param Submission $submission The submission of this publication
      */
     public function __construct($action, $submission)
     {

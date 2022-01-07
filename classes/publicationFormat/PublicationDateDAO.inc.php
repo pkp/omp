@@ -27,8 +27,8 @@ class PublicationDateDAO extends \PKP\db\DAO
     /**
      * Retrieve a publication date by type id.
      *
-     * @param $publicationDateId int
-     * @param $publicationId optional int
+     * @param int $publicationDateId
+     * @param int $publicationId optional
      *
      * @return PublicationDate|null
      */
@@ -54,7 +54,7 @@ class PublicationDateDAO extends \PKP\db\DAO
     /**
      * Retrieve all publication dates for an assigned publication format
      *
-     * @param $representationId int
+     * @param int $representationId
      *
      * @return DAOResultFactory containing matching publication dates
      */
@@ -83,8 +83,8 @@ class PublicationDateDAO extends \PKP\db\DAO
     /**
      * Internal function to return a PublicationDate object from a row.
      *
-     * @param $row array
-     * @param $callHooks boolean
+     * @param array $row
+     * @param bool $callHooks
      *
      * @return PublicationDate
      */
@@ -107,7 +107,7 @@ class PublicationDateDAO extends \PKP\db\DAO
     /**
      * Insert a new publication date.
      *
-     * @param $publicationDate PublicationDate
+     * @param PublicationDate $publicationDate
      */
     public function insertObject($publicationDate)
     {
@@ -131,7 +131,7 @@ class PublicationDateDAO extends \PKP\db\DAO
     /**
      * Update an existing publication date.
      *
-     * @param $publicationDate PublicationDate
+     * @param PublicationDate $publicationDate
      */
     public function updateObject($publicationDate)
     {
@@ -151,7 +151,7 @@ class PublicationDateDAO extends \PKP\db\DAO
     /**
      * Delete a publication date.
      *
-     * @param $publicationDate PublicationDate
+     * @param PublicationDate $publicationDate
      */
     public function deleteObject($publicationDate)
     {
@@ -161,7 +161,7 @@ class PublicationDateDAO extends \PKP\db\DAO
     /**
      * delete a publication date by id.
      *
-     * @param $entryId int
+     * @param int $entryId
      */
     public function deleteById($entryId)
     {

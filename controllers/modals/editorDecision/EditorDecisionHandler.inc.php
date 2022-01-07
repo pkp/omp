@@ -65,8 +65,8 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
     /**
      * Start a new review round
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage
      */
@@ -89,8 +89,8 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
     /**
      * Start a new review round
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return string Serialized JSON object
      */
@@ -102,8 +102,8 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
     /**
      * Start a new review round
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage
      */
@@ -124,8 +124,8 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
     // Protected helper methods
     //
     /**
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage
      */
@@ -158,7 +158,7 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
     /**
      * Get editor decision notification type and level by decision.
      *
-     * @param $decision int
+     * @param int $decision
      *
      * @return int
      */
@@ -209,7 +209,7 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
     /**
      * Get the fully-qualified import name for the given form name.
      *
-     * @param $formName Class name for the desired form.
+     * @param string $formName Class name for the desired form.
      *
      * @return string
      */

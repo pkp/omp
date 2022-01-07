@@ -40,7 +40,7 @@ class CodelistItem extends DataObject
     /**
      * Set the text component of the codelist.
      *
-     * @param $text string
+     * @param string $text
      */
     public function setText($text)
     {
@@ -60,7 +60,7 @@ class CodelistItem extends DataObject
     /**
      * Set codelist code.
      *
-     * @param $code string
+     * @param string $code
      */
     public function setCode($code)
     {
@@ -68,7 +68,7 @@ class CodelistItem extends DataObject
     }
 
     /**
-     * @return String the numerical value representing this item in the ONIX 3.0 schema
+     * @return string the numerical value representing this item in the ONIX 3.0 schema
      */
     public function getOnixSubjectSchemeIdentifier()
     {

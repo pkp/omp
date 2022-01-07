@@ -30,7 +30,7 @@ use PKP\xslt\XSLTransformer;
 
 class ONIXCodelistItemDAO extends \PKP\db\DAO
 {
-    /* The name of the codelist we are interested in */
+    /** @var string The name of the codelist we are interested in */
     public $_list;
 
     public function &_getCache($locale = null)
@@ -128,7 +128,7 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
      * Get the filename for the ONIX codelist document. Use a localized
      * version if available, but if not, fall back on the master locale.
      *
-     * @param $locale string Locale code
+     * @param string $locale Locale code
      *
      * @return string Path and filename to ONIX codelist document
      */
@@ -147,7 +147,7 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
     /**
      * Set the name of the list we want.
      *
-     * @param $list string
+     * @param string $list
      */
     public function setListName($list)
     {
@@ -177,8 +177,8 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
     /**
      * Retrieve an array of all the codelist items.
      *
-     * @param $list the List string for this code list (i.e., List30)
-     * @param $locale an optional locale to use
+     * @param string $list the List string for this code list (i.e., List30)
+     * @param string $locale an optional locale to use
      *
      * @return array of CodelistItems
      */
@@ -196,10 +196,10 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
     /**
      * Retrieve an array of all codelist codes and values for a given list.
      *
-     * @param $list the List string for this code list (i.e., List30)
-     * @param $codesToExclude an optional list of codes to exclude from the returned list
-     * @param $codesFilter an optional filter to match codes against.
-     * @param $locale an optional locale to use
+     * @param string $list the List string for this code list (i.e., List30)
+     * @param array $codesToExclude an optional list of codes to exclude from the returned list
+     * @param string $codesFilter an optional filter to match codes against.
+     * @param string $locale an optional locale to use
      *
      * @return array of CodelistItem names
      */
@@ -224,7 +224,7 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
     /**
      * Determines if a particular code value is valid for a given list.
      *
-     * @return boolean
+     * @return bool
      */
     public function codeExistsInList($code, $list)
     {

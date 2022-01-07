@@ -38,8 +38,8 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
      * Create and return a representation node. Extend the parent class
      * with publication format specific data.
      *
-     * @param $doc DOMDocument
-     * @param $representation PublicationFormat
+     * @param DOMDocument $doc
+     * @param PublicationFormat $representation
      *
      * @return DOMElement
      */
@@ -58,7 +58,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
             $publication = $this->getDeployment()->getPublication();
             $submission = $this->getDeployment()->getSubmission();
 
-            $filterDao = DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
+            $filterDao = DAORegistry::getDAO('FilterDAO'); /** @var FilterDAO $filterDao */
             $nativeExportFilters = $filterDao->getObjectsByGroup('monograph=>onix30-xml');
             assert(count($nativeExportFilters) == 1); // Assert only a single serialization filter
             $exportFilter = array_shift($nativeExportFilters);
@@ -92,7 +92,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
     /**
      * Get the available submission files for a representation
      *
-     * @param $representation Representation
+     * @param Representation $representation
      *
      * @return Iterator
      */
