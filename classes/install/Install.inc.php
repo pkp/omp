@@ -21,10 +21,6 @@
 
 namespace APP\install;
 
-// Default installation data
-define('INSTALLER_DEFAULT_CONTACT', 'common.omp');
-define('INSTALLER_DEFAULT_MIN_PASSWORD_LENGTH', 6);
-
 use PKP\install\PKPInstall;
 
 class Install extends PKPInstall
