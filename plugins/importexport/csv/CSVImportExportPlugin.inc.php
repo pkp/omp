@@ -101,12 +101,12 @@ class CSVImportExportPlugin extends ImportExportPlugin
 
         if (!$filename || !$username) {
             $this->usage($scriptName);
-            exit();
+            exit;
         }
 
         if (!file_exists($filename)) {
             echo __('plugins.importexport.csv.fileDoesNotExist', ['filename' => $filename]) . "\n";
-            exit();
+            exit;
         }
 
         $data = file($filename);
@@ -115,7 +115,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
             $user = Repo::user()->getByUsername($username);
             if (!$user) {
                 echo __('plugins.importexport.csv.unknownUser', ['username' => $username]) . "\n";
-                exit();
+                exit;
             }
 
             $pressDao = Application::getContextDAO();
@@ -145,7 +145,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
 
                     if (!$genre) {
                         echo __('plugins.importexport.csv.noGenre') . "\n";
-                        exit();
+                        exit;
                     }
                     if (!$authorGroup) {
                         echo __('plugins.importexport.csv.noAuthorGroup', ['press' => $pressPath]) . "\n";

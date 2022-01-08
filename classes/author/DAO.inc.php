@@ -13,9 +13,6 @@
 
 namespace APP\author;
 
-use APP\core\Application;
-use PKP\db\DAORegistry;
-use stdClass;
 use Illuminate\Support\Facades\DB;
 use APP\monograph\Chapter;
 
