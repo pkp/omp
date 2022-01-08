@@ -16,7 +16,6 @@ namespace APP\migration\upgrade;
 use APP\core\Application;
 use APP\core\Services;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use PKP\core\EntityDAO;
@@ -101,7 +100,7 @@ class OMPv3_3_0UpgradeMigration extends \PKP\migration\Migration
 
             // Account for new EntityDAOs
             if (!$dao) {
-                $dao = App::make($daoName);
+                $dao = app($daoName);
                 if (!$dao) {
                     throw new Exception("${daoName} could not be created when migrating serialized settings");
                 }

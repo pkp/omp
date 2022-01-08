@@ -15,7 +15,6 @@ namespace APP\author;
 
 use APP\core\Request;
 use PKP\Services\PKPSchemaService;
-use Illuminate\Support\Facades\App;
 use APP\monograph\Chapter;
 
 class Repository extends \PKP\author\Repository
@@ -28,7 +27,7 @@ class Repository extends \PKP\author\Repository
     /** @copydoc DAO::getCollector() */
     public function getCollector(): Collector
     {
-        return App::make(Collector::class);
+        return app(Collector::class);
     }
 
     /**
