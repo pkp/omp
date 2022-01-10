@@ -1,7 +1,7 @@
-# Hüseyin Körpeoğlu <yoruyenturk@hotmail.com>, 2021.
+# Hüseyin Körpeoğlu <yoruyenturk@hotmail.com>, 2021, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-11-21 22:23+0000\n"
+"PO-Revision-Date: 2022-01-10 09:39+0000\n"
 "Last-Translator: Hüseyin Körpeoğlu <yoruyenturk@hotmail.com>\n"
 "Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "tr_TR/>\n"
@@ -503,3 +503,6 @@ msgstr "Sayfalar"
 
 msgid "publication.chapter.landingPage"
 msgstr "Kısım Sayfası"
+
+msgid "chapter.volume"
+msgstr "Cilt"
