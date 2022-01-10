@@ -38,7 +38,7 @@ class fixFilenames extends CommandLineTool
             $this->dryrun = false;
         } else {
             $this->usage();
-            exit();
+            exit;
         }
     }
 

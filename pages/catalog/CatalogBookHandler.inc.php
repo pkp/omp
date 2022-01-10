@@ -383,7 +383,7 @@ class CatalogBookHandler extends Handler
             if ($view) {
                 if (HookRegistry::call('CatalogBookHandler::view', [&$this, &$submission, &$publicationFormat, &$submissionFile])) {
                     // If the plugin handled the hook, prevent further default activity.
-                    exit();
+                    exit;
                 }
             }
 
@@ -392,7 +392,7 @@ class CatalogBookHandler extends Handler
             $inline = $request->getUserVar('inline') ? true : false;
             if (HookRegistry::call('CatalogBookHandler::download', [&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline])) {
                 // If the plugin handled the hook, prevent further default activity.
-                exit();
+                exit;
             }
             $returner = true;
             HookRegistry::call('FileManager::downloadFileFinished', [&$returner]);
