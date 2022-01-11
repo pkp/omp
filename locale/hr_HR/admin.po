@@ -1,9 +1,10 @@
+# paola <pjukic@yahoo.com>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-04-21 14:01+0000\n"
-"Last-Translator: Dobrica Pavlinušić <dpavlin@ffzg.hr>\n"
-"Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/admin/hr/>"
-"\n"
+"PO-Revision-Date: 2021-12-30 11:33+0000\n"
+"Last-Translator: paola <pjukic@yahoo.com>\n"
+"Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/admin/"
+"hr_HR/>\n"
 "Language: hr_HR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,3 +15,146 @@ msgstr ""
 
 msgid "admin.settings.config.success"
 msgstr "Konfiguracijske  postavke mrežnog mjesta su uspješno ažurirane."
+
+#, fuzzy
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Requests to the main site will be redirected to this press. This may be "
+"useful if the site is hosting only a single press, for example."
+
+#, fuzzy
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Are you sure you want to disable this locale? This may affect any hosted "
+"presses currently using the locale."
+
+#, fuzzy
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Select any additional locales to install support for in this system. Locales "
+"must be installed before they can be used by hosted presses. See the OMP "
+"documentation for information on adding support for new languages."
+
+#, fuzzy
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"Are you sure you want to uninstall this locale? This may affect any hosted "
+"presses currently using the locale."
+
+#, fuzzy
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Marked locales may be incomplete."
+
+#, fuzzy
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr ""
+"Select all locales to support on the site. The selected locales will be "
+"available for use by all presses hosted on the site, and also appear in a "
+"language select menu to appear on each site page (which can be overridden on "
+"press-specific pages). If multiple locales are not selected, the language "
+"toggle menu will not appear and extended language settings will not be "
+"available to presses."
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "Ovo će biti zadani jezik za web-mjesto i sve objavljene publikacije."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Nemoj preusmjeravati"
+
+#, fuzzy
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgstr ""
+"The bulk email feature has been disabled for this press. Enable this feature "
+"in <a href=\"{$siteSettingsUrl}\">Admin > Site Settings</a>."
+
+#, fuzzy
+msgid "admin.settings.disableBulkEmailRoles.description"
+msgstr ""
+"A press manager will be unable to send bulk emails to any of the roles "
+"selected below. Use this setting to limit abuse of the email notification "
+"feature. For example, it may be safer to disable bulk emails to readers, "
+"authors, or other large user groups that have not consented to receive such "
+"emails.<br><br>The bulk email feature can be disabled completely for this "
+"press in <a href=\"{$siteSettingsUrl}\">Admin > Site Settings</a>."
+
+#, fuzzy
+msgid "admin.settings.enableBulkEmails.description"
+msgstr ""
+"Select the hosted presses that should be allowed to send bulk emails. When "
+"this feature is enabled, a press manager will be able to send an email to "
+"all users registered with their press.<br><br>Misuse of this feature to send "
+"unsolicited email may violate anti-spam laws in some jurisdictions and may "
+"result in your server's emails being blocked as spam. Seek technical advice "
+"before enabling this feature and consider consulting with press managers to "
+"ensure it is used appropriately.<br><br>Further restrictions on this feature "
+"can be enabled for each press by visiting its settings wizard in the list of "
+"<a href=\"{$hostedContextsUrl}\">Hosted Presses</a>."
+
+#, fuzzy
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>NOTE!</div>\n"
+"<p>The system could not automatically overwrite the configuration file. To "
+"apply your configuration changes you must open <tt>config.inc.php</tt> in a "
+"suitable text editor and replace its contents with the contents of the text "
+"field below.</p>"
+
+msgid "admin.contexts.contextDescription"
+msgstr "Opis publikacije"
+
+msgid "admin.presses.addPress"
+msgstr "Dodaj publikaciju"
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} je uspješno uređeno."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} je uspješno stvoren."
+
+#, fuzzy
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr "The primary locale must be one of the press's supported locales."
+
+#, fuzzy
+msgid "admin.contexts.form.pathExists"
+msgstr "The selected path is already in use by another press."
+
+#, fuzzy
+msgid "admin.contexts.form.pathRequired"
+msgstr "A path is required."
+
+#, fuzzy
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"The path can only include letters, numbers and the characters _ and -. It "
+"must begin and end with a letter or number."
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Naslov je obavezan."
+
+msgid "admin.contexts.create"
+msgstr "Stvori Press"
+
+msgid "admin.presses.noneCreated"
+msgstr "Publikacija nije stvorena"
+
+msgid "admin.presses.pressSettings"
+msgstr "Press postavke"
+
+msgid "admin.systemConfiguration"
+msgstr "OMP konfiguracija"
+
+msgid "admin.systemVersion"
+msgstr "OMP verzija"
+
+msgid "admin.settings.redirect"
+msgstr "Preusmjeravanje"
+
+msgid "admin.settings.info.success"
+msgstr "Informacije o web mjestu uspješno su ažurirane."
+
+msgid "admin.settings.appearance.success"
+msgstr "Postavke izgleda stranice uspješno su ažurirane."
+
+msgid "admin.hostedContexts"
+msgstr "Hosted Presses"
