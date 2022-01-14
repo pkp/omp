@@ -13,6 +13,9 @@
  * @brief Class for browse block plugin
  */
 
+namespace APP\plugins\blocks\browse;
+
+use PKP\db\DAORegistry;
 use PKP\core\JSONMessage;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
@@ -80,7 +83,6 @@ class BrowseBlockPlugin extends BlockPlugin
 
         switch ($request->getUserVar('verb')) {
             case 'settings':
-                $this->import('BrowseBlockSettingsForm');
                 $form = new BrowseBlockSettingsForm($this, $press->getId());
                 if ($request->getUserVar('save')) {
                     $form->readInputData();

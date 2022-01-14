@@ -13,6 +13,8 @@
  * @brief Form for press managers to setup Browse block plugin
  */
 
+namespace APP\plugins\blocks\browse;
+
 use PKP\form\Form;
 
 class BrowseBlockSettingsForm extends Form
