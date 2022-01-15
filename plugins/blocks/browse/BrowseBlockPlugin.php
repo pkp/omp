@@ -147,3 +147,7 @@ class BrowseBlockPlugin extends BlockPlugin
         return parent::getContents($templateMgr);
     }
 }
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\plugins\blocks\browse\BrowseBlockPlugin', '\BrowseBlockPlugin');
+}
