@@ -15,8 +15,6 @@
 
 import('lib.pkp.pages.submission.PKPSubmissionHandler');
 
-use APP\handler\Handler;
-
 use PKP\security\Role;
 
 class SubmissionHandler extends PKPSubmissionHandler
@@ -29,29 +27,8 @@ class SubmissionHandler extends PKPSubmissionHandler
         parent::__construct();
         $this->addRoleAssignment(
             [Role::ROLE_ID_AUTHOR, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_MANAGER],
-            ['index', 'wizard', 'step', 'saveStep', 'fetchChoices']
+            ['index', 'wizard', 'step', 'saveStep']
         );
-    }
-
-
-    //
-    // Public Handler Methods
-    //
-    /**
-     * Retrieves a JSON list of available choices for a tagit metadata input field.
-     *
-     * @param array $args
-     * @param Request $request
-     */
-    public function fetchChoices($args, $request)
-    {
-        $codeList = (int) $request->getUserVar('codeList');
-        $term = $request->getUserVar('term');
-
-        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
-        $codes = $onixCodelistItemDao->getCodes('List' . $codeList, [], $term); // $term is escaped in the getCodes method.
-        header('Content-Type: text/json');
-        echo json_encode(array_values($codes));
     }
 
 
