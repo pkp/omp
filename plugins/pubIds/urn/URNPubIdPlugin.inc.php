@@ -13,15 +13,16 @@
  * @brief URN plugin class
  */
 
+use APP\core\Application;
+use APP\core\Services;
 use APP\facades\Repo;
-use APP\form\FieldUrn;
-use APP\form\URNSettingsForm;
 use APP\plugins\PubIdPlugin;
 use APP\publication\Publication;
 
 use APP\template\TemplateManager;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\RemoteActionConfirmationModal;
+use PKP\plugins\HookRegistry;
 
 class URNPubIdPlugin extends PubIdPlugin
 {
@@ -33,7 +34,7 @@ class URNPubIdPlugin extends PubIdPlugin
     public function register($category, $path, $mainContextId = null)
     {
         $success = parent::register($category, $path, $mainContextId);
-        if (!Config::getVar('general', 'installed') || defined('RUNNING_UPGRADE')) {
+        if (!Application::isReady()) {
             return $success;
         }
         if ($success && $this->getEnabled($mainContextId)) {

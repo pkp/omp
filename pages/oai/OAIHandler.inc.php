@@ -13,11 +13,14 @@
  * @brief Handle OAI protocol requests.
  */
 
-define('SESSION_DISABLE_INIT', 1); // FIXME?
-
-use PKP\oai\OAIConfig;
-use APP\oai\omp\PressOAI;
 use APP\handler\Handler;
+use APP\oai\omp\PressOAI;
+use PKP\config\Config;
+use PKP\oai\OAIConfig;
+use PKP\plugins\PluginRegistry;
+use PKP\session\SessionManager;
+
+SessionManager::disable();
 
 class OAIHandler extends Handler
 {

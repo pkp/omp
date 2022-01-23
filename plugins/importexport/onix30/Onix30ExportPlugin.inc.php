@@ -13,7 +13,9 @@
  * @brief ONIX 3.0 XML import/export plugin
  */
 
+use APP\core\Application;
 use APP\template\TemplateManager;
+use PKP\core\PKPApplication;
 use PKP\plugins\ImportExportPlugin;
 
 class Onix30ExportPlugin extends ImportExportPlugin
@@ -26,7 +28,7 @@ class Onix30ExportPlugin extends ImportExportPlugin
     public function register($category, $path, $mainContextId = null)
     {
         $success = parent::register($category, $path, $mainContextId);
-        if (!Config::getVar('general', 'installed') || defined('RUNNING_UPGRADE')) {
+        if (!Application::isReady()) {
             return $success;
         }
         if ($success && $this->getEnabled()) {
