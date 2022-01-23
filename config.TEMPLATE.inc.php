@@ -57,11 +57,10 @@ scheduled_tasks = Off
 scheduled_tasks_report_error_only = On
 
 ; Site time zone
-; Please refer to lib/pkp/registry/timeZones.xml for a full list of supported
+; Please refer to https://www.php.net/timezones for a full list of supported
 ; time zones.
-; I.e.:
-; <entry key="Europe/Amsterdam" name="Amsterdam" />
-; time_zone="Amsterdam"
+; I.e.: "Europe/Amsterdam"
+; time_zone="Europe/Amsterdam"
 time_zone = "UTC"
 
 ; Short and long date formats

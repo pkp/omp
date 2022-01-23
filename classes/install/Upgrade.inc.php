@@ -16,11 +16,15 @@
 namespace APP\install;
 
 use APP\core\Application;
-
+use APP\core\Services;
 use APP\facades\Repo;
+use APP\file\PublicFileManager;
 use APP\i18n\AppLocale;
+use Exception;
 use Illuminate\Support\Facades\DB;
+use PKP\config\Config;
 use PKP\db\DAORegistry;
+use PKP\file\FileManager;
 use PKP\identity\Identity;
 use PKP\install\Installer;
 
@@ -136,9 +140,6 @@ class Upgrade extends Installer
             $suffix = $row->suffix;
             foreach ($supportedLocales as $siteLocale) {
                 $preferredPublicName = ($salutation != '' ? "${salutation} " : '') . "${firstName} " . ($middleName != '' ? "${middleName} " : '') . $lastName . ($suffix != '' ? ", ${suffix}" : '');
-                if (AppLocale::isLocaleWithFamilyFirst($siteLocale)) {
-                    $preferredPublicName = "${lastName}, " . ($salutation != '' ? "${salutation} " : '') . $firstName . ($middleName != '' ? " ${middleName}" : '');
-                }
                 DB::update(
                     "INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, 'preferredPublicName', ?, 'string')",
                     [(int) $userId, $siteLocale, $preferredPublicName]
@@ -172,9 +173,6 @@ class Upgrade extends Installer
             $supportedLocales = $pressessSupportedLocales[$pressId];
             foreach ($supportedLocales as $locale) {
                 $preferredPublicName = "${firstName} " . ($middleName != '' ? "${middleName} " : '') . $lastName . ($suffix != '' ? ", ${suffix}" : '');
-                if (AppLocale::isLocaleWithFamilyFirst($locale)) {
-                    $preferredPublicName = "${lastName}, " . $firstName . ($middleName != '' ? " ${middleName}" : '');
-                }
                 DB::update(
                     "INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, 'preferredPublicName', ?, 'string')",
                     [(int) $authorId, $locale, $preferredPublicName]
@@ -232,8 +230,8 @@ class Upgrade extends Installer
      */
     public function migrateSubmissionCoverImages()
     {
-        $fileManager = new \FileManager();
-        $publicFileManager = new \PublicFileManager();
+        $fileManager = new FileManager();
+        $publicFileManager = new PublicFileManager();
         $contexts = [];
 
         $result = Repo::submission()->dao->deprecatedDao->retrieve(

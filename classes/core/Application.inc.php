@@ -21,6 +21,7 @@ namespace APP\core;
 use APP\publicationFormat\PublicationFormatDAO;
 use PKP\core\PKPApplication;
 use PKP\db\DAORegistry;
+use PKP\facades\Locale;
 
 define('REQUIRES_XSL', true);
 
@@ -45,6 +46,9 @@ class Application extends \PKP\core\PKPApplication
         if (!PKP_STRICT_MODE && !class_exists('\Application')) {
             class_alias('\APP\core\Application', '\Application');
         }
+
+        // Add application locales
+        Locale::registerFolder(BASE_SYS_DIR . '/locale');
     }
 
     /**
