@@ -48,7 +48,7 @@ class Application extends \PKP\core\PKPApplication
         }
 
         // Add application locales
-        Locale::registerFolder(BASE_SYS_DIR . '/locale');
+        Locale::registerPath(BASE_SYS_DIR . '/locale');
     }
 
     /**
