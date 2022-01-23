@@ -1457,3 +1457,33 @@ msgstr "Cover Image"
 
 msgid "grid.catalogEntry.chapters"
 msgstr "Chapters"
+
+msgid "search.results.orderBy.article"
+msgstr "Article Title"
+
+msgid "search.results.orderBy.author"
+msgstr "Author"
+
+msgid "search.results.orderBy.date"
+msgstr "Publication Date"
+
+msgid "search.results.orderBy.monograph"
+msgstr "Monograph Title"
+
+msgid "search.results.orderBy.press"
+msgstr "Press Title"
+
+msgid "search.results.orderBy.popularityAll"
+msgstr "Popularity (All Time)"
+
+msgid "search.results.orderBy.popularityMonth"
+msgstr "Popularity (Last Month)"
+
+msgid "search.results.orderBy.relevance"
+msgstr "Relevance"
+
+msgid "search.results.orderDir.asc"
+msgstr "Ascending"
+
+msgid "search.results.orderDir.desc"
+msgstr "Descending"

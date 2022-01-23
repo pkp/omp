@@ -77,6 +77,15 @@ msgstr "Series editors"
 msgid "default.groups.abbrev.sectionEditor"
 msgstr "AcqE"
 
+msgid "default.groups.name.subscriptionManager"
+msgstr "Subscription Manager"
+
+msgid "default.groups.plural.subscriptionManager"
+msgstr "Subscription Managers"
+
+msgid "default.groups.abbrev.subscriptionManager"
+msgstr "SubM"
+
 msgid "default.groups.name.chapterAuthor"
 msgstr "Chapter Author"
 
