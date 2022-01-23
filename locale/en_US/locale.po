@@ -467,9 +467,6 @@ msgstr "Approve the proof for indexing and inclusion in the catalog"
 msgid "grid.action.pageProofApproved"
 msgstr "Page proofs file is ready for publication"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Add an Announcement"
-
 msgid "grid.action.newCatalogEntry"
 msgstr "New Catalog Entry"
 

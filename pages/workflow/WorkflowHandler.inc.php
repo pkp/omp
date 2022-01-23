@@ -21,7 +21,6 @@ use APP\file\PublicFileManager;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\core\PKPApplication;
-use PKP\facades\Locale;
 use PKP\security\Role;
 
 class WorkflowHandler extends PKPWorkflowHandler

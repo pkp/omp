@@ -21,7 +21,6 @@ use APP\submission\Collector;
 use APP\template\TemplateManager;
 use PKP\core\PKPApplication;
 use PKP\db\DAORegistry;
-use PKP\facades\Locale;
 use PKP\submission\PKPSubmission;
 
 class CatalogListPanel extends \PKP\components\listPanels\ListPanel
