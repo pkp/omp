@@ -18,10 +18,11 @@
 
 namespace APP\codelist;
 
-use APP\i18n\AppLocale;
 use PKP\cache\CacheManager;
 use PKP\core\Registry;
-
+use PKP\db\DAO;
+use PKP\db\XMLDAO;
+use PKP\facades\Locale;
 use PKP\plugins\HookRegistry;
 
 class CodelistItemDAO extends DAO
@@ -35,9 +36,7 @@ class CodelistItemDAO extends DAO
      */
     public function _getCache($locale = null)
     {
-        if ($locale == null) {
-            $locale = AppLocale::getLocale();
-        }
+        $locale ??= Locale::getLocale();
         $cacheName = $this->getCacheName();
 
         $cache = & Registry::get($cacheName, true, null);
@@ -69,10 +68,7 @@ class CodelistItemDAO extends DAO
         if ($allCodelistItems === null) {
             // Add a locale load to the debug notes.
             $notes = & Registry::get('system.debug.notes');
-            $locale = $cache->cacheId;
-            if ($locale == null) {
-                $locale = AppLocale::getLocale();
-            }
+            $locale = $cache->cacheId ?? Locale::getLocale();
             $filename = $this->getFilename($locale);
             $notes[] = ['debug.notes.codelistItemListLoad', ['filename' => $filename]];
 

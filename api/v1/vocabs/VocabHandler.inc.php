@@ -16,9 +16,9 @@
 
 use APP\codelist\ONIXCodelistItemDAO;
 use APP\core\Application;
-use APP\i18n\AppLocale;
 use PKP\core\APIResponse;
 use PKP\db\DAORegistry;
+use PKP\facades\Locale;
 use PKP\submission\SubmissionLanguageDAO;
 use Slim\Http\Request;
 
@@ -43,7 +43,7 @@ class VocabHandler extends PKPVocabHandler
         $requestParams = $slimRequest->getQueryParams();
 
         $vocab = $requestParams['vocab'] ?? '';
-        $locale = $requestParams['locale'] ?? AppLocale::getLocale();
+        $locale = $requestParams['locale'] ?? Locale::getLocale();
         $term = $requestParams['term'] ?? null;
         $codeList = (int) ($requestParams['codeList'] ?? static::LANGUAGE_CODE_LIST);
 

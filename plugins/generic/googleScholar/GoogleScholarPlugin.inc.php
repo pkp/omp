@@ -15,7 +15,10 @@
 
 use APP\facades\Repo;
 use APP\template\TemplateManager;
+use PKP\db\DAORegistry;
+use PKP\facades\Locale;
 use PKP\plugins\GenericPlugin;
+use PKP\plugins\HookRegistry;
 
 class GoogleScholarPlugin extends GenericPlugin
 {
@@ -106,7 +109,7 @@ class GoogleScholarPlugin extends GenericPlugin
         $i = 0;
         $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
         /** @var SubmissionSubjectDAO $submissionSubjectDao */
-        $supportedLocales = array_keys(AppLocale::getSupportedFormLocales());
+        $supportedLocales = array_keys(Locale::getSupportedFormLocales());
         if ($subjects = $submissionSubjectDao->getSubjects($publication->getId(), $supportedLocales)) {
             foreach ($subjects as $locale => $subjectLocale) {
                 foreach ($subjectLocale as $gsKeyword) {

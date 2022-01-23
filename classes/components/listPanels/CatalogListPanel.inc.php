@@ -17,8 +17,11 @@ namespace APP\components\listPanels;
 use APP\core\Application;
 
 use APP\facades\Repo;
-use APP\i18n\AppLocale;
 use APP\submission\Collector;
+use APP\template\TemplateManager;
+use PKP\core\PKPApplication;
+use PKP\db\DAORegistry;
+use PKP\facades\Locale;
 use PKP\submission\PKPSubmission;
 
 class CatalogListPanel extends \PKP\components\listPanels\ListPanel
@@ -93,7 +96,7 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
             }
 
             $series = [];
-            $seriesDao = \DAORegistry::getDAO('SeriesDAO');
+            $seriesDao = DAORegistry::getDAO('SeriesDAO');
             $seriesResult = $seriesDao->getByPressId($context->getId());
             while (!$seriesResult->eof()) {
                 $seriesObj = $seriesResult->next();
@@ -121,28 +124,28 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
         // Get the form to add a new entry
         $addEntryApiUrl = $request->getDispatcher()->url(
             $request,
-            \PKPApplication::ROUTE_API,
+            PKPApplication::ROUTE_API,
             $context->getPath(),
             '_submissions/addToCatalog'
         );
         $searchSubmissionsApiUrl = $request->getDispatcher()->url(
             $request,
-            \PKPApplication::ROUTE_API,
+            PKPApplication::ROUTE_API,
             $context->getPath(),
             'submissions'
         );
         $supportedFormLocales = $context->getSupportedFormLocales();
-        $localeNames = AppLocale::getAllLocales();
+        $localeNames = Locale::getAllLocales();
         $locales = array_map(function ($localeKey) use ($localeNames) {
             return ['key' => $localeKey, 'label' => $localeNames[$localeKey]];
         }, $supportedFormLocales);
         $addEntryForm = new \APP\components\forms\catalog\AddEntryForm($addEntryApiUrl, $searchSubmissionsApiUrl, $locales);
         $config['addEntryForm'] = $addEntryForm->getConfig();
 
-        $templateMgr = \TemplateManager::getManager($request);
+        $templateMgr = TemplateManager::getManager($request);
         $templateMgr->setConstants([
             'ASSOC_TYPE_PRESS' => ASSOC_TYPE_PRESS,
-            'ASSOC_TYPE_CATEGORY' => ASSOC_TYPE_CATEGORY,
+            'ASSOC_TYPE_CATEGORY' => Application::ASSOC_TYPE_CATEGORY,
             'ASSOC_TYPE_SERIES' => ASSOC_TYPE_SERIES,
         ]);
 

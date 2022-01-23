@@ -13,6 +13,9 @@
  * @brief Base class that converts a monograph to an ONIX 3.0 document
  */
 
+use PKP\db\DAORegistry;
+use PKP\facades\Locale;
+
 import('lib.pkp.plugins.importexport.native.filter.NativeExportFilter');
 
 class MonographONIX30XmlFilter extends NativeExportFilter
@@ -363,7 +366,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
         /* --- Add Language elements --- */
 
         $submissionLanguageDao = DAORegistry::getDAO('SubmissionLanguageDAO'); /** @var SubmissionLanguageDAO $submissionLanguageDao */
-        $allLanguages = $submissionLanguageDao->getLanguages($publication->getId(), array_keys(AppLocale::getSupportedFormLocales()));
+        $allLanguages = $submissionLanguageDao->getLanguages($publication->getId(), array_keys(Locale::getSupportedFormLocales()));
         $uniqueLanguages = [];
         foreach ($allLanguages as $locale => $languages) {
             $uniqueLanguages = array_merge($uniqueLanguages, $languages);
@@ -413,7 +416,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
         $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeVersion', '2')); // Version 2 of ^^
 
         $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
-        $allSubjects = $submissionSubjectDao->getSubjects($publication->getId(), array_keys(AppLocale::getSupportedFormLocales()));
+        $allSubjects = $submissionSubjectDao->getSubjects($publication->getId(), array_keys(Locale::getSupportedFormLocales()));
         $uniqueSubjects = [];
         foreach ($allSubjects as $locale => $subjects) {
             $uniqueSubjects = array_merge($uniqueSubjects, $subjects);

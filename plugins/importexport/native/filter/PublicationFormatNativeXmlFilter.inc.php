@@ -13,8 +13,10 @@
  * @brief Class that converts a PublicationFormat to a Native XML document.
  */
 
+use APP\core\Application;
 use APP\facades\Repo;
-use PKP\xsl\XSLTransformer;
+use PKP\db\DAORegistry;
+use PKP\xslt\XSLTransformer;
 
 import('lib.pkp.plugins.importexport.native.filter.RepresentationNativeXmlFilter');
 
@@ -74,13 +76,13 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
                     $xslTransformer = new XSLTransformer();
                     $xslFile = 'plugins/importexport/native/onixProduct2NativeXml.xsl';
                     $productXml = $publicationFormatDOMElement->ownerDocument->saveXML($publicationFormatDOMElement);
-                    $filteredXml = $xslTransformer->transform($productXml, XSL_TRANSFORMER_DOCTYPE_STRING, $xslFile, XSL_TRANSFORMER_DOCTYPE_FILE, XSL_TRANSFORMER_DOCTYPE_STRING);
+                    $filteredXml = $xslTransformer->transform($productXml, XSLTransformer::XSL_TRANSFORMER_DOCTYPE_STRING, $xslFile, XSLTransformer::XSL_TRANSFORMER_DOCTYPE_FILE, XSLTransformer::XSL_TRANSFORMER_DOCTYPE_STRING);
                     $representationFragment = $doc->createDocumentFragment();
                     $representationFragment->appendXML($filteredXml);
                     $representationNode->appendChild($representationFragment);
                 } else {
                     $deployment = $this->getDeployment();
-                    $deployment->addError(ASSOC_TYPE_PUBLICATION, $representation->getId(), __('plugins.importexport.publicationformat.exportFailed'));
+                    $deployment->addError(Application::ASSOC_TYPE_PUBLICATION, $representation->getId(), __('plugins.importexport.publicationformat.exportFailed'));
 
                     throw new Exception(__('plugins.importexport.publicationformat.exportFailed'));
                 }

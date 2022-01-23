@@ -21,10 +21,10 @@
 
 namespace APP\press;
 
-use APP\i18n\AppLocale;
 use PKP\context\Context;
-
 use PKP\core\DAORegistry;
+
+use PKP\facades\Locale;
 
 class Press extends Context
 {
@@ -38,7 +38,7 @@ class Press extends Context
     public function getLocalizedPageHeaderTitle()
     {
         $titleArray = $this->getData('name');
-        foreach ([AppLocale::getLocale(), AppLocale::getPrimaryLocale()] as $locale) {
+        foreach ([Locale::getLocale(), $this->getPrimaryLocale()] as $locale) {
             if (isset($titleArray[$locale])) {
                 return $titleArray[$locale];
             }
@@ -66,7 +66,7 @@ class Press extends Context
     public function getLocalizedPageHeaderLogo()
     {
         $logoArray = $this->getData('pageHeaderLogoImage');
-        foreach ([AppLocale::getLocale(), AppLocale::getPrimaryLocale()] as $locale) {
+        foreach ([Locale::getLocale(), $this->getPrimaryLocale()] as $locale) {
             if (isset($logoArray[$locale])) {
                 return $logoArray[$locale];
             }

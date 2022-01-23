@@ -17,9 +17,12 @@
  * into/from a PublicationFormat object.
  */
 
+use APP\core\Application;
 use APP\facades\Repo;
 use APP\submission\Submission;
-
+use PKP\db\DAORegistry;
+use PKP\facades\Locale;
+use PKP\i18n\LocaleConversion;
 use PKP\metadata\MetadataDataObjectAdapter;
 
 class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
@@ -94,7 +97,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         // Subject
         $submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO'); /** @var SubmissionKeywordDAO $submissionKeywordDao */
         $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO'); /** @var SubmissionSubjectDAO $submissionSubjectDao */
-        $supportedLocales = array_keys(AppLocale::getSupportedFormLocales());
+        $supportedLocales = array_keys(Locale::getSupportedFormLocales());
         $subjects = array_merge_recursive(
             (array) $submissionKeywordDao->getKeywords($publication->getId(), $supportedLocales),
             (array) $submissionSubjectDao->getSubjects($publication->getId(), $supportedLocales)
@@ -133,7 +136,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
 
         // Type
         $types = array_merge_recursive(
-            [AppLocale::getLocale() => __('rt.metadata.pkp.dctype')],
+            [Locale::getLocale() => __('rt.metadata.pkp.dctype')],
             (array) $monograph->getType(null)
         );
         $this->_addLocalizedElements($dc11Description, 'dc:type', $types);
@@ -194,7 +197,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         // Language
         $submissionLanguage = $monograph->getData('locale');
         if (!empty($submissionLanguage)) {
-            $dc11Description->addStatement('dc:language', AppLocale::getIso3FromLocale($submissionLanguage));
+            $dc11Description->addStatement('dc:language', LocaleConversion::getIso3FromLocale($submissionLanguage));
         }
 
         $collector = Repo::submissionFile()
