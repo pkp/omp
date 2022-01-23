@@ -14,6 +14,7 @@
  */
 
 use PKP\facades\Locale;
+use PKP\i18n\LocaleMetadata;
 use PKP\plugins\BlockPlugin;
 use PKP\session\SessionManager;
 
@@ -64,6 +65,7 @@ class LanguageToggleBlockPlugin extends BlockPlugin
      */
     public function getContents($templateMgr, $request = null)
     {
+        $locales = null;
         if (!SessionManager::isDisabled()) {
             $press = $request->getPress();
             if (isset($press)) {
@@ -73,12 +75,10 @@ class LanguageToggleBlockPlugin extends BlockPlugin
                 $locales = $site->getSupportedLocaleNames();
             }
         } else {
-            $locales = Locale::getAllLocales();
             if (isset($_SERVER['HTTP_REFERER'])) {
+                $locales = array_map(fn (LocaleMetadata $locale) => $locale->getDisplayName(), Locale::getLocales());
                 $templateMgr->assign('languageToggleNoUser', true);
                 $templateMgr->assign('referrerUrl', $_SERVER['HTTP_REFERER']);
-            } else {
-                unset($locales); // Disable; we're not sure what URL to use
             }
         }
 
