@@ -89,6 +89,8 @@ class RepresentativesGridHandler extends CategoryGridHandler
 
     /**
      * @copydoc CategoryGridHandler::initialize
+     *
+     * @param null|mixed $args
      */
     public function initialize($request, $args = null)
     {
@@ -106,15 +108,6 @@ class RepresentativesGridHandler extends CategoryGridHandler
                 fatalError('Representative referenced outside of authorized monograph context!');
             }
         }
-
-        // Load submission-specific translations
-        AppLocale::requireComponents(
-            LOCALE_COMPONENT_APP_SUBMISSION,
-            LOCALE_COMPONENT_PKP_SUBMISSION,
-            LOCALE_COMPONENT_PKP_USER,
-            LOCALE_COMPONENT_APP_DEFAULT,
-            LOCALE_COMPONENT_PKP_DEFAULT
-        );
 
         // Basic grid configuration
         $this->setTitle('grid.catalogEntry.representatives');
@@ -331,8 +324,6 @@ class RepresentativesGridHandler extends CategoryGridHandler
      */
     public function deleteRepresentative($args, $request)
     {
-        \AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_APP_MANAGER);
-
         // Identify the representative entry to be deleted
         $representativeId = $request->getUserVar('representativeId');
 

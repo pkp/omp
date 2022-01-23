@@ -148,12 +148,6 @@ class PublicationFormatMetadataForm extends Form
      */
     public function initData()
     {
-        AppLocale::requireComponents(
-            LOCALE_COMPONENT_APP_COMMON,
-            LOCALE_COMPONENT_PKP_SUBMISSION,
-            LOCALE_COMPONENT_APP_SUBMISSION
-        );
-
         $submission = $this->getSubmission();
         $publicationFormat = $this->getPublicationFormat();
 

@@ -182,7 +182,6 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                     }
                     import('lib.pkp.controllers.api.file.linkAction.AddFileLinkAction');
                     import('lib.pkp.controllers.grid.files.fileList.linkAction.SelectFilesLinkAction');
-                    AppLocale::requireComponents(LOCALE_COMPONENT_PKP_EDITOR);
                     return [
                         new AddFileLinkAction(
                             $request,
@@ -265,7 +264,6 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                     $fileNameColumn = new FileNameGridColumn(true, WORKFLOW_STAGE_ID_PRODUCTION, true);
                     return $fileNameColumn->getCellActions($request, $row, $position);
                 case 'isComplete':
-                    AppLocale::requireComponents(LOCALE_COMPONENT_PKP_EDITOR);
                     $title = __($submissionFile->getViewable() ? 'editor.submission.proofreading.revokeProofApproval' : 'editor.submission.proofreading.approveProof');
                     return [new LinkAction(
                         $submissionFile->getViewable() ? 'approved' : 'not_approved',

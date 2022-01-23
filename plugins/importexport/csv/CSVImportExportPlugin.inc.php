@@ -15,7 +15,6 @@
 
 use APP\core\Application;
 use APP\facades\Repo;
-use APP\i18n\AppLocale;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
@@ -94,8 +93,6 @@ class CSVImportExportPlugin extends ImportExportPlugin
      */
     public function executeCLI($scriptName, &$args)
     {
-        AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
-
         $filename = array_shift($args);
         $username = array_shift($args);
 

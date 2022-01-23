@@ -45,21 +45,13 @@ class SeriesGridHandler extends SetupGridHandler
     //
     /**
      * @copydoc SetupGridHandler::initialize
+     *
+     * @param null|mixed $args
      */
     public function initialize($request, $args = null)
     {
         parent::initialize($request, $args);
         $press = $request->getPress();
-
-        // FIXME are these all required?
-        AppLocale::requireComponents(
-            LOCALE_COMPONENT_APP_MANAGER,
-            LOCALE_COMPONENT_PKP_MANAGER,
-            LOCALE_COMPONENT_PKP_COMMON,
-            LOCALE_COMPONENT_PKP_USER,
-            LOCALE_COMPONENT_APP_COMMON,
-            LOCALE_COMPONENT_PKP_SUBMISSION
-        );
 
         // Set the grid title.
         $this->setTitle('catalog.manage.series');
@@ -295,7 +287,6 @@ class SeriesGridHandler extends SetupGridHandler
             $seriesDao->deleteObject($series);
             return DAO::getDataChangedEvent($series->getId());
         } else {
-            AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER); // manager.setup.errorDeletingItem
             return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
         }
     }

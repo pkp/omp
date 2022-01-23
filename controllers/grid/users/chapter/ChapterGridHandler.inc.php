@@ -129,8 +129,6 @@ class ChapterGridHandler extends CategoryGridHandler
 
         $this->setTitle('submission.chapters');
 
-        AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_DEFAULT, LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
-
         if ($this->getPublication()->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
             $this->setReadOnly(true);
         }

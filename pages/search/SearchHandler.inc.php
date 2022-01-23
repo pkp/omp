@@ -43,13 +43,12 @@ class SearchHandler extends Handler
         $templateMgr = TemplateManager::getManager($request);
         $press = $request->getPress();
         $this->setupTemplate($request);
-        AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
 
         $query = $request->getUserVar('query');
         $templateMgr->assign('searchQuery', $query);
 
-	// Get the range info.
-	$rangeInfo = $this->getRangeInfo($request, 'search');
+        // Get the range info.
+        $rangeInfo = $this->getRangeInfo($request, 'search');
 
         // Fetch the monographs to display
         $monographSearch = new MonographSearch();
