@@ -111,9 +111,6 @@ class ManageSpotlightsGridHandler extends GridHandler
     {
         parent::initialize($request, $args);
 
-        // Load locale components.
-        AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_APP_MANAGER);
-
         // Basic grid configuration
         $this->setTitle('spotlight.spotlights');
 

@@ -85,7 +85,6 @@ class ManageCatalogHandler extends Handler
      */
     public function index($args, $request)
     {
-        AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
         $context = $request->getContext();
 
         // Catalog list

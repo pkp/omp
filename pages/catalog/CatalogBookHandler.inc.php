@@ -73,7 +73,6 @@ class CatalogBookHandler extends Handler
         $templateMgr = TemplateManager::getManager($request);
         $submission = $this->getAuthorizedContextObject(PKPApplication::ASSOC_TYPE_SUBMISSION);
         $this->setupTemplate($request, $submission);
-        AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_APP_MANAGER); // submission.synopsis; submission.copyrightStatement
 
         // Get the requested publication or default to the current publication
         $submissionId = array_shift($args);
@@ -292,7 +291,6 @@ class CatalogBookHandler extends Handler
         $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
         $this->setupTemplate($request, $submission);
         $press = $request->getPress();
-        AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
         $monographId = array_shift($args); // Validated thru auth
         $subPath = array_shift($args);

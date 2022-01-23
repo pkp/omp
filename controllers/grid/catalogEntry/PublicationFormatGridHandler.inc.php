@@ -140,21 +140,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
         $this->setSubmission($this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION));
         $this->setPublication($this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION));
 
-        // Load submission-specific translations
-        AppLocale::requireComponents(
-            LOCALE_COMPONENT_PKP_SUBMISSION,
-            LOCALE_COMPONENT_PKP_EDITOR,
-            LOCALE_COMPONENT_PKP_USER,
-            LOCALE_COMPONENT_PKP_DEFAULT
-        );
         $this->setTitle('monograph.publicationFormats');
-
-        // Load submission-specific translations
-        AppLocale::requireComponents(
-            LOCALE_COMPONENT_APP_SUBMISSION,
-            LOCALE_COMPONENT_APP_DEFAULT,
-            LOCALE_COMPONENT_APP_EDITOR
-        );
 
         if ($this->getPublication()->getData('status') !== PKPSubmission::STATUS_PUBLISHED) {
             // Grid actions

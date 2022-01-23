@@ -17,12 +17,4 @@ import('lib.pkp.pages.user.PKPUserHandler');
 
 class UserHandler extends PKPUserHandler
 {
-    /**
-     * @see PKPHandler::initialize()
-     */
-    public function initialize($request)
-    {
-        AppLocale::requireComponents(LOCALE_COMPONENT_PKP_GRID);
-        parent::initialize($request);
-    }
 }

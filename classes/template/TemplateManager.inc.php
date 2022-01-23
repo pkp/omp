@@ -19,7 +19,6 @@ namespace APP\template;
 
 use APP\core\Application;
 use APP\file\PublicFileManager;
-use APP\i18n\AppLocale;
 
 use PKP\db\DAORegistry;
 use PKP\security\Role;
@@ -35,8 +34,6 @@ class TemplateManager extends PKPTemplateManager
     public function initialize($request)
     {
         parent::initialize($request);
-        AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
-
         if (!defined('SESSION_DISABLE_INIT')) {
             /**
              * Kludge to make sure no code that tries to connect to

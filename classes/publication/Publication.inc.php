@@ -21,7 +21,6 @@ use APP\core\Application;
 
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
-use APP\i18n\AppLocale;
 use PKP\publication\PKPPublication;
 
 class Publication extends PKPPublication
@@ -33,7 +32,6 @@ class Publication extends PKPPublication
      */
     public function getEditorString()
     {
-        AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
         $authors = $this->getData('authors');
         $editorNames = [];
         foreach ($authors as $author) {

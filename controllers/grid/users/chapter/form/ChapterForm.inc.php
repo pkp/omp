@@ -126,8 +126,6 @@ class ChapterForm extends Form
      */
     public function initData()
     {
-        AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_SUBMISSION);
-
         $this->setData('submissionId', $this->getMonograph()->getId());
         $this->setData('publicationId', $this->getPublication()->getId());
         $this->setData('enableChapterPublicationDates', (bool) $this->getMonograph()->getEnableChapterPublicationDates());

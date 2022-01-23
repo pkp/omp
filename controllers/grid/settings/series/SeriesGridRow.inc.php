@@ -32,8 +32,6 @@ class SeriesGridRow extends GridRow
     {
         parent::initialize($request, $template);
 
-        $this->setupTemplate($request);
-
         // Is this a new row or an existing row?
         $seriesId = $this->getId();
         if (!empty($seriesId) && is_numeric($seriesId)) {
@@ -68,19 +66,5 @@ class SeriesGridRow extends GridRow
                 )
             );
         }
-    }
-
-    /**
-     * @see PKPHandler::setupTemplate()
-     */
-    public function setupTemplate($request)
-    {
-        // Load manager translations. FIXME are these needed?
-        AppLocale::requireComponents(
-            LOCALE_COMPONENT_APP_MANAGER,
-            LOCALE_COMPONENT_PKP_COMMON,
-            LOCALE_COMPONENT_PKP_USER,
-            LOCALE_COMPONENT_APP_COMMON
-        );
     }
 }

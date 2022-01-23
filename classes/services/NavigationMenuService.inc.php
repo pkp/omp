@@ -16,7 +16,6 @@
 namespace APP\services;
 
 use APP\core\Application;
-use APP\i18n\AppLocale;
 use APP\template\TemplateManager;
 
 use PKP\core\PKPApplication;
@@ -53,8 +52,6 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
     public function getMenuItemTypesCallback($hookName, $args)
     {
         $types = & $args[0];
-
-        AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_USER);
 
         $ompTypes = [
             self::NMI_TYPE_CATALOG => [
@@ -113,8 +110,6 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
     {
         $templates = & $args[0];
 
-        AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_USER);
-
         $ompTemplates = [
             self::NMI_TYPE_CATEGORY => [
                 'template' => 'controllers/grid/navigationMenus/categoriesNMIType.tpl',
@@ -167,7 +162,9 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
                     $categoryId = $navigationMenuItem->getPath();
 
                     $relatedObject = Repo::category()->get($categoryId);
-                    if ($relatedObject && $relatedObject->getContextId() != $contextId) $relatedObject = null;
+                    if ($relatedObject && $relatedObject->getContextId() != $contextId) {
+                        $relatedObject = null;
+                    }
 
                     break;
             }

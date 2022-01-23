@@ -167,15 +167,6 @@ class PublicationDateGridHandler extends GridHandler
             fatalError('The publication format is not assigned to authorized submission!');
         }
 
-        // Load submission-specific translations
-        AppLocale::requireComponents(
-            LOCALE_COMPONENT_APP_SUBMISSION,
-            LOCALE_COMPONENT_PKP_SUBMISSION,
-            LOCALE_COMPONENT_PKP_USER,
-            LOCALE_COMPONENT_APP_DEFAULT,
-            LOCALE_COMPONENT_PKP_DEFAULT
-        );
-
         // Basic grid configuration
         $this->setTitle('grid.catalogEntry.publicationDates');
 

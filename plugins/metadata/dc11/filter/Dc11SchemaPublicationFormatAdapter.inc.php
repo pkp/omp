@@ -62,8 +62,6 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
     {
         assert(is_a($publicationFormat, 'PublicationFormat'));
 
-        AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
-
         // Retrieve data that belongs to the publication format.
         // FIXME: Retrieve this data from the respective entity DAOs rather than
         // from the OAIDAO once we've migrated all OAI providers to the
