@@ -18,7 +18,8 @@
 
 namespace APP\codelist;
 
-use APP\i18n\AppLocale;
+use PKP\facades\Locale;
+use PKP\i18n\interfaces\LocaleInterface;
 
 class SubjectDAO extends CodelistItemDAO
 {
@@ -31,8 +32,8 @@ class SubjectDAO extends CodelistItemDAO
      */
     public function getFilename($locale)
     {
-        if (!AppLocale::isLocaleValid($locale)) {
-            $locale = AppLocale::MASTER_LOCALE;
+        if (!Locale::isLocaleValid($locale)) {
+            $locale = LocaleInterface::DEFAULT_LOCALE;
         }
         return "lib/pkp/locale/${locale}/bic21subjects.xml";
     }

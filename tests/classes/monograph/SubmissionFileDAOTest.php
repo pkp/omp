@@ -16,7 +16,7 @@
  */
 
 import('classes.core.Request'); // Cause mocked Request class to load
-import('classes.i18n.AppLocale'); // Cause mocked AppLocale class to load
+import('classes.i18n.Locale'); // Cause mocked Locale class to load
 
 import('lib.pkp.tests.DatabaseTestCase');
 

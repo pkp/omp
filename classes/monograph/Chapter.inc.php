@@ -18,11 +18,11 @@
 namespace APP\monograph;
 
 use APP\facades\Repo;
-use APP\i18n\AppLocale;
 
 use Illuminate\Support\LazyCollection;
 use PKP\core\PKPString;
 use PKP\db\DAORegistry;
+use PKP\facades\Locale;
 
 class Chapter extends \PKP\core\DataObject
 {
@@ -52,8 +52,8 @@ class Chapter extends \PKP\core\DataObject
             return $this->getData($key, $preferredLocale);
         }
         // 2. User's current locale
-        if (!empty($this->getData($key, AppLocale::getLocale()))) {
-            return $this->getData($key, AppLocale::getLocale());
+        if (!empty($this->getData($key, Locale::getLocale()))) {
+            return $this->getData($key, Locale::getLocale());
         }
         // 3. The first locale we can find data for
         $data = $this->getData($key, null);
@@ -340,7 +340,6 @@ class Chapter extends \PKP\core\DataObject
     /**
      * Set source chapter id of chapter.
      *
-     * @param null|int $sourceChapterId
      */
     public function setSourceChapterId(?int $sourceChapterId): void
     {
@@ -360,7 +359,6 @@ class Chapter extends \PKP\core\DataObject
     /**
      * Enable or disable a landing page.
      *
-     * @param null|int $enable
      */
     public function setPageEnabled(?int $enable): void
     {

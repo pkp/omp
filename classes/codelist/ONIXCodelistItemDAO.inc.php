@@ -18,13 +18,14 @@
 
 namespace APP\codelist;
 
-use APP\i18n\AppLocale;
 use PKP\cache\CacheManager;
 use PKP\core\PKPString;
 use PKP\core\Registry;
 use PKP\db\XMLDAO;
+use PKP\facades\Locale;
 use PKP\file\FileManager;
 use PKP\file\TemporaryFileManager;
+use PKP\i18n\interfaces\LocaleInterface;
 use PKP\plugins\HookRegistry;
 
 use PKP\xslt\XSLTransformer;
@@ -36,10 +37,7 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
 
     public function &_getCache($locale = null)
     {
-        if ($locale == null) {
-            $locale = AppLocale::getLocale();
-        }
-
+        $locale ??= Locale::getLocale();
         $cacheName = 'Onix' . $this->getListName() . 'Cache';
 
         $cache = & Registry::get($cacheName, true, null);
@@ -65,10 +63,7 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
         if ($allCodelistItems === null) {
             // Add a locale load to the debug notes.
             $notes = & Registry::get('system.debug.notes');
-            $locale = $cache->cacheId;
-            if ($locale == null) {
-                $locale = AppLocale::getLocale();
-            }
+            $locale = $cache->cacheId ?? Locale::getLocale();
             $filename = $this->getFilename($locale);
             $notes[] = ['debug.notes.codelistItemListLoad', ['filename' => $filename]];
 
@@ -92,7 +87,7 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
             $xslTransformer->setRegisterPHPFunctions(true);
 
             $xslFile = 'lib/pkp/xml/onixFilter.xsl';
-            $filteredXml = $xslTransformer->transform($filename, XSL_TRANSFORMER_DOCTYPE_FILE, $xslFile, XSL_TRANSFORMER_DOCTYPE_FILE, XSL_TRANSFORMER_DOCTYPE_STRING);
+            $filteredXml = $xslTransformer->transform($filename, XSLTransformer::XSL_TRANSFORMER_DOCTYPE_FILE, $xslFile, XSLTransformer::XSL_TRANSFORMER_DOCTYPE_FILE, XSLTransformer::XSL_TRANSFORMER_DOCTYPE_STRING);
             if (!$filteredXml) {
                 assert(false);
             }
@@ -135,9 +130,9 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
      */
     public function getFilename($locale)
     {
-        $masterLocale = MASTER_LOCALE;
+        $masterLocale = LocaleInterface::DEFAULT_LOCALE;
         $localizedFile = "locale/${locale}/ONIX_BookProduct_CodeLists.xsd";
-        if (AppLocale::isLocaleValid($locale) && file_exists($localizedFile)) {
+        if (Locale::isLocaleValid($locale) && file_exists($localizedFile)) {
             return $localizedFile;
         }
 

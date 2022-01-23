@@ -16,9 +16,11 @@
 
 import('lib.pkp.api.v1._submissions.PKPBackendSubmissionsHandler');
 
+use APP\core\Application;
 use APP\facades\Repo;
 use APP\submission\Collector;
 use APP\submission\Submission;
+use PKP\db\DAORegistry;
 use PKP\plugins\HookRegistry;
 
 use PKP\security\Role;
@@ -165,14 +167,14 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler
     {
         $params = $slimRequest->getParsedBody();
 
-        $assocType = isset($params['assocType']) && in_array($params['assocType'], [ASSOC_TYPE_PRESS, ASSOC_TYPE_CATEGORY, ASSOC_TYPE_SERIES]) ? (int) $params['assocType'] : null;
+        $assocType = isset($params['assocType']) && in_array($params['assocType'], [ASSOC_TYPE_PRESS, Application::ASSOC_TYPE_CATEGORY, ASSOC_TYPE_SERIES]) ? (int) $params['assocType'] : null;
         $assocId = isset($params['assocId']) ? (int) $params['assocId'] : null;
 
         if (empty($assocType) || empty($assocId)) {
             return $response->withStatus(400)->withJsonError('api.submissions.400.missingRequired');
         }
 
-        $featureDao = \DAORegistry::getDAO('FeatureDAO');
+        $featureDao = DAORegistry::getDAO('FeatureDAO');
         $featureDao->deleteByAssoc($assocType, $assocId);
         if (!empty($params['featured'])) {
             foreach ($params['featured'] as $feature) {

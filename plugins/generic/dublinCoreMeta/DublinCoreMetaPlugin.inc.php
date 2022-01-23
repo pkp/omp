@@ -17,6 +17,8 @@ use APP\facades\Repo;
 
 use APP\submission\Submission;
 use APP\template\TemplateManager;
+use PKP\db\DAORegistry;
+use PKP\facades\Locale;
 use PKP\plugins\GenericPlugin;
 
 class DublinCoreMetaPlugin extends GenericPlugin
@@ -118,7 +120,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
 
         $i = 0;
         $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO'); /** @var SubmissionSubjectDAO $submissionSubjectDao */
-        $supportedLocales = array_keys(AppLocale::getSupportedFormLocales());
+        $supportedLocales = array_keys(Locale::getSupportedFormLocales());
         if ($subjects = $submissionSubjectDao->getSubjects($publication->getId(), $supportedLocales)) {
             foreach ($subjects as $locale => $subjectLocale) {
                 foreach ($subjectLocale as $subject) {
@@ -242,7 +244,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
 
         $i = 0;
         $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO'); /** @var SubmissionSubjectDAO $submissionSubjectDao */
-        $supportedLocales = array_keys(AppLocale::getSupportedFormLocales());
+        $supportedLocales = array_keys(Locale::getSupportedFormLocales());
         if ($subjects = $submissionSubjectDao->getSubjects($monograph->getId(), $supportedLocales)) {
             foreach ($subjects as $locale => $subjectLocale) {
                 foreach ($subjectLocale as $subject) {

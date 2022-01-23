@@ -13,6 +13,7 @@
  * @brief Class for language selector block plugin
  */
 
+use PKP\facades\Locale;
 use PKP\plugins\BlockPlugin;
 
 class LanguageToggleBlockPlugin extends BlockPlugin
@@ -71,7 +72,7 @@ class LanguageToggleBlockPlugin extends BlockPlugin
                 $locales = $site->getSupportedLocaleNames();
             }
         } else {
-            $locales = & AppLocale::getAllLocales();
+            $locales = Locale::getAllLocales();
             if (isset($_SERVER['HTTP_REFERER'])) {
                 $templateMgr->assign('languageToggleNoUser', true);
                 $templateMgr->assign('referrerUrl', $_SERVER['HTTP_REFERER']);

@@ -19,7 +19,6 @@ use APP\core\Application;
 use APP\core\Services;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
-use APP\i18n\AppLocale;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use PKP\config\Config;

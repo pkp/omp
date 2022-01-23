@@ -15,10 +15,13 @@
 
 import('lib.pkp.pages.workflow.PKPWorkflowHandler');
 
+use APP\core\Services;
 use APP\file\PublicFileManager;
 
 use APP\submission\Submission;
 use APP\template\TemplateManager;
+use PKP\core\PKPApplication;
+use PKP\facades\Locale;
 use PKP\security\Role;
 
 class WorkflowHandler extends PKPWorkflowHandler
@@ -78,7 +81,7 @@ class WorkflowHandler extends PKPWorkflowHandler
         }
 
         $supportedFormLocales = $submissionContext->getSupportedFormLocales();
-        $localeNames = AppLocale::getAllLocales();
+        $localeNames = Locale::getAllLocales();
         $locales = array_map(function ($localeKey) use ($localeNames) {
             return ['key' => $localeKey, 'label' => $localeNames[$localeKey]];
         }, $supportedFormLocales);
