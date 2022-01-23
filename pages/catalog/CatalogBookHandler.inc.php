@@ -14,6 +14,8 @@
  *   catalog.
  */
 
+use APP\core\Application;
+use APP\core\Services;
 use APP\facades\Repo;
 use APP\handler\Handler;
 
@@ -21,9 +23,16 @@ use APP\monograph\Chapter;
 use APP\monograph\ChapterDAO;
 use APP\payment\omp\OMPPaymentManager;
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
+use APP\submission\Submission;
 use APP\template\TemplateManager;
+use PKP\core\PKPApplication;
+use PKP\core\PKPRequest;
+use PKP\db\DAORegistry;
+use PKP\facades\Locale;
+use PKP\plugins\HookRegistry;
+use PKP\plugins\PluginRegistry;
+use PKP\security\Validation;
 use PKP\submission\PKPSubmission;
-use Sokil\IsoCodes\IsoCodesFactory;
 
 class CatalogBookHandler extends Handler
 {
@@ -243,8 +252,7 @@ class CatalogBookHandler extends Handler
 
         // Provide the currency to the template, if configured.
         if ($currencyCode = $request->getContext()->getData('currency')) {
-            $isoCodes = app(IsoCodesFactory::class);
-            $templateMgr->assign('currency', $isoCodes->getCurrencies()->getByLetterCode($currencyCode));
+            $templateMgr->assign('currency', Locale::getCurrencies()->getByLetterCode($currencyCode));
         }
 
         // Add data for backwards compatibility
@@ -288,7 +296,7 @@ class CatalogBookHandler extends Handler
     public function download($args, $request, $view = false)
     {
         $dispatcher = $request->getDispatcher();
-        $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+        $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
         $this->setupTemplate($request, $submission);
         $press = $request->getPress();
 
@@ -341,7 +349,7 @@ class CatalogBookHandler extends Handler
                     $dispatcher->handle404();
                 }
                 break;
-            case ASSOC_TYPE_SUBMISSION_FILE: // Dependent file
+            case Application::ASSOC_TYPE_SUBMISSION_FILE: // Dependent file
                 $genreDao = DAORegistry::getDAO('GenreDAO'); /** @var GenreDAO $genreDao */
                 $genre = $genreDao->getById($submissionFile->getGenreId());
                 if (!$genre->getDependent()) {
@@ -498,7 +506,7 @@ class CatalogBookHandler extends Handler
      * Get the earliest version of a chapter
      *
      */
-    protected function getSourceChapter(Submission $submission): ?chapter
+    protected function getSourceChapter(Submission $submission): ?Chapter
     {
         $chapterDao = DAORegistry::getDAO('ChapterDAO');
         $chapters = $chapterDao->getBySourceChapterId($this->chapter->getSourceChapterId());
