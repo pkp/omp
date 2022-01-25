@@ -420,9 +420,6 @@ msgstr "Aprobar la prueba para la indexación e inclusión en el catálogo"
 msgid "grid.action.pageProofApproved"
 msgstr "La página prueba que el fichero está listo para su publicación"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Añadir aviso"
-
 msgid "grid.action.newCatalogEntry"
 msgstr "Nueva entrada de catálogo"
 

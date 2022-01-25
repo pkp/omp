@@ -452,9 +452,6 @@ msgstr "Odobri vzorec za indeksiranje in vključitev v katalog"
 msgid "grid.action.pageProofApproved"
 msgstr "Datoteka vzorca je pripravljena na objavo"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Dodaj obvestilo"
-
 msgid "grid.action.newCatalogEntry"
 msgstr "Nov vnos v katalog"
 
