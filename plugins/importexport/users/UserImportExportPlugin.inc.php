@@ -18,14 +18,6 @@ import('lib.pkp.plugins.importexport.users.PKPUserImportExportPlugin');
 class UserImportExportPlugin extends PKPUserImportExportPlugin
 {
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * @copydoc Plugin::register()
      *
      * @param null|mixed $mainContextId

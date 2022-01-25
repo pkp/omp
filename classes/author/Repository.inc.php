@@ -19,11 +19,6 @@ use APP\monograph\Chapter;
 
 class Repository extends \PKP\author\Repository
 {
-    public function __construct(DAO $dao, Request $request, PKPSchemaService $schemaService)
-    {
-        parent::__construct($dao, $request, $schemaService);
-    }
-
     /** @copydoc DAO::getCollector() */
     public function getCollector(): Collector
     {

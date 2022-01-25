@@ -19,14 +19,6 @@ import('lib.pkp.controllers.tab.workflow.PKPWorkflowTabHandler');
 class WorkflowTabHandler extends PKPWorkflowTabHandler
 {
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Get all production notification options to be used in the production stage tab.
      *
      * @param int $submissionId

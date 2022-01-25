@@ -20,14 +20,6 @@ use PKP\linkAction\request\RemoteActionConfirmationModal;
 
 class SeriesGridRow extends GridRow
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     //
     // Overridden template methods
     //
