@@ -598,9 +598,6 @@ msgstr "Ver este item no catálogo"
 msgid "grid.action.newCatalogEntry"
 msgstr "Nova Entrada no Catálogo"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Inserir uma notícia"
-
 msgid "grid.action.pageProofApproved"
 msgstr "A página de ficheiro de provas está pronto para publicação"
 

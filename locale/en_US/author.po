@@ -13,3 +13,6 @@ msgstr ""
 
 msgid "author.submit.notAccepting"
 msgstr "This press is not accepting submissions at this time."
+
+msgid "author.submit"
+msgstr "New Submission"

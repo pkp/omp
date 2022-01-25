@@ -741,9 +741,6 @@ msgstr "Prova dizgilerin dizinleme ve fihriste dahil edilme işlemini onaylayın
 msgid "grid.action.pageProofApproved"
 msgstr "Sayfa prova dosyası yayına hazır"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Duyuru Ekle"
-
 msgid "grid.action.newCatalogEntry"
 msgstr "Yeni Fihrist Girişi"
 
