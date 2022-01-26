@@ -1,7 +1,8 @@
+# Carla Marques <carla.marques@usdb.uminho.pt>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-06-16 12:39+0000\n"
-"Last-Translator: Carla Marques <carla.marques@sdum.uminho.pt>\n"
+"PO-Revision-Date: 2022-01-27 14:25+0000\n"
+"Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/default/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -172,3 +173,12 @@ msgstr "Bibliografia"
 
 msgid "default.genres.appendix"
 msgstr "Apêndice"
+
+msgid "default.groups.abbrev.subscriptionManager"
+msgstr "GSub"
+
+msgid "default.groups.plural.subscriptionManager"
+msgstr "Gestores de Subscrições"
+
+msgid "default.groups.name.subscriptionManager"
+msgstr "Gestor de Subscrições"
