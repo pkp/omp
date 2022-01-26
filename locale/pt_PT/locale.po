@@ -1,7 +1,7 @@
-# Carla Marques <carla.marques@usdb.uminho.pt>, 2021.
+# Carla Marques <carla.marques@usdb.uminho.pt>, 2021, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-11-18 12:22+0000\n"
+"PO-Revision-Date: 2022-01-27 14:25+0000\n"
 "Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/locale/pt_PT/>\n"
@@ -1627,3 +1627,36 @@ msgstr "ISBN"
 
 msgid "grid.catalogEntry.chapters"
 msgstr "Capítulos"
+
+msgid "search.results.orderDir.desc"
+msgstr "Descendente"
+
+msgid "search.results.orderDir.asc"
+msgstr "Ascendente"
+
+msgid "search.results.orderBy.relevance"
+msgstr "Relevância"
+
+msgid "search.results.orderBy.popularityMonth"
+msgstr "Popularidade (Último Mês)"
+
+msgid "search.results.orderBy.popularityAll"
+msgstr "Popularidade (Sempre)"
+
+msgid "search.results.orderBy.press"
+msgstr "Título da Editora"
+
+msgid "search.results.orderBy.monograph"
+msgstr "Título da Monografia"
+
+msgid "search.results.orderBy.date"
+msgstr "Data de Publicação"
+
+msgid "search.results.orderBy.author"
+msgstr "Autor"
+
+msgid "search.results.orderBy.article"
+msgstr "Título do Artigo"
+
+msgid "grid.action.addAnnouncement"
+msgstr "Adicionar Notícia"
