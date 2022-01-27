@@ -10,7 +10,6 @@
  *}
 {capture assign="languagesField"}
 	{fbvFormSection description="submission.submit.metadataForm.tip" label="common.languages" required=$languagesRequired}
-		{capture assign=languagesSourceUrl}{url router=PKPApplication::ROUTE_PAGE page="submission" op="fetchChoices" codeList="74"}{/capture}
 		{fbvElement type="keyword" id="languages" subLabelTranslate=true multilingual=true current=$languages sourceUrl=$languagesSourceUrl disabled=$readOnly}
 	{/fbvFormSection}
 {/capture}

@@ -20,6 +20,7 @@ namespace APP\codelist;
 
 use APP\i18n\AppLocale;
 use PKP\cache\CacheManager;
+use PKP\core\PKPString;
 use PKP\core\Registry;
 use PKP\db\XMLDAO;
 use PKP\file\FileManager;
@@ -209,10 +210,13 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
         $cache = & $this->_getCache($locale);
         $returner = [];
         $cacheContents = & $cache->getContents();
+        if ($codesFilter = trim($codesFilter)) {
+            $codesFilter = '/' . implode('|', array_map(fn ($term) => preg_quote($term), PKPString::regexp_split('/\s+/', $codesFilter))) . '/i';
+        }
         if (is_array($cacheContents)) {
             foreach ($cache->getContents() as $code => $entry) {
                 if ($code != '') {
-                    if (!in_array($code, $codesToExclude) && (empty($codesFilter) || preg_match('/^' . preg_quote($codesFilter) . '/i', $entry[0]))) {
+                    if (!in_array($code, $codesToExclude) && (!$codesFilter || preg_match($codesFilter, $entry[0]))) {
                         $returner[$code] = & $entry[0];
                     }
                 }
