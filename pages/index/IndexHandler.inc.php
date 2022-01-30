@@ -28,8 +28,8 @@ class IndexHandler extends PKPIndexHandler
      * If no press is selected, display list of presses.
      * Otherwise, display the index page for the selected press.
      *
-     * @param $args array
-     * @param $request Request
+     * @param array $args
+     * @param Request $request
      */
     public function index($args, $request)
     {
@@ -67,13 +67,13 @@ class IndexHandler extends PKPIndexHandler
     /**
      * Display the site index page.
      *
-     * @param $site Site
-     * @param $request Request
+     * @param Site $site
+     * @param Request $request
      */
     public function _displaySiteIndexPage($site, $request)
     {
         $templateMgr = TemplateManager::getManager($request);
-        $pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+        $pressDao = DAORegistry::getDAO('PressDAO'); /** @var PressDAO $pressDao */
 
         if ($site->getRedirect() && ($press = $pressDao->getById($site->getRedirect())) != null) {
             $request->redirect($press->getPath());
@@ -93,8 +93,8 @@ class IndexHandler extends PKPIndexHandler
     /**
      * Display a given press index page.
      *
-     * @param $press Press
-     * @param $request Request
+     * @param Press $press
+     * @param Request $request
      */
     public function _displayPressIndexPage($press, $request)
     {
@@ -102,7 +102,7 @@ class IndexHandler extends PKPIndexHandler
 
         // Display New Releases
         if ($press->getSetting('displayNewReleases')) {
-            $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /* @var $newReleaseDao NewReleaseDAO */
+            $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /** @var NewReleaseDAO $newReleaseDao */
             $newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
             $templateMgr->assign('newReleases', $newReleases);
         }
@@ -119,7 +119,7 @@ class IndexHandler extends PKPIndexHandler
 
         // Display Featured Books
         if ($press->getSetting('displayFeaturedBooks')) {
-            $featureDao = DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
+            $featureDao = DAORegistry::getDAO('FeatureDAO'); /** @var FeatureDAO $featureDao */
             $featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
             $featuredMonographs = [];
             if (!empty($featuredMonographIds)) {
@@ -133,7 +133,7 @@ class IndexHandler extends PKPIndexHandler
         // Display In Spotlight
         if ($press->getSetting('displayInSpotlight')) {
             // Include random spotlight items for the press home page.
-            $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
+            $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /** @var SpotlightDAO $spotlightDao */
             $spotlights = $spotlightDao->getRandomByPressId($press->getId(), Spotlight::MAX_SPOTLIGHTS_VISIBLE);
             $templateMgr->assign('spotlights', $spotlights);
         }

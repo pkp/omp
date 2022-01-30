@@ -19,10 +19,10 @@ use PKP\form\Form;
 
 class RepresentativeForm extends Form
 {
-    /** The monograph associated with the format being edited **/
+    /** @var Monograph The monograph associated with the format being edited */
     public $_monograph;
 
-    /** Representative the entry being edited **/
+    /** @var Representative the entry being edited */
     public $_representative;
 
     /**
@@ -45,7 +45,7 @@ class RepresentativeForm extends Form
                 $request = Application::get()->getRequest();
                 $agentRole = $request->getUserVar('agentRole');
                 $supplierRole = $request->getUserVar('supplierRole');
-                $onixDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixDao ONIXCodelistItemDAO */
+                $onixDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixDao */
                 return (!$isSupplier && $onixDao->codeExistsInList($agentRole, 'List69')) || ($isSupplier && $onixDao->codeExistsInList($supplierRole, 'List93'));
             }
         ));
@@ -69,7 +69,7 @@ class RepresentativeForm extends Form
     /**
      * Set the representative
      *
-     * @param @representative Representative
+     * @param Representative $representative
      */
     public function setRepresentative($representative)
     {
@@ -134,7 +134,7 @@ class RepresentativeForm extends Form
         $monograph = $this->getMonograph();
         $templateMgr->assign('submissionId', $monograph->getId());
         $representative = $this->getRepresentative();
-        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
         $templateMgr->assign([
             'idTypeCodes' => $onixCodelistItemDao->getCodes('List92'), // GLN, etc
             'agentRoleCodes' => $onixCodelistItemDao->getCodes('List69'), // Sales Agent, etc
@@ -188,7 +188,7 @@ class RepresentativeForm extends Form
     public function execute(...$functionArgs)
     {
         parent::execute(...$functionArgs);
-        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
+        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /** @var RepresentativeDAO $representativeDao */
         $monograph = $this->getMonograph();
         $representative = $this->getRepresentative();
 

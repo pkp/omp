@@ -35,7 +35,7 @@ class PublicationFormatMetadataForm extends Form
     /** @var PKPPubIdPluginHelper The pub id plugin helper */
     public $_pubIdPluginHelper;
 
-    /** @var boolean is this a physical, non-digital format? */
+    /** @var bool is this a physical, non-digital format? */
     public $_isPhysicalFormat;
 
     /** @var string a remote URL to retrieve the contents in this format */
@@ -47,13 +47,13 @@ class PublicationFormatMetadataForm extends Form
     /**
      * Constructor.
      *
-     * @param $submission Submission
-     * @param $publication Publication
-     * @param $representation Representation
-     * @param $isPhysicalFormat integer
-     * @param $remoteURL string
-     * @param $stageId integer
-     * @param $formParams array
+     * @param Submission $submission
+     * @param Publication $publication
+     * @param Representation $representation
+     * @param int $isPhysicalFormat
+     * @param string $remoteURL
+     * @param int $stageId
+     * @param array $formParams
      */
     public function __construct($submission, $publication, $representation, $isPhysicalFormat = true, $remoteURL = null, $stageId = null, $formParams = null)
     {
@@ -102,7 +102,7 @@ class PublicationFormatMetadataForm extends Form
         $templateMgr->assign('stageId', $this->getStageId());
         $templateMgr->assign('formParams', $this->getFormParams());
 
-        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
 
         // Check if e-commerce is available
         $paymentManager = Application::getPaymentManager($context);
@@ -267,7 +267,7 @@ class PublicationFormatMetadataForm extends Form
         $pubIdPluginHelper = $this->_getPubIdPluginHelper();
         $pubIdPluginHelper->execute($submission->getContextId(), $this, $publicationFormat);
 
-        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
         $publicationFormatDao->updateObject($publicationFormat);
     }
 

@@ -52,8 +52,8 @@ class WorkflowHandler extends PKPWorkflowHandler
     /**
      * Show the internal review stage.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function internalReview($args, $request)
     {
@@ -63,7 +63,7 @@ class WorkflowHandler extends PKPWorkflowHandler
     /**
      * Setup variables for the template
      *
-     * @param $request Request
+     * @param Request $request
      */
     public function setupIndex($request)
     {
@@ -144,7 +144,7 @@ class WorkflowHandler extends PKPWorkflowHandler
     /**
      * Return the editor assignment notification type based on stage id.
      *
-     * @param $stageId int
+     * @param int $stageId
      *
      * @return int
      */

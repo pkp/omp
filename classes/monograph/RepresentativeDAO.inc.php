@@ -24,8 +24,8 @@ class RepresentativeDAO extends \PKP\db\DAO
     /**
      * Retrieve a representative entry by id.
      *
-     * @param $representativeId int
-     * @param $monographId optional int
+     * @param int $representativeId
+     * @param int $monographId optional
      *
      * @return Representative|null
      */
@@ -51,7 +51,7 @@ class RepresentativeDAO extends \PKP\db\DAO
     /**
      * Retrieve all supplier representatives for a monograph.
      *
-     * @param $monographId int
+     * @param int $monographId
      *
      * @return DAOResultFactory containing matching representatives.
      */
@@ -70,7 +70,7 @@ class RepresentativeDAO extends \PKP\db\DAO
     /**
      * Retrieve all agent representatives for a monograph.
      *
-     * @param $monographId int
+     * @param int $monographId
      *
      * @return DAOResultFactory containing matching representatives.
      */
@@ -99,8 +99,8 @@ class RepresentativeDAO extends \PKP\db\DAO
     /**
      * Internal function to return a Representative object from a row.
      *
-     * @param $row array
-     * @param $callHooks boolean
+     * @param array $row
+     * @param bool $callHooks
      *
      * @return Representative
      */
@@ -128,7 +128,7 @@ class RepresentativeDAO extends \PKP\db\DAO
     /**
      * Insert a new representative entry.
      *
-     * @param $representative Representative
+     * @param Representative $representative
      */
     public function insertObject($representative)
     {
@@ -157,7 +157,7 @@ class RepresentativeDAO extends \PKP\db\DAO
     /**
      * Update an existing representative entry.
      *
-     * @param $representative Representative
+     * @param Representative $representative
      */
     public function updateObject($representative)
     {
@@ -189,7 +189,7 @@ class RepresentativeDAO extends \PKP\db\DAO
     /**
      * Delete a representative entry by object.
      *
-     * @param $representative Representative
+     * @param Representative $representative
      */
     public function deleteObject($representative)
     {
@@ -199,7 +199,7 @@ class RepresentativeDAO extends \PKP\db\DAO
     /**
      * delete a representative entry by id.
      *
-     * @param $entryId int
+     * @param int $entryId
      */
     public function deleteById($entryId)
     {

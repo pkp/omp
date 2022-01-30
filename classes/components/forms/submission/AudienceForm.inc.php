@@ -31,8 +31,8 @@ class AudienceForm extends FormComponent
     /**
      * Constructor
      *
-     * @param $action string URL to submit the form to
-     * @param $submission Submission The submission to change settings for
+     * @param string $action URL to submit the form to
+     * @param Submission $submission The submission to change settings for
      */
     public function __construct($action, $submission)
     {
@@ -73,7 +73,7 @@ class AudienceForm extends FormComponent
     /**
      * Convert Onix code list to select field options
      *
-     * @param array the list items
+     * @param array $list the list items
      *
      * @return array
      */

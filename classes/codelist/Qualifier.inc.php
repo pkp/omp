@@ -30,7 +30,7 @@ class Qualifier extends CodelistItem
     public $_onixSubjectSchemeIdentifier = 17;
 
     /**
-     * @return String the numerical value representing this item in the ONIX 3.0 schema
+     * @return string the numerical value representing this item in the ONIX 3.0 schema
      */
     public function getOnixSubjectSchemeIdentifier()
     {

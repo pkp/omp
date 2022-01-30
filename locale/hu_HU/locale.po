@@ -773,9 +773,6 @@ msgstr "Tekintse meg ezt az elemet a katalógusban"
 msgid "grid.action.newCatalogEntry"
 msgstr "Új katalógusbejegyzés"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Értesítés hozzáadása"
-
 #, fuzzy
 msgid "grid.action.pageProofApproved"
 msgstr "Az oldal kefelenyomat fájljai készen állnak a publikációra"

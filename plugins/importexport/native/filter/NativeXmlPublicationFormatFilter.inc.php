@@ -59,7 +59,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
     /**
      * Handle a submission element
      *
-     * @param $node DOMElement
+     * @param DOMElement $node
      *
      * @return array Array of PublicationFormat objects
      */
@@ -110,9 +110,9 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
     /**
      * Process the self_file_ref node found inside the publication_format node.
      *
-     * @param $node DOMElement
-     * @param $deployment Onix30ExportDeployment
-     * @param $representation PublicationFormat
+     * @param DOMElement $node
+     * @param Onix30ExportDeployment $deployment
+     * @param PublicationFormat $representation
      */
     public function _processFileRef($node, $deployment, &$representation)
     {
@@ -134,9 +134,9 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
     /**
      * Process the Product node found inside the publication_format node.  There may be many of these.
      *
-     * @param $node DOMElement
-     * @param $deployment PKPImportExportDeployment
-     * @param $representation PublicationFormat
+     * @param DOMElement $node
+     * @param PKPImportExportDeployment $deployment
+     * @param PublicationFormat $representation
      */
     public function _processProductNode($node, $deployment, &$representation)
     {
@@ -168,7 +168,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
         $nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'ProductIdentifier');
 
         if ($nodeList->length > 0) {
-            $identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
+            $identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /** @var IdentificationCodeDAO $identificationCodeDao */
             for ($i = 0 ; $i < $nodeList->length ; $i++) {
                 $n = $nodeList->item($i);
                 $identificationCode = $identificationCodeDao->newDataObject();
@@ -196,7 +196,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
         $nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'PublishingDate');
 
         if ($nodeList->length > 0) {
-            $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
+            $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /** @var PublicationDateDAO $publicationDateDao */
             for ($i = 0 ; $i < $nodeList->length ; $i++) {
                 $n = $nodeList->item($i);
                 $date = $publicationDateDao->newDataObject();
@@ -221,7 +221,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
         // Extract SalesRights elements.
         $nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'SalesRights');
         if ($nodeList->length > 0) {
-            $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
+            $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /** @var SalesRightsDAO $salesRightsDao */
             for ($i = 0 ; $i < $nodeList->length ; $i ++) {
                 $salesRights = $salesRightsDao->newDataObject();
                 $salesRights->setPublicationFormatId($representation->getId());
@@ -256,8 +256,8 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
         // Extract ProductSupply elements.  Contains Markets, Pricing, Suppliers, and Sales Agents.
         $nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'ProductSupply');
         if ($nodeList->length > 0) {
-            $marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
-            $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
+            $marketDao = DAORegistry::getDAO('MarketDAO'); /** @var MarketDAO $marketDao */
+            $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /** @var RepresentativeDAO $representativeDao */
 
             for ($i = 0 ; $i < $nodeList->length ; $i ++) {
                 $productSupplyNode = $nodeList->item($i);
@@ -361,11 +361,11 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
     /**
      * Extracts the text content from a node.
      *
-     * @param $node DOMElement
-     * @param $onixDeployment Onix30ExportDeployment
-     * @param $nodeName String the name of the node.
+     * @param DOMElement $node
+     * @param Onix30ExportDeployment $onixDeployment
+     * @param string $nodeName the name of the node.
      *
-     * @return String
+     * @return string
      */
     public function _extractTextFromNode($node, $onixDeployment, $nodeName)
     {
@@ -381,8 +381,8 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
     /**
      * Extracts the elements of the Extent nodes.
      *
-     * @param $node DOMElement
-     * @param $onixDeployment Onix30ExportDeployment
+     * @param DOMElement $node
+     * @param Onix30ExportDeployment $onixDeployment
      * @param PublicationFormat $representation
      */
     public function _extractExtentContent($node, $onixDeployment, &$representation)
@@ -411,8 +411,8 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
     /**
      * Extracts the elements of the Measure nodes.
      *
-     * @param $node DOMElement
-     * @param $onixDeployment Onix30ExportDeployment
+     * @param DOMElement $node
+     * @param Onix30ExportDeployment $onixDeployment
      * @param PublicationFormat $representation
      */
     public function _extractMeasureContent($node, $onixDeployment, &$representation)
@@ -450,8 +450,8 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
      * Extracts the AudienceRange elements, which vary depending on whether
      * a submission defines a specific range, or a to/from pair.
      *
-     * @param $node DOMElement
-     * @param $onixDeployment Onix30ExportDeployment
+     * @param DOMElement $node
+     * @param Onix30ExportDeployment $onixDeployment
      * @param Submission $submission
      */
     public function _extractAudienceRangeContent($node, $onixDeployment, &$submission)

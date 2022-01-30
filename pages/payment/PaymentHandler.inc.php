@@ -20,8 +20,8 @@ class PaymentHandler extends Handler
     /**
      * Pass request to plugin.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function plugin($args, $request)
     {

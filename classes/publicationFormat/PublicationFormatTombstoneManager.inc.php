@@ -35,17 +35,17 @@ class PublicationFormatTombstoneManager
     /**
      * Insert a tombstone for the passed publication format.
      *
-     * @param $publicationFormat PublicationFormat
-     * @param $press Press
+     * @param PublicationFormat $publicationFormat
+     * @param Press $press
      */
     public function insertTombstoneByPublicationFormat($publicationFormat, $press)
     {
         $publication = Repo::publication()->get($publicationFormat->getData('publicationId'));
         $monograph = Repo::submission()->get($publication->getData('submissionId'));
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         $series = $seriesDao->getById($monograph->getSeriesId());
 
-        $dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO'); /* @var $dataObjectTombstoneDao DataObjectTombstoneDAO */
+        $dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO'); /** @var DataObjectTombstoneDAO $dataObjectTombstoneDao */
         // delete publication format tombstone to ensure that there aren't
         // more than one tombstone for this publication format
         $dataObjectTombstoneDao->deleteByDataObjectId($publicationFormat->getId());
@@ -63,7 +63,7 @@ class PublicationFormatTombstoneManager
             ASSOC_TYPE_SERIES => $monograph->getSeriesId()
         ];
 
-        $publicationFormatTombstone = $dataObjectTombstoneDao->newDataObject(); /* @var $publicationFormatTombstone DataObjectTombstone */
+        $publicationFormatTombstone = $dataObjectTombstoneDao->newDataObject(); /** @var DataObjectTombstone $publicationFormatTombstone */
         $publicationFormatTombstone->setDataObjectId($publicationFormat->getId());
         $publicationFormatTombstone->stampDateDeleted();
         $publicationFormatTombstone->setSetSpec($setSpec);
@@ -81,7 +81,7 @@ class PublicationFormatTombstoneManager
      * Insert tombstone for every publication format inside
      * the passed array.
      *
-     * @param $publicationFormats array
+     * @param array $publicationFormats
      */
     public function insertTombstonesByPublicationFormats($publicationFormats, $press)
     {
@@ -94,7 +94,7 @@ class PublicationFormatTombstoneManager
      * Insert tombstone for every publication format of the
      * published submissions inside the passed press.
      *
-     * @param $press
+     * @param string $press
      */
     public function insertTombstonesByPress($press)
     {
@@ -116,12 +116,12 @@ class PublicationFormatTombstoneManager
     /**
      * Delete tombstone for every passed publication format.
      *
-     * @param $publicationFormats array
+     * @param array $publicationFormats
      */
     public function deleteTombstonesByPublicationFormats($publicationFormats)
     {
         foreach ($publicationFormats as $publicationFormat) {
-            $tombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO'); /* @var $tombstoneDao DataObjectTombstoneDAO */
+            $tombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO'); /** @var DataObjectTombstoneDAO $tombstoneDao */
             $tombstoneDao->deleteByDataObjectId($publicationFormat->getId());
         }
     }
@@ -129,7 +129,7 @@ class PublicationFormatTombstoneManager
     /**
      * Delete tombstone for every publication format inside the passed press.
      *
-     * @param $pressId int
+     * @param int $pressId
      */
     public function deleteTombstonesByPressId($pressId)
     {

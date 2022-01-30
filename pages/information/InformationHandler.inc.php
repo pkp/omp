@@ -21,8 +21,8 @@ class InformationHandler extends Handler
     /**
      * Display the information page for the press.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function index($args, $request)
     {
@@ -102,7 +102,7 @@ class InformationHandler extends Handler
     /**
      * Initialize the template.
      *
-     * @param $press Press
+     * @param Press $press
      */
     public function setupTemplate($request, $press)
     {

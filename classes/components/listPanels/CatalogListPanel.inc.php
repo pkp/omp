@@ -26,13 +26,13 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
     /** @var string URL to the API endpoint where items can be retrieved */
     public $apiUrl = '';
 
-    /** @var integer Number of items to show at one time */
+    /** @var int Number of items to show at one time */
     public $count = 30;
 
     /** @var array Query parameters to pass if this list executes GET requests  */
     public $getParams = [];
 
-    /** @var integer Count of total items available for list */
+    /** @var int Count of total items available for list */
     public $itemsMax = 0;
 
     /**

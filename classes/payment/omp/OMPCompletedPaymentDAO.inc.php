@@ -29,8 +29,8 @@ class OMPCompletedPaymentDAO extends DAO
     /**
      * Retrieve a ComplatedPayment by its ID.
      *
-     * @param $completedPaymentId int
-     * @param $contextId int optional
+     * @param int $completedPaymentId
+     * @param int $contextId optional
      *
      * @return CompletedPayment|null
      */
@@ -52,7 +52,7 @@ class OMPCompletedPaymentDAO extends DAO
     /**
      * Insert a new completed payment.
      *
-     * @param $completedPayment CompletedPayment
+     * @param CompletedPayment $completedPayment
      */
     public function insertCompletedPayment($completedPayment)
     {
@@ -81,7 +81,7 @@ class OMPCompletedPaymentDAO extends DAO
     /**
      * Update an existing completed payment.
      *
-     * @param $completedPayment CompletedPayment
+     * @param CompletedPayment $completedPayment
      */
     public function updateObject($completedPayment)
     {
@@ -128,10 +128,10 @@ class OMPCompletedPaymentDAO extends DAO
     /**
      * Look for a completed PURCHASE_PUBLICATION_FORMAT payment matching the article ID
      *
-     * @param $userId int
-     * @param $submissionFileId int
+     * @param int $userId
+     * @param int $submissionFileId
      *
-     * @return boolean
+     * @return bool
      */
     public function hasPaidPurchaseFile($userId, $submissionFileId)
     {
@@ -150,8 +150,8 @@ class OMPCompletedPaymentDAO extends DAO
     /**
      * Retrieve an array of payments for a particular context ID.
      *
-     * @param $contextId int
-     * @param $rangeInfo DBResultRange|null
+     * @param int $contextId
+     * @param DBResultRange|null $rangeInfo
      *
      * @return object DAOResultFactory containing matching payments
      */
@@ -171,8 +171,8 @@ class OMPCompletedPaymentDAO extends DAO
     /**
      * Retrieve an array of payments for a particular user ID.
      *
-     * @param $userId int
-     * @param $rangeInfo DBResultRange|null
+     * @param int $userId
+     * @param DBResultRange|null $rangeInfo
      *
      * @return DAOResultFactory Matching payments
      */
@@ -202,7 +202,7 @@ class OMPCompletedPaymentDAO extends DAO
     /**
      * Internal function to return a CompletedPayment object from a row.
      *
-     * @param $row array
+     * @param array $row
      *
      * @return CompletedPayment
      */

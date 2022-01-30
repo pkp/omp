@@ -36,10 +36,10 @@ class CatalogBookHandler extends Handler
     /** @var array this array contains ids of all publications, those contain the requested chapter */
     public $chapterPublicationIds = [];
 
-    /** @var boolean Is this a request for a specific version */
+    /** @var bool Is this a request for a specific version */
     public $isVersionRequest = false;
 
-    /** @var boolean Is this a request for a chapter */
+    /** @var bool Is this a request for a chapter */
     public $isChapterRequest = false;
 
     //
@@ -48,9 +48,9 @@ class CatalogBookHandler extends Handler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param $request PKPRequest
-     * @param $args array
-     * @param $roleAssignments array
+     * @param PKPRequest $request
+     * @param array $args
+     * @param array $roleAssignments
      */
     public function authorize($request, &$args, $roleAssignments)
     {
@@ -65,8 +65,8 @@ class CatalogBookHandler extends Handler
     /**
      * Display a published submission in the public catalog.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function book($args, $request)
     {
@@ -271,8 +271,8 @@ class CatalogBookHandler extends Handler
      * Use an inline viewer to view a published submission publication
      * format file.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function view($args, $request)
     {
@@ -282,9 +282,9 @@ class CatalogBookHandler extends Handler
     /**
      * Download a published submission publication format file.
      *
-     * @param $args array
-     * @param $request PKPRequest
-     * @param $view boolean True iff inline viewer should be used, if available
+     * @param array $args
+     * @param PKPRequest $request
+     * @param bool $view True iff inline viewer should be used, if available
      */
     public function download($args, $request, $view = false)
     {
@@ -344,7 +344,7 @@ class CatalogBookHandler extends Handler
                 }
                 break;
             case ASSOC_TYPE_SUBMISSION_FILE: // Dependent file
-                $genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
+                $genreDao = DAORegistry::getDAO('GenreDAO'); /** @var GenreDAO $genreDao */
                 $genre = $genreDao->getById($submissionFile->getGenreId());
                 if (!$genre->getDependent()) {
                     $dispatcher->handle404();
@@ -361,7 +361,7 @@ class CatalogBookHandler extends Handler
         $urlPath[] = $publicationFormat->getBestId();
         $urlPath[] = $submissionFile->getBestId();
 
-        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
+        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
         $templateMgr = TemplateManager::getManager($request);
         $templateMgr->assign([
             'publishedSubmission' => $submission,
@@ -371,7 +371,7 @@ class CatalogBookHandler extends Handler
             'downloadUrl' => $dispatcher->url($request, PKPApplication::ROUTE_PAGE, null, null, 'download', $urlPath, ['inline' => true]),
         ]);
 
-        $ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /* @var $ompCompletedPaymentDao OMPCompletedPaymentDAO */
+        $ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /** @var OMPCompletedPaymentDAO $ompCompletedPaymentDao */
         $user = $request->getUser();
         if ($submissionFile->getDirectSalesPrice() === '0' || ($user && $ompCompletedPaymentDao->hasPaidPurchaseFile($user->getId(), $submissionFile->getId()))) {
             // Paid purchase or open access.
@@ -383,7 +383,7 @@ class CatalogBookHandler extends Handler
             if ($view) {
                 if (HookRegistry::call('CatalogBookHandler::view', [&$this, &$submission, &$publicationFormat, &$submissionFile])) {
                     // If the plugin handled the hook, prevent further default activity.
-                    exit();
+                    exit;
                 }
             }
 
@@ -392,7 +392,7 @@ class CatalogBookHandler extends Handler
             $inline = $request->getUserVar('inline') ? true : false;
             if (HookRegistry::call('CatalogBookHandler::download', [&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline])) {
                 // If the plugin handled the hook, prevent further default activity.
-                exit();
+                exit;
             }
             $returner = true;
             HookRegistry::call('FileManager::downloadFileFinished', [&$returner]);
@@ -429,14 +429,14 @@ class CatalogBookHandler extends Handler
     /**
      * Set up common template variables.
      *
-     * @param $request PKPRequest
-     * @param $submission Submission
+     * @param PKPRequest $request
+     * @param Submission $submission
      */
     public function setupTemplate($request, $submission = null)
     {
         $templateMgr = TemplateManager::getmanager($request);
         if ($seriesId = $submission->getSeriesId()) {
-            $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+            $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
             $series = $seriesDao->getById($seriesId, $submission->getData('contextId'));
             $templateMgr->assign('series', $series);
         }

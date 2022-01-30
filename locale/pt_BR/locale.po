@@ -436,9 +436,6 @@ msgstr "Homologar a prova para indexação e inclusão no catálogo"
 msgid "grid.action.pageProofApproved"
 msgstr "Arquivo na página de provas está pronto para publicação"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Incluir uma notícia"
-
 msgid "grid.action.newCatalogEntry"
 msgstr "Nova entrada de catálogo"
 

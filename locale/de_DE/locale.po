@@ -459,9 +459,6 @@ msgstr ""
 msgid "grid.action.pageProofApproved"
 msgstr "Die Korrekturfahnen ist fertig zur Veröffentlichung"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Eine Ankündigung hinzufügen"
-
 msgid "grid.action.newCatalogEntry"
 msgstr "Neuer Katalogeintrag"
 

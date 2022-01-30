@@ -22,8 +22,8 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Get monograph IDs by association.
      *
-     * @param $assocType int ASSOC_TYPE_...
-     * @param $assocId int
+     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocId
      *
      * @return array Associative array seq => monograph ID
      */
@@ -44,8 +44,8 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Get feature sequences by association.
      *
-     * @param $assocType int ASSOC_TYPE_...
-     * @param $assocId int
+     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocId
      *
      * @return array Associative array monograph ID => seq
      */
@@ -57,10 +57,10 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Insert a new feature.
      *
-     * @param $monographId int
-     * @param $assocType int ASSOC_TYPE_...
-     * @param $assocId int
-     * @param $seq int
+     * @param int $monographId
+     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocId
+     * @param int $seq
      */
     public function insertFeature($monographId, $assocType, $assocId, $seq)
     {
@@ -92,8 +92,8 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Delete a feature by association.
      *
-     * @param $assocType int ASSOC_TYPE_...
-     * @param $assocId int
+     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocId
      */
     public function deleteByAssoc($assocType, $assocId)
     {
@@ -106,9 +106,9 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Delete a feature.
      *
-     * @param $monographId int
-     * @param $assocType int ASSOC_TYPE_...
-     * @param $assocId int
+     * @param int $monographId
+     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocId
      */
     public function deleteFeature($monographId, $assocType, $assocId)
     {
@@ -129,13 +129,13 @@ class FeatureDAO extends \PKP\db\DAO
      * Check if the passed monograph id is featured on the
      * passed associated object.
      *
-     * @param $monographId int The monograph id to check the feature state.
-     * @param $assocType int The associated object type that the monograph
+     * @param int $monographId The monograph id to check the feature state.
+     * @param int $assocType The associated object type that the monograph
      * is featured.
-     * @param $assocId int The associated object id that the monograph is
+     * @param int $assocId The associated object id that the monograph is
      * featured.
      *
-     * @return boolean Whether or not the monograph is featured.
+     * @return bool Whether or not the monograph is featured.
      */
     public function isFeatured($monographId, $assocType, $assocId)
     {
@@ -149,7 +149,7 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Return the monograph's featured settings in all assoc types
      *
-     * @param $monographId int The monograph id to get the feature state.
+     * @param int $monographId The monograph id to get the feature state.
      *
      * @return array
      */
@@ -174,9 +174,9 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Get the current sequence position of the passed monograph id.
      *
-     * @param $monographId int The monograph id to check the sequence position.
-     * @param $assocType int The monograph associated object type.
-     * @param $assocId int The monograph associated object id.
+     * @param int $monographId The monograph id to check the sequence position.
+     * @param int $assocType The monograph associated object type.
+     * @param int $assocId The monograph associated object id.
      *
      * @return int or boolean The monograph sequence position or false if no
      * monograph feature is set.
@@ -202,8 +202,8 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Resequence features by association.
      *
-     * @param $assocType int ASSOC_TYPE_...
-     * @param $assocId int per $assocType
+     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocId per $assocType
      *
      * @return array Associative array of id => seq for resequenced set
      */

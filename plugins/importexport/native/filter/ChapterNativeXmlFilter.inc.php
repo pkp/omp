@@ -22,7 +22,7 @@ class ChapterNativeXmlFilter extends NativeExportFilter
     /**
      * Constructor
      *
-     * @param $filterGroup FilterGroup
+     * @param FilterGroup $filterGroup
      */
     public function __construct($filterGroup)
     {
@@ -49,7 +49,7 @@ class ChapterNativeXmlFilter extends NativeExportFilter
     /**
      * @see Filter::process()
      *
-     * @param $chapters Chapter[]
+     * @param Chapter[] $chapters
      *
      * @return DOMDocument
      */
@@ -79,8 +79,8 @@ class ChapterNativeXmlFilter extends NativeExportFilter
     /**
      * Create and return an author node.
      *
-     * @param $doc DOMDocument
-     * @param $chapter Chapter
+     * @param DOMDocument $doc
+     * @param Chapter $chapter
      *
      * @return DOMElement
      */
@@ -135,7 +135,7 @@ class ChapterNativeXmlFilter extends NativeExportFilter
     /**
      * Create and return an author node.
      *
-     * @param $doc DOMDocument
+     * @param DOMDocument $doc
      *
      * @return DOMElement
      */
@@ -156,10 +156,10 @@ class ChapterNativeXmlFilter extends NativeExportFilter
     /**
      * Add a single pub ID element for a given plugin to the document.
      *
-     * @param $doc DOMDocument
-     * @param $entityNode DOMElement
-     * @param $entity Chapter
-     * @param $pubIdPlugin PubIdPlugin
+     * @param DOMDocument $doc
+     * @param DOMElement $entityNode
+     * @param Chapter $entity
+     * @param PubIdPlugin $pubIdPlugin
      *
      * @return DOMElement|null
      */
@@ -179,9 +179,9 @@ class ChapterNativeXmlFilter extends NativeExportFilter
     /**
      * Create and add identifier nodes to a submission node.
      *
-     * @param $doc DOMDocument
-     * @param $entityNode DOMElement
-     * @param $entity Chapter
+     * @param DOMDocument $doc
+     * @param DOMElement $entityNode
+     * @param Chapter $entity
      */
     public function addIdentifiers($doc, $entityNode, $entity)
     {

@@ -28,15 +28,15 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
     /** @var int Submission ID */
     public $_submissionId;
 
-    /** @var boolean */
+    /** @var bool */
     protected $_canManage;
 
     /**
      * Constructor
      *
-     * @param $submissionId int Submission ID
-     * @param $canManage boolean
-     * @param $publicationId int Publication ID
+     * @param int $submissionId Submission ID
+     * @param bool $canManage
+     * @param int $publicationId Publication ID
      */
     public function __construct($submissionId, $canManage, $publicationId)
     {
@@ -78,8 +78,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
      * Extracts variables for a given column from a data element
      * so that they may be assigned to template before rendering.
      *
-     * @param $row GridRow
-     * @param $column GridColumn
+     * @param GridRow $row
+     * @param GridColumn $column
      *
      * @return array
      */
@@ -122,7 +122,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
     /**
      * Get request arguments.
      *
-     * @param $row GridRow
+     * @param GridRow $row
      *
      * @return array
      */

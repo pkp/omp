@@ -471,9 +471,6 @@ msgstr "Godkend korrektur til indeksering og inkludering i kataloget"
 msgid "grid.action.pageProofApproved"
 msgstr "Korrekturfilen er klat til publicering"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Tilføj en meddelelse"
-
 msgid "grid.action.newCatalogEntry"
 msgstr "Ny katalogpost"
 

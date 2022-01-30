@@ -1012,9 +1012,6 @@ msgstr "Zobrazit tuto položku v katalogu"
 msgid "grid.action.newCatalogEntry"
 msgstr "Nová katalogová položka"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Přidat oznámení"
-
 msgid "grid.action.pageProofApproved"
 msgstr "Sazby jsou připraveny pro zveřejnění"
 

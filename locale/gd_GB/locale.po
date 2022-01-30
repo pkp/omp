@@ -715,9 +715,6 @@ msgstr ""
 msgid "grid.action.pageProofApproved"
 msgstr "Tha faidhle dearbhan nan duilleagan deiseil airson foillseachadh"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Cuir fios-naidheachd ris"
-
 msgid "grid.action.newCatalogEntry"
 msgstr "Innteart ùr sa chatalog"
 

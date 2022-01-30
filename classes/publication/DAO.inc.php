@@ -15,7 +15,6 @@ namespace APP\publication;
 
 use APP\core\Application;
 use PKP\db\DAORegistry;
-use stdClass;
 
 class DAO extends \PKP\publication\DAO
 {
@@ -39,7 +38,7 @@ class DAO extends \PKP\publication\DAO
     /**
      * @copydoc SchemaDAO::_fromRow()
      */
-    public function fromRow(stdClass $primaryRow): Publication
+    public function fromRow(object $primaryRow): Publication
     {
         $publication = parent::fromRow($primaryRow);
         $publication->setData('publicationFormats', Application::getRepresentationDao()->getByPublicationId($publication->getId())->toArray());

@@ -20,10 +20,10 @@ use PKP\linkAction\request\RemoteActionConfirmationModal;
 
 class MarketsGridRow extends GridRow
 {
-    /** @var Monograph **/
+    /** @var Monograph */
     public $_monograph;
 
-    /** @var Publication **/
+    /** @var Publication */
     public $_publication;
 
     /**

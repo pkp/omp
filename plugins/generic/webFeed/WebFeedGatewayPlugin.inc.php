@@ -28,7 +28,7 @@ class WebFeedGatewayPlugin extends GatewayPlugin
     /**
      * Constructor
      *
-     * @param $parentPlugin WebFeedPlugin
+     * @param WebFeedPlugin $parentPlugin
      */
     public function __construct($parentPlugin)
     {
@@ -39,7 +39,7 @@ class WebFeedGatewayPlugin extends GatewayPlugin
     /**
      * Hide this plugin from the management interface (it's subsidiary)
      *
-     * @return boolean
+     * @return bool
      */
     public function getHideManagement()
     {
@@ -50,7 +50,7 @@ class WebFeedGatewayPlugin extends GatewayPlugin
      * Get the name of this plugin. The name must be unique within
      * its category.
      *
-     * @return String name of plugin
+     * @return string name of plugin
      */
     public function getName()
     {
@@ -85,7 +85,7 @@ class WebFeedGatewayPlugin extends GatewayPlugin
      * Get whether or not this plugin is enabled. (Should always return true, as the
      * parent plugin will take care of loading this one when needed)
      *
-     * @return boolean
+     * @return bool
      */
     public function getEnabled()
     {
@@ -95,8 +95,8 @@ class WebFeedGatewayPlugin extends GatewayPlugin
     /**
      * Handle fetch requests for this plugin.
      *
-     * @param $args array Arguments.
-     * @param $request PKPRequest Request object.
+     * @param array $args Arguments.
+     * @param PKPRequest $request Request object.
      */
     public function fetch($args, $request)
     {
@@ -136,7 +136,7 @@ class WebFeedGatewayPlugin extends GatewayPlugin
         $submissions = Repo::submission()->getMany($collector);
         $templateMgr->assign('submissions', $submissions->toArray());
 
-        $versionDao = DAORegistry::getDAO('VersionDAO'); /* @var $versionDao VersionDAO */
+        $versionDao = DAORegistry::getDAO('VersionDAO'); /** @var VersionDAO $versionDao */
         $version = $versionDao->getCurrentVersion();
         $templateMgr->assign('ompVersion', $version->getVersionString());
 

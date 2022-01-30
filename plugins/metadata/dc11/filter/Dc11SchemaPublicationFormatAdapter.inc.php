@@ -42,8 +42,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
     /**
      * @see MetadataDataObjectAdapter::injectMetadataIntoDataObject()
      *
-     * @param $dc11Description MetadataDescription
-     * @param $publicationFormat PublicationFormat
+     * @param MetadataDescription $dc11Description
+     * @param PublicationFormat $publicationFormat
      */
     public function &injectMetadataIntoDataObject(&$dc11Description, &$publicationFormat)
     {
@@ -54,7 +54,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
     /**
      * @see MetadataDataObjectAdapter::extractMetadataFromDataObject()
      *
-     * @param $publicationFormat PublicationFormat
+     * @param PublicationFormat $publicationFormat
      *
      * @return MetadataDescription
      */
@@ -70,11 +70,11 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         // meta-data framework. We're using the OAIDAO here because it
         // contains cached entities and avoids extra database access if this
         // adapter is called from an OAI context.
-        $oaiDao = DAORegistry::getDAO('OAIDAO'); /* @var $oaiDao OAIDAO */
+        $oaiDao = DAORegistry::getDAO('OAIDAO'); /** @var OAIDAO $oaiDao */
         $publication = Repo::publication()->get($publicationFormat->getData('publicationId'));
         $monograph = Repo::submission()->get($publication->getData('submissionId'));
         $press = $oaiDao->getPress($monograph->getPressId());
-        $series = $oaiDao->getSeries($monograph->getSeriesId()); /* @var $series Series */
+        $series = $oaiDao->getSeries($monograph->getSeriesId()); /** @var Series $series */
         $dc11Description = $this->instantiateMetadataDescription();
 
         // Title
@@ -94,8 +94,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         }
 
         // Subject
-        $submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO'); /* @var $submissionKeywordDao SubmissionKeywordDAO */
-        $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO'); /* @var $submissionSubjectDao SubmissionSubjectDAO */
+        $submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO'); /** @var SubmissionKeywordDAO $submissionKeywordDao */
+        $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO'); /** @var SubmissionSubjectDAO $submissionSubjectDao */
         $supportedLocales = array_keys(AppLocale::getSupportedFormLocales());
         $subjects = array_merge_recursive(
             (array) $submissionKeywordDao->getKeywords($publication->getId(), $supportedLocales),
@@ -141,7 +141,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $this->_addLocalizedElements($dc11Description, 'dc:type', $types);
 
         // Format
-        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
         $entryKeys = $onixCodelistItemDao->getCodes('List7'); // List7 is for object formats
         if ($publicationFormat->getEntryKey()) {
             $formatName = $entryKeys[$publicationFormat->getEntryKey()];
@@ -220,7 +220,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
     /**
      * @see MetadataDataObjectAdapter::getDataObjectMetadataFieldNames()
      *
-     * @param $translated boolean
+     * @param bool $translated
      */
     public function getDataObjectMetadataFieldNames($translated = true)
     {
@@ -235,9 +235,9 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
     /**
      * Add an array of localized values to the given description.
      *
-     * @param $description MetadataDescription
-     * @param $propertyName string
-     * @param $localizedValues array
+     * @param MetadataDescription $description
+     * @param string $propertyName
+     * @param array $localizedValues
      */
     public function _addLocalizedElements(&$description, $propertyName, $localizedValues)
     {

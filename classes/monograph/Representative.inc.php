@@ -34,7 +34,7 @@ class Representative extends \PKP\core\DataObject
     /**
      * set monograph id.
      *
-     * @param $monographId int
+     * @param int $monographId
      */
     public function setMonographId($monographId)
     {
@@ -66,7 +66,7 @@ class Representative extends \PKP\core\DataObject
      */
     public function getNameForONIXCode()
     {
-        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
         if ($this->getIsSupplier()) {
             $listName = 'List93'; // List93 -> Publisher to retailers, Wholesaler, etc
         } else {
@@ -79,7 +79,7 @@ class Representative extends \PKP\core\DataObject
     /**
      * Set the ONIX code for this representative's ID type (List92) (GLN, SAN, etc).  GLN is the recommended one.
      *
-     * @param $representativeIdType string
+     * @param string $representativeIdType
      */
     public function setRepresentativeIdType($representativeIdType)
     {
@@ -99,7 +99,7 @@ class Representative extends \PKP\core\DataObject
     /**
      * Set this representative's ID value.
      *
-     * @param $representativeIdValue string
+     * @param string $representativeIdValue
      */
     public function setRepresentativeIdValue($representativeIdValue)
     {

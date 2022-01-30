@@ -32,7 +32,7 @@ class Subject extends CodelistItem
     /**
      * Get the ONIX subject scheme identifier.
      *
-     * @return String the numerical value representing this item in the ONIX 3.0 schema
+     * @return string the numerical value representing this item in the ONIX 3.0 schema
      */
     public function getOnixSubjectSchemeIdentifier()
     {

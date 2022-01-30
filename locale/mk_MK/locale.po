@@ -585,9 +585,6 @@ msgstr "Погледнете ја оваа ставка во каталогот"
 msgid "grid.action.newCatalogEntry"
 msgstr "Нов запис во каталог"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Додајте оглас"
-
 msgid "grid.action.pageProofApproved"
 msgstr "Датотеката со докази за страницата е подготвена за објавување"
 

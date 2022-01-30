@@ -27,8 +27,8 @@ class SalesRightsDAO extends \PKP\db\DAO
     /**
      * Retrieve a sales rights entry by type id.
      *
-     * @param $salesRightsId int
-     * @param $publicationId optional int
+     * @param int $salesRightsId
+     * @param int $publicationId optional int
      *
      * @return SalesRights|null
      */
@@ -54,7 +54,7 @@ class SalesRightsDAO extends \PKP\db\DAO
     /**
      * Retrieve all sales rights for a publication format
      *
-     * @param $publicationFormatId int
+     * @param int $publicationFormatId
      *
      * @return DAOResultFactory containing matching sales rights.
      */
@@ -73,7 +73,7 @@ class SalesRightsDAO extends \PKP\db\DAO
     /**
      * Retrieve the specific Sales Rights instance for which ROW is set to true.  There should only be one per format.
      *
-     * @param $publicationFormatId int
+     * @param int $publicationFormatId
      *
      * @return SalesRights|null
      */
@@ -100,8 +100,8 @@ class SalesRightsDAO extends \PKP\db\DAO
     /**
      * Internal function to return a SalesRights object from a row.
      *
-     * @param $row array
-     * @param $callHooks boolean
+     * @param array $row
+     * @param bool $callHooks
      *
      * @return SalesRights
      */
@@ -128,7 +128,7 @@ class SalesRightsDAO extends \PKP\db\DAO
     /**
      * Insert a new sales rights entry.
      *
-     * @param $salesRights SalesRights
+     * @param SalesRights $salesRights
      */
     public function insertObject($salesRights)
     {
@@ -155,7 +155,7 @@ class SalesRightsDAO extends \PKP\db\DAO
     /**
      * Update an existing sales rights entry.
      *
-     * @param $salesRights SalesRights
+     * @param SalesRights $salesRights
      */
     public function updateObject($salesRights)
     {
@@ -183,7 +183,7 @@ class SalesRightsDAO extends \PKP\db\DAO
     /**
      * Delete a sales rights entry by id.
      *
-     * @param $salesRights SalesRights
+     * @param SalesRights $salesRights
      */
     public function deleteObject($salesRights)
     {
@@ -193,7 +193,7 @@ class SalesRightsDAO extends \PKP\db\DAO
     /**
      * delete a sales rights entry by id.
      *
-     * @param $entryId int
+     * @param int $entryId
      */
     public function deleteById($entryId)
     {

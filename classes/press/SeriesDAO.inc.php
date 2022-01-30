@@ -31,8 +31,8 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Retrieve an series by ID.
      *
-     * @param $seriesId int
-     * @param $pressId int optional
+     * @param int $seriesId
+     * @param int $pressId optional
      *
      * @return Series|null
      */
@@ -57,8 +57,8 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Retrieve a series by path.
      *
-     * @param $path string
-     * @param $pressId int
+     * @param string $path
+     * @param int $pressId
      *
      * @return Series|null
      */
@@ -85,7 +85,7 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Internal function to return an Series object from a row.
      *
-     * @param $row array
+     * @param array $row
      *
      * @return Series
      */
@@ -136,7 +136,7 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Update the localized fields for this table
      *
-     * @param $series object
+     * @param object $series
      */
     public function updateLocaleFields($series)
     {
@@ -150,7 +150,7 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Insert a new series.
      *
-     * @param $series Series
+     * @param Series $series
      */
     public function insertObject($series)
     {
@@ -178,7 +178,7 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Update an existing series.
      *
-     * @param $series Series
+     * @param Series $series
      */
     public function updateObject($series)
     {
@@ -209,8 +209,8 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Delete an series by ID.
      *
-     * @param $seriesId int
-     * @param $contextId int optional
+     * @param int $seriesId
+     * @param int $contextId optional
      */
     public function deleteById($seriesId, $contextId = null)
     {
@@ -219,7 +219,7 @@ class SeriesDAO extends PKPSectionDAO
             return false;
         }
 
-        $subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /* @var $subEditorsDao SubEditorsDAO */
+        $subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /** @var SubEditorsDAO $subEditorsDao */
         $subEditorsDao->deleteBySubmissionGroupId($seriesId, ASSOC_TYPE_SECTION, $contextId);
 
         // Remove monographs from this series
@@ -247,7 +247,7 @@ class SeriesDAO extends PKPSectionDAO
      * NOTE: This does not delete dependent entries EXCEPT from series_editors. It is intended
      * to be called only when deleting a press.
      *
-     * @param $pressId int
+     * @param int $pressId
      */
     public function deleteByPressId($pressId)
     {
@@ -257,11 +257,11 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Retrieve all series for a press.
      *
-     * @param $pressId int Press ID
-     * @param $rangeInfo DBResultRange optional
-     * @param $submittableOnly boolean optional. Whether to return only series
+     * @param int $pressId Press ID
+     * @param DBResultRange $rangeInfo optional
+     * @param bool $submittableOnly optional. Whether to return only series
      *  that can be submitted to by anyone.
-     * @param $withPublicationsOnly boolean optional
+     * @param bool $withPublicationsOnly optional
      *
      * @return DAOResultFactory containing Series ordered by sequence
      */
@@ -273,11 +273,11 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Retrieve all series for a press.
      *
-     * @param $pressId int Press ID
-     * @param $rangeInfo DBResultRange optional
-     * @param $submittableOnly boolean optional. Whether to return only series
+     * @param int $pressId Press ID
+     * @param DBResultRange $rangeInfo optional
+     * @param bool $submittableOnly optional. Whether to return only series
      *  that can be submitted to by anyone.
-     * @param $withPublicationsOnly boolean optional
+     * @param bool $withPublicationsOnly optional
      *
      * @return DAOResultFactory containing Series ordered by sequence
      */
@@ -328,10 +328,10 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Check if an series exists with the specified ID.
      *
-     * @param $seriesId int
-     * @param $pressId int
+     * @param int $seriesId
+     * @param int $pressId
      *
-     * @return boolean
+     * @return bool
      */
     public function seriesExists($seriesId, $pressId)
     {
@@ -356,8 +356,8 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Associate a category with a series.
      *
-     * @param $seriesId int
-     * @param $categoryId int
+     * @param int $seriesId
+     * @param int $categoryId
      */
     public function addCategory($seriesId, $categoryId)
     {
@@ -373,7 +373,7 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Unassociate all categories with a series
      *
-     * @param $seriesId int
+     * @param int $seriesId
      */
     public function removeCategories($seriesId)
     {
@@ -419,9 +419,9 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Check if an series exists with the specified ID.
      *
-     * @param $seriesId int
+     * @param int $seriesId
      *
-     * @return boolean
+     * @return bool
      */
     public function categoryAssociationExists($seriesId, $categoryId)
     {

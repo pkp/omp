@@ -49,10 +49,10 @@ class GoogleScholarPlugin extends GenericPlugin
     /**
      * Inject Google Scholar metadata into monograph/edited volume landing page
      *
-     * @param $hookName string
-     * @param $args array
+     * @param string $hookName
+     * @param array $args
      *
-     * @return boolean
+     * @return bool
      */
     public function monographView($hookName, $args)
     {
@@ -106,7 +106,7 @@ class GoogleScholarPlugin extends GenericPlugin
         // Subjects
         $i = 0;
         $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
-        /* @var $submissionSubjectDao SubmissionSubjectDAO */
+        /** @var SubmissionSubjectDAO $submissionSubjectDao */
         $supportedLocales = array_keys(AppLocale::getSupportedFormLocales());
         if ($subjects = $submissionSubjectDao->getSubjects($publication->getId(), $supportedLocales)) {
             foreach ($subjects as $locale => $subjectLocale) {
@@ -119,7 +119,7 @@ class GoogleScholarPlugin extends GenericPlugin
         // Keywords
         $i = 0;
         $submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
-        /* @var $submissionKeywordDao SubmissionKeywordDAO */
+        /** @var SubmissionKeywordDAO $submissionKeywordDao */
         if ($keywords = $submissionKeywordDao->getKeywords($publication->getId(), $supportedLocales)) {
             foreach ($keywords as $locale => $keywordLocale) {
                 foreach ($keywordLocale as $gsKeyword) {

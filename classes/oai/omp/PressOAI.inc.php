@@ -75,7 +75,7 @@ class PressOAI extends OAI
     /**
      * Convert monograph ID to OAI identifier.
      *
-     * @param $publicationFormatId int
+     * @param int $publicationFormatId
      *
      * @return string
      */
@@ -87,7 +87,7 @@ class PressOAI extends OAI
     /**
      * Convert OAI identifier to monograph ID.
      *
-     * @param $identifier string
+     * @param string $identifier
      *
      * @return int
      */
@@ -104,8 +104,8 @@ class PressOAI extends OAI
     /**
      * Get press ID and series ID corresponding to a set specifier.
      *
-     * @param $setSpec string
-     * @param $pressId int
+     * @param string $setSpec
+     * @param int $pressId
      *
      * @return array
      */
@@ -147,7 +147,7 @@ class PressOAI extends OAI
         $info->earliestDatestamp = $this->dao->getEarliestDatestamp([$this->pressId]);
 
         $info->toolkitTitle = 'Open Monograph Press';
-        $versionDao = DAORegistry::getDAO('VersionDAO'); /* @var $versionDao VersionDAO */
+        $versionDao = DAORegistry::getDAO('VersionDAO'); /** @var VersionDAO $versionDao */
         $currentVersion = $versionDao->getCurrentVersion();
         $info->toolkitVersion = $currentVersion->getVersionString(false);
         $info->toolkitURL = 'http://pkp.sfu.ca/omp/';

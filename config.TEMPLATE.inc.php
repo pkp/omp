@@ -1,4 +1,4 @@
-; <?php exit(); // DO NOT DELETE?>
+; <?php exit; // DO NOT DELETE?>
 ; DO NOT DELETE THE ABOVE LINE!!!
 ; Doing so will expose this configuration file through your web site!
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -531,3 +531,21 @@ log_web_service_info = Off
 ; This setting overrides the 'curl.cainfo' parameter of the php.ini configuration file.
 [curl]
 ; cainfo = ""
+
+;;;;;;;;;;;;;;;;;;;;;;;
+; Job Queues Settings ;
+;;;;;;;;;;;;;;;;;;;;;;;
+
+[queues]
+
+; Default queue driver
+default_connection = "database"
+
+; Default queue to use when a job is added to the queue
+default_queue = "queue"
+
+; Do not run jobs on shutdown
+; By default, jobs in the queue will be run during PHP's shutdown
+; function. Disable this if you want to run jobs through a separate
+; cron job or workers.
+disable_jobs_run_at_shutdown = Off

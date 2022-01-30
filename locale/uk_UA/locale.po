@@ -760,9 +760,6 @@ msgstr "Переглянути цей елемент в каталозі"
 msgid "grid.action.newCatalogEntry"
 msgstr "Новий запис у каталозі"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Додати Оголошення"
-
 msgid "grid.libraryFiles.column.files"
 msgstr "Файли"
 

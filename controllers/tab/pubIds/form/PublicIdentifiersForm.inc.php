@@ -20,18 +20,6 @@ use APP\template\TemplateManager;
 class PublicIdentifiersForm extends PKPPublicIdentifiersForm
 {
     /**
-     * Constructor.
-     *
-     * @param $pubObject object
-     * @param $stageId integer
-     * @param $formParams array
-     */
-    public function __construct($pubObject, $stageId = null, $formParams = null)
-    {
-        parent::__construct($pubObject, $stageId, $formParams);
-    }
-
-    /**
      * @copydoc Form::fetch()
      *
      * @param null|mixed $template
@@ -57,7 +45,7 @@ class PublicIdentifiersForm extends PKPPublicIdentifiersForm
         parent::execute(...$functionArgs);
         $pubObject = $this->getPubObject();
         if (is_a($pubObject, 'Chapter')) {
-            $chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
+            $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
             $chapterDao->updateObject($pubObject);
         }
     }
