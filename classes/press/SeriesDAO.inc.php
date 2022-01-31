@@ -17,6 +17,7 @@
 
 namespace APP\press;
 
+use APP\core\Application;
 use APP\facades\Repo;
 use PKP\context\PKPSectionDAO;
 use PKP\db\DAORegistry;
@@ -227,6 +228,7 @@ class SeriesDAO extends PKPSectionDAO
             Repo::submission()
                 ->getCollector()
                 ->filterBySeriesIds([$seriesId])
+                ->filterByContextIds([Application::CONTEXT_ID_ALL])
         );
         $publications = Repo::publication()->getMany(
             Repo::publication()
