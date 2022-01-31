@@ -1,7 +1,7 @@
 # Magnus Annemark <magnus.annemark@ub.lu.se>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-07-16 16:03+0000\n"
+"PO-Revision-Date: 2021-10-05 15:26+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "sv_SE/>\n"
@@ -812,3 +812,49 @@ msgstr "Redaktion"
 
 msgid "manager.setup.masthead"
 msgstr "Allmänt"
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr ""
+"För att aktivera dessa alternativ måste administratör aktivera "
+"<tt>scheduled_tasks</tt> i OMP:s konfigurationsfil. Ytterligare server "
+"inställningar kan krävas för att denna funktion ska fungera. Mer information "
+"finns i OMP-dokumentationen."
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Automatiska e-postpåminnelser"
+
+msgid "manager.setup.reviewOptions"
+msgstr "Granskningsalternativ"
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Riktlinjer för interna granskare"
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr ""
+"Ge externa granskare kriterier för bedömning av ett bidrags lämplighet, "
+"vilket kan inkludera instruktioner för att göra en konstruktiv granskning. "
+"Granskare kommer ha möjlighet att ge kommentarer till författare och "
+"redaktör, samt även särskilda kommentarer riktade direkt till redaktören."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Riktlinjer för extern granskning"
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr "Användare måste vara registrerade och inloggade för att se webbsidan."
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr ""
+"Användare måste vara registrerade och inloggade för att se fritt "
+"tillgängligt innehåll."
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Layoutinstruktioner för att länka referenser"
+
+msgid "manager.setup.referenceLinking"
+msgstr "Länka referenser"
+
+msgid "manager.setup.publisher"
+msgstr "Utgivare"
+
+msgid "manager.setup.selectCountry"
+msgstr "Välj pressens land, eller landet för pressens kontaktadress."

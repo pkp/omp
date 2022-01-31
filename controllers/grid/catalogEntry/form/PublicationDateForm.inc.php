@@ -19,13 +19,13 @@ use PKP\form\Form;
 
 class PublicationDateForm extends Form
 {
-    /** The submission associated with the format being edited **/
+    /** @var Submission The submission associated with the format being edited */
     public $_submission;
 
-    /** The publication associated with the format being edited **/
+    /** @var Publication The publication associated with the format being edited */
     public $_publication;
 
-    /** PublicationDate the code being edited **/
+    /** @var PublicationDate the code being edited */
     public $_publicationDate;
 
     /**
@@ -49,7 +49,7 @@ class PublicationDateForm extends Form
             'required',
             'grid.catalogEntry.dateRequired',
             function ($date) use ($form) {
-                $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+                $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
                 $dateFormat = $form->getData('dateFormat');
                 if (!$dateFormat) {
                     return false;
@@ -88,7 +88,7 @@ class PublicationDateForm extends Form
     /**
      * Set the date
      *
-     * @param @publicationDate PublicationDate
+     * @param PublicationDate $publicationDate
      */
     public function setPublicationDate($publicationDate)
     {
@@ -180,7 +180,7 @@ class PublicationDateForm extends Form
             $templateMgr->assign('dateFormat', '20'); // YYYYMMDD Onix code as a default
         }
 
-        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
         $publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
 
         if ($publicationFormat) { // the format exists for this submission
@@ -190,7 +190,7 @@ class PublicationDateForm extends Form
             if ($publicationDate) {
                 $assignedRoles = array_diff($assignedRoles, [$publicationDate->getRole()]);
             } // allow existing roles to keep their value
-            $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+            $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
             $roles = $onixCodelistItemDao->getCodes('List163', $assignedRoles); // ONIX list for these
             $templateMgr->assign('publicationDateRoles', $roles);
 
@@ -226,8 +226,8 @@ class PublicationDateForm extends Form
     public function execute(...$functionArgs)
     {
         parent::execute(...$functionArgs);
-        $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
-        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+        $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /** @var PublicationDateDAO $publicationDateDao */
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
 
         $submission = $this->getSubmission();
         $publicationDate = $this->getPublicationDate();

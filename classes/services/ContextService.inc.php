@@ -17,6 +17,7 @@ namespace APP\services;
 
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
+use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\submission\Submission;
 use PKP\db\DAORegistry;
 
@@ -48,8 +49,8 @@ class ContextService extends \PKP\services\PKPContextService
     /**
      * Update press-specific settings when a context is edited
      *
-     * @param $hookName string
-     * @param $args array [
+     * @param string $hookName
+     * @param array $args [
      *		@option Press The new context
      *		@option Press The current context
      *		@option array The params to edit
@@ -66,8 +67,7 @@ class ContextService extends \PKP\services\PKPContextService
         // If the context is enabled or disabled, create or delete publication
         // format tombstones for all published submissions
         if ($newContext->getData('enabled') !== $currentContext->getData('enabled')) {
-            import('classes.publicationFormat.PublicationFormatTombstoneManager');
-            $publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
+            $publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
             if ($newContext->getData('enabled')) {
                 $publicationFormatTombstoneMgr->deleteTombstonesByPressId($newContext->getId());
             } else {
@@ -108,8 +108,8 @@ class ContextService extends \PKP\services\PKPContextService
      * in the database to complete the actions. Otherwise, use
      * ContextService::afterDeleteContext().
      *
-     * @param $hookName string
-     * @param $args array [
+     * @param string $hookName
+     * @param array $args [
      *		@option Context The new context
      *		@option Request
      * ]
@@ -119,16 +119,15 @@ class ContextService extends \PKP\services\PKPContextService
         $context = $args[0];
 
         // Create publication format tombstones for all published submissions
-        import('classes.publicationFormat.PublicationFormatTombstoneManager');
-        $publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
+        $publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
         $publicationFormatTombstoneMgr->insertTombstonesByPress($context);
     }
 
     /**
      * Perform additional actions after a context has been deleted
      *
-     * @param $hookName string
-     * @param $args array [
+     * @param string $hookName
+     * @param array $args [
      *		@option Context The new context
      *		@option Request
      * ]
@@ -155,8 +154,8 @@ class ContextService extends \PKP\services\PKPContextService
     /**
      * Make additional validation checks
      *
-     * @param $hookName string
-     * @param $args array [
+     * @param string $hookName
+     * @param array $args [
      *		@option Context The new context
      *		@option Request
      * ]
@@ -179,9 +178,9 @@ class ContextService extends \PKP\services\PKPContextService
      * Processes all cover images to resize the thumbnails according to the passed
      * width and height maximums.
      *
-     * @param $context Context
-     * @param $maxWidth int The maximum width allowed for a cover image
-     * @param $maxHeight int The maximum width allowed for a cover image
+     * @param Context $context
+     * @param int $maxWidth The maximum width allowed for a cover image
+     * @param int $maxHeight The maximum width allowed for a cover image
      */
     public function resizeCoverThumbnails($context, $maxWidth, $maxHeight)
     {
@@ -190,21 +189,25 @@ class ContextService extends \PKP\services\PKPContextService
         $contextFileManager = new ContextFileManager($context->getId());
 
         $objectDaos = [
-            DAORegistry::getDAO('CategoryDAO'),
+            Repo::publication()->dao,
             DAORegistry::getDAO('SeriesDAO'),
             Repo::submission()->dao,
         ];
         foreach ($objectDaos as $objectDao) {
             if ($objectDao instanceof \PKP\submission\DAO) {
-                $objects = Repo::submission()->getMany(
+                $objects = iterator_to_array(Repo::submission()->getMany(
                     Repo::submission()
                         ->getCollector()
                         ->filterByContextIds([$context->getId()])
-                );
+                ));
+            } elseif ($objectDao instanceof \PKP\category\DAO) {
+                $objects = iterator_to_array(Repo::category()->getMany(
+                    Repo::category()->getCollector()
+                    ->filterByContextIds([$context->getId()])));
             } else {
-                $objects = $objectDao->getByContextId($context->getId());
+                $objects = $objectDao->getByContextId($context->getId())->toArray();
             }
-            while ($object = $objects->next()) {
+            foreach ($objects as $object) {
                 if ($object instanceof Submission) {
                     foreach ($object->getData('publications') as $publication) {
                         foreach ((array) $publication->getData('coverImage') as $coverImage) {
@@ -219,9 +222,9 @@ class ContextService extends \PKP\services\PKPContextService
                     }
                 } else {
                     $cover = $object->getImage();
-                    if (is_a($object, 'Series')) {
+                    if ($object instanceof \APP\press\Series) {
                         $basePath = $contextFileManager->getBasePath() . 'series/';
-                    } elseif (is_a($object, 'Category')) {
+                    } elseif ($object instanceof \PKP\category\Category) {
                         $basePath = $contextFileManager->getBasePath() . 'categories/';
                     }
                 }

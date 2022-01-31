@@ -33,8 +33,8 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter
     /**
      * Populate the submission object from the node
      *
-     * @param $publication Publication
-     * @param $node DOMElement
+     * @param Publication $publication
+     * @param DOMElement $node
      *
      * @return Publication
      */
@@ -49,8 +49,8 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter
     /**
      * Handle an element whose parent is the submission element.
      *
-     * @param $n DOMElement
-     * @param $publication Publication
+     * @param DOMElement $n
+     * @param Publication $publication
      */
     public function handleChildElement($n, $publication)
     {
@@ -77,7 +77,7 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter
     /**
      * Get the import filter for a given element.
      *
-     * @param $elementName string Name of XML element
+     * @param string $elementName Name of XML element
      *
      * @return Filter
      */
@@ -99,7 +99,7 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter
         // Caps on class name for consistency with imports, whose filter
         // group names are generated implicitly.
 
-        $filterDao = DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
+        $filterDao = DAORegistry::getDAO('FilterDAO'); /** @var FilterDAO $filterDao */
         $importFilters = $filterDao->getObjectsByGroup('native-xml=>' . $importClass);
         $importFilter = array_shift($importFilters);
         return $importFilter;
@@ -108,8 +108,8 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter
     /**
      * Parse a publication format and add it to the submission.
      *
-     * @param $n DOMElement
-     * @param $publication Publication
+     * @param DOMElement $n
+     * @param Publication $publication
      */
     public function parsePublicationFormat($n, $publication)
     {
@@ -132,7 +132,7 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter
     /**
      * Parse a publication format and add it to the submission.
      *
-     * @param $publication Publication
+     * @param Publication $publication
      */
     public function parseChapters($node, $publication)
     {
@@ -159,8 +159,8 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter
     /**
      * Parse a publication format and add it to the submission.
      *
-     * @param $n DOMElement
-     * @param $publication Publication
+     * @param DOMElement $n
+     * @param Publication $publication
      */
     public function parseChapter($n, $publication)
     {
@@ -179,9 +179,9 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter
     /**
      * Parse out the object covers.
      *
-     * @param $filter NativeExportFilter
-     * @param $node DOMElement
-     * @param $object Publication
+     * @param NativeExportFilter $filter
+     * @param DOMElement $node
+     * @param Publication $object
      */
     public function parsePublicationCovers($filter, $node, $object)
     {
@@ -208,9 +208,9 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter
     /**
      * Parse out the cover and store it in the object.
      *
-     * @param $filter NativeExportFilter
-     * @param $node DOMElement
-     * @param $object Publication
+     * @param NativeExportFilter $filter
+     * @param DOMElement $node
+     * @param Publication $object
      */
     public function parsePublicationCover($filter, $node, $object)
     {
@@ -254,15 +254,15 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter
     /**
      * Parse out the cover and store it in the object.
      *
-     * @param $filter NativeExportFilter
-     * @param $node DOMElement
-     * @param $object Publication
+     * @param NativeExportFilter $filter
+     * @param DOMElement $node
+     * @param Publication $object
      */
     public function parseSeries($filter, $node, $object)
     {
         $deployment = $filter->getDeployment();
 
-        $context = $deployment->getContext(); /** $context Context */
+        $context = $deployment->getContext(); /** @var Context $context */
 
         $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         $series = $seriesDao->newDataObject();

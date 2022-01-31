@@ -431,9 +431,6 @@ msgstr "Dai la tua approvazione perché la prova possa essere indicizzata e incl
 msgid "grid.action.pageProofApproved"
 msgstr "Il file per le prove della messa in pagina è pronto per la pubblicazione"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Aggiungi un annuncio"
-
 msgid "grid.action.newCatalogEntry"
 msgstr "Nuovo ingresso nel Catalogo"
 

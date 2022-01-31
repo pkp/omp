@@ -13,15 +13,18 @@
  * @brief CSV import/export plugin
  */
 
+use APP\core\Application;
 use APP\facades\Repo;
+use APP\i18n\AppLocale;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
+use PKP\db\DAORegistry;
 use PKP\file\FileManager;
 use PKP\plugins\ImportExportPlugin;
 use PKP\security\Role;
 
 use PKP\submission\PKPSubmission;
-use PKP\submission\SubmissionFile;
+use PKP\submissionFile\SubmissionFile;
 
 class CSVImportExportPlugin extends ImportExportPlugin
 {
@@ -41,7 +44,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
      * Get the name of this plugin. The name must be unique within
      * its category.
      *
-     * @return String name of plugin
+     * @return string name of plugin
      */
     public function getName()
     {
@@ -69,8 +72,8 @@ class CSVImportExportPlugin extends ImportExportPlugin
     /**
      * Display the plugin.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function display($args, $request)
     {
@@ -87,7 +90,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
     /**
      * Execute import/export tasks using the command-line interface.
      *
-     * @param $args Parameters to the plugin
+     * @param array $args Parameters to the plugin
      */
     public function executeCLI($scriptName, &$args)
     {
@@ -98,12 +101,12 @@ class CSVImportExportPlugin extends ImportExportPlugin
 
         if (!$filename || !$username) {
             $this->usage($scriptName);
-            exit();
+            exit;
         }
 
         if (!file_exists($filename)) {
             echo __('plugins.importexport.csv.fileDoesNotExist', ['filename' => $filename]) . "\n";
-            exit();
+            exit;
         }
 
         $data = file($filename);
@@ -112,17 +115,16 @@ class CSVImportExportPlugin extends ImportExportPlugin
             $user = Repo::user()->getByUsername($username);
             if (!$user) {
                 echo __('plugins.importexport.csv.unknownUser', ['username' => $username]) . "\n";
-                exit();
+                exit;
             }
 
             $pressDao = Application::getContextDAO();
-            $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
-            $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-            $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
-            $submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-            import('lib.pkp.classes.submission.SubmissionFile'); // constants.
-            $genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
-            $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
+            $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /** @var UserGroupDAO $userGroupDao */
+            $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
+            $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
+            $submissionFileDao = Repo::submissionFile()->dao;
+            $genreDao = DAORegistry::getDAO('GenreDAO'); /** @var GenreDAO $genreDao */
+            $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /** @var PublicationDateDAO $publicationDateDao */
 
             foreach ($data as $csvLine) {
                 // Format is:
@@ -143,7 +145,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
 
                     if (!$genre) {
                         echo __('plugins.importexport.csv.noGenre') . "\n";
-                        exit();
+                        exit;
                     }
                     if (!$authorGroup) {
                         echo __('plugins.importexport.csv.noAuthorGroup', ['press' => $pressPath]) . "\n";
@@ -234,6 +236,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $temporaryFileManager = new TemporaryFileManager();
                         $temporaryFilename = tempnam($temporaryFileManager->getBasePath(), 'remote');
                         $temporaryFileManager->copyFile($pdfUrl, $temporaryFilename);
+
                         $submissionFile = $submissionFileDao->newDataObject();
                         $submissionFile->setSubmissionId($submissionId);
                         $submissionFile->setSubmissionLocale($submission->getLocale());
@@ -249,7 +252,9 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $submissionFile->setDirectSalesPrice(0);
                         $submissionFile->setSalesType('openAccess');
 
-                        $submissionFileDao->insertObject($submissionFile, $temporaryFilename);
+                        Repo::submissionFile()
+                            ->add($submissionFile, $temporaryFilename);
+
                         $fileManager = new FileManager();
                         $fileManager->deleteByPath($temporaryFilename);
 

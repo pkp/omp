@@ -23,8 +23,8 @@ class ContentBaseTestCase extends PKPContentBaseTestCase
     /**
      * Create a submission with the supplied data.
      *
-     * @param $data array Associative array of submission information
-     * @param $location string Whether or not the submission wll be created
+     * @param array $data Associative array of submission information
+     * @param string $location Whether or not the submission wll be created
      *   from the frontend or backend
      */
     protected function createSubmission($data, $location = 'frontend')
@@ -154,8 +154,8 @@ class ContentBaseTestCase extends PKPContentBaseTestCase
     /**
      * Send to review.
      *
-     * @param $type string "External" or "Internal"; type of review.
-     * @param $from string "Internal" or "Submission" (for external reviews)
+     * @param string $type "External" or "Internal"; type of review.
+     * @param string $from "Internal" or "Submission" (for external reviews)
      */
     protected function sendToReview($type = 'External', $from = 'Submission')
     {

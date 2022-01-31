@@ -18,14 +18,6 @@ namespace APP\core;
 class PageRouter extends \PKP\core\PKPPageRouter
 {
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * get the cacheable pages
      *
      * @return array

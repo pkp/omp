@@ -47,7 +47,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set the competing interests statement.
      *
-     * @param $competingInterests string
+     * @param string $competingInterests
      */
     public function setCompetingInterests($competingInterests)
     {
@@ -67,7 +67,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set ID of review assignment
      *
-     * @param $reviewId int
+     * @param int $reviewId
      */
     public function setReviewId($reviewId)
     {
@@ -87,7 +87,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set ID of reviewer.
      *
-     * @param $reviewerId int
+     * @param int $reviewerId
      */
     public function setReviewerId($reviewerId)
     {
@@ -107,7 +107,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set full name of reviewer.
      *
-     * @param $reviewerFullName string
+     * @param string $reviewerFullName
      */
     public function setReviewerFullName($reviewerFullName)
     {
@@ -127,7 +127,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set editor decisions.
      *
-     * @param $editorDecisions array
+     * @param array $editorDecisions
      */
     public function setDecisions($editorDecisions)
     {
@@ -147,7 +147,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set reviewer recommendation.
      *
-     * @param $recommendation string
+     * @param string $recommendation
      */
     public function setRecommendation($recommendation)
     {
@@ -167,7 +167,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set the reviewer's assigned date.
      *
-     * @param $dateAssigned string
+     * @param string $dateAssigned
      */
     public function setDateAssigned($dateAssigned)
     {
@@ -187,7 +187,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set the reviewer's notified date.
      *
-     * @param $dateNotified string
+     * @param string $dateNotified
      */
     public function setDateNotified($dateNotified)
     {
@@ -207,7 +207,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set the reviewer's confirmed date.
      *
-     * @param $dateConfirmed string
+     * @param string $dateConfirmed
      */
     public function setDateConfirmed($dateConfirmed)
     {
@@ -227,7 +227,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set the reviewer's completed date.
      *
-     * @param $dateCompleted string
+     * @param string $dateCompleted
      */
     public function setDateCompleted($dateCompleted)
     {
@@ -247,7 +247,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set the reviewer's acknowledged date.
      *
-     * @param $dateAcknowledged string
+     * @param string $dateAcknowledged
      */
     public function setDateAcknowledged($dateAcknowledged)
     {
@@ -267,7 +267,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set the reviewer's due date.
      *
-     * @param $dateDue string
+     * @param string $dateDue
      */
     public function setDateDue($dateDue)
     {
@@ -287,7 +287,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set the reviewer's response due date.
      *
-     * @param $dateResponseDue string
+     * @param string $dateResponseDue
      */
     public function setDateResponseDue($dateResponseDue)
     {
@@ -297,7 +297,7 @@ class ReviewerSubmission extends Submission
     /**
      * Get the declined value.
      *
-     * @return boolean
+     * @return bool
      */
     public function getDeclined()
     {
@@ -307,7 +307,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set the reviewer's declined value.
      *
-     * @param $declined boolean
+     * @param bool $declined
      */
     public function setDeclined($declined)
     {
@@ -317,7 +317,7 @@ class ReviewerSubmission extends Submission
     /**
      * Get the cancelled value.
      *
-     * @return boolean
+     * @return bool
      */
     public function getCancelled()
     {
@@ -327,7 +327,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set the reviewer's cancelled value.
      *
-     * @param $cancelled boolean
+     * @param bool $cancelled
      */
     public function setCancelled($cancelled)
     {
@@ -347,7 +347,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set reviewer file id.
      *
-     * @param $reviewerFileId int
+     * @param int $reviewerFileId
      */
     public function setReviewerFileId($reviewerFileId)
     {
@@ -367,7 +367,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set quality.
      *
-     * @param $quality int
+     * @param int $quality
      */
     public function setQuality($quality)
     {
@@ -387,7 +387,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set stageId.
      *
-     * @param $stageId int
+     * @param int $stageId
      */
     public function setStageId($stageId)
     {
@@ -407,7 +407,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set the type of review.
      *
-     * @param $method int
+     * @param int $method
      */
     public function setReviewMethod($method)
     {
@@ -427,7 +427,7 @@ class ReviewerSubmission extends Submission
     /**
      * Set round.
      *
-     * @param $round int
+     * @param int $round
      */
     public function setRound($round)
     {

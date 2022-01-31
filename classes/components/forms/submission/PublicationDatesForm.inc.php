@@ -10,11 +10,12 @@
  * @ingroup classes_controllers_form
  *
  * @brief A preset form for configuring whether chapters get their own
- *  publication dates
+ *  publication dates, landing pages and licenses.
  */
 
 namespace APP\components\forms\submission;
 
+use APP\submission\Submission;
 use PKP\components\forms\FieldOptions;
 use PKP\components\forms\FormComponent;
 
@@ -31,8 +32,8 @@ class PublicationDatesForm extends FormComponent
     /**
      * Constructor
      *
-     * @param $action string URL to submit the form to
-     * @param $submission Submission The submission of this publication
+     * @param string $action URL to submit the form to
+     * @param Submission $submission The submission of this publication
      */
     public function __construct($action, $submission)
     {

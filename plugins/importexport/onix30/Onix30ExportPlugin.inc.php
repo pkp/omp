@@ -13,9 +13,8 @@
  * @brief ONIX 3.0 XML import/export plugin
  */
 
-import('lib.pkp.classes.plugins.ImportExportPlugin');
-
 use APP\template\TemplateManager;
+use PKP\plugins\ImportExportPlugin;
 
 class Onix30ExportPlugin extends ImportExportPlugin
 {
@@ -41,7 +40,7 @@ class Onix30ExportPlugin extends ImportExportPlugin
      * Get the name of this plugin. The name must be unique within
      * its category.
      *
-     * @return String name of plugin
+     * @return string name of plugin
      */
     public function getName()
     {
@@ -79,8 +78,8 @@ class Onix30ExportPlugin extends ImportExportPlugin
     /**
      * Display the plugin.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function display($args, $request)
     {

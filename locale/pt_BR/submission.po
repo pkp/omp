@@ -1,9 +1,10 @@
+# Diego José Macêdo <diegojmacedo@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T12:00:54-07:00\n"
-"PO-Revision-Date: 2021-06-15 13:02+0000\n"
+"PO-Revision-Date: 2021-11-22 17:39+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/pt_BR/>\n"
@@ -496,3 +497,23 @@ msgstr "{$series} (Inativa)"
 
 msgid "submission.list.viewEntry"
 msgstr "Ver entrada"
+
+msgid "chapter.pages"
+msgstr "Páginas"
+
+msgid "submission.chapterCreated"
+msgstr " —  Capítulo criado"
+
+msgid "submission.withoutChapter"
+msgstr "{$name} — Sem este capítulo"
+
+msgid "chapter.volume"
+msgstr "Volume"
+
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+"Mostre este capítulo em sua própria página e crie um link para essa página "
+"no índice do livro."
+
+msgid "publication.chapter.landingPage"
+msgstr "Página do capítulo"

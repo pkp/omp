@@ -41,19 +41,21 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm
             $seriesTitles[$series->getId()] = $series->getLocalizedTitle();
         }
 
-        $categoryDao = \DAORegistry::getDAO('CategoryDAO');
-        $categories = $categoryDao->getByParentId(null, $contextId);
-        $categoryTitlesArray = $categories->toAssociativeArray();
+        $categories = Repo::category()->getMany(Repo::category()->getCollector()
+            ->filterByParentIds([null])
+            ->filterByContextIds([$contextId]));
 
         $categoryTitles = [];
-        foreach ($categoryTitlesArray as $category) {
+        foreach ($categories as $category) {
             $categoryTitles[$category->getId()] = $category->getLocalizedTitle();
         }
 
         $templateMgr = TemplateManager::getManager($request);
-        $templateMgr->assign('customTemplates', $customTemplates);
-        $templateMgr->assign('navigationMenuItemSeriesTitles', $seriesTitles);
-        $templateMgr->assign('navigationMenuItemCategoryTitles', $categoryTitles);
+        $templateMgr->assign([
+            'customTemplates' => $customTemplates,
+            'navigationMenuItemSeriesTitles' => $seriesTitles,
+            'navigationMenuItemCategoryTitles' => $categoryTitles,
+        ]);
 
         return parent::fetch($request, $template, $display);
     }
@@ -63,7 +65,7 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm
      */
     public function initData()
     {
-        $navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO'); /* @var $navigationMenuItemDao NavigationMenuItemDAO */
+        $navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO'); /** @var NavigationMenuItemDAO $navigationMenuItemDao */
         $navigationMenuItem = $navigationMenuItemDao->getById($this->navigationMenuItemId);
 
         if ($navigationMenuItem) {
@@ -97,7 +99,7 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm
     {
         parent::execute(...$functionArgs);
 
-        $navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO'); /* @var $navigationMenuItemDao NavigationMenuItemDAO */
+        $navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO'); /** @var NavigationMenuItemDAO $navigationMenuItemDao */
 
         $navigationMenuItem = $navigationMenuItemDao->getById($this->navigationMenuItemId);
         if (!$navigationMenuItem) {

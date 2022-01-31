@@ -50,12 +50,17 @@ class SitemapHandler extends PKPSitemapHandler
                 // Consider only available publication formats
                 if ($format->getIsAvailable()) {
                     // Consider only available publication format files
+                    $collector = Repo::submissionFile()
+                        ->getCollector()
+                        ->filterByAssoc(
+                            ASSOC_TYPE_PUBLICATION_FORMAT,
+                            [$format->getId()]
+                        )
+                        ->filterBySubmissionIds([$submission->getId()]);
+
+                    $data = Repo::submissionFile()->getMany($collector);
                     $availableFiles = array_filter(
-                        iterator_to_array(Services::get('submissionFile')->getMany([
-                            'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT],
-                            'assocIds' => [$format->getId()],
-                            'submissionIds' => [$submission->getId()],
-                        ])),
+                        iterator_to_array($data),
                         function ($a) {
                             return $a->getDirectSalesPrice() !== null;
                         }
@@ -70,15 +75,15 @@ class SitemapHandler extends PKPSitemapHandler
         // New releases
         $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'newReleases')));
         // Browse by series
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         $seriesResult = $seriesDao->getByPressId($pressId);
         while ($series = $seriesResult->next()) {
             $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'series', $series->getPath())));
         }
         // Browse by categories
-        $categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
-        $categoriesResult = $categoryDao->getByContextId($pressId);
-        while ($category = $categoriesResult->next()) {
+        $categories = Repo::category()->getMany(Repo::category()->getCollector()
+            ->filterByContextIds([$pressId]));
+        foreach ($categories as $category) {
             $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'category', $category->getPath())));
         }
 

@@ -21,20 +21,20 @@ use PKP\form\Form;
 class SpotlightForm extends Form
 {
     /**
-     * @var spotlightId
+     * @var int spotlightId
      */
     public $_spotlightId;
 
     /**
-     * @var pressId
+     * @var int pressId
      */
     public $_pressId;
 
     /**
      * Constructor
      *
-     * @param $pressId int
-     * @param $spotlightId int leave as default for new spotlight
+     * @param int $pressId
+     * @param int $spotlightId leave as default for new spotlight
      */
     public function __construct($pressId, $spotlightId = null)
     {
@@ -66,7 +66,7 @@ class SpotlightForm extends Form
     {
         $templateMgr = TemplateManager::getManager($request);
 
-        $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
+        $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /** @var SpotlightDAO $spotlightDao */
         $spotlight = $spotlightDao->getById($this->getSpotlightId());
         $templateMgr->assign([
             'spotlight' => $spotlight,
@@ -101,7 +101,7 @@ class SpotlightForm extends Form
      */
     public function execute(...$functionArgs)
     {
-        $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
+        $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /** @var SpotlightDAO $spotlightDao */
 
         $spotlight = $spotlightDao->getById($this->getSpotlightId(), $this->getPressId());
 
@@ -171,7 +171,7 @@ class SpotlightForm extends Form
                 $returner = isset($submission) ? $submission->getLocalizedTitle() : '';
                 break;
             case Spotlight::SPOTLIGHT_TYPE_SERIES:
-                $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+                $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
                 $series = $seriesDao->getById($assocId, $this->getPressId());
                 $returner = isset($series) ? $series->getLocalizedTitle() : '';
                 break;
@@ -186,7 +186,7 @@ class SpotlightForm extends Form
      *
      * @param int $type
      *
-     * @return boolean
+     * @return bool
      */
     public function _isValidSpotlightType($type)
     {

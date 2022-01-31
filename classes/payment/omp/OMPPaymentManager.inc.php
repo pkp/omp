@@ -18,13 +18,14 @@
 
 namespace APP\payment\omp;
 
-use APP\core\Services;
+use APP\facades\Repo;
 use PKP\db\DAORegistry;
+use PKP\payment\CompletedPayment;
 use PKP\payment\PaymentManager;
 use PKP\payment\QueuedPayment;
 use PKP\plugins\PluginRegistry;
 
-use PKP\submission\SubmissionFile;
+use PKP\submissionFile\SubmissionFile;
 
 class OMPPaymentManager extends PaymentManager
 {
@@ -33,7 +34,7 @@ class OMPPaymentManager extends PaymentManager
     /**
      * Determine whether the payment system is configured.
      *
-     * @return boolean true iff configured
+     * @return bool true iff configured
      */
     public function isConfigured()
     {
@@ -43,12 +44,12 @@ class OMPPaymentManager extends PaymentManager
     /**
      * Create a queued payment.
      *
-     * @param $request PKPRequest
-     * @param $type int PAYMENT_TYPE_...
-     * @param $userId int ID of user responsible for payment
-     * @param $assocId int ID of associated entity
-     * @param $amount numeric Amount of currency $currencyCode
-     * @param $currencyCode string optional ISO 4217 currency code
+     * @param PKPRequest $request
+     * @param int $type PAYMENT_TYPE_...
+     * @param int $userId ID of user responsible for payment
+     * @param int $assocId ID of associated entity
+     * @param float $amount Amount of currency $currencyCode
+     * @param string $currencyCode optional ISO 4217 currency code
      *
      * @return QueuedPayment
      */
@@ -60,8 +61,7 @@ class OMPPaymentManager extends PaymentManager
 
         switch ($type) {
             case self::PAYMENT_TYPE_PURCHASE_FILE:
-                import('lib.pkp.classes.submission.SubmissionFile'); // const
-                $submissionFile = Services::get('submissionFile')->get($assocId);
+                $submissionFile = Repo::submissionFile()->get($assocId);
                 if ($submissionFile->getData('fileStage') != SubmissionFile::SUBMISSION_FILE_PROOF) {
                     throw new Exception('The submission file for this queued payment is not in the correct file stage.');
                 }
@@ -102,9 +102,9 @@ class OMPPaymentManager extends PaymentManager
     /**
      * Fulfill a queued payment.
      *
-     * @param $request PKPRequest
-     * @param $queuedPayment QueuedPayment
-     * @param $payMethodPluginName string Name of payment plugin.
+     * @param PKPRequest $request
+     * @param QueuedPayment $queuedPayment
+     * @param string $payMethodPluginName Name of payment plugin.
      *
      * @return mixed Dependent on payment type.
      */
@@ -122,11 +122,11 @@ class OMPPaymentManager extends PaymentManager
         }
         }
 
-        $ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /* @var $ompCompletedPaymentDao OMPCompletedPaymentDAO */
+        $ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /** @var OMPCompletedPaymentDAO $ompCompletedPaymentDao */
         $completedPayment = $this->createCompletedPayment($queuedPayment, $payMethodPluginName);
         $ompCompletedPaymentDao->insertCompletedPayment($completedPayment);
 
-        $queuedPaymentDao = DAORegistry::getDAO('QueuedPaymentDAO'); /* @var $queuedPaymentDao QueuedPaymentDAO */
+        $queuedPaymentDao = DAORegistry::getDAO('QueuedPaymentDAO'); /** @var QueuedPaymentDAO $queuedPaymentDao */
         $queuedPaymentDao->deleteById($queuedPayment->getId());
 
         return $returner;
@@ -135,14 +135,13 @@ class OMPPaymentManager extends PaymentManager
     /**
      * Create a completed payment from a queued payment.
      *
-     * @param $queuedPayment QueuedPayment Payment to complete.
-     * @param $payMethod string Name of payment plugin used.
+     * @param QueuedPayment $queuedPayment Payment to complete.
+     * @param string $payMethod Name of payment plugin used.
      *
      * @return CompletedPayment
      */
     public function createCompletedPayment($queuedPayment, $payMethod)
     {
-        import('lib.pkp.classes.payment.CompletedPayment');
         $payment = new CompletedPayment();
         $payment->setContextId($queuedPayment->getContextId());
         $payment->setType($queuedPayment->getType());
@@ -164,7 +163,7 @@ class OMPPaymentManager extends PaymentManager
     {
         switch ($payment->getType()) {
             case self::PAYMENT_TYPE_PURCHASE_FILE:
-                $submissionFile = Services::get('submissionFile')->get($payment->getAssocId());
+                $submissionFile = Repo::submissionFile()->get($payment->getAssocId());
                 if (!$submissionFile || $submissionFile->getData('assocType') !== ASSOC_TYPE_PUBLICATION_FORMAT) {
                     return false;
                 }

@@ -16,9 +16,8 @@
 define('SESSION_DISABLE_INIT', 1); // FIXME?
 
 use PKP\oai\OAIConfig;
-
-import('classes.oai.omp.PressOAI');
-import('classes.handler.Handler');
+use APP\oai\omp\PressOAI;
+use APP\handler\Handler;
 
 class OAIHandler extends Handler
 {
@@ -39,8 +38,8 @@ class OAIHandler extends Handler
     /**
      * Handle an OAI request.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function index($args, $request)
     {

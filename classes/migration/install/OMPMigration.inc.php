@@ -141,7 +141,6 @@ class OMPMigration extends \PKP\migration\Migration
             $table->bigInteger('publication_id')->autoIncrement();
             $table->date('date_published')->nullable();
             $table->datetime('last_modified')->nullable();
-            $table->string('locale', 14)->nullable();
             $table->bigInteger('primary_contact_id')->nullable();
             $table->string('publication_date_type', 32)->default('pub')->nullable();
             //  PUBLICATION_TYPE_PUBLICATION
@@ -207,8 +206,10 @@ class OMPMigration extends \PKP\migration\Migration
             $table->bigInteger('primary_contact_id')->nullable();
             $table->bigInteger('publication_id');
             $table->float('seq', 8, 2)->default(0);
+            $table->bigInteger('source_chapter_id')->nullable();
             $table->index(['chapter_id'], 'chapters_chapter_id');
             $table->index(['publication_id'], 'chapters_publication_id');
+            $table->foreign('source_chapter_id')->references('chapter_id')->on('submission_chapters');
         });
 
         // Language dependent monograph chapter metadata.

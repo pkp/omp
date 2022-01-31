@@ -20,13 +20,13 @@ use PKP\linkAction\request\RemoteActionConfirmationModal;
 
 class SpotlightsGridRow extends GridRow
 {
-    /** @var Press **/
+    /** @var Press */
     public $_press;
 
     /**
      * Constructor
      *
-     * @param $press Press
+     * @param Press $press
      */
     public function __construct($press)
     {

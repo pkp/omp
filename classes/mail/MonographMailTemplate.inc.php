@@ -25,12 +25,12 @@ class MonographMailTemplate extends SubmissionMailTemplate
     /**
      * Assign parameters to the mail template.
      *
-     * @param $paramArray array
+     * @param array $paramArray
      */
     public function assignParams($paramArray = [])
     {
         $submission = $this->submission;
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         $series = $seriesDao->getById($submission->getSeriesId());
         $paramArray['seriesPath'] = $series ? $series->getPath() : '';
         $paramArray['seriesName'] = $series ? $series->getLocalizedTitle() : '';
@@ -40,8 +40,8 @@ class MonographMailTemplate extends SubmissionMailTemplate
     /**
      *  Send this email to all assigned series editors in the given stage
      *
-     * @param $submissionId int
-     * @param $stageId int
+     * @param int $submissionId
+     * @param int $stageId
      */
     public function toAssignedSeriesEditors($submissionId, $stageId)
     {
@@ -51,8 +51,8 @@ class MonographMailTemplate extends SubmissionMailTemplate
     /**
      * CC this email to all assigned series editors in the given stage
      *
-     * @param $submissionId int
-     * @param $stageId int
+     * @param int $submissionId
+     * @param int $stageId
      *
      * @return array of Users (note, this differs from OxS which returns EditAssignment objects)
      */
@@ -64,8 +64,8 @@ class MonographMailTemplate extends SubmissionMailTemplate
     /**
      * BCC this email to all assigned series editors in the given stage
      *
-     * @param $submissionId int
-     * @param $stageId int
+     * @param int $submissionId
+     * @param int $stageId
      */
     public function bccAssignedSeriesEditors($submissionId, $stageId)
     {

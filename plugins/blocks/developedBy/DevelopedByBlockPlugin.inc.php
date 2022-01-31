@@ -13,9 +13,7 @@
  * @brief Class for "developed by" block plugin
  */
 
-
-
-import('lib.pkp.classes.plugins.BlockPlugin');
+use PKP\plugins\BlockPlugin;
 
 class DevelopedByBlockPlugin extends BlockPlugin
 {
@@ -42,7 +40,7 @@ class DevelopedByBlockPlugin extends BlockPlugin
     /**
      * Get the display name of this plugin.
      *
-     * @return String
+     * @return string
      */
     public function getDisplayName()
     {

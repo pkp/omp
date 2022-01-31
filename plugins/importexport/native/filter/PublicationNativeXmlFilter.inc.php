@@ -44,8 +44,8 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter
     /**
      * Create and return a submission node.
      *
-     * @param $doc DOMDocument
-     * @param $entity Publication
+     * @param DOMDocument $doc
+     * @param Publication $entity
      *
      * @return DOMElement
      */
@@ -84,9 +84,9 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter
     /**
      * Add the chapter metadata for a publication to its DOM element.
      *
-     * @param $doc DOMDocument
-     * @param $entityNode DOMElement
-     * @param $entity Publication
+     * @param DOMDocument $doc
+     * @param DOMElement $entityNode
+     * @param Publication $entity
      */
     public function addChapters($doc, $entityNode, $entity)
     {
@@ -110,9 +110,9 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter
     /**
      * Create and return an object covers node.
      *
-     * @param $filter NativeExportFilter
-     * @param $doc DOMDocument
-     * @param $object Publication
+     * @param NativeExportFilter $filter
+     * @param DOMDocument $doc
+     * @param Publication $object
      *
      * @return DOMElement
      */

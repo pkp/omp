@@ -13,10 +13,14 @@
  * @brief Class for browse block plugin
  */
 
+namespace APP\plugins\blocks\browse;
+
+use PKP\db\DAORegistry;
 use PKP\core\JSONMessage;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\plugins\BlockPlugin;
+use APP\facades\Repo;
 
 class BrowseBlockPlugin extends BlockPlugin
 {
@@ -33,7 +37,7 @@ class BrowseBlockPlugin extends BlockPlugin
     /**
      * Get the display name of this plugin.
      *
-     * @return String
+     * @return string
      */
     public function getDisplayName()
     {
@@ -79,7 +83,6 @@ class BrowseBlockPlugin extends BlockPlugin
 
         switch ($request->getUserVar('verb')) {
             case 'settings':
-                $this->import('BrowseBlockSettingsForm');
                 $form = new BrowseBlockSettingsForm($this, $press->getId());
                 if ($request->getUserVar('save')) {
                     $form->readInputData();
@@ -98,7 +101,7 @@ class BrowseBlockPlugin extends BlockPlugin
     /**
      * Get the HTML contents of the browse block.
      *
-     * @param $templateMgr PKPTemplateManager
+     * @param PKPTemplateManager $templateMgr
      * @param null|mixed $request
      *
      * @return string
@@ -113,7 +116,7 @@ class BrowseBlockPlugin extends BlockPlugin
         $seriesDisplay = $this->getSetting($press->getId(), 'browseSeries');
         if ($seriesDisplay) {
             // Provide a list of series to browse
-            $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+            $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
             $series = $seriesDao->getByPressId($press->getId());
             $templateMgr->assign('browseSeries', $series->toArray());
         }
@@ -121,9 +124,9 @@ class BrowseBlockPlugin extends BlockPlugin
         $categoriesDisplay = $this->getSetting($press->getId(), 'browseCategories');
         if ($categoriesDisplay) {
             // Provide a list of categories to browse
-            $categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
-            $categories = $categoryDao->getByContextId($press->getId());
-            $templateMgr->assign('browseCategories', $categories->toArray());
+            $categories = Repo::category()->getMany(Repo::category()->getCollector()
+                ->filterByContextIds([$press->getId()]));
+            $templateMgr->assign('browseCategories', iterator_to_array($categories));
         }
 
         // If we're currently viewing a series or catalog, detect it
@@ -143,4 +146,8 @@ class BrowseBlockPlugin extends BlockPlugin
 
         return parent::getContents($templateMgr);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\plugins\blocks\browse\BrowseBlockPlugin', '\BrowseBlockPlugin');
 }

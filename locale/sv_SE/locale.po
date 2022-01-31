@@ -189,9 +189,6 @@ msgstr "Visa detta objekt i katalogen"
 msgid "grid.action.newCatalogEntry"
 msgstr "Ny katalogpost"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Lägg till ett meddelande"
-
 msgid "grid.action.pageProofApproved"
 msgstr "Korrekturfilen är färdig för publicering"
 

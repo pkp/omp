@@ -1,5 +1,4 @@
 <?php
-use APP\facades\Repo;
 
 /**
  * @file plugins/importexport/native/filter/ChapterNativeXmlFilter.inc.php
@@ -14,6 +13,8 @@ use APP\facades\Repo;
  * @brief Base class that converts a set of authors to a Native XML document
  */
 
+use APP\facades\Repo;
+
 import('lib.pkp.plugins.importexport.native.filter.NativeExportFilter');
 
 class ChapterNativeXmlFilter extends NativeExportFilter
@@ -21,7 +22,7 @@ class ChapterNativeXmlFilter extends NativeExportFilter
     /**
      * Constructor
      *
-     * @param $filterGroup FilterGroup
+     * @param FilterGroup $filterGroup
      */
     public function __construct($filterGroup)
     {
@@ -48,7 +49,7 @@ class ChapterNativeXmlFilter extends NativeExportFilter
     /**
      * @see Filter::process()
      *
-     * @param $chapters Chapter[]
+     * @param Chapter[] $chapters
      *
      * @return DOMDocument
      */
@@ -78,8 +79,8 @@ class ChapterNativeXmlFilter extends NativeExportFilter
     /**
      * Create and return an author node.
      *
-     * @param $doc DOMDocument
-     * @param $chapter Chapter
+     * @param DOMDocument $doc
+     * @param Chapter $chapter
      *
      * @return DOMElement
      */
@@ -116,7 +117,10 @@ class ChapterNativeXmlFilter extends NativeExportFilter
             $entityNode->appendChild($this->createChapterAuthorNode($doc, $chapterAuthor));
         }
 
-        $submissionFiles = Services::get('submissionFile')->getMany(['submissionIds' => [$publication->getData('submissionId')]]);
+        $collector = Repo::submissionFile()
+            ->getCollector()
+            ->filterBySubmissionIds([$publication->getData('submissionId')]);
+        $submissionFiles = Repo::submissionFile()->getMany($collector);
         foreach ($submissionFiles as $submissionFile) { /** @var SubmissionFile $submissionFile */
             if ($submissionFile->getData('chapterId') == $chapter->getId()) {
                 $referenceFileNode = $doc->createElementNS($deployment->getNamespace(), 'submission_file_ref');
@@ -131,7 +135,7 @@ class ChapterNativeXmlFilter extends NativeExportFilter
     /**
      * Create and return an author node.
      *
-     * @param $doc DOMDocument
+     * @param DOMDocument $doc
      *
      * @return DOMElement
      */
@@ -152,10 +156,10 @@ class ChapterNativeXmlFilter extends NativeExportFilter
     /**
      * Add a single pub ID element for a given plugin to the document.
      *
-     * @param $doc DOMDocument
-     * @param $entityNode DOMElement
-     * @param $entity Chapter
-     * @param $pubIdPlugin PubIdPlugin
+     * @param DOMDocument $doc
+     * @param DOMElement $entityNode
+     * @param Chapter $entity
+     * @param PubIdPlugin $pubIdPlugin
      *
      * @return DOMElement|null
      */
@@ -175,9 +179,9 @@ class ChapterNativeXmlFilter extends NativeExportFilter
     /**
      * Create and add identifier nodes to a submission node.
      *
-     * @param $doc DOMDocument
-     * @param $entityNode DOMElement
-     * @param $entity Chapter
+     * @param DOMDocument $doc
+     * @param DOMElement $entityNode
+     * @param Chapter $entity
      */
     public function addIdentifiers($doc, $entityNode, $entity)
     {

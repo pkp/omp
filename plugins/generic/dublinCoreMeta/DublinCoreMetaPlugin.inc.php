@@ -52,10 +52,10 @@ class DublinCoreMetaPlugin extends GenericPlugin
     /**
      * Inject Dublin Core metadata into monograph view
      *
-     * @param $hookName string
-     * @param $args array
+     * @param string $hookName
+     * @param array $args
      *
-     * @return boolean
+     * @return bool
      */
     public function monographView($hookName, $args)
     {
@@ -117,7 +117,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
         $templateMgr->addHeader('dublinCoreSourceUri', '<meta name="DC.Source.URI" content="' . $request->url($press->getPath()) . '"/>');
 
         $i = 0;
-        $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO'); /* @var $submissionSubjectDao SubmissionSubjectDAO */
+        $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO'); /** @var SubmissionSubjectDAO $submissionSubjectDao */
         $supportedLocales = array_keys(AppLocale::getSupportedFormLocales());
         if ($subjects = $submissionSubjectDao->getSubjects($publication->getId(), $supportedLocales)) {
             foreach ($subjects as $locale => $subjectLocale) {
@@ -128,7 +128,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
         }
 
         $i = 0;
-        $submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO'); /* @var $submissionKeywordDao SubmissionKeywordDAO */
+        $submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO'); /** @var SubmissionKeywordDAO $submissionKeywordDao */
         if ($keywords = $submissionKeywordDao->getKeywords($publication->getId(), $supportedLocales)) {
             foreach ($keywords as $locale => $keywordLocale) {
                 foreach ($keywordLocale as $keyword) {
@@ -160,10 +160,10 @@ class DublinCoreMetaPlugin extends GenericPlugin
     /**
      * Inject Dublin Core metadata into monograph file view
      *
-     * @param $hookName string
-     * @param $args array
+     * @param string $hookName
+     * @param array $args
      *
-     * @return boolean
+     * @return bool
      */
     public function monographFileView($hookName, $args)
     {
@@ -241,7 +241,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
         $templateMgr->addHeader('dublinCoreSourceUri', '<meta name="DC.Source.URI" content="' . $request->url($press->getPath()) . '"/>');
 
         $i = 0;
-        $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO'); /* @var $submissionSubjectDao SubmissionSubjectDAO */
+        $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO'); /** @var SubmissionSubjectDAO $submissionSubjectDao */
         $supportedLocales = array_keys(AppLocale::getSupportedFormLocales());
         if ($subjects = $submissionSubjectDao->getSubjects($monograph->getId(), $supportedLocales)) {
             foreach ($subjects as $locale => $subjectLocale) {
@@ -252,7 +252,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
         }
 
         $i = 0;
-        $submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO'); /* @var $submissionKeywordDao SubmissionKeywordDAO */
+        $submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO'); /** @var SubmissionKeywordDAO $submissionKeywordDao */
         if ($keywords = $submissionKeywordDao->getKeywords($monograph->getId(), $supportedLocales)) {
             foreach ($keywords as $locale => $keywordLocale) {
                 foreach ($keywordLocale as $keyword) {

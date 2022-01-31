@@ -25,7 +25,7 @@ class SubjectDAO extends CodelistItemDAO
     /**
      * Get the filename of the subject database
      *
-     * @param $locale string
+     * @param string $locale
      *
      * @return string
      */

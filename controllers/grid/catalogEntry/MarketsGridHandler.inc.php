@@ -121,9 +121,9 @@ class MarketsGridHandler extends GridHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param $request PKPRequest
-     * @param $args array
-     * @param $roleAssignments array
+     * @param PKPRequest $request
+     * @param array $args
+     * @param array $roleAssignments
      */
     public function authorize($request, &$args, $roleAssignments)
     {
@@ -144,14 +144,14 @@ class MarketsGridHandler extends GridHandler
         $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
         $this->setPublication($this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION));
         $this->setSubmission($submission);
-        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
         $representationId = null;
 
         // Retrieve the associated publication format for this grid.
         $marketId = (int) $request->getUserVar('marketId'); // set if editing or deleting a market entry
 
         if ($marketId != '') {
-            $marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+            $marketDao = DAORegistry::getDAO('MarketDAO'); /** @var MarketDAO $marketDao */
             $market = $marketDao->getById($marketId, $this->getPublication()->getId());
             if ($market) {
                 $representationId = $market->getPublicationFormatId();
@@ -264,7 +264,7 @@ class MarketsGridHandler extends GridHandler
     public function loadData($request, $filter = null)
     {
         $publicationFormat = $this->getPublicationFormat();
-        $marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+        $marketDao = DAORegistry::getDAO('MarketDAO'); /** @var MarketDAO $marketDao */
         $data = $marketDao->getByPublicationFormatId($publicationFormat->getId());
         return $data->toArray();
     }
@@ -276,8 +276,8 @@ class MarketsGridHandler extends GridHandler
     /**
      * Add a new market
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function addMarket($args, $request)
     {
@@ -287,8 +287,8 @@ class MarketsGridHandler extends GridHandler
     /**
      * Edit a markets entry
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -298,7 +298,7 @@ class MarketsGridHandler extends GridHandler
         $marketId = (int) $request->getUserVar('marketId');
         $submission = $this->getSubmission();
 
-        $marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+        $marketDao = DAORegistry::getDAO('MarketDAO'); /** @var MarketDAO $marketDao */
         $market = $marketDao->getById($marketId, $this->getPublication()->getId());
 
         // Form handling
@@ -312,8 +312,8 @@ class MarketsGridHandler extends GridHandler
     /**
      * Update a markets entry
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -323,7 +323,7 @@ class MarketsGridHandler extends GridHandler
         $marketId = $request->getUserVar('marketId');
         $submission = $this->getSubmission();
 
-        $marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+        $marketDao = DAORegistry::getDAO('MarketDAO'); /** @var MarketDAO $marketDao */
         $market = $marketDao->getById($marketId, $this->getPublication()->getId());
 
         // Form handling
@@ -365,8 +365,8 @@ class MarketsGridHandler extends GridHandler
     /**
      * Delete a market entry
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -376,7 +376,7 @@ class MarketsGridHandler extends GridHandler
         // Identify the markets entry to be deleted
         $marketId = $request->getUserVar('marketId');
 
-        $marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+        $marketDao = DAORegistry::getDAO('MarketDAO'); /** @var MarketDAO $marketDao */
         $market = $marketDao->getById($marketId, $this->getPublication()->getId());
         if ($market != null) { // authorized
 

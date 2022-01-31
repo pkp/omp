@@ -1,40 +1,16 @@
 env:
   global:
-  # Used for saving generated test datasets. See Notion for details.
-  - secure: fRBfUOCW74WoTqn++xJLCL6k0Ug4f8LSD75mbrfMWdP9Wuu5WzTpFH2K0fNOK2Znfg0Vqpr1442Sjjo+C4PxiM65RPIoi36CfFEqEPdhN2EF5kSXEngj97LF3SQzCklDxf/pI9Z9cbr5QgJhiVexLXuBg2Dsru/UvBD871+p4kA=
-  - APPLICATION=omp
+    # Used for saving generated test datasets. See Notion for details.
+    - secure=fRBfUOCW74WoTqn++xJLCL6k0Ug4f8LSD75mbrfMWdP9Wuu5WzTpFH2K0fNOK2Znfg0Vqpr1442Sjjo+C4PxiM65RPIoi36CfFEqEPdhN2EF5kSXEngj97LF3SQzCklDxf/pI9Z9cbr5QgJhiVexLXuBg2Dsru/UvBD871+p4kA=
+    - APPLICATION=omp
 
-# Attempt to work around Travis certificate failure problem
 dist: bionic
-
-# Configure the build matrix
-matrix:
-  include:
-  # Validation
-  - env: TEST=validation
-    php: 7.4
-  # PostgreSQL / various PHP
-  - env: TEST=pgsql
-    php: 7.4
-  - env:
-    - TEST: pgsql
-    - SAVE_BUILD: true
-    php: 8.0
-  # MySQL / various PHP
-  - env: TEST=mysql
-    php: 7.4
-  - env:
-    - TEST: mysql
-    - SAVE_BUILD: true
-    php: 8.0
-  # Path info disabled (DISABLED pending a fix of pkp/pkp-lib#4414)
-  # - env: TEST=mysql DISABLE_PATH_INFO=1
-  #   php: 7.2
+os: linux
 language: php
 python:
   - 3.3 # Required by Javascript linter/builder
 git:
-  # Inhibit automatic submodule checkout (see below)
+  # Inhibit automatic submodule checkout
   submodules: false
 cache:
   npm: true
@@ -46,47 +22,133 @@ addons:
   postgresql: "9.5"
   apt:
     update: true
+
 before_install:
-  # Check out submodules (this script checks out developer forks if necessary)
   - ./tools/startSubmodulesTRAVIS.sh
-
-  # Update to latest stable version of npm
   - npm i g -npm
+  - ./lib/pkp/tools/travis/prepare-webserver.sh
+  - ./lib/pkp/tools/travis/install-composer-dependencies.sh
+  - npm install && npm run build
 
-  - |
-    if [[ "$TEST" != "validation" ]]; then
-      # Prepare for unit and integration tests.
+stages:
+  - validate
+  - test
+  - upgrade
 
-      # Prepare the server environment
-      ./lib/pkp/tools/travis/prepare-webserver.sh
+jobs:
+  include:
+    - stage: test
+      env: TEST=pgsql
+      php: 7.4
+    - env: TEST=pgsql SAVE_BUILD=true
+      php: 8.0
+    - env: TEST=mysql
+      php: 7.4
+    - env: TEST=mysql SAVE_BUILD=true
+      php: 8.0
+    # Path info disabled DISABLED pending a fix of pkp/pkp-lib#4414
+    # - PHPVERSION=7.4 TEST=mysql DISABLE_PATH_INFO=1
+    #   php: 7.2
 
-      # Prepare the local codebase
-      ./lib/pkp/tools/travis/install-composer-dependencies.sh
-      npm install && npm run build
-    else
-      # Prepare for validation tests.
-      npm install
-      ./lib/pkp/tools/travis/install-linter.sh
-    fi
+    - stage: validate
+      name: "Validate and lint"
+      script:
+      - |
+        npm install
+        ./lib/pkp/tools/travis/install-linter.sh
+        ./lib/pkp/tools/travis/validate-xml.sh
+        ./lib/pkp/tools/buildjs.sh -n
+        ./lib/pkp/tools/checkHelp.sh
+        ./lib/pkp/tools/travis/validate-json.sh
+        npm run lint
+
+    - stage: upgrade
+      env: DATASET_BRANCH=stable-3_3_0 TEST=mysql
+      php: 8.0
+      script:
+        - source ./lib/pkp/tools/travis/prepare-tests.sh
+        - git clone https://github.com/pkp/datasets
+        - cp -r datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/files/* files/
+        - cp -r datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/public/* public/
+        - cp datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/config.inc.php .
+        - patch -p1 < datasets/upgrade/3_4_0-add-email-config.diff
+        - ./datasets/tools/dbclient.sh < datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/database.sql
+        - php tools/upgrade.php check
+        - php tools/upgrade.php upgrade
+
+    - env: DATASET_BRANCH=stable-3_2_1 TEST=mysql
+      php: 8.0
+      script:
+        - source ./lib/pkp/tools/travis/prepare-tests.sh
+        - git clone https://github.com/pkp/datasets
+        - cp -r datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/files/* files/
+        - cp -r datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/public/* public/
+        - cp datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/config.inc.php .
+        - patch -p1 < datasets/upgrade/3_4_0-add-email-config.diff
+        - ./datasets/tools/dbclient.sh < datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/database.sql
+        - php tools/upgrade.php check
+        - php tools/upgrade.php upgrade
+
+    - env: DATASET_BRANCH=stable-3_2_0 TEST=mysql
+      php: 8.0
+      script:
+        - source ./lib/pkp/tools/travis/prepare-tests.sh
+        - git clone https://github.com/pkp/datasets
+        - cp -r datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/files/* files/
+        - cp -r datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/public/* public/
+        - cp datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/config.inc.php .
+        - patch -p1 < datasets/upgrade/3_4_0-add-email-config.diff
+        - ./datasets/tools/dbclient.sh < datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/database.sql
+        - php tools/upgrade.php check
+        - php tools/upgrade.php upgrade
+
+    - env: DATASET_BRANCH=stable-3_3_0 TEST=pgsql
+      php: 8.0
+      script:
+        - source ./lib/pkp/tools/travis/prepare-tests.sh
+        - git clone https://github.com/pkp/datasets
+        - cp -r datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/files/* files/
+        - cp -r datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/public/* public/
+        - cp datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/config.inc.php .
+        - patch -p1 < datasets/upgrade/3_4_0-add-email-config.diff
+        - ./datasets/tools/dbclient.sh < datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/database.sql
+        - php tools/upgrade.php check
+        - php tools/upgrade.php upgrade
+
+    - env: DATASET_BRANCH=stable-3_2_1 TEST=pgsql
+      php: 8.0
+      script:
+        - source ./lib/pkp/tools/travis/prepare-tests.sh
+        - git clone https://github.com/pkp/datasets
+        - cp -r datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/files/* files/
+        - cp -r datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/public/* public/
+        - cp datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/config.inc.php .
+        - patch -p1 < datasets/upgrade/3_4_0-add-email-config.diff
+        - ./datasets/tools/dbclient.sh < datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/database.sql
+        - php tools/upgrade.php check
+        - php tools/upgrade.php upgrade
+
+    - env: DATASET_BRANCH=stable-3_2_0 TEST=pgsql
+      php: 8.0
+      script:
+        - source ./lib/pkp/tools/travis/prepare-tests.sh
+        - git clone https://github.com/pkp/datasets
+        - cp -r datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/files/* files/
+        - cp -r datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/public/* public/
+        - cp datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/config.inc.php .
+        - patch -p1 < datasets/upgrade/3_4_0-add-email-config.diff
+        - ./datasets/tools/dbclient.sh < datasets/${APPLICATION}/${DATASET_BRANCH}/${TEST}/database.sql
+        - php tools/upgrade.php check
+        - php tools/upgrade.php upgrade
+
 script:
-  - |
-    if [[ "$TEST" != "validation" ]]; then
-      # Run the unit and integration tests.
-      source ./lib/pkp/tools/travis/prepare-tests.sh
-      ./lib/pkp/tools/travis/run-tests.sh
-    else
-      # Run the validation tests.
-      ./lib/pkp/tools/travis/validate-xml.sh
-      ./lib/pkp/tools/buildjs.sh -n
-      ./lib/pkp/tools/checkHelp.sh
-      ./lib/pkp/tools/travis/validate-json.sh
-      npm run lint
-    fi
-
-after_script:
-  - cat error.log
+  - source ./lib/pkp/tools/travis/prepare-tests.sh
+  - ./lib/pkp/tools/travis/run-tests.sh
 
 after_failure:
+  - tail -n 200 error.log
   - sudo apt-get install sharutils
   - tar cz cypress/screenshots | uuencode /dev/stdout
-  - cat error.log
+
+after_success:
+  - tail -n 200 error.log

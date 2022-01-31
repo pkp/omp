@@ -20,21 +20,18 @@ use APP\core\Application;
 use APP\facades\Repo;
 use APP\i18n\AppLocale;
 use Illuminate\Support\Facades\DB;
-use PKP\core\PKPString;
 use PKP\db\DAORegistry;
-use PKP\file\FileManager;
 use PKP\identity\Identity;
-
 use PKP\install\Installer;
-use PKP\security\Role;
-use PKP\submission\SubmissionFile;
+
+use PKP\submissionFile\SubmissionFile;
 
 class Upgrade extends Installer
 {
     /**
      * Constructor.
      *
-     * @param $params array upgrade parameters
+     * @param array $params upgrade parameters
      */
     public function __construct($params, $installFile = 'upgrade.xml', $isPlugin = false)
     {
@@ -45,7 +42,7 @@ class Upgrade extends Installer
     /**
      * Returns true iff this is an upgrade process.
      *
-     * @return boolean
+     * @return bool
      */
     public function isUpgrade()
     {
@@ -59,17 +56,15 @@ class Upgrade extends Installer
     /**
      * If StaticPages table exists we should port the data as NMIs
      *
-     * @return boolean
+     * @return bool
      */
     public function migrateStaticPagesToNavigationMenuItems()
     {
         if ($this->tableExists('static_pages')) {
             $contextDao = Application::getContextDAO();
-            $navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO'); /* @var $navigationMenuItemDao NavigationMenuItemDAO */
+            $navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO'); /** @var NavigationMenuItemDAO $navigationMenuItemDao */
 
-            import('plugins.generic.staticPages.classes.StaticPagesDAO');
-
-            $staticPagesDao = new \StaticPagesDAO();
+            $staticPagesDao = new \APP\plugins\generic\staticPages\classes\StaticPagesDAO();
 
             $contexts = $contextDao->getAll();
             while ($context = $contexts->next()) {
@@ -91,7 +86,7 @@ class Upgrade extends Installer
     /**
      * Migrate first and last user names as multilingual into the DB table user_settings.
      *
-     * @return boolean
+     * @return bool
      */
     public function migrateUserAndAuthorNames()
     {
@@ -124,7 +119,7 @@ class Upgrade extends Installer
 
         // salutation and suffix will be migrated to the preferred public name
         // user preferred public names will be inserted for each supported site locales
-        $siteDao = DAORegistry::getDAO('SiteDAO'); /* @var $siteDao SiteDAO */
+        $siteDao = DAORegistry::getDAO('SiteDAO'); /** @var SiteDAO $siteDao */
         $site = $siteDao->getSite();
         $supportedLocales = $site->getSupportedLocales();
         $userResult = DB::select(
@@ -154,7 +149,7 @@ class Upgrade extends Installer
         // author suffix will be migrated to the author preferred public name
         // author preferred public names will be inserted for each press supported locale
         // get supported locales for the press (there shold actually be only one press)
-        $pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+        $pressDao = DAORegistry::getDAO('PressDAO'); /** @var PressDAO $pressDao */
         $presses = $pressDao->getAll();
         $pressessSupportedLocales = [];
         while ($press = $presses->next()) {
@@ -196,7 +191,7 @@ class Upgrade extends Installer
     /**
      * Update permit_metadata_edit and can_change_metadata for user_groups and stage_assignments tables.
      *
-     * @return boolean True indicates success.
+     * @return bool True indicates success.
      */
     public function changeUserRolesAndStageAssignmentsForStagePermitSubmissionEdit()
     {
@@ -263,7 +258,8 @@ class Upgrade extends Installer
             $context = $contexts[$row->context_id];
 
             // Get existing image paths
-            $basePath = Services::get('submissionFile')->getSubmissionDir($row->context_id, $row->submission_id);
+            $basePath = Repo::submissionFile()
+                ->getSubmissionDir($row->context_id, $row->submission_id);
             $coverPath = Config::getVar('files', 'files_dir') . '/' . $basePath . '/simple/' . $coverImage['name'];
             $coverPathInfo = pathinfo($coverPath);
             $thumbPath = Config::getVar('files', 'files_dir') . '/' . $basePath . '/simple/' . $coverImage['thumbnailName'];
@@ -333,7 +329,6 @@ class Upgrade extends Installer
      */
     public function _fileStageToPath($fileStage)
     {
-        import('lib.pkp.classes.submission.SubmissionFile');
         static $fileStagePathMap = [
             SubmissionFile::SUBMISSION_FILE_SUBMISSION => 'submission',
             SubmissionFile::SUBMISSION_FILE_NOTE => 'note',

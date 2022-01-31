@@ -22,7 +22,7 @@ class SpotlightDAO extends \PKP\db\DAO
     /**
      * Retrieve a spotlight by spotlight ID.
      *
-     * @param $spotlightId int
+     * @param int $spotlightId
      *
      * @return Spotlight|null
      */
@@ -39,7 +39,7 @@ class SpotlightDAO extends \PKP\db\DAO
     /**
      * Retrieve spotlight Assoc ID by spotlight ID.
      *
-     * @param $spotlightId int
+     * @param int $spotlightId
      *
      * @return int
      */
@@ -56,7 +56,7 @@ class SpotlightDAO extends \PKP\db\DAO
     /**
      * Retrieve spotlight Assoc ID by spotlight ID.
      *
-     * @param $spotlightId int
+     * @param int $spotlightId
      *
      * @return int
      */
@@ -93,7 +93,7 @@ class SpotlightDAO extends \PKP\db\DAO
     /**
      * Internal function to return an Spotlight object from a row.
      *
-     * @param $row array
+     * @param array $row
      *
      * @return Spotlight
      */
@@ -113,7 +113,7 @@ class SpotlightDAO extends \PKP\db\DAO
     /**
      * Update the settings for this object
      *
-     * @param $spotlight object
+     * @param object $spotlight
      */
     public function updateLocaleFields($spotlight)
     {
@@ -127,7 +127,7 @@ class SpotlightDAO extends \PKP\db\DAO
     /**
      * Insert a new Spotlight.
      *
-     * @param $spotlight Spotlight
+     * @param Spotlight $spotlight
      *
      * @return int
      */
@@ -152,9 +152,9 @@ class SpotlightDAO extends \PKP\db\DAO
     /**
      * Update an existing spotlight.
      *
-     * @param $spotlight Spotlight
+     * @param Spotlight $spotlight
      *
-     * @return boolean
+     * @return bool
      */
     public function updateObject($spotlight)
     {
@@ -179,9 +179,9 @@ class SpotlightDAO extends \PKP\db\DAO
     /**
      * Delete a spotlight.
      *
-     * @param $spotlight Spotlight
+     * @param Spotlight $spotlight
      *
-     * @return boolean
+     * @return bool
      */
     public function deleteObject($spotlight)
     {
@@ -191,7 +191,7 @@ class SpotlightDAO extends \PKP\db\DAO
     /**
      * Delete an spotlight by spotlight ID.
      *
-     * @param $spotlightId int
+     * @param int $spotlightId
      */
     public function deleteById($spotlightId)
     {
@@ -202,9 +202,9 @@ class SpotlightDAO extends \PKP\db\DAO
     /**
      * Delete spotlights by spotlight type ID.
      *
-     * @param $typeId int
+     * @param int $typeId
      *
-     * @return boolean
+     * @return bool
      */
     public function deleteByTypeId($typeId)
     {
@@ -217,8 +217,8 @@ class SpotlightDAO extends \PKP\db\DAO
     /**
      * Delete spotlights by Assoc ID
      *
-     * @param $assocType int
-     * @param $assocId int
+     * @param int $assocType
+     * @param int $assocId
      */
     public function deleteByAssoc($assocType, $assocId)
     {
@@ -231,7 +231,7 @@ class SpotlightDAO extends \PKP\db\DAO
     /**
      * Retrieve an array of spotlights matching a press id.
      *
-     * @param $pressId int
+     * @param int $pressId
      * @param null|mixed $rangeInfo
      *
      * @return array Array containing matching Spotlights
@@ -259,8 +259,8 @@ class SpotlightDAO extends \PKP\db\DAO
     /**
      * Retrieve a random spotlight matching a press id.
      *
-     * @param $pressId int
-     * @param $quantity int (optional) If more than one is needed,
+     * @param int $pressId
+     * @param int $quantity (optional) If more than one is needed,
      * specify here.
      *
      * @return array or null
@@ -295,8 +295,8 @@ class SpotlightDAO extends \PKP\db\DAO
     /**
      * Retrieve an array of spotlights matching a particular assoc ID.
      *
-     * @param $assocType int
-     * @param $assocId int
+     * @param int $assocType
+     * @param int $assocId
      * @param null|mixed $rangeInfo
      *
      * @return object DAOResultFactory containing matching Spotlights
@@ -320,7 +320,7 @@ class SpotlightDAO extends \PKP\db\DAO
     /**
      * Retrieve an array of numSpotlights spotlights matching a particular Assoc ID.
      *
-     * @param $assocType int
+     * @param int $assocType
      * @param null|mixed $rangeInfo
      *
      * @return object DAOResultFactory containing matching Spotlights
@@ -345,7 +345,7 @@ class SpotlightDAO extends \PKP\db\DAO
     /**
      * Retrieve most recent spotlight by Assoc ID.
      *
-     * @param $assocType int
+     * @param int $assocType
      *
      * @return Spotlight|null
      */

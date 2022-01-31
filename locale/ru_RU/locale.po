@@ -1484,9 +1484,6 @@ msgstr "Посмотреть этот элемент в каталоге"
 msgid "grid.action.newCatalogEntry"
 msgstr "Новый Пункт каталога"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Добавить объявление"
-
 msgid "grid.action.pageProofApproved"
 msgstr "Файл страниц корректуры готов к публикации"
 

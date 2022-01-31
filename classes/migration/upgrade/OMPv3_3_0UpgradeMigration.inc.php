@@ -14,13 +14,14 @@
 namespace APP\migration\upgrade;
 
 use APP\core\Application;
+use APP\core\Services;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use PKP\core\EntityDAO;
 use PKP\services\PKPSchemaService;
-use PKP\submission\SubmissionFile;
+use PKP\db\DAORegistry;
+use PKP\submissionFile\SubmissionFile;
 
 class OMPv3_3_0UpgradeMigration extends \PKP\migration\Migration
 {
@@ -99,7 +100,7 @@ class OMPv3_3_0UpgradeMigration extends \PKP\migration\Migration
 
             // Account for new EntityDAOs
             if (!$dao) {
-                $dao = App::make($daoName);
+                $dao = app($daoName);
                 if (!$dao) {
                     throw new Exception("${daoName} could not be created when migrating serialized settings");
                 }
@@ -175,10 +176,10 @@ class OMPv3_3_0UpgradeMigration extends \PKP\migration\Migration
     }
 
     /**
-     * @param $row stdClass row representation
-     * @param $tableName string name of a settings table
-     * @param $searchBy array additional parameters to the where clause that should be combined with AND operator
-     * @param $valueToConvert string column name for values to convert to JSON
+     * @param object $row row representation
+     * @param string $tableName name of a settings table
+     * @param array $searchBy additional parameters to the where clause that should be combined with AND operator
+     * @param string $valueToConvert column name for values to convert to JSON
      */
     private function _toJSON($row, $tableName, $searchBy, $valueToConvert)
     {
@@ -213,7 +214,7 @@ class OMPv3_3_0UpgradeMigration extends \PKP\migration\Migration
     }
 
     /**
-     * @param $array array to check
+     * @param array $array to check
      *
      * @return bool
      * @brief checks unserialized array; returns true if array keys are integers

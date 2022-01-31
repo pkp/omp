@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:03-08:00\n"
-"PO-Revision-Date: 2021-08-03 10:18+0000\n"
+"PO-Revision-Date: 2021-10-12 12:06+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Catalan <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "ca_ES/>\n"
@@ -1227,3 +1227,30 @@ msgid "manager.setup.selectCountry"
 msgstr ""
 "Seleccioneu el país en que s'ubica l'editorial, o el país de l'adreça postal "
 "de l'editorial o de l'editor/a."
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "L'import del pagament"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "El nom del tipus de pagament"
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr "Nom del lloc web quan s'allotja més d'una publicació"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "La moneda de l'import del pagament, per exemple USD"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "L'adreça de correu electrònic del contacte principal de la publicació"
+
+msgid "emailTemplate.variable.context.principalContactSignature"
+msgstr "La signatura per als correus electrònics automatitzats de la publicació"
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "El nom del contacte principal de la publicació"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "L'URL a la pàgina d'inici de la publicació"
+
+msgid "emailTemplate.variable.context.contextName"
+msgstr "El nom de l'editorial"

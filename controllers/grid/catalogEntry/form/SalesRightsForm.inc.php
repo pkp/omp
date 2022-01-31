@@ -19,10 +19,10 @@ use PKP\form\Form;
 
 class SalesRightsForm extends Form
 {
-    /** The submission associated with the format being edited **/
+    /** @var Submission The submission associated with the format being edited */
     public $_submission;
 
-    /** Sales Rights the entry being edited **/
+    /** @var SalesRights the entry being edited */
     public $_salesRights;
 
     /**
@@ -45,7 +45,7 @@ class SalesRightsForm extends Form
             'optional',
             'grid.catalogEntry.oneROWPerFormat',
             function ($ROWSetting) use ($form, $salesRights) {
-                $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
+                $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /** @var SalesRightsDAO $salesRightsDao */
                 $pubFormatId = $form->getData('representationId');
                 return $ROWSetting == '' || $salesRightsDao->getROWByPublicationFormatId($pubFormatId) == null ||
                     ($salesRights != null && $salesRightsDao->getROWByPublicationFormatId($pubFormatId)->getId() == $salesRights->getId());
@@ -72,7 +72,7 @@ class SalesRightsForm extends Form
     /**
      * Set the entry
      *
-     * @param @salesRights SalesRights
+     * @param SalesRights $salesRights
      */
     public function setSalesRights($salesRights)
     {
@@ -155,7 +155,7 @@ class SalesRightsForm extends Form
         $templateMgr->assign('submissionId', $submission->getId());
         $templateMgr->assign('publicationId', $this->getPublication()->getId());
         $salesRights = $this->getSalesRights();
-        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
         $templateMgr->assign('countryCodes', $onixCodelistItemDao->getCodes('List91')); // countries (CA, US, GB, etc)
         $templateMgr->assign('regionCodes', $onixCodelistItemDao->getCodes('List49')); // regions (British Columbia, England, etc)
 
@@ -173,7 +173,7 @@ class SalesRightsForm extends Form
             $representationId = (int) $request->getUserVar('representationId');
         }
 
-        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
         $publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
 
         if ($publicationFormat) { // the format exists for this submission
@@ -220,8 +220,8 @@ class SalesRightsForm extends Form
     public function execute(...$functionArgs)
     {
         parent::execute(...$functionArgs);
-        $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
-        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+        $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /** @var SalesRightsDAO $salesRightsDao */
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
 
         $submission = $this->getSubmission();
         $salesRights = $this->getSalesRights();

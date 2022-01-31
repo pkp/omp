@@ -13,10 +13,11 @@
  * @brief Paypal payment plugin class
  */
 
-import('lib.pkp.classes.plugins.PaymethodPlugin');
+use APP\template\TemplateManager;
+use PKP\plugins\PaymethodPlugin;
+
 require_once(dirname(__FILE__) . '/vendor/autoload.php');
 
-use APP\template\TemplateManager;
 
 class PaypalPaymentPlugin extends PaymethodPlugin
 {
@@ -62,8 +63,8 @@ class PaypalPaymentPlugin extends PaymethodPlugin
     /**
      * Add settings to the payments form
      *
-     * @param $hookName string
-     * @param $form FormComponent
+     * @param string $hookName
+     * @param FormComponent $form
      */
     public function addSettings($hookName, $form)
     {
@@ -163,7 +164,7 @@ class PaypalPaymentPlugin extends PaymethodPlugin
     public function handle($args, $request)
     {
         $context = $request->getContext();
-        $queuedPaymentDao = DAORegistry::getDAO('QueuedPaymentDAO'); /* @var $queuedPaymentDao QueuedPaymentDAO */
+        $queuedPaymentDao = DAORegistry::getDAO('QueuedPaymentDAO'); /** @var QueuedPaymentDAO $queuedPaymentDao */
         try {
             $queuedPayment = $queuedPaymentDao->getById($queuedPaymentId = $request->getUserVar('queuedPaymentId'));
             if (!$queuedPayment) {

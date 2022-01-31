@@ -13,7 +13,9 @@
  * @brief Provide access to proof files management.
  */
 
-use PKP\submission\SubmissionFile;
+use APP\core\Application;
+use APP\facades\Repo;
+use PKP\submissionFile\SubmissionFile;
 
 import('lib.pkp.controllers.grid.files.SubmissionFilesCategoryGridDataProvider');
 
@@ -28,7 +30,6 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
     public function __construct($gridHandler)
     {
         $this->_gridHandler = $gridHandler;
-        import('lib.pkp.classes.submission.SubmissionFile');
         parent::__construct(SubmissionFile::SUBMISSION_FILE_PROOF);
         $this->setStageId(WORKFLOW_STAGE_ID_PRODUCTION);
     }
@@ -111,12 +112,16 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
         /** @var Representation $categoryDataElement */
         assert(is_a($categoryDataElement, 'Representation'));
 
-        $submissionFiles = Services::get('submissionFile')->getMany([
-            'submissionIds' => [$this->getPublication()->getData('submissionId')],
-            'assocTypes' => [ASSOC_TYPE_REPRESENTATION],
-            'assocIds' => [$categoryDataElement->getId()],
-            'fileStages' => [$this->getFileStage()],
-        ]);
+        $collector = Repo::submissionFile()
+            ->getCollector()
+            ->filterBySubmissionIds([$this->getPublication()->getData('submissionId')])
+            ->filterByAssoc(
+                ASSOC_TYPE_REPRESENTATION,
+                [$categoryDataElement->getId()]
+            )
+            ->filterByFileStages([$this->getFileStage()]);
+
+        $submissionFiles = Repo::submissionFile()->getMany($collector);
 
         // if it is a remotely hosted content, don't provide the files rows
         $remoteURL = $categoryDataElement->getRemoteURL();

@@ -31,8 +31,8 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter
     /**
      * Populate the submission object from the node
      *
-     * @param $submission Submission
-     * @param $node DOMElement
+     * @param Submission $submission
+     * @param DOMElement $node
      *
      * @return Submission
      */
@@ -49,8 +49,8 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter
     /**
      * Handle an element whose parent is the submission element.
      *
-     * @param $n DOMElement
-     * @param $submission Submission
+     * @param DOMElement $n
+     * @param Submission $submission
      */
     public function handleChildElement($n, $submission)
     {
@@ -66,7 +66,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter
     /**
      * Get the import filter for a given element.
      *
-     * @param $elementName string Name of XML element
+     * @param string $elementName Name of XML element
      *
      * @return Filter
      */
@@ -94,8 +94,8 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter
     /**
      * Parse a publication format and add it to the submission.
      *
-     * @param $n DOMElement
-     * @param $submission Submission
+     * @param DOMElement $n
+     * @param Submission $submission
      */
     public function parsePublication($n, $submission)
     {

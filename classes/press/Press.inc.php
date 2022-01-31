@@ -88,7 +88,7 @@ class Press extends Context
      * Returns true if this press contains the fields required for creating valid
      * ONIX export metadata.
      *
-     * @return boolean
+     * @return bool
      */
     public function hasRequiredOnixHeaderFields()
     {

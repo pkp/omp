@@ -23,7 +23,7 @@ class LibraryFileManager extends PKPLibraryFileManager
     /**
      * Get the file suffix for the given file type
      *
-     * @param $type int LIBRARY_FILE_TYPE_...
+     * @param int $type LIBRARY_FILE_TYPE_...
      */
     public function getFileSuffixFromType($type)
     {

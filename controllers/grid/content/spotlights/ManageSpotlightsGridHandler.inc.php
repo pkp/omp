@@ -80,9 +80,9 @@ class ManageSpotlightsGridHandler extends GridHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param $request PKPRequest
-     * @param $args array
-     * @param $roleAssignments array
+     * @param PKPRequest $request
+     * @param array $args
+     * @param array $roleAssignments
      */
     public function authorize($request, &$args, $roleAssignments)
     {
@@ -92,7 +92,7 @@ class ManageSpotlightsGridHandler extends GridHandler
         $spotlightId = $request->getUserVar('spotlightId');
         if ($spotlightId) {
             $press = $request->getPress();
-            $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
+            $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /** @var SpotlightDAO $spotlightDao */
             $spotlight = $spotlightDao->getById($spotlightId);
             if ($spotlight == null || $spotlight->getPressId() != $press->getId()) {
                 return false;
@@ -195,7 +195,7 @@ class ManageSpotlightsGridHandler extends GridHandler
      */
     public function loadData($request, $filter = null)
     {
-        $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
+        $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /** @var SpotlightDAO $spotlightDao */
         $press = $this->getPress();
         return $spotlightDao->getByPressId($press->getId());
     }
@@ -226,8 +226,8 @@ class ManageSpotlightsGridHandler extends GridHandler
     /**
      * Edit a spotlight entry
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -246,8 +246,8 @@ class ManageSpotlightsGridHandler extends GridHandler
     /**
      * Update a spotlight entry
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -258,7 +258,7 @@ class ManageSpotlightsGridHandler extends GridHandler
 
         $press = $this->getPress();
 
-        $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
+        $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /** @var SpotlightDAO $spotlightDao */
         $spotlight = $spotlightDao->getById($spotlightId, $press->getId());
 
         // Form handling
@@ -300,8 +300,8 @@ class ManageSpotlightsGridHandler extends GridHandler
     /**
      * Delete a spotlight entry
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -311,7 +311,7 @@ class ManageSpotlightsGridHandler extends GridHandler
         // Identify the entry to be deleted
         $spotlightId = $request->getUserVar('spotlightId');
 
-        $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
+        $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /** @var SpotlightDAO $spotlightDao */
         $press = $this->getPress();
         $spotlight = $spotlightDao->getById($spotlightId, $press->getId());
         if ($spotlight != null) { // authorized
@@ -333,8 +333,8 @@ class ManageSpotlightsGridHandler extends GridHandler
      * Returns a JSON list for the autocomplete field. Fetches a list of possible spotlight options
      * based on the spotlight type chosen.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -368,7 +368,7 @@ class ManageSpotlightsGridHandler extends GridHandler
 
         $matches = [];
 
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         $allSeries = $seriesDao->getByPressId($press->getId());
         while ($series = $allSeries->next()) {
             if ($name == '' || preg_match('/' . preg_quote($name, '/') . '/i', $series->getLocalizedTitle())) {

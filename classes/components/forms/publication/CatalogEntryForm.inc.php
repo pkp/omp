@@ -21,6 +21,7 @@ use PKP\components\forms\FieldSelect;
 use PKP\components\forms\FieldText;
 use PKP\components\forms\FieldUploadImage;
 use PKP\components\forms\FormComponent;
+use APP\facades\Repo;
 
 define('FORM_CATALOG_ENTRY', 'catalogEntry');
 
@@ -35,12 +36,12 @@ class CatalogEntryForm extends FormComponent
     /**
      * Constructor
      *
-     * @param $action string URL to submit the form to
-     * @param $locales array Supported locales
-     * @param $publication Publication The publication to change settings for
-     * @param $submission Submission The submission of this publication
-     * @param $baseUrl string Site's base URL. Used for image previews.
-     * @param $temporaryFileApiUrl string The url to upload the cover image
+     * @param string $action URL to submit the form to
+     * @param array $locales Supported locales
+     * @param Publication $publication The publication to change settings for
+     * @param Submission $submission The submission of this publication
+     * @param string $baseUrl Site's base URL. Used for image previews.
+     * @param string $temporaryFileApiUrl The url to upload the cover image
      */
     public function __construct($action, $locales, $publication, $submission, $baseUrl, $temporaryFileApiUrl)
     {
@@ -76,7 +77,8 @@ class CatalogEntryForm extends FormComponent
 
         // Categories
         $categoryOptions = [];
-        $categories = \DAORegistry::getDAO('CategoryDAO')->getByContextId($submission->getData('contextId'))->toAssociativeArray();
+        $categories = iterator_to_array(Repo::category()->getMany(Repo::category()->getCollector()
+            ->filterByContextIds([$submission->getData('contextId')])));
         foreach ($categories as $category) {
             $label = $category->getLocalizedTitle();
             if ($category->getParentId()) {

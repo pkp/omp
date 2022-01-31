@@ -14,28 +14,28 @@
  * stores/retrieves from an associative array
  */
 
+use APP\facades\Repo;
 use APP\template\TemplateManager;
 
 use PKP\form\Form;
-use APP\facades\Repo;
 
 class ChapterForm extends Form
 {
-    /** The monograph associated with the chapter being edited **/
+    /** @var Monograph The monograph associated with the chapter being edited */
     public $_monograph;
 
-    /** The publication associated with the chapter being edited **/
+    /** @var Publication The publication associated with the chapter being edited */
     public $_publication;
 
-    /** Chapter the chapter being edited **/
+    /** @var Chapter the chapter being edited */
     public $_chapter;
 
     /**
      * Constructor.
      *
-     * @param $monograph Monograph
-     * @param $publication Publication
-     * @param $chapter Chapter
+     * @param Monograph $monograph
+     * @param Publication $publication
+     * @param Chapter $chapter
      */
     public function __construct($monograph, $publication, $chapter)
     {
@@ -71,7 +71,7 @@ class ChapterForm extends Form
     /**
      * Set the monograph associated with this chapter grid.
      *
-     * @param $monograph Monograph
+     * @param Monograph $monograph
      */
     public function setMonograph($monograph)
     {
@@ -91,7 +91,7 @@ class ChapterForm extends Form
     /**
      * Set the publication associated with this chapter grid.
      *
-     * @param $publication Publication
+     * @param Publication $publication
      */
     public function setPublication($publication)
     {
@@ -111,7 +111,7 @@ class ChapterForm extends Form
     /**
      * Set the Chapter associated with this form
      *
-     * @param $chapter Chapter
+     * @param Chapter $chapter
      */
     public function setChapter($chapter)
     {
@@ -139,12 +139,14 @@ class ChapterForm extends Form
             $this->setData('subtitle', $chapter->getSubtitle());
             $this->setData('abstract', $chapter->getAbstract());
             $this->setData('datePublished', $chapter->getDatePublished());
+            $this->setData('isPageEnabled', $chapter->isPageEnabled());
             $this->setData('pages', $chapter->getPages());
         } else {
             $this->setData('title', null);
             $this->setData('subtitle', null);
             $this->setData('abstract', null);
             $this->setData('datePublished', null);
+            $this->setData('isPageEnabled', null);
             $this->setData('pages', null);
         }
     }
@@ -197,7 +199,11 @@ class ChapterForm extends Form
             }
         }
 
-        $submissionFiles = Services::get('submissionFile')->getMany(['submissionIds' => [$this->getMonograph()->getId()]]);
+        $collector = Repo::submissionFile()
+            ->getCollector()
+            ->filterBySubmissionIds([$this->getMonograph()->getId()]);
+
+        $submissionFiles = Repo::submissionFile()->getMany($collector);
         foreach ($submissionFiles as $submissionFile) {
             $isIncluded = false;
 
@@ -231,7 +237,7 @@ class ChapterForm extends Form
      */
     public function readInputData()
     {
-        $this->readUserVars(['title', 'subtitle', 'authors', 'files','abstract','datePublished','pages']);
+        $this->readUserVars(['title', 'subtitle', 'authors', 'files','abstract','datePublished','pages','isPageEnabled']);
     }
 
     /**
@@ -243,7 +249,7 @@ class ChapterForm extends Form
     {
         parent::execute(...$functionParams);
 
-        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
+        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
         $chapter = $this->getChapter();
 
         if ($chapter) {
@@ -252,6 +258,7 @@ class ChapterForm extends Form
             $chapter->setAbstract($this->getData('abstract'), null); //Localized
             $chapter->setDatePublished($this->getData('datePublished'));
             $chapter->setPages($this->getData('pages'));
+            $chapter->setPageEnabled($this->getData('isPageEnabled'));
             $chapterDao->updateObject($chapter);
         } else {
             $chapter = $chapterDao->newDataObject();
@@ -261,6 +268,7 @@ class ChapterForm extends Form
             $chapter->setAbstract($this->getData('abstract'), null); //Localized
             $chapter->setDatePublished($this->getData('datePublished'));
             $chapter->setPages($this->getData('pages'));
+            $chapter->setPageEnabled($this->getData('isPageEnabled'));
             $chapter->setSequence(REALLY_BIG_NUMBER);
             $chapterDao->insertChapter($chapter);
             $chapterDao->resequenceChapters($this->getPublication()->getId());
@@ -276,7 +284,12 @@ class ChapterForm extends Form
 
         // Save the chapter file associations
         $selectedFiles = (array) $this->getData('files');
-        DAORegistry::getDAO('SubmissionFileDAO')->updateChapterFiles($selectedFiles, $this->getChapter()->getId());
+        Repo::submissionFile()
+            ->dao
+            ->updateChapterFiles(
+                $selectedFiles,
+                $this->getChapter()->getId()
+            );
 
         return true;
     }

@@ -59,5 +59,5 @@ class StatisticsHelper extends PKPStatisticsHelper
 
 if (!PKP_STRICT_MODE) {
     class_alias('\APP\statistics\StatisticsHelper', '\StatisticsHelper');
-    define('STATISTICS_DIMENSION_SERIES_ID', \StatisticsHelper::STATISTICS_DIMENSION_SERIES_ID);
+    define('STATISTICS_DIMENSION_SERIES_ID', StatisticsHelper::STATISTICS_DIMENSION_SERIES_ID);
 }

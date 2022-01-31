@@ -413,9 +413,6 @@ msgstr "Έγκριση του τυπογραφικού δοκιμίου για �
 msgid "grid.action.pageProofApproved"
 msgstr "Το αρχείο με τις σελίδες τυπογραφικού δοκιμίου είναι έτοιμο για δημοσίευση"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Προσθήκη Ανακοίνωσης"
-
 msgid "grid.action.newCatalogEntry"
 msgstr "Νέα Καταχώριση στον Κατάλογο"
 

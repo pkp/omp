@@ -18,17 +18,6 @@ import('lib.pkp.plugins.importexport.native.PKPNativeImportExportDeployment');
 
 class NativeImportExportDeployment extends PKPNativeImportExportDeployment
 {
-    /**
-     * Constructor
-     *
-     * @param $context Context
-     * @param $user User
-     */
-    public function __construct($context, $user)
-    {
-        parent::__construct($context, $user);
-    }
-
     //
     // Deploymenturation items for subclasses to override
     //

@@ -83,8 +83,8 @@ class UsageEventPlugin extends PKPUsageEventPlugin
                         $publicationId = (int) $args[2];
                     }
 
-                    $press = $templateMgr->getTemplateVars('currentContext'); /* @var $press Press */
-                    $series = $templateMgr->getTemplateVars('series'); /* @var $series Series */
+                    $press = $templateMgr->getTemplateVars('currentContext'); /** @var Press $press */
+                    $series = $templateMgr->getTemplateVars('series'); /** @var Series $series */
                     $submission = $templateMgr->getTemplateVars('publishedSubmission');
 
                     // No published objects, no usage event.

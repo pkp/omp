@@ -14,8 +14,11 @@
  *   catalog.
  */
 
+use APP\facades\Repo;
 use APP\handler\Handler;
 
+use APP\monograph\Chapter;
+use APP\monograph\ChapterDAO;
 use APP\payment\omp\OMPPaymentManager;
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 use APP\template\TemplateManager;
@@ -27,8 +30,17 @@ class CatalogBookHandler extends Handler
     /** @var Publication The requested publication */
     public $publication;
 
-    /** @var boolean Is this a request for a specific version */
+    /** @var null|Chapter The requested chapter */
+    public $chapter = null;
+
+    /** @var array this array contains ids of all publications, those contain the requested chapter */
+    public $chapterPublicationIds = [];
+
+    /** @var bool Is this a request for a specific version */
     public $isVersionRequest = false;
+
+    /** @var bool Is this a request for a chapter */
+    public $isChapterRequest = false;
 
     //
     // Overridden functions from PKPHandler
@@ -36,9 +48,9 @@ class CatalogBookHandler extends Handler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param $request PKPRequest
-     * @param $args array
-     * @param $roleAssignments array
+     * @param PKPRequest $request
+     * @param array $args
+     * @param array $roleAssignments
      */
     public function authorize($request, &$args, $roleAssignments)
     {
@@ -53,13 +65,13 @@ class CatalogBookHandler extends Handler
     /**
      * Display a published submission in the public catalog.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function book($args, $request)
     {
         $templateMgr = TemplateManager::getManager($request);
-        $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+        $submission = $this->getAuthorizedContextObject(PKPApplication::ASSOC_TYPE_SUBMISSION);
         $this->setupTemplate($request, $submission);
         AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION); // submission.synopsis; submission.copyrightStatement
 
@@ -85,11 +97,49 @@ class CatalogBookHandler extends Handler
         // If the publication has been reached through an outdated
         // urlPath, redirect to the latest version
         if (!ctype_digit((string) $submissionId) && $submissionId !== $this->publication->getData('urlPath') && !$subPath) {
-            $newArgs = $args;
             $newArgs = $this->publication->getData('urlPath')
                 ? $this->publication->getData('urlPath')
                 : $this->publication->getId();
             $request->redirect(null, $request->getRequestedPage(), $request->getRequestedOp(), $newArgs);
+        }
+
+        // If a chapter is requested, set this chapter
+        if ($subPath === 'chapter') {
+            $chapterId = empty($args) ? 0 : (int) array_shift($args);
+            $this->setChapter($chapterId, $request);
+        } elseif (!empty($args) && $args[0] === 'chapter') {
+            $chapterId = isset($args[1]) ? (int) $args[1] : 0;
+            $this->setChapter($chapterId, $request);
+        }
+
+        if ($this->isChapterRequest) {
+            if (!$this->chapter->isPageEnabled()) {
+                $request->getDispatcher()->handle404();
+            }
+            $chapterAuthors = $this->chapter->getAuthors();
+            $chapterAuthors = $chapterAuthors->toArray();
+
+            $datePublished = $submission->getEnableChapterPublicationDates() && $this->chapter->getDatePublished()
+                ? $this->chapter->getDatePublished()
+                : $this->publication->getData('datePublished');
+
+            // Get the earliest published Version of the chapter
+            $sourceChapter = $this->getSourceChapter($submission);
+            if ($sourceChapter) {
+                // Get the earliest publishing date of the chapter
+                $firstDatePublished = $this->getChaptersFirstPublishedDate($submission, $sourceChapter);
+            } else {
+                $firstDatePublished = $datePublished;
+            }
+
+            $templateMgr->assign([
+                'chapter' => $this->chapter,
+                'chapterAuthors' => $chapterAuthors,
+                'sourceChapter' => $sourceChapter,
+                'firstDatePublished' => $firstDatePublished ?: $datePublished,
+                'datePublished' => $datePublished,
+                'chapterPublicationIds' => $this->chapterPublicationIds,
+            ]);
         }
 
         // Get the earliest published publication
@@ -98,6 +148,7 @@ class CatalogBookHandler extends Handler
         }, 0);
 
         $templateMgr->assign([
+            'isChapterRequest' => $this->isChapterRequest,
             'publishedSubmission' => $submission,
             'publication' => $this->publication,
             'firstPublication' => $firstPublication,
@@ -132,7 +183,10 @@ class CatalogBookHandler extends Handler
 
         // Categories
         $templateMgr->assign([
-            'categories' => DAORegistry::getDAO('CategoryDAO')->getByPublicationId($this->publication->getId())->toArray(),
+            'categories' => iterator_to_array(
+                Repo::category()->getMany(Repo::category()->getCollector()
+                    ->filterByPublicationIds([$this->publication->getId()]))
+            ),
         ]);
 
         // Citations
@@ -161,10 +215,13 @@ class CatalogBookHandler extends Handler
         $pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
         $templateMgr->assign('pubIdPlugins', $pubIdPlugins);
 
-        $pubFormatFiles = Services::get('submissionFile')->getMany([
-            'submissionIds' => [$submission->getId()],
-            'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT]
-        ]);
+        $collector = Repo::submissionFile()
+            ->getCollector()
+            ->filterBySubmissionIds([$submission->getId()])
+            ->filterByAssoc(ASSOC_TYPE_PUBLICATION_FORMAT);
+
+        $pubFormatFiles = Repo::submissionFile()->getMany($collector);
+
         $availableFiles = [];
         foreach ($pubFormatFiles as $pubFormatFile) {
             if ($pubFormatFile->getDirectSalesPrice() !== null) {
@@ -174,6 +231,7 @@ class CatalogBookHandler extends Handler
 
         // Only pass files in pub formats that are also available
         $filteredAvailableFiles = [];
+        /** @var SubmissionFile $submissionFile */
         foreach ($availableFiles as $submissionFile) {
             foreach ($availablePublicationFormats as $format) {
                 if ($submissionFile->getData('assocId') == $format->getId()) {
@@ -213,8 +271,8 @@ class CatalogBookHandler extends Handler
      * Use an inline viewer to view a published submission publication
      * format file.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function view($args, $request)
     {
@@ -224,9 +282,9 @@ class CatalogBookHandler extends Handler
     /**
      * Download a published submission publication format file.
      *
-     * @param $args array
-     * @param $request PKPRequest
-     * @param $view boolean True iff inline viewer should be used, if available
+     * @param array $args
+     * @param PKPRequest $request
+     * @param bool $view True iff inline viewer should be used, if available
      */
     public function download($args, $request, $view = false)
     {
@@ -267,8 +325,12 @@ class CatalogBookHandler extends Handler
             $dispatcher->handle404();
         }
 
-        import('lib.pkp.classes.submission.SubmissionFile'); // File constants
-        $submissionFile = DAORegistry::getDAO('SubmissionFileDAO')->getByBestId($bestFileId, $submission->getId());
+        $submissionFile = Repo::submissionFile()
+            ->dao
+            ->getByBestId(
+                $bestFileId,
+                $submission->getId()
+            );
         if (!$submissionFile) {
             $dispatcher->handle404();
         }
@@ -282,7 +344,7 @@ class CatalogBookHandler extends Handler
                 }
                 break;
             case ASSOC_TYPE_SUBMISSION_FILE: // Dependent file
-                $genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
+                $genreDao = DAORegistry::getDAO('GenreDAO'); /** @var GenreDAO $genreDao */
                 $genre = $genreDao->getById($submissionFile->getGenreId());
                 if (!$genre->getDependent()) {
                     $dispatcher->handle404();
@@ -299,7 +361,7 @@ class CatalogBookHandler extends Handler
         $urlPath[] = $publicationFormat->getBestId();
         $urlPath[] = $submissionFile->getBestId();
 
-        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
+        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
         $templateMgr = TemplateManager::getManager($request);
         $templateMgr->assign([
             'publishedSubmission' => $submission,
@@ -309,7 +371,7 @@ class CatalogBookHandler extends Handler
             'downloadUrl' => $dispatcher->url($request, PKPApplication::ROUTE_PAGE, null, null, 'download', $urlPath, ['inline' => true]),
         ]);
 
-        $ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /* @var $ompCompletedPaymentDao OMPCompletedPaymentDAO */
+        $ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /** @var OMPCompletedPaymentDAO $ompCompletedPaymentDao */
         $user = $request->getUser();
         if ($submissionFile->getDirectSalesPrice() === '0' || ($user && $ompCompletedPaymentDao->hasPaidPurchaseFile($user->getId(), $submissionFile->getId()))) {
             // Paid purchase or open access.
@@ -321,7 +383,7 @@ class CatalogBookHandler extends Handler
             if ($view) {
                 if (HookRegistry::call('CatalogBookHandler::view', [&$this, &$submission, &$publicationFormat, &$submissionFile])) {
                     // If the plugin handled the hook, prevent further default activity.
-                    exit();
+                    exit;
                 }
             }
 
@@ -330,7 +392,7 @@ class CatalogBookHandler extends Handler
             $inline = $request->getUserVar('inline') ? true : false;
             if (HookRegistry::call('CatalogBookHandler::download', [&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline])) {
                 // If the plugin handled the hook, prevent further default activity.
-                exit();
+                exit;
             }
             $returner = true;
             HookRegistry::call('FileManager::downloadFileFinished', [&$returner]);
@@ -367,18 +429,124 @@ class CatalogBookHandler extends Handler
     /**
      * Set up common template variables.
      *
-     * @param $request PKPRequest
-     * @param $submission Submission
+     * @param PKPRequest $request
+     * @param Submission $submission
      */
     public function setupTemplate($request, $submission = null)
     {
         $templateMgr = TemplateManager::getmanager($request);
         if ($seriesId = $submission->getSeriesId()) {
-            $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+            $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
             $series = $seriesDao->getById($seriesId, $submission->getData('contextId'));
             $templateMgr->assign('series', $series);
         }
 
         parent::setupTemplate($request);
+    }
+
+    /**
+     * Set the requested chapter.
+     *
+     */
+    protected function setChapter(int $chapterId, PKPRequest $request): void
+    {
+        if ($chapterId > 0) {
+            $this->isChapterRequest = true;
+            $chapterDao = DAORegistry::getDAO('ChapterDAO');
+            $chapters = $chapterDao->getBySourceChapterId($chapterId);
+            $chapters = $chapters->toAssociativeArray();
+            $chaptersCount = count($chapters);
+            if ($chaptersCount > 0) {
+                /** @var Chapter $chapter */
+                foreach ($chapters as $chapter) {
+                    $publicationId = (int) $chapter->getData('publicationId');
+                    if ($publicationId === $this->publication->getId()
+                        && $this->publication->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
+                        $this->chapter = $chapter;
+                        $this->setChapterPublicationIds();
+                        break;
+                    }
+                }
+            }
+
+            if (null === $this->chapter) {
+                $request->getDispatcher()->handle404();
+            }
+        }
+    }
+
+    /**
+     * Set an array with all publication ids of the requested chapter.
+     */
+    protected function setChapterPublicationIds(): void
+    {
+        if ($this->chapter && $this->isChapterRequest) {
+            $chapterDao = DAORegistry::getDAO('ChapterDAO');
+            $chapters = $chapterDao->getBySourceChapterId($this->chapter->getSourceChapterId());
+            $chapters = $chapters->toAssociativeArray();
+            $publicationIds = [];
+            /** @var Chapter $chapter */
+            foreach ($chapters as $chapter) {
+                if ($chapter->isPageEnabled()) {
+                    $publicationId = (int) $chapter->getData('publicationId');
+                    $publicationIds[] = $publicationId;
+                }
+            }
+            $this->chapterPublicationIds = $publicationIds;
+        }
+    }
+
+    /**
+     * Get the earliest version of a chapter
+     *
+     */
+    protected function getSourceChapter(Submission $submission): ?chapter
+    {
+        $chapterDao = DAORegistry::getDAO('ChapterDAO');
+        $chapters = $chapterDao->getBySourceChapterId($this->chapter->getSourceChapterId());
+        $chapters = $chapters->toAssociativeArray();
+        $publishedPublications = $submission->getPublishedPublications();
+
+        /** @var Chapter $chapter */
+        foreach ($chapters as $chapter) {
+            /** @var Publication $publication */
+            foreach ($publishedPublications as $publication) {
+                if ($publication->getId() === (int) $chapter->getData('publicationId')) {
+                    return $chapter;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Get the earliest publishing date of the chapter
+     *
+     *
+     */
+    protected function getChaptersFirstPublishedDate(Submission $submission, Chapter $sourceChapter): ?string
+    {
+        $publishedPublications = $submission->getPublishedPublications();
+        $firstPublication = null;
+        $sourceChapterPublicationId = (int) $sourceChapter->getData('publicationId');
+
+        /** @var Publication $publication */
+        foreach ($publishedPublications as $publication) {
+            if ($publication->getId() === $sourceChapterPublicationId) {
+                $firstPublication = $publication;
+                break;
+            }
+        }
+
+        if ($firstPublication) {
+            if ($submission->getEnableChapterPublicationDates() && $sourceChapter->getDatePublished()) {
+                return $sourceChapter->getDatePublished();
+            }
+
+            return $firstPublication->getData('datePublished');
+        }
+
+        return null;
     }
 }

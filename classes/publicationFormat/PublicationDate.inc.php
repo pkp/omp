@@ -20,10 +20,11 @@ namespace APP\publicationFormat;
 use PKP\db\DAORegistry;
 
 use APP\core\Application;
+use PKP\core\DataObject;
 
 class PublicationDate extends DataObject
 {
-    /** @var the $dateFormats formats for this publication date */
+    /** @var array $dateFormats the formats for this publication date */
     public $dateFormats;
 
     /**
@@ -31,7 +32,7 @@ class PublicationDate extends DataObject
      */
     public function __construct()
     {
-        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
         $this->dateFormats = & $onixCodelistItemDao->getCodes('List55');
 
         parent::__construct();
@@ -50,7 +51,7 @@ class PublicationDate extends DataObject
     /**
      * set publication format id
      *
-     * @param $publicationFormatId int
+     * @param int $publicationFormatId
      */
     public function setPublicationFormatId($publicationFormatId)
     {
@@ -60,7 +61,7 @@ class PublicationDate extends DataObject
     /**
      * Set the ONIX code for this publication date
      *
-     * @param $role string
+     * @param string $role
      */
     public function setRole($role)
     {
@@ -80,7 +81,7 @@ class PublicationDate extends DataObject
     /**
      * Set the date format for this publication date (ONIX Codelist List55)
      *
-     * @param $format string
+     * @param string $format
      */
     public function setDateFormat($format)
     {
@@ -104,7 +105,7 @@ class PublicationDate extends DataObject
      */
     public function getNameForONIXCode()
     {
-        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
         $codes = & $onixCodelistItemDao->getCodes('List163'); // List163 is for Publication date, Embargo date, Announcement date, etc
         return $codes[$this->getRole()];
     }
@@ -112,7 +113,7 @@ class PublicationDate extends DataObject
     /**
      * Set the date for this publication date
      *
-     * @param $date string
+     * @param string $date
      */
     public function setDate($date)
     {
@@ -132,7 +133,7 @@ class PublicationDate extends DataObject
     /**
      * Determines if this date is from the Hijri calendar.
      *
-     * @return boolean
+     * @return bool
      */
     public function isHijriCalendar()
     {
@@ -147,7 +148,7 @@ class PublicationDate extends DataObject
     /**
      * determines whether or not the date should be parsed out with a date format.
      *
-     * @return boolean
+     * @return bool
      */
     public function isFreeText()
     {
