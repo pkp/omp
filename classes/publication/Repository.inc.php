@@ -18,10 +18,11 @@ use APP\core\Services;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\notification\NotificationManager;
+use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\submission\Submission;
 use PKP\core\Core;
 use PKP\db\DAORegistry;
-use PKP\submission\SubmissionFile;
+use PKP\submissionFile\SubmissionFile;
 
 class Repository extends \PKP\publication\Repository
 {
@@ -120,30 +121,39 @@ class Repository extends \PKP\publication\Repository
                 }
             }
 
+            $collector = Repo::submissionFile()
+                ->getCollector()
+                ->filterBySubmissionIds([$submissionId])
+                ->filterByAssoc(
+                    Application::ASSOC_TYPE_REPRESENTATION,
+                    [$oldPublicationFormat->getId()]
+                );
+
             // Duplicate publication format files
-            $submissionFiles = Services::get('submissionFile')->getMany([
-                'submissionIds' => [$submissionId],
-                'assocTypes' => [Application::ASSOC_TYPE_REPRESENTATION],
-                'assocIds' => [$oldPublicationFormat->getId()],
-            ]);
+            $submissionFiles = Repo::submissionFile()->getMany($collector);
             foreach ($submissionFiles as $submissionFile) {
                 $newSubmissionFile = clone $submissionFile;
                 $newSubmissionFile->setData('id', null);
                 $newSubmissionFile->setData('assocId', $newPublicationFormat->getId());
-                $newSubmissionFile = Services::get('submissionFile')->add($newSubmissionFile, $this->request);
+                $newSubmissionFileId = Repo::submissionFile()->add($newSubmissionFile);
+                $newSubmissionFile = Repo::submissionFile()->get($newSubmissionFileId);
                 $newSubmissionFiles[] = $newSubmissionFile;
 
-                $dependentFiles = Services::get('submissionFile')->getMany([
-                    'fileStages' => [SubmissionFile::SUBMISSION_FILE_DEPENDENT],
-                    'assocTypes' => [Application::ASSOC_TYPE_SUBMISSION_FILE],
-                    'assocIds' => [$submissionFile->getId()],
-                    'includeDependentFiles' => true,
-                ]);
+                $collector = Repo::submissionFile()
+                    ->getCollector()
+                    ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_DEPENDENT])
+                    ->filterByAssoc(
+                        Application::ASSOC_TYPE_SUBMISSION_FILE,
+                        [$submissionFile->getId()]
+                    )
+                    ->includeDependentFiles();
+
+                $dependentFiles = Repo::submissionFile()->getMany($collector);
                 foreach ($dependentFiles as $dependentFile) {
                     $newDependentFile = clone $dependentFile;
                     $newDependentFile->setData('id', null);
                     $newDependentFile->setData('assocId', $newSubmissionFile->getId());
-                    Services::get('submissionFile')->add($newDependentFile, $this->request);
+                    Repo::submissionFile()->add($newDependentFile);
                 }
             }
         }
@@ -164,7 +174,11 @@ class Repository extends \PKP\publication\Repository
             // Update file chapter associations for new files
             foreach ($newSubmissionFiles as $newSubmissionFile) {
                 if ($newSubmissionFile->getChapterId() == $oldChapter->getId()) {
-                    Services::get('submissionFile')->edit($newSubmissionFile, ['chapterId' => $newChapter->getId()], $this->request);
+                    Repo::submissionFile()
+                        ->edit(
+                            $newSubmissionFile,
+                            ['chapterId' => $newChapter->getId()]
+                        );
                 }
             }
 
@@ -263,8 +277,7 @@ class Repository extends \PKP\publication\Repository
             }
 
             // Remove publication format tombstones for this publication
-            import('classes.publicationFormat.PublicationFormatTombstoneManager');
-            $publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
+            $publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
             $publicationFormatTombstoneMgr->deleteTombstonesByPublicationId($publication->getId());
 
             // Create publication format tombstones for any other published versions
@@ -312,8 +325,7 @@ class Repository extends \PKP\publication\Repository
         $submissionContext = Services::get('context')->get($submission->getData('contextId'));
 
         // Create tombstones for this publication
-        import('classes.publicationFormat.PublicationFormatTombstoneManager');
-        $publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
+        $publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
         $publicationFormatTombstoneMgr->insertTombstonesByPublicationId($publication->getId(), $submissionContext);
 
         // Delete tombstones for the new current publication
@@ -388,36 +400,43 @@ class Repository extends \PKP\publication\Repository
     public function makeThumbnail($filePath, $thumbFileName, $maxWidth, $maxHeight)
     {
         $pathParts = pathinfo($filePath);
+        $thumbFilePath = $pathParts['dirname'] . '/' . $thumbFileName;
 
         $cover = null;
         switch ($pathParts['extension']) {
             case 'jpg': $cover = imagecreatefromjpeg($filePath); break;
             case 'png': $cover = imagecreatefrompng($filePath); break;
             case 'gif': $cover = imagecreatefromgif($filePath); break;
+            case 'webp': $cover = imagecreatefromwebp($filePath); break;
+            case 'svg': $cover = copy($filePath, $thumbFilePath); break;
         }
         if (!isset($cover)) {
             throw new \Exception('Can not build thumbnail because the file was not found or the file extension was not recognized.');
         }
 
-        // Calculate the scaling ratio for each dimension.
-        $originalSizeArray = getimagesize($filePath);
-        $xRatio = min(1, $maxWidth / $originalSizeArray[0]);
-        $yRatio = min(1, $maxHeight / $originalSizeArray[1]);
+        if ($pathParts['extension'] != 'svg') {
 
-        // Choose the smallest ratio and create the target.
-        $ratio = min($xRatio, $yRatio);
+            // Calculate the scaling ratio for each dimension.
+            $originalSizeArray = getimagesize($filePath);
+            $xRatio = min(1, $maxWidth / $originalSizeArray[0]);
+            $yRatio = min(1, $maxHeight / $originalSizeArray[1]);
 
-        $thumbWidth = round($ratio * $originalSizeArray[0]);
-        $thumbHeight = round($ratio * $originalSizeArray[1]);
-        $thumb = imagecreatetruecolor($thumbWidth, $thumbHeight);
-        imagecopyresampled($thumb, $cover, 0, 0, 0, 0, $thumbWidth, $thumbHeight, $originalSizeArray[0], $originalSizeArray[1]);
+            // Choose the smallest ratio and create the target.
+            $ratio = min($xRatio, $yRatio);
 
-        switch ($pathParts['extension']) {
-            case 'jpg': imagejpeg($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
-            case 'png': imagepng($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
-            case 'gif': imagegif($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
+            $thumbWidth = round($ratio * $originalSizeArray[0]);
+            $thumbHeight = round($ratio * $originalSizeArray[1]);
+            $thumb = imagecreatetruecolor($thumbWidth, $thumbHeight);
+            imagecopyresampled($thumb, $cover, 0, 0, 0, 0, $thumbWidth, $thumbHeight, $originalSizeArray[0], $originalSizeArray[1]);
+
+            switch ($pathParts['extension']) {
+                case 'jpg': imagejpeg($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
+                case 'png': imagepng($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
+                case 'gif': imagegif($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
+                case 'webp': imagewebp($thumb, $thumbFilePath); break;
+            }
+
+            imagedestroy($thumb);
         }
-
-        imagedestroy($thumb);
     }
 }

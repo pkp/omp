@@ -28,7 +28,7 @@ use Validation;
 
 class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
 {
-    /** types for all omp default navigationMenuItems */
+    // Types for all omp default navigationMenuItems
     public const NMI_TYPE_CATALOG = 'NMI_TYPE_CATALOG';
     public const NMI_TYPE_SERIES = 'NMI_TYPE_SERIES';
     public const NMI_TYPE_CATEGORY = 'NMI_TYPE_CATEGORY';
@@ -47,8 +47,8 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
     /**
      * Return all default navigationMenuItemTypes.
      *
-     * @param $hookName string
-     * @param $args array of arguments passed
+     * @param string $hookName
+     * @param array $args of arguments passed
      */
     public function getMenuItemTypesCallback($hookName, $args)
     {
@@ -85,10 +85,11 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
             $ompTypes = array_merge($ompTypes, $newArray);
         }
 
-        $categoryDao = DAORegistry::getDAO('CategoryDAO');
-        $categories = $categoryDao->getByParentId(null, $contextId);
+        $categoryCount = Repo::category()->count(Repo::category()->getCollector()
+            ->filterByParentIds([null])
+            ->filterByContextIds([$contextId]));
 
-        if ($categories->count) {
+        if ($categoryCount) {
             $newArray = [
                 self::NMI_TYPE_CATEGORY => [
                     'title' => __('navigation.navigationMenus.category.generic'),
@@ -105,8 +106,8 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
     /**
      * Return all navigationMenuItem Types custom edit templates.
      *
-     * @param $hookName string
-     * @param $args array of arguments passed
+     * @param string $hookName
+     * @param array $args of arguments passed
      */
     public function getMenuItemCustomEditTemplatesCallback($hookName, $args)
     {
@@ -129,8 +130,8 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
     /**
      * Callback for display menu item functionallity
      *
-     * @param $hookName string
-     * @param $args array of arguments passed
+     * @param string $hookName
+     * @param array $args of arguments passed
      */
     public function getDisplayStatusCallback($hookName, $args)
     {
@@ -165,8 +166,8 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
                 case self::NMI_TYPE_CATEGORY:
                     $categoryId = $navigationMenuItem->getPath();
 
-                    $categoryDao = DAORegistry::getDAO('CategoryDAO');
-                    $relatedObject = $categoryDao->getById($categoryId, $contextId);
+                    $relatedObject = Repo::category()->get($categoryId);
+                    if ($relatedObject && $relatedObject->getContextId() != $contextId) $relatedObject = null;
 
                     break;
             }

@@ -17,6 +17,7 @@ namespace APP\components\listPanels;
 use APP\core\Application;
 
 use APP\i18n\AppLocale;
+use APP\facades\Repo;
 use APP\submission\Collector;
 use PKP\submission\PKPSubmission;
 
@@ -25,13 +26,13 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
     /** @var string URL to the API endpoint where items can be retrieved */
     public $apiUrl = '';
 
-    /** @var integer Number of items to show at one time */
+    /** @var int Number of items to show at one time */
     public $count = 30;
 
     /** @var array Query parameters to pass if this list executes GET requests  */
     public $getParams = [];
 
-    /** @var integer Count of total items available for list */
+    /** @var int Count of total items available for list */
     public $itemsMax = 0;
 
     /**
@@ -73,10 +74,9 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
             $config['contextId'] = $context->getId();
 
             $categories = [];
-            $categoryDao = \DAORegistry::getDAO('CategoryDAO');
-            $categoriesResult = $categoryDao->getByContextId($context->getId());
-            while (!$categoriesResult->eof()) {
-                $category = $categoriesResult->next();
+            $categoriesCollection = Repo::category()->getMany(Repo::category()->getCollector()
+                ->filterByContextIds([$context->getId()]));
+            foreach ($categoriesCollection as $category) {
                 [$categorySortBy, $categorySortDir] = explode('-', $category->getSortOption());
                 $categorySortDir = empty($categorySortDir) ? $catalogSortDir : $categorySortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
                 $categories[] = [

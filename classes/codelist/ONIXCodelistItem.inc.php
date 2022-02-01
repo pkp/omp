@@ -37,7 +37,7 @@ class ONIXCodelistItem extends DataObject
     /**
      * Set the text component of the codelist.
      *
-     * @param $text string
+     * @param string $text
      */
     public function setText($text)
     {
@@ -57,7 +57,7 @@ class ONIXCodelistItem extends DataObject
     /**
      * Set codelist code.
      *
-     * @param $code string
+     * @param string $code
      */
     public function setCode($code)
     {

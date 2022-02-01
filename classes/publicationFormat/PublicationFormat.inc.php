@@ -22,7 +22,7 @@ use APP\facades\Repo;
 use PKP\db\DAORegistry;
 
 use PKP\submission\Representation;
-use PKP\submission\SubmissionFile;
+use PKP\submissionFile\SubmissionFile;
 
 class PublicationFormat extends Representation
 {
@@ -52,7 +52,7 @@ class PublicationFormat extends Representation
     /**
      * set physical format flag
      *
-     * @param $physicalFormat bool
+     * @param bool $physicalFormat
      */
     public function setPhysicalFormat($physicalFormat)
     {
@@ -84,7 +84,7 @@ class PublicationFormat extends Representation
      */
     public function getNameForONIXCode()
     {
-        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
         $codes = $onixCodelistItemDao->getCodes('List7'); // List7 is for object formats
         return $codes[$this->getEntryKey()];
     }
@@ -102,7 +102,7 @@ class PublicationFormat extends Representation
     /**
      * Set the country of manufacture code for a publication format.
      *
-     * @param $countryManufactureCode string
+     * @param string $countryManufactureCode
      */
     public function setCountryManufactureCode($countryManufactureCode)
     {
@@ -122,7 +122,7 @@ class PublicationFormat extends Representation
     /**
      * Set the product availability code (ONIX value) for a publication format.
      *
-     * @param $productAvailabilityCode string
+     * @param string $productAvailabilityCode
      */
     public function setProductAvailabilityCode($productAvailabilityCode)
     {
@@ -142,7 +142,7 @@ class PublicationFormat extends Representation
     /**
      * Set the height of a publication format.
      *
-     * @param $height string
+     * @param string $height
      */
     public function setHeight($height)
     {
@@ -162,7 +162,7 @@ class PublicationFormat extends Representation
     /**
      * Set the height unit (ONIX value) for a publication format.
      *
-     * @param $heightUnitCode string
+     * @param string $heightUnitCode
      */
     public function setHeightUnitCode($heightUnitCode)
     {
@@ -182,7 +182,7 @@ class PublicationFormat extends Representation
     /**
      * Set the width of a publication format.
      *
-     * @param $width string
+     * @param string $width
      */
     public function setWidth($width)
     {
@@ -202,7 +202,7 @@ class PublicationFormat extends Representation
     /**
      * Set the width unit code (ONIX value) for a publication format.
      *
-     * @param $widthUnitCode string
+     * @param string $widthUnitCode
      */
     public function setWidthUnitCode($widthUnitCode)
     {
@@ -222,7 +222,7 @@ class PublicationFormat extends Representation
     /**
      * Set the thickness of a publication format.
      *
-     * @param $thickness string
+     * @param string $thickness
      */
     public function setThickness($thickness)
     {
@@ -242,7 +242,7 @@ class PublicationFormat extends Representation
     /**
      * Set the thickness unit code (ONIX value) for a publication format.
      *
-     * @param $thicknessUnitCode string
+     * @param string $thicknessUnitCode
      */
     public function setThicknessUnitCode($thicknessUnitCode)
     {
@@ -262,7 +262,7 @@ class PublicationFormat extends Representation
     /**
      * Set the weight for a publication format.
      *
-     * @param $weight string
+     * @param string $weight
      */
     public function setWeight($weight)
     {
@@ -282,7 +282,7 @@ class PublicationFormat extends Representation
     /**
      * Set the weight unit code (ONIX value) for a publication format.
      *
-     * @param $weightUnitCode string
+     * @param string $weightUnitCode
      */
     public function setWeightUnitCode($weightUnitCode)
     {
@@ -309,13 +309,15 @@ class PublicationFormat extends Representation
     {
         $fileSize = 0;
         $publication = Repo::publication()->get((int) $this->getData('publicationId'));
-        import('lib.pkp.classes.submission.SubmissionFile'); // File constants
-        $stageMonographFiles = Services::get('submissionFile')->getMany([
-            'submissionIds' => [$publication->getData('submissionId')],
-            'fileStages' => [SubmissionFile::SUBMISSION_FILE_PROOF],
-            'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT],
-            'assocIds' => [$this->getId()],
-        ]);
+        $collector = Repo::submissionFile()
+            ->getCollector()
+            ->filterBySubmissionIds([$publication->getData('submissionId')])
+            ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
+            ->filterByAssoc(
+                ASSOC_TYPE_PUBLICATION_FORMAT,
+                [$this->getId()]
+            );
+        $stageMonographFiles = Repo::submissionFile()->getMany($collector);
 
         foreach ($stageMonographFiles as $monographFile) {
             if ($monographFile->getViewable()) {
@@ -329,7 +331,7 @@ class PublicationFormat extends Representation
     /**
      * Set the file size of the publication format.
      *
-     * @param $fileSize string
+     * @param string $fileSize
      */
     public function setFileSize($fileSize)
     {
@@ -343,7 +345,7 @@ class PublicationFormat extends Representation
      */
     public function getSalesRights()
     {
-        $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
+        $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /** @var SalesRightsDAO $salesRightsDao */
         return $salesRightsDao->getByPublicationFormatId($this->getId());
     }
 
@@ -354,18 +356,18 @@ class PublicationFormat extends Representation
      */
     public function getIdentificationCodes()
     {
-        $identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
+        $identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /** @var IdentificationCodeDAO $identificationCodeDao */
         return $identificationCodeDao->getByPublicationFormatId($this->getId());
     }
 
     /**
      * Get the PublicationDate objects for this format.
      *
-     * @return Array PublicationDate
+     * @return array PublicationDate
      */
     public function getPublicationDates()
     {
-        $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
+        $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /** @var PublicationDateDAO $publicationDateDao */
         return $publicationDateDao->getByPublicationFormatId($this->getId());
     }
 
@@ -376,7 +378,7 @@ class PublicationFormat extends Representation
      */
     public function getMarkets()
     {
-        $marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+        $marketDao = DAORegistry::getDAO('MarketDAO'); /** @var MarketDAO $marketDao */
         return $marketDao->getByPublicationFormatId($this->getId());
     }
 
@@ -393,7 +395,7 @@ class PublicationFormat extends Representation
     /**
      * Set the product form detail code (ONIX value) for a publication format.
      *
-     * @param $productFormDetailCode string
+     * @param string $productFormDetailCode
      */
     public function setProductFormDetailCode($productFormDetailCode)
     {
@@ -413,7 +415,7 @@ class PublicationFormat extends Representation
     /**
      * Set the product composition code (ONIX value) for a publication format.
      *
-     * @param $productCompositionCode string
+     * @param string $productCompositionCode
      */
     public function setProductCompositionCode($productCompositionCode)
     {
@@ -433,7 +435,7 @@ class PublicationFormat extends Representation
     /**
      * Set the front matter page count for a publication format.
      *
-     * @param $frontMatter string
+     * @param string $frontMatter
      */
     public function setFrontMatter($frontMatter)
     {
@@ -453,7 +455,7 @@ class PublicationFormat extends Representation
     /**
      * Set the back matter page count for a publication format.
      *
-     * @param $backMatter string
+     * @param string $backMatter
      */
     public function setBackMatter($backMatter)
     {
@@ -473,7 +475,7 @@ class PublicationFormat extends Representation
     /**
      * Set the imprint brand name for a publication format.
      *
-     * @param $imprint string
+     * @param string $imprint
      */
     public function setImprint($imprint)
     {
@@ -493,7 +495,7 @@ class PublicationFormat extends Representation
     /**
      * Set the technical protection code for a publication format.
      *
-     * @param $technicalProtectionCode string
+     * @param string $technicalProtectionCode
      */
     public function setTechnicalProtectionCode($technicalProtectionCode)
     {
@@ -513,7 +515,7 @@ class PublicationFormat extends Representation
     /**
      * Set the return code for a publication format.
      *
-     * @param $returnableIndicatorCode string
+     * @param string $returnableIndicatorCode
      */
     public function setReturnableIndicatorCode($returnableIndicatorCode)
     {
@@ -533,7 +535,7 @@ class PublicationFormat extends Representation
     /**
      * Set whether or not this format is available in the catalog.
      *
-     * @param $isAvailable int
+     * @param int $isAvailable
      */
     public function setIsAvailable($isAvailable)
     {
@@ -545,7 +547,7 @@ class PublicationFormat extends Representation
      * Ideally, do this with a DOMDocument schema validation. We do it this way for now because
      * of a potential issue with libxml2:  http://stackoverflow.com/questions/6284827
      *
-     * @return String
+     * @return string
      */
     public function hasNeededONIXFields()
     {

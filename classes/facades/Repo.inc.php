@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/facade/Repo.inc.php
+ * @file classes/facades/Repo.inc.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky
@@ -14,26 +14,36 @@
 
 namespace APP\facades;
 
-use Illuminate\Support\Facades\App;
+use APP\author\Repository as AuthorRepository;
+use APP\publication\Repository as PublicationRepository;
+use APP\submission\Repository as SubmissionRepository;
+use APP\submissionFile\Repository as SubmissionFileRepository;
+use APP\user\Repository as UserRepository;
 
 class Repo extends \PKP\facades\Repo
 {
-    public static function publication(): \APP\publication\Repository
+    public static function publication(): PublicationRepository
     {
-        return App::make(\APP\publication\Repository::class);
+        return app(PublicationRepository::class);
     }
 
-    public static function submission(): \APP\submission\Repository
+    public static function submission(): SubmissionRepository
     {
-        return App::make(\APP\submission\Repository::class);
-    }
-    public static function user(): \APP\user\Repository
-    {
-        return App::make(\APP\user\Repository::class);
+        return app(SubmissionRepository::class);
     }
 
-    public static function author(): \APP\author\Repository
+    public static function user(): UserRepository
     {
-        return App::make(\APP\author\Repository::class);
+        return app(UserRepository::class);
+    }
+
+    public static function author(): AuthorRepository
+    {
+        return app(AuthorRepository::class);
+    }
+
+    public static function submissionFile(): SubmissionFileRepository
+    {
+        return app(SubmissionFileRepository::class);
     }
 }

@@ -120,9 +120,9 @@ class PublicationDateGridHandler extends GridHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param $request PKPRequest
-     * @param $args array
-     * @param $roleAssignments array
+     * @param PKPRequest $request
+     * @param array $args
+     * @param array $roleAssignments
      */
     public function authorize($request, &$args, $roleAssignments)
     {
@@ -142,14 +142,14 @@ class PublicationDateGridHandler extends GridHandler
         // Retrieve the authorized submission.
         $this->setSubmission($this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION));
         $this->setPublication($this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION));
-        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
         $representationId = null;
 
         // Retrieve the associated publication format for this grid.
         $publicationDateId = (int) $request->getUserVar('publicationDateId'); // set if editing or deleting a date
 
         if ($publicationDateId != '') {
-            $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
+            $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /** @var PublicationDateDAO $publicationDateDao */
             $publicationDate = $publicationDateDao->getById($publicationDateId, $this->getPublication()->getId());
             if ($publicationDate) {
                 $representationId = $publicationDate->getPublicationFormatId();
@@ -255,7 +255,7 @@ class PublicationDateGridHandler extends GridHandler
     public function loadData($request, $filter = null)
     {
         $publicationFormat = $this->getPublicationFormat();
-        $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
+        $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /** @var PublicationDateDAO $publicationDateDao */
         $data = $publicationDateDao->getByPublicationFormatId($publicationFormat->getId());
         return $data->toArray();
     }
@@ -267,8 +267,8 @@ class PublicationDateGridHandler extends GridHandler
     /**
      * Edit a new (empty) date
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -280,8 +280,8 @@ class PublicationDateGridHandler extends GridHandler
     /**
      * Edit a date
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -291,7 +291,7 @@ class PublicationDateGridHandler extends GridHandler
         $publicationDateId = (int) $request->getUserVar('publicationDateId');
         $submission = $this->getSubmission();
 
-        $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
+        $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /** @var PublicationDateDAO $publicationDateDao */
         $publicationDate = $publicationDateDao->getById($publicationDateId, $this->getPublication()->getId());
 
         // Form handling
@@ -305,8 +305,8 @@ class PublicationDateGridHandler extends GridHandler
     /**
      * Update a date
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -316,7 +316,7 @@ class PublicationDateGridHandler extends GridHandler
         $publicationDateId = $request->getUserVar('publicationDateId');
         $submission = $this->getSubmission();
 
-        $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
+        $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /** @var PublicationDateDAO $publicationDateDao */
         $publicationDate = $publicationDateDao->getById($publicationDateId, $this->getPublication()->getId());
 
         // Form handling
@@ -358,8 +358,8 @@ class PublicationDateGridHandler extends GridHandler
     /**
      * Delete a date
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -369,7 +369,7 @@ class PublicationDateGridHandler extends GridHandler
         // Identify the code to be deleted
         $publicationDateId = $request->getUserVar('publicationDateId');
 
-        $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
+        $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /** @var PublicationDateDAO $publicationDateDao */
         $publicationDate = $publicationDateDao->getById($publicationDateId, $this->getPublication()->getId());
         if ($publicationDate != null) { // authorized
 

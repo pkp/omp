@@ -42,7 +42,7 @@ class SalesRights extends \PKP\core\DataObject
     /**
      * Set the ONIX code for this sales rights entry
      *
-     * @param $type string
+     * @param string $type
      */
     public function setType($type)
     {
@@ -66,7 +66,7 @@ class SalesRights extends \PKP\core\DataObject
      */
     public function getNameForONIXCode()
     {
-        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
         $codes = & $onixCodelistItemDao->getCodes('List46'); // List46 is for things like 'unrestricted sale with exclusive rights', etc.
         return $codes[$this->getType()];
     }
@@ -74,7 +74,7 @@ class SalesRights extends \PKP\core\DataObject
     /**
      * Set the ROWSetting for this sales rights entry (Rest Of World)
      *
-     * @param $rowSetting boolean
+     * @param bool $rowSetting
      */
     public function setROWSetting($rowSetting)
     {
@@ -104,7 +104,7 @@ class SalesRights extends \PKP\core\DataObject
     /**
      * Set the included country list for this sales rights entry
      *
-     * @param $countriesIncluded array
+     * @param array $countriesIncluded
      */
     public function setCountriesIncluded($countriesIncluded)
     {
@@ -124,7 +124,7 @@ class SalesRights extends \PKP\core\DataObject
     /**
      * Set the excluded country list for this sales rights entry
      *
-     * @param $countriesExcluded array
+     * @param array $countriesExcluded
      */
     public function setCountriesExcluded($countriesExcluded)
     {
@@ -144,7 +144,7 @@ class SalesRights extends \PKP\core\DataObject
     /**
      * Set the included region list for this sales rights entry
      *
-     * @param $regionsIncluded array
+     * @param array $regionsIncluded
      */
     public function setRegionsIncluded($regionsIncluded)
     {
@@ -164,7 +164,7 @@ class SalesRights extends \PKP\core\DataObject
     /**
      * Set the excluded region list for this sales rights entry
      *
-     * @param $regionsExcluded array
+     * @param array $regionsExcluded
      */
     public function setRegionsExcluded($regionsExcluded)
     {
@@ -176,9 +176,9 @@ class SalesRights extends \PKP\core\DataObject
      * array_filter() can be called without a callback to remove empty array elements but it depends
      * on type juggling and may not be reliable.
      *
-     * @param String $value
+     * @param string $value
      *
-     * @return boolean
+     * @return bool
      */
     public function _removeEmptyElements($value)
     {

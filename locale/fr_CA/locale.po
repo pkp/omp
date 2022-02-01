@@ -422,9 +422,6 @@ msgstr "Approuver l'épreuve afin qu'elle soit indexée et ajoutée au catalogue
 msgid "grid.action.pageProofApproved"
 msgstr "Le fichier d'épreuves de mise en page est prêt à être publié"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Ajouter une annonce"
-
 msgid "grid.action.newCatalogEntry"
 msgstr "Nouvelle entrée de catalogue"
 

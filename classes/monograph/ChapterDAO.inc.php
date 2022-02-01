@@ -11,7 +11,7 @@
  * @ingroup monograph
  *
  * @see Chapter
- * @see \APP\author\DAO
+ * @see AuthorDAO
  *
  * @brief Operations for retrieving and modifying Chapter objects.
  */
@@ -27,8 +27,8 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Retrieve a chapter by ID.
      *
-     * @param $chapterId int
-     * @param $publicationId int optional
+     * @param int $chapterId
+     * @param int $publicationId optional
      *
      * @return Chapter|null
      */
@@ -50,8 +50,8 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Retrieve all chapters of a publication.
      *
-     * @param $publicationId int
-     * @param $orderBySequence boolean
+     * @param int $publicationId
+     * @param bool $orderBySequence
      *
      * @return DAOResultFactory
      */
@@ -60,9 +60,9 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
         return new DAOResultFactory(
             $this->retrieve(
                 'SELECT	spc.*
-				FROM submission_chapters spc
-				INNER JOIN publications p ON (spc.publication_id = p.publication_id)
-				WHERE p.publication_id = ?'
+                FROM submission_chapters spc
+                INNER JOIN publications p ON (spc.publication_id = p.publication_id)
+                WHERE p.publication_id = ?'
                 . ($orderBySequence ? ' ORDER BY spc.seq ASC' : ''),
                 [(int) $publicationId]
             ),
@@ -74,7 +74,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Retrieve all chapters of a press.
      *
-     * @param $pressId int
+     * @param int $pressId
      *
      * @return DAOResultFactory
      */
@@ -83,11 +83,35 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
         return new DAOResultFactory(
             $this->retrieve(
                 'SELECT	spc.*
-				FROM submission_chapters spc
-				INNER JOIN publications p ON (spc.publication_id = p.publication_id)
-				INNER JOIN submissions s ON (p.submission_id = s.submission_id)
-				WHERE s.context_id = ?',
+                FROM submission_chapters spc
+                INNER JOIN publications p ON (spc.publication_id = p.publication_id)
+                INNER JOIN submissions s ON (p.submission_id = s.submission_id)
+                WHERE s.context_id = ?',
                 [(int) $pressId]
+            ),
+            $this,
+            '_fromRow'
+        );
+    }
+
+    /**
+     * Retrieve all chapters by source chapter id.
+     *
+     * @param int $sourceChapterId
+     * @param bool $orderBySequence
+     *
+     * @return DAOResultFactory
+     */
+    public function getBySourceChapterId(int $sourceChapterId, bool $orderByPublicationId = true) : DAOResultFactory
+    {
+        return new DAOResultFactory(
+            $this->retrieve(
+                'SELECT	*
+                FROM submission_chapters
+                WHERE source_chapter_id = ?
+                OR (source_chapter_id IS NULL AND chapter_id = ?)'
+                . ($orderByPublicationId ? ' ORDER BY publication_id ASC' : ''),
+                [$sourceChapterId, $sourceChapterId]
             ),
             $this,
             '_fromRow'
@@ -117,6 +141,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
         $additionalFields[] = 'pub-id::publisher-id';
         $additionalFields[] = 'datePublished';
         $additionalFields[] = 'pages';
+        $additionalFields[] = 'isPageEnabled';
         return $additionalFields;
     }
 
@@ -133,7 +158,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Internal function to return a Chapter object from a row.
      *
-     * @param $row array
+     * @param array $row
      *
      * @return Chapter
      */
@@ -143,6 +168,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
         $chapter->setId((int) $row['chapter_id']);
         $chapter->setData('publicationId', (int) $row['publication_id']);
         $chapter->setSequence((int) $row['seq']);
+        $chapter->setData('sourceChapterId', (int) ($row['source_chapter_id'] ?? $row['chapter_id']));
 
         $this->getDataObjectSettings('submission_chapter_settings', 'chapter_id', $row['chapter_id'], $chapter);
 
@@ -154,7 +180,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Update the settings for this object
      *
-     * @param $chapter object
+     * @param object $chapter
      */
     public function updateLocaleFields($chapter)
     {
@@ -168,42 +194,41 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Insert a new board chapter.
      *
-     * @param $chapter Chapter
+     * @param Chapter $chapter
      */
     public function insertChapter($chapter)
     {
-        $this->update(
-            'INSERT INTO submission_chapters
-				(publication_id, seq)
-				VALUES
-				(?, ?)',
-            [
-                (int) $chapter->getData('publicationId'),
-                (int) $chapter->getSequence(),
-            ]
-        );
+        $params = [
+            (int) $chapter->getData('publicationId'),
+            (int) $chapter->getSequence(),
+            $chapter->getSourceChapterId(),
+        ];
+        $query = 'INSERT INTO submission_chapters (publication_id, seq, source_chapter_id) VALUES (?, ?, ?)';
 
+        $this->update($query, $params);
         $chapter->setId($this->getInsertId());
-        $this->updateLocaleFields($chapter);
+        $this->updateObject($chapter);
         return $chapter->getId();
     }
 
     /**
      * Update an existing board chapter.
      *
-     * @param $chapter Chapter
+     * @param Chapter $chapter
      */
-    public function updateObject($chapter)
+    public function updateObject($chapter) : void
     {
         $this->update(
             'UPDATE submission_chapters
-				SET	publication_id = ?,
-					seq = ?
-				WHERE
-					chapter_id = ?',
+                SET	publication_id = ?,
+                    seq = ?,
+                    source_chapter_id = ?
+                WHERE
+                    chapter_id = ?',
             [
                 (int) $chapter->getData('publicationId'),
                 (int) $chapter->getSequence(),
+                $chapter->getSourceChapterId(),
                 (int) $chapter->getId()
             ]
         );
@@ -213,7 +238,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Delete a board chapter, including membership info
      *
-     * @param $chapter Chapter
+     * @param Chapter $chapter
      */
     public function deleteObject($chapter)
     {
@@ -223,7 +248,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Delete a board chapter, including membership info
      *
-     * @param $chapterId int
+     * @param int $chapterId
      */
     public function deleteById($chapterId)
     {
@@ -236,7 +261,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Sequentially renumber  chapters in their sequence order, optionally by monographId
      *
-     * @param $publicationId int
+     * @param int $publicationId
      */
     public function resequenceChapters($publicationId)
     {
@@ -247,7 +272,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
 
         $result = $this->retrieve(
             'SELECT chapter_id FROM submission_chapters
-			WHERE 1=1'
+            WHERE 1=1'
             . ($publicationId !== null ? ' AND publication_id = ?' : '')
             . ' ORDER BY seq',
             $params
@@ -279,14 +304,14 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     {
         $result = $this->retrieve(
             'SELECT COUNT(*) AS row_count
-			FROM submission_chapter_settings scs
-			INNER JOIN submission_chapters sc ON scs.chapter_id = sc.chapter_id
-			INNER JOIN publications p ON sc.publication_id = p.publication_id
-			INNER JOIN submissions s ON p.submission_id = s.submission_id
-			WHERE scs.setting_name = ?
-			AND scs.setting_value = ?
-			AND sc.chapter_id <> ?
-			AND s.context_id = ?',
+            FROM submission_chapter_settings scs
+            INNER JOIN submission_chapters sc ON scs.chapter_id = sc.chapter_id
+            INNER JOIN publications p ON sc.publication_id = p.publication_id
+            INNER JOIN submissions s ON p.submission_id = s.submission_id
+            WHERE scs.setting_name = ?
+            AND scs.setting_value = ?
+            AND sc.chapter_id <> ?
+            AND s.context_id = ?',
             [
                 'pub-id::' . $pubIdType,
                 $pubId,

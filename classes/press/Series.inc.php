@@ -35,7 +35,7 @@ class Series extends PKPSection
     /**
      * Set ID of press.
      *
-     * @param $pressId int
+     * @param int $pressId
      */
     public function setPressId($pressId)
     {
@@ -45,7 +45,7 @@ class Series extends PKPSection
     /**
      * Get localized title of section.
      *
-     * @param $includePrefix bool
+     * @param bool $includePrefix
      *
      * @return string
      */
@@ -61,8 +61,8 @@ class Series extends PKPSection
     /**
      * Get title of section.
      *
-     * @param $locale
-     * @param $includePrefix bool
+     * @param string $locale
+     * @param bool $includePrefix
      *
      * @return string
      */
@@ -110,7 +110,7 @@ class Series extends PKPSection
     /**
      * Get prefix of series.
      *
-     * @param $locale string
+     * @param string $locale
      *
      * @return string
      */
@@ -122,8 +122,8 @@ class Series extends PKPSection
     /**
      * Set prefix of series.
      *
-     * @param $prefix string
-     * @param $locale string
+     * @param string $prefix
+     * @param string $locale
      */
     public function setPrefix($prefix, $locale)
     {
@@ -176,7 +176,7 @@ class Series extends PKPSection
     /**
      * Set path to series (in URL).
      *
-     * @param $path string
+     * @param string $path
      */
     public function setPath($path)
     {
@@ -216,7 +216,7 @@ class Series extends PKPSection
     /**
      * Get the featured flag.
      *
-     * @return boolean
+     * @return bool
      */
     public function getFeatured()
     {
@@ -226,7 +226,7 @@ class Series extends PKPSection
     /**
      * Set the featured flag.
      *
-     * @param $featured boolean
+     * @param bool $featured
      */
     public function setFeatured($featured)
     {
@@ -246,7 +246,7 @@ class Series extends PKPSection
     /**
      * Set the image.
      *
-     * @param $image array
+     * @param array $image
      */
     public function setImage($image)
     {
@@ -266,7 +266,7 @@ class Series extends PKPSection
     /**
      * Set online ISSN.
      *
-     * @param $onlineIssn string
+     * @param string $onlineIssn
      */
     public function setOnlineISSN($onlineIssn)
     {
@@ -286,7 +286,7 @@ class Series extends PKPSection
     /**
      * Set print ISSN.
      *
-     * @param $printIssn string
+     * @param string $printIssn
      */
     public function setPrintISSN($printIssn)
     {
@@ -308,7 +308,7 @@ class Series extends PKPSection
      * Set the option how the books in this series should be sorted,
      * in the form: concat(sortBy, sortDir).
      *
-     * @param $sortOption string
+     * @param string $sortOption
      */
     public function setSortOption($sortOption)
     {
@@ -323,7 +323,7 @@ class Series extends PKPSection
      */
     public function getEditorsString()
     {
-        $subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /* @var $subEditorsDao SubEditorsDAO */
+        $subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /** @var SubEditorsDAO $subEditorsDao */
         $editors = $subEditorsDao->getBySubmissionGroupId($this->getId(), ASSOC_TYPE_SECTION, $this->getPressId());
 
         $separator = ', ';
@@ -354,7 +354,7 @@ class Series extends PKPSection
     /**
      * Set if series should be inactivated.
      *
-     * @param $isInactive int
+     * @param int $isInactive
      */
     public function setIsInactive($isInactive)
     {

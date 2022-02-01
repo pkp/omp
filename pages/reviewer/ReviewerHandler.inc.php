@@ -38,9 +38,9 @@ class ReviewerHandler extends PKPReviewerHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param $request PKPRequest
-     * @param $args array
-     * @param $roleAssignments array
+     * @param PKPRequest $request
+     * @param array $args
+     * @param array $roleAssignments
      */
     public function authorize($request, &$args, $roleAssignments)
     {

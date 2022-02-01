@@ -1,9 +1,10 @@
+# Diego José Macêdo <diegojmacedo@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T12:00:53-07:00\n"
-"PO-Revision-Date: 2021-04-16 22:42+0000\n"
+"PO-Revision-Date: 2021-11-22 17:39+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "locale/pt_BR/>\n"
@@ -434,9 +435,6 @@ msgstr "Homologar a prova para indexação e inclusão no catálogo"
 
 msgid "grid.action.pageProofApproved"
 msgstr "Arquivo na página de provas está pronto para publicação"
-
-msgid "grid.action.addAnnouncement"
-msgstr "Incluir uma notícia"
 
 msgid "grid.action.newCatalogEntry"
 msgstr "Nova entrada de catálogo"
@@ -1547,3 +1545,6 @@ msgstr "Um código ISBN de 13 dígitos, como 978-951-98548-9-2."
 
 msgid "grid.catalogEntry.isbn"
 msgstr "ISBN"
+
+msgid "grid.catalogEntry.chapters"
+msgstr "Capítulos"

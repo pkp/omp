@@ -21,7 +21,11 @@
  * (based on where the request is directed).
  */
 
-use APP\oai\omp\OAIDAO;
+namespace APP\oai\omp;
+
+use APP\core\Application;
+use PKP\db\DAORegistry;
+use PKP\plugins\HookRegistry;
 use PKP\oai\OAI;
 use PKP\oai\OAIRepository;
 
@@ -71,7 +75,7 @@ class PressOAI extends OAI
     /**
      * Convert monograph ID to OAI identifier.
      *
-     * @param $publicationFormatId int
+     * @param int $publicationFormatId
      *
      * @return string
      */
@@ -83,7 +87,7 @@ class PressOAI extends OAI
     /**
      * Convert OAI identifier to monograph ID.
      *
-     * @param $identifier string
+     * @param string $identifier
      *
      * @return int
      */
@@ -100,8 +104,8 @@ class PressOAI extends OAI
     /**
      * Get press ID and series ID corresponding to a set specifier.
      *
-     * @param $setSpec string
-     * @param $pressId int
+     * @param string $setSpec
+     * @param int $pressId
      *
      * @return array
      */
@@ -143,7 +147,7 @@ class PressOAI extends OAI
         $info->earliestDatestamp = $this->dao->getEarliestDatestamp([$this->pressId]);
 
         $info->toolkitTitle = 'Open Monograph Press';
-        $versionDao = DAORegistry::getDAO('VersionDAO'); /* @var $versionDao VersionDAO */
+        $versionDao = DAORegistry::getDAO('VersionDAO'); /** @var VersionDAO $versionDao */
         $currentVersion = $versionDao->getCurrentVersion();
         $info->toolkitVersion = $currentVersion->getVersionString(false);
         $info->toolkitURL = 'http://pkp.sfu.ca/omp/';
@@ -271,4 +275,8 @@ class PressOAI extends OAI
     {
         return 'oai:' . $this->config->repositoryId . ':' . 'publicationFormat/';
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\oai\omp\PressOAI', '\PressOAI');
 }

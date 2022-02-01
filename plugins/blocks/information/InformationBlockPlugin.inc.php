@@ -13,7 +13,7 @@
  * @brief Class for information block plugin
  */
 
-import('lib.pkp.classes.plugins.BlockPlugin');
+use PKP\plugins\BlockPlugin;
 
 class InformationBlockPlugin extends BlockPlugin
 {
@@ -30,7 +30,7 @@ class InformationBlockPlugin extends BlockPlugin
     /**
      * Get the display name of this plugin.
      *
-     * @return String
+     * @return string
      */
     public function getDisplayName()
     {

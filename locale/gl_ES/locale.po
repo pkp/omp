@@ -1155,9 +1155,6 @@ msgstr "Ver este elemento no catalogo"
 msgid "grid.action.newCatalogEntry"
 msgstr "Nova entrada no catálogo"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Engadir un aviso"
-
 msgid "grid.action.pageProofApproved"
 msgstr "O ficheiro de galeradas está listo para a súa publicación"
 

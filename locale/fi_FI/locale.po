@@ -464,9 +464,6 @@ msgstr "Hyväksy korjausvedos indeksointia ja luetteloon sisällyttämistä vart
 msgid "grid.action.pageProofApproved"
 msgstr "Sivujen korjausvedokset -tiedosto on valmis julkaistavaksi"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Lisää ilmoitus"
-
 msgid "grid.action.newCatalogEntry"
 msgstr "Uusi luettelomerkintä"
 

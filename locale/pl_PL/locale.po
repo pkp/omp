@@ -1143,9 +1143,6 @@ msgstr "Przełącz wyświetlaną funkcję"
 msgid "grid.action.featureMonograph"
 msgstr "Pokaż to jako katalog karuzelowy"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Dodaj ogłoszenie"
-
 msgid "grid.action.addFormat"
 msgstr "Dodaj format publikacji"
 

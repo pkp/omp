@@ -17,6 +17,8 @@
 
 namespace APP\publicationFormat;
 
+use PKP\core\DataObject;
+
 class Market extends DataObject
 {
     /**
@@ -50,7 +52,7 @@ class Market extends DataObject
     /**
      * Set the included country list for this market entry
      *
-     * @param $countriesIncluded array
+     * @param array $countriesIncluded
      */
     public function setCountriesIncluded($countriesIncluded)
     {
@@ -70,7 +72,7 @@ class Market extends DataObject
     /**
      * Set the excluded country list for this market entry
      *
-     * @param $countriesExcluded array
+     * @param array $countriesExcluded
      */
     public function setCountriesExcluded($countriesExcluded)
     {
@@ -90,7 +92,7 @@ class Market extends DataObject
     /**
      * Set the included region list for this market entry
      *
-     * @param $regionsIncluded array
+     * @param array $regionsIncluded
      */
     public function setRegionsIncluded($regionsIncluded)
     {
@@ -110,7 +112,7 @@ class Market extends DataObject
     /**
      * Set the excluded region list for this market entry
      *
-     * @param $regionsExcluded array
+     * @param array $regionsExcluded
      */
     public function setRegionsExcluded($regionsExcluded)
     {
@@ -130,7 +132,7 @@ class Market extends DataObject
     /**
      * Set the date role for this Market. (List163)
      *
-     * @param String $dateRole
+     * @param string $dateRole
      */
     public function setDateRole($dateRole)
     {
@@ -360,7 +362,7 @@ class Market extends DataObject
      */
     public function getAssignedRepresentativeNames()
     {
-        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
+        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /** @var RepresentativeDAO $representativeDao */
         $agent = $representativeDao->getById($this->getAgentId());
         $supplier = $representativeDao->getById($this->getSupplierId());
 
@@ -382,9 +384,9 @@ class Market extends DataObject
      * array_filter() can be called without a callback to remove empty array elements but it depends
      * on type juggling and may not be reliable.
      *
-     * @param String $value
+     * @param string $value
      *
-     * @return boolean
+     * @return bool
      */
     public function _removeEmptyElements($value)
     {

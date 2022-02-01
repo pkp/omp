@@ -16,7 +16,7 @@
  */
 
 namespace APP\publicationFormat;
-
+use PKP\core\DataObject;
 use PKP\db\DAORegistry;
 
 class IdentificationCode extends DataObject
@@ -42,7 +42,7 @@ class IdentificationCode extends DataObject
     /**
      * Set the ONIX code for this identification code
      *
-     * @param $code string
+     * @param string $code
      */
     public function setCode($code)
     {
@@ -66,7 +66,7 @@ class IdentificationCode extends DataObject
      */
     public function getNameForONIXCode()
     {
-        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
         $codes = & $onixCodelistItemDao->getCodes('List5'); // List5 is for ISBN, GTIN-13, etc.
         return $codes[$this->getCode()];
     }
@@ -74,7 +74,7 @@ class IdentificationCode extends DataObject
     /**
      * Set the value for this identification code
      *
-     * @param $value string
+     * @param string $value
      */
     public function setValue($value)
     {

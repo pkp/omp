@@ -33,7 +33,7 @@ use PKP\submission\PKPSubmission;
 
 class ChapterGridHandler extends CategoryGridHandler
 {
-    /** @var boolean */
+    /** @var bool */
     public $_readOnly;
 
     /**
@@ -84,7 +84,7 @@ class ChapterGridHandler extends CategoryGridHandler
     /**
      * Get whether or not this grid should be 'read only'
      *
-     * @return boolean
+     * @return bool
      */
     public function getReadOnly()
     {
@@ -94,7 +94,7 @@ class ChapterGridHandler extends CategoryGridHandler
     /**
      * Set the boolean for 'read only' status
      *
-     * @param $readOnly boolean
+     * @param bool $readOnly
      */
     public function setReadOnly($readOnly)
     {
@@ -108,9 +108,9 @@ class ChapterGridHandler extends CategoryGridHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param $request PKPRequest
-     * @param $args array
-     * @param $roleAssignments array
+     * @param PKPRequest $request
+     * @param array $args
+     * @param array $roleAssignments
      */
     public function authorize($request, &$args, $roleAssignments)
     {
@@ -194,7 +194,6 @@ class ChapterGridHandler extends CategoryGridHandler
     {
         if ($this->canAdminister($request->getUser())) {
             $this->setReadOnly(false);
-            import('lib.pkp.classes.controllers.grid.feature.OrderCategoryGridItemsFeature');
             return [new OrderCategoryGridItemsFeature(OrderCategoryGridItemsFeature::ORDER_CATEGORY_GRID_CATEGORIES_AND_ROWS, true, $this)];
         } else {
             $this->setReadOnly(true);
@@ -219,9 +218,9 @@ class ChapterGridHandler extends CategoryGridHandler
     /**
      * Determines if there should be add/edit actions on this grid.
      *
-     * @param $user User
+     * @param User $user
      *
-     * @return boolean
+     * @return bool
      */
     public function canAdminister($user)
     {
@@ -291,7 +290,7 @@ class ChapterGridHandler extends CategoryGridHandler
             return;
         }
 
-        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
+        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
         $chapter->setSequence($newSequence);
         $chapterDao->updateObject($chapter);
     }
@@ -356,8 +355,8 @@ class ChapterGridHandler extends CategoryGridHandler
     /**
      * Edit chapter pub ids
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -374,8 +373,8 @@ class ChapterGridHandler extends CategoryGridHandler
     /**
      * Update chapter pub ids
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -401,8 +400,8 @@ class ChapterGridHandler extends CategoryGridHandler
     /**
      * Clear chapter pub id
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -426,8 +425,8 @@ class ChapterGridHandler extends CategoryGridHandler
     /**
      * Add a chapter.
      *
-     * @param $args array
-     * @param $request Request
+     * @param array $args
+     * @param Request $request
      */
     public function addChapter($args, $request)
     {
@@ -442,8 +441,8 @@ class ChapterGridHandler extends CategoryGridHandler
     /**
      * Edit a chapter metadata modal
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -481,8 +480,8 @@ class ChapterGridHandler extends CategoryGridHandler
     /**
      * Edit a chapter
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -504,8 +503,8 @@ class ChapterGridHandler extends CategoryGridHandler
     /**
      * Update a chapter
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -537,8 +536,8 @@ class ChapterGridHandler extends CategoryGridHandler
     /**
      * Delete a chapter
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -554,7 +553,7 @@ class ChapterGridHandler extends CategoryGridHandler
         // remove Authors assigned to this chapter first
         Repo::author()->removeChapterAuthors($chapter);
 
-        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
+        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
         $chapterDao->deleteById($chapterId);
         return DAO::getDataChangedEvent();
     }

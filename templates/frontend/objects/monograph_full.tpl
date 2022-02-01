@@ -93,68 +93,7 @@
 		<div class="main_entry">
 
 			{* Author list *}
-			<div class="item authors">
-				<h2 class="pkp_screen_reader">
-					{translate key="submission.authors"}
-				</h2>
-
-				{assign var="authors" value=$publication->getData('authors')}
-
-				{* Only show editors for edited volumes *}
-				{if $monograph->getWorkType() == $monograph::WORK_TYPE_EDITED_VOLUME && $editors|@count}
-					{assign var="authors" value=$editors}
-					{assign var="identifyAsEditors" value=true}
-				{/if}
-
-				{* Show short author lists on multiple lines *}
-				{if $authors|@count < 5}
-					{foreach from=$authors item=author}
-						<div class="sub_item">
-							<div class="label">
-								{if $identifyAsEditors}
-									{translate key="submission.editorName" editorName=$author->getFullName()|escape}
-								{else}
-									{$author->getFullName()|escape}
-								{/if}
-							</div>
-							{if $author->getLocalizedAffiliation()}
-								<div class="value">
-									{$author->getLocalizedAffiliation()|escape}
-								</div>
-							{/if}
-							{if $author->getOrcid()}
-								<span class="orcid">
-									<a href="{$author->getOrcid()|escape}" target="_blank">
-										{$author->getOrcid()|escape}
-									</a>
-								</span>
-							{/if}
-						</div>
-					{/foreach}
-
-				{* Show long author lists on one line *}
-				{else}
-					{foreach name="authors" from=$authors item=author}
-						{* strip removes excess white-space which creates gaps between separators *}
-						{strip}
-							{if $author->getLocalizedAffiliation()}
-								{if $identifyAsEditors}
-									{capture assign="authorName"}<span class="label">{translate key="submission.editorName" editorName=$author->getFullName()|escape}</span>{/capture}
-								{else}
-									{capture assign="authorName"}<span class="label">{$author->getFullName()|escape}</span>{/capture}
-								{/if}
-								{capture assign="authorAffiliation"}<span class="value">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
-								{translate key="submission.authorWithAffiliation" name=$authorName|escape affiliation=$authorAffiliation|escape}
-							{else}
-								<span class="label">{$author->getFullName()|escape}</span>
-							{/if}
-							{if !$smarty.foreach.authors.last}
-								{translate key="submission.authorListSeparator"}
-							{/if}
-						{/strip}
-					{/foreach}
-				{/if}
-			</div>
+			{include file="frontend/components/authors.tpl" authors=$publication->getData('authors')}
 
 			{* DOI (requires plugin) *}
 			{foreach from=$pubIdPlugins item=pubIdPlugin}
@@ -179,17 +118,17 @@
 
 			{* Keywords *}
 			{if !empty($publication->getLocalizedData('keywords'))}
-			<div class="item keywords">
-				<h2 class="label">
-					{capture assign=translatedKeywords}{translate key="common.keywords"}{/capture}
-					{translate key="semicolon" label=$translatedKeywords}
-				</h2>
-				<span class="value">
+				<div class="item keywords">
+					<h2 class="label">
+						{capture assign=translatedKeywords}{translate key="common.keywords"}{/capture}
+						{translate key="semicolon" label=$translatedKeywords}
+					</h2>
+					<span class="value">
 					{foreach name="keywords" from=$publication->getLocalizedData('keywords') item=keyword}
 						{$keyword|escape}{if !$smarty.foreach.keywords.last}, {/if}
 					{/foreach}
 				</span>
-			</div>
+				</div>
 			{/if}
 
 			{* Abstract *}
@@ -212,6 +151,13 @@
 						{foreach from=$chapters item=chapter}
 							{assign var=chapterId value=$chapter->getId()}
 							<li>
+								{if $chapter->isPageEnabled()}
+									{if $publication->getId() === $currentPublication->getId()}
+										<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"chapter":$chapter->getSourceChapterId()}">
+									{else}
+										<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"version":$publication->getId():"chapter":$chapter->getSourceChapterId()}">
+									{/if}
+								{/if}
 								<div class="title">
 									{$chapter->getLocalizedTitle()|escape}
 									{if $chapter->getLocalizedSubtitle() != ''}
@@ -220,6 +166,9 @@
 										</div>
 									{/if}
 								</div>
+								{if $chapter->isPageEnabled()}
+									</a>
+								{/if}
 								{assign var=chapterAuthors value=$chapter->getAuthorNamesAsString()}
 								{if $authorString != $chapterAuthors}
 									<div class="authors">
@@ -293,7 +242,7 @@
 									{if $author->getLocalizedAffiliation()}
 										{capture assign="authorName"}{$author->getFullName()|escape}{/capture}
 										{capture assign="authorAffiliation"}<span class="affiliation">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
-										{translate key="submission.authorWithAffiliation" name=$authorName|escape affiliation=$authorAffiliation|escape}
+										{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
 									{else}
 										{$author->getFullName()|escape}
 									{/if}
@@ -333,68 +282,19 @@
 			<div class="item cover">
 				{assign var="coverImage" value=$publication->getLocalizedData('coverImage')}
 				<img
-					src="{$publication->getLocalizedCoverImageThumbnailUrl($monograph->getData('contextId'))}"
-					alt="{$coverImage.altText|escape|default:''}"
+						src="{$publication->getLocalizedCoverImageThumbnailUrl($monograph->getData('contextId'))}"
+						alt="{$coverImage.altText|escape|default:''}"
 				>
 			</div>
 
 			{* Any non-chapter files and remote resources *}
-			{pluck_files assign=nonChapterFiles files=$availableFiles by="chapter" value=0}
-			{if $nonChapterFiles|@count || $remotePublicationFormats|@count}
+			{pluck_files assign=bookFiles files=$availableFiles by="chapter" value=0}
+			{if $bookFiles|@count || $remotePublicationFormats|@count}
 				<div class="item files">
 					<h2 class="pkp_screen_reader">
 						{translate key="submission.downloads"}
 					</h2>
-					{foreach from=$publicationFormats item=format}
-						{assign var=publicationFormatId value=$format->getId()}
-
-						{* Remote resources *}
-						{if $format->getRemoteUrl()}
-							{* Only one resource allowed per format, so mimic single-file-download *}
-							<div class="pub_format_{$publicationFormatId|escape} pub_format_remote">
-								<a href="{$format->getRemoteURL()|escape}" target="_blank" class="remote_resource">
-									{$format->getLocalizedName()|escape}
-								</a>
-							</div>
-
-						{* File downloads *}
-						{else}
-
-							{* Only display files that haven't been displayed in a chapter *}
-							{pluck_files assign=pubFormatFiles files=$nonChapterFiles by="publicationFormat" value=$format->getId()}
-
-							{* Use a simplified presentation if only one file exists *}
-							{if $pubFormatFiles|@count == 1}
-								<div class="pub_format_{$publicationFormatId|escape} pub_format_single">
-									{foreach from=$pubFormatFiles item=file}
-										{include file="frontend/components/downloadLink.tpl" downloadFile=$file monograph=$monograph publication=$publication publicationFormat=$format currency=$currency}
-									{/foreach}
-								</div>
-
-							{* Use an itemized presentation if multiple files exist *}
-							{elseif $pubFormatFiles|@count > 1}
-								<div class="pub_format_{$publicationFormatId|escape}">
-									<span class="label">
-										{$format->getLocalizedName()|escape}
-									</span>
-									<span class="value">
-										<ul>
-											{foreach from=$pubFormatFiles item=file}
-												<li>
-													<span class="name">
-														{$file->getLocalizedData('name')|escape}
-													</span>
-													<span class="link">
-														{include file="frontend/components/downloadLink.tpl" downloadFile=$file monograph=$monograph publication=$publication publicationFormat=$format currency=$currency useFilename=true}
-													</span>
-												</li>
-											{/foreach}
-										</ul>
-									</span><!-- .value -->
-								</div>
-							{/if}
-						{/if}
-					{/foreach}{* Publication formats loop *}
+					{include file="frontend/components/publicationFormats.tpl" publicationFiles=$bookFiles}
 				</div>
 			{/if}
 
@@ -413,7 +313,7 @@
 							{* If this is the original version *}
 							{if $firstPublication->getId() === $publication->getId()}
 								<span>{$firstPublication->getData('datePublished')|date_format:$dateFormatLong}</span>
-							{* If this is an updated version *}
+								{* If this is an updated version *}
 							{else}
 								<span>{translate key="submission.updatedOn" datePublished=$firstPublication->getData('datePublished')|date_format:$dateFormatLong dateUpdated=$publication->getData('datePublished')|date_format:$dateFormatLong}</span>
 							{/if}

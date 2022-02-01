@@ -13,6 +13,7 @@
  * @brief Class that converts a PublicationFormat to a Native XML document.
  */
 
+use APP\facades\Repo;
 use PKP\xsl\XSLTransformer;
 
 import('lib.pkp.plugins.importexport.native.filter.RepresentationNativeXmlFilter');
@@ -37,8 +38,8 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
      * Create and return a representation node. Extend the parent class
      * with publication format specific data.
      *
-     * @param $doc DOMDocument
-     * @param $representation PublicationFormat
+     * @param DOMDocument $doc
+     * @param PublicationFormat $representation
      *
      * @return DOMElement
      */
@@ -57,7 +58,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
             $publication = $this->getDeployment()->getPublication();
             $submission = $this->getDeployment()->getSubmission();
 
-            $filterDao = DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
+            $filterDao = DAORegistry::getDAO('FilterDAO'); /** @var FilterDAO $filterDao */
             $nativeExportFilters = $filterDao->getObjectsByGroup('monograph=>onix30-xml');
             assert(count($nativeExportFilters) == 1); // Assert only a single serialization filter
             $exportFilter = array_shift($nativeExportFilters);
@@ -91,7 +92,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
     /**
      * Get the available submission files for a representation
      *
-     * @param $representation Representation
+     * @param Representation $representation
      *
      * @return Iterator
      */
@@ -99,10 +100,14 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
     {
         $deployment = $this->getDeployment();
         $submission = $deployment->getSubmission();
-        return Services::get('submissionFile')->getMany([
-            'submissionIds' => [$submission->getId()],
-            'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT],
-            'assocIds' => [$representation->getId()],
-        ]);
+        $collector = Repo::submissionFile()
+            ->getCollector()
+            ->filterBySubmissionIds([$submission->getId()])
+            ->filterByAssoc(
+                ASSOC_TYPE_PUBLICATION_FORMAT,
+                [$representation->getId()]
+            );
+
+        return Repo::submissionFile()->getMany($collector);
     }
 }

@@ -48,7 +48,7 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form
             $roleDao->userHasRole($this->context->getId(), $user->getId(), Role::ROLE_ID_SUB_EDITOR);
 
         // Get series for this context
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         $activeSeries = [];
         $seriesIterator = $seriesDao->getByContextId($this->context->getId(), null, !$canSubmitAll);
         while ($series = $seriesIterator->next()) {
@@ -92,7 +92,7 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form
 
         $request = Application::get()->getRequest();
         $context = $request->getContext();
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         $series = $seriesDao->getById($this->getData('seriesId'), $context->getId());
         $seriesIsInactive = ($series && $series->getIsInactive()) ? true : false;
         // Ensure that submissions are enabled and the assigned series is activated
@@ -117,7 +117,7 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form
     /**
      * Set the submission data from the form.
      *
-     * @param $submission Submission
+     * @param Submission $submission
      */
     public function setSubmissionData($submission)
     {

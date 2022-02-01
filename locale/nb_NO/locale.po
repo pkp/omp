@@ -1155,9 +1155,6 @@ msgstr "Vis dette objektet i katalogen"
 msgid "grid.action.newCatalogEntry"
 msgstr "Ny katalogoppføring"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Legg til oppslag"
-
 msgid "grid.action.pageProofApproved"
 msgstr "Korrekturfilen er klar for publisering"
 

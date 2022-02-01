@@ -57,8 +57,8 @@ class PressDAO extends ContextDAO
     /**
      * Delete the public IDs of all publishing objects in a press.
      *
-     * @param $pressId int
-     * @param $pubIdType string One of the NLM pub-id-type values or
+     * @param int $pressId
+     * @param string $pubIdType One of the NLM pub-id-type values or
      * 'other::something' if not part of the official NLM list
      * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
      */
@@ -69,10 +69,8 @@ class PressDAO extends ContextDAO
             $dao = DAORegistry::getDAO($daoName);
             $dao->deleteAllPubIds($pressId, $pubIdType);
         }
-        import('classes.submission.SubmissionFileDAO');
-        $submissionFileDao = new SubmissionFileDAO();
-        $submissionFileDao->deleteAllPubIds($pressId, $pubIdType);
 
+        Repo::submissionFile()->dao->deleteAllPubIds($pressId, $pubIdType);
         Repo::publication()->dao->deleteAllPubIds($pressId, $pubIdType);
     }
 
@@ -81,17 +79,17 @@ class PressDAO extends ContextDAO
      * Check whether the given public ID exists for any publishing
      * object in a press.
      *
-     * @param $pressId int
-     * @param $pubIdType string One of the NLM pub-id-type values or
+     * @param int $pressId
+     * @param string $pubIdType One of the NLM pub-id-type values or
      * 'other::something' if not part of the official NLM list
      * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
-     * @param $pubId string
-     * @param $assocType int The object type of an object to be excluded from
+     * @param string $pubId
+     * @param int $assocType The object type of an object to be excluded from
      *  the search. Identified by one of the ASSOC_TYPE_* constants.
-     * @param $assocId int The id of an object to be excluded from the search.
-     * @param $forSameType boolean Whether only the same objects should be considered.
+     * @param int $assocId The id of an object to be excluded from the search.
+     * @param bool $forSameType Whether only the same objects should be considered.
      *
-     * @return boolean
+     * @return bool
      */
     public function anyPubIdExists(
         $pressId,
@@ -105,7 +103,7 @@ class PressDAO extends ContextDAO
             ASSOC_TYPE_SUBMISSION => Repo::submission()->dao,
             ASSOC_TYPE_CHAPTER => DAORegistry::getDAO('ChapterDAO'),
             ASSOC_TYPE_REPRESENTATION => Application::getRepresentationDAO(),
-            ASSOC_TYPE_SUBMISSION_FILE => DAORegistry::getDAO('SubmissionFileDAO')
+            ASSOC_TYPE_SUBMISSION_FILE => Repo::submissionFile()->dao,
         ];
         if ($forSameType) {
             $dao = $pubObjectDaos[$assocType];

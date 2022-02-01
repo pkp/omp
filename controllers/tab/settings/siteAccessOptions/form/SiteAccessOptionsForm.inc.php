@@ -13,7 +13,7 @@
  * @brief Form to edit site access options.
  */
 
-import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
+use PKP\controllers\tab\settings\form\ContextSettingsForm;
 
 class SiteAccessOptionsForm extends ContextSettingsForm
 {

@@ -396,9 +396,6 @@ msgstr "Aprova la inclusió i la indexació de la galerada al catàleg"
 msgid "grid.action.pageProofApproved"
 msgstr "El fitxer de galerades ja es pot publicar"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Afegeix un anunci"
-
 msgid "grid.action.newCatalogEntry"
 msgstr "Nova entrada de catàleg"
 

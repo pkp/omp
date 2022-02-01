@@ -59,10 +59,10 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
     /**
      * Find publication format by querying publication format settings.
      *
-     * @param $settingName string
-     * @param $settingValue mixed
-     * @param $publicationId int optional
-     * @param $pressId int optional
+     * @param string $settingName
+     * @param mixed $settingValue
+     * @param int $publicationId optional
+     * @param int $pressId optional
      *
      * @return array The publication formats identified by setting.
      */
@@ -109,12 +109,12 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
     /**
      * Retrieve publication format by public ID
      *
-     * @param $pubIdType string One of the NLM pub-id-type values or
+     * @param string $pubIdType One of the NLM pub-id-type values or
      * 'other::something' if not part of the official NLM list
      * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
-     * @param $pubId string
-     * @param $publicationId int optional
-     * @param $pressId int optional
+     * @param string $pubId
+     * @param int $publicationId optional
+     * @param int $pressId optional
      *
      * @return PublicationFormat|null
      */
@@ -131,8 +131,8 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
      * Retrieve publication format by public ID or, failing that,
      * internal ID; public ID takes precedence.
      *
-     * @param $representationId string
-     * @param $publicationId int
+     * @param string $representationId
+     * @param int $publicationId
      *
      * @return PublicationFormat|null
      */
@@ -189,7 +189,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
     /**
      * Retrieves a list of publication formats for a press
      *
-     * @param int pressId
+     * @param int $pressId
      *
      * @return DAOResultFactory (PublicationFormat)
      */
@@ -235,7 +235,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
     /**
      * Delete an publication format by ID.
      *
-     * @param $representationId int
+     * @param int $representationId
      */
     public function deleteById($representationId)
     {
@@ -246,7 +246,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
     /**
      * Update the settings for this object
      *
-     * @param $publicationFormat object
+     * @param object $publicationFormat
      */
     public function updateLocaleFields($publicationFormat)
     {
@@ -270,8 +270,8 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
     /**
      * Internal function to return an PublicationFormat object from a row.
      *
-     * @param $row array
-     * @param $callHooks boolean
+     * @param array $row
+     * @param bool $callHooks
      *
      * @return PublicationFormat
      */
@@ -325,7 +325,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
     /**
      * Insert a publication format.
      *
-     * @param $publicationFormat PublicationFormat
+     * @param PublicationFormat $publicationFormat
      *
      * @return int the publication format id.
      */
@@ -375,7 +375,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
     /**
      * Update an existing publication format.
      *
-     * @param $publicationFormat PublicationFormat
+     * @param PublicationFormat $publicationFormat
      */
     public function updateObject($publicationFormat)
     {

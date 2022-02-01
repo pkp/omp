@@ -13,23 +13,15 @@
  * @brief Handle requests for payment functions.
  */
 
-import('classes.handler.Handler');
+use APP\handler\Handler;
 
 class PaymentHandler extends Handler
 {
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Pass request to plugin.
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      */
     public function plugin($args, $request)
     {

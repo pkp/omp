@@ -18,14 +18,6 @@ import('lib.pkp.pages.user.PKPUserHandler');
 class UserHandler extends PKPUserHandler
 {
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * @see PKPHandler::initialize()
      */
     public function initialize($request)

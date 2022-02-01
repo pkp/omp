@@ -13,12 +13,27 @@
 
 namespace APP\submission;
 
-use APP\core\Application;
-
 use PKP\db\DAORegistry;
+
+use PKP\observers\events\SubmissionDeleted;
 
 class DAO extends \PKP\submission\DAO
 {
+    /** @copydoc SchemaDAO::$primaryTableColumns */
+    public $primaryTableColumns = [
+        'id' => 'submission_id',
+        'contextId' => 'context_id',
+        'currentPublicationId' => 'current_publication_id',
+        'dateLastActivity' => 'date_last_activity',
+        'dateSubmitted' => 'date_submitted',
+        'lastModified' => 'last_modified',
+        'locale' => 'locale',
+        'stageId' => 'stage_id',
+        'status' => 'status',
+        'submissionProgress' => 'submission_progress',
+        'workType' => 'work_type',
+    ];
+
     /** @copydoc \PKP\submission\DAO::deleteById() */
     public function deleteById(int $id)
     {
@@ -29,9 +44,7 @@ class DAO extends \PKP\submission\DAO
         $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /** @var NewReleaseDAO $newReleaseDao */
         $newReleaseDao->deleteByMonographId($id);
 
-        $monographSearchIndex = Application::getSubmissionSearchIndex();
-        $monographSearchIndex->deleteTextIndex($id);
-        $monographSearchIndex->submissionChangesFinished();
+        event(new SubmissionDeleted($this->get($id)));
 
         parent::deleteById($id);
     }

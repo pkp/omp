@@ -1,6 +1,7 @@
+# Carla Marques <carla.marques@usdb.uminho.pt>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-04-09 19:43+0000\n"
+"PO-Revision-Date: 2021-11-18 12:22+0000\n"
 "Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/locale/pt_PT/>\n"
@@ -596,9 +597,6 @@ msgstr "Ver este item no catálogo"
 
 msgid "grid.action.newCatalogEntry"
 msgstr "Nova Entrada no Catálogo"
-
-msgid "grid.action.addAnnouncement"
-msgstr "Inserir uma notícia"
 
 msgid "grid.action.pageProofApproved"
 msgstr "A página de ficheiro de provas está pronto para publicação"
@@ -1626,3 +1624,6 @@ msgstr "Código ISBN com 13 dígitos, tal como 978-951-98548-9-2."
 
 msgid "grid.catalogEntry.isbn"
 msgstr "ISBN"
+
+msgid "grid.catalogEntry.chapters"
+msgstr "Capítulos"

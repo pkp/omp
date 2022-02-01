@@ -20,7 +20,7 @@ use PKP\linkAction\request\RemoteActionConfirmationModal;
 
 class RepresentativesGridRow extends GridRow
 {
-    /** @var Monograph **/
+    /** @var Monograph */
     public $_monograph;
 
     /**

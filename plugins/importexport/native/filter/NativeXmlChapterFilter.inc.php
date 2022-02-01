@@ -1,5 +1,4 @@
 <?php
-use APP\facades\Repo;
 
 /**
  * @file plugins/importexport/native/filter/NativeXmlChapterFilter.inc.php
@@ -14,6 +13,8 @@ use APP\facades\Repo;
  * @brief Base class that converts a Native XML document to a set of authors
  */
 
+use APP\facades\Repo;
+
 import('lib.pkp.plugins.importexport.native.filter.NativeImportFilter');
 
 class NativeXmlChapterFilter extends NativeImportFilter
@@ -21,7 +22,7 @@ class NativeXmlChapterFilter extends NativeImportFilter
     /**
      * Constructor
      *
-     * @param $filterGroup FilterGroup
+     * @param FilterGroup $filterGroup
      */
     public function __construct($filterGroup)
     {
@@ -67,7 +68,7 @@ class NativeXmlChapterFilter extends NativeImportFilter
     /**
      * Handle a chapter element
      *
-     * @param $node DOMElement
+     * @param DOMElement $node
      *
      * @return Chapter
      */
@@ -139,8 +140,8 @@ class NativeXmlChapterFilter extends NativeImportFilter
     /**
      * Parse an author and add it to the chapter.
      *
-     * @param $n DOMElement
-     * @param $chapter Chapter
+     * @param DOMElement $n
+     * @param Chapter $chapter
      */
     public function parseAuthor($n, $chapter)
     {
@@ -156,8 +157,8 @@ class NativeXmlChapterFilter extends NativeImportFilter
     /**
      * Parse an author and add it to the chapter.
      *
-     * @param $n DOMElement
-     * @param $chapter Chapter
+     * @param DOMElement $n
+     * @param Chapter $chapter
      */
     public function parseSubmissionFileRef($n, $chapter)
     {
@@ -169,22 +170,29 @@ class NativeXmlChapterFilter extends NativeImportFilter
         $fileId = $n->getAttribute('id');
 
         $sourceFileId = $deployment->getFileDBId($fileId);
-        if ($sourceFileId) {
-            $submissionFile = Services::get('submissionFile')->get($fileId);
 
-            if ($submissionFile) {
-                $submissionFile->setData('chapterId', $chapter->getId());
-
-                $submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /** @var SubmissionFileDAO $submissionFileDao */
-                $submissionFileDao->updateObject($submissionFile);
-            }
+        if (!$sourceFileId) {
+            return;
         }
+
+        $submissionFile = Repo::submissionFile()->get($fileId);
+
+        if (!$submissionFile) {
+            return;
+        }
+
+        Repo::submissionFile()
+            ->dao
+            ->updateChapterFiles(
+                [$submissionFile->getId()],
+                $chapter->getId()
+            );
     }
 
     /**
      * Parse an identifier node and set up the chapter object accordingly
      *
-     * @param $element DOMElement
+     * @param DOMElement $element
      */
     public function parseIdentifier($element, $chapter)
     {

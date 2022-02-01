@@ -93,7 +93,7 @@ class Chapter extends \PKP\core\DataObject
     /**
      * Get title of chapter (primary locale)
      *
-     * @param $locale string
+     * @param string $locale
      *
      * @return string
      */
@@ -105,8 +105,8 @@ class Chapter extends \PKP\core\DataObject
     /**
      * Set title of chapter
      *
-     * @param $title string
-     * @param $locale string
+     * @param string $title
+     * @param string $locale
      */
     public function setTitle($title, $locale = null)
     {
@@ -124,7 +124,7 @@ class Chapter extends \PKP\core\DataObject
     /**
      * Get sub title of chapter (primary locale)
      *
-     * @param $locale string
+     * @param string $locale
      *
      * @return string
      */
@@ -136,8 +136,8 @@ class Chapter extends \PKP\core\DataObject
     /**
      * Set sub title of chapter
      *
-     * @param $subtitle string
-     * @param $locale string
+     * @param string $subtitle
+     * @param string $locale
      */
     public function setSubtitle($subtitle, $locale = null)
     {
@@ -157,7 +157,7 @@ class Chapter extends \PKP\core\DataObject
     /**
      * Set sequence of chapter.
      *
-     * @param $sequence float
+     * @param float $sequence
      */
     public function setSequence($sequence)
     {
@@ -182,7 +182,7 @@ class Chapter extends \PKP\core\DataObject
     /**
      * Get the author names for this chapter and return them as a string.
      *
-     * @param $preferred boolean If the preferred public name should be used, if exist
+     * @param bool $preferred If the preferred public name should be used, if exist
      *
      * @return string
      */
@@ -199,7 +199,7 @@ class Chapter extends \PKP\core\DataObject
     /**
      * Get stored public ID of the chapter.
      *
-     * @param @literal $pubIdType string One of the NLM pub-id-type values or
+     * @param string $pubIdType @literal string One of the NLM pub-id-type values or
      * 'other::something' if not part of the official NLM list
      * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>). @endliteral
      *
@@ -213,10 +213,10 @@ class Chapter extends \PKP\core\DataObject
     /**
      * Set the stored public ID of the chapter.
      *
-     * @param $pubIdType string One of the NLM pub-id-type values or
+     * @param string $pubIdType One of the NLM pub-id-type values or
      * 'other::something' if not part of the official NLM list
      * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
-     * @param $pubId string
+     * @param string $pubId
      */
     public function setStoredPubId($pubIdType, $pubId)
     {
@@ -234,7 +234,7 @@ class Chapter extends \PKP\core\DataObject
     /**
      * Get abstract of chapter (primary locale)
      *
-     * @param $locale string
+     * @param string $locale
      *
      * @return string
      */
@@ -246,8 +246,8 @@ class Chapter extends \PKP\core\DataObject
     /**
      * Set abstract of chapter
      *
-     * @param $abstract string
-     * @param $locale string
+     * @param string $abstract
+     * @param string $locale
      */
     public function setAbstract($abstract, $locale = null)
     {
@@ -274,7 +274,7 @@ class Chapter extends \PKP\core\DataObject
     /**
      * set date published
      *
-     * @param $datePublished date
+     * @param date $datePublished
      */
     public function setDatePublished($datePublished)
     {
@@ -294,11 +294,54 @@ class Chapter extends \PKP\core\DataObject
     /**
      * set pages
      *
-     * @param $pages string
+     * @param string $pages
      */
     public function setPages($pages)
     {
         $this->setData('pages', $pages);
+    }
+
+    /**
+     * Get source chapter id of chapter.
+     *
+     * @return null|int
+     */
+    public function getSourceChapterId()
+    {
+        if(!$this->getData('sourceChapterId')) {
+            $this->setSourceChapterId($this->getId());
+        }
+        return $this->getData('sourceChapterId');
+    }
+
+    /**
+     * Set source chapter id of chapter.
+     *
+     * @param null|int $sourceChapterId
+     */
+    public function setSourceChapterId(?int $sourceChapterId) : void
+    {
+        $this->setData('sourceChapterId', $sourceChapterId);
+    }
+
+    /**
+     * Is a landing page enabled or disabled.
+     *
+     * @return null|int
+     */
+    public function isPageEnabled()
+    {
+        return $this->getData('isPageEnabled');
+    }
+
+    /**
+     * Enable or disable a landing page.
+     *
+     * @param null|int $enable
+     */
+    public function setPageEnabled(?int $enable) : void
+    {
+        $this->setData('isPageEnabled', $enable);
     }
 }
 

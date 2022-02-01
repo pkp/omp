@@ -13,22 +13,12 @@
  * @brief CLI tool for installing OMP.
  */
 
-require(dirname(__FILE__) . '/bootstrap.inc.php');
+use PKP\cliTool\InstallTool;
 
-import('lib.pkp.classes.cliTool.InstallTool');
+require(dirname(__FILE__) . '/bootstrap.inc.php');
 
 class OMPInstallTool extends \PKP\cliTool\InstallTool
 {
-    /**
-     * Constructor.
-     *
-     * @param $argv array command-line arguments
-     */
-    public function __construct($argv = [])
-    {
-        parent::__construct($argv);
-    }
-
     /**
      * Read installation parameters from stdin.
      * FIXME: May want to implement an abstract "CLIForm" class handling input/validation.

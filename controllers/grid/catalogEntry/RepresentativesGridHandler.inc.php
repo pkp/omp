@@ -77,9 +77,9 @@ class RepresentativesGridHandler extends CategoryGridHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param $request PKPRequest
-     * @param $args array
-     * @param $roleAssignments array
+     * @param PKPRequest $request
+     * @param array $args
+     * @param array $roleAssignments
      */
     public function authorize($request, &$args, $roleAssignments)
     {
@@ -87,7 +87,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
         return parent::authorize($request, $args, $roleAssignments);
     }
 
-    /*
+    /**
      * @copydoc CategoryGridHandler::initialize
      */
     public function initialize($request, $args = null)
@@ -100,7 +100,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
         $representativeId = (int) $request->getUserVar('representativeId'); // set if editing or deleting a representative entry
 
         if ($representativeId != '') {
-            $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
+            $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /** @var RepresentativeDAO $representativeDao */
             $representative = $representativeDao->getById($representativeId, $this->getMonograph()->getId());
             if (!isset($representative)) {
                 fatalError('Representative referenced outside of authorized monograph context!');
@@ -188,7 +188,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
      */
     public function loadCategoryData($request, &$category, $filter = null)
     {
-        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
+        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /** @var RepresentativeDAO $representativeDao */
         if ($category['isSupplier']) {
             $representatives = $representativeDao->getSuppliersByMonographId($this->getMonograph()->getId());
         } else {
@@ -246,8 +246,8 @@ class RepresentativesGridHandler extends CategoryGridHandler
     /**
      * Edit a representative entry
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -257,7 +257,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
         $representativeId = (int) $request->getUserVar('representativeId');
         $monograph = $this->getMonograph();
 
-        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
+        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /** @var RepresentativeDAO $representativeDao */
         $representative = $representativeDao->getById($representativeId, $monograph->getId());
 
         // Form handling
@@ -271,8 +271,8 @@ class RepresentativesGridHandler extends CategoryGridHandler
     /**
      * Update a representative entry
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -282,7 +282,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
         $representativeId = $request->getUserVar('representativeId');
         $monograph = $this->getMonograph();
 
-        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
+        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /** @var RepresentativeDAO $representativeDao */
         $representative = $representativeDao->getById($representativeId, $monograph->getId());
 
         // Form handling
@@ -324,8 +324,8 @@ class RepresentativesGridHandler extends CategoryGridHandler
     /**
      * Delete a representative entry
      *
-     * @param $args array
-     * @param $request PKPRequest
+     * @param array $args
+     * @param PKPRequest $request
      *
      * @return JSONMessage JSON object
      */
@@ -336,7 +336,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
         // Identify the representative entry to be deleted
         $representativeId = $request->getUserVar('representativeId');
 
-        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
+        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /** @var RepresentativeDAO $representativeDao */
         $representative = $representativeDao->getById($representativeId, $this->getMonograph()->getId());
 
         if (!$representative) {

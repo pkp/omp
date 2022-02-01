@@ -17,11 +17,13 @@
 
 namespace APP\press;
 
+use APP\core\Application;
 use APP\facades\Repo;
 use PKP\context\PKPSectionDAO;
 use PKP\db\DAORegistry;
 use PKP\db\DAOResultFactory;
 use PKP\plugins\HookRegistry;
+use Illuminate\Support\Facades\DB;
 
 use PKP\submission\PKPSubmission;
 
@@ -30,8 +32,8 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Retrieve an series by ID.
      *
-     * @param $seriesId int
-     * @param $pressId int optional
+     * @param int $seriesId
+     * @param int $pressId optional
      *
      * @return Series|null
      */
@@ -56,8 +58,8 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Retrieve a series by path.
      *
-     * @param $path string
-     * @param $pressId int
+     * @param string $path
+     * @param int $pressId
      *
      * @return Series|null
      */
@@ -84,7 +86,7 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Internal function to return an Series object from a row.
      *
-     * @param $row array
+     * @param array $row
      *
      * @return Series
      */
@@ -135,7 +137,7 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Update the localized fields for this table
      *
-     * @param $series object
+     * @param object $series
      */
     public function updateLocaleFields($series)
     {
@@ -149,7 +151,7 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Insert a new series.
      *
-     * @param $series Series
+     * @param Series $series
      */
     public function insertObject($series)
     {
@@ -177,7 +179,7 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Update an existing series.
      *
-     * @param $series Series
+     * @param Series $series
      */
     public function updateObject($series)
     {
@@ -208,8 +210,8 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Delete an series by ID.
      *
-     * @param $seriesId int
-     * @param $contextId int optional
+     * @param int $seriesId
+     * @param int $contextId optional
      */
     public function deleteById($seriesId, $contextId = null)
     {
@@ -218,7 +220,7 @@ class SeriesDAO extends PKPSectionDAO
             return false;
         }
 
-        $subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /* @var $subEditorsDao SubEditorsDAO */
+        $subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /** @var SubEditorsDAO $subEditorsDao */
         $subEditorsDao->deleteBySubmissionGroupId($seriesId, ASSOC_TYPE_SECTION, $contextId);
 
         // Remove monographs from this series
@@ -226,6 +228,7 @@ class SeriesDAO extends PKPSectionDAO
             Repo::submission()
                 ->getCollector()
                 ->filterBySeriesIds([$seriesId])
+                ->filterByContextIds([Application::CONTEXT_ID_ALL])
         );
         $publications = Repo::publication()->getMany(
             Repo::publication()
@@ -246,7 +249,7 @@ class SeriesDAO extends PKPSectionDAO
      * NOTE: This does not delete dependent entries EXCEPT from series_editors. It is intended
      * to be called only when deleting a press.
      *
-     * @param $pressId int
+     * @param int $pressId
      */
     public function deleteByPressId($pressId)
     {
@@ -256,11 +259,11 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Retrieve all series for a press.
      *
-     * @param $pressId int Press ID
-     * @param $rangeInfo DBResultRange optional
-     * @param $submittableOnly boolean optional. Whether to return only series
+     * @param int $pressId Press ID
+     * @param DBResultRange $rangeInfo optional
+     * @param bool $submittableOnly optional. Whether to return only series
      *  that can be submitted to by anyone.
-     * @param $withPublicationsOnly boolean optional
+     * @param bool $withPublicationsOnly optional
      *
      * @return DAOResultFactory containing Series ordered by sequence
      */
@@ -272,11 +275,11 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Retrieve all series for a press.
      *
-     * @param $pressId int Press ID
-     * @param $rangeInfo DBResultRange optional
-     * @param $submittableOnly boolean optional. Whether to return only series
+     * @param int $pressId Press ID
+     * @param DBResultRange $rangeInfo optional
+     * @param bool $submittableOnly optional. Whether to return only series
      *  that can be submitted to by anyone.
-     * @param $withPublicationsOnly boolean optional
+     * @param bool $withPublicationsOnly optional
      *
      * @return DAOResultFactory containing Series ordered by sequence
      */
@@ -327,10 +330,10 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Check if an series exists with the specified ID.
      *
-     * @param $seriesId int
-     * @param $pressId int
+     * @param int $seriesId
+     * @param int $pressId
      *
-     * @return boolean
+     * @return bool
      */
     public function seriesExists($seriesId, $pressId)
     {
@@ -355,8 +358,8 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Associate a category with a series.
      *
-     * @param $seriesId int
-     * @param $categoryId int
+     * @param int $seriesId
+     * @param int $categoryId
      */
     public function addCategory($seriesId, $categoryId)
     {
@@ -372,7 +375,7 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Unassociate all categories with a series
      *
-     * @param $seriesId int
+     * @param int $seriesId
      */
     public function removeCategories($seriesId)
     {
@@ -381,71 +384,46 @@ class SeriesDAO extends PKPSectionDAO
 
     /**
      * Get the categories associated with a given series.
-     *
-     * @param $seriesId int
-     * @param null|mixed $pressId
-     *
-     * @return DAOResultFactory
+     * @return Collection
      */
-    public function getCategories($seriesId, $pressId = null)
+    public function getCategories(int $seriesId, ?int $pressId = null) : array
     {
-        $params = [(int) $seriesId];
-        if ($pressId) {
-            $params[] = (int) $pressId;
-        }
-        return new DAOResultFactory(
-            $this->retrieve(
-                'SELECT	c.*
-				FROM	categories c,
-					series_categories sc,
-					series s
-				WHERE	c.category_id = sc.category_id AND
-					s.series_id = ? AND
-					' . ($pressId ? ' c.context_id = s.press_id AND s.press_id = ? AND' : '') . '
-					s.series_id = sc.series_id',
-                $params
-            ),
-            DAORegistry::getDAO('CategoryDAO'),
-            '_fromRow'
-        );
+        $categoryIds = DB::table('series_categories AS sc')
+            ->join('series AS s', 's.series_id', '=', 'sc.series_id')
+            ->when($pressId !== null, function($q) use ($pressId) {
+                $q->where('s.press_id', '=', $pressId);
+            })
+            ->where('s.series_id', '=', $seriesId)
+            ->pluck('sc.category_id');
+        return array_map([Repo::category(), 'get'], iterator_to_array($categoryIds));
     }
 
     /**
      * Get the categories not associated with a given series.
-     *
-     * @param $seriesId int
-     * @param null|mixed $pressId
-     *
-     * @return DAOResultFactory
      */
-    public function getUnassignedCategories($seriesId, $pressId = null)
+    public function getUnassignedCategories(int $seriesId, ?int $pressId = null) : array
     {
-        $params = [(int) $seriesId];
-        if ($pressId) {
-            $params[] = (int) $pressId;
-        }
-        return new DAOResultFactory(
-            $this->retrieve(
-                'SELECT	c.*
-				FROM	series s
-					JOIN categories c ON (c.context_id = s.press_id)
-					LEFT JOIN series_categories sc ON (s.series_id = sc.series_id AND sc.category_id = c.category_id)
-				WHERE	s.series_id = ? AND
-					' . ($pressId ? ' s.press_id = ? AND' : '') . '
-					sc.series_id IS NULL',
-                $params
-            ),
-            DAORegistry::getDAO('CategoryDAO'),
-            '_fromRow'
-        );
+        $categoryIds = DB::table('series AS s')
+            ->join('categories AS c', 'c.context_id', '=', 's.press_id')
+            ->leftJoin('series_categories AS sc', function($join) {
+                $join->where('s.series_id', '=', 'sc.series_id')
+                     ->where('sc.category_id', '='. 'c.category_id');
+            })
+            ->when($pressId !== null, function($q) {
+                $q->where('s.press_id', '=', $pressId);
+            })
+            ->where('s.series_id', '=', $seriesId)
+            ->whereNull('sc.series_id')
+            ->pluck('c.category_id');
+        return array_map([Repo::category(), 'get'], $categoryIds);
     }
 
     /**
      * Check if an series exists with the specified ID.
      *
-     * @param $seriesId int
+     * @param int $seriesId
      *
-     * @return boolean
+     * @return bool
      */
     public function categoryAssociationExists($seriesId, $categoryId)
     {
