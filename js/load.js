@@ -22,6 +22,7 @@ import StatsEditorialPage from '@/components/Container/StatsEditorialPage.vue';
 import StatsPublicationsPage from '@/components/Container/StatsPublicationsPage.vue';
 import StatsUsersPage from '@/components/Container/StatsUsersPage.vue';
 import WorkflowPage from '@/components/Container/WorkflowPageOMP.vue';
+import JobsPage from '@/components/Container/JobsPage.vue';
 
 import CatalogListPanel from '@/components/ListPanel/submissions/CatalogListPanel.vue';
 
@@ -37,6 +38,7 @@ window.pkp = Object.assign(PkpLoad, {
 		AddContextContainer,
 		AdminPage,
 		ImportExportPage,
+		JobsPage,
 		SettingsPage,
 		StatsEditorialPage,
 		StatsPublicationsPage,
