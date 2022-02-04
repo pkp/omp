@@ -209,6 +209,21 @@
 
 			{call_hook name="Templates::Catalog::Book::Main"}
 
+			{* Usage statistics chart*}
+			{if $activeTheme->getOption('usageStatsDisplay') != 'none'}
+				<section class="item downloads_chart">
+					<h2 class="label">
+						{translate key="plugins.themes.default.usageStatsDisplay.downloads"}
+					</h2>
+					<div class="value">
+						<canvas class="usageStatsGraph" data-object-type="Submission" data-object-id="{$monograph->getId()|escape}"></canvas>
+						<div class="usageStatsUnavailable" data-object-type="Submission" data-object-id="{$monograph->getId()|escape}">
+							{translate key="plugins.themes.default.usageStatsDisplay.noStats"}
+						</div>
+					</div>
+				</section>
+			{/if}
+
 			{* Determine if any authors have biographies to display *}
 			{assign var="hasBiographies" value=0}
 			{foreach from=$publication->getData('authors') item=author}
