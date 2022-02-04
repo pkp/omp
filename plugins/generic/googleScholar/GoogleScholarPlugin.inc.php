@@ -65,19 +65,21 @@ class GoogleScholarPlugin extends GenericPlugin
         $series = $templateMgr->getTemplateVars('series');
         $availableFiles = $templateMgr->getTemplateVars('availableFiles');
         $isChapterRequest = $templateMgr->getTemplateVars('isChapterRequest');
+        $chapter = $templateMgr->getTemplateVars('chapter');
 
 
         // Google scholar metadata  revision
         $templateMgr->addHeader('googleScholarRevision', '<meta name="gs_meta_revision" content="1.1"/>');
 
-        // Book/Edited volume title of the submission
-        $templateMgr->addHeader('googleScholarTitle', '<meta name="citation_title" content="' . htmlspecialchars($publication->getLocalizedTitle()) . '"/>');
+        // Book/Edited volume or Chapter title of the submission
+        $title = $isChapterRequest ? $chapter->getLocalizedTitle() : $publication->getLocalizedTitle();
+        $templateMgr->addHeader('googleScholarTitle', '<meta name="citation_title" content="' . htmlspecialchars($title) . '"/>');
 
         // Publication date
         $templateMgr->addHeader('googleScholarDate', '<meta name="citation_publication_date" content="' . strftime('%Y-%m-%d', strtotime($publication->getData('datePublished'))) . '"/>');
 
         // Authors in order
-        $authors = Repo::author()->getSubmissionAuthors($submission);
+        $authors = $isChapterRequest ? $templateMgr->getTemplateVars('chapterAuthors') : Repo::author()->getSubmissionAuthors($submission);
         $i = 0;
         foreach ($authors as $author) {
             $templateMgr->addHeader('googleScholarAuthor' . $i++, '<meta name="citation_author" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
@@ -85,11 +87,11 @@ class GoogleScholarPlugin extends GenericPlugin
 
         // Abstract
         $i = 0;
-        if ($abstracts = $submission->getAbstract(null)) {
-            foreach ($abstracts as $locale => $abstract) {
-                $templateMgr->addHeader('googleScholarAbstract' . $i++, '<meta name="citation_abstract" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
-            }
+        $abstracts = $isChapterRequest ? $chapter->getData('abstract') : $submission->getCurrentPublication()->getData('abstract');
+        foreach ($abstracts as $locale => $abstract) {
+            $templateMgr->addHeader('googleScholarAbstract' . $i++, '<meta name="citation_abstract" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
         }
+
 
         // Publication DOI
         if ($publication->getData('pub-id::doi')) {
