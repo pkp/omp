@@ -188,10 +188,8 @@ class GoogleScholarPlugin extends GenericPlugin
 
     /**
      * @param $availableFile
-     * @param $request
-     * @param $submission
      */
-    protected function setFileUrl($availableFile, TemplateManager $templateMgr, int $i, $request, $submission): void
+    protected function setFileUrl($availableFile, TemplateManager $templateMgr, int $i, App\Core\Request $request, Submission $submission): void
     {
         switch ($availableFile->getData('mimetype')) {
             case 'application/pdf':
