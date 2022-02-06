@@ -43,6 +43,13 @@ class SitemapHandler extends PKPSitemapHandler
         foreach ($submissions as $submission) {
             // Book
             $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'book', [$submission->getBestId()])));
+            // Chapters
+            $chapters = $submission->getLatestPublication()->getData('chapters');
+            if ($chapters && count($chapters) > 0) {
+                foreach ($chapters as $chapter) {
+                    $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'book', [$submission->getBestId(), 'chapter', $chapter->getId()])));
+                }
+            }
             // Files
             // Get publication formats
             $publicationFormats = DAORegistry::getDAO('PublicationFormatDAO')->getApprovedByPublicationId($submission->getCurrentPublication()->getId())->toArray();
