@@ -17,6 +17,12 @@ use Illuminate\Support\Facades\DB;
 
 class OMPv3_3_0UpgradeMigration extends \PKP\migration\upgrade\PKPv3_3_0UpgradeMigration
 {
+    private const SUBMISSION_FILE_REVIEW_FILE = 4; //self::SUBMISSION_FILE_REVIEW_FILE;
+    private const SUBMISSION_FILE_INTERNAL_REVIEW_FILE = 19; //self::SUBMISSION_FILE_INTERNAL_REVIEW_FILE;
+    private const SUBMISSION_FILE_REVIEW_REVISION = 15; //self::SUBMISSION_FILE_REVIEW_REVISION;
+    private const SUBMISSION_FILE_INTERNAL_REVIEW_REVISION = 20; //self::SUBMISSION_FILE_INTERNAL_REVIEW_REVISION;
+    private const WORKFLOW_STAGE_ID_INTERNAL_REVIEW = 2; //PKPApplication::WORKFLOW_STAGE_ID_INTERNAL_REVIEW
+
     protected function getSubmissionPath(): string
     {
         return 'monographs';
@@ -117,20 +123,20 @@ class OMPv3_3_0UpgradeMigration extends \PKP\migration\upgrade\PKPv3_3_0UpgradeM
         // Update file stage for all internal review files
         DB::table('submission_files as sf')
             ->leftJoin('review_round_files as rrf', 'sf.submission_file_id', '=', 'rrf.submission_file_id')
-            ->where('sf.file_stage', '=', SubmissionFile::SUBMISSION_FILE_REVIEW_FILE)
-            ->where('rrf.stage_id', '=', WORKFLOW_STAGE_ID_INTERNAL_REVIEW)
-            ->update(['sf.file_stage' => SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_FILE]);
+            ->where('sf.file_stage', '=', self::SUBMISSION_FILE_REVIEW_FILE)
+            ->where('rrf.stage_id', '=', self::WORKFLOW_STAGE_ID_INTERNAL_REVIEW)
+            ->update(['sf.file_stage' => self::SUBMISSION_FILE_INTERNAL_REVIEW_FILE]);
         DB::table('submission_files as sf')
             ->leftJoin('review_round_files as rrf', 'sf.submission_file_id', '=', 'rrf.submission_file_id')
-            ->where('sf.file_stage', '=', SubmissionFile::SUBMISSION_FILE_REVIEW_REVISION)
-            ->where('rrf.stage_id', '=', WORKFLOW_STAGE_ID_INTERNAL_REVIEW)
-            ->update(['sf.file_stage' => SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_REVISION]);
+            ->where('sf.file_stage', '=', self::SUBMISSION_FILE_REVIEW_REVISION)
+            ->where('rrf.stage_id', '=', self::WORKFLOW_STAGE_ID_INTERNAL_REVIEW)
+            ->update(['sf.file_stage' => self::SUBMISSION_FILE_INTERNAL_REVIEW_REVISION]);
 
         // Update the fileStage property for all event logs where the
         // file has been moved to an internal review file stage
         $internalStageIds = [
-            SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_FILE,
-            SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_REVISION,
+            self::SUBMISSION_FILE_INTERNAL_REVIEW_FILE,
+            self::SUBMISSION_FILE_INTERNAL_REVIEW_REVISION,
         ];
         foreach ($internalStageIds as $internalStageId) {
             $submissionIds = DB::table('submission_files')
