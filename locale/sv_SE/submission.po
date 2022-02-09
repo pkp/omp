@@ -1,6 +1,7 @@
+# Magnus Annemark <magnus.annemark@ub.lu.se>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-03-03 13:52+0000\n"
+"PO-Revision-Date: 2022-02-10 13:26+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "sv_SE/>\n"
@@ -498,3 +499,26 @@ msgstr "{$series} (inaktiv)"
 
 msgid "submission.list.viewEntry"
 msgstr "Visa post"
+
+msgid "chapter.pages"
+msgstr "Sidor"
+
+msgid "submission.chapterCreated"
+msgstr " — Kapitel skapat"
+
+msgid "submission.withoutChapter"
+msgstr "{$name} —Utan detta kapitel"
+
+msgid "chapter.volume"
+msgstr "Volym"
+
+msgid "publication.publish.success"
+msgstr "Publiceringsstatus har ändrats."
+
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+"Visa kapitlet på en separat sida och länka till denna från bokens "
+"innehållsförteckning."
+
+msgid "publication.chapter.landingPage"
+msgstr "Kapitelsida"
