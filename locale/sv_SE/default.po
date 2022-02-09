@@ -1,6 +1,7 @@
+# Magnus Annemark <magnus.annemark@ub.lu.se>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-06-18 18:39+0000\n"
+"PO-Revision-Date: 2022-02-10 13:26+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/default/"
 "sv_SE/>\n"
@@ -173,3 +174,12 @@ msgstr ""
 "Den här pressen gör sitt innehåll fritt tillgängligt omedelbart vid "
 "publicering enligt open access-principen om att det främjar ett ökat "
 "kunskapsutbyte världen över om forskning är fritt tillgänglig."
+
+msgid "default.groups.abbrev.subscriptionManager"
+msgstr "SubM"
+
+msgid "default.groups.plural.subscriptionManager"
+msgstr "Prenumerationsansvariga"
+
+msgid "default.groups.name.subscriptionManager"
+msgstr "Prenumerationsansvarig"
