@@ -1,6 +1,7 @@
+# Magnus Annemark <magnus.annemark@ub.lu.se>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-03-11 11:28+0000\n"
+"PO-Revision-Date: 2022-02-10 13:26+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "sv_SE/>\n"
@@ -1338,6 +1339,8 @@ msgstr ""
 
 msgid "notification.type.visitCatalog"
 msgstr ""
+"Boken har godkänts. Gå till Marknadsföring och Publikation via länkarna ovan "
+"för att ställa in detaljer."
 
 msgid "user.authorization.invalidPublishedSubmission"
 msgstr "Ett ogiltigt publicerat bidrag valdes."
@@ -1370,3 +1373,51 @@ msgstr "Ett eller flera bidrag kunde ej hittas."
 
 msgid "catalog.manage.noSubmissionsSelected"
 msgstr "Inga bidrag som ska läggas till i katalogen har blivit valda."
+
+msgid "search.results.orderDir.desc"
+msgstr "Fallande"
+
+msgid "search.results.orderDir.asc"
+msgstr "Stigande"
+
+msgid "search.results.orderBy.relevance"
+msgstr "Relevans"
+
+msgid "search.results.orderBy.popularityMonth"
+msgstr "Popularitet (senaste månaden)"
+
+msgid "search.results.orderBy.popularityAll"
+msgstr "Popularitet (alltid)"
+
+msgid "search.results.orderBy.press"
+msgstr "Presstitel"
+
+msgid "search.results.orderBy.monograph"
+msgstr "Boktitel"
+
+msgid "search.results.orderBy.date"
+msgstr "Publiceringsdatum"
+
+msgid "search.results.orderBy.author"
+msgstr "Författare"
+
+msgid "search.results.orderBy.article"
+msgstr "Artikeltitel"
+
+msgid "grid.catalogEntry.chapters"
+msgstr "Kapitel"
+
+msgid "catalog.manage.homepageDescription"
+msgstr ""
+
+msgid "grid.action.addAnnouncement"
+msgstr "Lägg till ett meddelande"
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "Ett 10-siffrigt ISBN, exempelvis 951-98548-9-4."
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "Ett 13-siffrigt ISBN, exempelvis 978-951-98548-9-2."
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"

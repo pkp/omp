@@ -1,10 +1,10 @@
-# Diego José Macêdo <diegojmacedo@gmail.com>, 2021.
+# Diego José Macêdo <diegojmacedo@gmail.com>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T12:00:53-07:00\n"
-"PO-Revision-Date: 2021-11-22 17:39+0000\n"
+"PO-Revision-Date: 2022-01-27 14:25+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "locale/pt_BR/>\n"
@@ -1548,3 +1548,36 @@ msgstr "ISBN"
 
 msgid "grid.catalogEntry.chapters"
 msgstr "Capítulos"
+
+msgid "search.results.orderDir.desc"
+msgstr "Descendente"
+
+msgid "search.results.orderDir.asc"
+msgstr "Ascendente"
+
+msgid "search.results.orderBy.relevance"
+msgstr "Relevância"
+
+msgid "search.results.orderBy.popularityMonth"
+msgstr "Popularidade (Último Mês)"
+
+msgid "search.results.orderBy.popularityAll"
+msgstr "Popularidade (todo o tempo)"
+
+msgid "search.results.orderBy.press"
+msgstr "Título da Editora"
+
+msgid "search.results.orderBy.monograph"
+msgstr "Título da Monografia"
+
+msgid "search.results.orderBy.date"
+msgstr "Data de Publicação"
+
+msgid "search.results.orderBy.author"
+msgstr "Autor"
+
+msgid "search.results.orderBy.article"
+msgstr "Título do Artigo"
+
+msgid "grid.action.addAnnouncement"
+msgstr "Adicionar Notícia"

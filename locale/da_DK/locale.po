@@ -1,11 +1,13 @@
 # Niels Erik Frederiksen <nef@kb.dk>, 2021.
+# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022.
+# Jesper B. Thestrup <jbt@kb.dk>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2021-11-18 12:22+0000\n"
-"Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
+"PO-Revision-Date: 2022-01-27 14:25+0000\n"
+"Last-Translator: Jesper B. Thestrup <jbt@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/locale/da_DK/"
 ">\n"
 "Language: da_DK\n"
@@ -1563,3 +1565,36 @@ msgstr "ISBN"
 
 msgid "grid.catalogEntry.chapters"
 msgstr "Kapitler"
+
+msgid "search.results.orderDir.desc"
+msgstr "Faldende"
+
+msgid "search.results.orderDir.asc"
+msgstr "Stigende"
+
+msgid "search.results.orderBy.relevance"
+msgstr "Relevans"
+
+msgid "search.results.orderBy.popularityMonth"
+msgstr "Popularitet (Seneste måned)"
+
+msgid "search.results.orderBy.popularityAll"
+msgstr "Popularitet (evig)"
+
+msgid "search.results.orderBy.monograph"
+msgstr "Monografiens titel"
+
+msgid "search.results.orderBy.date"
+msgstr "Udgivelsesdato"
+
+msgid "search.results.orderBy.author"
+msgstr "Forfatter"
+
+msgid "search.results.orderBy.article"
+msgstr "Artiklens titel"
+
+msgid "grid.action.addAnnouncement"
+msgstr "Tilføj en meddelelse"
+
+msgid "search.results.orderBy.press"
+msgstr "Forlags Titel"
