@@ -1,7 +1,8 @@
+# Iva Melinscak Zlodi <imelinsc@ffzg.hr>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-04-23 16:55+0000\n"
-"Last-Translator: Dobrica Pavlinušić <dpavlin@ffzg.hr>\n"
+"PO-Revision-Date: 2022-02-12 14:26+0000\n"
+"Last-Translator: Iva Melinscak Zlodi <imelinsc@ffzg.hr>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "hr_HR/>\n"
 "Language: hr_HR\n"
@@ -122,3 +123,6 @@ msgstr "Objavljeno"
 
 msgid "catalog.categories"
 msgstr "Kategorije"
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Nova izdanja"
