@@ -13,40 +13,89 @@
 
 namespace APP\migration\upgrade;
 
-use APP\core\Application;
-use APP\core\Services;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
-use PKP\core\EntityDAO;
-use PKP\services\PKPSchemaService;
-use PKP\db\DAORegistry;
-use PKP\submissionFile\SubmissionFile;
 
-class OMPv3_3_0UpgradeMigration extends \PKP\migration\Migration
+class OMPv3_3_0UpgradeMigration extends \PKP\migration\upgrade\PKPv3_3_0UpgradeMigration
 {
+    private const SUBMISSION_FILE_REVIEW_FILE = 4; //self::SUBMISSION_FILE_REVIEW_FILE;
+    private const SUBMISSION_FILE_INTERNAL_REVIEW_FILE = 19; //self::SUBMISSION_FILE_INTERNAL_REVIEW_FILE;
+    private const SUBMISSION_FILE_REVIEW_REVISION = 15; //self::SUBMISSION_FILE_REVIEW_REVISION;
+    private const SUBMISSION_FILE_INTERNAL_REVIEW_REVISION = 20; //self::SUBMISSION_FILE_INTERNAL_REVIEW_REVISION;
+    private const WORKFLOW_STAGE_ID_INTERNAL_REVIEW = 2; //PKPApplication::WORKFLOW_STAGE_ID_INTERNAL_REVIEW
+
+    protected function getSubmissionPath(): string
+    {
+        return 'monographs';
+    }
+
+    protected function getContextPath(): string
+    {
+        return 'presses';
+    }
+
+    protected function getContextTable(): string
+    {
+        return 'presses';
+    }
+
+    protected function getContextKeyField(): string
+    {
+        return 'press_id';
+    }
+
+    protected function getContextSettingsTable(): string
+    {
+        return 'press_settings';
+    }
+
+    protected function getSectionTable(): string
+    {
+        return 'series';
+    }
+
+    protected function getSerializedSettings(): array
+    {
+        return [
+            'site_settings' => [
+                'enableBulkEmails',
+                'installedLocales',
+                'pageHeaderTitleImage',
+                'sidebar',
+                'styleSheet',
+                'supportedLocales',
+            ],
+            'press_settings' => [
+                'disableBulkEmailUserGroups',
+                'favicon',
+                'homepageImage',
+                'pageHeaderLogoImage',
+                'sidebar',
+                'styleSheet',
+                'submissionChecklist',
+                'supportedFormLocales',
+                'supportedLocales',
+                'supportedSubmissionLocales',
+                'enablePublisherId',
+                'pressThumbnail',
+            ],
+            'publication_settings' => [
+                'categoryIds',
+                'coverImage',
+                'disciplines',
+                'keywords',
+                'languages',
+                'subjects',
+                'supportingAgencies',
+            ]
+        ];
+    }
+
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::table('press_settings', function (Blueprint $table) {
-            // pkp/pkp-lib#6096 DB field type TEXT is cutting off long content
-            $table->mediumText('setting_value')->nullable()->change();
-        });
-        if (!Schema::hasColumn('series', 'is_inactive')) {
-            Schema::table('series', function (Blueprint $table) {
-                $table->smallInteger('is_inactive')->default(0);
-            });
-        }
-        Schema::table('review_forms', function (Blueprint $table) {
-            $table->bigInteger('assoc_type')->nullable(false)->change();
-            $table->bigInteger('assoc_id')->nullable(false)->change();
-        });
-
-        $this->_settingsAsJSON();
-
-        $this->_migrateSubmissionFiles();
+        parent::up();
 
         // Delete the old MODS34 filters
         DB::statement("DELETE FROM filters WHERE class_name='plugins.metadata.mods34.filter.Mods34SchemaMonographAdapter'");
@@ -58,207 +107,36 @@ class OMPv3_3_0UpgradeMigration extends \PKP\migration\Migration
 
         // pkp/pkp-lib#6609 ONIX filters does not take array of submissions as input
         DB::statement("UPDATE filter_groups SET input_type = 'class::classes.submission.Submission[]' WHERE symbolic = 'monograph=>onix30-xml';");
-
-        // pkp/pkp-lib#6807 Make sure all submission last modification dates are set
-        DB::statement('UPDATE submissions SET last_modified = NOW() WHERE last_modified IS NULL');
     }
 
     /**
-     * Reverse the downgrades
-     */
-    public function down(): void
-    {
-        Schema::table('press_settings', function (Blueprint $table) {
-            // pkp/pkp-lib#6096 DB field type TEXT is cutting off long content
-            $table->text('setting_value')->nullable()->change();
-        });
-    }
-
-    /**
-     * @brief reset serialized arrays and convert array and objects to JSON for serialization, see pkp/pkp-lib#5772
-     */
-    private function _settingsAsJSON()
-    {
-
-        // Convert settings where type can be retrieved from schema.json
-        $schemaDAOs = [
-            'SiteDAO',
-            \PKP\announcement\DAO::class,
-            \PKP\author\DAO::class,
-            'PressDAO',
-            \PKP\emailTemplate\DAO::class,
-            \APP\publication\DAO::class,
-            \APP\submission\DAO::class
-        ];
-        $processedTables = [];
-        $application = Application::get();
-        foreach ($schemaDAOs as $daoName) {
-            $dao = null;
-            if ($application->getQualifiedDAOName($daoName)) {
-                $dao = DAORegistry::getDAO($daoName);
-            }
-
-            // Account for new EntityDAOs
-            if (!$dao) {
-                $dao = app($daoName);
-                if (!$dao) {
-                    throw new Exception("${daoName} could not be created when migrating serialized settings");
-                }
-            }
-            $schemaService = Services::get('schema');
-
-            if (is_a($dao, 'SchemaDAO')) {
-                $schema = $schemaService->get($dao->schemaName);
-                $tableName = $dao->settingsTableName;
-            } elseif (is_a($dao, EntityDAO::class)) {
-                $schema = $schemaService->get($dao->schema);
-                $tableName = $dao->settingsTable;
-            } elseif ($daoName === 'SiteDAO') {
-                $schema = $schemaService->get(PKPSchemaService::SCHEMA_SITE);
-                $tableName = 'site_settings';
-            } else {
-                continue; // if parent class changes, the table is processed with other settings tables
-            }
-
-            $processedTables[] = $tableName;
-            foreach ($schema->properties as $propName => $propSchema) {
-                if (empty($propSchema->readOnly)) {
-                    if ($propSchema->type === 'array' || $propSchema->type === 'object') {
-                        DB::table($tableName)->where('setting_name', $propName)->get()->each(function ($row) use ($tableName) {
-                            $this->_toJSON($row, $tableName, ['setting_name', 'locale'], 'setting_value');
-                        });
-                    }
-                }
-            }
-        }
-
-        // Convert settings where only setting_type column is available
-        $tables = DB::getDoctrineSchemaManager()->listTableNames();
-        foreach ($tables as $tableName) {
-            if (substr($tableName, -9) !== '_settings' || in_array($tableName, $processedTables)) {
-                continue;
-            }
-            if ($tableName === 'plugin_settings') {
-                DB::table($tableName)->where('setting_type', 'object')->get()->each(function ($row) use ($tableName) {
-                    $this->_toJSON($row, $tableName, ['plugin_name', 'context_id', 'setting_name'], 'setting_value');
-                });
-            } else {
-                DB::table($tableName)->where('setting_type', 'object')->get()->each(function ($row) use ($tableName) {
-                    $this->_toJSON($row, $tableName, ['setting_name', 'locale'], 'setting_value');
-                });
-            }
-        }
-
-        // Finally, convert values of other tables dependent from DAO::convertToDB
-        DB::table('review_form_responses')->where('response_type', 'object')->get()->each(function ($row) {
-            $this->_toJSON($row, 'review_form_responses', ['review_id'], 'response_value');
-        });
-
-        DB::table('site')->get()->each(function ($row) {
-            $localeToConvert = function ($localeType) use ($row) {
-                $serializedValue = $row->{$localeType};
-                if (@unserialize($serializedValue) === false) {
-                    return;
-                }
-                $oldLocaleValue = unserialize($serializedValue);
-
-                if (is_array($oldLocaleValue) && $this->_isNumerical($oldLocaleValue)) {
-                    $oldLocaleValue = array_values($oldLocaleValue);
-                }
-
-                $newLocaleValue = json_encode($oldLocaleValue, JSON_UNESCAPED_UNICODE);
-                DB::table('site')->take(1)->update([$localeType => $newLocaleValue]);
-            };
-
-            $localeToConvert('installed_locales');
-            $localeToConvert('supported_locales');
-        });
-    }
-
-    /**
-     * @param object $row row representation
-     * @param string $tableName name of a settings table
-     * @param array $searchBy additional parameters to the where clause that should be combined with AND operator
-     * @param string $valueToConvert column name for values to convert to JSON
-     */
-    private function _toJSON($row, $tableName, $searchBy, $valueToConvert)
-    {
-        // Check if value can be unserialized
-        $serializedOldValue = $row->{$valueToConvert};
-        if (@unserialize($serializedOldValue) === false) {
-            return;
-        }
-        $oldValue = unserialize($serializedOldValue);
-
-        // Reset arrays to avoid keys being mixed up
-        if (is_array($oldValue) && $this->_isNumerical($oldValue)) {
-            $oldValue = array_values($oldValue);
-        }
-        $newValue = json_encode($oldValue, JSON_UNESCAPED_UNICODE); // don't convert utf-8 characters to unicode escaped code
-
-        $id = array_key_first((array)$row); // get first/primary key column
-
-        // Remove empty filters
-        $searchBy = array_filter($searchBy, function ($item) use ($row) {
-            if (empty($row->{$item})) {
-                return false;
-            }
-            return true;
-        });
-
-        $queryBuilder = DB::table($tableName)->where($id, $row->{$id});
-        foreach ($searchBy as $key => $column) {
-            $queryBuilder = $queryBuilder->where($column, $row->{$column});
-        }
-        $queryBuilder->update([$valueToConvert => $newValue]);
-    }
-
-    /**
-     * @param array $array to check
-     *
-     * @return bool
-     * @brief checks unserialized array; returns true if array keys are integers
-     * otherwise if keys are mixed and sequence starts from any positive integer it will be serialized as JSON object instead of an array
-     * See pkp/pkp-lib#5690 for more details
-     */
-    private function _isNumerical($array)
-    {
-        foreach ($array as $item => $value) {
-            if (!is_integer($item)) {
-                return false;
-            } // is an associative array;
-        }
-
-        return true;
-    }
-
-    /**
-     * Complete submission file migrations specific to OMP
+     * Complete specific submission file migrations
      *
      * The main submission file migration is done in
      * PKPv3_3_0UpgradeMigration and that migration must
      * be run before this one.
      */
-    private function _migrateSubmissionFiles()
+    protected function migrateSubmissionFiles()
     {
+        parent::migrateSubmissionFiles();
 
         // Update file stage for all internal review files
         DB::table('submission_files as sf')
             ->leftJoin('review_round_files as rrf', 'sf.submission_file_id', '=', 'rrf.submission_file_id')
-            ->where('sf.file_stage', '=', SubmissionFile::SUBMISSION_FILE_REVIEW_FILE)
-            ->where('rrf.stage_id', '=', WORKFLOW_STAGE_ID_INTERNAL_REVIEW)
-            ->update(['sf.file_stage' => SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_FILE]);
+            ->where('sf.file_stage', '=', self::SUBMISSION_FILE_REVIEW_FILE)
+            ->where('rrf.stage_id', '=', self::WORKFLOW_STAGE_ID_INTERNAL_REVIEW)
+            ->update(['sf.file_stage' => self::SUBMISSION_FILE_INTERNAL_REVIEW_FILE]);
         DB::table('submission_files as sf')
             ->leftJoin('review_round_files as rrf', 'sf.submission_file_id', '=', 'rrf.submission_file_id')
-            ->where('sf.file_stage', '=', SubmissionFile::SUBMISSION_FILE_REVIEW_REVISION)
-            ->where('rrf.stage_id', '=', WORKFLOW_STAGE_ID_INTERNAL_REVIEW)
-            ->update(['sf.file_stage' => SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_REVISION]);
+            ->where('sf.file_stage', '=', self::SUBMISSION_FILE_REVIEW_REVISION)
+            ->where('rrf.stage_id', '=', self::WORKFLOW_STAGE_ID_INTERNAL_REVIEW)
+            ->update(['sf.file_stage' => self::SUBMISSION_FILE_INTERNAL_REVIEW_REVISION]);
 
         // Update the fileStage property for all event logs where the
         // file has been moved to an internal review file stage
         $internalStageIds = [
-            SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_FILE,
-            SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_REVISION,
+            self::SUBMISSION_FILE_INTERNAL_REVIEW_FILE,
+            self::SUBMISSION_FILE_INTERNAL_REVIEW_REVISION,
         ];
         foreach ($internalStageIds as $internalStageId) {
             $submissionIds = DB::table('submission_files')

@@ -1,6 +1,7 @@
+# Diego José Macêdo <diegojmacedo@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-06-05 16:39+0000\n"
+"PO-Revision-Date: 2022-01-27 14:25+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "author/pt_BR/>\n"
@@ -13,3 +14,6 @@ msgstr ""
 
 msgid "author.submit.notAccepting"
 msgstr "Esta editora não está aceitando submissões no momento."
+
+msgid "author.submit"
+msgstr "Nova Submissão"
