@@ -14,7 +14,6 @@
  */
 
 use APP\facades\Repo;
-
 use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\plugins\GenericPlugin;
@@ -63,6 +62,10 @@ class DublinCoreMetaPlugin extends GenericPlugin
         $monograph = $args[1];
         $publication = $monograph->getCurrentPublication();
         $press = $request->getContext();
+        $templateMgr = TemplateManager::getManager($request);
+        $isChapterRequest = $templateMgr->getTemplateVars('isChapterRequest');
+        $chapter = $templateMgr->getTemplateVars('chapter');
+
 
         $templateMgr = TemplateManager::getManager($request);
         $templateMgr->addHeader('dublinCoreSchema', '<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />');
@@ -82,7 +85,8 @@ class DublinCoreMetaPlugin extends GenericPlugin
         }
 
         $i = 0;
-        foreach ($publication->getData('authors') as $author) {
+        $authors = $isChapterRequest ? $templateMgr->getTemplateVars('chapterAuthors') : Repo::author()->getSubmissionAuthors($submission);
+        foreach ($authors as $author) {
             $templateMgr->addHeader('dublinCoreAuthor' . $i++, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
         }
 
@@ -94,10 +98,9 @@ class DublinCoreMetaPlugin extends GenericPlugin
             $templateMgr->addHeader('dublinCoreDateModified', '<meta name="DC.Date.modified" scheme="ISO8601" content="' . strftime('%Y-%m-%d', strtotime($dateModified)) . '"/>');
         }
         $i = 0;
-        if ($abstracts = $publication->getData('abstract')) {
-            foreach ($abstracts as $locale => $abstract) {
-                $templateMgr->addHeader('dublinCoreAbstract' . $i++, '<meta name="DC.Description" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
-            }
+        $abstracts = $isChapterRequest ? $chapter->getData('abstract') : $submission->getCurrentPublication()->getData('abstract');
+        foreach ($abstracts as $locale => $abstract) {
+            $templateMgr->addHeader('dublinCoreAbstract' . $i++, '<meta name="DC.Description" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
         }
 
         $templateMgr->addHeader('dublinCoreIdentifier', '<meta name="DC.Identifier" content="' . htmlspecialchars($monograph->getBestId()) . '"/>');
@@ -137,7 +140,8 @@ class DublinCoreMetaPlugin extends GenericPlugin
             }
         }
 
-        $templateMgr->addHeader('dublinCoreTitle', '<meta name="DC.Title" content="' . htmlspecialchars($publication->getData('title', $monograph->getLocale())) . '"/>');
+        $title = $isChapterRequest ? $chapter->getLocalizedTitle() : $publication->getLocalizedTitle();
+        $templateMgr->addHeader('dublinCoreTitle', '<meta name="DC.Title" content="' . htmlspecialchars($title) . '"/>');
         $i = 0;
         foreach ($publication->getData('title') as $locale => $title) {
             if ($locale == $monograph->getLocale()) {
