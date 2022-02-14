@@ -123,7 +123,7 @@
 		<migration class="APP\migration\upgrade\v3_4_0\I7132_AddSourceChapterId" />
 		<migration class="PKP\migration\upgrade\v3_4_0\I7167_RemoveDuplicatedUserSettingsAndDeprecatedFields" />
 		<migration class="APP\migration\upgrade\v3_4_0\I7264_UpdateEmailTemplates"/>
-		<data file="dbscripts/xml/upgrade/3.4.0_preupdate_email_templates.xml" />
+		<migration class="PKP\migration\upgrade\v3_4_0\I5048_AddUnsubscribeLinkToEmailTemplate"/>
 		<note file="docs/release-notes/README-3.4.0" />
 	</upgrade>
 
