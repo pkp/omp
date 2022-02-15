@@ -1,10 +1,10 @@
-# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021, 2022.
 # Molnár Tamás <molnart@bibl.u-szeged.hu>, 2021.
 # Kiss Jázmin <kissfjazmin@gmail.com>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-23 23:30+0000\n"
-"Last-Translator: Kiss Jázmin <kissfjazmin@gmail.com>\n"
+"PO-Revision-Date: 2022-02-16 11:26+0000\n"
+"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/default/"
 "hu_HU/>\n"
 "Language: hu_HU\n"
@@ -21,7 +21,7 @@ msgid "default.groups.plural.externalReviewer"
 msgstr "Külső bírálók"
 
 msgid "default.groups.name.externalReviewer"
-msgstr "Külső bírálat"
+msgstr "Külső bíráló"
 
 msgid "default.contextSettings.forLibrarians"
 msgstr ""
@@ -92,17 +92,17 @@ msgstr ""
 msgid "default.contextSettings.checklist.notPreviouslyPublished"
 msgstr ""
 "A beküldött anyag korábban nem került publikálásra és jelenleg sem áll "
-"elbírálás alatt más kiadónál (vagy magyarázatot adhat a Megjegyzéseknél a "
+"elbírálás alatt más kiadónál (vagy magyarázatot adhat a megjegyzéseknél a "
 "szerkesztőnek)."
 
 msgid "default.groups.abbrev.volumeEditor"
 msgstr "KSZ"
 
 msgid "default.groups.plural.volumeEditor"
-msgstr "Kötet szerkesztők"
+msgstr "Kötetszerkesztők"
 
 msgid "default.groups.name.volumeEditor"
-msgstr "Kötet szerkesztő"
+msgstr "Kötetszerkesztő"
 
 msgid "default.groups.abbrev.chapterAuthor"
 msgstr "FSZ"
@@ -118,23 +118,22 @@ msgid "default.groups.abbrev.sectionEditor"
 msgstr "AcqE"
 
 msgid "default.groups.plural.sectionEditor"
-msgstr "Sorozat szerkesztők"
+msgstr "Sorozatszerkesztők"
 
 msgid "default.groups.name.sectionEditor"
-msgstr "Sorozat szerkesztő"
+msgstr "Sorozatszerkesztő"
 
 msgid "default.groups.abbrev.editor"
 msgstr "KSZ"
 
-#, fuzzy
 msgid "default.groups.abbrev.manager"
-msgstr "KM"
+msgstr "SM"
 
 msgid "default.groups.plural.editor"
-msgstr "Kiadói szerkesztők"
+msgstr "Kiadó szerkesztők"
 
 msgid "default.groups.name.editor"
-msgstr "Kiadói szerkesztő"
+msgstr "Kiadó szerkesztő"
 
 msgid "default.groups.plural.manager"
 msgstr "Sajtómenedzserek"
@@ -163,11 +162,9 @@ msgstr "Tájékoztató"
 msgid "default.genres.preface"
 msgstr "Előszó"
 
-#, fuzzy
 msgid "default.genres.index"
-msgstr "Tárgymutató"
+msgstr "Index"
 
-#, fuzzy
 msgid "default.genres.glossary"
 msgstr "Szójegyzék"
 
@@ -181,4 +178,13 @@ msgid "default.genres.bibliography"
 msgstr "Irodalomjegyzék"
 
 msgid "default.genres.appendix"
-msgstr "Melléklet"
+msgstr "Függelék"
+
+msgid "default.groups.abbrev.subscriptionManager"
+msgstr "ElőfM"
+
+msgid "default.groups.plural.subscriptionManager"
+msgstr "Előfizetés menedzserek"
+
+msgid "default.groups.name.subscriptionManager"
+msgstr "Előfizetés menedzser"
