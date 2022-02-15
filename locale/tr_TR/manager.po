@@ -1462,3 +1462,208 @@ msgid "mailable.validateEmailContext.description"
 msgstr ""
 "Bu e-posta, yeni kullanıcı kaydında e-posta adresinin doğrulanmasını için "
 "otomatik olarak gönderilir."
+
+msgid "doi.displayName"
+msgstr "DOI"
+
+msgid "doi.description"
+msgstr ""
+"Bu eklenti, Sayısal Nesne Tanımlayıcılarının OMP'deki yazılara, bölümlere, "
+"yayın biçimlerine ve dosyalara atanmasını sağlar."
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "doi.manager.settings.description"
+msgstr ""
+"OMP'de DOI'leri yönetebilmek ve kullanabilmek için lütfen DOI eklentisini "
+"yapılandırın:"
+
+msgid "doi.manager.settings.doiObjects"
+msgstr "Yayın İçeriği"
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr "Lütfen DOI'lerin atanacağı nesneleri seçin."
+
+msgid "doi.manager.settings.explainDois"
+msgstr ""
+"Lütfen Sayısal Nesne Tanımlayıcılarının (DOI) atanacağı yayınlama "
+"nesnelerini seçin:"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Yazılar"
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Bölümler"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Yayın Biçimleri"
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Dosyalar"
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "DOI Ön eki"
+
+msgid "doi.manager.settings.doiPrefix.description"
+msgstr ""
+"DOI Ön eki, kayıt kuruluşları (örn. <a href=\"http://www.crossref.org\" "
+"target=\"_new\">CrossRef</a>) tarafından atanır ve 10.xxxx biçimindedir ("
+"örn. 10.1234):"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "DOI ön eki zorunludur ve 10.xxxx biçiminde olmalıdır."
+
+msgid "doi.manager.settings.doiSuffix"
+msgstr "DOI Son eki"
+
+msgid "doi.manager.settings.doiSuffix.description"
+msgstr ""
+"Bir DOI son eki herhangi bir biçimde olabilir, ancak aynı DOI ön eki atanmış "
+"tüm yayınlama nesneleri arasında benzersiz olmalıdır:"
+
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"DOI son eklerini oluşturmak için aşağıda girilen modeli kullanın. Yayınevi "
+"baş harfleri için %p, yazı kimliği için% m, bölüm kimliği için %c, yayın "
+"biçimi kimliği için %f, dosya kimliği için %s ve \"Özel Tanımlayıcı\" için %"
+"x kullanın."
+
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr ""
+"Örneğin, %ppub%r tuşuna basmak 10.1234/pressESPpub100 gibi bir DOI "
+"oluşturabilir"
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "yazılar için"
+
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "bölümler için"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "yayın biçimleri için"
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "dosyalar için"
+
+msgid "doi.manager.settings.doiSuffixDefault"
+msgstr "Varsayılan modelleri kullanın."
+
+msgid "doi.manager.settings.doiSuffixDefault.description"
+msgstr ""
+"Kitaplar için %p.% m<br /> Bölümler için %p.%m.c%c<br /> Yayın biçimleri "
+"için %p.%m.%f<br /> Dosyalar için %p.%m.%f.%s kullanın."
+
+msgid "doi.manager.settings.doiSuffixCustomIdentifier"
+msgstr ""
+"Yayınlanan her öğe için ayrı bir DOI son eki girin. Her bir öğenin üst veri "
+"sayfasında ek bir DOI giriş alanı bulacaksınız."
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Lütfen yazılar için DOI son ek kalıbını girin."
+
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Lütfen bölümler için DOI son ek kalıbını girin."
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Yayın biçimleri için lütfen DOI son ek modelini girin."
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Lütfen dosyalar için DOI son ek modelini girin."
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "DOI'leri yeniden atayın"
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr ""
+"DOI yapılandırmasını değiştirirseniz, zaten atanmış olan DOI'ler "
+"etkilenmeyecektir. DOI yapılandırması kaydedildikten sonra, mevcut tüm "
+"DOI'leri temizlemek için bu düğmeyi kullanın, böylece yeni ayarlar mevcut "
+"tüm nesnelerde etkili olur."
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Mevcut tüm DOI'leri silmek istediğinizden emin misiniz?"
+
+msgid "doi.editor.doi"
+msgstr "DOI"
+
+msgid "doi.editor.doi.description"
+msgstr "DOI, {$prefix} ile başlamalıdır."
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Atama"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "yazı"
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "bölüm"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "yayın biçimi"
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "dosya"
+
+msgid "doi.editor.customSuffixMissing"
+msgstr "DOI, özel son ek eksik olduğu için atanamıyor."
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"DOI modelinin bir veya daha fazla bölümünde veri eksik olduğundan bir DOI "
+"oluşturamazsınız."
+
+msgid "doi.editor.patternNotResolved"
+msgstr "DOI, çözümlenemeyen bir model içerdiğinden atanamaz."
+
+msgid "doi.editor.canBeAssigned"
+msgstr ""
+"Gördüğünüz şey DOI'nin bir ön izlemesidir. DOI'yi atamak için onay kutusunu "
+"seçin ve formu kaydedin."
+
+msgid "doi.editor.assigned"
+msgstr "DOI bu {$pubObjectType}'a atanır."
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Verilen DOI son eki, yayınlanan başka bir öğe için zaten kullanılıyor. "
+"Lütfen her öğe için benzersiz bir DOI son eki girin."
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Temizle"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Mevcut DOI'yi silmek istediğinizden emin misiniz?"
+
+msgid "doi.editor.assignDoi"
+msgstr "DOI'yi {$pubId} bu {$pubObjectType} 'a atayın"
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr "DOI, özel son ek eksik olduğu için atanamıyor."
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr "DOI {$pubId} çözümlenemeyen bir model içerdiğinden atanamaz."
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "DOI {$pubId} atandı."
+
+msgid "doi.editor.missingPrefix"
+msgstr "DOI, {$doiPrefix} ile başlamalıdır."
+
+msgid "doi.editor.preview.publication"
+msgstr "Bu yayının DOI'si {$doi} olacaktır."
+
+msgid "doi.editor.preview.publication.none"
+msgstr "Bu yayına bir DOI atanmamış."
+
+msgid "doi.editor.preview.chapters"
+msgstr "Bölüm: {$title}"
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Yayın Biçimi: {$title}"
+
+msgid "doi.editor.preview.files"
+msgstr "Dosya: {$title}"
+
+msgid "doi.editor.preview.objects"
+msgstr "Öğe"

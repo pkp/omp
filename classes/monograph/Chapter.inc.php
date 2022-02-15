@@ -17,12 +17,12 @@
 
 namespace APP\monograph;
 
-use APP\i18n\AppLocale;
-use PKP\core\PKPString;
-
-use PKP\db\DAORegistry;
 use APP\facades\Repo;
+use APP\i18n\AppLocale;
+
 use Illuminate\Support\LazyCollection;
+use PKP\core\PKPString;
+use PKP\db\DAORegistry;
 
 class Chapter extends \PKP\core\DataObject
 {
@@ -207,7 +207,11 @@ class Chapter extends \PKP\core\DataObject
      */
     public function getStoredPubId($pubIdType)
     {
-        return $this->getData('pub-id::' . $pubIdType);
+        if ($pubIdType == 'doi') {
+            return $this->getDoi();
+        } else {
+            return $this->getData('pub-id::' . $pubIdType);
+        }
     }
 
     /**
@@ -220,7 +224,26 @@ class Chapter extends \PKP\core\DataObject
      */
     public function setStoredPubId($pubIdType, $pubId)
     {
-        $this->setData('pub-id::' . $pubIdType, $pubId);
+        if ($pubIdType == 'doi') {
+            if ($doiObject = $this->getData('doiObject')) {
+                Repo::doi()->edit($doiObject, ['doi' => $pubId]);
+            } else {
+                $publication = Repo::publication()->get($this->getData('publicationId'));
+                $submission = Repo::submission()->get($publication->getId());
+                $contextId = $submission->getData('contextId');
+
+                $newDoiObject = Repo::doi()->newDataObject(
+                    [
+                        'doi' => $pubId,
+                        'contextId' => $contextId
+                    ]
+                );
+                $doiId = Repo::doi()->add($newDoiObject);
+                $this->setData('doiId', $doiId);
+            }
+        } else {
+            $this->setData('pub-id::' . $pubIdType, $pubId);
+        }
     }
 
     /**
@@ -308,7 +331,7 @@ class Chapter extends \PKP\core\DataObject
      */
     public function getSourceChapterId()
     {
-        if(!$this->getData('sourceChapterId')) {
+        if (!$this->getData('sourceChapterId')) {
             $this->setSourceChapterId($this->getId());
         }
         return $this->getData('sourceChapterId');
@@ -319,7 +342,7 @@ class Chapter extends \PKP\core\DataObject
      *
      * @param null|int $sourceChapterId
      */
-    public function setSourceChapterId(?int $sourceChapterId) : void
+    public function setSourceChapterId(?int $sourceChapterId): void
     {
         $this->setData('sourceChapterId', $sourceChapterId);
     }
@@ -339,9 +362,24 @@ class Chapter extends \PKP\core\DataObject
      *
      * @param null|int $enable
      */
-    public function setPageEnabled(?int $enable) : void
+    public function setPageEnabled(?int $enable): void
     {
         $this->setData('isPageEnabled', $enable);
+    }
+
+    /**
+     * Returns current DOI
+     *
+     */
+    public function getDoi(): ?string
+    {
+        $doiObject = $this->getData('doiObject');
+
+        if (empty($doiObject)) {
+            return null;
+        } else {
+            return $doiObject->getData('doi');
+        }
     }
 }
 

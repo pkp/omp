@@ -175,24 +175,17 @@ class MonographONIX30XmlFilter extends NativeExportFilter
             $identifierGiven = true;
         }
 
-        // Deal with the possibility of a DOI pubId from the plugin.
-        $pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
-        if (is_array($pubIdPlugins)) {
-            foreach ($pubIdPlugins as $plugin) {
-                if ($plugin->getEnabled() && $plugin->getPubIdType() == 'doi' && $publicationFormat->getStoredPubId('doi')) {
-                    $productIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'ProductIdentifier');
-                    $productIdentifierNode->appendChild($this->_buildTextNode($doc, 'ProductIDType', '06')); // DOI
-                    $productIdentifierNode->appendChild($this->_buildTextNode($doc, 'IDValue', $publicationFormat->getStoredPubId('doi'))); // GTIN-13 (ISBN-13 as GTIN)
-                    $productNode->appendChild($productIdentifierNode);
+        // Deal with the possibility of a DOI pubId.
+        if ($context->getData(\PKP\context\Context::SETTING_ENABLE_DOIS) && $publicationFormat->getDoi()) {
+            $productIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'ProductIdentifier');
+            $productIdentifierNode->appendChild($this->_buildTextNode($doc, 'ProductIDType', '06')); // DOI
+            $productIdentifierNode->appendChild($this->_buildTextNode($doc, 'IDValue', $publicationFormat->getDoi)); // GTIN-13 (ISBN-13 as GTIN)
+            $productNode->appendChild($productIdentifierNode);
 
-                    unset($productIdentifierNode);
+            unset($productIdentifierNode);
 
-                    $identifierGiven = true;
-                }
-                unset($plugin);
-            }
+            $identifierGiven = true;
         }
-        unset($pubIdPlugins);
 
         if (!$identifierGiven) {
             $productIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'ProductIdentifier');

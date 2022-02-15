@@ -10,6 +10,23 @@
 				"nullable"
 			]
 		},
+		"doiObject": {
+			"type": "object",
+			"description": "DOI object for this publication",
+			"apiSummary": true,
+			"readOnly": true,
+			"items": {
+				"$ref": "#/definitions/Doi"
+			}
+		},
+		"doiId": {
+			"type": "integer",
+			"description": "Reference to the DOI for this publication",
+			"writeOnly": true,
+			"validation": [
+				"nullable"
+			]
+		},
 		"directSalesPrice": {
 			"type": "string",
 			"apiSummary": true,

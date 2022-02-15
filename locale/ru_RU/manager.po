@@ -1427,3 +1427,209 @@ msgid "manager.series.confirmDeactivateSeries.error"
 msgstr ""
 "Минимум одна серия должна быть активна. Зайдите в настройки рабочего "
 "процесса, чтобы отключить отправку материалов в это издательство."
+
+msgid "doi.editor.preview.objects"
+msgstr "Элемент"
+
+msgid "doi.editor.preview.files"
+msgstr "Файл: {$title}"
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Вид издания (формат публикации): {$title}"
+
+msgid "doi.editor.preview.chapters"
+msgstr "Глава: {$title}"
+
+msgid "doi.editor.preview.publication.none"
+msgstr "DOI не был присвоен этой публикации."
+
+msgid "doi.editor.preview.publication"
+msgstr "DOI для этой публикации будет {$doi}."
+
+msgid "doi.editor.missingPrefix"
+msgstr "DOI должен начинаться с {$doiPrefix}."
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "DOI {$pubId} был присвоен."
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr "DOI не может быть назначен, потому что содержит неопределенный шаблон."
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr ""
+"DOI не может быть присвоен, так как отсутствует пользовательский суффикс."
+
+msgid "doi.editor.assignDoi"
+msgstr "Присвоить DOI {$pubId} {$pubObjectType}"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Вы уверены, что хотите удалить существующий DOI?"
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Удалить"
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Заданный суффикс DOI уже используется для другого опубликованного элемента. "
+"Пожалуйста, введите уникальный суффикс DOI для каждого элемента."
+
+msgid "doi.editor.assigned"
+msgstr "DOI присвоен {$pubObjectType}."
+
+msgid "doi.editor.canBeAssigned"
+msgstr ""
+"Вы видите как будет выглядеть DOI. Поставьте галочку и сохраните форму для "
+"присвоения DOI."
+
+msgid "doi.editor.patternNotResolved"
+msgstr "DOI не может быть назначен, потому что содержит неопределенный шаблон."
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"Сгенерировать DOI нельзя, потому что данные для одной или нескольких частей "
+"шаблона DOI отсутствуют."
+
+msgid "doi.editor.customSuffixMissing"
+msgstr ""
+"DOI не может быть присвоен, так как отсутствует пользовательский суффикс."
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "фаил"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "формат публикации"
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "глава"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "монография"
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Назначить"
+
+msgid "doi.editor.doi.description"
+msgstr "DOI должен начинаться с {$prefix}."
+
+msgid "doi.editor.doi"
+msgstr "DOI"
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Вы уверены, что хотите удалить все существующие DOI?"
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr ""
+"Если вы измените вашу конфигурацию DOI, то она не затронет DOI, которые уже "
+"были присвоены. После сохранения конфигурации DOI используйте эту кнопку, "
+"чтобы удалить все существующие DOI для того, чтобы новые настройки повлияли "
+"на существующие объекты."
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "Переприсвоить DOI"
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Пожалуйста, введите шаблон суффикса DOI для файлов."
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Пожалуйста, введите шаблон суффикса DOI для форматов публикаций."
+
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Пожалуйста, введите шаблон суффикса DOI для глав."
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Пожалуйста, введите шаблон суффикса DOI для монографий."
+
+msgid "doi.manager.settings.doiSuffixCustomIdentifier"
+msgstr ""
+"Ввести индивидуальный суффикс DOI для каждого опубликованного элемента. Вы "
+"увидите дополнительное поле ввода DOI на странице метаданных для каждого "
+"элемента."
+
+msgid "doi.manager.settings.doiSuffixDefault.description"
+msgstr ""
+"%p.%m для монографий<br />%p.%m.c%c для глав<br />%p.%m.%f для форматов "
+"публикаций<br />%p.%m.%f.%s для файлов."
+
+msgid "doi.manager.settings.doiSuffixDefault"
+msgstr "Использовать шаблоны по умолчанию."
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "для файлов"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "для форматов изданий"
+
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "для глав"
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "для монографий"
+
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr "Например, izd%ppub%r, чтобы создать DOI, например 10.1234/isdMURpub100"
+
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Используйте шаблон, введенный ниже, для генерации суффиксов DOI. Используйте "
+"%p для абревиатуры издательства, %m для идентификатора монографии, %c для "
+"идентификатора главы, %f для идентификатора формата публикации, %s для "
+"идентификатора файла и %x для \"Идентификатора пользователя\"."
+
+msgid "doi.manager.settings.doiSuffix.description"
+msgstr ""
+"Суффикс DOI может принимать любую форму, но должен быть уникальным среди "
+"всех публикуемых объектов, которым присвоен один и тот же префикс DOI:"
+
+msgid "doi.manager.settings.doiSuffix"
+msgstr "Суффикс DOI"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "Префикс DOI обязателен и должен быть в форме 10.xxxx."
+
+msgid "doi.manager.settings.doiPrefix.description"
+msgstr ""
+"Префикс DOI назначается регистрационными агентствами (например, <a href=\""
+"http://www.crossref.org\" target=\"_new\">Crossref</a>) и представляется в "
+"формате 10.xxxx (например, 10.1234):"
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "Префикс DOI"
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Файлы"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Форматы публикации"
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Главы"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Монографии"
+
+msgid "doi.manager.settings.explainDois"
+msgstr ""
+"Пожалуйста выберите публикуемые объекты, которые будут иметь присвоенные "
+"идентификаторы цифровых объектов (Digital Object Identifier, DOI):"
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr "Пожалуйста выберите объекты, которым должны быть присвоены DOI."
+
+msgid "doi.manager.settings.doiObjects"
+msgstr "Контент издательства"
+
+msgid "doi.manager.settings.description"
+msgstr ""
+"Пожалуйста, настройте модуль «DOI», чтобы иметь возможность использовать DOI "
+"в OMP и управлять ими:"
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "doi.description"
+msgstr ""
+"Включает присвоение идентификаторов цифровых объектов (Digital Object "
+"Identifier) книгам, главам, видам изданий и файлам в OMP."
+
+msgid "doi.displayName"
+msgstr "DOI"

@@ -901,3 +901,132 @@ msgstr "Ta naslov zbirke že obstaja. Vnesite edinstveno pot."
 
 msgid "manager.payment.generalOptions"
 msgstr "Splošne nastavitve"
+
+msgid "doi.displayName"
+msgstr "DOI"
+
+msgid "doi.description"
+msgstr "Vtičnik omogoča dodeljevanje indentifikatorjev digitalnih objektov monografijam, formatom publikacij in datotekam v OMP."
+
+msgid "doi.manager.settings.description"
+msgstr "Nastavite vtičnik DOI, da boste lahko upravljali in uporabljali DOI in OMP:"
+
+msgid "doi.manager.settings.doiObjects"
+msgstr "Vsebina publikacije"
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr "Izberite objekte, ki jim boste dodelili DOI."
+
+msgid "doi.manager.settings.explainDois"
+msgstr "Označite objavljene predmete, ki jim boste dodelili identifikatorje digitalnih objektov (DOI):"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Monografije"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Formati publikacij"
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Datoteke"
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "Predpona DOI"
+
+msgid "doi.manager.settings.doiPrefix.description"
+msgstr "Predpono DOI dodeljujejo registracijske agencije (prim. <a href=\"http://www.crossref.org\" target=\"_new\">CrossRef</a>) v formatu 10.xxxx (prim. 10.1234):"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "Predpona DOI je obvezna in mora biti v formatu 10.xxxx."
+
+msgid "doi.manager.settings.doiSuffix"
+msgstr "Pripona DOI"
+
+msgid "doi.manager.settings.doiSuffix.description"
+msgstr "Pripona DOI je lahko v katerikoli obliki, a mora biti edina pripona izmed vseh objavljenih predmetov z isto dodeljeno predpono DOI:"
+
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr "Uporabljajte spodnje vzorce, da ustvarite pripone DOI. Uporabljajte %p za začetnice publikacije, %m za id monografije, %f za id formata publikacije, %s za id datoteke in %x za Spremeni identifikator."
+
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr "press%ppub%r, na primer, lahko ustvari DOI, kot je 10.1234/pressESPpub100"
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "za monografije"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "za formate publikacij"
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "za datoteke"
+
+msgid "doi.manager.settings.doiSuffixDefault"
+msgstr "Uporabi privzete vzorce."
+
+msgid "doi.manager.settings.doiSuffixDefault.description"
+msgstr "%p.%m za monografije <br />%p.%m.%f za formate publikacij<br />%p.%m.%f.%s za datoteke."
+
+msgid "doi.manager.settings.doiSuffixCustomIdentifier"
+msgstr "Vnesi individualno pripono DOI za vsak objavljen element. Na vsaki metapodatkovni strani posameznega elementa boste našli dodatno polje za vnos DOI."
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Vnesite vzorec za pripono DOI za monografije."
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Vnesite vzorec za pripono DOI za formate publikacij."
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Vnesite vzorec za pripono DOI za datoteke."
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "Prerazporedi DOI"
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr "Če boste zamenjali vaše nastavitve DOI, to ne bo vplivalo na obstoječe DOI. Ko boste shranili nastavitve DOI, uporabite ta ukaz, da izbrišete vse obstoječe DOI, da bodo lahko nove nastavitve delovale za obstoječe objekte."
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Ali ste prepričani, da želite izbrisati vse obstoječe DOI?"
+
+msgid "doi.editor.doi"
+msgstr "DOI"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "monografija"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "format publikacije"
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "datoteka"
+
+msgid "doi.editor.customSuffixMissing"
+msgstr "DOI ni mogoče dodeliti, ker spremenjena pripona ni na voljo."
+
+msgid "doi.editor.patternNotResolved"
+msgstr "DOI ni mogoče dodeliti, ker vsebuje nerešen vzorec."
+
+msgid "doi.editor.canBeAssigned"
+msgstr "Pred vami je predogled DOI. Izberite seznam in shranite obliko, ki ji želite dodeliti DOI."
+
+msgid "doi.editor.assigned"
+msgstr "{$pubObjectType} ste dodelili DOI."
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr "Pripona DOI  je že v rabi za drug objavljen element. Za vsak element vnesite drugačno pripono DOI."
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Izbriši DOI"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Ali ste prepričani, da želite izbrisati obstoječ DOI?"
+
+msgid "doi.editor.assignDoi"
+msgstr "{$pubObjectType} dodelite DOI {$pubId}"
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr "DOI ni mogoče dodeliti, ker spremenjena pripona ni na voljo."
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr "DOI ni mogoče dodeliti, ker vsebuje nerešen vzorec."
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "Odobrili boste DOI {$pubId}. "

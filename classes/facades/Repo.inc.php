@@ -15,6 +15,7 @@
 namespace APP\facades;
 
 use APP\author\Repository as AuthorRepository;
+use APP\doi\Repository as DoiRepository;
 use APP\publication\Repository as PublicationRepository;
 use APP\submission\Repository as SubmissionRepository;
 use APP\submissionFile\Repository as SubmissionFileRepository;
@@ -45,5 +46,10 @@ class Repo extends \PKP\facades\Repo
     public static function submissionFile(): SubmissionFileRepository
     {
         return app(SubmissionFileRepository::class);
+    }
+
+    public static function doi(): DoiRepository
+    {
+        return app()->make(DoiRepository::class);
     }
 }

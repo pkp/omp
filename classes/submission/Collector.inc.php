@@ -16,6 +16,7 @@ namespace APP\submission;
 use APP\core\Application;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
+use PKP\doi\Doi;
 
 class Collector extends \PKP\submission\Collector
 {
@@ -52,6 +53,35 @@ class Collector extends \PKP\submission\Collector
     {
         $this->orderByFeatured = true;
         return $this;
+    }
+
+    /**
+     * Add APP-specific filtering methods for submission sub objects DOI statuses
+     *
+     */
+    protected function addDoiStatusFilterToQuery(Builder $q)
+    {
+        $q->whereIn('s.current_publication_id', function (Builder $q) {
+            $q->select('current_p.publication_id')
+                ->from('publications as current_p')
+                ->leftJoin('submission_chapters as current_c', 'current_p.publication_id', '=', 'current_c.publication_id')
+                ->leftJoin('publication_formats as current_pf', 'current_p.publication_id', '=', 'current_pf.publication_id')
+                ->leftJoin('dois as pd', 'pd.doi_id', '=', 'current_p.doi_id')
+                ->leftJoin('dois as cd', 'cd.doi_id', '=', 'current_c.doi_id')
+                ->leftJoin('dois as pfd', 'pfd.doi_id', '=', 'current_pf.doi_id')
+                ->whereIn('pd.status', $this->doiStatuses)
+                ->orWhereIn('cd.status', $this->doiStatuses)
+                ->orWhereIn('pfd.status', $this->doiStatuses);
+
+            $q->when(
+                in_array(Doi::STATUS_UNREGISTERED, $this->doiStatuses) && !$this->strictDoiStatusFilter,
+                function (Builder $q) {
+                    $q->orWhereNull('pd.status')
+                        ->orWhereNull('cd.status')
+                        ->orWhereNull('pfd.status');
+                }
+            );
+        });
     }
 
     /**

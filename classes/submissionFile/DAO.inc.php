@@ -13,9 +13,11 @@
 
 namespace APP\submissionFile;
 
+use APP\facades\Repo;
 use Illuminate\Support\Facades\DB;
 
 use PKP\submissionFile\DAO as BaseDAO;
+use PKP\submissionFile\SubmissionFile;
 
 class DAO extends BaseDAO
 {
@@ -35,6 +37,7 @@ class DAO extends BaseDAO
         'updatedAt' => 'updated_at',
         'uploaderUserId' => 'uploader_user_id',
         'viewable' => 'viewable',
+        'doiId' => 'doi_id'
     ];
 
     /**
@@ -60,5 +63,19 @@ class DAO extends BaseDAO
             }, $submissionFileIds);
             DB::table('submission_file_settings')->insert($insertRows);
         }
+    }
+
+    /**
+     * @copydoc SchemaDAO::fromRow()
+     */
+    public function fromRow(object $primaryRow): SubmissionFile
+    {
+        $submissionFile = parent::fromRow($primaryRow);
+
+        if (!empty($submissionFile->getData('doiId'))) {
+            $submissionFile->setData('doiObject', Repo::doi()->get($submissionFile->getData('doiId')));
+        }
+
+        return $submissionFile;
     }
 }

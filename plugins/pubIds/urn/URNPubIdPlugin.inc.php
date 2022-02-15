@@ -13,9 +13,9 @@
  * @brief URN plugin class
  */
 
-use APP\form\URNSettingsForm;
-use APP\form\FieldUrn;
 use APP\facades\Repo;
+use APP\form\FieldUrn;
+use APP\form\URNSettingsForm;
 use APP\plugins\PubIdPlugin;
 use APP\publication\Publication;
 
@@ -390,7 +390,7 @@ class URNPubIdPlugin extends PubIdPlugin
                 'submissionId' => $form->publication->getData('submissionId'),
                 'assignIdLabel' => __('plugins.pubIds.urn.editor.urn.assignUrn'),
                 'clearIdLabel' => __('plugins.pubIds.urn.editor.clearObjectsURN'),
-                'missingPartsLabel' => __('plugins.pubIds.doi.editor.missingParts'),
+                'missingPartsLabel' => __('doi.editor.missingParts'),
             ];
             if ($form->publication->getData('pub-id::publisher-id')) {
                 $fieldData['publisherId'] = $form->publication->getData('pub-id::publisher-id');
