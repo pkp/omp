@@ -294,14 +294,6 @@ msgstr ""
 "dosyayı 99Z kitabının tamamıyla veya numarasına göre belirli bir bölümle ("
 "ör. 02) ilişkilendirmesine izin verir."
 
-msgid "manager.setup.reviewProcessEmailDescription"
-msgstr ""
-"Editörler, E-postaya eklenen gönderi ile birlikte İnceleyenlere inceleme "
-"isteği gönderir. Danışmanlar, editörlere onaylarının (veya pişmanlıklarının) "
-"yanı sıra inceleme ve önerilere e-posta gönderir. Editörler, inceleme "
-"sürecini kaydetmek için gönderinin Değerlendirme sayfasına Danışmanların "
-"onayını (veya çekincelerini) ve inceleme ve öneriyi girer."
-
 msgid "manager.setup.disableSubmissions.notAccepting"
 msgstr ""
 "Bu yayınevi şu anda başvuruları kabul etmiyor. Gönderimlere izin vermek için "
@@ -1301,33 +1293,6 @@ msgstr "Danışman Hatırlatıcıları"
 
 msgid "manager.setup.reviewPolicy"
 msgstr "Değerlendirme Politikası"
-
-msgid "manager.setup.reviewProcess"
-msgstr "Danışman Değerlendirme Süreci"
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr ""
-"OMP, inceleme sürecini yönetmek için iki modeli destekler. Standart "
-"Değerlendirme Süreci, danışmanları süreç boyunca adım adım yol gösterdiği, "
-"her gönderi için eksiksiz bir inceleme geçmişi sağladığı ve otomatik "
-"hatırlatma bildiriminden ve gönderimler için standart önerilerden "
-"yararlandığı için önerilir (Kabul Et; Düzeltme Sonrası Kabul Et; "
-"Değerlendirmeye Gönder; Başka bir yerde Gönder; Reddet; Yorumlara bakın).<br "
-"/><br /> Aşağıdakilerden birini seçin:"
-
-msgid "manager.setup.reviewProcessEmail"
-msgstr "E-posta Eki Değerlendirme Süreci"
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Standart Değerlendirme Süreci"
-
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr ""
-"Editörler, seçili Danışmanlara gönderinin başlığını ve özetini e-posta ile "
-"gönderecek ve incelemeyi tamamlamak için yayınevi web sitesinde oturum "
-"açmaları için bir davet gönderecektir. Danışmanlar değerlendirme yapmayı "
-"kabul etmek, gönderimleri indirmek, yorumlarını göndermek ve bir öneri "
-"seçmek için yayınevi web sitesine girerler."
 
 msgid "manager.setup.searchDescription.description"
 msgstr ""

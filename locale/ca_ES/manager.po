@@ -652,21 +652,6 @@ msgstr "Recordatoris per a la revisió"
 msgid "manager.setup.reviewPolicy"
 msgstr "Política de revisió"
 
-msgid "manager.setup.reviewProcess"
-msgstr "Procés de revisió"
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr "L'OMP admet dos models per a l'administració del procés de revisió. Es recomana utilitzar el procés estàndard de revisió, atès que guia els revisors/ores pas a pas, s’assegura de registrar el procés de revisió complet per a cada tramesa i utilitza el sistema de recordatoris automàtics i recomanacions estàndard per a les trameses («Accepta», «Accepta amb revisions», «Tramet per a la revisió», «Tramet a un altre lloc», «Rebutja», «Visualitza els comentaris»).<br /><br />Seleccioneu una de les opcions següents:"
-
-msgid "manager.setup.reviewProcessEmail"
-msgstr "Procés de revisió mitjançant fitxers adjunts en correus electrònics"
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Procés de revisió estàndard"
-
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr "Els editors/ores envien per correu electrònic als revisors/ores seleccionats el títol i el resum de la tramesa, juntament amb una invitació per entrar al lloc web de la publicació amb l’objectiu de completar la revisió. Els revisors/ores han d'entrar al lloc web de la publicació per acceptar la tasca de revisió, descarregar trameses, enviar els seus comentaris i seleccionar una recomanació."
-
 msgid "manager.setup.searchEngineIndexing"
 msgstr "Indexació per als motors de cerca"
 
@@ -788,9 +773,6 @@ msgstr "Si voleu crear un nou format de publicació, empleneu el formulari de so
 
 msgid "manager.setup.genresDescription"
 msgstr "Aquests gèneres es fan servir per anomenar fitxers i es presenten en un menú desplegable quan carregueu fitxers. Els gèneres designats ## permeten els usuaris/àries associar el fitxer amb un llibre sencer 99Z o amb un capítol concret per número (p. ex. 02)."
-
-msgid "manager.setup.reviewProcessEmailDescription"
-msgstr "Els editors/ores envien als revisors/ores la sol·licitud per revisar la tramesa adjunta al correu electrònic. Els revisors/ores envien un correu electrònic als editors/ores el consentiment (o rebuig), així com la revisió i recomanació. Els editors/ores hi introdueixen el consentiment (o rebuig), així com la revisió i recomanació a la pàgina de revisió de la tramesa per fer un registre del procés de revisió."
 
 msgid "manager.setup.genres"
 msgstr "Gèneres"

@@ -675,21 +675,6 @@ msgstr "Gutachtererinnerungen"
 msgid "manager.setup.reviewPolicy"
 msgstr "Begutachtungsleitlinien"
 
-msgid "manager.setup.reviewProcess"
-msgstr "Begutachtungsprozess"
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr "OMP unterstützt zwei Modelle der Begutachtungsprozess-Koordinierung: Empfohlen wird der Standard-Begutachtungsprozess, weil hier die Gutachter/innen durch den Prozess geführt werden. Damit ist sichergestellt, das es für jedes eingereichte Manuskript ein vollständiges Begutachtungsverlaufsprotokoll gibt. Weitere Vorteile dieses Verfahrens sind das automatische Mahnverfahren für ausstehende Gutachten und sie standardisierten Empfehlungen zur Manuskriptannahme (die vorgegebenen Optionen sind: Annehmen - Nach Überarbeitung annehmen - Erneut zur Begutachtung einreichen - An anderer Stelle einreichen - Ablehnen und Siehe Kommentar).<br /><br />Wählen Sie eines der beiden Modelle aus:"
-
-msgid "manager.setup.reviewProcessEmail"
-msgstr "E-Mail-Anhang Begutachtungsprozess"
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Standard-Begutachtungsprozess"
-
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr "Die Herausgeber/innen schicken den ausgewählten Gutachter/innen Titel und Abstract des eingereichten Manuskripts und bitten sie darum, sich auf der Verlagswebsite einzuloggen, um ein Gutachten abzugeben. Die Gutachter/innen gehen auf die Website, um der Teilnahme am Begutachtungsverfahren zuzustimmen, Manuskripte herunterzuladen, ihre Anmerkungen einzureichen und um eine Empfehlung auszuwählen."
-
 msgid "manager.setup.searchEngineIndexing"
 msgstr "Suchmaschinen-Indizierung"
 
@@ -815,9 +800,6 @@ msgstr "Um ein neues Format anzulegen, füllen Sie bitte das unten stehende Form
 
 msgid "manager.setup.genresDescription"
 msgstr "Diese Genres bilden einen Bestandteil des Dateinamen.  Beim Hochladeprozess werden die Manuskriptdateien in einem Pull-down-Menü angezeigt. Genres, die mit ## gekennzeichnet sind, können sowohl mit dem ganzen Buch 99Z oder mit einem bestimmten Kapitel über Angabe einer Nummer (z.B. 02) verbunden werden."
-
-msgid "manager.setup.reviewProcessEmailDescription"
-msgstr "Die Herausgeber/innen senden den Gutachter/innen Begutachtungsanfragen per E-Mail und fügen das betreffende Manuskript als Anhang bei. Die Gutachter/innen erklären sich in einer E-Mail an die Herausgeber mit der Begutachtung einverstanden (oder lehnen sie ab) und schicken ebenfalls per E-Mail das fertige Gutachten und ihre Empfehlung hinsichtlich des Manuskripts. Die Herausgeber/innen hinterlegen die Einverständniserklärung (oder Ablehnung) der Gutachter/innen, das Gutachten selbst und die Empfehlung in Bezug auf das eingereichte Manuskript auf der Begutachtungsseite, um den Verlauf des Begutachtungsprozess zu dokumentieren."
 
 msgid "manager.setup.genres"
 msgstr "Genres"

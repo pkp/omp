@@ -773,21 +773,6 @@ msgstr "Reviewer Reminders"
 msgid "manager.setup.reviewPolicy"
 msgstr "Review Policy"
 
-msgid "manager.setup.reviewProcess"
-msgstr "Review Process"
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr "OMP supports two models for managing the review process. The Standard Review Process is recommended because it steps reviewers through the process, ensures a complete review history for each submission, and takes advantage of automatic reminder notification, and standard recommendations for submissions (Accept; Accept with revisions; Submit for review; Submit elsewhere; Decline; See comments).<br /><br />Select one of the following:"
-
-msgid "manager.setup.reviewProcessEmail"
-msgstr "Email-Attachment Review Process"
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Standard Review Process"
-
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr "Editors will email selected Reviewers the title and abstract of the submission, as well as an invitation to log into the press web site to complete the review. Reviewers enter the press web site to agree to do the review, to download submissions, submit their comments, and select a recommendation."
-
 msgid "manager.setup.searchDescription.description"
 msgstr "Provide a brief description (50-300 characters) of the press which search engines can display when listing the press in search results."
 
@@ -916,9 +901,6 @@ msgstr "To create a new publication format, fill out the form below and click th
 
 msgid "manager.setup.genresDescription"
 msgstr "These genres are used for file-naming purposes and are presented in a pull-down menu on uploading files. The genres designated ## allow the user to associate the file with either the whole book 99Z or a particular chapter by number (e.g., 02)."
-
-msgid "manager.setup.reviewProcessEmailDescription"
-msgstr "Editors send\tReviewers the request to review with the submission attached to the email. Reviewers email editors their assent (or regrets), as well as the review and recommendation. Editors enter Reviewers' assent (or regrets), as well as the review and recommendation on the submission's Review page, to record the review process."
 
 msgid "manager.setup.disableSubmissions.notAccepting"
 msgstr "This press is not accepting submissions at this time. Visit the workflow settings to allow submissions."

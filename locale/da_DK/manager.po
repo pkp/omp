@@ -455,9 +455,6 @@ msgstr "Udgiveridentitet"
 msgid "manager.payment.success"
 msgstr "Betalingsindstillingerne er blevet opdateret."
 
-msgid "manager.setup.reviewProcess"
-msgstr "Bedømmelsesproces"
-
 msgid "manager.setup.reviewPolicy"
 msgstr "Bedømmelsespolitik"
 
@@ -927,30 +924,6 @@ msgstr ""
 "Giv en kort beskrivelse (50-300 tegn) af forlaget, som søgemaskinerne kan "
 "vise, når forlaget vises i søgeresultaterne."
 
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr ""
-"Redaktører sender en e-mail til udvalgte bedømmere indeholdende "
-"manuskriptets titel og resumé samt en invitation til at logge ind på "
-"forlagets websted for at færdiggøre bedømmelsen. Bedømmere går ind på "
-"forlagets websted accepterer at foretage bedømmelsen, downloade "
-"indsendelser, indsende deres kommentarer og vælge en anbefaling."
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Standardbedømmelsesproces"
-
-msgid "manager.setup.reviewProcessEmail"
-msgstr "E-mail-baseret bedømmelsesproces"
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr ""
-"OMP understøtter to modeller til styring af bedømmelsesprocessen. Det "
-"anbefales at anvende standardbedømmelsesprocessen, fordi den trinvis leder "
-"bedømmere gennem processen, sikrer en komplet gennemgangshistorik for hver "
-"indsendelse og drager fordel af automatisk påmindelsesmeddelelse og "
-"standardanbefalinger i forbindelse med manuskriptet (Acceptér; Rettelser er "
-"påkrævet; Fremsend igen til bedømmelse; Fremsend igen til andet sted/anden "
-"bedømmer; Afvis; Se kommentarer). <br /><br /> Vælg en af følgende:"
-
 msgid "manager.setup.copyrightNotice.sample"
 msgstr ""
 "<h3>Forslag til Creative Commons copyright-meddelelser</h3>\n"
@@ -1105,15 +1078,6 @@ msgstr "Ny monografigenre"
 
 msgid "manager.setup.genres"
 msgstr "Genre"
-
-msgid "manager.setup.reviewProcessEmailDescription"
-msgstr ""
-"Redaktører sender bedømmere anmodningen om at stå for bedømmelsen med "
-"indsendelsen vedhæftet e-mailen. Bedømmere e-mailer redaktører deres "
-"samtykke (eller beklagelse) såvel som bedømmelsen og anbefalingen. "
-"Redaktører går ind og ser bedømmernes samtykke (eller beklagelse) samt "
-"bedømmelsen og anbefaling på indsendelsens bedømmelsesside for at registrere "
-"bedømmelsesprocessen."
 
 msgid "manager.setup.genresDescription"
 msgstr ""

@@ -735,21 +735,6 @@ msgstr "Tempo de avaliação"
 msgid "manager.setup.reviewPolicy"
 msgstr "Política de avaliação"
 
-msgid "manager.setup.reviewProcess"
-msgstr "Processo de avaliação"
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr "O OMP pode usar dois modelos para gerenciar o processo de avaliação. O modelo padrão é recomendado por guiar os avaliadores durante o processo, garantindo um histórico completo da avaliação para cada submissão, além de ter a seu favor os lembretes automáticos e recomendações prédefinidas para as submissões (Aceitar; Aceitar com revisões; Submieter novamente para avaliação; Submeter a outra editora; Rejeitar; Ver comentários).<br /><br />Escolha um dos modelos a seguir:"
-
-msgid "manager.setup.reviewProcessEmail"
-msgstr "Processo com anexos via e-mail"
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Processo padrão"
-
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr "Editores enviam aos avaliadores uma mensagem contento 0 título e o resumo da submissão, bem como um convite para acessar o sistema da editora para concluir a avaliação. Avaliadores acessam o sistema para aceitar a responsabilidade de avaliação, baixar as submissões, enviar comentários e escolher sua recomendação."
-
 msgid "manager.setup.searchEngineIndexing"
 msgstr "Indexação de mecanismos de busca"
 
@@ -890,9 +875,6 @@ msgstr "Para criar um novo formato de publicação, preencha o formulário a seg
 
 msgid "manager.setup.genresDescription"
 msgstr "Estes gêneros são usados para nomenclatura e são apresentados em um menu drop-down ao enviar arquivos. Os gêneros designados com ## permitem ao usuário associar o arquivo a um livro 99z inteiro ou a um capítulo em particular, pelo número (ex.: 02)."
-
-msgid "manager.setup.reviewProcessEmailDescription"
-msgstr "Editores enviam a avlaiadores solicitações de avaliação com a submissão como anexo da mensagem. Avalidores encaminham via e-mail sua aceitação ou recusa, bem como a avaliação e recomendação. Os editores informam no sistema a aceitação ou recusa do avaliador, assim como as avaliações e recomendações na página de avaliação da submissão, para registro do processo."
 
 msgid "manager.setup.genres"
 msgstr "Gêneros"

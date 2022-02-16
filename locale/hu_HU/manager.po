@@ -119,25 +119,6 @@ msgstr ""
 "Adjon meg egy rövid leírást (50-300 karakter) a kiadóról, amit a "
 "keresőmotorok megtudnak jeleníteni a találati listában."
 
-#, fuzzy
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr ""
-"A Szerkesztők e-mailben elküldik a kiválasztott Bírálóknak a beadvány címét "
-"és absztraktját, valamint egy meghívót a kiadó weboldalára való "
-"bejelentkezéshez a bírálat befejezéséhez/teljesítéséhez. Bírálók a kiadó "
-"oldalára belépve tudnak hozzájárulni a bírálathoz, letölteni a beadványt, "
-"benyújtani a javaslataikat és véleményüket."
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Általános bírálati folyamat"
-
-#, fuzzy
-msgid "manager.setup.reviewProcessEmail"
-msgstr "E-mail melléklet bírálati folyamat"
-
-msgid "manager.setup.reviewProcess"
-msgstr "Bírálati folyamat"
-
 msgid "manager.setup.reviewPolicy"
 msgstr "Bírálati irányelvek"
 
@@ -1226,17 +1207,6 @@ msgstr ""
 "beállításokhoz, hogy engedélyezze a kéziratok beküldését."
 
 #, fuzzy
-msgid "manager.setup.reviewProcessEmailDescription"
-msgstr ""
-"A Szerkesztők küldenek\ta Bírálók számára felkérést, hogy bíráljanak egy, az "
-"e-mailhez csatolt beadványt. A Bírálók e-mailt küldenek a szerkesztőnek "
-"hozzájárulásukkal (esetleg visszautasításukkal), a bírálattal és "
-"javaslatokkal együtt. A bírálati folyamat nyomon követésének érdekében a "
-"Szerkesztők felviszik a a beadvány Bírálati oldalára a Bírálók "
-"hozzájárulását (esetleg visszautasítását), csakúgy mint a bírálatot és "
-"javaslatokat."
-
-#, fuzzy
 msgid "manager.setup.genresDescription"
 msgstr ""
 "Ezek a típusok fájl elnevezésre használhatóak és a lenyíló menüben jelennek "
@@ -1297,16 +1267,6 @@ msgstr "A kiadó szerkesztői/bírálói bizottságot alkalmaz."
 #, fuzzy
 msgid "manager.setup.useCopyeditors"
 msgstr "Minden beadványhoz rendelve lesz egy Lektor."
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr ""
-"Az OMP két bírálói folyamat kezelő modellt támogat. Javasolt az Általános "
-"Bírálói Folyamat, amely a bírálókat végiglépteti az egyes folyamatokon, "
-"biztosítva a teljes bírálati történet meglétét minden egyes beadványhoz. "
-"Emellett automatikus emlékeztető értesítésekkel és szabvány javaslatokkal "
-"látja el a bírálót. (Elfogadás; Elfogadás javaslatokkal; Beküldés bírálatra; "
-"Beküldés máshová; Javaslatok megtekintése).<br /><br />Válasszon egyet az "
-"alábbiak közül:"
 
 msgid "manager.setup.reviewGuidelinesDescription"
 msgstr ""

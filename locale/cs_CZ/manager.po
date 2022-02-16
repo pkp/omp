@@ -268,32 +268,6 @@ msgstr ""
 "Uveďte stručný popis tisku (50-300 znaků), který mohou vyhledávače zobrazit "
 "při výpisu tisku ve výsledcích vyhledávání."
 
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr ""
-"Editoři zašlou vybraným recenzentům e-mailem název a abstrakt příspěvku a "
-"také pozvánku k přihlášení na webové stránky tisku, aby mohli recenzi "
-"dokončit. Recenzenti vstoupí na webové stránky tisku, aby odsouhlasili "
-"provedení recenze, stáhli si předložené příspěvky, zaslali své připomínky a "
-"vybrali doporučení."
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Standardní recenzní proces"
-
-msgid "manager.setup.reviewProcessEmail"
-msgstr "E-mailová příloha recenzního procesu"
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr ""
-"OMP podporuje dva modely řízení recenzního procesu. Standardní recenzní "
-"proces je doporučován, protože provádí recenzenty celým procesem, zajišťuje "
-"kompletní historii recenzí pro každé podání a využívá výhod automatického "
-"upozornění na upomínky a standardních doporučení pro podání (Přijmout; "
-"Přijmout s revizemi; Předat k přezkoumání; Předat jinam; Zamítnout; Viz "
-"komentáře).<br /><br />Zvolte jednu z následujících možností:"
-
-msgid "manager.setup.reviewProcess"
-msgstr "Recenzní proces"
-
 msgid "manager.setup.reviewPolicy"
 msgstr "Zásady recenzování"
 

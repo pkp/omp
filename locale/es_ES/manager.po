@@ -942,21 +942,6 @@ msgstr "Plazo para la revisión"
 msgid "manager.setup.reviewPolicy"
 msgstr "Política de evaluación"
 
-msgid "manager.setup.reviewProcess"
-msgstr "Proceso de revisión"
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr "OMP es compatible con dos modelos para gestionar el proceso de revisión. Se recomienda el proceso de revisión estándar porque guía a los revisores/as a través del proceso, asegura un historial completo de revisión para cada envío y saca provecho de las notificaciones de recordatorio automático y de las recomendaciones estándares para envíos (Aceptar, Aceptar con revisiones, Enviar para revisión, Enviar a otro lugar, Rechazar, Ver comentarios).<br /><br />Seleccione una de las siguientes:"
-
-msgid "manager.setup.reviewProcessEmail"
-msgstr "Proceso de revisión de los archivos adjuntos a correos electrónicos"
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Proceso de revisión estándar"
-
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr "Los editores/as mandarán por correo electrónico a los revisores/as seleccionados el título y el resumen del envío, así como una invitación para iniciar sesión en la página web de la publicación para completar la revisión. Los revisores/as entrarán en la página web de la publicación para aceptar el encargo de revisión, descargar los envíos, enviar comentarios y seleccionar una recomendación."
-
 msgid "manager.setup.searchEngineIndexing"
 msgstr "Indización en buscadores"
 
@@ -1108,9 +1093,6 @@ msgstr "Para crear un formato de publicación nuevo, rellene el formulario sigui
 
 msgid "manager.setup.genresDescription"
 msgstr "Los géneros se utilizan para nombrar archivos y se presentan en un menú desplegable en el momento de subir los archivos.  Los géneros designados como ## permiten que el usuario/a asocie el archivo con el libro entero 99Z o con un capítulo concreto por número (p. ej., 02)."
-
-msgid "manager.setup.reviewProcessEmailDescription"
-msgstr "Los editores/as mandan a los revisores/as la solicitud para que revisen el envío adjunto al correo electrónico. Los revisores/as mandan un correo electrónico a los editores/as con su aceptación (o rechazo), así como la revisión y la recomendación. Los editores/as abren la aceptación (o rechazo) de los revisores/as, así como la revisión y la recomendación en la página de revisión del envío para grabar el proceso de revisión."
 
 msgid "manager.setup.genres"
 msgstr "Géneros"

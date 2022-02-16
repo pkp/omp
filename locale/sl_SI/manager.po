@@ -644,21 +644,6 @@ msgstr "Opomniki recenzentom"
 msgid "manager.setup.reviewPolicy"
 msgstr "Recenzijska politika"
 
-msgid "manager.setup.reviewProcess"
-msgstr "Recenzijski proces"
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr "OMP podpira dva modela upravljanja recenzentskega procesa. Priporočen je standardni recenzijski postopek, ki recenzenta skozi postopek vodi korak za korakom in zagotavlja popoln pregled vseh opravljenih recenzij prispevka ter uporablja e-pošto za samodejne opomnike in standardna priporočila za recenzenta (sprejeto; sprejeto s popravki; oddaj v recenziranje; objaviti kje drugje; zavrnjeno; glej komentarje).<br /><br />Izberi eno od naslednjih možnosti:"
-
-msgid "manager.setup.reviewProcessEmail"
-msgstr "Recenzija preko e-pošte"
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Standardni recenzijski postopek"
-
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr "Uredniki bodo preko e-pošte izbranim recenzentom poslali naslov in povzetek prispevka skupaj s povabilom, da se prijavijo na spletišče in končajo recenzijo. Recenzenti se prijavijo na spletišče, da potrdijo opravljanje recenzije, prenesejo prispevek, oddajo svoje komentarje in izberejo priporočilo."
-
 msgid "manager.setup.searchEngineIndexing"
 msgstr "Indeksiranje publikacije za iskalnike"
 
@@ -775,9 +760,6 @@ msgstr "Če želite ustvariti nov format publikacije, izpolnite spodnji obrazec 
 
 msgid "manager.setup.genresDescription"
 msgstr "Ti žanri se uporabljajo za imenovanje datotek in so vidni v spustnem meniju, ki se pojavi pri nalaganju datotek. Šifra, dodeljena žanru, uporabniku omogoča, da datoteko poveže s celotno knjigo 99Z ali pa z določeno številko poglavja (npr. 02)."
-
-msgid "manager.setup.reviewProcessEmailDescription"
-msgstr "Uredniki pošiljajo recenzentom zahtevo za recenzijo preko e-pošte (s priponko). Recenzenti preko e-pošte odgovorijo urednikom, ali nalogo sprejmejo, preko e-pošte pa pošljejo tudi recenzijo in pripročila. Urednik zabeleži recenzentsko privolitev (ali odklonitev) skupaj s priporočili v prispevek pod zavihkom \"Recenzija\"."
 
 msgid "manager.setup.genres"
 msgstr "Žanri"

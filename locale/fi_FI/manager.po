@@ -792,26 +792,6 @@ msgstr "Arvioijan muistutukset"
 msgid "manager.setup.reviewPolicy"
 msgstr "Arviointiperiaatteet"
 
-msgid "manager.setup.reviewProcess"
-msgstr "Arviointiprosessi"
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr "OMP tukee kahta arviointiprosessin hallinnointimallia. Standardi arviointiprosessi on suositeltava, koska siinä arvioijat johdatetaan prosessin läpi vaihe kerrallaan. Se myös takaa jokaiselle käsikirjoitukselle täyden arviointihistorian, hyödyntää automaattista muistutustoimintoa sekä standardimuotoisia suosituksia käsikirjoituksille (Hyväksy; Hyväksy korjauksin; Lähetä arviointiin; Lähetä toiseen julkaisuun; Hylkää; Katso kommentit).<br /><br />Valitse yksi seuraavista:"
-
-msgid "manager.setup.reviewProcessEmail"
-msgstr "Arviointiprosessi sähköpostin liitetiedostoja käyttäen"
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Standardi arviointiprosessi"
-
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr ""
-"Toimittajat lähettävät valituille arvioijille sähköpostilla käsikirjoituksen "
-"nimekkeen ja abstraktin sekä kutsun kirjautua julkaisijan verkkosivustolle "
-"arvioinnin suorittamista varten. Verkkosivustolla arvioijat hyväksyvät/"
-"hylkäävät arviointikutsun, lataavat käsikirjoituksia, lähettävät "
-"kommenttinsa ja valitsevat suosituksen."
-
 msgid "manager.setup.searchEngineIndexing"
 msgstr "Hakukoneindeksointi"
 
@@ -957,9 +937,6 @@ msgstr "Luo uusi julkaisumuoto täyttämällä alla oleva lomake ja klikkaamalla
 
 msgid "manager.setup.genresDescription"
 msgstr "Näitä lajityyppejä käytetään tiedostojen nimeämistarkoituksiin ja ne näytetään vetovalikossa tiedostojen lataamisen yhteydessä. ##-merkityt lajityypit mahdollistavat sen, että käyttäjät voivat yhdistää tiedoston joko koko kirjaan 99Z tai vain tiettyyn lukuun numerolla (esim. 02)."
-
-msgid "manager.setup.reviewProcessEmailDescription"
-msgstr "Toimittajat lähettävät arvioijille arviointipyynnön sähköpostilla, jonka liitteenä käsikirjoitus on. Arvioijat ilmoittavat sähköpostitse joko hyväksyvänsä tai hylkäävänsä arviointipyynnön. Samoin itse arviointi ja suositus toimitetaan sähköpostitse. Toimittajat syöttävät arvioijan suostumuksen/kieltäytymisen, arvioinnin sekä suosituksen käsikirjoituksen Arviointi-sivulle, jotta arviointiprosessi tallentuu järjestelmään."
 
 msgid "manager.setup.genres"
 msgstr "Lajityypit"
