@@ -2,7 +2,7 @@
 # Molnár Tamás <molnart@bibl.u-szeged.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-02-16 11:26+0000\n"
+"PO-Revision-Date: 2022-02-16 15:30+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/editor/"
 "hu_HU/>\n"
@@ -18,7 +18,7 @@ msgid "editor.monograph.enterRecommendation"
 msgstr "Ajánlás elküldése"
 
 msgid "editor.monograph.internalReview"
-msgstr "Belső felülvizsgálat indítása"
+msgstr "Belső bírálat indítása"
 
 msgid "editor.monograph.selectProofreadingFiles"
 msgstr "Korrektúra fájlok"
@@ -60,6 +60,7 @@ msgstr ""
 "listaként ahhoz, hogy mit kell még tennie a publikációs formátum "
 "közzétételéhez."
 
+#, fuzzy
 msgid "editor.monograph.production.approvalAndPublishing"
 msgstr "Jóváhagyás és Közzététel"
 
@@ -71,12 +72,11 @@ msgid "editor.submission.introduction"
 msgstr ""
 "A Beküldés szakaszban a szerkesztő a benyújtott fájlokkal való konzultációt "
 "követően kiválasztja a megfelelő műveletet (amely magában foglalja a szerző "
-"értesítését is): Küldés Belső felülvizsgálatra (magában foglalja a fájlok "
-"kiválasztását a Belső felülvizsgálathoz); Küldés Külső felülvizsgálatra ("
-"magában foglalja a fájlok kiválasztását a Külső felülvizsgálathoz); "
-"Beküldött anyag elfogadása (magában foglalja a fájlok kiválasztását a "
-"Szerkesztési szakaszhoz); vagy a Beküldött anyag visszautasítását "
-"(archiválás)."
+"értesítését is): Küldés Belső bírálatra (magában foglalja a fájlok "
+"kiválasztását a Belső bírálathoz); Küldés Külső bírálatra (magában foglalja "
+"a fájlok kiválasztását a Külső bírálathoz); Beküldött anyag elfogadása ("
+"magában foglalja a fájlok kiválasztását a Szerkesztési szakaszhoz); vagy a "
+"Beküldött anyag visszautasítását (archiválás)."
 
 msgid "editor.monograph.legend.complete"
 msgstr "A művelet befejeződött"
@@ -108,9 +108,10 @@ msgstr ""
 msgid "editor.monograph.legend.more_info"
 msgstr "További információ: fájljegyzetek, értesítési lehetőségek és előzmények"
 
+#, fuzzy
 msgid "editor.monograph.legend.settings"
 msgstr ""
-"Megtekintheti és elérheti az elembeállításokat, például az információkat és "
+"Megtekintheti és elérheti a tételbeállításokat, például az információkat és "
 "a törlési lehetőségeket"
 
 msgid "editor.monograph.legend.add_user"
@@ -121,9 +122,10 @@ msgstr "Fájl feltöltése a szakaszba"
 
 msgid "editor.monograph.legend.participants"
 msgstr ""
-"Megtekintheti és kezelheti a beküldés résztvevőit: szerzőket, szerkesztőket, "
-"tervezőket és egyebeket"
+"Megtekintheti és kezelheti a beküldött anyag résztvevőit: szerzőket, "
+"szerkesztőket, tervezőket és egyebeket"
 
+#, fuzzy
 msgid "editor.monograph.legend.catalogEntry"
 msgstr ""
 "Megtekintheti és kezelheti a beküldés katalógus tételét, beleértve a "
@@ -131,8 +133,8 @@ msgstr ""
 
 msgid "editor.monograph.legend.bookInfo"
 msgstr ""
-"Megtekintheti és kezelheti a beküldés metaadatait, jegyzeteit, értesítéseit "
-"és előzményeit"
+"Megtekintheti és kezelheti a beküldött anyag metaadatait, jegyzeteit, "
+"értesítéseit és előzményeit"
 
 msgid "editor.monograph.legend.itemActionsDescription"
 msgstr "Az egyes fájlokkal kapcsolatos műveletek és lehetőségek."
@@ -159,6 +161,7 @@ msgstr "Beküldési műveletek"
 msgid "editor.monograph.copyediting.personalMessageToUser"
 msgstr "Üzenet a felhasználónak"
 
+#, fuzzy
 msgid "editor.monograph.copyediting.currentFiles"
 msgstr "Jelenlegi fájlok"
 
@@ -169,12 +172,12 @@ msgid "editor.monograph.final.selectFinalDraftFiles"
 msgstr "Végleges vázlat fájlok kiválasztása"
 
 msgid "editor.monograph.externalReview"
-msgstr "Külső felülvizsgálta indítása"
+msgstr "Külső bírálat indítása"
 
 msgid "editor.monograph.internalReviewDescription"
 msgstr ""
-"Válassza ki a lent található fájlokat a belső felülvizsgálati szakaszba "
-"történő továbbküldéshez."
+"Válassza ki a lent található fájlokat a belső bírálati szakaszba történő "
+"továbbküldéshez."
 
 msgid "editor.submissions.assignedTo"
 msgstr "Szerkesztőhöz rendelve"
@@ -197,7 +200,7 @@ msgid "editor.monograph.proof.addNote"
 msgstr "Válasz hozzáadása"
 
 msgid "editor.monograph.approvedProofs.edit.linkTitle"
-msgstr "Feltételek meghatározása"
+msgstr "Feltételek beállítása"
 
 msgid "editor.monograph.approvedProofs.edit"
 msgstr "Letöltési feltételek beállítása"
@@ -216,12 +219,13 @@ msgstr ""
 msgid "editor.monograph.proofs"
 msgstr "Kefelenyomatok"
 
+#, fuzzy
 msgid "editor.monograph.legend.uploaded"
 msgstr "Fájl feltöltve az oszlopfejlécben megjelölt szerep alapján"
 
 #, fuzzy
 msgid "editor.monograph.enterReviewerRecommendation"
-msgstr "Adjon meg bíráló ajánlást"
+msgstr "Adjon meg bírálói ajánlást"
 
 msgid "editor.monograph.clearReview"
 msgstr "Bíráló törlése"
