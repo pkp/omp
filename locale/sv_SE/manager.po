@@ -1,7 +1,7 @@
-# Magnus Annemark <magnus.annemark@ub.lu.se>, 2021.
+# Magnus Annemark <magnus.annemark@ub.lu.se>, 2021, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-10-05 15:26+0000\n"
+"PO-Revision-Date: 2022-02-16 11:26+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "sv_SE/>\n"
@@ -1061,3 +1061,75 @@ msgstr ""
 
 msgid "doi.displayName"
 msgstr "DOI"
+
+msgid "manager.dois.formatIdentifier.file"
+msgstr "Format / {$format}"
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+"Inkludera alla medförfattare och inte bara den som skickar in manuskriptet "
+"när funktionen \"Meddela författare\" används."
+
+msgid "manager.setup.reviewProcessStandard"
+msgstr "Standard granskningsprocess"
+
+msgid "manager.setup.reviewProcessEmail"
+msgstr "Granskningsprocess med e-postbilaga"
+
+msgid "manager.setup.reviewProcess"
+msgstr "Granskningsprocess"
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Granskningspolicy"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Påminnelser till granskare"
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Granskarvärdering"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr "Inkludera en säker länk i e-postinbjudan till granskare."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
+msgstr ""
+"Granskare kan bli skickade en säker länk i e-postinbjudan, som ger dem "
+"åtkomst till granskningen utan att logga in. Åtkomst till andra sidor kräver "
+"att de loggar in."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Åtkomst för granskare genom ett klick"
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Granskares åtkomst"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr ""
+"Granskare kommer bara ha tillgång till bidraget efter att de har gått med på "
+"att granska det."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Begränsa åtkomst till filen"
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr ""
+"Redaktörer kommer värdera granskare på en femgradig skala efter varje "
+"granskning."
+
+msgid "manager.setup.publisherDescription"
+msgstr ""
+"Namnet på organisationen som ligger bakom pressen kommer synas under \"Om "
+"pressen\"."
+
+msgid "doi.manager.settings.doiCreationTime.copyedit"
+msgstr "Vid manusredigeringssteget"
+
+msgid "doi.manager.settings.doiSuffixLegacy"
+msgstr ""
+"Använd standardmönster.<br />%p.%m för böcker<br />%p.%m.c%c för kapitel<br "
+"/>%p.%m.%f för publiceringsformat<br />%p.%m.%f.%s för filer."
+
+msgid "manager.setup.enableDois.description"
+msgstr ""
+"Tilldela Digital Object Identifier (DOI) till böcker, kapitel, "
+"publiceringsformat och filer."
