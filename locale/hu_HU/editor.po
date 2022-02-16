@@ -1,9 +1,9 @@
-# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021, 2022.
 # Molnár Tamás <molnart@bibl.u-szeged.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-23 23:30+0000\n"
-"Last-Translator: Molnár Tamás <molnart@bibl.u-szeged.hu>\n"
+"PO-Revision-Date: 2022-02-16 11:26+0000\n"
+"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/editor/"
 "hu_HU/>\n"
 "Language: hu_HU\n"
@@ -49,7 +49,7 @@ msgstr "Kérés megszakítása"
 
 #, fuzzy
 msgid "editor.submissionArchive"
-msgstr "Beküldési archívum"
+msgstr "Beküldött anyagok archívuma"
 
 #, fuzzy
 msgid "editor.monograph.production.approvalAndPublishingDescription"
