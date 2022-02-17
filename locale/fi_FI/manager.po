@@ -792,26 +792,6 @@ msgstr "Arvioijan muistutukset"
 msgid "manager.setup.reviewPolicy"
 msgstr "Arviointiperiaatteet"
 
-msgid "manager.setup.reviewProcess"
-msgstr "Arviointiprosessi"
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr "OMP tukee kahta arviointiprosessin hallinnointimallia. Standardi arviointiprosessi on suositeltava, koska siinä arvioijat johdatetaan prosessin läpi vaihe kerrallaan. Se myös takaa jokaiselle käsikirjoitukselle täyden arviointihistorian, hyödyntää automaattista muistutustoimintoa sekä standardimuotoisia suosituksia käsikirjoituksille (Hyväksy; Hyväksy korjauksin; Lähetä arviointiin; Lähetä toiseen julkaisuun; Hylkää; Katso kommentit).<br /><br />Valitse yksi seuraavista:"
-
-msgid "manager.setup.reviewProcessEmail"
-msgstr "Arviointiprosessi sähköpostin liitetiedostoja käyttäen"
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Standardi arviointiprosessi"
-
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr ""
-"Toimittajat lähettävät valituille arvioijille sähköpostilla käsikirjoituksen "
-"nimekkeen ja abstraktin sekä kutsun kirjautua julkaisijan verkkosivustolle "
-"arvioinnin suorittamista varten. Verkkosivustolla arvioijat hyväksyvät/"
-"hylkäävät arviointikutsun, lataavat käsikirjoituksia, lähettävät "
-"kommenttinsa ja valitsevat suosituksen."
-
 msgid "manager.setup.searchEngineIndexing"
 msgstr "Hakukoneindeksointi"
 
@@ -957,9 +937,6 @@ msgstr "Luo uusi julkaisumuoto täyttämällä alla oleva lomake ja klikkaamalla
 
 msgid "manager.setup.genresDescription"
 msgstr "Näitä lajityyppejä käytetään tiedostojen nimeämistarkoituksiin ja ne näytetään vetovalikossa tiedostojen lataamisen yhteydessä. ##-merkityt lajityypit mahdollistavat sen, että käyttäjät voivat yhdistää tiedoston joko koko kirjaan 99Z tai vain tiettyyn lukuun numerolla (esim. 02)."
-
-msgid "manager.setup.reviewProcessEmailDescription"
-msgstr "Toimittajat lähettävät arvioijille arviointipyynnön sähköpostilla, jonka liitteenä käsikirjoitus on. Arvioijat ilmoittavat sähköpostitse joko hyväksyvänsä tai hylkäävänsä arviointipyynnön. Samoin itse arviointi ja suositus toimitetaan sähköpostitse. Toimittajat syöttävät arvioijan suostumuksen/kieltäytymisen, arvioinnin sekä suosituksen käsikirjoituksen Arviointi-sivulle, jotta arviointiprosessi tallentuu järjestelmään."
 
 msgid "manager.setup.genres"
 msgstr "Lajityypit"
@@ -1481,3 +1458,210 @@ msgstr ""
 
 msgid "manager.setup.selectCountry"
 msgstr "Valitse julkaisijan kotimaa."
+
+msgid "doi.editor.preview.objects"
+msgstr "Kohde"
+
+msgid "doi.editor.preview.files"
+msgstr "Tiedosto: {$title}"
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Julkaisumuoto: {$title}"
+
+msgid "doi.editor.preview.chapters"
+msgstr "Luku: {$title}"
+
+msgid "doi.editor.preview.publication.none"
+msgstr "Tälle julkaistulle versiolle ei ole annettu DOI-tunnusta."
+
+msgid "doi.editor.preview.publication"
+msgstr "Tämän julkaistavan version DOI tulee olemaan {$doi}."
+
+msgid "doi.editor.missingPrefix"
+msgstr "DOI-tunnuksen alun pitää olla {$doiPrefix}."
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "DOI-tunniste {$pubId} on määritetty."
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr ""
+"DOI-tunnistetta {$pubId} ei voida määrittää, koska se sisältää "
+"resolvoitumattoman muotoilun."
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr "DOI-tunnistetta ei voida määrittää, koska mukautettu suffiksi puuttuu."
+
+msgid "doi.editor.assignDoi"
+msgstr "Määritä DOI-tunniste {$pubId} tälle objektille {$pubObjectType}"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Haluatko varmasti poistaa olemassa olevan DOI-tunnisteen?"
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Poista DOI-tunniste"
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Annettu DOI-suffiksi on jo toisen julkaistun kohteen käytössä. Anna "
+"jokaiselle kohteelle uniikki DOI-suffiksi."
+
+msgid "doi.editor.assigned"
+msgstr "DOI-tunniste on määritetty objektille {$pubObjectType}."
+
+msgid "doi.editor.canBeAssigned"
+msgstr ""
+"Näet nyt DOI-tunnisteen esikatselussa. Rastita valintaruutu ja tallenna "
+"muoto määrittääksesi DOI:n."
+
+msgid "doi.editor.patternNotResolved"
+msgstr ""
+"DOI-tunnistetta ei voida määrittää, koska se sisältää resolvoitumattoman "
+"muotoilun."
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"Et voi luoda DOI-tunnusta, koska jokin tunnuksen loppuosan vaatimista "
+"muuttujista puuttuu."
+
+msgid "doi.editor.customSuffixMissing"
+msgstr "DOI-tunnistetta ei voida määrittää, koska mukautettu suffiksi puuttuu."
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "tiedosto"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "julkaisumuoto"
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "luku"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "kirja"
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Osoita"
+
+msgid "doi.editor.doi.description"
+msgstr "DOI-tunnuksen alun pitää olla {$prefix}."
+
+msgid "doi.editor.doi"
+msgstr "DOI"
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Haluatko varmasti poistaa kaikki olemassa olevat DOI-tunnisteet?"
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr ""
+"Jos muutat DOI-määritystäsi, se ei vaikuta aiemmin määritettyihin DOI-"
+"tunnisteisiin. Kun DOI-määritys on tallennettu, poista kaikki olemassa "
+"olevat DOI-tunnisteet tämän painikkeen avulla, jotta uudet asetukset alkavat "
+"päteä myös olemassa oleviin objekteihin."
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "Määritä DOI-tunnisteet uudelleen"
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Anna DOI-suffiksin muotoilu tiedostoille."
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Anna DOI-suffiksin muotoilu julkaisumuodoille."
+
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Anna DOI-suffiksin muotoilu luvuille."
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Anna DOI-suffiksin muotoilu kirjoille."
+
+msgid "doi.manager.settings.doiSuffixCustomIdentifier"
+msgstr ""
+"Anna yksilöllinen DOI-suffiksi jokaiselle julkaistulle kohteelle. Jokaisen "
+"kohteen metatietosivulla on lisäkenttä DOI:n syöttämistä varten."
+
+msgid "doi.manager.settings.doiSuffixDefault.description"
+msgstr ""
+"%p.%m kirjoille<br />%p.%m.c%c luvuille<br />%p.%m.%f julkaisumuodoille<br "
+"/>%p.%m.%f.%s tiedostoille."
+
+msgid "doi.manager.settings.doiSuffixDefault"
+msgstr "Käytä oletusmuotoiluja."
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "tiedostoille"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "julkaisumuodoille"
+
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "luvuille"
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "kirjoille"
+
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr ""
+"Esimerkiksi julkaisija%ppub%r voisi luoda DOI-tunnisteen 10.1234/"
+"julkaisijaTHYpub100"
+
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Käytä alla annettua muotoilua luodaksesi DOI-suffikseja. Käytä %p "
+"julkaisijan alkukirjaimille, %m kirjan tunnisteelle, %c luvun tunnisteelle, %"
+"f julkaisumuodon tunnisteelle, %s tiedoston tunnisteelle ja %x \""
+"mukautetulle tunnisteelle\"."
+
+msgid "doi.manager.settings.doiSuffix.description"
+msgstr ""
+"DOI-suffiksi voi olla missä tahansa muodossa, mutta sen täytyy olla uniikki "
+"kaikkien julkaisijan objektien joukossa, joille on määritelty sama DOI-"
+"prefiksi:"
+
+msgid "doi.manager.settings.doiSuffix"
+msgstr "DOI-suffiksi"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "DOI-prefiksi on pakollinen, ja sen on oltava muodossa 10.xxxx."
+
+msgid "doi.manager.settings.doiPrefix.description"
+msgstr ""
+"DOI-prefiksi on rekisteröinnistä vastaavien tahojen (esim. <a href=\""
+"http://www.crossref.org\" target=\"_new\">CrossRefin</a>) määrittämä ja on "
+"muodossa 10.xxxx (esim. 10.1234):"
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "DOI-prefiksi"
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Tiedostot"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Julkaisumuodot"
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Luvut"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Kirjat"
+
+msgid "doi.manager.settings.explainDois"
+msgstr "Valitse objektit, joille DOI-tunnisteet määritetään:"
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr "Valitse objektit, joille DOI-tunnisteet tulee määrittää."
+
+msgid "doi.manager.settings.doiObjects"
+msgstr "Julkaisijan sisällöt"
+
+msgid "doi.manager.settings.description"
+msgstr "Määritä DOI-lisäosa, jotta voit hallinnoida ja käyttää DOI-tunnisteita:"
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "doi.description"
+msgstr ""
+"Tämä lisäosa mahdollistaa DOI-tunnisteiden (Digital Object Identifier) "
+"määrittämisen OMP-järjestelmässä oleville kirjoille, luvuille ja "
+"julkaisumuodoille."
+
+msgid "doi.displayName"
+msgstr "DOI"

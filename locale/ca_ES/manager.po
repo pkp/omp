@@ -652,21 +652,6 @@ msgstr "Recordatoris per a la revisió"
 msgid "manager.setup.reviewPolicy"
 msgstr "Política de revisió"
 
-msgid "manager.setup.reviewProcess"
-msgstr "Procés de revisió"
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr "L'OMP admet dos models per a l'administració del procés de revisió. Es recomana utilitzar el procés estàndard de revisió, atès que guia els revisors/ores pas a pas, s’assegura de registrar el procés de revisió complet per a cada tramesa i utilitza el sistema de recordatoris automàtics i recomanacions estàndard per a les trameses («Accepta», «Accepta amb revisions», «Tramet per a la revisió», «Tramet a un altre lloc», «Rebutja», «Visualitza els comentaris»).<br /><br />Seleccioneu una de les opcions següents:"
-
-msgid "manager.setup.reviewProcessEmail"
-msgstr "Procés de revisió mitjançant fitxers adjunts en correus electrònics"
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Procés de revisió estàndard"
-
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr "Els editors/ores envien per correu electrònic als revisors/ores seleccionats el títol i el resum de la tramesa, juntament amb una invitació per entrar al lloc web de la publicació amb l’objectiu de completar la revisió. Els revisors/ores han d'entrar al lloc web de la publicació per acceptar la tasca de revisió, descarregar trameses, enviar els seus comentaris i seleccionar una recomanació."
-
 msgid "manager.setup.searchEngineIndexing"
 msgstr "Indexació per als motors de cerca"
 
@@ -788,9 +773,6 @@ msgstr "Si voleu crear un nou format de publicació, empleneu el formulari de so
 
 msgid "manager.setup.genresDescription"
 msgstr "Aquests gèneres es fan servir per anomenar fitxers i es presenten en un menú desplegable quan carregueu fitxers. Els gèneres designats ## permeten els usuaris/àries associar el fitxer amb un llibre sencer 99Z o amb un capítol concret per número (p. ex. 02)."
-
-msgid "manager.setup.reviewProcessEmailDescription"
-msgstr "Els editors/ores envien als revisors/ores la sol·licitud per revisar la tramesa adjunta al correu electrònic. Els revisors/ores envien un correu electrònic als editors/ores el consentiment (o rebuig), així com la revisió i recomanació. Els editors/ores hi introdueixen el consentiment (o rebuig), així com la revisió i recomanació a la pàgina de revisió de la tramesa per fer un registre del procés de revisió."
 
 msgid "manager.setup.genres"
 msgstr "Gèneres"
@@ -1254,3 +1236,205 @@ msgstr "L'URL a la pàgina d'inici de la publicació"
 
 msgid "emailTemplate.variable.context.contextName"
 msgstr "El nom de l'editorial"
+
+msgid "doi.displayName"
+msgstr "Mòdul DOI"
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "Prefix DOI"
+
+msgid "doi.manager.settings.doiSuffix"
+msgstr "Sufix DOI"
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "Reassignar DOIs"
+
+msgid "doi.editor.doi"
+msgstr "Mòdul DOI"
+
+msgid "doi.editor.preview.objects"
+msgstr "Element"
+
+msgid "doi.editor.preview.files"
+msgstr "Arxiu: {$title}"
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Format de publicació: {$title}"
+
+msgid "doi.editor.preview.chapters"
+msgstr "Capítol: {$title}"
+
+msgid "doi.editor.preview.publication.none"
+msgstr "No s'ha assignat cap DOI a aquesta publicació."
+
+msgid "doi.editor.preview.publication"
+msgstr "El DOI per a aquesta publicació serà {$doi}."
+
+msgid "doi.editor.missingPrefix"
+msgstr "El DOI ha de començar amb {$doiPrefix}."
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "El DOI {$pubId} s'ha assignat."
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr "El DOI {$pubId} no es pot assignar perquè conté un patró no resolt."
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr "El DOI no es pot assignar perquè falta el sufix personalitzat."
+
+msgid "doi.editor.assignDoi"
+msgstr "Assignar el DOI {$pubId} a aquest {$pubObjectType}"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Segur que voleu eliminar el DOI existent?"
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Netejar"
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"El sufix DOI proporcionat ja està en ús en un altre element publicat. "
+"Introduïu un sufix DOI únic per a cada element."
+
+msgid "doi.editor.assigned"
+msgstr "El DOI s'assigna a aquest {$pubObjectType}."
+
+msgid "doi.editor.canBeAssigned"
+msgstr ""
+"Això que veieu és la vista prèvia del DOI. Seleccioneu la casella de "
+"verificació i guardeu el formulari per assignar el DOI."
+
+msgid "doi.editor.patternNotResolved"
+msgstr "El DOI no es pot assignar perquè conté un patró no resolt."
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"No podeu generar un DOI perquè falten dades en una o més parts del patró DOI."
+
+msgid "doi.editor.customSuffixMissing"
+msgstr "El DOI no es pot assignar perquè falta el sufix personalitzat."
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "arxiu"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "format de publicació"
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "capítol"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "monografia"
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Assignar"
+
+msgid "doi.editor.doi.description"
+msgstr "El DOI ha de començar amb {$prefix}."
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Segur que voleu eliminar tots els DOI existents?"
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr ""
+"Si canvieu la configuració del DOI, els DOI que ja s'havien assignat no es "
+"veuran afectats. Un cop guardada la configuració del DOI feu servir aquest "
+"botó per netejar tots els DOI existents, d'aquesta manera la nova "
+"configuració s'aplicarà a tots els objectes existents."
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Introduïu el patró de sufix DOI per a arxius."
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Introduïu el patró de sufix DOI per a formats de publicació."
+
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Introduïu el patró de sufix DOI per a capítols."
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Introduïu el patró de sufix DOI per a monografies."
+
+msgid "doi.manager.settings.doiSuffixCustomIdentifier"
+msgstr ""
+"Introduïu un sufix DOI propi per a cada element publicat. Trobareu un camp "
+"d'entrada DOI addicional a la pàgina de metadades de cada element."
+
+msgid "doi.manager.settings.doiSuffixDefault.description"
+msgstr ""
+"%p.%m per a monografies<br />%p.%m.c%c per a capítols<br />%p.%m.%f per a "
+"formats de publicació<br />%p.%m.%f.%s per a arxius."
+
+msgid "doi.manager.settings.doiSuffixDefault"
+msgstr "Utilitzar patrons predeterminats."
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "per a arxius"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "per a formats de publicació"
+
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "per a capítols"
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "per a monografies"
+
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr ""
+"Per exemple, press%ppub%r podria crear un DOI tipus 10.1234/pressESPpub100"
+
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Feu servir el patró introduït a sota per generar els sufixos DOI. Utilitzeu %"
+"p per a les inicials de la publicació, %m per a l'identificador de la "
+"monografia, %c per a l'identificador del capítol, %f per a l'identificador "
+"del format de publicació, %s per a l'identificador de l'arxiu i %x per a un "
+"\"identificador personalitzat\"."
+
+msgid "doi.manager.settings.doiSuffix.description"
+msgstr ""
+"El sufix DOI pot tenir qualsevol forma, però ha de ser únic per a cada "
+"objecte publicat amb el mateix prefix DOI:"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "El prefix DOI és obligatori i ha de tenir la forma 10.xxxx."
+
+msgid "doi.manager.settings.doiPrefix.description"
+msgstr ""
+"El prefix DOI l'assignen les agències de registre (p. ex. <a href=\""
+"http://www.crossref.org\" target=\"_new\">CrossRef</a>) i té el format "
+"10.xxxx (p. ex. 10.1234):"
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Arxius"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Formats de publicació"
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Capítols"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Monografies"
+
+msgid "doi.manager.settings.explainDois"
+msgstr ""
+"Seleccioneu els objectes de publicació que han de tenir assignats un "
+"identificador d'objecte digital (DOI):"
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr "Seleccioneu els objectes DOI que s'haurien d'assignar."
+
+msgid "doi.manager.settings.doiObjects"
+msgstr "Contingut de la publicació"
+
+msgid "doi.manager.settings.description"
+msgstr "Configureu el mòdul DOI per poder gestionar i utilitzar els DOI a OMP:"
+
+msgid "doi.description"
+msgstr ""
+"Aquest mòdul permet l'assignació d'identificadors d'objectes digitals (DOI) "
+"a monografies, capítols, formats de publicació i arxius en OMP."

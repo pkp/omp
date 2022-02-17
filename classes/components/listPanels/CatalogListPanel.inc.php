@@ -16,8 +16,8 @@ namespace APP\components\listPanels;
 
 use APP\core\Application;
 
-use APP\i18n\AppLocale;
 use APP\facades\Repo;
+use APP\i18n\AppLocale;
 use APP\submission\Collector;
 use PKP\submission\PKPSubmission;
 
@@ -78,7 +78,7 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
                 ->filterByContextIds([$context->getId()]));
             foreach ($categoriesCollection as $category) {
                 [$categorySortBy, $categorySortDir] = explode('-', $category->getSortOption());
-                $categorySortDir = empty($categorySortDir) ? $catalogSortDir : $categorySortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
+                $categorySortDir = empty($categorySortDir) ? $catalogSortDir : ($categorySortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC');
                 $categories[] = [
                     'param' => 'categoryIds',
                     'value' => (int) $category->getId(),
@@ -100,7 +100,7 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
             while (!$seriesResult->eof()) {
                 $seriesObj = $seriesResult->next();
                 [$seriesSortBy, $seriesSortDir] = explode('-', $seriesObj->getSortOption());
-                $seriesSortDir = empty($seriesSortDir) ? $catalogSortDir : $seriesSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
+                $seriesSortDir = empty($seriesSortDir) ? $catalogSortDir : ($seriesSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC');
                 $series[] = [
                     'param' => 'seriesIds',
                     'value' => (int) $seriesObj->getId(),

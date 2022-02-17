@@ -942,21 +942,6 @@ msgstr "Plazo para la revisión"
 msgid "manager.setup.reviewPolicy"
 msgstr "Política de evaluación"
 
-msgid "manager.setup.reviewProcess"
-msgstr "Proceso de revisión"
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr "OMP es compatible con dos modelos para gestionar el proceso de revisión. Se recomienda el proceso de revisión estándar porque guía a los revisores/as a través del proceso, asegura un historial completo de revisión para cada envío y saca provecho de las notificaciones de recordatorio automático y de las recomendaciones estándares para envíos (Aceptar, Aceptar con revisiones, Enviar para revisión, Enviar a otro lugar, Rechazar, Ver comentarios).<br /><br />Seleccione una de las siguientes:"
-
-msgid "manager.setup.reviewProcessEmail"
-msgstr "Proceso de revisión de los archivos adjuntos a correos electrónicos"
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Proceso de revisión estándar"
-
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr "Los editores/as mandarán por correo electrónico a los revisores/as seleccionados el título y el resumen del envío, así como una invitación para iniciar sesión en la página web de la publicación para completar la revisión. Los revisores/as entrarán en la página web de la publicación para aceptar el encargo de revisión, descargar los envíos, enviar comentarios y seleccionar una recomendación."
-
 msgid "manager.setup.searchEngineIndexing"
 msgstr "Indización en buscadores"
 
@@ -1108,9 +1093,6 @@ msgstr "Para crear un formato de publicación nuevo, rellene el formulario sigui
 
 msgid "manager.setup.genresDescription"
 msgstr "Los géneros se utilizan para nombrar archivos y se presentan en un menú desplegable en el momento de subir los archivos.  Los géneros designados como ## permiten que el usuario/a asocie el archivo con el libro entero 99Z o con un capítulo concreto por número (p. ej., 02)."
-
-msgid "manager.setup.reviewProcessEmailDescription"
-msgstr "Los editores/as mandan a los revisores/as la solicitud para que revisen el envío adjunto al correo electrónico. Los revisores/as mandan un correo electrónico a los editores/as con su aceptación (o rechazo), así como la revisión y la recomendación. Los editores/as abren la aceptación (o rechazo) de los revisores/as, así como la revisión y la recomendación en la página de revisión del envío para grabar el proceso de revisión."
 
 msgid "manager.setup.genres"
 msgstr "Géneros"
@@ -1569,3 +1551,203 @@ msgstr "La URL a la página de inicio de la publicación"
 
 msgid "emailTemplate.variable.context.contextName"
 msgstr "El nombre de la editorial"
+
+msgid "doi.displayName"
+msgstr "Identificador de objeto digital (DOI)"
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "doi.manager.settings.description"
+msgstr ""
+"Configure el módulo DOI para poder gestionar y usar los elementos DOI en OMP:"
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr "Seleccione los elementos DOI que desea asignar."
+
+msgid "doi.manager.settings.explainDois"
+msgstr "Seleccione los objetos publicados a los que desea asignar el Identificador de objetos digitales (DOI):"
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "Prefijo DOI"
+
+msgid "doi.manager.settings.doiPrefix.description"
+msgstr "El prefijo DOI se asigna por organizaciones de registro (p.ej. <a href=\"http://www.crossref.org\" target=\"_new\">CrossRef</a>) y se encuentra en el formato 10.xxxx (p. ej. 10.1234):"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "El prefijo del DOI es obligatorio y debe respetar la forma 10.xxxx."
+
+msgid "doi.manager.settings.doiSuffix"
+msgstr "Sufijo del DOI"
+
+msgid "doi.manager.settings.doiSuffix.description"
+msgstr ""
+"El sufijo del DOI puede tener cualquier forma, pero debe ser único para cada "
+"elemento publicado con el mismo prefijo DOI:"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "para formatos de publicación"
+
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr ""
+"Por ejemplo, press%ppub%f puede crear un DOI como 10.1234/pressESPpub100"
+
+msgid "doi.manager.settings.doiSuffixDefault"
+msgstr "Usar modelos predeterminados."
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Introduzca el modelo de sufijo del DOI para los formatos de publicación."
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "Asignar los DOI de nuevo"
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "¿Seguro que desea eliminar todos los DOI existentes?"
+
+msgid "doi.editor.doi"
+msgstr "Identificador de objeto digital (DOI)"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "formato de publicación"
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"El sufijo del DOI suministrado ya se encuentra en uso en otro elemento "
+"publicado. Introduzca un sufjo DOI único para cada elemento."
+
+msgid "doi.editor.preview.objects"
+msgstr "Elemento"
+
+msgid "doi.editor.preview.files"
+msgstr "Archivo: {$title}"
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Formato de publicación: {$title}"
+
+msgid "doi.editor.preview.chapters"
+msgstr "Capítulo: {$title}"
+
+msgid "doi.editor.preview.publication.none"
+msgstr "No se ha asignado un DOI para esta publicación."
+
+msgid "doi.editor.preview.publication"
+msgstr "El DOI para esta publicación será {$doi}."
+
+msgid "doi.editor.missingPrefix"
+msgstr "El DOI debe empezar con {$doiPrefix}."
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "El DOI {$pubId} ha sido asignado."
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr ""
+"El DOI {$pubId} no puede ser asignado porque contiene un patrón no resuelto."
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr "El DOI no se puede asignar porque falta el sufijo personalizado."
+
+msgid "doi.editor.assignDoi"
+msgstr "Asignar el DOI {$pubId} a este {$pubObjectType}"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "¿Seguro que desea eliminar este DOI?"
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Limpiar"
+
+msgid "doi.editor.assigned"
+msgstr "El DOI es asignado a este {$pubObjectType}."
+
+msgid "doi.editor.canBeAssigned"
+msgstr ""
+"Lo que ve es una vista previa del DOI. Seleccione la casilla de verificación "
+"y guarde el formulario para asignar el DOI."
+
+msgid "doi.editor.patternNotResolved"
+msgstr "El DOI no se puede asignar porque contiene un patrón no resuelto."
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"No puede generar un DOI porque faltan datos en una o más partes del patrón "
+"DOI."
+
+msgid "doi.editor.customSuffixMissing"
+msgstr "El DOI no se puede asignar porque falta el sufijo personalizado."
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "archivo"
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "capítulo"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "monografía"
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Asignar"
+
+msgid "doi.editor.doi.description"
+msgstr "El DOI debe empezar con {$prefix}."
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Ingrese el patrón de sufijo DOI para los archivos."
+
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Ingrese el patrón de sufijo DOI para los capítulos."
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "para archivos"
+
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "para capítulos"
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "para monografías"
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Archivos"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Formatos de publicación"
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Capítulos"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Monografías"
+
+msgid "doi.manager.settings.doiObjects"
+msgstr "Contenido de la publicación"
+
+msgid "doi.description"
+msgstr ""
+"Este módulo permite la asignación de identificadores de objetos digitales "
+"(DOI) a monografías, capítulos, formatos de publicación y archivos en OMP."
+
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Utilice el patrón introducido a continuación para generar sufijos DOI. "
+"Utilice %p para las iniciales de la publicación, %m para el identificador de "
+"monografía, %c para el identificador de capítulo, %f para el identificador "
+"de formato de publicación, %s para el identificador de archivo y %x para \""
+"identificador personalizado\"."
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr ""
+"Si cambia la configuración del DOI, los DOI que ya se han asignado no se "
+"verán afectados. Una vez guardada la configuración del DOI, utilice este "
+"botón para borrar todos los DOI existentes de modo que la nueva "
+"configuración surta efecto con todos los objetos existentes."
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Ingrese el patrón de sufijo DOI para monografías."
+
+msgid "doi.manager.settings.doiSuffixCustomIdentifier"
+msgstr ""
+"Ingrese un sufijo DOI individual por cada elemento publicado. Encontrará un "
+"campo de entrada DOI adicional en la página de metadatos de cada elemento."
+
+msgid "doi.manager.settings.doiSuffixDefault.description"
+msgstr ""
+"%p.%m para monografías<br />%p.%m.c%c para capítulos<br />%p.%m.%f para "
+"formatos de publicación<br />%p.%m.%f.%s para archivos."

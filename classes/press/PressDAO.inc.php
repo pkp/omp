@@ -18,7 +18,9 @@ namespace APP\press;
 
 use APP\facades\Repo;
 use APP\publication\DAO;
+use APP\submission\SubmissionFileDAO;
 use PKP\context\ContextDAO;
+use PKP\db\DAORegistry;
 use PKP\metadata\MetadataTypeDescription;
 
 class PressDAO extends ContextDAO

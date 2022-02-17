@@ -16,10 +16,16 @@
 namespace APP\plugins;
 
 use APP\facades\Repo;
+use APP\monograph\Chapter;
+use APP\submission\Submission;
+use PKP\context\Context;
+use PKP\core\DataObject;
 use PKP\core\PKPString;
 use PKP\db\DAORegistry;
 
 use PKP\plugins\PKPPubIdPlugin;
+use PKP\submission\Representation;
+use PKP\submissionFile\SubmissionFile;
 
 abstract class PubIdPlugin extends PKPPubIdPlugin
 {
@@ -108,54 +114,12 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
                 $suffixPatternsFieldNames = $this->getSuffixPatternsFieldNames();
                 $pubIdSuffix = $this->getSetting($contextId, $suffixPatternsFieldNames[$pubObjectType]);
 
-                // %p - press initials
-                $pubIdSuffix = PKPString::regexp_replace('/%p/', PKPString::strtolower($context->getAcronym($context->getPrimaryLocale())), $pubIdSuffix);
-
-                // %x - custom identifier
-                if ($pubObject->getStoredPubId('publisher-id')) {
-                    $pubIdSuffix = PKPString::regexp_replace('/%x/', $pubObject->getStoredPubId('publisher-id'), $pubIdSuffix);
-                }
-
-                if ($submission) {
-                    // %m - monograph id
-                    $pubIdSuffix = PKPString::regexp_replace('/%m/', $submission->getId(), $pubIdSuffix);
-                }
-
-                if ($chapter) {
-                    // %c - chapter id
-                    $pubIdSuffix = PKPString::regexp_replace('/%c/', $chapter->getId(), $pubIdSuffix);
-                }
-
-                if ($representation) {
-                    // %f - publication format id
-                    $pubIdSuffix = PKPString::regexp_replace('/%f/', $representation->getId(), $pubIdSuffix);
-                }
-
-                if ($submissionFile) {
-                    // %s - file id
-                    $pubIdSuffix = PKPString::regexp_replace('/%s/', $submissionFile->getId(), $pubIdSuffix);
-                }
+                $pubIdSuffix = $this::generateCustomPattern($context, $pubIdSuffix, $pubObject, $submission, $chapter, $representation, $submissionFile);
 
                 break;
 
             default:
-                $pubIdSuffix = PKPString::strtolower($context->getAcronym($context->getPrimaryLocale()));
-
-                if ($submission) {
-                    $pubIdSuffix .= '.' . $submission->getId();
-                }
-
-                if ($chapter) {
-                    $pubIdSuffix .= '.c' . $chapter->getId();
-                }
-
-                if ($representation) {
-                    $pubIdSuffix .= '.' . $representation->getId();
-                }
-
-                if ($submissionFile) {
-                    $pubIdSuffix .= '.' . $submissionFile->getId();
-                }
+                $pubIdSuffix = $this::generateDefaultPattern($context, $submission, $chapter, $representation, $submissionFile);
         }
         if (empty($pubIdSuffix)) {
             return null;
@@ -165,6 +129,82 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
         $pubId = $this->constructPubId($pubIdPrefix, $pubIdSuffix, $contextId);
 
         return $pubId;
+    }
+
+    /**
+     * Generate the default, semantic-based pub-id suffix pattern
+     *
+     */
+    public static function generateDefaultPattern(
+        Context $context,
+        ?Submission $submission = null,
+        ?Chapter $chapter = null,
+        ?Representation $representation = null,
+        ?SubmissionFile $submissionFile = null
+    ): string {
+        $pubIdSuffix = PKPString::strtolower($context->getAcronym($context->getPrimaryLocale()));
+
+        if ($submission) {
+            $pubIdSuffix .= '.' . $submission->getId();
+        }
+
+        if ($chapter) {
+            $pubIdSuffix .= '.c' . $chapter->getId();
+        }
+
+        if ($representation) {
+            $pubIdSuffix .= '.' . $representation->getId();
+        }
+
+        if ($submissionFile) {
+            $pubIdSuffix .= '.' . $submissionFile->getId();
+        }
+
+        return $pubIdSuffix;
+    }
+
+    /**
+     * Generate the custom, user-defined pub-id suffix pattern
+     *
+     */
+    public static function generateCustomPattern(
+        Context $context,
+        string $pubIdSuffix,
+        DataObject $pubObject,
+        ?Submission $submission = null,
+        ?Chapter $chapter = null,
+        ?Representation $representation = null,
+        ?SubmissionFile $submissionFile = null
+    ): string {
+        // %p - press initials
+        $pubIdSuffix = PKPString::regexp_replace('/%p/', PKPString::strtolower($context->getAcronym($context->getPrimaryLocale())), $pubIdSuffix);
+
+        // %x - custom identifier
+        if ($pubObject->getStoredPubId('publisher-id')) {
+            $pubIdSuffix = PKPString::regexp_replace('/%x/', $pubObject->getStoredPubId('publisher-id'), $pubIdSuffix);
+        }
+
+        if ($submission) {
+            // %m - monograph id
+            $pubIdSuffix = PKPString::regexp_replace('/%m/', $submission->getId(), $pubIdSuffix);
+        }
+
+        if ($chapter) {
+            // %c - chapter id
+            $pubIdSuffix = PKPString::regexp_replace('/%c/', $chapter->getId(), $pubIdSuffix);
+        }
+
+        if ($representation) {
+            // %f - publication format id
+            $pubIdSuffix = PKPString::regexp_replace('/%f/', $representation->getId(), $pubIdSuffix);
+        }
+
+        if ($submissionFile) {
+            // %s - file id
+            $pubIdSuffix = PKPString::regexp_replace('/%s/', $submissionFile->getId(), $pubIdSuffix);
+        }
+
+        return $pubIdSuffix;
     }
 
     /**

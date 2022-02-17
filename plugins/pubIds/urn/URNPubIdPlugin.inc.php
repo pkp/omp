@@ -13,9 +13,9 @@
  * @brief URN plugin class
  */
 
-use APP\form\URNSettingsForm;
-use APP\form\FieldUrn;
 use APP\facades\Repo;
+use APP\form\FieldUrn;
+use APP\form\URNSettingsForm;
 use APP\plugins\PubIdPlugin;
 use APP\publication\Publication;
 
@@ -140,7 +140,7 @@ class URNPubIdPlugin extends PubIdPlugin
     {
         $templateMgr->addJavaScript(
             'urnCheckNo',
-            $request->getBaseUrl() . DIRECTORY_SEPARATOR . $this->getPluginPath() . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR . 'checkNumber.js',
+            "{$request->getBaseUrl()}/{$this->getPluginPath()}/js/checkNumber.js",
             [
                 'inline' => false,
                 'contexts' => ['publicIdentifiersForm', 'backend'],
@@ -390,7 +390,7 @@ class URNPubIdPlugin extends PubIdPlugin
                 'submissionId' => $form->publication->getData('submissionId'),
                 'assignIdLabel' => __('plugins.pubIds.urn.editor.urn.assignUrn'),
                 'clearIdLabel' => __('plugins.pubIds.urn.editor.clearObjectsURN'),
-                'missingPartsLabel' => __('plugins.pubIds.doi.editor.missingParts'),
+                'missingPartsLabel' => __('doi.editor.missingParts'),
             ];
             if ($form->publication->getData('pub-id::publisher-id')) {
                 $fieldData['publisherId'] = $form->publication->getData('pub-id::publisher-id');

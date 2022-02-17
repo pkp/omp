@@ -673,21 +673,6 @@ msgstr "Délai d'évaluation"
 msgid "manager.setup.reviewPolicy"
 msgstr "Politique concernant l'évaluation"
 
-msgid "manager.setup.reviewProcess"
-msgstr "Processus d'évaluation"
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr "OMP offre un support pour deux modèles de gestion du processus d'évaluation. Le processus standard d'évaluation est recommandé parce qu'il permet aux évaluateurs de suivre un processus par étapes, ce qui permet de créer un historique d'évaluation complet pour chaque soumission. Il permet aussi de profiter des rappels envoyés automatiquement et des recommandations standards pour les soumissions (accepter; accepter avec révisions; soumettre pour évaluation; soumettre ailleurs; refuser; voir commentaires).<br /><br />Choisir l'une des options suivantes:"
-
-msgid "manager.setup.reviewProcessEmail"
-msgstr "Processus pour l'envoi de pièces jointes par courriel aux évaluateurs"
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Processus d'évaluation standard"
-
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr "Les rédacteurs en chef enverront le titre et le résumé de la soumission par courriel aux évaluateurs choisis, ainsi qu'une invitation à ouvrir une session sur le site web pour évaluer la soumission. Les évaluateurs se rendent sur le site Web pour accepter l'invitation, télécharger les soumissions, envoyer leur commentaires et sélectionner une recommandation."
-
 msgid "manager.setup.searchEngineIndexing"
 msgstr "Indexage du moteur de recherche"
 
@@ -822,9 +807,6 @@ msgstr "Pour créer un nouveau format de publication, veuillez remplir le formul
 
 msgid "manager.setup.genresDescription"
 msgstr "Ces genres sont utilisés pour nommer les fichiers et présentés dans un menu déroulant lorsque les fichiers sont téléchargés. Les genres ## permettent à l'utilisateur d'associer le fichier au livre entier 99Z ou à un chapitre particulier par un chiffre (ex.: 02)."
-
-msgid "manager.setup.reviewProcessEmailDescription"
-msgstr "Les rédacteurs en chef envoient les demandes d'évaluation aux évaluateurs par courriel ainsi que la soumission en pièce jointe. Les évaluateurs répondent aux rédacteurs en chef par courriel pour indiquer s'ils acceptent ou s'ils refusent l'invitation. Ils envoient également leur évaluation et leur recommandation par courriel. Les rédacteurs en chef saisiront les réponses des évaluateurs ainsi que l'évaluation et la recommandation sur la page d'évaluation de la soumission pour conserver un registre du processus d'évaluation."
 
 msgid "manager.setup.genres"
 msgstr "Genres"

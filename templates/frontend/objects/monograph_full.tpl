@@ -95,26 +95,21 @@
 			{* Author list *}
 			{include file="frontend/components/authors.tpl" authors=$publication->getData('authors')}
 
-			{* DOI (requires plugin) *}
-			{foreach from=$pubIdPlugins item=pubIdPlugin}
-				{if $pubIdPlugin->getPubIdType() != 'doi'}
-					{continue}
-				{/if}
-				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
-				{if $pubId}
-					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
-					<div class="item doi">
-						<span class="label">
-							{translate key="plugins.pubIds.doi.readerDisplayName"}
-						</span>
-						<span class="value">
-							<a href="{$doiUrl}">
-								{$doiUrl}
-							</a>
-						</span>
-					</div>
-				{/if}
-			{/foreach}
+			{* DOIs *}
+			{assign var=monographDoiObject value=$monograph->getCurrentPublication()->getData('doiObject')}
+			{if $monographDoiObject}
+				{assign var="doiUrl" value=$monographDoiObject->getData('resolvingUrl')|escape}
+				<div class="item doi">
+					<span class="label">
+						{translate key="doi.readerDisplayName"}
+					</span>
+					<span class="value">
+						<a href="{$doiUrl}">
+							{$doiUrl}
+						</a>
+					</span>
+				</div>
+			{/if}
 
 			{* Keywords *}
 			{if !empty($publication->getLocalizedData('keywords'))}
@@ -177,16 +172,11 @@
 								{/if}
 
 								{* DOI (requires plugin) *}
-								{foreach from=$pubIdPlugins item=pubIdPlugin}
-									{if $pubIdPlugin->getPubIdType() != 'doi'}
-										{continue}
-									{/if}
-									{assign var=pubId value=$chapter->getStoredPubId($pubIdPlugin->getPubIdType())}
-									{if $pubId}
-										{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
-										<div class="doi">{translate key="plugins.pubIds.doi.readerDisplayName"} <a href="{$doiUrl}">{$doiUrl}</a></div>
-									{/if}
-								{/foreach}
+								{assign var=chapterDoiObject value=$chapter->getData('doiObject')}
+								{if $chapterDoiObject}
+									{assign var="doiUrl" value=$chapterDoiObject->getData('resolvingUrl')|escape}
+									<div class="doi">{translate key="doi.readerDisplayName"} <a href="{$doiUrl}">{$doiUrl}</a></div>
+								{/if}
 
 								{* Display any files that are assigned to this chapter *}
 								{pluck_files assign="chapterFiles" files=$availableFiles by="chapter" value=$chapterId}
@@ -431,6 +421,9 @@
 								{break}
 							{/if}
 						{/foreach}
+						{if $publicationFormat->getDoi()}
+							{assign var=hasPubId value=true}
+						{/if}
 
 						{* Skip if we don't have any information to print about this pub format *}
 						{if !$identificationCodes && !$publicationDates && !$hasPubId && !$publicationFormat->getPhysicalFormat()}
@@ -513,6 +506,22 @@
 									</div>
 								{/if}
 							{/foreach}
+
+							{* DOIs *}
+							{assign var=publicationFormatDoiObject value=$publicationFormat->getData('doiObject')}
+							{if $publicationFormatDoiObject}
+								{assign var="doiUrl" value=$publicationFormatDoiObject->getData('resolvingUrl')|escape}
+								<div class="sub_item pubid {$publicationFormat->getId()|escape}">
+									<h2 class="label">
+										{translate key="doi.readerDisplayName"}
+									</h2>
+									<div class="value">
+										<a href="{$doiUrl}">
+											{$doiUrl}
+										</a>
+									</div>
+								</div>
+							{/if}
 
 							{* Physical dimensions *}
 							{if $publicationFormat->getPhysicalFormat()}

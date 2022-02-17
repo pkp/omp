@@ -119,25 +119,6 @@ msgstr ""
 "Adjon meg egy rövid leírást (50-300 karakter) a kiadóról, amit a "
 "keresőmotorok megtudnak jeleníteni a találati listában."
 
-#, fuzzy
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr ""
-"A Szerkesztők e-mailben elküldik a kiválasztott Bírálóknak a beadvány címét "
-"és absztraktját, valamint egy meghívót a kiadó weboldalára való "
-"bejelentkezéshez a bírálat befejezéséhez/teljesítéséhez. Bírálók a kiadó "
-"oldalára belépve tudnak hozzájárulni a bírálathoz, letölteni a beadványt, "
-"benyújtani a javaslataikat és véleményüket."
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Általános bírálati folyamat"
-
-#, fuzzy
-msgid "manager.setup.reviewProcessEmail"
-msgstr "E-mail melléklet bírálati folyamat"
-
-msgid "manager.setup.reviewProcess"
-msgstr "Bírálati folyamat"
-
 msgid "manager.setup.reviewPolicy"
 msgstr "Bírálati irányelvek"
 
@@ -1226,17 +1207,6 @@ msgstr ""
 "beállításokhoz, hogy engedélyezze a kéziratok beküldését."
 
 #, fuzzy
-msgid "manager.setup.reviewProcessEmailDescription"
-msgstr ""
-"A Szerkesztők küldenek\ta Bírálók számára felkérést, hogy bíráljanak egy, az "
-"e-mailhez csatolt beadványt. A Bírálók e-mailt küldenek a szerkesztőnek "
-"hozzájárulásukkal (esetleg visszautasításukkal), a bírálattal és "
-"javaslatokkal együtt. A bírálati folyamat nyomon követésének érdekében a "
-"Szerkesztők felviszik a a beadvány Bírálati oldalára a Bírálók "
-"hozzájárulását (esetleg visszautasítását), csakúgy mint a bírálatot és "
-"javaslatokat."
-
-#, fuzzy
 msgid "manager.setup.genresDescription"
 msgstr ""
 "Ezek a típusok fájl elnevezésre használhatóak és a lenyíló menüben jelennek "
@@ -1297,16 +1267,6 @@ msgstr "A kiadó szerkesztői/bírálói bizottságot alkalmaz."
 #, fuzzy
 msgid "manager.setup.useCopyeditors"
 msgstr "Minden beadványhoz rendelve lesz egy Lektor."
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr ""
-"Az OMP két bírálói folyamat kezelő modellt támogat. Javasolt az Általános "
-"Bírálói Folyamat, amely a bírálókat végiglépteti az egyes folyamatokon, "
-"biztosítva a teljes bírálati történet meglétét minden egyes beadványhoz. "
-"Emellett automatikus emlékeztető értesítésekkel és szabvány javaslatokkal "
-"látja el a bírálót. (Elfogadás; Elfogadás javaslatokkal; Beküldés bírálatra; "
-"Beküldés máshová; Javaslatok megtekintése).<br /><br />Válasszon egyet az "
-"alábbiak közül:"
 
 msgid "manager.setup.reviewGuidelinesDescription"
 msgstr ""
@@ -1470,3 +1430,223 @@ msgstr "A Kiadóról szekció hozzáadása"
 #, fuzzy
 msgid "emailTemplate.variable.site.siteTitle"
 msgstr "Weboldal neve, amennyiben több kiadót is érint"
+
+msgid "doi.manager.settings.doiSuffixDefault.description"
+msgstr ""
+"%p.%m a kötetekhez<br />%p.%m.c%c a fejezetekhez<br />%p.%m.%f a "
+"kiadványformátumokhoz<br />%p.%m.%f.%s a fájlokhoz."
+
+msgid "doi.manager.settings.doiSuffixDefault"
+msgstr "Alapértelmezett minták használata."
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "fájloknak"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "kiadványformátumoknak"
+
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "fejezeteknek"
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "köteteknek"
+
+#, fuzzy
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr ""
+"Például a press%ppub%r létrehozhat egy DOI-t, például 10.1234/pressESPppub100"
+
+#, fuzzy
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"A DOI-utótagok létrehozásához használja az alábbiakban megadott mintát. "
+"Használja a %p-t a kiadó (press) kezdőbetűihez, a %m-t a kötet (monograph ) "
+"azonosítójához, a %c-t a fejezet (chapter) azonosítójához, a %f-t a "
+"kiadványformátum ( publication format) azonosítójához, a %s-t a fájl (file) "
+"azonosítójához és a %x-t az \"Egyéni azonosítóhoz\" (Custom Identifier)."
+
+msgid "doi.manager.settings.doiSuffix.description"
+msgstr ""
+"A DOI-utótag bármilyen formájú lehet, de egyedinek kell lennie minden olyan "
+"publikációs objektum között, amelyhez ugyanazt a DOI-előtagot rendelték:"
+
+#, fuzzy
+msgid "doi.manager.settings.doiSuffix"
+msgstr "DOI utótag (suffix)"
+
+#, fuzzy
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "A DOI előtag (prefix) kötelező, és 10.xxxx formájúnak kell lennie."
+
+#, fuzzy
+msgid "doi.manager.settings.doiPrefix.description"
+msgstr ""
+"A DOI prefixet a regisztrációs ügynökségek (pl. <a href=\""
+"http://www.crossref.org\" target=\"_new\">CrossRef</a>) osztják ki, és a "
+"10.xxxx (pl. 10.1234) formátumúak:"
+
+#, fuzzy
+msgid "doi.manager.settings.doiPrefix"
+msgstr "DOI előtag (prefix)"
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Fájlok"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Kiadványformátumok"
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Fejezetek"
+
+#, fuzzy
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Kötetek"
+
+msgid "doi.manager.settings.explainDois"
+msgstr ""
+"Kérjük, válassza ki azokat a publikációs objektumokat, amelyekhez digitális "
+"objektumazonosítót (DOI) rendelnek:"
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr ""
+"Kérjük, válassza ki azokat az objektumokat, amelyekhez DOI-kat kell rendelni."
+
+msgid "doi.manager.settings.doiObjects"
+msgstr "Kiadó tartalma"
+
+msgid "doi.manager.settings.description"
+msgstr ""
+"Kérjük, konfigurálja a DOI bővítményt, hogy képes legyen DOI-kat kezelni és "
+"használni az OMP-ben:"
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "doi.description"
+msgstr ""
+"Ez a bővítmény lehetővé teszi a Digitális Objektumazonosítók (DOI) "
+"hozzárendelését kötetekhez, fejezetekhez, kiadványformátumokhoz és fájlokhoz "
+"az OMP-ben."
+
+msgid "doi.displayName"
+msgstr "DOI"
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"Nem tudja létrehozni a DOI-t, mert a DOI mintájából egy vagy több rész "
+"hiányzik."
+
+msgid "doi.editor.customSuffixMissing"
+msgstr "A DOI nem rendelhető hozzá, mert az egyéni utótag hiányzik."
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "fájl"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "kiadványformátum"
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "fejezet"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "kötet"
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Hozzárendelés"
+
+msgid "doi.editor.doi.description"
+msgstr "A DOI-nak ezzel kell kezdődnie: {$prefix}"
+
+msgid "doi.editor.doi"
+msgstr "DOI"
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Biztos, hogy az összes meglévő DOI-t törölni kívánja?"
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr ""
+"Ha módosítja a DOI konfigurációt, a már hozzárendelt DOI-kat ez nem fogja "
+"érinteni. A DOI-konfiguráció mentése után ezzel a gombbal törölheti az "
+"összes meglévő DOI-t, hogy az új beállítások az összes meglévő objektummal "
+"érvénybe lépjenek."
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "DOI-k újbóli hozzárendelése"
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Adja meg a fájlok DOI utótag mintáját."
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Adja meg a kiadványformátumok DOI utótag mintáját."
+
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Adja meg a fejezetek DOI utótag mintáját."
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Adja meg a kötetek DOI utótag mintáját."
+
+#, fuzzy
+msgid "doi.editor.preview.objects"
+msgstr "Elem"
+
+msgid "doi.editor.preview.files"
+msgstr "Fájl: {$title}"
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Kiadványformátum: {$title}"
+
+msgid "doi.editor.preview.chapters"
+msgstr "Fejezet: {$title}"
+
+msgid "doi.editor.preview.publication.none"
+msgstr "Ehhez a kiadványhoz nem rendeltek DOI-t."
+
+msgid "doi.editor.preview.publication"
+msgstr "A publikáció DOI-ja lesz: {$doi}"
+
+msgid "doi.editor.missingPrefix"
+msgstr "A DOI-nak ezzel kell kezdődnie: {$doiPrefix}"
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "A DOI {$pubId} kiosztásra került."
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr "A DOI {$pubId} nem rendelhető hozzá, mert feloldatlan mintát tartalmaz."
+
+#, fuzzy
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr "A DOI nem rendelhető hozzá, mert az egyéni utótag hiányzik."
+
+#, fuzzy
+msgid "doi.editor.assignDoi"
+msgstr "A DOI {$pubId} hozzárendelése ehhez a {$pubObjectType} elemhez"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Biztos, hogy törölni kívánja a meglévő DOI-t?"
+
+#, fuzzy
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Törlés?"
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Az adott DOI utótag már használatban van egy másik közzétett elemnél. "
+"Kérjük, egyedi DOI utótagot adjon hozzá minden egyes tételhez."
+
+#, fuzzy
+msgid "doi.editor.assigned"
+msgstr "A DOI-t ehhez a {$pubObjectType} elemhez rendelték."
+
+msgid "doi.editor.canBeAssigned"
+msgstr ""
+"Amit lát, az a DOI előnézete. A DOI hozzárendeléséhez jelölje be a "
+"jelölőnégyzetet, és mentse el az űrlapot."
+
+#, fuzzy
+msgid "doi.editor.patternNotResolved"
+msgstr "A DOI nem rendelhető hozzá, mert megoldatlan mintát tartalmaz."
+
+msgid "doi.manager.settings.doiSuffixCustomIdentifier"
+msgstr ""
+"Adjon meg egy egyedi DOI utótagot (suffix) minden egyes közzétett tételhez. "
+"Az egyes tételek metaadat oldalán találni fog egy további DOI beviteli mezőt."

@@ -383,11 +383,20 @@ msgstr "Display new releases on the home page"
 msgid "manager.setup.displayNewReleases.label"
 msgstr "New Releases"
 
-msgid "manager.setup.doiPrefix"
-msgstr "DOI Prefix"
+msgid "manager.setup.enableDois.description"
+msgstr "Assign Digital Object Identifiers (DOIs) to monographs, chapters, publication formats, and files."
 
-msgid "manager.setup.doiPrefixDescription"
-msgstr "The DOI (Digital Object Identifier) Prefix is assigned by <a href=\"http://www.crossref.org\" target=\"_blank\">CrossRef</a> and is in the format 10.xxxx (e.g. 10.1234)."
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr "Select which items will be assigned a DOI. Most presses assign DOIs to monographs/chapters, but you may wish to assign DOIs to all of the published items."
+
+msgid "doi.manager.settings.doiSuffixLegacy"
+msgstr "Use default patterns.<br />%p.%m for monographs<br />%p.%m.c%c for chapters<br />%p.%m.%f for publication formats<br />%p.%m.%f.%s for files."
+
+msgid "doi.manager.settings.doiCreationTime.copyedit"
+msgstr "At the copy-editing stage"
+
+msgid "manager.dois.formatIdentifier.file"
+msgstr "Format / {$format}"
 
 msgid "manager.setup.editorDecision"
 msgstr "Editor Decision"
@@ -764,21 +773,6 @@ msgstr "Reviewer Reminders"
 msgid "manager.setup.reviewPolicy"
 msgstr "Review Policy"
 
-msgid "manager.setup.reviewProcess"
-msgstr "Review Process"
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr "OMP supports two models for managing the review process. The Standard Review Process is recommended because it steps reviewers through the process, ensures a complete review history for each submission, and takes advantage of automatic reminder notification, and standard recommendations for submissions (Accept; Accept with revisions; Submit for review; Submit elsewhere; Decline; See comments).<br /><br />Select one of the following:"
-
-msgid "manager.setup.reviewProcessEmail"
-msgstr "Email-Attachment Review Process"
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Standard Review Process"
-
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr "Editors will email selected Reviewers the title and abstract of the submission, as well as an invitation to log into the press web site to complete the review. Reviewers enter the press web site to agree to do the review, to download submissions, submit their comments, and select a recommendation."
-
 msgid "manager.setup.searchDescription.description"
 msgstr "Provide a brief description (50-300 characters) of the press which search engines can display when listing the press in search results."
 
@@ -907,9 +901,6 @@ msgstr "To create a new publication format, fill out the form below and click th
 
 msgid "manager.setup.genresDescription"
 msgstr "These genres are used for file-naming purposes and are presented in a pull-down menu on uploading files. The genres designated ## allow the user to associate the file with either the whole book 99Z or a particular chapter by number (e.g., 02)."
-
-msgid "manager.setup.reviewProcessEmailDescription"
-msgstr "Editors send\tReviewers the request to review with the submission attached to the email. Reviewers email editors their assent (or regrets), as well as the review and recommendation. Editors enter Reviewers' assent (or regrets), as well as the review and recommendation on the submission's Review page, to record the review process."
 
 msgid "manager.setup.disableSubmissions.notAccepting"
 msgstr "This press is not accepting submissions at this time. Visit the workflow settings to allow submissions."
@@ -1159,3 +1150,183 @@ msgstr "Validate Email (Press Registration)"
 
 msgid "mailable.validateEmailContext.description"
 msgstr "This email is automatically sent to a new user when they register with the press when the settings require the email address to be validated."
+
+msgid "doi.displayName"
+msgstr "DOI"
+
+msgid "doi.manager.displayName"
+msgstr "DOIs"
+
+msgid "doi.description"
+msgstr "This plugin enables the assignment of the Digital Object Identifiers to monographs, chapters, publication formats and files in OMP."
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "doi.manager.settings.description"
+msgstr "Please configure the DOI plug-in to be able to manage and use DOIs in OMP:"
+
+msgid "doi.manager.settings.doiObjects"
+msgstr "Press Content"
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr "Please choose the objects DOIs should be assigned to."
+
+msgid "doi.manager.settings.explainDois"
+msgstr "Please select the publishing objects that will have Digital Object Identifiers (DOI) assigned:"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Monographs"
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Chapters"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Publication Formats"
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Files"
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "DOI Prefix"
+
+msgid "doi.manager.settings.doiPrefix.description"
+msgstr "The DOI Prefix is assigned by registration agencies (e.g. <a href=\"http://www.crossref.org\" target=\"_new\">CrossRef</a>) and is in the format 10.xxxx (e.g. 10.1234):"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "The DOI prefix is mandatory and must be in the form 10.xxxx."
+
+msgid "doi.manager.settings.doiSuffix"
+msgstr "DOI Suffix"
+
+msgid "doi.manager.settings.doiSuffix.description"
+msgstr "A DOI suffix can take any form, but must be unique among all publishing objects with the same DOI prefix assigned:"
+
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr "Use the pattern entered below to generate DOI suffixes. Use %p for press initials, %m for the monograph id, %c for chapter id, %f for the publication format id, %s for the file id and %x for \"Custom Identifier\"."
+
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr "For example, press%ppub%r could create a DOI such as 10.1234/pressESPpub100"
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "for monographs"
+
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "for chapters"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "for publication formats"
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "for files"
+
+msgid "doi.manager.settings.doiSuffixDefault"
+msgstr "Use default patterns."
+
+msgid "doi.manager.settings.doiSuffixDefault.description"
+msgstr "%p.%m for monographs<br />%p.%m.c%c for chapters<br />%p.%m.%f for publication formats<br />%p.%m.%f.%s for files."
+
+msgid "doi.manager.settings.doiSuffixCustomIdentifier"
+msgstr "Enter an individual DOI suffix for each published item. You'll find an additional DOI input field on each item's meta-data page."
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Please enter the DOI suffix pattern for monographs."
+
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Please enter the DOI suffix pattern for chapters."
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Please enter the DOI suffix pattern for publication formats."
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Please enter the DOI suffix pattern for files."
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "Reassign DOIs"
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr "If you change your DOI configuration, DOIs that have already been assigned will not be affected. Once the DOI configuration is saved, use this button to clear all existing DOIs so that the new settings will take effect with all existing objects."
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Are you sure you wish to delete all existing DOIs?"
+
+msgid "doi.editor.doi"
+msgstr "DOI"
+
+msgid "doi.editor.doi.description"
+msgstr "The DOI must begin with {$prefix}."
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Assign"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "monograph"
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "chapter"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "publication format"
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "file"
+
+msgid "doi.editor.customSuffixMissing"
+msgstr "The DOI cannot be assigned because the custom suffix is missing."
+
+msgid "doi.editor.missingParts"
+msgstr "You can not generate a DOI because one or more parts of the DOI pattern are missing data."
+
+msgid "doi.editor.patternNotResolved"
+msgstr "The DOI cannot be assigned because it contains an unresolved pattern."
+
+msgid "doi.editor.canBeAssigned"
+msgstr "What you see is a preview of the DOI. Select the checkbox and save the form to assign the DOI."
+
+msgid "doi.editor.assigned"
+msgstr "The DOI is assigned to this {$pubObjectType}."
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr "The given DOI suffix is already in use for another published item. Please enter a unique DOI suffix for each item."
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Clear"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Are you sure you wish to delete the existing DOI?"
+
+msgid "doi.editor.assignDoi"
+msgstr "Assign the DOI {$pubId} to this {$pubObjectType}"
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr "The DOI cannot be assigned because the custom suffix is missing."
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr "The DOI {$pubId} cannot be assigned because it contains an unresolved pattern."
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "The DOI {$pubId} has been assigned."
+
+msgid "doi.editor.missingPrefix"
+msgstr "The DOI must begin with {$doiPrefix}."
+
+msgid "doi.editor.preview.publication"
+msgstr "The DOI for this publication will be {$doi}."
+
+msgid "doi.editor.preview.publication.none"
+msgstr "A DOI has not been assigned to this publication."
+
+msgid "doi.editor.preview.chapters"
+msgstr "Chapter: {$title}"
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Publication Format: {$title}"
+
+msgid "doi.editor.preview.files"
+msgstr "File: {$title}"
+
+msgid "doi.editor.preview.objects"
+msgstr "Item"
+
+msgid "doi.manager.submissionDois"
+msgstr "Monograph DOIs"

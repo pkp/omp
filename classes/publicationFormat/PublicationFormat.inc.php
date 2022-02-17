@@ -632,6 +632,34 @@ class PublicationFormat extends Representation
 
         return join(__('monograph.publicationFormat.productDimensionsSeparator'), $dimensions);
     }
+
+    /**
+     * Set the stored public ID of the submission.
+     *
+     * @param $pubIdType string One of the NLM pub-id-type values or
+     * 'other::something' if not part of the official NLM list
+     * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
+     * @param $pubId string
+     */
+    public function setStoredPubId($pubIdType, $pubId)
+    {
+        if ($pubIdType == 'doi') {
+            if ($doiObject = $this->getData('doiObject')) {
+                Repo::doi()->edit($doiObject, ['doi' => $pubId]);
+            } else {
+                $newDoiObject = Repo::doi()->newDataObject(
+                    [
+                        'doi' => $pubId,
+                        'contextId' => $this->getContextId()
+                    ]
+                );
+                $doiId = Repo::doi()->add($newDoiObject);
+                $this->setData('doiId', $doiId);
+            }
+        } else {
+            parent::setStoredPubId($pubIdType, $pubId);
+        }
+    }
 }
 
 if (!PKP_STRICT_MODE) {

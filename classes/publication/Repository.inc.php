@@ -439,4 +439,15 @@ class Repository extends \PKP\publication\Repository
             imagedestroy($thumb);
         }
     }
+
+    /**
+     * Create all DOIs associated with the publication
+     *
+     * @return mixed
+     */
+    protected function createDois(Publication $newPublication): void
+    {
+        $submission = Repo::submission()->get($newPublication->getData('submissionId'));
+        Repo::submission()->createDois($submission);
+    }
 }
