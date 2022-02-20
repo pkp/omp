@@ -144,11 +144,11 @@ class GoogleScholarPlugin extends GenericPlugin
                                 $templateMgr->addHeader('googleScholarIsbn' . $i++, '<meta name="citation_isbn" content="' . htmlspecialchars($identificationCode->getValue()) . '"/>');
                             }
                         }
-                        $this->setFileUrl($availableFile, $templateMgr, $i, $request, $submission);
+                        $this->_setFileUrl($availableFile, $templateMgr, $i, $request, $submission);
                     } elseif ($isChapterRequest) {
                         $chapter = $templateMgr->getTemplateVars('chapter');
                         if ($chapter->getData('id') == $availableFile->getData('chapterId')) {
-                            $this->setFileUrl($availableFile, $templateMgr, $i, $request, $submission);
+                            $this->_setFileUrl($availableFile, $templateMgr, $i, $request, $submission);
                         }
                     }
                 }
@@ -188,8 +188,9 @@ class GoogleScholarPlugin extends GenericPlugin
 
     /**
      * @param $availableFile
+     * @param \App\Core\Request $request
      */
-    protected function setFileUrl($availableFile, TemplateManager $templateMgr, int $i, App\Core\Request $request, Submission $submission): void
+    private function _setFileUrl($availableFile, TemplateManager $templateMgr, int $i, App\Core\Request $request, Submission $submission): void
     {
         switch ($availableFile->getData('mimetype')) {
             case 'application/pdf':
