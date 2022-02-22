@@ -1363,7 +1363,7 @@ msgid "user.authorization.invalidMonograph"
 msgstr "Invalid monograph or no monograph requested!"
 
 msgid "user.authorization.noContext"
-msgstr "No press in context!"
+msgstr "No press was found that matched your request."
 
 msgid "user.authorization.seriesAssignment"
 msgstr "You are trying to access a monograph that is not part of your series."

@@ -17,11 +17,6 @@ msgid "api.emailTemplates.403.notAllowedChangeContext"
 msgstr ""
 "Você não tem permissão para mover este modelo de e-mail para outra editora."
 
-msgid "api.submissions.403.contextRequired"
-msgstr ""
-"Para enviar ou editar uma submissão deve fazer um pedido ao endpoint da API "
-"da editora."
-
 msgid "api.submissions.403.cantChangeContext"
 msgstr "Você não pode alterar a editora de uma submissão."
 

@@ -17,7 +17,7 @@
 
 namespace APP\core;
 
-use PKP\context\Context;
+use APP\press\Press;
 use PKP\core\PKPRequest;
 use PKP\plugins\HookRegistry;
 
@@ -40,7 +40,7 @@ class Request extends PKPRequest
      *
      * @see PKPPageRouter::getContext()
      */
-    public function &getPress()
+    public function &getPress(): ?Press
     {
         $returner = $this->_delegateToRouter('getContext', 1);
         return $returner;
@@ -69,7 +69,7 @@ class Request extends PKPRequest
      *
      * @see PKPPageRouter::getContext()
      */
-    public function &getContext($level = 1): ?Context
+    public function &getContext($level = 1): ?Press
     {
         $returner = $this->_delegateToRouter('getContext', $level);
         return $returner;

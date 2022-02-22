@@ -366,6 +366,7 @@ msgstr ""
 msgid "user.authorization.invalidMonograph"
 msgstr "Chan eil am monograf dligheach no cha deach monograf sam bith iarraidh!"
 
+#, fuzzy
 msgid "user.authorization.noContext"
 msgstr "Chan eil clò sa cho-theacsa!"
 

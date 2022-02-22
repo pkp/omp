@@ -10,11 +10,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "api.submissions.403.contextRequired"
-msgstr ""
-"K vytvoření nebo úpravě příspěvku musíte zadat požadavek na API "
-"nakladatelství."
-
 msgid "api.submissions.403.cantChangeContext"
 msgstr "Pro tento příspěvek nemůžete změnit nakladatelství."
 

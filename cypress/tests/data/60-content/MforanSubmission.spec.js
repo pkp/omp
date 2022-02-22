@@ -44,7 +44,8 @@ describe('Data suite tests', function() {
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Foran');
-		cy.sendToReview('External');
-		cy.get('li.ui-state-active a:contains("External Review")');
+		cy.clickDecision('Send to External Review');
+		cy.recordDecisionSendToReview('Send to External Review', ['Max Foran'], [title]);
+		cy.isActiveStageTab('External Review');
 	});
 });

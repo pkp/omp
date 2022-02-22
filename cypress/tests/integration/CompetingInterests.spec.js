@@ -17,7 +17,9 @@ describe('Data suite tests', function() {
 	it('Tests with Competing Interests disabled', function() {
 		// Send the submission to review
 		cy.findSubmissionAsEditor('dbarnes', null, 'Brower');
-		cy.sendToReview('External');
+		cy.clickDecision('Send to External Review');
+		cy.recordDecisionSendToReview('Send to External Review', ['Jennifer Brower'], []);
+		cy.isActiveStageTab('External Review');
 		cy.assignReviewer('Adela Gallego');
 		cy.logout();
 

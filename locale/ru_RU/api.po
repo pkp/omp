@@ -12,10 +12,6 @@ msgstr ""
 "4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "api.submissions.403.contextRequired"
-msgstr ""
-"Чтобы создать или редактировать подачу вы должны запросить  API издания."
-
 msgid "api.submissions.403.cantChangeContext"
 msgstr "Вы не можете изменить издание подачи(материала)."
 

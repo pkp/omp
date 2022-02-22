@@ -1257,6 +1257,7 @@ msgstr "Dostop do določene datoteke monografa vam je bil preprečen."
 msgid "user.authorization.invalidMonograph"
 msgstr "Neveljavna monografska publikacija ali zahtevana monografska publikacija ne obstaja!"
 
+#, fuzzy
 msgid "user.authorization.noContext"
 msgstr "Ni založbe v kontekstu!"
 

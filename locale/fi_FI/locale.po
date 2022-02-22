@@ -1359,6 +1359,7 @@ msgstr "Sinulta on evätty pääsy tähän kirjan tiedostoon."
 msgid "user.authorization.invalidMonograph"
 msgstr "Virheellinen kirja tai ei pyydettyä kirjaa!"
 
+#, fuzzy
 msgid "user.authorization.noContext"
 msgstr "Ei julkaisijaa valittuna!"
 

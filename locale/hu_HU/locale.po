@@ -1340,6 +1340,7 @@ msgid "user.authorization.seriesAssignment"
 msgstr "Ön olyan kötethez próbál hozzáférni, amely nem része az Ön sorozatának."
 
 #, fuzzy
+#, fuzzy
 msgid "user.authorization.noContext"
 msgstr "Nincs sajtó!"
 

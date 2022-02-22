@@ -21,6 +21,7 @@ describe('Data suite tests', function() {
 		});
 
 		var title = 'Bomb Canada and Other Unkind Remarks in the American Media';
+		var author = 'Chantal Allan';
 		cy.createSubmission({
 			'type': 'monograph',
 			//'series': '',
@@ -35,44 +36,48 @@ describe('Data suite tests', function() {
 			'chapters': [
 				{
 					'title': 'Prologue',
-					'contributors': ['Chantal Allan'],
+					'contributors': [author],
 				},
 				{
 					'title': 'Chapter 1: The First Five Years: 1867-1872',
-					'contributors': ['Chantal Allan'],
+					'contributors': [author],
 				},
 				{
 					'title': 'Chapter 2: Free Trade or "Freedom": 1911',
-					'contributors': ['Chantal Allan'],
+					'contributors': [author],
 				},
 				{
 					'title': 'Chapter 3: Castro, Nukes & the Cold War: 1953-1968',
-					'contributors': ['Chantal Allan'],
+					'contributors': [author],
 				},
 				{
 					'title': 'Chapter 4: Enter the Intellect: 1968-1984',
-					'contributors': ['Chantal Allan'],
+					'contributors': [author],
 				},
 				{
 					'title': 'Epilogue',
-					'contributors': ['Chantal Allan'],
+					'contributors': [author],
 				},
 			]
 		});
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Allan');
-		cy.sendToReview('Internal');
-		cy.get('li.ui-state-active a:contains("Internal Review")');
+		cy.clickDecision('Send to Internal Review');
+		cy.recordDecisionSendToReview('Send to Internal Review', [author], [title]);
+		cy.isActiveStageTab('Internal Review');
 		cy.assignReviewer('Paul Hudson');
-		cy.sendToReview('External', 'Internal');
-		cy.get('li.ui-state-active a:contains("External Review")');
+		cy.clickDecision('Send to External Review');
+		cy.recordDecisionSendToReview('Send to External Review', [author], []);
+		cy.isActiveStageTab('External Review');
 		cy.assignReviewer('Gonzalo Favio');
-		cy.recordEditorialDecision('Accept Submission');
-		cy.get('li.ui-state-active a:contains("Copyediting")');
+		cy.clickDecision('Accept Submission');
+		cy.recordDecisionAcceptSubmission([author], [], []);
+		cy.isActiveStageTab('Copyediting');
 		cy.assignParticipant('Copyeditor', 'Sarah Vogt');
-		cy.recordEditorialDecision('Send To Production');
-		cy.get('li.ui-state-active a:contains("Production")');
+		cy.clickDecision('Send To Production');
+		cy.recordDecisionSendToProduction([author]);
+		cy.isActiveStageTab('Production');
 		cy.assignParticipant('Layout Editor', 'Stephen Hellier');
 		cy.assignParticipant('Proofreader', 'Catherine Turner');
 

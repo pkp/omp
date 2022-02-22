@@ -90,6 +90,7 @@ msgstr ""
 "Pokoušíte se získat přístup k monografii, která není součástí edice, jíž "
 "spravujete."
 
+#, fuzzy
 msgid "user.authorization.noContext"
 msgstr "Žádné nakladatelství nenalezeno!"
 

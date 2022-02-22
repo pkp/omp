@@ -21,6 +21,7 @@ describe('Data suite tests', function() {
 		});
 
 		var title = 'From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots', chapters, additionalFiles;
+		var author = 'Michael Dawson';
 		cy.createSubmission({
 			'type': 'editedVolume',
 			'series': 'Psychology',
@@ -98,17 +99,19 @@ describe('Data suite tests', function() {
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Dawson');
-		cy.sendToReview('Internal');
-		cy.get('li.ui-state-active a:contains("Internal Review")');
+		cy.clickDecision('Send to Internal Review');
+		cy.recordDecisionSendToReview('Send to Internal Review', [author], [title]);
+		cy.isActiveStageTab('Internal Review');
 		cy.assignReviewer('Julie Janssen');
-		cy.sendToReview('External', 'Internal');
-		cy.get('li.ui-state-active a:contains("External Review")');
+		cy.clickDecision('Send to External Review');
+		cy.recordDecisionSendToReview('Send to External Review', [author], []);
+		cy.isActiveStageTab('External Review');
 		cy.assignReviewer('Al Zacharia');
-		cy.recordEditorialDecision('Accept Submission');
-		cy.get('li.ui-state-active a:contains("Copyediting")');
+		cy.recordDecisionAcceptSubmission([author], [], []);
+		cy.isActiveStageTab('Copyediting');
 		cy.assignParticipant('Copyeditor', 'Maria Fritz');
-		cy.recordEditorialDecision('Send To Production');
-		cy.get('li.ui-state-active a:contains("Production")');
+		cy.recordDecisionSendToProduction([author]);
+		cy.isActiveStageTab('Production');
 		cy.assignParticipant('Layout Editor', 'Graham Cox');
 		cy.assignParticipant('Proofreader', 'Sabine Kumar');
 

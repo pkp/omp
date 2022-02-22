@@ -11,11 +11,6 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "api.submissions.403.contextRequired"
-msgstr ""
-"Aby dokonać zgłoszenia lub je zmienić, musisz poprosić o punkt końcowy API "
-"wydawnictwa."
-
 msgid "api.submissions.403.cantChangeContext"
 msgstr "Nie możesz zmienić zlecenia dla tego zgłoszenia."
 

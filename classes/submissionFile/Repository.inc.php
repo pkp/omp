@@ -16,11 +16,19 @@ namespace APP\submissionFile;
 use APP\core\Request;
 use PKP\services\PKPSchemaService;
 use PKP\submissionFile\Repository as SubmissionFileRepository;
+use PKP\submissionFile\SubmissionFile;
 
 class Repository extends SubmissionFileRepository
 {
-    /** @copydoc \PKP\submissionFile\Repository::$schemaMap */
     public $schemaMap = maps\Schema::class;
+
+    public array $reviewFileStages = [
+        SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_FILE,
+        SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_REVISION,
+        SubmissionFile::SUBMISSION_FILE_REVIEW_ATTACHMENT,
+        SubmissionFile::SUBMISSION_FILE_REVIEW_FILE,
+        SubmissionFile::SUBMISSION_FILE_REVIEW_REVISION,
+    ];
 
     public function __construct(
         DAO $dao,

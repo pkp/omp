@@ -113,41 +113,6 @@ msgstr ""
 msgid "emails.reviewerRegister.description"
 msgstr "Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται σε νέους χρήστες για να τους καλωσορίσει στο σύστημα και να τους δώσει το όνομα χρήστη και τον κωδικό πρόσβασής τους."
 
-msgid "emails.issuePublishNotify.subject"
-msgstr "Έκδοση νέου βιβλίου"
-
-msgid "emails.issuePublishNotify.body"
-msgstr ""
-"Αγαπητοί Αναγνώστες:<br />\n"
-"<br />\n"
-"Οι εκδόσεις{$contextName} μόλις δημοσίευσε τη νέα της έκδοση {$contextUrl}. <br />\n"
-"Μπορείτε να συμβουλευτείτε τον Πίνακα περιεχομένων και, στη συνέχεια, να επισκεφτείτε τον ιστότοπο των εκδόσεων για να δείτε το πλήρες κείμενο των μονογραφιών ή/και τεκμηρίων που σας ενδιαφέρουν.<br />\n"
-"<br />\n"
-"Σας ευχαριστούμε για το συνεχές ενδιαφέρον σας για την εργασία μας,<br />\n"
-"{$signature}"
-
-msgid "emails.issuePublishNotify.description"
-msgstr "Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται σε εγγεγραμμένους αναγνώστες μέσω του συνδέσμου \"Ενημέρωση Χρηστών\" στην αρχική σελίδα Επιμελητή των εκδόσεων. Ενημερώνει τους αναγνώστες για νέα βιβλία και τους προσκαλεί να επισκεφτούν τον δικτυακό τόπο των εκδόσεων.."
-
-msgid "emails.submissionAck.subject"
-msgstr "Επιβεβαίωση υποβολής"
-
-msgid "emails.submissionAck.body"
-msgstr ""
-"{$recipientName}:<br />\n"
-"<br />\n"
-"Ευχαριστούμε για την υποβολή της εργασίας σας, &quot;{$submissionTitle}&quot; στις εκδόσεις {$contextName}. Με το online σύστημα διαχείρισης που χρησιμοποιούν οι εκδόσεις, θα μπορείτε, συνδεόμενοι στον ιστότοπο των εκδόσεων, να παρακολουθείτε την πορεία της υποβολής σας στην διαδικασία της επιμέλειας:<br />\n"
-"<br />\n"
-"URL υποβολής: {$submissionUrl}<br />\n"
-"Όνομα χρήστη: {$recipientUsername}<br />\n"
-"<br />\n"
-"Για περισσότερες πληροφορίες παρακαλούμε επικοινωνήστε μαζί μας. Ευχαριστούμε που θεωρείτε τις εκδόσεις  αυτές ως τον κατάλληλο χώρο για να δημοσιεύετε την εργασία σας. <br />\n"
-"<br />\n"
-"{$signature}"
-
-msgid "emails.submissionAck.description"
-msgstr "Εφόσον έχει ενεργοποιηθεί η αντίστοιχη επιλογή, το συγκεκριμένο μήνυμα αποστέλλεται αυτόματα στον συγγραφέα όταν ολοκληρωθεί η διαδικασία υποβολής μιας εργασίας στις εκδόσεις. Παρέχει πληροφορίες σχετικά με την παρακολούθηση της πορείας της υποβολής στις διάφορες διαδικασίες και ευχαριστεί τον συγγραφέα για την υποβολή."
-
 msgid "emails.submissionAckNotUser.subject"
 msgstr "Επιβεβαίωση υποβολής"
 
@@ -303,18 +268,6 @@ msgstr ""
 msgid "emails.reviewDecline.description"
 msgstr "Το συγκεκριμένο μήνυμα αποστέλλεται από τον Αξιολογητή στον Επιμελητή Σειράς ως απάντηση στο αίτημα αξιολόγησης για να τον ενημερώσει ότι δεν μπορεί να αναλάβει την συγκεκριμένη αξιολόγηση."
 
-msgid "emails.reviewAck.subject"
-msgstr "Επιβεβαίωση λήψης αξιολόγησης εργασίας"
-
-msgid "emails.reviewAck.body"
-msgstr ""
-"{$recipientName}:<br />\n"
-"<br />\n"
-"Σας ευχαριστούμε που ολοκληρώσατε την αξιολόγηση της εργασίας, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName},  καθώς και για τη συμβολή σας στην ποιότητα του περιεχομένου της συγκεκριμένης έκδοσης."
-
-msgid "emails.reviewAck.description"
-msgstr "Το συγκεκριμένο μήνυμα αποστέλλεται από τον Επιμελητή Σειράς στον Αξιολογητή για να επιβεβαιώσει τη λήψη της ολοκληρωμένης αξιολόγησης και να εκφράσει την ευχαριστία του στον αξιολογητή για τη συμβολή του στην συγκεκριμένη έκδοση."
-
 msgid "emails.reviewRemind.subject"
 msgstr "Υπενθύμιση αξιολόγησης υποβολής"
 
@@ -393,9 +346,11 @@ msgstr ""
 msgid "emails.reviewRemindAutoOneclick.description"
 msgstr "Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται αυτόματα όταν παρέλθει η ημερομηνία ολοκλήρωσης της αξιολόγησης (ανατρέξτε στις Επιλογές αξιολόγησης στο μενού Οργάνωση της έκδοσης, Βήμα 2) και, επίσης, απενεργοποιείται η δυνατότητα πρόσβασης του αξιολογητή με ένα μόνο κλικ. Οι προγραμματισμένες εργασίες πρέπει να ενεργοποιηθούν και να ρυθμιστούν(ανατρέξτε στο αρχείο ρυθμίσεων του ιστότοπου)."
 
+#, fuzzy
 msgid "emails.editorDecisionAccept.subject"
 msgstr "Απόφαση Επιμελητή"
 
+#, fuzzy
 msgid "emails.editorDecisionAccept.body"
 msgstr ""
 "{$authors}:<br />\n"
@@ -407,112 +362,14 @@ msgstr ""
 "URL Εργασίας: {$submissionUrl}<br />\n"
 "Username: {$recipientUsername}"
 
+#, fuzzy
 msgid "emails.editorDecisionAccept.description"
 msgstr "Αυτό το email αποστέλλεται από τον Επιμελητή/Εκδότη ή Από τον Επιμελητή Σειράς σε έναν Συγγραφέα για να τον ενημερώσει για την τελική απόφαση σχετικά με την υποβολή του."
-
-msgid "emails.editorDecisionSendToExternal.subject"
-msgstr "Απόφαση Επιμελητή"
-
-msgid "emails.editorDecisionSendToExternal.body"
-msgstr ""
-"{$authors}:<br />\n"
-"<br />\n"
-"Σχετικά με την υποβολή σας στις εκδόσεις {$contextName},με τίτλο  &quot;{$submissionTitle}&quot; θα θέλαμε να σας ενημερώσουμε :<br />\n"
-"<br />\n"
-"<br />\n"
-"<br />\n"
-"URL εργασίας: {$submissionUrl}"
-
-msgid "emails.editorDecisionSendToExternal.description"
-msgstr "This email from the Editor or Series Editor to an Author notifies them that their submission is being sent to an external review."
-
-msgid "emails.editorDecisionSendToProduction.subject"
-msgstr "Απόφαση Επιμελητή"
-
-msgid "emails.editorDecisionSendToProduction.body"
-msgstr ""
-"{$authors}:<br />\n"
-"<br />\n"
-"Η επιμέλεια της εργασίας σας με τίτλο, &quot;{$submissionTitle},&quot; έχει ολοκληρωθεί.  Η εργασία σας έχει αποσταλεί ώστε να ξεκινήσει η διαδικασία παραγωγής, επεξεργασίας και δημοσίευσης του έργου σας.<br />\n"
-"<br />\n"
-"URL εργασίας: {$submissionUrl}"
-
-msgid "emails.editorDecisionSendToProduction.description"
-msgstr "This email from the Editor or Series Editor to an Author notifies them that their submission is being sent to production."
-
-msgid "emails.editorDecisionRevisions.subject"
-msgstr "Απόφαση Επιμελητή"
-
-msgid "emails.editorDecisionRevisions.body"
-msgstr ""
-"{$authors}:<br />\n"
-"<br />\n"
-"Σχετικά με την υποβολή σας στις εκδόσεις {$contextName}, με τίτλο &quot;{$submissionTitle}&quot;, θα θέλαμε να σας ενημερώσουμε:<br />\n"
-"<br />\n"
-"<br />\n"
-"<br />\n"
-"URL εργασίας: {$submissionUrl}"
-
-msgid "emails.editorDecisionRevisions.description"
-msgstr "This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission."
-
-msgid "emails.editorDecisionResubmit.subject"
-msgstr "Απόφαση Επιμελητή"
-
-msgid "emails.editorDecisionResubmit.body"
-msgstr ""
-"{$authors}:<br />\n"
-"<br />\n"
-"Σχετικά με την υποβολή σας στις εκδόσεις {$contextName}, με τίτλο &quot;{$submissionTitle}&quot;, θα θέλαμε να σας ενημερώσουμε:<br />\n"
-"<br />\n"
-"<br />\n"
-"<br />\n"
-"URL εργασίας: {$submissionUrl}"
-
-msgid "emails.editorDecisionResubmit.description"
-msgstr "This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission."
-
-msgid "emails.editorDecisionDecline.subject"
-msgstr "Απόφαση Επιμελητή"
-
-msgid "emails.editorDecisionDecline.body"
-msgstr ""
-"{$authors}:<br />\n"
-"<br />\n"
-"Σχετικά με την υποβολή σας στις εκδόσεις {$contextName}, με τίτλο &quot;{$submissionTitle}&quot;, θα θέλαμε να σας ενημερώσουμε:<br />\n"
-"<br />\n"
-"<br />\n"
-"<br />\n"
-"URL εργασίας: {$submissionUrl}"
-
-msgid "emails.editorDecisionDecline.description"
-msgstr "This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission."
-
-msgid "emails.copyeditRequest.subject"
-msgstr "Αίτημα Επιμέλειας Κειμένων"
-
-msgid "emails.copyeditRequest.body"
-msgstr ""
-"{$recipientName}:<br />\n"
-"<br />\n"
-"Θα ήθελα να σας ζητήσω να αναλάβετε την επιμέλεια του κειμένου της εργασίας &quot;{$submissionTitle}&quot; που υποβλήθηκε στις εκδόσεις {$contextName} ακολουθώντας τα παρακάτω βήματα:<br />\n"
-"1. Κάντε κλικ στο URL υποβολής που βρίσκεται παρακάτω.<br />\n"
-"2. Συνδεθείτε στις εκδόσεις και κάντε κλικ στην επιλογή Αρχείο που εμφανίζεται στο Βήμα 1.<br />\n"
-"3. Ανατρέξτε στις Οδηγίες διαμόρφωσης κειμένων που βρίσκονται στην ιστοσελίδα.<br />\n"
-"4. Ανοίξτε το αρχείο που κατέβηκε και πραγματοποιήστε διαμόρφωση κειμένου, ενώ προσθέτετε ερωτήματα προς τον συγγραφέα όπου χρειάζεται.<br />\n"
-"5. Αποθηκεύστε το αρχείο με το διαμορφωμένο κείμενο και μεταφορτώστε το  στο Βήμα 1 της Επιμέλειας Κειμένων.<br />\n"
-"6. Αποστείλετε το σχετικό email ΟΛΟΚΛΗΡΩΣΗΣ στον επιμελητή.<br />\n"
-"<br />\n"
-"{$contextName} URL: {$contextUrl}<br />\n"
-"URL Υποβολής: {$submissionUrl}<br />\n"
-"Όνομα Χρήστη: {$recipientUsername}"
-
-msgid "emails.copyeditRequest.description"
-msgstr "Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται από τον Επιμελητή μιας Σειράς  σε κάποιον από τους υπεύθυνους επιμέλειας κειμένων της υποβολής για να ζητήσει την έναρξη της διαδικασίας επιμέλειας κειμένων (copyediting). Παρέχει πληροφορίες σχετικά με την επιμέλεια της  υποβολής και τον τρόπο πρόσβασης σε αυτή."
 
 msgid "emails.layoutRequest.subject"
 msgstr "Αίτημα σελιδοποίησης"
 
+#, fuzzy
 msgid "emails.layoutRequest.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -529,6 +386,7 @@ msgstr ""
 "<br />\n"
 "Εάν δεν μπορείτε να αναλάβετε τη συγκεκριμένη εργασία αυτή τη στιγμή ή έχετε απορίες, επικοινωνήστε μαζί μας. Ευχαριστούμε για την συμβολή σας σε αυτή την έκδοση."
 
+#, fuzzy
 msgid "emails.layoutRequest.description"
 msgstr "Το συγκεκριμένο μήνυμα στέλνεται από τον Επιμελητή Σειράς στον Επιμελητή Σελιδοποίησης και τον ενημερώνει ότι του ανατίθεται η επιμέλεια της σελιδοποίησης μιας υποβολής. Παρέχει πληροφορίες σχετικά με την υποβολή και τον τρόπο πρόσβασης σε αυτή."
 

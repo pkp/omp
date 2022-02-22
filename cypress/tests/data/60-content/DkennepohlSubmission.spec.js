@@ -90,11 +90,13 @@ describe('Data suite tests', function() {
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Kennepohl');
-		cy.sendToReview('External');
-		cy.get('li.ui-state-active a:contains("External Review")');
+		cy.clickDecision('Send to External Review');
+		cy.recordDecisionSendToReview('Send to External Review', ['Dietmar Kennepohl'], [title]);
+		cy.isActiveStageTab('External Review');
 		cy.assignReviewer('Adela Gallego');
-		cy.recordEditorialDecision('Accept Submission');
-		cy.get('li.ui-state-active a:contains("Copyediting")');
+		cy.clickDecision('Accept Submission');
+		cy.recordDecisionAcceptSubmission(['Dietmar Kennepohl'], [], []);
+		cy.isActiveStageTab('Copyediting');
 		cy.assignParticipant('Copyeditor', 'Maria Fritz');
 	});
 });

@@ -12,11 +12,6 @@ msgstr ""
 "20)) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "api.submissions.403.contextRequired"
-msgstr ""
-"Pentru a realiza sau edita o transmisie trebuie făcută o solicitare către "
-"terminalul API al editurii."
-
 msgid "api.submissions.403.cantChangeContext"
 msgstr "Nu se poate schimba editura unei transmisii."
 

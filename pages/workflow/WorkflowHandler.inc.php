@@ -16,11 +16,41 @@
 import('lib.pkp.pages.workflow.PKPWorkflowHandler');
 
 use APP\core\Services;
+use APP\core\Application;
+use APP\decision\types\AcceptFromInternal;
+use APP\decision\types\DeclineInternal;
+use APP\decision\types\NewInternalReviewRound;
+use APP\decision\types\RecommendAcceptInternal;
+use APP\decision\types\RecommendDeclineInternal;
+use APP\decision\types\RecommendRevisionsInternal;
+use APP\decision\types\RecommendSendExternalReview;
+use APP\decision\types\RequestRevisionsInternal;
+use APP\decision\types\RevertDeclineInternal;
+use APP\decision\types\SendExternalReview;
+use APP\decision\types\SendInternalReview;
+use APP\decision\types\SkipInternalReview;
 use APP\file\PublicFileManager;
-
 use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\core\PKPApplication;
+use PKP\db\DAORegistry;
+use PKP\decision\DecisionType;
+use PKP\decision\types\Accept;
+use PKP\decision\types\BackToCopyediting;
+use PKP\decision\types\BackToReview;
+use PKP\decision\types\BackToSubmissionFromCopyediting;
+use PKP\decision\types\Decline;
+use PKP\decision\types\InitialDecline;
+use PKP\decision\types\NewExternalReviewRound;
+use PKP\decision\types\RecommendAccept;
+use PKP\decision\types\RecommendDecline;
+use PKP\decision\types\RecommendRevisions;
+use PKP\decision\types\RequestRevisions;
+use PKP\decision\types\RevertDecline;
+use PKP\decision\types\RevertInitialDecline;
+use PKP\decision\types\SendToProduction;
+use PKP\decision\types\SkipExternalReview;
+use PKP\plugins\HookRegistry;
 use PKP\security\Role;
 
 class WorkflowHandler extends PKPWorkflowHandler
@@ -180,5 +210,123 @@ class WorkflowHandler extends PKPWorkflowHandler
                 'publicationId' => '__publicationId__',
             ]
         );
+    }
+
+    protected function getStageDecisionTypes(int $stageId): array
+    {
+        $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
+        switch ($stageId) {
+            case WORKFLOW_STAGE_ID_SUBMISSION:
+                $decisionTypes = [
+                    new SkipInternalReview(),
+                    new SkipExternalReview(),
+                ];
+                if ($submission->getData('status') === Submission::STATUS_DECLINED) {
+                    $decisionTypes[] = new RevertInitialDecline();
+                } elseif ($submission->getData('status') === Submission::STATUS_QUEUED) {
+                    $decisionTypes[] = new InitialDecline();
+                }
+                $decisionTypes[] = new SendInternalReview();
+                break;
+            case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
+                $decisionTypes = [
+                    new RequestRevisionsInternal(),
+                    new SendExternalReview(),
+                    new AcceptFromInternal(),
+                ];
+                if ($submission->getData('status') === Submission::STATUS_DECLINED) {
+                    $decisionTypes[] = new RevertDeclineInternal();
+                } elseif ($submission->getData('status') === Submission::STATUS_QUEUED) {
+                    $decisionTypes[] = new DeclineInternal();
+                }
+                break;
+            case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
+                $decisionTypes = [
+                    new RequestRevisions(),
+                    new Accept(),
+                ];
+                if ($submission->getData('status') === Submission::STATUS_DECLINED) {
+                    $decisionTypes[] = new RevertDecline();
+                } elseif ($submission->getData('status') === Submission::STATUS_QUEUED) {
+                    $decisionTypes[] = new Decline();
+                }
+                break;
+            case WORKFLOW_STAGE_ID_EDITING:
+                /** @var ReviewRoundDAO $reviewRoundDao */
+                $reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
+                $hasReviewRound = $reviewRoundDao->submissionHasReviewRound($submission->getId(), WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
+                $decisionTypes = [
+                    new SendToProduction(),
+                    $hasReviewRound
+                        ? new BackToReview()
+                        : new BackToSubmissionFromCopyediting()
+                ];
+                break;
+            case WORKFLOW_STAGE_ID_PRODUCTION:
+                $decisionTypes = [
+                    new BackToCopyediting(),
+                ];
+                break;
+        }
+
+        HookRegistry::call('Workflow::Decisions', [&$decisionTypes, $stageId]);
+
+        return $decisionTypes;
+    }
+
+    protected function getStageRecommendationTypes(int $stageId): array
+    {
+        switch ($stageId) {
+            case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
+                $decisionTypes = [
+                    new RecommendRevisionsInternal(),
+                    new RecommendAcceptInternal(),
+                    new RecommendDeclineInternal(),
+                    new RecommendSendExternalReview(),
+                ];
+                break;
+            case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
+                $decisionTypes = [
+                    new RecommendRevisions(),
+                    new RecommendAccept(),
+                    new RecommendDecline(),
+                ];
+                break;
+            default:
+                $decisionTypes = [];
+        }
+
+
+        HookRegistry::call('Workflow::Recommendations', [$decisionTypes, $stageId]);
+
+        return $decisionTypes;
+    }
+
+    protected function getPrimaryDecisionTypes(): array
+    {
+        return [
+            SkipInternalReview::class,
+            SendExternalReview::class,
+            AcceptFromInternal::class,
+            Accept::class,
+            SendToProduction::class,
+        ];
+    }
+
+    protected function getWarnableDecisionTypes(): array
+    {
+        return [
+            InitialDecline::class,
+            DeclineInternal::class,
+            Decline::class,
+        ];
+    }
+
+    protected function getNewReviewRoundDecisionType(int $stageId): DecisionType
+    {
+        if ($stageId === WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
+            return new NewInternalReviewRound();
+        }
+        return new NewExternalReviewRound();
     }
 }

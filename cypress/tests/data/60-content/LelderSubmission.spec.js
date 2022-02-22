@@ -100,8 +100,9 @@ describe('Data suite tests', function() {
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Elder');
-		cy.sendToReview('Internal');
-		cy.get('li.ui-state-active a:contains("Internal Review")');
+		cy.clickDecision('Send to Internal Review');
+		cy.recordDecisionSendToReview('Send to Internal Review', ['Laurent Elder'], [title]);
+		cy.isActiveStageTab('Internal Review');
 		cy.assignReviewer('Julie Janssen');
 		cy.assignReviewer('Paul Hudson');
 		cy.assignReviewer('Aisla McCrae');

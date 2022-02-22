@@ -1253,6 +1253,7 @@ msgstr "Acesso negado! Não foi designado e esta etapa do fluxo de trabalho."
 msgid "user.authorization.seriesAssignment"
 msgstr "Está a tentar aceder a uma monografia que não faz parte da sua série."
 
+#, fuzzy
 msgid "user.authorization.noContext"
 msgstr "Nenhuma editora neste contexto!"
 

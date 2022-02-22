@@ -11,11 +11,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "api.submissions.403.contextRequired"
-msgstr ""
-"Para facer ou editar un envío debes facer unha solicitude ao terminal API da "
-"editorial."
-
 msgid "api.submissions.403.cantChangeContext"
 msgstr "Non podes cambiar a editorial dun envío."
 

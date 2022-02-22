@@ -316,6 +316,7 @@ msgstr "Dizi konumu (önce en yüksek)"
 msgid "catalog.viewableFile.title"
 msgstr "{$title} dosyasının {$type} görünümü"
 
+#, fuzzy
 msgid "user.authorization.noContext"
 msgstr "Kurulu yayınevi yok!"
 

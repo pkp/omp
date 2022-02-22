@@ -23,8 +23,3 @@ msgstr ""
 
 msgid "api.publications.403.submissionsDidNotMatch"
 msgstr "Публікація, яку ви шукаєте не є частиною цього подання."
-
-msgid "api.submissions.403.contextRequired"
-msgstr ""
-"Щоб зробити чи редагувати подання, ви маєте зробити запит до кінцевої точки "
-"API Видавництва."

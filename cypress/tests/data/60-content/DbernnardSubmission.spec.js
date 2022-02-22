@@ -21,6 +21,7 @@ describe('Data suite tests', function() {
 		});
 
 		var title = 'The Information Literacy User’s Guide';
+		var author = 'Deborah Bernnard';
 		cy.createSubmission({
 			'type': 'editedVolume',
 			'title': title,
@@ -77,8 +78,9 @@ describe('Data suite tests', function() {
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Bernnard');
-		cy.sendToReview('Internal');
-		cy.get('li.ui-state-active a:contains("Internal Review")');
+		cy.clickDecision('Send to Internal Review');
+		cy.recordDecisionSendToReview('Send to Internal Review', [author], [title]);
+		cy.isActiveStageTab('Internal Review');
 		// Assign a recommendOnly section editor
 		cy.assignParticipant('Series editor', 'Minoti Inoue', true);
 		cy.logout();
@@ -86,7 +88,8 @@ describe('Data suite tests', function() {
 		cy.login('minoue', null, 'publicknowledge'),
 		cy.get('#myQueue').find('a').contains('View Bernnard').click({force: true});
 		// Recommend
-		cy.recordEditorialRecommendation('Send to External Review');
+		cy.clickDecision('Recommend Accept');
+		cy.recordRecommendation('Recommend Accept', ['Daniel Barnes']);
 		cy.logout();
 		// Log in as editor and see the existing recommendation
 		cy.findSubmissionAsEditor('dbarnes', null, 'Bernnard');

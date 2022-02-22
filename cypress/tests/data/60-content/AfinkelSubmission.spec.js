@@ -101,7 +101,9 @@ describe('Data suite tests', function() {
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Finkel');
-		cy.sendToReview('External');
+		cy.clickDecision('Send to External Review');
+		cy.recordDecisionSendToReview('Send to External Review', ['Alvin Finkel'], [submission.title]);
+		cy.isActiveStageTab('External Review');
 		cy.assignReviewer('Al Zacharia');
 		cy.assignReviewer('Gonzalo Favio');
 

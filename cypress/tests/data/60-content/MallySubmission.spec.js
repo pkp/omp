@@ -72,13 +72,15 @@ describe('Data suite tests', function() {
 		cy.findSubmissionAsEditor('dbarnes', null, 'Ally');
 
 		// Internal review
-		cy.sendToReview('Internal');
-		cy.get('li.ui-state-active a:contains("Internal Review")');
+		cy.clickDecision('Send to Internal Review');
+		cy.recordDecisionSendToReview('Send to Internal Review', ['Mohamed Ally'], [title]);
+		cy.isActiveStageTab('Internal Review');
 		cy.assignReviewer('Paul Hudson');
 
 		// External review
-		cy.sendToReview('External', 'Internal');
-		cy.get('li.ui-state-active a:contains("External Review")');
+		cy.clickDecision('Send to External Review');
+		cy.recordDecisionSendToReview('Send to External Review', ['Mohamed Ally'], []);
+		cy.isActiveStageTab('External Review');
 		cy.assignReviewer('Adela Gallego');
 		cy.assignReviewer('Al Zacharia');
 		cy.assignReviewer('Gonzalo Favio');
@@ -91,7 +93,7 @@ describe('Data suite tests', function() {
 
 		// Accept submission
 		cy.findSubmissionAsEditor('dbarnes', null, 'Ally');
-		cy.recordEditorialDecision('Accept Submission');
-		cy.get('li.ui-state-active a:contains("Copyediting")');
+		cy.recordDecisionAcceptSubmission(['Mohamed Ally'], [], []);
+		cy.isActiveStageTab('Copyediting');
 	});
 });
