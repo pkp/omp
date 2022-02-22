@@ -1,10 +1,10 @@
-# Pia Piontkowitz <pia.piontkowitz@rub.de>, 2021.
+# Pia Piontkowitz <pia.piontkowitz@rub.de>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
-"PO-Revision-Date: 2021-12-08 14:20+0000\n"
+"PO-Revision-Date: 2022-02-22 11:05+0000\n"
 "Last-Translator: Pia Piontkowitz <pia.piontkowitz@rub.de>\n"
 "Language-Team: German <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "de_DE/>\n"
@@ -1490,3 +1490,25 @@ msgid "doi.manager.settings.explainDois"
 msgstr ""
 "Bitte wählen Sie die Publikationsobjekte aus, denen Digital Object "
 "Identifier (DOI) zugewiesen werden sollen:"
+
+msgid "doi.manager.submissionDois"
+msgstr "Monographien-DOIs"
+
+msgid "doi.manager.displayName"
+msgstr "DOIs"
+
+msgid "manager.dois.formatIdentifier.file"
+msgstr "Format / {$format}"
+
+msgid "doi.manager.settings.doiCreationTime.copyedit"
+msgstr "Im Schritt \"Lektorat\""
+
+msgid "doi.manager.settings.doiSuffixLegacy"
+msgstr ""
+"Standard-Patterns verwenden.<br />%p.%m für Monographien<br />%p.%m.c%c für "
+"Kapitel<br />%p.%m.%f für Publikationsformate<br />%p.%m.%f.%s für Dateien."
+
+msgid "manager.setup.enableDois.description"
+msgstr ""
+"Digital Object Identifier (DOIs) zu Monographien, Kapiteln, "
+"Publikationsformaten, und Dateien zuweisen."
