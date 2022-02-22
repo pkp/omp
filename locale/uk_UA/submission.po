@@ -1,7 +1,8 @@
+# Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-05-05 01:48+0000\n"
-"Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
+"PO-Revision-Date: 2022-02-22 14:49+0000\n"
+"Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/uk_UA/>\n"
 "Language: uk_UA\n"
@@ -467,3 +468,13 @@ msgstr "Деталі публікації для версії {$version}"
 msgid "submission.queries.production"
 msgstr "Обговорення подання"
 
+msgid "submission.list.orderFeatures"
+msgstr "Упорядкувати ознаки"
+
+msgid "submission.submit.checklistErrors"
+msgstr ""
+"Будь ласка, прочитайте й відмітьте пункти у списку подання.  Кількість "
+"невідмічених позицій  - {$itemsRemaining} ."
+
+msgid "submission.proofs"
+msgstr "Пруфи"
