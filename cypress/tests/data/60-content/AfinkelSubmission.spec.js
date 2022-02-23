@@ -20,10 +20,9 @@ describe('Data suite tests', function() {
 			'country': 'Canada'
 		});
 
-		var title = 'The West and Beyond: New Perspectives on an Imagined Region';
-		cy.createSubmission({
+		var submission = {
 			'type': 'editedVolume',
-			'title': title,
+			'title': 'The West and Beyond: New Perspectives on an Imagined Region',
 			'abstract': 'The West and Beyond explores the state of Western Canadian history, showcasing the research interests of a new generation of scholars while charting new directions for the future and stimulating further interrogation of our past. This dynamic collection encourages dialogue among generations of historians of the West, and among practitioners of diverse approaches to the past. It also reflects a broad range of disciplinary and professional boundaries, offering new ways to understand the West.',
 			'submitterRole': 'Volume editor',
 			'additionalAuthors': [
@@ -97,12 +96,13 @@ describe('Data suite tests', function() {
 					'contributors': ['Matt Dyce', 'James Opp'],
 				}
 			]
-		});
+		};
+		cy.createSubmission(submission);
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Finkel');
 		cy.clickDecision('Send to External Review');
-		cy.recordDecisionSendToReview('Send to External Review', ['Alvin Finkel'], [submission.title]);
+		cy.recordDecisionSendToReview('Send to External Review', ['Alvin Finkel'], submission.chapters.map(chapter => chapter.title.substring(0, 35)));
 		cy.isActiveStageTab('External Review');
 		cy.assignReviewer('Al Zacharia');
 		cy.assignReviewer('Gonzalo Favio');

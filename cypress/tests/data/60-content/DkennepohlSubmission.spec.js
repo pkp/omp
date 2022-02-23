@@ -20,11 +20,10 @@ describe('Data suite tests', function() {
 			'country': 'Canada'
 		});
 
-		var title = 'Accessible Elements: Teaching Science Online and at a Distance';
-		cy.createSubmission({
+		var submission = {
 			'type': 'editedVolume',
 			'series': 'Education',
-			'title': title,
+			'title': 'Accessible Elements: Teaching Science Online and at a Distance',
 			'abstract': 'Accessible Elements informs science educators about current practices in online and distance education: distance-delivered methods for laboratory coursework, the requisite administrative and institutional aspects of online and distance teaching, and the relevant educational theory.',
 			'keywords': [
 				'Education',
@@ -86,12 +85,13 @@ describe('Data suite tests', function() {
 					'contributors': ['Stuart Palmer'],
 				},
 			],
-		});
+		};
+		cy.createSubmission(submission);
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Kennepohl');
 		cy.clickDecision('Send to External Review');
-		cy.recordDecisionSendToReview('Send to External Review', ['Dietmar Kennepohl'], [title]);
+		cy.recordDecisionSendToReview('Send to External Review', ['Dietmar Kennepohl'], submission.chapters.map(chapter => chapter.title.substring(0, 35)));
 		cy.isActiveStageTab('External Review');
 		cy.assignReviewer('Adela Gallego');
 		cy.clickDecision('Accept Submission');

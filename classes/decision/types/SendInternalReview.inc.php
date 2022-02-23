@@ -15,6 +15,7 @@ namespace APP\decision\types;
 
 use APP\decision\Decision;
 use APP\facades\Repo;
+use APP\mail\mailables\DecisionSendInternalReviewNotifyAuthor;
 use APP\submission\Submission;
 use Illuminate\Validation\Validator;
 use PKP\context\Context;
@@ -24,7 +25,6 @@ use PKP\decision\steps\Email;
 use PKP\decision\steps\PromoteFiles;
 use PKP\decision\types\traits\InSubmissionStage;
 use PKP\decision\types\traits\NotifyAuthors;
-use PKP\mail\mailables\DecisionSendInternalReviewNotifyAuthor;
 use PKP\security\Role;
 use PKP\submission\reviewRound\ReviewRound;
 use PKP\submissionFile\SubmissionFile;
@@ -42,7 +42,7 @@ class SendInternalReview extends DecisionType
 
     public function getNewStageId(): int
     {
-        return WORKFLOW_STAGE_ID_SUBMISSION;
+        return WORKFLOW_STAGE_ID_INTERNAL_REVIEW;
     }
 
     public function getNewStatus(): ?int

@@ -13,8 +13,9 @@
  *  decision is made.
  */
 
-namespace PKP\mail\mailables;
+namespace APP\mail\mailables;
 
+use PKP\mail\mailables\DecisionSendExternalReviewNotifyAuthor;
 use PKP\mail\traits\Recipient;
 use PKP\mail\traits\Sender;
 

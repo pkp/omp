@@ -16,6 +16,7 @@ namespace APP\publication\maps;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\publication\Publication;
+use PKP\db\DAORegistry;
 use PKP\services\PKPSchemaService;
 use PKP\submissionFile\SubmissionFile;
 
@@ -59,8 +60,12 @@ class Schema extends \PKP\publication\maps\Schema
 
             $submissionFiles = Repo::submissionFile()->getMany($submissionFilesCollector);
 
+            /** @var GenreDAO $genreDao */
+            $genreDao = DAORegistry::getDAO('GenreDAO');
+            $genres = $genreDao->getByContextId($this->submission->getData('contextId'))->toArray();
+
             $output['publicationFormats'] = array_map(
-                function ($publicationFormat) use ($submissionFiles) {
+                function ($publicationFormat) use ($submissionFiles, $genres) {
                     $data = $publicationFormat->_data;
 
                     if ($data['doiId'] !== null) {
@@ -72,7 +77,7 @@ class Schema extends \PKP\publication\maps\Schema
                         return $publicationFormat->getId() === $submissionFile->getData('assocId');
                     });
                     return array_merge($data, [
-                        'submissionFiles' => Repo::submissionFile()->getSchemaMap()->mapMany($formatSpecificFiles)->values()->toArray()
+                        'submissionFiles' => Repo::submissionFile()->getSchemaMap()->mapMany($formatSpecificFiles, $genres)->values()->toArray()
                     ]);
                 },
                 $publication->getData('publicationFormats')

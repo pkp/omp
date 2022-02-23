@@ -94,6 +94,30 @@ class Repository extends \PKP\decision\Repository
         return $this->decisionTypes;
     }
 
+    public function getDeclineDecisionTypes(): array
+    {
+        return [
+            new InitialDecline(),
+            new DeclineInternal(),
+            new Decline(),
+        ];
+    }
+
+    public function isRecommendation(int $decision): bool
+    {
+        return in_array($decision, [
+            Decision::RECOMMEND_ACCEPT,
+            Decision::RECOMMEND_DECLINE,
+            Decision::RECOMMEND_PENDING_REVISIONS,
+            Decision::RECOMMEND_RESUBMIT,
+            Decision::RECOMMEND_ACCEPT_INTERNAL,
+            Decision::RECOMMEND_DECLINE_INTERNAL,
+            Decision::RECOMMEND_PENDING_REVISIONS_INTERNAL,
+            Decision::RECOMMEND_RESUBMIT_INTERNAL,
+            Decision::RECOMMEND_EXTERNAL_REVIEW
+        ]);
+    }
+
     protected function getReviewNotificationTypes(): array
     {
         return [

@@ -13,7 +13,6 @@
 
 namespace APP\decision\types;
 
-use APP\decision\Decision;
 use APP\decision\types\traits\InInternalReviewRound;
 use APP\facades\Repo;
 use APP\submission\Submission;
@@ -25,16 +24,6 @@ use PKP\submissionFile\SubmissionFile;
 class SendExternalReview extends PKPSendExternalReview
 {
     use InInternalReviewRound;
-
-    public function getDecision(): int
-    {
-        return Decision::EXTERNAL_REVIEW;
-    }
-
-    public function getNewStageId(): int
-    {
-        return WORKFLOW_STAGE_ID_EXTERNAL_REVIEW;
-    }
 
     public function getNewReviewRoundStatus(): ?int
     {

@@ -15,11 +15,10 @@
 
 import('lib.pkp.pages.workflow.PKPWorkflowHandler');
 
-use APP\core\Services;
 use APP\core\Application;
+use APP\core\Services;
 use APP\decision\types\AcceptFromInternal;
 use APP\decision\types\DeclineInternal;
-use APP\decision\types\NewInternalReviewRound;
 use APP\decision\types\RecommendAcceptInternal;
 use APP\decision\types\RecommendDeclineInternal;
 use APP\decision\types\RecommendRevisionsInternal;
@@ -34,14 +33,12 @@ use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\core\PKPApplication;
 use PKP\db\DAORegistry;
-use PKP\decision\DecisionType;
 use PKP\decision\types\Accept;
 use PKP\decision\types\BackToCopyediting;
 use PKP\decision\types\BackToReview;
 use PKP\decision\types\BackToSubmissionFromCopyediting;
 use PKP\decision\types\Decline;
 use PKP\decision\types\InitialDecline;
-use PKP\decision\types\NewExternalReviewRound;
 use PKP\decision\types\RecommendAccept;
 use PKP\decision\types\RecommendDecline;
 use PKP\decision\types\RecommendRevisions;
@@ -320,13 +317,5 @@ class WorkflowHandler extends PKPWorkflowHandler
             DeclineInternal::class,
             Decline::class,
         ];
-    }
-
-    protected function getNewReviewRoundDecisionType(int $stageId): DecisionType
-    {
-        if ($stageId === WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
-            return new NewInternalReviewRound();
-        }
-        return new NewExternalReviewRound();
     }
 }

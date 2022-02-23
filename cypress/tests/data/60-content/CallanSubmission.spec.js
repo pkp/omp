@@ -20,12 +20,11 @@ describe('Data suite tests', function() {
 			'country': 'Canada'
 		});
 
-		var title = 'Bomb Canada and Other Unkind Remarks in the American Media';
 		var author = 'Chantal Allan';
-		cy.createSubmission({
+		var submission = {
 			'type': 'monograph',
 			//'series': '',
-			'title': title,
+			'title': 'Bomb Canada and Other Unkind Remarks in the American Media',
 			'abstract': 'Canada and the United States. Two nations, one border, same continent. Anti-American sentiment in Canada is well documented, but what have Americans had to say about their northern neighbour? Allan examines how the American media has portrayed Canada, from Confederation to Obama’s election. By examining major events that have tested bilateral relations, Bomb Canada tracks the history of anti-Canadianism in the U.S. Informative, thought provoking and at times hilarious, this book reveals another layer of the complex relationship between Canada and the United States.',
 			'keywords': [
 				'Canadian Studies',
@@ -59,12 +58,13 @@ describe('Data suite tests', function() {
 					'contributors': [author],
 				},
 			]
-		});
+		};
+		cy.createSubmission(submission);
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Allan');
 		cy.clickDecision('Send to Internal Review');
-		cy.recordDecisionSendToReview('Send to Internal Review', [author], [title]);
+		cy.recordDecisionSendToReview('Send to Internal Review', [author], [submission.title]);
 		cy.isActiveStageTab('Internal Review');
 		cy.assignReviewer('Paul Hudson');
 		cy.clickDecision('Send to External Review');
@@ -76,7 +76,7 @@ describe('Data suite tests', function() {
 		cy.isActiveStageTab('Copyediting');
 		cy.assignParticipant('Copyeditor', 'Sarah Vogt');
 		cy.clickDecision('Send To Production');
-		cy.recordDecisionSendToProduction([author]);
+		cy.recordDecisionSendToProduction([author], []);
 		cy.isActiveStageTab('Production');
 		cy.assignParticipant('Layout Editor', 'Stephen Hellier');
 		cy.assignParticipant('Proofreader', 'Catherine Turner');
@@ -106,12 +106,12 @@ describe('Data suite tests', function() {
 		cy.waitJQuery();
 
 		// File completion
-		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("' + Cypress.$.escapeSelector(title) + '") a[id*="-isComplete-not_approved-button-"]').click();
+		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("' + Cypress.$.escapeSelector(submission.title) + '") a[id*="-isComplete-not_approved-button-"]').click();
 		cy.get('form[id="assignPublicIdentifierForm"] button[id^="submitFormButton-"]').click();
 		cy.waitJQuery();
 
 		// File availability
-		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("' + Cypress.$.escapeSelector(title) + '") a[id*="-isAvailable-editApprovedProof-button-"]').click();
+		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("' + Cypress.$.escapeSelector(submission.title) + '") a[id*="-isAvailable-editApprovedProof-button-"]').click();
 		cy.get('input[id="openAccess"]').click();
 		cy.get('form#approvedProofForm button.submitFormButton').click();
 

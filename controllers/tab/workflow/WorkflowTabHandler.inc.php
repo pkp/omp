@@ -13,6 +13,10 @@
  * @brief Handle AJAX operations for workflow tabs.
  */
 
+use APP\decision\types\NewInternalReviewRound;
+use PKP\decision\DecisionType;
+use PKP\decision\types\NewExternalReviewRound;
+
 // Import the base Handler.
 import('lib.pkp.controllers.tab.workflow.PKPWorkflowTabHandler');
 
@@ -34,5 +38,13 @@ class WorkflowTabHandler extends PKPWorkflowTabHandler
             ],
             NOTIFICATION_LEVEL_TRIVIAL => []
         ];
+    }
+
+    protected function getNewReviewRoundDecisionType(int $stageId): DecisionType
+    {
+        if ($stageId === WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
+            return new NewInternalReviewRound();
+        }
+        return new NewExternalReviewRound();
     }
 }

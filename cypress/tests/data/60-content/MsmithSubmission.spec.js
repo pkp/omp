@@ -20,10 +20,9 @@ describe('Data suite tests', function() {
 			'country': 'Canada'
 		});
 
-		var title = 'Open Development: Networked Innovations in International Development';
-		cy.createSubmission({
+		var submission = {
 			'type': 'editedVolume',
-			'title': title,
+			'title': 'Open Development: Networked Innovations in International Development',
 			'abstract': 'The emergence of open networked models made possible by digital technology has the potential to transform international development. Open network structures allow people to come together to share information, organize, and collaborate. Open development harnesses this power to create new organizational forms and improve people’s lives; it is not only an agenda for research and practice but also a statement about how to approach international development. In this volume, experts explore a variety of applications of openness, addressing challenges as well as opportunities.',
 			'keywords': [
 				'International Development',
@@ -107,12 +106,13 @@ describe('Data suite tests', function() {
 					'contributors': ['Marshall Smith']
 				}
 			]
-		});
+		};
+		cy.createSubmission(submission);
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Smith');
 		cy.clickDecision('Send to Internal Review');
-		cy.recordDecisionSendToReview('Send to Internal Review', ['Matthew Smith'], [title]);
+		cy.recordDecisionSendToReview('Send to Internal Review', ['Matthew Smith'], submission.chapters.map(chapter => chapter.title.substring(0, 35)));
 		cy.isActiveStageTab('Internal Review');
 		cy.assignReviewer('Julie Janssen');
 		cy.assignReviewer('Paul Hudson');

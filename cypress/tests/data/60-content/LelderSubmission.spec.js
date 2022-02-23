@@ -20,10 +20,9 @@ describe('Data suite tests', function() {
 			'country': 'Canada'
 		});
 
-		var title = 'Connecting ICTs to Development';
-		cy.createSubmission({
+		var submission = {
 			'type': 'editedVolume',
-			'title': title,
+			'title': 'Connecting ICTs to Development',
 			'abstract': 'Over the past two decades, projects supported by the International Development Research Centre (IDRC) have critically examined how information and communications technologies (ICTs) can be used to improve learning, empower the disenfranchised, generate income opportunities for the poor, and facilitate access to healthcare in Africa, Asia, Latin America and the Caribbean. Considering that most development institutions and governments are currently attempting to integrate ICTs into their practices, it is an opportune time to reflect on the research findings that have emerged from IDRC’s work and research in this area.',
 			'keywords': [
 				'International Development',
@@ -96,18 +95,19 @@ describe('Data suite tests', function() {
 					'contributors': ['Jeremy de Beer', 'Sara Bannerman']
 				}
 			],
-		});
+		};
+		cy.createSubmission(submission);
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Elder');
 		cy.clickDecision('Send to Internal Review');
-		cy.recordDecisionSendToReview('Send to Internal Review', ['Laurent Elder'], [title]);
+		cy.recordDecisionSendToReview('Send to Internal Review', ['Laurent Elder'], submission.chapters.map(chapter => chapter.title.substring(0, 35)));
 		cy.isActiveStageTab('Internal Review');
 		cy.assignReviewer('Julie Janssen');
 		cy.assignReviewer('Paul Hudson');
 		cy.assignReviewer('Aisla McCrae');
 		cy.logout();
 
-		cy.performReview('phudson', null, title, null, 'I recommend declining this submission.');
+		cy.performReview('phudson', null, submission.title, null, 'I recommend declining this submission.');
 	});
 });

@@ -20,10 +20,9 @@ describe('Data suite tests', function() {
 			'country': 'Canada'
 		});
 
-		var title = 'Enabling Openness: The future of the information society in Latin America and the Caribbean';
-		cy.createSubmission({
+		var submission = {
 			'type': 'editedVolume',
-			'title': title,
+			'title': 'Enabling Openness: The future of the information society in Latin America and the Caribbean',
 			'abstract': 'In recent years, the Internet and other network technologies have emerged as a central issue for development in Latin America and the Caribbean. They have shown their potential to increase productivity and economic competitiveness, to create new ways to deliver education and health services, and to be driving forces for the modernization of the provision of public services.',
 			'series': 'Library & Information Studies',
 			'keywords': [
@@ -84,12 +83,13 @@ describe('Data suite tests', function() {
 					'contributors': ['Eleonora Rabinovich'],
 				},
 			],
-		});
+		};
+		cy.createSubmission(submission);
 
 		cy.logout();
 		cy.findSubmissionAsEditor('dbarnes', null, 'Perini');
 		cy.clickDecision('Send to Internal Review');
-		cy.recordDecisionSendToReview('Send to Internal Review', ['Fernando Perini'], [title]);
+		cy.recordDecisionSendToReview('Send to Internal Review', ['Fernando Perini'], submission.chapters.map(chapter => chapter.title.substring(0, 35)));
 		cy.isActiveStageTab('Internal Review');
 	});
 });

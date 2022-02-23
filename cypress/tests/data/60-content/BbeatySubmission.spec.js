@@ -20,11 +20,10 @@ describe('Data suite tests', function() {
 			'country': 'Canada'
 		});
 
-		var title = 'How Canadians Communicate: Contexts of Canadian Popular Culture';
-		cy.createSubmission({
+		var submission = {
 			'type': 'editedVolume',
 			'series': 'History',
-			'title': title,
+			'title': 'How Canadians Communicate: Contexts of Canadian Popular Culture',
 			'abstract': 'What does Canadian popular culture say about the construction and negotiation of Canadian national identity? This third volume of How Canadians Communicate describes the negotiation of popular culture across terrains where national identity is built by producers and audiences, government and industry, history and geography, ethnicities and citizenships.',
 			'keywords': [
 				'Canadian Studies',
@@ -75,23 +74,25 @@ describe('Data suite tests', function() {
 					'contributors': ['Will Straw'],
 				},
 			]
-		});
+		};
+		cy.createSubmission(submission);
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Beaty');
 		cy.clickDecision('Send to Internal Review');
-		cy.recordDecisionSendToReview('Send to Internal Review', ['Bart Beaty'], [title]);
+		cy.recordDecisionSendToReview('Send to Internal Review', ['Bart Beaty'], submission.chapters.map(chapter => chapter.title.substring(0, 35)));
 		cy.isActiveStageTab('Internal Review');
 		cy.assignReviewer('Aisla McCrae');
 		cy.clickDecision('Send to External Review');
 		cy.recordDecisionSendToReview('Send to External Review', ['Bart Beaty'], []);
 		cy.isActiveStageTab('External Review');
 		cy.assignReviewer('Al Zacharia');
+		cy.clickDecision('Accept Submission');
 		cy.recordDecisionAcceptSubmission(['Bart Beaty'], [], []);
 		cy.isActiveStageTab('Copyediting');
 		cy.assignParticipant('Copyeditor', 'Maria Fritz');
 		cy.clickDecision('Send To Production');
-		cy.recordDecisionSendToProduction(['Bart Beaty']);
+		cy.recordDecisionSendToProduction(['Bart Beaty'], []);
 		cy.isActiveStageTab('Production');
 		cy.assignParticipant('Layout Editor', 'Graham Cox');
 
