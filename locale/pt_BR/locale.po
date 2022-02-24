@@ -1192,6 +1192,7 @@ msgstr "Acesso negado ao arquivo específico da monografia."
 msgid "user.authorization.invalidMonograph"
 msgstr "Monografia inválida ou nenhuma monografia solicitada!"
 
+#, fuzzy
 msgid "user.authorization.noContext"
 msgstr "Nenhuma editora no contexto!"
 

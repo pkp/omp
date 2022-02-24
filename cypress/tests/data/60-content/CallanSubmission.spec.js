@@ -20,11 +20,11 @@ describe('Data suite tests', function() {
 			'country': 'Canada'
 		});
 
-		var title = 'Bomb Canada and Other Unkind Remarks in the American Media';
-		cy.createSubmission({
+		var author = 'Chantal Allan';
+		var submission = {
 			'type': 'monograph',
 			//'series': '',
-			'title': title,
+			'title': 'Bomb Canada and Other Unkind Remarks in the American Media',
 			'abstract': 'Canada and the United States. Two nations, one border, same continent. Anti-American sentiment in Canada is well documented, but what have Americans had to say about their northern neighbour? Allan examines how the American media has portrayed Canada, from Confederation to Obama’s election. By examining major events that have tested bilateral relations, Bomb Canada tracks the history of anti-Canadianism in the U.S. Informative, thought provoking and at times hilarious, this book reveals another layer of the complex relationship between Canada and the United States.',
 			'keywords': [
 				'Canadian Studies',
@@ -35,44 +35,49 @@ describe('Data suite tests', function() {
 			'chapters': [
 				{
 					'title': 'Prologue',
-					'contributors': ['Chantal Allan'],
+					'contributors': [author],
 				},
 				{
 					'title': 'Chapter 1: The First Five Years: 1867-1872',
-					'contributors': ['Chantal Allan'],
+					'contributors': [author],
 				},
 				{
 					'title': 'Chapter 2: Free Trade or "Freedom": 1911',
-					'contributors': ['Chantal Allan'],
+					'contributors': [author],
 				},
 				{
 					'title': 'Chapter 3: Castro, Nukes & the Cold War: 1953-1968',
-					'contributors': ['Chantal Allan'],
+					'contributors': [author],
 				},
 				{
 					'title': 'Chapter 4: Enter the Intellect: 1968-1984',
-					'contributors': ['Chantal Allan'],
+					'contributors': [author],
 				},
 				{
 					'title': 'Epilogue',
-					'contributors': ['Chantal Allan'],
+					'contributors': [author],
 				},
 			]
-		});
+		};
+		cy.createSubmission(submission);
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Allan');
-		cy.sendToReview('Internal');
-		cy.get('li.ui-state-active a:contains("Internal Review")');
+		cy.clickDecision('Send to Internal Review');
+		cy.recordDecisionSendToReview('Send to Internal Review', [author], [submission.title]);
+		cy.isActiveStageTab('Internal Review');
 		cy.assignReviewer('Paul Hudson');
-		cy.sendToReview('External', 'Internal');
-		cy.get('li.ui-state-active a:contains("External Review")');
+		cy.clickDecision('Send to External Review');
+		cy.recordDecisionSendToReview('Send to External Review', [author], []);
+		cy.isActiveStageTab('External Review');
 		cy.assignReviewer('Gonzalo Favio');
-		cy.recordEditorialDecision('Accept Submission');
-		cy.get('li.ui-state-active a:contains("Copyediting")');
+		cy.clickDecision('Accept Submission');
+		cy.recordDecisionAcceptSubmission([author], [], []);
+		cy.isActiveStageTab('Copyediting');
 		cy.assignParticipant('Copyeditor', 'Sarah Vogt');
-		cy.recordEditorialDecision('Send To Production');
-		cy.get('li.ui-state-active a:contains("Production")');
+		cy.clickDecision('Send To Production');
+		cy.recordDecisionSendToProduction([author], []);
+		cy.isActiveStageTab('Production');
 		cy.assignParticipant('Layout Editor', 'Stephen Hellier');
 		cy.assignParticipant('Proofreader', 'Catherine Turner');
 
@@ -101,12 +106,12 @@ describe('Data suite tests', function() {
 		cy.waitJQuery();
 
 		// File completion
-		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("' + Cypress.$.escapeSelector(title) + '") a[id*="-isComplete-not_approved-button-"]').click();
+		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("' + Cypress.$.escapeSelector(submission.title) + '") a[id*="-isComplete-not_approved-button-"]').click();
 		cy.get('form[id="assignPublicIdentifierForm"] button[id^="submitFormButton-"]').click();
 		cy.waitJQuery();
 
 		// File availability
-		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("' + Cypress.$.escapeSelector(title) + '") a[id*="-isAvailable-editApprovedProof-button-"]').click();
+		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("' + Cypress.$.escapeSelector(submission.title) + '") a[id*="-isAvailable-editApprovedProof-button-"]').click();
 		cy.get('input[id="openAccess"]').click();
 		cy.get('form#approvedProofForm button.submitFormButton').click();
 

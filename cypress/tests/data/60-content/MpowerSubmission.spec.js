@@ -20,10 +20,9 @@ describe('Data suite tests', function() {
 			'country': 'Canada'
 		});
 
-		var title = 'A Designer\'s Log: Case Studies in Instructional Design';
-		cy.createSubmission({
+		var submission = {
 			'type': 'monograph',
-			'title': title,
+			'title': 'A Designer\'s Log: Case Studies in Instructional Design',
 			'abstract': 'Books and articles on instructional design in online learning abound but rarely do we get such a comprehensive picture of what instructional designers do, how they do it, and the problems they solve as their university changes. Power documents the emergence of an adapted instructional design model for transforming courses from single-mode to dual-mode instruction, making this designer’s log a unique contribution to the fi eld of online learning.',
 			'submitterRole': 'Author',
 			'chapters': [
@@ -48,17 +47,19 @@ describe('Data suite tests', function() {
 					'contributors': ['Michael Power']
 				}
 			],
-		});
+		};
+		cy.createSubmission(submission);
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Power');
-		cy.sendToReview('External');
-		cy.get('li.ui-state-active a:contains("External Review")');
+		cy.clickDecision('Send to External Review');
+		cy.recordDecisionSendToReview('Send to External Review', ['Michael Power'], [submission.title]);
+		cy.isActiveStageTab('External Review');
 		cy.assignReviewer('Adela Gallego');
 		cy.assignReviewer('Al Zacharia');
 		cy.assignReviewer('Gonzalo Favio');
 		cy.logout();
 
-		cy.performReview('agallego', null, title, null, 'I recommend that the author revise this submission.');
+		cy.performReview('agallego', null, submission.title, null, 'I recommend that the author revise this submission.');
 	});
 });

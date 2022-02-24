@@ -21,11 +21,6 @@ msgstr ""
 msgid "api.emails.403.disabled"
 msgstr "E-posta bildirim özelliği bu yayınevi için etkinleştirilmemiştir."
 
-msgid "api.submissions.403.contextRequired"
-msgstr ""
-"Bir gönderim yapmak veya düzenlemek için, yayınevinin API uç noktasına bir "
-"istekte bulunmalısınız."
-
 msgid "api.submissions.403.cantChangeContext"
 msgstr "Bir gönderinin yayınevini değiştiremezsiniz."
 

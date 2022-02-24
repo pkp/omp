@@ -1271,6 +1271,7 @@ msgstr "Der Zugang zu dieser Buchdatei wurde verweigert."
 msgid "user.authorization.invalidMonograph"
 msgstr "Ungültiges Buch oder kein Buch angefordert!"
 
+#, fuzzy
 msgid "user.authorization.noContext"
 msgstr "Kein Verlag im Kontext!"
 

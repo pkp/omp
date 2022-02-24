@@ -11,11 +11,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "api.submissions.403.contextRequired"
-msgstr ""
-"For å opprette eller redigere en innlevering må du gjøre en forespørsel til "
-"utgiverens API-endepunkt."
-
 msgid "api.submissions.403.cantChangeContext"
 msgstr "Du kan ikke endre utgiver for en innlevering."
 

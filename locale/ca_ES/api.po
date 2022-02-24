@@ -11,11 +11,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "api.submissions.403.contextRequired"
-msgstr ""
-"Per fer o editar una tramesa heu de fer una sol·licitud al terminal API de "
-"l'editorial."
-
 msgid "api.submissions.403.cantChangeContext"
 msgstr "No podeu canviar l'editorial d'una tramesa."
 

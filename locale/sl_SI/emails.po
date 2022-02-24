@@ -66,24 +66,6 @@ msgstr "Glede na vaše področje delovanja, smo si dovolili registrirati vaše i
 msgid "emails.reviewerRegister.description"
 msgstr "To e-poštno sporočilo je poslano recenzentom ob registraciji, da se jih pozdravi v sistemu in jim posreduje informacijo o uporabniškem imenu in geslu."
 
-msgid "emails.issuePublishNotify.subject"
-msgstr "Izid nove knjige"
-
-msgid "emails.issuePublishNotify.body"
-msgstr "Bralci: <br /> <br /> {$contextName} je pravkar objavil_a svojo zadnjo knjigo na <a href=\"{$contextUrl}\">{$contextUrl}</a>. Vabimo vas, da si ogledate kazalo vsebine in obiščete spletno stran, da preberete monografske publikacije in ostale stvari, ki vas zanimajo.<br /> <br />Hvala za zanimanje (za naše delo), <br /> {$signature}"
-
-msgid "emails.issuePublishNotify.description"
-msgstr "To e-poštno sporočilo je poslano registriranim bralcem prek povezave \"Obvesti uporabnike\" v uredniškem domu uporabnika. Sporočilo obvesti bralce o izidu nove knjige in jih povabi k ogledu založbe na priloženem URL-ju."
-
-msgid "emails.submissionAck.subject"
-msgstr "Potrditev oddaje prispevka"
-
-msgid "emails.submissionAck.body"
-msgstr "{$recipientName}: <br /> <br /> Hvala za oddajo rokopisa &quot;{$submissionTitle}&quot; v {$contextName}. S sistemom za spletno upravljanje založbe, ki ga uporabljamo, lahko spremljate njegov napredek v procesu urejanja, če se prijavite na spletno stran založbe: <br /> <br /> Povezava URL do rokopisa: <a href=\"{$submissionUrl}\">{$submissionUrl}</a><br /> Uporabniško ime: {$recipientUsername}<br /> <br />Če imate kakšno vprašanje, se, prosim, obrnite name.  Hvala, da ste se odločili za našo založbo.<br /> <br /> {$signature}"
-
-msgid "emails.submissionAck.description"
-msgstr "Če je omogočena funkcija, bo to e-poštno sporočilo samodejno poslano avtorju, ko dokonča postopek predložitve rokopisa založbi. V sporočilu so informacije o spremljanju prispevka in zahvala avtorju za predložitev."
-
 msgid "emails.submissionAckNotUser.subject"
 msgstr "Potrditev oddaje prispevka"
 
@@ -189,15 +171,6 @@ msgstr "Urednik(i):<br /> <br /> Žal mi je, vendar v tem trenutku ne morem napi
 msgid "emails.reviewDecline.description"
 msgstr "To e-poštno sporočilo je uredniku zbirke poslal recenzent kot odgovor na prošnjo za recenzijo, v katerem obvešča urednika, da je zavrnil prošnjo za recenzijo."
 
-msgid "emails.reviewAck.subject"
-msgstr "Zahvala za recenzijo rokopisa"
-
-msgid "emails.reviewAck.body"
-msgstr "{$recipientName}:<br /> <br /> Hvala za dokončanje recenzije prispevka &quot;{$submissionTitle},&quot; za  {$contextName}. Zahvaljujemo se za vaš prispevek k kvaliteti del, ki jih objavljamo."
-
-msgid "emails.reviewAck.description"
-msgstr "To e-poštno sporočilo je poslal urednik zbirke, ki potrjuje prejem dokončane recenzije in se zahvali recenzentu za njegov prispevek."
-
 msgid "emails.reviewRemind.subject"
 msgstr "Opomnik za recenzijo prispevka"
 
@@ -234,75 +207,26 @@ msgstr "{$recipientName}:<br /> <br />, samo prijazen opomnik za našo prošnjo 
 msgid "emails.reviewRemindAutoOneclick.description"
 msgstr "To e-poštno sporočilo bo samodejno poslano po preteku roka za recenzijo in ko je omogočen dostop recenzenta z enim klikom. (glejte Nastavitve recenzije, ki jih najdete pod Nastavitve > Potek dela > Recenzija) Načrtovane naloge morajo biti omogočene in konfigurirane (glejte konfiguracijsko datoteko)."
 
+#, fuzzy
 msgid "emails.editorDecisionAccept.subject"
 msgstr "Uredniška odločitev"
 
+#, fuzzy
 msgid "emails.editorDecisionAccept.body"
 msgstr "{$authors}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href=\"{$submissionUrl}\">{$submissionUrl}</a>"
 
+#, fuzzy
 msgid "emails.editorDecisionAccept.description"
 msgstr "To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja o končni odločitvi glede prispevka."
-
-msgid "emails.editorDecisionSendToExternal.subject"
-msgstr "Uredniška odločitev"
-
-msgid "emails.editorDecisionSendToExternal.body"
-msgstr "{$authors}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href=\"{$submissionUrl}\">{$submissionUrl}</a>"
-
-msgid "emails.editorDecisionSendToExternal.description"
-msgstr "To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja, da je bil prispevek poslan v zunanjo recenzijo."
-
-msgid "emails.editorDecisionSendToProduction.subject"
-msgstr "Uredniška odločitev"
-
-msgid "emails.editorDecisionSendToProduction.body"
-msgstr "{$authors}:<br /> <br /> Urejanje vašega rokopisa &quot;{$submissionTitle},&quot; je končano. Publikacijo bomo poslali v produkcijo. <br /> <br /> Povezava URL do rokopisa <a href=\"{$submissionUrl}\">{$submissionUrl}</a>"
-
-msgid "emails.editorDecisionSendToProduction.description"
-msgstr "To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja, da je bil prispevek poslan v produkcijo."
-
-msgid "emails.editorDecisionRevisions.subject"
-msgstr "Uredniška odločitev"
-
-msgid "emails.editorDecisionRevisions.body"
-msgstr "{$authors}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href=\"{$submissionUrl}\">{$submissionUrl}</a>"
-
-msgid "emails.editorDecisionRevisions.description"
-msgstr "To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja o končni odločitvi glede prispevka."
-
-msgid "emails.editorDecisionResubmit.subject"
-msgstr "Uredniška odločitev"
-
-msgid "emails.editorDecisionResubmit.body"
-msgstr "{$authors}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href=\"{$submissionUrl}\">{$submissionUrl}</a>"
-
-msgid "emails.editorDecisionResubmit.description"
-msgstr "To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja o končni odločitvi glede prispevka."
-
-msgid "emails.editorDecisionDecline.subject"
-msgstr "Uredniška odločitev"
-
-msgid "emails.editorDecisionDecline.body"
-msgstr "{$authors}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href=\"{$submissionUrl}\">{$submissionUrl}</a>"
-
-msgid "emails.editorDecisionDecline.description"
-msgstr "To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja o končni odločitvi glede prispevka."
-
-msgid "emails.copyeditRequest.subject"
-msgstr "Prošnja za lektoriranje"
-
-msgid "emails.copyeditRequest.body"
-msgstr "{$recipientName}:<br /> <br />Prosimo vas za lektoriranje prispevka &quot;{$submissionTitle}&quot; za {$contextName} po naslednjih korakih:<br /> 1. Kliknite na URL povezavo do prispevka spodaj.<br /> 2. Prijavite se v založbo in kliknite na datoteko, ki se pokaže po 1. koraku<br /> 3. Preverite navodila za lektoriranje, ki so na spletni strani.<br /> 4. Prenesite datoteko, jo odprite in lektorirajte, hkrati pa po potrebi dodajajte vprašanja za avtorja.<br /> 5. Shranite lektorirano datoteko in jo naložite kot 1. korak lektoriranja.<br /> 6. Uredniku pošljite e-poštno sporočilo Zaključeno.<br /> <br /> {$contextName} Povezava URL: <a href=\"{$contextUrl}\">{$contextUrl}</a><br /> Povezava URL do prispevka: <a href=\"{$submissionUrl}\">{$submissionUrl}</a><br /> Uporabniško ime: {$recipientUsername}"
-
-msgid "emails.copyeditRequest.description"
-msgstr "Urednik zbirke pošlje to e-poštno sporočilo lektorju prispevka in prosi za začetek lektoriranja. Vsebuje informacije o prispevku in o tem, kako je možno dostopati do prispevka."
 
 msgid "emails.layoutRequest.subject"
 msgstr "Zahteva za prelom"
 
+#, fuzzy
 msgid "emails.layoutRequest.body"
 msgstr "{$recipientName}:<br /> <br /> Prispevek &quot;{$submissionTitle}&quot; za {$contextName} potrebuje prelom, ki se naredi po naslednjih korakih.<br /> 1. Kliknite na URL povezavo do prispevka spodaj.<br /> 2. Prijavite se v založbo in uporabite datoteko za pripravo preloma, da pripravite prelom skladno s standardi založbe.<br /> 3. Uredniku pošljite e-poštno sporočilo Zaključeno.<br /> <br /> {$contextName} URL: <a href=\"{$contextUrl}\">{$contextUrl}</a><br /> Povezava URL do prispevka: <a href=\"{$submissionUrl}\">{$submissionUrl}</a><br /> Uporabniško ime: {$recipientUsername}<br /> <br /> Če v tem trenutku dela ne morete opraviti ali imate kakšno vprašanje, se prosim obrnite name. Hvala za vaš prispevek založbi."
 
+#, fuzzy
 msgid "emails.layoutRequest.description"
 msgstr "To e-poštno sporočilo od urednika zbirke obvešča grafičnega urednika, da mu je bil dodeljen prispevek za grafično urejanje. Vsebuje informacije o prispevku in o tem, kako je možno dostopati do prispevka. "
 

@@ -20,10 +20,9 @@ describe('Data suite tests', function() {
 			'country': 'Canada'
 		});
 
-		var title = 'Mobile Learning: Transforming the Delivery of Education and Training';
-		cy.createSubmission({
+		var submission = {
 			'type': 'editedVolume',
-			'title': title,
+			'title': 'Mobile Learning: Transforming the Delivery of Education and Training',
 			'abstract': 'This collection is for anyone interested in the use of mobile technology for various distance learning applications. Readers will discover how to design learning materials for delivery on mobile technology and become familiar with the best practices of other educators, trainers, and researchers in the field, as well as the most recent initiatives in mobile learning research. Businesses and governments can learn how to deliver timely information to staff using mobile devices. Professors can use this book as a textbook for courses on distance education, mobile learning, and educational technology.',
 			'keywords': [
 				'Educational Technology'
@@ -66,19 +65,22 @@ describe('Data suite tests', function() {
 					'contributors': ['Torstein Rekkedal']
 				}
 			],
-		});
+		};
+		cy.createSubmission(submission);
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Ally');
 
 		// Internal review
-		cy.sendToReview('Internal');
-		cy.get('li.ui-state-active a:contains("Internal Review")');
+		cy.clickDecision('Send to Internal Review');
+		cy.recordDecisionSendToReview('Send to Internal Review', ['Mohamed Ally'], submission.chapters.map(chapter => chapter.title.substring(0, 35)));
+		cy.isActiveStageTab('Internal Review');
 		cy.assignReviewer('Paul Hudson');
 
 		// External review
-		cy.sendToReview('External', 'Internal');
-		cy.get('li.ui-state-active a:contains("External Review")');
+		cy.clickDecision('Send to External Review');
+		cy.recordDecisionSendToReview('Send to External Review', ['Mohamed Ally'], []);
+		cy.isActiveStageTab('External Review');
 		cy.assignReviewer('Adela Gallego');
 		cy.assignReviewer('Al Zacharia');
 		cy.assignReviewer('Gonzalo Favio');
@@ -86,12 +88,13 @@ describe('Data suite tests', function() {
 		cy.logout();
 
 		// Perform reviews
-		cy.performReview('agallego', null, title, null, 'I recommend requiring revisions.');
-		cy.performReview('gfavio', null, title, null, 'I recommend resubmitting.');
+		cy.performReview('agallego', null, submission.title, null, 'I recommend requiring revisions.');
+		cy.performReview('gfavio', null, submission.title, null, 'I recommend resubmitting.');
 
 		// Accept submission
 		cy.findSubmissionAsEditor('dbarnes', null, 'Ally');
-		cy.recordEditorialDecision('Accept Submission');
-		cy.get('li.ui-state-active a:contains("Copyediting")');
+		cy.clickDecision('Accept Submission');
+		cy.recordDecisionAcceptSubmission(['Mohamed Ally'], ['Adela Gallego', 'Gonzalo Favio'], []);
+		cy.isActiveStageTab('Copyediting');
 	});
 });

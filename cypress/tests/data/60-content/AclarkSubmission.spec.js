@@ -20,10 +20,9 @@ describe('Data suite tests', function() {
 			'country': 'Canada'
 		});
 
-		var title = 'The ABCs of Human Survival: A Paradigm for Global Citizenship';
-		cy.createSubmission({
+		var submission = {
 			'type': 'monograph',
-			'title': title,
+			'title': 'The ABCs of Human Survival: A Paradigm for Global Citizenship',
 			'abstract': 'The ABCs of Human Survival examines the effect of militant nationalism and the lawlessness of powerful states on the well-being of individuals and local communities―and the essential role of global citizenship within that dynamic. Based on the analysis of world events, Dr. Arthur Clark presents militant nationalism as a pathological pattern of thinking that threatens our security, while emphasizing effective democracy and international law as indispensable frameworks for human protection.',
 			'submitterRole': 'Author',
 			'chapters': [
@@ -40,14 +39,18 @@ describe('Data suite tests', function() {
 					'contributors': ['Arthur Clark']
 				}
 			],
-		});
+		};
+		cy.createSubmission(submission);
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Clark');
-		cy.sendToReview('External');
+		cy.clickDecision('Send to External Review');
+		cy.recordDecisionSendToReview('Send to External Review', ['Arthur Clark'], [submission.title]);
+		cy.isActiveStageTab('External Review');
 		cy.assignReviewer('Gonzalo Favio');
-		cy.recordEditorialDecision('Accept Submission');
-		cy.get('li.ui-state-active a:contains("Copyediting")');
+		cy.clickDecision('Accept Submission');
+		cy.recordDecisionAcceptSubmission(['Arthur Clark'], [], []);
+		cy.isActiveStageTab('Copyediting');
 		cy.assignParticipant('Copyeditor', 'Sarah Vogt');
 	});
 });

@@ -20,10 +20,9 @@ describe('Data suite tests', function() {
 			'country': 'Canada'
 		});
 
-		var title = 'Expansive Discourses: Urban Sprawl in Calgary, 1945-1978';
-		cy.createSubmission({
+		var submission = {
 			'type': 'monograph',
-			'title': title,
+			'title': 'Expansive Discourses: Urban Sprawl in Calgary, 1945-1978',
 			'abstract': 'A groundbreaking study of urban sprawl in Calgary after the Second World War. The interactions of land developers and the local government influenced how the pattern grew: developers met market demands and optimized profits by building houses as efficiently as possible, while the City had to consider wider planning constraints and infrastructure costs. Foran examines the complexity of their interactions from a historical perspective, why each party acted as it did, and where each can be criticized.',
 			'submitterRole': 'Author',
 			'chapters': [
@@ -40,11 +39,13 @@ describe('Data suite tests', function() {
 					'contributors': ['Max Foran']
 				},
 			],
-		});
+		};
+		cy.createSubmission(submission);
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Foran');
-		cy.sendToReview('External');
-		cy.get('li.ui-state-active a:contains("External Review")');
+		cy.clickDecision('Send to External Review');
+		cy.recordDecisionSendToReview('Send to External Review', ['Max Foran'], [submission.title]);
+		cy.isActiveStageTab('External Review');
 	});
 });

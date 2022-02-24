@@ -129,50 +129,6 @@ msgstr ""
 msgid "emails.reviewerRegister.description"
 msgstr "Esta mensagem é enviada a novos usuários cadastrados, como boas-vindas e oferecendo o registro de seus dados de acesso."
 
-msgid "emails.issuePublishNotify.subject"
-msgstr "Novo livro publicado"
-
-msgid "emails.issuePublishNotify.body"
-msgstr ""
-"Caros leitores,<br />\n"
-"<br />\n"
-"{$contextName} acabou de publicar seu último livro, disponível na página "
-"{$contextUrl}. Convidamos todos a revisar o sumário nesta mensagem e em "
-"seguida visitar o site para ver as monografias e encontrar os itens de seu "
-"interesse.<br />\n"
-"<br />\n"
-"Agradecendo pelo seu apoio contínuo ao nosso trabalho,<br />\n"
-"{$signature}"
-
-msgid "emails.issuePublishNotify.description"
-msgstr ""
-"Esta mensagem é enviada a leitores cadsatrados por meio do link \"Notificar "
-"Usuários\" na página do editor. Notifica leitores de uma nova publicação, "
-"com um convite para acessar o site por meio do endereço informado."
-
-msgid "emails.submissionAck.subject"
-msgstr "Agradecimento pela submissão"
-
-msgid "emails.submissionAck.body"
-msgstr ""
-"{$recipientName},<br />\n"
-"<br />\n"
-"Agradecemos a submissão do seu manuscrito, &quot;{$submissionTitle}&quot; à "
-"editora {$contextName}. Por meio de nosso sistema online de administração, "
-"poderá acompanhar o progresso por meio das etapas do processo editorial, "
-"acessando o sistema com as informações a seguir:<br />\n"
-"<br />\n"
-"Página do manuscrito: {$submissionUrl}<br />\n"
-"Login: {$recipientUsername}<br />\n"
-"<br />\n"
-"Em caso de dúvidas, entre em contato. Agradecemos por considerar nossa "
-"editora como um veículo para seus trabalhos.<br />\n"
-"<br />\n"
-"{$signature}"
-
-msgid "emails.submissionAck.description"
-msgstr "Quando habilitada, esta mensagem é enviada automaticamente ao autor ao concluir o processo de submissão. Fornece informações sobre como acompanhar a submissão através do processo editorial, agradecendo o autor pela submissão."
-
 msgid "emails.submissionAckNotUser.subject"
 msgstr "Agradecimento pela submissão"
 
@@ -358,20 +314,6 @@ msgstr ""
 msgid "emails.reviewDecline.description"
 msgstr "Esta mensagem é enviada pelo avaliador em resposta à solicitação do editor de série pela solicitação de avaliação, notificando de sua disponibilidade e recusando realizar a avaliação."
 
-msgid "emails.reviewAck.subject"
-msgstr "Agradecimento pela avaliação"
-
-msgid "emails.reviewAck.body"
-msgstr ""
-"{$recipientName},<br />\n"
-"<br />\n"
-"Agradecemos por concluir a avaliação da submissão "
-"&quot;{$submissionTitle}&quot; à editora {$contextName}. Sua contribuição é "
-"essencial para a qualidade do trabalho publicado por esta editora."
-
-msgid "emails.reviewAck.description"
-msgstr "Esta mensagem é enviada pelo editor de série confirmando o recebimento da avaliação e agradecendo o avaliador por sua contribuição."
-
 msgid "emails.reviewRemind.subject"
 msgstr "Avaliação pendente"
 
@@ -450,9 +392,11 @@ msgstr ""
 msgid "emails.reviewRemindAutoOneclick.description"
 msgstr "Esta mensagem é enviada automaticamente ao avaliador quando a data de entrega da avaliação passou (veja Opções de avaliação, no passo 2 de configuração da editora) e o acesso rápido está habilitado. Tarefas agendadas devem estar habilitadas e configuradas (veja o arquivo de configuração do site)."
 
+#, fuzzy
 msgid "emails.editorDecisionAccept.subject"
 msgstr "Decisão editorial"
 
+#, fuzzy
 msgid "emails.editorDecisionAccept.body"
 msgstr ""
 "{$authors},<br />\n"
@@ -463,115 +407,14 @@ msgstr ""
 "<br />\n"
 "Página do manuscrito: {$submissionUrl}"
 
+#, fuzzy
 msgid "emails.editorDecisionAccept.description"
 msgstr "Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão."
-
-msgid "emails.editorDecisionSendToExternal.subject"
-msgstr "Decisão editorial"
-
-msgid "emails.editorDecisionSendToExternal.body"
-msgstr ""
-"{$authors},<br />\n"
-"<br />\n"
-"A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submissionTitle}&quot;, foi tomada.<br />\n"
-"<br />\n"
-"A decisão é:<br />\n"
-"<br />\n"
-"Página do manuscrito: {$submissionUrl}"
-
-msgid "emails.editorDecisionSendToExternal.description"
-msgstr "Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão de enviar o trabalho para avaliação externa."
-
-msgid "emails.editorDecisionSendToProduction.subject"
-msgstr "Decisão editorial"
-
-msgid "emails.editorDecisionSendToProduction.body"
-msgstr ""
-"{$authors},<br />\n"
-"<br />\n"
-"A edição do manuscrito &quot;{$submissionTitle}&quot; foi concluída. O "
-"trabalho será enviado à editoração.<br />\n"
-"<br />\n"
-"Página do manuscrito: {$submissionUrl}"
-
-msgid "emails.editorDecisionSendToProduction.description"
-msgstr ""
-"Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-"
-"o do envio da submissão para editoração."
-
-msgid "emails.editorDecisionRevisions.subject"
-msgstr "Decisão editorial"
-
-msgid "emails.editorDecisionRevisions.body"
-msgstr ""
-"{$authors},<br />\n"
-"<br />\n"
-"A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submissionTitle}&quot;, foi tomada.<br />\n"
-"<br />\n"
-"A decisão é:<br />\n"
-"<br />\n"
-"Página do manuscrito: {$submissionUrl}"
-
-msgid "emails.editorDecisionRevisions.description"
-msgstr "Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão."
-
-msgid "emails.editorDecisionResubmit.subject"
-msgstr "Decisão editorial"
-
-msgid "emails.editorDecisionResubmit.body"
-msgstr ""
-"{$authors},<br />\n"
-"<br />\n"
-"A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submissionTitle}&quot;, foi tomada.<br />\n"
-"<br />\n"
-"A decisão é:<br />\n"
-"<br />\n"
-"Página do manuscrito: {$submissionUrl}"
-
-msgid "emails.editorDecisionResubmit.description"
-msgstr "Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão."
-
-msgid "emails.editorDecisionDecline.subject"
-msgstr "Decisão editorial"
-
-msgid "emails.editorDecisionDecline.body"
-msgstr ""
-"{$authors},<br />\n"
-"<br />\n"
-"A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submissionTitle}&quot;, foi tomada.<br />\n"
-"<br />\n"
-"A decisão é:<br />\n"
-"<br />\n"
-"Página do manuscrito: {$submissionUrl}"
-
-msgid "emails.editorDecisionDecline.description"
-msgstr "Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão."
-
-msgid "emails.copyeditRequest.subject"
-msgstr "Solicitação de edição de texto"
-
-msgid "emails.copyeditRequest.body"
-msgstr ""
-"{$recipientName},<br />\n"
-"<br />\n"
-"Solicito realizar a edição de texto da submissão &quot;{$submissionTitle}&quot; à editora {$contextName}, conforme os seguintes passos:<br />\n"
-"1. Acesse a página da submissão abaixo.<br />\n"
-"2. Acesse o sistema e baixe o arquivo disponível no passo 1.<br />\n"
-"3. Consulte as instruções para edição de texto disponíveis na página.<br />\n"
-"4. Abra o arquivo baixado e faça as edições, enquanto inclui perguntas ao autor conforme a necessidade.<br />\n"
-"5. Salve o arquivo editado e envie-o ao passo 1 da edição de texto.<br />\n"
-"6. Envie a mensagem CONCLUÍDA ao editor.<br />\n"
-"<br />\n"
-"Página da editora {$contextName}: {$contextUrl}<br />\n"
-"Página da submissão: {$submissionUrl}<br />\n"
-"Login: {$recipientUsername}"
-
-msgid "emails.copyeditRequest.description"
-msgstr "Esta mensagem é enviada pelo editor de série ao editor de texto da submissão, solicitando o início da edição de texto. Fornece informações sobre a submissão e como acessá-la."
 
 msgid "emails.layoutRequest.subject"
 msgstr "Solicitação de composição"
 
+#, fuzzy
 msgid "emails.layoutRequest.body"
 msgstr ""
 "{$recipientName},<br />\n"
@@ -587,6 +430,7 @@ msgstr ""
 "<br />\n"
 "Caso não tenha disponibilidade para assumir esta tarefa no momento, ou em caso de dúvidas, entre em contato. Agradecemos sua contribuição aos trabalhos da editora."
 
+#, fuzzy
 msgid "emails.layoutRequest.description"
 msgstr "Esta mensagem é enviada pelo editor de série ao editor de layout, solicitando a produção de uma composição da submissão. Fornece instruções sobre a submissão e como acessá-la."
 
@@ -814,43 +658,6 @@ msgstr ""
 
 msgid "emails.statisticsReportNotification.subject"
 msgstr "Atividade editorial de {$month}, {$year}"
-
-msgid "emails.editorDecisionInitialDecline.description"
-msgstr ""
-"Este e-mail é enviado ao autor se o editor rejeitar a submissão "
-"inicialmente, antes da fase de avaliação"
-
-msgid "emails.editorDecisionInitialDecline.body"
-msgstr ""
-"\n"
-"\t\t\t{$authors}:<br />\n"
-"<br />\n"
-"Chegamos a uma decisão sobre sua submissão para {$contextName}, "
-"&quot;{$submissionTitle}&quot;.<br />\n"
-"<br />\n"
-"Nossa decisão é: Rejeitar a Submissão <br />\n"
-"<br />\n"
-"URL do Manuscrito: {$submissionUrl}\n"
-"\t\t"
-
-msgid "emails.editorDecisionInitialDecline.subject"
-msgstr "Decisão do Editor"
-
-msgid "emails.editorRecommendation.description"
-msgstr ""
-"Este e-mail do Editor que recomenda ou do Editor para os Editores que tomam "
-"decisões ou Editores de Séries notifica-os de uma recomendação final sobre a "
-"submissão."
-
-msgid "emails.editorRecommendation.body"
-msgstr ""
-"{$editors}:<br />\n"
-"<br />\n"
-"A recomendação referente a submissão para {$contextName}, &quot;{$ "
-"submissionTitle}&quot; é: {$recommendation}"
-
-msgid "emails.editorRecommendation.subject"
-msgstr "Recomendação do Editor"
 
 msgid "emails.reviewReinstate.description"
 msgstr ""

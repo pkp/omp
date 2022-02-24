@@ -72,7 +72,7 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form
                 'recipientName' => $user->getFullName(),
                 'recipientUsername' => $user->getUsername(),
                 'signature' => $context->getData('contactName') . "\n" . $context->getLocalizedName(),
-                'submissionUrl' => $router->url($request, null, 'authorDashboard', 'submission', $this->submissionId),
+                'authorSubmissionUrl' => $router->url($request, null, 'authorDashboard', 'submission', $this->submissionId),
             ]);
 
             if (!$mail->send($request)) {

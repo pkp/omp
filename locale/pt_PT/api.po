@@ -11,11 +11,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "api.submissions.403.contextRequired"
-msgstr ""
-"Para enviar ou editar uma submissão deve fazer um pedido ao endpoint da API "
-"da editora."
-
 msgid "api.submissions.403.cantChangeContext"
 msgstr "Não pode alterar a editora de uma submissão."
 

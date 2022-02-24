@@ -20,11 +20,11 @@ describe('Data suite tests', function() {
 			'country': 'Canada'
 		});
 
-		var title = 'From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots', chapters, additionalFiles;
-		cy.createSubmission({
+		var author = 'Michael Dawson';
+		var submission = {
 			'type': 'editedVolume',
 			'series': 'Psychology',
-			'title': title,
+			'title': 'From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots',
 			'abstract': 'From Bricks to Brains introduces embodied cognitive science, and illustrates its foundational ideas through the construction and observation of LEGO Mindstorms robots. Discussing the characteristics that distinguish embodied cognitive science from classical cognitive science, From Bricks to Brains places a renewed emphasis on sensing and acting, the importance of embodiment, the exploration of distributed notions of control, and the development of theories by synthesizing simple systems and exploring their behaviour. Numerous examples are used to illustrate a key theme: the importance of an agent’s environment. Even simple agents, such as LEGO robots, are capable of exhibiting complex behaviour when they can sense and affect the world around them.',
 			'keywords': [
 				'Psychology'
@@ -48,7 +48,7 @@ describe('Data suite tests', function() {
 					'role': 'Author'
 				}
 			],
-			'chapters': chapters = [
+			'chapters': [
 				{
 					'title': 'Chapter 1: Mind Control—Internal or External?',
 					'contributors': ['Michael Dawson']
@@ -66,7 +66,7 @@ describe('Data suite tests', function() {
 					'contributors': ['Michael Dawson']
 				}
 			],
-			'additionalFiles': additionalFiles = [
+			'additionalFiles': [
 				{
 					'fileTitle': 'Segmentation of Vascular Ultrasound Image Sequences.',
 					'fileName': 'Segmentation of Vascular Ultrasound Image Sequences.'.substr(0, 40) + '.pdf',
@@ -94,21 +94,26 @@ describe('Data suite tests', function() {
 					}
 				}
 			]
-		});
+		};
+		cy.createSubmission(submission);
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Dawson');
-		cy.sendToReview('Internal');
-		cy.get('li.ui-state-active a:contains("Internal Review")');
+		cy.clickDecision('Send to Internal Review');
+		cy.recordDecisionSendToReview('Send to Internal Review', [author], submission.chapters.map(chapter => chapter.title.substring(0, 35)));
+		cy.isActiveStageTab('Internal Review');
 		cy.assignReviewer('Julie Janssen');
-		cy.sendToReview('External', 'Internal');
-		cy.get('li.ui-state-active a:contains("External Review")');
+		cy.clickDecision('Send to External Review');
+		cy.recordDecisionSendToReview('Send to External Review', [author], []);
+		cy.isActiveStageTab('External Review');
 		cy.assignReviewer('Al Zacharia');
-		cy.recordEditorialDecision('Accept Submission');
-		cy.get('li.ui-state-active a:contains("Copyediting")');
+		cy.clickDecision('Accept Submission');
+		cy.recordDecisionAcceptSubmission([author], [], []);
+		cy.isActiveStageTab('Copyediting');
 		cy.assignParticipant('Copyeditor', 'Maria Fritz');
-		cy.recordEditorialDecision('Send To Production');
-		cy.get('li.ui-state-active a:contains("Production")');
+		cy.clickDecision('Send To Production');
+		cy.recordDecisionSendToProduction([author], []);
+		cy.isActiveStageTab('Production');
 		cy.assignParticipant('Layout Editor', 'Graham Cox');
 		cy.assignParticipant('Proofreader', 'Sabine Kumar');
 
@@ -125,10 +130,10 @@ describe('Data suite tests', function() {
 		cy.get('table[id*="component-grid-catalogentry-publicationformatgrid"] span:contains("PDF"):parent() a[id*="-name-selectFiles-button-"]').click();
 		cy.get('*[id=allStages]').click();
 		var proofFiles = [];
-		chapters.forEach(chapter => {
+		submission.chapters.forEach(chapter => {
 			proofFiles.push(chapter.title);
 		});
-		additionalFiles.forEach(additionalFile => {
+		submission.additionalFiles.forEach(additionalFile => {
 			proofFiles.push(additionalFile.fileTitle);
 		});
 		proofFiles.forEach(proofFile => {

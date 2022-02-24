@@ -20,10 +20,10 @@ describe('Data suite tests', function() {
 			'country': 'United States'
 		});
 
-		var title = 'The Information Literacy User’s Guide';
-		cy.createSubmission({
+		var author = 'Deborah Bernnard';
+		var submission = {
 			'type': 'editedVolume',
-			'title': title,
+			'title': 'The Information Literacy User’s Guide',
 			'abstract': 'Good researchers have a host of tools at their disposal that make navigating today’s complex information ecosystem much more manageable. Gaining the knowledge, abilities, and self-reflection necessary to be a good researcher helps not only in academic settings, but is invaluable in any career, and throughout one’s life. The Information Literacy User’s Guide will start you on this route to success.',
 			'series': 'Library & Information Studies',
 			'keywords': [
@@ -72,13 +72,15 @@ describe('Data suite tests', function() {
 					'contributors': ['Jenna Hecker'],
 				}
 			]
-		});
+		};
+		cy.createSubmission(submission);
 
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Bernnard');
-		cy.sendToReview('Internal');
-		cy.get('li.ui-state-active a:contains("Internal Review")');
+		cy.clickDecision('Send to Internal Review');
+		cy.recordDecisionSendToReview('Send to Internal Review', [author], submission.chapters.map(chapter => chapter.title.substring(0, 35)));
+		cy.isActiveStageTab('Internal Review');
 		// Assign a recommendOnly section editor
 		cy.assignParticipant('Series editor', 'Minoti Inoue', true);
 		cy.logout();
@@ -86,10 +88,11 @@ describe('Data suite tests', function() {
 		cy.login('minoue', null, 'publicknowledge'),
 		cy.get('#myQueue').find('a').contains('View Bernnard').click({force: true});
 		// Recommend
-		cy.recordEditorialRecommendation('Send to External Review');
+		cy.clickDecision('Recommend Accept');
+		cy.recordRecommendation('Recommend Accept', ['Daniel Barnes']);
 		cy.logout();
 		// Log in as editor and see the existing recommendation
 		cy.findSubmissionAsEditor('dbarnes', null, 'Bernnard');
-		cy.get('div.pkp_workflow_recommendations:contains("Recommendations: Send to External Review")');
+		cy.get('div.pkp_workflow_recommendations:contains("Recommendations: Accept Submission")');
 	});
 });

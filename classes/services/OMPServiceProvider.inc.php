@@ -52,11 +52,6 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface
             return new ContextService();
         };
 
-        // Submission file service
-        $pimple['submissionFile'] = function () {
-            return new SubmissionFileService();
-        };
-
         // Schema service
         $pimple['schema'] = function () {
             return new PKPSchemaService();

@@ -17,6 +17,9 @@ msgstr "You must provide one or more submission ids to be added to the catalog."
 msgid "api.submissions.400.submissionsNotFound"
 msgstr "One or more of the submissions you specified could not be found."
 
+msgid "api.submissions.400.wrongContext"
+msgstr "The submission you requested is not in this press."
+
 msgid "api.emails.403.disabled"
 msgstr "The email notification feature has not been enabled for this press."
 
@@ -31,6 +34,3 @@ msgstr "The publication that you requested is not part of this submission."
 
 msgid "api.submissions.403.cantChangeContext"
 msgstr "You can not change the press of a submission."
-
-msgid "api.submissions.403.contextRequired"
-msgstr "To make or edit a submission you must make a request to the press's API endpoint."

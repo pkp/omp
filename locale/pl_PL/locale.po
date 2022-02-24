@@ -98,6 +98,7 @@ msgid "user.authorization.seriesAssignment"
 msgstr ""
 "Próbujesz uzyskać dostęp do monografii, która nie jest częścią twojej serii."
 
+#, fuzzy
 msgid "user.authorization.noContext"
 msgstr "Brak wydań w kontekście!"
 

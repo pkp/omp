@@ -51,33 +51,6 @@ msgstr ""
 msgid "emails.userValidate.description"
 msgstr "Denne e-mail sendes til ny-registrerede brugere for at byde dem velkommen til systemet og give dem deres brugernavn og adgangskode."
 
-msgid "emails.copyeditRequest.subject"
-msgstr "Forespørgsel om manuskriptredigering"
-
-msgid "emails.copyeditRequest.body"
-msgstr ""
-"{$recipientName}:<br />\n"
-"<br />\n"
-"Jeg vil bede dig om at foretage manuskriptredigering af "
-"&quot;{$submissionTitle}&quot; til {$contextName} ved at følge disse trin.<"
-"br />\n"
-"1. Klik på manuskriptets URL-adresse nedenfor.<br />\n"
-"2. Log ind på forlaget, og klik på filen, der vises i trin 1.<br />\n"
-"3. Gennemse manuskriptredigerings-vejledningen, der findes på hjemmesiden<br "
-"/>\n"
-"4. Åbn den downloadede fil og foretag en manuskriptredigering, tilføj "
-"eventuelle forespørgsler til forfatteren.<br />\n"
-"5. Gem den manuskriptredigerede fil, og upload til Trin 1 under "
-"Manuskriptredigering<br />\n"
-"6. Send den FÆRDIGE e-mail til redaktøren.<br />\n"
-"<br />\n"
-"{$contextName} URL: {$contextUrl}<br />\n"
-"Manuskript URL: {$submissionUrl}<br />\n"
-"Brugernavn: {$recipientUsername}"
-
-msgid "emails.copyeditRequest.description"
-msgstr "Denne e-mail sendes af en serieredaktør til manuskriptredaktøren for at bede vedkommende om at påbegynde manuskriptredigeringsprocessen. Den indeholder oplysninger om manuskriptet og om, hvordan der oprettes adgang til det."
-
 msgid "emails.editorAssign.subject"
 msgstr "Redaktionel tildeling"
 
@@ -97,9 +70,11 @@ msgstr ""
 msgid "emails.editorAssign.description"
 msgstr "Denne e-mail underretter en serieredaktør om, at redaktøren har tildelt vedkommende opgaven med at følge et manuskript igennem redigeringsprocessen. Den indeholder oplysninger om manuskriptet og om, hvordan der oprettes adgang til tidsskriftets websted."
 
+#, fuzzy
 msgid "emails.editorDecisionAccept.subject"
 msgstr "Redaktørbeslutning"
 
+#, fuzzy
 msgid "emails.editorDecisionAccept.body"
 msgstr ""
 "{$authors}:<br />\n"
@@ -111,129 +86,9 @@ msgstr ""
 "<br />\n"
 "Manuscript URL: {$submissionUrl}"
 
+#, fuzzy
 msgid "emails.editorDecisionAccept.description"
 msgstr "Denne e-mail fra redaktøren eller serieredaktøren til en forfatter er en meddelelse om den endelige afgørelse vedrørende deres bidrag."
-
-msgid "emails.editorDecisionDecline.subject"
-msgstr "Redaktørbeslutning"
-
-msgid "emails.editorDecisionDecline.body"
-msgstr ""
-"{$authors}:<br />\n"
-"<br />\n"
-"Vi er nået frem til en afgørelse vedrørende dit bidrag til {$contextName}, "
-"&quot;{$submissionTitle}&quot;.<br />\n"
-"<br />\n"
-"Vi har besluttet at:<br />\n"
-"<br />\n"
-"Manuscript URL: {$submissionUrl}"
-
-msgid "emails.editorDecisionDecline.description"
-msgstr "Denne e-mail fra redaktøren eller serieredaktøren til en forfatter er en meddelelse om den endelige afgørelse vedrørende deres bidrag."
-
-msgid "emails.editorDecisionInitialDecline.subject"
-msgstr "Redaktørbeslutning"
-
-msgid "emails.editorDecisionInitialDecline.body"
-msgstr ""
-"\n"
-"\t\t\t{$authors}:<br />\n"
-"<br />\n"
-"Vi er nået frem til en afgørelse vedrørende dit bidrag til {$contextName}, "
-"&quot;{$submissionTitle}&quot;.<br />\n"
-"<br />\n"
-"Vi har besluttet at: Afvise manuskript<br />\n"
-"<br />\n"
-"Manuskript URL: {$submissionUrl}\n"
-"\t\t"
-
-msgid "emails.editorDecisionInitialDecline.description"
-msgstr "Denne e-mail sendes til forfatteren, hvis redaktøren afviser indsendelsen, før gennemgangsfasen"
-
-msgid "emails.editorDecisionResubmit.subject"
-msgstr "Redaktørbeslutning"
-
-msgid "emails.editorDecisionResubmit.body"
-msgstr ""
-"{$authors}:<br />\n"
-"<br />\n"
-"Vi er nået frem til en afgørelse vedrørende dit bidrag til {$contextName}, "
-"&quot;{$submissionTitle}&quot;.<br />\n"
-"<br />\n"
-"Vi har besluttet følgende:<br />\n"
-"<br />\n"
-"Manuscript URL: {$submissionUrl}"
-
-msgid "emails.editorDecisionResubmit.description"
-msgstr "Denne e-mail fra redaktøren eller serieredaktøren til en forfatter er en meddelelse om den endelige afgørelse vedrørende deres bidrag."
-
-msgid "emails.editorDecisionRevisions.subject"
-msgstr "Redaktørbeslutning"
-
-msgid "emails.editorDecisionRevisions.body"
-msgstr ""
-"{$authors}:<br />\n"
-"<br />\n"
-"Vi er nået frem til en afgørelse vedrørende dit bidrag til {$contextName}, "
-"&quot;{$submissionTitle}&quot;.<br />\n"
-"<br />\n"
-"Vi har besluttet følgende:<br />\n"
-"<br />\n"
-"Manuscript URL: {$submissionUrl}"
-
-msgid "emails.editorDecisionRevisions.description"
-msgstr "Denne e-mail fra redaktøren eller serieredaktøren til en forfatter er en meddelelse om den endelige afgørelse vedrørende deres bidrag."
-
-msgid "emails.editorDecisionSendToExternal.subject"
-msgstr "Redaktørbeslutning"
-
-msgid "emails.editorDecisionSendToExternal.body"
-msgstr ""
-"{$authors}:<br />\n"
-"<br />\n"
-"Vi er nået frem til en afgørelse vedrørende dit bidrag til {$contextName}, "
-"&quot;{$submissionTitle}&quot;.<br />\n"
-"<br />\n"
-"Vi har besluttet følgende:<br />\n"
-"<br />\n"
-"Manuscript URL: {$submissionUrl}"
-
-msgid "emails.editorDecisionSendToExternal.description"
-msgstr "Denne e-mail fra redaktøren eller serieredaktøren til forfatteren meddeler at indsendelsen videresendes til ekstern bedømmelse."
-
-msgid "emails.editorDecisionSendToProduction.subject"
-msgstr "Redaktørbeslutning"
-
-msgid "emails.editorDecisionSendToProduction.body"
-msgstr ""
-"{$authors}:<br />\n"
-"<br />\n"
-"Vi har færdiggjort redigeringen af din indsendelse, "
-"&quot;{$submissionTitle},&quot; is complete.  Den vil nu blive sendt til "
-"publicering.<br />\n"
-"<br />\n"
-"Manuscript URL: {$submissionUrl}"
-
-msgid "emails.editorDecisionSendToProduction.description"
-msgstr ""
-"Denne e-mail fra redaktøren eller sektionsredaktøren til forfatteren "
-"meddeler at indsendelsen nu sendes til produktion."
-
-msgid "emails.editorRecommendation.subject"
-msgstr "Redaktøranbefaling"
-
-msgid "emails.editorRecommendation.body"
-msgstr ""
-"{$editors}:<br />\n"
-"<br />\n"
-"Anbefalingen med hensyn til {$contextName}, &quot;{$submissionTitle}&quot; "
-"er: {$recommendation}"
-
-msgid "emails.editorRecommendation.description"
-msgstr ""
-"Denne e-mail fra den anbefalende redaktør eller serieredaktør til de "
-"beslutningstagende redaktører eller serieredaktører indeholder den endelige "
-"anbefaling vedrørende indsendelsen."
 
 msgid "emails.emailLink.subject"
 msgstr "Artikel, der muligvis har din interesse"
@@ -302,9 +157,11 @@ msgstr ""
 msgid "emails.layoutComplete.description"
 msgstr "Denne e-mail fra layoutredaktøren til serieredaktøren underretter dem om, at layoutprocessen er fuldført."
 
+#, fuzzy
 msgid "emails.layoutRequest.subject"
 msgstr "Forespørgsel om publiceringsversion"
 
+#, fuzzy
 msgid "emails.layoutRequest.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -324,6 +181,7 @@ msgstr ""
 "tidspunkt eller har spørgsmål, bedes du kontakte mig. Tak for dit bidrag til "
 "dette tidsskrift."
 
+#, fuzzy
 msgid "emails.layoutRequest.description"
 msgstr ""
 "Denne e-mail fra serieredaktøren til layoutredaktøren underretter dem om, at "
@@ -388,24 +246,6 @@ msgstr ""
 msgid "emails.passwordResetConfirm.description"
 msgstr "Denne e-mail sendes til registrerede brugere, når de angiver, at de har glemt deres adgangskode eller ikke kan logge på. Den indeholder en URL-adresse, de kan følge for at nulstille deres adgangskode."
 
-msgid "emails.issuePublishNotify.subject"
-msgstr "Ny bog er blevet publiceret"
-
-msgid "emails.issuePublishNotify.body"
-msgstr ""
-"Læsere:<br />\n"
-"<br />\n"
-"{$contextName} har lige publiceret den seneste bog på {$contextUrl}. Vi "
-"inviterer dig til at gennemse indholdsfortegnelsen her og derefter besøge "
-"vores websted, hvor du kan gennemse monografer og andet, der har din "
-"interesse.<br />\n"
-"<br />\n"
-"Tak for din fortsatte interesse i vores arbejde.<br />\n"
-"{$signature}"
-
-msgid "emails.issuePublishNotify.description"
-msgstr "Denne e-mail sendes til registrerede læsere via linket \"Underret brugere\" på redaktørens brugerstartside. Den underretter læsere om en ny bog og inviterer dem til at besøge tidsskriftet på en angiven URL-adresse."
-
 msgid "emails.reviewerRegister.subject"
 msgstr "Registrering som bedømmer hos {$contextName}"
 
@@ -423,20 +263,6 @@ msgstr ""
 
 msgid "emails.reviewerRegister.description"
 msgstr "Denne e-mail sendes til netop registrerede bedømmere for at byde dem velkommen til systemet og for at oplyse dem om deres brugernavn og adgangskode."
-
-msgid "emails.reviewAck.subject"
-msgstr "Bekræftelse af bedømmelse af artikel"
-
-msgid "emails.reviewAck.body"
-msgstr ""
-"{$recipientName}:<br />\n"
-"<br />\n"
-"Tak, fordi du har fuldført bedømmelsen af manuskriptet "
-"&quot;{$submissionTitle}&quot; til {$contextName}. Vi påskønner dit bidrag "
-"til kvaliteten af de artikler, vi publicerer."
-
-msgid "emails.reviewAck.description"
-msgstr "Denne e-mail sendes af sektionsredaktøren for at bekræfte modtagelsen af en fuldført bedømmelse og takker bedømmeren for sit bidrag."
 
 msgid "emails.reviewCancel.subject"
 msgstr "Annullering af forespørgsel om bedømmelse"
@@ -741,29 +567,6 @@ msgstr ""
 
 msgid "emails.reviewResponseOverdueAutoOneclick.description"
 msgstr "Denne e-mail sendes automatisk når en bedømmers bekræftelsesdato er overskredet (se bedømmelsesindstillinger under Indstillinger > Workflow > Bedømmelse) og ’Aktiver adgang for bedømmere ved hjælp af ét klik’ er aktiveret. Tidsfrister og påmindelser skal være defineret."
-
-msgid "emails.submissionAck.subject"
-msgstr "Bekræftelse af manuskript"
-
-msgid "emails.submissionAck.body"
-msgstr ""
-"{$recipientName}:<br />\n"
-"<br />\n"
-"Tak, fordi du har fremsendt manuskriptet &quot;{$submissionTitle}&quot; til "
-"{$contextName}. Ved hjælp af det online-styringssystem, vi bruger, kan du "
-"følge manuskriptet igennem den redaktionelle proces ved at logge på "
-"tidsskriftets websted:<br />\n"
-"<br />\n"
-"Manuskriptets URL-adresse: {$submissionUrl}<br />\n"
-"Brugernavn: {$recipientUsername}<br />\n"
-"<br />\n"
-"Hvis du har spørgsmål, er du velkommen til at kontakte mig. Tak, fordi du "
-"har valgt at publicere din artikel i dette tidsskrift.<br />\n"
-"<br />\n"
-"{$signature}"
-
-msgid "emails.submissionAck.description"
-msgstr "Når denne e-mail er aktiveret, sendes den automatisk til en forfatter, når vedkommende har fremsendt et manuskript til tidsskriftet. Den indeholder oplysninger om, hvordan forfatteren kan følge manuskriptet igennem processen, og den takker forfatteren for manuskriptet."
 
 msgid "emails.submissionAckNotUser.subject"
 msgstr "Indsendelsesbekræftelse"

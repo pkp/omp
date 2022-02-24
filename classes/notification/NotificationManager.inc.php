@@ -17,6 +17,7 @@
 
 namespace APP\notification;
 
+use APP\decision\Decision;
 use APP\notification\managerDelegate\ApproveSubmissionNotificationManager;
 use PKP\notification\managerDelegate\EditorAssignmentNotificationManager;
 use PKP\notification\managerDelegate\EditorDecisionNotificationManager;
@@ -103,6 +104,19 @@ class NotificationManager extends PKPNotificationManager
         }
         // Otherwise, fall back on parent class
         return parent::getMgrDelegate($notificationType, $assocType, $assocId);
+    }
+
+    public function getNotificationTypeByEditorDecision(Decision $decision): ?int
+    {
+        switch ($decision->getData('decision')) {
+            case Decision::INTERNAL_REVIEW:
+                return Notification::NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW;
+            case Decision::PENDING_REVISIONS_INTERNAL:
+                return Notification::NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS;
+            default:
+                return parent::getNotificationTypeByEditorDecision($decision);
+        }
+        return null;
     }
 }
 

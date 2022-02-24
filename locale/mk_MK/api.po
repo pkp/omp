@@ -11,11 +11,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "api.submissions.403.contextRequired"
-msgstr ""
-"За да направите или измените поднесок, мора да поднесете барање до крајната "
-"точка на API за изданието."
-
 msgid "api.submissions.403.cantChangeContext"
 msgstr "Не можете да го промените изданието на поднесокот."
 

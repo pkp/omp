@@ -15,6 +15,8 @@
 
 namespace APP\services;
 
+use APP\decision\Decision;
+
 class StatsEditorialService extends \PKP\services\PKPStatsEditorialService
 {
     /**
@@ -29,5 +31,24 @@ class StatsEditorialService extends \PKP\services\PKPStatsEditorialService
             $statsQB->filterBySections($args['seriesIds']);
         }
         return $statsQB;
+    }
+
+    protected function getAcceptedDecisions(): array
+    {
+        return [
+            Decision::ACCEPT,
+            Decision::ACCEPT_INTERNAL,
+            Decision::SKIP_EXTERNAL_REVIEW,
+            Decision::SEND_TO_PRODUCTION,
+        ];
+    }
+
+    protected function getDeclinedDecisions(): array
+    {
+        return [
+            Decision::DECLINE,
+            Decision::INITIAL_DECLINE,
+            Decision::DECLINE_INTERNAL,
+        ];
     }
 }

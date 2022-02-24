@@ -10,11 +10,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "api.submissions.403.contextRequired"
-msgstr ""
-"For at oprette eller redigere en indsendelse skal du anmode om forlagets API-"
-"endpoint."
-
 msgid "api.submissions.403.cantChangeContext"
 msgstr "Du kan ikke skifte en indsendelses forlag."
 
