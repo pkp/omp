@@ -8,11 +8,10 @@
  */
 
 describe('DOI tests', function() {
+	const author = 'Dawson';
 	const submissionId = 14;
-	const publicationId = 14;
 	const chapterId = 54;
 	const publicationFormatId = 3;
-	const submissionFileId = 42;
 
 	it('Check DOI Configuration', function() {
 		cy.login('dbarnes', null, 'publicknowledge');
@@ -48,35 +47,34 @@ describe('DOI tests', function() {
 		cy.login('dbarnes', null, 'publicknowledge');
 
 		cy.get('a:contains("DOIs")').click();
-		cy.get('button#monograph-doi-management-button').click();
+		cy.get('.pkpTabs button').contains('Monographs').click();
 
 		// Select the first monograph
-		cy.get(`input[name="submission[]"][value=${submissionId}]`).check();
+		cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('input[name="submission[]"]').check();
 
 		// Select assign DOIs from bulk actions
 		cy.get('#monograph-doi-management button:contains("Bulk Actions")').click({multiple: true});
-		cy.get('button#openBulkAssign').click();
+		cy.get('#monograph-doi-management .doiListPanel__bulkActions button').contains('Assign DOIs').click();
 
 		// Confirm success message
-		cy.get('div[data-modal="bulkActions"] button:contains("Assign DOIs")').click();
+		cy.get('.modal__content').contains('assign new DOIs to 1 item(s)');
+		cy.get('.modal__footer button').contains('Assign DOIs').click();
 		cy.get('.app__notifications').contains('Items successfully assigned new DOIs', {timeout:20000});
 	});
 	it('Check Monograph DOI assignments', function() {
 		cy.login('dbarnes', null, 'publicknowledge');
 
 		cy.get('a:contains("DOIs")').click();
-		cy.get('button#monograph-doi-management-button').click();
+		cy.get('.pkpTabs button').contains('Monographs').click();
 
 		// Check DOI assignments are correct according to pattern
-		cy.get(`#list-item-submission-${submissionId} button.expander`).click();
-		cy.get(`input#${submissionId}-monograph-${publicationId}`).should('have.value', `10.1234/jpk.${submissionId}`);
-		cy.get(`input#${submissionId}-chapter-${chapterId}`).should('have.value', `10.1234/jpk.${submissionId}.c${chapterId}`);
-		cy.get(`input#${submissionId}-publicationFormat-${publicationFormatId}`).should('have.value', `10.1234/jpk.${submissionId}.${publicationFormatId}`);
-		cy.get(`input#${submissionId}-submissionFile-${submissionFileId}`).should('have.value', `10.1234/jpk.${submissionId}.${submissionFileId}`);
+		cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('.expander').click();
+		cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('td').contains('Monograph').closest('tr').find('input').should('have.value', `10.1234/jpk.${submissionId}`);
+		cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('td').contains('Chapter 1').closest('tr').find('input').should('have.value', `10.1234/jpk.${submissionId}.c${chapterId}`);
+		cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('td').contains('Format / PDF').closest('tr').find('input').should('have.value', `10.1234/jpk.${submissionId}.${publicationFormatId}`);
+		cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('td').contains('PDF / Chapter 1').closest('tr').find('input').invoke('val').should('not.be.empty');
 	})
 	it('Check Monograph DOI visible', function() {
-		cy.login('dbarnes', null, 'publicknowledge');
-
 		// Select a monograph
 		cy.visit(`/index.php/publicknowledge/catalog/book/${submissionId}`);
 
@@ -102,12 +100,13 @@ describe('DOI tests', function() {
 
 		// Select mark registered from bulk actions
 		cy.get('#monograph-doi-management button:contains("Bulk Actions")').click({multiple: true});
-		cy.get('button#openBulkMarkRegistered').click();
+		cy.get('#monograph-doi-management .doiListPanel__bulkActions button').contains('Mark registered').click();
 
 		// Confirm assignment
-		cy.get('div[data-modal="bulkActions"] button:contains("Mark DOIs registered")').click();
+		cy.get('.modal__content').contains('mark DOI metadata records for 1 item(s)');
+		cy.get('.modal__footer button').contains('Mark DOIs registered').click();
 		cy.get('.app__notifications').contains('Items successfully marked registered', {timeout:20000});
 
-		cy.get(`#list-item-submission-${submissionId} .pkpBadge`).contains('Registered');
+		cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('.doiListItem__itemMetadata--badge').contains('Registered');
 	});
 });
