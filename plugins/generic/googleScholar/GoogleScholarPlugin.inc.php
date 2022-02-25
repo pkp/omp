@@ -67,19 +67,22 @@ class GoogleScholarPlugin extends GenericPlugin
         $press = $request->getContext();
         $series = $templateMgr->getTemplateVars('series');
         $availableFiles = $templateMgr->getTemplateVars('availableFiles');
+        $isChapterRequest = $templateMgr->getTemplateVars('isChapterRequest');
+        $chapter = $templateMgr->getTemplateVars('chapter');
 
 
         // Google scholar metadata  revision
         $templateMgr->addHeader('googleScholarRevision', '<meta name="gs_meta_revision" content="1.1"/>');
 
-        // Book/Edited volume title of the submission
-        $templateMgr->addHeader('googleScholarTitle', '<meta name="citation_title" content="' . htmlspecialchars($publication->getLocalizedTitle()) . '"/>');
+        // Book/Edited volume or Chapter title of the submission
+        $title = $isChapterRequest ? $chapter->getLocalizedTitle() : $publication->getLocalizedTitle();
+        $templateMgr->addHeader('googleScholarTitle', '<meta name="citation_title" content="' . htmlspecialchars($title) . '"/>');
 
         // Publication date
         $templateMgr->addHeader('googleScholarDate', '<meta name="citation_publication_date" content="' . strftime('%Y-%m-%d', strtotime($publication->getData('datePublished'))) . '"/>');
 
         // Authors in order
-        $authors = Repo::author()->getSubmissionAuthors($submission);
+        $authors = $isChapterRequest ? $templateMgr->getTemplateVars('chapterAuthors') : Repo::author()->getSubmissionAuthors($submission);
         $i = 0;
         foreach ($authors as $author) {
             $templateMgr->addHeader('googleScholarAuthor' . $i++, '<meta name="citation_author" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
@@ -87,11 +90,11 @@ class GoogleScholarPlugin extends GenericPlugin
 
         // Abstract
         $i = 0;
-        if ($abstracts = $submission->getAbstract(null)) {
-            foreach ($abstracts as $locale => $abstract) {
-                $templateMgr->addHeader('googleScholarAbstract' . $i++, '<meta name="citation_abstract" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
-            }
+        $abstracts = $isChapterRequest ? $chapter->getData('abstract') : $submission->getCurrentPublication()->getData('abstract');
+        foreach ($abstracts as $locale => $abstract) {
+            $templateMgr->addHeader('googleScholarAbstract' . $i++, '<meta name="citation_abstract" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
         }
+
 
         // Publication DOI
         if ($publication->getData('pub-id::doi')) {
@@ -135,21 +138,21 @@ class GoogleScholarPlugin extends GenericPlugin
         $i = 0;
         foreach ($availableFiles as $availableFile) {
             foreach ($publicationFormats as $publicationFormat) {
-                if (($availableFile->getData('chapterId') == false) && (int)$publicationFormat->getData('id') == (int)$availableFile->getData('assocId')) {
-                    $identificationCodes = $publicationFormat->getIdentificationCodes();
-                    while ($identificationCode = $identificationCodes->next()) {
-                        if ($identificationCode->getCode() == '02' || $identificationCode->getCode() == '15') {
-                            // 02 and 15: ONIX codes for ISBN-10 or ISBN-13
-                            $templateMgr->addHeader('googleScholarIsbn' . $i++, '<meta name="citation_isbn" content="' . htmlspecialchars($identificationCode->getValue()) . '"/>');
+                if ((int)$publicationFormat->getData('id') == (int)$availableFile->getData('assocId')) {
+                    if (!$isChapterRequest && $availableFile->getData('chapterId') == false) {
+                        $identificationCodes = $publicationFormat->getIdentificationCodes();
+                        while ($identificationCode = $identificationCodes->next()) {
+                            if ($identificationCode->getCode() == '02' || $identificationCode->getCode() == '15') {
+                                // 02 and 15: ONIX codes for ISBN-10 or ISBN-13
+                                $templateMgr->addHeader('googleScholarIsbn' . $i++, '<meta name="citation_isbn" content="' . htmlspecialchars($identificationCode->getValue()) . '"/>');
+                            }
                         }
-                    }
-                    switch ($availableFile->getData('mimetype')) {
-                        case 'application/pdf':
-                            $templateMgr->addHeader('googleScholarPdfUrl' . $i++, '<meta name="citation_pdf_url" content="' . $request->url(null, 'catalog', 'download', [$submission->getData('id'), $availableFile->getData('assocId'), $availableFile->getData('id')]) . '"/>');
-                            break;
-                        case 'text/xml' or 'text/html':
-                            $templateMgr->addHeader('googleScholarPdfUrl' . $i++, '<meta name="citation_fulltext_html_url" content="' . $request->url(null, 'catalog', 'download', [$submission->getData('id'), $availableFile->getData('assocId'), $availableFile->getData('id')]) . '"/>');
-                            break;
+                        $this->_setFileUrl($availableFile, $templateMgr, $i, $request, $submission);
+                    } elseif ($isChapterRequest) {
+                        $chapter = $templateMgr->getTemplateVars('chapter');
+                        if ($chapter->getData('id') == $availableFile->getData('chapterId')) {
+                            $this->_setFileUrl($availableFile, $templateMgr, $i, $request, $submission);
+                        }
                     }
                 }
             }
@@ -184,5 +187,21 @@ class GoogleScholarPlugin extends GenericPlugin
     public function getDescription()
     {
         return __('plugins.generic.googleScholar.description');
+    }
+
+    /**
+     * @param $availableFile
+     * @param \App\Core\Request $request
+     */
+    private function _setFileUrl($availableFile, TemplateManager $templateMgr, int $i, App\Core\Request $request, Submission $submission): void
+    {
+        switch ($availableFile->getData('mimetype')) {
+            case 'application/pdf':
+                $templateMgr->addHeader('googleScholarPdfUrl' . $i++, '<meta name="citation_pdf_url" content="' . $request->url(null, 'catalog', 'download', [$submission->getData('id'), $availableFile->getData('assocId'), $availableFile->getData('id')]) . '"/>');
+                break;
+            case 'text/xml' or 'text/html':
+                $templateMgr->addHeader('googleScholarPdfUrl' . $i++, '<meta name="citation_fulltext_html_url" content="' . $request->url(null, 'catalog', 'download', [$submission->getData('id'), $availableFile->getData('assocId'), $availableFile->getData('id')]) . '"/>');
+                break;
+        }
     }
 }
