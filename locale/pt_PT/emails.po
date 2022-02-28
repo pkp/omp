@@ -1,7 +1,7 @@
 # Carla Marques <carla.marques@usdb.uminho.pt>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-01-05 06:25+0000\n"
+"PO-Revision-Date: 2022-03-01 15:26+0000\n"
 "Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/emails/pt_PT/>\n"
@@ -597,8 +597,7 @@ msgstr "Solicitar design editorial"
 
 msgid "emails.editorDecisionAccept.description"
 msgstr ""
-"Este e-mail é enviado pelo Editor de Série ao Autor para o notificar da "
-"decisão editorial final relativamente à sua submissão."
+"Este e-mail notifica o Autor que a sua submissão foi aceite para publicação."
 
 #, fuzzy
 msgid "emails.editorDecisionAccept.body"
@@ -836,3 +835,6 @@ msgstr ""
 
 msgid "emails.userValidateContext.subject"
 msgstr "Valide a sua conta"
+
+msgid "emails.editorDecisionSendToInternal.subject"
+msgstr "A sua submissão foi enviada para revisão interna"
