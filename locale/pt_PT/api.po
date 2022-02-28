@@ -1,6 +1,7 @@
+# Carla Marques <carla.marques@usdb.uminho.pt>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-22 11:36+0000\n"
+"PO-Revision-Date: 2022-03-01 15:26+0000\n"
 "Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/api/pt_PT/>\n"
@@ -33,3 +34,6 @@ msgstr ""
 
 msgid "api.emails.403.disabled"
 msgstr "O recurso de notificação de e-mail não foi ativado para esta editora."
+
+msgid "api.submissions.400.wrongContext"
+msgstr "A submissão solicitada não está nesta editora."
