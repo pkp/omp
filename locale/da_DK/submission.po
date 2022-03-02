@@ -588,3 +588,8 @@ msgstr ""
 "er sendt til intern bedømmelse. Giv om muligt forfatterne en indikation på, "
 "hvor lang tid processen med intern bedømmelse vil tage, samt hvornår de skal "
 "forvente at høre fra redaktørerne igen."
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+"{$editorName} anbefalede, at denne indsendelse bliver sendt til trinnet for "
+"ekstern bedømmelse."
