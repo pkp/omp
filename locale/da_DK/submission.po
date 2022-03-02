@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:05-08:00\n"
-"PO-Revision-Date: 2022-01-26 07:35+0000\n"
+"PO-Revision-Date: 2022-03-02 12:33+0000\n"
 "Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "da_DK/>\n"
@@ -510,3 +510,18 @@ msgstr "Sider"
 
 msgid "publication.publish.success"
 msgstr "Publikationens status blev ændret."
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgstr "Indsendelsen, {$title}, er blevet sendt til intern bedømmelsestrinnet."
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr "Sendt til intern bedømmelse"
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr "{$editorName} sendte denne indsendelse til intern bedømmelsestrinnet."
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr "Denne indsendelse er klar til at blive sendt til intern bedømmelse."
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr "Send til intern bedømmelse"
