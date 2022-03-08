@@ -30,7 +30,7 @@ If your PHP version supports built-in development server :
 
     php -S localhost:8000
 
-See [Wiki][wiki-dev] for more complete development guide.
+See [Development documentation](https://docs.pkp.sfu.ca/dev/) for more complete development guidance.
 
 ## Bugs / Issues
 
