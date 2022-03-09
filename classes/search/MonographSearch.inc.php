@@ -19,12 +19,11 @@
 namespace APP\search;
 
 use APP\core\Application;
+use APP\core\Services;
 use APP\facades\Repo;
 use PKP\db\DAORegistry;
 use PKP\plugins\HookRegistry;
-
 use PKP\search\SubmissionSearch;
-use PKP\statistics\PKPStatisticsHelper;
 
 class MonographSearch extends SubmissionSearch
 {
@@ -54,27 +53,19 @@ class MonographSearch extends SubmissionSearch
         $contextDao = Application::getContextDAO();
         $contextTitles = [];
         if ($orderBy == 'popularityAll' || $orderBy == 'popularityMonth') {
-            $application = Application::get();
-            $metricType = $application->getDefaultMetricType();
-            if (is_null($metricType)) {
-                // If no default metric has been found then sort by score...
-                $orderBy = 'score';
-            } else {
-                // Retrieve a metrics report for all submissions.
-                $column = PKPStatisticsHelper::STATISTICS_DIMENSION_SUBMISSION_ID;
-                $filter = [
-                    PKPStatisticsHelper::STATISTICS_DIMENSION_ASSOC_TYPE => [ASSOC_TYPE_GALLEY, ASSOC_TYPE_SUBMISSION],
-                    PKPStatisticsHelper::STATISTICS_DIMENSION_SUBMISSION_ID => [array_keys($unorderedResults)]
-                ];
-                if ($orderBy == 'popularityMonth') {
-                    $oneMonthAgo = date('Ymd', strtotime('-1 month'));
-                    $today = date('Ymd');
-                    $filter[PKPStatisticsHelper::STATISTICS_DIMENSION_DAY] = ['from' => $oneMonthAgo, 'to' => $today];
-                }
-                $rawReport = $application->getMetrics($metricType, $column, $filter);
-                foreach ($rawReport as $row) {
-                    $unorderedResults[$row['submission_id']]['metric'] = (int)$row['metric'];
-                }
+            // Retrieve a metrics report for all submissions.
+            $filter = [
+                'submissionIds' => [array_keys($unorderedResults)]
+            ];
+            if ($orderBy == 'popularityMonth') {
+                $oneMonthAgo = date('Ymd', strtotime('-1 month'));
+                $today = date('Ymd');
+                $filter['dateStart'] = $oneMonthAgo;
+                $filter['dateEnd'] = $today;
+            }
+            $rawReport = Services::get('publicationStats')->getTotalMetrics($filter);
+            foreach ($rawReport as $row) {
+                $unorderedResults[$row['submission_id']]['metric'] = (int)$row['metric'];
             }
         }
 
@@ -320,12 +311,8 @@ class MonographSearch extends SubmissionSearch
         ];
 
         // Only show the "popularity" options if we have a default metric.
-        $application = Application::get();
-        $metricType = $application->getDefaultMetricType();
-        if (!is_null($metricType)) {
-            $resultSetOrderingOptions['popularityAll'] = __('search.results.orderBy.popularityAll');
-            $resultSetOrderingOptions['popularityMonth'] = __('search.results.orderBy.popularityMonth');
-        }
+        $resultSetOrderingOptions['popularityAll'] = __('search.results.orderBy.popularityAll');
+        $resultSetOrderingOptions['popularityMonth'] = __('search.results.orderBy.popularityMonth');
 
         // Only show the "press title" option if we have several presses.
         $context = $request->getContext();

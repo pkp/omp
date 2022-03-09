@@ -23,6 +23,8 @@ use Pimple\Container;
 use PKP\services\PKPFileService;
 use PKP\services\PKPSchemaService;
 use PKP\services\PKPSiteService;
+use PKP\services\PKPStatsContextService;
+use PKP\services\PKPStatsGeoService;
 
 class OMPServiceProvider implements \Pimple\ServiceProviderInterface
 {
@@ -62,12 +64,22 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface
             return new PKPSiteService();
         };
 
-        // Publication statistics service
-        $pimple['stats'] = function () {
-            return new StatsService();
+        // Context statistics service
+        $pimple['contextStats'] = function () {
+            return new PKPStatsContextService();
         };
 
         // Publication statistics service
+        $pimple['publicationStats'] = function () {
+            return new StatsPublicationService();
+        };
+
+        // Geo statistics service
+        $pimple['geoStats'] = function () {
+            return new PKPStatsGeoService();
+        };
+
+        // Editorial statistics service
         $pimple['editorialStats'] = function () {
             return new StatsEditorialService();
         };
