@@ -18,9 +18,8 @@ use APP\core\Application;
 use APP\core\Services;
 use APP\facades\Repo;
 use APP\handler\Handler;
-
 use APP\monograph\Chapter;
-use APP\monograph\ChapterDAO;
+use APP\observers\events\UsageEvent;
 use APP\payment\omp\OMPPaymentManager;
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 use APP\submission\Submission;
@@ -270,7 +269,15 @@ class CatalogBookHandler extends Handler
 
         // Display
         if (!HookRegistry::call('CatalogBookHandler::book', [&$request, &$submission])) {
-            return $templateMgr->display('frontend/pages/book.tpl');
+            $templateMgr->display('frontend/pages/book.tpl');
+            if ($submission->getData('status') == Submission::STATUS_PUBLISHED && !$request->isDNTSet()) {
+                if ($this->isChapterRequest) {
+                    event(new UsageEvent(Application::ASSOC_TYPE_CHAPTER, $this->chapter->getId(), $submission->getData('contextId'), $submission->getId(), null, null, $this->chapter->getId()));
+                } else {
+                    event(new UsageEvent(Application::ASSOC_TYPE_SUBMISSION, $submission->getId(), $submission->getData('contextId'), $submission->getId()));
+                }
+            }
+            return;
         }
     }
 
@@ -399,6 +406,20 @@ class CatalogBookHandler extends Handler
             if (HookRegistry::call('CatalogBookHandler::download', [&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline])) {
                 // If the plugin handled the hook, prevent further default activity.
                 exit;
+            }
+
+            // if the file is a publication format file (i.e. not a dependent file e.g. CSS or images),
+            // and Do Not Track is not set, fire an usage event.
+            if ($submissionFile->getData('assocId') == $publicationFormat->getId() && !$request->isDNTSet()) {
+                $assocType = Application::ASSOC_TYPE_SUBMISSION_FILE;
+                $genreDao = DAORegistry::getDAO('GenreDAO');
+                $genre = $genreDao->getById($submissionFile->getData('genreId'));
+                // TO-DO: is this correct ?
+                if ($genre->getCategory() != GENRE_CATEGORY_DOCUMENT || $genre->getSupplementary() || $genre->getDependent()) {
+                    $assocType = Application::ASSOC_TYPE_SUBMISSION_FILE_COUNTER_OTHER;
+                }
+                $chapterId = $submissionFile->getData('chapterId') ?? null;
+                event(new UsageEvent($assocType, $submissionFile->getId(), $submission->getData('contextId'), $submission->getId(), $publicationFormat->getId(), $submissionFile->getData('mimetype'), $chapterId));
             }
             $returner = true;
             HookRegistry::call('FileManager::downloadFileFinished', [&$returner]);

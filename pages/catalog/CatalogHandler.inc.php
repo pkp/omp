@@ -16,11 +16,12 @@
 
 import('lib.pkp.pages.catalog.PKPCatalogHandler');
 
+use APP\core\Application;
 use APP\facades\Repo;
+use APP\observers\events\UsageEvent;
 use APP\submission\Collector;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
-
 use PKP\file\ContextFileManager;
 
 class CatalogHandler extends PKPCatalogHandler
@@ -97,6 +98,10 @@ class CatalogHandler extends PKPCatalogHandler
         ]);
 
         $templateMgr->display('frontend/pages/catalog.tpl');
+        if (!$request->isDNTSet()) {
+            event(new UsageEvent(Application::ASSOC_TYPE_PRESS, $context->getId(), $context->getId()));
+        }
+        return;
     }
 
     /**
@@ -185,7 +190,11 @@ class CatalogHandler extends PKPCatalogHandler
             'newReleasesMonographs' => $newReleases,
         ]);
 
-        return $templateMgr->display('frontend/pages/catalogSeries.tpl');
+        $templateMgr->display('frontend/pages/catalogSeries.tpl');
+        if (!$request->isDNTSet()) {
+            event(new UsageEvent(Application::ASSOC_TYPE_SERIES, $series->getId(), $context->getId()));
+        }
+        return;
     }
 
     /**

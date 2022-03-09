@@ -13,11 +13,17 @@
  * @brief Class for HtmlMonographFile plugin
  */
 
+use APP\core\Application;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
+use APP\observers\events\UsageEvent;
+use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\plugins\GenericPlugin;
+use PKP\plugins\HookRegistry;
 use PKP\submissionFile\SubmissionFile;
+
+import('lib.pkp.classes.plugins.GenericPlugin');
 
 class HtmlMonographFilePlugin extends GenericPlugin
 {
@@ -124,6 +130,10 @@ class HtmlMonographFilePlugin extends GenericPlugin
                 echo $this->_getHTMLContents($request, $submission, $publicationFormat, $submissionFile);
                 $returner = true;
                 HookRegistry::call('HtmlMonographFilePlugin::monographDownloadFinished', [&$returner]);
+                if ($submission->getData('status') == Submission::STATUS_PUBLISHED && !$request->isDNTSet()) {
+                    $chapterId = $submissionFile->getData('chapterId') ?? null;
+                    event(new UsageEvent(Application::ASSOC_TYPE_SUBMISSION_FILE, $submissionFile->getId(), $submission->getData('contextId'), $submission->getId(), $publicationFormat->getId(), $submissionFile->getData('mimetype'), $chapterId));
+                }
                 return true;
             }
         }

@@ -15,7 +15,9 @@
 
 import('lib.pkp.pages.index.PKPIndexHandler');
 
+use APP\core\Application;
 use APP\facades\Repo;
+use APP\observers\events\UsageEvent;
 use APP\spotlight\Spotlight;
 use APP\template\TemplateManager;
 
@@ -139,5 +141,9 @@ class IndexHandler extends PKPIndexHandler
         }
 
         $templateMgr->display('frontend/pages/index.tpl');
+        if (!$request->isDNTSet()) {
+            event(new UsageEvent(Application::ASSOC_TYPE_PRESS, $press->getId(), $press->getId()));
+        }
+        return;
     }
 }
