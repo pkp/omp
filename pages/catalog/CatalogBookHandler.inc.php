@@ -18,9 +18,8 @@ use APP\core\Application;
 use APP\core\Services;
 use APP\facades\Repo;
 use APP\handler\Handler;
-
 use APP\monograph\Chapter;
-use APP\monograph\ChapterDAO;
+use APP\observers\events\Usage;
 use APP\payment\omp\OMPPaymentManager;
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 use APP\submission\Submission;
@@ -32,6 +31,7 @@ use PKP\facades\Locale;
 use PKP\plugins\HookRegistry;
 use PKP\plugins\PluginRegistry;
 use PKP\security\Validation;
+use PKP\submission\Genre;
 use PKP\submission\PKPSubmission;
 
 class CatalogBookHandler extends Handler
@@ -270,7 +270,13 @@ class CatalogBookHandler extends Handler
 
         // Display
         if (!HookRegistry::call('CatalogBookHandler::book', [&$request, &$submission])) {
-            return $templateMgr->display('frontend/pages/book.tpl');
+            $templateMgr->display('frontend/pages/book.tpl');
+            if ($this->isChapterRequest) {
+                event(new Usage(Application::ASSOC_TYPE_CHAPTER, $request->getContext(), $submission, null, null, $this->chapter));
+            } else {
+                event(new Usage(Application::ASSOC_TYPE_SUBMISSION, $request->getContext(), $submission));
+            }
+            return;
         }
     }
 
@@ -368,12 +374,13 @@ class CatalogBookHandler extends Handler
         $urlPath[] = $submissionFile->getBestId();
 
         $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
+        $chapter = $chapterDao->getChapter($submissionFile->getData('chapterId'));
         $templateMgr = TemplateManager::getManager($request);
         $templateMgr->assign([
             'publishedSubmission' => $submission,
             'publicationFormat' => $publicationFormat,
             'submissionFile' => $submissionFile,
-            'chapter' => $chapterDao->getChapter($submissionFile->getData('chapterId')),
+            'chapter' => $chapter,
             'downloadUrl' => $dispatcher->url($request, PKPApplication::ROUTE_PAGE, null, null, 'download', $urlPath, ['inline' => true]),
         ]);
 
@@ -399,6 +406,18 @@ class CatalogBookHandler extends Handler
             if (HookRegistry::call('CatalogBookHandler::download', [&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline])) {
                 // If the plugin handled the hook, prevent further default activity.
                 exit;
+            }
+
+            // if the file is a publication format file (i.e. not a dependent file e.g. CSS or images), fire an usage event.
+            if ($submissionFile->getData('assocId') == $publicationFormat->getId()) {
+                $assocType = Application::ASSOC_TYPE_SUBMISSION_FILE;
+                $genreDao = DAORegistry::getDAO('GenreDAO');
+                $genre = $genreDao->getById($submissionFile->getData('genreId'));
+                // TO-DO: is this correct ?
+                if ($genre->getCategory() != Genre::GENRE_CATEGORY_DOCUMENT || $genre->getSupplementary() || $genre->getDependent()) {
+                    $assocType = Application::ASSOC_TYPE_SUBMISSION_FILE_COUNTER_OTHER;
+                }
+                event(new Usage($assocType, $request->getContext(), $submission, $publicationFormat, $submissionFile, $chapter));
             }
             $returner = true;
             HookRegistry::call('FileManager::downloadFileFinished', [&$returner]);

@@ -120,3 +120,9 @@ msgstr "The bulk email feature has been disabled for this press. Enable this fea
 
 msgid "admin.siteManagement.description"
 msgstr "Add, edit or remove presses from this site and manage site-wide settings."
+
+msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgstr "Chapter ID is not an integer"
+
+msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgstr "Series ID is not an integer"
