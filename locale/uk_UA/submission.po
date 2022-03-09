@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-02-22 14:49+0000\n"
+"PO-Revision-Date: 2022-03-11 05:56+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/uk_UA/>\n"
@@ -478,3 +478,132 @@ msgstr ""
 
 msgid "submission.proofs"
 msgstr "Пруфи"
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+"{$editorName} рекомендував(ла), щоби це подання було направлено на стадію "
+"зовнішнього рецензування."
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr ""
+"Рекомендувати, щоби це подання було направлено на стадію зовнішнього "
+"рецензування."
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr "Рекомендувати направити на зовнішнє рецензування"
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr "Виберіть файли, які мають бути надіслані на стадію рецензування."
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+"Надішліть авторам електронного листа, щоби повідомити їх, що це подання буде "
+"направлено для експертного оцінювання. Якщо можливо, зорієнтуйте авторів, як "
+"довго може тривати процес експертного оцінювання і коли їм слід знов "
+"очікувати новин від редакторів."
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+"Надішліть авторам електронного листа, щоби повідомити їх, що їхнє подання "
+"знову направляється на стадію рецензування. Поясніть, чому було прийнято це "
+"рішення, та поінформуйте авторів, яке рецензування буде здійснено."
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr "Подання, {$title}, було знову направлено на стадію рецензування."
+
+msgid "editor.submission.decision.backToReview.completed"
+msgstr "Знову направлено на рецензування"
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+"{$editorName} скасував(ла) рішення про прийняття цього подання і направив(ла)"
+" його знову на стадію рецензування."
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr ""
+"Скасувати рішення про прийняття цього подання і направити його знову на "
+"стадію рецензування."
+
+msgid "editor.submission.decision.backToReview"
+msgstr "Повернутися до рецензування"
+
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr "Подання, {$title}, було направлено на стадію зовнішнього рецензування."
+
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr "Направлено для зовнішнього рецензування"
+
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr ""
+"{$editorName} направив(ла) це подання на стадію зовнішнього рецензування."
+
+msgid "editor.submission.decision.promoteFiles.internalReview"
+msgstr ""
+"Виберіть файли, які мають бути надіслані на стадію внутрішнього рецензування."
+
+msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
+msgstr ""
+"Надішліть авторам електронного листа, щоби повідомити їх, що це подання буде "
+"направлено для внутрішнього рецензування. Якщо можливо, зорієнтуйте авторів, "
+"як довго може тривати процедура внутрішнього рецензування і коли їм слід "
+"знов очікувати новин від редакторів."
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgstr "Подання, {$title}, було направлено на стадію внутрішнього рецензування."
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr "Направлено для внутрішнього рецензування"
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr ""
+"{$editorName} направив(ла) це подання на стадію внутрішнього рецензування."
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr "Це подання є готовим до надсилання для внутрішнього рецензування."
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr "Надіслати на внутрішнє рецензування"
+
+msgid "chapter.pages"
+msgstr "Сторінки"
+
+msgid "submission.chapterCreated"
+msgstr " — Главу створено"
+
+msgid "submission.withoutChapter"
+msgstr "{$name} — Без цієї глави"
+
+msgid "chapter.volume"
+msgstr "Том"
+
+msgid "publication.publish.success"
+msgstr "Статус публікації успішно змінено."
+
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+"Показати цю главу на власній сторінці та покликання на ту сторінку зі змісту "
+"книги."
+
+msgid "publication.chapter.landingPage"
+msgstr "Сторінка Глави"
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Усі вимоги до публікації виконано. Чи впевнені ви, що хочете зробити цей "
+"запис каталогу публічним?"
+
+msgid "publication.inactiveSeries"
+msgstr "{$series} (неактивно)"
+
+msgid "submission.list.viewEntry"
+msgstr "Переглянути Запис"
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"Перемістіть або використайте стрілки вверх і вниз для зміни порядку об'єктів "
+"у {$title}."
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Перемістіть або використайте стрілки вверх і вниз для зміни порядку об'єктів "
+"на домашній сторінці."
