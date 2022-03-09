@@ -1,7 +1,8 @@
+# Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-05-05 01:48+0000\n"
-"Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
+"PO-Revision-Date: 2022-03-11 05:56+0000\n"
+"Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "uk_UA/>\n"
 "Language: uk_UA\n"
@@ -194,7 +195,7 @@ msgid "grid.catalogEntry.valueRequired"
 msgstr "Необхідно ввести значення."
 
 msgid "monograph.audience.rangeQualifier"
-msgstr ""
+msgstr "Визначник групової аудиторії"
 
 msgid "monograph.publicationFormat.taxRate"
 msgstr "Ставка Податку"
@@ -290,6 +291,8 @@ msgstr ""
 
 msgid "grid.catalogEntry.approvedRepresentation.message"
 msgstr ""
+"<p>Затвердіть метадані для цього формату. Метадані можна перевірити на "
+"панелі «Редагування» для кожного формату.</p>"
 
 msgid "grid.catalogEntry.isNotAvailable"
 msgstr "Не доступно"
@@ -338,7 +341,7 @@ msgid "monograph.publicationFormat.priceType"
 msgstr "Тип Ціни"
 
 msgid "monograph.publicationFormat.productComposition"
-msgstr ""
+msgstr "Структура видання"
 
 msgid "monograph.publicationFormat.backMatterCount"
 msgstr ""
@@ -1114,3 +1117,15 @@ msgstr ""
 
 msgid "series.featured.description"
 msgstr "Ці Серії з'являться у головній навігації"
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "10-значний код ISBN,такий як 951-98548-9-4."
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "13-значний код ISBN,такий як 978-951-98548-9-2."
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"
+
+msgid "common.payments"
+msgstr "Платежі"
