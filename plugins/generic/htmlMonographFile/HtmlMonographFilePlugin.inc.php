@@ -13,11 +13,17 @@
  * @brief Class for HtmlMonographFile plugin
  */
 
+use APP\core\Application;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
+use APP\observers\events\Usage;
 use APP\template\TemplateManager;
+use PKP\db\DAORegistry;
 use PKP\plugins\GenericPlugin;
+use PKP\plugins\HookRegistry;
 use PKP\submissionFile\SubmissionFile;
+
+import('lib.pkp.classes.plugins.GenericPlugin');
 
 class HtmlMonographFilePlugin extends GenericPlugin
 {
@@ -124,6 +130,10 @@ class HtmlMonographFilePlugin extends GenericPlugin
                 echo $this->_getHTMLContents($request, $submission, $publicationFormat, $submissionFile);
                 $returner = true;
                 HookRegistry::call('HtmlMonographFilePlugin::monographDownloadFinished', [&$returner]);
+
+                $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
+                $chapter = $chapterDao->getChapter($submissionFile->getData('chapterId'));
+                event(new Usage(Application::ASSOC_TYPE_SUBMISSION_FILE, $request->getContext(), $submission, $publicationFormat, $submissionFile, $chapter));
                 return true;
             }
         }
