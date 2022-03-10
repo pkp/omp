@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-22 20:40+0000\n"
-"PO-Revision-Date: 2022-01-27 14:25+0000\n"
+"PO-Revision-Date: 2022-03-11 05:56+0000\n"
 "Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/submission/pt_PT/>\n"
@@ -544,3 +544,12 @@ msgstr "Página do Capítulo"
 
 msgid "publication.publish.success"
 msgstr "Estado de publicação alterada com sucesso."
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr "{$editorName} enviou esta submissão para a etapa de revisão interna."
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr "Esta submissão está pronta para ser enviada para revisão interna."
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr "Enviar para Revisão Interna"
