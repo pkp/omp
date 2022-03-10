@@ -1,6 +1,7 @@
+# Teodora Fildishevska <t.fildishevska@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-02-05 18:07+0000\n"
+"PO-Revision-Date: 2022-03-11 05:56+0000\n"
 "Last-Translator: Teodora Fildishevska <t.fildishevska@gmail.com>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/api/"
 "mk_MK/>\n"
@@ -34,3 +35,6 @@ msgstr ""
 
 msgid "api.emails.403.disabled"
 msgstr "Функцијата за известување преку е-пошта не е овозможена за ова издание."
+
+msgid "api.submissions.400.wrongContext"
+msgstr "Поднесокот кој го побаравте не е во ова издание."
