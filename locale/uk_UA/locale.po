@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-11 05:56+0000\n"
+"PO-Revision-Date: 2022-03-12 17:32+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "uk_UA/>\n"
@@ -175,9 +175,12 @@ msgstr "Країни"
 
 msgid "grid.catalogEntry.oneROWPerFormat"
 msgstr ""
+"Для цього формату публікації вже визначено тип продажів ROW (Решта світу)."
 
 msgid "grid.catalogEntry.salesRightsROW.tip"
 msgstr ""
+"Відмітьте цей флажок, щоб використати ці \"Права продажів\" для вашого "
+"формату в цілому.  В цьому випадку країни та регіони вибирати не потрібно."
 
 msgid "grid.catalogEntry.salesRightsROW"
 msgstr "Решта Світу?"
@@ -267,7 +270,7 @@ msgid "grid.catalogEntry.identificationCodeType"
 msgstr "Тип Коду ONIX"
 
 msgid "grid.catalogEntry.productCompositionRequired"
-msgstr ""
+msgstr "Необхідно вибрати код складу продукту."
 
 msgid "grid.catalogEntry.availableRepresentation.notApproved"
 msgstr "Очікує підтвердження"
@@ -287,7 +290,7 @@ msgstr ""
 "файлів і інші види доставки з'являться на сторінці книги у каталозі.</p>"
 
 msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
-msgstr ""
+msgstr "<p>Указує, що метадані для цього формату не було затверждено.</p>"
 
 msgid "grid.catalogEntry.approvedRepresentation.message"
 msgstr ""
@@ -344,10 +347,10 @@ msgid "monograph.publicationFormat.productComposition"
 msgstr "Структура видання"
 
 msgid "monograph.publicationFormat.backMatterCount"
-msgstr ""
+msgstr "Задні дані (після основного тексту)"
 
 msgid "monograph.publicationFormat.frontMatterCount"
-msgstr ""
+msgstr "Передні дані (до основного тексту)"
 
 msgid "monograph.publicationFormat.imprint"
 msgstr "Видавництво (Назва Компанії)"
@@ -1129,3 +1132,17 @@ msgstr "ISBN"
 
 msgid "common.payments"
 msgstr "Платежі"
+
+msgid "spotlight.noneExist"
+msgstr "Тут немає поточних фокусів уваги (spotlights)."
+
+msgid "spotlight.spotlights"
+msgstr "Фокуси уваги (spotlights)"
+
+msgid "spotlight"
+msgstr "Фокус уваги (spotlight)"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+"Ви можете залишити наступний розділ пустим, якщо Ви надаєте власні послуги "
+"своїм клієнтам."
