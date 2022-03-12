@@ -1,9 +1,11 @@
+# Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-27 23:20+0000\n"
-"Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
-"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/api/uk/>\n"
-"Language: uk\n"
+"PO-Revision-Date: 2022-03-12 17:05+0000\n"
+"Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
+"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/api/uk_UA/"
+">\n"
+"Language: uk_UA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,15 +13,32 @@ msgstr ""
 "4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
+#, fuzzy
 msgid "api.submissions.403.cantChangeContext"
-msgstr "Ви не можете змінити видавництво для подання."
+msgstr "Ви не можете змінити видання для подання."
 
+#, fuzzy
 msgid "api.publications.403.contextsDidNotMatch"
-msgstr "Публікація яку ви шукаєте не належить жодному видавництву."
+msgstr "Публікація, яку Ви шукаєте, не належить цьому виданню."
 
+#, fuzzy
 msgid "api.emailTemplates.403.notAllowedChangeContext"
-msgstr ""
-"У вас недостатньо прав для переносу цього шаблону листа в ынше видавництво."
+msgstr "У вас недостатньо прав для переносу цього шаблону листа в інше видання."
 
+#, fuzzy
 msgid "api.publications.403.submissionsDidNotMatch"
-msgstr "Публікація, яку ви шукаєте не є частиною цього подання."
+msgstr "Публікація, яку Ви шукаєте, не є частиною цього подання."
+
+msgid "api.emails.403.disabled"
+msgstr ""
+"Можливості повідомляти електронною поштою не включені для цього видання."
+
+msgid "api.submissions.400.wrongContext"
+msgstr "Подання, яке Ви запросили, тут немає."
+
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "Одне або більше подань, які Ви вказали, не вдалося знайти."
+
+msgid "api.submissions.400.submissionIdsRequired"
+msgstr ""
+"Вам необхідно ввести одне або декілька ID подань для додавання в каталог."
