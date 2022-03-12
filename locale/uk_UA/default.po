@@ -1,7 +1,8 @@
+# Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-29 11:38+0000\n"
-"Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
+"PO-Revision-Date: 2022-03-12 17:05+0000\n"
+"Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/default/"
 "uk_UA/>\n"
 "Language: uk_UA\n"
@@ -70,10 +71,10 @@ msgid "default.genres.glossary"
 msgstr "Глосарій"
 
 msgid "default.genres.chapter"
-msgstr "Рукопис Розділу"
+msgstr "Рукопис розділу"
 
 msgid "default.genres.manuscript"
-msgstr "Рукопис Книги"
+msgstr "Рукопис книги"
 
 msgid "default.genres.bibliography"
 msgstr "Бібліографія"
@@ -151,3 +152,6 @@ msgstr "Проспект"
 
 msgid "default.genres.index"
 msgstr "Індекс"
+
+msgid "default.genres.appendix"
+msgstr "Додаток"
