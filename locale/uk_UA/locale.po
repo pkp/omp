@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-13 17:56+0000\n"
+"PO-Revision-Date: 2022-03-14 23:55+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "uk_UA/>\n"
@@ -1188,3 +1188,71 @@ msgstr "Пункт фокусу уваги"
 
 msgid "spotlight.title.homePage"
 msgstr "У фокусі уваги"
+
+msgid "user.authorization.representationNotFound"
+msgstr "Запитуваний формат публікації не було знайдено."
+
+msgid "navigation.skip.spotlights"
+msgstr "Перейти до фокусів уваги"
+
+msgid "catalog.forthcoming"
+msgstr "Незабаром"
+
+msgid "catalog.noTitles"
+msgstr "Ще не було опубліковано жодної назви."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Знайти монографії для додавання в каталог"
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Одне або більше подань не було знайдено."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Не було вибрано жодного подання для додавання в каталог."
+
+msgid "catalog.manage.isNotFeatured"
+msgstr "Цю монографію не опубліковано. Зробити цю монографію опублікованою."
+
+msgid "catalog.manage.isFeatured"
+msgstr "Цю монографію опубліковано. Зробити цю монографію неопублікованою."
+
+msgid "catalog.manage.nonOrderable"
+msgstr "Цю монографію не можна замовити, доки її не опублікують."
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "Монографію не вибрано."
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "Монографію вибрано."
+
+msgid "catalog.manage.seriesDescription"
+msgstr ""
+"Натисніть кнопку \"Особливості\", потім зірочку, щоб вибрати потрібну книгу "
+"для цієї серії; перетаскуйте вверх і вниз для впорядкування. Серії "
+"ідентифікуються з редактором(ами) й назвами серій, у межах категорії або "
+"незалежно від неї."
+
+msgid "catalog.manage.categoryDescription"
+msgstr ""
+"Натисніть кнопку \"Особливості\", потім зірочку, щоб вибрати потрібну книгу "
+"для цієї категорії; перетаскуйте вверх і вниз для в порядкування."
+
+msgid "catalog.manage.homepageDescription"
+msgstr ""
+"Зображення обкладинки вибранних книг з'являється у верхній частиніголовної "
+"сторінки у вигляді набору з можливістю прокрутки. Натисніть кнопку \""
+"Особливості\", потім зірочку, щоб додати книгу в карусель; клікніть на знак "
+"оклику, щоб позначити нове видання; перетаскуйте вверх і вниз для "
+"впорядкування."
+
+msgid "grid.action.formatAvailable"
+msgstr "Увімкнути або вимкнути доступність цього формату"
+
+msgid "grid.action.approveProofs"
+msgstr "Переглянути сітку коректури"
+
+msgid "grid.action.featureMonograph"
+msgstr "Показати це в каруселі каталогу"
+
+msgid "grid.action.feature"
+msgstr "Переключити відображення характеристик"
