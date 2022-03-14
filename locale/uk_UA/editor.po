@@ -1,10 +1,11 @@
+# Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-27 23:20+0000\n"
-"Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
-"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/editor/uk/"
-">\n"
-"Language: uk\n"
+"PO-Revision-Date: 2022-03-14 23:55+0000\n"
+"Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
+"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/editor/"
+"uk_UA/>\n"
+"Language: uk_UA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,9 +21,8 @@ msgstr ""
 "Переглянути і керувати поданням в каталозі, включно з метаданими і видами "
 "видання"
 
-#, fuzzy
 msgid "editor.monograph.legend.sectionActions"
-msgstr "Дії з Розділами"
+msgstr "Дії з розділами"
 
 msgid "editor.monograph.legend.submissionActions"
 msgstr "Дії з Поданням"
@@ -81,22 +81,18 @@ msgstr "Дію Виконано"
 msgid "editor.monograph.legend.in_progress"
 msgstr "Дія в процесі виконання або ще не виконана"
 
-#, fuzzy
 msgid "editor.monograph.legend.delete"
-msgstr "Видалити Елемент"
+msgstr "Видалити елемент"
 
-#, fuzzy
 msgid "editor.monograph.legend.edit"
 msgstr "Редагувати елемент"
 
 msgid "editor.monograph.legend.more_info"
 msgstr "Більше Інформації: нотатки, налаштування та історія файлу"
 
-#, fuzzy
 msgid "editor.monograph.legend.add_user"
 msgstr "Додати користувача до розділу"
 
-#, fuzzy
 msgid "editor.monograph.legend.add"
 msgstr "Завантажити файл до розділу"
 
@@ -110,13 +106,107 @@ msgstr ""
 "Переглянути та керувати метаданими, нотатками, сповіщеннями та історією "
 "подання."
 
-#, fuzzy
 msgid "editor.monograph.legend.itemActions"
-msgstr "Дії з Елементами"
+msgstr "Дії з елементами"
 
-#, fuzzy
 msgid "editor.monograph.final.selectFinalDraftFiles"
-msgstr "Оберіть Фінальні Версії Чернеток"
+msgstr "Оберіть фінальні  версії чорнеток"
 
 msgid "editor.monograph.peerReviewOptions"
 msgstr "Налаштування Рецензування"
+
+msgid "editor.submissions.assignedTo"
+msgstr "Пов'язано з редактором"
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr ""
+"Публічний ідентифікатор «{$publicIdentifier}» уже існує для іншого об'єкта "
+"цього ж типу. Будь ласка, вибирайте унікальні ідентифікатори для об'єктів "
+"одного типу у Вашому виданні."
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr ""
+"Будь-які файли, які вже були завантажені на будь-якому етапі подавання "
+"матеріалу, можуть бути додані у список «Файли гранок», для цього потрібно "
+"поставити галочку «Включити» нижче і клікнути «Пошук»: усі доступні файли "
+"будуть показані у списку и можуть бути вибрані для включення."
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Установити умови"
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Установити умови для завантажування"
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr ""
+"Додайте формати публікації (наприклад, цифровий, у м'якій обкладинці), для "
+"яких редактор макетів готує верстку сторінок для коректури. <em>Гранки</em> "
+"мають бути перевірені на затвердження, а запис для формату в <em>Каталог</em>"
+" має бути перевірена на опублікування в каталозі книги перед тим, як формат "
+"можна буде зробити <em>Доступний</em> (тото опублікованим)."
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Файл завантажено роллю в заголовку стовбця сітки"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr ""
+"Різні формати публікації, такі як із твердою обкладинкою, м'якою і цифровий, "
+"можуть бути завантажені в розділі «Формати публікації» нижче. Ви можете "
+"використати наведену нижче сітку форматів публікації як контрольний список "
+"того, що ще потрібно зробити для публікації формату видання."
+
+msgid "editor.monograph.proofs"
+msgstr "Гранки"
+
+msgid "editor.submission.introduction"
+msgstr ""
+"У розділі «Подання» редактор після перегляду представлених файлів вибирає "
+"відповідну дію (яка включає в себе повідомлення автора): «Направити на "
+"внутрішнє рецензування» (тягне за собою вибір файлів для внутрішнього "
+"рецензування); «Направити на зовнішнє рецензування» (тягне за собою вибір "
+"файлів для зовнішнього рецензування); «Прийняти подання» (тягне за собою "
+"вибір файлів для етапу редагування) або «Відхилити подання» (відправка в "
+"архів)."
+
+msgid "editor.monograph.legend.notes_new"
+msgstr ""
+"Інформація про файл: примітки, параметри повідомлень та історія (Після "
+"останнього відвідування додано нові примітки)"
+
+msgid "editor.monograph.legend.notes"
+msgstr ""
+"Інформація про файл: примітки, параметри повідомлень та історія (Примітки "
+"вже додано)"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr ""
+"Інформація про файл: примітки, параметри повідомлень та історія (Примітки "
+"еще не додано)"
+
+msgid "editor.monograph.legend.settings"
+msgstr ""
+"Перегляд і доступ до параметрів елемента, таким як інформація та параметри "
+"видалення"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Дії та параметри, що стосуються окремого файлу."
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr ""
+"Параметри, специфічні для даного розділу, наприклад, завантаження файлів або "
+"добавання користувачів."
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Загальні дії та опції подання матеріалу."
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Поточні файли"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Поточні фінальні версії чорнеток"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Файли коректури"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Редактор, який має дати рекомендації / коментарі для рецензента"
