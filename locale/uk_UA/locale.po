@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-14 23:55+0000\n"
+"PO-Revision-Date: 2022-03-16 00:42+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "uk_UA/>\n"
@@ -395,7 +395,9 @@ msgid "help.searchReturnResults"
 msgstr "Повернутися до результатів пошуку"
 
 msgid "about.aboutThisPublishingSystem"
-msgstr "Про цю Видавничу Систему"
+msgstr ""
+"Більше інформації про цю видавничу систему, платформу й робочий процес від "
+"OMP/PKP."
 
 msgid "about.openAccessPolicy"
 msgstr "Політика Відкритого Доступу"
@@ -1062,9 +1064,8 @@ msgstr "Вимоги до подання"
 msgid "about.onlineSubmissions.viewSubmissions"
 msgstr "переглянути раніше подані матеріали"
 
-#, fuzzy
 msgid "about.onlineSubmissions"
-msgstr "Подання Онлайн"
+msgstr "Онлайнові подання"
 
 msgid "about.seriesPolicies"
 msgstr "Серії та Політика Категорій"
@@ -1256,3 +1257,344 @@ msgstr "Показати це в каруселі каталогу"
 
 msgid "grid.action.feature"
 msgstr "Переключити відображення характеристик"
+
+msgid "payment.directSales.openAccess"
+msgstr "Відкритий доступ"
+
+msgid "payment.directSales.notSet"
+msgstr "Не встановлено"
+
+msgid "payment.directSales.notAvailable"
+msgstr "Не доступно"
+
+msgid "payment.directSales.amount"
+msgstr "{$amount} ({$currency})"
+
+msgid "payment.directSales.directSales"
+msgstr "Прямі продажі"
+
+msgid "payment.directSales.numericOnly"
+msgstr "Ціни мають бути лише числовими. Не включайте символи валют."
+
+msgid "payment.directSales.priceCurrency"
+msgstr "Ціна ({$currency})"
+
+msgid "payment.directSales.approved"
+msgstr "Затверджено"
+
+msgid "payment.directSales.catalog"
+msgstr "Каталог"
+
+msgid "payment.directSales.availability"
+msgstr "Доступність"
+
+msgid "payment.directSales.price"
+msgstr "Ціна"
+
+msgid "payment.directSales"
+msgstr "Завантажити з вебсайту видання"
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+"У доступі відмовлено! Групу користувачів, у якій Ви зараз дієте, не було "
+"призначено для цієї стадії робочого процесу. Будь ласка, перевірте "
+"налаштування Вашого видання."
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr ""
+"У доступі відмовлено! Вас не було призначено для цієї стадії робочого "
+"процесу."
+
+msgid "user.authorization.seriesAssignment"
+msgstr ""
+"Ви намагаєтеся отримати доступ до монографії (книги), яка не належить до "
+"Вашої серії."
+
+msgid "user.authorization.noContext"
+msgstr "Не знайдено видання, що відповідає Вашому запиту."
+
+msgid "user.authorization.invalidMonograph"
+msgstr "Неправильна монографія (книга) або вона не запрошувалася!"
+
+msgid "user.authorization.monographFile"
+msgstr "Вам відмовлено в доступі до відповідного файлу монографії (книги)."
+
+msgid "user.authorization.monographReviewer"
+msgstr ""
+"Вам відмовлено в доступі, оскільки Ви не видаєтеся пов'язаним рецензентом "
+"цієї монографії (книги)."
+
+msgid "user.authorization.monographAuthor"
+msgstr ""
+"Вам відмовлено в доступі, оскільки Ви не видаєтеся автором цієї монографії "
+"(книги)."
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr ""
+"Вам відмовлено в доступі, оскільки Ви не видаєтеся належним рецензентом цієї "
+"монографії (книги)."
+
+msgid "notification.type.visitCatalog"
+msgstr ""
+"Монографію (книгу) було затверджено. Будь ласка, відвідайте розділ \""
+"Маркетинг і Публікація\", щоб ознайомитися з деталями каталогу, "
+"використовуючи покликання вище."
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "Управління каталогом"
+
+msgid "notification.type.configurePaymentMethod"
+msgstr ""
+"Перед тим, як визначити налаштування електронної комерції, потрібно "
+"сконфігурувати метод оплати."
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "Жоден метод оплати не сконфігуровано."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+"Монографію (книгу) не буде включено в каталог, доки її не буде опубліковано. "
+"Щоб додати цю книгу в каталог, клікніть на вкладці \"Публікація\"."
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "Очікує схвалення."
+
+msgid "notification.type.approveSubmission"
+msgstr ""
+"Наразі це подання очікує схвалення в інструменті \"Запис каталогу\" перед "
+"тим, як воно з'явиться в публічному каталозі."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "Процес внутрішнього рецензування розпочався."
+
+msgid "notification.type.indexRequest"
+msgstr "Вас попросили створити індексний файл для «{$title}»."
+
+msgid "notification.type.layouteditorRequest"
+msgstr "Вас попросили виконати верстання «{$title}»."
+
+msgid "notification.type.copyeditorRequest"
+msgstr "Вас попросили виконати літературне редагування «{$file}»."
+
+msgid "notification.type.editorAssignmentTask"
+msgstr ""
+"Було подано нову монографію (книгу), для якої потрібно призначити редактора."
+
+msgid "notification.type.public"
+msgstr "Публічні оголошення"
+
+msgid "notification.type.userComment"
+msgstr "Читач додав коментар до «{$title}»."
+
+msgid "notification.type.submissions"
+msgstr "Події щодо подання"
+
+msgid "notification.type.site"
+msgstr "Події сайту"
+
+msgid "notification.type.reviewing"
+msgstr "Події щодо рецензування"
+
+msgid "notification.type.editing"
+msgstr "Події щодо редагування"
+
+msgid "notification.type.submissionSubmitted"
+msgstr "Нову монографію (книгу), «{$title}», було подано."
+
+msgid "notification.removedSubmission"
+msgstr "Подання видалено."
+
+msgid "notification.proofsApproved"
+msgstr "Гранки затверджено."
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "Метадані формату публікації збережено."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "Метадані каталогу збережено."
+
+msgid "notification.removedSpotlight"
+msgstr "Фокус уваги видалено."
+
+msgid "notification.editedSpotlight"
+msgstr "Фокус уваги відредаговано."
+
+msgid "notification.addedSpotlight"
+msgstr "Фокус уваги додано."
+
+msgid "notification.removedMarket"
+msgstr "Ринок видалено."
+
+msgid "notification.editedMarket"
+msgstr "Ринок відредаговано."
+
+msgid "notification.addedMarket"
+msgstr "Ринок додано."
+
+msgid "notification.removedRepresentative"
+msgstr "Представника видалено."
+
+msgid "notification.editedRepresentative"
+msgstr "Представника відредаговано."
+
+msgid "notification.addedRepresentative"
+msgstr "Представника додано."
+
+msgid "notification.removedSalesRights"
+msgstr "Права щодо продажу видалено."
+
+msgid "notification.editedSalesRights"
+msgstr "Права щодо продажу відредаговано."
+
+msgid "notification.addedSalesRights"
+msgstr "Права щодо продажу додано."
+
+msgid "notification.removedPublicationFormat"
+msgstr "Формат публікації видалено."
+
+msgid "notification.editedPublicationFormat"
+msgstr "Формат публікації відредаговано."
+
+msgid "notification.addedPublicationFormat"
+msgstr "Формат публікації додано."
+
+msgid "notification.removedPublicationDate"
+msgstr "Дату опублікування видалено."
+
+msgid "notification.editedPublicationDate"
+msgstr "Дату опублікування відредаговано."
+
+msgid "notification.addedPublicationDate"
+msgstr "Дату опублікування додано."
+
+msgid "notification.removedIdentificationCode"
+msgstr "Ідентифікаційний код видалено."
+
+msgid "notification.editedIdentificationCode"
+msgstr "Ідентифікаційний код відредаговано."
+
+msgid "notification.addedIdentificationCode"
+msgstr "Ідентифікаційний код додано."
+
+msgid "log.imported"
+msgstr "{$userName} імпортував(ла) монографію (книгу) {$submissionId}."
+
+msgid "log.proofread.assign"
+msgstr ""
+"{$assignerName} призначив користувача {$proofreaderName} коректором подання "
+"{$submissionId}."
+
+msgid "log.proofread.complete"
+msgstr ""
+"Коректор(ка) {$proofreaderName} відправив(ла) матеріал {$submissionId} для "
+"розміщення."
+
+msgid "log.editor.editorAssigned"
+msgstr "{$editorName} було призначено редактором(кою) подання {$submissionId}."
+
+msgid "log.editor.restored"
+msgstr "Подання {$submissionId} було поновлено (з архіву) в черзі."
+
+msgid "log.editor.archived"
+msgstr "Подання {$submissionId} було заархівовано."
+
+msgid "log.editor.recommendation"
+msgstr ""
+"Рекомендацію редактора(ки) ({$decision}) для монографії (книги) "
+"{$submissionId} було записане редактором(кою) {$editorName}."
+
+msgid "log.editor.decision"
+msgstr ""
+"Рішення редактора(ки) ({$decision}) для монографії (книги) {$submissionId} "
+"було записане редактором(кою) {$editorName}."
+
+msgid "log.review.reviewUnconsidered"
+msgstr ""
+"{$editorName} відмітив  {$round}-й раунд рецензування для подання "
+"{$submissionId} як нерозглянутий."
+
+msgid "log.review.reviewAccepted"
+msgstr ""
+"Рецензент {$reviewerName} погодився дати рецензію на {$round}-м раунді "
+"рецензування для подання {$submissionId}."
+
+msgid "log.review.reviewDeclined"
+msgstr ""
+"Рецензент {$reviewerName} відмовився дати рецензію на {$round}-м раунді "
+"рецензування для подання {$submissionId}."
+
+msgid "log.review.reviewDueDateSet"
+msgstr ""
+"Граничним терміном {$round}-го раунду рецензування подання {$submissionId} "
+"рецензентом {$reviewerName} було встановлено {$dueDate}."
+
+msgid "installer.upgradeComplete"
+msgstr ""
+"<p>Оновлення OMP до версії {$version} виконано успішно.</p>\n"
+"<p>Не забудьте встановити параметр \"installed\" (\"встановлено\") у файлі "
+"конфігурації config.inc.php знов у значення <em>On (вкл.)</em>.</p>\n"
+"<p>Якщо Ви ще не зареєстровані й хочете отримувати новини й оновлення, "
+"<strong>зареєструйтеся, будь ласка, на  <a href=\"http://pkp.sfu.ca/omp/"
+"register\" target=\"_blank\">http://pkp.sfu.ca/omp/register</a>.</strong> "
+"Якщо маєте запитання чи коментарі, будь ласка, відвідайте <a href=\""
+"http://forum.pkp.sfu.ca\" target=\"_blank\">форум підтримки</a>.</p>"
+
+msgid "installer.installationComplete"
+msgstr ""
+"<p>Установку OMP успішно завершено.</p>\n"
+"<p>Для початку користування системою <a href=\"{$loginUrl}\">увійдіть</a> із "
+"логіном і паролем, введеними на попередній сторінці.</p>\n"
+"<p>Якщо хочете отримувати новини й оновлення, <strong>зареєструйтеся, будь "
+"ласка, на  <a href=\"http://pkp.sfu.ca/omp/register\" target=\"_blank\""
+">http://pkp.sfu.ca/omp/register</a>.</strong> Якщо маєте запитання чи "
+"коментарі, будь ласка, відвідайте <a href=\"http://forum.pkp.sfu.ca\" target="
+"\"_blank\">форум підтримки</a>.</p>"
+
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>ВАЖЛИВО!</h4>\n"
+"<p>Установщик не зміг автоматично перезаписати файл конфігурації. Перед "
+"спробою скористатися системою, будь ласка, відкрийте <tt>config.inc.php</tt> "
+"у зручному текстовому редакторі й замініть його вміст вмістом текстового "
+"поля, наведеним нижче.</p>"
+
+msgid "installer.upgradeApplication"
+msgstr "Оновити Open Monograph Press"
+
+msgid "installer.databaseSettingsInstructions"
+msgstr ""
+"OMP вимагає доступ до бази даних SQL для зберігання своїх даних. Вище у "
+"вммогах до системи вказано список підтримуваних баз даних. У полях нижче "
+"вкажіть налаштування, що будуть використані для зв'язку з базою даних."
+
+msgid "installer.filesDirInstructions"
+msgstr ""
+"Введіть повний шлях до наявної директорії, де будуть зберігатися завантажені "
+"файли. Ця директорія не повинна бути напряму доступною в мережі. <strong>"
+"Будь ласка, перед установкою впевніться, що директорія існує і є доступною "
+"для запису.</strong> Шляхи у Windows повинні використовувати прямі слеши, "
+"наприклад, «C:/mypress/files»."
+
+msgid "installer.additionalLocalesInstructions"
+msgstr ""
+"Виберіть будь-які додаткові мови для підтримки в цій системі. Ці мови будуть "
+"доступними для використання виданнями, розміщеними на сайті. Додаткові мови "
+"також можуть бути встановлені в будь-який час із інтерфейсу адміністрування "
+"сайту. Локалі, помічені *, можуть бути неповними."
+
+msgid "installer.updatingInstructions"
+msgstr ""
+"Якщо Ви оновлюєте встановлену OMP, <a href=\"{$upgradeUrl}\">натисніть "
+"тут</a> для продовження."
+
+msgid "about.aboutSoftware"
+msgstr "Про Open Monograph Press"
+
+msgid "site.noPresses"
+msgstr "Немає доступних видань."
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Так, я погоджуюся, щоб мої дані збиралися та зберігалися згідно з політикою "
+"конфіденційності <a href=\"{$privacyUrl}\" target=\"_blank\"> цього "
+"видання</a>."
