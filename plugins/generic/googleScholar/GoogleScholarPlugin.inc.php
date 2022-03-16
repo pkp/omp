@@ -79,7 +79,7 @@ class GoogleScholarPlugin extends GenericPlugin
         $templateMgr->addHeader('googleScholarTitle', '<meta name="citation_title" content="' . htmlspecialchars($title) . '"/>');
 
         // Publication date
-        $templateMgr->addHeader('googleScholarDate', '<meta name="citation_publication_date" content="' . strftime('%Y-%m-%d', strtotime($publication->getData('datePublished'))) . '"/>');
+        $templateMgr->addHeader('googleScholarDate', '<meta name="citation_publication_date" content="' . date('Y-m-d', strtotime($publication->getData('datePublished'))) . '"/>');
 
         // Authors in order
         $authors = $isChapterRequest ? $templateMgr->getTemplateVars('chapterAuthors') : Repo::author()->getSubmissionAuthors($submission);
