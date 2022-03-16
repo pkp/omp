@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-12 17:05+0000\n"
+"PO-Revision-Date: 2022-03-16 18:38+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/default/"
 "uk_UA/>\n"
@@ -14,34 +14,34 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 
 msgid "default.groups.plural.externalReviewer"
-msgstr "Зовнішні Рецензенти"
+msgstr "Зовнішні рецензенти"
 
 msgid "default.groups.name.externalReviewer"
-msgstr "Зовнішній Рецензент"
+msgstr "Зовнішній рецензент"
 
 msgid "default.groups.plural.volumeEditor"
-msgstr "Редактори Томів"
+msgstr "Редактори тому"
 
 msgid "default.groups.name.volumeEditor"
-msgstr "Редактор Тому"
+msgstr "Редактор тому"
 
 msgid "default.groups.plural.chapterAuthor"
-msgstr "Автори Розділів"
+msgstr "Автори глави"
 
 msgid "default.groups.name.chapterAuthor"
-msgstr "Автор Розділу"
+msgstr "Автор глави"
 
 msgid "default.groups.plural.sectionEditor"
-msgstr "Редактори Серій"
+msgstr "Редактори серій"
 
 msgid "default.groups.name.sectionEditor"
-msgstr "Редактор Серії"
+msgstr "Редактор серії"
 
 msgid "default.groups.plural.editor"
-msgstr "Редактори Видавництва"
+msgstr "Редактори видавництва"
 
 msgid "default.groups.name.editor"
-msgstr "Редактор Видавництва"
+msgstr "Редактор видавництва"
 
 msgid "default.groups.plural.manager"
 msgstr "Менеджери видавництва"
@@ -71,7 +71,7 @@ msgid "default.genres.glossary"
 msgstr "Глосарій"
 
 msgid "default.genres.chapter"
-msgstr "Рукопис розділу"
+msgstr "Рукопис глави"
 
 msgid "default.genres.manuscript"
 msgstr "Рукопис книги"
@@ -136,7 +136,7 @@ msgstr ""
 "там, де вони повинні бути за змістом (а не у кінці документу)."
 
 msgid "default.contextSettings.checklist.addressesLinked"
-msgstr "Веб-посилання у тексті супроводжуються повними коректними адресами URL."
+msgstr "Де це можливо, посилання супроводжуються URL-адресами."
 
 msgid "default.contextSettings.checklist.fileFormat"
 msgstr ""
@@ -145,7 +145,7 @@ msgstr ""
 msgid "default.contextSettings.checklist.notPreviouslyPublished"
 msgstr ""
 "Це подання раніше не було опубліковане і не надсилалося на розгляд до "
-"редакцій інших журналів (або вкажіть пояснення у коментарях для редактора)."
+"редакцій інших видань (або вкажіть пояснення у коментарях для редактора)."
 
 msgid "default.genres.prospectus"
 msgstr "Проспект"
@@ -155,3 +155,37 @@ msgstr "Індекс"
 
 msgid "default.genres.appendix"
 msgstr "Додаток"
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr ""
+"Текст відповідає стилістичним і бібліографічним вимогам, описаним у <a href="
+"\"{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines\" target=\""
+"_blank\">Настановах для авторів</a>, що містяться на сторінці \"Про "
+"видавництво\"."
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "ЗР"
+
+msgid "default.groups.abbrev.subscriptionManager"
+msgstr "МП"
+
+msgid "default.groups.plural.subscriptionManager"
+msgstr "Менеджери подання"
+
+msgid "default.groups.name.subscriptionManager"
+msgstr "Менеджер подання"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "РС"
+
+msgid "default.groups.abbrev.editor"
+msgstr "РВ"
+
+msgid "default.groups.abbrev.manager"
+msgstr "МВ"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "РТ"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "АГ"
