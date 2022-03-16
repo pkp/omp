@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-14 23:55+0000\n"
+"PO-Revision-Date: 2022-03-16 18:39+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "uk_UA/>\n"
@@ -482,7 +482,7 @@ msgid "doi.manager.settings.doiObjectsRequired"
 msgstr "Оберіть об'єкти яким необхідно привласнити DOI."
 
 msgid "doi.manager.settings.description"
-msgstr "Налаштуйте Плагін DOI, щоб мати можливість користуватись DOI в OMP:"
+msgstr "Налаштуйте плагін DOI, щоб мати можливість користуватись DOI в OMP:"
 
 msgid "doi.editor.assignDoi.pattern"
 msgstr ""
@@ -499,7 +499,7 @@ msgstr ""
 "видань<br />%p.%m.%f.%s для файлів."
 
 msgid "doi.manager.settings.doiObjects"
-msgstr "Контент Видавництва"
+msgstr "Контент видавництва"
 
 msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
 msgstr ""
@@ -532,3 +532,6 @@ msgstr ""
 "Використовуйте %p для абревіатури видавництва, %m для монографій, %c для "
 "розділу, %f для виду видання, %s для файлу та %x для \"власного "
 "ідентифікатора\"."
+
+msgid "doi.manager.displayName"
+msgstr "Кілька DOI"
