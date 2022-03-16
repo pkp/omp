@@ -14,9 +14,9 @@
 namespace APP\submission;
 
 use APP\core\Application;
+use APP\facades\Repo;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
-use PKP\doi\Doi;
 
 class Collector extends \PKP\submission\Collector
 {
@@ -72,15 +72,44 @@ class Collector extends \PKP\submission\Collector
                 ->whereIn('pd.status', $this->doiStatuses)
                 ->orWhereIn('cd.status', $this->doiStatuses)
                 ->orWhereIn('pfd.status', $this->doiStatuses);
+        });
+    }
 
-            $q->when(
-                in_array(Doi::STATUS_UNREGISTERED, $this->doiStatuses) && !$this->strictDoiStatusFilter,
-                function (Builder $q) {
-                    $q->orWhereNull('pd.status')
-                        ->orWhereNull('cd.status')
-                        ->orWhereNull('pfd.status');
-                }
-            );
+
+    /**
+     * Add APP-specific filtering methods for checking if submission sub objects have DOIs assigned
+     */
+    protected function addHasDoisFilterToQuery(Builder $q)
+    {
+        $q->whereIn('s.current_publication_id', function (Builder $q) {
+            $q->select('current_p.publication_id')
+                ->from('publications', 'current_p')
+                ->leftJoin('submission_chapters as current_c', 'current_p.publication_id', '=', 'current_c.publication_id')
+                ->leftJoin('publication_formats as current_pf', 'current_p.publication_id', '=', 'current_pf.publication_id')
+                ->where(function (Builder $q) {
+                    $q->when($this->hasDois === true, function (Builder $q) {
+                        $q->when(in_array(Repo::doi()::TYPE_PUBLICATION, $this->enabledDoiTypes), function (Builder $q) {
+                            $q->whereNotNull('current_p.doi_id');
+                        });
+                        $q->when(in_array(Repo::doi()::TYPE_CHAPTER, $this->enabledDoiTypes), function (Builder $q) {
+                            $q->orWhereNotNull('current_c.doi_id');
+                        });
+                        $q->when(in_array(Repo::doi()::TYPE_REPRESENTATION, $this->enabledDoiTypes), function (Builder $q) {
+                            $q->orWhereNotNull('current_pf.doi_id');
+                        });
+                    });
+                    $q->when($this->hasDois === false, function (Builder $q) {
+                        $q->when(in_array(Repo::doi()::TYPE_PUBLICATION, $this->enabledDoiTypes), function (Builder $q) {
+                            $q->whereNull('current_p.doi_id');
+                        });
+                        $q->when(in_array(Repo::doi()::TYPE_CHAPTER, $this->enabledDoiTypes), function (Builder $q) {
+                            $q->orwhereNull('current_c.doi_id');
+                        });
+                        $q->when(in_array(Repo::doi()::TYPE_REPRESENTATION, $this->enabledDoiTypes), function (Builder $q) {
+                            $q->orWhereNull('current_pf.doi_id');
+                        });
+                    });
+                });
         });
     }
 
