@@ -1,10 +1,11 @@
+# Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-22 14:38+0000\n"
-"Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
+"PO-Revision-Date: 2022-03-16 18:38+0000\n"
+"Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
-"blocks-browse/uk/>\n"
-"Language: uk\n"
+"blocks-browse/uk_UA/>\n"
+"Language: uk_UA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,7 +14,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 
 msgid "plugins.block.browse.newReleases"
-msgstr "Нові Видання"
+msgstr "Нові випуски"
 
 msgid "plugins.block.browse.series"
 msgstr "Серії"
@@ -22,16 +23,16 @@ msgid "plugins.block.browse.category"
 msgstr "Категорії"
 
 msgid "plugins.block.browse.settings.title"
-msgstr "Можливості Перегляду"
+msgstr "Можливості перегляду"
 
 msgid "plugins.block.browse.settings"
 msgstr "Налаштування"
 
 msgid "plugins.block.browse.description"
-msgstr "Цей плагін дає можливість створити Бокову Панель \"Перегляд\"."
+msgstr "Цей плагін дає змогу створити бічну панель \"Перегляд\"."
 
 msgid "plugins.block.browse.displayName"
-msgstr "Блок Перегляду"
+msgstr "Блок перегляду"
 
 msgid "plugins.block.browse"
-msgstr "Переглянути"
+msgstr "Перегляд"
