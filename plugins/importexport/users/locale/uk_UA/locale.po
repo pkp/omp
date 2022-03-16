@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-14 23:55+0000\n"
+"PO-Revision-Date: 2022-03-16 18:39+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-users/uk_UA/>\n"
@@ -38,10 +38,10 @@ msgid "plugins.importexport.users.import.importUsers"
 msgstr "Імпортувати користувачів"
 
 msgid "plugins.importexport.users.description"
-msgstr "Імпорт\\Експорт користувачів"
+msgstr "Імпорт і експорт користувачів"
 
 msgid "plugins.importexport.users.uploadFile"
-msgstr "Будь ласка, завантажте файл у розділ «Імпорт», аби продовжити."
+msgstr "Будь ласка, завантажте файл у розділ \"Імпорт\", аби продовжити."
 
 msgid "plugins.importexport.users.importComplete"
 msgstr ""
@@ -113,4 +113,4 @@ msgstr ""
 "\t{$scriptName} {$pluginName} export myExportFile.xml myPress reviewer\n"
 
 msgid "plugins.importexport.users.displayName"
-msgstr "Модуль \"Корстувачі XML\""
+msgstr "Плагін користувачів в XML"
