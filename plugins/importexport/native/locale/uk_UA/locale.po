@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-14 23:55+0000\n"
+"PO-Revision-Date: 2022-03-16 18:39+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-native/uk_UA/>\n"
@@ -42,7 +42,7 @@ msgid "plugins.importexport.native.description"
 msgstr "Імпортує та експортує статті та випуски у власний XML-формат OJS."
 
 msgid "plugins.importexport.native.displayName"
-msgstr "Модуль \"Власний XML\""
+msgstr "Плагін власного XML"
 
 msgid "plugins.importexport.native.cliUsage"
 msgstr ""
