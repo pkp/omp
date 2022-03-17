@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-16 18:39+0000\n"
+"PO-Revision-Date: 2022-03-18 00:56+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "uk_UA/>\n"
@@ -535,3 +535,85 @@ msgstr ""
 
 msgid "doi.manager.displayName"
 msgstr "Кілька DOI"
+
+msgid "manager.setup.details.description"
+msgstr "Назва видавництва, контакти, спонсори й пошукові движки."
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Корстувацькі HTML-теги заголовків, які вставляються в заголовок кожної "
+"сторінки (наприклад, теги META)."
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Крок 5. Налаштування вигляду й стилю"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Зображення будуть зменшені, якщо вони є більшими за цей розмір, але ніколи "
+"не будуть збільшені чи розтягнуті для підгонки згідно з цими розмірами."
+
+msgid "manager.setup.coverage"
+msgstr "Охоплення"
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Інформація про авторське право"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+"Інструкції з літературного й наукового редагування будуть доступні "
+"редакторам, авторам і редакторам глав на стадії редагування подання. Нижче "
+"наведено набір інструкцій за замовченням у форматі HTML, який може бути в "
+"будь-який момент змінений чи замінений менеджером видавництва (у форматі "
+"HTML або простого тексту)."
+
+msgid "manager.setup.contextSummary"
+msgstr "Загальна інформація про видавництво"
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+"Введіть будь-яку додаткову інформацію, яка має бути показана читачам на "
+"сторінці \"Оголошення\"."
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Інструменти для генерування звітів, пов'язаних зі статистикою використання ("
+"перегляд сторінки индексу каталогу, перегляди сторінки анотації монографії, "
+"завантаження файлів монографії)"
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Усі налаштування для імпорту й експорту даних (видання, монографії, "
+"користувачі)"
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Усі налаштування для процесу розповсюдження (повідомлення, индексація, "
+"архівування, оплата, інструменти читання)."
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Цей тип коду видавця не є дійсним."
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Ці поля необхідні, щоб опублікувати дійсні <a href=\"https://en.wikipedia."
+"org/wiki/ONIX_for_Books\">метадані ONIX</a>."
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"Як мінімум одна серія має бути активною. Відвідайте налаштування робочого "
+"процесу, щоб відключити всі подання в це видавництво."
+
+msgid "manager.series.restricted"
+msgstr "Не дозволяйте авторам подавати матеріали напряму до цієї серії."
+
+msgid "manager.series.hideAbout"
+msgstr "Пропустіть цю серію в розділі \"Про видавництво\"."
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Додайте редактора серії з доступних редакторів серії. Після додавання "
+"вкажіть, чи буде редактор серії переглядати РЕЦЕНЗІЇ (експертне оцінювання) "
+"та/або РЕДАГУВАННЯ (лІтературне, наукове, верстку і коректуру) подань у цій "
+"серії. Редактори серії створюються натисканням кнопки <a href=\""
+"{$seriesEditorsUrl}\">Редактори серії</a> в розділі \"Ролі\" в \"Управлінні "
+"видавництвом\"."
