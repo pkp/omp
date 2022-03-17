@@ -21,6 +21,7 @@ use PKP\db\DAORegistry;
 
 use APP\core\Application;
 use PKP\core\DataObject;
+use PKP\core\PKPString;
 
 class PublicationDate extends DataObject
 {
@@ -170,7 +171,7 @@ class PublicationDate extends DataObject
     public function getReadableDates()
     {
         $format = $this->dateFormats[$this->getDateFormat()];
-        $dateFormatShort = Application::get()->getRequest()->getContext()->getLocalizedDateFormatShort();
+        $dateFormatShort = PKPString::convertStrftimeFormat(Application::get()->getRequest()->getContext()->getLocalizedDateFormatShort());
 
         if ($this->isHijriCalendar()) {
             $format = preg_replace('/\s*\(H\)/i', '', $format);
@@ -229,7 +230,7 @@ class PublicationDate extends DataObject
                 // Perform date formatting here instead of in the template since
                 // testing is easier.
                 if ($containsMonth) {
-                    $thisDate = strftime($dateFormatShort, strtotime($thisDate));
+                    $thisDate = date($dateFormatShort, strtotime($thisDate));
                 }
 
                 $dates[] = $thisDate;
