@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-11 05:56+0000\n"
+"PO-Revision-Date: 2022-03-19 16:56+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/uk_UA/>\n"
@@ -59,16 +59,16 @@ msgid "submission.synopsis"
 msgstr "Короткий опис"
 
 msgid "submission.select"
-msgstr "Обрати Подання"
+msgstr "Обрати подання"
 
 msgid "submission.title"
-msgstr "Назва Книги"
+msgstr "Назва книги"
 
 msgid "submission.upload.selectComponent"
 msgstr "Обрати компонент"
 
 msgid "submission.submit.title"
-msgstr "Надіслати Монографію"
+msgstr "Подати монографію"
 
 msgid "publication.scheduledIn"
 msgstr "Заплановано до публікації в <a href=\"{$issueUrl}\">{$issueName}</a>."
@@ -110,7 +110,7 @@ msgid "editor.submission.decision.sendExternalReview"
 msgstr "Надіслати на зовнішнє рецензування"
 
 msgid "submission.submit.titleAndSummary"
-msgstr "Назва і Резюме"
+msgstr "Назва і резюме"
 
 msgid "submission.event.publicationFormatRemoved"
 msgstr "Вид Видання \"{$formatName}\" видалено."
@@ -236,7 +236,7 @@ msgid "submission.submit.form.abstractRequired"
 msgstr "Будь ласка, введіть коротку анотацію вашої монографії."
 
 msgid "submission.submit.form.titleRequired"
-msgstr "Будь ласка, введіть назву вашої Монографії."
+msgstr "Будь ласка, введіть назву вашої монографії."
 
 msgid "submission.submit.form.authorRequiredFields"
 msgstr ""
