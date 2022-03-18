@@ -1,11 +1,12 @@
 # cicilia conceiçao de maria <ccmaria@uem.br>, 2021.
+# Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
-"PO-Revision-Date: 2021-06-29 12:03+0000\n"
-"Last-Translator: cicilia conceiçao de maria <ccmaria@uem.br>\n"
+"PO-Revision-Date: 2022-03-19 16:56+0000\n"
+"Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: English (United States) <http://translate.pkp.sfu.ca/projects/"
 "omp/manager/en_US/>\n"
 "Language: en_US\n"
@@ -662,8 +663,9 @@ msgstr "Press Layout"
 msgid "manager.setup.pageHeader"
 msgstr "Press Page Header"
 
+#, fuzzy
 msgid "manager.setup.pageHeaderDescription"
-msgstr "Configuração do cabeçalho da página"
+msgstr "Page Header Description"
 
 msgid "manager.setup.pressPolicies"
 msgstr "Step 2. Press Policies"
