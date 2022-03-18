@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-12 15:56+0000\n"
+"PO-Revision-Date: 2022-03-19 16:56+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/uk_UA/>\n"
@@ -38,15 +38,15 @@ msgid "plugins.themes.default.name"
 msgstr "Тема за замовчуванням"
 
 msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
-msgstr "Показувати зображення домашньої сторінки фоном заголовку."
+msgstr "Показувати зображення домашньої сторінки фоном заголовка."
 
 msgid "plugins.themes.default.option.useHomepageImageAsHeader.description"
 msgstr ""
-"Коли зображення  домашньої сторінки завантажено, відображати його на фоні "
-"заголовку замість звичного позиціонування на домашній сторінці."
+"Коли зображення домашньої сторінки завантажено, відображати його на фоні "
+"заголовка замість звичного позиціонування на домашній сторінці."
 
 msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
-msgstr "Фонове зображення Заголовку"
+msgstr "Фонове зображення заголовка"
 
 msgid "plugins.themes.default.option.colour.description"
 msgstr "Оберіть колір для заголовку."
