@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-16 18:38+0000\n"
+"PO-Revision-Date: 2022-03-19 16:56+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/editor/"
 "uk_UA/>\n"
@@ -113,7 +113,7 @@ msgid "editor.monograph.final.selectFinalDraftFiles"
 msgstr "Оберіть фінальні  версії чорнеток"
 
 msgid "editor.monograph.peerReviewOptions"
-msgstr "Налаштування Рецензування"
+msgstr "Параметри експертного оцінювання"
 
 msgid "editor.submissions.assignedTo"
 msgstr "Пов'язано з редактором"
