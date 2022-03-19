@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-19 16:56+0000\n"
+"PO-Revision-Date: 2022-03-20 05:53+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "uk_UA/>\n"
@@ -1233,3 +1233,153 @@ msgstr ""
 
 msgid "manager.setup.discipline"
 msgstr "Академічна дисципліна й розділи дисципліни"
+
+msgid "manager.setup.categories.description"
+msgstr ""
+"Ви можете створити список категорій, які допоможуть організувати Ваші "
+"публікації. Категорії являють собою групування книг за тематикою, наприклад, "
+"\"Економіка\", \"Література\", \"Поезія\" і так далі. Категорії можуть бути "
+"вкладені в \"материнські\" категорії: наприклад, материнська категорія \""
+"Економіка\" може охоплювати окремі категорії \"Мікроекономіка\" й \""
+"Макроекономіка\".Відвідувачі зможуть здійснювати пошук і видання за "
+"категоріями."
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Категорії та серії"
+
+msgid "manager.setup.currentFormats"
+msgstr "Поточні формати"
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"ISSN (International Standard Serial Number - міжнародний стандартний "
+"серійний номер) - це восьмизначний номер, який ідентифікує періодичні "
+"публікації включно з електронними серійними виданнями. Номер можна отримати "
+"в <a href=\"http://www.issn.org\" target=\"_blank\">Міжнародному центрі "
+"ISSN</a>."
+
+msgid "manager.setup.submitToSeries"
+msgstr "Дозволити подання в серії"
+
+msgid "manager.setup.submitToCategories"
+msgstr "Дозволити подання в категорії"
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"Керівництво з проспекту (брошури) - це підготовлений видавництвом документ, "
+"який допомагає автору описати представлені матеріали таким чином, щоб "
+"видавництво могло визначити їхню  ценність. Брошура може включати багато "
+"питань - від маркетингових можливостей до теоретичної цінності; у будь-якому "
+"разі видавництво має створити керівництво з брошури, яке доповнить їхню "
+"видавничу програму."
+
+msgid "manager.setup.prospectus"
+msgstr "Керівництво з проспекту (брошури)"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Відновити налаштування за замовчуванням"
+
+msgid "manager.setup.deleteSelected"
+msgstr "Видалити вибране"
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"Аби створити новий жанр, заповніть форму нижче й натисніть кнопку \""
+"Створити\"."
+
+msgid "manager.setup.newGenre"
+msgstr "Новий жанр монографій"
+
+msgid "manager.setup.genres"
+msgstr "Жанри"
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Забороніть користувачам відправляти нові матеріали у видавництво. Відправка "
+"матеріалів може бути відключена для окремих серій видавництва на сторінці "
+"налаштувань <a href=\"{$url}\">серій видавництва</a>."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Це видання в цей час не приймає матеріали. Зайдіть у налаштування робочого "
+"процесу, щоб дозволити відправку матеріалів."
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Ці жанри використовуются для йменування файлів і представлені в випадаючому "
+"меню при завантаженні файлів. Жанри, позначені ##, дозволяють користувачу "
+"пов'язати файл або з усією книгою 99Z, або з окремою главою за номером ("
+"наприклад, 02)."
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+"Аби створити новий формат публікації, заповніть форму нижче й натисніть "
+"кнопку \"Створити\"."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Новий формат публікації"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+"Оскільки цей формат публікації зараз використовується монографією у Вашому "
+"видавництві, його не можна видалити."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Це фізичний (нецифровий) формат?"
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Ви маєте надати ім'я цьому формату."
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Має бути обрано формат."
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Формат"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Томів на рік"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Текст назви"
+
+msgid "manager.setup.userRegistration"
+msgstr "Реєстрація користувача"
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+"Для перевірки (спільно з авторами) гранок перед опублікуванням буде "
+"призначений коректор."
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+"Для підготовки HTML, PDF та ін. файлів електронної публікації буде "
+"призначений верстальник."
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Таблиця стилів видавництва"
+
+msgid "manager.setup.useImageTitle"
+msgstr "Зображення назви"
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "Видавництво використовуватиме редакційну колегію / колегію рецензентів."
+
+msgid "manager.setup.useCopyeditors"
+msgstr "Для роботи з кожним поданням буде призначено літературного редактора."
+
+msgid "manager.setup.typeProvideExamples"
+msgstr ""
+"Наведіть приклади відповідних типів досліджень, методів і підходів для для "
+"цього поля"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Тип (метод / підхід)"
+
+msgid "manager.setup.typeExamples"
+msgstr ""
+"(Наприклад, Історичне дослідження; Квазіекспериментальний; Літературний "
+"аналіз; Опитування/Інтерв'ю)"
+
+msgid "manager.setup.submissions.description"
+msgstr ""
+"Настанови для авторів, авторське право та індексація (включно з реєстрацією)."
