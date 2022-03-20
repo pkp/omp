@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-16 18:39+0000\n"
+"PO-Revision-Date: 2022-03-20 21:56+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-native/uk_UA/>\n"
@@ -46,11 +46,11 @@ msgstr "Плагін власного XML"
 
 msgid "plugins.importexport.native.cliUsage"
 msgstr ""
-"Використання: {$scriptName} {$pluginName} [command] ...\n"
+"Використання: {$scriptName} {$pluginName} [command] …\n"
 "Команди:\n"
-"\timport [xmlFileName] [press_path] [user_name] ...\n"
+"\timport [xmlFileName] [press_path] [user_name] …\n"
 "\texport [xmlFileName] [press_path] monographs [monographId1] [monographId2] "
-"...\n"
+"…\n"
 "\texport [xmlFileName] [press_path] monograph [monographId]\n"
 
 msgid "plugins.importexport.native.onix30.pressMissingFields"
