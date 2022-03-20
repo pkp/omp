@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-19 16:56+0000\n"
+"PO-Revision-Date: 2022-03-20 21:57+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/uk_UA/>\n"
@@ -77,7 +77,8 @@ msgid "publication.publishedIn"
 msgstr "Опубліковано в <a href=\"{$issueUrl}\">{$issueName}</a>."
 
 msgid "publication.required.issue"
-msgstr "Публікація має бути призначена до випуску перед публікацією."
+msgstr ""
+"Публікація має бути пов'язана з конкретним випуском перед опублікуванням."
 
 msgid "publication.invalidSeries"
 msgstr "Серія для цієї публікації не знайдена."
@@ -197,7 +198,7 @@ msgid "submission.submit.noContext"
 msgstr "Видавництво для цього Подання не знайдено."
 
 msgid "submission.submit.userGroup"
-msgstr "Подати від мене у ролі..."
+msgstr "Подати від мене в ролі…"
 
 msgid "submission.submit.placement"
 msgstr "Розміщення Подання"
