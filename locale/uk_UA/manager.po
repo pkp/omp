@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-20 21:57+0000\n"
+"PO-Revision-Date: 2022-03-21 16:55+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "uk_UA/>\n"
@@ -1216,7 +1216,7 @@ msgid "manager.setup.displayOnHomepage"
 msgstr "Контент домашньої сторінки"
 
 msgid "manager.setup.displayCurrentMonograph"
-msgstr "Додати таблицю змісту для поточної монографії (якщо це доступно)."
+msgstr "Додати зміст для поточної монографії (якщо це доступно)."
 
 msgid "manager.setup.disciplineProvideExamples"
 msgstr ""
