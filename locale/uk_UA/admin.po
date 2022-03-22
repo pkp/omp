@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-16 18:38+0000\n"
+"PO-Revision-Date: 2022-03-23 00:29+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/admin/"
 "uk_UA/>\n"
@@ -38,7 +38,7 @@ msgstr ""
 "бути корисним, наприклад, якщо сайт розміщує лише одне видавництво."
 
 msgid "admin.settings.redirect"
-msgstr "Перенаправлення видавництва"
+msgstr "Перенаправлення е-видавництва"
 
 msgid "admin.settings.info.success"
 msgstr "Інформація на сайті була успішно оновлена."
@@ -50,7 +50,7 @@ msgid "admin.settings.appearance.success"
 msgstr "Налаштування оформлення сайту були успішно збережені."
 
 msgid "admin.hostedContexts"
-msgstr "Видавництво на сайті"
+msgstr "Е-видавництва на сервері"
 
 msgid "admin.languages.installNewLocalesInstructions"
 msgstr ""
