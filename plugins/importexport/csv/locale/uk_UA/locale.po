@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-20 21:56+0000\n"
+"PO-Revision-Date: 2022-03-23 00:29+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-csv/uk_UA/>\n"
@@ -64,7 +64,7 @@ msgstr ""
 "\t"
 
 msgid "plugins.importexport.csv.description"
-msgstr "Імпортувати подання до видавництв з даними, що розділені табуляцією."
+msgstr "Імпортувати подання до е-видавництв із даних, розділених табуляцією."
 
 msgid "plugins.importexport.csv.displayName"
 msgstr "Плагін для імпорту даних, розділених табуляцією"
