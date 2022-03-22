@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-20 21:56+0000\n"
+"PO-Revision-Date: 2022-03-23 00:29+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/api/uk_UA/"
 ">\n"
@@ -17,22 +17,22 @@ msgid "api.submissions.403.cantChangeContext"
 msgstr "Ви не можете змінити видання для подання."
 
 msgid "api.publications.403.contextsDidNotMatch"
-msgstr "Публікація, яку Ви шукаєте, не належить цьому видавництву."
+msgstr "Публікація, яку Ви шукаєте, не належить цьому е-видавництву."
 
 msgid "api.emailTemplates.403.notAllowedChangeContext"
 msgstr ""
 "У вас недостатньо прав для переносу цього шаблону електронного листа в інше "
-"видання."
+"е-видавництво."
 
 msgid "api.publications.403.submissionsDidNotMatch"
 msgstr "Публікація, яку Ви шукаєте, не є частиною цього подання."
 
 msgid "api.emails.403.disabled"
 msgstr ""
-"Можливості повідомляти електронною поштою не включені для цього видання."
+"Фунцію сповіщення електронною поштою для цього е-видавництва не включено."
 
 msgid "api.submissions.400.wrongContext"
-msgstr "Подання, яке Ви запросили, тут немає."
+msgstr "Подання, яке Ви запросили, у цьому е-видавництві нема."
 
 msgid "api.submissions.400.submissionsNotFound"
 msgstr "Одне або більше подань, які Ви вказали, не вдалося знайти."
