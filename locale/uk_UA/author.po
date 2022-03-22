@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-12 15:56+0000\n"
+"PO-Revision-Date: 2022-03-23 00:29+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/author/"
 "uk_UA/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 
 msgid "author.submit.notAccepting"
-msgstr "Це видавництво не приймає подань на цей момент часу."
+msgstr "На цей момент е-видавництво не приймає подань."
 
 msgid "author.submit"
 msgstr "Нове подання"
