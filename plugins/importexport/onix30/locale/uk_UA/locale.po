@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-16 18:39+0000\n"
+"PO-Revision-Date: 2022-03-24 06:56+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-onix30/uk_UA/>\n"
@@ -47,7 +47,7 @@ msgid "plugins.importexport.onix30.export.error.couldNotWrite"
 msgstr "Не вдалося записати у файл \"{$fileName}\"."
 
 msgid "plugins.importexport.onix30.error.unknownPress"
-msgstr "Вказаний шлях видавництва \"{$contextPath}\" не існує."
+msgstr "Указаний шлях е-видавництва \"{$contextPath}\" не існує."
 
 msgid "plugins.importexport.onix30.form.addresseeField.tip"
 msgstr ""
@@ -59,8 +59,8 @@ msgstr "Адресат (отримувач) для цього експорту"
 
 msgid "plugins.importexport.onix30.pressMissingFields"
 msgstr ""
-"Цьому видавництву не вистачає певної необхідної інформації. Будь ласка, "
-"перейдіть до <a href=\"{$url}\">Налаштування  видавництва</a> й заповніть "
+"Цьому е-видавництву не вистачає певної необхідної інформації. Будь ласка, "
+"перейдіть до <a href=\"{$url}\">Налаштування е-видавництва</a> й заповніть "
 "деталі, яких не вистачає."
 
 msgid "plugins.importexport.onix30.noFormats"
