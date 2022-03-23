@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-23 00:29+0000\n"
+"PO-Revision-Date: 2022-03-24 06:56+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/api/uk_UA/"
 ">\n"
@@ -14,10 +14,10 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 
 msgid "api.submissions.403.cantChangeContext"
-msgstr "Ви не можете змінити видання для подання."
+msgstr "Ви не можете змінити е-видавництво для подання."
 
 msgid "api.publications.403.contextsDidNotMatch"
-msgstr "Публікація, яку Ви шукаєте, не належить цьому е-видавництву."
+msgstr "Публікація, яку Ви шукаєте, не є частиною цього е-видавництва."
 
 msgid "api.emailTemplates.403.notAllowedChangeContext"
 msgstr ""
