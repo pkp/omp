@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-16 18:39+0000\n"
+"PO-Revision-Date: 2022-03-24 06:56+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "paymethod-paypal/uk_UA/>\n"
@@ -15,8 +15,8 @@ msgstr ""
 
 msgid "plugins.paymethod.paypal.error"
 msgstr ""
-"Помилка при проведенні транзакції. Будь ласка, напишіть менеджеру "
-"видавництва."
+"Помилка при проведенні транзакції. Будь ласка, зв'яжіться з менеджером "
+"е-видавництва."
 
 msgid "plugins.paymethod.paypal.settings.secret"
 msgstr "Секретна комбінація"
