@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-23 00:29+0000\n"
+"PO-Revision-Date: 2022-03-24 06:56+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-csv/uk_UA/>\n"
@@ -26,14 +26,14 @@ msgstr ""
 
 msgid "plugins.importexport.csv.noAuthorGroup"
 msgstr ""
-"Відсутня група авторів за замовчуванням у видавництві {$press}. Пропускаємо "
-"це подання."
+"Відсутня група авторів за замовчуванням у е-видавництві {$press}. Пропуск "
+"цього подання."
 
 msgid "plugins.importexport.csv.noGenre"
 msgstr "Відсутній жанр рукопису. Ініційовано вихід."
 
 msgid "plugins.importexport.csv.unknownPress"
-msgstr "Невідомий видавець: \"{$contextPath}\". Пропускаємо значення."
+msgstr "Невідоме е-видавництво: \"{$contextPath}\". Пропускаємо значення."
 
 msgid "plugins.importexport.csv.unknownLocale"
 msgstr "Невідома мова: \"{$locale}\". Пропускаємо значення."
