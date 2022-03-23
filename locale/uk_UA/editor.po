@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-19 16:56+0000\n"
+"PO-Revision-Date: 2022-03-24 06:56+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/editor/"
 "uk_UA/>\n"
@@ -44,12 +44,12 @@ msgid "editor.monograph.uploadReviewForReviewer"
 msgstr "Завантажити Рецензію"
 
 msgid "editor.monograph.replaceReviewer"
-msgstr "Замінити Рецензента"
+msgstr "Замінити рецензента"
 
 msgid "editor.monograph.selectReviewerInstructions"
 msgstr ""
-"Оберіть Рецензента зі списку і натисніть на кнопку \"Обрати Рецензента\" щоб "
-"продовжити."
+"Оберіть рецензента зі списку й натисніть на кнопку \"Обрати рецензента\", "
+"щоб продовжити."
 
 msgid "editor.monograph.enterReviewerRecommendation"
 msgstr "Ввести Рекомендацію Рецензента"
@@ -122,7 +122,7 @@ msgid "editor.publicIdentificationExistsForTheSameType"
 msgstr ""
 "Публічний ідентифікатор \"{$publicIdentifier}\" уже існує для іншого об'єкта "
 "цього ж типу. Будь ласка, вибирайте унікальні ідентифікатори для об'єктів "
-"одного типу у Вашому виданні."
+"одного типу у Вашому е-видавництві."
 
 msgid "editor.submission.proof.manageProofFilesDescription"
 msgstr ""
