@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-23 00:29+0000\n"
+"PO-Revision-Date: 2022-03-24 06:56+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "pubIds-urn/uk_UA/>\n"
@@ -95,17 +95,17 @@ msgid "plugins.pubIds.urn.manager.settings.namespace.choose"
 msgstr "Обрати"
 
 msgid "plugins.pubIds.urn.manager.settings.urnSubmissionFileSuffixPatternRequired"
-msgstr "Введіть зразок URN Суфіксу для усіх файлів."
+msgstr "Введіть зразок URN суфіксу для всіх файлів."
 
 msgid "plugins.pubIds.urn.manager.settings.urnChapterSuffixPatternRequired"
-msgstr "Введіть зразок URN Суфіксу для усіх розділів."
+msgstr "Введіть зразок URN суфіксу для всіх глав."
 
 msgid "plugins.pubIds.urn.manager.settings.urnPublicationSuffixPatternRequired"
-msgstr "Введіть зразок URN Суфіксу для усіх монографій."
+msgstr "Введіть зразок URN суфіксу для всіх монографій."
 
 msgid "plugins.pubIds.urn.manager.settings.urnSuffixCustomIdentifier"
 msgstr ""
-"Введіть окремий URN суффікс для кожного опублікованного матеріалу. Ви можете "
+"Введіть окремий URN суфікс для кожного опублікованного матеріалу. Ви можете "
 "знайти додаткове поле для вводу URN на сторінці введення метаданих кожного "
 "матеріалу."
 
@@ -122,7 +122,7 @@ msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.submissions"
 msgstr "для монографій"
 
 msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.example"
-msgstr "Для прикладу, press%ppub%r згенерує URN Суфікс \"pressESPpub100\"."
+msgstr "Для прикладу, press%ppub%r згенерує суфікс URN \"pressESPpub100\"."
 
 msgid "plugins.pubIds.urn.manager.settings.urnSuffix.description"
 msgstr ""
@@ -133,13 +133,13 @@ msgid "plugins.pubIds.urn.manager.settings.urnSuffix"
 msgstr "URN Суфікс"
 
 msgid "plugins.pubIds.urn.manager.settings.urnPrefix"
-msgstr "URN Префікс"
+msgstr "URN префікс"
 
 msgid "plugins.pubIds.urn.manager.settings.enableSubmissionFileURN"
 msgstr "Файли"
 
 msgid "plugins.pubIds.urn.manager.settings.enableChapterURN"
-msgstr "Розділи"
+msgstr "Глави"
 
 msgid "plugins.pubIds.urn.manager.settings.enablePublicationURN"
 msgstr "Монографії"
@@ -154,8 +154,8 @@ msgstr ""
 
 msgid "plugins.pubIds.urn.description"
 msgstr ""
-"Цей плагін активує призначення \"Uniform Resource Names\" для монографій, "
-"розділів, видів видань і файлів в OMP."
+"Цей плагін активує призначення уніфікованих назв ресурсів для монографій, "
+"глав, форматів публікацій і файлів в OMP."
 
 msgid "plugins.pubIds.urn.displayName"
 msgstr "URN"
@@ -178,25 +178,25 @@ msgstr ""
 
 msgid "plugins.pubIds.urn.manager.settings.explainURNs"
 msgstr ""
-"Будь ласка оберіть об'єкти, що при публікації отримають Uniform Resource "
-"Names (URN):"
+"Будь ласка, оберіть об'єкти, що отримають уніфіковані назви ресурсу (Uniform "
+"Resource Names - URN):"
 
 msgid "plugins.pubIds.urn.editor.urnObjectTypeRepresentation"
 msgstr "вид видання"
 
 msgid "plugins.pubIds.urn.manager.settings.urnRepresentationSuffixPatternRequired"
-msgstr "Введіть зразок URN Суфіксу для видів видань."
+msgstr "Введіть зразок URN суфіксу для форматів публікацій."
 
 msgid "plugins.pubIds.urn.manager.settings.urnSuffixDefault.description"
 msgstr ""
-"%p.%m для монографій<br />%p.%m.c%c для розділів<br />%p.%m.%f для видів "
-"видань<br />%p.%m.%f.%s для файлів."
+"%p.%m для монографій<br />%p.%m.c%c для глав<br />%p.%m.%f для форматів "
+"публікацій<br />%p.%m.%f.%s для файлів."
 
 msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.representations"
 msgstr "для Видів Видань"
 
 msgid "plugins.pubIds.urn.manager.settings.enableRepresentationURN"
-msgstr "Види Видань"
+msgstr "Формати публікацій"
 
 msgid "plugins.pubIds.urn.manager.settings.urnObjects"
 msgstr "Контент е-видавництва"
@@ -246,6 +246,6 @@ msgstr ""
 msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern"
 msgstr ""
 "Використати нижченаведений шаблон для генерування суфіксів URN. "
-"Використовуйте %p для абревіатури видавництва, %m для монографій, %c для "
-"розділу, %f для виду видання, %s для файлу та %x для \"власного "
-"ідентифікатора\"."
+"Використовуйте %p для абревіатури е-видавництва, %m для id монографій, %c "
+"для id глави, %f для id формату публікації, %s для id файлу та %x для \""
+"користувацького ідентифікатора\"."
