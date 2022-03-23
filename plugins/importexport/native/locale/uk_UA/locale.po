@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-20 21:56+0000\n"
+"PO-Revision-Date: 2022-03-24 06:56+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-native/uk_UA/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 
 msgid "plugins.importexport.native.error.unknownSeries"
-msgstr "Невідомії Серії {$param}"
+msgstr "Невідома серія {$param}"
 
 msgid "plugins.importexport.native.results"
 msgstr "Результат"
@@ -55,6 +55,6 @@ msgstr ""
 
 msgid "plugins.importexport.native.onix30.pressMissingFields"
 msgstr ""
-"Цьому виданню не вистачає деякої необхідної інформції для метаданих ONIX, що "
-"використовуються в цьому експорті. Будь ласка, перейдіть до <a href=\"{$url}"
-"\">Налаштування видання</a> та заповніть дані, яких не вистачає."
+"Цьому е-видавництву не вистачає деякої необхідної інформції для метаданих "
+"ONIX, що використовуються в цьому експорті. Будь ласка, перейдіть до <a href="
+"\"{$url}\">Налаштування е-видавництва</a> й заповніть дані, яких не вистачає."
