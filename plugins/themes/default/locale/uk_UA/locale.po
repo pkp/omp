@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-19 16:56+0000\n"
+"PO-Revision-Date: 2022-03-24 06:56+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/uk_UA/>\n"
@@ -58,7 +58,7 @@ msgid "plugins.themes.default.option.typography.lato"
 msgstr "Lato: Популярний сучасний рубаний шрифт."
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
-msgstr "Додати список покликань на всі друковані серії на сторінці каталогу"
+msgstr "Додати список покликань на всі серії е-видавництва на сторінці каталогу"
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
 msgstr "Показати серії"
