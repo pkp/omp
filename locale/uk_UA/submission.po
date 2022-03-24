@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-24 06:56+0000\n"
+"PO-Revision-Date: 2022-03-25 07:57+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/uk_UA/>\n"
@@ -84,10 +84,10 @@ msgid "publication.invalidSeries"
 msgstr "Серія для цієї публікації не знайдена."
 
 msgid "publication.catalogEntry"
-msgstr "Запис Каталогу"
+msgstr "Запис каталогу"
 
 msgid "catalog.browseTitles"
-msgstr "{$numTitles} Назв"
+msgstr "{$numTitles} назв"
 
 msgid "submission.list.itemsOfTotalMonographs"
 msgstr "{$count} з {$total} монографій"
@@ -208,7 +208,7 @@ msgid "submission.submit.generalInformation"
 msgstr "Загальна інформація"
 
 msgid "submission.submit.coverNote"
-msgstr "Супроводжувальний лист для редактора"
+msgstr "Супровідний лист для редактора"
 
 msgid "submission.submit.nextSteps"
 msgstr "Наступні кроки"
@@ -340,7 +340,7 @@ msgid "submission.workflowType.authoredWork"
 msgstr "Монографія: автори, що пов'язані з цією книгою в цілому."
 
 msgid "publication.catalogEntry.success"
-msgstr "Деталі запису каталогу були оновлені."
+msgstr "Деталі запису каталогу було оновлено."
 
 msgid "submission.upload.fileContents"
 msgstr "Компонент подання"
@@ -384,7 +384,7 @@ msgid "publication.status.published"
 msgstr "Опубліковано"
 
 msgid "submission.status.scheduled"
-msgstr "Запланований"
+msgstr "Заплановано"
 
 msgid "publication.status.unscheduled"
 msgstr "Знято з плану"
@@ -402,28 +402,28 @@ msgstr ""
 "публікації."
 
 msgid "publication.datePublished"
-msgstr "Дата Публікації"
+msgstr "Дата публікації"
 
 msgid "publication.editDisabled"
-msgstr "Ця версія була опублікована і не може бути змінена."
+msgstr "Цю версію було опубліковано і не може бути змінено."
 
 msgid "publication.event.published"
 msgstr "Подання було опубліковано."
 
 msgid "publication.event.scheduled"
-msgstr "Подання заплановане до публікації."
+msgstr "Подання заплановано до опублікування."
 
 msgid "publication.event.unpublished"
 msgstr "Подання було знято з публікації."
 
 msgid "publication.event.versionPublished"
-msgstr "Нова версія опублікована."
+msgstr "Нову версію опубліковано."
 
 msgid "publication.event.versionScheduled"
 msgstr "Нова версія запланована до публікації."
 
 msgid "publication.event.versionUnpublished"
-msgstr "Версія була прибрана з публікації."
+msgstr "Версію було прибрано з публікації."
 
 msgid "publication.invalidSubmission"
 msgstr "Подання для цієї публікації неможливо знайти."
@@ -445,7 +445,7 @@ msgstr ""
 msgid "submission.license.description"
 msgstr ""
 "Ліцензія призначиться автоматично <a href='{$licenseUrl}' "
-"target='_blank'>{$licenseName}</a> коли матеріал буде опубліковано."
+"target='_blank'>{$licenseName}</a>, коли матеріал буде опубліковано."
 
 msgid "submission.copyrightHolder.description"
 msgstr ""
@@ -475,7 +475,7 @@ msgstr "Упорядкувати ознаки"
 
 msgid "submission.submit.checklistErrors"
 msgstr ""
-"Будь ласка, прочитайте й відмітьте пункти у списку подання.  Кількість "
+"Будь ласка, прочитайте й відмітьте пункти у списку подання. Кількість "
 "невідмічених позицій - {$itemsRemaining} ."
 
 msgid "submission.proofs"
@@ -591,14 +591,14 @@ msgstr "Сторінка глави"
 
 msgid "publication.publish.confirmation"
 msgstr ""
-"Усі вимоги до публікації виконано. Чи впевнені ви, що хочете зробити цей "
+"Усі вимоги до публікації виконано. Чи впевнені Ви, що хочете зробити цей "
 "запис каталогу публічним?"
 
 msgid "publication.inactiveSeries"
 msgstr "{$series} (неактивно)"
 
 msgid "submission.list.viewEntry"
-msgstr "Переглянути Запис"
+msgstr "Переглянути запис"
 
 msgid "submission.list.orderingFeaturesSection"
 msgstr ""
