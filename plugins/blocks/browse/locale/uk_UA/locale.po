@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-16 18:38+0000\n"
+"PO-Revision-Date: 2022-03-25 07:56+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "blocks-browse/uk_UA/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 
 msgid "plugins.block.browse.newReleases"
-msgstr "Нові випуски"
+msgstr "Нові релізи"
 
 msgid "plugins.block.browse.series"
 msgstr "Серії"
