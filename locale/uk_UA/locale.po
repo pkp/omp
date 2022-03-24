@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-24 06:56+0000\n"
+"PO-Revision-Date: 2022-03-25 07:56+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "uk_UA/>\n"
@@ -17,13 +17,13 @@ msgid "monograph.publicationFormat.missingONIXFields"
 msgstr "Відсутні певні поля з метаданими."
 
 msgid "monograph.publicationFormat.noCodesAssigned"
-msgstr "Відсутній ідентифікатор."
+msgstr "Відсутній ідентифікаційний код."
 
 msgid "monograph.publicationFormat.noMarketsAssigned"
-msgstr "Відсутні магазини і ціни."
+msgstr "Відсутні магазини й ціни."
 
 msgid "monograph.publicationFormat.productRegion"
-msgstr "Регіон Росповсюдження"
+msgstr "Регіон розповсюдження"
 
 msgid "monograph.publicationFormat.countryOfManufacture"
 msgstr "Країна-виробник"
@@ -47,7 +47,7 @@ msgid "monograph.publicationFormat.productDimensions"
 msgstr "Фізичні розміри"
 
 msgid "monograph.publicationFormat.digitalInformation"
-msgstr "Цифрова Інформація"
+msgstr "Цифрова інформація"
 
 msgid "monograph.publicationFormat.discountAmount"
 msgstr "Відсоток знижки, якщо така застосовується"
@@ -68,7 +68,7 @@ msgid "monograph.task.addNote"
 msgstr "Додати до завдання"
 
 msgid "monograph.type"
-msgstr "Тип Подання"
+msgstr "Тип подання"
 
 msgid "monograph.carousel.publicationFormats"
 msgstr "Формати:"
@@ -77,7 +77,7 @@ msgid "monograph.miscellaneousDetails"
 msgstr "Деталі про цю монографію"
 
 msgid "monograph.languages"
-msgstr "Мови (Англійська, Французька, Іспанська)"
+msgstr "Мови (англійська, французька, іспанська)"
 
 msgid "monograph.coverImage"
 msgstr "Зображення обкладинки"
@@ -159,7 +159,7 @@ msgid "grid.catalogEntry.marketTerritory"
 msgstr "Територія"
 
 msgid "grid.catalogEntry.markets"
-msgstr "Території ринку"
+msgstr "Території магазину"
 
 msgid "grid.catalogEntry.excluded"
 msgstr "Виключено"
@@ -201,10 +201,10 @@ msgid "monograph.audience.rangeQualifier"
 msgstr "Визначник групової аудиторії"
 
 msgid "monograph.publicationFormat.taxRate"
-msgstr "Ставка Податку"
+msgstr "Ставка податку"
 
 msgid "monograph.publicationFormat.productFormDetailCode"
-msgstr "Деталі Товару (не обов'язково)"
+msgstr "Деталі товару (не обов'язково)"
 
 msgid "grid.catalogEntry.identificationCodeValue"
 msgstr "Значення коду"
@@ -234,7 +234,7 @@ msgid "grid.catalogEntry.proof"
 msgstr "Коректура"
 
 msgid "grid.catalogEntry.publicationFormatRequired"
-msgstr "Необхідно обрати Вид Видання."
+msgstr "Необхідно вибрати формат публікації."
 
 msgid "grid.catalogEntry.remoteURL"
 msgstr "URL дистанційно розміщеного контенту"
@@ -246,22 +246,23 @@ msgid "grid.catalogEntry.physicalFormat"
 msgstr "Фізичний формат"
 
 msgid "grid.catalogEntry.publicationFormatDetails"
-msgstr "Деталі Формату"
+msgstr "Деталі формату"
 
 msgid "grid.catalogEntry.publicationFormatType"
-msgstr "Вид Видання"
+msgstr "Формат публікації"
 
 msgid "monograph.publicationFormat.isApproved"
-msgstr "Включити метадані для цього виду видання в каталозі для цієї книги."
+msgstr ""
+"Включити метадані для цього формату публікації в каталозі для цієї книги."
 
 msgid "monograph.publicationFormat.taxType"
-msgstr "Види податку"
+msgstr "Вид податку"
 
 msgid "monograph.publicationFormat.returnInformation"
 msgstr "Індикатор можливості повернення"
 
 msgid "monograph.publicationFormat.productIdentifierType"
-msgstr "Ідентифікація Товару"
+msgstr "Ідентифікація товару"
 
 msgid "grid.catalogEntry.codeRequired"
 msgstr "Необхідно ввести ідентифікаційний код."
@@ -307,29 +308,30 @@ msgid "grid.catalogEntry.availability"
 msgstr "Доступність"
 
 msgid "grid.catalogEntry.monographRequired"
-msgstr "Необхідно ввести ID  Монографії."
+msgstr "Необхідно ввести ID  монографії."
 
 msgid "monograph.proofReadingDescription"
 msgstr ""
 "Редактор верстки вивантажує сюди підготовлені до публікації файли. "
 "Використайте <em>+Призначити</em>, щоб призначити авторів або інших "
 "користувачів для коректури гранок, із завантаженням відкоригованих файлів та "
-"їх схваленням перед публікацією."
+"їх схваленням перед опублікуванням."
 
 msgid "grid.catalogEntry.validPriceRequired"
 msgstr "Необхідно ввести коректну ціну."
 
 msgid "grid.catalogEntry.nameRequired"
-msgstr "Необхідно ввести Ім'я."
+msgstr "Необхідно ввести ім'я."
 
 msgid "monograph.publicationFormat.openTab"
-msgstr "Відкрити вкладку \"Вид Видання\"."
+msgstr "Відкрити вкладку формату публікації."
 
 msgid "monograph.publicationFormat.formatDoesNotExist"
-msgstr "<p>Обраний вами вид видання більше не існує для цієї монографії.</p>"
+msgstr ""
+"<p>Вибраний вами формат публікації більше не існує для цієї монографії.</p>"
 
 msgid "monograph.publicationFormat.technicalProtection"
-msgstr "Цифровий Захист"
+msgstr "Цифровий захист"
 
 msgid "monograph.publicationFormat.productFileSize.override"
 msgstr "Ввести власне значення розміру файлу?"
@@ -338,10 +340,10 @@ msgid "monograph.publicationFormat.productDimensionsSeparator"
 msgstr " x "
 
 msgid "monograph.publicationFormat.productAvailability"
-msgstr "Доступність Товару"
+msgstr "Доступність товару"
 
 msgid "monograph.publicationFormat.priceType"
-msgstr "Тип Ціни"
+msgstr "Тип ціни"
 
 msgid "monograph.publicationFormat.productComposition"
 msgstr "Структура видання"
@@ -353,28 +355,28 @@ msgid "monograph.publicationFormat.frontMatterCount"
 msgstr "Передні дані (до основного тексту)"
 
 msgid "monograph.publicationFormat.imprint"
-msgstr "Видавництво (Назва Компанії)"
+msgstr "Вихідні дані (ім'я бренду)"
 
 msgid "submission.pageProofs"
-msgstr "Підтвердження сторінок"
+msgstr "Гранки сторінок"
 
 msgid "monograph.publicationFormatDetails"
-msgstr "Деталі щодо доступних видів видань: {$format}"
+msgstr "Деталі щодо доступних форматів публікацій: {$format}"
 
 msgid "monograph.publicationFormat"
 msgstr "Формат"
 
 msgid "monograph.publicationFormats"
-msgstr "Види Видань"
+msgstr "Формати публікацій"
 
 msgid "monograph.audience.rangeExact"
-msgstr "Вибір Аудиторії (конкретно)"
+msgstr "Вибір аудиторії (конкретно)"
 
 msgid "monograph.audience.rangeTo"
-msgstr "Вибір Аудиторії (до)"
+msgstr "Вибір аудиторії (до)"
 
 msgid "monograph.audience.rangeFrom"
-msgstr "Вибір Аудиторії (від)"
+msgstr "Вибір аудиторії (від)"
 
 msgid "monograph.audience.success"
 msgstr "Деталі аудиторії збережено."
@@ -487,49 +489,49 @@ msgid "context.contexts"
 msgstr "Е-видавництва"
 
 msgid "navigation.navigationMenus.newRelease.description"
-msgstr "Посилання на нові видання."
+msgstr "Покликання на нові релізи."
 
 msgid "navigation.navigationMenus.newRelease"
-msgstr "Нові видання"
+msgstr "Нові релізи"
 
 msgid "navigation.navigationMenus.category.description"
-msgstr "Посилання на категорію."
+msgstr "Покликання на категорію."
 
 msgid "navigation.navigationMenus.category.generic"
 msgstr "Категорія"
 
 msgid "navigation.navigationMenus.series.description"
-msgstr "Посилання на серії."
+msgstr "Покликання на серію."
 
 msgid "navigation.navigationMenus.series.generic"
-msgstr "Серії"
+msgstr "Серія"
 
 msgid "navigation.navigationMenus.catalog.description"
-msgstr "Посилання на Ваш Каталог."
+msgstr "Покликання на Ваш каталог."
 
 msgid "navigation.linksAndMedia"
-msgstr "Посилання і Соціальні Медіа"
+msgstr "Посилання і соціальні медіа"
 
 msgid "navigation.wizard"
-msgstr "Майстер-налаштувань"
+msgstr "Майстер налаштувань"
 
 msgid "navigation.published"
 msgstr "Видано"
 
 msgid "navigation.newReleases"
-msgstr "Нові Видання"
+msgstr "Нові релізи"
 
 msgid "navigation.infoForLibrarians.long"
-msgstr "Інформація для Бібіліотекарів"
+msgstr "Інформація для бібіліотекарів"
 
 msgid "navigation.infoForAuthors.long"
-msgstr "Інформація для Авторів"
+msgstr "Інформація для авторів"
 
 msgid "navigation.infoForLibrarians"
-msgstr "Для Бібліотекарів"
+msgstr "Для бібліотекарів"
 
 msgid "navigation.infoForAuthors"
-msgstr "Для Авторів"
+msgstr "Для авторів"
 
 msgid "navigation.catalog.administration.series"
 msgstr "Серії"
@@ -631,31 +633,31 @@ msgid "catalog.category.heading"
 msgstr "Усі книги"
 
 msgid "catalog.noTitlesNew"
-msgstr "Недоступно нових видань на цей час."
+msgstr "Недоступно нових релізів на цей час."
 
 msgid "catalog.manage.filter.searchByAuthorOrTitle"
 msgstr "Пошук за автором або назвою"
 
 msgid "catalog.manage.feature.seriesNewRelease"
-msgstr "Нові видання в Серіях"
+msgstr "Новий реліз у серії"
 
 msgid "catalog.manage.feature.categoryNewRelease"
-msgstr "Нові Видання в категорії"
+msgstr "Новий реліз у категорії"
 
 msgid "catalog.manage.feature.newRelease"
-msgstr "Нова версія"
+msgstr "Новий реліз"
 
 msgid "catalog.manage.newReleaseSuccess"
-msgstr "Монографія позначена \"Нове Видання\""
+msgstr "Монографію позначено як \"Новий реліз\""
 
 msgid "catalog.manage.seriesFeatured"
-msgstr "Популярні в Серіях"
+msgstr "Рекомендовані в серії"
 
 msgid "catalog.manage.categoryFeatured"
-msgstr "Популярні в категорії"
+msgstr "Рекомендовані в категорії"
 
 msgid "catalog.manage.featured"
-msgstr "Популярні"
+msgstr "Рекомендовані"
 
 msgid "catalog.manage.noMonographs"
 msgstr "Відсутні призначені монографії."
@@ -664,19 +666,19 @@ msgid "catalog.manage.manageCategories"
 msgstr "Керувати категоріями"
 
 msgid "catalog.manage.manageSeries"
-msgstr "Керувати Серіями"
+msgstr "Керувати серіями"
 
 msgid "catalog.manage.newRelease"
-msgstr "Версія"
+msgstr "Реліз"
 
 msgid "catalog.manage.placeIntoCarousel"
 msgstr "Карусель"
 
 msgid "catalog.selectCategory"
-msgstr "Оберіть Категорію"
+msgstr "Оберіть категорію"
 
 msgid "catalog.selectSeries"
-msgstr "Оберіть Серії"
+msgstr "Оберіть серію"
 
 msgid "catalog.manage.series.printIssn"
 msgstr "Друкований ISSN"
@@ -700,7 +702,7 @@ msgid "catalog.manage.category"
 msgstr "Категорія"
 
 msgid "catalog.manage.newReleases"
-msgstr "Нові Видання"
+msgstr "Нові релізи"
 
 msgid "catalog.manage"
 msgstr "Управління каталогом"
@@ -760,7 +762,7 @@ msgid "grid.action.manageCategories"
 msgstr "Сконфігурувати категорії для цього е-видавництва"
 
 msgid "grid.action.releaseMonograph"
-msgstr "Додати мітку \"Нове Видання\" до цього Подання"
+msgstr "Додати мітку \"Новий реліз\" до цього подання"
 
 msgid "grid.action.publicCatalog"
 msgstr "Переглянути цей елемент в каталозі"
@@ -881,13 +883,13 @@ msgid "navigation.competingInterestPolicy"
 msgstr "Політика щодо конфлікту інтересів"
 
 msgid "catalog.featuredBooks"
-msgstr "Відповідні книги"
+msgstr "Рекомендовані книги"
 
 msgid "catalog.featured"
-msgstr "Популярні"
+msgstr "Рекомендовані"
 
 msgid "catalog.manage.notNewReleaseSuccess"
-msgstr "Мітка \"Нове Видання\" знято з монографії."
+msgstr "Мітку \"Новий реліз\" знято з монографії."
 
 msgid "grid.action.availableRepresentation"
 msgstr "Підтвердити/скасувати цей формат"
@@ -908,7 +910,7 @@ msgid "grid.action.approveProof"
 msgstr "Схвалити цю правку для індексування та включення в каталог"
 
 msgid "grid.action.addFormat"
-msgstr "Додати вид видання"
+msgstr "Додати формат публікації"
 
 msgid "grid.action.deleteFormat"
 msgstr "Видалити цей формат"
@@ -1098,31 +1100,31 @@ msgid "catalog.foundTitleSearch"
 msgstr "Один запис знайдено за вашим запитом \"{$searchQuery}\"."
 
 msgid "catalog.feature"
-msgstr "Популярне"
+msgstr "Рекомендувати"
 
 msgid "catalog.noTitlesSearch"
 msgstr ""
-"Жодних матеріалів не знайдено за вказаним вами пошуковим запитом \""
+"Жодних матеріалів не знайдено за вказаним Вами пошуковим запитом \""
 "{$searchQuery}\"."
 
 msgid "catalog.manage.isNotNewRelease"
 msgstr ""
-"Цю монографію не відмічено як \"Нове Видання\". Поставити мітку \"Нове "
-"Видання\" монографії."
+"Цю монографію не відмічено як \"Новий реліз\". Поставити мітку \"Новий "
+"реліз\" монографії."
 
 msgid "catalog.manage.isNewRelease"
 msgstr ""
-"Цю монографію відмічено як \"Нове Видання\". Зняти мітку \"Нове Видання\" з "
+"Цю монографію відмічено як \"Новий реліз\". Зняти мітку \"Новий реліз\" із "
 "монографії."
 
 msgid "series.featured.description"
-msgstr "Ці Серії з'являться у головній навігації"
+msgstr "Ця серія з'явиться в головній навігації"
 
 msgid "grid.catalogEntry.isbn10.description"
-msgstr "10-значний код ISBN,такий як 951-98548-9-4."
+msgstr "10-значний код ISBN, такий як 951-98548-9-4."
 
 msgid "grid.catalogEntry.isbn13.description"
-msgstr "13-значний код ISBN,такий як 978-951-98548-9-2."
+msgstr "13-значний код ISBN, такий як 978-951-98548-9-2."
 
 msgid "grid.catalogEntry.isbn"
 msgstr "ISBN"
@@ -1208,25 +1210,25 @@ msgid "catalog.manage.noSubmissionsSelected"
 msgstr "Не було вибрано жодного подання для додавання в каталог."
 
 msgid "catalog.manage.isNotFeatured"
-msgstr "Цю монографію не опубліковано. Зробити цю монографію опублікованою."
+msgstr "Цю монографію не представлено. Зробити цю монографію представленою."
 
 msgid "catalog.manage.isFeatured"
-msgstr "Цю монографію опубліковано. Зробити цю монографію неопублікованою."
+msgstr "Цю монографію представлено. Зробити цю монографію непредставленою."
 
 msgid "catalog.manage.nonOrderable"
-msgstr "Цю монографію не можна замовити, доки її не опублікують."
+msgstr "Цю монографію не можна замовити, доки її не представлять."
 
 msgid "catalog.manage.notFeaturedSuccess"
-msgstr "Монографію не вибрано."
+msgstr "Монографію не представлено."
 
 msgid "catalog.manage.featuredSuccess"
-msgstr "Монографію вибрано."
+msgstr "Монографію представлено."
 
 msgid "catalog.manage.seriesDescription"
 msgstr ""
 "Натисніть кнопку \"Особливості\", потім зірочку, щоб вибрати потрібну книгу "
 "для цієї серії; перетаскуйте вверх і вниз для впорядкування. Серії "
-"ідентифікуються з редактором(ами) й назвами серій, у межах категорії або "
+"ідентифікуються з редактором(ами) й назвою серії, у межах категорії або "
 "незалежно від неї."
 
 msgid "catalog.manage.categoryDescription"
@@ -1239,7 +1241,7 @@ msgstr ""
 "Зображення обкладинки вибранних книг з'являється у верхній частиніголовної "
 "сторінки у вигляді набору з можливістю прокрутки. Натисніть кнопку \""
 "Особливості\", потім зірочку, щоб додати книгу в карусель; клікніть на знак "
-"оклику, щоб позначити нове видання; перетаскуйте вверх і вниз для "
+"оклику, щоб позначити новий реліз; перетаскуйте вверх і вниз для "
 "впорядкування."
 
 msgid "grid.action.formatAvailable"
@@ -1331,7 +1333,7 @@ msgstr ""
 msgid "notification.type.visitCatalog"
 msgstr ""
 "Монографію було затверджено. Будь ласка, відвідайте розділ \"Маркетинг і "
-"Публікація\", щоб ознайомитися з деталями каталогу, використовуючи "
+"опублікування\", щоб ознайомитися з деталями каталогу, використовуючи "
 "покликання вище."
 
 msgid "notification.type.visitCatalogTitle"
@@ -1416,13 +1418,13 @@ msgid "notification.addedSpotlight"
 msgstr "Фокус уваги додано."
 
 msgid "notification.removedMarket"
-msgstr "Ринок видалено."
+msgstr "Магазин видалено."
 
 msgid "notification.editedMarket"
-msgstr "Ринок відредаговано."
+msgstr "Магазин відредаговано."
 
 msgid "notification.addedMarket"
-msgstr "Ринок додано."
+msgstr "Магазин додано."
 
 msgid "notification.removedRepresentative"
 msgstr "Представника видалено."
