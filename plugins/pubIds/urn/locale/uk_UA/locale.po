@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-24 06:56+0000\n"
+"PO-Revision-Date: 2022-03-25 07:57+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "pubIds-urn/uk_UA/>\n"
@@ -43,7 +43,7 @@ msgid "plugins.pubIds.urn.editor.assignURN.assigned"
 msgstr "URN {$pubId} був призначений."
 
 msgid "plugins.pubIds.urn.editor.assignURN.emptySuffix"
-msgstr "URN не можна призначити оскільки відсутній суфікс."
+msgstr "URN не можна призначити, оскільки відсутній суфікс."
 
 msgid "plugins.pubIds.urn.editor.assignURN"
 msgstr "Призначити URN {$pubId} для {$pubObjectType}"
@@ -68,7 +68,7 @@ msgstr ""
 "призначення URN-у."
 
 msgid "plugins.pubIds.urn.editor.customSuffixMissing"
-msgstr "URN не можна призначити оскільки відсутній суфікс."
+msgstr "URN не можна призначити, оскільки відсутній суфікс."
 
 msgid "plugins.pubIds.urn.editor.urnObjectTypeSubmissionFile"
 msgstr "файл"
@@ -182,7 +182,7 @@ msgstr ""
 "Resource Names - URN):"
 
 msgid "plugins.pubIds.urn.editor.urnObjectTypeRepresentation"
-msgstr "вид видання"
+msgstr "формат публікації"
 
 msgid "plugins.pubIds.urn.manager.settings.urnRepresentationSuffixPatternRequired"
 msgstr "Введіть зразок URN суфіксу для форматів публікацій."
@@ -193,7 +193,7 @@ msgstr ""
 "публікацій<br />%p.%m.%f.%s для файлів."
 
 msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.representations"
-msgstr "для Видів Видань"
+msgstr "для форматів публікацій"
 
 msgid "plugins.pubIds.urn.manager.settings.enableRepresentationURN"
 msgstr "Формати публікацій"
