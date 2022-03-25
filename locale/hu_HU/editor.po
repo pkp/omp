@@ -2,7 +2,7 @@
 # Molnár Tamás <molnart@bibl.u-szeged.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-02-16 15:30+0000\n"
+"PO-Revision-Date: 2022-03-26 13:56+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/editor/"
 "hu_HU/>\n"
@@ -13,43 +13,40 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#, fuzzy
 msgid "editor.monograph.enterRecommendation"
-msgstr "Ajánlás elküldése"
+msgstr "Ajánlás megadása"
 
 msgid "editor.monograph.internalReview"
-msgstr "Belső bírálat indítása"
+msgstr "Belső szakmai lektorálás indítása"
 
 msgid "editor.monograph.selectProofreadingFiles"
 msgstr "Korrektúra fájlok"
 
-#, fuzzy
 msgid "editor.monograph.peerReviewOptions"
-msgstr "Szakmai bírálati lehetőségek"
+msgstr "Szakmai értékelés lehetőségek"
 
 msgid "editor.monograph.uploadReviewForReviewer"
-msgstr "Bírálat feltöltése"
+msgstr "Szakmai bírálat feltöltése"
 
 msgid "editor.monograph.editorToEnter"
 msgstr "A szerkesztő javaslatot/hozzászólást írhat a bírálónak"
 
 msgid "editor.monograph.replaceReviewer"
-msgstr "Bíráló cseréje"
+msgstr "Szakmai lektor cseréje"
 
 msgid "editor.monograph.selectReviewerInstructions"
 msgstr ""
-"Válasszon a fenti bírálók közül, majd a folytatáshoz nyomja meg a \"Bíráló "
-"kiválasztása\" gombot."
+"Válasszon a fenti szakmai lektorok közül, majd a folytatáshoz nyomja meg a \""
+"Szakmai lektor kiválasztása\" gombot."
 
 msgid "editor.monograph.recommendation"
 msgstr "Ajánlás"
 
 msgid "editor.monograph.cancelReview"
-msgstr "Kérés megszakítása"
+msgstr "Felkérés megszakítása"
 
-#, fuzzy
 msgid "editor.submissionArchive"
-msgstr "Beküldött anyagok archívuma"
+msgstr "Archivált beküldések"
 
 #, fuzzy
 msgid "editor.monograph.production.approvalAndPublishingDescription"
@@ -108,11 +105,10 @@ msgstr ""
 msgid "editor.monograph.legend.more_info"
 msgstr "További információ: fájljegyzetek, értesítési lehetőségek és előzmények"
 
-#, fuzzy
 msgid "editor.monograph.legend.settings"
 msgstr ""
-"Megtekintheti és elérheti a tételbeállításokat, például az információkat és "
-"a törlési lehetőségeket"
+"Megtekintheti és elérheti a tételbeállításokat, például az információt és a "
+"törlési lehetőségeket"
 
 msgid "editor.monograph.legend.add_user"
 msgstr "Felhasználó hozzáadása a szakaszhoz"
@@ -125,7 +121,6 @@ msgstr ""
 "Megtekintheti és kezelheti a beküldött anyag résztvevőit: szerzőket, "
 "szerkesztőket, tervezőket és egyebeket"
 
-#, fuzzy
 msgid "editor.monograph.legend.catalogEntry"
 msgstr ""
 "Megtekintheti és kezelheti a beküldés katalógus tételét, beleértve a "
@@ -139,7 +134,6 @@ msgstr ""
 msgid "editor.monograph.legend.itemActionsDescription"
 msgstr "Az egyes fájlokkal kapcsolatos műveletek és lehetőségek."
 
-#, fuzzy
 msgid "editor.monograph.legend.itemActions"
 msgstr "Tételműveletek"
 
@@ -161,23 +155,22 @@ msgstr "Beküldési műveletek"
 msgid "editor.monograph.copyediting.personalMessageToUser"
 msgstr "Üzenet a felhasználónak"
 
-#, fuzzy
 msgid "editor.monograph.copyediting.currentFiles"
 msgstr "Jelenlegi fájlok"
 
 msgid "editor.monograph.final.currentFiles"
-msgstr "Jelenlegi végleges vázlat fájlok"
+msgstr "Jelenlegi végleges kézirat fájlok"
 
 msgid "editor.monograph.final.selectFinalDraftFiles"
-msgstr "Végleges vázlat fájlok kiválasztása"
+msgstr "Végleges kézirat fájlok kiválasztása"
 
 msgid "editor.monograph.externalReview"
-msgstr "Külső bírálat indítása"
+msgstr "Külső szakmai lektorálás indítása"
 
 msgid "editor.monograph.internalReviewDescription"
 msgstr ""
-"Válassza ki a lent található fájlokat a belső bírálati szakaszba történő "
-"továbbküldéshez."
+"Válassza ki lentről azokat a fájlokat, amiket a belső szakmai lektorálási "
+"szakaszba továbbküld."
 
 msgid "editor.submissions.assignedTo"
 msgstr "Szerkesztőhöz rendelve"
@@ -219,13 +212,11 @@ msgstr ""
 msgid "editor.monograph.proofs"
 msgstr "Kefelenyomatok"
 
-#, fuzzy
 msgid "editor.monograph.legend.uploaded"
-msgstr "Fájl feltöltve az oszlopfejlécben megjelölt szerep alapján"
+msgstr "Fájl feltöltve a táblázat oszlop címében megjelölt szerep alapján"
 
-#, fuzzy
 msgid "editor.monograph.enterReviewerRecommendation"
-msgstr "Adjon meg bírálói ajánlást"
+msgstr "Adjon meg szakmai lektori ajánlást"
 
 msgid "editor.monograph.clearReview"
-msgstr "Bíráló törlése"
+msgstr "Szakmai lektor törlése"
