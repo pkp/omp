@@ -1,7 +1,7 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-02-18 15:26+0000\n"
+"PO-Revision-Date: 2022-03-26 13:56+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
 "blocks-browse/hu_HU/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 
 msgid "plugins.block.browse.newReleases"
-msgstr "Új megjelenés"
+msgstr "Új megjelenések"
 
 msgid "plugins.block.browse.series"
 msgstr "Sorozatok"
