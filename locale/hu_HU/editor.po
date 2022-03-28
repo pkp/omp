@@ -2,7 +2,7 @@
 # Molnár Tamás <molnart@bibl.u-szeged.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-26 13:56+0000\n"
+"PO-Revision-Date: 2022-03-28 19:24+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/editor/"
 "hu_HU/>\n"
@@ -48,20 +48,16 @@ msgstr "Felkérés megszakítása"
 msgid "editor.submissionArchive"
 msgstr "Archivált beküldések"
 
-#, fuzzy
 msgid "editor.monograph.production.approvalAndPublishingDescription"
 msgstr ""
-"Különböző publikációs formátumok, mint például keménytáblás, puhafedeles és "
-"digitális, tölthetők fel az alábbi Publikációs formátumok részben. Az alábbi "
-"publikációs formátumok rácsot/hálózatot (felületet) használhatja ellenőrző "
-"listaként ahhoz, hogy mit kell még tennie a publikációs formátum "
-"közzétételéhez."
+"Különböző kiadványformátumok, mint például keménytáblás, puhafedeles és "
+"digitális tölthetőek fel az alábbi Kiadványformátumok részben. Az alábbi "
+"kiadványformátumok felületet használhatja ellenőrző listaként ahhoz, hogy "
+"mit kell még tennie a kiadványformátum közzétételéhez."
 
-#, fuzzy
 msgid "editor.monograph.production.approvalAndPublishing"
 msgstr "Jóváhagyás és Közzététel"
 
-#, fuzzy
 msgid "editor.monograph.editorial.fairCopy"
 msgstr "Tisztázat"
 
@@ -69,11 +65,12 @@ msgid "editor.submission.introduction"
 msgstr ""
 "A Beküldés szakaszban a szerkesztő a benyújtott fájlokkal való konzultációt "
 "követően kiválasztja a megfelelő műveletet (amely magában foglalja a szerző "
-"értesítését is): Küldés Belső bírálatra (magában foglalja a fájlok "
-"kiválasztását a Belső bírálathoz); Küldés Külső bírálatra (magában foglalja "
-"a fájlok kiválasztását a Külső bírálathoz); Beküldött anyag elfogadása ("
-"magában foglalja a fájlok kiválasztását a Szerkesztési szakaszhoz); vagy a "
-"Beküldött anyag visszautasítását (archiválás)."
+"értesítését is): Küldés Belső szakmai lektorálásra (magában foglalja a "
+"fájlok kiválasztását a Belső szakmai lektoráláshoz); Küldés Külső szakmai "
+"lektorálásra (magában foglalja a fájlok kiválasztását a Külső szakmai "
+"lektoráláshoz); Beküldött anyag elfogadása (magában foglalja a fájlok "
+"kiválasztását a Szerkesztési szakaszhoz); vagy a Beküldött anyag "
+"visszautasítását (archiválás)."
 
 msgid "editor.monograph.legend.complete"
 msgstr "A művelet befejeződött"
@@ -142,7 +139,6 @@ msgstr ""
 "Egy adott szakaszhoz tartozó lehetőségek, például fájlok feltöltése vagy "
 "felhasználók hozzáadása."
 
-#, fuzzy
 msgid "editor.monograph.legend.sectionActions"
 msgstr "Szakasz műveletek"
 
@@ -175,19 +171,18 @@ msgstr ""
 msgid "editor.submissions.assignedTo"
 msgstr "Szerkesztőhöz rendelve"
 
-#, fuzzy
 msgid "editor.publicIdentificationExistsForTheSameType"
 msgstr ""
-"A nyilvános azonosító már létezik egy másik azonos típusú objektumhoz "
-"rendelve. Kérjük, válasszon egyedi azonosítókat az azonos típusú "
-"objektumokhoz."
+"A '{$publicIdentifier}' nyilvános azonosító már létezik egy másik azonos "
+"típusú objektumhoz rendelve. Kérjük, válasszon egyedi azonosítókat az azonos "
+"típusú objektumokhoz."
 
 msgid "editor.submission.proof.manageProofFilesDescription"
 msgstr ""
-"Bármelyik fájlt, amit már feltöltöttek a beküldés valamelyik szakaszában "
-"hozzá lehet adni a Kefelenyomat fájlok listához, ha bejelöli az alábbi "
-"jelölőnégyzetet, és rákattint a Keresés gombra: az összes rendelkezésre álló "
-"fájl megjelenik, és kiválasztható a felvételhez."
+"Bármelyik fájlt, amit már feltöltöttek a munkafolyamat valamelyik "
+"szakaszában hozzá lehet adni a Kefelenyomat fájlok listájához, ha bejelöli "
+"az alábbi jelölőnégyzetet, és rákattint a Keresés gombra: az összes "
+"rendelkezésre álló fájl megjelenik és kiválasztható a felvételhez."
 
 msgid "editor.monograph.proof.addNote"
 msgstr "Válasz hozzáadása"
@@ -198,17 +193,15 @@ msgstr "Feltételek beállítása"
 msgid "editor.monograph.approvedProofs.edit"
 msgstr "Letöltési feltételek beállítása"
 
-#, fuzzy
 msgid "editor.monograph.production.publicationFormatDescription"
 msgstr ""
-"Adjon hozzá olyan publikációs formátumokat (pl.: digitális, papírkötésű), "
+"Adjon hozzá olyan kiadványformátumokat (pl.: digitális, papírkötésű), "
 "amelyekhez a tördelőszerkesztő elkészíti a kefelenyomatokat a "
 "korrektúrázáshoz. A <em>Kefelenyomatokat</em> ellenőrizni kell, hogy "
-"jóváhagyott-e, és a  <em>Katalógus</em> tétel formátumát is ellenőrizni kell "
-"a könyv katalógusbejegyzésében, mielőtt a formátum <em>Elérhetővé</em> válna "
-"(azaz közzétételre kerülne)."
+"jóváhagyottak-e, és a  <em>Katalógus</em> tétel formátumát is ellenőrizni "
+"kell a könyv katalógus tételében, mielőtt a formátum <em>Elérhetővé</em> "
+"válna (azaz közzétételre kerülne)."
 
-#, fuzzy
 msgid "editor.monograph.proofs"
 msgstr "Kefelenyomatok"
 
