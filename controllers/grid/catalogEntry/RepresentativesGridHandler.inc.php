@@ -87,7 +87,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 
 		$representativeId = (int) $request->getUserVar('representativeId'); // set if editing or deleting a representative entry
 
-		if ($representativeId != '') {
+		if ($representativeId != 0) {
 			$representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
 			$representative = $representativeDao->getById($representativeId, $this->getMonograph()->getId());
 			if (!isset($representative)) {
