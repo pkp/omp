@@ -1,7 +1,7 @@
-# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-08-19 14:05+0000\n"
+"PO-Revision-Date: 2022-03-29 22:43+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
 "generic-pdfJsViewer/hu_HU/>\n"
@@ -17,4 +17,4 @@ msgstr ""
 "Ez a bővítmény támogatja a PDF.js könyvtárat használó PDF-ek megjelenítését."
 
 msgid "plugins.generic.pdfJsViewer.displayName"
-msgstr "PDF.js PDF Megtekintő"
+msgstr "PDF.js PDF megtekintő"
