@@ -1,7 +1,7 @@
-# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-08-19 14:05+0000\n"
+"PO-Revision-Date: 2022-03-29 22:43+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
 "generic-htmlMonographFile/hu_HU/>\n"
@@ -12,9 +12,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#, fuzzy
 msgid "plugins.generic.htmlMonographFile.description"
-msgstr "Ez a bővítmény támogatja a HTML monográfiai fájlok megjelenítését."
+msgstr "Ez a bővítmény támogatja a HTML kiadvány fájlok megjelenítését."
 
 msgid "plugins.generic.htmlMonographFile.displayName"
-msgstr "HTML Monográfia Fájl"
+msgstr "HTML kiadvány fájl"
