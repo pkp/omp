@@ -1,7 +1,7 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-02-18 15:26+0000\n"
+"PO-Revision-Date: 2022-03-29 22:43+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
 "generic-dublinCoreMeta/hu_HU/>\n"
@@ -12,11 +12,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#, fuzzy
 msgid "plugins.generic.dublinCoreMeta.description"
 msgstr ""
 "Ez a bővítmény indexelés céljából Dublin Core metacímkéket ágyaz be a "
-"monográfiai nézetekbe."
+"kiadványnézetekbe."
 
 msgid "plugins.generic.dublinCoreMeta.name"
 msgstr "Dublin Core indexelő bővítmény"
