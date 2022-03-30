@@ -1,10 +1,10 @@
-# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021, 2022.
 # Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>, 2021.
 # Kiss Jázmin <kissfjazmin@gmail.com>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-10-02 02:41+0000\n"
-"Last-Translator: Kiss Jázmin <kissfjazmin@gmail.com>\n"
+"PO-Revision-Date: 2022-03-31 11:57+0000\n"
+"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "hu_HU/>\n"
 "Language: hu_HU\n"
@@ -125,39 +125,36 @@ msgid "monograph.publicationFormat.imprint"
 msgstr "Könyvkiadó (?Impresszum?) (Márkanév)"
 
 msgid "monograph.accessLogoOpen.altText"
-msgstr "Nyílt hozzáférés (Open Access)"
+msgstr "Nyílt hozzáférés"
 
-#, fuzzy
 msgid "monograph.task.addNote"
 msgstr "Hozzáadás a feladathoz"
 
 msgid "monograph.proofReadingDescription"
 msgstr ""
-"A tördelőszerkesztő ide tölti fel a megjelentetésre előkészített, gyártásra "
-"kész fájlokat. A <em>Hozzárendelés</em> gomb segítségével kijelölheti a "
-"szerzőket és másokat, hogy korrektúrázzák a kefelenyomatokat, és a javított "
-"fájlokat a közzététel előtt jóváhagyásra feltöltsék."
+"A tördelőszerkesztő ide tölti fel a megjelentetésre előkészített fájlok, "
+"amik készek a közzétételre. A <em>Hozzárendelés</em> gomb segítségével "
+"kijelölheti a szerzőket és másokat, hogy korrektúrázzák a kefelenyomatokat, "
+"és a javított fájlokat a közzététel előtt jóváhagyásra feltöltsék."
 
 msgid "submission.pageProofs"
 msgstr "Kefelenyomatok oldala"
 
-#, fuzzy
 msgid "monograph.type"
-msgstr "Beküldés típusa"
+msgstr "Beküldött anyag típusa"
 
 msgid "monograph.carousel.publicationFormats"
 msgstr "Formátumok:"
 
 msgid "monograph.miscellaneousDetails"
-msgstr "Részletek a monográfiáról"
+msgstr "Részletek a kiadványról"
 
 msgid "monograph.publicationFormatDetails"
-msgstr "Részletek a rendelkezésre álló publikációs formátumról: {$format}"
+msgstr "Részletek a rendelkezésre álló kiadványformátumról: {$format}"
 
 msgid "monograph.publicationFormat"
 msgstr "Formátum"
 
-#, fuzzy
 msgid "monograph.publicationFormats"
 msgstr "Kiadványformátumok"
 
@@ -165,16 +162,14 @@ msgid "monograph.languages"
 msgstr "Nyelvek (Angol, Francia, Spanyol)"
 
 msgid "monograph.audience.rangeExact"
-msgstr "Célközönség köre (pontos)"
+msgstr "Célközönség köre (pontosan)"
 
-#, fuzzy
 msgid "monograph.audience.rangeTo"
 msgstr "Célközönség köre (-ig)"
 
 msgid "monograph.audience.rangeFrom"
 msgstr "Célközönség köre (-tól)"
 
-#, fuzzy
 msgid "monograph.audience.rangeQualifier"
 msgstr "Célközönség körének választója"
 
@@ -182,7 +177,7 @@ msgid "monograph.coverImage"
 msgstr "Borítókép"
 
 msgid "monograph.audience.success"
-msgstr "A célközönség adatait frissítettük."
+msgstr "A célközönség adatai frissültek."
 
 msgid "monograph.audience"
 msgstr "Célközönség"
