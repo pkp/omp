@@ -1,7 +1,7 @@
-# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-14 10:05+0000\n"
+"PO-Revision-Date: 2022-03-31 11:57+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-native/hu_HU/>\n"
@@ -42,7 +42,7 @@ msgid "plugins.importexport.native.results"
 msgstr "Eredmények"
 
 msgid "plugins.importexport.native.exportSubmissionsSelect"
-msgstr "Exportálandó monográfiák kiválasztása"
+msgstr "Exportálandó kiadványok kiválasztása"
 
 msgid "plugins.importexport.native.export"
 msgstr "Exportálás"
@@ -58,4 +58,4 @@ msgstr ""
 "Könyvek importálása és exportálása az OMP alapértelmezett XML formátumában."
 
 msgid "plugins.importexport.native.displayName"
-msgstr "Native XML Bővítmény"
+msgstr "Alapértelmezett XML bővítmény"
