@@ -1540,7 +1540,7 @@ msgid "emailTemplate.variable.context.contactEmail"
 msgstr ""
 "La dirección de correo electrónico del contacto principal de la publicación"
 
-msgid "emailTemplate.variable.context.principalContactSignature"
+msgid "emailTemplate.variable.context.contextSignature"
 msgstr "La firma para los correos electrónicos automatizados de la publicación"
 
 msgid "emailTemplate.variable.context.contactName"

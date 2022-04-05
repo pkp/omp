@@ -1225,7 +1225,7 @@ msgstr "La moneda de l'import del pagament, per exemple USD"
 msgid "emailTemplate.variable.context.contactEmail"
 msgstr "L'adreça de correu electrònic del contacte principal de la publicació"
 
-msgid "emailTemplate.variable.context.principalContactSignature"
+msgid "emailTemplate.variable.context.contextSignature"
 msgstr "La signatura per als correus electrònics automatitzats de la publicació"
 
 msgid "emailTemplate.variable.context.contactName"

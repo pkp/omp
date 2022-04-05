@@ -21,6 +21,7 @@ class ContextEmailVariable extends PKPContextEmailVariable
 {
     public const CONTEXT_NAME = 'pressName';
     public const CONTEXT_URL = 'pressUrl';
+    public const CONTEXT_SIGNATURE = 'pressSignature';
 
     /**
      * @copydoc Variable::description()
@@ -32,6 +33,7 @@ class ContextEmailVariable extends PKPContextEmailVariable
             [
                 self::CONTEXT_NAME => __('emailTemplate.variable.context.contextName'),
                 self::CONTEXT_URL => __('emailTemplate.variable.context.contextUrl'),
+                self::CONTEXT_SIGNATURE => __('emailTemplate.variable.context.contextSignature'),
             ]
         );
     }
@@ -46,6 +48,7 @@ class ContextEmailVariable extends PKPContextEmailVariable
             [
                 self::CONTEXT_NAME => $this->context->getLocalizedData('name', $locale),
                 self::CONTEXT_URL => $this->getContextUrl(),
+                self::CONTEXT_SIGNATURE => $this->getContextSignature(),
             ]
         );
     }

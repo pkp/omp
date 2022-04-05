@@ -988,7 +988,7 @@ msgstr "Der Name des Zahlungstyps"
 msgid "emailTemplate.variable.context.contactEmail"
 msgstr "Die E-Mail-Adresse des Hauptkontakts des Verlags"
 
-msgid "emailTemplate.variable.context.principalContactSignature"
+msgid "emailTemplate.variable.context.contextSignature"
 msgstr "Die E-Mail-Signatur des Verlags für automatisierte E-Mails"
 
 msgid "emailTemplate.variable.context.contactName"

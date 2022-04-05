@@ -1066,7 +1066,7 @@ msgstr "A fizetési mód neve"
 msgid "emailTemplate.variable.context.contactEmail"
 msgstr "A kiadó elsődleges kapcsolattartójának e-mail címe"
 
-msgid "emailTemplate.variable.context.principalContactSignature"
+msgid "emailTemplate.variable.context.contextSignature"
 msgstr "A kiadó aláírása automatikusan kiküldött e-mailekben"
 
 msgid "emailTemplate.variable.context.contactName"
