@@ -1,9 +1,10 @@
+# Diego José Macêdo <diegojmacedo@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T12:00:53-07:00\n"
-"PO-Revision-Date: 2021-02-02 23:15+0000\n"
+"PO-Revision-Date: 2022-04-06 23:26+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "admin/pt_BR/>\n"
@@ -132,3 +133,8 @@ msgstr ""
 
 msgid "admin.contexts.form.primaryLocaleNotSupported"
 msgstr "A tradução principal deve ser uma das suportadas pela editora."
+
+msgid "admin.siteManagement.description"
+msgstr ""
+"Adicione, edite ou remova editoras deste site e gerencie as configurações de "
+"todo o site."
