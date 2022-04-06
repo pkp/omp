@@ -187,5 +187,5 @@ class SalesRights extends \PKP\core\DataObject
 }
 
 if (!PKP_STRICT_MODE) {
-    class_alias('\APP\publicationFormats\SalesRights', '\SalesRights');
+    class_alias('\APP\publicationFormat\SalesRights', '\SalesRights');
 }

@@ -13,9 +13,12 @@
  * @brief Handle publication format grid requests.
  */
 
+use APP\core\Application;
+use APP\core\Request;
 use APP\facades\Repo;
 use APP\log\SubmissionEventLogEntry;
 use APP\notification\NotificationManager;
+use APP\publicationFormat\PublicationFormat;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\template\TemplateManager;
 use PKP\controllers\grid\CategoryGridHandler;
@@ -241,25 +244,22 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      * Edit a publication format modal
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
     public function editFormat($args, $request)
     {
-        $representationDao = Application::getRepresentationDAO();
-        $representationId = $request->getUserVar('representationId');
-        $representation = $representationDao->getById(
-            $representationId,
-            $this->getPublication()->getId()
-        );
+        $representation = $this->getRequestedPublicationFormat($request);
         // Check if this is a remote galley
         $remoteURL = isset($representation) ? $representation->getRemoteURL() : null;
         $templateMgr = TemplateManager::getManager($request);
         $templateMgr->assign('submissionId', $this->getSubmission()->getId());
         $templateMgr->assign('publicationId', $this->getPublication()->getId());
-        $templateMgr->assign('representationId', $representationId);
         $templateMgr->assign('remoteRepresentation', $remoteURL);
+        if ($representation) {
+            $templateMgr->assign('representationId', $representation->getId());
+        }
 
         $publisherIdEnabled = in_array('representation', (array) $request->getContext()->getData('enablePublisherId'));
         $pubIdPlugins = PluginRegistry::getPlugins('pubIds');
@@ -279,17 +279,13 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      * Edit a format
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
     public function editFormatTab($args, $request)
     {
-        $representationDao = Application::getRepresentationDAO();
-        $representation = $representationDao->getById(
-            $request->getUserVar('representationId'),
-            $this->getPublication()->getId()
-        );
+        $representation = $this->getRequestedPublicationFormat($request);
 
         import('controllers.grid.catalogEntry.form.PublicationFormatForm');
         $publicationFormatForm = new PublicationFormatForm($this->getSubmission(), $representation, $this->getPublication());
@@ -302,17 +298,13 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      * Update a format
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
     public function updateFormat($args, $request)
     {
-        $representationDao = Application::getRepresentationDAO();
-        $representation = $representationDao->getById(
-            $request->getUserVar('representationId'),
-            $this->getPublication()->getId()
-        );
+        $representation = $this->getRequestedPublicationFormat($request);
 
         import('controllers.grid.catalogEntry.form.PublicationFormatForm');
         $publicationFormatForm = new PublicationFormatForm($this->getSubmission(), $representation, $this->getPublication());
@@ -328,7 +320,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      * Delete a format
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -336,11 +328,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
     {
         $context = $request->getContext();
         $submission = $this->getSubmission();
-        $representationDao = Application::getRepresentationDAO();
-        $representation = $representationDao->getById(
-            $request->getUserVar('representationId'),
-            $this->getPublication()->getId()
-        );
+        $representation = $this->getRequestedPublicationFormat($request);
 
         if (!$request->checkCSRF() || !$representation) {
             return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
@@ -752,5 +740,20 @@ class PublicationFormatGridHandler extends CategoryGridHandler
             'submissionFile' => $submissionFile,
         ]);
         return new JSONMessage(true, $templateMgr->fetch('controllers/grid/catalogEntry/dependentFiles.tpl'));
+    }
+
+    /**
+     * Get a publication format from the request param
+     */
+    public function getRequestedPublicationFormat(Request $request): ?PublicationFormat
+    {
+        $representationDao = Application::getRepresentationDAO();
+        $representationId = $request->getUserVar('representationId');
+        return $representationId
+            ? $representationDao->getById(
+                (int) $representationId,
+                $this->getPublication()->getId()
+            )
+            : null;
     }
 }

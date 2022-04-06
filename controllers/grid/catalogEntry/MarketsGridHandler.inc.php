@@ -150,7 +150,7 @@ class MarketsGridHandler extends GridHandler
         // Retrieve the associated publication format for this grid.
         $marketId = (int) $request->getUserVar('marketId'); // set if editing or deleting a market entry
 
-        if ($marketId != '') {
+        if ($marketId) {
             $marketDao = DAORegistry::getDAO('MarketDAO'); /** @var MarketDAO $marketDao */
             $market = $marketDao->getById($marketId, $this->getPublication()->getId());
             if ($market) {
@@ -160,12 +160,14 @@ class MarketsGridHandler extends GridHandler
             $representationId = (int) $request->getUserVar('representationId');
         }
 
-        $publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
+        $publicationFormat = $representationId
+            ? $publicationFormatDao->getById((int) $representationId, $this->getPublication()->getId())
+            : null;
 
         if ($publicationFormat) {
             $this->setPublicationFormat($publicationFormat);
         } else {
-            fatalError('The publication format is not assigned to authorized submission!');
+            throw new Exception('The publication format is not assigned to authorized submission!');
         }
 
         // Basic grid configuration

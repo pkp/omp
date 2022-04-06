@@ -94,8 +94,7 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
     public function loadData($filter = [])
     {
         return Application::getRepresentationDAO()
-            ->getByPublicationId($this->getPublication()->getId())
-            ->toAssociativeArray();
+            ->getByPublicationId($this->getPublication()->getId());
     }
 
     /**
