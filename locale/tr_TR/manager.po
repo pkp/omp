@@ -1408,7 +1408,7 @@ msgstr "Ödeme türünün adı"
 msgid "emailTemplate.variable.context.contactEmail"
 msgstr "Yayının birincil irtibat kişisinin e-posta adresi"
 
-msgid "emailTemplate.variable.context.principalContactSignature"
+msgid "emailTemplate.variable.context.contextSignature"
 msgstr "Otomatik e-postalar için yayının e-posta imzası"
 
 msgid "emailTemplate.variable.context.contactName"

@@ -1404,7 +1404,7 @@ msgstr "Navnet på betalingstypen"
 msgid "emailTemplate.variable.context.contactEmail"
 msgstr "Forlagets primære kontaktpersons e-mail-adresse"
 
-msgid "emailTemplate.variable.context.principalContactSignature"
+msgid "emailTemplate.variable.context.contextSignature"
 msgstr "Forlaget e-mail-signatur til automatiserede e-mails"
 
 msgid "emailTemplate.variable.context.contactName"
