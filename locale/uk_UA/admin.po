@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-24 06:56+0000\n"
+"PO-Revision-Date: 2022-04-08 19:57+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/admin/"
 "uk_UA/>\n"
@@ -151,3 +151,8 @@ msgstr ""
 "таких листів.<br><br>Функція масового розсилання листів може бути повністю "
 "відключена для цього е-видавництва в розділі <a href=\"{$siteSettingsUrl}\">"
 "Адмін > Налаштування сайту</a>."
+
+msgid "admin.siteManagement.description"
+msgstr ""
+"Додати, редагувати або видалити е-видавництва із цього сайту й керувати "
+"налаштуваннями всього сайту."
