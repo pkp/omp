@@ -17,12 +17,13 @@
 namespace APP\publicationFormat;
 
 use APP\facades\Repo;
+use PKP\db\DAO;
 use PKP\db\DAOResultFactory;
 use PKP\plugins\HookRegistry;
-use PKP\plugins\PKPPubIdPluginDAO;
-use PKP\submission\RepresentationDAO;
+use PKP\submission\Representation;
+use PKP\submission\RepresentationDAOInterface;
 
-class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDAO
+class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
 {
     /**
      * @copydoc RepresentationDAO::getById()
@@ -30,7 +31,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
      * @param null|mixed $publicationId
      * @param null|mixed $contextId
      */
-    public function getById($representationId, $publicationId = null, $contextId = null)
+    public function getById(int $representationId, ?int $publicationId = null, ?int $contextId = null): PublicationFormat
     {
         $params = [(int) $representationId];
         if ($publicationId) {
@@ -159,14 +160,14 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
      *
      * @param null|mixed $contextId
      */
-    public function getByPublicationId($publicationId, $contextId = null)
+    public function getByPublicationId($publicationId, $contextId = null): array
     {
         $params = [(int) $publicationId];
         if ($contextId) {
             $params[] = (int) $contextId;
         }
 
-        return new DAOResultFactory(
+        $result = new DAOResultFactory(
             $this->retrieve(
                 'SELECT pf.*
 				FROM	publication_formats pf ' .
@@ -182,6 +183,8 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
             $this,
             '_fromRow'
         );
+
+        return $result->toAssociativeArray();
     }
 
     /**
@@ -258,9 +261,8 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
     /**
      * Construct a new data object corresponding to this DAO.
      *
-     * @return PublicationFormat
      */
-    public function newDataObject()
+    public function newDataObject(): PublicationFormat
     {
         return new PublicationFormat();
     }
@@ -382,7 +384,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
      *
      * @param PublicationFormat $publicationFormat
      */
-    public function updateObject($publicationFormat)
+    public function updateObject(Representation $publicationFormat): void
     {
         $this->update(
             'UPDATE publication_formats

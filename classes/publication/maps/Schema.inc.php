@@ -64,7 +64,7 @@ class Schema extends \PKP\publication\maps\Schema
             $genreDao = DAORegistry::getDAO('GenreDAO');
             $genres = $genreDao->getByContextId($this->submission->getData('contextId'))->toArray();
 
-            $output['publicationFormats'] = array_map(
+            $publicationFormats = array_map(
                 function ($publicationFormat) use ($submissionFiles, $genres) {
                     $data = $publicationFormat->_data;
 
@@ -82,6 +82,9 @@ class Schema extends \PKP\publication\maps\Schema
                 },
                 $publication->getData('publicationFormats')
             );
+
+            // Call array_values to reset array keys so that the output will convert to an array in JSON
+            $output['publicationFormats'] = array_values($publicationFormats);
         }
 
         if (in_array('urlPublished', $props)) {

@@ -146,7 +146,7 @@ class SalesRightsGridHandler extends GridHandler
         // Retrieve the associated publication format for this grid.
         $salesRightsId = (int) $request->getUserVar('salesRightsId'); // set if editing or deleting a sales rights entry
 
-        if ($salesRightsId != '') {
+        if ($salesRightsId) {
             $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /** @var SalesRightsDAO $salesRightsDao */
             $salesRights = $salesRightsDao->getById($salesRightsId, $this->getPublication()->getId());
             if ($salesRights) {
@@ -156,13 +156,14 @@ class SalesRightsGridHandler extends GridHandler
             $representationId = (int) $request->getUserVar('representationId');
         }
 
-        $submission = $this->getSubmission();
-        $publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
+        $publicationFormat = $representationId
+            ? $publicationFormatDao->getById((int) $representationId, $this->getPublication()->getId())
+            : null;
 
         if ($publicationFormat) {
             $this->setPublicationFormat($publicationFormat);
         } else {
-            fatalError('The publication format is not assigned to authorized submission!');
+            throw new Exception('The publication format is not assigned to authorized submission!');
         }
 
         // Basic grid configuration

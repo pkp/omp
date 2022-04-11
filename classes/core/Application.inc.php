@@ -18,10 +18,10 @@
 
 namespace APP\core;
 
-use APP\publicationFormat\PublicationFormatDAO;
 use PKP\core\PKPApplication;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
+use PKP\submission\RepresentationDAOInterface;
 
 define('REQUIRES_XSL', true);
 
@@ -185,7 +185,7 @@ class Application extends \PKP\core\PKPApplication
     /**
      * Get the representation DAO.
      */
-    public static function getRepresentationDAO(): PublicationFormatDAO
+    public static function getRepresentationDAO(): RepresentationDAOInterface
     {
         return DAORegistry::getDAO('PublicationFormatDAO');
     }

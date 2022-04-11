@@ -148,7 +148,7 @@ class IdentificationCodeGridHandler extends GridHandler
         // Retrieve the associated publication format for this grid.
         $identificationCodeId = (int) $request->getUserVar('identificationCodeId'); // set if editing or deleting a code
 
-        if ($identificationCodeId != '') {
+        if ($identificationCodeId) {
             $identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /** @var IdentificationCodeDAO $identificationCodeDao */
             $identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getPublication()->getId());
             if ($identificationCode) {
@@ -158,12 +158,14 @@ class IdentificationCodeGridHandler extends GridHandler
             $representationId = (int) $request->getUserVar('representationId');
         }
 
-        $publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
+        $publicationFormat = $representationId
+            ? $publicationFormatDao->getById((int) $representationId, $this->getPublication()->getId())
+            : null;
 
         if ($publicationFormat) {
             $this->setPublicationFormat($publicationFormat);
         } else {
-            fatalError('The publication format is not assigned to authorized submission!');
+            throw new Exception('The publication format is not assigned to authorized submission!');
         }
 
         // Basic grid configuration

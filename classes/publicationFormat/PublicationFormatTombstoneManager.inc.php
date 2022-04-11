@@ -18,10 +18,10 @@ namespace APP\publicationFormat;
 use APP\facades\Repo;
 use APP\oai\omp\OAIDAO;
 use APP\submission\Submission;
-use PKP\submission\PKPSubmission;
-use PKP\db\DAORegistry;
 use PKP\config\Config;
+use PKP\db\DAORegistry;
 use PKP\plugins\HookRegistry;
+use PKP\submission\PKPSubmission;
 
 class PublicationFormatTombstoneManager
 {
@@ -153,8 +153,7 @@ class PublicationFormatTombstoneManager
     public function deleteTombstonesByPublicationId(int $publicationId)
     {
         $publicationFormats = DAORegistry::getDAO('PublicationFormatDAO')
-            ->getByPublicationId($publicationId)
-            ->toArray();
+            ->getByPublicationId($publicationId);
         $this->deleteTombstonesByPublicationFormats($publicationFormats);
     }
 
@@ -170,8 +169,7 @@ class PublicationFormatTombstoneManager
     {
         $this->deleteTombstonesByPublicationId($publicationId);
         $publicationFormats = DAORegistry::getDAO('PublicationFormatDAO')
-            ->getByPublicationId($publicationId)
-            ->toArray();
+            ->getByPublicationId($publicationId);
         foreach ($publicationFormats as $publicationFormat) {
             if ($publicationFormat->getIsAvailable()) {
                 $this->insertTombstoneByPublicationFormat($publicationFormat, $context);
