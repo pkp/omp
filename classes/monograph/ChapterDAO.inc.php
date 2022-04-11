@@ -19,6 +19,7 @@
 namespace APP\monograph;
 
 use APP\facades\Repo;
+use Illuminate\Support\Facades\DB;
 use PKP\db\DAOResultFactory;
 use PKP\plugins\HookRegistry;
 use PKP\plugins\PKPPubIdPluginDAO;
@@ -335,16 +336,9 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
      */
     public function changePubId($pubObjectId, $pubIdType, $pubId)
     {
-        $this->replace(
-            'submission_chapter_settings',
-            [
-                'chapter_id' => (int) $pubObjectId,
-                'locale' => '',
-                'setting_name' => 'pub-id::' . $pubIdType,
-                'setting_type' => 'string',
-                'setting_value' => (string) $pubId
-            ],
-            ['chapter_id', 'locale', 'setting_name']
+        DB::table('submission_chapter_settings')->updateOrInsert(
+            ['chapter_id' => (int) $pubObjectId, 'locale' => '', 'setting_name' => 'pub-id::' . $pubIdType],
+            ['setting_type' => 'string', 'setting_value' => (string) $pubId]
         );
     }
 

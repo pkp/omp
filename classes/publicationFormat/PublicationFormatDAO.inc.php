@@ -16,6 +16,7 @@
 
 namespace APP\publicationFormat;
 
+use Illuminate\Support\Facades\DB;
 use APP\facades\Repo;
 use PKP\db\DAO;
 use PKP\db\DAOResultFactory;
@@ -500,16 +501,9 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
      */
     public function changePubId($pubObjectId, $pubIdType, $pubId)
     {
-        $this->replace(
-            'publication_format_settings',
-            [
-                'publication_format_id' => (int) $pubObjectId,
-                'locale' => '',
-                'setting_name' => 'pub-id::' . $pubIdType,
-                'setting_type' => 'string',
-                'setting_value' => (string)$pubId
-            ],
-            ['publication_format_id', 'locale', 'setting_name']
+        DB::table('publication_format_settings')->updateOrInsert(
+            ['publication_format_id' => (int) $pubObjectId, 'locale' => '', 'setting_name' => 'pub-id::' . $pubIdType],
+            ['setting_type' => 'string', 'setting_value' => (string)$pubId]
         );
     }
 
