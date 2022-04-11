@@ -2,7 +2,7 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-04-10 11:21+0000\n"
+"PO-Revision-Date: 2022-04-11 21:52+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "hu_HU/>\n"
@@ -120,62 +120,61 @@ msgstr ""
 "keresőmotorok megtudnak jeleníteni a találati listában."
 
 msgid "manager.setup.reviewPolicy"
-msgstr "Bírálati irányelvek"
+msgstr "Szakmai lektorálási irányelvek"
 
 msgid "manager.setup.reviewOptions.reviewerReminders"
-msgstr "Bíráló emlékeztetői"
+msgstr "Szakmai lektorálási emlékeztetők"
 
 msgid "manager.setup.reviewOptions.reviewerRatings"
-msgstr "Bíráló értékelései"
+msgstr "Szakmai lektor értékelése(i)?"
 
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
-msgstr "Biztonságos link küldése bírálóknak az e-mail meghívóban."
+msgstr "Biztonsági link küldése szakmai lektoroknak a felkérő e-mailben."
 
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
 msgstr ""
-"Biztonságos link küldésére van lehetőség az e-mail meghívóban, ami lehetővé "
-"teszi a bejelentkezés nélküli hozzáférést a bíráló számára. Egyéb oldalakhoz "
-"való hozzáféréshez viszont szükséges a bejelentkezés."
+"Biztonsági link küldhető a szakmai lektorok részére a felkérő e-mailben, ami "
+"lehetővé teszi a bejelentkezés nélküli hozzáférést. Egyéb oldalakhoz való "
+"hozzáféréshez viszont szükséges a bejelentkezés."
 
-#, fuzzy
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
-msgstr "Gyors bírálói hozzáférés"
+msgstr "Egy-kattintásos szakmai lektorálási hozzáférés"
 
 msgid "manager.setup.reviewOptions.reviewerAccess"
-msgstr "Bírálói hozzáférés"
+msgstr "Szakmai lektori hozzáférés"
 
 msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
 msgstr ""
-"Bírálók csak azután férnek hozzá a beadott fájlhoz, miután beleegyeztek "
-"annak bírálásába."
+"Szakmai lektorok csak azután férnek hozzá a beküldött anyag fájljához, "
+"miután beleegyeztek annak szakmai lektorálásába."
 
 msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
 msgstr "Fájl hozzáférés korlátozása"
 
 msgid "manager.setup.reviewOptions.onQuality"
 msgstr ""
-"A szerkesztők értékelik a bírálókat egy ötpontos minősítő skálán minden "
-"bírálat után."
+"A szerkesztők értékelik a szakmai lektorokat egy ötpontos minősítő skálán "
+"minden szakmai lektorálás után."
 
 msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
 msgstr ""
-"Ezeknek az opciók aktiválásához az oldaladminisztrátornak engedélyeznie kell "
-"a <tt>scheduled_tasks</tt> opciót az OMP konfigurációs fájlban. További "
-"szerver konfiguráció lehet, hogy szükséges ehhez a funkcióhoz (amely nem "
-"feltétlenül lehetséges minden szerveren), ahogy az az OMP dokumentációban is "
-"fel van tüntetve."
+"Ezeknek az opciók az aktiválásához az oldaladminisztrátornak engedélyeznie "
+"kell a <tt>scheduled_tasks</tt> opciót az OMP konfigurációs fájlban. További "
+"szerver konfiguráció lehet szükséges ennek a funkciónak a támogatásához ("
+"amely nem feltétlenül lehetséges minden szerveren), ahogy az az OMP "
+"dokumentációban is fel van tüntetve."
 
 msgid "manager.setup.reviewOptions.automatedReminders"
 msgstr "Automatikus e-mail emlékeztetők"
 
 msgid "manager.setup.reviewOptions"
-msgstr "Bírálati Lehetőségek"
+msgstr "Szakmai lektorálási lehetőségek"
 
 msgid "manager.setup.internalReviewGuidelines"
-msgstr "Belső Lektori Útmutatók"
+msgstr "Belső szakmai lektorálási útmutatók"
 
 msgid "manager.setup.reviewGuidelines"
-msgstr "Külső Lektori Útmutatók"
+msgstr "Külső szakmai lektorálási útmutatók"
 
 msgid "manager.setup.restrictSiteAccess"
 msgstr ""
@@ -184,13 +183,12 @@ msgstr ""
 
 msgid "manager.setup.restrictMonographAccess"
 msgstr ""
-"Felhasználói regisztráció és bejelentkezés szükséges a nyílt elérésű "
+"Felhasználói regisztráció és bejelentkezés szükséges a nyílt hozzáférésű "
 "tartalom megtekintéséhez."
 
 msgid "manager.setup.refLinkInstructions.description"
 msgstr "Tördelési utasítások hivatkozások linkeléshez"
 
-#, fuzzy
 msgid "manager.setup.referenceLinking"
 msgstr "Hivatkozás linkelés"
 
@@ -199,21 +197,21 @@ msgid "manager.setup.publisher"
 msgstr "Kiadó / Közzétevő"
 
 msgid "manager.setup.provideRefLinkInstructions"
-msgstr "Adjon meg utasításokat a Tördelőszerkesztőknek."
+msgstr "Adjon utasításokat a tördelőszerkesztőknek."
 
 msgid "manager.setup.proofreading"
 msgstr "Korrektorok"
 
 msgid "manager.setup.proofingInstructionsDescription"
 msgstr ""
-"A korrektúrázási utasítások elérhetőek lesznek a Korrektorok, Szerzők és "
-"Tördelőszerkesztők és Sorozatszerkesztők számára a Beadvány Szerkesztés "
-"szakaszában. Alább található egy általános utasítás HTML-ben, ami a "
-"Sajtómenedzser által bármikor módosítható vagy lecserélhető (HTML-ben vagy "
+"A korrektúrázási utasítások elérhetőek lesznek a korrektorok, szerzők, "
+"tördelőszerkesztők és sorozatszerkesztők számára a beküldés szerkesztés "
+"munkafolyamata alatt. Alább található egy általános utasítás HTML-ben, ami a "
+"kiadó menedzser által bármikor módosítható vagy lecserélhető (HTML-ben vagy "
 "egyszerű szövegben)."
 
 msgid "manager.setup.proofingInstructions"
-msgstr "Kefelenyomat utasítások"
+msgstr "Korrektúrázási utasítások"
 
 msgid "manager.setup.printIssn"
 msgstr "Nyomtatott ISSN"
@@ -222,7 +220,7 @@ msgid "manager.setup.contextTitle"
 msgstr "Kiadó név"
 
 msgid "manager.setup.pressTheme"
-msgstr "Kiadói téma"
+msgstr "Kiadó sablon"
 
 msgid "manager.setup.styleSheetInvalid"
 msgstr "Érvénytelen stíluslap formátum. Az elfogadható formátum .css."
@@ -237,13 +235,11 @@ msgid "manager.setup.pressPolicies"
 msgstr "2. lépés. Kiadói irányelvek"
 
 msgid "manager.setup.pageHeader"
-msgstr "Kiadói oldal fejléce"
+msgstr "Kiadó oldal fejléc"
 
-#, fuzzy
 msgid "manager.setup.layout"
-msgstr "Kiadói elrendezés"
+msgstr "Kiadó elrendezés"
 
-#, fuzzy
 msgid "manager.setup.pressHomepageContentDescription"
 msgstr ""
 "A kiadó kezdőoldala alapértelemezetten tartalmazza a navigációs linkeket. "
@@ -267,10 +263,11 @@ msgstr "Kiadó archiválás"
 
 msgid "manager.setup.aboutPress.description"
 msgstr ""
-"Adjon meg bármilyen információt a kiadójáról, amely érdekelheti az olvasót, "
-"szerzőket, bírálókat. Ez tartalmazhatja a nyílt hozzáférési irányelveket, a "
-"kiadó fókuszát és tudományterületeit, szerzői jogi megjegyzést, támogatói "
-"nyilatkozatot, a kiadó történetét és az adatvédelmi nyilatkozatot."
+"Adjon meg bármilyen információt a kiadójáról, amely érdekelheti az "
+"olvasókat, szerzőket és szakmai lektorokat. Ez tartalmazhatja a nyílt "
+"hozzáférési irányelveket, a kiadó fókuszát és tudományterületeit, szerzői "
+"jogi nyilatkozatot, támogatói nyilatkozatot, a kiadó történetét és az "
+"adatvédelmi nyilatkozatot."
 
 msgid "manager.setup.aboutPress"
 msgstr "A kiadóról"
@@ -283,16 +280,16 @@ msgstr "Kiadó összefolaló"
 
 msgid "manager.setup.appearanceDescription"
 msgstr ""
-"A kiadó megjelenének különböző alkotóelemeinek konfigurációjára van "
-"lehetőség ezen az oldalon, beleértve a fejléc és lábléc elemeket, kiadói "
-"stílust és témát, valamit a tudnivalókat a felhasználók számára."
+"A kiadó megjelenésének különböző alkotóelemeinek konfigurációjára van "
+"lehetőség ezen az oldalon, beleértve a fejléc és lábléc elemeket, kiadó "
+"stílusát és sablonját, valamit a tudnivalókat a felhasználók számára."
 
 msgid "manager.setup.privacyStatement.success"
 msgstr "Az adatvédelmi nyilatkozat frissítésre került."
 
 msgid "manager.setup.policies.description"
 msgstr ""
-"Tudományterület, szakmai bírálat, szakaszok(?), adatvédelem, biztonság, és "
+"Tudományterület, szakmai lektorálás, szakaszok, adatvédelem, biztonság és "
 "további tételek."
 
 msgid "manager.setup.policies"
@@ -302,26 +299,25 @@ msgid "manager.setup.onlineIssn"
 msgstr "Online ISSN"
 
 msgid "manager.setup.onlineAccessManagement"
-msgstr "Hozzáférés Kiadói Tartalomhoz"
+msgstr "Hozzáférés Kiadó tartalomhoz"
 
 msgid "manager.setup.numPageLinks"
 msgstr "Oldal linkek"
 
-#, fuzzy
 msgid "manager.setup.noUseProofreaders"
 msgstr ""
-"A beadványhoz rendelt Szerkesztő vagy Sorozatszerkesztő fogja ellenőrizni a "
-"tördelést."
+"A beküldéshez rendelt szerkesztő vagy sorozatszerkesztő fogja ellenőrizni a "
+"formátumokat."
 
 msgid "manager.setup.noUseLayoutEditors"
 msgstr ""
-"A beadványhoz rendelet Szerkesztő vagy Sorozatszerkesztő fogja elkészíteni a "
+"A beküldéshez rendelet szerkesztő vagy sorozatszerkesztő fogja elkészíteni a "
 "HTML, PDF, stb. fájlokat."
 
 msgid "manager.setup.noUseCopyeditors"
 msgstr ""
-"A Lektorálást beadványhoz rendelet Szerkesztő vagy Szorozat szerkesztő fogja "
-"elvégezni."
+"Az olvasószerkesztést a beküldéshez rendelet szerkesztő vagy "
+"sorozatszerkesztő fogja elvégezni."
 
 #, fuzzy
 msgid "manager.setup.copyeditInstructionsDescription"
@@ -351,7 +347,7 @@ msgid "manager.setup.managingThePress"
 msgstr "4. lépés. Beállítások kezelése"
 
 msgid "manager.setup.managementOfBasicEditorialSteps"
-msgstr "Alap Szerkesztői lépések kezelése"
+msgstr "Alap szerkesztői lépések kezelése"
 
 msgid "manager.setup.settings"
 msgstr "Beállítások"
@@ -361,6 +357,7 @@ msgstr ""
 "Kezdőlap fejléc, tartalom, kiadói fejléc, lábléc, navigációs sáv és "
 "stíluslap."
 
+#, fuzzy
 msgid "manager.setup.look"
 msgstr "Felhasználói felület"
 
@@ -381,12 +378,13 @@ msgstr "Tördelés sablonok"
 
 msgid "manager.setup.layoutInstructionsDescription"
 msgstr ""
-"Az alábbi mezőben bevihet HTML-ben vagy sima szövegként előkészített "
-"tördelési útmutatókat a kiadónál publikálandó tételek formázásához. A "
-"Szerkesztés oldalon a Tördelőszerkesztő és a Sorozatszerkesztő számára "
-"lesznek elérhetőek minden egyes beadványnál. (Mivel minden kiadó saját fájl "
-"formátumot, bibliográfiai szabványokat/irányelveket, stíluslapokat, stb. "
-"alkalmaz, ezért nincs biztosítva alapértelmezett útmutató.)"
+"A sajtóban megjelenő publikációs tételek formázásához szerkesztési "
+"utasításokat lehet készíteni, amelyeket az alábbiakban HTML-ben vagy "
+"egyszerű szövegben lehet megadni. A Szerkesztés oldalon a Tördelőszerkesztő "
+"és a Sorozatszerkesztő számára lesznek elérhetőek minden egyes beküldésnél. ("
+"Mivel minden kiadó saját fájl formátumot, bibliográfiai szabványokat, "
+"stíluslapokat, stb. alkalmaz, ezért nincs biztosítva alapértelmezett "
+"útmutató.)"
 
 msgid "manager.setup.layoutInstructions"
 msgstr "Tördelési utasítások"
@@ -394,15 +392,13 @@ msgstr "Tördelési utasítások"
 msgid "manager.setup.layoutAndGalleys"
 msgstr "Tördelőszerkesztők"
 
-#, fuzzy
 msgid "manager.setup.labelName"
 msgstr "Címke név"
 
-#, fuzzy
 msgid "manager.setup.keyInfo.description"
 msgstr ""
-"Adjon meg egy rövid leírást a kiadóról és nevezzen meg szerkesztőket, "
-"ügyvezető igazgatókat és a szerkesztőség további tagjait."
+"Adjon meg egy rövid leírást a kiadóról és nevezze meg a szerkesztőket, "
+"ügyvezetőket és a szerkesztőség további tagjait."
 
 msgid "manager.setup.keyInfo"
 msgstr "Kulcsinformáció"
@@ -428,19 +424,21 @@ msgstr "Szerzőknek"
 msgid "manager.setup.information.description"
 msgstr ""
 "Rövid leírás a kiadóról könyvtárosok, leendő szerzők és olvasók számára. Az "
-"oldalsávon lesz elérhető, az Információ blokk hozzáadása után."
+"oldalsávon lesz elérhető azután, hogy az Információ blokk hozzáadása "
+"megtörtént."
 
 msgid "manager.setup.information"
 msgstr "Információ"
 
 msgid "manager.setup.preparingWorkflow"
-msgstr "3. lépés. Munkamenet előkészítése"
+msgstr "3. lépés. Munkafolyamat előkészítése"
 
 msgid "manager.setup.guidelines"
 msgstr "Útmutatók"
 
+#, fuzzy
 msgid "manager.setup.gettingDownTheDetails"
-msgstr "1. lépés: Részletes adatok megadása"
+msgstr "1. lépés: A részletek megismerése"
 
 msgid "manager.setup.generalInformation"
 msgstr "Általános információ"
@@ -631,8 +629,8 @@ msgstr "Nem lesz szakmailag lektorálva"
 
 msgid "manager.setup.management.description"
 msgstr ""
-"Hozzáférés és biztonság, ütemezés, értesítések, lektorálás, tördelés és "
-"korrektúrázás."
+"Hozzáférés és biztonság, ütemezés, értesítések, olvasószerkesztés, tördelés "
+"és korrektúrázás."
 
 msgid "manager.setup.numAnnouncementsHomepage"
 msgstr "Mejelenítés a kezdőlapon"
@@ -1257,30 +1255,28 @@ msgstr "Minden beadványhoz rendelve lesz egy Lektor."
 
 msgid "manager.setup.reviewGuidelinesDescription"
 msgstr ""
-"Adjon meg a külső bírálóknak kritériumokat a beadvány kiadónál "
-"publikálásához való alkalmasságára vonatkozóan, amely tartalmazhat "
-"útmutatókat egy hatékony és hasznos bírálat elkészítéséhez. A bírálóknak "
-"lehetősége van javaslatokkal szolgálni a szerző és a kiadó felé, valamit "
-"külön javaslatokat adhatnak meg kizárólagosan a szerkesztő számára."
+"A beküldött anyagok kiadónál történő közzétételre való alkalmasságának "
+"megítéléséhez szükséges kritériumok megadása a külső bírálók számára, "
+"amelyek tartalmazhatnak utasításokat a hatékony és hasznos szakmai lektori "
+"vélemény elkészítéséhez. A szakmai lektoroknak lehetőségük lesz arra, hogy "
+"megjegyzéseket tegyenek a szerzőnek és a szerkesztőnek, valamint külön csak "
+"a szerkesztőnek is."
 
 msgid "manager.setup.publicationScheduleDescription"
 msgstr ""
-"Kiadói tételeket együttesen lehet közzétenni egy monográfia részeiként, "
-"saját tartalomjegyzékkel. Továbbá egyedi tételek közzétételére is van "
-"lehetőség az elkészültükkel egy időben, az aktuális kötet "
-"tartalomjegyzékéhez való hozzáadásával. Lássa el az olvasókat a Kiadóról "
-"szóló részben egy nyilatkozattal a kiadó által követett  rendszerről a "
-"kiadványok megjelenésének rendszerességéről."
+"Kiadói tételeket együttesen lehet közzétenni egy kiadvány részeként saját "
+"tartalomjegyzékkel. Továbbá egyedi tételek közzétételére is van lehetőség az "
+"elkészültükkel egy időben, az \"aktuális\" kötet tartalomjegyzékéhez való "
+"hozzáadásával. A Kiadóról szóló részben tájékoztassa az olvasókat a sajtó "
+"által használt rendszerről és a megjelenés várható gyakoriságáról."
 
-#, fuzzy
 msgid "manager.setup.selectCountry"
 msgstr ""
-"Válasszon ki egy országot, ahol a kiadó található vagy az kiadóhoz tartotó "
-"ország e-mailcímét."
+"Válasszon ki egy országot, ahol a kiadó található vagy a kiadó levelezési "
+"címének országát."
 
-#, fuzzy
 msgid "manager.setup.pressThumbnail"
-msgstr "Kiadó logója"
+msgstr "Kiadó bélyegképe"
 
 #, fuzzy
 msgid "manager.setup.productionTemplates"
@@ -1293,42 +1289,40 @@ msgstr "Fejléc"
 msgid "manager.setup.useImageTitle"
 msgstr "Címkép"
 
-#, fuzzy
 msgid "manager.setup.publisherDescription"
-msgstr "A kiadó szervezet neve a Kiadóról részben fog megjelenni."
+msgstr ""
+"A kiadót megjelentető szervezet neve a Kiadóról szóló résznél jelenik meg."
 
-#, fuzzy
 msgid "manager.setup.pressThumbnail.description"
 msgstr ""
-"A kiadók listájában megjelenítésre kerülő kiadóhoz tartozó logó vagy jelzés."
+"A kiadók listájában megjelenítésre kerülő kis méretű logó vagy ábrázolás."
 
 msgid "manager.setup.pageHeaderDescription"
-msgstr "Az oldal fejlécének konfigurálása"
-
-msgid "manager.setup.numPageLinks.description"
-msgstr "Az egy oldalon megjelenő linkek számának korlátozása."
+msgstr "Oldal fejléc leírás"
 
 #, fuzzy
+msgid "manager.setup.numPageLinks.description"
+msgstr "Korlátozza a listában a következő oldalakra mutató linkek számát."
+
 msgid "manager.setup.masthead.success"
 msgstr "A kiadó fejlécadatai frissítésre kerültek."
 
-#, fuzzy
 msgid "manager.setup.managingPublishingSetup"
-msgstr "Sajtómenedzsment és Publikációs beállítások"
+msgstr "Menedzsment és publikációs beállítások"
 
 msgid "manager.setup.layoutTemplatesDescription"
 msgstr ""
-"A kiadó által használt szabvány formátumokhoz sablonokat lehet feltölteni, "
-"amelyek megjelennek a Tördelés oldalon (pl: monográfiák, recenziók, stb.). "
-"Bármilyen fájl formátum feltölthető (pl.: pdf, doc, stb.). A sablon "
-"tartalmazhat betűtípust, betűméretet, margót, stb. meghatározó "
-"megjegyzéseket, amelyek útmutatóként tudnak szolgálni a Tördelőszerkesztők "
-"és Korrektorok számára."
+"Sablonok tölthetők fel, hogy megjelenjenek a Layout oldalon a sajtóban "
+"közzétett szabványos formátumok mindegyikéhez (pl: kiadvány, recenzió, stb.)"
+", bármilyen fájlformátumot használva (pl.: pdf, doc, stb.), a betűtípust, "
+"méretet, margókat stb. meghatározó megjegyzésekkel, amelyek útmutatóként "
+"szolgálnak a tördelőszerkesztők és a korrektorok számára."
 
 msgid "manager.setup.itemsPerPage.description"
 msgstr ""
-"Az egy oldalon levő listában megjelenő tételek (pl: beadványok, "
-"felhasználók, szerkesztői feladatok) számának meghatározása."
+"Korlátozza a listában megjelenítendő elemek (pl: beküldések, felhasználók, "
+"szerkesztői hozzárendelések) számát mielőtt egy másik oldalon megjelenítené "
+"a következő elemeket."
 
 #, fuzzy
 msgid "manager.setup.identity"
