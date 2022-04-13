@@ -2,7 +2,7 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-26 13:56+0000\n"
+"PO-Revision-Date: 2022-04-13 12:15+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/admin/"
 "hu_HU/>\n"
@@ -151,3 +151,8 @@ msgstr ""
 "egyes kiadók saját oldalain). Ha több nyelv nem lesz kiválasztva, akkor a "
 "nyelvválasztó menü nem jelenik meg és a kibővített nyelvi beállítások sem "
 "lesznek elérhetőek a kiadók számára."
+
+msgid "admin.siteManagement.description"
+msgstr ""
+"Hozzáadhat, szerkeszthet vagy eltávolíthat kiadókat erről az oldalról, és "
+"kezelheti az egész honlapra vonatkozó beállításokat."
