@@ -1,8 +1,9 @@
 # Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>, 2021.
+# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-22 14:06+0000\n"
-"Last-Translator: Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>\n"
+"PO-Revision-Date: 2022-04-13 12:15+0000\n"
+"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
 "paymethod-paypal/hu_HU/>\n"
 "Language: hu_HU\n"
@@ -33,7 +34,7 @@ msgid "plugins.paymethod.paypal.settings"
 msgstr "Paypal  fizetési beállítások"
 
 msgid "plugins.paymethod.paypal"
-msgstr "Paypal Kifizetés"
+msgstr "Paypal díjkifizetés"
 
 msgid "plugins.paymethod.paypal.description"
 msgstr "A befizetések feldolgozása a PayPal szolgáltatás segítségével történik."
