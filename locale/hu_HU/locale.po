@@ -3,7 +3,7 @@
 # Kiss Jázmin <kissfjazmin@gmail.com>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-04-10 11:21+0000\n"
+"PO-Revision-Date: 2022-04-13 12:15+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "hu_HU/>\n"
@@ -680,7 +680,6 @@ msgstr "Kategória"
 msgid "catalog.manage.newReleases"
 msgstr "Új megjelenések"
 
-#, fuzzy
 msgid "catalog.manage"
 msgstr "Katalógus kezelése"
 
@@ -1069,9 +1068,8 @@ msgstr "Beküldések"
 msgid "about.seriesPolicies"
 msgstr "Sorozat- és kategória irányelvek"
 
-#, fuzzy
 msgid "about.focusAndScope"
-msgstr "Fókusz és alkalmazási kör"
+msgstr "Fókusz és tudományterület"
 
 msgid "about.editorialPolicies"
 msgstr "Szerkesztési irányelvek"
@@ -1202,7 +1200,6 @@ msgstr "Töltse le ezt a PDF fájlt"
 msgid "rt.metadata.pkp.dctype"
 msgstr "Könyv"
 
-#, fuzzy
 msgid "debug.notes.helpMappingLoad"
 msgstr "Reloaded XML help mapping file {$filename} in search of {$id}."
 
@@ -1211,7 +1208,6 @@ msgstr ""
 "Ez a tranzakció egy kiadvány vagy  egy fejezet közvetlen letöltésének "
 "megvásárlására vonatkozik."
 
-#, fuzzy
 msgid "payment.directSales.monograph.name"
 msgstr "Vásárolt kötet vagy fejezet letöltése"
 
@@ -1234,7 +1230,6 @@ msgstr ""
 msgid "payment.directSales.openAccess"
 msgstr "Nyílt hozzáférés"
 
-#, fuzzy
 msgid "payment.directSales.notSet"
 msgstr "Nincs megadva"
 
@@ -1562,7 +1557,7 @@ msgstr ""
 msgid "log.review.reviewDueDateSet"
 msgstr ""
 "A(z) {$reviewerName} által lektorálandó {$submissionId} számú kézirat "
-"{$round} körének lektorálási határideje megváltozott:  {$dueDate}"
+"{$round} körének lektorálási határideje megváltozott:  {$dueDate}."
 
 msgid "installer.upgradeComplete"
 msgstr ""
