@@ -1,8 +1,8 @@
 # Molnár Tamás <molnart@bibl.u-szeged.hu>, 2021.
-# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-14 10:05+0000\n"
+"PO-Revision-Date: 2022-04-13 12:15+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/hu_HU/>\n"
@@ -32,8 +32,8 @@ msgstr "Mutassa a honlapképet fejlécháttérként."
 
 msgid "plugins.themes.default.option.useHomepageImageAsHeader.description"
 msgstr ""
-"Amikor egy honlapkép fel lett töltve, jelenítse meg a fejléc háttereként, "
-"ahelyett, hogy a szokásos helyén tenné a honlapon."
+"Amikor egy honlapkép feltöltésre kerül, jelenítse meg a fejléc háttereként, "
+"ahelyett, hogy a szokásos helyén tenné ezt a honlapon."
 
 msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
 msgstr "Fejléc háttérkép"
@@ -53,7 +53,7 @@ msgid "plugins.themes.default.option.typography.lora"
 msgstr "Lora: Egy széles szedésű betűtípus, amely jó a képernyőn olvasáshoz."
 
 msgid "plugins.themes.default.option.typography.lato"
-msgstr "Lato: Egy népszerű modern sans-serif (talpnélküi) betűtípus."
+msgstr "Lato: Egy népszerű modern sans-serif (talpnélküli) betűtípus."
 
 msgid "plugins.themes.default.option.typography.notoSans_notoSerif"
 msgstr ""
