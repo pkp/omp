@@ -148,10 +148,9 @@ class NativeXmlChapterFilter extends NativeImportFilter
         $deployment = $this->getDeployment();
 
         $authorId = $deployment->getAuthorDBId($n->getAttribute('author_id'));
-        $primaryContact = $n->getAttribute('primary_contact');
         $seq = $n->getAttribute('seq');
 
-        Repo::author()->addToChapter($authorId, $chapter->getId(), (int) $primaryContact, $seq);
+        Repo::author()->addToChapter($authorId, $chapter->getId(), false, $seq);
     }
 
     /**
@@ -175,7 +174,7 @@ class NativeXmlChapterFilter extends NativeImportFilter
             return;
         }
 
-        $submissionFile = Repo::submissionFile()->get($fileId);
+        $submissionFile = Repo::submissionFile()->get($sourceFileId);
 
         if (!$submissionFile) {
             return;
