@@ -1,7 +1,7 @@
-# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-29 11:06+0000\n"
+"PO-Revision-Date: 2022-03-31 11:57+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-users/hu_HU/>\n"
@@ -12,11 +12,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#, fuzzy
 msgid "plugins.importexport.users.uploadFile"
-msgstr ""
-"Kérjük, a folytatáshoz töltsön fel egy fájlt az \"Felhasználók importálása\" "
-"fül alatt."
+msgstr "Kérjük, a folytatáshoz töltsön fel egy fájlt az \"Importálás\" alá."
 
 msgid "plugins.importexport.users.results"
 msgstr "Eredmények"
@@ -42,10 +39,9 @@ msgstr "Felhasználók exportálása"
 msgid "plugins.importexport.users.unknownPress"
 msgstr "Ismeretlen kiadó elérési útvonal \"{$contextPath}\"  lett megadva."
 
-#, fuzzy
 msgid "plugins.importexport.users.import.encryptionMismatch"
 msgstr ""
-"Nem lehet a(z) {$importHash} kóddal összevont jelszavakat használni; az OMP "
+"Nem lehet a(z) {$importHash} kóddal kivonatolt jelszavakat használni; az OMP "
 "úgy van beállítva, hogy a(z) {$ompHash} kódot használja. Ha folytatja, "
 "vissza kell állítania az importált felhasználók jelszavait."
 
@@ -118,4 +114,4 @@ msgid "plugins.importexport.users.description"
 msgstr "Felhasználók importálása és exportálása"
 
 msgid "plugins.importexport.users.displayName"
-msgstr "Felhasználók XML Bővítmény"
+msgstr "Felhasználók XML bővítmény"

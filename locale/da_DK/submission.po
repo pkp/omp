@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:05-08:00\n"
-"PO-Revision-Date: 2022-01-26 07:35+0000\n"
+"PO-Revision-Date: 2022-04-07 13:59+0000\n"
 "Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "da_DK/>\n"
@@ -510,3 +510,86 @@ msgstr "Sider"
 
 msgid "publication.publish.success"
 msgstr "Publikationens status blev ændret."
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgstr "Indsendelsen, {$title}, er blevet sendt til intern bedømmelsestrinnet."
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr "Sendt til intern bedømmelse"
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr "{$editorName} sendte denne indsendelse til intern bedømmelsestrinnet."
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr "Denne indsendelse er klar til at blive sendt til intern bedømmelse."
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr "Send til intern bedømmelse"
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr ""
+"Anbefal at denne indsendelse bliver sendt til trinnet for ekstern bedømmelse."
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr "Anbefal at sende til ekstern bedømmelse"
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr "Vælg filer der skal sendes til bedømmelsestrinnet."
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+"Send en e-mail til forfatterne for at informere dem om, at deres indsendelse "
+"vil blive sendt til fagfællebedømmelse. Giv om muligt forfatterne en "
+"indikation på, hvor lang tid processen med fagfællebedømmelse vil tage, samt "
+"hvornår de skal forvente at høre fra redaktørerne igen."
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+"Send en e-mail til forfatterne for at informere dem om, at deres indsendelse "
+"er blevet sendt tilbage til bedømmelsestrinnet. Forklar hvorfor denne "
+"beslutning blev truffet og informer forfatterne om hvilken bedømmelse, "
+"indsendelsen vil gå igennem."
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr "Indsendelsen, {$title}, er blevet sendt tilbage til bedømmelsestrinnet."
+
+msgid "editor.submission.decision.backToReview.completed"
+msgstr "Sendt tilbage til bedømmelse"
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+"{$editorName} omgjorde beslutningen om at godkende denne indsendelse og "
+"sendte den tilbage bedømmelsestrinnet."
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr ""
+"Omgør beslutningen om at godkende denne indsendelse og send den tilbage til "
+"bedømmelsestrinnet."
+
+msgid "editor.submission.decision.backToReview"
+msgstr "Tilbage til bedømmelse"
+
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr "Indsendelsen, {$title}, er blevet sendt til ekstern bedømmelsestrinnet."
+
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr "Sendt til ekstern bedømmelse"
+
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr ""
+"{$editorName} sendte denne indsendelse til det eksterne bedømmelsestrin."
+
+msgid "editor.submission.decision.promoteFiles.internalReview"
+msgstr "Vælg filer der skal sendes til det interne bedømmelsestrin."
+
+msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
+msgstr ""
+"Send en e-mail til forfatterne for at informere dem om, at deres indsendelse "
+"er sendt til intern bedømmelse. Giv om muligt forfatterne en indikation på, "
+"hvor lang tid processen med intern bedømmelse vil tage, samt hvornår de skal "
+"forvente at høre fra redaktørerne igen."
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+"{$editorName} anbefalede, at denne indsendelse bliver sendt til trinnet for "
+"ekstern bedømmelse."

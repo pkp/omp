@@ -1,7 +1,8 @@
+# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-21 11:20+0000\n"
-"Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
+"PO-Revision-Date: 2022-02-25 09:04+0000\n"
+"Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/api/da_DK/>\n"
 "Language: da_DK\n"
 "MIME-Version: 1.0\n"
@@ -36,3 +37,6 @@ msgid "api.emails.403.disabled"
 msgstr ""
 "E-mail-notifikationen er ikke blevet aktiveret i forbindelse med dette "
 "forlag."
+
+msgid "api.submissions.400.wrongContext"
+msgstr "Den indsendelse, du anmodede om, findes ikke hos dette forlag."

@@ -1,7 +1,8 @@
+# Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-02-15 21:54+0000\n"
-"Last-Translator: Sergei Yukhimets <y_s_n@mail.ru>\n"
+"PO-Revision-Date: 2022-03-16 00:42+0000\n"
+"Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Russian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "ru_RU/>\n"
 "Language: ru_RU\n"
@@ -477,7 +478,7 @@ msgid "notification.type.layouteditorRequest"
 msgstr "Вас попросили выполнить верстку для «{$title}»."
 
 msgid "notification.type.copyeditorRequest"
-msgstr "Вас попросили выполнить литературное редактирование для «{$title}»."
+msgstr "Вас попросили выполнить литературное редактирование для «{$file}»."
 
 msgid "notification.type.editorAssignmentTask"
 msgstr "Была отправлена новая книга, которой нужно назначить редактора."
@@ -667,7 +668,7 @@ msgstr "Обновить Open Monograph Press"
 
 msgid "installer.databaseSettingsInstructions"
 msgstr ""
-"OJS для хранения своих данных требует доступ к базе данных, поддерживающей "
+"OMP для хранения своих данных требует доступ к базе данных, поддерживающей "
 "язык SQL. Выше, в требованиях к системе, указаны поддерживаемые базы данных. "
 "В полях ниже укажите настройки, которые будут использованы для соединения с "
 "базой данных."

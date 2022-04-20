@@ -1,6 +1,7 @@
+# Carla Marques <carla.marques@usdb.uminho.pt>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-28 11:18+0000\n"
+"PO-Revision-Date: 2022-04-06 23:26+0000\n"
 "Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/admin/pt_PT/>\n"
@@ -146,3 +147,8 @@ msgstr ""
 
 msgid "admin.contexts.form.primaryLocaleNotSupported"
 msgstr "O idioma principal deve ser um dos idiomas suportados pela editora."
+
+msgid "admin.siteManagement.description"
+msgstr ""
+"Adicione, edite ou remova editoras deste site e gira as configurações a "
+"nível do site."

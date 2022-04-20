@@ -1,7 +1,8 @@
+# Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-05-02 02:23+0000\n"
-"Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
+"PO-Revision-Date: 2022-03-19 16:56+0000\n"
+"Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "paymethod-manual/uk_UA/>\n"
 "Language: uk_UA\n"
@@ -39,4 +40,4 @@ msgstr ""
 "системи)."
 
 msgid "plugins.paymethod.manual.displayName"
-msgstr "Ручний Метод Оплати"
+msgstr "Ручний метод оплати"

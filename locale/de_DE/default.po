@@ -1,10 +1,10 @@
-# Pia Piontkowitz <pia.piontkowitz@rub.de>, 2021.
+# Pia Piontkowitz <pia.piontkowitz@rub.de>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
-"PO-Revision-Date: 2021-10-21 11:06+0000\n"
+"PO-Revision-Date: 2022-02-22 11:05+0000\n"
 "Last-Translator: Pia Piontkowitz <pia.piontkowitz@rub.de>\n"
 "Language-Team: German <http://translate.pkp.sfu.ca/projects/omp/default/"
 "de_DE/>\n"
@@ -155,3 +155,12 @@ msgstr "Externe Gutachter/innen"
 
 msgid "default.groups.name.externalReviewer"
 msgstr "Externe/r Gutachter/in"
+
+msgid "default.groups.abbrev.subscriptionManager"
+msgstr "SubMng"
+
+msgid "default.groups.plural.subscriptionManager"
+msgstr "Subskriptionsmanager/innen"
+
+msgid "default.groups.name.subscriptionManager"
+msgstr "Subskriptionsmanager/in"

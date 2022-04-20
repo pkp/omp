@@ -1,7 +1,8 @@
+# Teodora Fildishevska <t.fildishevska@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-04 22:32+0000\n"
-"Last-Translator: Blagoja Grozdanovski <blagoja.grozdanovski@gmail.com>\n"
+"PO-Revision-Date: 2022-03-11 05:56+0000\n"
+"Last-Translator: Teodora Fildishevska <t.fildishevska@gmail.com>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/default/"
 "mk_MK/>\n"
 "Language: mk_MK\n"
@@ -174,3 +175,12 @@ msgstr "Библиографија"
 
 msgid "default.genres.appendix"
 msgstr "Додаток"
+
+msgid "default.groups.abbrev.subscriptionManager"
+msgstr "SubM"
+
+msgid "default.groups.plural.subscriptionManager"
+msgstr "Менаџери за претплата"
+
+msgid "default.groups.name.subscriptionManager"
+msgstr "Менаџер за претплата"

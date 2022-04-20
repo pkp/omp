@@ -1,8 +1,9 @@
 # Kiss Jázmin <kissfjazmin@gmail.com>, 2021.
+# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-10-02 02:41+0000\n"
-"Last-Translator: Kiss Jázmin <kissfjazmin@gmail.com>\n"
+"PO-Revision-Date: 2022-04-13 12:15+0000\n"
+"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "hu_HU/>\n"
 "Language: hu_HU\n"
@@ -12,12 +13,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#, fuzzy
 msgid "manager.series.indexed"
 msgstr "Indexelve"
 
 msgid "manager.series.open"
-msgstr "Beadványok megnyitása"
+msgstr "Beküldések megnyitása"
 
 msgid "manager.setup.typeProvideExamples"
 msgstr ""
@@ -27,26 +27,23 @@ msgstr ""
 msgid "manager.setup.typeMethodApproach"
 msgstr "Típus (módszer/megközelítés)"
 
-#, fuzzy
 msgid "manager.setup.typeExamples"
 msgstr ""
-"(Pl.: történenelmi vizsgálat; kvázi-kísérleti; szövegkritikai elemzés(?); "
-"felmérés/interjú)"
+"(Pl.: történenelmtudomány; kvázi-kísérleti; irodalomkritika; felmérés/"
+"interjú)"
 
-#, fuzzy
 msgid "manager.setup.submissions.description"
 msgstr ""
 "Szerzői útmutatók, szerzői jog és indexelés (beleértve a regisztrációt)."
 
 msgid "manager.setup.workflow"
-msgstr "Munkamenet"
+msgstr "Munkafolyamat"
 
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Tétel hozzáadása szükséges az ellenőrző listához."
 
-#, fuzzy
 msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Ellenőrzési lista a beküldés előkészítéséhez"
+msgstr "Beküldés előkészítésének ellenőrzőlistája"
 
 msgid "manager.setup.submissionGuidelines"
 msgstr "Beküldési útmutatók"
@@ -64,14 +61,13 @@ msgid "manager.setup.stepsToPressSite"
 msgstr "Öt lépéssel egy kiadói weboldalhoz"
 
 msgid "manager.setup.siteAccess.viewContent"
-msgstr "Monográfia tartalmának megtekintése"
+msgstr "Kiadvány tartalmának megtekintése"
 
 msgid "manager.setup.siteAccess.view"
 msgstr "Oldal hozzáférés"
 
-#, fuzzy
 msgid "manager.setup.selectSectionDescription"
-msgstr "A kiadó egysége, amihez a tétel tartozni fog."
+msgstr "A kiadó azon rovata, amihez a tétel tartozni fog."
 
 msgid "manager.setup.selectEditorDescription"
 msgstr ""
@@ -84,23 +80,21 @@ msgstr ""
 "Biztonság</a> oldalon konfigurálhatóak."
 
 msgid "manager.setup.securitySettings"
-msgstr "Hozzáférési és Biztonsági Beállítások"
+msgstr "Hozzáférési és biztonsági beállítások"
 
-#, fuzzy
 msgid "manager.setup.sectionsDescription"
 msgstr ""
-"A kiadónál levő egységek létrehozásához és módosításához  (pl.: Monográfiák, "
-"Recenziók, etc.) lépjen az Egység Kezelőbe.<br /><br />A kiadóhoz beküldés "
-"során a szerzők a következőket fogják megadni..."
+"A kiadónál levő rovatok létrehozásához és módosításához  (pl.: Monográfiák, "
+"Recenziók, stb.) lépjen az Rovatkezelőbe.<br /><br />A szerzők a kiadóhoz "
+"való beküldéskor adják meg…"
 
 msgid "manager.setup.sectionsDefaultSectionDescription"
 msgstr ""
-"(Amennyiben nincsenek egységek  megadva, akkor a tételek alapértelmezetten a "
-"Monográfiák egységhez lesznek beküldve.)"
+"(Amennyiben nincsenek rovatok megadva, akkor a tételek alapértelmezetten a "
+"Monográfia rovathoz lesznek beküldve.)"
 
-#, fuzzy
 msgid "manager.setup.sectionsAndSectionEditors"
-msgstr "Szakaszok és Sorozatszerkesztők"
+msgstr "Rovatok és Rovatszerkesztők"
 
 msgid "manager.setup.searchEngineIndexing.success"
 msgstr "A keresőmotor indexelési beállítások frissítésre kerültek."
@@ -108,7 +102,7 @@ msgstr "A keresőmotor indexelési beállítások frissítésre kerültek."
 msgid "manager.setup.searchEngineIndexing.description"
 msgstr ""
 "Segítse, hogy a Google és hasonló keresőmotorok felfedezzék és listázzák az "
-"Ön oldalát. Ajánlatos egy <a href=\"{$sitemapUrl}\" target=\"_blank\""
+"oldalát. Ajánlatos egy <a href=\"{$sitemapUrl}\" target=\"_blank\""
 ">oldaltérkép</a> feltöltése."
 
 msgid "manager.setup.searchEngineIndexing"
@@ -120,62 +114,61 @@ msgstr ""
 "keresőmotorok megtudnak jeleníteni a találati listában."
 
 msgid "manager.setup.reviewPolicy"
-msgstr "Bírálati irányelvek"
+msgstr "Szakmai lektorálási irányelvek"
 
 msgid "manager.setup.reviewOptions.reviewerReminders"
-msgstr "Bíráló emlékeztetői"
+msgstr "Szakmai lektorálási emlékeztetők"
 
 msgid "manager.setup.reviewOptions.reviewerRatings"
-msgstr "Bíráló értékelései"
+msgstr "Szakmai lektor értékelése"
 
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
-msgstr "Biztonságos link küldése bírálóknak az e-mail meghívóban."
+msgstr "Biztonsági link küldése szakmai lektoroknak a felkérő e-mailben."
 
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
 msgstr ""
-"Biztonságos link küldésére van lehetőség az e-mail meghívóban, ami lehetővé "
-"teszi a bejelentkezés nélküli hozzáférést a bíráló számára. Egyéb oldalakhoz "
-"való hozzáféréshez viszont szükséges a bejelentkezés."
+"Biztonsági link küldhető a szakmai lektorok részére a felkérő e-mailben, ami "
+"lehetővé teszi a bejelentkezés nélküli hozzáférést. Egyéb oldalakhoz való "
+"hozzáféréshez viszont szükséges a bejelentkezés."
 
-#, fuzzy
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
-msgstr "Gyors bírálói hozzáférés"
+msgstr "Egy-kattintásos szakmai lektorálási hozzáférés"
 
 msgid "manager.setup.reviewOptions.reviewerAccess"
-msgstr "Bírálói hozzáférés"
+msgstr "Szakmai lektori hozzáférés"
 
 msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
 msgstr ""
-"Bírálók csak azután férnek hozzá a beadott fájlhoz, miután beleegyeztek "
-"annak bírálásába."
+"Szakmai lektorok csak azután férnek hozzá a beküldött anyag fájljához, "
+"miután beleegyeztek annak szakmai lektorálásába."
 
 msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
 msgstr "Fájl hozzáférés korlátozása"
 
 msgid "manager.setup.reviewOptions.onQuality"
 msgstr ""
-"A szerkesztők értékelik a bírálókat egy ötpontos minősítő skálán minden "
-"bírálat után."
+"A szerkesztők értékelik a szakmai lektorokat egy ötpontos minősítő skálán "
+"minden szakmai lektorálás után."
 
 msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
 msgstr ""
-"Ezeknek az opciók aktiválásához az oldaladminisztrátornak engedélyeznie kell "
-"a <tt>scheduled_tasks</tt> opciót az OMP konfigurációs fájlban. További "
-"szerver konfiguráció lehet, hogy szükséges ehhez a funkcióhoz (amely nem "
-"feltétlenül lehetséges minden szerveren), ahogy az az OMP dokumentációban is "
-"fel van tüntetve."
+"Ezeknek az opciók az aktiválásához az oldaladminisztrátornak engedélyeznie "
+"kell a <tt>scheduled_tasks</tt> opciót az OMP konfigurációs fájlban. További "
+"szerver konfiguráció lehet szükséges ennek a funkciónak a támogatásához ("
+"amely nem feltétlenül lehetséges minden szerveren), ahogy az az OMP "
+"dokumentációban is fel van tüntetve."
 
 msgid "manager.setup.reviewOptions.automatedReminders"
 msgstr "Automatikus e-mail emlékeztetők"
 
 msgid "manager.setup.reviewOptions"
-msgstr "Bírálati Lehetőségek"
+msgstr "Szakmai lektorálási lehetőségek"
 
 msgid "manager.setup.internalReviewGuidelines"
-msgstr "Belső Lektori Útmutatók"
+msgstr "Belső szakmai lektorálási útmutatók"
 
 msgid "manager.setup.reviewGuidelines"
-msgstr "Külső Lektori Útmutatók"
+msgstr "Külső szakmai lektorálási útmutatók"
 
 msgid "manager.setup.restrictSiteAccess"
 msgstr ""
@@ -184,36 +177,34 @@ msgstr ""
 
 msgid "manager.setup.restrictMonographAccess"
 msgstr ""
-"Felhasználói regisztráció és bejelentkezés szükséges a nyílt elérésű "
+"Felhasználói regisztráció és bejelentkezés szükséges a nyílt hozzáférésű "
 "tartalom megtekintéséhez."
 
 msgid "manager.setup.refLinkInstructions.description"
 msgstr "Tördelési utasítások hivatkozások linkeléshez"
 
-#, fuzzy
 msgid "manager.setup.referenceLinking"
 msgstr "Hivatkozás linkelés"
 
-#, fuzzy
 msgid "manager.setup.publisher"
-msgstr "Kiadó / Közzétevő"
+msgstr "Kiadó"
 
 msgid "manager.setup.provideRefLinkInstructions"
-msgstr "Adjon meg utasításokat a Tördelőszerkesztőknek."
+msgstr "Adjon utasításokat a tördelőszerkesztőknek."
 
 msgid "manager.setup.proofreading"
 msgstr "Korrektorok"
 
 msgid "manager.setup.proofingInstructionsDescription"
 msgstr ""
-"A korrektúrázási utasítások elérhetőek lesznek a Korrektorok, Szerzők és "
-"Tördelőszerkesztők és Sorozatszerkesztők számára a Beadvány Szerkesztés "
-"szakaszában. Alább található egy általános utasítás HTML-ben, ami a "
-"Sajtómenedzser által bármikor módosítható vagy lecserélhető (HTML-ben vagy "
+"A korrektúrázási utasítások elérhetőek lesznek a korrektorok, szerzők, "
+"tördelőszerkesztők és sorozatszerkesztők számára a beküldés szerkesztés "
+"munkafolyamata alatt. Alább található egy általános utasítás HTML-ben, ami a "
+"kiadó menedzser által bármikor módosítható vagy lecserélhető (HTML-ben vagy "
 "egyszerű szövegben)."
 
 msgid "manager.setup.proofingInstructions"
-msgstr "Kefelenyomat utasítások"
+msgstr "Korrektúrázási utasítások"
 
 msgid "manager.setup.printIssn"
 msgstr "Nyomtatott ISSN"
@@ -222,7 +213,7 @@ msgid "manager.setup.contextTitle"
 msgstr "Kiadó név"
 
 msgid "manager.setup.pressTheme"
-msgstr "Kiadói téma"
+msgstr "Kiadó sablon"
 
 msgid "manager.setup.styleSheetInvalid"
 msgstr "Érvénytelen stíluslap formátum. Az elfogadható formátum .css."
@@ -237,13 +228,11 @@ msgid "manager.setup.pressPolicies"
 msgstr "2. lépés. Kiadói irányelvek"
 
 msgid "manager.setup.pageHeader"
-msgstr "Kiadói oldal fejléce"
+msgstr "Kiadó oldal fejléc"
 
-#, fuzzy
 msgid "manager.setup.layout"
-msgstr "Kiadói elrendezés"
+msgstr "Kiadó elrendezés"
 
-#, fuzzy
 msgid "manager.setup.pressHomepageContentDescription"
 msgstr ""
 "A kiadó kezdőoldala alapértelemezetten tartalmazza a navigációs linkeket. "
@@ -267,32 +256,33 @@ msgstr "Kiadó archiválás"
 
 msgid "manager.setup.aboutPress.description"
 msgstr ""
-"Adjon meg bármilyen információt a kiadójáról, amely érdekelheti az olvasót, "
-"szerzőket, bírálókat. Ez tartalmazhatja a nyílt hozzáférési irányelveket, a "
-"kiadó fókuszát és tudományterületeit, szerzői jogi megjegyzést, támogatói "
-"nyilatkozatot, a kiadó történetét és az adatvédelmi nyilatkozatot."
+"Adjon meg bármilyen információt a kiadójáról, amely érdekelheti az "
+"olvasókat, szerzőket és szakmai lektorokat. Ez tartalmazhatja a nyílt "
+"hozzáférési irányelveket, a kiadó fókuszát és tudományterületeit, szerzői "
+"jogi nyilatkozatot, támogatói nyilatkozatot, a kiadó történetét és az "
+"adatvédelmi nyilatkozatot."
 
 msgid "manager.setup.aboutPress"
 msgstr "A kiadóról"
 
 msgid "manager.setup.pressDescription.description"
-msgstr "Rövid leírás a kiadóról"
+msgstr "Rövid leírás a kiadóról."
 
 msgid "manager.setup.pressDescription"
 msgstr "Kiadó összefolaló"
 
 msgid "manager.setup.appearanceDescription"
 msgstr ""
-"A kiadó megjelenének különböző alkotóelemeinek konfigurációjára van "
-"lehetőség ezen az oldalon, beleértve a fejléc és lábléc elemeket, kiadói "
-"stílust és témát, valamit a tudnivalókat a felhasználók számára."
+"A kiadó megjelenésének különböző alkotóelemeinek konfigurációjára van "
+"lehetőség ezen az oldalon, beleértve a fejléc és lábléc elemeket, kiadó "
+"stílusát és sablonját, valamit a tudnivalókat a felhasználók számára."
 
 msgid "manager.setup.privacyStatement.success"
 msgstr "Az adatvédelmi nyilatkozat frissítésre került."
 
 msgid "manager.setup.policies.description"
 msgstr ""
-"Tudományterület, szakmai bírálat, szakaszok(?), adatvédelem, biztonság, és "
+"Tudományterület, szakmai lektorálás, szakaszok, adatvédelem, biztonság és "
 "további tételek."
 
 msgid "manager.setup.policies"
@@ -302,33 +292,33 @@ msgid "manager.setup.onlineIssn"
 msgstr "Online ISSN"
 
 msgid "manager.setup.onlineAccessManagement"
-msgstr "Hozzáférés Kiadói Tartalomhoz"
+msgstr "Hozzáférés Kiadó tartalomhoz"
 
 msgid "manager.setup.numPageLinks"
 msgstr "Oldal linkek"
 
-#, fuzzy
 msgid "manager.setup.noUseProofreaders"
 msgstr ""
-"A beadványhoz rendelt Szerkesztő vagy Sorozatszerkesztő fogja ellenőrizni a "
-"tördelést."
+"A beküldéshez rendelt szerkesztő vagy sorozatszerkesztő fogja ellenőrizni a "
+"formátumokat."
 
 msgid "manager.setup.noUseLayoutEditors"
 msgstr ""
-"A beadványhoz rendelet Szerkesztő vagy Sorozatszerkesztő fogja elkészíteni a "
+"A beküldéshez rendelet szerkesztő vagy sorozatszerkesztő fogja elkészíteni a "
 "HTML, PDF, stb. fájlokat."
 
 msgid "manager.setup.noUseCopyeditors"
 msgstr ""
-"A Lektorálást beadványhoz rendelet Szerkesztő vagy Szorozat szerkesztő fogja "
-"elvégezni."
+"Az olvasószerkesztést a beküldéshez rendelet szerkesztő vagy "
+"sorozatszerkesztő fogja elvégezni."
 
 msgid "manager.setup.copyeditInstructionsDescription"
 msgstr ""
-"A Lektorálási Utasítások elérhetőek lesznek a Lektorok, Szerzők és "
-"Sorozatszerkesztők számára a Beadvány Szerkesztés szakaszában. Alább "
-"található egy általános utasítás HTML-ben, amely a Sajtómenedzser által "
-"bármikor módosítható vagy lecserélhető (HTML-ben vagy egyszerű szövegben)."
+"Az olvasószerkesztési utasítások elérhetőek lesznek az olvasószerkesztők, "
+"szerzők és sorozatszerkesztők számára a beküldés szerkesztése munkafolyamat "
+"alatt. Alább található egy általános utasítás HTML-ben, amely a kiadó "
+"menedzser által bármikor módosítható vagy lecserélhető (HTML-ben vagy "
+"egyszerű szövegben)."
 
 msgid "manager.setup.notifyAllAuthorsOnDecision"
 msgstr ""
@@ -349,7 +339,7 @@ msgid "manager.setup.managingThePress"
 msgstr "4. lépés. Beállítások kezelése"
 
 msgid "manager.setup.managementOfBasicEditorialSteps"
-msgstr "Alap Szerkesztői lépések kezelése"
+msgstr "Alap szerkesztői lépések kezelése"
 
 msgid "manager.setup.settings"
 msgstr "Beállítások"
@@ -360,7 +350,7 @@ msgstr ""
 "stíluslap."
 
 msgid "manager.setup.look"
-msgstr "Felhasználói felület"
+msgstr "Megjelenés"
 
 msgid "manager.setup.lists.success"
 msgstr "A lista beállítások frissítésre kerültek."
@@ -379,12 +369,13 @@ msgstr "Tördelés sablonok"
 
 msgid "manager.setup.layoutInstructionsDescription"
 msgstr ""
-"Az alábbi mezőben bevihet HTML-ben vagy sima szövegként előkészített "
-"tördelési útmutatókat a kiadónál publikálandó tételek formázásához. A "
-"Szerkesztés oldalon a Tördelőszerkesztő és a Sorozatszerkesztő számára "
-"lesznek elérhetőek minden egyes beadványnál. (Mivel minden kiadó saját fájl "
-"formátumot, bibliográfiai szabványokat/irányelveket, stíluslapokat, stb. "
-"alkalmaz, ezért nincs biztosítva alapértelmezett útmutató.)"
+"A sajtóban megjelenő publikációs tételek formázásához szerkesztési "
+"utasításokat lehet készíteni, amelyeket az alábbiakban HTML-ben vagy "
+"egyszerű szövegben lehet megadni. A Szerkesztés oldalon a Tördelőszerkesztő "
+"és a Sorozatszerkesztő számára lesznek elérhetőek minden egyes beküldésnél. ("
+"Mivel minden kiadó saját fájl formátumot, bibliográfiai szabványokat, "
+"stíluslapokat, stb. alkalmaz, ezért nincs biztosítva alapértelmezett "
+"útmutató.)"
 
 msgid "manager.setup.layoutInstructions"
 msgstr "Tördelési utasítások"
@@ -392,15 +383,13 @@ msgstr "Tördelési utasítások"
 msgid "manager.setup.layoutAndGalleys"
 msgstr "Tördelőszerkesztők"
 
-#, fuzzy
 msgid "manager.setup.labelName"
 msgstr "Címke név"
 
-#, fuzzy
 msgid "manager.setup.keyInfo.description"
 msgstr ""
-"Adjon meg egy rövid leírást a kiadóról és nevezzen meg szerkesztőket, "
-"ügyvezető igazgatókat és a szerkesztőség további tagjait."
+"Adjon meg egy rövid leírást a kiadóról és nevezze meg a szerkesztőket, "
+"ügyvezetőket és a szerkesztőség további tagjait."
 
 msgid "manager.setup.keyInfo"
 msgstr "Kulcsinformáció"
@@ -426,44 +415,42 @@ msgstr "Szerzőknek"
 msgid "manager.setup.information.description"
 msgstr ""
 "Rövid leírás a kiadóról könyvtárosok, leendő szerzők és olvasók számára. Az "
-"oldalsávon lesz elérhető, az Információ blokk hozzáadása után."
+"oldalsávon lesz elérhető azután, hogy az Információ blokk hozzáadása "
+"megtörtént."
 
 msgid "manager.setup.information"
 msgstr "Információ"
 
 msgid "manager.setup.preparingWorkflow"
-msgstr "3. lépés. Munkamenet előkészítése"
+msgstr "3. lépés. Munkafolyamat előkészítése"
 
 msgid "manager.setup.guidelines"
 msgstr "Útmutatók"
 
 msgid "manager.setup.gettingDownTheDetails"
-msgstr "1. lépés: Részletes adatok megadása"
+msgstr "1. lépés: A részletek megismerése"
 
 msgid "manager.setup.generalInformation"
 msgstr "Általános információ"
 
-#, fuzzy
 msgid "manager.setup.form.supportNameRequired"
-msgstr "A támogató neve kötelező."
+msgstr "A támogató nevének magadása kötelező."
 
-#, fuzzy
 msgid "manager.setup.form.supportEmailRequired"
-msgstr "A támogatói e-mail cím kötelező."
+msgstr "A támogatói e-mail cím megadása kötelező."
 
 msgid "manager.setup.form.numReviewersPerSubmission"
-msgstr "A beadványonkénti bírálók számának megadása kötelező."
+msgstr "A beküldésenkénti szakmai lektorok számának megadása kötelező."
 
 msgid "manager.setup.form.contactNameRequired"
-msgstr "A közvetlen kapcsolattartó neve kötelező."
+msgstr "Az elsődleges kapcsolattartó neve kötelező."
 
 msgid "manager.setup.form.contactEmailRequired"
-msgstr "A közvetlen kapcsolattartó e-mail címe kötelező."
+msgstr "Az elsődleges kapcsolattartó e-mail címe kötelező."
 
 msgid "manager.setup.forAuthorsToIndexTheirWork"
-msgstr "Szerzők számára, a közleményük indexálására"
+msgstr "Szerzők számára a közleményük indexelésére"
 
-#, fuzzy
 msgid "manager.series.restricted"
 msgstr ""
 "Ne engedélyezze, hogy a szerzők ehhez a sorozathoz közvetlenül küldjenek be "
@@ -472,11 +459,10 @@ msgstr ""
 msgid "manager.setup.focusScopeDescription"
 msgstr "<strong>PÉLDA HTML ADAT</strong>"
 
-#, fuzzy
 msgid "manager.setup.focusAndScope.description"
 msgstr ""
-"Ismertesse a szerzőkkel, olvasókkal és könyvtárosokkal a monográfiák és "
-"egyéb tételek körét, amelyeket a kiadó megjelentet."
+"Ismertesse a szerzőkkel, olvasókkal és könyvtárosokkal a kiadványok és egyéb "
+"tételek körét, amelyeket a kiadó közzétett."
 
 msgid "manager.setup.enableUserRegistration"
 msgstr "A látogatók felhasználói fiókot tudnak a kiadónál regisztrálni."
@@ -484,36 +470,32 @@ msgstr "A látogatók felhasználói fiókot tudnak a kiadónál regisztrálni."
 msgid "manager.setup.enablePublicMonographId"
 msgstr "Az egyedi azonosítók a közzétett tételek azonosítására szolgálnak."
 
-#, fuzzy
 msgid "manager.setup.enablePublicGalleyId"
 msgstr ""
-"Az egyedi azonosítók a közzétett tétel tördelt változatának (pl.: HTML vagy "
-"PDF fájlok) azonosítására szolgálnak."
+"Az egyedi azonosítók a közzétett tételek formtumának (pl.: HTML vagy PDF "
+"fájlok) azonosítására szolgálnak."
 
 msgid "manager.setup.enablePressInstructions"
 msgstr "Engedélyezze, hogy ez a kiadó nyilvánosan megjelenjen az oldalon"
 
-#, fuzzy
 msgid "manager.setup.numAnnouncementsHomepage.description"
 msgstr ""
 "Hány értesítés jelenjen meg a kezdőlapon. Amennyiben egy sem, hagyja ezt a "
 "részt üresen."
 
-#, fuzzy
 msgid "manager.setup.disciplineProvideExamples"
 msgstr ""
-"Adjon meg példákat a kiadó érintett akadémiai diszciplínáihoz releváns "
-"publikációk közül"
+"Adjon meg példákat a kiadó szempontjából releváns tudományos szakterületekre"
 
 msgid "manager.setup.disciplineDescription"
 msgstr ""
-"Hasznos, amikor kiadók diszciplínai határokat kereszteznek és/vagy szerzők "
-"multidiszciplináris tételt nyújtanak be."
+"Hasznos, amikor a kiadó szakterületi határokat keresztez és/vagy a szerzők "
+"multidiszciplináris elemeket küldenek be."
 
 msgid "manager.setup.emailSignature.description"
 msgstr ""
-"A rendszer által, a kiadó nevében küldött előkészített e-mailek végére a "
-"következő aláírás lesz hozzáadva."
+"A rendszer által a kiadó nevében küldött automatikus e-mailek a következő "
+"aláírással lesznek ellátva."
 
 msgid "manager.setup.emailSignature"
 msgstr "Aláírás"
@@ -521,13 +503,12 @@ msgstr "Aláírás"
 msgid "manager.setup.emails"
 msgstr "E-mail azonosítás"
 
-#, fuzzy
 msgid "manager.setup.emailBounceAddress.description"
-msgstr "Minden nem kézbesített e-mail után hibaüzenetet kap ezen a címen."
+msgstr ""
+"Bármely nem kézbesíthető e-mail hibaüzenetet fog eredményezni ezen a címen."
 
-#, fuzzy
 msgid "manager.setup.emailBounceAddress"
-msgstr "Visszaforduló cím"
+msgstr "Visszapattanó cím"
 
 msgid "manager.setup.editorDecision"
 msgstr "Szerkesztői döntés"
@@ -539,10 +520,10 @@ msgstr ""
 "hozzárendelve 10.xxxx (e.g. 10.1234) formátumban."
 
 msgid "manager.setup.displayInSpotlight"
-msgstr "Ajánlott könyvek megjelenítése a kezdőlapon"
+msgstr "Kiemelt könyvek megjelenítése a kezdőlapon"
 
 msgid "manager.setup.displayInSpotlight.label"
-msgstr "Ajánló"
+msgstr "Kiemelés"
 
 msgid "manager.setup.doiPrefix"
 msgstr "DOI előtag"
@@ -551,41 +532,41 @@ msgid "manager.setup.displayNewReleases.label"
 msgstr "Új megjelenések"
 
 msgid "manager.setup.displayNewReleases"
-msgstr "Új kiadványok megjelenítése a kezdőlapon"
+msgstr "Új megjelenések megjelenítése a kezdőlapon"
 
 msgid "manager.setup.displayFeaturedBooks.label"
-msgstr "Keimelt könyvek"
+msgstr "Válogatott könyvek"
 
 msgid "manager.setup.displayFeaturedBooks"
-msgstr "Kiemelt könyvek megjelenítése a kezdőlapon"
+msgstr "Válogatott könyvek megjelenítése a kezdőlapon"
 
 msgid "manager.setup.displayOnHomepage"
 msgstr "Kezdőoldal tartalom"
 
 msgid "manager.setup.displayCurrentMonograph"
 msgstr ""
-"A tartalomjegyzék hozzáadása a jelenlegi monográfiához (amennyiben "
-"rendelkezésre áll)."
+"Tartalomjegyzék hozzáadása a jelenlegi kiadványhoz (amennyiben rendelkezésre "
+"áll)."
 
 msgid "manager.setup.disciplineExamples"
 msgstr ""
 "(Pl.: Történelem; Oktatás; Szociológia; Pszichológia; Kulturális tanulmányok;"
 " Jog)"
 
-#, fuzzy
 msgid "manager.setup.discipline"
-msgstr "Akadémiai diszciplína és aldiszciplínák"
+msgstr "Tudományos szakterületek és alszakterületek"
 
 msgid "manager.setup.disableUserRegistration"
 msgstr ""
-"A Sajtómenedzser fog minden felhasználói fiókot regisztrálni. Szerkesztők "
-"vagy Sorozatszerkesztők bírálók számára regisztrálhatnak felhasználói fiókot."
+"A Kiadó menedzser fog minden felhasználói fiókot regisztrálni. Szerkesztők "
+"vagy Sorozatszerkesztők szakmai lektorok számára regisztrálhatnak "
+"felhasználói fiókot."
 
 msgid "manager.setup.contextAbout.description"
 msgstr ""
 "Adjon meg bármilyen információt a kiadójáról, amely érdekelheti az "
-"olvasókat, szerzőket és bírálókat. Ez tartalmazhatja a nyílt hozzáférési  "
-"irányelveket, a kiadó fókuszát és ttudományterületeit, támogatói "
+"olvasókat, szerzőket és szakmai lektorokat. Ez tartalmazhatja a nyílt "
+"hozzáférési  irányelveket, a kiadó fókuszát és tudományterületeit, támogatói "
 "nyilatkozatot és a kiadó történetét."
 
 msgid "manager.setup.details.description"
@@ -594,22 +575,21 @@ msgstr "Kiadó neve, kapcsolattartók, támogatók és keresőmotorok."
 msgid "manager.setup.details"
 msgstr "Részletek"
 
-#, fuzzy
 msgid "manager.setup.customTagsDescription"
 msgstr ""
-"Egyedi HTML fejléc címkék minden oldal fejlécébe lesznek beillesztve (pl.: "
-"META címkék)."
+"Egyedi HTML fejléc címkék kerülnek beillesztésre minden oldal fejlécébe (pl.:"
+" META címkék)."
 
 msgid "manager.setup.customTags"
 msgstr "Egyedi címkék"
 
 msgid "manager.setup.customizingTheLook"
-msgstr "1. lépés. Felhasználói felület testreszabása"
+msgstr "5. lépés. A megjelenés testreszabása"
 
 msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
 msgstr ""
-"Az ennél nagyobb méretű képek kicsinyítve lesznek, de nem lesznek torzítva "
-"az méretbeli illeszkedés érdekében."
+"Az ennél nagyobb méretű képek kicsinyítve lesznek, de nem lesznek "
+"felnagyítva vagy megnyújtva a méretbeli illeszkedés érdekében."
 
 msgid "manager.setup.coverThumbnailsMaxWidth"
 msgstr "Borítókép maximum szélessége"
@@ -618,28 +598,27 @@ msgid "manager.setup.coverThumbnailsMaxHeight"
 msgstr "Borítókép maximum magassága"
 
 msgid "manager.setup.copyrightNotice"
-msgstr "Szerzői jogi megjegyzés"
+msgstr "Szerzői jogi nyilatkozat"
 
 msgid "manager.setup.copyeditInstructions"
-msgstr "Lektorálási utasítások"
+msgstr "Olvasószerkesztési utasítások"
 
 msgid "manager.setup.copyediting"
-msgstr "Lektorok"
+msgstr "Olvasószerkesztők"
 
 msgid "manager.setup.contextSummary"
 msgstr "Kiadó összefoglaló"
 
-#, fuzzy
 msgid "manager.settings.publisher.identity"
-msgstr "Kiadó személye"
+msgstr "Kiadó azonosító"
 
 msgid "manager.series.submissionReview"
-msgstr "Nem lesz bírálva"
+msgstr "Nem lesz szakmailag lektorálva"
 
 msgid "manager.setup.management.description"
 msgstr ""
-"Hozzáférés és biztonság, ütemezés, értesítések, lektorálás, tördelés és "
-"korrektúrázás."
+"Hozzáférés és biztonság, ütemezés, értesítések, olvasószerkesztés, tördelés "
+"és korrektúrázás."
 
 msgid "manager.setup.numAnnouncementsHomepage"
 msgstr "Mejelenítés a kezdőlapon"
@@ -655,23 +634,23 @@ msgstr "Értesítések engedélyezése"
 
 msgid "manager.setup.announcementsIntroduction.description"
 msgstr ""
-"Adjon meg bármilyen további információt ami megjelenésre kerül az olvasók "
+"Adjon meg bármilyen további információt ami megjelenítésre kerül az olvasók "
 "számára az Értesítések oldalon."
 
 msgid "manager.setup.announcements.success"
 msgstr "Az értesítések beállításai frissítésre kerültek."
 
 msgid "manager.setup.contextAbout"
-msgstr "A kiadóról"
+msgstr "Kiadóról"
 
 msgid "manager.setup.announcementsIntroduction"
 msgstr "További információ"
 
 msgid "manager.setup.announcementsDescription"
 msgstr ""
-"Értesítéseket lehet közzétenni, hogy az olvasók tájékoztatására a kiadó "
-"híreiről és eseményeiről. A közzétett értesítések az Értesítések oldalon "
-"fognak megjelenni."
+"Értesítéseket lehet közzétenni az olvasók tájékoztatására a kiadó híreiről "
+"és eseményeiről. A közzétett értesítések az Értesítések oldalon fognak "
+"megjelenni."
 
 msgid "manager.setup.announcements"
 msgstr "Értesítések"
@@ -687,13 +666,12 @@ msgstr ""
 "Sajnos nincs adminisztrációs joga ehhez a felhasználóhoz. Ennek az oka lehet:"
 "\n"
 "\t\t<ul>\n"
-"\t\t\t<li>Ez a felhasználó oldal adminisztrátor</li>\n"
-"\t\t\t<li>Ez a felhasználó aktív olyan kiadóknál amit Ön nem kezel</li>\n"
+"\t\t\t<li>Ez a felhasználó az oldal adminisztrátora</li>\n"
+"\t\t\t<li>Ez a felhasználó olyan kiadóknál aktív, amiket nem Ön kezel</li>\n"
 "\t\t</ul>\n"
 "Ez a feladat csak oldal adminisztrátorként végezhető el.\n"
 "\t"
 
-#, fuzzy
 msgid "manager.settings.publisher"
 msgstr "Kiadó neve"
 
@@ -701,18 +679,16 @@ msgid "manager.setup.addItem"
 msgstr "Tétel hozzáadása"
 
 msgid "manager.setup.addChecklistItem"
-msgstr "Ellenőrző lista hozzáadása"
+msgstr "Ellenőrzőlista tétel hozzáadása"
 
 msgid "manager.setup.aboutItemContent"
 msgstr "Tartalom"
 
-#, fuzzy
 msgid "manager.setup"
 msgstr "Beállítás"
 
-#, fuzzy
 msgid "manager.pressManagement"
-msgstr "Sajtó menedzsment"
+msgstr "Kiadó kezelés"
 
 msgid "user.authorization.pluginLevel"
 msgstr "Nincs megfelelő jogosultsága a bővítmény kezeléséhez."
@@ -724,7 +700,7 @@ msgid "manager.system.readingTools"
 msgstr "Olvasási eszközök"
 
 msgid "manager.system.reviewForms"
-msgstr "Bírálati űrlapok"
+msgstr "Szakmai lektorálási űrlapok"
 
 msgid "manager.system.archiving"
 msgstr "Archiválás"
@@ -748,10 +724,9 @@ msgid "manager.people.mergeUsers.from.description"
 msgstr ""
 "Válasszon ki egy felhasználót, hogy összevonja egy másik felhasználói "
 "fiókkal (pl.: ha egy valakinek két felhasználói fiókja van). Az elsőként "
-"kiválasztott fiók törölve lesz és a beadványai, megbízásai, stb. a második "
-"fiókhoz lesznek rendelve."
+"kiválasztott fiók törölve lesz és a beküldései, hozzárendelései, stb. a "
+"második fiókhoz lesznek rendelve."
 
-#, fuzzy
 msgid "manager.people.enrollSyncPress"
 msgstr "Kiadóval"
 
@@ -764,7 +739,7 @@ msgid "manager.people.allPresses"
 msgstr "Minden kiadó"
 
 msgid "manager.users.selectRole"
-msgstr "Szerepkör választása"
+msgstr "Szerepkör kiválasztása"
 
 msgid "manager.users.currentRoles"
 msgstr "Jelenlegi szerepkörök"
@@ -774,62 +749,55 @@ msgstr "Elérhető szerepkörök"
 
 msgid "manager.tools.statistics"
 msgstr ""
-"A felhasználási statisztikára vonatkozó jelentések generálásra szolgáló "
-"eszközök (tartalomjegyzék oldalmegtekintések, monográfia absztrakt "
-"oldalmegtekintések, monográfia fájl letöltések)"
+"A felhasználási statisztikákra vonatkozó jelentések generálásra szolgáló "
+"eszközök (katalógus tartalomjegyzékének oldalmegtekintése, kiadvány "
+"absztraktoldalának megtekintése, kiadvány fájlletöltései)"
 
-#, fuzzy
 msgid "manager.tools.importExport"
 msgstr ""
-"Minden eszköz specifikus az adatok importálására és exportálására (kiadók, "
-"monográfiák, felhasználók)"
+"Az adatok importálására és exportálására vonatkozó összes eszköz (kiadók, "
+"kiadványok, felhasználók)"
 
 msgid "manager.tools"
 msgstr "Eszközök"
 
 msgid "manager.statistics.reports.filters.byObject.description"
 msgstr ""
-"Találatok szűkítése objektum típus (kiadó, sorozat, monográfia, fájl típusok)"
-" és/vagy objektum azonosítók szerint."
+"Találatok szűkítése objektum típus (kiadó, sorozat, kiadvány, fájl típusok) é"
+"s/vagy egy vagy több objektum azonosító(k) szerint."
 
-#, fuzzy
 msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Találatok szűkítése kontextus szerint (sorozat és/vagy monográfia)."
+msgstr "Találatok szűkítése kontextus szerint (sorozat és/vagy kiadvány)."
 
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
-msgstr "Kiadó főöldal megtekintések"
+msgstr "Kiadó főoldal megtekintések"
 
 msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
 msgstr "Sorozat főoldal megtekintések"
 
 msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
-msgstr "Monográfia absztrakt és letöltések"
+msgstr "Kiadvány absztrakt és letöltések"
 
 msgid "manager.statistics.reports.defaultReport.monographAbstract"
-msgstr "Monográfia absztrakt megtekintések."
+msgstr "Kiadvány absztrakt oldal megtekintések"
 
 msgid "manager.statistics.reports.defaultReport.monographDownloads"
-msgstr "Monográfia fájl letöltések"
+msgstr "Kiadvány fájl letöltések"
 
-#, fuzzy
 msgid "manager.settings.distributionDescription"
 msgstr ""
-"Minden beállítás specifikus a terjesztési folyamatra (értesítés, indexelés, "
+"A terjesztési folyamatra vonatkozó összes beállítás (értesítés, indexelés, "
 "archiválás, fizetés, olvasási eszközök)."
 
-#, fuzzy
 msgid "manager.settings.publisherCodeType.invalid"
 msgstr "Ez nem egy érvényes kiadó azonosító kód típus."
 
-#, fuzzy
 msgid "manager.settings.publisherCodeType"
 msgstr "Kiadó azonosító kód típusa"
 
-#, fuzzy
 msgid "manager.settings.publisherCode"
 msgstr "Kiadó azonosító kód"
 
-#, fuzzy
 msgid "manager.settings.location"
 msgstr "Földrajzi hely"
 
@@ -852,7 +820,7 @@ msgstr "A fizetési beállítások frissítésre kerültek."
 
 msgid "manager.payment.options.enablePayments"
 msgstr ""
-"Engedélyezve lesznek a fizetések ehhez a kiadóhoz. Vegye figyelembe, hogy a "
+"Engedélyezve lesznek a fizetések ennél a kiadóhoz. Vegye figyelembe, hogy a "
 "felhasználóknak a fizetéshez be kell jelentkezniük."
 
 msgid "manager.payment.generalOptions"
@@ -860,11 +828,11 @@ msgstr "Általános beállítások"
 
 msgid "manager.series.confirmDeactivateSeries.error"
 msgstr ""
-"Legalább egy sorozatnak aktívnak kell lennie. A munkamenet beállításokban "
-"letilthat minden, a kiadóhoz érkező beadványt."
+"Legalább egy sorozatnak aktívnak kell lennie. A munkafolyamat beállításokban "
+"letilthat minden, a kiadóhoz beüldött anyagot."
 
 msgid "plugins.importexport.native.error.unknownUser"
-msgstr "A megadott felhasználó, \"{$userName}\", nem létezik."
+msgstr "A megadott \"{$userName}\" felhasználó, nem létezik."
 
 msgid "plugins.importexport.common.error.unknownObjects"
 msgstr "A megadott elem nem található."
@@ -880,7 +848,7 @@ msgstr ""
 "kapcsolattartójának."
 
 msgid "plugins.importexport.native.exportSubmissions"
-msgstr "Beadványok exportálása"
+msgstr "Bküldések exportálása"
 
 msgid "plugins.importexport.common.invalidXML"
 msgstr "Érvénytelen XML:"
@@ -892,11 +860,10 @@ msgid "plugins.importexport.common.error.noObjectsSelected"
 msgstr "Nincsenek kiválasztott elemek."
 
 msgid "stats.publications.abstracts"
-msgstr "Katalógkatalógusbejegyzés"
+msgstr "Katalógustételek"
 
-#, fuzzy
 msgid "stats.publications.countOfTotal"
-msgstr "{$total} -/ból/ből {$count} mongráfia."
+msgstr "{$total} / {$count} kiadvány"
 
 msgid "stats.publications.totalGalleyViews.timelineInterval"
 msgstr "Dátum szerinti összes fájl megtekintés"
@@ -906,27 +873,28 @@ msgstr "Dátum szerinti összes katalógus megtekintés"
 
 msgid "stats.publications.none"
 msgstr ""
-"Nem található monográfia a megadott paramétereknek megfelelő használati "
+"Nem található kiadvány a megadott paramétereknek megfelelő használati "
 "statisztikákkal."
 
 msgid "stats.publications.details"
-msgstr "Monográfia részletei"
+msgstr "Kiadvány részletei"
 
 msgid "stats.publicationStats"
-msgstr "Monográfia statisztika"
+msgstr "Kiadvány statisztika"
 
 msgid "grid.series.urlWillBe"
 msgstr "A sorozat URL-je: {$sampleUrl}"
 
 msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
-msgstr "Válassza ki a kategóriát, amelyhez ezt az elemet szeretné csatolni."
+msgstr ""
+"Válassza ki azt a kategóriát, amelyhez ezt a menü elemet szeretné csatolni."
 
 msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
-msgstr "Válassza ki a sorozatot, amelyhez ezt az elemet szeretné csatolni."
+msgstr "Válassza ki a sorozatot, amelyhez ezt a menü elemet szeretné csatolni."
 
 msgid "manager.setup.notifications.copyPrimaryContact"
 msgstr ""
-"Másolat küldése a kiadói beállításokban megnevezett elsődleges "
+"Másolat küldése a Kiadó beállításokban megnevezett elsődleges "
 "kapcsolattartónak."
 
 msgid "manager.navigationMenus.form.navigationMenuItem.series"
@@ -937,30 +905,29 @@ msgstr "Kategória kiválasztása"
 
 msgid "grid.series.pathExists"
 msgstr ""
-"Ez a sorozat elérési útvonal már létezik. Adjon meg egy egyedi elérési "
+"A sorozat elérési útvonal már létezik. Adjon meg egy egyedi elérési "
 "útvonalat."
 
 msgid "grid.series.pathAlphaNumeric"
 msgstr "A sorozat elérési útvonala csak betűket és számokat tartalmazhat."
 
 msgid "manager.setup.resetPermissions.success"
-msgstr "Monográfia engedélyek sikeresen visszaállítva."
+msgstr "Kiadvány engedélyek sikeresen visszaállítva."
 
 msgid "manager.setup.resetPermissions.description"
 msgstr ""
 "Szerzői jogi nyilatkozat és engedély információ a véglegesen publikált "
 "tartalomhoz lesz csatolva, biztosítva, hogy ez az adat változatlan marad "
-"abban az esetben is, ha a kiadói irányelvek az új beadványokra vonatkozóan "
+"abban az esetben is, ha a kiadói irányelvek az új beküldésekre vonatkozóan "
 "megváltoznak. A már publikált tartalomra vonatkozó engedélyek "
 "visszaállításához használja az alábbi gombot."
 
 msgid "manager.setup.resetPermissions.confirm"
 msgstr ""
-"Biztos benne, hogy vissza akarja állítani a monográfiához tartozó "
-"engedélyeket?"
+"Biztos benne, hogy vissza akarja állítani a kiadványhoz tartozó engedélyeket?"
 
 msgid "manager.setup.resetPermissions"
-msgstr "Monográfia engedélyinek visszaállítása"
+msgstr "Kiadvány engedélyinek visszaállítása"
 
 msgid "manager.publication.library"
 msgstr "Kiadói könyvtár"
@@ -987,16 +954,17 @@ msgid "manager.series.unassigned"
 msgstr "Elérhető Sorozatszerkesztők"
 
 msgid "manager.series.hideAbout"
-msgstr "Sorozat beszerzése About the Press-től."
+msgstr "Hagyja ki ezt a sorozat a Kiadóról részből."
 
 msgid "manager.series.seriesEditorInstructions"
 msgstr ""
-"Sorozat szerkesztők hozzáadása a sorozathoz, az elérhető sorozatszerkesztők "
-"közül. Hozzáadás után jelölje ki, hogy a sorozatszerkesztő BÍRÁLJA (szakmai "
-"bírálat) és/vagy SZERKESZTI (lektorálás, tördelés, korrektúrázás) a "
-"sorozathoz érkező beadványokat. Sorozat szerkesztők létrehozásához "
-"kattintson a <a href=\"{$seriesEditorsUrl}\">Sorozat szerkesztők</a>re a "
-"Szerepkörök közül a Sajtó menedzsmentben."
+"Sorozatszerkesztő hozzáadása a sorozathoz az elérhető sorozatszerkesztők "
+"közül. A hozzáadást követően jelölje meg, hogy a sorozat szerkesztője "
+"felügyeli-e a sorozathoz beküldött kéziratok SZAKMAI LEKTORÁLÁST (szakértői "
+"értékelés) és/vagy SZERKESZTÉSÉT (olvasószerkesztés, tördelés és "
+"korrektúrázás). Sorozatszerkesztők létrehozásához kattintson a <a href=\""
+"{$seriesEditorsUrl}\">Sorozatszerkesztőkre</a> a Kiadó beállítások alatt "
+"lévő Szerepkörök menüpontra."
 
 msgid "manager.series.assigned"
 msgstr "Sorozat szerkesztői"
@@ -1017,7 +985,7 @@ msgid "manager.series.abstractsNotRequired"
 msgstr "Az absztrakt nem kötelező"
 
 msgid "manager.series.submissionsToThisSection"
-msgstr "Beadványok ehhez a sorozathoz"
+msgstr "Beküldések ehhez a sorozathoz"
 
 msgid "manager.series.readingTools"
 msgstr "Olvasási eszközök"
@@ -1028,20 +996,20 @@ msgstr "Biztos benne, hogy véglegesen törölni szeretné ezt a sorozatot?"
 msgid "manager.series.editorRestriction"
 msgstr "Csak szerkesztők és sorozat szerkesztők által nyújthatóak be tételek."
 
-#, fuzzy
 msgid "manager.series.submissionIndexing"
-msgstr "Nem fog megjelenni a kiadó tartalomjegyzékében"
+msgstr "Nem fog megjelenni a kiadó indexelésében"
 
 msgid "manager.series.form.reviewFormId"
-msgstr "Biztososdjon meg róla, hogy érvényes bírálati űrlapot választott."
+msgstr ""
+"Bizonyosodjon meg róla, hogy érvényes szakmai lektorálási űrlapot választott."
 
 msgid "manager.series.form.mustAllowPermission"
 msgstr ""
-"Biztosodjon meg róla, hogy legalább egy jelölőnégyzet ki van pipálva mindegy "
-"egyes Sorozatszerkesztői begmízáshoz."
+"Biztosodjon meg róla, hogy legalább egy jelölőnégyzet ki van pipálva minden "
+"Sorozatszerkesztői hozzárendelésnél."
 
 msgid "manager.languages.primaryLocaleInstructions"
-msgstr "Ez lesz a kiadói oldal alapértelmezett nyelve."
+msgstr "Ez lesz a kiadó oldalának alapértelmezett nyelve."
 
 msgid "manager.languages.noneAvailable"
 msgstr ""
@@ -1051,8 +1019,8 @@ msgstr ""
 
 msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr ""
-"Visszaállít minden helyspecifikus beállítást, ami ehhez a kiadóhoz van "
-"hozzárendelve"
+"Ez felváltja az ehhez a nyelvhez tartozó bármilyen nyelvspecifikus kiadói "
+"beállításokat"
 
 msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
 msgstr "A fizetendő összeg pénzneme, például USD"
@@ -1078,19 +1046,15 @@ msgstr "A kiadó kezdőoldalára vezető URL"
 msgid "emailTemplate.variable.context.contextName"
 msgstr "A kiadó neve"
 
-#, fuzzy
 msgid "plugins.importexport.chapter.exportFailed"
 msgstr "A fejezetek elemzése sikertelen volt"
 
-#, fuzzy
 msgid "plugins.importexport.publicationformat.exportFailed"
 msgstr "A kiadványformátum elemzése sikertelen volt"
 
-#, fuzzy
 msgid "grid.genres.title"
-msgstr "Monográfia alkotóelemei"
+msgstr "Kiadvány alkotóelemei"
 
-#, fuzzy
 msgid "grid.genres.title.short"
 msgstr "Alkotóelemek"
 
@@ -1102,7 +1066,6 @@ msgstr ""
 msgid "manager.setup.files"
 msgstr "Fájlok"
 
-#, fuzzy
 msgid "manager.setup.editorialTeam.description"
 msgstr ""
 "A kiadóhoz tartozó szerkesztők, ügyvezető igazgatók, és további személyek "
@@ -1112,36 +1075,35 @@ msgid "manager.setup.editorialTeam"
 msgstr "Szerkesztőség"
 
 msgid "manager.setup.internalReviewRoles"
-msgstr "Belső bírálati szerepkörök"
+msgstr "Belső szakmai lektorálási szerepkörök"
 
 msgid "manager.setup.currentRoles"
 msgstr "Jelenlegi szerepkörök"
 
 msgid "manager.setup.managerialRoles"
-msgstr "Szerkesztőségi szerepkörök"
+msgstr "Irányítói szerepkörök"
 
-#, fuzzy
 msgid "manager.setup.availableRoles"
-msgstr "Rendelkezésre álló szerepkörök / Elérhető szerepkörök"
+msgstr "Elérhető szerepkörök"
 
 msgid "manager.setup.authorRoles"
 msgstr "Szerző szerepkörök"
 
 msgid "manager.setup.roleType"
-msgstr "Szerepkör Típus"
+msgstr "Szerepkör típus"
 
 msgid "manager.setup.reviewForms"
-msgstr "Bírálati űrlapok"
+msgstr "Szakmai lektorálási űrlapok"
 
 msgid "manager.setup.categories.description"
 msgstr ""
-"Lehetősége van kategória listák létrehozására, aminek segítségével "
-"rendezheti a kiadványait. A kategóriák tárgykörüknek megfelelően "
+"Lehetőség van kategória listák létrehozására, aminek segítségével "
+"rendszerezhetőek a kiadványok. A kategóriák tárgykörüknek megfelelően "
 "csoportosítják a könyveket, például: gazdaság; irodalom; költészet; stb.  "
-"Alkategóriák illeszthetők be főkategóriák alá. Például: a gazdaság "
+"Alkategóriák beilleszthetők főkategóriák alá, például: a gazdaság "
 "főkategória magába foglalhatja a mikroökonómia és a makroökonómia "
 "alkategóriákat. A látogatók kategóriák szerint kereshetik és böngészhetik a "
-"kiadó közleményeit."
+"kiadó anyagát."
 
 msgid "manager.setup.categoriesAndSeries"
 msgstr "Kategóriák és Sorozatok"
@@ -1151,11 +1113,11 @@ msgstr "Jelenlegi formátumok"
 
 msgid "manager.setup.issnDescription"
 msgstr ""
-"Az ISSN (International Standard Serial Number = Nemzetközi Szabványos "
-"Sorozatazonosító) egy nyolc számjegyből álló kód, amely lehetővé teszi az "
-"fizikai és digitális időszaki kiadványok azonosítását. Az ISSN szám a <a "
-"href=\"http://www.issn.org\" target=\"_blank\">ISSN International Centre</a> "
-"oldalon igényelhető."
+"Az ISSN (International Standard Serial Number: Időszaki kiadványok "
+"szabványos egyedi azonosítója) egy nyolc számjegyből álló kód, amely "
+"lehetővé teszi az fizikai és digitális időszaki kiadványok azonosítását. Az "
+"ISSN szám a <a href=\"http://www.issn.org\" target=\"_blank\">ISSN "
+"International Centre</a> weboldalán igényelhető."
 
 msgid "manager.setup.submitToSeries"
 msgstr "Sorozat beküldések engedélyezése"
@@ -1167,9 +1129,10 @@ msgid "manager.setup.prospectusDescription"
 msgstr ""
 "A tájékoztató útmutató egy kiadó által elkészített dokumentum, ami a szerzőt "
 "segíti a beküldött anyagok leírásában, annak érdekében, hogy a kiadó "
-"megtudja becsülni a beérkezett beadványt. A tájékoztató különböző tételeket "
-"tartalmazhat - a piacképességtől kezdve az eszmei értékig; mindenesetre a "
-"kiadó olyan tájékoztatót állítson össze, ami tükrözi a kiadó irányelveit."
+"megtudja becsülni a beküldött anyag értékét. A tájékoztató különböző "
+"tételeket tartalmazhat - a piacképességtől kezdve az eszmei értékig; "
+"mindenesetre a kiadónak olyan tájékoztatót kell összeállítania, ami tükrözi "
+"a kiadó irányelveit."
 
 msgid "manager.setup.prospectus"
 msgstr "Tájékoztató útmutató"
@@ -1180,24 +1143,20 @@ msgstr "Alapértelmezett beállítások visszaállítása"
 msgid "manager.setup.deleteSelected"
 msgstr "Kijelöltek törlése"
 
-#, fuzzy
 msgid "manager.setup.newGenreDescription"
 msgstr ""
 "Új típus létrehozásához töltse ki az alábbi űrlapot és kattintson a "
 "'Létrehozás' gombra."
 
-#, fuzzy
 msgid "manager.setup.newGenre"
-msgstr "Új Monográfia Típus"
+msgstr "Új kiadvány típus"
 
-#, fuzzy
 msgid "manager.setup.genres"
 msgstr "Típusok"
 
-#, fuzzy
 msgid "manager.setup.disableSubmissions.description"
 msgstr ""
-"Felhasználók megakadályozása, hogy új cikkeket küldjenek be a kiadóhoz. "
+"Megakadályozza a felhasználókat , hogy új cikkeket küldjenek be a kiadóhoz. "
 "Beküldések tiltása egyes kiadói sorozatokhoz a <a href=\"{$url}\">kiadói "
 "sorozatok</a> beállítási oldalán kezdeményezhető."
 
@@ -1206,13 +1165,12 @@ msgstr ""
 "Ez a kiadó most nem fogad el új kéziratokat. Látogasson el a munkafolyamat "
 "beállításokhoz, hogy engedélyezze a kéziratok beküldését."
 
-#, fuzzy
 msgid "manager.setup.genresDescription"
 msgstr ""
 "Ezek a típusok fájl elnevezésre használhatóak és a lenyíló menüben jelennek "
-"meg a feltöltött fájlokon. A típusok lehetővé teszik, hogy a felhasználó "
-"társítsa a fájlt egy teljes könyvvel, vagy pedig egy bizonyos fejezettel a "
-"szám megadásával (pl.: 02)."
+"meg a fájlok feltöltésekor. A ## jelű műfajok lehetővé teszik a felhasználó "
+"számára, hogy a fájlt vagy az egész 99Z könyvhöz, vagy egy adott fejezethez "
+"kapcsolja számmal (pl. 02)."
 
 msgid "manager.setup.newPublicationFormatDescription"
 msgstr ""
@@ -1220,12 +1178,12 @@ msgstr ""
 "a 'Létrehozás' gombra."
 
 msgid "manager.setup.newPublicationFormat"
-msgstr "Új Kiadványformátum"
+msgstr "Új kiadványformátum"
 
 msgid "manager.setup.publicationFormat.inUse"
 msgstr ""
 "A törlés nem lehetséges, mivel ezt a kiadványformátumot egy, a kiadónál "
-"elérhető monográfia használja."
+"elérhető kiadvány használja."
 
 msgid "manager.setup.publicationFormat.physicalFormat"
 msgstr "Ez egy fizikai (nem digitális) formátum?"
@@ -1250,112 +1208,100 @@ msgstr "Felhasználó regisztráció"
 
 msgid "manager.setup.useProofreaders"
 msgstr ""
-"Közzététel előtt a tördelés ellenőrzésével a Korrektor lesz megbízva (a "
-"szerzőkkel együtt)."
+"Közzététel előtt egy korrektor kerül hozzárendelésre, hogy ellenőrzze (a "
+"szerzőkkel együtt) a formátumokat."
 
 msgid "manager.setup.useLayoutEditors"
 msgstr ""
-"Az publikáció HTML, PDF, stb. elektronikus fájljainak elkészítésével a "
-"Tördelőszerkesztő lesz megbízva."
+"A HTML, PDF stb. fájlok elektronikus közzétételre való előkészítésére egy "
+"tördelőszerkesztő kerül hozzárendelésre."
 
 msgid "manager.setup.useStyleSheet"
 msgstr "Kiadói stíluslap"
 
 msgid "manager.setup.useEditorialReviewBoard"
-msgstr "A kiadó szerkesztői/bírálói bizottságot alkalmaz."
+msgstr "A kiadó szerkesztői/szakmai lektori bizottságot alkalmaz."
 
-#, fuzzy
 msgid "manager.setup.useCopyeditors"
-msgstr "Minden beadványhoz rendelve lesz egy Lektor."
+msgstr "Minden beküldéshez egy olvasószerkesztő kerül hozzárendelésre."
 
 msgid "manager.setup.reviewGuidelinesDescription"
 msgstr ""
-"Adjon meg a külső bírálóknak kritériumokat a beadvány kiadónál "
-"publikálásához való alkalmasságára vonatkozóan, amely tartalmazhat "
-"útmutatókat egy hatékony és hasznos bírálat elkészítéséhez. A bírálóknak "
-"lehetősége van javaslatokkal szolgálni a szerző és a kiadó felé, valamit "
-"külön javaslatokat adhatnak meg kizárólagosan a szerkesztő számára."
+"A beküldött anyagok kiadónál történő közzétételre való alkalmasságának "
+"megítéléséhez szükséges kritériumok megadása a külső bírálók számára, "
+"amelyek tartalmazhatnak utasításokat a hatékony és hasznos szakmai lektori "
+"vélemény elkészítéséhez. A szakmai lektoroknak lehetőségük lesz arra, hogy "
+"megjegyzéseket tegyenek a szerzőnek és a szerkesztőnek, valamint külön csak "
+"a szerkesztőnek is."
 
 msgid "manager.setup.publicationScheduleDescription"
 msgstr ""
-"Kiadói tételeket együttesen lehet közzétenni egy monográfia részeiként, "
-"saját tartalomjegyzékkel. Továbbá egyedi tételek közzétételére is van "
-"lehetőség az elkészültükkel egy időben, az aktuális kötet "
-"tartalomjegyzékéhez való hozzáadásával. Lássa el az olvasókat a Kiadóról "
-"szóló részben egy nyilatkozattal a kiadó által követett  rendszerről a "
-"kiadványok megjelenésének rendszerességéről."
+"Kiadói tételeket együttesen lehet közzétenni egy kiadvány részeként saját "
+"tartalomjegyzékkel. Továbbá egyedi tételek közzétételére is van lehetőség az "
+"elkészültükkel egy időben, az \"aktuális\" kötet tartalomjegyzékéhez való "
+"hozzáadásával. A Kiadóról szóló részben tájékoztassa az olvasókat a sajtó "
+"által használt rendszerről és a megjelenés várható gyakoriságáról."
 
-#, fuzzy
 msgid "manager.setup.selectCountry"
 msgstr ""
-"Válasszon ki egy országot, ahol a kiadó található vagy az kiadóhoz tartotó "
-"ország e-mailcímét."
+"Válasszon ki egy országot, ahol a kiadó található vagy a kiadó levelezési "
+"címének országát."
 
-#, fuzzy
 msgid "manager.setup.pressThumbnail"
-msgstr "Kiadó logója"
+msgstr "Kiadó bélyegképe"
 
-#, fuzzy
 msgid "manager.setup.productionTemplates"
-msgstr "Megjelentetési sablonok"
+msgstr "Előkészítési sablonok"
 
 msgid "manager.setup.masthead"
 msgstr "Fejléc"
 
-#, fuzzy
 msgid "manager.setup.useImageTitle"
 msgstr "Címkép"
 
-#, fuzzy
 msgid "manager.setup.publisherDescription"
-msgstr "A kiadó szervezet neve a Kiadóról részben fog megjelenni."
+msgstr ""
+"A kiadót megjelentető szervezet neve a Kiadóról szóló résznél jelenik meg."
 
-#, fuzzy
 msgid "manager.setup.pressThumbnail.description"
 msgstr ""
-"A kiadók listájában megjelenítésre kerülő kiadóhoz tartozó logó vagy jelzés."
+"A kiadók listájában megjelenítésre kerülő kis méretű logó vagy ábrázolás."
 
 msgid "manager.setup.pageHeaderDescription"
-msgstr "Az oldal fejlécének konfigurálása"
+msgstr "Oldal fejléc leírás"
 
 msgid "manager.setup.numPageLinks.description"
-msgstr "Az egy oldalon megjelenő linkek számának korlátozása."
+msgstr "Korlátozza a listában a következő oldalakra mutató linkek számát."
 
-#, fuzzy
 msgid "manager.setup.masthead.success"
 msgstr "A kiadó fejlécadatai frissítésre kerültek."
 
-#, fuzzy
 msgid "manager.setup.managingPublishingSetup"
-msgstr "Sajtómenedzsment és Publikációs beállítások"
+msgstr "Menedzsment és publikációs beállítások"
 
 msgid "manager.setup.layoutTemplatesDescription"
 msgstr ""
-"A kiadó által használt szabvány formátumokhoz sablonokat lehet feltölteni, "
-"amelyek megjelennek a Tördelés oldalon (pl: monográfiák, recenziók, stb.). "
-"Bármilyen fájl formátum feltölthető (pl.: pdf, doc, stb.). A sablon "
-"tartalmazhat betűtípust, betűméretet, margót, stb. meghatározó "
-"megjegyzéseket, amelyek útmutatóként tudnak szolgálni a Tördelőszerkesztők "
-"és Korrektorok számára."
+"Sablonok tölthetők fel, hogy megjelenjenek a Layout oldalon a sajtóban "
+"közzétett szabványos formátumok mindegyikéhez (pl: kiadvány, recenzió, stb.)"
+", bármilyen fájlformátumot használva (pl.: pdf, doc, stb.), a betűtípust, "
+"méretet, margókat stb. meghatározó megjegyzésekkel, amelyek útmutatóként "
+"szolgálnak a tördelőszerkesztők és a korrektorok számára."
 
 msgid "manager.setup.itemsPerPage.description"
 msgstr ""
-"Az egy oldalon levő listában megjelenő tételek (pl: beadványok, "
-"felhasználók, szerkesztői feladatok) számának meghatározása."
+"Korlátozza a listában megjelenítendő elemek (pl: beküldések, felhasználók, "
+"szerkesztői hozzárendelések) számát mielőtt egy másik oldalon megjelenítené "
+"a következő elemeket."
 
-#, fuzzy
 msgid "manager.setup.identity"
-msgstr "Kiadó megnevezése"
+msgstr "Kiadó azonosítása"
 
-#, fuzzy
 msgid "manager.setup.focusScope"
-msgstr "Tudományterület"
+msgstr "Fókusz és tudományterület"
 
-#, fuzzy
 msgid "manager.setup.focusAndScope"
-msgstr "A kiadó tudományterületei"
+msgstr "A kiadó fókusza és tudományterületei"
 
-#, fuzzy
 msgid "manager.setup.emailBounceAddress.disabled"
 msgstr ""
 "Amennyiben a sikertelenül kézbesített leveleket egy visszapattanó e-mail "
@@ -1364,41 +1310,41 @@ msgstr ""
 "Ehhez szükség lehet az OMP dokumentációjában feltüntetett "
 "szerverkonfigurációra."
 
-#, fuzzy
 msgid "manager.setup.coverage"
 msgstr "Lefedettség"
 
-#, fuzzy
 msgid "manager.setup.appearInAboutPress"
-msgstr "(Megjelenik a Kiadóról mezőben) "
+msgstr "(Megjelenik a Kiadóról részben) "
 
 msgid "manager.setup.addItemtoAboutPress"
-msgstr "Tétel hozzáadása a \"Kiadóról\" szekcióhoz"
+msgstr "Tétel hozzáadása a \"Kiadóról\" részhez"
 
 msgid "manager.people.syncUserDescription"
 msgstr ""
-"A bejegyzett felhasználók szinkronizációja az összes, kiadónál betöltött "
-"bizonyos szerepkörű  felhasználót fogja fogja a kiadóhoz rendelni, azonos "
-"szerepkörben. Ez a funkció egy megadott felhasználói körnek (Pl.: Bírálók) "
-"kiadók közötti szinkronizációját teszi lehetővé."
+"A regisztráltak szinkronizációja az összes, adott kiadónál bizonyos "
+"szerepkört betöltött felhasználót hozzá fogja rendelni ehhez a kiadóhoz "
+"azonos szerepkörben. Ez a funkció egy megadott felhasználói körnek (Pl.: "
+"Szakmai lektorok) kiadók közötti szinkronizációját teszi lehetővé."
 
 msgid "manager.people.enrollExistingUser"
-msgstr "Létező felhasználó bejegyzése"
+msgstr "Létező felhasználó regisztrálása"
 
 msgid "manager.people.allUsers"
-msgstr "Összes bejegyzett felhasználó"
+msgstr "Összes regisztrált felhasználó"
 
 msgid "manager.people.allSiteUsers"
-msgstr "Felhasználó bejegyezése az oldalról ehhez a kiadóhoz"
+msgstr "Felhasználó regisztrációja az oldalról ehhez a kiadóhoz"
 
 msgid "manager.people.allEnrolledUsers"
-msgstr "Kiadóhoz bejegyzett felhasználók"
+msgstr "Kiadóhoz regisztrált felhasználók"
 
 msgid "manager.setup.series.description"
 msgstr ""
-"Tetszőleges számú sorozatot hozhat létre a közleményei rendezésére. Egy "
-"sorozatba egy adott témakört vagy területet feldolgozó könyvek. A látogatók "
-"sorozatok szerint tudnak keresni és böngészni a kiadó oldalán"
+"Tetszőleges számú sorozatot lehet létrehozni a kiadványok rendezéséhez.  A "
+"sorozat könyveknek egy olyan különleges csoportját jelenti, amely egy "
+"tárgynak vagy témáknak szentelt könyveket tartalmaz, amelyeket valaki - "
+"általában egy vagy két oktató - javasolt, majd felügyel. A látogatók "
+"sorozatonként kereshetnek és böngészhetnek a kiadó művei között."
 
 msgid "manager.setup.referenceLinkingDescription"
 msgstr ""
@@ -1417,19 +1363,17 @@ msgstr ""
 
 msgid "manager.setup.basicEditorialStepsDescription"
 msgstr ""
-"Lépések: Kézirat várólista&gt; Kézirat bírálat&gt; Kézirat szerkesztés &gt; "
-"Tartalomjegyzék.<br /><br />\n"
-"Válasszon ki egy szerkesztési folyamat modellt. (A Felelősszerkesztők (?) és "
-"Sorozat szerkesztők kijelöléséhez látogasson el a Szerkesztők oldalra a "
-"Kiadó menedzsment beállításokban.)"
+"Lépések: Kézirat várólista&gt; Kézirat szakmai lektorálás&gt; Kézirat "
+"szerkesztés &gt; Tartalomjegyzék.<br /><br />\n"
+"Válasszon modellt a szerkesztési folyamat ezen aspektusainak kezelésére. (A "
+"vezető szerkesztő és a sorozatszerkesztők kijelöléséhez menjen a Kiadó "
+"menedzsment beállításokban található Szerkesztők menüponthoz.)"
 
-#, fuzzy
 msgid "manager.setup.addAboutItem"
-msgstr "A Kiadóról szekció hozzáadása"
+msgstr "Kiadóról elem hozzáadása"
 
-#, fuzzy
 msgid "emailTemplate.variable.site.siteTitle"
-msgstr "Weboldal neve, amennyiben több kiadót is érint"
+msgstr "Weboldal neve, amennyiben több, mint egy kiadót is szolgáltatva van"
 
 msgid "doi.manager.settings.doiSuffixDefault.description"
 msgstr ""
@@ -1449,45 +1393,39 @@ msgid "doi.manager.settings.doiSuffixPattern.chapters"
 msgstr "fejezeteknek"
 
 msgid "doi.manager.settings.doiSuffixPattern.submissions"
-msgstr "köteteknek"
+msgstr "kiadványoknak"
 
-#, fuzzy
 msgid "doi.manager.settings.doiSuffixPattern.example"
 msgstr ""
-"Például a press%ppub%r létrehozhat egy DOI-t, például 10.1234/pressESPppub100"
+"Például a press%ppub%r olyan DOI-t hozhat létre mint 10.1234/pressESPppub100"
 
-#, fuzzy
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""
-"A DOI-utótagok létrehozásához használja az alábbiakban megadott mintát. "
-"Használja a %p-t a kiadó (press) kezdőbetűihez, a %m-t a kötet (monograph ) "
-"azonosítójához, a %c-t a fejezet (chapter) azonosítójához, a %f-t a "
+"A DOI utótagok létrehozásához használja az alábbiakban megadott mintát. "
+"Használja a %p-t a kiadó (press) kezdőbetűihez, a %m-t a kiadvány (monograph)"
+" azonosítójához, a %c-t a fejezet (chapter) azonosítójához, a %f-t a "
 "kiadványformátum ( publication format) azonosítójához, a %s-t a fájl (file) "
 "azonosítójához és a %x-t az \"Egyéni azonosítóhoz\" (Custom Identifier)."
 
 msgid "doi.manager.settings.doiSuffix.description"
 msgstr ""
-"A DOI-utótag bármilyen formájú lehet, de egyedinek kell lennie minden olyan "
-"publikációs objektum között, amelyhez ugyanazt a DOI-előtagot rendelték:"
+"A DOI utótag bármilyen formájú lehet, de egyedinek kell lennie minden olyan "
+"publikációs elem között, amelyhez ugyanazt a DOI előtagot rendelték:"
 
-#, fuzzy
 msgid "doi.manager.settings.doiSuffix"
-msgstr "DOI utótag (suffix)"
+msgstr "DOI utótag"
 
-#, fuzzy
 msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "A DOI előtag (prefix) kötelező, és 10.xxxx formájúnak kell lennie."
+msgstr "A DOI előtag kötelező, és 10.xxxx formátumúnak kell lennie."
 
-#, fuzzy
 msgid "doi.manager.settings.doiPrefix.description"
 msgstr ""
-"A DOI prefixet a regisztrációs ügynökségek (pl. <a href=\""
-"http://www.crossref.org\" target=\"_new\">CrossRef</a>) osztják ki, és a "
+"A DOI előtagot a regisztrációs ügynökségek (pl.: <a href=\""
+"http://www.crossref.org\" target=\"_new\">CrossRef</a>) osztják ki, és "
 "10.xxxx (pl. 10.1234) formátumúak:"
 
-#, fuzzy
 msgid "doi.manager.settings.doiPrefix"
-msgstr "DOI előtag (prefix)"
+msgstr "DOI előtag"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Fájlok"
@@ -1498,18 +1436,19 @@ msgstr "Kiadványformátumok"
 msgid "doi.manager.settings.enableChapterDoi"
 msgstr "Fejezetek"
 
-#, fuzzy
 msgid "doi.manager.settings.enablePublicationDoi"
-msgstr "Kötetek"
+msgstr "Kiadványok"
 
 msgid "doi.manager.settings.explainDois"
 msgstr ""
-"Kérjük, válassza ki azokat a publikációs objektumokat, amelyekhez digitális "
+"Kérjük, válassza ki azokat a publikálandó elemeket, amelyekhez digitális "
 "objektumazonosítót (DOI) rendelnek:"
 
 msgid "doi.manager.settings.doiObjectsRequired"
 msgstr ""
-"Kérjük, válassza ki azokat az objektumokat, amelyekhez DOI-kat kell rendelni."
+"Válassza ki azokat a tételeket, amikhez DOI kerül hozzárendelésre. A legtöbb "
+"kiadó a DOI-t a kiadványokhoz/fejezetekhez rendeli, de előfordulhat, hogy az "
+"összes közzétett tételhez DOI-t kíván rendelni."
 
 msgid "doi.manager.settings.doiObjects"
 msgstr "Kiadó tartalma"
@@ -1525,8 +1464,8 @@ msgstr "DOI:"
 msgid "doi.description"
 msgstr ""
 "Ez a bővítmény lehetővé teszi a Digitális Objektumazonosítók (DOI) "
-"hozzárendelését kötetekhez, fejezetekhez, kiadványformátumokhoz és fájlokhoz "
-"az OMP-ben."
+"hozzárendelését kiadványokhoz, fejezetekhez, kiadványformátumokhoz és "
+"fájlokhoz az OMP-ben."
 
 msgid "doi.displayName"
 msgstr "DOI"
@@ -1549,13 +1488,13 @@ msgid "doi.editor.doiObjectTypeChapter"
 msgstr "fejezet"
 
 msgid "doi.editor.doiObjectTypeSubmission"
-msgstr "kötet"
+msgstr "kiadvány"
 
 msgid "doi.editor.doi.assignDoi"
 msgstr "Hozzárendelés"
 
 msgid "doi.editor.doi.description"
-msgstr "A DOI-nak ezzel kell kezdődnie: {$prefix}"
+msgstr "A DOI-nak ezzel kell kezdődnie: {$prefix}."
 
 msgid "doi.editor.doi"
 msgstr "DOI"
@@ -1565,9 +1504,9 @@ msgstr "Biztos, hogy az összes meglévő DOI-t törölni kívánja?"
 
 msgid "doi.manager.settings.doiReassign.description"
 msgstr ""
-"Ha módosítja a DOI konfigurációt, a már hozzárendelt DOI-kat ez nem fogja "
+"Ha módosítja a DOI konfigurációt a már hozzárendelt DOI-kat ez nem fogja "
 "érinteni. A DOI-konfiguráció mentése után ezzel a gombbal törölheti az "
-"összes meglévő DOI-t, hogy az új beállítások az összes meglévő objektummal "
+"összes meglévő DOI-t, hogy az új beállítások az összes meglévő elemnél "
 "érvénybe lépjenek."
 
 msgid "doi.manager.settings.doiReassign"
@@ -1583,9 +1522,8 @@ msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
 msgstr "Adja meg a fejezetek DOI utótag mintáját."
 
 msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
-msgstr "Adja meg a kötetek DOI utótag mintáját."
+msgstr "Adja meg a kiadványok DOI utótag mintáját."
 
-#, fuzzy
 msgid "doi.editor.preview.objects"
 msgstr "Elem"
 
@@ -1602,51 +1540,157 @@ msgid "doi.editor.preview.publication.none"
 msgstr "Ehhez a kiadványhoz nem rendeltek DOI-t."
 
 msgid "doi.editor.preview.publication"
-msgstr "A publikáció DOI-ja lesz: {$doi}"
+msgstr "A kiadvány DOI-ja lesz: {$doi}."
 
 msgid "doi.editor.missingPrefix"
-msgstr "A DOI-nak ezzel kell kezdődnie: {$doiPrefix}"
+msgstr "A DOI-nak ezzel kell kezdődnie: {$doiPrefix}."
 
 msgid "doi.editor.assignDoi.assigned"
-msgstr "A DOI {$pubId} kiosztásra került."
+msgstr "A {$pubId}  DOI kiosztásra került."
 
 msgid "doi.editor.assignDoi.pattern"
 msgstr "A DOI {$pubId} nem rendelhető hozzá, mert feloldatlan mintát tartalmaz."
 
-#, fuzzy
 msgid "doi.editor.assignDoi.emptySuffix"
 msgstr "A DOI nem rendelhető hozzá, mert az egyéni utótag hiányzik."
 
-#, fuzzy
 msgid "doi.editor.assignDoi"
-msgstr "A DOI {$pubId} hozzárendelése ehhez a {$pubObjectType} elemhez"
+msgstr "A DOI {$pubId} hozzárendelése ehhez a(z) {$pubObjectType} elemhez"
 
 msgid "doi.editor.clearObjectsDoi.confirm"
 msgstr "Biztos, hogy törölni kívánja a meglévő DOI-t?"
 
-#, fuzzy
 msgid "doi.editor.clearObjectsDoi"
-msgstr "Törlés?"
+msgstr "Törlés"
 
 msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
 msgstr ""
 "Az adott DOI utótag már használatban van egy másik közzétett elemnél. "
 "Kérjük, egyedi DOI utótagot adjon hozzá minden egyes tételhez."
 
-#, fuzzy
 msgid "doi.editor.assigned"
-msgstr "A DOI-t ehhez a {$pubObjectType} elemhez rendelték."
+msgstr "A DOI-t ehhez a(z) {$pubObjectType} elemhez rendelték."
 
 msgid "doi.editor.canBeAssigned"
 msgstr ""
 "Amit lát, az a DOI előnézete. A DOI hozzárendeléséhez jelölje be a "
-"jelölőnégyzetet, és mentse el az űrlapot."
+"jelölőnégyzetet és mentse el az űrlapot."
 
-#, fuzzy
 msgid "doi.editor.patternNotResolved"
-msgstr "A DOI nem rendelhető hozzá, mert megoldatlan mintát tartalmaz."
+msgstr "A DOI nem rendelhető hozzá, mert feloldatlan mintát tartalmaz."
 
 msgid "doi.manager.settings.doiSuffixCustomIdentifier"
 msgstr ""
-"Adjon meg egy egyedi DOI utótagot (suffix) minden egyes közzétett tételhez. "
-"Az egyes tételek metaadat oldalán találni fog egy további DOI beviteli mezőt."
+"Adjon meg egy egyedi DOI utótagot minden egyes közzétett tételhez. Az egyes "
+"tételek metaadat oldalán találni fog egy további DOI beviteli mezőt."
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"Az OMP betartja a <a href=\"http://www.openarchives.org/\" target=\"_blank\">"
+"Open Archives Initiative (Nyílt archívumok kezdeményezése)</a> Protocol for "
+"Metadata Harvesting  protokollt, amely az elektronikus kutatási forrásokhoz "
+"való jól indexált hozzáférés globális szintű biztosításának kialakulóban "
+"lévő szabványa. A szerzők hasonló sablont használnak a beküldött anyaguk "
+"metaadatainak megadásához. A kiadó menedzsernek ki kell választania az "
+"indexálandó kategóriákat, és a szerzőknek releváns példákat kell bemutatnia, "
+"hogy segítse őket munkájuk indexálásában, a kifejezéseket pontosvesszővel "
+"elválasztva (pl.: kifejezés1; kifejezés2). A tételeket példaként kell "
+"feltüntetni az \"Pl.:\" vagy \"Például:\" használatával."
+
+msgid "manager.dois.formatIdentifier.file"
+msgstr "Formátum / {$format}"
+
+msgid "doi.manager.settings.doiCreationTime.copyedit"
+msgstr "Az olvasószerkesztési munkafolyamatnál"
+
+msgid "doi.manager.settings.doiSuffixLegacy"
+msgstr ""
+"Alapértelmezett minták használata.<br />%p.%m for monographs<br />%p.%m.c%c "
+"for chapters<br />%p.%m.%f for publication formats<br />%p.%m.%f.%s for "
+"files."
+
+msgid "manager.setup.enableDois.description"
+msgstr ""
+"Digitális Objektum Azonosító (DOI) hozzárendelése a kiadványokhoz, "
+"fejezetekhez, kiadványformátumokhoz és fájlokhoz."
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+"<h3>Javasolt Creative Commons szerzői jogi megjegyzések</h3>\n"
+"<h4>A nyílt hozzáférést kínáló kiadókra vonatkozó javasolt irányelvek</h4>\n"
+"Azok a szerzők, akik ennél a kiadónál jelentetik meg kiadványaikat, "
+"elfogadják az alábbi feltételeket:\n"
+"<ol type=\"a\">\n"
+"<li>A szerzők megtartják a szerzői jogokat, és a sajtónak adják az első "
+"közzététel jogát, a művet egyidejűleg <a target=\"_blank\" href=\""
+"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution "
+"License</a> licenc alatt áll, amely lehetővé teszi mások számára a munka "
+"megosztását a munka szerzőségének és a sajtóban történő első közzétételének "
+"feltüntetésével.</li>\n"
+"<li>A szerzők külön, további szerződéses sorozatot köthetnek a műnek a sajtó "
+"által közzétett változatának nem kizárólagos terjesztésére (pl. a mű "
+"intézményi adattárba való beküldésére vagy könyvben való közzétételére), a "
+"műnek a sajtóban való első közzétételének feltüntetésével.</li>\n"
+"<li>A szerzőknek megengedett és javasolt, hogy munkájukat a beküldési "
+"folyamat előtt és alatt online közzétegyék (pl. intézményi adattárakban vagy "
+"a saját honlapjukon), mivel ez produktív eszmecseréhez, valamint a közzétett "
+"munkák minnél előbbi és nagyobb mértékű idézettségéhez vezethet (lásd <a "
+"target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\">A "
+"nyílt hozzáférés hatása</a>).</li>\n"
+"</ol>\n"
+"\n"
+"<h4>A késleltetett nyílt hozzáférést kínáló kiadókra vonatkozó javasolt "
+"irányelvek</h4>\n"
+"Azok a szerzők, akik ennél a kiadónál jelentetik meg kiadványaikat, "
+"elfogadják az alábbi feltételeket:\n"
+"<ol type=\"a\">\n"
+"<li>A szerzők megtartják a szerzői jogokat, és a sajtónak adják az első "
+"közzététel jogát, a művet a megjelenés után  [SPECIFY PERIOD OF TIME]-val/"
+"vel később <a target=\"_blank\" href=\"http://creativecommons.org/licenses/"
+"by/3.0/\">Creative Commons Attribution License</a> licenc alá helyezik, "
+"amely lehetővé teszi mások számára a mű megosztását a mű szerzőségének és a "
+"sajtóban történő első közzétételének feltüntetésével.</li>\n"
+"<li>A szerzők külön, további szerződéses sorozatot köthetnek a műnek a sajtó "
+"által közzétett változatának nem kizárólagos terjesztésére (pl. a mű "
+"intézményi adattárba való beküldésére vagy könyvben való közzétételére), a "
+"műnek a sajtóban való első közzétételének feltüntetésével.</li>\n"
+"<li>A szerzőknek megengedett és javasolt, hogy munkájukat a beküldési "
+"folyamat előtt és alatt online közzétegyék (pl. intézményi adattárakban vagy "
+"a saját honlapjukon), mivel ez produktív eszmecseréhez, valamint a közzétett "
+"munkák minnél előbbi és nagyobb mértékű idézettségéhez vezethet (lásd <a "
+"target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\">A "
+"nyílt hozzáférés hatása</a>).</li>\n"
+"</ol>"
+
+msgid "mailable.decision.initialDecline.notifyAuthor.description"
+msgstr ""
+"Ez az e-mail arról értesíti a szerzőt, hogy a beküldött anyagát elutasítják "
+"már a szakmai lektorálásra küldés előtt, mert az nem felel meg a kiadó "
+"közzétételhez szükséges követelményeinek."
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
+msgstr ""
+"Ez az e-mail értesíti a szerzőt arról, hogy beküldött anyagát továbbküldték "
+"a belső szakmai lektorálási munkafolyamatba."
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
+msgstr "Belső szakmai lektorálásra küldés"
+
+msgid "doi.manager.submissionDois"
+msgstr "Kiadvány DOI-k"
+
+msgid "doi.manager.displayName"
+msgstr "DOI-k"
+
+msgid "mailable.validateEmailContext.description"
+msgstr ""
+"Ez az email automatikusan kerül kiküldésre az újonnan regisztrált "
+"felhasználónak, amikor a beállítások miatt kötelező  az e-mail fiók "
+"hitelesítése."
+
+msgid "mailable.validateEmailContext.name"
+msgstr "Email megerősítése (Kiadó regisztráció)"
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr ""
+"Mindig mutassa a formátum linkeket és jelezze a korlátozott hozzáférést."

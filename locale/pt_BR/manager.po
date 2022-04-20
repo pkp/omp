@@ -1,11 +1,11 @@
-# Diego José Macêdo <diegojmacedo@gmail.com>, 2021.
+# Diego José Macêdo <diegojmacedo@gmail.com>, 2021, 2022.
 # cicilia conceiçao de maria <ccmaria@uem.br>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T12:00:53-07:00\n"
-"PO-Revision-Date: 2021-11-22 17:39+0000\n"
+"PO-Revision-Date: 2022-04-08 19:57+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "manager/pt_BR/>\n"
@@ -260,7 +260,7 @@ msgid "manager.setup.addNavItem"
 msgstr "Incluir item"
 
 msgid "manager.setup.addSponsor"
-msgstr "Patrocinadores"
+msgstr "Adicionar Instituição Patrocinadora"
 
 msgid "manager.setup.alternateHeader"
 msgstr "Cabeçalho alternativo"
@@ -751,7 +751,7 @@ msgid "manager.setup.sectionsDescription"
 msgstr ""
 "Para criar ou alterar seções da editora (ex.: Monografias, Revisões de "
 "livros, etc.) acesse a administração de seções.<br /><br />Ao submeter "
-"itens, os autores designarão..."
+"itens, os autores designarão…"
 
 msgid "manager.setup.securitySettings"
 msgstr "Configurações de segurança de acesso"
@@ -1537,3 +1537,39 @@ msgstr "Capítulo: {$title}"
 
 msgid "doi.editor.preview.publication.none"
 msgstr "Um DOI não foi atribuído a esta publicação."
+
+msgid "manager.setup.enableDois.description"
+msgstr ""
+"Atribua identificadores de objetos digitais (DOIs) a monografias, capítulos, "
+"formatos de publicação e arquivos."
+
+msgid "doi.manager.submissionDois"
+msgstr "DOIs de Monografias"
+
+msgid "doi.manager.displayName"
+msgstr "DOIs"
+
+msgid "manager.dois.formatIdentifier.file"
+msgstr "Formato / {$format}"
+
+msgid "doi.manager.settings.doiSuffixLegacy"
+msgstr ""
+"Use padrões.<br />%p.%m para monografias<br />%p.%m.c%c para capítulos<br "
+"/>%p.%m.%f para formatos de publicação<br />%p.%m.%f.%s para arquivos."
+
+msgid "doi.manager.settings.doiCreationTime.copyedit"
+msgstr "Na fase de Edição de Texto"
+
+msgid "mailable.decision.initialDecline.notifyAuthor.description"
+msgstr ""
+"Este e-mail notifica o autor de que sua submissão está sendo rejeitada, "
+"antes de ser enviada para avaliação, pois a submissão não atende aos "
+"requisitos para publicação nesta editora."
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
+msgstr ""
+"Este e-mail notifica o autor de que sua submissão está sendo enviada para a "
+"fase de avaliação interna."
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
+msgstr "Enviado para Avaliação Interna"

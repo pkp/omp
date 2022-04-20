@@ -1,8 +1,9 @@
 # Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>, 2021.
+# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-17 20:32+0000\n"
-"Last-Translator: Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>\n"
+"PO-Revision-Date: 2022-04-13 12:15+0000\n"
+"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/hu_HU/>\n"
 "Language: hu_HU\n"
@@ -13,7 +14,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 
 msgid "manuscript.submission"
-msgstr "Kézirat benyújtása"
+msgstr "Kézirat beküldés"
 
 msgid "submission.sharing"
 msgstr "Megosztás"
@@ -22,10 +23,10 @@ msgid "submission.download"
 msgstr "Letöltés"
 
 msgid "submission.proofs"
-msgstr "Kefelevonatok"
+msgstr "Kefelenyomatok"
 
 msgid "submission.publicationFormats"
-msgstr "Publikáció formátumok"
+msgstr "Kiadványformátumok"
 
 msgid "submission.copyedit"
 msgstr "Olvasószerkesztés"
@@ -41,9 +42,9 @@ msgstr "Fejezet hozzáadása"
 
 msgid "submission.chaptersDescription"
 msgstr ""
-"Itt felsorolhatja a fejezeteket és közreműködőket rendelhet a közreműködők "
-"fenti listájából. Ezek a közreműködők hozzáférhetnek a fejezethez a "
-"publikációs folyamat különböző szakaszaiban."
+"Itt felsorolhatja a fejezeteket és közreműködőket rendelhet hozzájuk a "
+"közreműködők fenti listájából. Ezek a közreműködők hozzáférhetnek a "
+"fejezethez a közzétételi munkafolyamat különböző szakaszaiban."
 
 msgid "submission.chapters"
 msgstr "Fejezetek"
@@ -61,7 +62,7 @@ msgid "submission.fairCopy"
 msgstr "Tisztázat"
 
 msgid "submission.published"
-msgstr "Készültség"
+msgstr "Megjelentetésre kész"
 
 msgid "submission.monograph"
 msgstr "Monográfia"
@@ -82,25 +83,25 @@ msgid "submission.workflowType.description"
 msgstr ""
 "A monográfia olyan mű, amelyet teljes egészében egy vagy több szerző írt. A "
 "szerkesztett kötetben az egyes fejezetek szerzői különbözőek (a fejezetek "
-"adatai később kerülnek be )"
+"adatai a folyamat során később kerülnek betöltésre)"
 
 msgid "submission.workflowType"
-msgstr "Benyújtás típusa"
+msgstr "Beküldés típusa"
 
 msgid "submission.synopsis"
-msgstr "Szinopszis"
+msgstr "Tartalom"
 
 msgid "submission.select"
-msgstr "Benyújtás kiválasztása"
+msgstr "Beküldés kiválasztása"
 
 msgid "submission.title"
 msgstr "Könyv címe"
 
 msgid "submission.upload.selectComponent"
-msgstr "Válassza ki az elemeket"
+msgstr "Alkotóelem kiválasztása"
 
 msgid "submission.submit.title"
-msgstr "Kézirat beküldése"
+msgstr "Kiadvány beküldése"
 
 msgid "submission.submit.generalInformation"
 msgstr "Általános információ"
@@ -109,7 +110,7 @@ msgid "submission.submit.coverNote"
 msgstr "Üzenet a szerkesztőnek"
 
 msgid "submission.submit.nextSteps"
-msgstr "Következő"
+msgstr "Következő lépések"
 
 msgid "submission.submit.confirmation"
 msgstr "Megerősítés"
@@ -124,28 +125,29 @@ msgid "submission.submit.catalog"
 msgstr "Katalógus"
 
 msgid "submission.submit.prepare"
-msgstr "Előkészít"
+msgstr "Előkészítés"
 
 msgid "submission.submit.submissionFile"
-msgstr "Beadandó file"
+msgstr "Beküldés fájl"
 
 msgid "submission.submit.form.contributorRoleRequired"
 msgstr "Kérjük, válassza ki a közreműködő szerepkörét."
 
 msgid "submission.submit.form.abstractRequired"
-msgstr "Kérjük, adja meg a monográfia rövid összefoglalóját."
+msgstr "Kérjük, adja meg a kiadvány rövid összefoglalóját."
 
 msgid "submission.submit.form.titleRequired"
-msgstr "Kérjük, adja meg a monográfia címét."
+msgstr "Kérjük, adja meg a kiadvány címét."
 
 msgid "submission.submit.form.authorRequiredFields"
-msgstr "Minden szerző keresztnevét, vezetéknevét és e-mail címét meg kell adni."
+msgstr ""
+"Minden szerző keresztnevét, vezetéknevét és e-mail címét kötelező megadni."
 
 msgid "submission.submit.form.authorRequired"
 msgstr "Legalább egy szerző megadás kötelező."
 
 msgid "submission.submit.contributorRole"
-msgstr "Közreműködő szerepkör"
+msgstr "Közreműködő szerepköre"
 
 msgid "submission.submit.privacyStatement"
 msgstr "Adatvédelmi nyilatkozat"
@@ -154,10 +156,10 @@ msgid "submission.submit.form.localeRequired"
 msgstr "Válassza ki a beküldés nyelvét."
 
 msgid "submission.submit.seriesPosition.description"
-msgstr "Példa: Könyv 2, Kötet 2"
+msgstr "Példa: 2. könyv, 2. kötet"
 
 msgid "submission.submit.seriesPosition"
-msgstr "Sorozat pozíciója"
+msgstr "Sorozati pozíció"
 
 msgid "author.submit.seriesRequired"
 msgstr "Érvényes sorozat szükséges."
@@ -170,11 +172,11 @@ msgstr "Sorozat megadása (opcionális)"
 
 msgid "submission.submit.cancelSubmission"
 msgstr ""
-"A beküldést később is befejezheti, ha a szerzői honlapon az  'Aktív "
-"beküldések' menüpontot választja."
+"A beküldést később is befejezheti, ha a szerzői kezdőoldalon az  'Aktív "
+"beküldések' menüpontot választva."
 
 msgid "submission.submit.upload"
-msgstr "Feltöltés"
+msgstr "Beküldés feltöltése"
 
 msgid "submission.submit.newSubmissionSingle"
 msgstr "Új beküldés"
@@ -192,111 +194,114 @@ msgid "grid.action.editChapter"
 msgstr "Fejezet szerkesztése"
 
 msgid "grid.action.addChapter"
-msgstr "Új fejezet"
+msgstr "Új fejezet létrehozása"
 
 msgid "submission.supportingAgencies"
-msgstr "Finanszírozó szervezetek"
+msgstr "Támogató szervezetek"
 
 msgid "submission.metadata"
 msgstr "Mataadat"
 
 msgid "submission.confirmSubmit"
-msgstr "Biztos benne, hogy ezt a kéziratot be kívánja nyújtani?"
+msgstr "Biztos benne, hogy ezt a kéziratot be kívánja küldeni a kiadóhoz?"
 
 msgid "manuscript.submissions"
-msgstr "Kézirat benyújtás"
+msgstr "Kézirat beküldések"
 
 msgid "submissions.queuedReview"
-msgstr "Lektorálás alatt"
+msgstr "Szakmai lektorálás alatt"
 
 msgid "submission.round"
-msgstr "Round&nbsp;{$round}"
+msgstr "Forduló&nbsp;{$round}"
 
 msgid "submission.editorName"
 msgstr "{$editorName} (ed)"
 
 msgid "submission.queries.production"
-msgstr "Megbeszélések"
+msgstr "Előkészítéssel kapcsolatos megbeszélések"
 
 msgid "publication.version.details"
-msgstr "A {$verzió} verzió publikációs adatai"
+msgstr "A {$verzió} verzió kiadvány adatai"
 
 msgid "publication.unschedule.confirm"
-msgstr "Biztos nem akarja közzétenni?"
+msgstr ""
+"Biztos benne, hogy vissza akarja vonni az ütemezését ennek a kiadványnak?"
 
 msgid "publication.unpublish.confirm"
-msgstr "Biztos, hogy nem akarja publikálni?"
+msgstr "Biztos benne, hogy vissza akarja vonni a közzétételt?"
 
 msgid "publication.unpublish"
-msgstr "Nem publikálandó"
+msgstr "Közzététel visszavonása"
 
 msgid "submission.copyrightOther.description"
-msgstr "A közzétettkéziratok szerzői jogait a következő félre ruházza át."
+msgstr "A közzétett beküldések szerzői jogait a következő félre ruházza át."
 
 msgid "submission.copyrightHolder.description"
 msgstr ""
-"A Copyright automatikusan a {$copyright}-hez kerül hozzárendelésre a "
-"publikáláskor."
+"A szerzői jog közzétételkor automatikusan hozzárendelésre kerül:  "
+"{$copyright}."
 
 msgid "submission.license.description"
 msgstr ""
 "A licenc automatikusan a <a href='{$licenseUrl}' "
-"target='_blank'>{$licenseName}</a> címre kerül beállításra, amikor ez "
-"publikálásra kerül."
+"target='_blank'>{$licenseName}</a> -ra/-re kerül beállításra, amikor ez "
+"közzétételre kerül."
 
 msgid "publication.required.reviewStage"
 msgstr ""
-"A kéziratnak át kell esnie az olvasószerkesztésen mielőtt közzé lehet tenni."
+"A beküldött anyagnak az Olvasószerkesztés vagy Előkészítés szakaszában kell "
+"lennie a közzétételhez."
 
 msgid "publication.required.declined"
-msgstr "Az elutasított kéziratot nem lehet közzétenni."
+msgstr "Az elutasított beküldést nem lehet közzétenni."
 
 msgid "publication.publish.requirements"
 msgstr "A közzétételhez a következő követelményeknek kell megfelelni."
 
 msgid "publication.publish"
-msgstr "Publikálás"
+msgstr "Közzététel"
 
 msgid "publication.invalidSubmission"
-msgstr "Nem található a benyújtás."
+msgstr "Erre a kiadványra vonatkozó beküldést nem található."
 
 msgid "publication.event.versionUnpublished"
-msgstr "Ez a verzió törölve lett."
+msgstr "Ez a verzió törölve lett a kiadványból."
 
 msgid "publication.event.versionScheduled"
-msgstr "Új verzió készült."
+msgstr "Egy új verzió került ütemezésre a kiadványhoz."
 
 msgid "publication.event.versionPublished"
-msgstr "Újabb verzió közzétéve."
+msgstr "Egy új verzió került közzétételre."
 
 msgid "publication.event.unpublished"
-msgstr "Nincs közzétéve."
+msgstr "A beküldött anyag közzétételét visszavonták."
 
 msgid "publication.event.scheduled"
-msgstr "Közzétételre előkészítve."
+msgstr "A beküldött anyag közzétételre ütemezve."
 
 msgid "publication.event.published"
-msgstr "Közzétéve."
+msgstr "A beküldött anyag közzétételre került."
 
 msgid "publication.editDisabled"
 msgstr "Ez a verzió már nem szerkeszthető, mert közzé van téve."
 
 msgid "publication.datePublished"
-msgstr "Kiadás dátuma"
+msgstr "Közzététel dátuma"
 
 msgid "publication.copyrightYearBasis.submissionDescription"
 msgstr ""
-"A szerzői jog évét automatikusan beállítjuk, amikor ez megjelenik egy "
-"számban."
+"A szerzői jog éve automatikusan beállításra kerül a közzététel dátuma "
+"alapján."
 
 msgid "publication.copyrightYearBasis.issueDescription"
-msgstr "A szerzői jog évét automatikusan állítjuk be a megjelenést követően."
+msgstr ""
+"A szerzői jog éve automatikusan beállításra kerül a megjelenést követően."
 
 msgid "submission.publications"
-msgstr "Publikációk"
+msgstr "Kiadványok"
 
 msgid "publication.status.unscheduled"
-msgstr "Rendhagyó"
+msgstr "Nem ütemezett"
 
 msgid "submission.status.scheduled"
 msgstr "Ütemezett"
@@ -305,59 +310,59 @@ msgid "publication.status.published"
 msgstr "Közzétéve"
 
 msgid "submission.publication"
-msgstr "Publikálás"
+msgstr "Kiadvány"
 
 msgid "publication.scheduledIn"
-msgstr "Megjelenik a  <a href=\"{$issueUrl}\">{$issueName}</a> számban."
+msgstr "Megjelenik a  <a href=\"{$issueUrl}\">{$issueName}</a> kötetben."
 
 msgid "publication.publishedIn"
 msgstr "Közzétéve a  <a href=\"{$issueUrl}\">{$issueName}</a> kötetben."
 
 msgid "publication.required.issue"
-msgstr "A kiadványt egy számhoz kell rendelni, mielőtt közzétehető lenne."
+msgstr "A kiadványt egy kötethez kell rendelni, mielőtt közzétehető lenne."
 
 msgid "publication.inactiveSeries"
 msgstr "{$series} (Inaktív)"
 
 msgid "publication.invalidSeries"
-msgstr "A kiadvány sorozatát nem sikerült megtalálni."
+msgstr "A sorozatot ehhez a kiadványhoz nem sikerült megtalálni."
 
 msgid "publication.catalogEntry.success"
-msgstr "A katalógusbejegyzés részletei frissítésre kerültek."
+msgstr "A katalógustétel részletei frissítésre kerültek."
 
 msgid "publication.catalogEntry"
-msgstr "Katalógus"
+msgstr "Katalógustétel"
 
 msgid "catalog.browseTitles"
-msgstr "{$numTitles} Cím"
+msgstr "{$numTitles} cím"
 
 msgid "submission.list.viewEntry"
-msgstr "Belépés megtekintése"
+msgstr "Tétel megtekintése"
 
 msgid "submission.list.saveFeatureOrder"
 msgstr "Sorrend mentése"
 
 msgid "submission.list.orderingFeaturesSection"
 msgstr ""
-"A funkciók sorrendjének megváltoztatásához a {$title} mezőben húzza helyére "
-"őket."
+"A(z) {$title} belül húzással vagy a felfelé és lefelé gombokra kattintva "
+"megváltoztathatja a sorrendet."
 
 msgid "submission.list.orderingFeatures"
 msgstr ""
-"Húzással vagy a felfelé és lefelé gombokra koppintva megváltoztathatja a "
-"funkciók sorrendjét a kezdőlapon."
+"Húzással vagy a felfelé és lefelé gombokra kattintva megváltoztathatja a "
+"sorrendet a kezdőlapon."
 
 msgid "submission.list.orderFeatures"
-msgstr "Megrendelés"
+msgstr "Rendezési opciók"
 
 msgid "submission.list.itemsOfTotalMonographs"
-msgstr "Monográfiák száma {$count} a {$total} -bol"
+msgstr "{$count} / {$total}  kiadvány"
 
 msgid "submission.list.countMonographs"
-msgstr "{$count} monográfiák"
+msgstr "{$count} kiadvány"
 
 msgid "submission.list.monographs"
-msgstr "Monográfia"
+msgstr "Kiadványok"
 
 msgid "section.any"
 msgstr "Bármely sorozat"
@@ -371,32 +376,33 @@ msgid "submission.dependentFiles"
 msgstr "Függőben lévő fájlok"
 
 msgid "submission.upload.fileContents"
-msgstr "Beküldendő fájlok"
+msgstr "Beküldési összetevők"
 
 msgid "workflow.review.externalReview"
-msgstr "Külső lektorálás"
+msgstr "Külső szakmai lektorálás"
 
 msgid "editor.submission.decision.sendExternalReview"
-msgstr "Külső lektornak küldés"
+msgstr "Külső szakmai lektorálásra küldés"
 
 msgid "submission.submit.titleAndSummary"
-msgstr "Cím és összefoglalás"
+msgstr "Cím és összefoglaló"
 
 msgid "submission.event.publicationFormatRemoved"
-msgstr "A \"{$formatName}\" kiadványformátum törlésre került."
+msgstr "A(z) \"{$formatName}\" kiadványformátum eltávolításra került."
 
 msgid "submission.event.publicationFormatCreated"
-msgstr "Létrejött a \"{$formatName}\" kiadványformátum."
+msgstr "Létrejött a(z) \"{$formatName}\" kiadványformátum."
 
 msgid "submission.event.publicationMetadataUpdated"
 msgstr ""
-"A \"{$formatName}\" publikációs formátum metaadatai frissítésre kerültek."
+"A(z) \"{$formatName}\" kiadványformátum metaadatai frissítésre kerültek."
 
 msgid "submission.event.catalogMetadataUpdated"
-msgstr "A Katalógus metaadatai frissítve lettek."
+msgstr "A katalógus metaadatai frissítésre kerültek."
 
 msgid "submission.event.publicationFormatUnpublished"
-msgstr "A \"{$publicationFormatName}\" kiadványformátum már nincs használatban."
+msgstr ""
+"A \"{$publicationFormatName}\" kiadványformátum már nincs tovább közzétéve."
 
 msgid "submission.event.publicationFormatPublished"
 msgstr ""
@@ -409,57 +415,57 @@ msgid "submission.event.publicationFormatMadeAvailable"
 msgstr "A \"{$publicationFormatName}\" kiadványformátum elérhetővé válik."
 
 msgid "submission.event.metadataUnpublished"
-msgstr "A monográfia metaadatait nem teszik közzé."
+msgstr "A kiadvány metaadatait nincsenek tovább közzétéve."
 
 msgid "submission.event.metadataPublished"
-msgstr "A monográfia metaadatai jóvá vannak hagyva közzétételre."
+msgstr "A kiadvány metaadatai jóvá vannak hagyva közzétételre."
 
 msgid "submission.catalogEntry.publicationMetadata"
-msgstr "Publikáció formátum"
+msgstr "Kiadványformátum"
 
 msgid "submission.catalogEntry.catalogMetadata"
 msgstr "Katalógus"
 
 msgid "submission.catalogEntry.monographMetadata"
-msgstr "Monográfia"
+msgstr "Kiadvány"
 
 msgid "submission.catalogEntry.enableChapterPublicationDates"
-msgstr "Minden fejezetnek saját megjelenési dátuma lehet."
+msgstr "Minden fejezetnek lehet saját megjelenési dátuma."
 
 msgid "submission.catalogEntry.disableChapterPublicationDates"
-msgstr "Minden fejezet a monográfia megjelenési dátumát használja."
+msgstr "Minden fejezet a kiadvány megjelenési dátumát fogja használni."
 
 msgid "submission.catalogEntry.chapterPublicationDates"
-msgstr "Dátumok"
+msgstr "Közzétételi dátumok"
 
 msgid "submission.catalogEntry.viewSubmission"
-msgstr "A beadás megtekintése"
+msgstr "Beküldés megtekintése"
 
 msgid "submission.catalogEntry.isAvailable"
-msgstr "A monográfia készen áll a nyilvános katalógusba való felvételre."
+msgstr "A kiadvány készen áll a nyilvános katalógusba való felvételre."
 
 msgid "submission.catalogEntry.confirm.required"
 msgstr ""
-"Kérjük, erősítse meg, hogy a kézirat készen áll a katalógusba való "
+"Kérjük, erősítse meg, hogy a beküldött anyag készen áll a katalógusba való "
 "felvételre."
 
 msgid "submission.catalogEntry.confirm"
-msgstr "A könyv hozzáadása a publikus katalógushoz"
+msgstr "Könyv hozzáadása a nyilvános katalógushoz"
 
 msgid "submission.catalogEntry.selectionMissing"
-msgstr "Legalább egy könyvet ki kell választania."
+msgstr "Legalább egy kiadványt ki kell választania hozzáadásra a katalógushoz."
 
 msgid "submission.catalogEntry.select"
-msgstr "Válassza ki a katalógushoz adandó könyvet"
+msgstr "Válassza ki a katalógushoz adandó kiadványt"
 
 msgid "submission.catalogEntry.add"
 msgstr "A kiválasztott elem hozzáadása a katalógushoz"
 
 msgid "submission.catalogEntry.new"
-msgstr "Belépés hozzáadása"
+msgstr "Tétel hozzáadása"
 
 msgid "submission.editCatalogEntry"
-msgstr "Belépés"
+msgstr "Tétel"
 
 msgid "submission.incomplete"
 msgstr "Jóváhagyásra vár"
@@ -474,30 +480,146 @@ msgid "grid.chapters.title"
 msgstr "Fejezetek"
 
 msgid "submission.submit.noContext"
-msgstr "A szerkesztőség nem található."
+msgstr "Ennek a beküldésnek a kiadója nem található."
 
 msgid "submission.submit.userGroupDescription"
 msgstr ""
 "Ha szerkesztett kötetet küld be, akkor válassza a kötetszerkesztő szerepkört."
 
 msgid "submission.submit.userGroup"
-msgstr "A szerepköröm a benyújtásban..."
+msgstr "Szerepköröm a beküldött anyagban..."
 
 msgid "submission.submit.placement"
 msgstr "A benyújtás elhelyezése"
 
 msgid "submission.submit.checklistErrors"
 msgstr ""
-"Kérjük, olvassa el és pipálja ki a benyújtási ellenőrzőlista pontjait.  "
-"Vannak még {$itemsRemaining} kipipálatlan tételek."
+"Kérjük, olvassa el és jelölje be a beküldés ellenőrzőlistájának elemeit.  "
+"Vannak még {$itemsRemaining} elfogadás nélküli elemek."
 
 msgid "submission.submit.whatNext.description"
 msgstr ""
-"A szerkesztőséget értesítettük a beadásról, és e-mailben visszaigazolást "
-"küldtünk Önnek.  Amint a szerkesztő átnézte a kéziratot, felveszi Önnel a "
+"A szerkesztőséget értesítettük a beküldésről és e-mailben visszaigazolást "
+"küldtünk Önnek.  Amint a szerkesztő átnézte a beküldését, felveszi Önnel a "
 "kapcsolatot."
 
 msgid "publication.publish.confirmation"
 msgstr ""
-"Minden publikációs elvárásnak megfelelt. Biztos, hogy nyilvános katalógusba "
-"teszi?"
+"Minden publikációs elvárásnak megfelelt. Biztos, hogy nyilvánossá kívánja "
+"tenni ezt a katalógusbejegyzést?"
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+"{$editorName} javasolta, hogy ezt a beküldést küldjék el a külső bírálati "
+"szakaszba."
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr ""
+"Javasolja, hogy ezt a beküldést küldjék a külső szakmai lektorálási "
+"szakaszba."
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr "Javaslat külső szakmai lektorálásra küldéshez"
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr "Válassza ki a szakmai lektorálás szakaszba küldendő fájlokat."
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+"Küldjön egy e-mailt a szerzőknek, hogy tudassa velük, hogy a beadványukat "
+"továbbítják a szakmai lektorálás szakaszba. Ha lehetséges, tájékoztassák a "
+"szerzőket arról, hogy mennyi ideig tarthat a szakértői véleményezési "
+"folyamat, és mikorra várhatják, hogy a szerkesztők ismét jelentkeznek."
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+"Küldjön egy e-mailt a szerzőknek, hogy tudassa velük, hogy a beadványukat "
+"visszaküldik a szakmai lektorálás szakaszba. Adjanak magyarázatot arra, hogy "
+"miért született ez a döntés, és tájékoztassák a szerzőt arról, hogy milyen "
+"további szakmai lektorálásra kerül sor."
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr ""
+"A(z) {$title} című beküldést visszaküldték a szakmai lektorálás szakaszba."
+
+msgid "editor.submission.decision.backToReview.completed"
+msgstr "Vissza küldve szakmai lektorálásra"
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+"{$editorName} visszavonta a beküldött anyag elfogadásáról szóló döntést, és "
+"visszaküldte azt a szakmai lektorálás szakaszba."
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr ""
+"Vonja vissza a beküldött anyag elfogadásáról szóló döntést, és küldje vissza "
+"a szakmai lektorálás szakaszba."
+
+msgid "editor.submission.decision.backToReview"
+msgstr "Vissza szakmai lektorálásra"
+
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr ""
+"A {$title} című beküldést továbbküldték a külső szakmai lektorálási "
+"szakaszba."
+
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr "Külső szakmai lektorálásra továbbküldve"
+
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr ""
+"{$editorName} továbbküldte ezt a beküldést a külső szakmai lektorálási "
+"szakaszba."
+
+msgid "editor.submission.decision.promoteFiles.internalReview"
+msgstr "Válassza ki a belső szakmai lektorálási szakaszba küldendő fájlokat."
+
+msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
+msgstr ""
+"Küldjön egy e-mailt a szerzőknek, hogy tudassa velük, hogy a beküldött "
+"anyagot belső szakmai lektorálásra küldik. Ha lehetséges, tájékoztassa a "
+"szerzőket arról, hogy mennyi ideig tarthat a belső szakmai lektorálás "
+"folyamat, és mikorra várhatják, hogy a szerkesztők ismét jelentkeznek."
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgstr ""
+"A {$title} című beküldést továbbküldték a belső szakmai lektorálási "
+"szakaszba."
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr "Belső szakmai lektorálásra továbbküldve"
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr ""
+"{$editorName} továbbküldte ezt a beküldött anyagot a belső szakmai "
+"lektorálási szakaszba."
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr ""
+"Ez a beküldés készen áll a belső szakmai lektorálásra való továbbküldéshez."
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr "Belső szakmai lektorálásra küldés"
+
+msgid "chapter.pages"
+msgstr "Oldalak"
+
+msgid "submission.chapterCreated"
+msgstr " — Fejezet létrehozva"
+
+msgid "submission.withoutChapter"
+msgstr "{$name} — Ez a fejezet nélkül"
+
+msgid "chapter.volume"
+msgstr "Kötet"
+
+msgid "publication.publish.success"
+msgstr "Közzététel státusza sikeresen megváltozott."
+
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+"Ezt a fejezetet egy saját oldalon jelenítse meg, és hivatkozzon erre az "
+"oldalra a könyv tartalomjegyzékéből."
+
+msgid "publication.chapter.landingPage"
+msgstr "Fejezet oldalszám"

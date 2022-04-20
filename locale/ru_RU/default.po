@@ -1,9 +1,10 @@
+# Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-09 15:18+0000\n"
-"Last-Translator: Sergei Yukhimets <y_s_n@mail.ru>\n"
-"Language-Team: Russian <http://translate.pkp.sfu.ca/projects/omp/default/ru/>"
-"\n"
+"PO-Revision-Date: 2022-03-16 18:38+0000\n"
+"Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
+"Language-Team: Russian <http://translate.pkp.sfu.ca/projects/omp/default/"
+"ru_RU/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,10 +53,10 @@ msgid "default.groups.abbrev.manager"
 msgstr "МнИ"
 
 msgid "default.groups.plural.manager"
-msgstr "Менеджеры издания"
+msgstr "Менеджеры издательства"
 
 msgid "default.groups.name.manager"
-msgstr "Менеджер издания"
+msgstr "Менеджер издательства"
 
 msgid "default.genres.other"
 msgstr "Другое"

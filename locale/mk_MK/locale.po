@@ -1,6 +1,7 @@
+# Teodora Fildishevska <t.fildishevska@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-04-09 19:43+0000\n"
+"PO-Revision-Date: 2022-03-11 05:56+0000\n"
 "Last-Translator: Teodora Fildishevska <t.fildishevska@gmail.com>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "mk_MK/>\n"
@@ -877,9 +878,8 @@ msgid "user.authorization.seriesAssignment"
 msgstr ""
 "Се обидувате да пристапите до монографија што не е дел од вашата серија."
 
-#, fuzzy
 msgid "user.authorization.noContext"
-msgstr "Нема издание во контекст!"
+msgstr "Не беше пронајдено издание што одговара на вашето барање."
 
 msgid "user.authorization.invalidMonograph"
 msgstr "Невалидна монографија или не е побарана монографија!"
@@ -1652,3 +1652,36 @@ msgstr "ISBN код со 13 цифри, како што е 978-951-98548-9-2."
 
 msgid "grid.catalogEntry.isbn"
 msgstr "ISBN"
+
+msgid "search.results.orderDir.desc"
+msgstr "Опаѓачки"
+
+msgid "search.results.orderDir.asc"
+msgstr "Растечки"
+
+msgid "search.results.orderBy.relevance"
+msgstr "Релевантност"
+
+msgid "search.results.orderBy.popularityMonth"
+msgstr "Популарност (последен месец)"
+
+msgid "search.results.orderBy.popularityAll"
+msgstr "Популарност (цело време)"
+
+msgid "search.results.orderBy.press"
+msgstr "Наслов на изданието"
+
+msgid "search.results.orderBy.monograph"
+msgstr "Наслов на монографијата"
+
+msgid "search.results.orderBy.date"
+msgstr "Датум на издавање"
+
+msgid "search.results.orderBy.author"
+msgstr "Автор"
+
+msgid "search.results.orderBy.article"
+msgstr "Наслов на написот"
+
+msgid "grid.catalogEntry.chapters"
+msgstr "Поглавја"

@@ -1,10 +1,10 @@
-# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021, 2022.
 # Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>, 2021.
 # Kiss Jázmin <kissfjazmin@gmail.com>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-10-02 02:41+0000\n"
-"Last-Translator: Kiss Jázmin <kissfjazmin@gmail.com>\n"
+"PO-Revision-Date: 2022-04-13 12:15+0000\n"
+"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "hu_HU/>\n"
 "Language: hu_HU\n"
@@ -16,8 +16,7 @@ msgstr ""
 
 msgid "monograph.publicationFormat.formatDoesNotExist"
 msgstr ""
-"<p> A kiválasztott publikációs formátum már nem létezik ehhez a "
-"monográfiához. </p>"
+"<p> A kiválasztott kiadványformátum már nem létezik ehhez a kiadványhoz. </p>"
 
 msgid "monograph.publicationFormat.missingONIXFields"
 msgstr "Hiányzik néhány metaadatmező."
@@ -33,15 +32,12 @@ msgstr ""
 "A könyv katalógusbejegyzésében szerepeltetni kell az adott "
 "kiadványformátumra vonatkozó metaadatokat."
 
-#, fuzzy
 msgid "monograph.publicationFormat.taxType"
 msgstr "Adózás típusa"
 
-#, fuzzy
 msgid "monograph.publicationFormat.taxRate"
-msgstr "Adó mértéke / Adókulcs?"
+msgstr "Adókulcs"
 
-#, fuzzy
 msgid "monograph.publicationFormat.productRegion"
 msgstr "Termékforgalmazási régió"
 
@@ -49,7 +45,7 @@ msgid "monograph.publicationFormat.technicalProtection"
 msgstr "Digitális technikai védelem"
 
 msgid "monograph.publicationFormat.countryOfManufacture"
-msgstr "Gyártó ország"
+msgstr "Előállítás országa"
 
 msgid "monograph.publicationFormat.productWidth"
 msgstr "Szélesség"
@@ -63,7 +59,6 @@ msgstr "Vastagság"
 msgid "monograph.publicationFormat.productHeight"
 msgstr "Magasság"
 
-#, fuzzy
 msgid "monograph.publicationFormat.productFileSize.override"
 msgstr "Saját fájlméretet ad meg?"
 
@@ -79,16 +74,14 @@ msgstr "Fizikai méretek"
 msgid "monograph.publicationFormat.digitalInformation"
 msgstr "Digitális információ"
 
-#, fuzzy
 msgid "monograph.publicationFormat.returnInformation"
-msgstr "Visszaváltható mutató"
+msgstr "Visszaküldhetőség mutatója"
 
 msgid "monograph.publicationFormat.productAvailability"
 msgstr "Termék elérhetősége"
 
-#, fuzzy
 msgid "monograph.publicationFormat.discountAmount"
-msgstr "Kedvezmény százalékos aránya, ha alkalmazható"
+msgstr "Kedvezmény százaléka, ha alkalmazható"
 
 msgid "monograph.publicationFormat.priceType"
 msgstr "Ár típusa"
@@ -100,64 +93,57 @@ msgid "monograph.publicationFormat.price"
 msgstr "Ár"
 
 msgid "monograph.publicationFormat.productIdentifierType"
-msgstr "Termék azonosítása"
+msgstr "Termék azonosítás"
 
 msgid "monograph.publicationFormat.productFormDetailCode"
-msgstr "Termék részletezése (nem kötelező)"
+msgstr "Termék részletek (nem kötelező)"
 
-#, fuzzy
 msgid "monograph.publicationFormat.productComposition"
-msgstr "Termék összetétel"
+msgstr "Termék szerkezete"
 
-#, fuzzy
 msgid "monograph.publicationFormat.backMatterCount"
 msgstr "Hátoldalak"
 
-#, fuzzy
 msgid "monograph.publicationFormat.frontMatterCount"
 msgstr "Előzékoldalak"
 
 msgid "monograph.publicationFormat.pageCounts"
 msgstr "Oldalszám"
 
-#, fuzzy
 msgid "monograph.publicationFormat.imprint"
-msgstr "Könyvkiadó (?Impresszum?) (Márkanév)"
+msgstr "Impresszum (márkanév)"
 
 msgid "monograph.accessLogoOpen.altText"
-msgstr "Nyílt hozzáférés (Open Access)"
+msgstr "Nyílt hozzáférés"
 
-#, fuzzy
 msgid "monograph.task.addNote"
 msgstr "Hozzáadás a feladathoz"
 
 msgid "monograph.proofReadingDescription"
 msgstr ""
-"A tördelőszerkesztő ide tölti fel a megjelentetésre előkészített, gyártásra "
-"kész fájlokat. A <em>Hozzárendelés</em> gomb segítségével kijelölheti a "
-"szerzőket és másokat, hogy korrektúrázzák a kefelenyomatokat, és a javított "
-"fájlokat a közzététel előtt jóváhagyásra feltöltsék."
+"A tördelőszerkesztő ide tölti fel a megjelentetésre előkészített fájlok, "
+"amik készek a közzétételre. A <em>Hozzárendelés</em> gomb segítségével "
+"kijelölheti a szerzőket és másokat, hogy korrektúrázzák a kefelenyomatokat, "
+"és a javított fájlokat a közzététel előtt jóváhagyásra feltöltsék."
 
 msgid "submission.pageProofs"
 msgstr "Kefelenyomatok oldala"
 
-#, fuzzy
 msgid "monograph.type"
-msgstr "Beküldés típusa"
+msgstr "Beküldött anyag típusa"
 
 msgid "monograph.carousel.publicationFormats"
 msgstr "Formátumok:"
 
 msgid "monograph.miscellaneousDetails"
-msgstr "Részletek a monográfiáról"
+msgstr "Részletek a kiadványról"
 
 msgid "monograph.publicationFormatDetails"
-msgstr "Részletek a rendelkezésre álló publikációs formátumról: {$format}"
+msgstr "Részletek a rendelkezésre álló kiadványformátumról: {$format}"
 
 msgid "monograph.publicationFormat"
 msgstr "Formátum"
 
-#, fuzzy
 msgid "monograph.publicationFormats"
 msgstr "Kiadványformátumok"
 
@@ -165,16 +151,14 @@ msgid "monograph.languages"
 msgstr "Nyelvek (Angol, Francia, Spanyol)"
 
 msgid "monograph.audience.rangeExact"
-msgstr "Célközönség köre (pontos)"
+msgstr "Célközönség köre (pontosan)"
 
-#, fuzzy
 msgid "monograph.audience.rangeTo"
 msgstr "Célközönség köre (-ig)"
 
 msgid "monograph.audience.rangeFrom"
 msgstr "Célközönség köre (-tól)"
 
-#, fuzzy
 msgid "monograph.audience.rangeQualifier"
 msgstr "Célközönség körének választója"
 
@@ -182,7 +166,7 @@ msgid "monograph.coverImage"
 msgstr "Borítókép"
 
 msgid "monograph.audience.success"
-msgstr "A célközönség adatait frissítettük."
+msgstr "A célközönség adatai frissültek."
 
 msgid "monograph.audience"
 msgstr "Célközönség"
@@ -203,22 +187,22 @@ msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
 msgstr "A kefelenyomatot nem hagyták jóvá."
 
 msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
-msgstr "A formátum nincs benne a katalógusbejegyzésben."
+msgstr "A formátum nincs benne a katalógustételben."
 
 msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
-msgstr "A katalógusbejegyzést nem hagyták jóvá."
+msgstr "A katalógustételt nem hagyták jóvá."
 
 msgid "grid.catalogEntry.availableRepresentation.removeMessage"
 msgstr ""
 "<p>Ez a formátum <em>nem lesz elérhető az olvasók számára</em>. A letölthető "
 "fájlok vagy egyéb terjesztések többé nem jelennek meg a könyv "
-"katalógusbejegyzésében.</p>"
+"katalógustételében.</p>"
 
 msgid "grid.catalogEntry.availableRepresentation.message"
 msgstr ""
 "<p>Tegye ezt a formátumot <em>elérhetővé az olvasók számára</em>. A "
 "letölthető fájlok és minden más terjesztés megjelenik a könyv "
-"katalógusbejegyzésében.</p>"
+"katalógustételében.</p>"
 
 msgid "grid.catalogEntry.availableRepresentation.title"
 msgstr "Formátum elérhetősége"
@@ -229,7 +213,7 @@ msgstr "<p>Jelzi, hogy a formátum metaadatait nem hagyták jóvá.</p>"
 msgid "grid.catalogEntry.approvedRepresentation.message"
 msgstr ""
 "<p>Hagyja jóvá a formátum metaadatait. A metaadatokat az egyes formátumok "
-"szerkesztési paneljén lehet ellenőrizni.</p>"
+"szerkesztési felületén lehet ellenőrizni.</p>"
 
 msgid "grid.catalogEntry.approvedRepresentation.title"
 msgstr "Formátum jóváhagyása"
@@ -250,7 +234,7 @@ msgid "grid.catalogEntry.publicationFormatRequired"
 msgstr "Ki kell választani a kiadványformátumot."
 
 msgid "grid.catalogEntry.monographRequired"
-msgstr "A monográfia azonosító kötelező."
+msgstr "A kiadvány azonosító kötelező."
 
 msgid "grid.catalogEntry.isbn10.description"
 msgstr "10 számjegyű ISBN-kód, például 951-98548-9-4."
@@ -265,7 +249,7 @@ msgid "grid.catalogEntry.remoteURL"
 msgstr "Távoli tárhely tartalmának URL címe"
 
 msgid "grid.catalogEntry.remotelyHostedContent"
-msgstr "Ez a formátum egy külön oldalon lesz elérhető"
+msgstr "Ez a formátum egy külön weboldalon lesz elérhető"
 
 msgid "grid.catalogEntry.physicalFormat"
 msgstr "Fizikai formátum"
@@ -286,19 +270,19 @@ msgid "monograph.publicationFormat.openTab"
 msgstr "Nyissa meg a kiadványformátumok fület."
 
 msgid "grid.action.addSpotlight"
-msgstr "Kiemelés hozzáadása"
+msgstr "Kiemelt elem hozzáadása"
 
 msgid "grid.action.deleteSpotlight"
-msgstr "Kiemelés törlése"
+msgstr "Kiemelt elem törlése"
 
 msgid "grid.action.editSpotlight"
-msgstr "Kiemelés szerkesztése"
+msgstr "Kiemelt elem szerkesztése"
 
 msgid "grid.content.spotlights.locationRequired"
 msgstr "Kérjük, válasszon egy helyet ennek a kiemelésnek."
 
 msgid "grid.content.spotlights.titleRequired"
-msgstr "A kiemelés címe kötelező."
+msgstr "A kiemelt elem címe kötelező."
 
 msgid "grid.content.spotlights.itemRequired"
 msgstr "Egy tétel kötelező."
@@ -307,7 +291,7 @@ msgid "grid.content.spotlights.form.type.book"
 msgstr "Könyv"
 
 msgid "grid.content.spotlights.form.title"
-msgstr "Kiemelés címe"
+msgstr "Kiemelt címe"
 
 msgid "grid.content.spotlights.form.item"
 msgstr "Adja meg a kiemelni kívánt címet (automatikus kitöltés)"
@@ -325,16 +309,16 @@ msgid "spotlight.author"
 msgstr "Szerző "
 
 msgid "spotlight.title.homePage"
-msgstr "Kiemelésben"
+msgstr "Kiemeltek között"
 
 msgid "spotlight.noneExist"
 msgstr "Nincsenek aktuális kiemelések."
 
 msgid "spotlight.spotlights"
-msgstr "Kiemelések"
+msgstr "Kiemeltek"
 
 msgid "spotlight"
-msgstr "Kiemelés"
+msgstr "Kiemelt"
 
 msgid "grid.action.deleteRepresentative"
 msgstr "Képviselő törlése"
@@ -391,11 +375,9 @@ msgstr "Beszállítók"
 msgid "grid.catalogEntry.agentsCategory"
 msgstr "Ügynökök"
 
-#, fuzzy
 msgid "grid.catalogEntry.representativeType"
 msgstr "Képviselő típusa"
 
-#, fuzzy
 msgid "grid.catalogEntry.representatives"
 msgstr "Képviselők"
 
@@ -414,14 +396,13 @@ msgid "grid.catalogEntry.dateValue"
 msgstr "Dátum"
 
 msgid "grid.catalogEntry.dateFormatRequired"
-msgstr "A dátumformátumot meg kell adni."
+msgstr "A dátumformátum kötelező."
 
-#, fuzzy
 msgid "grid.catalogEntry.roleRequired"
 msgstr "Reprezentatív szerepkörre van szükség."
 
 msgid "grid.catalogEntry.publicationDates"
-msgstr "Publikációs dátumok"
+msgstr "Közzétételi dátumok"
 
 msgid "grid.catalogEntry.marketTerritory"
 msgstr "Terület"
@@ -444,16 +425,14 @@ msgstr "Országok"
 msgid "grid.catalogEntry.oneROWPerFormat"
 msgstr "Ehhez a kiadványformátumhoz már létezik egy ROW értékesítési típus."
 
-#, fuzzy
 msgid "grid.catalogEntry.salesRightsROW.tip"
 msgstr ""
-"Jelölje be ezt a négyzetet, ha ezt az Értékesítési jogot kívánja használni a "
-"formátum gyűjtőcímeként.  Az országokat és régiókat ebben az esetben nem "
+"Jelölje be ezt a négyzetet, ha ezt az értékesítési jog tételt kívánja "
+"használni a formátumhoz.  Az országokat és régiókat ebben az esetben nem "
 "kell kiválasztani."
 
-#, fuzzy
 msgid "grid.catalogEntry.salesRightsROW"
-msgstr "A világ többi része?"
+msgstr "Világ többi része?"
 
 msgid "grid.catalogEntry.salesRightsType"
 msgstr "Értékesítési jogok típusa"
@@ -474,7 +453,7 @@ msgid "grid.catalogEntry.identificationCodeType"
 msgstr "Onix kód típusa"
 
 msgid "grid.catalogEntry.productCompositionRequired"
-msgstr "A termék összetételének kódját ki kell választani."
+msgstr "A termék szerkezetének kódját ki kell választani."
 
 msgid "grid.catalogEntry.productAvailabilityRequired"
 msgstr "A termék elérhetőségének kódja kötelező."
@@ -492,11 +471,10 @@ msgid "grid.action.editFormat"
 msgstr "Formátum szerkesztése"
 
 msgid "grid.action.formatInCatalogEntry"
-msgstr "A formátum megjelenik a katalógusbejegyzésben"
+msgstr "A formátum megjelenik a katalógustételben"
 
-#, fuzzy
 msgid "grid.action.catalogEntry"
-msgstr "Katalógusbejegyzés űrlapjának megtekintése"
+msgstr "Katalógustétel űrlapjának megtekintése"
 
 msgid "grid.libraryFiles.column.files"
 msgstr "Fájlok"
@@ -517,7 +495,7 @@ msgid "common.listbuilder.itemExists"
 msgstr "Ugyanazt az elemet nem adhatja hozzá kétszer."
 
 msgid "common.listbuilder.selectValidOption"
-msgstr "Kérjük, válasszon egy érvényes opciót a listából."
+msgstr "Kérjük, válasszon egy megfelelő opciót a listából."
 
 msgid "common.listbuilder.completeForm"
 msgstr "Kérjük, töltse ki teljesen az űrlapot."
@@ -528,9 +506,8 @@ msgstr "További információk"
 msgid "common.searchCatalog"
 msgstr "Keresés a katalógusban"
 
-#, fuzzy
 msgid "common.feature"
-msgstr "Kiemelés"
+msgstr "Válogatás"
 
 msgid "common.preview"
 msgstr "Előnézet"
@@ -539,17 +516,16 @@ msgid "common.prefix"
 msgstr "Előtag"
 
 msgid "common.publications"
-msgstr "Monográfiák"
+msgstr "Kiadványok"
 
 msgid "common.publication"
-msgstr "Monográfia"
+msgstr "Kiadvány"
 
 msgid "submission.search"
 msgstr "Könyv keresés"
 
-#, fuzzy
 msgid "catalog.viewableFile.return"
-msgstr "Visszatérés a {$monographTitle} részleteinek megtekintéséhez"
+msgstr "Vissza a {$monographTitle} részleteinek megtekintéséhez"
 
 msgid "catalog.sortBy.seriesPositionDesc"
 msgstr "Sorozati pozíció (legmagasabb elöl)"
@@ -568,16 +544,15 @@ msgid "catalog.sortBy.seriesDescription"
 msgstr "Válassza ki, hogyan legyenek sorba rendezve a sorozat könyveit."
 
 msgid "catalog.sortBy"
-msgstr "Monográfiák sorrendje"
+msgstr "Kiadványok sorrendje"
 
 msgid "catalog.loginRequiredForPayment"
 msgstr ""
 "Kérjük, vegye figyelembe: Ahhoz, hogy termékeket vásárolhasson, először be "
 "kell jelentkeznie. A megvásárolni kívánt tétel kiválasztása a bejelentkezési "
-"oldalra irányítja Önt. Minden Open Access ikonnal jelölt tétel ingyenesen "
-"letölthető bejelentkezés nélkül."
+"oldalra irányítja Önt. Minden Nyílt Hozzáférés ikonnal jelölt tétel "
+"ingyenesen letölthető bejelentkezés nélkül."
 
-#, fuzzy
 msgid "catalog.aboutTheAuthor"
 msgstr "{$roleName}-ról/-ről"
 
@@ -590,16 +565,14 @@ msgstr "Szülő kategória"
 msgid "catalog.categories"
 msgstr "Kategóriák"
 
-#, fuzzy
 msgid "catalog.forthcoming"
 msgstr "Megjelenés előtti"
 
 msgid "catalog.published"
-msgstr "Megjelent"
+msgstr "Közzétett"
 
-#, fuzzy
 msgid "catalog.publicationInfo"
-msgstr "Publikációs információ"
+msgstr "Közzétételi információ"
 
 msgid "catalog.dateAdded"
 msgstr "Hozzáadva"
@@ -613,7 +586,7 @@ msgstr "Összes könyv"
 msgid "catalog.foundTitlesSearch"
 msgstr ""
 "{$number} olyan címet találtunk, amely megfelel a(z) \"{$searchQuery}\" "
-"keresésének."
+"keresésnek."
 
 msgid "catalog.foundTitleSearch"
 msgstr ""
@@ -621,14 +594,13 @@ msgstr ""
 "keresésének."
 
 msgid "catalog.featuredBooks"
-msgstr "Kiemelt könyvek"
+msgstr "Válogatott könyvek"
 
 msgid "catalog.featured"
-msgstr "Kiemelt"
+msgstr "Válogatott"
 
-#, fuzzy
 msgid "catalog.feature"
-msgstr "Kiemelés"
+msgstr "Válogatás"
 
 msgid "catalog.noTitlesSearch"
 msgstr ""
@@ -639,41 +611,41 @@ msgid "catalog.noTitlesNew"
 msgstr "Jelenleg nem állnak rendelkezésre új megjelenések."
 
 msgid "catalog.noTitles"
-msgstr "Még nem kerültek megjelentetésre címek."
+msgstr "Még nem kerültek közzétételre címek."
 
 msgid "catalog.manage.findSubmissions"
-msgstr "A katalógusba felvehető monográfiák kiválasztása"
+msgstr "A katalógusba felvehető kiadványok kiválasztása"
 
 msgid "catalog.manage.submissionsNotFound"
-msgstr "Egy vagy több beküldés nem található meg."
+msgstr "Egy vagy több beküldött anyag nem található meg."
 
 msgid "catalog.manage.noSubmissionsSelected"
-msgstr "Egyetlen beküldést sem választottak ki a katalógusba való felvételre."
+msgstr ""
+"Egyetlen beküldött anyagot sem választottak ki a katalógusba való felvételre."
 
 msgid "catalog.manage.isNotNewRelease"
 msgstr ""
-"Ez a monográfia nincs új megjelenésként megjelölve. Tegye a monográfiára az "
-"új megjelenés jelölőt."
+"Ez a kiadvány nincs új megjelenésként megjelölve. Tegye a kiadványra az új "
+"megjelenés jelölőt."
 
-#, fuzzy
 msgid "catalog.manage.nonOrderable"
 msgstr ""
-"Ez a monográfia nem rendelhető/rendezhető sorrendbe, amíg kiemeltként van "
-"megjelölve."
+"Ez a kiadvány nem rendezhető sorrendbe, amíg Válogatottként van megjelölve."
 
 msgid "catalog.manage.isNewRelease"
 msgstr ""
-"Ez a monográfia új megjelenésként van megjelölve. Vegye le a monográfiáról "
-"az új megjelenés jelölőt."
+"Ez a kiadvány új megjelenésként van megjelölve. Vegye le a monográfiáról az "
+"új megjelenés jelölőt."
 
 msgid "catalog.manage.isNotFeatured"
 msgstr ""
-"Ez a monográfia nincs kiemeltként megjelölve. Tegye a monográfiát kiemeltté."
+"Ez a kiadvány nincs Válogatottként megjelölve. Tegye a monográfiára a "
+"Válogatott jelzőt."
 
 msgid "catalog.manage.isFeatured"
 msgstr ""
-"Ez a monográfia kiemeltként van megjelölve. Vegye le a monográfiáról a "
-"kiemelt jelölőt."
+"Ez a kiadvány Válogatottként van megjelölve. Vegye le a monográfiáról a "
+"Válogatott jelölőt."
 
 msgid "catalog.manage.filter.searchByAuthorOrTitle"
 msgstr "Cím vagy szerző szerinti keresés"
@@ -708,30 +680,26 @@ msgstr "Kategória"
 msgid "catalog.manage.newReleases"
 msgstr "Új megjelenések"
 
-#, fuzzy
 msgid "catalog.manage"
 msgstr "Katalógus kezelése"
 
 msgid "series.path"
 msgstr "Elérési útvonal"
 
-#, fuzzy
 msgid "series.featured.description"
 msgstr "Ez a sorozat a fő navigációban jelenik meg"
 
 msgid "series.series"
 msgstr "Sorozatok"
 
-#, fuzzy
 msgid "submissionGroup.assignedSubEditors"
 msgstr "Hozzárendelt szerkesztők"
 
 msgid "grid.reviewAttachments.availableFiles"
 msgstr "Elérhető fájlok"
 
-#, fuzzy
 msgid "grid.reviewAttachments.add"
-msgstr "Csatolmány hozzáadása a bírálathoz"
+msgstr "Csatolmány hozzáadása a lektori véleményhez"
 
 msgid "grid.action.formatAvailable"
 msgstr "A formátum elérhetőségének be- és kikapcsolása"
@@ -752,30 +720,28 @@ msgid "grid.action.addCode"
 msgstr "Kód hozzáadása"
 
 msgid "grid.action.manageSeries"
-msgstr "Sorozatok beállítása ehhez a kiadóhoz"
+msgstr "Sorozatok megadása ehhez a kiadóhoz"
 
 msgid "grid.action.manageCategories"
-msgstr "Kategóriák beállítása ehhez a kiadóhoz"
+msgstr "Kategóriák megadása ehhez a kiadóhoz"
 
 msgid "grid.action.releaseMonograph"
 msgstr "Jelölje meg ezt a beküldést mint \"új megjelenés\""
 
 msgid "grid.action.featureMonograph"
-msgstr "Tegye kiemelté ezt a katalógus érdekességei blokkban"
+msgstr "Tegye bele a katalógus Válogatás blokkjába"
 
-#, fuzzy
 msgid "grid.action.feature"
-msgstr "Váltás a kiemelés megjelenítésre"
+msgstr "Váltás a válogatás megjelenítésére"
 
 msgid "grid.action.publicCatalog"
-msgstr "Tekintse meg ezt az elemet a katalógusban"
+msgstr "Tekintse meg az elemet a katalógusban"
 
 msgid "grid.action.newCatalogEntry"
-msgstr "Új katalógusbejegyzés"
+msgstr "Új katalógustétel"
 
-#, fuzzy
 msgid "grid.action.pageProofApproved"
-msgstr "Az oldal kefelenyomat fájljai készen állnak a publikációra"
+msgstr "Az oldal kefelenyomat fájljai készen állnak a közzétételre"
 
 msgid "grid.action.approveProof"
 msgstr ""
@@ -785,36 +751,33 @@ msgid "grid.catalogEntry.identificationCodeValue"
 msgstr "Kód értéke"
 
 msgid "manager.series.open"
-msgstr "Beadványok megnyitása"
+msgstr "Beküldések megnyitása"
 
-#, fuzzy
 msgid "manager.series.indexed"
 msgstr "Indexelve"
 
-#, fuzzy
 msgid "user.reviewerPrompt.userGroup"
-msgstr "Igen, kérje a {$userGroup} szerepet."
+msgstr "Igen, kéri a {$userGroup} szerepkört."
 
 msgid "user.reviewerPrompt"
-msgstr "Vállalná a kéziratok bírálatát ennél a kiadónál?"
+msgstr "Vállalná a kéziratok szakmai lektorálást ennél a kiadónál?"
 
 msgid "user.noRoles.regReviewerClosed"
-msgstr "Regisztráció bírálóként: A bírálói regisztráció jelenleg le van tiltva."
+msgstr ""
+"Regisztráció szakmai lektorként: A szakmai lektori regisztráció jelenleg le "
+"van tiltva."
 
 msgid "user.noRoles.regReviewer"
-msgstr "Regisztráció bírálóként"
+msgstr "Regisztráció szakmai lektorként"
 
 msgid "user.noRoles.submitMonographRegClosed"
-msgstr "Kötet benyújtása: A szerzői regisztráció jelenleg le van tiltva."
+msgstr "Kiadvány beküldése: A szerzői regisztráció jelenleg le van tiltva."
 
-#, fuzzy
 msgid "user.noRoles.submitMonograph"
 msgstr "Javaslat beküldése"
 
-#, fuzzy
 msgid "user.noRoles.selectUsersWithoutRoles"
-msgstr ""
-"A szerepkörrel nem rendelkező felhasználók bevonása/felvétele? a kiadóhoz."
+msgstr "A szerepkörrel nem rendelkező felhasználók felvétele a kiadóhoz."
 
 msgid "user.authorization.representationNotFound"
 msgstr "A kért kiadványformátum nem található."
@@ -847,11 +810,10 @@ msgid "navigation.navigationMenus.series.description"
 msgstr "Link a sorozathoz."
 
 msgid "navigation.navigationMenus.series.generic"
-msgstr "Sorozatok"
+msgstr "Sorozat"
 
-#, fuzzy
 msgid "navigation.skip.spotlights"
-msgstr "Ugrás az ajánlókhoz."
+msgstr "Ugrás a kiemeltekhez"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Link a katalógushoz."
@@ -859,13 +821,11 @@ msgstr "Link a katalógushoz."
 msgid "navigation.linksAndMedia"
 msgstr "Linkek és közösségi média"
 
-#, fuzzy
 msgid "navigation.wizard"
 msgstr "Varázsló"
 
-#, fuzzy
 msgid "navigation.published"
-msgstr "Megjelent"
+msgstr "Közzétett"
 
 msgid "navigation.newReleases"
 msgstr "Új megjelenések"
@@ -882,7 +842,6 @@ msgstr "Könyvtárosoknak"
 msgid "navigation.infoForAuthors"
 msgstr "Szerzőknek"
 
-#, fuzzy
 msgid "navigation.catalog.administration.series"
 msgstr "Sorozatok"
 
@@ -895,14 +854,12 @@ msgstr "Katalógus adminisztráció"
 msgid "navigation.catalog.administration.short"
 msgstr "Adminisztráció"
 
-#, fuzzy
 msgid "navigation.catalog.manage"
 msgstr "Kezelés"
 
 msgid "navigation.catalog.allMonographs"
-msgstr "Minden kötet"
+msgstr "Összes kiadvány"
 
-#, fuzzy
 msgid "installer.additionalLocalesInstructions"
 msgstr ""
 "Válassza ki a rendszerben támogatni kívánt további nyelveket. Ezek a nyelvek "
@@ -939,16 +896,15 @@ msgstr ""
 "Az Ön szervere jelenleg támogatja az mbstringet: "
 "<strong>{$supportsMBString}</strong>"
 
-#, fuzzy
 msgid "installer.upgradeInstructions"
 msgstr ""
 "<h4>OMP verzió  {$version}</h4> \n"
 "\n"
-"<p>Köszönjük, hogy letöltötted a Public Knowledge Project <strong>Open "
+"<p>Köszönjük, hogy letöltötte a Public Knowledge Project <strong>Open "
 "Monograph Press</strong> szoftverét. Mielőtt folytatná, kérjük, olvassa el a "
 "szoftverhez mellékelt <a href=\"{$baseUrl}/docs/README\">README</a> és <a "
 "href=\"{$baseUrl}/docs/UPGRADE\">FRISSÍTÉS</a> fájlt. A Public Knowledge "
-"Projectről és a szoftverprojektekről további információkat a <a href=\""
+"Projectről és a szoftverprojektjeiről további információkat a <a href=\""
 "http://pkp.sfu.ca/\" target=\"_blank\">PKP weboldalán</a> talál. Ha "
 "hibabejelentése vagy technikai támogatási kérdése van az Open Monograph "
 "Press-szel kapcsolatban, keresse fel a <a href=\"http://forum.pkp.sfu.ca\" "
@@ -960,17 +916,17 @@ msgstr ""
 "<p>A folytatás előtt <strong>erősen ajánlott</strong> biztonsági másolatot "
 "készíteni az adatbázisról, a fájlkönyvtárról és az OMP telepítési "
 "könyvtáráról.</p>\n"
-"<p>Ha <a href=\"http://www.php.net/features.safe-mode\" target=\"_blank\">"
-"PHP Safe Mode-ban</a> fut, kérjük, győződjön meg arról, hogy a php.ini "
-"konfigurációs fájlban a max_execution_time direktíva(ÉRTÉK?) magas "
-"határértékre van állítva. Ha ez vagy bármely más időkorlát (pl. Apache's \""
-"Timeout\" directive) elérésre kerül, és a frissítési folyamat megszakad, "
-"kézi beavatkozásra lesz szükség.</p>"
+"<p>If you are running in <a href=\"http://www.php.net/features.safe-mode\" "
+"target=\"_blank\">PHP Safe Mode</a>, please ensure that the "
+"max_execution_time directive in your php.ini configuration file is set to a "
+"high limit. If this or any other time limit (e.g. Apache's \"Timeout\" "
+"directive) is reached and the upgrade process is interrupted, manual "
+"intervention will be required.</p>"
 
 msgid "installer.preInstallationInstructions"
 msgstr ""
-"<p>1. The following files and directories (and their contents) must be made "
-"writable:</p>\n"
+"<p>1. A következő fájlokat és könyvtárakat (és azok tartalmát) írhatóvá kell "
+"tenni:</p>\n"
 "<ul>\n"
 "\t<li><tt>config.inc.php</tt> is writable (optional): {$writable_config}</li>"
 "\n"
@@ -991,10 +947,10 @@ msgstr "Telepítés előtti lépések"
 msgid "installer.installationInstructions"
 msgstr ""
 "\n"
-"<p>Köszönjük, hogy letöltötted a Public Knowledge Project <strong>Open "
+"<p>Köszönjük, hogy letöltötte a Public Knowledge Project <strong>Open "
 "Monograph Press {$version}</strong> verziójú szoftverét. Mielőtt folytatná, "
 "kérjük, olvassa el a szoftverhez mellékelt <a href=\"{$baseUrl}/docs/README\""
-">README</a> fájlt. A Public Knowledge Projectről és a szoftverprojektekről "
+">README</a> fájlt. A Public Knowledge Projectről és a szoftverprojektjeiről "
 "további információkat a <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">PKP "
 "weboldalán</a> talál. Ha hibabejelentése vagy technikai támogatási kérdése "
 "van az Open Monograph Press-szel kapcsolatban, keresse fel a <a href=\""
@@ -1006,7 +962,7 @@ msgstr ""
 
 msgid "installer.updatingInstructions"
 msgstr ""
-"Ha az OMP meglévő telepítését frissíti, <a href=\"{$upgradeUrl}\">kattintson "
+"Ha az OMP meglévő telepítését frissíti <a href=\"{$upgradeUrl}\">kattintson "
 "ide</a> a folytatáshoz."
 
 msgid "installer.installApplication"
@@ -1018,7 +974,6 @@ msgstr "OMP frissítés"
 msgid "installer.appInstallation"
 msgstr "OMP telepítés"
 
-#, fuzzy
 msgid "help.goToEditPage"
 msgstr "Új oldal megnyitása az információ szerkesztéséhez"
 
@@ -1029,9 +984,9 @@ msgid "about.aboutOMPSite"
 msgstr ""
 "Ez az oldal az Open Monograph Press  {$ompVersion} verzióját használja, "
 "amely a Public Knowledge Project által a GNU General Public License alatt "
-"kifejlesztett, támogatott és szabadon terjesztett nyílt forráskódú "
-"sajtómenedzsment és kiadói szoftver. Látogasson el a PKP weboldalára, ha <a "
-"href=\"http://pkp.sfu.ca/\">többet szeretne megtudni a szoftverről</a>. A "
+"kifejlesztett, támogatott és szabadon terjesztett nyílt forráskódú kiadói "
+"menedzsment és kiadói szoftver. Látogasson el a PKP weboldalára, ha <a href="
+"\"http://pkp.sfu.ca/\">többet szeretne megtudni a szoftverről</a>. A "
 "kiadókkal kapcsolatos kérdésekkel és a kéziratok beküldésével kapcsolatban "
 "kérjük, forduljon közvetlenül az oldalhoz."
 
@@ -1056,19 +1011,17 @@ msgstr ""
 "További információk az OMP/PKP kiadói rendszeréről, platformjáról és "
 "munkafolyamatáról."
 
-#, fuzzy
 msgid "about.pressSponsorship"
-msgstr "Kiadói szponzoráció"
+msgstr "Kiadó szponzoráció"
 
 msgid "about.openAccessPolicy"
-msgstr "Nyílt hozzáférési (Open Access) politika"
+msgstr "Nyílt hozzáférési irányelv"
 
 msgid "about.publicationFrequency"
 msgstr "Megjelenési gyakoriság"
 
-#, fuzzy
 msgid "about.reviewPolicy"
-msgstr "Szakértői bírálati folyamat"
+msgstr "Szakmai lektorálási folyamat"
 
 msgid "about.privacyStatement"
 msgstr "Adatvédelmi nyilatkozat"
@@ -1092,13 +1045,13 @@ msgid "about.onlineSubmissions.viewSubmissions"
 msgstr "függőben lévő beküldések megtekintése"
 
 msgid "about.onlineSubmissions.newSubmission"
-msgstr "Új beküldés készítése"
+msgstr "Új beküldés indítása"
 
 msgid "about.onlineSubmissions.submissionActions"
 msgstr "{$newSubmission} vagy {$viewSubmissions}."
 
 msgid "about.onlineSubmissions.registrationRequired"
-msgstr "{$login} vagy {$register} készítése a beküldéshez."
+msgstr "{$login} vagy {$register} szükséges a beküldéshez."
 
 msgid "about.onlineSubmissions.register"
 msgstr "Regisztráció"
@@ -1112,13 +1065,11 @@ msgstr "Online beküldések"
 msgid "about.submissions"
 msgstr "Beküldések"
 
-#, fuzzy
 msgid "about.seriesPolicies"
-msgstr "Sorozat- és kategória szabályzat"
+msgstr "Sorozat- és kategória irányelvek"
 
-#, fuzzy
 msgid "about.focusAndScope"
-msgstr "Fókusz és alkalmazási kör"
+msgstr "Fókusz és tudományterület"
 
 msgid "about.editorialPolicies"
 msgstr "Szerkesztési irányelvek"
@@ -1140,32 +1091,29 @@ msgstr "Nincsenek rendelkezésre álló kiadók."
 
 msgid "user.register.form.privacyConsentThisContext"
 msgstr ""
-"Igen, hozzájárulok ahhoz, hogy adataimat a kiadó <a href=\"{$privacyUrl}\" "
-"target=\"_blank\">adatvédelmi nyilatkozatának</a> megfelelően gyűjtsék és "
-"tárolják."
+"Igen, hozzájárulok ahhoz, hogy adataimat a kiadó az <a href=\"{$privacyUrl}\""
+" target=\"_blank\">adatvédelmi nyilatkozatának</a> megfelelően gyűjtse és "
+"tárolja."
 
 msgid "user.register.form.userGroupRequired"
-msgstr "Legalább egy szerepkört ki kell választani"
+msgstr "Legalább egy szerepkört ki kell választania"
 
-#, fuzzy
 msgid "user.register.reviewerInterests"
 msgstr ""
-"A bírálati érdekek/érdeklődés (témakörök és kutatási módszerek) "
-"meghatározása:"
+"A szakmai lektorálási érdeklődési körök (tárgyi területek és kutatási "
+"módszerek) meghatározása:"
 
 msgid "user.register.reviewerDescription"
-msgstr "Vállalja az oldalra beküldött kéziratok szakértői értékelését."
+msgstr "Vállalja az oldalra beküldött kéziratok szakmai lektorálását."
 
-#, fuzzy
 msgid "user.register.reviewerDescriptionNoInterests"
-msgstr "Vállalja a kiadónak küldött kéziratok szakértői értékelését."
+msgstr "Vállalja a kiadónak küldött kéziratok szakmai lektorálását."
 
-#, fuzzy
 msgid "user.register.authorDescription"
 msgstr "Küldhet be tételeket a kiadóhoz."
 
 msgid "user.register.readerDescription"
-msgstr "E -mailben értesítjük a kötet megjelenéséről."
+msgstr "E -mailben értesítjük a kiadvány közzétételéről."
 
 msgid "user.register.form.passwordLengthTooShort"
 msgstr "A megadott jelszó nem elég hosszú."
@@ -1183,13 +1131,13 @@ msgid "user.register.selectContext"
 msgstr "Válasszon ki egy kiadót a regisztrációhoz:"
 
 msgid "user.role.productionEditors"
-msgstr "Megjelentetés szerkesztő"
+msgstr "Előkészítés szerkesztők"
 
 msgid "user.role.proofreaders"
 msgstr "Korrektorok"
 
 msgid "user.role.copyeditors"
-msgstr "Lektorok"
+msgstr "Olvasószerkesztők"
 
 msgid "user.role.editors"
 msgstr "Szerkesztők"
@@ -1201,14 +1149,13 @@ msgid "user.role.managers"
 msgstr "Kiadó menedzserek"
 
 msgid "user.role.productionEditor"
-msgstr "Megjelentetés szerkesztő"
+msgstr "Előkészítés szerkesztő"
 
 msgid "user.role.proofreader"
 msgstr "Korrektor"
 
-#, fuzzy
 msgid "user.role.copyeditor"
-msgstr "Lektor"
+msgstr "Olvasószerkesztő"
 
 msgid "user.role.subEditor"
 msgstr "Sorozatszerkesztő"
@@ -1221,27 +1168,25 @@ msgstr "Kiadó menedzser"
 
 msgid "user.register.noContextReviewerInterests"
 msgstr ""
-"Ha kérte, hogy valamelyik kiadó bírálója legyen, kérjük, adja meg az "
+"Ha kérte, hogy valamelyik kiadó szakmai lektora legyen, kérjük, adja meg az "
 "érdeklődési körét."
 
-#, fuzzy
 msgid "user.register.otherContextRoles"
-msgstr "Kérje az alábbi szerepeket."
+msgstr "Kéri az alábbi szerepköröket."
 
 msgid "user.register.contextsPrompt"
 msgstr "Melyik kiadóknál szeretne regisztrálni ezen az oldalon?"
 
 msgid "user.reviewerPrompt.optin"
 msgstr ""
-"Igen, szeretném, ha megkeresnének, hogy lektoráljam a kiadóhoz benyújtott "
-"kéziratokat."
+"Igen, szeretném, ha megkeresnének, hogy szakmailag lektoráljam a kiadóhoz "
+"beküldött kéziratokat."
 
 msgid "catalog.coverImageTitle"
 msgstr "Borítókép"
 
-#, fuzzy
 msgid "user.authorization.invalidPublishedSubmission"
-msgstr "Érvénytelen megjelentetett beküldést adtak meg."
+msgstr "Érvénytelen közzétett beküldést adtak meg."
 
 msgid "user.profile.form.hideOtherContexts"
 msgstr "További kiadók elrejtése"
@@ -1255,42 +1200,36 @@ msgstr "Töltse le ezt a PDF fájlt"
 msgid "rt.metadata.pkp.dctype"
 msgstr "Könyv"
 
-#, fuzzy
 msgid "debug.notes.helpMappingLoad"
 msgstr "Reloaded XML help mapping file {$filename} in search of {$id}."
 
-#, fuzzy
 msgid "payment.directSales.monograph.description"
 msgstr ""
-"Ez a tranzakció egy kötet vagy kötetfejezet közvetlen letöltésének "
+"Ez a tranzakció egy kiadvány vagy  egy fejezet közvetlen letöltésének "
 "megvásárlására vonatkozik."
 
-#, fuzzy
 msgid "payment.directSales.monograph.name"
 msgstr "Vásárolt kötet vagy fejezet letöltése"
 
 msgid "payment.directSales.download"
 msgstr "Letöltés {$format}"
 
-#, fuzzy
 msgid "payment.directSales.purchase"
 msgstr "Vásárlás {$format} ({$amount} {$currency})"
 
 msgid "payment.directSales.validPriceRequired"
 msgstr "Érvényes számszerű árat kell megadni."
 
-#, fuzzy
 msgid "payment.directSales.price.description"
 msgstr ""
-"A fájlformátumok a kiadó honlapjáról letölthetők a nyílt hozzáférésen "
-"keresztül, az olvasók számára költségmentesen vagy közvetlen értékesítéssel ("
-"online fizetési folyamat segítségével, ahogy a Terjesztés oldal került "
-"beállításra). Ehhez a fájlhoz adja meg a hozzáférés alapját."
+"A fájlformátumok a kiadó honlapjáról elérhetővé tehetők letöltésre nyílt "
+"hozzáférésen keresztül az olvasók számára költségmentesen vagy közvetlen "
+"értékesítéssel (online fizetési folyamat segítségével, ahogy a Terjesztés "
+"oldalon került beállításra). Ezt a fájlt jelölje meg a hozzáférés alapján."
 
 msgid "payment.directSales.openAccess"
-msgstr "Nyílt hozzáférés (Open Access)"
+msgstr "Nyílt hozzáférés"
 
-#, fuzzy
 msgid "payment.directSales.notSet"
 msgstr "Nincs megadva"
 
@@ -1300,7 +1239,6 @@ msgstr "Nem elérhető"
 msgid "payment.directSales.amount"
 msgstr "{$amount} ({$currency})"
 
-#, fuzzy
 msgid "payment.directSales.directSales"
 msgstr "Közvetlen értékesítés"
 
@@ -1325,7 +1263,6 @@ msgstr "Ár"
 msgid "payment.directSales"
 msgstr "Letöltés a kiadó honlapjáról"
 
-#, fuzzy
 msgid "user.authorization.workflowStageSettingMissing"
 msgstr ""
 "Hozzáférés megtagadva! Az Ön által használt felhasználói csoport nincs "
@@ -1337,24 +1274,21 @@ msgstr ""
 "Hozzáférés megtagadva! Ön nem lett hozzárendelve ehhez a munkafolyamathoz."
 
 msgid "user.authorization.seriesAssignment"
-msgstr "Ön olyan kötethez próbál hozzáférni, amely nem része az Ön sorozatának."
+msgstr "Olyan kötethez próbál hozzáférni, amely nem része a sorozatának."
 
-#, fuzzy
-#, fuzzy
 msgid "user.authorization.noContext"
-msgstr "Nincs sajtó!"
+msgstr "Nem található a kérésnek megfelelő kiadó."
 
-#, fuzzy
 msgid "user.authorization.invalidMonograph"
-msgstr "Érvénytelen vagy nincs a kért kötet!"
+msgstr "Érvénytelen vagy nincs a kért kiadvány!"
 
 msgid "user.authorization.monographFile"
-msgstr "Öntől megtagadták a hozzáférést a megadott kötet fájljához."
+msgstr "Öntől megtagadták a hozzáférést a megadott kiadvány fájljához."
 
 msgid "user.authorization.monographReviewer"
 msgstr ""
 "Öntől megtagadták a hozzáférést, mert úgy tűnik, hogy Ön nincs hozzárendelve "
-"a kötethez bírálóként."
+"a kiadványhoz szakmai lektorként."
 
 msgid "user.authorization.monographAuthor"
 msgstr ""
@@ -1364,7 +1298,7 @@ msgstr ""
 msgid "user.authorization.invalidReviewAssignment"
 msgstr ""
 "Öntől megtagadták a hozzáférést, mert úgy tűnik, hogy Ön nem rendelkezik "
-"bírálati szerepkörrel ennél a kötetnél."
+"szakmai lektori szerepkörrel ennél a kiadványnál."
 
 msgid "notification.type.visitCatalog"
 msgstr ""
@@ -1384,7 +1318,7 @@ msgstr "Nincs beállítva fizetési mód."
 
 msgid "notification.type.formatNeedsApprovedSubmission"
 msgstr ""
-"A kötet nem kerül be a katalógusba, amíg nem kerül megjelentetésre. A könyv "
+"A kiadvány nem kerül be a katalógusba, amíg nem kerül közzétételre. A könyv "
 "katalógusba való felvételéhez kattintson a Kiadvány fülre."
 
 msgid "notification.type.approveSubmissionTitle"
@@ -1392,8 +1326,8 @@ msgstr "Jóváhagyásra vár."
 
 msgid "notification.type.approveSubmission"
 msgstr ""
-"Ez a beküldött anyag jelenleg jóváhagyásra vár a Katalógusbejegyzés "
-"eszközben, mielőtt megjelenne a nyilvános katalógusban."
+"Ez a beküldött anyag jelenleg jóváhagyásra vár a Katalógustétel fülnél, "
+"mielőtt megjelenne a nyilvános katalógusban."
 
 msgid "notification.type.editorDecisionInternalReview"
 msgstr "A belső bírálati folyamat megkezdődött."
@@ -1401,19 +1335,17 @@ msgstr "A belső bírálati folyamat megkezdődött."
 msgid "notification.type.indexRequest"
 msgstr "Felkérték, hogy hozzon létre egy indexet a(z) \"{$cím}\" számára."
 
-#, fuzzy
 msgid "notification.type.layouteditorRequest"
-msgstr "Felkérték, hogy vizsgálja felül a(z) \"{$cím}\" tördelését."
+msgstr "Felkérték a(z) \"{$cím}\" tördelőszerkesztői áttekintésére."
 
-#, fuzzy
 msgid "notification.type.copyeditorRequest"
-msgstr "Felkérték, hogy lektorálja ezt a fájlt: \"{$file}\"."
+msgstr "Felkérték a(z) \"{$file}\" olvasószerkesztői átekintésére."
 
 msgid "notification.type.editorAssignmentTask"
-msgstr "Új kötetet küldtek be, amelyhez szerkesztőt kell hozzárendelni."
+msgstr "Új kiadványt küldtek be, amelyhez szerkesztőt kell hozzárendelni."
 
 msgid "notification.type.public"
-msgstr "Nyilvános hirdetmények"
+msgstr "Nyilvános értesítések"
 
 msgid "notification.type.userComment"
 msgstr "Egy olvasó hozzászólt ehhez: \"{$cím}\"."
@@ -1421,20 +1353,17 @@ msgstr "Egy olvasó hozzászólt ehhez: \"{$cím}\"."
 msgid "notification.type.submissions"
 msgstr "Beküldési események"
 
-#, fuzzy
 msgid "notification.type.site"
 msgstr "Oldal Események"
 
-#, fuzzy
 msgid "notification.type.reviewing"
 msgstr "Események áttekintése"
 
-#, fuzzy
 msgid "notification.type.editing"
 msgstr "Események szerkesztése"
 
 msgid "notification.type.submissionSubmitted"
-msgstr "Új kötetet küldtek be \"{$title},\" címmel."
+msgstr "Új kiadványt küldtek be \"{$title},\" címmel."
 
 msgid "notification.removedSubmission"
 msgstr "Beküldés törölve."
@@ -1449,13 +1378,13 @@ msgid "notification.savedCatalogMetadata"
 msgstr "Katalógus metaadatok mentve."
 
 msgid "notification.removedSpotlight"
-msgstr "Ajánló eltávolítva."
+msgstr "Kiemelt eltávolítva."
 
 msgid "notification.editedSpotlight"
-msgstr "Ajánló szerkesztve."
+msgstr "Kiemelt szerkesztve."
 
 msgid "notification.addedSpotlight"
-msgstr "Ajánló hozzáadva."
+msgstr "Kiemelt hozzáadva."
 
 msgid "notification.removedMarket"
 msgstr "Piac eltávolítva."
@@ -1494,13 +1423,13 @@ msgid "notification.addedPublicationFormat"
 msgstr "Kiadványformátum hozzáadva."
 
 msgid "notification.removedPublicationDate"
-msgstr "Megjelenési dátuma eltávolítva."
+msgstr "Közzétételi dátum eltávolítva."
 
 msgid "notification.editedPublicationDate"
-msgstr "Megjelenési dátuma szerkesztve."
+msgstr "Közzétételi dátum szerkesztve."
 
 msgid "notification.addedPublicationDate"
-msgstr "Megjelenési dátuma hozzáadva."
+msgstr "Közzétételi dátum hozzáadva."
 
 msgid "notification.addedIdentificationCode"
 msgstr "Azonosító kód hozzáadva."
@@ -1511,9 +1440,8 @@ msgstr "Azonosító kód eltávolítva."
 msgid "notification.editedIdentificationCode"
 msgstr "Azonosító kód szerkesztve."
 
-#, fuzzy
 msgid "log.imported"
-msgstr "{$userName} feltöltötte a(z) {$submissionId} számú kötetet."
+msgstr "{$userName} feltöltötte a(z) {$submissionId} számú kiadványt."
 
 msgid "log.proofread.complete"
 msgstr ""
@@ -1523,7 +1451,7 @@ msgstr ""
 msgid "log.proofread.assign"
 msgstr ""
 "{$assignerName} hozzárendelte {$proofreaderName} korrektort a(z) "
-"{$submissionId} számú kézirat korrektúrázáshoz."
+"{$submissionId} számú kézirat korrektúrázására."
 
 msgid "log.editor.editorAssigned"
 msgstr ""
@@ -1537,28 +1465,28 @@ msgid "catalog.manage.feature.newRelease"
 msgstr "Új megjelenés"
 
 msgid "catalog.manage.notNewReleaseSuccess"
-msgstr "A kötet nincs új megjelenésként megjelölve."
+msgstr "A kiadvány nincs új megjelenésként megjelölve."
 
 msgid "catalog.manage.newReleaseSuccess"
-msgstr "A kötet új megjelenésként van megjelölve."
+msgstr "A kiadvány új megjelenésként van megjelölve."
 
 msgid "catalog.manage.notFeaturedSuccess"
-msgstr "A kötet nem kiemelt."
+msgstr "A kiadvány nem lett Válogatott."
 
 msgid "catalog.manage.featuredSuccess"
-msgstr "A kötet kiemelt."
+msgstr "A kiadvány Válogatott lett."
 
 msgid "catalog.manage.seriesFeatured"
-msgstr "Kiemelt a sorozatban"
+msgstr "Válogatás a sorozatban"
 
 msgid "catalog.manage.categoryFeatured"
-msgstr "Kiemelt a kategóriában"
+msgstr "Válogatás a kategóriában"
 
 msgid "catalog.manage.featured"
-msgstr "Kiemelt"
+msgstr "Válogatás"
 
 msgid "catalog.manage.noMonographs"
-msgstr "Nincsenek hozzárendelt kötetek."
+msgstr "Nincsenek hozzárendelt kiadványok."
 
 msgid "catalog.manage.manageCategories"
 msgstr "Kategóriák kezelése"
@@ -1566,34 +1494,31 @@ msgstr "Kategóriák kezelése"
 msgid "catalog.manage.manageSeries"
 msgstr "Sorozatok kezelése"
 
-#, fuzzy
 msgid "catalog.manage.newRelease"
 msgstr "Megjelenés"
 
-#, fuzzy
 msgid "catalog.manage.placeIntoCarousel"
-msgstr "Görgethető elem"
+msgstr "Listás megjelenítés"
 
 msgid "catalog.manage.seriesDescription"
 msgstr ""
-"Kattintson a \"Kiemelés\"-re , majd a csillagra, hogy kiválassza a sorozat "
-"kiemelt könyvét; húzással sorba rendezheti őket. A sorozatokat a "
-"szerkesztő(k) és a sorozat címe azonosítja, egy kategórián belül vagy "
+"Kattintson a \"Válogatás\"-ra , majd a csillagra, hogy kiválassza a sorozat "
+"Válogatásra szánt könyvét; húzással sorba rendezheti őket. A sorozatokat a "
+"szerkesztő(k) és a sorozat címe azonosítja egy kategórián belül vagy "
 "önállóan."
 
-#, fuzzy
 msgid "catalog.manage.categoryDescription"
 msgstr ""
-"Kattintson a \"Kiemelés\"-re, majd a csillagra, hogy kiválasszon egy kiemelt "
-"könyvet ebben a kategóriában; húzással sorba rendezheti őket."
+"Kattintson a \"Válogatás\"-ra, majd a csillagra, hogy kiválasszon egy "
+"válogatásra szánt könyvet ebben a kategóriában; húzással sorba rendezheti "
+"őket."
 
-#, fuzzy
 msgid "catalog.manage.homepageDescription"
 msgstr ""
 "A kiválasztott könyvek borítóképe a honlap tetején, görgethető elemként "
-"jelenik meg. Kattintson a \"Kiemelés\", majd a csillagra, ha egy könyvet "
+"jelenik meg. Kattintson a \"Válogatásra\", majd a csillagra, ha egy könyvet "
 "szeretne hozzáadni a listás megjelenítéshez; kattintson a felkiáltójelre, ha "
-"új kiadványként szeretné bemutatni; húzással sorba rendezheti őket."
+"új megjelenésként szeretné bemutatni; húzással sorba rendezheti őket."
 
 msgid "catalog.selectCategory"
 msgstr "Kategória kiválasztása"
@@ -1607,33 +1532,32 @@ msgstr "A {$submissionId} számú kéziratot archiválták."
 msgid "log.editor.recommendation"
 msgstr ""
 "Egy szerkesztői javaslat  ({$decision}) került rögzítésre a {$submissionId} "
-"számú kötethez {$editorName} szerkesztő által."
+"számú kiadványhoz {$editorName} szerkesztő által."
 
 msgid "log.editor.decision"
 msgstr ""
 "Egy szerkesztői döntés  ({$decision}) került rögzítésre a {$submissionId} "
-"számú kötethez {$editorName} szerkesztő által."
+"számú kiadványhoz {$editorName} szerkesztő által."
 
-#, fuzzy
 msgid "log.review.reviewUnconsidered"
 msgstr ""
-"{$editorName} a(z) {$submissionId} számú kézirat bírálatának {$round} körét  "
-"megfontolás nélküliként jelölte meg."
+"{$editorName} a(z) {$submissionId} számú kézirat szakmai "
+"lektorálásának{$round} körét figyelmen kívül hagyottként jelölte meg."
 
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} elfogadta a {$submissionId} számú kézirat {$round} körének "
-"bírálatát."
+"szakmai lektorálását."
 
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} elutasította a {$submissionId} számú kézirat {$round} "
-"körének bírálatát."
+"körének szakmai lektorálását."
 
 msgid "log.review.reviewDueDateSet"
 msgstr ""
-"A(z) {$reviewerName} által bírálandó {$submissionId} számú kézirat {$round} "
-"körének lektorálási határideje megváltozott:  {$dueDate}"
+"A(z) {$reviewerName} által lektorálandó {$submissionId} számú kézirat "
+"{$round} körének lektorálási határideje megváltozott:  {$dueDate}."
 
 msgid "installer.upgradeComplete"
 msgstr ""
@@ -1658,7 +1582,6 @@ msgstr ""
 "észrevétele van, kérjük, látogasson el a <a href=\"http://forum.pkp.sfu.ca\" "
 "target=\"_blank\">támogatási fórumra</a>.</p>"
 
-#, fuzzy
 msgid "installer.overwriteConfigFileInstructions"
 msgstr ""
 "<h4>FONTOS</h4>\n"
@@ -1677,7 +1600,6 @@ msgstr ""
 "rendszerkövetelményeknél. Az alábbi mezőkben adja meg az adatbázishoz való "
 "csatlakozáshoz használandó beállításokat."
 
-#, fuzzy
 msgid "installer.filesDirInstructions"
 msgstr ""
 "Adja meg egy meglévő könyvtár teljes elérési útvonalát, ahol a feltöltött "
@@ -1689,9 +1611,8 @@ msgstr ""
 msgid "grid.action.proofApproved"
 msgstr "Formátum korrektúrázva"
 
-#, fuzzy
 msgid "grid.action.approveProofs"
-msgstr "A kefelenyomat felület megtekintése"
+msgstr "A kiadványformátum felület megtekintése"
 
 msgid "grid.action.submissionEmail"
 msgstr "Kattintson az e-mail elolvasásához"
@@ -1712,7 +1633,7 @@ msgid "grid.action.editDate"
 msgstr "Dátum szerkesztése"
 
 msgid "grid.action.addDate"
-msgstr "Publikációs dátum hozzáadása"
+msgstr "Közzétételi dátum hozzáadása"
 
 msgid "grid.action.deleteMarket"
 msgstr "Piac törlése"
@@ -1728,3 +1649,42 @@ msgstr "Ezeknek a jogoknak a törlése"
 
 msgid "grid.action.editRights"
 msgstr "Ezeknek a jogoknak a szerkesztése"
+
+msgid "navigation.competingInterestPolicy"
+msgstr "Konkurens érdekek irányelve"
+
+msgid "catalog.viewableFile.title"
+msgstr "{$type} view of the file {$title}"
+
+msgid "search.results.orderDir.desc"
+msgstr "Csökkenő"
+
+msgid "search.results.orderDir.asc"
+msgstr "Növekvő"
+
+msgid "search.results.orderBy.relevance"
+msgstr "Relevancia"
+
+msgid "search.results.orderBy.popularityMonth"
+msgstr "Népszerűség (Múlt hónap)"
+
+msgid "search.results.orderBy.popularityAll"
+msgstr "Népszerűség (Mindenkori)"
+
+msgid "search.results.orderBy.press"
+msgstr "Kiadó címe"
+
+msgid "search.results.orderBy.monograph"
+msgstr "Kiadvány címe"
+
+msgid "search.results.orderBy.date"
+msgstr "Közzététel dátuma"
+
+msgid "search.results.orderBy.author"
+msgstr "Szerző"
+
+msgid "search.results.orderBy.article"
+msgstr "Cikk címe"
+
+msgid "grid.catalogEntry.chapters"
+msgstr "Fejezetek"

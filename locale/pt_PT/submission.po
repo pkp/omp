@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-22 20:40+0000\n"
-"PO-Revision-Date: 2022-01-27 14:25+0000\n"
+"PO-Revision-Date: 2022-03-14 23:55+0000\n"
 "Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/submission/pt_PT/>\n"
@@ -544,3 +544,85 @@ msgstr "Página do Capítulo"
 
 msgid "publication.publish.success"
 msgstr "Estado de publicação alterada com sucesso."
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr "{$editorName} enviou esta submissão para a etapa de revisão interna."
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr "Esta submissão está pronta para ser enviada para revisão interna."
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr "Enviar para Revisão Interna"
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr "A submissão, {$title}, foi enviada de volta para a etapa de revisão."
+
+msgid "editor.submission.decision.backToReview.completed"
+msgstr "Enviar de volta para Revisão"
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+"{$editorName} reverteu a decisão de aceitar esta submissão e enviou de volta "
+"para a etapa de revisão."
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr ""
+"Reverter a decisão de aceitar esta submissão e enviar de volta para a etapa "
+"de revisão."
+
+msgid "editor.submission.decision.backToReview"
+msgstr "Voltar à Revisão"
+
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr "A submissão, {$title}, foi enviada para a etapa de revisão externa."
+
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr "Enviar para Revisão Externa"
+
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr "{$editorName} enviou esta submissão para a etapa de revisão externa."
+
+msgid "editor.submission.decision.promoteFiles.internalReview"
+msgstr ""
+"Selecione os ficheiros que serão enviados para a etapa de revisão interna."
+
+msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
+msgstr ""
+"Envie um e-mail aos autores para informá-los que esta submissão seguirá para "
+"revisão interna. Se possível, forneça aos autores algumas indicações sobre o "
+"tempo que o processo de revisão interna irá demorar e quando poderão esperar "
+"uma resposta dos editores."
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgstr "A submissão, {$title}, foi enviada para a etapa de revisão interna."
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr "Enviar para Revisão Interna"
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+"{$editorName} recomendou que esta submissão seja enviada para a etapa de "
+"revisão externa."
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr ""
+"Recomendar que esta submissão seja enviada para a etapa de revisão externa."
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr "Recomendar Enviar para Revisão Externa"
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr "Selecione os ficheiros que devem ser enviados para a etapa de revisão."
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+"Envie um e-mail aos autores para informá-los que esta submissão será enviada "
+"para revisão por pares. Se possível, forneça aos autores alguma indicação do "
+"tempo que o processo de revisão por pares irá demorar e quando podem esperar "
+"nova mensagem dos editores."
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+"Enviar um e-mail aos autores para informá-los que a sua submissão será "
+"enviada de volta para a etapa de revisão. Explique o porquê de ter sido "
+"tomada esta decisão e informe o autor que revisão adicional será realizada."
