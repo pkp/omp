@@ -67,17 +67,17 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form {
 			}
 			$mail->bccAssignedSeriesEditors($this->submissionId, WORKFLOW_STAGE_ID_SUBMISSION);
 
-			$mail->assignParams(array(
-				'authorName' => $user->getFullName(),
-				'authorUsername' => $user->getUsername(),
-				'editorialContactSignature' => $context->getData('contactName') . "\n" . $context->getLocalizedName(),
+			$mail->assignParams([
+				'authorName' => htmlspecialchars($user->getFullName()),
+				'authorUsername' => htmlspecialchars($user->getUsername()),
+				'editorialContactSignature' => htmlspecialchars($context->getData('contactName')) . '<br/>' . htmlspecialchars($context->getLocalizedName()),
 				'submissionUrl' => $router->url($request, null, 'authorDashboard', 'submission', $this->submissionId),
-			));
+			]);
 
-			$authorMail->assignParams(array(
-				'submitterName' => $user->getFullName(),
-				'editorialContactSignature' => $context->getData('contactName') . "\n" . $context->getLocalizedName(),
-			));
+			$authorMail->assignParams([
+				'submitterName' => htmlspecialchars($user->getFullName()),
+				'editorialContactSignature' => htmlspecialchars($context->getData('contactName')) . "<br/>" . htmlspecialchars($context->getLocalizedName()),
+			]);
 
 			if (!$mail->send($request)) {
 				import('classes.notification.NotificationManager');
