@@ -18,6 +18,7 @@
 namespace APP\monograph;
 
 use PKP\db\DAOResultFactory;
+use PKP\plugins\HookRegistry;
 
 class RepresentativeDAO extends \PKP\db\DAO
 {

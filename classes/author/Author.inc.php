@@ -39,3 +39,8 @@ class Author extends \PKP\author\Author
         $this->setData('isVolumeEditor', $isVolumeEditor);
     }
 }
+
+if (!PKP_STRICT_MODE) {
+    // Required for import/export toolset
+    class_alias('\APP\author\Author', '\Author');
+}
