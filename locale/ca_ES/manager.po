@@ -1246,9 +1246,6 @@ msgstr "DOI:"
 msgid "doi.manager.settings.doiPrefix"
 msgstr "Prefix DOI"
 
-msgid "doi.manager.settings.doiSuffix"
-msgstr "Sufix DOI"
-
 msgid "doi.manager.settings.doiReassign"
 msgstr "Reassignar DOIs"
 
@@ -1357,19 +1354,6 @@ msgstr "Introduïu el patró de sufix DOI per a capítols."
 msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
 msgstr "Introduïu el patró de sufix DOI per a monografies."
 
-msgid "doi.manager.settings.doiSuffixCustomIdentifier"
-msgstr ""
-"Introduïu un sufix DOI propi per a cada element publicat. Trobareu un camp "
-"d'entrada DOI addicional a la pàgina de metadades de cada element."
-
-msgid "doi.manager.settings.doiSuffixDefault.description"
-msgstr ""
-"%p.%m per a monografies<br />%p.%m.c%c per a capítols<br />%p.%m.%f per a "
-"formats de publicació<br />%p.%m.%f.%s per a arxius."
-
-msgid "doi.manager.settings.doiSuffixDefault"
-msgstr "Utilitzar patrons predeterminats."
-
 msgid "doi.manager.settings.doiSuffixPattern.files"
 msgstr "per a arxius"
 
@@ -1394,19 +1378,8 @@ msgstr ""
 "del format de publicació, %s per a l'identificador de l'arxiu i %x per a un "
 "\"identificador personalitzat\"."
 
-msgid "doi.manager.settings.doiSuffix.description"
-msgstr ""
-"El sufix DOI pot tenir qualsevol forma, però ha de ser únic per a cada "
-"objecte publicat amb el mateix prefix DOI:"
-
 msgid "doi.manager.settings.doiPrefixPattern"
 msgstr "El prefix DOI és obligatori i ha de tenir la forma 10.xxxx."
-
-msgid "doi.manager.settings.doiPrefix.description"
-msgstr ""
-"El prefix DOI l'assignen les agències de registre (p. ex. <a href=\""
-"http://www.crossref.org\" target=\"_new\">CrossRef</a>) i té el format "
-"10.xxxx (p. ex. 10.1234):"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Arxius"
@@ -1425,11 +1398,9 @@ msgstr ""
 "Seleccioneu els objectes de publicació que han de tenir assignats un "
 "identificador d'objecte digital (DOI):"
 
+#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
 msgstr "Seleccioneu els objectes DOI que s'haurien d'assignar."
-
-msgid "doi.manager.settings.doiObjects"
-msgstr "Contingut de la publicació"
 
 msgid "doi.manager.settings.description"
 msgstr "Configureu el mòdul DOI per poder gestionar i utilitzar els DOI a OMP:"

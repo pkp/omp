@@ -1572,19 +1572,6 @@ msgstr "Anna DOI-suffiksin muotoilu luvuille."
 msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
 msgstr "Anna DOI-suffiksin muotoilu kirjoille."
 
-msgid "doi.manager.settings.doiSuffixCustomIdentifier"
-msgstr ""
-"Anna yksilöllinen DOI-suffiksi jokaiselle julkaistulle kohteelle. Jokaisen "
-"kohteen metatietosivulla on lisäkenttä DOI:n syöttämistä varten."
-
-msgid "doi.manager.settings.doiSuffixDefault.description"
-msgstr ""
-"%p.%m kirjoille<br />%p.%m.c%c luvuille<br />%p.%m.%f julkaisumuodoille<br "
-"/>%p.%m.%f.%s tiedostoille."
-
-msgid "doi.manager.settings.doiSuffixDefault"
-msgstr "Käytä oletusmuotoiluja."
-
 msgid "doi.manager.settings.doiSuffixPattern.files"
 msgstr "tiedostoille"
 
@@ -1609,23 +1596,8 @@ msgstr ""
 "f julkaisumuodon tunnisteelle, %s tiedoston tunnisteelle ja %x \""
 "mukautetulle tunnisteelle\"."
 
-msgid "doi.manager.settings.doiSuffix.description"
-msgstr ""
-"DOI-suffiksi voi olla missä tahansa muodossa, mutta sen täytyy olla uniikki "
-"kaikkien julkaisijan objektien joukossa, joille on määritelty sama DOI-"
-"prefiksi:"
-
-msgid "doi.manager.settings.doiSuffix"
-msgstr "DOI-suffiksi"
-
 msgid "doi.manager.settings.doiPrefixPattern"
 msgstr "DOI-prefiksi on pakollinen, ja sen on oltava muodossa 10.xxxx."
-
-msgid "doi.manager.settings.doiPrefix.description"
-msgstr ""
-"DOI-prefiksi on rekisteröinnistä vastaavien tahojen (esim. <a href=\""
-"http://www.crossref.org\" target=\"_new\">CrossRefin</a>) määrittämä ja on "
-"muodossa 10.xxxx (esim. 10.1234):"
 
 msgid "doi.manager.settings.doiPrefix"
 msgstr "DOI-prefiksi"
@@ -1645,11 +1617,9 @@ msgstr "Kirjat"
 msgid "doi.manager.settings.explainDois"
 msgstr "Valitse objektit, joille DOI-tunnisteet määritetään:"
 
+#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
 msgstr "Valitse objektit, joille DOI-tunnisteet tulee määrittää."
-
-msgid "doi.manager.settings.doiObjects"
-msgstr "Julkaisijan sisällöt"
 
 msgid "doi.manager.settings.description"
 msgstr "Määritä DOI-lisäosa, jotta voit hallinnoida ja käyttää DOI-tunnisteita:"

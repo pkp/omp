@@ -13,6 +13,15 @@ describe('DOI tests', function() {
 	const chapterId = 54;
 	const publicationFormatId = 3;
 
+	/**
+	 * Checks DOI value in should() check to match against regex
+	 * @param input
+	 */
+	function checkDoiInput(input) {
+		const val = input.val();
+		expect(val).to.match(/10.1234\/[0-9abcdefghjkmnpqrstvwxyz]{4}-[0-9abcdefghjkmnpqrstvwxyz]{2}[0-9]{2}/);
+	}
+
 	it('Check DOI Configuration', function() {
 		cy.login('dbarnes', null, 'publicknowledge');
 
@@ -35,9 +44,6 @@ describe('DOI tests', function() {
 
 		// Select automatic DOI creation time
 		cy.get('select[name="doiCreationTime"]').select('copyEditCreationTime');
-
-		// Select DOI suffix pattern type
-		cy.get('input[name="customDoiSuffixType"][value="defaultPattern"]');
 
 		// Save
 		cy.get('#doisSetup button').contains('Save').click();
@@ -69,10 +75,22 @@ describe('DOI tests', function() {
 
 		// Check DOI assignments are correct according to pattern
 		cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('.expander').click();
-		cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('td').contains('Monograph').closest('tr').find('input').should('have.value', `10.1234/jpk.${submissionId}`);
-		cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('td').contains('Chapter 1').closest('tr').find('input').should('have.value', `10.1234/jpk.${submissionId}.c${chapterId}`);
-		cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('td').contains('Format / PDF').closest('tr').find('input').should('have.value', `10.1234/jpk.${submissionId}.${publicationFormatId}`);
-		cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('td').contains('PDF / Chapter 1').closest('tr').find('input').invoke('val').should('not.be.empty');
+
+		cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('td')
+			.contains('Monograph').closest('tr').find('input')
+			.should(($input) => checkDoiInput($input));
+
+		cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('td')
+			.contains('Chapter 1').closest('tr').find('input')
+			.should(($input) => checkDoiInput($input));
+
+		cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('td')
+			.contains('Format / PDF').closest('tr').find('input')
+			.should(($input) => checkDoiInput($input));
+
+		cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('td')
+			.contains('PDF / Chapter 1').closest('tr').find('input')
+			.should(($input) => checkDoiInput($input));
 	})
 	it('Check Monograph DOI visible', function() {
 		// Select a monograph

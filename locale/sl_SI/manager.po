@@ -893,9 +893,7 @@ msgstr "Vtičnik omogoča dodeljevanje indentifikatorjev digitalnih objektov mon
 msgid "doi.manager.settings.description"
 msgstr "Nastavite vtičnik DOI, da boste lahko upravljali in uporabljali DOI in OMP:"
 
-msgid "doi.manager.settings.doiObjects"
-msgstr "Vsebina publikacije"
-
+#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
 msgstr "Izberite objekte, ki jim boste dodelili DOI."
 
@@ -914,17 +912,8 @@ msgstr "Datoteke"
 msgid "doi.manager.settings.doiPrefix"
 msgstr "Predpona DOI"
 
-msgid "doi.manager.settings.doiPrefix.description"
-msgstr "Predpono DOI dodeljujejo registracijske agencije (prim. <a href=\"http://www.crossref.org\" target=\"_new\">CrossRef</a>) v formatu 10.xxxx (prim. 10.1234):"
-
 msgid "doi.manager.settings.doiPrefixPattern"
 msgstr "Predpona DOI je obvezna in mora biti v formatu 10.xxxx."
-
-msgid "doi.manager.settings.doiSuffix"
-msgstr "Pripona DOI"
-
-msgid "doi.manager.settings.doiSuffix.description"
-msgstr "Pripona DOI je lahko v katerikoli obliki, a mora biti edina pripona izmed vseh objavljenih predmetov z isto dodeljeno predpono DOI:"
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr "Uporabljajte spodnje vzorce, da ustvarite pripone DOI. Uporabljajte %p za začetnice publikacije, %m za id monografije, %f za id formata publikacije, %s za id datoteke in %x za Spremeni identifikator."
@@ -940,15 +929,6 @@ msgstr "za formate publikacij"
 
 msgid "doi.manager.settings.doiSuffixPattern.files"
 msgstr "za datoteke"
-
-msgid "doi.manager.settings.doiSuffixDefault"
-msgstr "Uporabi privzete vzorce."
-
-msgid "doi.manager.settings.doiSuffixDefault.description"
-msgstr "%p.%m za monografije <br />%p.%m.%f za formate publikacij<br />%p.%m.%f.%s za datoteke."
-
-msgid "doi.manager.settings.doiSuffixCustomIdentifier"
-msgstr "Vnesi individualno pripono DOI za vsak objavljen element. Na vsaki metapodatkovni strani posameznega elementa boste našli dodatno polje za vnos DOI."
 
 msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
 msgstr "Vnesite vzorec za pripono DOI za monografije."

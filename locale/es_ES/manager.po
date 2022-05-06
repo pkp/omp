@@ -1562,6 +1562,7 @@ msgid "doi.manager.settings.description"
 msgstr ""
 "Configure el módulo DOI para poder gestionar y usar los elementos DOI en OMP:"
 
+#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
 msgstr "Seleccione los elementos DOI que desea asignar."
 
@@ -1571,19 +1572,8 @@ msgstr "Seleccione los objetos publicados a los que desea asignar el Identificad
 msgid "doi.manager.settings.doiPrefix"
 msgstr "Prefijo DOI"
 
-msgid "doi.manager.settings.doiPrefix.description"
-msgstr "El prefijo DOI se asigna por organizaciones de registro (p.ej. <a href=\"http://www.crossref.org\" target=\"_new\">CrossRef</a>) y se encuentra en el formato 10.xxxx (p. ej. 10.1234):"
-
 msgid "doi.manager.settings.doiPrefixPattern"
 msgstr "El prefijo del DOI es obligatorio y debe respetar la forma 10.xxxx."
-
-msgid "doi.manager.settings.doiSuffix"
-msgstr "Sufijo del DOI"
-
-msgid "doi.manager.settings.doiSuffix.description"
-msgstr ""
-"El sufijo del DOI puede tener cualquier forma, pero debe ser único para cada "
-"elemento publicado con el mismo prefijo DOI:"
 
 msgid "doi.manager.settings.doiSuffixPattern.representations"
 msgstr "para formatos de publicación"
@@ -1591,9 +1581,6 @@ msgstr "para formatos de publicación"
 msgid "doi.manager.settings.doiSuffixPattern.example"
 msgstr ""
 "Por ejemplo, press%ppub%f puede crear un DOI como 10.1234/pressESPpub100"
-
-msgid "doi.manager.settings.doiSuffixDefault"
-msgstr "Usar modelos predeterminados."
 
 msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
 msgstr "Introduzca el modelo de sufijo del DOI para los formatos de publicación."
@@ -1716,9 +1703,6 @@ msgstr "Capítulos"
 msgid "doi.manager.settings.enablePublicationDoi"
 msgstr "Monografías"
 
-msgid "doi.manager.settings.doiObjects"
-msgstr "Contenido de la publicación"
-
 msgid "doi.description"
 msgstr ""
 "Este módulo permite la asignación de identificadores de objetos digitales "
@@ -1741,13 +1725,3 @@ msgstr ""
 
 msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
 msgstr "Ingrese el patrón de sufijo DOI para monografías."
-
-msgid "doi.manager.settings.doiSuffixCustomIdentifier"
-msgstr ""
-"Ingrese un sufijo DOI individual por cada elemento publicado. Encontrará un "
-"campo de entrada DOI adicional en la página de metadatos de cada elemento."
-
-msgid "doi.manager.settings.doiSuffixDefault.description"
-msgstr ""
-"%p.%m para monografías<br />%p.%m.c%c para capítulos<br />%p.%m.%f para "
-"formatos de publicación<br />%p.%m.%f.%s para archivos."
