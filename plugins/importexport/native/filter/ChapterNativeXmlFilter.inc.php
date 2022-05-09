@@ -147,7 +147,6 @@ class ChapterNativeXmlFilter extends NativeExportFilter
         // Create the entity node
         $entityNode = $doc->createElementNS($deployment->getNamespace(), 'chapterAuthor');
         $entityNode->setAttribute('author_id', $chapterAuthor->getId());
-        $entityNode->setAttribute('primary_contact', $chapterAuthor->getData('primaryContact'));
         $entityNode->setAttribute('seq', $chapterAuthor->getData('seq'));
 
         return $entityNode;
