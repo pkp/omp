@@ -47,23 +47,6 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter
     }
 
     /**
-     * Handle an element whose parent is the submission element.
-     *
-     * @param DOMElement $n
-     * @param Submission $submission
-     */
-    public function handleChildElement($n, $submission)
-    {
-        switch ($n->tagName) {
-            case 'publication':
-                $this->parsePublication($n, $submission);
-                break;
-            default:
-                parent::handleChildElement($n, $submission);
-        }
-    }
-
-    /**
      * Get the import filter for a given element.
      *
      * @param string $elementName Name of XML element
@@ -89,20 +72,5 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter
         // group names are generated implicitly.
         $currentFilter = PKPImportExportFilter::getFilter('native-xml=>' . $importClass, $this->getDeployment());
         return $currentFilter;
-    }
-
-    /**
-     * Parse a publication format and add it to the submission.
-     *
-     * @param DOMElement $n
-     * @param Submission $submission
-     */
-    public function parsePublication($n, $submission)
-    {
-        $importFilter = $this->getImportFilter($n->tagName);
-
-        $formatDoc = new DOMDocument();
-        $formatDoc->appendChild($formatDoc->importNode($n, true));
-        return $importFilter->execute($formatDoc);
     }
 }

@@ -85,7 +85,7 @@
 			displayName="plugins.importexport.native.displayName"
 			description="plugins.importexport.native.description"
 			inputType="xml::schema(plugins/importexport/native/native.xsd)"
-			outputType="class::classes.publication.Publication" />
+			outputType="class::classes.publication.Publication[]" />
 		<filterGroup
 			symbolic="chapter=>native-xml"
 			displayName="plugins.importexport.native.displayName"
