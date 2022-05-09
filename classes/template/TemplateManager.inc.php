@@ -130,7 +130,7 @@ class TemplateManager extends PKPTemplateManager
         $menu = (array) $this->getState('menu');
 
         // Add catalog after submissions items
-        if (in_array(Role::ROLE_ID_MANAGER, $userRoles)) {
+        if (count(array_intersect([Role::ROLE_ID_MANAGER, Role::ROLE_ID_SITE_ADMIN], $userRoles))) {
             $catalogLink = [
                 'name' => __('navigation.catalog'),
                 'url' => $router->url($request, null, 'manageCatalog'),
