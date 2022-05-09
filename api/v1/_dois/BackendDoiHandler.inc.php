@@ -33,17 +33,17 @@ class BackendDoiHandler extends PKPBackendDoiHandler
                 [
                     'pattern' => $this->getEndpointPattern() . "/chapters/{chapterId:\d+}",
                     'handler' => [$this, 'editChapter'],
-                    'roles' => [Role::ROLE_ID_MANAGER],
+                    'roles' => [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SITE_ADMIN],
                 ],
                 [
                     'pattern' => $this->getEndpointPattern() . "/publicationFormats/{publicationFormatId:\d+}",
                     'handler' => [$this, 'editPublicationFormat'],
-                    'roles' => [Role::ROLE_ID_MANAGER],
+                    'roles' => [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SITE_ADMIN],
                 ],
                 [
                     'pattern' => $this->getEndpointPattern() . "/submissionFiles/{submissionFileId:\d+}",
                     'handler' => [$this, 'editSubmissionFile'],
-                    'roles' => [Role::ROLE_ID_MANAGER],
+                    'roles' => [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SITE_ADMIN],
                 ]
             ]
         ]);
