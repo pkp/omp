@@ -78,31 +78,31 @@
         <chapter seq="1" id="25">
           <title locale="en_US">Internet, openness and the future of the information society in LAC</title>
           <pages/>
-          <chapterAuthor author_id="24" primary_contact="0" seq="0"/>
+          <chapterAuthor author_id="24" seq="0"/>
           <submission_file_ref id="17" revision="1"/>
         </chapter>
         <chapter seq="2" id="26">
           <title locale="en_US">Imagining the Internet: Open, closed or in between?</title>
           <pages/>
-          <chapterAuthor author_id="25" primary_contact="0" seq="0"/>
+          <chapterAuthor author_id="25" seq="0"/>
           <submission_file_ref id="18" revision="1"/>
         </chapter>
         <chapter seq="3" id="27">
           <title locale="en_US">The internet in LAC will remain free, public and open over the next 10 years</title>
           <pages/>
-          <chapterAuthor author_id="26" primary_contact="0" seq="0"/>
+          <chapterAuthor author_id="26" seq="0"/>
           <submission_file_ref id="19" revision="1"/>
         </chapter>
         <chapter seq="4" id="28">
           <title locale="en_US">Free Internet?</title>
           <pages/>
-          <chapterAuthor author_id="27" primary_contact="0" seq="0"/>
+          <chapterAuthor author_id="27" seq="0"/>
           <submission_file_ref id="20" revision="1"/>
         </chapter>
         <chapter seq="5" id="29">
           <title locale="en_US">Risks and challenges for freedom of expression on the internet</title>
           <pages/>
-          <chapterAuthor author_id="28" primary_contact="0" seq="0"/>
+          <chapterAuthor author_id="28" seq="0"/>
           <submission_file_ref id="21" revision="1"/>
         </chapter>
       </chapters>
@@ -188,31 +188,31 @@
         <chapter seq="1" id="20">
           <title locale="en_US">Introduction</title>
           <pages/>
-          <chapterAuthor author_id="18" primary_contact="0" seq="0"/>
+          <chapterAuthor author_id="18" seq="0"/>
           <submission_file_ref id="11" revision="1"/>
         </chapter>
         <chapter seq="2" id="21">
           <title locale="en_US">Chapter 1: Interactions Affording Distance Science Education</title>
           <pages/>
-          <chapterAuthor author_id="19" primary_contact="0" seq="0"/>
+          <chapterAuthor author_id="19" seq="0"/>
           <submission_file_ref id="12" revision="1"/>
         </chapter>
         <chapter seq="3" id="22">
           <title locale="en_US">Chapter 2: Learning Science at a Distance: Instructional Dialogues and Resources</title>
           <pages/>
-          <chapterAuthor author_id="20" primary_contact="0" seq="0"/>
+          <chapterAuthor author_id="20" seq="0"/>
           <submission_file_ref id="13" revision="1"/>
         </chapter>
         <chapter seq="4" id="23">
           <title locale="en_US">Chapter 3: Leadership Strategies for Coordinating Distance Education Instructional Development Teams</title>
           <pages/>
-          <chapterAuthor author_id="21" primary_contact="0" seq="0"/>
+          <chapterAuthor author_id="21" seq="0"/>
           <submission_file_ref id="14" revision="1"/>
         </chapter>
         <chapter seq="5" id="24">
           <title locale="en_US">Chapter 4: Toward New Models of Flexible Education to Enhance Quality in Australian Higher Education</title>
           <pages/>
-          <chapterAuthor author_id="22" primary_contact="0" seq="0"/>
+          <chapterAuthor author_id="22" seq="0"/>
           <submission_file_ref id="15" revision="1"/>
         </chapter>
       </chapters>

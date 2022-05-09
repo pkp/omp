@@ -69,7 +69,6 @@
 			<element name="chapterAuthor" minOccurs="0" maxOccurs="unbounded" >
 				<complexType>
 					<attribute name="author_id" type="int" use="required" />
-					<attribute name="primary_contact" type="int" use="required" />
 					<attribute name="seq" type="int" use="required" />
 				</complexType>
 			</element>
