@@ -108,9 +108,9 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 			foreach ($keywordLocale as $keyword) $templateMgr->addHeader('dublinCoreKeyword' . $i++, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($keyword) . '"/>');
 		}
 
-		$templateMgr->addHeader('dublinCoreTitle', '<meta name="DC.Title" content="' . htmlspecialchars($publication->getData('title', $monograph->getLocale())) . '"/>');
+		$templateMgr->addHeader('dublinCoreTitle', '<meta name="DC.Title" content="' . htmlspecialchars($publication->getLocalizedFullTitle($monograph->getLocale())) . '"/>');
 		$i=0;
-		foreach ($publication->getData('title') as $locale => $title) {
+		foreach ($publication->getFullTitles() as $locale => $title) {
 			if ($locale == $monograph->getLocale()) continue;
 			$templateMgr->addHeader('dublinCoreAltTitle' . $i++, '<meta name="DC.Title.Alternative" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($title) . '"/>');
 		}
@@ -216,9 +216,9 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 				$templateMgr->addHeader('dublinCoreAltTitle' . $i++, '<meta name="DC.Title.Alternative" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($title) . '"/>');
 			}
 		} else {
-			$templateMgr->addHeader('dublinCoreTitle', '<meta name="DC.Title" content="' . htmlspecialchars($monograph->getTitle($monograph->getLocale())) . '"/>');
+			$templateMgr->addHeader('dublinCoreTitle', '<meta name="DC.Title" content="' . htmlspecialchars($monograph->getFullTitle($monograph->getLocale())) . '"/>');
 			$i=0;
-			foreach ($monograph->getTitle(null) as $locale => $title) {
+			foreach ($monograph->getFullTitle(null) as $locale => $title) {
 				if ($locale == $monograph->getLocale()) continue;
 				$templateMgr->addHeader('dublinCoreAltTitle' . $i++, '<meta name="DC.Title.Alternative" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($title) . '"/>');
 			}
