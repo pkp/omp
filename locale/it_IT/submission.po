@@ -1,11 +1,12 @@
 # Alfredo Cosco <alfredo.cosco@gmail.com>, 2021.
+# Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-22T21:00:19+00:00\n"
-"PO-Revision-Date: 2021-08-23 13:51+0000\n"
-"Last-Translator: Alfredo Cosco <alfredo.cosco@gmail.com>\n"
+"PO-Revision-Date: 2022-05-15 06:58+0000\n"
+"Last-Translator: Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "it_IT/>\n"
 "Language: it_IT\n"
@@ -531,3 +532,38 @@ msgstr "Curatela"
 
 msgid "submission.upload.selectComponent"
 msgstr "Selezionare un componente"
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr "Inviata alla revisione interna"
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr "{$editorName} ha inviato questa proposta alla revisione interna."
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr "Questa proposta è pronta per essere inviata alla revisione interna."
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr "Invia alla revisione interna"
+
+msgid "chapter.pages"
+msgstr "Pagine"
+
+msgid "submission.chapterCreated"
+msgstr " — Capitolo creato"
+
+msgid "submission.withoutChapter"
+msgstr "{$name} — Senza questo capitolo"
+
+msgid "chapter.volume"
+msgstr "Volume"
+
+msgid "publication.publish.success"
+msgstr "Stato della pubblicazione cambiato con successo."
+
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+"Mostra questo capitolo nella sua pagina e imposta un collegamento a quella "
+"pagina dal sommario del volume."
+
+msgid "publication.chapter.landingPage"
+msgstr "Pagina del capitolo"
