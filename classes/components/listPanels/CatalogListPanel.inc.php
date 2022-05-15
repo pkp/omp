@@ -73,7 +73,7 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel {
 			while (!$categoriesResult->eof()) {
 				$category = $categoriesResult->next();
 				list($categorySortBy, $categorySortDir) = explode('-', $category->getSortOption());
-				$categorySortDir = empty($categorySortDir) ? $catalogSortDir : $categorySortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
+				$categorySortDir = empty($categorySortDir) ? $catalogSortDir : ($categorySortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC');
 				$categories[] = [
 					'param' => 'categoryIds',
 					'value' => (int) $category->getId(),
@@ -95,7 +95,7 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel {
 			while (!$seriesResult->eof()) {
 				$seriesObj = $seriesResult->next();
 				list($seriesSortBy, $seriesSortDir) = explode('-', $seriesObj->getSortOption());
-				$seriesSortDir = empty($seriesSortDir) ? $catalogSortDir : $seriesSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
+				$seriesSortDir = empty($seriesSortDir) ? $catalogSortDir : ($seriesSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC');
 				$series[] = [
 					'param' => 'seriesIds',
 					'value' => (int) $seriesObj->getId(),
