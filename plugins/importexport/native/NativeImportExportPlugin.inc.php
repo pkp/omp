@@ -302,7 +302,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				}
 				$deployment = new NativeImportExportDeployment($press, $user);
 				$deployment->setImportPath(dirname($xmlFile));
-				$content = $this->importSubmissions($xmlString, $filter, $deployment);
+				$content = $this->importSubmissions($xmlString, $deployment);
 				$validationErrors = array_filter(libxml_get_errors(), function($a) {
 					return $a->level == LIBXML_ERR_ERROR || $a->level == LIBXML_ERR_FATAL;
 				});
