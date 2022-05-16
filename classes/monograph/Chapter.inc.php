@@ -62,14 +62,31 @@ class Chapter extends DataObject {
 	}
 
 	/**
+	 * Get the combined prefix, title and subtitle for all locales
+	 * @return array
+	 */
+	function getFullTitles() {
+		$allTitles = (array) $this->getData('title');
+		$return = [];
+		foreach ($allTitles as $locale => $title) {
+			if (!$title) {
+				continue;
+			}
+			$return[$locale] = $this->getLocalizedFullTitle($locale);
+		}
+		return $return;
+	}
+
+	/**
 	 * Get the chapter full title (with title and subtitle).
+	 * @param string $preferedLocale
 	 * @return string
 	 */
-	function getLocalizedFullTitle() {
+	function getLocalizedFullTitle($preferedLocale = null) {
 
-		$fullTitle = $this->getLocalizedTitle();
+		$fullTitle = $this->getLocalizedTitle($preferedLocale);
 
-		if ($subtitle = $this->getLocalizedSubtitle()) {
+		if ($subtitle = $this->getLocalizedSubtitle($preferedLocale)) {
 			$fullTitle = PKPString::concatTitleFields(array($fullTitle, $subtitle));
 		}
 
@@ -79,8 +96,8 @@ class Chapter extends DataObject {
 	/**
 	 * Get localized title of a chapter.
 	 */
-	function getLocalizedTitle() {
-		return $this->getLocalizedData('title');
+	function getLocalizedTitle($preferedLocale = null) {
+		return $this->getLocalizedData('title', $preferedLocale);
 	}
 
 	/**
@@ -104,8 +121,8 @@ class Chapter extends DataObject {
 	/**
 	 * Get localized sub title of a chapter.
 	 */
-	function getLocalizedSubtitle() {
-		return $this->getLocalizedData('subtitle');
+	function getLocalizedSubtitle($preferedLocale = null) {
+		return $this->getLocalizedData('subtitle', $preferedLocale);
 	}
 
 	/**
