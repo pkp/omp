@@ -209,16 +209,16 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 
 
 		if ($chapter) {
-			$templateMgr->addHeader('dublinCoreTitle', '<meta name="DC.Title" content="' . htmlspecialchars($chapter->getTitle($monograph->getLocale())) . '"/>');
+			$templateMgr->addHeader('dublinCoreTitle', '<meta name="DC.Title" content="' . htmlspecialchars($chapter->getLocalizedFullTitle($monograph->getLocale())) . '"/>');
 			$i=0;
-			foreach ($chapter->getTitle(null) as $locale => $title) {
+			foreach ($chapter->getFullTitles() as $locale => $title) {
 				if ($locale == $monograph->getLocale()) continue;
 				$templateMgr->addHeader('dublinCoreAltTitle' . $i++, '<meta name="DC.Title.Alternative" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($title) . '"/>');
 			}
 		} else {
 			$templateMgr->addHeader('dublinCoreTitle', '<meta name="DC.Title" content="' . htmlspecialchars($monograph->getFullTitle($monograph->getLocale())) . '"/>');
 			$i=0;
-			foreach ($monograph->getFullTitle(null) as $locale => $title) {
+			foreach ($monograph->getFullTitles() as $locale => $title) {
 				if ($locale == $monograph->getLocale()) continue;
 				$templateMgr->addHeader('dublinCoreAltTitle' . $i++, '<meta name="DC.Title.Alternative" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($title) . '"/>');
 			}
