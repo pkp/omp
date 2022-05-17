@@ -243,6 +243,11 @@
 				</div>
 			{/if}
 
+			{* How to cite *}
+			{if $citation}
+				{include file="../plugins/generic/citationStyleLanguage/templates/citationblock.tpl"}
+			{/if}
+
 			{* Series *}
 			{if $series}
 				<div class="item series">
