@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-25 07:56+0000\n"
+"PO-Revision-Date: 2022-05-15 06:58+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "uk_UA/>\n"
@@ -1675,3 +1675,6 @@ msgstr ""
 "тематики або тем, які хтось запропонував, зазвичай один або два викладачі, а "
 "потім курирує. Відвідувачі зможуть шукати й переглядати е-видавництво за "
 "серіями."
+
+msgid "emailTemplate.variable.context.contextSignature"
+msgstr "Підпис електронних листів е-видавництва для автоматизованих листів"

@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-25 07:56+0000\n"
+"PO-Revision-Date: 2022-05-15 06:58+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/default/"
 "uk_UA/>\n"
@@ -85,7 +85,7 @@ msgstr ""
 "своїх електронних колекцій. Додатково в цій видавничій системі передбачено "
 "засоби інтеграції з бібліотечним програмним забезпеченням, що дозволяє "
 "бібліотекам забезпечувати архівне збереження електронного контенту "
-"видавництв та/або безпосередньо брати участь у видавничому процесі  (більш "
+"видавництв та/або безпосередньо брати участь у видавничому процесі (більш "
 "детально про ці можливості див. на сайті <a href=\"http://pkp.sfu.ca/omp\">"
 "Open Monograph Press</a>)."
 
