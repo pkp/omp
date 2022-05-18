@@ -1350,6 +1350,7 @@ msgstr ""
 "Por favor, configure o plugin DOI para ser capaz de gerir e utilizar DOIs no "
 "OMP:"
 
+#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
 msgstr "Por favor, escolha os objetos aos quais o DOI deve ser atribuído."
 
@@ -1359,29 +1360,14 @@ msgstr "Por favor, selecione os objetos publicados que terão Identificadores Di
 msgid "doi.manager.settings.doiPrefix"
 msgstr "Prefixo DOI"
 
-msgid "doi.manager.settings.doiPrefix.description"
-msgstr ""
-"O prefixo DOI é atribuído por agências de registro (por exemplo <a href=\""
-"http://www.crossref.org\" target=\"_new\"> CrossRef </a>) e está no formato "
-"10.xxxx (por exemplo, 10.1234):"
-
 msgid "doi.manager.settings.doiPrefixPattern"
 msgstr "O prefixo DOI é obrigatório e deve ser na forma 10.xxxx."
-
-msgid "doi.manager.settings.doiSuffix"
-msgstr "Sufixo DOI"
-
-msgid "doi.manager.settings.doiSuffix.description"
-msgstr "Um sufixo DOI pode assumir qualquer forma, mas deve ser único entre todos os objetos publicados com o mesmo prefixo DOI atribuído:"
 
 msgid "doi.manager.settings.doiSuffixPattern.representations"
 msgstr "para formatos de publicação"
 
 msgid "doi.manager.settings.doiSuffixPattern.example"
 msgstr "Por exemplo, editora%ppub%f poderia criar um DOI como 10.1234/editoraESPpub100"
-
-msgid "doi.manager.settings.doiSuffixDefault"
-msgstr "Usar padrões predefinidos."
 
 msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
 msgstr "Por favor entre o padrão de sufixo DOI para formatos de publicação."
@@ -1400,11 +1386,6 @@ msgstr "formato de publicação"
 
 msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
 msgstr "O sufixo DOI já está em uso por outro item publicado. Por favor insira um sufixo DOI exclusivo para cada item."
-
-msgid "doi.manager.settings.doiSuffixDefault.description"
-msgstr ""
-"%p.%m para monografias<br />%p.%m.c%c para capítulos<br />%p.%m.%f para "
-"formatos de publicação<br />%p.%m.%f.%s para arquivos."
 
 msgid "doi.manager.settings.doiSuffixPattern.files"
 msgstr "para arquivos"
@@ -1434,18 +1415,10 @@ msgstr "Capítulos"
 msgid "doi.manager.settings.enablePublicationDoi"
 msgstr "Monografias"
 
-msgid "doi.manager.settings.doiObjects"
-msgstr "Conteúdo da editora"
-
 msgid "doi.description"
 msgstr ""
 "Este plugin permite a atribuição dos Identificadores de Objetos Digitais "
 "(DOIs) a monografias, capítulos, formatos de publicação e arquivos no OMP."
-
-msgid "doi.manager.settings.doiSuffixCustomIdentifier"
-msgstr ""
-"Digite um sufixo DOI individual para cada item publicado. Você encontrará um "
-"campo de entrada DOI adicional na página de metadados de cada item."
 
 msgid "doi.editor.assignDoi"
 msgstr "Atribua o DOI {$pubId} a este {$pubObjectType}"

@@ -385,7 +385,7 @@ msgid "manager.setup.displayNewReleases.label"
 msgstr "New Releases"
 
 msgid "manager.setup.enableDois.description"
-msgstr "Assign Digital Object Identifiers (DOIs) to monographs, chapters, publication formats, and files."
+msgstr "Allow Digital Object Identifiers (DOIs) to be assigned to work published by this press."
 
 msgid "doi.manager.settings.doiObjectsRequired"
 msgstr "Select which items will be assigned a DOI. Most presses assign DOIs to monographs/chapters, but you may wish to assign DOIs to all of the published items."
@@ -394,7 +394,7 @@ msgid "doi.manager.settings.doiSuffixLegacy"
 msgstr "Use default patterns.<br />%p.%m for monographs<br />%p.%m.c%c for chapters<br />%p.%m.%f for publication formats<br />%p.%m.%f.%s for files."
 
 msgid "doi.manager.settings.doiCreationTime.copyedit"
-msgstr "At the copy-editing stage"
+msgstr "Upon reaching the copyediting stage"
 
 msgid "manager.dois.formatIdentifier.file"
 msgstr "Format / {$format}"
@@ -1172,11 +1172,8 @@ msgstr "DOI:"
 msgid "doi.manager.settings.description"
 msgstr "Please configure the DOI plug-in to be able to manage and use DOIs in OMP:"
 
-msgid "doi.manager.settings.doiObjects"
-msgstr "Press Content"
-
 msgid "doi.manager.settings.doiObjectsRequired"
-msgstr "Please choose the objects DOIs should be assigned to."
+msgstr "Select the types of work published by this press that should be assigned DOIs."
 
 msgid "doi.manager.settings.explainDois"
 msgstr "Please select the publishing objects that will have Digital Object Identifiers (DOI) assigned:"
@@ -1196,20 +1193,18 @@ msgstr "Files"
 msgid "doi.manager.settings.doiPrefix"
 msgstr "DOI Prefix"
 
-msgid "doi.manager.settings.doiPrefix.description"
-msgstr "The DOI Prefix is assigned by registration agencies (e.g. <a href=\"http://www.crossref.org\" target=\"_new\">CrossRef</a>) and is in the format 10.xxxx (e.g. 10.1234):"
-
 msgid "doi.manager.settings.doiPrefixPattern"
 msgstr "The DOI prefix is mandatory and must be in the form 10.xxxx."
 
-msgid "doi.manager.settings.doiSuffix"
-msgstr "DOI Suffix"
-
-msgid "doi.manager.settings.doiSuffix.description"
-msgstr "A DOI suffix can take any form, but must be unique among all publishing objects with the same DOI prefix assigned:"
-
 msgid "doi.manager.settings.doiSuffixPattern"
-msgstr "Use the pattern entered below to generate DOI suffixes. Use %p for press initials, %m for the monograph id, %c for chapter id, %f for the publication format id, %s for the file id and %x for \"Custom Identifier\"."
+msgstr "Enter a custom suffix pattern for each publication type. The custom suffix pattern may use the following symbols to generate the suffix:<br><br> "
+"<code>%p</code> Press Initials<br> "
+"<code>%m</code> Monograph ID<br> "
+"<code>%c</code> Chapter ID<br> "
+"<code>%f</code> Publication Format ID<br> "
+"<code>%s</code> File ID<br> "
+"<code>%x</code> Custom Identifier<br><br> "
+"Beware that custom suffix patterns often lead to problems generating and depositing DOIs. When using a custom suffix pattern, carefully test that editors can generate DOIs and deposit them to a registration agency like Crossref. "
 
 msgid "doi.manager.settings.doiSuffixPattern.example"
 msgstr "For example, press%ppub%r could create a DOI such as 10.1234/pressESPpub100"
@@ -1225,15 +1220,6 @@ msgstr "for publication formats"
 
 msgid "doi.manager.settings.doiSuffixPattern.files"
 msgstr "for files"
-
-msgid "doi.manager.settings.doiSuffixDefault"
-msgstr "Use default patterns."
-
-msgid "doi.manager.settings.doiSuffixDefault.description"
-msgstr "%p.%m for monographs<br />%p.%m.c%c for chapters<br />%p.%m.%f for publication formats<br />%p.%m.%f.%s for files."
-
-msgid "doi.manager.settings.doiSuffixCustomIdentifier"
-msgstr "Enter an individual DOI suffix for each published item. You'll find an additional DOI input field on each item's meta-data page."
 
 msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
 msgstr "Please enter the DOI suffix pattern for monographs."

@@ -1468,19 +1468,6 @@ msgstr "Proszę wprowadź wzór sufiksu DOI dla rozdziałów."
 msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
 msgstr "Wprowadź wzór sufiksu DOI dla monografii."
 
-msgid "doi.manager.settings.doiSuffixCustomIdentifier"
-msgstr ""
-"Wprowadź indywidualny sufiks DOI dla każdej publikowanej pozycji. Znajdziesz "
-"dodatkowy pole wejściowe DOI dla każdej pozycji na jego stronie z metadanymi."
-
-msgid "doi.manager.settings.doiSuffixDefault.description"
-msgstr ""
-"%p.%m dla monografii <br />%p.%m.c%c for chapters<br />%p.%m.%f dla formatów "
-"publikacji<br />%p.%m.%f.%s dla plików."
-
-msgid "doi.manager.settings.doiSuffixDefault"
-msgstr "Zastosuj domyślne wzory."
-
 msgid "doi.manager.settings.doiSuffixPattern.files"
 msgstr "Dla plików"
 
@@ -1504,22 +1491,8 @@ msgstr ""
 "formatu publikacji, %s dla ID pliku i %x  dla niestandardowego "
 "identyfikatora."
 
-msgid "doi.manager.settings.doiSuffix.description"
-msgstr ""
-"Sufiks DOI może mieć każdą formę, ale musi być unikatowy wśród publikowanych "
-"pozycji, które mają przypisany ten sam prefiks DOI:"
-
-msgid "doi.manager.settings.doiSuffix"
-msgstr "Sufiks DOI"
-
 msgid "doi.manager.settings.doiPrefixPattern"
 msgstr "Prefiks DOI jest obowiązkowy i musi mieć format 10.xxxx."
-
-msgid "doi.manager.settings.doiPrefix.description"
-msgstr ""
-"Prefiks DOI jest przepisany do zarejestrowanych agencji (np.<a href=\""
-"http://www.crossref.org\" target=\"_new\">CrossRef</a>) i jest w formacie "
-"10.xxxx (e.g. 10.1234):"
 
 msgid "doi.manager.settings.doiPrefix"
 msgstr "Prefiks DOI"
@@ -1539,11 +1512,9 @@ msgstr "Monografie"
 msgid "doi.manager.settings.explainDois"
 msgstr "Wybierz publikowane przedmioty, które będą miały przypisany DOI:"
 
+#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
 msgstr "Proszę wybierz przedmioty, do których chcesz przypisać DOI."
-
-msgid "doi.manager.settings.doiObjects"
-msgstr "Zawartość wydania"
 
 msgid "doi.manager.settings.description"
 msgstr ""

@@ -1512,19 +1512,6 @@ msgstr "Insira o padrón do sufixo DOI para os capítulos."
 msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
 msgstr "Insira o padrón do sufixo DOI para as monografías."
 
-msgid "doi.manager.settings.doiSuffixCustomIdentifier"
-msgstr ""
-"Introduza un sufixo DOI individual para cada elemento publicado. Atoparás un "
-"campo de entrada DOI adicional na páxina de metadatos de cada elemento."
-
-msgid "doi.manager.settings.doiSuffixDefault.description"
-msgstr ""
-"%p.%m para monografías<br />%p.%m.c%c para capítulos<br />%p.%m.%f para "
-"formatos de publicación<br />%p.%m.%f.%s para arquivos."
-
-msgid "doi.manager.settings.doiSuffixDefault"
-msgstr "Usar modelos predeterminados."
-
 msgid "doi.manager.settings.doiSuffixPattern.files"
 msgstr "para arquivos"
 
@@ -1548,22 +1535,8 @@ msgstr ""
 "capítulo, %f para o ID do formato de publicación, %s para o ID do arquivo e %"
 "x para \"Identificador personalizado\"."
 
-msgid "doi.manager.settings.doiSuffix.description"
-msgstr ""
-"Un sufixo DOI pode adoptar calquera forma, pero debe ser único entre todos "
-"os obxectos publicados co mesmo prefixo DOI:"
-
-msgid "doi.manager.settings.doiSuffix"
-msgstr "Sufixo do DOI"
-
 msgid "doi.manager.settings.doiPrefixPattern"
 msgstr "O prefixo DOI é obrigatorio e debe ter a forma 10.xxxx."
-
-msgid "doi.manager.settings.doiPrefix.description"
-msgstr ""
-"O prefixo DOI é asignado polas axencias de rexistro (por exemplo, <a href=\""
-"http://www.crossref.org\" target=\"_new\">CrossRef</a>) e ten o formato "
-"10.xxxx (por exemplo, 10.1234):"
 
 msgid "doi.manager.settings.doiPrefix"
 msgstr "Prefixo DOI"
@@ -1583,11 +1556,9 @@ msgstr "Monografías"
 msgid "doi.manager.settings.explainDois"
 msgstr "Seleccione os obxectos publicados que terán asignado DOI:"
 
+#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
 msgstr "Escolla os elementos aos que se deben asignar o DOI."
-
-msgid "doi.manager.settings.doiObjects"
-msgstr "Contido da publicación"
 
 msgid "doi.manager.settings.description"
 msgstr "Configure o complemento DOI para poder xestionar e usar os DOIs en OMP:"
