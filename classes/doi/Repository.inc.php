@@ -45,7 +45,7 @@ class Repository extends \PKP\doi\Repository
     /**
      * Create a DOI for the given publication
      */
-    public function mintPublicationDoi(Publication $publication, Submission $submission, Context $context): ?int
+    public function mintPublicationDoi(Publication $publication, Submission $submission, Context $context): int
     {
         if ($context->getData(Context::SETTING_DOI_SUFFIX_TYPE) === Repo::doi()::SUFFIX_DEFAULT) {
             $doiSuffix = $this->generateDefaultSuffix();
@@ -59,7 +59,7 @@ class Repository extends \PKP\doi\Repository
     /**
      * Create a DOI for the given chapter
      */
-    public function mintChapterDoi(Chapter $chapter, Submission $submission, Context $context): ?int
+    public function mintChapterDoi(Chapter $chapter, Submission $submission, Context $context): int
     {
         if ($context->getData(Context::SETTING_DOI_SUFFIX_TYPE) === Repo::doi()::SUFFIX_DEFAULT) {
             $doiSuffix = $this->generateDefaultSuffix();
@@ -73,7 +73,7 @@ class Repository extends \PKP\doi\Repository
     /**
      * Create a DOI for the given publication format
      */
-    public function mintPublicationFormatDoi(PublicationFormat $publicationFormat, Submission $submission, Context $context): ?int
+    public function mintPublicationFormatDoi(PublicationFormat $publicationFormat, Submission $submission, Context $context): int
     {
         if ($context->getData(Context::SETTING_DOI_SUFFIX_TYPE) === Repo::doi()::SUFFIX_DEFAULT) {
             $doiSuffix = $this->generateDefaultSuffix();
@@ -87,7 +87,7 @@ class Repository extends \PKP\doi\Repository
     /**
      * Create a DOI for the given submission file
      */
-    public function mintSubmissionFileDoi(SubmissionFile $submissionFile, Submission $submission, Context $context): ?int
+    public function mintSubmissionFileDoi(SubmissionFile $submissionFile, Submission $submission, Context $context): int
     {
         if ($context->getData(Context::SETTING_DOI_SUFFIX_TYPE) === Repo::doi()::SUFFIX_DEFAULT) {
             $doiSuffix = $this->generateDefaultSuffix();
