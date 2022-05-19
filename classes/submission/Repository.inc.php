@@ -21,6 +21,7 @@ use APP\press\Press;
 use APP\press\PressDAO;
 use APP\publicationFormat\PublicationFormat;
 use APP\publicationFormat\PublicationFormatDAO;
+use PKP\doi\exceptions\DoiCreationException;
 use PKP\submissionFile\SubmissionFile;
 
 class Repository extends \PKP\submission\Repository
@@ -46,7 +47,7 @@ class Repository extends \PKP\submission\Repository
      * 2) it does not already exist.
      *
      */
-    public function createDois(Submission $submission): void
+    public function createDois(Submission $submission): array
     {
         /** @var PressDAO $contextDao */
         $contextDao = Application::getContextDAO();
@@ -55,12 +56,18 @@ class Repository extends \PKP\submission\Repository
         $context = $contextDao->getById($submission->getData('contextId'));
 
         $publication = $submission->getCurrentPublication();
+
+        $doiCreationFailures = [];
+
         if ($context->isDoiTypeEnabled(Repo::doi()::TYPE_PUBLICATION) && empty($publication->getData('doiId'))) {
-            $doiId = Repo::doi()->mintPublicationDoi($publication, $submission, $context);
-            if ($doiId != null) {
+            try {
+                $doiId = Repo::doi()->mintPublicationDoi($publication, $submission, $context);
                 Repo::publication()->edit($publication, ['doiId' => $doiId]);
+            } catch (DoiCreationException $exception) {
+                $doiCreationFailures[] = $exception;
             }
         }
+
         // Chapters
         /** @var Chapter[] $chapters */
         $chapters = $publication->getData('chapters');
@@ -68,14 +75,14 @@ class Repository extends \PKP\submission\Repository
             /** @var ChapterDAO $chapterDao */
             $chapterDao = \DAORegistry::getDAO('ChapterDAO');
             foreach ($chapters as $chapter) {
-                if (!empty($chapter->getData('doiId'))) {
-                    continue;
-                }
-
-                $doiId = Repo::doi()->mintChapterDoi($chapter, $submission, $context);
-                if ($doiId != null) {
-                    $chapter->setData('doiId', $doiId);
-                    $chapterDao->updateObject($chapter);
+                if (empty($chapter->getData('doiId'))) {
+                    try {
+                        $doiId = Repo::doi()->mintChapterDoi($chapter, $submission, $context);
+                        $chapter->setData('doiId', $doiId);
+                        $chapterDao->updateObject($chapter);
+                    } catch (DoiCreationException $exception) {
+                        $doiCreationFailures[] = $exception;
+                    }
                 }
             }
         }
@@ -87,14 +94,14 @@ class Repository extends \PKP\submission\Repository
             $publicationFormatDao = \DAORegistry::getDAO('PublicationFormatDAO');
             /** @var PublicationFormat $publicationFormat */
             foreach ($publicationFormats as $publicationFormat) {
-                if (!empty($publicationFormat->getData('doiId'))) {
-                    continue;
-                }
-
-                $doiId = Repo::doi()->mintPublicationFormatDoi($publicationFormat, $submission, $context);
-                if ($doiId != null) {
-                    $publicationFormat->setData('doiId', $doiId);
-                    $publicationFormatDao->updateObject($publicationFormat);
+                if (empty($publicationFormat->getData('doiId'))) {
+                    try {
+                        $doiId = Repo::doi()->mintPublicationFormatDoi($publicationFormat, $submission, $context);
+                        $publicationFormat->setData('doiId', $doiId);
+                        $publicationFormatDao->updateObject($publicationFormat);
+                    } catch (DoiCreationException $exception) {
+                        $doiCreationFailures[] = $exception;
+                    }
                 }
             }
         }
@@ -110,15 +117,17 @@ class Repository extends \PKP\submission\Repository
             $submissionFiles = Repo::submissionFile()->getMany($submissionFilesCollector);
             /** @var SubmissionFile $submissionFile */
             foreach ($submissionFiles as $submissionFile) {
-                if (!empty($submissionFile->getData('doiId'))) {
-                    continue;
-                }
-
-                $doiId = Repo::doi()->mintSubmissionFileDoi($submissionFile, $submission, $context);
-                if ($doiId != null) {
-                    Repo::submissionFile()->edit($submissionFile, ['doiId' => $doiId]);
+                if (empty($submissionFile->getData('doiId'))) {
+                    try {
+                        $doiId = Repo::doi()->mintSubmissionFileDoi($submissionFile, $submission, $context);
+                        Repo::submissionFile()->edit($submissionFile, ['doiId' => $doiId]);
+                    } catch (DoiCreationException $exception) {
+                        $doiCreationFailures[] = $exception;
+                    }
                 }
             }
         }
+
+        return $doiCreationFailures;
     }
 }
