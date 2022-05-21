@@ -148,6 +148,9 @@ class NativeXmlChapterFilter extends NativeImportFilter
         $deployment = $this->getDeployment();
 
         $authorId = $deployment->getAuthorDBId($n->getAttribute('author_id'));
+        if (!$authorId) {
+            $deployment->addError(ASSOC_TYPE_CHAPTER, $chapter->getId(), 'Author with ID "' . $n->getAttribute('author_id') . '" was not found');
+        }
         $seq = $n->getAttribute('seq');
 
         Repo::author()->addToChapter($authorId, $chapter->getId(), false, $seq);
