@@ -117,7 +117,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
     public function _processFileRef($node, $deployment, &$representation)
     {
         $fileId = $node->getAttribute('id');
-        $DBId = $deployment->getFileDBId($fileId);
+        $DBId = $deployment->getSubmissionFileDBId($fileId);
         if ($DBId) {
             // Update the submission file.
             $submissionFile = Repo::submissionFile()->get($DBId);
