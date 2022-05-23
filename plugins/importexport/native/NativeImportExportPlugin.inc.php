@@ -292,8 +292,6 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					return;
 				}
 
-				$filter = 'native-xml=>monograph';
-				// is this monographs import:
 				$request = Application::get()->getRequest();
 				// Set global user
 				if (!$request->getUser()) {
@@ -313,9 +311,6 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				$xmlString = file_get_contents($xmlFile);
 				$document = new DOMDocument();
 				$document->loadXml($xmlString);
-				if (in_array($document->documentElement->tagName, array('monograph', 'monographs'))) {
-					$filter = 'native-xml=>monograph';
-				}
 				$deployment = new NativeImportExportDeployment($press, $user);
 				$deployment->setImportPath(dirname($xmlFile));
 				$content = $this->importSubmissions($xmlString, $deployment);
