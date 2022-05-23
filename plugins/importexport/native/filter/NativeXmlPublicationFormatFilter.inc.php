@@ -104,7 +104,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 			$submissionFile = Services::get('submissionFile')->get($DBId);
 			$submissionFile->setAssocType(ASSOC_TYPE_REPRESENTATION);
-			$submissionFile->setAssocId($representation->getId());
+			$submissionFile->setData('assocId', $representation->getId());
 			$submissionFileDao->updateObject($submissionFile);
 		}
 	}
