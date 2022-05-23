@@ -122,6 +122,9 @@ class NativeXmlChapterFilter extends NativeImportFilter {
 		$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /** @var $chapterAuthorDao ChapterAuthorDAO */
 
 		$authorId = $deployment->getAuthorDBId($n->getAttribute('author_id'));
+		if (!$authorId) {
+			$deployment->addError(ASSOC_TYPE_CHAPTER, $chapter->getId(), 'Author with ID "' . $n->getAttribute('author_id') . '" was not found');
+		}
 		$primaryContact = $n->getAttribute('primary_contact');
 		$seq = $n->getAttribute('seq');
 
