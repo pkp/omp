@@ -138,15 +138,12 @@ class NativeXmlChapterFilter extends NativeImportFilter {
 	 */
 	function parseSubmissionFileRef($n, $chapter) {
 		$deployment = $this->getDeployment();
-		$context = $deployment->getContext();
-
-		$publication = $deployment->getPublication();
 
 		$fileId = $n->getAttribute('id');
 
-		$sourceFileId = $deployment->getFileDBId($fileId);
+		$sourceFileId = $deployment->getSubmissionFileDBId($fileId);
 		if ($sourceFileId) {
-			$submissionFile = Services::get('submissionFile')->get($fileId);
+			$submissionFile = Services::get('submissionFile')->get($sourceFileId);
 
 			if ($submissionFile) {
 				$submissionFile->setData('chapterId', $chapter->getId());

@@ -98,7 +98,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 	 */
 	function _processFileRef($node, $deployment, &$representation) {
 		$fileId = $node->getAttribute('id');
-		$DBId = $deployment->getFileDBId($fileId);
+		$DBId = $deployment->getSubmissionFileDBId($fileId);
 		if ($DBId) {
 			// Update the submission file.
 			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
