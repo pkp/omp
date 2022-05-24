@@ -38,8 +38,6 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter
      */
     public function populateObject($submission, $node)
     {
-        $deployment = $this->getDeployment();
-
         $workType = $node->getAttribute('work_type');
         $submission->setData('workType', $workType);
 
