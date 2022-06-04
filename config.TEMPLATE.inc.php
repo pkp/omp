@@ -149,6 +149,7 @@ name = omp
 ; Enable database debug output (very verbose!)
 debug = Off
 
+
 ;;;;;;;;;;;;;;;;;;
 ; Cache Settings ;
 ;;;;;;;;;;;;;;;;;;
@@ -232,6 +233,7 @@ umask = 0022
 ; a possible revision
 filename_revision_match = 70
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Fileinfo (MIME) Settings ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -300,6 +302,20 @@ allowed_html = "a[href|target|title],em,strong,cite,code,ul,ol,li[class],dl,dt,d
 
 ;implicit_auth_wayf_url = "/Shibboleth.sso/wayf"
 
+
+;;;;;;;;;;;;;;;;;;;;
+; Logging Settings ;
+;;;;;;;;;;;;;;;;;;;;
+
+[logging]
+
+; Path to store the log. If empty, the PHP's error_log will be used
+; path = error.log
+
+; Defines the minimum level of messages that you are interested to keep
+; The default value is "debug" (all messages), other possible values are:
+; emergency, alert, critical, error, warning, notice, info and debug
+; level = debug
 
 
 ;;;;;;;;;;;;;;;;;;
@@ -386,6 +402,12 @@ require_validation = Off
 
 ; Maximum number of days before an unvalidated account expires and is deleted
 validation_timeout = 14
+
+; Path to store the email log (if empty, [logging].path will be used)
+; log_path = mail.log
+
+; Log level (if empty, "error" will be its default value, see [logging].level)
+; log_level = error
 
 
 ;;;;;;;;;;;;;;;;;;;
@@ -475,6 +497,7 @@ captcha_on_login = on
 ; Validate the hostname in the ReCaptcha response
 recaptcha_enforce_hostname = Off
 
+
 ;;;;;;;;;;;;;;;;;;;;;
 ; External Commands ;
 ;;;;;;;;;;;;;;;;;;;;;
@@ -547,6 +570,7 @@ log_web_service_info = Off
 ; This setting overrides the 'curl.cainfo' parameter of the php.ini configuration file.
 [curl]
 ; cainfo = ""
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ; Job Queues Settings ;
