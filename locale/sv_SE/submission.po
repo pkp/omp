@@ -1,7 +1,7 @@
 # Magnus Annemark <magnus.annemark@ub.lu.se>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-02-10 13:26+0000\n"
+"PO-Revision-Date: 2022-05-25 08:59+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "sv_SE/>\n"
@@ -364,7 +364,7 @@ msgid "submission.catalogEntry.catalogMetadata"
 msgstr "Katalog"
 
 msgid "submission.catalogEntry.monographMetadata"
-msgstr "Bok"
+msgstr "Monografi"
 
 msgid "submission.catalogEntry.enableChapterPublicationDates"
 msgstr "Varje kapitel kan ges egna publiceringsdatum."
