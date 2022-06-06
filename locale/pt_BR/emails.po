@@ -30,9 +30,6 @@ msgstr ""
 "mensagem. <br />\n"
 "{$signature}<hr />{$unsubscribeLink}"
 
-msgid "emails.notification.description"
-msgstr "Esta mensagem é enviada a usuários cadastrados que escolherem receber este tipo de notificação via e-mail."
-
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Confirmação de redefinição de senha"
 
@@ -190,14 +187,6 @@ msgstr ""
 "Atenciosamente,<br />\n"
 "{$signature}<br />\n"
 
-msgid "emails.reviewRequest.description"
-msgstr ""
-"Esta mensagem do editor de série solicita ao avaliador que aceite ou não "
-"avaliar a submissão. Fornece informações sobre a submissão, como título e "
-"resumo, a data de entrega da avaliação e como acessar a submissão. A "
-"mensagem é usada quando o processo de avaliação padrão é o definido no passo "
-"2 da configuração da editora."
-
 msgid "emails.reviewCancel.subject"
 msgstr "Solicitação de avaliação cancelada"
 
@@ -208,11 +197,6 @@ msgstr ""
 "Decidimos neste momento cancelar nossa solicitação de avaliação da submissão &quot;{$submissionTitle}&quot; à editora {$contextName}. Lamentamos qualquer inconveniente que isto possa causar e esperamos que possamos solicitar novamente sua ajuda no futuro.<br />\n"
 "<br />\n"
 "Em caso de dúvidas, entre em contato."
-
-msgid "emails.reviewCancel.description"
-msgstr ""
-"Esta mensagem é envidada pelo editor de série ao avaliador que possui uma "
-"avaliação em progresso, notificando-o de que a avaliação foi cancelada."
 
 msgid "emails.reviewConfirm.subject"
 msgstr "Disponível para avaliação"
@@ -225,9 +209,6 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
-msgid "emails.reviewConfirm.description"
-msgstr "Esta mensagem é enviada pelo avaliador em resposta à solicitação do editor de série pela solicitação de avaliação, notificando de sua disponibilidade e aceitação de realizar a avaliação até a data de entrega."
-
 msgid "emails.reviewDecline.subject"
 msgstr "Indisponível para avaliação"
 
@@ -238,9 +219,6 @@ msgstr ""
 "Lamento informar que não estou disponível neste momento para avaliar a submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}. Agradeço por considerar meu perfil, e sinta-se à vontade para entrar em contato novamente em oportunidade futura.<br />\n"
 "<br />\n"
 "{$senderName}"
-
-msgid "emails.reviewDecline.description"
-msgstr "Esta mensagem é enviada pelo avaliador em resposta à solicitação do editor de série pela solicitação de avaliação, notificando de sua disponibilidade e recusando realizar a avaliação."
 
 msgid "emails.reviewRemind.subject"
 msgstr "Avaliação pendente"
@@ -261,9 +239,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemind.description"
-msgstr "Esta mensagem é enviada pelo editor de série lembrando o avaliador de avaliação pendente."
-
 msgid "emails.reviewRemindAuto.subject"
 msgstr "Avaliação pendente - Lembrete automático"
 
@@ -280,9 +255,6 @@ msgstr ""
 "Confirme sua disponibilidade em concluir esta contribuição vital aos trabalhos da editora. Aguardamos seu contato.<br />\n"
 "<br />\n"
 "{$signature}"
-
-msgid "emails.reviewRemindAuto.description"
-msgstr "Esta mensagem é enviada automaticamente ao avaliador quando a data de entrega da avaliação passou (veja Opções de avaliação, no passo 2 de configuração da editora) e o acesso rápido está desabilitado. Tarefas agendadas devem estar habilitadas e configuradas (veja o arquivo de configuração do site)."
 
 msgid "emails.reviewRemindAutoOneclick.subject"
 msgstr "Avaliação pendente - Lembrete automático"
@@ -318,9 +290,6 @@ msgstr ""
 "Página do manuscrito: {$submissionUrl}"
 
 #, fuzzy
-msgid "emails.editorDecisionAccept.description"
-msgstr "Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão."
-
 msgid "emails.layoutRequest.subject"
 msgstr ""
 "A submissão {$submissionId} está pronto para editoração em {$contextAcronym}"
@@ -475,14 +444,6 @@ msgstr ""
 "Atenciosamente,<br />\n"
 "{$signature}<br />\n"
 
-msgid "emails.reviewResponseOverdueAuto.description"
-msgstr ""
-"Este e-mail é automaticamente enviado quando o avaliador é confirmado devido "
-"ao tempo (veja a opção de avaliadores sobre as configurações > Fluxo de "
-"submissão  > Avaliação) e o botão de acesso ao avaliador fica desativado. "
-"tarefas programadas devem ser ativadas e configuradas (veja o site de "
-"configuração)."
-
 msgid "emails.reviewResponseOverdueAutoOneclick.subject"
 msgstr "Pedido de Avaliação de Manuscrito"
 
@@ -568,11 +529,6 @@ msgstr ""
 msgid "emails.statisticsReportNotification.subject"
 msgstr "Atividade editorial de {$month}, {$year}"
 
-msgid "emails.reviewReinstate.description"
-msgstr ""
-"Este e-mail é enviado pelo Editor a um Avaliador que possui uma avaliação da "
-"submissão em andamento para notificá-lo de que a avaliação foi cancelada."
-
 msgid "emails.reviewReinstate.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -585,11 +541,6 @@ msgstr ""
 
 msgid "emails.reviewReinstate.subject"
 msgstr "Solicitação de avaliação restabelecida"
-
-msgid "emails.userValidateSite.description"
-msgstr ""
-"Este e-mail é enviado a um usuário recém-registrado para dar as boas-vindas "
-"ao sistema e fornecer um registro de seu nome de usuário e senha."
 
 msgid "emails.userValidateSite.body"
 msgstr ""
@@ -606,11 +557,6 @@ msgstr ""
 
 msgid "emails.userValidateSite.subject"
 msgstr "Valide a sua conta"
-
-msgid "emails.userValidateContext.description"
-msgstr ""
-"Este e-mail é enviado a um usuário recém-registrado para dar as boas-vindas "
-"ao sistema e fornecer um registro de seu nome de usuário e senha."
 
 msgid "emails.userValidateContext.body"
 msgstr ""
@@ -651,11 +597,6 @@ msgstr ""
 
 msgid "emails.editorDecisionSkipReview.subject"
 msgstr "Sua submissão foi enviada para edição de texto"
-
-msgid "emails.editorDecisionSendToInternal.description"
-msgstr ""
-"Este e-mail do Editor ou Editor de Série para um Autor avisando que sua "
-"submissão está sendo enviada para a fase de avaliação interna."
 
 msgid "emails.editorDecisionSendToInternal.body"
 msgstr ""

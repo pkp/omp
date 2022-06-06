@@ -145,11 +145,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.notification.description"
-msgstr ""
-"Ta wiadomość jest wysłana do zarejestrowanych użytkowników, którzy poprosili "
-"o przesyłanie im tego rodzaju powiadomień."
-
 #, fuzzy
 msgid "emails.notification.body"
 msgstr ""
@@ -163,36 +158,14 @@ msgstr ""
 "wiadomość.<br />\n"
 "{$signature}"
 
-msgid "emails.reviewCancel.description"
-msgstr ""
-"Ten email jest wysyłany przez redaktora serii do recenzenta, aby "
-"poinformować, że recenzja została anulowana."
-
 msgid "emails.reviewCancel.subject"
 msgstr "Prośba o anulowanie recenzji"
-
-msgid "emails.reviewRemind.description"
-msgstr ""
-"Ten mail został wysłany przez redaktora serii z przypomnieniem, że zbliża "
-"się termin oddania recenzji."
 
 msgid "emails.reviewRemind.subject"
 msgstr "Przypomnienie o (...)"
 
-msgid "emails.reviewDecline.description"
-msgstr ""
-"Ten mail jest wysłany przez recenzenta do redaktora serii w odpowiedzi na "
-"prośbę o recenzję, aby poinformować redaktora serii, że prośba o recenzję "
-"została odrzucona."
-
 msgid "emails.reviewDecline.subject"
 msgstr "Niezdolny do recenzji"
-
-msgid "emails.reviewConfirm.description"
-msgstr ""
-"Ten email jest wysłany przez recenzenta do redaktora serii w odpowiedzi na "
-"prośbę o recenzję, aby poinformować, że prośba została zaakceptowana, a "
-"recenzja zostanie ukończona w wyznaczonym terminie."
 
 msgid "emails.reviewConfirm.body"
 msgstr ""
@@ -207,11 +180,6 @@ msgstr ""
 
 msgid "emails.reviewConfirm.subject"
 msgstr "Zdolny do recenzji"
-
-msgid "emails.reviewReinstate.description"
-msgstr ""
-"Ten email jest wysyłany przez Redaktora Serii do recenzenta, aby "
-"poinformować, że recenzja została anulowana."
 
 msgid "emails.reviewReinstate.subject"
 msgstr "Ponowienie prośby o recenzję"
@@ -338,13 +306,6 @@ msgstr ""
 "przełącznik one-click recenzenta jest wyłączony. Zaplanowane zadania muszą "
 "być nieaktywne i skonfigurowane (zobacz plik konfiguracji strony)."
 
-msgid "emails.reviewRemindAuto.description"
-msgstr ""
-"Ten email jest automatycznie wysłany, kiedy recenzentowi upłynął termin ("
-"zobacz Opcje Recenzji w segmencie Ustawienia>Workflow>Recenzja) i "
-"przełącznik one-click recenzenta jest wyłączony. Zaplanowane zadania muszą "
-"być nieaktywne i skonfigurowane (zobacz plik konfiguracji strony)."
-
 msgid "emails.reviewRemind.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -412,13 +373,6 @@ msgstr ""
 "Z poważaniem,<br />\n"
 "{$signature}<br />\n"
 
-msgid "emails.reviewResponseOverdueAuto.description"
-msgstr ""
-"Ten mail jest wysłany automatycznie, kiedy upływa data potwierdzenia "
-"recenzenta (zobacz Opcje Recenzji w: Ustawienia>Workflow>Recenzja) i   "
-"przełącznik one-click recenzenta jest nieaktywny. Zaplanowane zadania muszą "
-"być aktywowane i skonfigurowane (zobacz plik konfiguracji strony)."
-
 msgid "emails.reviewResponseOverdueAutoOneclick.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -483,14 +437,6 @@ msgstr ""
 "<br />\n"
 "Dziękujemy,<br />\n"
 "{$signature}"
-
-msgid "emails.reviewRequest.description"
-msgstr ""
-"Ten mail od Redaktora Serii do Recenzenta zawiera prośbę o akceptację lub "
-"odrzucenie zadania napisania recenzji zgłoszenia. Dostarcza informacji o "
-"zgłoszeniu, tj. tytuł i abstrakt, termin oddania recenzji i jak uzyskać "
-"dostęp do zgłoszenia. Wiadomość jest wysyłana, kiedy zaznaczono Standardowy "
-"Proces Recenzji w segmencie Zarządzanie>Ustawienia>Workflow>Recenzja."
 
 msgid "emails.submissionAckNotUser.description"
 msgstr ""
@@ -587,12 +533,6 @@ msgstr ""
 "Ten mail jest wysłany od edytora układu scalonego do redaktora serii z "
 "informacją, że proces składania tekstu został zakończony."
 
-msgid "emails.editorDecisionAccept.description"
-msgstr ""
-"Ten mail jest wysłany od redaktora serii do autora z powiadomieniem o "
-"ostatecznej decyzji dotyczącej zgłoszonego przez niego tekstu."
-
-#, fuzzy
 msgid "emails.editorDecisionAccept.body"
 msgstr ""
 "{$authors}:<br />\n"
