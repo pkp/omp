@@ -30,9 +30,6 @@ msgstr ""
 "br />\n"
 "{$signature}<hr />{$unsubscribeLink}"
 
-msgid "emails.notification.description"
-msgstr "Aquest correu electrònic s'envia als usuaris/àries registrats que han seleccionat rebre aquest tipus de notificacions per correu electrònic."
-
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Confirmació del restabliment de contrasenya"
 
@@ -178,15 +175,6 @@ msgstr ""
 "{$signature}<br />\n"
 ""
 
-msgid "emails.reviewRequest.description"
-msgstr ""
-"Aquest missatge de correu electrònic de l'editor de secció s'adreça a un "
-"revisor/a per sol·licitar-li que accepti o rebutgi la tasca de revisió d'una "
-"tramesa. El correu dona informació sobre la tramesa, com el títol i el "
-"resum, la data límit per fer la revisió i com accedir-hi. Aquest missatge "
-"s'utilitza quan s'ha seleccionat el procés de revisió estàndard a Gestió > "
-"Configuració > Flux de treball > Revisió."
-
 msgid "emails.reviewCancel.subject"
 msgstr "Sol·licitud de revisió cancel·lada"
 
@@ -197,9 +185,6 @@ msgstr ""
 "Hem decidit cancel·lar la sol·licitud perquè reviseu la tramesa «{$submissionTitle},» per al {$contextName}. Ens disculpem per qualsevol inconvenient que això us hagi causat i esperem poder-vos contactar per a futurs processos de revisió.<br />\n"
 "<br />\n"
 "Si teniu cap pregunta, contacteu amb mi."
-
-msgid "emails.reviewCancel.description"
-msgstr "Aquest correu l'envia l'editor/a de sèrie al revisor/a que té una revisió de la tramesa en procés per tal de notificar-li que la revisió s'ha cancel·lat."
 
 msgid "emails.reviewConfirm.subject"
 msgstr "Disponible per revisar"
@@ -212,9 +197,6 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
-msgid "emails.reviewConfirm.description"
-msgstr "Aquest correu l'envia un revisor/a a l'editor/a de sèrie com a resposta d'una sol·licitud de revisió per notificar-li que ha acceptat la sol·licitud i que la revisió estarà completada en la data especificada."
-
 msgid "emails.reviewDecline.subject"
 msgstr "No disponible per revisar"
 
@@ -225,9 +207,6 @@ msgstr ""
 "Sento comunicar-vos que en aquests moments no estic disponible per realitzar la revisió de la tramesa «{$submissionTitle},» per {$contextName}. Gràcies per pensar en mi per aquesta tasca; podeu contactar en mi en futures ocasions.<br />\n"
 "<br />\n"
 "{$senderName}"
-
-msgid "emails.reviewDecline.description"
-msgstr "Aquest correu l'envia el revisor/a a l'editor/a de sèrie com a resposta a una sol·licitud de revisió per notificar-li que rebutja la sol·licitud de revisió."
 
 msgid "emails.reviewComplete.subject"
 msgstr "Revisió del manuscrit completada"
@@ -270,9 +249,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemind.description"
-msgstr "Aquest correu l'envia l'editor/a de sèrie per recordar al revisor/a que ha d'entregar la revisió."
-
 msgid "emails.reviewRemindAuto.subject"
 msgstr "Recordatori automàtic de revisió de la tramesa"
 
@@ -301,9 +277,6 @@ msgstr ""
 "\n"
 "<br />\n"
 "{$signature}"
-
-msgid "emails.reviewRemindAuto.description"
-msgstr "Aquest correu s'envia automàticament quan passa la data de lliurament de la revisió (vegeu les Opcions de revisió a Administrar > Configuració > Circuit de treball> Revisar) i es deshabilita l'accés per a revisors/ores en un clic. Les tasques planificades s'han d'habilitar i configurar (vegeu el fitxer de configuració del lloc)."
 
 msgid "emails.reviewRemindAutoOneclick.subject"
 msgstr "Recordatori automàtic de revisió de la tramesa"
@@ -340,9 +313,6 @@ msgstr ""
 "URL del manuscrit: {$submissionUrl}"
 
 #, fuzzy
-msgid "emails.editorDecisionAccept.description"
-msgstr "Aquest correu electrònic de l'editor/a o de l'editor/a de sèrie notifica la decisió final respecte a la tramesa."
-
 msgid "emails.layoutRequest.subject"
 msgstr "Sol·licita galerades"
 
@@ -502,11 +472,6 @@ msgstr ""
 "Visiteu la nostra pàgina web per llegir l'<a href=\"{$announcementUrl}\">avís "
 "complet</a>."
 
-msgid "emails.reviewReinstate.description"
-msgstr ""
-"Aquest correu l'envia l'editor/a de secció a un revisor/a que té en curs la "
-"revisió d'una tramesa per notificar-lo que la revisió ha estat cancel·lada."
-
 msgid "emails.reviewReinstate.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -518,14 +483,6 @@ msgstr ""
 "Si teniu qualsevol pregunta no dubteu a contactar-me."
 
 msgid "emails.reviewResponseOverdueAutoOneclick.description"
-msgstr ""
-"Aquest correu electrònic s'envia automàticament quan venç la data de "
-"confirmació d'un revisor/a (vegeu les opcions de revisió a Configuració > "
-"Flux de treball > Revisió) i l'accés del revisor/a amb un clic està "
-"desactivat. Les tasques programades han d'estar habilitades i configurades ("
-"vegeu l'arxiu de configuració del lloc)."
-
-msgid "emails.reviewResponseOverdueAuto.description"
 msgstr ""
 "Aquest correu electrònic s'envia automàticament quan venç la data de "
 "confirmació d'un revisor/a (vegeu les opcions de revisió a Configuració > "

@@ -58,11 +58,6 @@ msgstr ""
 "yanıtlamayın.<br />\n"
 "{$signature}<hr />{$unsubscribeLink}"
 
-msgid "emails.notification.description"
-msgstr ""
-"Bu E-posta, bu tür bildirimlerin kendilerine e-posta ile göndermesini seçen "
-"kayıtlı kullanıcılara gönderilir."
-
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Parola Sıfırlama Onayı"
 
@@ -241,14 +236,6 @@ msgstr ""
 "Saygılarımızla,<br />\n"
 "{$signature}<br />\n"
 
-msgid "emails.reviewRequest.description"
-msgstr ""
-"Dizi Editörü’nden bir Danışmana gönderilen bu e-posta, danışmanın bir "
-"gönderiyi değerlendirme görevini kabul etmesini veya reddetmesini ister. "
-"Gönderi hakkında başlık ve özet, değerlendirme için son tarih ve gönderiye "
-"nasıl erişileceği gibi bilgiler sağlar. Bu mesaj, Yönetim> Ayarlar> İş Akışı>"
-" Değerlendirme’de Standart Değerlendirme Süreci seçildiğinde kullanılır."
-
 msgid "emails.reviewResponseOverdueAuto.subject"
 msgstr "Yazı Taslağı Değerlendirme Talebi"
 
@@ -277,14 +264,6 @@ msgstr ""
 "<br />\n"
 "Saygılarımızla,<br />\n"
 "{$signature}<br />\n"
-
-msgid "emails.reviewResponseOverdueAuto.description"
-msgstr ""
-"Bu e-posta, danışmanın son cevap verme tarihi geçtiğinde (Ayarlar> İş Akışı> "
-"Değerlendirme altındaki Değerlendirme Seçenekleri'ne bakın) ve tek "
-"tıklamayla danışman erişimi devre dışı bırakıldığında otomatik olarak "
-"gönderilir. Zamanlanmış görevler etkinleştirilmeli ve yapılandırılmalıdır ("
-"site yapılandırma dosyasına bakın)."
 
 msgid "emails.reviewResponseOverdueAutoOneclick.subject"
 msgstr "Yazı Taslağı Değerlendirme Talebi"
@@ -344,11 +323,6 @@ msgstr ""
 "Herhangi bir sorunuz olursa, lütfen bizimle iletişime geçin.\n"
 "Saygılarımızla."
 
-msgid "emails.reviewCancel.description"
-msgstr ""
-"Bu e-posta, Dizi Editörü tarafından, incelemenin iptal edildiğini bildirmek "
-"için gönderi değerlendirmesi devam eden bir Danışmana gönderilir."
-
 msgid "emails.reviewReinstate.subject"
 msgstr "Değerlendirme Talebi Yeniden Etkinleştirildi"
 
@@ -362,12 +336,6 @@ msgstr ""
 "<br />\n"
 "Herhangi bir sorunuz olursa, lütfen bizimle iletişime geçin.\n"
 "Saygılarımızla."
-
-msgid "emails.reviewReinstate.description"
-msgstr ""
-"Bu e-posta, Bölüm Editörü tarafından, değerlendirmenin iptal edildiğini "
-"bildirmek için, bir gönderinin değerlendirmesine devam eden bir Danışmana "
-"gönderilir."
 
 msgid "emails.reviewConfirm.subject"
 msgstr "Değerlendirmeyi Yapabiliyor"
@@ -383,12 +351,6 @@ msgstr ""
 "Saygılarımla.\n"
 "{$senderName}"
 
-msgid "emails.reviewConfirm.description"
-msgstr ""
-"Bu e-posta, bir Danışman tarafından Dizi Editörü'ne değerlendirme isteğinin "
-"kabul edildiğini ve belirtilen tarihe kadar tamamlanacağını bildirmek için "
-"bir değerlendirme talebine yanıt olarak gönderilir."
-
 msgid "emails.reviewDecline.subject"
 msgstr "Değerlendirmeyi Yapamıyor"
 
@@ -401,12 +363,6 @@ msgstr ""
 "ederim. Lütfen başka zaman beni tekrar aramaktan çekinmeyiniz.<br />\n"
 "<br />\n"
 "{$senderName}"
-
-msgid "emails.reviewDecline.description"
-msgstr ""
-"Bu e-posta, yapılan bir değerlendirme isteğine yanıt olarak bir Danışman "
-"tarafından değerlendirme isteğinin reddedildiğini o Dizi Editörüne bildirmek "
-"için gönderilir."
 
 msgid "emails.reviewRemind.subject"
 msgstr "Gönderi Değerlendirme Hatırlatıcısı"
@@ -434,11 +390,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemind.description"
-msgstr ""
-"Bu e-posta, bir dizi Editörü tarafından danışmana değerlendirme için son "
-"tarihin geçtiğini hatırlatmak için gönderilir."
-
 msgid "emails.reviewRemindAuto.subject"
 msgstr "Gönderi Değerlendirme Otomatik Hatırlatıcısı"
 
@@ -465,14 +416,6 @@ msgstr ""
 "/>\n"
 "<br />\n"
 "{$signature}"
-
-msgid "emails.reviewRemindAuto.description"
-msgstr ""
-"Bu e-posta, danışmanın son cevap verme tarihi geçtiğinde (Ayarlar> İş Akışı> "
-"Değerlendirme altındaki Değerlendirme Seçenekleri'ne bakın) ve tek "
-"tıklamayla danışman erişimi devre dışı bırakıldığında otomatik olarak "
-"gönderilir. Zamanlanmış görevler etkinleştirilmeli ve yapılandırılmalıdır ("
-"site yapılandırma dosyasına bakın)."
 
 msgid "emails.reviewRemindAutoOneclick.subject"
 msgstr "Gönderi Değerlendirme Otomatik Hatırlatıcısı"
@@ -520,11 +463,6 @@ msgstr ""
 "Yazı Taslağı URL: {$submissionUrl}"
 
 #, fuzzy
-msgid "emails.editorDecisionAccept.description"
-msgstr ""
-"Editör veya Dizi Editöründen bir Yazara gönderilen bu e-posta, gönderisiyle "
-"ilgili nihai bir kararı onlara bildirir."
-
 msgid "emails.layoutRequest.subject"
 msgstr "Prova Dizgileri İste"
 

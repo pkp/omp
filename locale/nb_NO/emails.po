@@ -216,12 +216,6 @@ msgstr ""
 msgid "emails.layoutRequest.subject"
 msgstr "Forespørsel om oppsett"
 
-msgid "emails.editorDecisionAccept.description"
-msgstr ""
-"Denne e-posten fra redaktøren eller serieredaktøren til en forfatter er en "
-"melding om den endelige avgjørelsen om deres bidrag."
-
-#, fuzzy
 msgid "emails.editorDecisionAccept.body"
 msgstr ""
 "{$authors}:<br />\n"
@@ -264,14 +258,6 @@ msgstr ""
 msgid "emails.reviewRemindAutoOneclick.subject"
 msgstr "Automatisk påminnelse om fagfellevurdering"
 
-msgid "emails.reviewRemindAuto.description"
-msgstr ""
-"Denne e-posten sendes automatisk når forfallsdato for en anmelder "
-"overskrides (se Fagfellevurderingsinnstillinger under Innstillinger > "
-"Arbeidsflyt > Fagfellevurdering) og når tilgang med ett klikk for fagfeller "
-"er deaktivert. Planlagte oppgaver må aktiveres og konfigureres (se "
-"nettstedets konfigurasjonsfil)."
-
 msgid "emails.reviewRemindAuto.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -290,11 +276,6 @@ msgstr ""
 
 msgid "emails.reviewRemindAuto.subject"
 msgstr "Automatisk påminnelse om fagfellevurdering"
-
-msgid "emails.reviewRemind.description"
-msgstr ""
-"Denne e-posten sendes av seksjonsredaktøren til en fagfelle for å minne ham "
-"eller henne på om at vurderingen burde vært sendt inn."
 
 msgid "emails.reviewRemind.body"
 msgstr ""
@@ -321,12 +302,6 @@ msgstr ""
 msgid "emails.reviewRemind.subject"
 msgstr "Påminnelse om fagfellevurdering"
 
-msgid "emails.reviewDecline.description"
-msgstr ""
-"Denne e-posten blir sendt av en fagfelle til seksjonsredaktøren som svar på "
-"en forespørsel om fagfellevurdering, og varsler seksjonsredaktøren om at "
-"forespørselen er avvist."
-
 msgid "emails.reviewDecline.body"
 msgstr ""
 "Redaktører:<br />\n"
@@ -339,13 +314,6 @@ msgstr ""
 
 msgid "emails.reviewDecline.subject"
 msgstr "Kan ikke foreta fagfellevurdering"
-
-msgid "emails.reviewConfirm.description"
-msgstr ""
-"Denne e-posten blir sendt av en fagfelle til seksjonsredaktøren som svar på "
-"en forespørsel om fagfellevurdering, og gir beskjed til seksjonsredaktøren "
-"om at forespørselen er godtatt og at vurderingen vil være fullført innen den "
-"angitte datoen."
 
 msgid "emails.reviewConfirm.body"
 msgstr ""
@@ -361,12 +329,6 @@ msgstr ""
 msgid "emails.reviewConfirm.subject"
 msgstr "Kan foreta fagfellevurdering"
 
-msgid "emails.reviewReinstate.description"
-msgstr ""
-"Denne e-posten blir sendt av seksjonsredaktøren til en fagfelle som har "
-"påbegynt en fagfellevurdering for å varsle om at fagfellevurderingen er "
-"kansellert."
-
 msgid "emails.reviewReinstate.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -380,11 +342,6 @@ msgstr ""
 
 msgid "emails.reviewReinstate.subject"
 msgstr "Forespørsel om fagfellevurdering gjenopptatt"
-
-msgid "emails.reviewCancel.description"
-msgstr ""
-"Denne e-posten sendes av seksjonsredaktøren til en fagfelle som vurderer et "
-"manuskript og varsler om at fagfellevurderingen er kansellert."
 
 msgid "emails.reviewCancel.body"
 msgstr ""
@@ -470,24 +427,8 @@ msgstr ""
 msgid "emails.reviewResponseOverdueAutoOneclick.subject"
 msgstr "Forespørsel om fagfellevurdering"
 
-msgid "emails.reviewResponseOverdueAuto.description"
-msgstr ""
-"Denne e-posten sendes automatisk når en anmelders bekreftelsesdato "
-"overskrides (se fagfellevurderingsinnstillinger under Innstillinger > "
-"Arbeidsflyt > Fagfellevurdering) og \"Aktiver tilgang med ett klikk "
-"vurdering\" ikke er valgt. Frister og påminnelser må defineres."
-
 msgid "emails.reviewResponseOverdueAuto.subject"
 msgstr "Forespørsel om fagfellevurdering"
-
-msgid "emails.reviewRequest.description"
-msgstr ""
-"Denne e-postmeldingen fra serieredaktøren til en fagfelle ber fagfellen om å "
-"godta eller avvise oppgaven med å vurdere en innlevering. Den inneholder "
-"informasjon om innleveringen, som tittel og sammendrag, forfallsdato for "
-"gjennomgang, og hvordan du får tilgang til selve innleveringen. Denne "
-"meldingen brukes når standard vurderingsprosess er valgt i Innstillinger > "
-"Arbeidsflyt > Vurdering."
 
 msgid "emails.reviewRequest.body"
 msgstr ""
@@ -669,11 +610,6 @@ msgstr ""
 
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Bekreft tilbakestilling av passord"
-
-msgid "emails.notification.description"
-msgstr ""
-"Denne e-posten er sendt til registrerte brukere som har valgt å motta denne "
-"typen meldinger."
 
 #, fuzzy
 msgid "emails.notification.body"
