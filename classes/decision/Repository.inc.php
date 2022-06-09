@@ -45,6 +45,8 @@ use PKP\decision\types\RevertDecline;
 use PKP\decision\types\RevertInitialDecline;
 use PKP\decision\types\SendToProduction;
 use PKP\decision\types\SkipExternalReview;
+use PKP\decision\types\RemoveEmptyExternalReviewRound;
+use PKP\decision\types\RemoveEmptyInternalReviewRound;
 use PKP\plugins\HookRegistry;
 
 class Repository extends \PKP\decision\Repository
@@ -86,6 +88,8 @@ class Repository extends \PKP\decision\Repository
                 new SendToProduction(),
                 new SkipInternalReview(),
                 new SkipExternalReview(),
+                new RemoveEmptyExternalReviewRound(),
+                new RemoveEmptyInternalReviewRound(),
             ]);
             HookRegistry::call('Decision::types', [$decisionTypes]);
             $this->decisionTypes = $decisionTypes;

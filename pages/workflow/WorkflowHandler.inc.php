@@ -42,6 +42,8 @@ use PKP\decision\types\InitialDecline;
 use PKP\decision\types\RecommendAccept;
 use PKP\decision\types\RecommendDecline;
 use PKP\decision\types\RecommendRevisions;
+use PKP\decision\types\RemoveEmptyExternalReviewRound;
+use PKP\decision\types\RemoveEmptyInternalReviewRound;
 use PKP\decision\types\RequestRevisions;
 use PKP\decision\types\RevertDecline;
 use PKP\decision\types\RevertInitialDecline;
@@ -212,6 +214,8 @@ class WorkflowHandler extends PKPWorkflowHandler
     protected function getStageDecisionTypes(int $stageId): array
     {
         $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
+        $request = Application::get()->getRequest();
+
         switch ($stageId) {
             case WORKFLOW_STAGE_ID_SUBMISSION:
                 $decisionTypes = [
@@ -231,6 +235,13 @@ class WorkflowHandler extends PKPWorkflowHandler
                     new SendExternalReview(),
                     new AcceptFromInternal(),
                 ];
+
+                $reviewRoundId = (int) $request->getUserVar('reviewRoundId');
+                
+                if ( $reviewRoundId && RemoveEmptyInternalReviewRound::canRemove($submission, $reviewRoundId) ) {
+                    $decisionTypes[] = new RemoveEmptyInternalReviewRound();
+                }
+
                 if ($submission->getData('status') === Submission::STATUS_DECLINED) {
                     $decisionTypes[] = new RevertDeclineInternal();
                 } elseif ($submission->getData('status') === Submission::STATUS_QUEUED) {
@@ -242,6 +253,13 @@ class WorkflowHandler extends PKPWorkflowHandler
                     new RequestRevisions(),
                     new Accept(),
                 ];
+
+                $reviewRoundId = (int) $request->getUserVar('reviewRoundId');
+                
+                if ( $reviewRoundId && RemoveEmptyExternalReviewRound::canRemove($submission, $reviewRoundId) ) {
+                    $decisionTypes[] = new RemoveEmptyExternalReviewRound();
+                }
+
                 if ($submission->getData('status') === Submission::STATUS_DECLINED) {
                     $decisionTypes[] = new RevertDecline();
                 } elseif ($submission->getData('status') === Submission::STATUS_QUEUED) {
@@ -316,6 +334,8 @@ class WorkflowHandler extends PKPWorkflowHandler
             InitialDecline::class,
             DeclineInternal::class,
             Decline::class,
+            RemoveEmptyExternalReviewRound::class,
+            RemoveEmptyInternalReviewRound::class,
         ];
     }
 }
