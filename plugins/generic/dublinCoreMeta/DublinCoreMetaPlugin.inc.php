@@ -218,7 +218,7 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 		} else {
 			$templateMgr->addHeader('dublinCoreTitle', '<meta name="DC.Title" content="' . htmlspecialchars($monograph->getFullTitle($monograph->getLocale())) . '"/>');
 			$i=0;
-			foreach ($monograph->getFullTitles() as $locale => $title) {
+			foreach ($monograph->getFullTitle(null) as $locale => $title) {
 				if ($locale == $monograph->getLocale()) continue;
 				$templateMgr->addHeader('dublinCoreAltTitle' . $i++, '<meta name="DC.Title.Alternative" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($title) . '"/>');
 			}
