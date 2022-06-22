@@ -30,8 +30,14 @@ use APP\notification\Notification;
 use Illuminate\Database\Eloquent\Collection;
 use PKP\decision\types\Accept;
 use PKP\decision\types\BackToCopyediting;
+use PKP\decision\types\BackToInternalReview;
+use PKP\decision\types\BackToInternalReviewFromExternalReview;
+use PKP\decision\types\BackToPreviousExternalReviewRound;
+use PKP\decision\types\BackToPreviousInternalReviewRound;
 use PKP\decision\types\BackToReview;
 use PKP\decision\types\BackToSubmissionFromCopyediting;
+use PKP\decision\types\BackToSubmissionFromExternalReview;
+use PKP\decision\types\BackToSubmissionFromInternalReview;
 use PKP\decision\types\Decline;
 use PKP\decision\types\InitialDecline;
 use PKP\decision\types\NewExternalReviewRound;
@@ -39,6 +45,8 @@ use PKP\decision\types\RecommendAccept;
 use PKP\decision\types\RecommendDecline;
 use PKP\decision\types\RecommendResubmit;
 use PKP\decision\types\RecommendRevisions;
+use PKP\decision\types\RemoveEmptyExternalReviewRound;
+use PKP\decision\types\RemoveEmptyInternalReviewRound;
 use PKP\decision\types\RequestRevisions;
 use PKP\decision\types\Resubmit;
 use PKP\decision\types\RevertDecline;
@@ -86,6 +94,14 @@ class Repository extends \PKP\decision\Repository
                 new SendToProduction(),
                 new SkipInternalReview(),
                 new SkipExternalReview(),
+                new RemoveEmptyExternalReviewRound(),
+                new RemoveEmptyInternalReviewRound(),
+                new BackToPreviousExternalReviewRound(),
+                new BackToPreviousInternalReviewRound(),
+                new BackToSubmissionFromExternalReview(),
+                new BackToSubmissionFromInternalReview(),
+                new BackToInternalReviewFromExternalReview(),
+                new BackToInternalReview(),
             ]);
             HookRegistry::call('Decision::types', [$decisionTypes]);
             $this->decisionTypes = $decisionTypes;
