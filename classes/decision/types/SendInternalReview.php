@@ -40,7 +40,7 @@ class SendInternalReview extends DecisionType
         return Decision::INTERNAL_REVIEW;
     }
 
-    public function getNewStageId(): int
+    public function getNewStageId(Submission $submission, ?int $reviewRoundId): int
     {
         return WORKFLOW_STAGE_ID_INTERNAL_REVIEW;
     }
