@@ -13,13 +13,24 @@
 
 namespace APP\decision\types\traits;
 
-use PKP\decision\types\traits\InExternalReviewRound;
+use APP\core\Application;
+use APP\facades\Repo;
+use APP\submission\Submission;
+use PKP\components\fileAttachers\FileStage;
+use PKP\components\fileAttachers\Library;
+use PKP\components\fileAttachers\ReviewFiles;
+use PKP\components\fileAttachers\Upload;
+use PKP\context\Context;
+use PKP\db\DAORegistry;
+use PKP\decision\types\traits\WithReviewAssignments;
+use PKP\submission\reviewAssignment\ReviewAssignmentDAO;
+use PKP\submission\reviewRound\ReviewRound;
 use PKP\submissionFile\SubmissionFile;
 
 trait InInternalReviewRound
 {
-    use InExternalReviewRound;
-
+    use WithReviewAssignments;
+    
     /** @copydoc DecisionType::getStageId() */
     public function getStageId(): int
     {
@@ -51,5 +62,67 @@ trait InInternalReviewRound
             SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_FILE,
             SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_REVISION,
         ];
+    }
+
+    /**
+     * Get the file attacher components supported for emails in this decision
+     */
+    protected function getFileAttachers(Submission $submission, Context $context, ?ReviewRound $reviewRound = null): array
+    {
+        $attachers = [
+            new Upload(
+                $context,
+                __('common.upload.addFile'),
+                __('common.upload.addFile.description'),
+                __('common.upload.addFile')
+            ),
+        ];
+
+        if ($reviewRound) {
+            /** @var ReviewAssignmentDAO $reviewAssignmentDAO */
+            $reviewAssignmentDAO = DAORegistry::getDAO('ReviewAssignmentDAO');
+            $reviewAssignments = $reviewAssignmentDAO->getByReviewRoundId($reviewRound->getId());
+            $reviewerFiles = [];
+            if (!empty($reviewAssignments)) {
+                $reviewerFiles = Repo::submissionFile()->getMany(
+                    Repo::submissionFile()
+                        ->getCollector()
+                        ->filterBySubmissionIds([$submission->getId()])
+                        ->filterByAssoc(Application::ASSOC_TYPE_REVIEW_ASSIGNMENT, array_keys($reviewAssignments))
+                );
+            }
+            $attachers[] = new ReviewFiles(
+                __('reviewer.submission.reviewFiles'),
+                __('email.addAttachment.reviewFiles.description'),
+                __('email.addAttachment.reviewFiles.attach'),
+                $reviewerFiles,
+                $reviewAssignments,
+                $context
+            );
+        }
+
+        $attachers[] = (new FileStage(
+            $context,
+            $submission,
+            __('submission.submit.submissionFiles'),
+            __('email.addAttachment.submissionFiles.reviewDescription'),
+            __('email.addAttachment.submissionFiles.attach')
+        ))
+            ->withFileStage(
+                $this->getRevisionFileStage(),
+                __('editor.submission.revisions'),
+                $reviewRound
+            )->withFileStage(
+                $this->getReviewFileStage(),
+                __('reviewer.submission.reviewFiles'),
+                $reviewRound
+            );
+
+        $attachers[] = new Library(
+            $context,
+            $submission
+        );
+
+        return $attachers;
     }
 }

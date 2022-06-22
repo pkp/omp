@@ -29,7 +29,7 @@ class RecommendSendExternalReview extends DecisionType
         return Decision::RECOMMEND_EXTERNAL_REVIEW;
     }
 
-    public function getNewStageId(): ?int
+    public function getNewStageId(Submission $submission, ?int $reviewRoundId): ?int
     {
         return null;
     }
