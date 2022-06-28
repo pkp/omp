@@ -89,6 +89,8 @@ class SeriesForm extends PKPSectionForm {
 				'categories' => $categoryIds,
 			);
 		}
+
+		return parent::initData();
 	}
 
 	/**
