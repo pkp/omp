@@ -8,246 +8,93 @@
  */
 
 describe('DOI tests', function() {
-	const author = 'Dawson';
 	const submissionId = 14;
-	const unpublishedSubmissionId = 4;
+	const publicationId = 14;
 	const chapterId = 54;
 	const publicationFormatId = 3;
+	const submissionFileId = 83;
+	const unpublishedSubmissionId = 4;
 
-	/**
-	 * Checks DOI value in should() check to match against regex
-	 * @param input
-	 */
-	function checkDoiInput(input) {
-		const val = input.val();
-		expect(val).to.match(
-			/10.1234\/[0-9abcdefghjkmnpqrstvwxyz]{4}-[0-9abcdefghjkmnpqrstvwxyz]{2}[0-9]{2}/
-		);
-	}
-
-	// it('Check DOI Configuration', function() {
-	// 	cy.login('dbarnes', null, 'publicknowledge');
-	//
-	// 	cy.get('a:contains("Distribution")').click();
-	//
-	// 	cy.get('button#dois-button').click();
-	//
-	// 	// DOI is or can be enabled
-	// 	cy.get('input[name="enableDois"]').check();
-	// 	cy.get('input[name="enableDois"]').should('be.checked');
-	//
-	// 	// Check all content
-	// 	cy.get('input[name="enabledDoiTypes"][value="publication"]').check();
-	// 	cy.get('input[name="enabledDoiTypes"][value="chapter"]').check();
-	// 	cy.get('input[name="enabledDoiTypes"][value="representation"]').check();
-	// 	cy.get('input[name="enabledDoiTypes"][value="file"]').check();
-	//
-	// 	// Declare DOI Prefix
-	// 	cy.get('input[name=doiPrefix]').focus().clear().type('10.1234');
-	//
-	// 	// Select automatic DOI creation time
-	// 	cy.get('select[name="doiCreationTime"]').select('copyEditCreationTime');
-	//
-	// 	// Save
-	// 	cy.get('#doisSetup button').contains('Save').click();
-	// 	cy.get('#doisSetup [role="status"]').contains('Saved');
-	// });
-	//
-	// it('Assign Submission DOIs', function() {
-	// 	cy.login('dbarnes', null, 'publicknowledge');
-	//
-	// 	cy.get('a:contains("DOIs")').click();
-	// 	cy.get('.pkpTabs button').contains('Monographs').click();
-	//
-	// 	// Select the first monograph
-	// 	cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('input[name="submission[]"]').check();
-	//
-	// 	// Select assign DOIs from bulk actions
-	// 	cy.get('#monograph-doi-management button:contains("Bulk Actions")').click({multiple: true});
-	// 	cy.get('#monograph-doi-management .doiListPanel__bulkActions button').contains('Assign DOIs').click();
-	//
-	// 	// Confirm success message
-	// 	cy.get('.modal__content').contains('assign new DOIs to 1 item(s)');
-	// 	cy.get('.modal__footer button').contains('Assign DOIs').click();
-	// 	cy.get('.app__notifications').contains('Items successfully assigned new DOIs', {timeout:20000});
-	// });
-	//
-	// it('Check Submission DOI assignments', function() {
-	// 	cy.login('dbarnes', null, 'publicknowledge');
-	//
-	// 	cy.get('a:contains("DOIs")').click();
-	// 	cy.get('.pkpTabs button').contains('Monographs').click();
-	//
-	// 	// Check DOI assignments are correct according to pattern
-	// 	cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('.expander').click();
-	//
-	// 	cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('td')
-	// 		.contains('Monograph').closest('tr').find('input')
-	// 		.should(($input) => checkDoiInput($input));
-	//
-	// 	cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('td')
-	// 		.contains('Chapter 1').closest('tr').find('input')
-	// 		.should(($input) => checkDoiInput($input));
-	//
-	// 	cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('td')
-	// 		.contains('Format / PDF').closest('tr').find('input')
-	// 		.should(($input) => checkDoiInput($input));
-	//
-	// 	cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('td')
-	// 		.contains('PDF / Chapter 1').closest('tr').find('input')
-	// 		.should(($input) => checkDoiInput($input));
-	// });
-	//
-	// it('Check Submission DOI visible', function() {
-	// 	// Select a monograph
-	// 	cy.visit(`/index.php/publicknowledge/catalog/book/${submissionId}`);
-	//
-	// 	// Monograph DOI
-	// 	cy.get('div.item.doi')
-	// 		.find('span.value').contains('https://doi.org/10.1234/');
-	// 	// Chapter DOI
-	// 	cy.get('div.item.chapters ul')
-	// 		.find('li:first-child').contains('https://doi.org/10.1234/');
-	// 	// PublicationFormat DOI
-	// 	cy.get(`div.item.publication_format div.sub_item.pubid.${publicationFormatId} div.value`)
-	// 		.find('a').contains('https://doi.org/10.1234/');
-	// 	// SubmissionFile not visible
-	// });
-
-	it('Check Submission Filter Behaviour (pre-deposit)', function() {
+	const loginAndGoToDoiPage = () => {
 		cy.login('dbarnes', null, 'publicknowledge');
+		goToDoiPage();
+	};
 
+	const goToDoiPage = () => {
 		cy.get('a:contains("DOIs")').click();
-		cy.get('button#monograph-doi-management-button').click();
+		cy.get('button#submission-doi-management-button').click();
+	};
 
-		// Needs DOI
-		cy.get('#monograph-doi-management button:contains("Needs DOI")').click();
-		cy.get('#monograph-doi-management ul.listPanel__itemsList').find('li').its('length').should('eq', 2);
+	const clearFilter = () => {
+		cy.get('#submission-doi-management button:contains("Clear filter")').click();
+	};
 
-		// Unpublished
-		cy.get('#monograph-doi-management button:contains("Unpublished")').first().click();
-		cy.get('#monograph-doi-management .listPanel__items').contains('No items found.');
-
-		// Unregistered
-		cy.get('#monograph-doi-management button:contains("Unregistered")').click();
-		cy.contains(' Dawson et al. — From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots ');
+	it('Check DOI Configuration', function() {
+		cy.login('dbarnes', null, 'publicknowledge');
+		cy.checkDoiConfig(['publication', 'chapter', 'representation', 'file']);
 	});
 
-	it('Check Submission Mark Registered', function() {
-		cy.login('dbarnes', null, 'publicknowledge');
+	it('Check DOI Assignment and Visibility', function() {
+		cy.log('Check Submission Assignment');
+		loginAndGoToDoiPage();
+		cy.assignDois(submissionId);
 
-		cy.get('a:contains("DOIs")').click();
-		cy.get('button#monograph-doi-management-button').click();
+		cy.get(`#list-item-submission-${submissionId} button.expander`).click();
+		cy.checkDoiAssignment(`${submissionId}-monograph-${publicationId}`);
+		cy.checkDoiAssignment(`${submissionId}-chapter-${chapterId}`);
+		cy.checkDoiAssignment(`${submissionId}-publicationFormat-${publicationFormatId}`);
+		cy.checkDoiAssignment(`${submissionId}-submissionFile-${submissionFileId}`);
 
-		// Select the submission
-		cy.get(`input[name="submission[]"][value=${submissionId}]`).check()
+		cy.log('Check Submission Visibility');
+		// Select a monograph
+		cy.visit(`/index.php/publicknowledge/catalog/book/${submissionId}`);
 
-		// Select mark registered from bulk actions
-		cy.get('#monograph-doi-management button:contains("Bulk Actions")').click({multiple: true});
-		cy.get('#monograph-doi-management .doiListPanel__bulkActions button').contains('Mark DOIs Registered').click();
-
-		// Confirm assignment
-		cy.get('.modal__footer button').contains('Mark DOIs Registered').click();
-		cy.get('.app__notifications').contains('Items successfully marked registered', {timeout:20000});
-
-		cy.get('#monograph-doi-management').contains(author).closest('.listPanel__item').find('.doiListItem__itemMetadata--badge').contains('Registered');
-
-		cy.get(`#list-item-submission-${submissionId} .pkpBadge`).contains('Registered');
+		// Monograph DOI
+		cy.get('div.item.doi')
+			.find('span.value')
+			.contains('https://doi.org/10.1234/');
+		// Chapter DOI
+		cy.get('div.item.chapters ul')
+			.find('li:first-child')
+			.contains('https://doi.org/10.1234/');
+		// PublicationFormat DOI
+		cy.get(
+			`div.item.publication_format div.sub_item.pubid.${publicationFormatId} div.value`
+		)
+			.find('a')
+			.contains('https://doi.org/10.1234/');
+		// SubmissionFile not visible
 	});
 
+	it('Check filters and mark registered', function() {
+		cy.log('Check Submission Filter Behaviour (pre-deposit)');
+		loginAndGoToDoiPage();
+		cy.checkDoiFilterResults('Needs DOI', 'Allan — Bomb Canada and Other Unkind Remarks in the American Media', 2);
+		cy.checkDoiFilterResults('Unpublished', 'No items found.', 0);
+		cy.checkDoiFilterResults('Unregistered', 'Dawson et al. — From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots', 1);
+		clearFilter();
 
-	it('Check Submission Filter Behaviour (post-deposit)', function() {
-		cy.login('dbarnes', null, 'publicknowledge');
+		cy.log('Check Submission Marked Registered');
+		cy.checkDoiMarkedStatus('Registered', submissionId, true, 'Registered');
 
-		cy.get('a:contains("DOIs")').click();
-		cy.get('button#monograph-doi-management-button').click();
-
-		// Submitted
-		cy.get('#monograph-doi-management button:contains("Submitted")').click();
-		cy.get('#monograph-doi-management .listPanel__items').contains('No items found.');
-
-		// Unregistered
-		cy.get('#monograph-doi-management button:contains("Registered")').click();
-		cy.contains(' Dawson et al. — From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots ');
+		cy.log('Check Submission Filter Behaviour (post-deposit)');
+		cy.checkDoiFilterResults('Submitted', 'No items found.', 0);
+		cy.checkDoiFilterResults('Registered', 'Dawson et al. — From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots', 1);
 	});
 
-	it('Check unpublished Submission Marked Registered displays error', function() {
-		cy.login('dbarnes', null, 'publicknowledge');
+	it('Check Marked Status Behaviour', function() {
+		loginAndGoToDoiPage();
 
-		cy.get('a:contains("DOIs")').click();
-		cy.get('button#monograph-doi-management-button').click();
+		cy.log('Check unpublished Submission Marked Registered displays error');
+		cy.checkDoiMarkedStatus('Registered', unpublishedSubmissionId, false, 'Unpublished');
 
-		// Select unpublished item
-		cy.get(`input[name="submission[]"][value=${unpublishedSubmissionId}]`).check()
+		cy.log('Check Submission Marked Stale');
+		cy.checkDoiMarkedStatus('Stale', submissionId, true, 'Stale');
 
-		// Select mark registered from bulk actions
-		cy.get('#monograph-doi-management button:contains("Bulk Actions")').click({multiple: true});
-		cy.get('button#openBulkMarkRegistered').click();
+		cy.log('Check Submission Marked Unregistered');
+		cy.checkDoiMarkedStatus('Unregistered', submissionId, true, 'Unregistered');
 
-		// Confirm unsuccessful
-		cy.get('div[data-modal="bulkActions"] button:contains("Mark DOIs Registered")').click();
-		cy.get('div[data-modal="failedDoiActionModal"]').contains('Could not set DOI status for the following submission: How Canadians Communicate: Contexts of Canadian Popular Culture. The submission must be published first.');
-
-		cy.get(`#list-item-submission-${unpublishedSubmissionId} .pkpBadge`).contains('Unpublished');
-	});
-
-	it('Check Submission Marked Stale', function() {
-		cy.login('dbarnes', null, 'publicknowledge');
-
-		cy.get('a:contains("DOIs")').click();
-		cy.get('button#monograph-doi-management-button').click();
-
-		// Select the submission
-		cy.get(`input[name="submission[]"][value=${submissionId}]`).check();
-
-		// Select mark stale from bulk actions
-		cy.get('#monograph-doi-management button:contains("Bulk Actions")').click({multiple: true});
-		cy.get('button#openBulkMarkStale').click();
-
-		// Confirm assignment
-		cy.get('div[data-modal="bulkActions"] button:contains("Mark DOIs Stale")').click();
-		cy.get('.app__notifications').contains('Items successfully marked stale', {timeout:20000});
-
-		cy.get(`#list-item-submission-${submissionId} .pkpBadge`).contains('Stale');
-	});
-
-	it('Check Submission Marked Unregistered', function() {
-		cy.login('dbarnes', null, 'publicknowledge');
-
-		cy.get('a:contains("DOIs")').click();
-		cy.get('button#monograph-doi-management-button').click();
-
-		// Select the registered submission
-		cy.get(`input[name="submission[]"][value=${submissionId}]`).check();
-
-		// Select mark unregistered from bulk actions
-		cy.get('#monograph-doi-management button:contains("Bulk Actions")').click({multiple: true});
-		cy.get('button#openBulkMarkUnregistered').click();
-
-		// Confirm assignment
-		cy.get('div[data-modal="bulkActions"] button:contains("Mark DOIs Unregistered")').click();
-		cy.get('.app__notifications').contains('Items successfully marked unregistered', {timeout:20000});
-
-		cy.get(`#list-item-submission-${submissionId} .pkpBadge`).contains('Unregistered');
-	});
-
-	it('Check invalid Submission Marked Stale displays error', function() {
-		cy.login('dbarnes', null, 'publicknowledge');
-
-		cy.get('a:contains("DOIs")').click();
-		cy.get('button#monograph-doi-management-button').click();
-
-		// Select the unregistered submission
-		cy.get(`input[name="submission[]"][value=${submissionId}]`).check();
-
-		// Select mark stale from bulk actions
-		cy.get('#monograph-doi-management button:contains("Bulk Actions")').click({multiple: true});
-		cy.get('button#openBulkMarkStale').click();
-
-		// Confirm unsuccessful
-		cy.get('div[data-modal="bulkActions"] button:contains("Mark DOIs Stale")').click();
-		cy.get('div[data-modal="failedDoiActionModal"]').contains('Could not set DOI status to stale for the following submission: From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots. The DOI must currently have the "Registered" or "Submitted" status.', {timeout:20000});
-
-		cy.get(`#list-item-submission-${submissionId} .pkpBadge`).contains('Unregistered');
+		cy.log('Check invalid Submission Marked Stale displays error');
+		cy.checkDoiMarkedStatus('Stale', submissionId, false, 'Unregistered');
 	});
 });

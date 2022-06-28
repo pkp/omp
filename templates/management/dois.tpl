@@ -7,7 +7,7 @@
 
     <tabs :track-history="true">
         {if $displaySubmissionsTab}
-            <tab id="monograph-doi-management" label="{translate key="submission.list.monographs"}">
+            <tab id="submission-doi-management" label="{translate key="submission.list.monographs"}">
                 <h1>{translate key="submission.list.monographs"}</h1>
                 <doi-list-panel
                         v-bind="components.submissionDoiListPanel"
