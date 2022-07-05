@@ -388,7 +388,7 @@ msgid "manager.setup.enableDois.description"
 msgstr "Allow Digital Object Identifiers (DOIs) to be assigned to work published by this press."
 
 msgid "doi.manager.settings.doiObjectsRequired"
-msgstr "Select which items will be assigned a DOI. Most presses assign DOIs to monographs/chapters, but you may wish to assign DOIs to all of the published items."
+msgstr "Select the types of work published by this press that should be assigned DOIs. Most presses assign DOIs to monographs/chapters, but you may wish to assign DOIs to all of the published items."
 
 msgid "doi.manager.settings.doiSuffixLegacy"
 msgstr "Use default patterns.<br />%p.%m for monographs<br />%p.%m.c%c for chapters<br />%p.%m.%f for publication formats<br />%p.%m.%f.%s for files."
@@ -1171,9 +1171,6 @@ msgstr "DOI:"
 
 msgid "doi.manager.settings.description"
 msgstr "Please configure the DOI plug-in to be able to manage and use DOIs in OMP:"
-
-msgid "doi.manager.settings.doiObjectsRequired"
-msgstr "Select the types of work published by this press that should be assigned DOIs."
 
 msgid "doi.manager.settings.explainDois"
 msgstr "Please select the publishing objects that will have Digital Object Identifiers (DOI) assigned:"
