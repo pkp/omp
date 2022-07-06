@@ -106,15 +106,6 @@ msgstr ""
 "Spoštovani, {$recipientName}, samo prijazen opomnik o naši prošnji za recenzijo prispevka &quot;{$submissionTitle},&quot;  za {$contextName}.  Upali smo, da bomo do {$responseDueDate} prejeli vaš odgovor. Ta e-pošta vam je bila samodejno poslana po poteku tega datuma. <br /> {$messageToReviewer}<br /> <br /> Prosimo, da se prijavite na spletni strani založbe in navedete, ali boste opravljali recenzijo ali ne, ter ali boste dostopali do prispevka in ali naj se vaša recenzija in priporočila zapišejo. <br /> <br /> Rok za oddajo recenzije je {$reviewDueDate}.<br /> <br />  URL do prispevka: <a href=\"{$reviewAssignmentUrl}\">{$reviewAssignmentUrl}</a><br /> <br /> Uporabniško ime: {$recipientUsername}<br /> <br /> Zahvaljujemo se vam za zanimanje. <br /> <br /> <br /> Lep pozdrav,<br /> {$signature}<br />\n"
 ""
 
-msgid "emails.reviewResponseOverdueAutoOneclick.subject"
-msgstr "Prošnja za recenzijo rokopisa"
-
-msgid "emails.reviewResponseOverdueAutoOneclick.body"
-msgstr "{$recipientName}:<br />, samo prijazen opomnik o naši prošnji za recenzijo prispevka, &quot;{$submissionTitle},&quot; za {$contextName}.  Upali smo, da bomo dobili vaš odziv do predvidenega datuma {$responseDueDate}. To e-pošto sporočilo je bilo samodejno generirano in poslano po poteku datuma. <br />Verjamem, da bi se odlično odrezali v vlogi recenzenta rokopisa. Povzetek prispevka je priložen spodaj. Upam, da boste razmislili in prevzeli to pomembno opravilo.<br /> <br /> Prosimo, da se do {$responseDueDate} prijavite na spletni strani založbe in navedite, ali boste opravljali recenzijo ali ne, ter ali boste dostopali do prispevka in ali naj se vaša recenzija in priporočila zapišejo. Datum za oddajo recenzije je {$reviewDueDate}.<br /> <br /> Povezava do prispevka: <a href=\"{$reviewAssignmentUrl}\">{$reviewAssignmentUrl}</a><br /> <br /> Uporabniško ime: {$recipientUsername}<br /> <br /> Zahvaljujemo se vam za zanimanje. <br /> <br /> {$signature}<br /> <br /> <br /> <br /> &quot;{$submissionTitle}&quot; <br /> <br /> {$abstractTermIfEnabled}<br /> {$submissionAbstract}"
-
-msgid "emails.reviewResponseOverdueAutoOneclick.description"
-msgstr "To e-poštno sporočilo bo samodejno poslano po preteku roka za potrditev opravljanja recenzije in ko je omogočen dostop recenzenta z enim klikom. (Glejte Nastavitve recenzije, ki jih najdete pod Nastavitve > Potek dela > Recenzija) Načrtovane naloge morajo biti omogočene in konfigurirane (glejte konfiguracijsko datoteko)."
-
 msgid "emails.reviewCancel.subject"
 msgstr "Prošnja za recenzijo preklicana"
 
@@ -144,15 +135,6 @@ msgstr "Avtomatski opomnik za recenzijo prispevka"
 
 msgid "emails.reviewRemindAuto.body"
 msgstr "{$recipientName}:<br /> <br />, samo prijazen opomnik za našo prošnjo za recenzijo prispevka, &quot;{$submissionTitle},&quot; za {$contextName}. Upali smo, da boste recenzijo napisali do predvidenega datuma {$reviewDueDate}. E-pošta je bila samodejno generirana in poslana po preteku datuma. Veseli bomo, če jo bomo lahko prejeli takoj, ko bo mogoče.<br /> <br /> Če nimate uporabniškega imena in gesla za dostop do spletne strani, lahko uporabite naslednjo povezavo za ponastavitev gesla (ki vam bo posredovano po e-pošti skupaj z vašim uporabniškim imenom): <a href=\"{$passwordResetUrl}\">{$passwordResetUrl}</a><br /> <br /> URL do prispevka:  <a href=\"{$reviewAssignmentUrl}\">{$reviewAssignmentUrl}</a><br /> <br /> Uporabniško ime: {$recipientUsername}<br /> <br /> Prosim, da potrdite vašo pripravljenost za dokončanje pomembnega prispevka za delo založbe. Že vnaprej se vam zahvaljujemo za odgovor. <br /> <br /> {$signature}"
-
-msgid "emails.reviewRemindAutoOneclick.subject"
-msgstr "Avtomatski opomnik za recenzijo prispevka"
-
-msgid "emails.reviewRemindAutoOneclick.body"
-msgstr "{$recipientName}:<br /> <br />, samo prijazen opomnik za našo prošnjo za recenzijo prispevka, &quot;{$submissionTitle},&quot; za {$contextName}.  Upali smo, da boste recenzijo napisali do predvidenega datuma {$reviewDueDate}. E-pošta je bila samodejno generirana in poslana po preteku datuma. Veseli bomo, če jo bomo lahko prejeli takoj, ko bo mogoče.<br /> <br /> URL povezava do prispevka: <a href=\"{$reviewAssignmentUrl}\">{$reviewAssignmentUrl}</a><br /> <br /> Prosim, potrdite vašo pripravljenost za dokončanje pomembnega prispevka za delo založbe. Že vnaprej se vam zahvaljujemo za odgovor. <br /> <br /> {$signature}"
-
-msgid "emails.reviewRemindAutoOneclick.description"
-msgstr "To e-poštno sporočilo bo samodejno poslano po preteku roka za recenzijo in ko je omogočen dostop recenzenta z enim klikom. (glejte Nastavitve recenzije, ki jih najdete pod Nastavitve > Potek dela > Recenzija) Načrtovane naloge morajo biti omogočene in konfigurirane (glejte konfiguracijsko datoteko)."
 
 #, fuzzy
 msgid "emails.editorDecisionAccept.subject"
