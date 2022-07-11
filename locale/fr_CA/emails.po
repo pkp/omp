@@ -238,24 +238,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAutoOneclick.subject"
-msgstr "Rappel automatique d'évaluation d'une soumission"
-
-msgid "emails.reviewRemindAutoOneclick.body"
-msgstr ""
-"{$recipientName}:<br />\n"
-"<br />\n"
-"Nous vous remercions d'avoir accepté d'évaluer &quot;{$submissionTitle}&quot; pour la presse {$contextName}. Veuillez noter que cette évaluation doit nous parvenir avant le {$reviewDueDate}. Ce courriel a été généré et envoyé automatiquement parce que vous avez dépassé la date d'échéance. Toutefois, nous vous serions reconnaissants si vous pouviez nous faire parvenir votre évaluation dans les plus brefs délais.<br />\n"
-"<br />\n"
-"URL de la soumission: {$reviewAssignmentUrl}<br />\n"
-"<br />\n"
-"Nous vous prions de confirmer si vous êtes encore disponible pour participer à cette étape cruciale de notre processus éditorial. Veuillez agréer l'expression de nos sentiments les plus distingués. <br />\n"
-"<br />\n"
-"{$signature}"
-
-msgid "emails.reviewRemindAutoOneclick.description"
-msgstr "Ce courriel est envoyé automatiquement lorsqu'une évaluation est en retard (voir les options d'évaluation à l'étape 2 de la section Configuration de la presse) et que l'accès de l'évaluateur en un seul clic est activé. Les tâches prévues doivent être activées et configurée (voir le fichier de configuration du site)."
-
 #, fuzzy
 msgid "emails.editorDecisionAccept.subject"
 msgstr "Décision du rédacteur en chef"
