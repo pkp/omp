@@ -1,9 +1,10 @@
+# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-09 18:35+0000\n"
-"Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
+"PO-Revision-Date: 2022-07-05 06:31+0000\n"
+"Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/pubIds-urn/"
-"da/>\n"
+"da_DK/>\n"
 "Language: da_DK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -120,7 +121,7 @@ msgid "plugins.pubIds.urn.manager.settings.form.urnResolverRequired"
 msgstr "Indtast resolver-URL."
 
 msgid "plugins.pubIds.urn.manager.settings.urnResolver.description"
-msgstr "(f.eks. http://nbn-resolving.de/)"
+msgstr "(f.eks. https://nbn-resolving.de)"
 
 msgid "plugins.pubIds.urn.manager.settings.urnResolver"
 msgstr "Resolver-URL"
