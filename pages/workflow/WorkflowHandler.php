@@ -33,22 +33,20 @@ use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
+use APP\decision\types\BackToInternalReviewFromExternalReview;
+use APP\decision\types\BackToInternalReview;
+use APP\decision\types\BackToPreviousInternalReviewRound;
+use APP\decision\types\BackToSubmissionFromInternalReview;
 use PKP\core\PKPApplication;
+use PKP\decision\types\BackToPreviousExternalReviewRound;
 use PKP\decision\types\Accept;
-use PKP\decision\types\BackToCopyediting;
-use PKP\decision\types\BackToInternalReview;
-use PKP\decision\types\BackToInternalReviewFromExternalReview;
-use PKP\decision\types\BackToPreviousInternalReviewRound;
-use PKP\decision\types\BackToReview;
+use PKP\decision\types\BackToExternalReview;
 use PKP\decision\types\BackToSubmissionFromExternalReview;
-use PKP\decision\types\BackToSubmissionFromInternalReview;
 use PKP\decision\types\Decline;
 use PKP\decision\types\InitialDecline;
 use PKP\decision\types\RecommendAccept;
 use PKP\decision\types\RecommendDecline;
 use PKP\decision\types\RecommendRevisions;
-use PKP\decision\types\RemoveEmptyExternalReviewRound;
-use PKP\decision\types\RemoveEmptyInternalReviewRound;
 use PKP\decision\types\RequestRevisions;
 use PKP\decision\types\RevertDecline;
 use PKP\decision\types\RevertInitialDecline;
@@ -221,7 +219,6 @@ class WorkflowHandler extends PKPWorkflowHandler
         $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
         $request = Application::get()->getRequest();
         $reviewRoundId = (int) $request->getUserVar('reviewRoundId');
-        $decisionRepository = Repo::decision();
 
         switch ($stageId) {
             case WORKFLOW_STAGE_ID_SUBMISSION:
@@ -271,8 +268,12 @@ class WorkflowHandler extends PKPWorkflowHandler
 
         $decisionTypes = array_merge(
             $decisionTypes,
-            $decisionRepository->getApplicableRetractableDecisionTypes($stageId, $submission, $reviewRoundId),
-            $decisionRepository->getApplicableRemovableDecisionTypes($stageId, $submission, $reviewRoundId)
+            Repo::decision()
+                ->getApplicableRetractableDecisionTypes(
+                    $stageId, 
+                    $submission, 
+                    $reviewRoundId
+                ),
         );
 
         HookRegistry::call('Workflow::Decisions', [&$decisionTypes, $stageId]);
@@ -325,15 +326,13 @@ class WorkflowHandler extends PKPWorkflowHandler
             InitialDecline::class,
             DeclineInternal::class,
             Decline::class,
-            RemoveEmptyExternalReviewRound::class,
-            RemoveEmptyInternalReviewRound::class,
             BackToPreviousExternalReviewRound::class,
             BackToPreviousInternalReviewRound::class,
             BackToSubmissionFromExternalReview::class,
             BackToSubmissionFromInternalReview::class,
             BackToInternalReviewFromExternalReview::class,
             BackToInternalReview::class,
-            BackToReview::class,
+            BackToExternalReview::class,
         ];
     }
 }

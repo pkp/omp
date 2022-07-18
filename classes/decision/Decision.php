@@ -42,7 +42,7 @@ class Decision extends BaseDecision
     public const REVERT_DECLINE = 17;
     public const REVERT_INITIAL_DECLINE = 18;
     public const SKIP_EXTERNAL_REVIEW = 19;
-    public const BACK_TO_REVIEW = 20;
+    public const BACK_TO_EXTERNAL_REVIEW = 20;
     public const BACK_TO_COPYEDITING = 21;
     public const BACK_TO_SUBMISSION_FROM_COPYEDITING = 22;
     public const SKIP_INTERNAL_REVIEW = 23;
@@ -56,14 +56,12 @@ class Decision extends BaseDecision
     public const RECOMMEND_DECLINE_INTERNAL = 31;
     public const REVERT_INTERNAL_DECLINE = 32;
     public const NEW_INTERNAL_ROUND = 33;
-    public const DELETE_EMPTY_EXTERNAL_REVIEW_ROUND = 34;
-    public const DELETE_EMPTY_INTERNAL_REVIEW_ROUND = 35;
-    public const BACK_TO_PREVIOUS_EXTERNAL_REVIEW_ROUND = 36;
-    public const BACK_TO_PREVIOUS_INTERNAL_REVIEW_ROUND = 37;
-    public const BACK_TO_SUBMISSION_FROM_EXTERNAL_REVIEW = 38;
-    public const BACK_TO_SUBMISSION_FROM_INTERNAL_REVIEW = 39;
-    public const BACK_TO_INTERNAL_REVIEW_FROM_EXTERNAL_REVIEW = 40;
-    public const BACK_TO_INTERNAL_REVIEW = 41;
+    public const BACK_TO_PREVIOUS_EXTERNAL_REVIEW_ROUND = 34;
+    public const BACK_TO_PREVIOUS_INTERNAL_REVIEW_ROUND = 35;
+    public const BACK_TO_SUBMISSION_FROM_EXTERNAL_REVIEW = 36;
+    public const BACK_TO_SUBMISSION_FROM_INTERNAL_REVIEW = 37;
+    public const BACK_TO_INTERNAL_REVIEW_FROM_EXTERNAL_REVIEW = 38;
+    public const BACK_TO_INTERNAL_REVIEW = 39;
 }
 
 if (!PKP_STRICT_MODE) {
