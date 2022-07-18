@@ -42,6 +42,7 @@ class Decision extends BaseDecision
     public const REVERT_DECLINE = 17;
     public const REVERT_INITIAL_DECLINE = 18;
     public const SKIP_EXTERNAL_REVIEW = 19;
+<<<<<<< HEAD
     public const SKIP_INTERNAL_REVIEW = 20;
     public const ACCEPT_INTERNAL = 21;
     public const PENDING_REVISIONS_INTERNAL = 22;
@@ -56,6 +57,28 @@ class Decision extends BaseDecision
     public const BACK_FROM_PRODUCTION = 31;
     public const BACK_FROM_COPYEDITING = 32;
     public const CANCEL_REVIEW_ROUND = 33;
+=======
+    public const BACK_TO_EXTERNAL_REVIEW = 20;
+    public const BACK_TO_COPYEDITING = 21;
+    public const BACK_TO_SUBMISSION_FROM_COPYEDITING = 22;
+    public const SKIP_INTERNAL_REVIEW = 23;
+    public const ACCEPT_INTERNAL = 24;
+    public const PENDING_REVISIONS_INTERNAL = 25;
+    public const RESUBMIT_INTERNAL = 26;
+    public const DECLINE_INTERNAL = 27;
+    public const RECOMMEND_ACCEPT_INTERNAL = 28;
+    public const RECOMMEND_PENDING_REVISIONS_INTERNAL = 29;
+    public const RECOMMEND_RESUBMIT_INTERNAL = 30;
+    public const RECOMMEND_DECLINE_INTERNAL = 31;
+    public const REVERT_INTERNAL_DECLINE = 32;
+    public const NEW_INTERNAL_ROUND = 33;
+    public const BACK_TO_PREVIOUS_EXTERNAL_REVIEW_ROUND = 34;
+    public const BACK_TO_PREVIOUS_INTERNAL_REVIEW_ROUND = 35;
+    public const BACK_TO_SUBMISSION_FROM_EXTERNAL_REVIEW = 36;
+    public const BACK_TO_SUBMISSION_FROM_INTERNAL_REVIEW = 37;
+    public const BACK_TO_INTERNAL_REVIEW_FROM_EXTERNAL_REVIEW = 38;
+    public const BACK_TO_INTERNAL_REVIEW = 39;
+>>>>>>> c37bf38e1 (pkp/pkp-lib#2890 backable decisions refactored based on pr review)
 }
 
 if (!PKP_STRICT_MODE) {
