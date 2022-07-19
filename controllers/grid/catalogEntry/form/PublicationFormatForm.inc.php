@@ -13,10 +13,10 @@
  * @brief Form for adding/editing a format
  */
 
-use APP\template\TemplateManager;
-use PKP\log\SubmissionLog;
 use APP\log\SubmissionEventLogEntry;
+use APP\template\TemplateManager;
 use PKP\form\Form;
+use PKP\log\SubmissionLog;
 
 class PublicationFormatForm extends Form
 {
@@ -63,7 +63,6 @@ class PublicationFormatForm extends Form
     /**
      * Set the publication format
      *
-     * @param PublicationFormat $format
      */
     public function setPublicationFormat($publicationFormat)
     {
@@ -198,14 +197,13 @@ class PublicationFormatForm extends Form
      */
     public function execute(...$functionParams)
     {
-        parent::execute(...$functionParams);
-
         $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
         $publicationFormat = $this->getPublicationFormat();
         if (!$publicationFormat) {
             // this is a new format to this published submission
             $publicationFormat = $publicationFormatDao->newDataObject();
             $publicationFormat->setData('publicationId', $this->getPublication()->getId());
+            $this->setPublicationFormat($publicationFormat);
             $existingFormat = false;
         } else {
             $existingFormat = true;
@@ -219,6 +217,7 @@ class PublicationFormatForm extends Form
         $publicationFormat->setPhysicalFormat($this->getData('isPhysicalFormat') ? true : false);
         $publicationFormat->setRemoteURL($this->getData('remoteURL'));
         $publicationFormat->setData('urlPath', $this->getData('urlPath'));
+        parent::execute(...$functionParams);
 
         if ($existingFormat) {
             $publicationFormatDao->updateObject($publicationFormat);
