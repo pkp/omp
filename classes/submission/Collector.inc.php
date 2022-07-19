@@ -103,10 +103,16 @@ class Collector extends \PKP\submission\Collector
                             $q->whereNull('current_p.doi_id');
                         });
                         $q->when(in_array(Repo::doi()::TYPE_CHAPTER, $this->enabledDoiTypes), function (Builder $q) {
-                            $q->orwhereNull('current_c.doi_id');
+                            $q->orWhere(function (Builder $q) {
+                                $q->whereNull('current_c.doi_id');
+                                $q->whereNotNull('current_c.chapter_id');
+                            });
                         });
                         $q->when(in_array(Repo::doi()::TYPE_REPRESENTATION, $this->enabledDoiTypes), function (Builder $q) {
-                            $q->orWhereNull('current_pf.doi_id');
+                            $q->orWhere(function (Builder $q) {
+                                $q->whereNull('current_pf.doi_id');
+                                $q->whereNotNull('current_pf.publication_format_id');
+                            });
                         });
                     });
                 });

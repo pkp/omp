@@ -87,9 +87,6 @@ msgstr ""
 "Manuscript URL: {$submissionUrl}"
 
 #, fuzzy
-msgid "emails.editorDecisionAccept.description"
-msgstr "Denne e-mail fra redaktøren eller serieredaktøren til en forfatter er en meddelelse om den endelige afgørelse vedrørende deres bidrag."
-
 msgid "emails.emailLink.subject"
 msgstr "Artikel, der muligvis har din interesse"
 
@@ -196,9 +193,6 @@ msgstr ""
 "Dette er en automatisk genereret email, som ikke kan besvares.<br />\n"
 "{$signature}<hr />{$unsubscribeLink}"
 
-msgid "emails.notification.description"
-msgstr "Denne e-mail er blevet sendt til registrerede brugere, som har valgt at få tilsendt denne type meddelelser."
-
 msgid "emails.notificationCenterDefault.subject"
 msgstr "Besked omhandlende {$contextName}"
 
@@ -272,9 +266,6 @@ msgstr ""
 "<br />\n"
 "Hvis du har spørgsmål, er du velkommen til at kontakte mig."
 
-msgid "emails.reviewCancel.description"
-msgstr "Denne e-mail sendes af sektionsredaktøren til en bedømmer, som er ved at bedømme et manuskript, og underretter vedkommende om, at bedømmelsen er blevet annulleret."
-
 msgid "emails.reviewConfirm.subject"
 msgstr "Kan foretage bedømmelse"
 
@@ -286,9 +277,6 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
-msgid "emails.reviewConfirm.description"
-msgstr "Denne e-mail sendes af en bedømmer til sektionsredaktøren som svar på en bedømmelsesforespørgsel og underretter sektionsredaktøren om, at bedømmelsesforespørgslen er blevet accepteret, og at bedømmelsen vil være fuldført til den angivne dato."
-
 msgid "emails.reviewDecline.subject"
 msgstr "Kan ikke foretage bedømmelse"
 
@@ -299,9 +287,6 @@ msgstr ""
 "Jeg beklager, at jeg på nuværende tidspunkt ikke kan bedømme manuskriptet &quot;{$submissionTitle}&quot; til {$contextName}. Tak, fordi du tænkte på mig, og du er altid velkommen til at kontakte mig en anden gang.<br />\n"
 "<br />\n"
 "{$senderName}"
-
-msgid "emails.reviewDecline.description"
-msgstr "Denne e-mail sendes af en bedømmer til sektionsredaktøren som svar på en bedømmelsesforespørgsel og underretter sektionsredaktøren om, at bedømmelsesforespørgslen er blevet afvist."
 
 msgid "emails.reviewRemind.subject"
 msgstr "Påmindelse om bedømmelse af manuskript"
@@ -328,9 +313,6 @@ msgstr ""
 "til tidsskriftets arbejde. Jeg ser frem til at høre fra dig.<br />\n"
 "<br />\n"
 "{$signature}"
-
-msgid "emails.reviewRemind.description"
-msgstr "Denne e-mail sendes af sektionsredaktøren til en bedømmer for at minde vedkommende om, at bedømmelsen skulle have været afleveret."
 
 msgid "emails.reviewRemindAuto.subject"
 msgstr "Automatisk påmindelse om bedømmelse af manuskript"
@@ -359,27 +341,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAuto.description"
-msgstr "Denne e-mail sendes automatisk, når en bedømmers forfaldsdato overskrides (se Bedømmelsesindstillinger under Konfiguration af tidsskrift, trin 2), og når adgang for bedømmere ved hjælp af ét klik er deaktiveret. Planlagte opgaver skal aktiveres og konfigureres (se webstedets konfigurationsfil)."
-
-msgid "emails.reviewRemindAutoOneclick.subject"
-msgstr "Automatisk påmindelse om bedømmelse af manuskript"
-
-msgid "emails.reviewRemindAutoOneclick.body"
-msgstr ""
-"{$recipientName}:<br />\n"
-"<br />\n"
-"Dette er blot for at minde dig om vores forespørgsel om din bedømmelse af manuskriptet &quot;{$submissionTitle}&quot; til {$contextName}. Vi havde håbet på at modtage bedømmelsen senest den {$reviewDueDate}, og denne e-mail er blevet automatisk genereret og sendt til dig, da den pågældende dato er overskredet. Vi ser stadig frem til at modtage den, så snart du er færdig med den.<br />\n"
-"<br />\n"
-"Manuskriptets URL-adresse: {$reviewAssignmentUrl}<br />\n"
-"<br />\n"
-"Vi beder dig bekræfte, at du er i stand til at fuldføre dette vigtige bidrag til tidsskriftets arbejde. Jeg ser frem til at høre fra dig.<br />\n"
-"<br />\n"
-"{$signature}"
-
-msgid "emails.reviewRemindAutoOneclick.description"
-msgstr "Denne e-mail sendes automatisk, når en bedømmers forfaldsdato overskrides (se Bedømmelsesindstillinger under Indstillinger > Workflow > Bedømmelse), og når adgang for bedømmere ved hjælp af ét klik er aktiveret. Planlagte opgaver skal aktiveres og konfigureres (se webstedets konfigurationsfil)."
-
 msgid "emails.reviewRequest.subject"
 msgstr "Forespørgsel om bedømmelse af manuskript"
 
@@ -404,15 +365,6 @@ msgstr ""
 "<br />\n"
 "Mange hilsner<br />\n"
 "{$signature}<br />\n"
-
-msgid "emails.reviewRequest.description"
-msgstr ""
-"Denne e-mail fra serieredaktøren til en bedømmer anmoder bedømmeren om at "
-"acceptere eller afvise opgaven med at gennemgå et manuskript. Den indeholder "
-"information om manuskriptet, såsom titel og resumé, forfaldsdato for "
-"bedømmelse, og hvordan man får adgang til selve manuskriptet. Denne "
-"meddelelse bruges, når standardbedømmelsesprocessen er valgt i Indstillinger>"
-" Workflow> Bedømmelse."
 
 msgid "emails.reviewResponseOverdueAuto.subject"
 msgstr "Forespørgsel om bedømmelse af manuskript"
@@ -443,47 +395,6 @@ msgstr ""
 "<br />\n"
 "Mange hilsner<br />\n"
 "{$signature}<br />\n"
-
-msgid "emails.reviewResponseOverdueAuto.description"
-msgstr "Denne e-mail sendes automatisk når en bedømmers bekræftelsesdato er overskredet (se bedømmelsesindstillinger under Indstillinger > Workflow > Bedømmelse) og ’Aktiver adgang for bedømmere ved hjælp af ét klik’ er fravalgt. Tidsfrister og påmindelser skal være defineret."
-
-msgid "emails.reviewResponseOverdueAutoOneclick.subject"
-msgstr "Forespørgsel om bedømmelse af manuskript"
-
-msgid "emails.reviewResponseOverdueAutoOneclick.body"
-msgstr ""
-"{$recipientName}:<br />\n"
-"Dette er blot for at minde dig om vores forespørgsel om din bedømmelse af "
-"manuskriptet &quot;{$submissionTitle},&quot; for {$contextName}. Vi havde "
-"håbet på at modtage dit svar senest den {$responseDueDate}, og denne e-mail "
-"er blevet automatisk genereret og sendt til dig, da den pågældende dato er "
-"overskredet.\n"
-"<br />\n"
-"Jeg tror, at du vil være en fremragende bedømmer af manuskriptet. Nedenfor "
-"finder du et resumé af manuskriptet, og jeg håber, at du vil overveje at "
-"påtage dig denne vigtige opgave for os.<br />\n"
-"<br />\n"
-"Log på tidsskriftets websted for at angive, om du vil påtage dig bedømmelsen "
-"eller ej, samt for at få adgang til manuskriptet og registrere din "
-"bedømmelse og anbefaling.<br />\n"
-"<br />\n"
-"Selve bedømmelsen skal afleveres senest den {$reviewDueDate}.<br />\n"
-"<br />\n"
-"Manuskriptets URL-adresse: {$reviewAssignmentUrl}<br />\n"
-"<br />\n"
-"Tak for din overvejelse af denne forespørgsel.<br />\n"
-"<br />\n"
-"{$signature}<br />\n"
-"<br />\n"
-"<br />\n"
-"<br />\n"
-"&quot;{$submissionTitle}&quot;<br />\n"
-"<br />\n"
-"{$abstractTermIfEnabled}<br />\n"
-"{$submissionAbstract}"
-
-msgid "emails.reviewResponseOverdueAutoOneclick.description"
-msgstr "Denne e-mail sendes automatisk når en bedømmers bekræftelsesdato er overskredet (se bedømmelsesindstillinger under Indstillinger > Workflow > Bedømmelse) og ’Aktiver adgang for bedømmere ved hjælp af ét klik’ er aktiveret. Tidsfrister og påmindelser skal være defineret."
 
 msgid "emails.submissionAckNotUser.subject"
 msgstr "Indsendelsesbekræftelse"
@@ -532,12 +443,6 @@ msgstr ""
 
 msgid "emails.notifySubmission.subject"
 msgstr "Indsendelsesmeddelelse"
-
-msgid "emails.reviewReinstate.description"
-msgstr ""
-"Denne e-mail er afsendt af redaktøren af en serie til en bedømmer, som er i "
-"gang med en bedømmelse for at underrette vedkommende om, at bedømmelsen er "
-"blevet annulleret."
 
 msgid "emails.reviewReinstate.body"
 msgstr ""
@@ -595,11 +500,6 @@ msgstr ""
 msgid "emails.announcement.subject"
 msgstr "{$announcementTitle}"
 
-msgid "emails.userValidateSite.description"
-msgstr ""
-"Denne e-mail sendes til en ny registreret bruger for at byde vedkommende "
-"velkommen til systemet og give vedkommende sit brugernavn og password."
-
 msgid "emails.userValidateSite.body"
 msgstr ""
 "{$recipientName}<br />\n"
@@ -615,11 +515,6 @@ msgstr ""
 
 msgid "emails.userValidateSite.subject"
 msgstr "Valider din konto"
-
-msgid "emails.userValidateContext.description"
-msgstr ""
-"Denne e-mail sendes til en ny registreret bruger for at byde vedkommende "
-"velkommen til systemet og give vedkommende sit brugernavn og password."
 
 msgid "emails.userValidateContext.body"
 msgstr ""
@@ -639,11 +534,6 @@ msgstr "Valider din konto"
 
 msgid "emails.editorDecisionSkipReview.subject"
 msgstr "Din indsendelse er blevet sendt til kopiredigering"
-
-msgid "emails.editorDecisionSendToInternal.description"
-msgstr ""
-"Denne e-mail fra redaktøren eller serieredaktøren til en forfatter meddeler, "
-"at indsendelsen er blevet sendt til intern bedømmelse."
 
 msgid "emails.editorDecisionSendToInternal.subject"
 msgstr "Din indsendelse er blevet sendt til intern bedømmelse"

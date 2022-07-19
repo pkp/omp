@@ -1479,19 +1479,6 @@ msgstr "Skriv inn DOI-suffiksmønsteret for kapitler."
 msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
 msgstr "Skriv inn DOI-suffiksmønsteret for monografier."
 
-msgid "doi.manager.settings.doiSuffixCustomIdentifier"
-msgstr ""
-"Skriv inn et individuelt DOI-suffiks for hvert publiserte objekt. Du finner "
-"et ekstra DOI-inntastingsfelt på metadata-siden til hvert objekt."
-
-msgid "doi.manager.settings.doiSuffixDefault.description"
-msgstr ""
-"%p.%m til monografier<br />%p.%m.c%c til kapitler<br />%p.%m.%f til "
-"publikasjonsformater<br />%p.%m.%f.%s til filer."
-
-msgid "doi.manager.settings.doiSuffixDefault"
-msgstr "Bruk standardmønstre."
-
 msgid "doi.manager.settings.doiSuffixPattern.files"
 msgstr "til filer"
 
@@ -1514,24 +1501,10 @@ msgstr ""
 "for utgivere,%m for monografi-ID,%c for kapittel-ID,%f for publikasjons-ID,%"
 "s for fil-ID og %x for \"Egendefinert identifikator\"."
 
-msgid "doi.manager.settings.doiSuffix.description"
-msgstr ""
-"Et DOI-suffiks kan ha hvilken som helst form, men må være unikt for "
-"publiseringsobjektene som har samme DOI-prefiks:"
-
-msgid "doi.manager.settings.doiSuffix"
-msgstr "DOI-suffiks"
-
 msgid "doi.manager.settings.doiPrefixPattern"
 msgstr ""
 "DOI-prefikset er obligatorisk og må være på formatet 10.xxxx, hvor x er et "
 "tall."
-
-msgid "doi.manager.settings.doiPrefix.description"
-msgstr ""
-"DOI-prefikset er tildelt av registreringsinstitusjoner (f.eks. <a href=\""
-"http://www.crossref.org\" target=\"_new\"> CrossRef </a>) og er i 10.xxxx-"
-"format (f.eks. 10.1234):"
 
 msgid "doi.manager.settings.doiPrefix"
 msgstr "DOI Prefiks"
@@ -1551,11 +1524,9 @@ msgstr "Monografier"
 msgid "doi.manager.settings.explainDois"
 msgstr "Velg publiseringsobjektene som skal tildeles DOI:"
 
+#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
 msgstr "Velg objektene som skal tilordnes DOI."
-
-msgid "doi.manager.settings.doiObjects"
-msgstr "Utgiverinnhold"
 
 msgid "doi.manager.settings.description"
 msgstr ""

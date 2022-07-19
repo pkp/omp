@@ -18,9 +18,6 @@ msgstr "Novo obvestilo od {$contextName}"
 msgid "emails.notification.body"
 msgstr "Imate novo obvestilo od {$contextName}: <br /> <br /> {$notificationContents}<br /> <br /> Povezava: <a href=\"{$notificationUrl}\">{$notificationUrl}</a><br /> <br /> Ne odgovarjajte na to sporočilo, ker gre za samodejno ustvarjeno sporočilo. <br /> {$signature}"
 
-msgid "emails.notification.description"
-msgstr "E-poštno obvestilo je bilo poslano vsem registriranim uporabnikom, ki so se naročili na prejemanje teh obvestil na elektronski naslov."
-
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Potrditev ponastavitve gesla"
 
@@ -101,9 +98,6 @@ msgstr ""
 "Spoštovani {$recipientName},<br /> <br /> {$messageToReviewer}<br /> <br /> Prosimo, da se do {$responseDueDate} prijavite na spletni strani založbe in navedete, ali boste opravljali recenzijo ali ne, ter ali boste dostopali do prispevka in ali naj se vaša recenzija in priporočila zapišejo. Recenzija je predvidena do {$reviewDueDate}.<br /> <br /> URL do prispevka: <a href=\"{$reviewAssignmentUrl}\">{$reviewAssignmentUrl}</a><br /> <br /> Uporabniško ime: {$recipientUsername}<br /> <br /> Zahvaljujemo se vam za zanimanje. <br /> <br /> <br /> Lep pozdrav, <br /> {$signature}<br />\n"
 ""
 
-msgid "emails.reviewRequest.description"
-msgstr "To e-poštno sporočilo urednika zbirke od recenzenta zahteva, da recenzent sprejme ali zavrne recenzijo prispevka. Vsebuje informacije o prispevku kot na primer naslov in povzetek, rok za oddajo recenzije ter navodila za dostop do prispevka. To sporočilo se uporabi, ko je izbran standardni recenzijski postopek v Upravljanje > Nastavitve > Potek dela > Recenzija."
-
 msgid "emails.reviewResponseOverdueAuto.subject"
 msgstr "Prošnja za recenzijo rokopisa"
 
@@ -112,26 +106,11 @@ msgstr ""
 "Spoštovani, {$recipientName}, samo prijazen opomnik o naši prošnji za recenzijo prispevka &quot;{$submissionTitle},&quot;  za {$contextName}.  Upali smo, da bomo do {$responseDueDate} prejeli vaš odgovor. Ta e-pošta vam je bila samodejno poslana po poteku tega datuma. <br /> {$messageToReviewer}<br /> <br /> Prosimo, da se prijavite na spletni strani založbe in navedete, ali boste opravljali recenzijo ali ne, ter ali boste dostopali do prispevka in ali naj se vaša recenzija in priporočila zapišejo. <br /> <br /> Rok za oddajo recenzije je {$reviewDueDate}.<br /> <br />  URL do prispevka: <a href=\"{$reviewAssignmentUrl}\">{$reviewAssignmentUrl}</a><br /> <br /> Uporabniško ime: {$recipientUsername}<br /> <br /> Zahvaljujemo se vam za zanimanje. <br /> <br /> <br /> Lep pozdrav,<br /> {$signature}<br />\n"
 ""
 
-msgid "emails.reviewResponseOverdueAuto.description"
-msgstr "To e-poštno sporočilo bo samodejno poslano po preteku roka za potrditev opravljanja recenzije in ko je onemogočen dostop recenzenta z enim klikom. (Glejte Nastavitve recenzije, ki jih najdete pod Nastavitve > Potek dela > Recenzija) Načrtovane naloge morajo biti omogočene in konfigurirane (glejte konfiguracijsko datoteko)."
-
-msgid "emails.reviewResponseOverdueAutoOneclick.subject"
-msgstr "Prošnja za recenzijo rokopisa"
-
-msgid "emails.reviewResponseOverdueAutoOneclick.body"
-msgstr "{$recipientName}:<br />, samo prijazen opomnik o naši prošnji za recenzijo prispevka, &quot;{$submissionTitle},&quot; za {$contextName}.  Upali smo, da bomo dobili vaš odziv do predvidenega datuma {$responseDueDate}. To e-pošto sporočilo je bilo samodejno generirano in poslano po poteku datuma. <br />Verjamem, da bi se odlično odrezali v vlogi recenzenta rokopisa. Povzetek prispevka je priložen spodaj. Upam, da boste razmislili in prevzeli to pomembno opravilo.<br /> <br /> Prosimo, da se do {$responseDueDate} prijavite na spletni strani založbe in navedite, ali boste opravljali recenzijo ali ne, ter ali boste dostopali do prispevka in ali naj se vaša recenzija in priporočila zapišejo. Datum za oddajo recenzije je {$reviewDueDate}.<br /> <br /> Povezava do prispevka: <a href=\"{$reviewAssignmentUrl}\">{$reviewAssignmentUrl}</a><br /> <br /> Uporabniško ime: {$recipientUsername}<br /> <br /> Zahvaljujemo se vam za zanimanje. <br /> <br /> {$signature}<br /> <br /> <br /> <br /> &quot;{$submissionTitle}&quot; <br /> <br /> {$abstractTermIfEnabled}<br /> {$submissionAbstract}"
-
-msgid "emails.reviewResponseOverdueAutoOneclick.description"
-msgstr "To e-poštno sporočilo bo samodejno poslano po preteku roka za potrditev opravljanja recenzije in ko je omogočen dostop recenzenta z enim klikom. (Glejte Nastavitve recenzije, ki jih najdete pod Nastavitve > Potek dela > Recenzija) Načrtovane naloge morajo biti omogočene in konfigurirane (glejte konfiguracijsko datoteko)."
-
 msgid "emails.reviewCancel.subject"
 msgstr "Prošnja za recenzijo preklicana"
 
 msgid "emails.reviewCancel.body"
 msgstr "{$recipientName}:<br /> <br />Odločili smo se, da prekličemo našo prošnjo za vašo recenzijo prispevka &quot;{$submissionTitle},&quot; za {$contextName}. Opravičujemo se vam za vse nevšečnosti, ki vam jih to lahko povzroči, in upamo, da se lahko obrnemo na vas pri uredniškem procesu tudi v prihodnje. <br /> <br />Če imaste kakršna koli vprašanja, se obrnite name."
-
-msgid "emails.reviewCancel.description"
-msgstr "To e-poštno sporočilo od urednika zbirke obvešča recenzenta, ki piše recenzijo, da je bila prošnja za recenzijo preklicana."
 
 msgid "emails.reviewConfirm.subject"
 msgstr "Potrditev recenzije"
@@ -139,17 +118,11 @@ msgstr "Potrditev recenzije"
 msgid "emails.reviewConfirm.body"
 msgstr "Urednik(i):<br /> <br />Pripravljen_a sem opraviti recenzijo prispevka &quot;{$submissionTitle},&quot; za {$contextName}. Hvala za povabilo. Sporočam vam, da nameravam recenzijo dokončati do predvidenega datuma {$reviewDueDate}, če ne prej.<br /> <br /> {$senderName}"
 
-msgid "emails.reviewConfirm.description"
-msgstr "To e-poštno sporočilo je uredniku zbirke poslal recenzent kot odgovor na prošnjo za recenzijo, v katerem urednika obvešča, da je sprejel prošnjo za recenzijo in da jo bo dokončal do določenega datuma. "
-
 msgid "emails.reviewDecline.subject"
 msgstr "Ne morem opraviti recenzije"
 
 msgid "emails.reviewDecline.body"
 msgstr "Urednik(i):<br /> <br /> Žal mi je, vendar v tem trenutku ne morem napisati recenzije prispevka &quot;{$submissionTitle},&quot; za {$contextName}. Hvala za povabilo in upam, da me boste še povabili k sodelovanju.<br /> <br /> {$senderName}"
-
-msgid "emails.reviewDecline.description"
-msgstr "To e-poštno sporočilo je uredniku zbirke poslal recenzent kot odgovor na prošnjo za recenzijo, v katerem obvešča urednika, da je zavrnil prošnjo za recenzijo."
 
 msgid "emails.reviewRemind.subject"
 msgstr "Opomnik za recenzijo prispevka"
@@ -157,26 +130,11 @@ msgstr "Opomnik za recenzijo prispevka"
 msgid "emails.reviewRemind.body"
 msgstr "{$recipientName}:<br /> <br />, samo prijazen opomnik za našo prošnjo za recenzijo prispevka , &quot;{$submissionTitle},&quot; za {$contextName}. Upali smo, da bo recenzija končana do {$reviewDueDate}, veseli bomo, če jo bomo prejeli takoj, ko bo mogoče.<br /> <br /> Če nimate uporabniškega imena in gesla za dostop do spletne strani publikacije, lahko uporabite naslednjo povezavo za ponastavitev gesla (ki vam bo posredovano po e-pošti skupaj z vašim uporabniškim imenom): <a href=\"{$passwordResetUrl}\">{$passwordResetUrl}</a><br /> <br /> URL povezava do prispevka: <a href=\"{$reviewAssignmentUrl}\">{$reviewAssignmentUrl}</a><br /> <br /> Uporabniško ime: {$recipientUsername}<br /> Prosim, da potrdite vašo pripravljenost za dokončanje vašega pomembnega prispevka za delo založbe. Že vnaprej se vam zahvaljujemo za odgovor. <br /> <br /> {$signature}"
 
-msgid "emails.reviewRemind.description"
-msgstr "To e-poštno sporočilo je poslal urednik zbirke, ki opozarja recenzenta, da je recenzijo treba oddati."
-
 msgid "emails.reviewRemindAuto.subject"
 msgstr "Avtomatski opomnik za recenzijo prispevka"
 
 msgid "emails.reviewRemindAuto.body"
 msgstr "{$recipientName}:<br /> <br />, samo prijazen opomnik za našo prošnjo za recenzijo prispevka, &quot;{$submissionTitle},&quot; za {$contextName}. Upali smo, da boste recenzijo napisali do predvidenega datuma {$reviewDueDate}. E-pošta je bila samodejno generirana in poslana po preteku datuma. Veseli bomo, če jo bomo lahko prejeli takoj, ko bo mogoče.<br /> <br /> Če nimate uporabniškega imena in gesla za dostop do spletne strani, lahko uporabite naslednjo povezavo za ponastavitev gesla (ki vam bo posredovano po e-pošti skupaj z vašim uporabniškim imenom): <a href=\"{$passwordResetUrl}\">{$passwordResetUrl}</a><br /> <br /> URL do prispevka:  <a href=\"{$reviewAssignmentUrl}\">{$reviewAssignmentUrl}</a><br /> <br /> Uporabniško ime: {$recipientUsername}<br /> <br /> Prosim, da potrdite vašo pripravljenost za dokončanje pomembnega prispevka za delo založbe. Že vnaprej se vam zahvaljujemo za odgovor. <br /> <br /> {$signature}"
-
-msgid "emails.reviewRemindAuto.description"
-msgstr "To e-poštno sporočilo bo samodejno poslano po preteku roka za recenzijo in ko je onemogočen dostop recenzenta z enim klikom. (Glejte Nastavitve recenzije, ki jih najdete pod Nastavitve > Potek dela > Recenzija) Načrtovane naloge morajo biti omogočene in konfigurirane (glejte konfiguracijsko datoteko)."
-
-msgid "emails.reviewRemindAutoOneclick.subject"
-msgstr "Avtomatski opomnik za recenzijo prispevka"
-
-msgid "emails.reviewRemindAutoOneclick.body"
-msgstr "{$recipientName}:<br /> <br />, samo prijazen opomnik za našo prošnjo za recenzijo prispevka, &quot;{$submissionTitle},&quot; za {$contextName}.  Upali smo, da boste recenzijo napisali do predvidenega datuma {$reviewDueDate}. E-pošta je bila samodejno generirana in poslana po preteku datuma. Veseli bomo, če jo bomo lahko prejeli takoj, ko bo mogoče.<br /> <br /> URL povezava do prispevka: <a href=\"{$reviewAssignmentUrl}\">{$reviewAssignmentUrl}</a><br /> <br /> Prosim, potrdite vašo pripravljenost za dokončanje pomembnega prispevka za delo založbe. Že vnaprej se vam zahvaljujemo za odgovor. <br /> <br /> {$signature}"
-
-msgid "emails.reviewRemindAutoOneclick.description"
-msgstr "To e-poštno sporočilo bo samodejno poslano po preteku roka za recenzijo in ko je omogočen dostop recenzenta z enim klikom. (glejte Nastavitve recenzije, ki jih najdete pod Nastavitve > Potek dela > Recenzija) Načrtovane naloge morajo biti omogočene in konfigurirane (glejte konfiguracijsko datoteko)."
 
 #, fuzzy
 msgid "emails.editorDecisionAccept.subject"
@@ -187,9 +145,6 @@ msgid "emails.editorDecisionAccept.body"
 msgstr "{$authors}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href=\"{$submissionUrl}\">{$submissionUrl}</a>"
 
 #, fuzzy
-msgid "emails.editorDecisionAccept.description"
-msgstr "To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja o končni odločitvi glede prispevka."
-
 msgid "emails.layoutRequest.subject"
 msgstr "Zahteva za prelom"
 

@@ -25,9 +25,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.notification.description"
-msgstr "Ce courriel est envoyé aux utilisateurs qui ont demandé qu'on leur envoie ce type de notification par courriel."
-
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Confirmation de réinitialisation du mot de passe"
 
@@ -171,9 +168,6 @@ msgstr ""
 "{$signature}<br />\n"
 ""
 
-msgid "emails.reviewRequest.description"
-msgstr "Ce courriel est envoyé à un évaluateur par le rédacteur en chef d'une série afin de lui demander s'il accepte ou refuse d'évaluer une soumission. Il contient des informations sur la soumission comme le titre et le résumé de l'article, il indique la date d'échéance pour l'évaluation et explique comment on peut accéder à la soumission. Ce message est utilisé lorsqu'on choisit l'option Processus d'évaluation standard à l'étape 2 de la section Configuration de la presse."
-
 msgid "emails.reviewCancel.subject"
 msgstr "Annulation de la requête d'évaluation"
 
@@ -186,9 +180,6 @@ msgstr ""
 "<br />\n"
 "Si vous avez des questions, n'hésitez pas à me contacter."
 
-msgid "emails.reviewCancel.description"
-msgstr "Ce courriel est envoyé à un évaluateur qui a entamé le processus d'évaluation d'une soumission par le rédacteur en chef d'une série afin d'informer l'évaluateur que la procédure d'évaluation a été annulée."
-
 msgid "emails.reviewConfirm.subject"
 msgstr "En mesure d'évaluer"
 
@@ -200,9 +191,6 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
-msgid "emails.reviewConfirm.description"
-msgstr "Ce courriel est envoyé au rédacteur en chef d'une série pour répondre à la requête d'évaluation. Il a pour but de permettre à l'évaluateur d'indiquer au rédacteur en chef qu'il a accepté d'évaluer l'article et qu'il aura terminé son évaluation dans les délais prescrits."
-
 msgid "emails.reviewDecline.subject"
 msgstr "Ne peux pas évaluer"
 
@@ -213,9 +201,6 @@ msgstr ""
 "Malheureusement, je ne pourrai pas évaluer &quot;{$submissionTitle}&quot; pour la presse {$contextName}. Merci de m'avoir invité à évaluer cet article et n'hésitez pas à me contacter dans un avenir prochain.<br />\n"
 "<br />\n"
 "{$senderName}"
-
-msgid "emails.reviewDecline.description"
-msgstr "Ce courriel est envoyé par l'évaluateur au rédacteur en chef d'une série série pour indiquer qu'il ne sera pas en mesure d'évaluer l'article en question."
 
 msgid "emails.reviewRemind.subject"
 msgstr "Rappel d'évaluation"
@@ -236,9 +221,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemind.description"
-msgstr "Ce courriel est envoyé par le rédacteur en chef d'une série pour rappeler à l'évaluateur qu'il doit envoyer sa soumission dès que possible."
-
 msgid "emails.reviewRemindAuto.subject"
 msgstr "Rappel automatique d'évaluation d'une soumission"
 
@@ -256,27 +238,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAuto.description"
-msgstr "Ce courriel est envoyé automatiquement lorsqu'une évaluation est en retard (voir les options d'évaluation à l'étape 2 de la section Configuration de la presse) et que l'accès de l'évaluateur en un seul clic est désactivé. Les tâches prévues doivent être activées et configurée (voir le fichier de configuration du site)."
-
-msgid "emails.reviewRemindAutoOneclick.subject"
-msgstr "Rappel automatique d'évaluation d'une soumission"
-
-msgid "emails.reviewRemindAutoOneclick.body"
-msgstr ""
-"{$recipientName}:<br />\n"
-"<br />\n"
-"Nous vous remercions d'avoir accepté d'évaluer &quot;{$submissionTitle}&quot; pour la presse {$contextName}. Veuillez noter que cette évaluation doit nous parvenir avant le {$reviewDueDate}. Ce courriel a été généré et envoyé automatiquement parce que vous avez dépassé la date d'échéance. Toutefois, nous vous serions reconnaissants si vous pouviez nous faire parvenir votre évaluation dans les plus brefs délais.<br />\n"
-"<br />\n"
-"URL de la soumission: {$reviewAssignmentUrl}<br />\n"
-"<br />\n"
-"Nous vous prions de confirmer si vous êtes encore disponible pour participer à cette étape cruciale de notre processus éditorial. Veuillez agréer l'expression de nos sentiments les plus distingués. <br />\n"
-"<br />\n"
-"{$signature}"
-
-msgid "emails.reviewRemindAutoOneclick.description"
-msgstr "Ce courriel est envoyé automatiquement lorsqu'une évaluation est en retard (voir les options d'évaluation à l'étape 2 de la section Configuration de la presse) et que l'accès de l'évaluateur en un seul clic est activé. Les tâches prévues doivent être activées et configurée (voir le fichier de configuration du site)."
-
 #, fuzzy
 msgid "emails.editorDecisionAccept.subject"
 msgstr "Décision du rédacteur en chef"
@@ -293,9 +254,6 @@ msgstr ""
 "URL du manuscrit: {$submissionUrl}"
 
 #, fuzzy
-msgid "emails.editorDecisionAccept.description"
-msgstr "Ce courriel est envoyé par un rédacteur en chef à un auteur pour signaler que l'on a pris une décision finale concernant sa soumission."
-
 msgid "emails.layoutRequest.subject"
 msgstr "Requête des épreuves en placard"
 

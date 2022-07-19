@@ -34,8 +34,8 @@ class Repository extends \PKP\doi\Repository
     public const TYPE_SUBMISSION_FILE = 'file';
     public const TYPE_CHAPTER = 'chapter';
 
-    public const LEGACY_CUSTOM_CHAPTER_PATTERN = 'doiChapterSuffixPattern';
-    public const LEGACY_CUSTOM_FILE_PATTERN = 'doiFileSuffixPattern';
+    public const CUSTOM_CHAPTER_PATTERN = 'doiChapterSuffixPattern';
+    public const CUSTOM_FILE_PATTERN = 'doiFileSuffixPattern';
 
     public function __construct(DAO $dao, Request $request, PKPSchemaService $schemaService)
     {
@@ -45,9 +45,13 @@ class Repository extends \PKP\doi\Repository
     /**
      * Create a DOI for the given publication
      */
-    public function mintPublicationDoi(Publication $publication, Submission $submission, Context $context): ?int
+    public function mintPublicationDoi(Publication $publication, Submission $submission, Context $context): int
     {
-        $doiSuffix = $this->generateSuffixPattern($publication, $context, $context->getData(Context::SETTING_CUSTOM_DOI_SUFFIX_TYPE), $submission);
+        if ($context->getData(Context::SETTING_DOI_SUFFIX_TYPE) === Repo::doi()::SUFFIX_DEFAULT) {
+            $doiSuffix = $this->generateDefaultSuffix();
+        } else {
+            $doiSuffix = $this->generateSuffixPattern($publication, $context, $context->getData(Context::SETTING_DOI_SUFFIX_TYPE), $submission);
+        }
 
         return $this->mintAndStoreDoi($context, $doiSuffix);
     }
@@ -55,9 +59,13 @@ class Repository extends \PKP\doi\Repository
     /**
      * Create a DOI for the given chapter
      */
-    public function mintChapterDoi(Chapter $chapter, Submission $submission, Context $context): ?int
+    public function mintChapterDoi(Chapter $chapter, Submission $submission, Context $context): int
     {
-        $doiSuffix = $this->generateSuffixPattern($chapter, $context, $context->getData(Context::SETTING_CUSTOM_DOI_SUFFIX_TYPE), $submission, $chapter);
+        if ($context->getData(Context::SETTING_DOI_SUFFIX_TYPE) === Repo::doi()::SUFFIX_DEFAULT) {
+            $doiSuffix = $this->generateDefaultSuffix();
+        } else {
+            $doiSuffix = $this->generateSuffixPattern($chapter, $context, $context->getData(Context::SETTING_DOI_SUFFIX_TYPE), $submission, $chapter);
+        }
 
         return $this->mintAndStoreDoi($context, $doiSuffix);
     }
@@ -65,9 +73,13 @@ class Repository extends \PKP\doi\Repository
     /**
      * Create a DOI for the given publication format
      */
-    public function mintPublicationFormatDoi(PublicationFormat $publicationFormat, Submission $submission, Context $context): ?int
+    public function mintPublicationFormatDoi(PublicationFormat $publicationFormat, Submission $submission, Context $context): int
     {
-        $doiSuffix = $this->generateSuffixPattern($publicationFormat, $context, $context->getData(Context::SETTING_CUSTOM_DOI_SUFFIX_TYPE), $submission, null, $publicationFormat);
+        if ($context->getData(Context::SETTING_DOI_SUFFIX_TYPE) === Repo::doi()::SUFFIX_DEFAULT) {
+            $doiSuffix = $this->generateDefaultSuffix();
+        } else {
+            $doiSuffix = $this->generateSuffixPattern($publicationFormat, $context, $context->getData(Context::SETTING_DOI_SUFFIX_TYPE), $submission, null, $publicationFormat);
+        }
 
         return $this->mintAndStoreDoi($context, $doiSuffix);
     }
@@ -75,9 +87,13 @@ class Repository extends \PKP\doi\Repository
     /**
      * Create a DOI for the given submission file
      */
-    public function mintSubmissionFileDoi(SubmissionFile $submissionFile, Submission $submission, Context $context): ?int
+    public function mintSubmissionFileDoi(SubmissionFile $submissionFile, Submission $submission, Context $context): int
     {
-        $doiSuffix = $this->generateSuffixPattern($submissionFile, $context, $context->getData(Context::SETTING_CUSTOM_DOI_SUFFIX_TYPE), $submission, null, null, $submissionFile);
+        if ($context->getData(Context::SETTING_DOI_SUFFIX_TYPE) === Repo::doi()::SUFFIX_DEFAULT) {
+            $doiSuffix = $this->generateDefaultSuffix();
+        } else {
+            $doiSuffix = $this->generateSuffixPattern($submissionFile, $context, $context->getData(Context::SETTING_DOI_SUFFIX_TYPE), $submission, null, null, $submissionFile);
+        }
 
         return $this->mintAndStoreDoi($context, $doiSuffix);
     }
@@ -156,14 +172,11 @@ class Repository extends \PKP\doi\Repository
     ): string {
         $doiSuffix = '';
         switch ($patternType) {
-            case self::SUFFIX_DEFAULT_PATTERN:
-                $doiSuffix = PubIdPlugin::generateDefaultPattern($context, $submission, $chapter, $representation, $submissionFile);
-                break;
             case self::SUFFIX_CUSTOM_PATTERN:
                 $pubIdSuffixPattern = $this->getPubIdSuffixPattern($object, $context);
                 $doiSuffix = PubIdPlugin::generateCustomPattern($context, $pubIdSuffixPattern, $object, $submission, $chapter, $representation, $submissionFile);
                 break;
-            case self::CUSTOM_SUFFIX_MANUAL:
+            case self::SUFFIX_MANUAL:
                 break;
         }
 
@@ -177,13 +190,13 @@ class Repository extends \PKP\doi\Repository
     private function getPubIdSuffixPattern(DataObject $object, Context $context): ?string
     {
         if ($object instanceof SubmissionFile) {
-            return $context->getData(Repo::doi()::LEGACY_CUSTOM_FILE_PATTERN);
+            return $context->getData(Repo::doi()::CUSTOM_FILE_PATTERN);
         } elseif ($object instanceof Representation) {
-            return $context->getData(Repo::doi()::LEGACY_CUSTOM_REPRESENTATION_PATTERN);
+            return $context->getData(Repo::doi()::CUSTOM_REPRESENTATION_PATTERN);
         } elseif ($object instanceof Chapter) {
-            return $context->getData(Repo::doi()::LEGACY_CUSTOM_CHAPTER_PATTERN);
+            return $context->getData(Repo::doi()::CUSTOM_CHAPTER_PATTERN);
         } else {
-            return $context->getData(Repo::doi()::LEGACY_CUSTOM_PUBLICATION_PATTERN);
+            return $context->getData(Repo::doi()::CUSTOM_PUBLICATION_PATTERN);
         }
     }
 

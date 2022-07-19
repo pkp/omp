@@ -1302,29 +1302,15 @@ msgstr ""
 "Bitte konfigurieren Sie das DOI-Plugin, damit Sie in OMP DOIs verwalten und "
 "benutzen können:"
 
-msgid "doi.manager.settings.doiObjects"
-msgstr "Inhalt des Publikationsformat"
-
+#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
 msgstr "Bitte wählen Sie die Objekte aus, denen DOIs zugewiesen werden sollen."
 
 msgid "doi.manager.settings.doiPrefix"
 msgstr "DOI-Präfix"
 
-msgid "doi.manager.settings.doiPrefix.description"
-msgstr "Das DOI-Präfix wird von den Regristrierungsagenturen vergeben (z. B. <a href=\"http://www.crossref.org\" target=\"_new\">CrossRef</a>) und hat die Form 10.xxxx (e.g. 10.1234):"
-
 msgid "doi.manager.settings.doiPrefixPattern"
 msgstr "Das DOI-Präfix ist obligatorisch und muss die Form 10.xxxx haben."
-
-msgid "doi.manager.settings.doiSuffix"
-msgstr "DOI-Suffix"
-
-msgid "doi.manager.settings.doiSuffix.description"
-msgstr ""
-"Ein DOI-Suffix kann jegliche Form haben, darf aber nur ein einziges Mal in "
-"Verbindung mit dem DOI-Präfix vergeben werden, um einen eindeutige Gesamt-"
-"DOI zu erzeugen:"
 
 msgid "doi.manager.settings.doiSuffixPattern.representations"
 msgstr "für Publikationsformate"
@@ -1439,20 +1425,6 @@ msgstr "Bitte tragen Sie das DOI-Suffix Schema für Kapitel ein."
 
 msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
 msgstr "Bitte tragen Sie das DOI-Suffix Schema für Monographien ein."
-
-msgid "doi.manager.settings.doiSuffixCustomIdentifier"
-msgstr ""
-"Ein individuelles DOI-Suffix für jede Publikation eingeben. Ihnen wird in "
-"diesem Fall ein weiteres Feld zur Eintragung der DOI auf den Metadaten-"
-"Seiten jeder Publikation zur Verfügung gestellt."
-
-msgid "doi.manager.settings.doiSuffixDefault.description"
-msgstr ""
-"%p.%m für Monographien<br />%p.%m.c%c für Kapitel<br />%p.%m.%f für "
-"Publikationsformate<br />%p.%m.%f.%s für Dateien."
-
-msgid "doi.manager.settings.doiSuffixDefault"
-msgstr "Verwenden Sie Standard-Schemata."
 
 msgid "doi.manager.settings.doiSuffixPattern.files"
 msgstr "für Dateien"

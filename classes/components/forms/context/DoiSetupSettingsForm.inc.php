@@ -17,6 +17,7 @@ namespace APP\components\forms\context;
 use APP\facades\Repo;
 use PKP\components\forms\context\PKPDoiSetupSettingsForm;
 use PKP\components\forms\FieldOptions;
+use PKP\components\forms\FieldText;
 use PKP\context\Context;
 
 class DoiSetupSettingsForm extends PKPDoiSetupSettingsForm
@@ -31,26 +32,36 @@ class DoiSetupSettingsForm extends PKPDoiSetupSettingsForm
         $this->addField(new FieldOptions(Context::SETTING_ENABLED_DOI_TYPES, [
             'label' => __('doi.manager.settings.doiObjects'),
             'description' => __('doi.manager.settings.doiObjectsRequired'),
+            'groupId' => self::DOI_SETTINGS_GROUP,
             'options' => [
                 [
                     'value' => Repo::doi()::TYPE_PUBLICATION,
-                    'label' => __('doi.manager.settings.enableFor', ['objects' => __('common.publication')]),
+                    'label' => __('common.publications'),
                 ],
                 [
                     'value' => Repo::doi()::TYPE_CHAPTER,
-                    'label' => __('doi.manager.settings.enableFor', ['objects' => __('submission.chapter')]),
+                    'label' => __('submission.chapters'),
                 ],
                 [
                     'value' => Repo::doi()::TYPE_REPRESENTATION,
-                    'label' => __('doi.manager.settings.enableFor', ['objects' => __('monograph.publicationFormats')]),
+                    'label' => __('monograph.publicationFormats'),
                 ],
                 [
                     'value' => Repo::doi()::TYPE_SUBMISSION_FILE,
-                    'label' => __('doi.manager.settings.enableFor', ['objects' => __('doi.manager.settings.enableSubmissionFileDoi')]),
+                    'label' => __('doi.manager.settings.enableSubmissionFileDoi'),
                 ],
             ],
             'value' => $context->getData(Context::SETTING_ENABLED_DOI_TYPES) ? $context->getData(Context::SETTING_ENABLED_DOI_TYPES) : [],
-            'showWhen' => Context::SETTING_ENABLE_DOIS
-        ]));
+        ]), [FIELD_POSITION_BEFORE, Context::SETTING_DOI_PREFIX])
+            ->addField(new FieldText(Repo::doi()::CUSTOM_CHAPTER_PATTERN, [
+                'label' => __('submission.chapters'),
+                'groupId' => self::DOI_CUSTOM_SUFFIX_GROUP,
+                'value' => $context->getData(Repo::doi()::CUSTOM_CHAPTER_PATTERN),
+            ]), [FIELD_POSITION_BEFORE, Repo::doi()::CUSTOM_REPRESENTATION_PATTERN])
+            ->addField(new FieldText(Repo::doi()::CUSTOM_FILE_PATTERN, [
+                'label' => __('doi.manager.settings.enableSubmissionFileDoi'),
+                'groupId' => self::DOI_CUSTOM_SUFFIX_GROUP,
+                'value' => $context->getData(Repo::doi()::CUSTOM_FILE_PATTERN),
+            ]));
     }
 }

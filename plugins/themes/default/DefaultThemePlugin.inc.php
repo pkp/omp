@@ -13,6 +13,8 @@
  * @brief Default theme
  */
 
+use APP\core\Application;
+use APP\file\PublicFileManager;
 use PKP\plugins\ThemePlugin;
 use PKP\session\SessionManager;
 

@@ -970,19 +970,6 @@ msgstr "Ange mönster för DOI-suffix för kapitel."
 msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
 msgstr "Ange mönster för DOI-suffix för böcker."
 
-msgid "doi.manager.settings.doiSuffixCustomIdentifier"
-msgstr ""
-"Ange ett DOI-suffix för varje enskilt objekt. Det finns ett DOI-fält på "
-"varje objekts metadata-sida."
-
-msgid "doi.manager.settings.doiSuffixDefault.description"
-msgstr ""
-"%p. %m för böcker <br />%p. %m.c%c för kapitel<br />%p.%m.%f för "
-"publiceringsformat<br />%p.%m.%f%s för filer."
-
-msgid "doi.manager.settings.doiSuffixDefault"
-msgstr "Använd standardmönster."
-
 msgid "doi.manager.settings.doiSuffixPattern.files"
 msgstr "för filer"
 
@@ -1007,22 +994,8 @@ msgstr ""
 "publiceringsformatets id, %s för filens ID, och %x för en anpassad "
 "identifikator."
 
-msgid "doi.manager.settings.doiSuffix.description"
-msgstr ""
-"Ett DOI-suffix kan formateras på olika sätt, men måste vara unikt för varje "
-"objekt inom ett och samma DOI-prefix:"
-
-msgid "doi.manager.settings.doiSuffix"
-msgstr "DOI-suffix"
-
 msgid "doi.manager.settings.doiPrefixPattern"
 msgstr "DOI-prefix är obligatoriskt och måste formateras som 10.xxxx."
-
-msgid "doi.manager.settings.doiPrefix.description"
-msgstr ""
-"DOI-prefix tilldelas av registreringsorganisationer (t.ex. <a href=\""
-"http://www.crossref.org\" target=\"_new\">CrossRef</a>) och formateras som "
-"10.xxxx (t.ex. 10.1234):"
 
 msgid "doi.manager.settings.doiPrefix"
 msgstr "DOI-prefix"
@@ -1042,11 +1015,9 @@ msgstr "Böcker"
 msgid "doi.manager.settings.explainDois"
 msgstr "Välj vilka objekt som ska tilldelas DOI:"
 
+#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
 msgstr "Välj vilka objekt som kan tilldelas DOI."
-
-msgid "doi.manager.settings.doiObjects"
-msgstr "Pressens innehåll"
 
 msgid "doi.manager.settings.description"
 msgstr "Konfigurera DOI-pluginet för att kunna använda DOI i OMP:"

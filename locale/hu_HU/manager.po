@@ -1375,14 +1375,6 @@ msgstr "Kiadóról elem hozzáadása"
 msgid "emailTemplate.variable.site.siteTitle"
 msgstr "Weboldal neve, amennyiben több, mint egy kiadót is szolgáltatva van"
 
-msgid "doi.manager.settings.doiSuffixDefault.description"
-msgstr ""
-"%p.%m a kötetekhez<br />%p.%m.c%c a fejezetekhez<br />%p.%m.%f a "
-"kiadványformátumokhoz<br />%p.%m.%f.%s a fájlokhoz."
-
-msgid "doi.manager.settings.doiSuffixDefault"
-msgstr "Alapértelmezett minták használata."
-
 msgid "doi.manager.settings.doiSuffixPattern.files"
 msgstr "fájloknak"
 
@@ -1407,23 +1399,10 @@ msgstr ""
 "kiadványformátum ( publication format) azonosítójához, a %s-t a fájl (file) "
 "azonosítójához és a %x-t az \"Egyéni azonosítóhoz\" (Custom Identifier)."
 
-msgid "doi.manager.settings.doiSuffix.description"
-msgstr ""
-"A DOI utótag bármilyen formájú lehet, de egyedinek kell lennie minden olyan "
-"publikációs elem között, amelyhez ugyanazt a DOI előtagot rendelték:"
-
-msgid "doi.manager.settings.doiSuffix"
-msgstr "DOI utótag"
-
 msgid "doi.manager.settings.doiPrefixPattern"
 msgstr "A DOI előtag kötelező, és 10.xxxx formátumúnak kell lennie."
 
-msgid "doi.manager.settings.doiPrefix.description"
-msgstr ""
-"A DOI előtagot a regisztrációs ügynökségek (pl.: <a href=\""
-"http://www.crossref.org\" target=\"_new\">CrossRef</a>) osztják ki, és "
-"10.xxxx (pl. 10.1234) formátumúak:"
-
+#, fuzzy
 msgid "doi.manager.settings.doiPrefix"
 msgstr "DOI előtag"
 
@@ -1444,14 +1423,12 @@ msgstr ""
 "Kérjük, válassza ki azokat a publikálandó elemeket, amelyekhez digitális "
 "objektumazonosítót (DOI) rendelnek:"
 
+#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
 msgstr ""
 "Válassza ki azokat a tételeket, amikhez DOI kerül hozzárendelésre. A legtöbb "
 "kiadó a DOI-t a kiadványokhoz/fejezetekhez rendeli, de előfordulhat, hogy az "
 "összes közzétett tételhez DOI-t kíván rendelni."
-
-msgid "doi.manager.settings.doiObjects"
-msgstr "Kiadó tartalma"
 
 msgid "doi.manager.settings.description"
 msgstr ""
@@ -1578,11 +1555,6 @@ msgstr ""
 
 msgid "doi.editor.patternNotResolved"
 msgstr "A DOI nem rendelhető hozzá, mert feloldatlan mintát tartalmaz."
-
-msgid "doi.manager.settings.doiSuffixCustomIdentifier"
-msgstr ""
-"Adjon meg egy egyedi DOI utótagot minden egyes közzétett tételhez. Az egyes "
-"tételek metaadat oldalán találni fog egy további DOI beviteli mezőt."
 
 msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
 msgstr ""

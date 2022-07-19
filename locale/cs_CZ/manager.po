@@ -1037,19 +1037,6 @@ msgstr "Zadejte, prosím, vzor sufixu DOI pro kapitoly."
 msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
 msgstr "Zadejte, prosím, vzor sufixu DOI pro monografie."
 
-msgid "doi.manager.settings.doiSuffixCustomIdentifier"
-msgstr ""
-"Pro každou publikovanou položku zadejte individuální suffix DOI. Na stránce "
-"metadat dat každé položky naleznete vstupní pole pro zadání přípony DOI."
-
-msgid "doi.manager.settings.doiSuffixDefault.description"
-msgstr ""
-"%p.%m pro monografie<br />%p.%m.c%c pro kapitoly<br />%p.%m.%f pro "
-"publikační formáty<br />%p.%m.%f.%s pro soubory."
-
-msgid "doi.manager.settings.doiSuffixDefault"
-msgstr "Použít výchozí vzor."
-
 msgid "doi.manager.settings.doiSuffixPattern.files"
 msgstr "pro soubory"
 
@@ -1071,22 +1058,8 @@ msgstr ""
 "iniciály nakladatelsví, %m pro ID monografie, %c pro ID kapitoly, %f pro ID "
 "publikačního formátu, %s pro ID souboru a %x pro \"Vlastní identifikátor\"."
 
-msgid "doi.manager.settings.doiSuffix.description"
-msgstr ""
-"Suffix DOI může mít jakoukoli formu, ale musí být jedinečný mezi všemi "
-"publikovanými objekty se stejným prefixem DOI:"
-
-msgid "doi.manager.settings.doiSuffix"
-msgstr "Suffix DOI"
-
 msgid "doi.manager.settings.doiPrefixPattern"
 msgstr "Prefix DOI je povinný a musí být ve formátu 10.xxxx."
-
-msgid "doi.manager.settings.doiPrefix.description"
-msgstr ""
-"Prefix DOI je přidělován registračními agenturami (např. <a href=\""
-"http://www.crossref.org\" target=\"_new\">CrossRef</a>) a je ve formátu "
-"10.xxxx (např. 10.1234):"
 
 msgid "doi.manager.settings.doiPrefix"
 msgstr "Prefix DOI"
@@ -1108,11 +1081,9 @@ msgstr ""
 "Zvolte, prosím, publikační objekty, které mají mít přiděleny Digital Object "
 "Identifiers (DOI):"
 
+#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
 msgstr "Zvolte, prosím, které objekty mají mít přiděleno DOI."
-
-msgid "doi.manager.settings.doiObjects"
-msgstr "Obsah nakladatelství"
 
 msgid "doi.manager.settings.description"
 msgstr ""

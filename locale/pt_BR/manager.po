@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T12:00:53-07:00\n"
-"PO-Revision-Date: 2022-04-08 19:57+0000\n"
+"PO-Revision-Date: 2022-05-26 22:13+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "manager/pt_BR/>\n"
@@ -615,11 +615,7 @@ msgid "manager.setup.pageHeader"
 msgstr "Cabeçalho interno"
 
 msgid "manager.setup.pageHeaderDescription"
-msgstr ""
-"Versões gráficas do título e logotipo (arquivos permitidos são .gif, .jpg, "
-"ou .png), possivelmente em tamanhos menores que os usados na página inicial, "
-"podem ser enviados aqui e serão apresentados nas páginas internas do site, "
-"substituindo a versão em texto que aparece."
+msgstr "Descrição do Cabeçalho da Página"
 
 msgid "manager.setup.pressPolicies"
 msgstr "Passo 2. Políticas"
@@ -1350,6 +1346,7 @@ msgstr ""
 "Por favor, configure o plugin DOI para ser capaz de gerir e utilizar DOIs no "
 "OMP:"
 
+#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
 msgstr "Por favor, escolha os objetos aos quais o DOI deve ser atribuído."
 
@@ -1359,29 +1356,14 @@ msgstr "Por favor, selecione os objetos publicados que terão Identificadores Di
 msgid "doi.manager.settings.doiPrefix"
 msgstr "Prefixo DOI"
 
-msgid "doi.manager.settings.doiPrefix.description"
-msgstr ""
-"O prefixo DOI é atribuído por agências de registro (por exemplo <a href=\""
-"http://www.crossref.org\" target=\"_new\"> CrossRef </a>) e está no formato "
-"10.xxxx (por exemplo, 10.1234):"
-
 msgid "doi.manager.settings.doiPrefixPattern"
 msgstr "O prefixo DOI é obrigatório e deve ser na forma 10.xxxx."
-
-msgid "doi.manager.settings.doiSuffix"
-msgstr "Sufixo DOI"
-
-msgid "doi.manager.settings.doiSuffix.description"
-msgstr "Um sufixo DOI pode assumir qualquer forma, mas deve ser único entre todos os objetos publicados com o mesmo prefixo DOI atribuído:"
 
 msgid "doi.manager.settings.doiSuffixPattern.representations"
 msgstr "para formatos de publicação"
 
 msgid "doi.manager.settings.doiSuffixPattern.example"
 msgstr "Por exemplo, editora%ppub%f poderia criar um DOI como 10.1234/editoraESPpub100"
-
-msgid "doi.manager.settings.doiSuffixDefault"
-msgstr "Usar padrões predefinidos."
 
 msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
 msgstr "Por favor entre o padrão de sufixo DOI para formatos de publicação."
@@ -1401,11 +1383,6 @@ msgstr "formato de publicação"
 msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
 msgstr "O sufixo DOI já está em uso por outro item publicado. Por favor insira um sufixo DOI exclusivo para cada item."
 
-msgid "doi.manager.settings.doiSuffixDefault.description"
-msgstr ""
-"%p.%m para monografias<br />%p.%m.c%c para capítulos<br />%p.%m.%f para "
-"formatos de publicação<br />%p.%m.%f.%s para arquivos."
-
 msgid "doi.manager.settings.doiSuffixPattern.files"
 msgstr "para arquivos"
 
@@ -1417,10 +1394,16 @@ msgstr "para monografias"
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""
-"Use o padrão a seguir para gerar sufixos DOI. Use %p para as iniciais da "
-"editora, %m para a identificação da monografia, %c para a identificação do "
-"capítulo, %f para a identificação do formato de publicação, %s para a "
-"identificação do arquivo e %x para o \"Identificador Personalizado\"."
+"Insira um padrão de sufixo personalizado para cada tipo de publicação. O "
+"padrão de sufixo personalizado pode usar os seguintes símbolos para gerar o "
+"sufixo:<br><br> <code>%p</code> digite as iniciais<br> <code>%m</code> ID da "
+"monografia<br> <code >%c</code> ID do capítulo<br> <code>%f</code> ID do "
+"formato de publicação<br> <code>%s</code> ID do arquivo<br> <code>%x</code> "
+"Identificador personalizado<br><br> Esteja ciente de que os padrões de "
+"sufixo personalizados geralmente levam a problemas na geração e depósito de "
+"DOIs. Ao usar um padrão de sufixo personalizado, teste cuidadosamente se os "
+"editores podem gerar DOIs e depositá-los em uma agência de registro como o "
+"Crossref. "
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Arquivos"
@@ -1434,18 +1417,10 @@ msgstr "Capítulos"
 msgid "doi.manager.settings.enablePublicationDoi"
 msgstr "Monografias"
 
-msgid "doi.manager.settings.doiObjects"
-msgstr "Conteúdo da editora"
-
 msgid "doi.description"
 msgstr ""
 "Este plugin permite a atribuição dos Identificadores de Objetos Digitais "
 "(DOIs) a monografias, capítulos, formatos de publicação e arquivos no OMP."
-
-msgid "doi.manager.settings.doiSuffixCustomIdentifier"
-msgstr ""
-"Digite um sufixo DOI individual para cada item publicado. Você encontrará um "
-"campo de entrada DOI adicional na página de metadados de cada item."
 
 msgid "doi.editor.assignDoi"
 msgstr "Atribua o DOI {$pubId} a este {$pubObjectType}"
@@ -1540,8 +1515,8 @@ msgstr "Um DOI não foi atribuído a esta publicação."
 
 msgid "manager.setup.enableDois.description"
 msgstr ""
-"Atribua identificadores de objetos digitais (DOIs) a monografias, capítulos, "
-"formatos de publicação e arquivos."
+"Permitir que identificadores de objetos digitais (DOIs) sejam atribuídos a "
+"trabalhos publicados por esta editora."
 
 msgid "doi.manager.submissionDois"
 msgstr "DOIs de Monografias"
@@ -1558,7 +1533,7 @@ msgstr ""
 "/>%p.%m.%f para formatos de publicação<br />%p.%m.%f.%s para arquivos."
 
 msgid "doi.manager.settings.doiCreationTime.copyedit"
-msgstr "Na fase de Edição de Texto"
+msgstr "Ao atingir a fase de Edição de Texto"
 
 msgid "mailable.decision.initialDecline.notifyAuthor.description"
 msgstr ""

@@ -100,6 +100,8 @@ class SeriesForm extends PKPSectionForm
                 'categories' => $categoryIds,
             ];
         }
+
+        return parent::initData();
     }
 
     /**
@@ -157,7 +159,8 @@ class SeriesForm extends PKPSectionForm
 
         $categoryCount = Repo::category()->getCount(
             Repo::category()->getCollector()
-            ->filterByContextIds([$context->getId()]));
+                ->filterByContextIds([$context->getId()])
+        );
         $templateMgr->assign('categoryCount', $categoryCount);
 
         // Sort options.
@@ -166,8 +169,8 @@ class SeriesForm extends PKPSectionForm
         // Series Editors
         $usersIterator = Repo::user()->getMany(
             Repo::user()->getCollector()
-            ->filterByContextIds([$context->getId()])
-            ->filterByRoleIds([Role::ROLE_ID_SUB_EDITOR])
+                ->filterByContextIds([$context->getId()])
+                ->filterByRoleIds([Role::ROLE_ID_SUB_EDITOR])
         );
         $availableSubeditors = [];
         foreach ($usersIterator as $user) {
@@ -177,9 +180,9 @@ class SeriesForm extends PKPSectionForm
         if ($this->getSeriesId()) {
             $assignedToSeries = Repo::user()->getIds(
                 Repo::user()->getCollector()
-                ->filterByContextIds([$context->getId()])
-                ->filterByRoleIds([Role::ROLE_ID_SUB_EDITOR])
-                ->assignedToSectionIds([(int) $this->getSeriesId()])
+                    ->filterByContextIds([$context->getId()])
+                    ->filterByRoleIds([Role::ROLE_ID_SUB_EDITOR])
+                    ->assignedToSectionIds([(int) $this->getSeriesId()])
             );
         }
 
