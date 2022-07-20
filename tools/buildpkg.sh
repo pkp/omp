@@ -10,19 +10,30 @@
 # Script to create an OMP package for distribution.
 #
 # Usage: buildpkg.sh <version> [<tag>]
+#   Select your own repository with $GITREP
+#   Select your own prefix with $PREFIX
 #
 #
 
-GITREP=git://github.com/pkp/omp.git
+GITREP=${GITREP:-'https://github.com/pkp/omp.git'}
 
 if [ -z "$1" ]; then
-	echo "Usage: $0 <version> [<tag>-<branch>]";
-	exit 1;
+	echo "Usage: $0 <version> <tag-or-branch>"
+	echo "	version: an arbitrary version identifier (to become part of the output filename)"
+	echo "	tag-or-branch: a git tag or branch (to be checked out from the repository)"
+	echo ""
+	echo "  This command will checkout the <tag-or-branch> from \$GITREP (default: from PKP)"
+	echo "  and will build the application with git submodules, composer, and npm dependencies"
+	echo "  and then will remove development and testing files (git, node, travis, etc.)"
+	echo "  and then will tar the application as \$PREFIX-<version>.tar.gz in the current directory."
+        echo "  The default \$PREFIX and \$GITREP can be overriden by setting these environment variables."
+        echo "  A temporary directory will be created and removed from the current working directory."
+	exit 1
 fi
 
 VERSION=$1
 TAG=$2
-PREFIX=omp
+PREFIX=${PREFIX:-'omp'}
 BUILD=$PREFIX-$VERSION
 TMPDIR=`mktemp -d $PREFIX.XXXXXX` || exit 1
 
@@ -38,8 +49,6 @@ docs/dev										\
 docs/doxygen										\
 lib/pkp/tools/travis									\
 lib/pkp/lib/vendor/smarty/smarty/demo							\
-plugins/generic/customBlockManager/.git							\
-plugins/generic/staticPages/.git							\
 plugins/paymethod/paypal/vendor/omnipay/common/tests/					\
 plugins/paymethod/paypal/vendor/omnipay/paypal/tests/					\
 plugins/paymethod/paypal/vendor/guzzle/guzzle/docs/					\
@@ -48,10 +57,8 @@ plugins/paymethod/paypal/vendor/symfony/http-foundation/Tests/				\
 plugins/paymethod/paypal/vendor/clue/stream-filter/tests/				\
 lib/pkp/plugins/*/*/tests								\
 lib/pkp/tests										\
-.git											\
 .openshift										\
 .travis.yml										\
-lib/pkp/.git										\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/art						\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/benchmarks					\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/configdog					\
@@ -69,7 +76,6 @@ lib/pkp/lib/vendor/phpmailer/phpmailer/test						\
 lib/pkp/lib/vendor/robloach								\
 lib/pkp/lib/vendor/smarty/smarty/demo							\
 lib/pkp/lib/vendor/pimple/pimple/ext/pimple/tests					\
-lib/pkp/lib/vendor/adodb/adodb-php/.git							\
 lib/pkp/lib/vendor/phpunit								\
 lib/pkp/lib/vendor/phpdocumentor/reflection-docblock					\
 lib/pkp/lib/vendor/doctrine/instantiator/tests						\
@@ -82,7 +88,6 @@ lib/pkp/lib/vendor/cweagans/composer-patches/tests					\
 lib/pkp/lib/vendor/moxiecode/plupload/examples/						\
 lib/pkp/lib/vendor/swiftmailer/swiftmailer/tests/					\
 lib/pkp/js/lib/pnotify/build-tools							\
-lib/pkp/lib/vendor/alex198710/pnotify/.git						\
 node_modules										\
 .editorconfig										\
 babel.config.js										\
@@ -103,14 +108,14 @@ echo -n "Checking out corresponding submodules ... "
 git submodule -q update --init --recursive >/dev/null || exit 1
 echo "Done"
 
-echo "Installing composer dependencies ... "
-echo -n " - lib/pkp ... "
-composer.phar --working-dir=lib/pkp install --no-dev
-
-echo -n " - plugins/paymethod/paypal ... "
-composer.phar --working-dir=plugins/paymethod/paypal install --no-dev
-echo "Done"
-
+for i in `find . -name composer.json`
+do
+  COMPOSERWD=`echo $i | sed 's/composer.json//'`
+  echo -n " - $COMPOSERWD ... "
+  composer.phar --working-dir=$COMPOSERWD install --no-dev
+  echo "Done"
+done
+ 
 echo -n "Installing node dependencies... "
 npm install
 echo "Done"
@@ -122,6 +127,7 @@ echo "Done"
 echo -n "Preparing package ... "
 cp config.TEMPLATE.inc.php config.inc.php
 find . \( -name .gitignore -o -name .gitmodules -o -name .keepme \) -exec rm '{}' \;
+find . -name .git -prune -exec rm -rf '{}' \;
 rm -rf $EXCLUDE
 echo "Done"
 
