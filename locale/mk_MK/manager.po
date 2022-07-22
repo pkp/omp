@@ -1238,14 +1238,6 @@ msgstr ""
 msgid "manager.tools"
 msgstr "Алатки"
 
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr ""
-"Детални резултати според типот на објектот (притиснете, серија, монографија, "
-"типови на датотеки) и / или по еден или повеќе идентификации на објектот."
-
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Детални резултати по контекст (серија и / или монографија)."
-
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Прегледи на главната страница на изданието"
 

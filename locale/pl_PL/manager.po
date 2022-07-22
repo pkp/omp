@@ -1163,14 +1163,6 @@ msgstr ""
 msgid "manager.tools"
 msgstr "Narzędzia"
 
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr ""
-"Ogranicz wyniki do typu obiektu (wydanie, seria, monografia, typ pliku) i/"
-"lub przez jeden (lub więcej) identyfikator obiektów."
-
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Ogranicz wyniki do zawartości (serii i/lub monografii)."
-
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Widok głównej strony wydania"
 

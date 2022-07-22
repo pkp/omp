@@ -176,14 +176,6 @@ msgstr ""
 msgid "manager.tools"
 msgstr "Verktyg"
 
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr ""
-"Begränsa resultat efter typ av objekt (press, serie, bok, filtyp) och/eller "
-"efter ett eller flera objekt-id."
-
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Begränsa resultat efter kontext (serie och/eller bok)."
-
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Visningar av pressens huvudsida"
 

@@ -161,12 +161,6 @@ msgstr "Series main page views"
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Press main page views"
 
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Narrow results by context (series and/or monograph)."
-
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr "Narrow results by object type (press, series, monograph, file types) and/or by one or more object id(s)."
-
 msgid "manager.tools"
 msgstr "Tools"
 

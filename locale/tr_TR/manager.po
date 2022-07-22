@@ -544,14 +544,6 @@ msgstr "Dizi ana sayfa görünümleri"
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Yayınevi Ana sayfa görünümleri"
 
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Sonuçları bağlama göre daraltın (dizi ve/veya yazı)."
-
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr ""
-"Sonuçları nesne türüne (yayın, dizi, yazı, dosya türleri) ve/veya bir veya "
-"daha fazla nesne kimliğine göre daraltın."
-
 msgid "manager.tools"
 msgstr "Araçlar"
 

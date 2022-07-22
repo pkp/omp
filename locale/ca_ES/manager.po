@@ -141,12 +141,6 @@ msgstr "Visualitzacions de la pàgina principal de la sèrie"
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Visualitzacions de la pàgina principal de la publicació"
 
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Redueix els resultats per context (sèrie i/o monografia)."
-
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr "Redueix els resultats per tipus d'objecte (publicació, sèrie, monografia, tipus d'fitxer) i/o per un o més identificadors d'objecte."
-
 msgid "manager.tools"
 msgstr "Eines"
 

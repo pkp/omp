@@ -366,14 +366,6 @@ msgstr ""
 msgid "manager.tools"
 msgstr "Ferramentas"
 
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr ""
-"Restrinxir resultados por tipo de obxecto (publicación, colección, "
-"monografía, tipos de arquivo) e/ou por un ou máis identificadores de obxecto."
-
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Restrinxir resultados por contexto (colección e/ou monografía)."
-
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Visualizacións da páxina principal da editorial"
 

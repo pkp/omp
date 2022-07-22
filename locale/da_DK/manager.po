@@ -165,12 +165,6 @@ msgstr "Visninger af en series hovedside"
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Visninger af et forlags hovedside"
 
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Begræns resultater efter kontekst (serie og/eller monografi)."
-
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr "Begræns resultater efter objekttype (forlag, serie, monografi, filtyper) og/eller efter et eller flere objekt-id(er)."
-
 msgid "manager.tools"
 msgstr "Værktøjer"
 

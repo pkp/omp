@@ -141,12 +141,6 @@ msgstr "Število ogledov glavne strani zbirke"
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Število ogledov glavne strani založbe"
 
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Omeji rezultate glede na kontekst (zbirka in/ali monografska publikacija)."
-
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr "Omeji rezultate glede na vrsto (založba, zbirka, monografska publikacija, vrsta datotek) in/ali glede na idetifikacijsko kodo enega ali več predmetov."
-
 msgid "manager.tools"
 msgstr "Orodja"
 

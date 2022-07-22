@@ -352,14 +352,6 @@ msgstr ""
 msgid "manager.tools"
 msgstr "Verktøy"
 
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr ""
-"Avgrens resultater etter objekttype (utgivelse, serie, monografi, filtype) "
-"og/eller etter en eller flere objektID-er."
-
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Avgrens resultater etter kontekst (serie og/eller monografi)."
-
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Visninger av utgiverens hovedside"
 

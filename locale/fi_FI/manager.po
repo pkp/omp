@@ -161,14 +161,6 @@ msgstr "Sarjan pääsivun katselukerrat"
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Sivuston pääsivun katselukerrat"
 
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Rajaa tuloksia kontekstin (sarja ja/tai kirja) mukaan."
-
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr ""
-"Rajaa tuloksia kohteen tyypin (julkaisija, sarja, kirja, tiedostotyypit) ja/"
-"tai yhden tai useamman kohteen tunnisteen perusteella."
-
 msgid "manager.tools"
 msgstr "Työkalut"
 

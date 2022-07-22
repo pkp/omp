@@ -761,14 +761,6 @@ msgstr ""
 msgid "manager.tools"
 msgstr "Eszközök"
 
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr ""
-"Találatok szűkítése objektum típus (kiadó, sorozat, kiadvány, fájl típusok) é"
-"s/vagy egy vagy több objektum azonosító(k) szerint."
-
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Találatok szűkítése kontextus szerint (sorozat és/vagy kiadvány)."
-
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Kiadó főoldal megtekintések"
 

@@ -1317,14 +1317,6 @@ msgstr ""
 msgid "manager.tools"
 msgstr "Инструменты"
 
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr ""
-"Сужение результатов по типу объекта (печать, серия, монография, тип файла) и/"
-"или по одному или нескольким идентификаторам объектов."
-
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Сужение результатов по контексту (серия и/или монография)."
-
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Просмотры главной страницы издательства"
 

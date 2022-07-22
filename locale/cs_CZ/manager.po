@@ -85,14 +85,6 @@ msgstr ""
 msgid "manager.tools"
 msgstr "Nástroje"
 
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr ""
-"Zúžení výsledků podle typu objektu (tisk, série, monografie, typy souborů) a/"
-"nebo podle jednoho či více identifikátorů objektu."
-
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Zúžení výsledků podle kontextu (série a/nebo monografie)."
-
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Zobrazení hlavní stránky tisku"
 
