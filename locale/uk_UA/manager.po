@@ -281,14 +281,6 @@ msgstr "Користувачі, які мають ролі в цьому е-ви
 msgid "manager.users.currentRoles"
 msgstr "Поточні ролі"
 
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr ""
-"Фільтрувати результати за типом об'єкта (видавництво, серія, монографія, "
-"типи файлів) та/або за одним або декількома ID об'єктів."
-
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Фільтрувати результати за контекстом (серія та/або монографія)."
-
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Перегляди головної сторінки е-видавництва"
 

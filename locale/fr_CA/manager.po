@@ -952,12 +952,6 @@ msgstr "Vues de la page d'accueil de la série"
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Vues de la page d'accueil de la presse"
 
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Limiter les résultats par contexte (série et/ou monographie)."
-
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr "Limiter les résultats selon le type d'objet (presse, série, monographie, type de fichier) et/ou selon une ou plusieurs identification d'objet."
-
 msgid "manager.setup.editorialProcess3"
 msgstr "L'éditeur en chef est en charge des soumissions en attente, de la révision des soumissions et de la table des matières, tandis que les éditeurs de section sont en charge de l'examen des soumissions."
 

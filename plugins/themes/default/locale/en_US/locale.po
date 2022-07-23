@@ -64,3 +64,26 @@ msgstr "Show Series"
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
 msgstr "Add list of links to all of the press's series on the catalog page"
+
+msgid "plugins.themes.default.option.displayStats.label"
+msgstr "Usage statistics display options"
+
+msgid "plugins.themes.default.option.displayStats.none"
+msgstr "Do not display submission usage statistics chart for reader."
+
+msgid "plugins.themes.default.option.displayStats.bar"
+msgstr "Use bar type of the chart for usage statistics display."
+
+msgid "plugins.themes.default.option.displayStats.line"
+msgstr "Use line type of the chart for usage statistics display."
+
+msgid "plugins.themes.default.displayStats.monthInitials"
+msgstr "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec"
+
+msgid "plugins.themes.default.displayStats.downloads"
+msgstr "Downloads"
+
+msgid "plugins.themes.default.displayStats.noStats"
+msgstr "Download data is not yet available."
+
+

@@ -144,12 +144,6 @@ msgstr "Série de visitas à página principal"
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Visualizações da página principal da editora"
 
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Restringir resultados por contexto (series e/ou monografia)."
-
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr "Restringir resultados por tipo de objeto (editora, séries, monografia, tipos de arquivos) e / ou por uma ou mais identificador(es) de objeto."
-
 msgid "manager.tools"
 msgstr "Ferramentas"
 

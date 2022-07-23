@@ -265,12 +265,6 @@ msgstr "Principales vistas preliminares de la serie"
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Principales vistas preliminares de la publicación"
 
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Resultados reducidos por contexto (serie y/o monografía)."
-
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr "Resultados reducidos por tipo de objeto (publicación, serie, monografía, tipos de archivo) o por uno o varios identificadores de objeto."
-
 msgid "manager.tools"
 msgstr "Herramientas"
 

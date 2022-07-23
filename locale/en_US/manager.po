@@ -161,12 +161,6 @@ msgstr "Series main page views"
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Press main page views"
 
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Narrow results by context (series and/or monograph)."
-
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr "Narrow results by object type (press, series, monograph, file types) and/or by one or more object id(s)."
-
 msgid "manager.tools"
 msgstr "Tools"
 
@@ -1370,3 +1364,6 @@ msgstr "This email notifies the author that their submission is being sent to th
 
 msgid "mailable.decision.initialDecline.notifyAuthor.description"
 msgstr "This email notifies the author that their submission is being declined, before being sent for review, because the submission does not meet the requirements for publication with the press."
+
+msgid "manager.institutions.noContext"
+msgstr "This institution's press could not be found."

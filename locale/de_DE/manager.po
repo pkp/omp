@@ -147,14 +147,6 @@ msgstr "Seitenaufrufe Hauptseite der Reihe"
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Seitenaufrufe Hauptseite des Verlags"
 
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Ergebnisse über den Kontext eingrenzen (Reihe und/oder Monographie)."
-
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr ""
-"Ergebnisse nach Objekt-Typ (Verlag, Reihe, Monographie, Dateityp) und/oder "
-"durch eine oder mehrere Objekt-IDs eingrenzen."
-
 msgid "manager.tools"
 msgstr "Werkzeuge"
 
