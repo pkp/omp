@@ -25,9 +25,9 @@ use PKP\decision\steps\Email;
 use PKP\decision\types\interfaces\DecisionRetractable;
 use APP\decision\types\traits\InInternalReviewRound;
 use PKP\decision\types\traits\NotifyAuthors;
-use PKP\decision\types\traits\NotifyReviewers;
+use PKP\decision\types\traits\NotifyReviewersOfUnassignment;
 use PKP\mail\mailables\DecisionBackToSubmissionNotifyAuthor;
-use PKP\mail\mailables\DecisionReviewerUnassignedNotifyReviewer;
+use PKP\mail\mailables\ReviewerUnassign;
 use PKP\security\Role;
 use PKP\submission\reviewAssignment\ReviewAssignmentDAO;
 use PKP\submission\reviewRound\ReviewRound;
@@ -37,7 +37,7 @@ use PKP\submission\reviewRound\ReviewRoundDAO;
 class BackToSubmissionFromInternalReview extends DecisionType implements DecisionRetractable
 {
     use NotifyAuthors;
-    use NotifyReviewers;
+    use NotifyReviewersOfUnassignment;
     use InInternalReviewRound;
 
     public function getDecision(): int
@@ -77,12 +77,12 @@ class BackToSubmissionFromInternalReview extends DecisionType implements Decisio
 
     public function getCompletedLabel(): string
     {
-        return __('editor.submission.decision.backToSubmissionFromInternalReviewRound.completed');
+        return __('editor.submission.decision.backToSubmission.completed');
     }
 
     public function getCompletedMessage(Submission $submission): string
     {
-        return __('editor.submission.decision.backToSubmissionFromInternalReviewRound.completed.description', ['title' => $submission->getLocalizedFullTitle()]);
+        return __('editor.submission.decision.backToSubmission.completed.description', ['title' => $submission->getLocalizedFullTitle()]);
     }
 
     public function validate(array $props, Submission $submission, Context $context, Validator $validator, ?int $reviewRoundId = null)
@@ -132,7 +132,7 @@ class BackToSubmissionFromInternalReview extends DecisionType implements Decisio
                     break;
                 case $this->ACTION_NOTIFY_REVIEWERS:
                     $this->sendReviewersEmail(
-                        new DecisionReviewerUnassignedNotifyReviewer($context, $submission, $decision),
+                        new ReviewerUnassign($context, $submission, null, $decision),
                         $this->getEmailDataFromAction($action),
                         $editor,
                         $submission
@@ -175,7 +175,7 @@ class BackToSubmissionFromInternalReview extends DecisionType implements Decisio
         $reviewAssignments = $this->getReviewAssignments($submission->getId(), $reviewRound->getId(), self::REVIEW_ASSIGNMENT_ACTIVE);
         if (count($reviewAssignments)) {
             $reviewers = $steps->getReviewersFromAssignments($reviewAssignments);
-            $mailable = new DecisionReviewerUnassignedNotifyReviewer($context, $submission, $fakeDecision);
+            $mailable = new ReviewerUnassign($context, $submission, null, $fakeDecision);
             $steps->addStep((new Email(
                 $this->ACTION_NOTIFY_REVIEWERS,
                 __('editor.submission.decision.notifyReviewers'),

@@ -33,7 +33,7 @@ use APP\file\PublicFileManager;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
 use APP\decision\types\BackToInternalReviewFromExternalReview;
-use APP\decision\types\BackToInternalReview;
+use APP\decision\types\BackToInternalReviewFromCopyediting;
 use APP\decision\types\BackToPreviousInternalReviewRound;
 use APP\decision\types\BackToSubmissionFromInternalReview;
 use PKP\core\PKPApplication;

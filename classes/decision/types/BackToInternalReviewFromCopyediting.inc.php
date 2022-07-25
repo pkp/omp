@@ -1,6 +1,6 @@
 <?php
 /**
- * @file classes/decision/types/BackToInternalReview.inc.php
+ * @file classes/decision/types/BackToInternalReviewFromCopyediting.inc.php
  *
  * Copyright (c) 2014-2022 Simon Fraser University
  * Copyright (c) 2000-2022 John Willinsky
@@ -15,27 +15,27 @@ namespace APP\decision\types;
 
 use APP\decision\Decision;
 use APP\submission\Submission;
+use APP\mail\mailables\DecisionBackToInternalReviewNotifyAuthor;
 use Illuminate\Validation\Validator;
 use PKP\context\Context;
 use PKP\decision\DecisionType;
 use PKP\decision\Steps;
 use PKP\decision\steps\Email;
 use PKP\decision\types\interfaces\DecisionRetractable;
-use PKP\decision\types\traits\InCopyEditing;
+use PKP\decision\types\traits\InCopyeditingStage;
 use PKP\decision\types\traits\NotifyAuthors;
-use PKP\decision\types\traits\WithReviewAssignment;
-use PKP\mail\mailables\DecisionBackToInternalReviewNotifyAuthor;
+use PKP\decision\types\traits\WithReviewAssignments;
 use PKP\security\Role;
 use PKP\submission\reviewRound\ReviewRound;
 use PKP\user\User;
 use PKP\submission\reviewRound\ReviewRoundDAO;
 use PKP\db\DAORegistry;
 
-class BackToInternalReview extends DecisionType implements DecisionRetractable
+class BackToInternalReviewFromCopyediting extends DecisionType implements DecisionRetractable
 {
     use NotifyAuthors;
-    use WithReviewAssignment;
-    use InCopyEditing;
+    use WithReviewAssignments;
+    use InCopyeditingStage;
 
     public function getDecision(): int
     {
