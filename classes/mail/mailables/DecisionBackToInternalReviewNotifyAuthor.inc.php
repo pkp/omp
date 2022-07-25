@@ -9,8 +9,9 @@
  *
  * @class DecisionBackToInternalReviewNotifyAuthor
  *
- * @brief Email sent to the author(s) when the following decision is made:
- *   SUBMISSION_EDITOR_DECISION_BACK_TO_INTERNAL_REVIEW_FROM_EXTERNAL_REVIEW
+ * @brief Email sent to the author(s) when the following decisions is made:
+ *   Decision::BACK_TO_INTERNAL_REVIEW_FROM_EXTERNAL_REVIEW
+ *   Decison::Decision::BACK_TO_INTERNAL_REVIEW
  */
 
 namespace APP\mail\mailables;

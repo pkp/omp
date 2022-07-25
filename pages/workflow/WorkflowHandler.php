@@ -34,13 +34,13 @@ use APP\file\PublicFileManager;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
 use APP\decision\types\BackToInternalReviewFromExternalReview;
-use APP\decision\types\BackToInternalReview;
+use APP\decision\types\BackToInternalReviewFromCopyediting;
 use APP\decision\types\BackToPreviousInternalReviewRound;
 use APP\decision\types\BackToSubmissionFromInternalReview;
 use PKP\core\PKPApplication;
 use PKP\decision\types\BackToPreviousExternalReviewRound;
 use PKP\decision\types\Accept;
-use PKP\decision\types\BackToExternalReview;
+use PKP\decision\types\BackToExternalReviewFromCopyediting;
 use PKP\decision\types\BackToSubmissionFromExternalReview;
 use PKP\decision\types\Decline;
 use PKP\decision\types\InitialDecline;
@@ -331,8 +331,8 @@ class WorkflowHandler extends PKPWorkflowHandler
             BackToSubmissionFromExternalReview::class,
             BackToSubmissionFromInternalReview::class,
             BackToInternalReviewFromExternalReview::class,
-            BackToInternalReview::class,
-            BackToExternalReview::class,
+            BackToInternalReviewFromCopyediting::class,
+            BackToExternalReviewFromCopyediting::class,
         ];
     }
 }

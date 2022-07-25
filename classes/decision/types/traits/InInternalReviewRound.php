@@ -22,14 +22,14 @@ use PKP\components\fileAttachers\ReviewFiles;
 use PKP\components\fileAttachers\Upload;
 use PKP\context\Context;
 use PKP\db\DAORegistry;
-use PKP\decision\types\traits\WithReviewAssignment;
+use PKP\decision\types\traits\WithReviewAssignments;
 use PKP\submission\reviewAssignment\ReviewAssignmentDAO;
 use PKP\submission\reviewRound\ReviewRound;
 use PKP\submissionFile\SubmissionFile;
 
 trait InInternalReviewRound
 {
-    use WithReviewAssignment;
+    use WithReviewAssignments;
     
     /** @copydoc DecisionType::getStageId() */
     public function getStageId(): int

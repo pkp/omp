@@ -26,7 +26,7 @@ use APP\decision\types\RevertDeclineInternal;
 use APP\decision\types\SendExternalReview;
 use APP\decision\types\SendInternalReview;
 use APP\decision\types\SkipInternalReview;
-use APP\decision\types\BackToInternalReview;
+use APP\decision\types\BackToInternalReviewFromCopyediting;
 use APP\decision\types\BackToPreviousInternalReviewRound;
 use APP\decision\types\BackToSubmissionFromInternalReview;
 use APP\decision\types\BackToInternalReviewFromExternalReview;
@@ -50,7 +50,7 @@ use PKP\decision\types\RevertDecline;
 use PKP\decision\types\RevertInitialDecline;
 use PKP\decision\types\SendToProduction;
 use PKP\decision\types\SkipExternalReview;
-use PKP\decision\types\BackToExternalReview;
+use PKP\decision\types\BackToExternalReviewFromCopyediting;
 use PKP\plugins\HookRegistry;
 
 class Repository extends \PKP\decision\Repository
@@ -65,7 +65,7 @@ class Repository extends \PKP\decision\Repository
                 new Accept(),
                 new AcceptFromInternal(),
                 new BackToCopyediting(),
-                new BackToExternalReview(),
+                new BackToExternalReviewFromCopyediting(),
                 new BackToSubmissionFromCopyediting(),
                 new Decline(),
                 new DeclineInternal(),
@@ -97,7 +97,7 @@ class Repository extends \PKP\decision\Repository
                 new BackToSubmissionFromExternalReview(),
                 new BackToSubmissionFromInternalReview(),
                 new BackToInternalReviewFromExternalReview(),
-                new BackToInternalReview(),
+                new BackToInternalReviewFromCopyediting(),
             ]);
             HookRegistry::call('Decision::types', [$decisionTypes]);
             $this->decisionTypes = $decisionTypes;
