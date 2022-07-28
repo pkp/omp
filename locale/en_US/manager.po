@@ -911,7 +911,7 @@ msgid "manager.setup.disableSubmissions.notAccepting"
 msgstr "This press is not accepting submissions at this time. Visit the workflow settings to allow submissions."
 
 msgid "manager.setup.disableSubmissions.description"
-msgstr "Prevent users from submitting new articles to the press. Submissions can be disabled for individual press series on the <a href="{$url}">press series</a> settings page."
+msgstr "Prevent users from submitting new articles to the press. Submissions can be disabled for individual press series on the <a href=\"{$url}\">press series</a> settings page."
 
 msgid "manager.setup.genres"
 msgstr "Genres"

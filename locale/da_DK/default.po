@@ -121,8 +121,8 @@ msgstr "Dette forlag giver øjeblikkelig åben adgang til dets indhold ud fra pr
 
 msgid "default.pressSettings.emailSignature"
 msgstr ""
-"<br/>\n"
-"________________________________________________________________________<br/>\n"
+"<br/>\n"
+"________________________________________________________________________<br/>\n"
 "<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
 
 msgid "default.pressSettings.forReaders"
