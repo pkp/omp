@@ -1,8 +1,3 @@
-msgid "submission.publication"msgstr "Publikasi"msgid "submission.publication"
-msgstr "Publikasi"
-msgid "submission.publication"
-msgstr "Publikasi"
-
 msgid "submission.publication"
 msgstr "Publikasi"
 
@@ -95,4 +90,3 @@ msgstr "PRincian publikasi naskah versi {$version}"
 
 msgid "submission.queries.production"
 msgstr "Diskusi Produksi"
-
