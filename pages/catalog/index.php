@@ -25,13 +25,11 @@ switch ($op) {
     case 'series':
     case 'thumbnail':
     case 'results':
-        define('HANDLER_CLASS', 'CatalogHandler');
-        import('pages.catalog.CatalogHandler');
+        define('HANDLER_CLASS', 'APP\pages\catalog\CatalogHandler');
         break;
     case 'book':
     case 'download':
     case 'view':
-        define('HANDLER_CLASS', 'CatalogBookHandler');
-        import('pages.catalog.CatalogBookHandler');
+        define('HANDLER_CLASS', 'APP\pages\catalog\CatalogBookHandler');
         break;
 }

@@ -19,7 +19,6 @@
 switch ($op) {
     case 'index':
     case 'plugin':
-        define('HANDLER_CLASS', 'GatewayHandler');
-        import('pages.gateway.GatewayHandler');
+        define('HANDLER_CLASS', 'APP\pages\gateway\GatewayHandler');
         break;
 }

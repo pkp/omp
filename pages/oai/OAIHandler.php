@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file pages/oai/OAIHandler.inc.php
+ * @file pages/oai/OAIHandler.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -12,6 +12,8 @@
  *
  * @brief Handle OAI protocol requests.
  */
+
+namespace APP\pages\oai;
 
 use APP\handler\Handler;
 use APP\oai\omp\PressOAI;

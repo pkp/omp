@@ -19,7 +19,6 @@
 switch ($op) {
     case 'index':
     case 'homepage':
-        define('HANDLER_CLASS', 'ManageCatalogHandler');
-        import('pages.manageCatalog.ManageCatalogHandler');
+        define('HANDLER_CLASS', 'APP\pages\manageCatalog\ManageCatalogHandler');
         break;
 }

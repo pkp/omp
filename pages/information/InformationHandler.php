@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file pages/information/InformationHandler.inc.php
+ * @file pages/information/InformationHandler.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -12,6 +12,8 @@
  *
  * @brief Display press information.
  */
+
+namespace APP\pages\information;
 
 use APP\handler\Handler;
 use APP\template\TemplateManager;

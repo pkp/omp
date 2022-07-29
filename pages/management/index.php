@@ -24,19 +24,16 @@ switch ($op) {
     case 'series':
     case 'settings':
     case 'access':
-        import('pages.management.SettingsHandler');
-        define('HANDLER_CLASS', 'SettingsHandler');
+        define('HANDLER_CLASS', 'APP\pages\management\SettingsHandler');
         break;
     case 'tools':
     case 'importexport':
     case 'statistics':
     case 'permissions':
     case 'resetPermissions':
-        import('lib.pkp.pages.management.PKPToolsHandler');
-        define('HANDLER_CLASS', 'PKPToolsHandler');
+        define('HANDLER_CLASS', 'PKP\pages\management\PKPToolsHandler');
         break;
     case 'navigation':
-        import('pages.management.NavigationHandler');
-        define('HANDLER_CLASS', 'NavigationHandler');
+        define('HANDLER_CLASS', 'APP\pages\management\NavigationHandler');
         break;
 }

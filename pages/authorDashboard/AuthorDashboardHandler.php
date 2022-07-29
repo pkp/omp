@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file pages/authorDashboard/AuthorDashboardHandler.inc.php
+ * @file pages/authorDashboard/AuthorDashboardHandler.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -13,12 +13,13 @@
  * @brief Handle requests for the author dashboard.
  */
 
+namespace APP\pages\authorDashboard;
+
+use PKP\db\DAORegistry;
+use PKP\core\PKPApplication;
 use APP\template\TemplateManager;
-
 use PKP\submissionFile\SubmissionFile;
-
-// Import base class
-import('lib.pkp.pages.authorDashboard.PKPAuthorDashboardHandler');
+use PKP\pages\authorDashboard\PKPAuthorDashboardHandler;
 
 class AuthorDashboardHandler extends PKPAuthorDashboardHandler
 {

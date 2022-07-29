@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file pages/catalog/CatalogBookHandler.inc.php
+ * @file pages/catalog/CatalogBookHandler.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -13,6 +13,8 @@
  * @brief Handle requests for the book-specific part of the public-facing
  *   catalog.
  */
+
+namespace APP\pages\catalog;
 
 use APP\core\Application;
 use APP\core\Services;
