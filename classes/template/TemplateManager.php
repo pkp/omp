@@ -19,7 +19,7 @@ namespace APP\template;
 
 use APP\core\Application;
 use APP\file\PublicFileManager;
-
+use PKP\controllers\grid\notifications\TaskNotificationsGridHandler;
 use PKP\db\DAORegistry;
 use PKP\security\Role;
 use PKP\session\SessionManager;
@@ -60,7 +60,6 @@ class TemplateManager extends PKPTemplateManager
             if ($user = $request->getUser()) {
                 $notificationDao = DAORegistry::getDAO('NotificationDAO'); /** @var NotificationDAO $notificationDao */
                 // Exclude certain tasks, defined in the notifications grid handler
-                import('lib.pkp.controllers.grid.notifications.TaskNotificationsGridHandler');
                 $this->assign('unreadNotificationCount', $notificationDao->getNotificationCount(false, $user->getId(), null, NOTIFICATION_LEVEL_TASK));
             }
 

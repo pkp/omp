@@ -395,7 +395,7 @@ class SeriesDAO extends PKPSectionDAO
             })
             ->where('s.series_id', '=', $seriesId)
             ->pluck('sc.category_id');
-        return array_map([Repo::category(), 'get'], iterator_to_array($categoryIds));
+        return array_map(fn($categoryId) => Repo::category()->get($categoryId), iterator_to_array($categoryIds));
     }
 
     /**
