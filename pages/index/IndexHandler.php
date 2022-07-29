@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file pages/index/IndexHandler.inc.php
+ * @file pages/index/IndexHandler.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -13,8 +13,12 @@
  * @brief Handle site index requests.
  */
 
-import('lib.pkp.pages.index.PKPIndexHandler');
+namespace APP\pages\index;
 
+use PKP\security\Validation;
+use PKP\db\DAORegistry;
+use PKP\config\Config;
+use PKP\pages\index\PKPIndexHandler;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\observers\events\Usage;

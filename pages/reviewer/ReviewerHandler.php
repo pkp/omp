@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file pages/reviewer/ReviewerHandler.inc.php
+ * @file pages/reviewer/ReviewerHandler.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -13,8 +13,9 @@
  * @brief Handle requests for reviewer functions.
  */
 
-import('lib.pkp.pages.reviewer.PKPReviewerHandler');
+namespace APP\pages\reviewer;
 
+use PKP\pages\reviewer\PKPReviewerHandler;
 use PKP\security\authorization\SubmissionAccessPolicy;
 use PKP\security\Role;
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file pages/gateway/GatewayHandler.inc.php
+ * @file pages/gateway/GatewayHandler.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -13,6 +13,9 @@
  * @brief Handle external gateway requests.
  */
 
+namespace APP\pages\gateway;
+
+use PKP\plugins\PluginRegistry;
 use APP\handler\Handler;
 
 class GatewayHandler extends Handler

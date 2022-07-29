@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file pages/submission/SubmissionHandler.inc.php
+ * @file pages/submission/SubmissionHandler.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -13,8 +13,9 @@
  * @brief Handle requests for the submission wizard.
  */
 
-import('lib.pkp.pages.submission.PKPSubmissionHandler');
+namespace APP\pages\submission;
 
+use PKP\pages\submission\PKPSubmissionHandler;
 use PKP\security\Role;
 
 class SubmissionHandler extends PKPSubmissionHandler

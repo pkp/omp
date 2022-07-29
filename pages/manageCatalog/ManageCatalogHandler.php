@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file pages/manageCatalog/ManageCatalogHandler.inc.php
+ * @file pages/manageCatalog/ManageCatalogHandler.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -13,12 +13,13 @@
  * @brief Handle requests for catalog management.
  */
 
+namespace APP\pages\manageCatalog;
+
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\handler\Handler;
 use APP\submission\Collector;
 use APP\submission\Submission;
-
 use APP\template\TemplateManager;
 use PKP\core\JSONMessage;
 use PKP\db\DAORegistry;

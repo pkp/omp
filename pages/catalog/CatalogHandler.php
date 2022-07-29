@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file pages/catalog/CatalogHandler.inc.php
+ * @file pages/catalog/CatalogHandler.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -14,8 +14,11 @@
  *   catalog.
  */
 
-import('lib.pkp.pages.catalog.PKPCatalogHandler');
+namespace APP\pages\catalog;
 
+use PKP\db\DAORegistry;
+use PKP\config\Config;
+use PKP\pages\catalog\PKPCatalogHandler;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\observers\events\Usage;

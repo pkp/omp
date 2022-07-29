@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file pages/workflow/WorkflowHandler.inc.php
+ * @file pages/workflow/WorkflowHandler.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -13,8 +13,9 @@
  * @brief Handle requests for the submssion workflow.
  */
 
-import('lib.pkp.pages.workflow.PKPWorkflowHandler');
+namespace APP\pages\workflow;
 
+use PKP\pages\workflow\PKPWorkflowHandler;
 use APP\core\Application;
 use APP\core\Services;
 use APP\decision\types\AcceptFromInternal;
@@ -130,9 +131,9 @@ class WorkflowHandler extends PKPWorkflowHandler
         $publicFileManager = new PublicFileManager();
         $baseUrl = $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($submissionContext->getId());
 
-        $audienceForm = new APP\components\forms\submission\AudienceForm($submissionApiUrl, $submission);
-        $catalogEntryForm = new APP\components\forms\publication\CatalogEntryForm($latestPublicationApiUrl, $locales, $latestPublication, $submission, $baseUrl, $temporaryFileApiUrl);
-        $publicationDatesForm = new APP\components\forms\submission\PublicationDatesForm($submissionApiUrl, $submission);
+        $audienceForm = new \APP\components\forms\submission\AudienceForm($submissionApiUrl, $submission);
+        $catalogEntryForm = new \APP\components\forms\publication\CatalogEntryForm($latestPublicationApiUrl, $locales, $latestPublication, $submission, $baseUrl, $temporaryFileApiUrl);
+        $publicationDatesForm = new \APP\components\forms\submission\PublicationDatesForm($submissionApiUrl, $submission);
 
         $templateMgr->setConstants([
             'FORM_AUDIENCE' => FORM_AUDIENCE,

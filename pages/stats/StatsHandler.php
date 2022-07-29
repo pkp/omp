@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file pages/stats/StatsHandler.inc.php
+ * @file pages/stats/StatsHandler.php
  *
  * Copyright (c) 2013-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -13,8 +13,12 @@
  * @brief Handle requests for statistics pages.
  */
 
-import('lib.pkp.pages.stats.PKPStatsHandler');
+namespace APP\pages\stats;
 
+use APP\core\Application;
+use PKP\plugins\HookRegistry;
+use PKP\db\DAORegistry;
+use PKP\pages\stats\PKPStatsHandler;
 use APP\template\TemplateManager;
 
 class StatsHandler extends PKPStatsHandler
