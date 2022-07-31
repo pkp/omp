@@ -32,6 +32,7 @@ use APP\decision\types\SkipInternalReview;
 use APP\file\PublicFileManager;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
+use APP\decision\types\BackFromInternalReview;
 use APP\decision\types\BackToInternalReviewFromExternalReview;
 use APP\decision\types\BackToInternalReviewFromCopyediting;
 use APP\decision\types\BackToPreviousInternalReviewRound;
