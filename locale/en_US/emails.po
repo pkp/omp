@@ -349,6 +349,21 @@ msgstr ""
 "<p>Kind regards,</p>"
 "<p>{$signature}</p>"
 
+msgid "emails.editorDecisionBackFromInternalReview.subject"
+msgstr "Your submission has been sent back from internal review stage"
+
+msgid "emails.editorDecisionBackFromInternalReview.body"
+msgstr ""
+"<p>Dear {$recipientName},</p>\n"
+"<p>Your submission, {$submissionTitle}, has been sent back to from the internal review stage. \n"
+"It will undergo further editorial review before move to next stage.</p>\n"
+"<p>Your submission is still forthcoming in a future issue of {$contextName}. It was "
+"moved back from the external review stage because it is not yet ready for the next stage.</p>\n"
+"<p>We will contact you if we need any further assistance.</p>\n"
+"<p>If you have any questions, please contact me from your <a href=\"{$authorSubmissionUrl}\">submission dashboard</a>.</p>\n"
+"<p>Kind regards,</p>\n"
+"<p>{$signature}</p>\n"
+
 msgid "emails.layoutRequest.subject"
 msgstr "Submission {$submissionId} is ready for production at {$contextAcronym}"
 

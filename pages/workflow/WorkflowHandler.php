@@ -33,6 +33,7 @@ use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
+use APP\decision\types\BackFromInternalReview;
 use APP\decision\types\BackToInternalReviewFromExternalReview;
 use APP\decision\types\BackToInternalReviewFromCopyediting;
 use APP\decision\types\BackToPreviousInternalReviewRound;
@@ -40,6 +41,9 @@ use APP\decision\types\BackToSubmissionFromInternalReview;
 use PKP\core\PKPApplication;
 use PKP\decision\types\BackToPreviousExternalReviewRound;
 use PKP\decision\types\Accept;
+use PKP\decision\types\BackFromCopyediting;
+use PKP\decision\types\BackFromExternalReview;
+use PKP\decision\types\BackFromProduction;
 use PKP\decision\types\BackToExternalReviewFromCopyediting;
 use PKP\decision\types\BackToSubmissionFromExternalReview;
 use PKP\decision\types\Decline;
@@ -326,13 +330,17 @@ class WorkflowHandler extends PKPWorkflowHandler
             InitialDecline::class,
             DeclineInternal::class,
             Decline::class,
-            BackToPreviousExternalReviewRound::class,
-            BackToPreviousInternalReviewRound::class,
-            BackToSubmissionFromExternalReview::class,
-            BackToSubmissionFromInternalReview::class,
-            BackToInternalReviewFromExternalReview::class,
-            BackToInternalReviewFromCopyediting::class,
-            BackToExternalReviewFromCopyediting::class,
+            // BackToPreviousExternalReviewRound::class,
+            // BackToPreviousInternalReviewRound::class,
+            // BackToSubmissionFromExternalReview::class,
+            // BackToSubmissionFromInternalReview::class,
+            // BackToInternalReviewFromExternalReview::class,
+            // BackToInternalReviewFromCopyediting::class,
+            // BackToExternalReviewFromCopyediting::class,
+            BackFromProduction::class,
+            BackFromCopyediting::class,
+            BackFromExternalReview::class,
+            BackFromInternalReview::class,
         ];
     }
 }

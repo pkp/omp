@@ -14,6 +14,7 @@
 namespace APP\decision;
 
 use APP\decision\types\AcceptFromInternal;
+use APP\decision\types\BackFromInternalReview;
 use APP\decision\types\DeclineInternal;
 use APP\decision\types\NewInternalReviewRound;
 use APP\decision\types\RecommendAcceptInternal;
@@ -33,6 +34,9 @@ use APP\decision\types\BackToInternalReviewFromExternalReview;
 use APP\notification\Notification;
 use Illuminate\Database\Eloquent\Collection;
 use PKP\decision\types\Accept;
+use PKP\decision\types\BackFromCopyediting;
+use PKP\decision\types\BackFromExternalReview;
+use PKP\decision\types\BackFromProduction;
 use PKP\decision\types\BackToCopyediting;
 use PKP\decision\types\BackToPreviousExternalReviewRound;
 use PKP\decision\types\BackToSubmissionFromCopyediting;
@@ -64,9 +68,9 @@ class Repository extends \PKP\decision\Repository
             $decisionTypes = new Collection([
                 new Accept(),
                 new AcceptFromInternal(),
-                new BackToCopyediting(),
-                new BackToExternalReviewFromCopyediting(),
-                new BackToSubmissionFromCopyediting(),
+                // new BackToCopyediting(),
+                // new BackToExternalReviewFromCopyediting(),
+                // new BackToSubmissionFromCopyediting(),
                 new Decline(),
                 new DeclineInternal(),
                 new InitialDecline(),
@@ -92,12 +96,16 @@ class Repository extends \PKP\decision\Repository
                 new SendToProduction(),
                 new SkipInternalReview(),
                 new SkipExternalReview(),
-                new BackToPreviousExternalReviewRound(),
-                new BackToPreviousInternalReviewRound(),
-                new BackToSubmissionFromExternalReview(),
-                new BackToSubmissionFromInternalReview(),
-                new BackToInternalReviewFromExternalReview(),
-                new BackToInternalReviewFromCopyediting(),
+                // new BackToPreviousExternalReviewRound(),
+                // new BackToPreviousInternalReviewRound(),
+                // new BackToSubmissionFromExternalReview(),
+                // new BackToSubmissionFromInternalReview(),
+                // new BackToInternalReviewFromExternalReview(),
+                // new BackToInternalReviewFromCopyediting(),
+                new BackFromProduction(),
+                new BackFromCopyediting(),
+                new BackFromExternalReview(),
+                new BackFromInternalReview(),
             ]);
             HookRegistry::call('Decision::types', [$decisionTypes]);
             $this->decisionTypes = $decisionTypes;
