@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file api/v1/vocab/VocabHandler.inc.php
+ * @file api/v1/vocab/VocabHandler.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -14,6 +14,8 @@
  *
  */
 
+namespace APP\API\v1\vocab;
+ 
 use APP\codelist\ONIXCodelistItemDAO;
 use APP\core\Application;
 use PKP\core\APIResponse;
@@ -22,9 +24,7 @@ use PKP\facades\Locale;
 use PKP\submission\SubmissionLanguageDAO;
 use Slim\Http\Request;
 
-import('lib.pkp.api.v1.vocabs.PKPVocabHandler');
-
-class VocabHandler extends PKPVocabHandler
+class VocabHandler extends \PKP\API\v1\vocabs\PKPVocabHandler
 {
     public const LANGUAGE_CODE_LIST = 74;
 

@@ -14,5 +14,4 @@
  * @brief Handle API requests for backend DOI operations.
  */
 
-import('api.v1._dois.BackendDoiHandler');
-return new BackendDoiHandler();
+return new \APP\API\v1\_dois\BackendDoiHandler();

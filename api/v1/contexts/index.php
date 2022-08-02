@@ -12,5 +12,5 @@
  * @ingroup api_v1_contexts
  * @brief Handle API requests for contexts (presses).
  */
-import('lib.pkp.api.v1.contexts.PKPContextHandler');
-return new PKPContextHandler();
+
+return new \PKP\API\v1\contexts\PKPContextHandler();

@@ -14,5 +14,4 @@
  * @brief Handle API requests for vocabs.
  */
 
-import('api.v1.vocabs.VocabHandler');
-return new VocabHandler();
+return new \APP\API\v1\vocabs\VocabHandler();

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file api/v1/_submissions/BackendSubmissionsHandler.inc.php
+ * @file api/v1/_submissions/BackendSubmissionsHandler.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -14,18 +14,17 @@
  *
  */
 
-import('lib.pkp.api.v1._submissions.PKPBackendSubmissionsHandler');
-
+namespace APP\API\v1\_submissions;
+ 
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\submission\Collector;
 use APP\submission\Submission;
 use PKP\db\DAORegistry;
 use PKP\plugins\HookRegistry;
-
 use PKP\security\Role;
 
-class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler
+class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmissionsHandler
 {
     /**
      * Constructor
