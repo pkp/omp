@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/catalogEntry/PublicationFormatGridCategoryRow.inc.php
+ * @file controllers/grid/catalogEntry/PublicationFormatGridCategoryRow.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/users/chapter/form/ChapterForm.inc.php
+ * @file controllers/grid/users/chapter/form/ChapterForm.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
