@@ -121,6 +121,9 @@ class ContextService extends \PKP\services\PKPContextService
         // Create publication format tombstones for all published submissions
         $publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
         $publicationFormatTombstoneMgr->insertTombstonesByPress($context);
+
+        $genreDao = DAORegistry::getDAO('GenreDAO');
+        $genreDao->deleteByContextId($context->getId());
     }
 
     /**
