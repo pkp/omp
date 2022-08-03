@@ -15,7 +15,7 @@
 
 
 
-require(dirname(__FILE__) . '/bootstrap.inc.php');
+require(dirname(__FILE__) . '/bootstrap.php');
 
 class importExport extends CommandLineTool
 {
