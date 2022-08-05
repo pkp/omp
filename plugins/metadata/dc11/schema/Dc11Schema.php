@@ -1,10 +1,10 @@
 <?php
 
 /**
- * @file plugins/metadata/dc11/schema/Dc11Schema.inc.php
+ * @file plugins/metadata/dc11/schema/Dc11Schema.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2022 Simon Fraser University
+ * Copyright (c) 2000-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Dc11Schema
@@ -15,17 +15,19 @@
  * @brief OMP-specific implementation of the Dc11Schema.
  */
 
+namespace APP\plugins\metadata\dc11\schema;
 
-import('lib.pkp.plugins.metadata.dc11.schema.PKPDc11Schema');
-
-class Dc11Schema extends PKPDc11Schema
+class Dc11Schema extends \PKP\plugins\metadata\dc11\schema\PKPDc11Schema
 {
     /**
      * Constructor
      */
     public function __construct()
     {
-        // Configure the MODS schema.
         parent::__construct(ASSOC_TYPE_PUBLICATION_FORMAT);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\plugins\metadata\dc11\schema\Dc11Schema', '\Dc11Schema');
 }

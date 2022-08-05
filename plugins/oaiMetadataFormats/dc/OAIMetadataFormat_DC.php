@@ -18,9 +18,10 @@
  *
  * @brief OAI metadata format class -- Dublin Core.
  */
-import('lib.pkp.plugins.oaiMetadataFormats.dc.PKPOAIMetadataFormat_DC');
 
-class OAIMetadataFormat_DC extends PKPOAIMetadataFormat_DC
+namespace APP\plugins\oaiMetadataFormats\dc;
+
+class OAIMetadataFormat_DC extends \PKP\plugins\oaiMetadataFormats\dc\PKPOAIMetadataFormat_DC
 {
     /**
      * @see lib/pkp/plugins/oaiMetadataFormats/dc/PKPOAIMetadataFormat_DC::toXml()

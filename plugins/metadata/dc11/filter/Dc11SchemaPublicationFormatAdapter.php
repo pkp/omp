@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/metadata/dc11/filter/Dc11SchemaPublicationFormatAdapter.inc.php
+ * @file plugins/metadata/dc11/filter/Dc11SchemaPublicationFormatAdapter.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky
@@ -17,6 +17,10 @@
  * into/from a PublicationFormat object.
  */
 
+namespace APP\plugins\metadata\dc11\filter;
+
+use PKP\plugins\HookRegistry;
+use PKP\plugins\PluginRegistry;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\submission\Submission;
@@ -225,7 +229,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             $dc11Description->addStatement('dc:rights', $salesRight->getNameForONIXCode());
         }
 
-        Hookregistry::call('Dc11SchemaPublicationFormatAdapter::extractMetadataFromDataObject', [&$this, $monograph, $press, &$dc11Description]);
+        HookRegistry::call('Dc11SchemaPublicationFormatAdapter::extractMetadataFromDataObject', [&$this, $monograph, $press, &$dc11Description]);
 
         return $dc11Description;
     }
@@ -264,4 +268,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             }
         }
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\plugins\metadata\dc11\filter\Dc11SchemaPublicationFormatAdapter', '\Dc11SchemaPublicationFormatAdapter');
 }
