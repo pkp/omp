@@ -485,3 +485,7 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
         }
     }
 }
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\plugins\importexport\native\filter\NativeXmlPublicationFormatFilter', '\NativeXmlPublicationFormatFilter');
+}

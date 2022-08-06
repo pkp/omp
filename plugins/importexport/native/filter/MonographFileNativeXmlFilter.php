@@ -68,3 +68,7 @@ class MonographFileNativeXmlFilter extends \PKP\plugins\importexport\native\filt
         return 'submission_file';
     }
 }
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\plugins\importexport\native\filter\MonographFileNativeXmlFilter', '\MonographFileNativeXmlFilter');
+}
