@@ -15,52 +15,50 @@
  * @brief Test class for SubmissionFileDAO.
  */
 
-import('classes.core.Request'); // Cause mocked Request class to load
-import('classes.i18n.Locale'); // Cause mocked Locale class to load
+namespace APP\tests\classes\monograph;
 
-import('lib.pkp.tests.DatabaseTestCase');
-
+use APP\core\Application;
+use APP\core\Request;
 use APP\core\Services;
 use APP\facades\Repo;
 use APP\press\Press;
 use APP\submission\Submission;
-
 use PKP\core\PKPRouter;
+use PKP\core\Registry;
 use PKP\db\DAORegistry;
 use PKP\submission\GenreDAO;
 use PKP\submissionFile\SubmissionFile;
-
-// Define test ids.
-define('SUBMISSION_FILE_DAO_TEST_PRESS_ID', 999);
-define('SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID', 9999);
-define('SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID', 1);
-define('SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID', 2);
-
-// Define a temp file location for testing.
-define('TMP_FILES', '/tmp');
+use PKP\tests\DatabaseTestCase;
 
 class SubmissionFileDAOTest extends DatabaseTestCase
 {
-    private $testFile1;
-    private $testFile2;
-    private $testFile3;
+    // Define test ids.
+    private const SUBMISSION_FILE_DAO_TEST_PRESS_ID = 999;
+    private const SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID = 9999;
+    private const SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID = 1;
+    private const SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID = 2;
+    // Define a temp file location for testing.
+    private const TMP_FILES = '/tmp';
+    private string $testFile1;
+    private string $testFile2;
+    private string $testFile3;
 
     protected function setUp(): void
     {
         // Create a test file on the file system.
-        $this->testFile1 = tempnam(TMP_FILES, 'SubmissionFile1');
-        $this->testFile2 = tempnam(TMP_FILES, 'SubmissionFile2');
-        $this->testFile3 = tempnam(TMP_FILES, 'SubmissionFile3');
+        $this->testFile1 = tempnam(static::TMP_FILES, 'SubmissionFile1');
+        $this->testFile2 = tempnam(static::TMP_FILES, 'SubmissionFile2');
+        $this->testFile3 = tempnam(static::TMP_FILES, 'SubmissionFile3');
 
         // Mock a press
         $press = new Press();
         $press->setPrimaryLocale('en_US');
         $press->setPath('press-path');
-        $press->setId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
+        $press->setId(static::SUBMISSION_FILE_DAO_TEST_PRESS_ID);
 
         // Mock a request
         $mockRequest = $this->getMockBuilder(Request::class)
-            ->setMethods(['getContext'])
+            ->onlyMethods(['getContext'])
             ->getMock();
         $mockRequest->expects($this->any())
             ->method('getContext')
@@ -70,11 +68,11 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         // Register a mock monograph DAO.
         $submissionDao = $this->getMockBuilder(\APP\submission\DAO::class)
             ->setConstructorArgs([Services::get('schema')])
-            ->setMethods(['get'])
+            ->onlyMethods(['get'])
             ->getMock();
         $monograph = new Submission();
-        $monograph->setId(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
-        $monograph->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
+        $monograph->setId(static::SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
+        $monograph->setPressId(static::SUBMISSION_FILE_DAO_TEST_PRESS_ID);
         $monograph->setLocale('en_US');
         $submissionDao->expects($this->any())
             ->method('get')
@@ -83,7 +81,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
 
         // Register a mock genre DAO.
         $genreDao = $this->getMockBuilder(GenreDAO::class)
-            ->setMethods(['getById'])
+            ->onlyMethods(['getById'])
             ->getMock();
         DAORegistry::registerDAO('GenreDAO', $genreDao);
         $genreDao->expects($this->any())
@@ -125,7 +123,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         // Create a submission
         $submissionDao = Repo::submission()->dao;
         $submission = Repo::submission()->newDataObject();
-        $submission->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
+        $submission->setPressId(static::SUBMISSION_FILE_DAO_TEST_PRESS_ID);
         $submission->setLocale('en_US');
         $submissionId = Repo::submission()->dao->insert($submission);
 
@@ -135,12 +133,14 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $submission->setData('currentPublicationId', $publication->getId());
         $submissionDao->update($submission);
 
-        $submissionDao = $this->getMockBuilder(\APP\submission\SubmissionDAO::class)
-            ->setMethods(['get'])
+        $submissionDao = $this->getMockBuilder(\APP\submission\DAO::class)
+            ->setProxyTarget(Repo::submission()->dao)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['get'])
             ->getMock();
         $monograph = new Submission();
         $monograph->setId($submissionId);
-        $monograph->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
+        $monograph->setPressId(static::SUBMISSION_FILE_DAO_TEST_PRESS_ID);
         $monograph->setLocale('en_US');
         $submissionDao->expects($this->any())
             ->method('get')
@@ -149,7 +149,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
 
         // Create test files
         $submissionDir = Repo::submissionFile()
-            ->getSubmissionDir(SUBMISSION_FILE_DAO_TEST_PRESS_ID, $submissionId);
+            ->getSubmissionDir(static::SUBMISSION_FILE_DAO_TEST_PRESS_ID, $submissionId);
         $fileId1 = Services::get('file')->add(
             $this->testFile1,
             $submissionDir . '/' . uniqid() . '.txt'
@@ -160,7 +160,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
             'submissionId' => $submissionId,
             'uploaderUserId' => 1,
             'fileId' => $fileId1,
-            'genreId' => SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID,
+            'genreId' => static::SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID,
             'createdAt' => '2011-12-05 00:00:00',
             'updatedAt' => '2011-12-05 00:00:00',
         ]);
@@ -169,7 +169,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
             $submissionDir . '/' . uniqid() . '.txt'
         );
         $submissionFile2 = clone $submissionFile1;
-        $submissionFile2->setData('assocType', ASSOC_TYPE_REPRESENTATION);
+        $submissionFile2->setData('assocType', Application::ASSOC_TYPE_REPRESENTATION);
         $submissionFile2->setData('assocId', 1);
         $submissionFile2->setData('fileStage', SubmissionFile::SUBMISSION_FILE_PROOF);
         $submissionFile2->setData('fileId', $fileId2);
@@ -178,30 +178,30 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $submissionFileDao = Repo::submissionFile()->dao;
         $submissionFile1Id = $submissionFileDao->insert($submissionFile1);
         $submissionFile1 = $submissionFileDao->get($submissionFile1Id);
-        self::assertTrue(is_a($submissionFile1, 'SubmissionFile'));
-        self::assertEquals($submissionFile1->getData('assocType'), null);
-        self::assertEquals($submissionFile1->getData('assocId'), null);
-        self::assertEquals($submissionFile1->getData('fileStage'), SubmissionFile::SUBMISSION_FILE_SUBMISSION);
-        self::assertEquals($submissionFile1->getData('submissionId'), $submissionId);
-        self::assertEquals($submissionFile1->getData('fileId'), $fileId1);
-        self::assertEquals($submissionFile1->getData('genreId'), SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
-        self::assertEquals($submissionFile1->getData('createdAt'), '2011-12-05 00:00:00');
-        self::assertEquals($submissionFile1->getData('updatedAt'), '2011-12-05 00:00:00');
+        static::assertTrue(is_a($submissionFile1, 'SubmissionFile'));
+        static::assertEquals($submissionFile1->getData('assocType'), null);
+        static::assertEquals($submissionFile1->getData('assocId'), null);
+        static::assertEquals($submissionFile1->getData('fileStage'), SubmissionFile::SUBMISSION_FILE_SUBMISSION);
+        static::assertEquals($submissionFile1->getData('submissionId'), $submissionId);
+        static::assertEquals($submissionFile1->getData('fileId'), $fileId1);
+        static::assertEquals($submissionFile1->getData('genreId'), static::SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
+        static::assertEquals($submissionFile1->getData('createdAt'), '2011-12-05 00:00:00');
+        static::assertEquals($submissionFile1->getData('updatedAt'), '2011-12-05 00:00:00');
 
         $submissionFile2Id = $submissionFileDao->insert($submissionFile2);
         $submissionFile2 = $submissionFileDao->get($submissionFile2Id);
-        self::assertTrue(is_a($submissionFile2, 'SubmissionFile'));
-        self::assertEquals($submissionFile2->getData('assocType'), ASSOC_TYPE_REPRESENTATION);
-        self::assertEquals($submissionFile2->getData('assocId'), 1);
-        self::assertEquals($submissionFile2->getData('fileStage'), SubmissionFile::SUBMISSION_FILE_PROOF);
-        self::assertEquals($submissionFile2->getData('fileId'), $fileId2);
-        self::assertEquals($submissionFile2->getData('genreId'), SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
+        static::assertTrue(is_a($submissionFile2, 'SubmissionFile'));
+        static::assertEquals($submissionFile2->getData('assocType'), Application::ASSOC_TYPE_REPRESENTATION);
+        static::assertEquals($submissionFile2->getData('assocId'), 1);
+        static::assertEquals($submissionFile2->getData('fileStage'), SubmissionFile::SUBMISSION_FILE_PROOF);
+        static::assertEquals($submissionFile2->getData('fileId'), $fileId2);
+        static::assertEquals($submissionFile2->getData('genreId'), static::SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
 
         // Save changes to a file without creating a new revision
-        $submissionFile2->setData('genreId', SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
+        $submissionFile2->setData('genreId', static::SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
         $submissionFileDao->update($submissionFile2);
         $submissionFile2 = $submissionFileDao->get($submissionFile2->getId());
-        self::assertEquals($submissionFile2->getData('genreId'), SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
+        static::assertEquals($submissionFile2->getData('genreId'), static::SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
 
         // Save a new revision of a submission file
         $fileId3 = Services::get('file')->add(
@@ -211,18 +211,18 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $submissionFile2->setData('fileId', $fileId3);
         $submissionFileDao->update($submissionFile2);
         $submissionFile2 = $submissionFileDao->get($submissionFile2->getId());
-        self::assertEquals($submissionFile2->getData('fileId'), $fileId3);
+        static::assertEquals($submissionFile2->getData('fileId'), $fileId3);
         $revisions = Repo::submissionFile()->getRevisions($submissionFile2->getId());
         $revisionFileIds = [];
         foreach ($revisions as $revision) {
             $revisionFileIds[] = $revision->fileId;
         }
-        self::assertEquals($revisionFileIds, [$fileId3, $fileId2]);
+        static::assertEquals($revisionFileIds, [$fileId3, $fileId2]);
 
         // Delete a file
         $submissionFileDao->delete($submissionFile2);
         $submissionFile2 = $submissionFileDao->get($submissionFile2Id);
-        self::assertNull($submissionFile2);
+        static::assertNull($submissionFile2);
 
         $this->_cleanFiles($submissionId);
 
@@ -239,7 +239,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
     {
         // Delete the test submission's files.
         if (!$submissionId) {
-            $submissionId = SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID;
+            $submissionId = static::SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID;
         }
         $collector = Repo::submissionFile()
             ->getCollector()

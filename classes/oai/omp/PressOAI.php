@@ -25,11 +25,11 @@ namespace APP\oai\omp;
 
 use APP\core\Application;
 use PKP\db\DAORegistry;
-use PKP\plugins\HookRegistry;
 use PKP\oai\OAI;
 use PKP\oai\OAIRepository;
-
 use PKP\oai\OAIResumptionToken;
+
+use PKP\plugins\HookRegistry;
 
 class PressOAI extends OAI
 {
@@ -150,7 +150,7 @@ class PressOAI extends OAI
         $versionDao = DAORegistry::getDAO('VersionDAO'); /** @var VersionDAO $versionDao */
         $currentVersion = $versionDao->getCurrentVersion();
         $info->toolkitVersion = $currentVersion->getVersionString(false);
-        $info->toolkitURL = 'http://pkp.sfu.ca/omp/';
+        $info->toolkitURL = 'https://pkp.sfu.ca/omp/';
 
         return $info;
     }
