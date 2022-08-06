@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/importexport/native/filter/ChapterNativeXmlFilter.inc.php
+ * @file plugins/importexport/native/filter/ChapterNativeXmlFilter.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky
@@ -13,11 +13,12 @@
  * @brief Base class that converts a set of authors to a Native XML document
  */
 
+namespace APP\plugins\importexport\native\filter;
+
 use APP\facades\Repo;
+use PKP\plugins\PluginRegistry;
 
-import('lib.pkp.plugins.importexport.native.filter.NativeExportFilter');
-
-class ChapterNativeXmlFilter extends NativeExportFilter
+class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\NativeExportFilter
 {
     /**
      * Constructor
@@ -51,12 +52,12 @@ class ChapterNativeXmlFilter extends NativeExportFilter
      *
      * @param Chapter[] $chapters
      *
-     * @return DOMDocument
+     * @return \DOMDocument
      */
     public function &process(&$chapters)
     {
         // Create the XML document
-        $doc = new DOMDocument('1.0');
+        $doc = new \DOMDocument('1.0');
         $doc->preserveWhiteSpace = false;
         $doc->formatOutput = true;
         $deployment = $this->getDeployment();
@@ -79,10 +80,10 @@ class ChapterNativeXmlFilter extends NativeExportFilter
     /**
      * Create and return an author node.
      *
-     * @param DOMDocument $doc
+     * @param \DOMDocument $doc
      * @param Chapter $chapter
      *
-     * @return DOMElement
+     * @return \DOMElement
      */
     public function createChapterNode($doc, $chapter)
     {
@@ -135,9 +136,9 @@ class ChapterNativeXmlFilter extends NativeExportFilter
     /**
      * Create and return an author node.
      *
-     * @param DOMDocument $doc
+     * @param \DOMDocument $doc
      *
-     * @return DOMElement
+     * @return \DOMElement
      */
     public function createChapterAuthorNode($doc, $chapterAuthor)
     {
@@ -155,12 +156,12 @@ class ChapterNativeXmlFilter extends NativeExportFilter
     /**
      * Add a single pub ID element for a given plugin to the document.
      *
-     * @param DOMDocument $doc
-     * @param DOMElement $entityNode
+     * @param \DOMDocument $doc
+     * @param \DOMElement $entityNode
      * @param Chapter $entity
      * @param PubIdPlugin $pubIdPlugin
      *
-     * @return DOMElement|null
+     * @return \DOMElement|null
      */
     public function addPubIdentifier($doc, $entityNode, $entity, $pubIdType)
     {
@@ -178,8 +179,8 @@ class ChapterNativeXmlFilter extends NativeExportFilter
     /**
      * Create and add identifier nodes to a submission node.
      *
-     * @param DOMDocument $doc
-     * @param DOMElement $entityNode
+     * @param \DOMDocument $doc
+     * @param \DOMElement $entityNode
      * @param Chapter $entity
      */
     public function addIdentifiers($doc, $entityNode, $entity)
@@ -206,4 +207,8 @@ class ChapterNativeXmlFilter extends NativeExportFilter
         // Also add DOIs
         $this->addPubIdentifier($doc, $entityNode, $entity, 'doi');
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\plugins\importexport\native\filter\ChapterNativeXmlFilter', '\ChapterNativeXmlFilter');
 }

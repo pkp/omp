@@ -13,14 +13,15 @@
  * @brief Base class that converts a monograph to an ONIX 3.0 document
  */
 
+namespace APP\plugins\importexport\onix30\filter;
+
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
+use APP\core\Application;
 
-import('lib.pkp.plugins.importexport.native.filter.NativeExportFilter');
-
-class MonographONIX30XmlFilter extends NativeExportFilter
+class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\NativeExportFilter
 {
-    /** @var DOMDocument */
+    /** @var \DOMDocument */
     public $_doc;
 
     /**
@@ -54,12 +55,12 @@ class MonographONIX30XmlFilter extends NativeExportFilter
      *
      * @param Submission $submissions | array Monographs to export
      *
-     * @return DOMDocument
+     * @return \DOMDocument
      */
     public function &process(&$submissions)
     {
         // Create the XML document
-        $doc = new DOMDocument('1.0');
+        $doc = new \DOMDocument('1.0');
         $doc->preserveWhiteSpace = false;
         $doc->formatOutput = true;
         $this->_doc = $doc;
@@ -88,8 +89,8 @@ class MonographONIX30XmlFilter extends NativeExportFilter
     /**
      * Creates a submission node for each input submission.
      *
-     * @param DOMDocument $doc The main XML Document object
-     * @param DOMElement $rootNode The root node of the document, on which the submission node will get attached
+     * @param \DOMDocument $doc The main XML Document object
+     * @param \DOMElement $rootNode The root node of the document, on which the submission node will get attached
      * @param Submission $submission The submission we want to export and attach.
      */
     public function createSubmissionNode($doc, $rootNode, $submission)
@@ -108,9 +109,9 @@ class MonographONIX30XmlFilter extends NativeExportFilter
     /**
      * Create and return a node representing the ONIX Header metadata for this submission.
      *
-     * @param DOMDocument $doc
+     * @param \DOMDocument $doc
      *
-     * @return DOMElement
+     * @return \DOMElement
      */
     public function createHeaderNode($doc)
     {
@@ -143,11 +144,11 @@ class MonographONIX30XmlFilter extends NativeExportFilter
     /**
      * Create and return a node representing the ONIX Product metadata for this submission.
      *
-     * @param DOMDocument $doc
+     * @param \DOMDocument $doc
      * @param Submission $submission
      * @param PublicationFormat $publicationFormat
      *
-     * @return DOMElement
+     * @return \DOMElement
      */
     public function createProductNode($doc, $submission, $publicationFormat)
     {
@@ -746,13 +747,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter
     /**
      * Convenience method for building a Measure node.
      *
-     * @param DOMDocument $doc
+     * @param \DOMDocument $doc
      * @param ONIX30ExportDeployment $deployment
      * @param string $type
      * @param string $measurement
      * @param string $unitCode
      *
-     * @return DOMElement
+     * @return \DOMElement
      */
     public function _createMeasurementNode($doc, $deployment, $type, $measurement, $unitCode)
     {
@@ -777,13 +778,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter
     /**
      * Convenience method for building an Extent node.
      *
-     * @param DOMDocument $doc
+     * @param \DOMDocument $doc
      * @param ONIX30ExportDeployment $deployment
      * @param string $type
      * @param string $extentValue
      * @param string $extentUnit
      *
-     * @return DOMElement
+     * @return \DOMElement
      */
     public function _createExtentNode($doc, $deployment, $type, $extentValue, $extentUnit)
     {
@@ -808,11 +809,11 @@ class MonographONIX30XmlFilter extends NativeExportFilter
     /**
      * Convenience method for building a node with text content.
      *
-     * @param DOMDocument $doc
+     * @param \DOMDocument $doc
      * @param string $nodeName
      * @param string $textContent
      *
-     * @return DOMElement
+     * @return \DOMElement
      */
     public function _buildTextNode($doc, $nodeName, $textContent)
     {
@@ -821,4 +822,8 @@ class MonographONIX30XmlFilter extends NativeExportFilter
         $node->appendChild($doc->createTextNode($textContent));
         return $node;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\plugins\importexport\onix30\filter\MonographONIX30XmlFilter', '\MonographONIX30XmlFilter');
 }

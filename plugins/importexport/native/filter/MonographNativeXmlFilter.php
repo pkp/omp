@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/importexport/native/filter/MonographNativeXmlFilter.inc.php
+ * @file plugins/importexport/native/filter/MonographNativeXmlFilter.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky
@@ -13,9 +13,9 @@
  * @brief Class that converts a Monograph to a Native XML document.
  */
 
-import('lib.pkp.plugins.importexport.native.filter.SubmissionNativeXmlFilter');
+namespace APP\plugins\importexport\native\filter;
 
-class MonographNativeXmlFilter extends SubmissionNativeXmlFilter
+class MonographNativeXmlFilter extends \PKP\plugins\importexport\native\filter\SubmissionNativeXmlFilter
 {
     //
     // Implement template methods from PersistableFilter
@@ -48,10 +48,10 @@ class MonographNativeXmlFilter extends SubmissionNativeXmlFilter
     /**
      * Create and return a submission node.
      *
-     * @param DOMDocument $doc
+     * @param \DOMDocument $doc
      * @param Submission $submission
      *
-     * @return DOMElement
+     * @return \DOMElement
      */
     public function createSubmissionNode($doc, $submission)
     {
@@ -61,4 +61,8 @@ class MonographNativeXmlFilter extends SubmissionNativeXmlFilter
 
         return $submissionNode;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\plugins\importexport\native\filter\MonographNativeXmlFilter', '\MonographNativeXmlFilter');
 }

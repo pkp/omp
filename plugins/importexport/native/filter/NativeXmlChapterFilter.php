@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/importexport/native/filter/NativeXmlChapterFilter.inc.php
+ * @file plugins/importexport/native/filter/NativeXmlChapterFilter.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky
@@ -13,11 +13,13 @@
  * @brief Base class that converts a Native XML document to a set of authors
  */
 
+namespace APP\plugins\importexport\native\filter;
+
+use PKP\db\DAORegistry;
 use APP\facades\Repo;
+use PKP\plugins\PluginRegistry;
 
-import('lib.pkp.plugins.importexport.native.filter.NativeImportFilter');
-
-class NativeXmlChapterFilter extends NativeImportFilter
+class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\NativeImportFilter
 {
     /**
      * Constructor
@@ -93,7 +95,7 @@ class NativeXmlChapterFilter extends NativeImportFilter
 
         // Handle metadata in subelements
         for ($n = $node->firstChild; $n !== null; $n = $n->nextSibling) {
-            if (is_a($n, 'DOMElement')) {
+            if ($n instanceof \DOMElement) {
                 switch ($n->tagName) {
             case 'id':
                 $this->parseIdentifier($n, $chapter);
@@ -212,4 +214,8 @@ class NativeXmlChapterFilter extends NativeImportFilter
                 }
         }
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\plugins\importexport\native\filter\NativeXmlChapterFilter', '\NativeXmlChapterFilter');
 }

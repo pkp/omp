@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/importexport/users/UserImportExportPlugin.inc.php
+ * @file plugins/importexport/users/UserImportExportPlugin.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -13,9 +13,9 @@
  * @brief User XML import/export plugin
  */
 
-import('lib.pkp.plugins.importexport.users.PKPUserImportExportPlugin');
+namespace APP\plugins\importexport\users;
 
-class UserImportExportPlugin extends PKPUserImportExportPlugin
+class UserImportExportPlugin extends \PKP\plugins\importexport\users\PKPUserImportExportPlugin
 {
     /**
      * @copydoc Plugin::register()

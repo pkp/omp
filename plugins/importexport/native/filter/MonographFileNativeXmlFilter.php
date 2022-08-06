@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/importexport/native/filter/ArtworkFileNativeXmlFilter.inc.php
+ * @file plugins/importexport/native/filter/ArtworkFileNativeXmlFilter.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky
@@ -13,9 +13,9 @@
  * @brief Filter to convert an artwork file to a Native XML document
  */
 
-import('lib.pkp.plugins.importexport.native.filter.SubmissionFileNativeXmlFilter');
+namespace APP\plugins\importexport\native\filter;
 
-class MonographFileNativeXmlFilter extends SubmissionFileNativeXmlFilter
+class MonographFileNativeXmlFilter extends \PKP\plugins\importexport\native\filter\SubmissionFileNativeXmlFilter
 {
     //
     // Implement template methods from PersistableFilter
@@ -35,10 +35,10 @@ class MonographFileNativeXmlFilter extends SubmissionFileNativeXmlFilter
     /**
      * Create and return a submissionFile node.
      *
-     * @param DOMDocument $doc
+     * @param \DOMDocument $doc
      * @param SubmissionFile $submissionFile
      *
-     * @return DOMElement
+     * @return \DOMElement
      */
     public function createSubmissionFileNode($doc, $submissionFile)
     {

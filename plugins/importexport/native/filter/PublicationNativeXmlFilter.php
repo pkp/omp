@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/importexport/native/filter/PublicationNativeXmlFilter.inc.php
+ * @file plugins/importexport/native/filter/PublicationNativeXmlFilter.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky
@@ -13,9 +13,13 @@
  * @brief Class that converts a Article to a Native XML document.
  */
 
-import('lib.pkp.plugins.importexport.native.filter.PKPPublicationNativeXmlFilter');
+namespace APP\plugins\importexport\native\filter;
 
-class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter
+use PKP\db\DAORegistry;
+use PKP\plugins\importexport\PKPImportExportFilter;
+use PKP\plugins\importexport\native\filter\PKPNativeFilterHelper;
+
+class PublicationNativeXmlFilter extends \PKP\plugins\importexport\native\filter\PKPPublicationNativeXmlFilter
 {
     //
     // Implement template methods from PersistableFilter
@@ -44,10 +48,10 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter
     /**
      * Create and return a submission node.
      *
-     * @param DOMDocument $doc
+     * @param \DOMDocument $doc
      * @param Publication $entity
      *
-     * @return DOMElement
+     * @return \DOMElement
      */
     public function createEntityNode($doc, $entity)
     {
@@ -71,7 +75,6 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter
         }
 
         // cover images
-        import('lib.pkp.plugins.importexport.native.filter.PKPNativeFilterHelper');
         $nativeFilterHelper = new PKPNativeFilterHelper();
         $coversNode = $nativeFilterHelper->createPublicationCoversNode($this, $doc, $entity);
         if ($coversNode) {
@@ -84,8 +87,8 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter
     /**
      * Add the chapter metadata for a publication to its DOM element.
      *
-     * @param DOMDocument $doc
-     * @param DOMElement $entityNode
+     * @param \DOMDocument $doc
+     * @param \DOMElement $entityNode
      * @param Publication $entity
      */
     public function addChapters($doc, $entityNode, $entity)
@@ -95,7 +98,7 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter
         $chapters = $entity->getData('chapters');
         if ($chapters && count($chapters) > 0) {
             $chaptersDoc = $currentFilter->execute($chapters);
-            if ($chaptersDoc && $chaptersDoc->documentElement instanceof DOMElement) {
+            if ($chaptersDoc && $chaptersDoc->documentElement instanceof \DOMElement) {
                 $clone = $doc->importNode($chaptersDoc->documentElement, true);
                 $entityNode->appendChild($clone);
             } else {
@@ -111,10 +114,10 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter
      * Create and return an object covers node.
      *
      * @param NativeExportFilter $filter
-     * @param DOMDocument $doc
+     * @param \DOMDocument $doc
      * @param Publication $object
      *
-     * @return DOMElement
+     * @return \DOMElement
      */
     public function createSeriesNode($filter, $doc, $object)
     {
@@ -145,4 +148,8 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter
 
         return $seriesNode;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\plugins\importexport\native\filter\PublicationNativeXmlFilter', '\PublicationNativeXmlFilter');
 }

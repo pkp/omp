@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/importexport/onix30/Onix30ExportDeployment.inc.php
+ * @file plugins/importexport/onix30/Onix30ExportDeployment.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky
@@ -13,6 +13,8 @@
  * @brief Class configuring the native import/export process to this
  * application's specifics.
  */
+
+namespace APP\plugins\importexport\onix30;
 
 use PKP\plugins\importexport\PKPImportExportDeployment;
 

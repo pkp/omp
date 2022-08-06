@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/importexport/onix30/Onix30ExportPlugin.inc.php
+ * @file plugins/importexport/onix30/Onix30ExportPlugin.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -13,12 +13,14 @@
  * @brief ONIX 3.0 XML import/export plugin
  */
 
+namespace APP\plugins\importexport\onix30;
+
 use APP\core\Application;
 use APP\template\TemplateManager;
 use PKP\core\PKPApplication;
 use PKP\plugins\ImportExportPlugin;
 
-class Onix30ExportPlugin extends ImportExportPlugin
+class Onix30ExportPlugin extends \PKP\plugins\ImportExportPlugin
 {
     /**
      * @copydoc Plugin::register()
@@ -33,7 +35,6 @@ class Onix30ExportPlugin extends ImportExportPlugin
         }
         if ($success && $this->getEnabled()) {
             $this->addLocaleData();
-            $this->import('Onix30ExportDeployment');
         }
         return $success;
     }
@@ -106,7 +107,7 @@ class Onix30ExportPlugin extends ImportExportPlugin
                     [
                         'apiUrl' => $apiUrl,
                         'count' => 100,
-                        'getParams' => new stdClass(),
+                        'getParams' => new \stdClass(),
                         'lazyLoad' => true,
                     ]
                 );

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/importexport/native/filter/PublicationFormatNativeXmlFilter.inc.php
+ * @file plugins/importexport/native/filter/PublicationFormatNativeXmlFilter.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky
@@ -13,14 +13,14 @@
  * @brief Class that converts a PublicationFormat to a Native XML document.
  */
 
+namespace APP\plugins\importexport\native\filter;
+
 use APP\core\Application;
 use APP\facades\Repo;
 use PKP\db\DAORegistry;
 use PKP\xslt\XSLTransformer;
 
-import('lib.pkp.plugins.importexport.native.filter.RepresentationNativeXmlFilter');
-
-class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
+class PublicationFormatNativeXmlFilter extends \PKP\plugins\importexport\native\filter\RepresentationNativeXmlFilter
 {
     //
     // Implement template methods from PersistableFilter
@@ -40,10 +40,10 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
      * Create and return a representation node. Extend the parent class
      * with publication format specific data.
      *
-     * @param DOMDocument $doc
+     * @param \DOMDocument $doc
      * @param PublicationFormat $representation
      *
-     * @return DOMElement
+     * @return \DOMElement
      */
     public function createRepresentationNode($doc, $representation)
     {
@@ -72,7 +72,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
             if ($onixDoc) { // we do this to ensure validation.
                 // assemble just the Product node we want.
                 $publicationFormatDOMElement = $exportFilter->createProductNode($doc, $submission, $representation);
-                if ($publicationFormatDOMElement && $publicationFormatDOMElement instanceof DOMElement) {
+                if ($publicationFormatDOMElement && $publicationFormatDOMElement instanceof \DOMElement) {
                     $xslTransformer = new XSLTransformer();
                     $xslFile = 'plugins/importexport/native/onixProduct2NativeXml.xsl';
                     $productXml = $publicationFormatDOMElement->ownerDocument->saveXML($publicationFormatDOMElement);
@@ -112,4 +112,8 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
 
         return Repo::submissionFile()->getMany($collector);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\plugins\importexport\native\filter\PublicationFormatNativeXmlFilter', '\PublicationFormatNativeXmlFilter');
 }

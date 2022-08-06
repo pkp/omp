@@ -16,6 +16,4 @@
  *
  */
 
-require_once('Onix30ExportPlugin.inc.php');
-
-return new Onix30ExportPlugin();
+return new \APP\plugins\importexport\onix30\Onix30ExportPlugin();

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/importexport/native/filter/NativeXmlPublicationFormatFilter.inc.php
+ * @file plugins/importexport/native/filter/NativeXmlPublicationFormatFilter.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky
@@ -13,13 +13,15 @@
  * @brief Class that converts a Native XML document to a set of publication formats.
  */
 
-import('lib.pkp.plugins.importexport.native.filter.NativeXmlRepresentationFilter');
+namespace APP\plugins\importexport\native\filter;
 
+use PKP\db\DAORegistry;
 use APP\facades\Repo;
 use APP\submission\Submission;
+use APP\core\Application;
 use PKP\core\PKPApplication;
 
-class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
+class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\filter\NativeXmlRepresentationFilter
 {
     //
     // Implement template methods from NativeImportFilter
@@ -92,7 +94,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
         // Handle metadata in subelements.  Do this after the insertObject() call because it
         // creates other DataObjects which depend on a representation id.
         for ($n = $node->firstChild; $n !== null; $n = $n->nextSibling) {
-            if (is_a($n, 'DOMElement')) {
+            if ($n instanceof \DOMElement) {
                 switch ($n->tagName) {
             case 'Product': $this->_processProductNode($n, $this->getDeployment(), $representation); break;
             case 'submission_file_ref': $this->_processFileRef($n, $deployment, $representation); break;
@@ -174,7 +176,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
                 $identificationCode = $identificationCodeDao->newDataObject();
                 $identificationCode->setPublicationFormatId($representation->getId());
                 for ($o = $n->firstChild; $o !== null; $o = $o->nextSibling) {
-                    if (is_a($o, 'DOMElement')) {
+                    if ($o instanceof \DOMElement) {
                         switch ($o->tagName) {
                     case 'onix:ProductIDType': $identificationCode->setCode($o->textContent); break;
                     case 'onix:IDValue': $identificationCode->setValue($o->textContent); break;
@@ -202,7 +204,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
                 $date = $publicationDateDao->newDataObject();
                 $date->setPublicationFormatId($representation->getId());
                 for ($o = $n->firstChild; $o !== null; $o = $o->nextSibling) {
-                    if (is_a($o, 'DOMElement')) {
+                    if ($o instanceof \DOMElement) {
                         switch ($o->tagName) {
                     case 'onix:PublishingDateRole': $date->setRole($o->textContent); break;
                     case 'onix:Date':
@@ -238,7 +240,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
                     assert($territoryNodeList->length == 1);
                     $territoryNode = $territoryNodeList->item(0);
                     for ($o = $territoryNode->firstChild; $o !== null; $o = $o->nextSibling) {
-                        if (is_a($o, 'DOMElement')) {
+                        if ($o instanceof \DOMElement) {
                             switch ($o->tagName) {
                         case 'onix:RegionsIncluded': $salesRights->setRegionsIncluded(preg_split('/\s+/', $o->textContent)); break;
                         case 'onix:CountriesIncluded': $salesRights->setCountriesIncluded(preg_split('/\s+/', $o->textContent)); break;
@@ -268,7 +270,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
                 assert($territoryNodeList->length == 1);
                 $territoryNode = $territoryNodeList->item(0);
                 for ($o = $territoryNode->firstChild; $o !== null; $o = $o->nextSibling) {
-                    if (is_a($o, 'DOMElement')) {
+                    if ($o instanceof \DOMElement) {
                         switch ($o->tagName) {
                     case 'onix:RegionsIncluded': $market->setRegionsIncluded(preg_split('/\s+/', $o->textContent)); break;
                     case 'onix:CountriesIncluded': $market->setCountriesIncluded(preg_split('/\s+/', $o->textContent)); break;
@@ -461,7 +463,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
             $n = $nodeList->item($i);
             $audienceRangePrecision = 0;
             for ($o = $n->firstChild; $o !== null; $o = $o->nextSibling) {
-                if (is_a($o, 'DOMElement')) {
+                if ($o instanceof \DOMElement) {
                     switch ($o->tagName) {
                 case 'AudienceRangePrecision': $audienceRangePrevision = $o->textContent; break;
                 case 'AudienceRangeValue':
