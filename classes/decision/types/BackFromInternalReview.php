@@ -28,7 +28,6 @@ use PKP\decision\steps\Email;
 use PKP\decision\types\interfaces\DecisionRetractable;
 use PKP\decision\types\traits\NotifyAuthors;
 use PKP\decision\types\traits\NotifyReviewersOfUnassignment;
-use PKP\decision\types\traits\WithReviewAssignments;
 use PKP\mail\mailables\ReviewerUnassign;
 use PKP\security\Role;
 use PKP\submission\reviewAssignment\ReviewAssignmentDAO;
@@ -37,13 +36,14 @@ use PKP\user\User;
 use PKP\submission\reviewRound\ReviewRoundDAO;
 use APP\decision\types\traits\InInternalReviewRound;
 use APP\mail\mailables\DecisionBackFromInternalReviewNotifyAuthor;
+use PKP\decision\types\traits\CanRetractReviewRound;
 
 class BackFromInternalReview extends DecisionType implements DecisionRetractable
 {
     use NotifyAuthors;
-    use WithReviewAssignments;
     use NotifyReviewersOfUnassignment;
     use InInternalReviewRound;
+    use CanRetractReviewRound;
 
     protected ?int $backoutStageId = null;
 

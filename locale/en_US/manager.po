@@ -1362,12 +1362,6 @@ msgstr "Submission Sent Back from Internal Review"
 msgid "mailable.decision.backFromInternalReview.notifyAuthor.description"
 msgstr "This email notifies the author that their submission has been sent back from current internal review round or stage."
 
-msgid "mailable.decision.backToInternalReview.notifyAuthor.name"
-msgstr "Submission Sent Back to Internal Review"
-
-msgid "mailable.decision.backToInternalReview.notifyAuthor.description"
-msgstr "This email notifies the author that their submission has been sent back to the internal review stage."
-
 msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
 msgstr "Sent to Internal Review"
 
