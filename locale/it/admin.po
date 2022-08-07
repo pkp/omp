@@ -1,8 +1,171 @@
 # Fulvio Delle Donne <fulviodelledonne@libero.it>, 2022.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2022-08-07 22:24+0000\n"
+"Last-Translator: Fulvio Delle Donne <fulviodelledonne@libero.it>\n"
+"Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/admin/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "admin.hostedContexts"
+msgstr "Case Editrici Ospitate"
+
+msgid "admin.settings.appearance.success"
+msgstr ""
+"Le impostazioni dell'aspetto del sito sono state aggiornate con successo."
+
+msgid "admin.settings.config.success"
+msgstr ""
+"Le impostazioni di configurazione del sito sono state aggiornate con "
+"successo."
+
+msgid "admin.settings.info.success"
+msgstr "Le informazioni sul sito sono state aggiornate con successo."
+
+msgid "admin.settings.redirect"
+msgstr "Reindirizza Casa Editrice"
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Le richieste al sito principale saranno reindirizzate a questa Casa "
+"Editrice. Ciò può essere utile, ad esempio, se il sito ospita una sola Casa "
+"Editrice."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Non reindirizzare"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr ""
+"Questa sarà la lingua predefinita per il sito e per qualsiasi Casa Editrice "
+"ospitata."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr ""
+"Selezionare tutte le lingue da supportare nel sito. I dati della lingua "
+"selezionata saranno disponibili per l'uso da parte di tutte le Case Editrici "
+"ospitate sul sito e appariranno anche in un menu di selezione della lingua "
+"che apparirà su ogni pagina del sito (che può essere sovrascritto nelle "
+"pagine specifiche della Casa Editrice). Se non si selezionano più lingue, il "
+"menu di selezione della lingua non apparirà e le impostazioni linguistiche "
+"estese non saranno disponibili per le Case editrici."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Le lingue contrassegnate potrebbero essere incomplete."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"Sei sicuro di voler disinstallare questa lingua? Questa operazione potrebbe "
+"influire su qualsiasi Casa Editrice ospitata che attualmente utilizza la "
+"lingua."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Seleziona eventuali lingue aggiuntive per le quali installare il supporto in "
+"questo sistema. Le lingue devono essere installate prima di poter essere "
+"utilizzate dalle Case Editrici ospitate. Per informazioni sull'aggiunta del "
+"supporto per le nuove lingue, consulta la documentazione di OMP."
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Sei sicuro di voler disabilitare questa lingua? Questo potrebbe influire su "
+"qualsiasi Casa Editrice ospitata che attualmente utilizza il locale."
+
+msgid "admin.systemVersion"
+msgstr "Versione di OMP"
+
+msgid "admin.systemConfiguration"
+msgstr "Configurazione di OMP"
+
+msgid "admin.presses.pressSettings"
+msgstr "Impostazioni della Casa Editrice"
+
+msgid "admin.contexts.create"
+msgstr "Crea Casa Editrice"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "È richiesto un titolo."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "È richiesto un percorso."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Il percorso selezionato è già utilizzato da un'altra Casa Editrice."
+
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr ""
+"La lingua principale deve essere una di quelle supportate dalla Casa "
+"Editrice."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} è stato creato con successo."
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} è stato modificato con successo."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Descrizione della Casa Editrice"
+
+msgid "admin.presses.addPress"
+msgstr "Aggiungi Casa Editrice"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>NOTA!</div>\n"
+"<p>Il sistema potrebbe non sovrascrivere automaticamente il file di "
+"configurazione. Per applicare le modifiche alla configurazione è necessario "
+"aprire <tt>config.inc.php</tt> in un editor di testo adeguato e sostituire "
+"il suo contenuto con quello del campo di testo sottostante.</p>"
+
+msgid "admin.presses.noneCreated"
+msgstr "Non sono state create Case Editrici."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"Il percorso può includere solo lettere, numeri e i caratteri _ e -. Deve "
+"iniziare e terminare con una lettera o un numero."
+
+msgid "admin.settings.disableBulkEmailRoles.description"
+msgstr ""
+"A un Press Manager non sarà possibile inviare email massive a nessuno dei "
+"ruoli selezionati di seguito. Utilizzare questa impostazione per limitare "
+"l'abuso della funzione di notifica via email. Per esempio, può essere più "
+"sicuro disabilitare le email massive per lettori, autori o altri gruppi più "
+"ampi che non hanno acconsentito a ricevere tali emails.<br><br>La funzione "
+"di invio massivo di email può essere disabilitata completamente per questa "
+"Casa Editrice in <a href=\"{$siteSettingsUrl}\">Amministrazione > "
+"Impostazioni del sito</a>."
+
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgstr ""
+"La funzione di invio massivo di email è stata disabilitata per questa Casa "
+"Editrice. Abilita questa funzione in <a href=\"{$siteSettingsUrl}\""
+">Amministrazione > Impostazioni del sito</a>."
+
+msgid "admin.siteManagement.description"
+msgstr ""
+"Aggiungi, correggi o rimuovi Case Editrici da questo sito e gestisci le "
+"impostazioni dell'intero sito."
+
+msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgstr "L'ID del capitolo non è un numero intero"
+
+msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgstr "L'ID della Collana non è un numero intero"
+
+msgid "admin.settings.enableBulkEmails.description"
+msgstr ""
+"Selezionare le Case Editrici ospitate che devono essere autorizzate a "
+"inviare email di massa. Quando questa funzione è abilitata, un press manager "
+"sarà abilitato a inviare email a tutti gli utenti registrati presso la sua "
+"Casa Editrice.<br><br>L'abuso di questa funzione per l'invio di e-mail non "
+"richieste può violare le leggi anti-spam in alcune giurisdizioni e potrebbe "
+"comportare il blocco delle e-mail del vostro server come spam. Chiedete un "
+"parere tecnico prima di abilitare questa funzione e consultarsi con il Press "
+"Manager.<br><br>Ulteriori restrizioni su questa funzione possono essere "
+"attivate per ogni Casa Editrice visitando la relativa procedura guidata di "
+"impostazione nella lista delle <a href=\"{$hostedContextsUrl}\">Case "
+"Editrici ospitate</a>."
