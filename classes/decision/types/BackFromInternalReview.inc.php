@@ -45,16 +45,32 @@ class BackFromInternalReview extends DecisionType implements DecisionRetractable
     use NotifyReviewersOfUnassignment;
     use InInternalReviewRound;
 
-    protected ?int $backoutStageId = null;
-
     public function getDecision(): int
     {
         return Decision::BACK_FROM_INTERNAL_REVIEW;
     }
 
-    public function getNewStageId(): ?int
+    /**
+     * Determine the new backout stage id for this decision
+     * 
+     * The determining process follows as :
+     * 
+     * If there is more than one internal review round associated with it
+     * new stage need to be internal review stage
+     * 
+     * If there is only one internal review round associated with it
+     * new stage need to submission stage
+     */
+    public function getNewStageId(Submission $submission, ?int $reviewRoundId): ?int
     {
-        return $this->backoutStageId;
+        /** @var ReviewRoundDAO $reviewRoundDao */
+        $reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
+
+        if ( $reviewRoundDao->getReviewRoundCountBySubmissionId($submission->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW) > 1 ) {
+            return WORKFLOW_STAGE_ID_INTERNAL_REVIEW;
+        }
+
+        return WORKFLOW_STAGE_ID_SUBMISSION;
     }
 
     public function getNewStatus(): ?int
@@ -221,34 +237,5 @@ class BackFromInternalReview extends DecisionType implements DecisionRetractable
         }
 
         return true;
-    }
-
-    /**
-     * Determine the possible backout stage id for this decision
-     * 
-     * The determining process follows as :
-     * 
-     * If there is more than one internal review round associated with it
-     * backoutable stage need to be internal review stage
-     * 
-     * If there is only one internal review round associated with it
-     * backoutable stage need to submission stage
-     */
-    public function deduceBackoutableStageId(Submission $submission, ?int $reviewRoundId): ?int 
-    {
-        if ( $this->backoutStageId ) {
-            return $this->backoutStageId;
-        }
-        
-        /** @var ReviewRoundDAO $reviewRoundDao */
-        $reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-
-        if ( $reviewRoundDao->getReviewRoundCountBySubmissionId($submission->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW) > 1 ) {
-            $this->backoutStageId = WORKFLOW_STAGE_ID_INTERNAL_REVIEW;
-            return $this->backoutStageId;
-        }
-
-        $this->backoutStageId = WORKFLOW_STAGE_ID_SUBMISSION;
-        return $this->backoutStageId;
     }
 }
