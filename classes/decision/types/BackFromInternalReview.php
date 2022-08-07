@@ -28,7 +28,6 @@ use PKP\decision\steps\Email;
 use PKP\decision\types\interfaces\DecisionRetractable;
 use PKP\decision\types\traits\NotifyAuthors;
 use PKP\decision\types\traits\NotifyReviewersOfUnassignment;
-use PKP\decision\types\traits\WithReviewAssignments;
 use PKP\mail\mailables\ReviewerUnassign;
 use PKP\security\Role;
 use PKP\submission\reviewAssignment\ReviewAssignmentDAO;
@@ -37,13 +36,14 @@ use PKP\user\User;
 use PKP\submission\reviewRound\ReviewRoundDAO;
 use APP\decision\types\traits\InInternalReviewRound;
 use APP\mail\mailables\DecisionBackFromInternalReviewNotifyAuthor;
+use PKP\decision\types\traits\CanRetractReviewRound;
 
 class BackFromInternalReview extends DecisionType implements DecisionRetractable
 {
     use NotifyAuthors;
-    use WithReviewAssignments;
     use NotifyReviewersOfUnassignment;
     use InInternalReviewRound;
+    use CanRetractReviewRound;
 
     public function getDecision(): int
     {
@@ -211,31 +211,5 @@ class BackFromInternalReview extends DecisionType implements DecisionRetractable
         }
 
         return $steps;
-    }
-
-    /**
-     * Determine if can back out form current external review round to previous external review round
-     * 
-     * The determining process follows as :
-     *      If there is any submitted review by reviewer that is not cancelled, can not back out
-     *      If there is any completed review by reviewer, can not back out
-     */
-    public function canRetract(Submission $submission, ?int $reviewRoundId): bool
-    {
-        if (!$reviewRoundId) {
-            return false;
-        }
-
-        $confirmedReviewerIds = $this->getReviewerIds($submission->getId(), $reviewRoundId, self::REVIEW_ASSIGNMENT_CONFIRMED);
-        if (count($confirmedReviewerIds) > 0) {
-            return false;
-        }
-
-        $completedReviewAssignments = $this->getReviewAssignments($submission->getId(), $reviewRoundId, self::REVIEW_ASSIGNMENT_COMPLETED);
-        if (count($completedReviewAssignments) > 0) {
-            return false;
-        }
-
-        return true;
     }
 }

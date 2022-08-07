@@ -27,20 +27,12 @@ use APP\decision\types\RevertDeclineInternal;
 use APP\decision\types\SendExternalReview;
 use APP\decision\types\SendInternalReview;
 use APP\decision\types\SkipInternalReview;
-use APP\decision\types\BackToInternalReviewFromCopyediting;
-use APP\decision\types\BackToPreviousInternalReviewRound;
-use APP\decision\types\BackToSubmissionFromInternalReview;
-use APP\decision\types\BackToInternalReviewFromExternalReview;
 use APP\notification\Notification;
 use Illuminate\Database\Eloquent\Collection;
 use PKP\decision\types\Accept;
 use PKP\decision\types\BackFromCopyediting;
 use PKP\decision\types\BackFromExternalReview;
 use PKP\decision\types\BackFromProduction;
-use PKP\decision\types\BackToCopyediting;
-use PKP\decision\types\BackToPreviousExternalReviewRound;
-use PKP\decision\types\BackToSubmissionFromCopyediting;
-use PKP\decision\types\BackToSubmissionFromExternalReview;
 use PKP\decision\types\Decline;
 use PKP\decision\types\InitialDecline;
 use PKP\decision\types\NewExternalReviewRound;
@@ -68,9 +60,6 @@ class Repository extends \PKP\decision\Repository
             $decisionTypes = new Collection([
                 new Accept(),
                 new AcceptFromInternal(),
-                // new BackToCopyediting(),
-                // new BackToExternalReviewFromCopyediting(),
-                // new BackToSubmissionFromCopyediting(),
                 new Decline(),
                 new DeclineInternal(),
                 new InitialDecline(),
@@ -96,12 +85,6 @@ class Repository extends \PKP\decision\Repository
                 new SendToProduction(),
                 new SkipInternalReview(),
                 new SkipExternalReview(),
-                // new BackToPreviousExternalReviewRound(),
-                // new BackToPreviousInternalReviewRound(),
-                // new BackToSubmissionFromExternalReview(),
-                // new BackToSubmissionFromInternalReview(),
-                // new BackToInternalReviewFromExternalReview(),
-                // new BackToInternalReviewFromCopyediting(),
                 new BackFromProduction(),
                 new BackFromCopyediting(),
                 new BackFromExternalReview(),

@@ -53,15 +53,6 @@ class Decision extends BaseDecision
     public const RECOMMEND_DECLINE_INTERNAL = 28;
     public const REVERT_INTERNAL_DECLINE = 29;
     public const NEW_INTERNAL_ROUND = 30;
-    // public const BACK_TO_EXTERNAL_REVIEW = 31;
-    // public const BACK_TO_COPYEDITING = 32;
-    // public const BACK_TO_SUBMISSION_FROM_COPYEDITING = 33;
-    // public const BACK_TO_PREVIOUS_EXTERNAL_REVIEW_ROUND = 34;
-    // public const BACK_TO_PREVIOUS_INTERNAL_REVIEW_ROUND = 35;
-    // public const BACK_TO_SUBMISSION_FROM_EXTERNAL_REVIEW = 36;
-    // public const BACK_TO_SUBMISSION_FROM_INTERNAL_REVIEW = 37;
-    // public const BACK_TO_INTERNAL_REVIEW_FROM_EXTERNAL_REVIEW = 38;
-    // public const BACK_TO_INTERNAL_REVIEW = 39;
     public const BACK_FROM_PRODUCTION = 31;
     public const BACK_FROM_COPYEDITING = 32;
     public const BACK_FROM_EXTERNAL_REVIEW = 33;
