@@ -29,7 +29,6 @@ use APP\decision\types\RevertDeclineInternal;
 use APP\decision\types\SendExternalReview;
 use APP\decision\types\SendInternalReview;
 use APP\decision\types\SkipInternalReview;
-use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
@@ -236,6 +235,10 @@ class WorkflowHandler extends PKPWorkflowHandler
                     new SendExternalReview(),
                     new AcceptFromInternal(),
                 ];
+                $cancelInternalReviewRound = new CancelInternalReviewRound();
+                if ($cancelInternalReviewRound->canRetract($submission, $reviewRoundId)) {
+                    $decisionTypes[] = $cancelInternalReviewRound();
+                }
                 if ($submission->getData('status') === Submission::STATUS_DECLINED) {
                     $decisionTypes[] = new RevertDeclineInternal();
                 } elseif ($submission->getData('status') === Submission::STATUS_QUEUED) {
@@ -247,6 +250,10 @@ class WorkflowHandler extends PKPWorkflowHandler
                     new RequestRevisions(),
                     new Accept(),
                 ];
+                $cancelReviewRound = new CancelReviewRound();
+                if ($cancelReviewRound->canRetract($submission, $reviewRoundId)) {
+                    $decisionTypes[] = $cancelReviewRound();
+                }
                 if ($submission->getData('status') === Submission::STATUS_DECLINED) {
                     $decisionTypes[] = new RevertDecline();
                 } elseif ($submission->getData('status') === Submission::STATUS_QUEUED) {
@@ -262,16 +269,6 @@ class WorkflowHandler extends PKPWorkflowHandler
                 $decisionTypes = [];
                 break;
         }
-
-        $decisionTypes = array_merge(
-            $decisionTypes,
-            Repo::decision()
-                ->getApplicableRetractableDecisionTypes(
-                    $stageId,
-                    $submission,
-                    $reviewRoundId
-                ),
-        );
 
         HookRegistry::call('Workflow::Decisions', [&$decisionTypes, $stageId]);
 
