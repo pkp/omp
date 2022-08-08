@@ -55,8 +55,7 @@ class Decision extends BaseDecision
     public const NEW_INTERNAL_ROUND = 30;
     public const BACK_FROM_PRODUCTION = 31;
     public const BACK_FROM_COPYEDITING = 32;
-    public const BACK_FROM_EXTERNAL_REVIEW = 33;
-    public const BACK_FROM_INTERNAL_REVIEW = 34;
+    public const CANCEL_REVIEW_ROUND = 33;
 }
 
 if (!PKP_STRICT_MODE) {

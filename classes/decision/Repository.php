@@ -14,7 +14,7 @@
 namespace APP\decision;
 
 use APP\decision\types\AcceptFromInternal;
-use APP\decision\types\BackFromInternalReview;
+use APP\decision\types\CancelInternalReviewRound;
 use APP\decision\types\DeclineInternal;
 use APP\decision\types\NewInternalReviewRound;
 use APP\decision\types\RecommendAcceptInternal;
@@ -31,8 +31,8 @@ use APP\notification\Notification;
 use Illuminate\Database\Eloquent\Collection;
 use PKP\decision\types\Accept;
 use PKP\decision\types\BackFromCopyediting;
-use PKP\decision\types\BackFromExternalReview;
 use PKP\decision\types\BackFromProduction;
+use PKP\decision\types\CancelReviewRound;
 use PKP\decision\types\Decline;
 use PKP\decision\types\InitialDecline;
 use PKP\decision\types\NewExternalReviewRound;
@@ -46,7 +46,6 @@ use PKP\decision\types\RevertDecline;
 use PKP\decision\types\RevertInitialDecline;
 use PKP\decision\types\SendToProduction;
 use PKP\decision\types\SkipExternalReview;
-use PKP\decision\types\BackToExternalReviewFromCopyediting;
 use PKP\plugins\HookRegistry;
 
 class Repository extends \PKP\decision\Repository
@@ -87,8 +86,8 @@ class Repository extends \PKP\decision\Repository
                 new SkipExternalReview(),
                 new BackFromProduction(),
                 new BackFromCopyediting(),
-                new BackFromExternalReview(),
-                new BackFromInternalReview(),
+                new CancelReviewRound(),
+                new CancelInternalReviewRound(),
             ]);
             HookRegistry::call('Decision::types', [$decisionTypes]);
             $this->decisionTypes = $decisionTypes;

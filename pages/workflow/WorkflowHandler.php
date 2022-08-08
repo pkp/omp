@@ -15,10 +15,10 @@
 
 namespace APP\pages\workflow;
 
-use PKP\pages\workflow\PKPWorkflowHandler;
 use APP\core\Application;
 use APP\core\Services;
 use APP\decision\types\AcceptFromInternal;
+use APP\decision\types\CancelInternalReviewRound;
 use APP\decision\types\DeclineInternal;
 use APP\decision\types\RecommendAcceptInternal;
 use APP\decision\types\RecommendDeclineInternal;
@@ -33,12 +33,11 @@ use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
-use APP\decision\types\BackFromInternalReview;
 use PKP\core\PKPApplication;
 use PKP\decision\types\Accept;
 use PKP\decision\types\BackFromCopyediting;
-use PKP\decision\types\BackFromExternalReview;
 use PKP\decision\types\BackFromProduction;
+use PKP\decision\types\CancelReviewRound;
 use PKP\decision\types\Decline;
 use PKP\decision\types\InitialDecline;
 use PKP\decision\types\RecommendAccept;
@@ -49,6 +48,7 @@ use PKP\decision\types\RevertDecline;
 use PKP\decision\types\RevertInitialDecline;
 use PKP\decision\types\SendToProduction;
 use PKP\decision\types\SkipExternalReview;
+use PKP\pages\workflow\PKPWorkflowHandler;
 use PKP\plugins\HookRegistry;
 use PKP\security\Role;
 
@@ -267,8 +267,8 @@ class WorkflowHandler extends PKPWorkflowHandler
             $decisionTypes,
             Repo::decision()
                 ->getApplicableRetractableDecisionTypes(
-                    $stageId, 
-                    $submission, 
+                    $stageId,
+                    $submission,
                     $reviewRoundId
                 ),
         );
@@ -325,8 +325,8 @@ class WorkflowHandler extends PKPWorkflowHandler
             Decline::class,
             BackFromProduction::class,
             BackFromCopyediting::class,
-            BackFromExternalReview::class,
-            BackFromInternalReview::class,
+            CancelReviewRound::class,
+            CancelInternalReviewRound::class,
         ];
     }
 }
