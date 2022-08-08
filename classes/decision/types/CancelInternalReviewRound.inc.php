@@ -23,13 +23,13 @@ use APP\submission\Submission;
 use PKP\db\DAORegistry;
 use PKP\decision\types\CancelReviewRound as CancelReviewRound;
 use PKP\decision\types\traits\NotifyAuthors;
-use PKP\decision\types\traits\NotifyReviewersOfUnassignment;
+use PKP\decision\types\traits\NotifyReviewers;
 use PKP\submission\reviewRound\ReviewRoundDAO;
 
 class CancelInternalReviewRound extends CancelReviewRound
 {
     use NotifyAuthors;
-    use NotifyReviewersOfUnassignment;
+    use NotifyReviewers;
     use InInternalReviewRound;
 
     public function getDecision(): int
