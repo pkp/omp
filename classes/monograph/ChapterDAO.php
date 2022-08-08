@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/monograph/ChapterDAO.inc.php
+ * @file classes/monograph/ChapterDAO.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky
@@ -141,6 +141,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
         $additionalFields[] = 'datePublished';
         $additionalFields[] = 'pages';
         $additionalFields[] = 'isPageEnabled';
+        $additionalFields[] = 'licenseUrl';
         return $additionalFields;
     }
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * @file classes/publication/Repository.inc.php
+ * @file classes/publication/Repository.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky
@@ -17,11 +17,14 @@ use APP\core\Application;
 use APP\core\Services;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
+use APP\monograph\ChapterDAO;
 use APP\notification\NotificationManager;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\submission\Submission;
+use HookRegistry;
 use PKP\core\Core;
 use PKP\db\DAORegistry;
+use PKP\submission\PKPSubmission;
 use PKP\submissionFile\SubmissionFile;
 
 class Repository extends \PKP\publication\Repository
@@ -246,7 +249,7 @@ class Repository extends \PKP\publication\Repository
                         $publicFileManager->removeContextFile($submission->getData('contextId'), $this->getThumbnailFileName($oldCoverImage[$localeKey]['uploadName']));
                     }
 
-                    // Otherwise generate a new thumbnail if a cover image exists
+                // Otherwise generate a new thumbnail if a cover image exists
                 } elseif (!empty($newCoverImage)) {
                     $coverImageFilePath = $publicFileManager->getContextFilesPath($submission->getData('contextId')) . '/' . $newCoverImage['uploadName'];
                     $this->makeThumbnail(
@@ -263,6 +266,7 @@ class Repository extends \PKP\publication\Repository
     /** @copydoc \PKP\publication\Repository::publish() */
     public function publish(Publication $publication)
     {
+        HookRegistry::register('Publication::publish::before', [$this, 'addChapterLicense']);
         parent::publish($publication);
 
         $submission = Repo::submission()->get($publication->getData('submissionId'));
@@ -404,11 +408,16 @@ class Repository extends \PKP\publication\Repository
 
         $cover = null;
         switch ($pathParts['extension']) {
-            case 'jpg': $cover = imagecreatefromjpeg($filePath); break;
-            case 'png': $cover = imagecreatefrompng($filePath); break;
-            case 'gif': $cover = imagecreatefromgif($filePath); break;
-            case 'webp': $cover = imagecreatefromwebp($filePath); break;
-            case 'svg': $cover = copy($filePath, $thumbFilePath); break;
+            case 'jpg': $cover = imagecreatefromjpeg($filePath);
+                break;
+            case 'png': $cover = imagecreatefrompng($filePath);
+                break;
+            case 'gif': $cover = imagecreatefromgif($filePath);
+                break;
+            case 'webp': $cover = imagecreatefromwebp($filePath);
+                break;
+            case 'svg': $cover = copy($filePath, $thumbFilePath);
+                break;
         }
         if (!isset($cover)) {
             throw new \Exception('Can not build thumbnail because the file was not found or the file extension was not recognized.');
@@ -430,10 +439,14 @@ class Repository extends \PKP\publication\Repository
             imagecopyresampled($thumb, $cover, 0, 0, 0, 0, $thumbWidth, $thumbHeight, $originalSizeArray[0], $originalSizeArray[1]);
 
             switch ($pathParts['extension']) {
-                case 'jpg': imagejpeg($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
-                case 'png': imagepng($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
-                case 'gif': imagegif($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
-                case 'webp': imagewebp($thumb, $thumbFilePath); break;
+                case 'jpg': imagejpeg($thumb, $pathParts['dirname'] . '/' . $thumbFileName);
+                    break;
+                case 'png': imagepng($thumb, $pathParts['dirname'] . '/' . $thumbFileName);
+                    break;
+                case 'gif': imagegif($thumb, $pathParts['dirname'] . '/' . $thumbFileName);
+                    break;
+                case 'webp': imagewebp($thumb, $thumbFilePath);
+                    break;
             }
 
             imagedestroy($thumb);
@@ -449,5 +462,30 @@ class Repository extends \PKP\publication\Repository
     {
         $submission = Repo::submission()->get($newPublication->getData('submissionId'));
         Repo::submission()->createDois($submission);
+    }
+
+    public function addChapterLicense(string $hookName, array $params): bool
+    {
+        $newPublication = $params[0];
+        $publication = $params[1];
+        $itsPublished = ($newPublication->getData('status') === PKPSubmission::STATUS_PUBLISHED);
+        $submission = Repo::submission()->get($publication->getData('submissionId'));
+
+        if ($itsPublished && $submission->getData('workType') === Submission::WORK_TYPE_EDITED_VOLUME) {
+            if (!$newPublication->getData('chapterLicenseUrl')) {
+                $newPublication->setData('chapterLicenseUrl', $newPublication->getData('licenseUrl'));
+            }
+
+            $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
+            $chaptersIterator = $chapterDao->getByPublicationId($newPublication->getId());
+
+            while ($chapter = $chaptersIterator->next()) {
+                if (!$chapter->getLicenseUrl()) {
+                    $chapter->setLicenseUrl($newPublication->getData('chapterLicenseUrl'));
+                    $chapterDao->updateLocaleFields($chapter);
+                }
+            }
+        }
+        return false;
     }
 }

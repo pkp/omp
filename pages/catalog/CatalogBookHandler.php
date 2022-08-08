@@ -21,6 +21,7 @@ use APP\core\Services;
 use APP\facades\Repo;
 use APP\handler\Handler;
 use APP\monograph\Chapter;
+use APP\monograph\ChapterDAO;
 use APP\observers\events\Usage;
 use APP\payment\omp\OMPPaymentManager;
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
@@ -186,9 +187,14 @@ class CatalogBookHandler extends Handler
         $templateMgr->assign('chapters', DAORegistry::getDAO('ChapterDAO')->getByPublicationId($this->publication->getId())->toAssociativeArray());
 
         $pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
+        if ($this->isChapterRequest && $this->chapter->getData('licenseUrl')) {
+            $ccLicenseBadge = Application::get()->getCCLicenseBadge($this->chapter->getData('licenseUrl'));
+        } else {
+            $ccLicenseBadge = Application::get()->getCCLicenseBadge($this->publication->getData('licenseUrl'));
+        }
         $templateMgr->assign([
             'pubIdPlugins' => PluginRegistry::loadCategory('pubIds', true),
-            'ccLicenseBadge' => Application::get()->getCCLicenseBadge($this->publication->getData('licenseUrl')),
+            'ccLicenseBadge' => $ccLicenseBadge,
         ]);
 
         // Categories

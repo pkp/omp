@@ -15,7 +15,6 @@
 
 namespace APP\pages\workflow;
 
-use PKP\pages\workflow\PKPWorkflowHandler;
 use APP\core\Application;
 use APP\core\Services;
 use APP\decision\types\AcceptFromInternal;
@@ -48,6 +47,7 @@ use PKP\decision\types\RevertDecline;
 use PKP\decision\types\RevertInitialDecline;
 use PKP\decision\types\SendToProduction;
 use PKP\decision\types\SkipExternalReview;
+use PKP\pages\workflow\PKPWorkflowHandler;
 use PKP\plugins\HookRegistry;
 use PKP\security\Role;
 
@@ -135,6 +135,16 @@ class WorkflowHandler extends PKPWorkflowHandler
         $catalogEntryForm = new \APP\components\forms\publication\CatalogEntryForm($latestPublicationApiUrl, $locales, $latestPublication, $submission, $baseUrl, $temporaryFileApiUrl);
         $publicationDatesForm = new \APP\components\forms\submission\PublicationDatesForm($submissionApiUrl, $submission);
 
+        $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /** @var UserGroupDAO $userGroupDao */
+        $result = $userGroupDao->getByContextId($submission->getData('contextId'));
+        $authorUserGroups = [];
+        while ($userGroup = $result->next()) {
+            if ((int)$userGroup->getRoleId() === Role::ROLE_ID_AUTHOR) {
+                $authorUserGroups[] = $userGroup;
+            }
+        }
+        $publicationLicenseForm = new \APP\components\forms\publication\PublicationLicenseForm($latestPublicationApiUrl, $locales, $latestPublication, $submissionContext, $authorUserGroups);
+
         $templateMgr->setConstants([
             'FORM_AUDIENCE' => FORM_AUDIENCE,
             'FORM_CATALOG_ENTRY' => FORM_CATALOG_ENTRY,
@@ -146,6 +156,7 @@ class WorkflowHandler extends PKPWorkflowHandler
         $components[FORM_AUDIENCE] = $audienceForm->getConfig();
         $components[FORM_CATALOG_ENTRY] = $catalogEntryForm->getConfig();
         $components[FORM_PUBLICATION_DATES] = $publicationDatesForm->getConfig();
+        $components[$publicationLicenseForm->id] = $publicationLicenseForm->getConfig();
 
         $publicationFormIds = $templateMgr->getState('publicationFormIds');
         $publicationFormIds[] = FORM_CATALOG_ENTRY;

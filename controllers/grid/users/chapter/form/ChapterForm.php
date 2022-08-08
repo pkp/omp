@@ -16,9 +16,10 @@
 
 namespace APP\controllers\grid\users\chapter\form;
 
-use PKP\db\DAORegistry;
+use APP\core\Application;
 use APP\facades\Repo;
 use APP\template\TemplateManager;
+use PKP\db\DAORegistry;
 use PKP\form\Form;
 
 class ChapterForm extends Form
@@ -128,9 +129,57 @@ class ChapterForm extends Form
      */
     public function initData()
     {
+        //Create chapter license URL description
+        $chapterLicenseUrlDescription = '';
+        if ($this->getMonograph()->getData('workType') === \APP\submission\Submission::WORK_TYPE_EDITED_VOLUME) {
+            $licenseOptions = \Application::getCCLicenseOptions();
+            $context = Application::get()->getRequest()->getContext();
+            if ($this->getPublication()->getData('chapterLicenseUrl')) {
+                if (array_key_exists(
+                    $this->getPublication()
+                        ->getData('chapterLicenseUrl'),
+                    $licenseOptions
+                )) {
+                    $licenseName = __(
+                        $licenseOptions[$this->getPublication()
+                            ->getData('chapterLicenseUrl')]
+                    );
+                } else {
+                    $licenseName = $this->getPublication()
+                        ->getData('chapterLicenseUrl');
+                }
+                $chapterLicenseUrlDescription = __('submission.license.description', [
+                    'licenseUrl' => $this->getPublication()->getData('chapterLicenseUrl'),
+                    'licenseName' => $licenseName,
+                ]);
+            } elseif ($this->getPublication()->getData('licenseUrl')) {
+                if (array_key_exists($this->getPublication()->getData('licenseUrl'), $licenseOptions)) {
+                    $licenseName = __($licenseOptions[$this->getPublication()->getData('licenseUrl')]);
+                } else {
+                    $licenseName = $this->getPublication()->getData('licenseUrl');
+                }
+                $chapterLicenseUrlDescription = __('submission.license.description', [
+                    'licenseUrl' => $this->getPublication()->getData('licenseUrl'),
+                    'licenseName' => $licenseName,
+                ]);
+            } elseif ($context->getData('licenseUrl')) {
+                if (array_key_exists($context->getData('licenseUrl'), $licenseOptions)) {
+                    $licenseName = __($licenseOptions[$context->getData('licenseUrl')]);
+                } else {
+                    $licenseName = $context->getData('licenseUrl');
+                }
+                $chapterLicenseUrlDescription = __('submission.license.description', [
+                    'licenseUrl' => $context->getData('licenseUrl'),
+                    'licenseName' => $licenseName,
+                ]);
+            }
+        }
+
         $this->setData('submissionId', $this->getMonograph()->getId());
         $this->setData('publicationId', $this->getPublication()->getId());
         $this->setData('enableChapterPublicationDates', (bool) $this->getMonograph()->getEnableChapterPublicationDates());
+        $this->setData('submissionWorkType', $this->getMonograph()->getData('workType'));
+        $this->setData('chapterLicenseUrlDescription', $chapterLicenseUrlDescription);
 
         $chapter = $this->getChapter();
         if ($chapter) {
@@ -141,6 +190,7 @@ class ChapterForm extends Form
             $this->setData('datePublished', $chapter->getDatePublished());
             $this->setData('isPageEnabled', $chapter->isPageEnabled());
             $this->setData('pages', $chapter->getPages());
+            $this->setData('licenseUrl', $chapter->getLicenseUrl());
         } else {
             $this->setData('title', null);
             $this->setData('subtitle', null);
@@ -148,6 +198,7 @@ class ChapterForm extends Form
             $this->setData('datePublished', null);
             $this->setData('isPageEnabled', null);
             $this->setData('pages', null);
+            $this->setData('licenseUrl', null);
         }
     }
 
@@ -237,7 +288,7 @@ class ChapterForm extends Form
      */
     public function readInputData()
     {
-        $this->readUserVars(['title', 'subtitle', 'authors', 'files','abstract','datePublished','pages','isPageEnabled']);
+        $this->readUserVars(['title', 'subtitle', 'authors', 'files','abstract','datePublished','pages','isPageEnabled','licenseUrl']);
     }
 
     /**
@@ -259,6 +310,7 @@ class ChapterForm extends Form
             $chapter->setDatePublished($this->getData('datePublished'));
             $chapter->setPages($this->getData('pages'));
             $chapter->setPageEnabled($this->getData('isPageEnabled'));
+            $chapter->setLicenseUrl($this->getData('licenseUrl'));
             $chapterDao->updateObject($chapter);
         } else {
             $chapter = $chapterDao->newDataObject();
@@ -269,6 +321,7 @@ class ChapterForm extends Form
             $chapter->setDatePublished($this->getData('datePublished'));
             $chapter->setPages($this->getData('pages'));
             $chapter->setPageEnabled($this->getData('isPageEnabled'));
+            $chapter->setLicenseUrl($this->getData('licenseUrl'));
             $chapter->setSequence(REALLY_BIG_NUMBER);
             $chapterDao->insertChapter($chapter);
             $chapterDao->resequenceChapters($this->getPublication()->getId());

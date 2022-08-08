@@ -550,3 +550,9 @@ msgstr "Recommend that this submission be sent to the external review stage."
 
 msgid "editor.submission.recommend.sendExternalReview.log"
 msgstr "{$editorName} recommended that this submission be sent to the external review stage."
+
+msgid "publication.chapter.licenseUrl"
+msgstr "License URL"
+
+msgid "publication.chapterDefaultLicenseURL"
+msgstr "Default Chapter License URL"

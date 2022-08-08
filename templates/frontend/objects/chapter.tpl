@@ -299,13 +299,17 @@
 			{/if}
 
 			{* License *}
-			{if $publication->getData('licenseUrl')}
+			{if $chapter->getData('licenseUrl') || $publication->getData('licenseUrl')}
 				<div class="item license">
 					<h2 class="label">
 						{translate key="submission.license"}
 					</h2>
 					{if $ccLicenseBadge}
 						{$ccLicenseBadge}
+					{elseif $chapter->getData('licenseUrl')}
+						<a href="{$chapter->getData('licenseUrl')|escape}">
+							{translate key="submission.license"}
+						</a>
 					{else}
 						<a href="{$publication->getData('licenseUrl')|escape}">
 							{translate key="submission.license"}
