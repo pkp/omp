@@ -1,12 +1,13 @@
 # Alfredo Cosco <alfredo.cosco@gmail.com>, 2021.
 # Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>, 2022.
+# Fulvio Delle Donne <fulviodelledonne@libero.it>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-22T21:00:19+00:00\n"
-"PO-Revision-Date: 2022-05-15 06:58+0000\n"
-"Last-Translator: Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>\n"
+"PO-Revision-Date: 2022-08-08 09:16+0000\n"
+"Last-Translator: Fulvio Delle Donne <fulviodelledonne@libero.it>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "it_IT/>\n"
 "Language: it_IT\n"
@@ -14,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "submission.authorListSeparator"
 msgstr "; "
@@ -131,7 +132,7 @@ msgid "submission.submit.newSubmissionMultiple"
 msgstr "Dai inizio ad nuova immissione in"
 
 msgid "submission.submit.newSubmissionSingle"
-msgstr "Dai inizio ad nuova immissione in {$contextName}"
+msgstr "Nuova proposta"
 
 msgid "submission.submit.upload"
 msgstr "Carica"
@@ -148,7 +149,7 @@ msgid "submission.submit.copyrightNoticeAgree"
 msgstr "Accetto i termini stabiliti dalla legge sul copyright."
 
 msgid "submission.submit.selectSeries"
-msgstr "Scegli una collana..."
+msgstr "Scegli una collana (ozionale)"
 
 msgid "submission.submit.seriesPosition"
 msgstr "Posizione occupata nella collana (cio?, Libro 2, o Volume 2)"
@@ -244,7 +245,7 @@ msgid "submission.catalogEntry.new"
 msgstr "Nuovo accesso al Catalogo"
 
 msgid "submission.catalogEntry.confirm"
-msgstr "Crea un punto di accesso nel Catalogo per questo libro a partire dai metadati che seguono."
+msgstr "Aggiungi questo libro al catalogo pubblico"
 
 msgid "submission.catalogEntry.confirm.required"
 msgstr "Per favore, conferma che l'immissione ? pronta per entrare nel Catalogo."
@@ -386,7 +387,7 @@ msgstr ""
 
 msgid "submission.license.description"
 msgstr ""
-"la licenza sarà impostata automaticamente come  <a href='{$licenseUrl}' "
+"La licenza sarà impostata automaticamente come <a href='{$licenseUrl}' "
 "target='_blank'>{$licenseName}</a> dopo la pubblicazione."
 
 msgid "publication.copyrightYearBasis.submissionDescription"
@@ -567,3 +568,72 @@ msgstr ""
 
 msgid "publication.chapter.landingPage"
 msgstr "Pagina del capitolo"
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgstr "La proposta, {$title}, è stata inviata alla fase di revisione interna."
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+"Invia un'email agli autori per informarli che la proposta sarà sottoposta a "
+"peer review. Se possibile, fornisci agli autori qualche indicazione sulla "
+"durata del processo di peer review e su quando si aspettano di avere di "
+"nuovo notizie dalla redazione."
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr "Raccomandare l'invio alla revisione esterna"
+
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr "Inviato alla fase di revisione esterna"
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr "Seleziona i file da inviare alla fase di revisione."
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+"{$editorName} ha annullato la decisione di accettare questa proposta e l'ha "
+"rimandata alla fase di revisione."
+
+msgid "editor.submission.decision.backToReview"
+msgstr "Torna alla revisione"
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr "La proposta, {$title}, è stata rimandata alla fase di revisione."
+
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr "La proposta, {$title}, è stata inviata alla fase di revisione esterna."
+
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr ""
+"{$editorName} ha inviato questa proposta alla fase di revisione esterna."
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+"Invia un'email agli autori per informarli che il loro lavoro è stato "
+"rimandato alla fase di revisione. Spiega il motivo di questa decisione e "
+"informa l'autore di quali ulteriori revisioni saranno intraprese."
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+"{$editorName} ha raccomandato di inviare questa proposta alla fase di "
+"revisione esterna."
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr ""
+"Revoca la decisione di accettare la proposta e rimandala alla fase di "
+"revisione."
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr "Raccomanda l'invio di questo documento alla fase di revisione esterna."
+
+msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
+msgstr ""
+"Invia un'email agli autori per informarli che l'invio sarà sottoposto a "
+"revisione interna. Se possibile, fornisci agli autori qualche indicazione su "
+"quanto tempo potrebbe richiedere il processo di revisione interna e su "
+"quando dovrebbero aspettarsi di avere di nuovo notizie dalla redazione."
+
+msgid "editor.submission.decision.promoteFiles.internalReview"
+msgstr "Selezionare i file da inviare alla fase di revisione interna."
+
+msgid "editor.submission.decision.backToReview.completed"
+msgstr "Rimandato alla revisione"
