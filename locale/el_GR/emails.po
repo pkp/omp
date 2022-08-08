@@ -23,7 +23,7 @@ msgstr ""
 "<br />\n"
 "Σύνδεσμος: {$notificationUrl}<br />\n"
 "<br />\n"
-"{$signature}"
+"{$contextSignature}"
 
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Επιβεβαίωση αλλαγής κωδικού πρόσβασης"
@@ -36,10 +36,7 @@ msgstr ""
 "<br />\n"
 "Αλλαγή του κωδικού πρόσβασής μου: {$passwordResetUrl}<br />\n"
 "<br />\n"
-"{$signature}"
-
-msgid "emails.passwordResetConfirm.description"
-msgstr "This email is sent to a registered user when they indicate that they have forgotten their password or are unable to login. It provides a URL they can follow to reset their password."
+"{$siteContactName}"
 
 msgid "emails.passwordReset.subject"
 msgstr "Επαναφορά κωδικού πρόσβασης"
@@ -51,10 +48,7 @@ msgstr ""
 "Όνομα χρήστη: {$recipientUsername}<br />\n"
 "Νέος κωδικός πρόσβασης: {$password}<br />\n"
 "<br />\n"
-"{$signature}"
-
-msgid "emails.passwordReset.description"
-msgstr "Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται σε εγγεγραμμένους χρήστες αφού ολοκληρώσουν επιτυχώς την επαναφορά του κωδικού πρόσβασής τους ακολουθώντας τη διαδικασία που περιγράφεται στο email PASSWORD_RESET_CONFIRM."
+"{$siteContactName}"
 
 msgid "emails.userRegister.subject"
 msgstr "Εγγραφή χρήστη"
@@ -70,9 +64,6 @@ msgstr ""
 "<br />\n"
 "Σας ευχαριστούμε,<br />\n"
 "{$signature}"
-
-msgid "emails.userRegister.description"
-msgstr "This email is sent to a newly registered user to welcome them to the system and provide them with a record of their username and password."
 
 msgid "emails.userValidate.subject"
 msgstr "Επικύρωση λογαριασμού"
@@ -107,9 +98,6 @@ msgstr ""
 "Σας ευχαριστούμε,<br />\n"
 "{$signature}"
 
-msgid "emails.reviewerRegister.description"
-msgstr "Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται σε νέους χρήστες για να τους καλωσορίσει στο σύστημα και να τους δώσει το όνομα χρήστη και τον κωδικό πρόσβασής τους."
-
 msgid "emails.submissionAckNotUser.subject"
 msgstr "Επιβεβαίωση υποβολής"
 
@@ -121,12 +109,7 @@ msgstr ""
 "<br />\n"
 "Για περισσότερες πληροφορίες παρακαλούμε επικοινωνήστε μαζί μας. Ευχαριστούμε που θεωρείτε τις εκδόσεις μας ως τον κατάλληλο χώρο για να δημοσιεύετε την εργασία σας. <br />\n"
 "<br />\n"
-"{$signature}"
-
-msgid "emails.submissionAckNotUser.description"
-msgstr ""
-"This email, when enabled, is automatically sent to the other authors who are not users within OMP specified during the submission process.\n"
-"Εφόσον έχει ενεργοποιηθεί η αντίστοιχη επιλογή, το συγκεκριμένο μήνυμα αποστέλλεται αυτόματα στον συγγραφέα που δεν είναι εγγεγραμμένος χρήστης όταν ολοκληρωθεί η διαδικασία υποβολής μιας εργασίας στις εκδόσεις."
+"{$contextSignature}"
 
 msgid "emails.editorAssign.subject"
 msgstr "Ανάθεση ομάδας εργασίας"
@@ -141,9 +124,6 @@ msgstr ""
 "Όνομα χρήστη: {$recipientUsername}<br />\n"
 "<br />\n"
 "Thank you,"
-
-msgid "emails.editorAssign.description"
-msgstr "Το συγκεκριμένο μήνυμα ενημερώνει τον Επιμελητή Σειράς ότι ο Επιμελητής των εκδόσεων του έχει αναθέσει την επίβλεψη της υποβολής στην διαδικασία επιμέλειας. Παρέχει πληροφορίες σχετικά με την υποβολή και τον τρόπο πρόσβασης στον ιστότοπο της έκδοσης."
 
 msgid "emails.reviewRequest.subject"
 msgstr "Αίτημα αξιολόγησης εργασίας"
@@ -275,9 +255,6 @@ msgstr ""
 "Εάν δεν μπορείτε να αναλάβετε τη συγκεκριμένη εργασία αυτή τη στιγμή ή έχετε απορίες, επικοινωνήστε μαζί μας. Ευχαριστούμε για την συμβολή σας σε αυτή την έκδοση."
 
 #, fuzzy
-msgid "emails.layoutRequest.description"
-msgstr "Το συγκεκριμένο μήνυμα στέλνεται από τον Επιμελητή Σειράς στον Επιμελητή Σελιδοποίησης και τον ενημερώνει ότι του ανατίθεται η επιμέλεια της σελιδοποίησης μιας υποβολής. Παρέχει πληροφορίες σχετικά με την υποβολή και τον τρόπο πρόσβασης σε αυτή."
-
 msgid "emails.layoutComplete.subject"
 msgstr "Ολοκλήρωση δημιουργίας σελιδοποιημένων δοκιμίων"
 
@@ -290,9 +267,6 @@ msgstr ""
 "Εάν έχετε απορίες, επικοινωνήστε μαζί μου.<br />\n"
 "<br />\n"
 "{$senderName}"
-
-msgid "emails.layoutComplete.description"
-msgstr "Το συγκεκριμένο μήνυμα στέλνεται από τον Επιμελητή Σελιδοποίησης προς τον Επιμελητή Σειράς και τον ενημερώνει για την ολοκλήρωση της διαδικασίας σελιδοποίησης."
 
 msgid "emails.indexRequest.subject"
 msgstr "Αίτημα Ευρετηρίασης"
