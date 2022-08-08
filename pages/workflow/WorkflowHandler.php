@@ -32,7 +32,6 @@ use APP\decision\types\SkipInternalReview;
 use APP\file\PublicFileManager;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
-use APP\decision\types\BackFromInternalReview;
 use PKP\core\PKPApplication;
 use PKP\decision\types\Accept;
 use PKP\decision\types\BackFromCopyediting;

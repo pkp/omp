@@ -46,7 +46,6 @@ use PKP\decision\types\RevertDecline;
 use PKP\decision\types\RevertInitialDecline;
 use PKP\decision\types\SendToProduction;
 use PKP\decision\types\SkipExternalReview;
-use PKP\decision\types\BackToExternalReviewFromCopyediting;
 use PKP\plugins\HookRegistry;
 
 class Repository extends \PKP\decision\Repository
