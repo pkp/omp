@@ -1,8 +1,42 @@
 # Fulvio Delle Donne <fulviodelledonne@libero.it>, 2022.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2022-08-09 10:00+0000\n"
+"Last-Translator: Fulvio Delle Donne <fulviodelledonne@libero.it>\n"
+"Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/api/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "api.submissions.400.submissionIdsRequired"
+msgstr ""
+"È necessario fornire uno o più ID di invio per essere aggiunti al catalogo."
+
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "Non è stato possibile trovare una o più proposte specificate."
+
+msgid "api.submissions.400.wrongContext"
+msgstr "La proposta cercata non è presente in questa Casa Editrice."
+
+msgid "api.emails.403.disabled"
+msgstr ""
+"La funzione di notifica via email non è stata attivata per questa Casa "
+"Editrice."
+
+msgid "api.emailTemplates.403.notAllowedChangeContext"
+msgstr ""
+"Non sei autorizzato a spostare questo modello di email in un'altra Casa "
+"Editrice."
+
+msgid "api.publications.403.contextsDidNotMatch"
+msgstr ""
+"La pubblicazione che hai cercato non è disponibile in questa Casa Editrice."
+
+msgid "api.publications.403.submissionsDidNotMatch"
+msgstr "La pubblicazione che hai cercato non è in questa proposta."
+
+msgid "api.submissions.403.cantChangeContext"
+msgstr "Non è possibile modificare la Casa Editrice di una proposta."
