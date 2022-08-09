@@ -21,12 +21,12 @@ use APP\decision\Decision;
 use APP\decision\types\traits\InInternalReviewRound;
 use APP\submission\Submission;
 use PKP\db\DAORegistry;
-use PKP\decision\types\CancelReviewRound as CancelReviewRound;
+use PKP\decision\types\CancelReviewRound as PKPCancelReviewRound;
 use PKP\decision\types\traits\NotifyAuthors;
 use PKP\decision\types\traits\NotifyReviewers;
 use PKP\submission\reviewRound\ReviewRoundDAO;
 
-class CancelInternalReviewRound extends CancelReviewRound
+class CancelInternalReviewRound extends PKPCancelReviewRound
 {
     use NotifyAuthors;
     use NotifyReviewers;

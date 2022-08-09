@@ -86,8 +86,8 @@ class Repository extends \PKP\decision\Repository
                 new SkipExternalReview(),
                 new BackFromProduction(),
                 new BackFromCopyediting(),
-                new CancelReviewRound(),
                 new CancelInternalReviewRound(),
+                new CancelReviewRound(),
             ]);
             HookRegistry::call('Decision::types', [$decisionTypes]);
             $this->decisionTypes = $decisionTypes;
