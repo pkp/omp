@@ -15,7 +15,7 @@
  */
 
 namespace APP\API\v1\_submissions;
- 
+
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\submission\Collector;
