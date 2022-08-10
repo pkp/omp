@@ -83,10 +83,12 @@ class Usage
                     if ($page == 'catalog') {
                         $canonicalUrlPage = 'catalog';
                         $canonicalUrlOp = 'index';
+                        break;
+                    } else {
+                        return $this->getTraitCanonicalUrl();
                     }
-                    break;
             }
-            $canonicalUrl = $this->getCanonicalUrl($this->request, $canonicalUrlPage, $canonicalUrlOp, $canonicalUrlParams);
+            $canonicalUrl = $this->getRouterCanonicalUrl($this->request, $canonicalUrlPage, $canonicalUrlOp, $canonicalUrlParams);
             return $canonicalUrl;
         } else {
             return $this->getTraitCanonicalUrl();
