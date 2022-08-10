@@ -34,7 +34,7 @@ class CancelInternalReviewRound extends PKPCancelReviewRound
 
     public function getDecision(): int
     {
-        return Decision::CANCEL_REVIEW_ROUND;
+        return Decision::CANCEL_INTERNAL_REVIEW_ROUND;
     }
 
     /**

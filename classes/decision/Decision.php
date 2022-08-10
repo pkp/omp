@@ -31,17 +31,8 @@ class Decision extends BaseDecision
     public const PENDING_REVISIONS = 4;
     public const RESUBMIT = 5;
     public const DECLINE = 6;
-    public const SEND_TO_PRODUCTION = 7;
-    public const INITIAL_DECLINE = 9;
-    public const RECOMMEND_ACCEPT = 11;
-    public const RECOMMEND_PENDING_REVISIONS = 12;
-    public const RECOMMEND_RESUBMIT = 13;
-    public const RECOMMEND_DECLINE = 14;
     public const RECOMMEND_EXTERNAL_REVIEW = 15;
-    public const NEW_EXTERNAL_ROUND = 16;
-    public const REVERT_DECLINE = 17;
     public const REVERT_INITIAL_DECLINE = 18;
-    public const SKIP_EXTERNAL_REVIEW = 19;
     public const SKIP_INTERNAL_REVIEW = 20;
     public const ACCEPT_INTERNAL = 21;
     public const PENDING_REVISIONS_INTERNAL = 22;
@@ -53,9 +44,7 @@ class Decision extends BaseDecision
     public const RECOMMEND_DECLINE_INTERNAL = 28;
     public const REVERT_INTERNAL_DECLINE = 29;
     public const NEW_INTERNAL_ROUND = 30;
-    public const BACK_FROM_PRODUCTION = 31;
-    public const BACK_FROM_COPYEDITING = 32;
-    public const CANCEL_REVIEW_ROUND = 33;
+    public const CANCEL_INTERNAL_REVIEW_ROUND = 34;
 }
 
 if (!PKP_STRICT_MODE) {
