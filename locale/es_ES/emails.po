@@ -28,7 +28,7 @@ msgstr ""
 "<br />\n"
 "Esto es un correo electrónico generado automáticamente; no responda a este "
 "mensaje.<br />\n"
-"{$signature}<hr />{$unsubscribeLink}"
+"{$contextSignature}<hr />{$unsubscribeLink}"
 
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Confirmación para restablecer la contraseña"
@@ -41,10 +41,7 @@ msgstr ""
 "<br />\n"
 "Restablecer contraseña: {$passwordResetUrl}<br />\n"
 "<br />\n"
-"{$signature}"
-
-msgid "emails.passwordResetConfirm.description"
-msgstr "Este correo electrónico se envía a un usuario/a registrado cuando indica que olvidó su contraseña o cuando no puede iniciar sesión. Proporciona una dirección URL con la que se puede restablecer la contraseña."
+"{$siteContactName}"
 
 msgid "emails.passwordReset.subject"
 msgstr "Restablecer contraseña"
@@ -56,10 +53,7 @@ msgstr ""
 "Nombre de usuario/a: {$recipientUsername}<br />\n"
 "Nueva contraseña: {$password}<br />\n"
 "<br />\n"
-"{$signature}"
-
-msgid "emails.passwordReset.description"
-msgstr "Este correo electrónico se envía a un usuario/a registrado cuando se restablece su contraseña con éxito tras seguir el proceso descrito en el correo RESTABLECER_CONTRASEÑA_CONFIRMACIÓN."
+"{$siteContactName}"
 
 msgid "emails.userRegister.subject"
 msgstr "Registro en la publicación"
@@ -75,9 +69,6 @@ msgstr ""
 "<br />\n"
 "Gracias,<br />\n"
 "{$signature}"
-
-msgid "emails.userRegister.description"
-msgstr "Este correo electrónico se envía a un nuevo usuario/a registrado para darle la bienvenida al sistema y proporcionarle un documento con su nombre de usuario/a y contraseña."
 
 msgid "emails.userValidate.subject"
 msgstr "Validar la cuenta"
@@ -111,9 +102,6 @@ msgstr ""
 "Gracias,<br />\n"
 "{$signature}"
 
-msgid "emails.reviewerRegister.description"
-msgstr "Este correo electrónico se envía a un nuevo revisor/a registrado para darle la bienvenida al sistema y proporcionarle un documento con su nombre de usuario/a y contraseña."
-
 msgid "emails.submissionAckNotUser.subject"
 msgstr "Acuse de recibo del envío"
 
@@ -125,10 +113,7 @@ msgstr ""
 "<br />\n"
 "Si tiene alguna duda, puede ponerse en contacto conmigo. Gracias por elegir esta editorial para mostrar su trabajo.<br />\n"
 "<br />\n"
-"{$signature}"
-
-msgid "emails.submissionAckNotUser.description"
-msgstr "Este correo electrónico, si está activado, se envía automáticamente a otros autores/as que no son usuarios/as de OMP según lo especificado en el proceso de envío."
+"{$contextSignature}"
 
 msgid "emails.editorAssign.subject"
 msgstr "Tarea editorial"
@@ -143,9 +128,6 @@ msgstr ""
 "Nombre de usuario/a: {$recipientUsername}<br />\n"
 "<br />\n"
 "Gracias,"
-
-msgid "emails.editorAssign.description"
-msgstr "Este correo electrónico notifica al editor/a de la serie que el editor/a le asignó la tarea de supervisar un envío a lo largo del proceso de edición. Proporciona información sobre el envío y sobre cómo acceder al sitio de la publicación."
 
 msgid "emails.reviewRequest.subject"
 msgstr "Solicitud de revisión de manuscrito"
@@ -303,9 +285,6 @@ msgstr ""
 "Si no puede realizar esta tarea en este momento o tiene alguna duda, póngase en contacto conmigo. Gracias por su contribución a la publicación."
 
 #, fuzzy
-msgid "emails.layoutRequest.description"
-msgstr "El editor/a de la serie envía este correo electrónico al maquetador/a para notificar que se les asignó la tarea de llevar a cabo la maquetación de un envío. Proporciona información sobre el envío y cómo acceder al mismo."
-
 msgid "emails.layoutComplete.subject"
 msgstr "Galeradas de maquetación completadas"
 
@@ -318,9 +297,6 @@ msgstr ""
 "Si tiene alguna duda, puede ponerse en contacto conmigo.<br />\n"
 "<br />\n"
 "{$senderName}"
-
-msgid "emails.layoutComplete.description"
-msgstr "El maquetador/a envía este correo electrónico al editor/a de la serie para notificar que el proceso de maquetación se completó."
 
 msgid "emails.indexRequest.subject"
 msgstr "Solicitud de índice"
@@ -407,12 +383,6 @@ msgstr "Introduzca su mensaje."
 msgid "emails.notificationCenterDefault.description"
 msgstr "El mensaje por defecto (en blanco) usado en el Creador de listas de mensajes del Centro de notificación."
 
-msgid "emails.statisticsReportNotification.description"
-msgstr ""
-"Este correo electrónico se envía automáticamente cada mes a los editores/as "
-"y gestores/as de revistas para proporcionarles una visión general del estado "
-"de salud del sistema."
-
 msgid "emails.statisticsReportNotification.subject"
 msgstr "Actividad editorial del {$month}, {$year}"
 
@@ -462,7 +432,7 @@ msgstr ""
 msgid "emails.statisticsReportNotification.body"
 msgstr ""
 "\n"
-"{$name}, <br />\n"
+"{$recipientName}, <br />\n"
 "<br />\n"
 "El informe editorial al {$month}, {$year} ya está disponible. Las "
 "estadísticas fundamentales del mes son las siguientes.<br />\n"
@@ -479,10 +449,7 @@ msgstr ""
 "\n"
 "<br />\n"
 "Sinceramente,<br />\n"
-"{$signature}"
-
-msgid "emails.announcement.description"
-msgstr "Este correo electrónico se envía cuando se crea un aviso nuevo."
+"{$contextSignature}"
 
 msgid "emails.announcement.body"
 msgstr ""
