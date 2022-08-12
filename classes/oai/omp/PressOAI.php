@@ -29,7 +29,7 @@ use PKP\oai\OAI;
 use PKP\oai\OAIRepository;
 use PKP\oai\OAIResumptionToken;
 
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 
 class PressOAI extends OAI
 {
@@ -197,7 +197,7 @@ class PressOAI extends OAI
     public function records($metadataPrefix, $from, $until, $set, $offset, $limit, &$total)
     {
         $records = null;
-        if (!HookRegistry::call('PressOAI::records', [&$this, $from, $until, $set, $offset, $limit, &$total, &$records])) {
+        if (!Hook::call('PressOAI::records', [&$this, $from, $until, $set, $offset, $limit, &$total, &$records])) {
             $seriesId = null;
             if (isset($set)) {
                 [$pressId, $seriesId] = $this->setSpecToSeriesId($set);
@@ -215,7 +215,7 @@ class PressOAI extends OAI
     public function identifiers($metadataPrefix, $from, $until, $set, $offset, $limit, &$total)
     {
         $records = null;
-        if (!HookRegistry::call('PressOAI::identifiers', [&$this, $from, $until, $set, $offset, $limit, &$total, &$records])) {
+        if (!Hook::call('PressOAI::identifiers', [&$this, $from, $until, $set, $offset, $limit, &$total, &$records])) {
             $seriesId = null;
             if (isset($set)) {
                 [$pressId, $seriesId] = $this->setSpecToSeriesId($set);
@@ -233,7 +233,7 @@ class PressOAI extends OAI
     public function sets($offset, $limit, &$total)
     {
         $sets = null;
-        if (!HookRegistry::call('PressOAI::sets', [&$this, $offset, $limit, &$total, &$sets])) {
+        if (!Hook::call('PressOAI::sets', [&$this, $offset, $limit, &$total, &$sets])) {
             $sets = $this->dao->getSets($this->pressId, $offset, $limit, $total);
         }
         return $sets;

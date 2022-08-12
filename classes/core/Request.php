@@ -19,7 +19,7 @@ namespace APP\core;
 
 use APP\press\Press;
 use PKP\core\PKPRequest;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 
 class Request extends PKPRequest
 {
@@ -31,7 +31,7 @@ class Request extends PKPRequest
     public function getRequestedPressPath()
     {
         $press = $this->_delegateToRouter('getRequestedContextPath', 1);
-        HookRegistry::call('Request::getRequestedPressPath', [&$press]);
+        Hook::call('Request::getRequestedPressPath', [&$press]);
         return $press;
     }
 

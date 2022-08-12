@@ -18,7 +18,7 @@ use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\plugins\GenericPlugin;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 
 class GoogleScholarPlugin extends GenericPlugin
 {
@@ -31,7 +31,7 @@ class GoogleScholarPlugin extends GenericPlugin
     {
         if (parent::register($category, $path, $mainContextId)) {
             if ($this->getEnabled($mainContextId)) {
-                HookRegistry::register('CatalogBookHandler::book', [&$this, 'monographView']);
+                Hook::add('CatalogBookHandler::book', [&$this, 'monographView']);
             }
             return true;
         }

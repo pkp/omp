@@ -19,7 +19,7 @@
 
 namespace APP\plugins\metadata\dc11\filter;
 
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\plugins\PluginRegistry;
 use APP\core\Application;
 use APP\facades\Repo;
@@ -229,7 +229,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             $dc11Description->addStatement('dc:rights', $salesRight->getNameForONIXCode());
         }
 
-        HookRegistry::call('Dc11SchemaPublicationFormatAdapter::extractMetadataFromDataObject', [&$this, $monograph, $press, &$dc11Description]);
+        Hook::call('Dc11SchemaPublicationFormatAdapter::extractMetadataFromDataObject', [&$this, $monograph, $press, &$dc11Description]);
 
         return $dc11Description;
     }

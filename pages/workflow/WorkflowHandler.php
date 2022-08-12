@@ -48,7 +48,7 @@ use PKP\decision\types\RevertDecline;
 use PKP\decision\types\RevertInitialDecline;
 use PKP\decision\types\SendToProduction;
 use PKP\decision\types\SkipExternalReview;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\security\Role;
 
 class WorkflowHandler extends PKPWorkflowHandler
@@ -267,7 +267,7 @@ class WorkflowHandler extends PKPWorkflowHandler
                 break;
         }
 
-        HookRegistry::call('Workflow::Decisions', [&$decisionTypes, $stageId]);
+        Hook::call('Workflow::Decisions', [&$decisionTypes, $stageId]);
 
         return $decisionTypes;
     }
@@ -295,7 +295,7 @@ class WorkflowHandler extends PKPWorkflowHandler
         }
 
 
-        HookRegistry::call('Workflow::Recommendations', [$decisionTypes, $stageId]);
+        Hook::call('Workflow::Recommendations', [$decisionTypes, $stageId]);
 
         return $decisionTypes;
     }

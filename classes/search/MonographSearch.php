@@ -22,7 +22,7 @@ use APP\core\Application;
 use APP\core\Services;
 use APP\facades\Repo;
 use PKP\db\DAORegistry;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\search\SubmissionSearch;
 
 class MonographSearch extends SubmissionSearch
@@ -325,7 +325,7 @@ class MonographSearch extends SubmissionSearch
         }
 
         // Let plugins mangle the search ordering options.
-        HookRegistry::call(
+        Hook::call(
             'SubmissionSearch::getResultSetOrderingOptions',
             [$context, &$resultSetOrderingOptions]
         );

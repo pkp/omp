@@ -20,7 +20,7 @@ use APP\oai\omp\OAIDAO;
 use APP\submission\Submission;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\submission\PKPSubmission;
 
 class PublicationFormatTombstoneManager
@@ -72,7 +72,7 @@ class PublicationFormatTombstoneManager
         $publicationFormatTombstone->setOAISetObjectsIds($OAISetObjectsIds);
         $dataObjectTombstoneDao->insertObject($publicationFormatTombstone);
 
-        if (HookRegistry::call('PublicationFormatTombstoneManager::insertPublicationFormatTombstone', [&$publicationFormatTombstone, &$publicationFormat, &$press])) {
+        if (Hook::call('PublicationFormatTombstoneManager::insertPublicationFormatTombstone', [&$publicationFormatTombstone, &$publicationFormat, &$press])) {
             return;
         }
     }

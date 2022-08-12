@@ -17,7 +17,7 @@ use APP\template\TemplateManager;
 use PKP\core\JSONMessage;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
-
+use PKP\plugins\Hook;
 use PKP\plugins\GenericPlugin;
 
 class WebFeedPlugin extends GenericPlugin
@@ -51,7 +51,7 @@ class WebFeedPlugin extends GenericPlugin
     {
         if (parent::register($category, $path, $mainContextId)) {
             if ($this->getEnabled($mainContextId)) {
-                HookRegistry::register('TemplateManager::display', [$this, 'callbackAddLinks']);
+                Hook::add('TemplateManager::display', [$this, 'callbackAddLinks']);
                 $this->import('WebFeedBlockPlugin');
                 $blockPlugin = new WebFeedBlockPlugin($this);
                 PluginRegistry::register('blocks', $blockPlugin, $this->getPluginPath());

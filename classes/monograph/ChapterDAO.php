@@ -21,7 +21,7 @@ namespace APP\monograph;
 use APP\facades\Repo;
 use Illuminate\Support\Facades\DB;
 use PKP\db\DAOResultFactory;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\plugins\PKPPubIdPluginDAO;
 
 class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
@@ -178,7 +178,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
 
         $this->getDataObjectSettings('submission_chapter_settings', 'chapter_id', $row['chapter_id'], $chapter);
 
-        HookRegistry::call('ChapterDAO::_fromRow', [&$chapter, &$row]);
+        Hook::call('ChapterDAO::_fromRow', [&$chapter, &$row]);
 
         return $chapter;
     }

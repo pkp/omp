@@ -20,7 +20,7 @@ use APP\observers\events\Usage;
 use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
 use PKP\plugins\GenericPlugin;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\submissionFile\SubmissionFile;
 
 import('lib.pkp.classes.plugins.GenericPlugin');
@@ -36,8 +36,8 @@ class HtmlMonographFilePlugin extends GenericPlugin
     {
         if (parent::register($category, $path, $mainContextId)) {
             if ($this->getEnabled($mainContextId)) {
-                HookRegistry::register('CatalogBookHandler::view', [$this, 'viewCallback']);
-                HookRegistry::register('CatalogBookHandler::download', [$this, 'downloadCallback']);
+                Hook::add('CatalogBookHandler::view', [$this, 'viewCallback']);
+                Hook::add('CatalogBookHandler::download', [$this, 'downloadCallback']);
             }
             return true;
         }
@@ -126,10 +126,10 @@ class HtmlMonographFilePlugin extends GenericPlugin
 
         $mimetype = $submissionFile->getData('mimetype');
         if ($submissionFile && $mimetype == 'text/html') {
-            if (!HookRegistry::call('HtmlMonographFilePlugin::monographDownload', [&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline])) {
+            if (!Hook::call('HtmlMonographFilePlugin::monographDownload', [&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline])) {
                 echo $this->_getHTMLContents($request, $submission, $publicationFormat, $submissionFile);
                 $returner = true;
-                HookRegistry::call('HtmlMonographFilePlugin::monographDownloadFinished', [&$returner]);
+                Hook::call('HtmlMonographFilePlugin::monographDownloadFinished', [&$returner]);
 
                 $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
                 $chapter = $chapterDao->getChapter($submissionFile->getData('chapterId'));

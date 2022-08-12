@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\DB;
 use APP\facades\Repo;
 use PKP\db\DAO;
 use PKP\db\DAOResultFactory;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\submission\Representation;
 use PKP\submission\RepresentationDAOInterface;
 
@@ -324,7 +324,7 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
         );
 
         if ($callHooks) {
-            HookRegistry::call('PublicationFormatDAO::_fromRow', [&$publicationFormat, &$row]);
+            Hook::call('PublicationFormatDAO::_fromRow', [&$publicationFormat, &$row]);
         }
 
         return $publicationFormat;

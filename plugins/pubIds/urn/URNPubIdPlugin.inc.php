@@ -22,7 +22,7 @@ use APP\publication\Publication;
 use APP\template\TemplateManager;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\RemoteActionConfirmationModal;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 
 class URNPubIdPlugin extends PubIdPlugin
 {
@@ -38,19 +38,19 @@ class URNPubIdPlugin extends PubIdPlugin
             return $success;
         }
         if ($success && $this->getEnabled($mainContextId)) {
-            HookRegistry::register('Publication::getProperties::summaryProperties', [$this, 'modifyObjectProperties']);
-            HookRegistry::register('Publication::getProperties::fullProperties', [$this, 'modifyObjectProperties']);
-            HookRegistry::register('Publication::getProperties::values', [$this, 'modifyObjectPropertyValues']);
-            HookRegistry::register('Publication::validate', [$this, 'validatePublicationUrn']);
-            HookRegistry::register('Galley::getProperties::summaryProperties', [$this, 'modifyObjectProperties']);
-            HookRegistry::register('Galley::getProperties::fullProperties', [$this, 'modifyObjectProperties']);
-            HookRegistry::register('Galley::getProperties::values', [$this, 'modifyObjectPropertyValues']);
-            HookRegistry::register('Issue::getProperties::summaryProperties', [$this, 'modifyObjectProperties']);
-            HookRegistry::register('Issue::getProperties::fullProperties', [$this, 'modifyObjectProperties']);
-            HookRegistry::register('Issue::getProperties::values', [$this, 'modifyObjectPropertyValues']);
-            HookRegistry::register('Form::config::before', [$this, 'addPublicationFormFields']);
-            HookRegistry::register('Form::config::before', [$this, 'addPublishFormNotice']);
-            HookRegistry::register('TemplateManager::display', [$this, 'loadUrnFieldComponent']);
+            Hook::add('Publication::getProperties::summaryProperties', [$this, 'modifyObjectProperties']);
+            Hook::add('Publication::getProperties::fullProperties', [$this, 'modifyObjectProperties']);
+            Hook::add('Publication::getProperties::values', [$this, 'modifyObjectPropertyValues']);
+            Hook::add('Publication::validate', [$this, 'validatePublicationUrn']);
+            Hook::add('Galley::getProperties::summaryProperties', [$this, 'modifyObjectProperties']);
+            Hook::add('Galley::getProperties::fullProperties', [$this, 'modifyObjectProperties']);
+            Hook::add('Galley::getProperties::values', [$this, 'modifyObjectPropertyValues']);
+            Hook::add('Issue::getProperties::summaryProperties', [$this, 'modifyObjectProperties']);
+            Hook::add('Issue::getProperties::fullProperties', [$this, 'modifyObjectProperties']);
+            Hook::add('Issue::getProperties::values', [$this, 'modifyObjectPropertyValues']);
+            Hook::add('Form::config::before', [$this, 'addPublicationFormFields']);
+            Hook::add('Form::config::before', [$this, 'addPublishFormNotice']);
+            Hook::add('TemplateManager::display', [$this, 'loadUrnFieldComponent']);
         }
         return $success;
     }

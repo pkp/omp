@@ -18,7 +18,7 @@ namespace APP\search;
 use APP\facades\Repo;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\search\SearchFileParser;
 use PKP\search\SubmissionSearch;
 
@@ -171,7 +171,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
     {
         // Trigger a hook to let the indexing back-end know that
         // the index may be updated.
-        HookRegistry::call(
+        Hook::call(
             'MonographSearchIndex::monographChangesFinished'
         );
 

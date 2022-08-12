@@ -15,6 +15,7 @@
 
 use APP\template\TemplateManager;
 use PKP\plugins\GenericPlugin;
+use PKP\plugins\Hook;
 
 class PdfJsViewerPlugin extends GenericPlugin
 {
@@ -27,8 +28,8 @@ class PdfJsViewerPlugin extends GenericPlugin
     {
         if (parent::register($category, $path, $mainContextId)) {
             if ($this->getEnabled($mainContextId)) {
-                HookRegistry::register('CatalogBookHandler::view', [$this, 'viewCallback'], HOOK_SEQUENCE_LATE);
-                HookRegistry::register('CatalogBookHandler::download', [$this, 'downloadCallback'], HOOK_SEQUENCE_LATE);
+                Hook::add('CatalogBookHandler::view', [$this, 'viewCallback'], HOOK_SEQUENCE_LATE);
+                Hook::add('CatalogBookHandler::download', [$this, 'downloadCallback'], HOOK_SEQUENCE_LATE);
             }
             return true;
         }

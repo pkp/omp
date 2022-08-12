@@ -30,7 +30,7 @@ use PKP\core\PKPApplication;
 use PKP\core\PKPRequest;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\plugins\PluginRegistry;
 use PKP\security\Validation;
 use PKP\submission\Genre;
@@ -271,7 +271,7 @@ class CatalogBookHandler extends Handler
         }
 
         // Display
-        if (!HookRegistry::call('CatalogBookHandler::book', [&$request, &$submission])) {
+        if (!Hook::call('CatalogBookHandler::book', [&$request, &$submission])) {
             $templateMgr->display('frontend/pages/book.tpl');
             if ($this->isChapterRequest) {
                 event(new Usage(Application::ASSOC_TYPE_CHAPTER, $request->getContext(), $submission, null, null, $this->chapter));
@@ -396,7 +396,7 @@ class CatalogBookHandler extends Handler
             }
 
             if ($view) {
-                if (HookRegistry::call('CatalogBookHandler::view', [&$this, &$submission, &$publicationFormat, &$submissionFile])) {
+                if (Hook::call('CatalogBookHandler::view', [&$this, &$submission, &$publicationFormat, &$submissionFile])) {
                     // If the plugin handled the hook, prevent further default activity.
                     exit;
                 }
@@ -405,7 +405,7 @@ class CatalogBookHandler extends Handler
             // Inline viewer not available, or viewing not wanted.
             // Download or show the file.
             $inline = $request->getUserVar('inline') ? true : false;
-            if (HookRegistry::call('CatalogBookHandler::download', [&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline])) {
+            if (Hook::call('CatalogBookHandler::download', [&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline])) {
                 // If the plugin handled the hook, prevent further default activity.
                 exit;
             }
@@ -422,7 +422,7 @@ class CatalogBookHandler extends Handler
                 event(new Usage($assocType, $request->getContext(), $submission, $publicationFormat, $submissionFile, $chapter));
             }
             $returner = true;
-            HookRegistry::call('FileManager::downloadFileFinished', [&$returner]);
+            Hook::call('FileManager::downloadFileFinished', [&$returner]);
             return Services::get('file')->download($submissionFile->getData('fileId'), $filename, $inline);
         }
 

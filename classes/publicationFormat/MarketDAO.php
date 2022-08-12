@@ -17,7 +17,7 @@
 
 namespace APP\publicationFormat;
 
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\db\DAOResultFactory;
 
 use APP\publicationFormat\Market;
@@ -110,7 +110,7 @@ class MarketDAO extends \PKP\db\DAO
         $market->setPublicationFormatId($row['publication_format_id']);
 
         if ($callHooks) {
-            HookRegistry::call('MarketDAO::_fromRow', [&$market, &$row]);
+            Hook::call('MarketDAO::_fromRow', [&$market, &$row]);
         }
 
         return $market;

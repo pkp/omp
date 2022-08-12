@@ -16,7 +16,7 @@
 namespace APP\pages\stats;
 
 use APP\core\Application;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\db\DAORegistry;
 use PKP\pages\stats\PKPStatsHandler;
 use APP\template\TemplateManager;
@@ -29,7 +29,7 @@ class StatsHandler extends PKPStatsHandler
     public function __construct()
     {
         parent::__construct();
-        HookRegistry::register('TemplateManager::display', [$this, 'addSectionFilters']);
+        Hook::add('TemplateManager::display', [$this, 'addSectionFilters']);
     }
 
     /**

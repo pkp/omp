@@ -15,7 +15,7 @@ namespace APP\submissionFile;
 
 use APP\core\Request;
 use APP\submissionFile\maps\Schema;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\services\PKPSchemaService;
 use PKP\submissionFile\Repository as SubmissionFileRepository;
 use PKP\submissionFile\SubmissionFile;
@@ -61,7 +61,7 @@ class Repository extends SubmissionFileRepository
             SubmissionFile::SUBMISSION_FILE_QUERY,
         ];
 
-        HookRegistry::call('SubmissionFile::fileStages', [&$stages]);
+        Hook::call('SubmissionFile::fileStages', [&$stages]);
 
         return $stages;
     }

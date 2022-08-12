@@ -19,6 +19,7 @@ use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\plugins\GenericPlugin;
+use PKP\plugins\Hook;
 
 class DublinCoreMetaPlugin extends GenericPlugin
 {
@@ -31,8 +32,8 @@ class DublinCoreMetaPlugin extends GenericPlugin
     {
         if (parent::register($category, $path, $mainContextId)) {
             if ($this->getEnabled($mainContextId)) {
-                HookRegistry::register('CatalogBookHandler::book', [&$this, 'monographView']);
-                HookRegistry::register('CatalogBookHandler::view', [$this, 'monographFileView']);
+                Hook::add('CatalogBookHandler::book', [&$this, 'monographView']);
+                Hook::add('CatalogBookHandler::view', [$this, 'monographFileView']);
             }
             return true;
         }
