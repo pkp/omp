@@ -142,7 +142,6 @@
 		<migration class="APP\migration\upgrade\v3_4_0\I6782_RemovePlugins" />
 		<migration class="PKP\migration\upgrade\v3_4_0\I2890_EmailTemplatesVarcharLengthUpdate"/>
 		<migration class="PKP\migration\upgrade\v3_4_0\I2890_AddSetNullForOnDeleteToReviewRoundIdForeign"/>
-		<migration class="PKP\migration\install\InstitutionsMigration" />
 		<migration class="APP\migration\upgrade\v3_4_0\I6782_OrphanedMetrics" />
 		<migration class="PKP\migration\upgrade\v3_4_0\I6782_UsageStatsSettings" />
 		<migration class="APP\migration\install\MetricsMigration" />
