@@ -15,9 +15,10 @@
 
 namespace APP\plugins\importexport\native\filter;
 
-use PKP\db\DAORegistry;
-use APP\file\PublicFileManager;
 use APP\core\Application;
+use APP\file\PublicFileManager;
+use APP\plugins\importexport\onix30\Onix30ExportDeployment;
+use PKP\db\DAORegistry;
 use PKP\plugins\importexport\native\filter\PKPNativeFilterHelper;
 
 class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter\NativeXmlPKPPublicationFilter

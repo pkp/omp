@@ -17,6 +17,7 @@ namespace APP\plugins\importexport\native\filter;
 
 use APP\core\Application;
 use APP\facades\Repo;
+use APP\plugins\importexport\onix30\Onix30ExportDeployment;
 use PKP\db\DAORegistry;
 use PKP\xslt\XSLTransformer;
 

@@ -15,11 +15,12 @@
 
 namespace APP\plugins\importexport\native\filter;
 
-use PKP\db\DAORegistry;
-use APP\facades\Repo;
-use APP\submission\Submission;
 use APP\core\Application;
+use APP\facades\Repo;
+use APP\plugins\importexport\onix30\Onix30ExportDeployment;
+use APP\submission\Submission;
 use PKP\core\PKPApplication;
+use PKP\db\DAORegistry;
 
 class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\filter\NativeXmlRepresentationFilter
 {
@@ -96,10 +97,12 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
         for ($n = $node->firstChild; $n !== null; $n = $n->nextSibling) {
             if ($n instanceof \DOMElement) {
                 switch ($n->tagName) {
-            case 'Product': $this->_processProductNode($n, $this->getDeployment(), $representation); break;
-            case 'submission_file_ref': $this->_processFileRef($n, $deployment, $representation); break;
-            default:
-        }
+                    case 'Product': $this->_processProductNode($n, $this->getDeployment(), $representation);
+                        break;
+                    case 'submission_file_ref': $this->_processFileRef($n, $deployment, $representation);
+                        break;
+                    default:
+                    }
             }
         }
 
@@ -178,9 +181,11 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
                 for ($o = $n->firstChild; $o !== null; $o = $o->nextSibling) {
                     if ($o instanceof \DOMElement) {
                         switch ($o->tagName) {
-                    case 'onix:ProductIDType': $identificationCode->setCode($o->textContent); break;
-                    case 'onix:IDValue': $identificationCode->setValue($o->textContent); break;
-                }
+                            case 'onix:ProductIDType': $identificationCode->setCode($o->textContent);
+                                break;
+                            case 'onix:IDValue': $identificationCode->setValue($o->textContent);
+                                break;
+                        }
                     }
                 }
                 // if this is a DOI, use the DOI-plugin structure instead.
@@ -206,12 +211,13 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
                 for ($o = $n->firstChild; $o !== null; $o = $o->nextSibling) {
                     if ($o instanceof \DOMElement) {
                         switch ($o->tagName) {
-                    case 'onix:PublishingDateRole': $date->setRole($o->textContent); break;
-                    case 'onix:Date':
-                        $date->setDate($o->textContent);
-                        $date->setDateFormat($o->getAttribute('dateformat'));
-                        break;
-                }
+                            case 'onix:PublishingDateRole': $date->setRole($o->textContent);
+                                break;
+                            case 'onix:Date':
+                                $date->setDate($o->textContent);
+                                $date->setDateFormat($o->getAttribute('dateformat'));
+                                break;
+                        }
                     }
                 }
 
@@ -242,11 +248,15 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
                     for ($o = $territoryNode->firstChild; $o !== null; $o = $o->nextSibling) {
                         if ($o instanceof \DOMElement) {
                             switch ($o->tagName) {
-                        case 'onix:RegionsIncluded': $salesRights->setRegionsIncluded(preg_split('/\s+/', $o->textContent)); break;
-                        case 'onix:CountriesIncluded': $salesRights->setCountriesIncluded(preg_split('/\s+/', $o->textContent)); break;
-                        case 'onix:RegionsExcluded': $salesRights->setRegionsExcluded(preg_split('/\s+/', $o->textContent)); break;
-                        case 'onix:CountriesExcluded': $salesRights->setCountriesExcluded(preg_split('/\s+/', $o->textContent)); break;
-                    }
+                                case 'onix:RegionsIncluded': $salesRights->setRegionsIncluded(preg_split('/\s+/', $o->textContent));
+                                    break;
+                                case 'onix:CountriesIncluded': $salesRights->setCountriesIncluded(preg_split('/\s+/', $o->textContent));
+                                    break;
+                                case 'onix:RegionsExcluded': $salesRights->setRegionsExcluded(preg_split('/\s+/', $o->textContent));
+                                    break;
+                                case 'onix:CountriesExcluded': $salesRights->setCountriesExcluded(preg_split('/\s+/', $o->textContent));
+                                    break;
+                            }
                         }
                     }
                 }
@@ -272,11 +282,15 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
                 for ($o = $territoryNode->firstChild; $o !== null; $o = $o->nextSibling) {
                     if ($o instanceof \DOMElement) {
                         switch ($o->tagName) {
-                    case 'onix:RegionsIncluded': $market->setRegionsIncluded(preg_split('/\s+/', $o->textContent)); break;
-                    case 'onix:CountriesIncluded': $market->setCountriesIncluded(preg_split('/\s+/', $o->textContent)); break;
-                    case 'onix:RegionsExcluded': $market->setRegionsExcluded(preg_split('/\s+/', $o->textContent)); break;
-                    case 'onix:CountriesExcluded': $market->setCountriesExcluded(preg_split('/\s+/', $o->textContent)); break;
-                }
+                            case 'onix:RegionsIncluded': $market->setRegionsIncluded(preg_split('/\s+/', $o->textContent));
+                                break;
+                            case 'onix:CountriesIncluded': $market->setCountriesIncluded(preg_split('/\s+/', $o->textContent));
+                                break;
+                            case 'onix:RegionsExcluded': $market->setRegionsExcluded(preg_split('/\s+/', $o->textContent));
+                                break;
+                            case 'onix:CountriesExcluded': $market->setCountriesExcluded(preg_split('/\s+/', $o->textContent));
+                                break;
+                        }
                     }
                 }
 
@@ -465,21 +479,22 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
             for ($o = $n->firstChild; $o !== null; $o = $o->nextSibling) {
                 if ($o instanceof \DOMElement) {
                     switch ($o->tagName) {
-                case 'AudienceRangePrecision': $audienceRangePrevision = $o->textContent; break;
-                case 'AudienceRangeValue':
-                    switch ($audienceRangePrecision) {
-                        case '01':
-                            $submission->setData('audienceRangeExact', $o->textContent);
+                        case 'AudienceRangePrecision': $audienceRangePrevision = $o->textContent;
                             break;
-                        case '03':
-                            $submission->setData('audienceRangeTo', $o->textContent);
-                            break;
-                        case '04':
-                            $submission->setData('audienceRangeFrom', $o->textContent);
+                        case 'AudienceRangeValue':
+                            switch ($audienceRangePrecision) {
+                                case '01':
+                                    $submission->setData('audienceRangeExact', $o->textContent);
+                                    break;
+                                case '03':
+                                    $submission->setData('audienceRangeTo', $o->textContent);
+                                    break;
+                                case '04':
+                                    $submission->setData('audienceRangeFrom', $o->textContent);
+                                    break;
+                            }
                             break;
                     }
-                    break;
-            }
                 }
             }
         }
