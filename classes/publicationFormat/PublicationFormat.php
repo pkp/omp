@@ -321,7 +321,7 @@ class PublicationFormat extends Representation
 
         foreach ($stageMonographFiles as $monographFile) {
             if ($monographFile->getViewable()) {
-                $fileSize += (int) Services::get('file')->fs->getSize($monographFile->getData('path'));
+                $fileSize += (int) Services::get('file')->fs->fileSize($monographFile->getData('path'));
             }
         }
 
