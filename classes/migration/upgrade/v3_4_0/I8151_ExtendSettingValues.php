@@ -42,11 +42,6 @@ class I8151_ExtendSettingValues extends \PKP\migration\Migration
         Schema::table('spotlight_settings', function (Blueprint $table) {
             $table->mediumText('setting_value')->nullable()->change();
         });
-
-        Schema::table('', function (Blueprint $table) {
-            $table->mediumText('setting_value')->nullable()->change();
-        });
-
     }
 
     /**
