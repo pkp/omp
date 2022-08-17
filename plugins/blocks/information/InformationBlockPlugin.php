@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @file plugins/blocks/information/InformationBlockPlugin.inc.php
+ * @file plugins/blocks/information/InformationBlockPlugin.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2022 Simon Fraser University
+ * Copyright (c) 2003-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class InformationBlockPlugin
- * @ingroup plugins_blocks_information
- *
  * @brief Class for information block plugin
  */
+
+namespace APP\plugins\blocks\information;
 
 use PKP\plugins\BlockPlugin;
 
@@ -62,4 +62,8 @@ class InformationBlockPlugin extends BlockPlugin
         $templateMgr->assign('forLibrarians', $press->getLocalizedSetting('librarianInformation'));
         return parent::getContents($templateMgr);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\plugins\blocks\information\InformationBlockPlugin', '\InformationBlockPlugin');
 }
