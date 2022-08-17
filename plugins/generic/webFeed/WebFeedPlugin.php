@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @file plugins/generic/webFeed/WebFeedPlugin.inc.php
+ * @file plugins/generic/webFeed/WebFeedPlugin.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2022 Simon Fraser University
+ * Copyright (c) 2003-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class WebFeedPlugin
- * @ingroup plugins_block_webFeed
- *
  * @brief Web Feeds plugin class
  */
+
+namespace APP\plugins\generic\webFeed;
 
 use APP\template\TemplateManager;
 use PKP\core\JSONMessage;
@@ -19,6 +19,8 @@ use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\plugins\Hook;
 use PKP\plugins\GenericPlugin;
+use PKP\plugins\PluginRegistry;
+use APP\core\Application;
 
 class WebFeedPlugin extends GenericPlugin
 {
@@ -52,11 +54,9 @@ class WebFeedPlugin extends GenericPlugin
         if (parent::register($category, $path, $mainContextId)) {
             if ($this->getEnabled($mainContextId)) {
                 Hook::add('TemplateManager::display', [$this, 'callbackAddLinks']);
-                $this->import('WebFeedBlockPlugin');
                 $blockPlugin = new WebFeedBlockPlugin($this);
                 PluginRegistry::register('blocks', $blockPlugin, $this->getPluginPath());
 
-                $this->import('WebFeedGatewayPlugin');
                 $gatewayPlugin = new WebFeedGatewayPlugin($this);
                 PluginRegistry::register('gateways', $gatewayPlugin, $this->getPluginPath());
             }
@@ -153,7 +153,6 @@ class WebFeedPlugin extends GenericPlugin
                 $templateMgr = TemplateManager::getManager($request);
                 $templateMgr->registerPlugin('function', 'plugin_url', [$this, 'smartyPluginUrl']);
 
-                $this->import('SettingsForm');
                 $form = new SettingsForm($this, $context->getId());
 
                 if ($request->getUserVar('save')) {
@@ -169,4 +168,8 @@ class WebFeedPlugin extends GenericPlugin
         }
         return parent::manage($args, $request);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\plugins\generic\webFeed\WebFeedPlugin', '\WebFeedPlugin');
 }

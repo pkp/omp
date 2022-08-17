@@ -20,6 +20,7 @@ use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\plugins\GenericPlugin;
 use PKP\plugins\Hook;
+use APP\core\Application;
 
 class DublinCoreMetaPlugin extends GenericPlugin
 {

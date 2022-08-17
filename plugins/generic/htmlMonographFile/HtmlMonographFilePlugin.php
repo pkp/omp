@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @file plugins/generic/htmlMonographFile/HtmlMonographFilePlugin.inc.php
+ * @file plugins/generic/htmlMonographFile/HtmlMonographFilePlugin.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2022 Simon Fraser University
+ * Copyright (c) 2003-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class HtmlMonographFilePlugin
- * @ingroup plugins_generic_htmlMonographFile
- *
  * @brief Class for HtmlMonographFile plugin
  */
+
+namespace APP\plugins\generic\htmlMonographFile;
 
 use APP\core\Application;
 use APP\facades\Repo;
@@ -22,10 +22,9 @@ use PKP\db\DAORegistry;
 use PKP\plugins\GenericPlugin;
 use PKP\plugins\Hook;
 use PKP\submissionFile\SubmissionFile;
+use APP\core\Services;
 
-import('lib.pkp.classes.plugins.GenericPlugin');
-
-class HtmlMonographFilePlugin extends GenericPlugin
+class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
 {
     /**
      * @copydoc Plugin::register()
@@ -140,6 +139,7 @@ class HtmlMonographFilePlugin extends GenericPlugin
 
         return false;
     }
+
     /**
      * Return string containing the contents of the HTML file.
      * This function performs any necessary filtering, like image URL replacement.
@@ -171,8 +171,8 @@ class HtmlMonographFilePlugin extends GenericPlugin
             );
 
         $embeddableFiles = array_merge(
-            Repo::submissionFile()->getMany($proofCollector),
-            Repo::submissionFile()->getMany($dependentCollector)
+            iterator_to_array(Repo::submissionFile()->getMany($proofCollector)),
+            iterator_to_array(Repo::submissionFile()->getMany($dependentCollector))
         );
 
         foreach ($embeddableFiles as $embeddableFile) {

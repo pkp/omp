@@ -1,20 +1,19 @@
 <?php
 
 /**
- * @file plugins/generic/webFeed/SettingsForm.inc.php
+ * @file plugins/generic/webFeed/SettingsForm.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2022 Simon Fraser University
+ * Copyright (c) 2003-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SettingsForm
- * @ingroup plugins_generic_webFeed
- *
  * @brief Form for managers to modify web feeds plugin settings
  */
 
-use APP\template\TemplateManager;
+namespace APP\plugins\generic\webFeed;
 
+use APP\template\TemplateManager;
 use PKP\form\Form;
 
 class SettingsForm extends Form

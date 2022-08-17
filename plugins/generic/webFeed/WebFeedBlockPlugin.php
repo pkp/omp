@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @file plugins/generic/webFeed/WebFeedBlockPlugin.inc.php
+ * @file plugins/generic/webFeed/WebFeedBlockPlugin.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2022 Simon Fraser University
+ * Copyright (c) 2003-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class WebFeedBlockPlugin
- * @ingroup plugins_generic_webFeed
- *
  * @brief Class for block component of web feed plugin
  */
+
+namespace APP\plugins\generic\webFeed;
 
 use PKP\plugins\BlockPlugin;
 

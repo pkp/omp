@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @file plugins/generic/googleScholar/GoogleScholarPlugin.inc.php
+ * @file plugins/generic/googleScholar/GoogleScholarPlugin.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2022 Simon Fraser University
+ * Copyright (c) 2003-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class GoogleScholarPlugin
- * @ingroup plugins_generic_googleScholar
- *
  * @brief Inject Google Scholar meta tags into monograph views to facilitate indexing.
  */
+
+namespace APP\plugins\generic\googleScholar;
 
 use APP\facades\Repo;
 use APP\template\TemplateManager;
@@ -189,11 +189,7 @@ class GoogleScholarPlugin extends GenericPlugin
         return __('plugins.generic.googleScholar.description');
     }
 
-    /**
-     * @param $availableFile
-     * @param \App\Core\Request $request
-     */
-    private function _setFileUrl($availableFile, TemplateManager $templateMgr, int $i, App\Core\Request $request, Submission $submission): void
+    private function _setFileUrl($availableFile, \APP\template\TemplateManager $templateMgr, int $i, \APP\Core\Request $request, \APP\submission\Submission $submission): void
     {
         switch ($availableFile->getData('mimetype')) {
             case 'application/pdf':

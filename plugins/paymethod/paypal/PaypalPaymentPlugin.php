@@ -13,12 +13,14 @@
  * @brief Paypal payment plugin class
  */
 
+namespace APP\plugins\paymethod\paypal;
+
 use APP\template\TemplateManager;
 use PKP\plugins\PaymethodPlugin;
 use PKP\plugins\Hook;
+use APP\core\Application;
 
 require_once(dirname(__FILE__) . '/vendor/autoload.php');
-
 
 class PaypalPaymentPlugin extends PaymethodPlugin
 {
@@ -141,7 +143,6 @@ class PaypalPaymentPlugin extends PaymethodPlugin
      */
     public function getPaymentForm($context, $queuedPayment)
     {
-        $this->import('PaypalPaymentForm');
         return new PaypalPaymentForm($this, $queuedPayment);
     }
 
@@ -225,4 +226,8 @@ class PaypalPaymentPlugin extends PaymethodPlugin
     {
         return parent::getTemplatePath($inCore) . 'templates/';
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\plugins\paymethod\paypal\PaypalPaymentPlugin', '\PaypalPaymentPlugin');
 }

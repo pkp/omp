@@ -1,10 +1,10 @@
 <?php
 
 /**
- * @file PaypalPaymentForm.inc.php
+ * @file PaypalPaymentForm.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2022 Simon Fraser University
+ * Copyright (c) 2003-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PaypalPaymentForm
@@ -13,9 +13,11 @@
  *
  */
 
-use APP\template\TemplateManager;
+namespace APP\plugins\paymethod\paypal;
 
+use APP\template\TemplateManager;
 use PKP\form\Form;
+use APP\core\Application;
 
 class PaypalPaymentForm extends Form
 {
@@ -47,7 +49,7 @@ class PaypalPaymentForm extends Form
         try {
             $context = $request->getContext();
             $paymentManager = Application::getPaymentManager($context);
-            $gateway = Omnipay\Omnipay::create('PayPal_Rest');
+            $gateway = \Omnipay\Omnipay::create('PayPal_Rest');
             $gateway->initialize([
                 'clientId' => $this->_paypalPaymentPlugin->getSetting($context->getId(), 'clientId'),
                 'secret' => $this->_paypalPaymentPlugin->getSetting($context->getId(), 'secret'),
