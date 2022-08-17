@@ -50,7 +50,7 @@ class I6091_AddFilterNamespaces extends \PKP\migration\Migration
         foreach (self::FILTER_RENAME_MAP as $oldName => $newName) {
             DB::statement('UPDATE filters SET class_name = ? WHERE class_name = ?', [$newName, $oldName]);
         }
-        DB::statement('UPDATE filter_groups SET output_type=? WHERE output_type = ?', ['metadata::\APP\plugins\metadata\dc11\schema\Dc11Schema(PUBLICATION_FORMAT)', 'metadata::plugins.metadata.dc11.schema.Dc11Schema(PUBLICATION_FORMAT)']);
+        DB::statement('UPDATE filter_groups SET output_type=? WHERE output_type = ?', ['metadata::APP\plugins\metadata\dc11\schema\Dc11Schema(PUBLICATION_FORMAT)', 'metadata::plugins.metadata.dc11.schema.Dc11Schema(PUBLICATION_FORMAT)']);
     }
 
     /**
@@ -61,6 +61,6 @@ class I6091_AddFilterNamespaces extends \PKP\migration\Migration
         foreach (self::FILTER_RENAME_MAP as $oldName => $newName) {
             DB::statement('UPDATE filters SET class_name = ? WHERE class_name = ?', [$oldName, $newName]);
         }
-        DB::statement('UPDATE filter_groups SET output_type=? WHERE output_type = ?', ['metadata::plugins.metadata.dc11.schema.Dc11Schema(PUBLICATION_FORMAT)', 'metadata::\APP\plugins\metadata\dc11\schema\Dc11Schema(PUBLICATION_FORMAT)']);
+        DB::statement('UPDATE filter_groups SET output_type=? WHERE output_type = ?', ['metadata::plugins.metadata.dc11.schema.Dc11Schema(PUBLICATION_FORMAT)', 'metadata::APP\plugins\metadata\dc11\schema\Dc11Schema(PUBLICATION_FORMAT)']);
     }
 }
