@@ -29,7 +29,7 @@ class PublicationNativeXmlFilter extends \PKP\plugins\importexport\native\filter
      */
     public function getClassName()
     {
-        return 'plugins.importexport.native.filter.PublicationNativeXmlFilter';
+        return (string) self::class;
     }
 
     /**
@@ -49,7 +49,7 @@ class PublicationNativeXmlFilter extends \PKP\plugins\importexport\native\filter
      * Create and return a submission node.
      *
      * @param \DOMDocument $doc
-     * @param Publication $entity
+     * @param \APP\publication\Publication $entity
      *
      * @return \DOMElement
      */
@@ -89,7 +89,7 @@ class PublicationNativeXmlFilter extends \PKP\plugins\importexport\native\filter
      *
      * @param \DOMDocument $doc
      * @param \DOMElement $entityNode
-     * @param Publication $entity
+     * @param \APP\publication\Publication $entity
      */
     public function addChapters($doc, $entityNode, $entity)
     {
@@ -113,9 +113,9 @@ class PublicationNativeXmlFilter extends \PKP\plugins\importexport\native\filter
     /**
      * Create and return an object covers node.
      *
-     * @param NativeExportFilter $filter
+     * @param \PKP\plugins\importexport\native\filter\NativeExportFilter $filter
      * @param \DOMDocument $doc
-     * @param Publication $object
+     * @param \APP\publication\Publication $object
      *
      * @return \DOMElement
      */
@@ -148,8 +148,4 @@ class PublicationNativeXmlFilter extends \PKP\plugins\importexport\native\filter
 
         return $seriesNode;
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\plugins\importexport\native\filter\PublicationNativeXmlFilter', '\PublicationNativeXmlFilter');
 }

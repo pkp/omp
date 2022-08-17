@@ -3,13 +3,11 @@
 /**
  * @file plugins/importexport/native/filter/MonographNativeXmlFilter.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2022 Simon Fraser University
+ * Copyright (c) 2000-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class MonographNativeXmlFilter
- * @ingroup plugins_importexport_native
- *
  * @brief Class that converts a Monograph to a Native XML document.
  */
 
@@ -25,7 +23,7 @@ class MonographNativeXmlFilter extends \PKP\plugins\importexport\native\filter\S
      */
     public function getClassName()
     {
-        return 'plugins.importexport.native.filter.MonographNativeXmlFilter';
+        return (string) self::class;
     }
 
 
@@ -49,20 +47,13 @@ class MonographNativeXmlFilter extends \PKP\plugins\importexport\native\filter\S
      * Create and return a submission node.
      *
      * @param \DOMDocument $doc
-     * @param Submission $submission
-     *
+     * @param \APP\submission\Submission $submission
      * @return \DOMElement
      */
     public function createSubmissionNode($doc, $submission)
     {
         $submissionNode = parent::createSubmissionNode($doc, $submission);
-
         $submissionNode->setAttribute('work_type', $submission->getData('workType'));
-
         return $submissionNode;
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\plugins\importexport\native\filter\MonographNativeXmlFilter', '\MonographNativeXmlFilter');
 }

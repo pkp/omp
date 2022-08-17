@@ -8,8 +8,6 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class NativeXmlMonographFilter
- * @ingroup plugins_importexport_native
- *
  * @brief Class that converts a Native XML document to a set of monographs.
  */
 
@@ -27,7 +25,7 @@ class NativeXmlMonographFilter extends \PKP\plugins\importexport\native\filter\N
      */
     public function getClassName()
     {
-        return 'plugins.importexport.native.filter.NativeXmlMonographFilter';
+        return (string) self::class;
     }
 
     /**
@@ -73,8 +71,4 @@ class NativeXmlMonographFilter extends \PKP\plugins\importexport\native\filter\N
         $currentFilter = PKPImportExportFilter::getFilter('native-xml=>' . $importClass, $this->getDeployment());
         return $currentFilter;
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\plugins\importexport\native\filter\NativeXmlMonographFilter', '\NativeXmlMonographFilter');
 }

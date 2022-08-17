@@ -16,5 +16,5 @@
 	<release>1.0.0.0</release>
 	<date>2016-07-12</date>
 	<lazy-load>0</lazy-load>
-	<class>URNPubIdPlugin</class>
+	<class>\APP\plugins\pubIds\urn\URNPubIdPlugin</class>
 </version>

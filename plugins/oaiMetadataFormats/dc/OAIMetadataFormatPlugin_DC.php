@@ -20,7 +20,3 @@ namespace APP\plugins\oaiMetadataFormats\dc;
 class OAIMetadataFormatPlugin_DC extends \PKP\plugins\oaiMetadataFormats\dc\PKPOAIMetadataFormatPlugin_DC
 {
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\plugins\oaiMetadataFormats\dc\OAIMetadataFormatPlugin_DC', '\OAIMetadataFormatPlugin_DC');
-}

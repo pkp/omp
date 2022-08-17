@@ -3,13 +3,11 @@
 /**
  * @file plugins/importexport/native/filter/ChapterNativeXmlFilter.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2022 Simon Fraser University
+ * Copyright (c) 2000-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ChapterNativeXmlFilter
- * @ingroup plugins_importexport_native
- *
  * @brief Base class that converts a set of authors to a Native XML document
  */
 
@@ -40,7 +38,7 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
      */
     public function getClassName()
     {
-        return 'plugins.importexport.native.filter.ChapterNativeXmlFilter';
+        return (string) self::class;
     }
 
 
@@ -50,7 +48,7 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
     /**
      * @see Filter::process()
      *
-     * @param Chapter[] $chapters
+     * @param \APP\monograph\Chapter[] $chapters
      *
      * @return \DOMDocument
      */
@@ -81,7 +79,7 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
      * Create and return an author node.
      *
      * @param \DOMDocument $doc
-     * @param Chapter $chapter
+     * @param \APP\monograph\Chapter $chapter
      *
      * @return \DOMElement
      */
@@ -158,8 +156,8 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
      *
      * @param \DOMDocument $doc
      * @param \DOMElement $entityNode
-     * @param Chapter $entity
-     * @param PubIdPlugin $pubIdPlugin
+     * @param \APP\monograph\Chapter $entity
+     * @param \APP\plugins\PubIdPlugin $pubIdPlugin
      *
      * @return \DOMElement|null
      */
@@ -181,7 +179,7 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
      *
      * @param \DOMDocument $doc
      * @param \DOMElement $entityNode
-     * @param Chapter $entity
+     * @param \APP\monograph\Chapter $entity
      */
     public function addIdentifiers($doc, $entityNode, $entity)
     {
@@ -207,8 +205,4 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
         // Also add DOIs
         $this->addPubIdentifier($doc, $entityNode, $entity, 'doi');
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\plugins\importexport\native\filter\ChapterNativeXmlFilter', '\ChapterNativeXmlFilter');
 }

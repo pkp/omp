@@ -1,24 +1,23 @@
 <?php
 
 /**
- * @file plugins/pubIds/urn/URNPubIdPlugin.inc.php
+ * @file plugins/pubIds/urn/URNPubIdPlugin.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2022 Simon Fraser University
+ * Copyright (c) 2003-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class URNPubIdPlugin
- * @ingroup plugins_pubIds_urn
- *
  * @brief URN plugin class
  */
+
+namespace APP\plugins\pubIds\urn;
 
 use APP\core\Application;
 use APP\core\Services;
 use APP\facades\Repo;
 use APP\plugins\PubIdPlugin;
 use APP\publication\Publication;
-
 use APP\template\TemplateManager;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\RemoteActionConfirmationModal;
@@ -299,13 +298,8 @@ class URNPubIdPlugin extends PubIdPlugin
         $object = $args[1];
         $props = $args[2];
 
-        // URNs are not supported for IssueGalleys
-        if (get_class($object) === 'IssueGalley') {
-            return;
-        }
-
         // URNs are already added to property values for Publications and Galleys
-        if ($object instanceof Publication) {
+        if ($object instanceof \APP\publication\Publication) {
             return;
         }
 
@@ -415,7 +409,7 @@ class URNPubIdPlugin extends PubIdPlugin
             // Load the checkNumber.js file that is required for this field
             $this->addJavaScript(Application::get()->getRequest(), TemplateManager::getManager(Application::get()->getRequest()));
 
-            $form->addField(new \Plugins\Generic\URN\FieldUrn('pub-id::other::urn', [
+            $form->addField(new classes\form\FieldUrn('pub-id::other::urn', [
                 'label' => __('plugins.pubIds.urn.displayName'),
                 'description' => __('plugins.pubIds.urn.editor.urn.description', ['prefix' => $prefix]),
                 'value' => $form->publication->getData('pub-id::other::urn'),
@@ -428,7 +422,7 @@ class URNPubIdPlugin extends PubIdPlugin
      * Show URN during final publish step
      *
      * @param string $hookName Form::config::before
-     * @param FormComponent $form The form object
+     * @param \PKP\form\FormComponent $form The form object
      */
     public function addPublishFormNotice($hookName, $form)
     {

@@ -3,13 +3,11 @@
 /**
  * @file plugins/importexport/native/filter/PublicationFormatNativeXmlFilter.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2022 Simon Fraser University
+ * Copyright (c) 2000-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationFormatNativeXmlFilter
- * @ingroup plugins_importexport_native
- *
  * @brief Class that converts a PublicationFormat to a Native XML document.
  */
 
@@ -31,7 +29,7 @@ class PublicationFormatNativeXmlFilter extends \PKP\plugins\importexport\native\
      */
     public function getClassName()
     {
-        return 'plugins.importexport.native.filter.PublicationFormatNativeXmlFilter';
+        return (string) self::class;
     }
 
     //
@@ -42,8 +40,7 @@ class PublicationFormatNativeXmlFilter extends \PKP\plugins\importexport\native\
      * with publication format specific data.
      *
      * @param \DOMDocument $doc
-     * @param PublicationFormat $representation
-     *
+     * @param \APP\publicationFormat\PublicationFormat $representation
      * @return \DOMElement
      */
     public function createRepresentationNode($doc, $representation)
@@ -95,9 +92,8 @@ class PublicationFormatNativeXmlFilter extends \PKP\plugins\importexport\native\
     /**
      * Get the available submission files for a representation
      *
-     * @param Representation $representation
-     *
-     * @return Iterator
+     * @param \PKP\submissio\Representation $representation
+     * @return \Iterator
      */
     public function getFiles($representation)
     {
@@ -113,8 +109,4 @@ class PublicationFormatNativeXmlFilter extends \PKP\plugins\importexport\native\
 
         return Repo::submissionFile()->getMany($collector);
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\plugins\importexport\native\filter\PublicationFormatNativeXmlFilter', '\PublicationFormatNativeXmlFilter');
 }

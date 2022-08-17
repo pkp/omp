@@ -3,13 +3,11 @@
 /**
  * @file plugins/importexport/native/filter/NativeXmlPublicationFormatFilter.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2022 Simon Fraser University
+ * Copyright (c) 2000-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class NativeXmlPublicationFormatFilter
- * @ingroup plugins_importexport_native
- *
  * @brief Class that converts a Native XML document to a set of publication formats.
  */
 
@@ -55,15 +53,14 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
      */
     public function getClassName()
     {
-        return 'plugins.importexport.native.filter.NativeXmlPublicationFormatFilter';
+        return (string) self::class;
     }
 
 
     /**
      * Handle a submission element
      *
-     * @param DOMElement $node
-     *
+     * @param \DOMElement $node
      * @return array Array of PublicationFormat objects
      */
     public function handleElement($node)
@@ -115,9 +112,9 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
     /**
      * Process the self_file_ref node found inside the publication_format node.
      *
-     * @param DOMElement $node
-     * @param Onix30ExportDeployment $deployment
-     * @param PublicationFormat $representation
+     * @param \DOMElement $node
+     * @param \APP\plugins\importexport\onix30\Onix30ExportDeployment $deployment
+     * @param \APP\publicationFormat\PublicationFormat $representation
      */
     public function _processFileRef($node, $deployment, &$representation)
     {
@@ -139,9 +136,9 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
     /**
      * Process the Product node found inside the publication_format node.  There may be many of these.
      *
-     * @param DOMElement $node
-     * @param PKPImportExportDeployment $deployment
-     * @param PublicationFormat $representation
+     * @param \DOMElement $node
+     * @param \PKP\plugins\importexport\PKPImportExportDeployment $deployment
+     * @param \APP\publicationFormat\PublicationFormat $representation
      */
     public function _processProductNode($node, $deployment, &$representation)
     {
@@ -377,8 +374,8 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
     /**
      * Extracts the text content from a node.
      *
-     * @param DOMElement $node
-     * @param Onix30ExportDeployment $onixDeployment
+     * @param \DOMElement $node
+     * @param \APP\plugins\importexport\onix30\Onix30ExportDeployment $onixDeployment
      * @param string $nodeName the name of the node.
      *
      * @return string
@@ -397,9 +394,9 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
     /**
      * Extracts the elements of the Extent nodes.
      *
-     * @param DOMElement $node
-     * @param Onix30ExportDeployment $onixDeployment
-     * @param PublicationFormat $representation
+     * @param \DOMElement $node
+     * @param \APP\plugins\importexport\onix30\Onix30ExportDeployment $onixDeployment
+     * @param \APP\publicationFormat\PublicationFormat $representation
      */
     public function _extractExtentContent($node, $onixDeployment, &$representation)
     {
@@ -427,9 +424,9 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
     /**
      * Extracts the elements of the Measure nodes.
      *
-     * @param DOMElement $node
-     * @param Onix30ExportDeployment $onixDeployment
-     * @param PublicationFormat $representation
+     * @param \DOMElement $node
+     * @param \APP\plugins\importexport\onix30\Onix30ExportDeployment $onixDeployment
+     * @param \APP\publicationFormat\PublicationFormat $representation
      */
     public function _extractMeasureContent($node, $onixDeployment, &$representation)
     {
@@ -466,9 +463,9 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
      * Extracts the AudienceRange elements, which vary depending on whether
      * a submission defines a specific range, or a to/from pair.
      *
-     * @param DOMElement $node
-     * @param Onix30ExportDeployment $onixDeployment
-     * @param Submission $submission
+     * @param \DOMElement $node
+     * @param \APP\plugins\importexport\onix30\Onix30ExportDeployment $onixDeployment
+     * @param \APP\submission\Submission $submission
      */
     public function _extractAudienceRangeContent($node, $onixDeployment, &$submission)
     {
@@ -499,8 +496,4 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
             }
         }
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\plugins\importexport\native\filter\NativeXmlPublicationFormatFilter', '\NativeXmlPublicationFormatFilter');
 }

@@ -39,7 +39,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
      */
     public function getClassName()
     {
-        return 'plugins.metadata.dc11.filter.Dc11SchemaPublicationFormatAdapter';
+        return (string) self::class;
     }
 
 
@@ -268,8 +268,4 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             }
         }
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\plugins\metadata\dc11\filter\Dc11SchemaPublicationFormatAdapter', '\Dc11SchemaPublicationFormatAdapter');
 }

@@ -3,13 +3,11 @@
 /**
  * @file plugins/importexport/native/filter/ArtworkFileNativeXmlFilter.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2022 Simon Fraser University
+ * Copyright (c) 2000-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ArtworkFileNativeXmlFilter
- * @ingroup plugins_importexport_native
- *
  * @brief Filter to convert an artwork file to a Native XML document
  */
 
@@ -25,7 +23,7 @@ class MonographFileNativeXmlFilter extends \PKP\plugins\importexport\native\filt
      */
     public function getClassName()
     {
-        return 'plugins.importexport.native.filter.MonographFileNativeXmlFilter';
+        return (string) self::class;
     }
 
 
@@ -36,8 +34,7 @@ class MonographFileNativeXmlFilter extends \PKP\plugins\importexport\native\filt
      * Create and return a submissionFile node.
      *
      * @param \DOMDocument $doc
-     * @param SubmissionFile $submissionFile
-     *
+     * @param \PKP\submissionFile\SubmissionFile $submissionFile
      * @return \DOMElement
      */
     public function createSubmissionFileNode($doc, $submissionFile)
@@ -67,8 +64,4 @@ class MonographFileNativeXmlFilter extends \PKP\plugins\importexport\native\filt
     {
         return 'submission_file';
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\plugins\importexport\native\filter\MonographFileNativeXmlFilter', '\MonographFileNativeXmlFilter');
 }

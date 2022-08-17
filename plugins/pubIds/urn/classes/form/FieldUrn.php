@@ -12,7 +12,7 @@
  * @brief A field for entering a URN and then having the check number generated.
  */
 
-namespace Plugins\Generic\URN;
+namespace APP\plugins\generic\urn\classes\form;
 
 use PKP\components\forms\FieldText;
 

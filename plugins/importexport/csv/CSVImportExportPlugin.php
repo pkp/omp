@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @file plugins/importexport/csv/CSVImportExportPlugin.inc.php
+ * @file plugins/importexport/csv/CSVImportExportPlugin.php
  *
  * Copyright (c) 2013-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class CSVImportExportPlugin
- * @ingroup plugins_importexport_csv
- *
  * @brief CSV import/export plugin
  */
+
+namespace APP\plugins\importexport\csv;
 
 use APP\core\Application;
 use APP\facades\Repo;
@@ -21,7 +21,6 @@ use PKP\db\DAORegistry;
 use PKP\file\FileManager;
 use PKP\plugins\ImportExportPlugin;
 use PKP\security\Role;
-
 use PKP\submission\PKPSubmission;
 use PKP\submissionFile\SubmissionFile;
 

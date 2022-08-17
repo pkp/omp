@@ -104,63 +104,63 @@
 		<!-- Native XML monograph output -->
 		<filter
 			inGroup="monograph=>native-xml"
-			class="plugins.importexport.native.filter.MonographNativeXmlFilter"
+			class="APP\plugins\importexport\native\filter\MonographNativeXmlFilter"
 			isTemplate="0" />
 		<!-- Native XML monograph input -->
 		<filter
 			inGroup="native-xml=>monograph"
-			class="plugins.importexport.native.filter.NativeXmlMonographFilter"
+			class="APP\plugins\importexport\native\filter\NativeXmlMonographFilter"
 			isTemplate="0" />
 		<!-- Native XML author output -->
 		<filter
 			inGroup="author=>native-xml"
-			class="plugins.importexport.native.filter.AuthorNativeXmlFilter"
+			class="APP\plugins\importexport\native\filter\AuthorNativeXmlFilter"
 			isTemplate="0" />
 		<!-- Native XML monograph input -->
 		<filter
 			inGroup="native-xml=>author"
-			class="plugins.importexport.native.filter.NativeXmlAuthorFilter"
+			class="APP\plugins\importexport\native\filter\NativeXmlAuthorFilter"
 			isTemplate="0" />
 		<!-- Native XML publication format output -->
 		<filter
 			inGroup="publication-format=>native-xml"
-			class="plugins.importexport.native.filter.PublicationFormatNativeXmlFilter"
+			class="APP\plugins\importexport\native\filter\PublicationFormatNativeXmlFilter"
 			isTemplate="0" />
 		<!-- Native XML publication format input -->
 		<filter
 			inGroup="native-xml=>PublicationFormat"
-			class="plugins.importexport.native.filter.NativeXmlPublicationFormatFilter"
+			class="APP\plugins\importexport\native\filter\NativeXmlPublicationFormatFilter"
 			isTemplate="0" />
 		<!-- Native XML submission file input -->
 		<filter
 			inGroup="native-xml=>SubmissionFile"
-			class="plugins.importexport.native.filter.NativeXmlMonographFileFilter"
+			class="APP\plugins\importexport\native\filter\NativeXmlMonographFileFilter"
 			isTemplate="0" />
 		<!-- Native XML submission file output -->
 		<filter
 			inGroup="SubmissionFile=>native-xml"
-			class="lib.pkp.plugins.importexport.native.filter.SubmissionFileNativeXmlFilter"
+			class="PKP\plugins\importexport\native\filter\SubmissionFileNativeXmlFilter"
 			isTemplate="0" />
 		<!-- ONIX 3.0 XML monograph output -->
 		<filter
 			inGroup="monograph=>onix30-xml"
-			class="plugins.importexport.onix30.filter.MonographONIX30XmlFilter"
+			class="APP\plugins\importexport\onix30\filter\MonographONIX30XmlFilter"
 			isTemplate="0" />
 		<filter
 			inGroup="publication=>native-xml"
-			class="plugins.importexport.native.filter.PublicationNativeXmlFilter"
+			class="APP\plugins\importexport\native\filter\PublicationNativeXmlFilter"
 			isTemplate="0" />
 		<filter
 			inGroup="native-xml=>Publication"
-			class="plugins.importexport.native.filter.NativeXmlPublicationFilter"
+			class="APP\plugins\importexport\native\filter\NativeXmlPublicationFilter"
 			isTemplate="0" />
 		<filter
 			inGroup="chapter=>native-xml"
-			class="plugins.importexport.native.filter.ChapterNativeXmlFilter"
+			class="APP\plugins\importexport\native\filter\ChapterNativeXmlFilter"
 			isTemplate="0" />
 		<filter
 			inGroup="native-xml=>chapter"
-			class="plugins.importexport.native.filter.NativeXmlChapterFilter"
+			class="APP\plugins\importexport\native\filter\NativeXmlChapterFilter"
 			isTemplate="0" />
 	</filters>
 </filterConfig>

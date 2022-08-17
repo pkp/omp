@@ -1,22 +1,21 @@
 <?php
 
 /**
- * @file plugins/pubIds/urn/classes/form/URNSettingsForm.inc.php
+ * @file plugins/pubIds/urn/classes/form/URNSettingsForm.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2022 Simon Fraser University
+ * Copyright (c) 2003-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class URNSettingsForm
- * @ingroup plugins_pubIds_urn
- *
- * @brief Form for journal managers to setup URN plugin
+ * @brief Form for managers to setup URN plugin
  */
+
+namespace APP\plugins\pubIds\urn\classes\form;
 
 use APP\template\TemplateManager;
 use PKP\form\Form;
 use PKP\linkAction\LinkAction;
-
 use PKP\linkAction\request\RemoteActionConfirmationModal;
 
 class URNSettingsForm extends Form
@@ -37,13 +36,13 @@ class URNSettingsForm extends Form
         return $this->_contextId;
     }
 
-    /** @var URNPubIdPlugin */
+    /** @var \APP\plugins\pubIds\urn\URNPubIdPlugin */
     public $_plugin;
 
     /**
      * Get the plugin.
      *
-     * @return URNPubIdPlugin
+     * @return \APP\plugins\pubIds\urn\URNPubIdPlugin
      */
     public function _getPlugin()
     {
@@ -56,7 +55,7 @@ class URNSettingsForm extends Form
     /**
      * Constructor
      *
-     * @param URNPubIdPlugin $plugin
+     * @param \APP\plugins\pubIds\urn\URNPubIdPlugin $plugin
      * @param int $contextId
      */
     public function __construct($plugin, $contextId)

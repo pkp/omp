@@ -8,8 +8,6 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class NativeXmlPublicationFilter
- * @ingroup plugins_importexport_native
- *
  * @brief Class that converts a Native XML document to a set of monographs.
  */
 
@@ -31,16 +29,16 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
      */
     public function getClassName()
     {
-        return 'plugins.importexport.native.filter.NativeXmlPublicationFilter';
+        return (string) self::class;
     }
 
     /**
      * Populate the submission object from the node
      *
-     * @param Publication $publication
+     * @param \APP\publication\Publication $publication
      * @param \DOMElement $node
      *
-     * @return Publication
+     * @return \APP\publication\Publication
      */
     public function populateObject($publication, $node)
     {
@@ -54,7 +52,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
      * Handle an element whose parent is the submission element.
      *
      * @param \DOMElement $n
-     * @param Publication $publication
+     * @param \APP\publication\Publication $publication
      */
     public function handleChildElement($n, $publication)
     {
@@ -81,8 +79,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
      * Get the import filter for a given element.
      *
      * @param string $elementName Name of XML element
-     *
-     * @return Filter
+     * @return \APP\filter\Filter
      */
     public function getImportFilter($elementName)
     {
@@ -112,7 +109,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
      * Parse a publication format and add it to the submission.
      *
      * @param \DOMElement $n
-     * @param Publication $publication
+     * @param \APP\publication\Publication $publication
      */
     public function parsePublicationFormat($n, $publication)
     {
@@ -135,7 +132,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
     /**
      * Parse a publication format and add it to the submission.
      *
-     * @param Publication $publication
+     * @param \APP\publication\Publication $publication
      */
     public function parseChapters($node, $publication)
     {
@@ -163,7 +160,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
      * Parse a publication format and add it to the submission.
      *
      * @param \DOMElement $n
-     * @param Publication $publication
+     * @param \APP\publication\Publication $publication
      */
     public function parseChapter($n, $publication)
     {
@@ -182,9 +179,9 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
     /**
      * Parse out the object covers.
      *
-     * @param NativeExportFilter $filter
+     * @param \PKP\plugins\importexport\native\filter\NativeExportFilter $filter
      * @param \DOMElement $node
-     * @param Publication $object
+     * @param \APP\publication\Publication $object
      */
     public function parsePublicationCovers($filter, $node, $object)
     {
@@ -211,9 +208,9 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
     /**
      * Parse out the cover and store it in the object.
      *
-     * @param NativeExportFilter $filter
+     * @param \PKP\plugins\importexport\native\filter\NativeExportFilter $filter
      * @param \DOMElement $node
-     * @param Publication $object
+     * @param \APP\publication\Publication $object
      */
     public function parsePublicationCover($filter, $node, $object)
     {
@@ -257,9 +254,9 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
     /**
      * Parse out the cover and store it in the object.
      *
-     * @param NativeExportFilter $filter
+     * @param \PKP\plugins\importexport\native\filter\NativeExportFilter $filter
      * @param \DOMElement $node
-     * @param Publication $object
+     * @param \APP\publication\Publication $object
      */
     public function parseSeries($filter, $node, $object)
     {
@@ -335,8 +332,4 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
     {
         return 'publication-format=>native-xml';
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\plugins\importexport\native\filter\NativeXmlPublicationFilter', '\NativeXmlPublicationFilter');
 }

@@ -823,7 +823,3 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         return $node;
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\plugins\importexport\onix30\filter\MonographONIX30XmlFilter', '\MonographONIX30XmlFilter');
-}

@@ -3,13 +3,11 @@
 /**
  * @file plugins/importexport/native/filter/NativeXmlChapterFilter.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2022 Simon Fraser University
+ * Copyright (c) 2000-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class NativeXmlChapterFilter
- * @ingroup plugins_importexport_native
- *
  * @brief Base class that converts a Native XML document to a set of authors
  */
 
@@ -63,7 +61,7 @@ class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\Nat
      */
     public function getClassName()
     {
-        return 'plugins.importexport.native.filter.NativeXmlChapterFilter';
+        return (string) self::class;
     }
 
 
@@ -142,8 +140,8 @@ class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\Nat
     /**
      * Parse an author and add it to the chapter.
      *
-     * @param DOMElement $n
-     * @param Chapter $chapter
+     * @param \DOMElement $n
+     * @param \APP\monograph\Chapter $chapter
      */
     public function parseAuthor($n, $chapter)
     {
@@ -161,8 +159,8 @@ class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\Nat
     /**
      * Parse an author and add it to the chapter.
      *
-     * @param DOMElement $n
-     * @param Chapter $chapter
+     * @param \DOMElement $n
+     * @param \APP\monograph\Chapter $chapter
      */
     public function parseSubmissionFileRef($n, $chapter)
     {
@@ -192,7 +190,7 @@ class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\Nat
     /**
      * Parse an identifier node and set up the chapter object accordingly
      *
-     * @param DOMElement $element
+     * @param \DOMElement $element
      */
     public function parseIdentifier($element, $chapter)
     {
@@ -214,8 +212,4 @@ class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\Nat
                 }
         }
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\plugins\importexport\native\filter\NativeXmlChapterFilter', '\NativeXmlChapterFilter');
 }
