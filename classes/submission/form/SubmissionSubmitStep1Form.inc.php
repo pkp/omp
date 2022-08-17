@@ -105,4 +105,28 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 		$submission->setSeriesPosition($this->getData('seriesPosition'));
 		parent::setSubmissionData($submission);
 	}
+
+	/**
+	 * Save changes to submission.
+	 * @return int the submission ID
+	 */
+	function execute(...$functionParams) {
+		
+		$submissionId = parent::execute(...$functionParams);
+
+		$request = Application::get()->getRequest();
+
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
+
+		$series = $seriesDao->getById((int)$request->getUserVar('seriesId'), (int)$request->getContext()->getId());
+
+		Services::get('publication')
+			->edit(
+				$this->submission->getCurrentPublication(), 
+				['seriesId' => $series ? $series->getId() : null], 
+				$request
+			);
+
+		return $submissionId;
+	}
 }

@@ -14,6 +14,7 @@
  */
 
 import('lib.pkp.classes.publication.PKPPublicationDAO');
+
 class PublicationDAO extends PKPPublicationDAO {
 
 	/** @copydoc SchemaDAO::$primaryTableColumns */
