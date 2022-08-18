@@ -204,9 +204,10 @@ class ContextService extends \PKP\services\PKPContextService
                         ->filterByContextIds([$context->getId()])
                 ));
             } elseif ($objectDao instanceof \PKP\category\DAO) {
-                $objects = iterator_to_array(Repo::category()->getMany(
-                    Repo::category()->getCollector()
-                    ->filterByContextIds([$context->getId()])));
+                $objects = Repo::category()->getCollector()
+                    ->filterByContextIds([$context->getId()])
+                    ->getMany()
+                    ->toArray();
             } else {
                 $objects = $objectDao->getByContextId($context->getId())->toArray();
             }

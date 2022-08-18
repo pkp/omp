@@ -193,10 +193,10 @@ class CatalogBookHandler extends Handler
 
         // Categories
         $templateMgr->assign([
-            'categories' => iterator_to_array(
-                Repo::category()->getMany(Repo::category()->getCollector()
-                    ->filterByPublicationIds([$this->publication->getId()]))
-            ),
+            'categories' => Repo::category()->getCollector()
+                ->filterByPublicationIds([$this->publication->getId()])
+                ->getMany()
+                ->toArray()
         ]);
 
         // Citations

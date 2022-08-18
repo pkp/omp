@@ -159,10 +159,10 @@ class SeriesForm extends PKPSectionForm
 
         $context = $request->getContext();
 
-        $categoryCount = Repo::category()->getCount(
-            Repo::category()->getCollector()
-                ->filterByContextIds([$context->getId()])
-        );
+        $categoryCount = Repo::category()->getCollector()
+            ->filterByContextIds([$context->getId()])
+            ->getCount();
+
         $templateMgr->assign('categoryCount', $categoryCount);
 
         // Sort options.
@@ -190,8 +190,11 @@ class SeriesForm extends PKPSectionForm
 
         // Categories list
         $allCategories = [];
-        $categoriesResult = iterator_to_array(Repo::category()->getMany(Repo::category()->getCollector()
-            ->filterByContextIds([$context->getId()])));
+        $categoriesResult = Repo::category()->getCollector()
+            ->filterByContextIds([$context->getId()])
+            ->getMany()
+            ->toArray();
+
         foreach ($categoriesResult as $category) {
             $title = $category->getLocalizedTitle();
             if ($category->getParentId()) {

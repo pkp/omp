@@ -82,9 +82,10 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
             $ompTypes = array_merge($ompTypes, $newArray);
         }
 
-        $categoryCount = Repo::category()->count(Repo::category()->getCollector()
+        $categoryCount = Repo::category()->getCollector()
             ->filterByParentIds([null])
-            ->filterByContextIds([$contextId]));
+            ->filterByContextIds([$contextId])
+            ->getCount();
 
         if ($categoryCount) {
             $newArray = [

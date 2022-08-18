@@ -74,8 +74,10 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
             $config['contextId'] = $context->getId();
 
             $categories = [];
-            $categoriesCollection = Repo::category()->getMany(Repo::category()->getCollector()
-                ->filterByContextIds([$context->getId()]));
+            $categoriesCollection = Repo::category()->getCollector()
+                ->filterByContextIds([$context->getId()])
+                ->getMany();
+
             foreach ($categoriesCollection as $category) {
                 [$categorySortBy, $categorySortDir] = explode('-', $category->getSortOption());
                 $categorySortDir = empty($categorySortDir) ? $catalogSortDir : ($categorySortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC');
