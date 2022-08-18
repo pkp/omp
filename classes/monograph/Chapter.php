@@ -171,12 +171,10 @@ class Chapter extends \PKP\core\DataObject
      */
     public function getAuthors()
     {
-        return Repo::author()->getMany(
-            Repo::author()
-                ->getCollector()
-                ->filterByChapterIds([$this->getId()])
-                ->filterByPublicationIds([$this->getData('publicationId')])
-        );
+        return Repo::author()->getCollector()
+            ->filterByChapterIds([$this->getId()])
+            ->filterByPublicationIds([$this->getData('publicationId')])
+            ->getMany();
     }
 
     /**
