@@ -86,11 +86,10 @@ class Repository extends \PKP\publication\Repository
     {
         // Get some data about the publication being versioned before any changes are made
         $oldPublicationFormats = $publication->getData('publicationFormats');
-        $oldAuthors = Repo::author()->getMany(
-            Repo::author()
-                ->getCollector()
-                ->filterByPublicationIds([$publication->getId()])
-        );
+        $oldAuthors = Repo::author()->getCollector()
+            ->filterByPublicationIds([$publication->getId()])
+            ->getMany();
+
         $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
         $oldChaptersIterator = $chapterDao->getByPublicationId($publication->getId());
         $oldPublicationId = $publication->getId();
@@ -159,11 +158,10 @@ class Repository extends \PKP\publication\Repository
         }
 
         // Chapters (and all associated objects)
-        $newAuthors = Repo::author()->getMany(
-            Repo::author()
-                ->getCollector()
-                ->filterByPublicationIds([$newPublication->getId()])
-        );
+        $newAuthors = Repo::author()->getCollector()
+            ->filterByPublicationIds([$newPublication->getId()])
+            ->getMany();
+
         while ($oldChapter = $oldChaptersIterator->next()) {
             $newChapter = clone $oldChapter;
             $newChapter->setData('id', null);
@@ -187,12 +185,10 @@ class Repository extends \PKP\publication\Repository
             // unique for each author to determine which new author is a copy of the
             // old one. We then map the old chapter author associations to the new
             // authors.
-            $oldChapterAuthors = Repo::author()->getMany(
-                Repo::author()
-                    ->getCollector()
-                    ->filterByChapterIds([$oldChapter->getId()])
-                    ->filterByPublicationIds([$oldPublicationId])
-            );
+            $oldChapterAuthors = Repo::author()->getCollector()
+                ->filterByChapterIds([$oldChapter->getId()])
+                ->filterByPublicationIds([$oldPublicationId])
+                ->getMany();
 
             foreach ($newAuthors as $newAuthor) {
                 foreach ($oldAuthors as $oldAuthor) {

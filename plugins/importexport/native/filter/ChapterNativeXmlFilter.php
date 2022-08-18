@@ -105,12 +105,10 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
         $entityNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'pages', $chapter->getData('pages')));
 
         // Add authors
-        $chapterAuthors = Repo::author()->getMany(
-            Repo::author()
-                ->getCollector()
-                ->filterByChapterIds([$chapter->getId()])
-                ->filterByPublicationIds([$chapter->getData('publicationId')])
-        );
+        $chapterAuthors = Repo::author()->getCollector()
+            ->filterByChapterIds([$chapter->getId()])
+            ->filterByPublicationIds([$chapter->getData('publicationId')])
+            ->getMany();
 
         foreach ($chapterAuthors as $chapterAuthor) {
             $entityNode->appendChild($this->createChapterAuthorNode($doc, $chapterAuthor));

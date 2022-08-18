@@ -34,12 +34,10 @@ class Schema extends \PKP\publication\maps\Schema
                     $data['authors'] = [];
                 } else {
                     $data['authors'] = Repo::author()
-                        ->getMany(
-                            Repo::author()
-                                ->getCollector()
-                                ->filterByChapterIds([$chapter->getId()])
-                                ->filterByPublicationIds([$publication->getId()])
-                        )
+                        ->getCollector()
+                        ->filterByChapterIds([$chapter->getId()])
+                        ->filterByPublicationIds([$publication->getId()])
+                        ->getMany()
                         ->map(function ($chapterAuthor) {
                             return $chapterAuthor->_data;
                         });
