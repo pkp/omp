@@ -90,8 +90,10 @@ class SitemapHandler extends PKPSitemapHandler
             $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'series', $series->getPath())));
         }
         // Browse by categories
-        $categories = Repo::category()->getMany(Repo::category()->getCollector()
-            ->filterByContextIds([$pressId]));
+        $categories = Repo::category()->getCollector()
+            ->filterByContextIds([$pressId])
+            ->getMany();
+
         foreach ($categories as $category) {
             $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'category', $category->getPath())));
         }

@@ -44,9 +44,10 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm
             $seriesTitles[$series->getId()] = $series->getLocalizedTitle();
         }
 
-        $categories = Repo::category()->getMany(Repo::category()->getCollector()
+        $categories = Repo::category()->getCollector()
             ->filterByParentIds([null])
-            ->filterByContextIds([$contextId]));
+            ->filterByContextIds([$contextId])
+            ->getMany();
 
         $categoryTitles = [];
         foreach ($categories as $category) {

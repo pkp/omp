@@ -124,8 +124,10 @@ class BrowseBlockPlugin extends BlockPlugin
         $categoriesDisplay = $this->getSetting($press->getId(), 'browseCategories');
         if ($categoriesDisplay) {
             // Provide a list of categories to browse
-            $categories = Repo::category()->getMany(Repo::category()->getCollector()
-                ->filterByContextIds([$press->getId()]));
+            $categories = Repo::category()->getCollector()
+                ->filterByContextIds([$press->getId()])
+                ->getMany();
+
             $templateMgr->assign('browseCategories', iterator_to_array($categories));
         }
 
