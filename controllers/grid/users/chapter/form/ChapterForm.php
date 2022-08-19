@@ -195,11 +195,11 @@ class ChapterForm extends Form
             }
         }
 
-        $collector = Repo::submissionFile()
+        $submissionFiles = Repo::submissionFile()
             ->getCollector()
-            ->filterBySubmissionIds([$this->getMonograph()->getId()]);
+            ->filterBySubmissionIds([$this->getMonograph()->getId()])
+            ->getMany();
 
-        $submissionFiles = Repo::submissionFile()->getMany($collector);
         foreach ($submissionFiles as $submissionFile) {
             $isIncluded = false;
 

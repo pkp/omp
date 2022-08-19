@@ -204,12 +204,13 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             $dc11Description->addStatement('dc:language', LocaleConversion::getIso3FromLocale($submissionLanguage));
         }
 
-        $collector = Repo::submissionFile()
+        $pubFormatFiles = Repo::submissionFile()
             ->getCollector()
             ->filterBySubmissionIds([$monograph->getId()])
-            ->filterByAssoc(ASSOC_TYPE_PUBLICATION_FORMAT);
-        // Relation   (Add publication file format to monograph / edited volume)
-        $pubFormatFiles = Repo::submissionFile()->getMany($collector);
+            ->filterByAssoc(ASSOC_TYPE_PUBLICATION_FORMAT)
+            ->getMany();
+
+        // Relation (Add publication file format to monograph / edited volume)
         foreach ($pubFormatFiles as $file) {
             {
                 if ($file->getData('assocId') == $publicationFormat->getData('id')) {

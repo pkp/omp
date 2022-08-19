@@ -171,8 +171,8 @@ class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
             );
 
         $embeddableFiles = array_merge(
-            iterator_to_array(Repo::submissionFile()->getMany($proofCollector)),
-            iterator_to_array(Repo::submissionFile()->getMany($dependentCollector))
+            $proofCollector->getMany()->toArray(),
+            $dependentCollector->getMany()->toArray()
         );
 
         foreach ($embeddableFiles as $embeddableFile) {

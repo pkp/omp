@@ -120,16 +120,16 @@ class Repository extends \PKP\publication\Repository
                 }
             }
 
-            $collector = Repo::submissionFile()
+            $submissionFiles = Repo::submissionFile()
                 ->getCollector()
                 ->filterBySubmissionIds([$submissionId])
                 ->filterByAssoc(
                     Application::ASSOC_TYPE_REPRESENTATION,
                     [$oldPublicationFormat->getId()]
-                );
+                )
+                ->getMany();
 
             // Duplicate publication format files
-            $submissionFiles = Repo::submissionFile()->getMany($collector);
             foreach ($submissionFiles as $submissionFile) {
                 $newSubmissionFile = clone $submissionFile;
                 $newSubmissionFile->setData('id', null);
@@ -138,16 +138,16 @@ class Repository extends \PKP\publication\Repository
                 $newSubmissionFile = Repo::submissionFile()->get($newSubmissionFileId);
                 $newSubmissionFiles[] = $newSubmissionFile;
 
-                $collector = Repo::submissionFile()
+                $dependentFiles = Repo::submissionFile()
                     ->getCollector()
                     ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_DEPENDENT])
                     ->filterByAssoc(
                         Application::ASSOC_TYPE_SUBMISSION_FILE,
                         [$submissionFile->getId()]
                     )
-                    ->includeDependentFiles();
+                    ->includeDependentFiles()
+                    ->getMany();
 
-                $dependentFiles = Repo::submissionFile()->getMany($collector);
                 foreach ($dependentFiles as $dependentFile) {
                     $newDependentFile = clone $dependentFile;
                     $newDependentFile->setData('id', null);

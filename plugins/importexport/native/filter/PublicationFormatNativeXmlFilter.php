@@ -99,14 +99,13 @@ class PublicationFormatNativeXmlFilter extends \PKP\plugins\importexport\native\
     {
         $deployment = $this->getDeployment();
         $submission = $deployment->getSubmission();
-        $collector = Repo::submissionFile()
+        return Repo::submissionFile()
             ->getCollector()
             ->filterBySubmissionIds([$submission->getId()])
             ->filterByAssoc(
                 ASSOC_TYPE_PUBLICATION_FORMAT,
                 [$representation->getId()]
-            );
-
-        return Repo::submissionFile()->getMany($collector);
+            )
+            ->getMany();
     }
 }

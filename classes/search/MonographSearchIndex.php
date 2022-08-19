@@ -142,13 +142,11 @@ class MonographSearchIndex extends SubmissionSearchIndex
     public function submissionFilesChanged($monograph)
     {
         // Index galley files
-        $collector = Repo::submissionFile()
+        $submissionFiles = Repo::submissionFile()
             ->getCollector()
             ->filterBySubmissionIds([$monograph->getId()])
-            ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF]);
-
-        $submissionFiles = Repo::submissionFile()
-            ->getMany($collector);
+            ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
+            ->getMany();
 
         foreach ($submissionFiles as $submissionFile) {
             $this->updateFileIndex($monograph->getId(), SubmissionSearch::SUBMISSION_SEARCH_GALLEY_FILE, $submissionFile->getId());

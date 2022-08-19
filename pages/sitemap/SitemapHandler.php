@@ -59,17 +59,18 @@ class SitemapHandler extends PKPSitemapHandler
                 // Consider only available publication formats
                 if ($format->getIsAvailable()) {
                     // Consider only available publication format files
-                    $collector = Repo::submissionFile()
+                    $submissionFiles = Repo::submissionFile()
                         ->getCollector()
                         ->filterByAssoc(
                             ASSOC_TYPE_PUBLICATION_FORMAT,
                             [$format->getId()]
                         )
-                        ->filterBySubmissionIds([$submission->getId()]);
+                        ->filterBySubmissionIds([$submission->getId()])
+                        ->getMany()
+                        ->toArray();
 
-                    $data = Repo::submissionFile()->getMany($collector);
                     $availableFiles = array_filter(
-                        iterator_to_array($data),
+                        $submissionFiles,
                         function ($a) {
                             return $a->getDirectSalesPrice() !== null;
                         }
