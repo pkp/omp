@@ -230,11 +230,10 @@ class SeriesDAO extends PKPSectionDAO
                 ->filterBySeriesIds([$seriesId])
                 ->filterByContextIds([Application::CONTEXT_ID_ALL])
         );
-        $publications = Repo::publication()->getMany(
-            Repo::publication()
-                ->getCollector()
+        $publications = Repo::publication()->getCollector()
                 ->filterBySubmissionIds($submissionIds->toArray())
-        );
+                ->getMany();
+
         foreach ($publications as $publication) {
             Repo::publication()->edit($publication, ['seriesId' => 0]);
         }
