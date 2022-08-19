@@ -140,7 +140,7 @@ class Repository extends \PKP\doi\Repository
                 $submissionFiles = Repo::submissionFile()
                     ->getCollector()
                     ->filterBySubmissionIds([$publication->getData('submissionId')])
-                    ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF]);
+                    ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
                     ->getMany();
 
                 /** @var SubmissionFile $submissionFile */
