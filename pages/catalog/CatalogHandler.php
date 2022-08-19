@@ -83,8 +83,8 @@ class CatalogHandler extends PKPCatalogHandler
             ->orderBy($orderBy, $orderDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC')
             ->orderByFeatured();
 
-        $total = Repo::submission()->getCount($collector);
-        $submissions = Repo::submission()->getMany($collector->limit($count)->offset($offset));
+        $total = $collector->getCount();
+        $submissions = $collector->limit($count)->offset($offset)->getMany();
 
         $featureDao = DAORegistry::getDAO('FeatureDAO'); /** @var FeatureDAO $featureDao */
         $featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $context->getId());
@@ -169,8 +169,8 @@ class CatalogHandler extends PKPCatalogHandler
             ->orderBy($orderBy, $orderDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC')
             ->orderByFeatured();
 
-        $total = Repo::submission()->getCount($collector);
-        $submissions = Repo::submission()->getMany($collector->limit($count)->offset($offset));
+        $total = $collector->getCount();
+        $submissions = $collector->limit($count)->offset($offset)->getMany();
 
         $featureDao = DAORegistry::getDAO('FeatureDAO'); /** @var FeatureDAO $featureDao */
         $featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_SERIES, $series->getId());

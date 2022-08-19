@@ -354,7 +354,7 @@ class ManageSpotlightsGridHandler extends GridHandler
             $collector->searchPhrase($name);
         }
 
-        $submissions = Repo::submission()->getMany($collector);
+        $submissions = $collector->getMany();
         foreach ($submissions as $submission) {
             $matches[] = ['label' => $submission->getLocalizedTitle(), 'value' => $submission->getId() . ':' . Spotlight::SPOTLIGHT_TYPE_BOOK];
         }

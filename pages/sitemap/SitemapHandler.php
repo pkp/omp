@@ -36,12 +36,12 @@ class SitemapHandler extends PKPSitemapHandler
 
         // Catalog
         $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog')));
-        $submissions = Repo::submission()->getMany(
-            Repo::submission()
+        $submissions = Repo::submission()
                 ->getCollector()
                 ->filterByContextIds([$pressId])
                 ->filterByStatus([Submission::STATUS_PUBLISHED])
-        );
+                ->getMany()
+
         foreach ($submissions as $submission) {
             // Book
             $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'book', [$submission->getBestId()])));

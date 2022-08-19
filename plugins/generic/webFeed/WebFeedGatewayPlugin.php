@@ -134,7 +134,7 @@ class WebFeedGatewayPlugin extends GatewayPlugin
         if ($recentItems > 0) {
             $collector->limit($recentItems);
         }
-        $submissions = Repo::submission()->getMany($collector);
+        $submissions = $collector->getMany();
         $templateMgr->assign('submissions', $submissions->toArray());
 
         $versionDao = DAORegistry::getDAO('VersionDAO'); /** @var VersionDAO $versionDao */
