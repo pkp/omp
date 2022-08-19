@@ -114,10 +114,11 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
             $entityNode->appendChild($this->createChapterAuthorNode($doc, $chapterAuthor));
         }
 
-        $collector = Repo::submissionFile()
+        $submissionFiles = Repo::submissionFile()
             ->getCollector()
-            ->filterBySubmissionIds([$publication->getData('submissionId')]);
-        $submissionFiles = Repo::submissionFile()->getMany($collector);
+            ->filterBySubmissionIds([$publication->getData('submissionId')])
+            ->getMany();
+
         foreach ($submissionFiles as $submissionFile) { /** @var SubmissionFile $submissionFile */
             if ($submissionFile->getData('chapterId') == $chapter->getId()) {
                 $referenceFileNode = $doc->createElementNS($deployment->getNamespace(), 'submission_file_ref');

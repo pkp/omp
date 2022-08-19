@@ -137,11 +137,12 @@ class Repository extends \PKP\doi\Repository
 
             // Submission files
             if ($context->isDoiTypeEnabled(self::TYPE_SUBMISSION_FILE)) {
-                $submissionFilesCollector = Repo::submissionFile()
+                $submissionFiles = Repo::submissionFile()
                     ->getCollector()
                     ->filterBySubmissionIds([$publication->getData('submissionId')])
                     ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF]);
-                $submissionFiles = Repo::submissionFile()->getMany($submissionFilesCollector);
+                    ->getMany();
+
                 /** @var SubmissionFile $submissionFile */
                 foreach ($submissionFiles as $submissionFile) {
                     $submissionFileDoiId = $submissionFile->getData('doiId');

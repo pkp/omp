@@ -84,12 +84,10 @@ trait InInternalReviewRound
             $reviewAssignments = $reviewAssignmentDAO->getByReviewRoundId($reviewRound->getId());
             $reviewerFiles = [];
             if (!empty($reviewAssignments)) {
-                $reviewerFiles = Repo::submissionFile()->getMany(
-                    Repo::submissionFile()
-                        ->getCollector()
-                        ->filterBySubmissionIds([$submission->getId()])
-                        ->filterByAssoc(Application::ASSOC_TYPE_REVIEW_ASSIGNMENT, array_keys($reviewAssignments))
-                );
+                $reviewerFiles = Repo::submissionFile()->getCollector()
+                    ->filterBySubmissionIds([$submission->getId()])
+                    ->filterByAssoc(Application::ASSOC_TYPE_REVIEW_ASSIGNMENT, array_keys($reviewAssignments))
+                    ->getMany();
             }
             $attachers[] = new ReviewFiles(
                 __('reviewer.submission.reviewFiles'),

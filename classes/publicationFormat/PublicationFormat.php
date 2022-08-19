@@ -309,15 +309,15 @@ class PublicationFormat extends Representation
     {
         $fileSize = 0;
         $publication = Repo::publication()->get((int) $this->getData('publicationId'));
-        $collector = Repo::submissionFile()
+        $stageMonographFiles = Repo::submissionFile()
             ->getCollector()
             ->filterBySubmissionIds([$publication->getData('submissionId')])
             ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
             ->filterByAssoc(
                 ASSOC_TYPE_PUBLICATION_FORMAT,
                 [$this->getId()]
-            );
-        $stageMonographFiles = Repo::submissionFile()->getMany($collector);
+            )
+            ->getMany();
 
         foreach ($stageMonographFiles as $monographFile) {
             if ($monographFile->getViewable()) {

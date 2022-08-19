@@ -241,10 +241,11 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         if (!$submissionId) {
             $submissionId = static::SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID;
         }
-        $collector = Repo::submissionFile()
+        $submissionFileIds = Repo::submissionFile()
             ->getCollector()
-            ->filterBySubmissionIds([$submissionId]);
-        $submissionFileIds = Repo::submissionFile()->getIds($collector);
+            ->filterBySubmissionIds([$submissionId])
+            ->getIds();
+
         foreach ($submissionFileIds as $submissionFileId) {
             Repo::submissionFile()->dao->deleteById($submissionFileId);
         }
