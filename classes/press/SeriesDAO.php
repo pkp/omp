@@ -224,12 +224,12 @@ class SeriesDAO extends PKPSectionDAO
         $subEditorsDao->deleteBySubmissionGroupId($seriesId, ASSOC_TYPE_SECTION, $contextId);
 
         // Remove monographs from this series
-        $submissionIds = Repo::submission()->getIds(
-            Repo::submission()
+        $submissionIds = Repo::submission()
                 ->getCollector()
                 ->filterBySeriesIds([$seriesId])
                 ->filterByContextIds([Application::CONTEXT_ID_ALL])
-        );
+                ->getIds();
+
         $publications = Repo::publication()->getCollector()
                 ->filterBySubmissionIds($submissionIds->toArray())
                 ->getMany();

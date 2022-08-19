@@ -217,11 +217,11 @@ class MonographSearchIndex extends SubmissionSearchIndex
                 echo 'Indexing "', $press->getLocalizedName(), '" ... ';
             }
 
-            $monographs = Repo::submission()->getMany(
-                Repo::submission()
+            $monographs = Repo::submission()
                     ->getCollector()
                     ->filterByContextIds([$press->getId()])
-            );
+                    ->getMany();
+
             while (!$monographs->eof()) {
                 $monograph = $monographs->next();
                 if ($monograph->getDatePublished()) {
