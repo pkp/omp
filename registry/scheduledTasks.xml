@@ -42,7 +42,7 @@
 		<descr>Automatically remove unvalidated and expired users.</descr>
 		<frequency day="1"/>
 	</task>
-	<task class="PKP\classes\task\UpdateIPGeoDB">
+	<task class="PKP\task\UpdateIPGeoDB">
 		<descr>Update the DB-IP city lite database periodically to ensure the geographical stats remain accurate.</descr>
 		<frequency day="10"/>
 	</task>
