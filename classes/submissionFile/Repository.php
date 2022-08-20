@@ -13,12 +13,14 @@
 
 namespace APP\submissionFile;
 
+use Illuminate\Support\Facades\App;
 use APP\core\Request;
 use APP\submissionFile\maps\Schema;
 use PKP\plugins\Hook;
 use PKP\services\PKPSchemaService;
 use PKP\submissionFile\Repository as SubmissionFileRepository;
 use PKP\submissionFile\SubmissionFile;
+use PKP\submissionFile\Collector;
 
 class Repository extends SubmissionFileRepository
 {
@@ -40,6 +42,11 @@ class Repository extends SubmissionFileRepository
         $this->schemaService = $schemaService;
         $this->dao = $dao;
         $this->request = $request;
+    }
+
+    public function getCollector(): Collector
+    {
+        return App::makeWith(Collector::class, ['dao' => $this->dao]);
     }
 
     public function getFileStages(): array
