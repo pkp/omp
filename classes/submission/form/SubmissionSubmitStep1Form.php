@@ -16,9 +16,10 @@
 namespace APP\submission\form;
 
 use APP\core\Application;
+use APP\facades\Repo;
+use APP\press\SeriesDAO;
 use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
-
 use PKP\security\Role;
 use PKP\submission\form\PKPSubmissionSubmitStep1Form;
 
@@ -125,6 +126,30 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form
         $submission->setSeriesId($this->getData('seriesId'));
         parent::setSubmissionData($submission);
     }
+
+    /**
+     * Save changes to submission.
+     * @return int the submission ID
+     */
+	function execute(...$functionParams) {
+		
+		$submissionId = parent::execute(...$functionParams);
+
+		$request = Application::get()->getRequest();
+
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
+
+		$series = $seriesDao->getById((int)$request->getUserVar('seriesId'), (int)$request->getContext()->getId());
+
+		Repo::publication()
+			->edit(
+				$this->submission->getCurrentPublication(), 
+				['seriesId' => $series?->getId()], 
+				$request
+			);
+
+		return $submissionId;
+	}
 }
 
 if (!PKP_STRICT_MODE) {
