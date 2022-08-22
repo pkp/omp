@@ -34,7 +34,7 @@ class InformationHandler extends Handler
             $request->redirect('index');
         }
 
-        $this->setupTemplate($request, $press);
+        $this->setupTemplate($request);
 
         $contentOnly = $request->getUserVar('contentOnly');
 
@@ -106,10 +106,10 @@ class InformationHandler extends Handler
      *
      * @param Press $press
      */
-    public function setupTemplate($request, $press)
+    public function setupTemplate($request)
     {
         parent::setupTemplate($request);
-        if (!$press->getSetting('restrictSiteAccess')) {
+        if (!$request->getPress()->getSetting('restrictSiteAccess')) {
             $templateMgr = TemplateManager::getManager($request);
             $templateMgr->setCacheability(TemplateManager::CACHEABILITY_PUBLIC);
         }

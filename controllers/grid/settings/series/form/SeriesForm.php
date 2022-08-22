@@ -159,39 +159,42 @@ class SeriesForm extends PKPSectionForm
 
         $context = $request->getContext();
 
-        $categoryCount = Repo::category()->getCount(
-            Repo::category()->getCollector()
-                ->filterByContextIds([$context->getId()])
-        );
+        $categoryCount = Repo::category()->getCollector()
+            ->filterByContextIds([$context->getId()])
+            ->getCount();
+
         $templateMgr->assign('categoryCount', $categoryCount);
 
         // Sort options.
         $templateMgr->assign('sortOptions', Repo::submission()->getSortSelectOptions());
 
         // Series Editors
-        $usersIterator = Repo::user()->getMany(
-            Repo::user()->getCollector()
+        $usersIterator = Repo::user()->getCollector()
                 ->filterByContextIds([$context->getId()])
                 ->filterByRoleIds([Role::ROLE_ID_SUB_EDITOR])
-        );
+                ->getMany();
+
         $availableSubeditors = [];
         foreach ($usersIterator as $user) {
             $availableSubeditors[(int) $user->getId()] = $user->getFullName();
         }
         $assignedToSeries = [];
         if ($this->getSeriesId()) {
-            $assignedToSeries = iterator_to_array(Repo::user()->getIds(
-                Repo::user()->getCollector()
+            $assignedToSeries = Repo::user()->getCollector()
                     ->filterByContextIds([$context->getId()])
                     ->filterByRoleIds([Role::ROLE_ID_SUB_EDITOR])
                     ->assignedToSectionIds([(int) $this->getSeriesId()])
-            ));
+                    ->getIds()
+                    ->toArray();
         }
 
         // Categories list
         $allCategories = [];
-        $categoriesResult = iterator_to_array(Repo::category()->getMany(Repo::category()->getCollector()
-            ->filterByContextIds([$context->getId()])));
+        $categoriesResult = Repo::category()->getCollector()
+            ->filterByContextIds([$context->getId()])
+            ->getMany()
+            ->toArray();
+
         foreach ($categoriesResult as $category) {
             $title = $category->getLocalizedTitle();
             if ($category->getParentId()) {

@@ -34,12 +34,10 @@ class Schema extends \PKP\publication\maps\Schema
                     $data['authors'] = [];
                 } else {
                     $data['authors'] = Repo::author()
-                        ->getMany(
-                            Repo::author()
-                                ->getCollector()
-                                ->filterByChapterIds([$chapter->getId()])
-                                ->filterByPublicationIds([$publication->getId()])
-                        )
+                        ->getCollector()
+                        ->filterByChapterIds([$chapter->getId()])
+                        ->filterByPublicationIds([$publication->getId()])
+                        ->getMany()
                         ->map(function ($chapterAuthor) {
                             return $chapterAuthor->_data;
                         });
@@ -53,12 +51,11 @@ class Schema extends \PKP\publication\maps\Schema
 
         if (in_array('publicationFormats', $props)) {
             // Get all submission files assigned to a publication format
-            $submissionFilesCollector = Repo::submissionFile()
+            $submissionFiles = Repo::submissionFile()
                 ->getCollector()
                 ->filterBySubmissionIds([$publication->getData('submissionId')])
-                ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF]);
-
-            $submissionFiles = Repo::submissionFile()->getMany($submissionFilesCollector);
+                ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
+                ->getMany();
 
             /** @var GenreDAO $genreDao */
             $genreDao = DAORegistry::getDAO('GenreDAO');

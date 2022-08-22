@@ -20,7 +20,7 @@ use APP\oai\omp\OAIDAO;
 use APP\submission\Submission;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\submission\PKPSubmission;
 
 class PublicationFormatTombstoneManager
@@ -72,7 +72,7 @@ class PublicationFormatTombstoneManager
         $publicationFormatTombstone->setOAISetObjectsIds($OAISetObjectsIds);
         $dataObjectTombstoneDao->insertObject($publicationFormatTombstone);
 
-        if (HookRegistry::call('PublicationFormatTombstoneManager::insertPublicationFormatTombstone', [&$publicationFormatTombstone, &$publicationFormat, &$press])) {
+        if (Hook::call('PublicationFormatTombstoneManager::insertPublicationFormatTombstone', [&$publicationFormatTombstone, &$publicationFormat, &$press])) {
             return;
         }
     }
@@ -98,12 +98,12 @@ class PublicationFormatTombstoneManager
      */
     public function insertTombstonesByPress($press)
     {
-        $submissions = Repo::submission()->getMany(
-            Repo::submission()
+        $submissions = Repo::submission()
                 ->getCollector()
                 ->filterByContextIds([$press->getId()])
                 ->filterByStatus([Submission::STATUS_PUBLISHED])
-        );
+                ->getMany();
+
         foreach ($submissions as $submission) {
             foreach ($submission->getData('publications') as $publication) {
                 if ($publication->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
@@ -133,12 +133,12 @@ class PublicationFormatTombstoneManager
      */
     public function deleteTombstonesByPressId($pressId)
     {
-        $submissions = Repo::submission()->getMany(
-            Repo::submission()
+        $submissions = Repo::submission()
                 ->getCollector()
                 ->filterByContextIds([$press->getId()])
                 ->filterByStatus([Submission::STATUS_PUBLISHED])
-        );
+                ->getMany();
+
         foreach ($submissions as $submission) {
             foreach ($submission->getData('publications') as $publication) {
                 $this->deleteTombstonesByPublicationFormats($publication->getData('publicationFormats'));

@@ -19,6 +19,7 @@ namespace APP\API\v1\_dois;
 use APP\facades\Repo;
 use PKP\core\APIResponse;
 use PKP\security\Role;
+use PKP\db\DAORegistry;
 use Slim\Http\Request as SlimRequest;
 
 class BackendDoiHandler extends \PKP\API\v1\_dois\PKPBackendDoiHandler
@@ -138,6 +139,9 @@ class BackendDoiHandler extends \PKP\API\v1\_dois\PKPBackendDoiHandler
         Repo::submissionFile()->edit($submissionFile, ['doiId' => $doi->getId()]);
         $submissionFile = Repo::submissionFile()->get($submissionFile->getId());
 
-        return $response->withJson(Repo::submissionFile()->getSchemaMap()->map($submissionFile));
+        $genreDao = DAORegistry::getDAO('GenreDAO');
+        $genres = $genreDao->getByContextId($submission->getData('contextId'))->toArray();
+
+        return $response->withJson(Repo::submissionFile()->getSchemaMap()->map($submissionFile, $genres));
     }
 }

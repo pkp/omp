@@ -43,16 +43,16 @@ class PublicationFormatService
             }
         }
 
-        $collector = Repo::submissionFile()
+        $submissionFiles = Repo::submissionFile()
             ->getCollector()
             ->filterBySubmissionIds([$submission->getId()])
             ->filterByAssoc(
                 ASSOC_TYPE_REPRESENTATION,
                 [$publicationFormat->getId()]
-            );
+            )
+            ->getMany();
 
         // Delete submission files for this publication format
-        $submissionFiles = Repo::submissionFile()->getMany($collector);
         foreach ($submissionFiles as $submissionFile) {
             Repo::submissionFile()->delete($submissionFile);
         }

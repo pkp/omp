@@ -76,7 +76,7 @@
 			<description>{$submission->getLocalizedAbstract()|strip|escape:"html"}</description>
 		{/if}
 
-		{foreach from=$submission->getAuthors() item=author name=authorList}
+		{foreach from=$submission->getCurrentPublication()->getData('authors') item=author name=authorList}
 			<dc:creator>{$author->getFullName(false)|strip|escape:"html"}</dc:creator>
 		{/foreach}
 

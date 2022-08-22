@@ -14,6 +14,7 @@
 namespace APP\decision;
 
 use APP\decision\types\AcceptFromInternal;
+use APP\decision\types\CancelInternalReviewRound;
 use APP\decision\types\DeclineInternal;
 use APP\decision\types\NewInternalReviewRound;
 use APP\decision\types\RecommendAcceptInternal;
@@ -29,9 +30,9 @@ use APP\decision\types\SkipInternalReview;
 use APP\notification\Notification;
 use Illuminate\Database\Eloquent\Collection;
 use PKP\decision\types\Accept;
-use PKP\decision\types\BackToCopyediting;
-use PKP\decision\types\BackToReview;
-use PKP\decision\types\BackToSubmissionFromCopyediting;
+use PKP\decision\types\BackFromCopyediting;
+use PKP\decision\types\BackFromProduction;
+use PKP\decision\types\CancelReviewRound;
 use PKP\decision\types\Decline;
 use PKP\decision\types\InitialDecline;
 use PKP\decision\types\NewExternalReviewRound;
@@ -45,7 +46,7 @@ use PKP\decision\types\RevertDecline;
 use PKP\decision\types\RevertInitialDecline;
 use PKP\decision\types\SendToProduction;
 use PKP\decision\types\SkipExternalReview;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 
 class Repository extends \PKP\decision\Repository
 {
@@ -58,9 +59,6 @@ class Repository extends \PKP\decision\Repository
             $decisionTypes = new Collection([
                 new Accept(),
                 new AcceptFromInternal(),
-                new BackToCopyediting(),
-                new BackToReview(),
-                new BackToSubmissionFromCopyediting(),
                 new Decline(),
                 new DeclineInternal(),
                 new InitialDecline(),
@@ -86,8 +84,12 @@ class Repository extends \PKP\decision\Repository
                 new SendToProduction(),
                 new SkipInternalReview(),
                 new SkipExternalReview(),
+                new BackFromProduction(),
+                new BackFromCopyediting(),
+                new CancelInternalReviewRound(),
+                new CancelReviewRound(),
             ]);
-            HookRegistry::call('Decision::types', [$decisionTypes]);
+            Hook::call('Decision::types', [$decisionTypes]);
             $this->decisionTypes = $decisionTypes;
         }
 

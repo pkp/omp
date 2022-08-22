@@ -22,7 +22,7 @@ use APP\facades\Repo;
 use PKP\context\PKPSectionDAO;
 use PKP\db\DAORegistry;
 use PKP\db\DAOResultFactory;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use Illuminate\Support\Facades\DB;
 
 use PKP\submission\PKPSubmission;
@@ -103,7 +103,7 @@ class SeriesDAO extends PKPSectionDAO
 
         $this->getDataObjectSettings('series_settings', 'series_id', $row['series_id'], $series);
 
-        HookRegistry::call('SeriesDAO::_fromRow', [&$series, &$row]);
+        Hook::call('SeriesDAO::_fromRow', [&$series, &$row]);
 
         return $series;
     }
@@ -224,17 +224,16 @@ class SeriesDAO extends PKPSectionDAO
         $subEditorsDao->deleteBySubmissionGroupId($seriesId, ASSOC_TYPE_SECTION, $contextId);
 
         // Remove monographs from this series
-        $submissionIds = Repo::submission()->getIds(
-            Repo::submission()
+        $submissionIds = Repo::submission()
                 ->getCollector()
                 ->filterBySeriesIds([$seriesId])
                 ->filterByContextIds([Application::CONTEXT_ID_ALL])
-        );
-        $publications = Repo::publication()->getMany(
-            Repo::publication()
-                ->getCollector()
+                ->getIds();
+
+        $publications = Repo::publication()->getCollector()
                 ->filterBySubmissionIds($submissionIds->toArray())
-        );
+                ->getMany();
+
         foreach ($publications as $publication) {
             Repo::publication()->edit($publication, ['seriesId' => 0]);
         }

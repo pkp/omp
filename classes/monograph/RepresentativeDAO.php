@@ -18,7 +18,7 @@
 namespace APP\monograph;
 
 use PKP\db\DAOResultFactory;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 
 class RepresentativeDAO extends \PKP\db\DAO
 {
@@ -120,7 +120,7 @@ class RepresentativeDAO extends \PKP\db\DAO
         $representative->setMonographId($row['submission_id']);
 
         if ($callHooks) {
-            HookRegistry::call('RepresentativeDAO::_fromRow', [&$representative, &$row]);
+            Hook::call('RepresentativeDAO::_fromRow', [&$representative, &$row]);
         }
 
         return $representative;

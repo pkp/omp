@@ -119,8 +119,8 @@ class ManageCatalogHandler extends Handler
             ->filterByStatus([Submission::STATUS_PUBLISHED])
             ->orderBy($catalogSortBy, $catalogSortDir)
             ->orderByFeatured();
-        $total = Repo::submission()->getCount($collector);
-        $submissions = Repo::submission()->getMany($collector->limit($catalogList->count));
+        $total = $collector->getCount();
+        $submissions = $collector->limit($catalogList->count)->getMany();
 
         $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /** @var UserGroupDAO $userGroupDao */
         $userGroups = $userGroupDao->getByContextId($context->getId())->toArray();

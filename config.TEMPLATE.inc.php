@@ -29,7 +29,7 @@
 installed = Off
 
 ; The canonical URL to the OMP installation (excluding the trailing slash)
-base_url = "http://pkp.sfu.ca/omp"
+base_url = "https://pkp.sfu.ca/omp"
 
 ; Enable strict mode. This will more aggressively cause errors/warnings when
 ; deprecated behaviour exists in the codebase.

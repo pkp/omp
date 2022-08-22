@@ -19,7 +19,7 @@ namespace APP\publicationFormat;
 
 use APP\publicationFormat\IdentificationCode;
 
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\db\DAOResultFactory;
 
 class IdentificationCodeDAO extends \PKP\db\DAO
@@ -97,7 +97,7 @@ class IdentificationCodeDAO extends \PKP\db\DAO
         $identificationCode->setPublicationFormatId($row['publication_format_id']);
 
         if ($callHooks) {
-            HookRegistry::call('IdentificationCodeDAO::_fromRow', [&$identificationCode, &$row]);
+            Hook::call('IdentificationCodeDAO::_fromRow', [&$identificationCode, &$row]);
         }
 
         return $identificationCode;

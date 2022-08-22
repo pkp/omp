@@ -26,7 +26,7 @@ use PKP\facades\Locale;
 use PKP\file\FileManager;
 use PKP\file\TemporaryFileManager;
 use PKP\i18n\interfaces\LocaleInterface;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 
 use PKP\xslt\XSLTransformer;
 
@@ -257,7 +257,7 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
         $codelistItem->setCode($code);
         $codelistItem->setText($entry[0]);
 
-        HookRegistry::call('ONIXCodelistItemDAO::_fromRow', [&$codelistItem, &$code, &$entry]);
+        Hook::call('ONIXCodelistItemDAO::_fromRow', [&$codelistItem, &$code, &$entry]);
 
         return $codelistItem;
     }

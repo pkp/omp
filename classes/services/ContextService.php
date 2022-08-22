@@ -20,7 +20,7 @@ use APP\file\PublicFileManager;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\submission\Submission;
 use PKP\db\DAORegistry;
-
+use PKP\plugins\Hook;
 use PKP\file\ContextFileManager;
 use PKP\file\FileManager;
 
@@ -40,10 +40,10 @@ class ContextService extends \PKP\services\PKPContextService
             \Config::getVar('files', 'public_files_dir') . '/%s/%d',
         ];
 
-        \HookRegistry::register('Context::edit', [$this, 'afterEditContext']);
-        \HookRegistry::register('Context::delete::before', [$this, 'beforeDeleteContext']);
-        \HookRegistry::register('Context::delete', [$this, 'afterDeleteContext']);
-        \HookRegistry::register('Context::validate', [$this, 'validateContext']);
+        Hook::add('Context::edit', [$this, 'afterEditContext']);
+        Hook::add('Context::delete::before', [$this, 'beforeDeleteContext']);
+        Hook::add('Context::delete', [$this, 'afterDeleteContext']);
+        Hook::add('Context::validate', [$this, 'validateContext']);
     }
 
     /**
@@ -198,15 +198,16 @@ class ContextService extends \PKP\services\PKPContextService
         ];
         foreach ($objectDaos as $objectDao) {
             if ($objectDao instanceof \PKP\submission\DAO) {
-                $objects = iterator_to_array(Repo::submission()->getMany(
-                    Repo::submission()
+                $objects = Repo::submission()
                         ->getCollector()
                         ->filterByContextIds([$context->getId()])
-                ));
+                        ->getMany()
+                        ->toArray();
             } elseif ($objectDao instanceof \PKP\category\DAO) {
-                $objects = iterator_to_array(Repo::category()->getMany(
-                    Repo::category()->getCollector()
-                    ->filterByContextIds([$context->getId()])));
+                $objects = Repo::category()->getCollector()
+                    ->filterByContextIds([$context->getId()])
+                    ->getMany()
+                    ->toArray();
             } else {
                 $objects = $objectDao->getByContextId($context->getId())->toArray();
             }

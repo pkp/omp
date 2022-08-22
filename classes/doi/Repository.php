@@ -14,6 +14,7 @@
 
 namespace APP\doi;
 
+use Illuminate\Support\Facades\App;
 use APP\core\Application;
 use APP\core\Request;
 use APP\facades\Repo;
@@ -28,6 +29,7 @@ use PKP\core\DataObject;
 use PKP\services\PKPSchemaService;
 use PKP\submission\Representation;
 use PKP\submissionFile\SubmissionFile;
+use PKP\doi\Collector;
 
 class Repository extends \PKP\doi\Repository
 {
@@ -40,6 +42,11 @@ class Repository extends \PKP\doi\Repository
     public function __construct(DAO $dao, Request $request, PKPSchemaService $schemaService)
     {
         parent::__construct($dao, $request, $schemaService);
+    }
+
+    public function getCollector(): Collector
+    {
+        return App::makeWith(Collector::class, ['dao' => $this->dao]);
     }
 
     /**
@@ -137,11 +144,12 @@ class Repository extends \PKP\doi\Repository
 
             // Submission files
             if ($context->isDoiTypeEnabled(self::TYPE_SUBMISSION_FILE)) {
-                $submissionFilesCollector = Repo::submissionFile()
+                $submissionFiles = Repo::submissionFile()
                     ->getCollector()
                     ->filterBySubmissionIds([$publication->getData('submissionId')])
-                    ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF]);
-                $submissionFiles = Repo::submissionFile()->getMany($submissionFilesCollector);
+                    ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
+                    ->getMany();
+
                 /** @var SubmissionFile $submissionFile */
                 foreach ($submissionFiles as $submissionFile) {
                     $submissionFileDoiId = $submissionFile->getData('doiId');

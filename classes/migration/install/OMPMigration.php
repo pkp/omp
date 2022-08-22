@@ -213,7 +213,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->bigInteger('source_chapter_id')->nullable();
             $table->index(['chapter_id'], 'chapters_chapter_id');
             $table->index(['publication_id'], 'chapters_publication_id');
-            $table->foreign('source_chapter_id')->references('chapter_id')->on('submission_chapters');
+            $table->foreign('source_chapter_id')->references('chapter_id')->on('submission_chapters')->onDelete('set null');
             $table->bigInteger('doi_id')->nullable();
             $table->foreign('doi_id')->references('doi_id')->on('dois')->nullOnDelete();
         });

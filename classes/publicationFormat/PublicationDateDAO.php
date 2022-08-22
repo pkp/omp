@@ -17,7 +17,7 @@
 
 namespace APP\publicationFormat;
 
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\db\DAOResultFactory;
 
 use APP\publicationFormat\PublicationDate;
@@ -98,7 +98,7 @@ class PublicationDateDAO extends \PKP\db\DAO
         $publicationDate->setPublicationFormatId($row['publication_format_id']);
 
         if ($callHooks) {
-            HookRegistry::call('PublicationDateDAO::_fromRow', [&$publicationDate, &$row]);
+            Hook::call('PublicationDateDAO::_fromRow', [&$publicationDate, &$row]);
         }
 
         return $publicationDate;

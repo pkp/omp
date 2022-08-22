@@ -20,7 +20,7 @@ use APP\template\TemplateManager;
 
 use PKP\core\PKPApplication;
 use PKP\db\DAORegistry;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 
 // FIXME: Add namespacing
 use Validation;
@@ -38,9 +38,9 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
      */
     public function __construct()
     {
-        HookRegistry::register('NavigationMenus::itemTypes', [$this, 'getMenuItemTypesCallback']);
-        HookRegistry::register('NavigationMenus::displaySettings', [$this, 'getDisplayStatusCallback']);
-        HookRegistry::register('NavigationMenus::itemCustomTemplates', [$this, 'getMenuItemCustomEditTemplatesCallback']);
+        Hook::add('NavigationMenus::itemTypes', [$this, 'getMenuItemTypesCallback']);
+        Hook::add('NavigationMenus::displaySettings', [$this, 'getDisplayStatusCallback']);
+        Hook::add('NavigationMenus::itemCustomTemplates', [$this, 'getMenuItemCustomEditTemplatesCallback']);
     }
 
     /**
@@ -82,9 +82,10 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
             $ompTypes = array_merge($ompTypes, $newArray);
         }
 
-        $categoryCount = Repo::category()->count(Repo::category()->getCollector()
+        $categoryCount = Repo::category()->getCollector()
             ->filterByParentIds([null])
-            ->filterByContextIds([$contextId]));
+            ->filterByContextIds([$contextId])
+            ->getCount();
 
         if ($categoryCount) {
             $newArray = [

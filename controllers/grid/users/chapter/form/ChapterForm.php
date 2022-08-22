@@ -217,12 +217,10 @@ class ChapterForm extends Form
 
         $selectedChapterAuthorsArray = [];
         if ($this->getChapter()) {
-            $selectedChapterAuthors = Repo::author()->getMany(
-                Repo::author()
-                    ->getCollector()
-                    ->filterByChapterIds([$this->getChapter()->getId()])
-                    ->filterByPublicationIds([$this->getPublication()->getId()])
-            );
+            $selectedChapterAuthors = Repo::author()->getCollector()
+                ->filterByChapterIds([$this->getChapter()->getId()])
+                ->filterByPublicationIds([$this->getPublication()->getId()])
+                ->getMany();
 
             foreach ($selectedChapterAuthors as $selectedChapterAuthor) {
                 $chapterAuthorOptions[$selectedChapterAuthor->getId()] = $selectedChapterAuthor->getFullName();
@@ -232,11 +230,9 @@ class ChapterForm extends Form
                 $selectedChapterAuthorsArray = iterator_to_array($selectedChapterAuthors);
             }
         }
-        $authorsIterator = Repo::author()->getMany(
-            Repo::author()
-                ->getCollector()
-                ->filterByPublicationIds([$this->getPublication()->getId()])
-        );
+        $authorsIterator = Repo::author()->getCollector()
+            ->filterByPublicationIds([$this->getPublication()->getId()])
+            ->getMany();
 
         foreach ($authorsIterator as $author) {
             $isIncluded = false;
@@ -250,11 +246,11 @@ class ChapterForm extends Form
             }
         }
 
-        $collector = Repo::submissionFile()
+        $submissionFiles = Repo::submissionFile()
             ->getCollector()
-            ->filterBySubmissionIds([$this->getMonograph()->getId()]);
+            ->filterBySubmissionIds([$this->getMonograph()->getId()])
+            ->getMany();
 
-        $submissionFiles = Repo::submissionFile()->getMany($collector);
         foreach ($submissionFiles as $submissionFile) {
             $isIncluded = false;
 

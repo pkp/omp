@@ -21,7 +21,7 @@ use APP\press\Press;
 use APP\press\PressDAO;
 use APP\publicationFormat\PublicationFormat;
 use APP\publicationFormat\PublicationFormatDAO;
-use PKP\doi\exceptions\DoiCreationException;
+use PKP\doi\exceptions\DoiActionException;
 use PKP\submissionFile\SubmissionFile;
 
 class Repository extends \PKP\submission\Repository
@@ -63,7 +63,7 @@ class Repository extends \PKP\submission\Repository
             try {
                 $doiId = Repo::doi()->mintPublicationDoi($publication, $submission, $context);
                 Repo::publication()->edit($publication, ['doiId' => $doiId]);
-            } catch (DoiCreationException $exception) {
+            } catch (DoiActionException $exception) {
                 $doiCreationFailures[] = $exception;
             }
         }
@@ -80,7 +80,7 @@ class Repository extends \PKP\submission\Repository
                         $doiId = Repo::doi()->mintChapterDoi($chapter, $submission, $context);
                         $chapter->setData('doiId', $doiId);
                         $chapterDao->updateObject($chapter);
-                    } catch (DoiCreationException $exception) {
+                    } catch (DoiActionException $exception) {
                         $doiCreationFailures[] = $exception;
                     }
                 }
@@ -99,7 +99,7 @@ class Repository extends \PKP\submission\Repository
                         $doiId = Repo::doi()->mintPublicationFormatDoi($publicationFormat, $submission, $context);
                         $publicationFormat->setData('doiId', $doiId);
                         $publicationFormatDao->updateObject($publicationFormat);
-                    } catch (DoiCreationException $exception) {
+                    } catch (DoiActionException $exception) {
                         $doiCreationFailures[] = $exception;
                     }
                 }
@@ -109,19 +109,19 @@ class Repository extends \PKP\submission\Repository
         // Submission files
         if ($context->isDoiTypeEnabled(Repo::doi()::TYPE_SUBMISSION_FILE)) {
             // Get all submission files assigned to a publication format
-            $submissionFilesCollector = Repo::submissionFile()
+            $submissionFiles = Repo::submissionFile()
                 ->getCollector()
                 ->filterBySubmissionIds([$publication->getData('submissionId')])
-                ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF]);
+                ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
+                ->getMany();
 
-            $submissionFiles = Repo::submissionFile()->getMany($submissionFilesCollector);
             /** @var SubmissionFile $submissionFile */
             foreach ($submissionFiles as $submissionFile) {
                 if (empty($submissionFile->getData('doiId'))) {
                     try {
                         $doiId = Repo::doi()->mintSubmissionFileDoi($submissionFile, $submission, $context);
                         Repo::submissionFile()->edit($submissionFile, ['doiId' => $doiId]);
-                    } catch (DoiCreationException $exception) {
+                    } catch (DoiActionException $exception) {
                         $doiCreationFailures[] = $exception;
                     }
                 }

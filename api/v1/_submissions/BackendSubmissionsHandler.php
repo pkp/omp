@@ -21,7 +21,7 @@ use APP\facades\Repo;
 use APP\submission\Collector;
 use APP\submission\Submission;
 use PKP\db\DAORegistry;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\security\Role;
 
 class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmissionsHandler
@@ -31,8 +31,6 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
      */
     public function __construct()
     {
-        HookRegistry::register('API::_submissions::params', [$this, 'addAppSubmissionsParams']);
-
         $rootPattern = '/{contextPath}/api/{version}/_submissions';
         $this->_endpoints = [
             'POST' => [

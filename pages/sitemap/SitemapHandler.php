@@ -15,7 +15,7 @@
 
 namespace APP\pages\sitemap;
 
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\pages\sitempa\PKPSitemapHandler;
 use APP\facades\Repo;
 use APP\submission\Submission;
@@ -36,12 +36,12 @@ class SitemapHandler extends PKPSitemapHandler
 
         // Catalog
         $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog')));
-        $submissions = Repo::submission()->getMany(
-            Repo::submission()
+        $submissions = Repo::submission()
                 ->getCollector()
                 ->filterByContextIds([$pressId])
                 ->filterByStatus([Submission::STATUS_PUBLISHED])
-        );
+                ->getMany()
+
         foreach ($submissions as $submission) {
             // Book
             $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'book', [$submission->getBestId()])));
@@ -59,17 +59,18 @@ class SitemapHandler extends PKPSitemapHandler
                 // Consider only available publication formats
                 if ($format->getIsAvailable()) {
                     // Consider only available publication format files
-                    $collector = Repo::submissionFile()
+                    $submissionFiles = Repo::submissionFile()
                         ->getCollector()
                         ->filterByAssoc(
                             ASSOC_TYPE_PUBLICATION_FORMAT,
                             [$format->getId()]
                         )
-                        ->filterBySubmissionIds([$submission->getId()]);
+                        ->filterBySubmissionIds([$submission->getId()])
+                        ->getMany()
+                        ->toArray();
 
-                    $data = Repo::submissionFile()->getMany($collector);
                     $availableFiles = array_filter(
-                        iterator_to_array($data),
+                        $submissionFiles,
                         function ($a) {
                             return $a->getDirectSalesPrice() !== null;
                         }
@@ -90,8 +91,10 @@ class SitemapHandler extends PKPSitemapHandler
             $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'series', $series->getPath())));
         }
         // Browse by categories
-        $categories = Repo::category()->getMany(Repo::category()->getCollector()
-            ->filterByContextIds([$pressId]));
+        $categories = Repo::category()->getCollector()
+            ->filterByContextIds([$pressId])
+            ->getMany();
+
         foreach ($categories as $category) {
             $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'category', $category->getPath())));
         }
@@ -99,7 +102,7 @@ class SitemapHandler extends PKPSitemapHandler
         $doc->appendChild($root);
 
         // Enable plugins to change the sitemap
-        HookRegistry::call('SitemapHandler::createPressSitemap', [&$doc]);
+        Hook::call('SitemapHandler::createPressSitemap', [&$doc]);
 
         return $doc;
     }

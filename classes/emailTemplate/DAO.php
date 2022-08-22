@@ -23,6 +23,7 @@ class DAO extends \PKP\emailTemplate\DAO
         return [
             'contextName' => 'pressName',
             'contextUrl' => 'pressUrl',
+            'contextSignature' => 'pressSignature',
         ];
     }
 }

@@ -13,6 +13,7 @@
 
 namespace APP\publication;
 
+use Illuminate\Support\Facades\App;
 use APP\core\Application;
 use APP\core\Services;
 use APP\facades\Repo;
@@ -26,11 +27,17 @@ use PKP\core\Core;
 use PKP\db\DAORegistry;
 use PKP\submission\PKPSubmission;
 use PKP\submissionFile\SubmissionFile;
+use PKP\publication\Collector;
 
 class Repository extends \PKP\publication\Repository
 {
     /** @copydoc \PKP\submission\Repository::$schemaMap */
     public $schemaMap = maps\Schema::class;
+
+    public function getCollector(): Collector
+    {
+        return App::makeWith(Collector::class, ['dao' => $this->dao]);
+    }
 
     /** @copydoc PKP\publication\Repository::validate() */
     public function validate($publication, array $props, array $allowedLocales, string $primaryLocale): array
@@ -89,11 +96,10 @@ class Repository extends \PKP\publication\Repository
     {
         // Get some data about the publication being versioned before any changes are made
         $oldPublicationFormats = $publication->getData('publicationFormats');
-        $oldAuthors = Repo::author()->getMany(
-            Repo::author()
-                ->getCollector()
-                ->filterByPublicationIds([$publication->getId()])
-        );
+        $oldAuthors = Repo::author()->getCollector()
+            ->filterByPublicationIds([$publication->getId()])
+            ->getMany();
+
         $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
         $oldChaptersIterator = $chapterDao->getByPublicationId($publication->getId());
         $oldPublicationId = $publication->getId();
@@ -124,16 +130,16 @@ class Repository extends \PKP\publication\Repository
                 }
             }
 
-            $collector = Repo::submissionFile()
+            $submissionFiles = Repo::submissionFile()
                 ->getCollector()
                 ->filterBySubmissionIds([$submissionId])
                 ->filterByAssoc(
                     Application::ASSOC_TYPE_REPRESENTATION,
                     [$oldPublicationFormat->getId()]
-                );
+                )
+                ->getMany();
 
             // Duplicate publication format files
-            $submissionFiles = Repo::submissionFile()->getMany($collector);
             foreach ($submissionFiles as $submissionFile) {
                 $newSubmissionFile = clone $submissionFile;
                 $newSubmissionFile->setData('id', null);
@@ -142,16 +148,16 @@ class Repository extends \PKP\publication\Repository
                 $newSubmissionFile = Repo::submissionFile()->get($newSubmissionFileId);
                 $newSubmissionFiles[] = $newSubmissionFile;
 
-                $collector = Repo::submissionFile()
+                $dependentFiles = Repo::submissionFile()
                     ->getCollector()
                     ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_DEPENDENT])
                     ->filterByAssoc(
                         Application::ASSOC_TYPE_SUBMISSION_FILE,
                         [$submissionFile->getId()]
                     )
-                    ->includeDependentFiles();
+                    ->includeDependentFiles()
+                    ->getMany();
 
-                $dependentFiles = Repo::submissionFile()->getMany($collector);
                 foreach ($dependentFiles as $dependentFile) {
                     $newDependentFile = clone $dependentFile;
                     $newDependentFile->setData('id', null);
@@ -162,11 +168,10 @@ class Repository extends \PKP\publication\Repository
         }
 
         // Chapters (and all associated objects)
-        $newAuthors = Repo::author()->getMany(
-            Repo::author()
-                ->getCollector()
-                ->filterByPublicationIds([$newPublication->getId()])
-        );
+        $newAuthors = Repo::author()->getCollector()
+            ->filterByPublicationIds([$newPublication->getId()])
+            ->getMany();
+
         while ($oldChapter = $oldChaptersIterator->next()) {
             $newChapter = clone $oldChapter;
             $newChapter->setData('id', null);
@@ -190,12 +195,10 @@ class Repository extends \PKP\publication\Repository
             // unique for each author to determine which new author is a copy of the
             // old one. We then map the old chapter author associations to the new
             // authors.
-            $oldChapterAuthors = Repo::author()->getMany(
-                Repo::author()
-                    ->getCollector()
-                    ->filterByChapterIds([$oldChapter->getId()])
-                    ->filterByPublicationIds([$oldPublicationId])
-            );
+            $oldChapterAuthors = Repo::author()->getCollector()
+                ->filterByChapterIds([$oldChapter->getId()])
+                ->filterByPublicationIds([$oldPublicationId])
+                ->getMany();
 
             foreach ($newAuthors as $newAuthor) {
                 foreach ($oldAuthors as $oldAuthor) {

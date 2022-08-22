@@ -23,7 +23,7 @@ use PKP\core\Registry;
 use PKP\db\DAO;
 use PKP\db\XMLDAO;
 use PKP\facades\Locale;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 
 class CodelistItemDAO extends DAO
 {
@@ -197,7 +197,7 @@ class CodelistItemDAO extends DAO
         $codelistItem->setCode($code);
         $codelistItem->setText($entry[0]);
 
-        HookRegistry::call('CodelistItemDAO::_fromRow', [&$codelistItem, &$code, &$entry]);
+        Hook::call('CodelistItemDAO::_fromRow', [&$codelistItem, &$code, &$entry]);
 
         return $codelistItem;
     }

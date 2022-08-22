@@ -15,31 +15,22 @@
 
 namespace APP\controllers\grid\users\stageParticipant\form;
 
-use APP\mail\MonographMailTemplate;
 use PKP\controllers\grid\users\stageParticipant\form\PKPStageParticipantNotifyForm;
 
 class StageParticipantNotifyForm extends PKPStageParticipantNotifyForm
 {
     /**
-     * Return app-specific stage templates.
-     *
-     * @return array
+     * FIXME should be retrieved from a database based on a record in email_template_assignments table after
+     * API implementation pkp/pkp-lib#7706
      */
-    protected function _getStageTemplates()
+    protected function getStageTemplates(): array
     {
-        return [
+        $map = [
             WORKFLOW_STAGE_ID_SUBMISSION => ['EDITOR_ASSIGN'],
-            WORKFLOW_STAGE_ID_EXTERNAL_REVIEW => ['EDITOR_ASSIGN'],
-            WORKFLOW_STAGE_ID_EDITING => ['COPYEDIT_REQUEST'],
-            WORKFLOW_STAGE_ID_PRODUCTION => ['LAYOUT_REQUEST', 'LAYOUT_COMPLETE', 'INDEX_REQUEST', 'INDEX_COMPLETE', 'EDITOR_ASSIGN']
+            WORKFLOW_STAGE_ID_INTERNAL_REVIEW => ['EDITOR_ASSIGN'],
+            WORKFLOW_STAGE_ID_EDITING => ['EDITOR_ASSIGN', 'COPYEDIT_REQUEST'],
+            WORKFLOW_STAGE_ID_PRODUCTION => ['EDITOR_ASSIGN', 'LAYOUT_REQUEST', 'LAYOUT_COMPLETE', 'INDEX_REQUEST', 'INDEX_COMPLETE'],
         ];
-    }
-
-    /**
-     * @copydoc PKPStageParticipantNotifyForm::_getMailTemplate()
-     */
-    protected function _getMailTemplate($submission, $templateKey, $includeSignature = true)
-    {
-        return new MonographMailTemplate($submission, $templateKey, null, null, $includeSignature);
+        return $map[$this->getStageId()];
     }
 }

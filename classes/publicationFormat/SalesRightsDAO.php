@@ -17,7 +17,7 @@
 
 namespace APP\publicationFormat;
 
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\db\DAOResultFactory;
 
 use APP\publicationFormat\SalesRights;
@@ -119,7 +119,7 @@ class SalesRightsDAO extends \PKP\db\DAO
         $salesRights->setPublicationFormatId($row['publication_format_id']);
 
         if ($callHooks) {
-            HookRegistry::call('SalesRightsDAO::_fromRow', [&$salesRights, &$row]);
+            Hook::call('SalesRightsDAO::_fromRow', [&$salesRights, &$row]);
         }
 
         return $salesRights;

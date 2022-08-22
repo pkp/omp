@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\DB;
 use PKP\db\DAORegistry;
 use PKP\oai\OAISet;
 use PKP\oai\PKPOAIDAO;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 
 use PKP\submission\PKPSubmission;
 
@@ -132,7 +132,7 @@ class OAIDAO extends PKPOAIDAO
             }
         }
 
-        HookRegistry::call('OAIDAO::getSets', [&$this, $pressId, $offset, $limit, $total, &$sets]);
+        Hook::call('OAIDAO::getSets', [&$this, $pressId, $offset, $limit, $total, &$sets]);
 
         $total = count($sets);
         $sets = array_slice($sets, $offset, $limit);
