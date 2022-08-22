@@ -11,10 +11,4 @@
 	{fbvFormSection label="series.series"}
 		{fbvElement type="select" id="seriesId" from=$seriesOptions selected=$seriesId translate=false disabled=$readOnly size=$fbvStyles.size.SMALL}
 	{/fbvFormSection}
-
-	{if $includeSeriesPosition}
-		{fbvFormSection label="submission.submit.seriesPosition"}
-			{fbvElement type="text" id="seriesPosition" name="seriesPosition" label="submission.submit.seriesPosition.description" value=$seriesPosition maxlength="255" disabled=$readOnly}
-		{/fbvFormSection}
-	{/if}
 {/if}
