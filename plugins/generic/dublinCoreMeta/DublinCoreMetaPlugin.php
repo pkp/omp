@@ -13,6 +13,7 @@
 
 namespace APP\plugins\generic\dublinCoreMeta;
 
+use APP\core\Application;
 use APP\facades\Repo;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
@@ -20,7 +21,6 @@ use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\plugins\GenericPlugin;
 use PKP\plugins\Hook;
-use APP\core\Application;
 
 class DublinCoreMetaPlugin extends GenericPlugin
 {
@@ -102,7 +102,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
             $templateMgr->addHeader('dublinCoreDateModified', '<meta name="DC.Date.modified" scheme="ISO8601" content="' . date('Y-m-d', strtotime($dateModified)) . '"/>');
         }
         $i = 0;
-        $abstracts = $isChapterRequest ? $chapter->getData('abstract') : $monograph->getCurrentPublication()->getData('abstract');
+        $abstracts = $isChapterRequest ? $chapter->getData('abstract') : $publication->getData('abstract');
         foreach ($abstracts as $locale => $abstract) {
             $templateMgr->addHeader('dublinCoreAbstract' . $i++, '<meta name="DC.Description" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
         }
@@ -144,14 +144,14 @@ class DublinCoreMetaPlugin extends GenericPlugin
             }
         }
 
-        $title = $isChapterRequest ? $chapter->getLocalizedTitle() : $publication->getLocalizedTitle();
+        $title = $isChapterRequest ? $chapter->getLocalizedFullTitle($publication->getData('locale')) : $publication->getLocalizedFullTitle($publication->getData('locale'));
         $templateMgr->addHeader('dublinCoreTitle', '<meta name="DC.Title" content="' . htmlspecialchars($title) . '"/>');
         $i = 0;
-        foreach ($publication->getData('title') as $locale => $title) {
-            if ($locale == $monograph->getLocale()) {
+        foreach ($publication->getFullTitles() as $locale => $altTitle) {
+            if (empty($title) || $locale === $publication->getData('locale')) {
                 continue;
             }
-            $templateMgr->addHeader('dublinCoreAltTitle' . $i++, '<meta name="DC.Title.Alternative" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($title) . '"/>');
+            $templateMgr->addHeader('dublinCoreAltTitle' . $i++, '<meta name="DC.Title.Alternative" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($altTitle) . '"/>');
         }
 
         $templateMgr->addHeader('dublinCoreType', '<meta name="DC.Type" content="Text.Book"/>');
@@ -177,6 +177,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
     {
         $request = Application::get()->getRequest();
         $monograph = $args[1];
+        $publication = $monograph->getCurrentPublication();
         $publicationFormat = $args[2];
         $submissionFile = $args[3];
         $press = $request->getContext();
@@ -213,16 +214,11 @@ class DublinCoreMetaPlugin extends GenericPlugin
         if ($dateModified = $monograph->getData('dateLastActivity')) {
             $templateMgr->addHeader('dublinCoreDateModified', '<meta name="DC.Date.modified" scheme="ISO8601" content="' . date('Y-m-d', strtotime($dateModified)) . '"/>');
         }
-        $i = 0;
 
-        if ($chapter != null) {
-            foreach ($chapter->getData('abstract') as $locale => $abstract) {
-                $templateMgr->addHeader('dublinCoreAbstract' . $i++, '<meta name="DC.Description" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
-            }
-        } elseif ($abstracts = $monograph->getAbstract(null)) {
-            foreach ($abstracts as $locale => $abstract) {
-                $templateMgr->addHeader('dublinCoreAbstract' . $i++, '<meta name="DC.Description" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
-            }
+        $i = 0;
+        $abstracts = ($chapter != null) ? $chapter->getData('abstract') : $publication->getData('abstract');
+        foreach ($abstracts as $locale => $abstract) {
+            $templateMgr->addHeader('dublinCoreAbstract' . $i++, '<meta name="DC.Description" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
         }
 
         $templateMgr->addHeader('dublinCoreIdentifier', '<meta name="DC.Identifier" content="' . htmlspecialchars($monograph->getBestId() . '/' . $publicationFormat->getId() . '/' . $submissionFile->getId()) . '"/>');
@@ -269,25 +265,15 @@ class DublinCoreMetaPlugin extends GenericPlugin
             }
         }
 
-
-        if ($chapter) {
-            $templateMgr->addHeader('dublinCoreTitle', '<meta name="DC.Title" content="' . htmlspecialchars($chapter->getTitle($monograph->getLocale())) . '"/>');
-            $i = 0;
-            foreach ($chapter->getTitle(null) as $locale => $title) {
-                if ($locale == $monograph->getLocale()) {
-                    continue;
-                }
-                $templateMgr->addHeader('dublinCoreAltTitle' . $i++, '<meta name="DC.Title.Alternative" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($title) . '"/>');
+        $title = $chapter ? $chapter->getLocalizedFullTitle($monograph->getLocale()) : $publication->getLocalizedFullTitle($monograph->getLocale());
+        $templateMgr->addHeader('dublinCoreTitle', '<meta name="DC.Title" content="' . htmlspecialchars($title) . '"/>');
+        $i = 0;
+        $titles = $chapter ? $chapter->getFullTitles() : $publication->getFullTitles();
+        foreach ($titles as $locale => $altTitle) {
+            if (empty($title) || $locale == $monograph->getLocale()) {
+                continue;
             }
-        } else {
-            $templateMgr->addHeader('dublinCoreTitle', '<meta name="DC.Title" content="' . htmlspecialchars($monograph->getTitle($monograph->getLocale())) . '"/>');
-            $i = 0;
-            foreach ($monograph->getTitle(null) as $locale => $title) {
-                if ($locale == $monograph->getLocale()) {
-                    continue;
-                }
-                $templateMgr->addHeader('dublinCoreAltTitle' . $i++, '<meta name="DC.Title.Alternative" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($title) . '"/>');
-            }
+            $templateMgr->addHeader('dublinCoreAltTitle' . $i++, '<meta name="DC.Title.Alternative" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($altTitle) . '"/>');
         }
 
         $templateMgr->addHeader('dublinCoreType', '<meta name="DC.Type" content="Text.Chapter"/>');
