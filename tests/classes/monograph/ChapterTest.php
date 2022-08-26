@@ -13,7 +13,13 @@
  *
  * @brief Test class for the Chapter class
  */
-import('lib.pkp.tests.PKPTestCase');
+
+namespace APP\tests\classes\monograph;
+
+use APP\monograph\Chapter;
+use PKP\facades\Locale;
+use PKP\tests\PKPTestCase;
+
 class ChapterTest extends PKPTestCase
 {
     /**
@@ -21,7 +27,7 @@ class ChapterTest extends PKPTestCase
      */
     protected function setUp(): void
     {
-        $this->chapter = DAORegistry::getDAO('ChapterDAO')->newDataObject();
+        $this->chapter = new Chapter();
     }
 
     /**
@@ -66,7 +72,7 @@ class ChapterTest extends PKPTestCase
         $this->chapter->setData('subtitle', 'and its subtitle', 'en_US');
         $this->chapter->setData('title', 'El título del capítulo', 'es_ES');
         $this->chapter->setData('subtitle', 'y su subtítulo', 'es_ES');
-        if (AppLocale::getLocale() == 'en_US') {
+        if (Locale::getLocale() == 'en_US') {
             $expected = 'El título del capítulo: y su subtítulo';
             $preferredLocale = 'es_ES';
         } else {
