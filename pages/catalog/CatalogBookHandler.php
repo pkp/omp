@@ -157,13 +157,17 @@ class CatalogBookHandler extends Handler
             return empty($a) || strtotime((string) $b->getData('datePublished')) < strtotime((string) $a->getData('datePublished')) ? $b : $a;
         }, 0);
 
+        $userGroups = Repo::userGroup()->getCollector()
+            ->filterByContextIds([$submission->getData('contextId')])
+            ->getMany();
+
         $templateMgr->assign([
             'isChapterRequest' => $this->isChapterRequest,
             'publishedSubmission' => $submission,
             'publication' => $this->publication,
             'firstPublication' => $firstPublication,
             'currentPublication' => $submission->getCurrentPublication(),
-            'authorString' => $this->publication->getAuthorString(DAORegistry::getDAO('UserGroupDAO')->getByContextId($submission->getData('contextId'))->toArray()),
+            'authorString' => $this->publication->getAuthorString($userGroups),
         ]);
 
         // Provide the publication formats to the template

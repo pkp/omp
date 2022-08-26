@@ -193,12 +193,14 @@ class Upgrade extends Installer
     public function changeUserRolesAndStageAssignmentsForStagePermitSubmissionEdit()
     {
         $stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO'); /** @var StageAssignmentDAO $stageAssignmentDao */
-        $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /** @var UserGroupDAO $userGroupDao */
 
-        $roles = UserGroupDAO::getNotChangeMetadataEditPermissionRoles();
+        $roles = Repo::userGroup()::NOT_CHANGE_METADATA_EDIT_PERMISSION_ROLES;
         $roleString = '(' . implode(',', $roles) . ')';
 
-        $userGroupDao->update('UPDATE user_groups SET permit_metadata_edit = 1 WHERE role_id IN ' . $roleString);
+        DB::table('user_groups')
+            ->whereIn('role_id', $roles)
+            ->update(['permit_metadata_edit' => 1]);
+
         switch (Config::getVar('database', 'driver')) {
             case 'mysql':
             case 'mysqli':

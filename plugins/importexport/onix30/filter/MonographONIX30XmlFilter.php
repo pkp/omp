@@ -18,6 +18,7 @@ namespace APP\plugins\importexport\onix30\filter;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use APP\core\Application;
+use PKP\facades\Repo;
 
 class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\NativeExportFilter
 {
@@ -322,8 +323,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
             $contributorNode = $doc->createElementNS($deployment->getNamespace(), 'Contributor');
             $contributorNode->appendChild($this->_buildTextNode($doc, 'SequenceNumber', $sequence));
 
-            $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /** @var UserGroupDAO $userGroupDao */
-            $userGroup = $userGroupDao->getById($author->getUserGroupId(), $submission->getContextId());
+            $userGroup = Repo::userGroup()->get($author->getUserGroupId());
 
             $userGroupOnixMap = ['AU' => 'A01', 'VE' => 'B01', 'CA' => 'A01', 'Trans' => 'B06', 'PE' => 'B21']; // From List17, ContributorRole types.
 

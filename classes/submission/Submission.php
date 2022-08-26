@@ -299,13 +299,15 @@ class Submission extends PKPSubmission
     public function getAuthorOrEditorString($preferred = true)
     {
         if ($this->getWorkType() != self::WORK_TYPE_EDITED_VOLUME) {
-            $userGroupIds = array_map(function ($author) {
-                return $author->getData('userGroupId');
-            }, Repo::author()->getSubmissionAuthors($this, true)->toArray());
+            $userGroupIds = Repo::author()->getSubmissionAuthors($this, true)
+                ->pluck('userGroupId')
+                ->unique()
+                ->toArray();
 
-            $userGroups = array_map(function ($userGroupId) {
-                return DAORegistry::getDAO('UserGroupDAO')->getbyId($userGroupId);
-            }, array_unique($userGroupIds));
+            $userGroups = Repo::userGroup()->getCollector()
+                ->filterByUserIds($userGroupIds)
+                ->getMany();
+
             return $this->getCurrentPublication()->getAuthorString($userGroups);
         }
 
