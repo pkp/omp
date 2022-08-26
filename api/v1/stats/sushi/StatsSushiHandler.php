@@ -15,7 +15,7 @@
  */
 
 namespace APP\API\v1\stats\sushi;
- 
+
 use APP\sushi\TR;
 use APP\sushi\TR_B3;
 use PKP\core\APIResponse;
@@ -26,11 +26,10 @@ class StatsSushiHandler extends \PKP\API\v1\stats\sushi\PKPStatsSushiHandler
     /**
      * Get this API's endpoints definitions
      */
-    protected function getGETDefinitions(): array
+    protected function getGETDefinitions(array $roles = null): array
     {
-        $roles = [];
         return array_merge(
-            parent::getGETDefinitions(),
+            parent::getGETDefinitions($roles),
             [
                 [
                     'pattern' => $this->getEndpointPattern() . '/reports/tr',
