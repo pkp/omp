@@ -75,7 +75,7 @@ class GoogleScholarPlugin extends GenericPlugin
         $templateMgr->addHeader('googleScholarRevision', '<meta name="gs_meta_revision" content="1.1"/>');
 
         // Book/Edited volume or Chapter title of the submission
-        $title = $isChapterRequest ? $chapter->getLocalizedTitle() : $publication->getLocalizedTitle();
+        $title = $isChapterRequest ? $chapter->getLocalizedFullTitle($publication->getData('locale')) : $publication->getLocalizedFullTitle($publication->getData('locale'));
         $templateMgr->addHeader('googleScholarTitle', '<meta name="citation_title" content="' . htmlspecialchars($title) . '"/>');
 
         // Publication date
