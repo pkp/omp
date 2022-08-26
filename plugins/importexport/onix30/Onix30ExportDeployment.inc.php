@@ -52,6 +52,60 @@ class Onix30ExportDeployment extends PKPImportExportDeployment {
 	function getNamespace() {
 		return 'http://ns.editeur.org/onix/3.0/reference';
 	}
+
+	/**
+	 * Get possible Warnings and Errors from the import/export process
+	 *
+	 * @return array
+	 */
+	public function getWarningsAndErrors() {
+		$problems = [];
+		$objectTypes = $this->getObjectTypes();
+		foreach ($objectTypes as $assocType => $name) {
+			$foundWarnings = $this->getProcessedObjectsWarnings($assocType);
+			if (!empty($foundWarnings)) {
+				$problems['warnings'][$name][] = $foundWarnings;
+			}
+
+			$foundErrors = $this->getProcessedObjectsErrors($assocType);
+			if (!empty($foundErrors)) {
+				$problems['errors'][$name][] = $foundErrors;
+			}
+		}
+
+		return $problems;
+	}
+
+	protected function getObjectTypes() {
+		$objectTypes = [
+			ASSOC_TYPE_ANY => __('plugins.importexport.onix30.export.type.any'),
+			ASSOC_TYPE_SUBMISSION => __('plugins.importexport.onix30.export.type.submission'),
+		];
+
+		return $objectTypes;
+	}
+
+	/**
+	 * Returns an indication that the import/export process has failed
+	 *
+	 * @return bool
+	 */
+	public function isProcessFailed() {
+		if (count($this->_processedObjectsErrors) > 0 || count($this->xmlValidationErrors) > 0) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Getter method for XMLValidation Errors
+	 *
+	 * @return array
+	 */
+	public function getXMLValidationErrors() {
+		return $this->xmlValidationErrors;
+	}
 }
 
 

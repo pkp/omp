@@ -84,7 +84,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 	 * @param $submission Submission The submission we want to export and attach.
 	 */
 	function createSubmissionNode($doc, $rootNode, $submission) {
+		$deployment = $this->getDeployment();
+
 		$publicationFormats = $submission->getCurrentPublication()->getData('publicationFormats');
+
+		if (count($publicationFormats) < 1) {
+			$deployment->addError(ASSOC_TYPE_MONOGRAPH, $submission->getId(), __('plugins.importExport.onix30.common.error.monographWithNoPublicationFormats', ['monographId' => $submission->getId()]));
+		}
 
 		// Append all publication formats as Product nodes.
 		foreach ($publicationFormats as $publicationFormat) {

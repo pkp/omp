@@ -67,3 +67,27 @@ msgstr "Addressee (recipient) for this export"
 
 msgid "plugins.importexport.onix30.form.addresseeField.tip"
 msgstr "You may leave this field blank and create a general export.  This will result in the ONIX export having no &lt;Addressee&gt; composite. "
+
+msgid "plugins.importExport.onix30.common.error.monographWithNoPublicationFormats"
+msgstr "The submission with id: {$monographId} has no publication formats to attach to the ONIX message"
+
+msgid "plugins.importExport.onix30.common.error.exportFailed"
+msgstr "The ONIX export failed"
+
+msgid "plugins.importexport.onix30.processFailed"
+msgstr "The ONIX export failed"
+
+msgid "plugins.importexport.onix30.export.type.submission"
+msgstr "Errors for submission"
+
+msgid "plugins.importexport.onix30.export.type.any"
+msgstr "Generic Errors"
+
+msgid "plugins.importexport.onix30.export.completed"
+msgstr "The process is complete"
+
+msgid "plugins.importexport.onix30.export.completed.downloadFile"
+msgstr "You can download the exported file from here"
+
+msgid "plugins.importexport.native.onix30.download.results"
+msgstr "Download ONIX file"

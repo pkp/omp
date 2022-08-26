@@ -69,6 +69,9 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	function display($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
 		$context = $request->getContext();
+		$user = $request->getUser();
+
+		$exportFileDatePartFormat = 'Ymd-His';
 
 		parent::display($args, $request);
 
@@ -101,18 +104,67 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 				]);
 				$templateMgr->display($this->getTemplateResource('index.tpl'));
 				break;
+			case 'exportSubmissionsBounce':
+				if (!$request->checkCSRF()) throw new Exception('CSRF mismatch!');
+				$json = new JSONMessage(true);
+				$json->setEvent('addTab', array(
+					'title' => __('plugins.importexport.native.results'),
+					'url' => $request->url(null, null, null, array('plugin', $this->getName(), 'export'), array('selectedSubmissions' => $request->getUserVar('selectedSubmissions'), 'csrfToken' => $request->getSession()->getCSRFToken())),
+				));
+				header('Content-Type: application/json');
+				return $json->getString();
 			case 'export':
+				$onixDeployment = new Onix30ExportDeployment($context, $user);
+
 				$exportXml = $this->exportSubmissions(
 					(array) $request->getUserVar('selectedSubmissions'),
-					$request->getContext(),
-					$request->getUser()
+					$context,
+					$user,
+					$onixDeployment
 				);
+
+				$problems = $onixDeployment->getWarningsAndErrors();
+				$foundErrors = $onixDeployment->isProcessFailed();
+
+				if ($exportXml) {
+					$dateFilenamePart = new DateTime();
+					$this->writeExportedFile($exportXml, $onixDeployment->getContext(), $dateFilenamePart);
+
+					$templateMgr->assign('exportPath', $dateFilenamePart->format($exportFileDatePartFormat));
+				}
+
+				$templateMgr->assign('validationErrors', $onixDeployment->getXMLValidationErrors());
+
+				$templateMgr->assign('errorsAndWarnings', $problems);
+				$templateMgr->assign('errorsFound', $foundErrors);
+				$templateMgr->assign('onixPlugin', $this);
+
+				$json = new JSONMessage(true, $templateMgr->fetch($this->getTemplateResource('resultsExport.tpl')));
+				header('Content-Type: application/json');
+				return $json->getString();
+			case 'downloadExportFile':
+				if (!$request->checkCSRF()) throw new Exception('CSRF mismatch!');
+				$downloadPath = $request->getUserVar('downloadFilePath');
+				
+				$date = DateTime::createFromFormat($exportFileDatePartFormat, $downloadPath);
+				if (!$date) {
+					$dispatcher = $request->getDispatcher();
+					$dispatcher->handle404();
+				} 
+
+				$exportFileName = $this->getExportFileName($this->getExportPath(), 'monographs', $context, '.xml', $date);
+				
 				import('lib.pkp.classes.file.FileManager');
 				$fileManager = new FileManager();
-				$exportFileName = $this->getExportFileName($this->getExportPath(), 'monographs', $context, '.xml');
-				$fileManager->writeFile($exportFileName, $exportXml);
+
+				if (!$fileManager->fileExists($exportFileName)) {
+					$dispatcher = $request->getDispatcher();
+					$dispatcher->handle404();
+				} 
+
 				$fileManager->downloadByPath($exportFileName);
 				$fileManager->deleteByPath($exportFileName);
+
 				break;
 			default:
 				$dispatcher = $request->getDispatcher();
@@ -125,25 +177,62 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	 * @param $submissionIds array Array of submission IDs
 	 * @param $context Context
 	 * @param $user User
+	 * @param $onixDeployment Onix30ExportDeployment
 	 * @return string XML contents representing the supplied submission IDs.
 	 */
-	function exportSubmissions($submissionIds, $context, $user) {
+	function exportSubmissions($submissionIds, $context, $user, $onixDeployment) {
+		import('lib.pkp.classes.metadata.MetadataTypeDescription');
+
 		$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
 		$xml = '';
 		$filterDao = DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
 		$nativeExportFilters = $filterDao->getObjectsByGroup('monographs=>onix30-xml');
 		assert(count($nativeExportFilters) == 1); // Assert only a single serialization filter
 		$exportFilter = array_shift($nativeExportFilters);
-		$exportFilter->setDeployment(new Onix30ExportDeployment($context, $user));
+
+		$exportFilter->setDeployment($onixDeployment);
 		$submissions = array();
 		foreach ($submissionIds as $submissionId) {
 			$submission = $submissionDao->getById($submissionId, $context->getId());
 			if ($submission) $submissions[] = $submission;
 		}
+
+		libxml_use_internal_errors(true);
+
 		$submissionXml = $exportFilter->execute($submissions);
-		if ($submissionXml) $xml = $submissionXml->saveXml();
-		else fatalError('Could not convert submissions.');
+
+		$onixDeployment->xmlValidationErrors = array_filter(libxml_get_errors(), function ($a) {
+			return $a->level == LIBXML_ERR_ERROR || $a->level == LIBXML_ERR_FATAL;
+		});
+
+		libxml_clear_errors();
+
+		if ($submissionXml) 
+			$xml = $submissionXml->saveXml();
+		else 
+			$onixDeployment->addError(ASSOC_TYPE_ANY, 0, __('plugins.importexport.onix30.processFailed'));
+	
 		return $xml;
+	}
+
+	/**
+	 * Create file given it's name and content
+	 *
+	 * @param string $filename
+	 * @param ?DateTime $fileContent
+	 * @param Context $context
+	 *
+	 * @return string
+	 */
+	public function writeExportedFile($fileContent, $context, ?DateTime $dateFilenamePart = null) {
+		import('lib.pkp.classes.file.FileManager');
+		$fileManager = new FileManager();
+		
+		$exportFileName = $this->getExportFileName($this->getExportPath(), 'monographs', $context, '.xml', $dateFilenamePart);
+		
+		$fileManager->writeFile($exportFileName, $fileContent);
+
+		return $exportFileName;
 	}
 
 	/**
@@ -158,5 +247,24 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	 */
 	function usage($scriptName) {
 		fatalError('Not implemented.');
+	}
+
+	public function getBounceTab($request, $title, $bounceUrl, $bounceParameterArray) {
+		if (!$request->checkCSRF()) {
+			throw new Exception('CSRF mismatch!');
+		}
+		$json = new JSONMessage(true);
+		$json->setEvent('addTab', [
+			'title' => $title,
+			'url' => $request->url(
+				null,
+				null,
+				null,
+				['plugin', $this->getName(), $bounceUrl],
+				array_merge($bounceParameterArray, ['csrfToken' => $request->getSession()->getCSRFToken()])
+			),
+		]);
+		header('Content-Type: application/json');
+		return $json->getString();
 	}
 }
