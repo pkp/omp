@@ -115,7 +115,6 @@ class CSVImportExportPlugin extends ImportExportPlugin
             }
 
             $pressDao = Application::getContextDAO();
-            $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /** @var UserGroupDAO $userGroupDao */
             $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
             $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
             $submissionFileDao = Repo::submissionFile()->dao;
@@ -134,7 +133,12 @@ class CSVImportExportPlugin extends ImportExportPlugin
                     if (!is_array($supportedLocales) || count($supportedLocales) < 1) {
                         $supportedLocales = [$press->getPrimaryLocale()];
                     }
-                    $authorGroup = $userGroupDao->getDefaultByRoleId($press->getId(), Role::ROLE_ID_AUTHOR);
+                    $authorGroup = Repo::userGroup()->getCollector()
+                            ->filterByContextIds([$press->getId()])
+                            ->filterByRoleIds([Role::ROLE_ID_AUTHOR])
+                            ->filterByIsDefault(true)
+                            ->getMany()
+                            ->first();
 
                     // we need a Genre for the files.  Assume a key of MANUSCRIPT as a default.
                     $genre = $genreDao->getByKey('MANUSCRIPT', $press->getId());

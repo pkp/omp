@@ -131,12 +131,13 @@
 		<migration class="APP\migration\upgrade\v3_4_0\I7190_RemoveOrphanFilters" />
 		<migration class="PKP\migration\upgrade\v3_4_0\I7190_UpdateFilters" />
 		<migration class="PKP\migration\upgrade\v3_4_0\I8060_UpdateUserLocalesDefaultToEmptyArrayFromNull" />
+		<migration class="PKP\migration\upgrade\v3_4_0\I8073_RemoveNotesWithoutQueriesAndRelatedObjects" />
 		<migration class="PKP\migration\upgrade\v3_4_0\I2890_EmailTemplatesVarcharLengthUpdate"/>
 		<migration class="PKP\migration\upgrade\v3_4_0\I2890_AddSetNullForOnDeleteToReviewRoundIdForeign"/>
-		<migration class="PKP\migration\install\InstitutionsMigration" />
+		<migration class="PKP\migration\upgrade\v3_4_0\I6895_CreateNewInstitutionsTables" />
 		<migration class="APP\migration\upgrade\v3_4_0\I6782_OrphanedMetrics" />
 		<migration class="PKP\migration\upgrade\v3_4_0\I6782_UsageStatsSettings" />
-		<migration class="APP\migration\install\MetricsMigration" />
+		<migration class="APP\migration\upgrade\v3_4_0\I6782_CreateNewMetricsTables" />
 		<migration class="APP\migration\upgrade\v3_4_0\I6782_MetricsContext" />
 		<migration class="APP\migration\upgrade\v3_4_0\I6782_MetricsSeries" />
 		<migration class="APP\migration\upgrade\v3_4_0\I6782_MetricsSubmission" />
@@ -146,6 +147,7 @@
 		<migration class="PKP\migration\upgrade\v3_4_0\I7286_BatchesMigration"/>
 		<migration class="APP\migration\upgrade\v3_4_0\I8151_ExtendSettingValues"/>
 		<migration class="PKP\migration\upgrade\v3_4_0\I8151_ExtendSettingValues"/>
+		<migration class="PKP\migration\upgrade\v3_4_0\I7366_UpdateUserAPIKeySettings"/>
 		<data file="dbscripts/xml/upgrade/3.4.0_preupdate_email_templates.xml" />
 		<code function="installEmailTemplate" key="EDITOR_DECISION_SEND_TO_INTERNAL" locales="en_US" />
 		<code function="installEmailTemplate" key="EDITOR_DECISION_NOTIFY_OTHER_AUTHORS" locales="en_US" />

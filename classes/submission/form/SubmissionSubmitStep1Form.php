@@ -72,7 +72,6 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form
         if (isset($this->submission)) {
             parent::initData([
                 'seriesId' => $this->submission->getSeriesId(),
-                'seriesPosition' => $this->submission->getSeriesPosition(),
                 'workType' => $this->submission->getWorkType(),
             ]);
         } else {
@@ -110,7 +109,7 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form
     public function readInputData()
     {
         $this->readUserVars([
-            'workType', 'seriesId', 'seriesPosition',
+            'workType', 'seriesId',
         ]);
         parent::readInputData();
     }
@@ -124,7 +123,6 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form
     {
         $submission->setWorkType($this->getData('workType'));
         $submission->setSeriesId($this->getData('seriesId'));
-        $submission->setSeriesPosition($this->getData('seriesPosition'));
         parent::setSubmissionData($submission);
     }
 }

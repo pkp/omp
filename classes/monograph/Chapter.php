@@ -67,19 +67,38 @@ class Chapter extends \PKP\core\DataObject
     }
 
     /**
+     * Get the combined title and subtitle for all locales
+     *
+     * @return array
+     */
+    public function getFullTitles()
+    {
+        $titles = (array) $this->getData('title');
+        $fullTitles = [];
+        foreach ($titles as $locale => $title) {
+            if (!$title) {
+                continue;
+            }
+            $fullTitles[$locale] = $this->getLocalizedFullTitle($locale);
+        }
+        return $fullTitles;
+    }
+
+    /**
      * Get the chapter full title (with title and subtitle).
+     *
+     * @param null|mixed $preferredLocale
      *
      * @return string
      */
-    public function getLocalizedFullTitle()
+    public function getLocalizedFullTitle($preferredLocale = null)
     {
-        $fullTitle = $this->getLocalizedTitle();
-
-        if ($subtitle = $this->getLocalizedSubtitle()) {
-            $fullTitle = PKPString::concatTitleFields([$fullTitle, $subtitle]);
+        $title = $this->getLocalizedData('title', $preferredLocale);
+        $subtitle = $this->getLocalizedData('subtitle', $preferredLocale);
+        if ($subtitle) {
+            return PKPString::concatTitleFields([$title, $subtitle]);
         }
-
-        return $fullTitle;
+        return $title;
     }
 
     /**
