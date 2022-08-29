@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/services/NavigationMenuService.inc.php
+ * @file classes/services/NavigationMenuService.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky
@@ -21,9 +21,7 @@ use APP\template\TemplateManager;
 use PKP\core\PKPApplication;
 use PKP\db\DAORegistry;
 use PKP\plugins\Hook;
-
-// FIXME: Add namespacing
-use Validation;
+use PKP\security\Validation;
 
 class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
 {

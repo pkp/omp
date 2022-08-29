@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/press/FeatureDAO.inc.php
+ * @file classes/press/FeatureDAO.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
