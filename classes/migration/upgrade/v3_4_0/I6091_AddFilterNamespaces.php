@@ -27,12 +27,11 @@ class I6091_AddFilterNamespaces extends \PKP\migration\Migration
         'plugins.importexport.native.filter.PublicationFormatNativeXmlFilter' => 'APP\plugins\importexport\native\filter\PublicationFormatNativeXmlFilter',
         'plugins.importexport.native.filter.NativeXmlPublicationFormatFilter' => 'APP\plugins\importexport\native\filter\NativeXmlPublicationFormatFilter',
         'plugins.importexport.native.filter.NativeXmlMonographFileFilter' => 'APP\plugins\importexport\native\filter\NativeXmlMonographFileFilter',
-        'plugins.importexport.onix30.filter.MonographONIX30XmlFilter' => 'APP\plugins\importexport\native\filter\MonographONIX30XmlFilter',
+        'plugins.importexport.onix30.filter.MonographONIX30XmlFilter' => 'APP\plugins\importexport\onix30\filter\MonographONIX30XmlFilter',
         'plugins.importexport.native.filter.PublicationNativeXmlFilter' => 'APP\plugins\importexport\native\filter\PublicationNativeXmlFilter',
         'plugins.importexport.native.filter.NativeXmlPublicationFilter' => 'APP\plugins\importexport\native\filter\NativeXmlPublicationFilter',
         'plugins.importexport.native.filter.ChapterNativeXmlFilter' => 'APP\plugins\importexport\native\filter\ChapterNativeXmlFilter',
         'plugins.importexport.native.filter.NativeXmlChapterFilter' => 'APP\plugins\importexport\native\filter\NativeXmlChapterFilter',
-        'plugins.importexport.onix30.filter.MonographONIX30XmlFilter' => 'APP\plugins\importexport\onix30\filter\MonographONIX30XmlFilter',
 
         // pkp-lib filters
         'lib.pkp.plugins.importexport.users.filter.PKPUserUserXmlFilter' => 'PKP\plugins\importexport\users\filter\PKPUserUserXmlFilter',
