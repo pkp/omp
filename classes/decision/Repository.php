@@ -13,6 +13,7 @@
 
 namespace APP\decision;
 
+use APP\decision\Decision;
 use APP\decision\types\AcceptFromInternal;
 use APP\decision\types\CancelInternalReviewRound;
 use APP\decision\types\DeclineInternal;

@@ -25,26 +25,7 @@ use PKP\decision\Decision as BaseDecision;
 
 class Decision extends BaseDecision
 {
-    public const INTERNAL_REVIEW = 1;
-    public const ACCEPT = 2;
-    public const EXTERNAL_REVIEW = 3;
-    public const PENDING_REVISIONS = 4;
-    public const RESUBMIT = 5;
-    public const DECLINE = 6;
-    public const RECOMMEND_EXTERNAL_REVIEW = 15;
-    public const REVERT_INITIAL_DECLINE = 18;
-    public const SKIP_INTERNAL_REVIEW = 20;
-    public const ACCEPT_INTERNAL = 21;
-    public const PENDING_REVISIONS_INTERNAL = 22;
-    public const RESUBMIT_INTERNAL = 23;
-    public const DECLINE_INTERNAL = 24;
-    public const RECOMMEND_ACCEPT_INTERNAL = 25;
-    public const RECOMMEND_PENDING_REVISIONS_INTERNAL = 26;
-    public const RECOMMEND_RESUBMIT_INTERNAL = 27;
-    public const RECOMMEND_DECLINE_INTERNAL = 28;
-    public const REVERT_INTERNAL_DECLINE = 29;
-    public const NEW_INTERNAL_ROUND = 30;
-    public const CANCEL_INTERNAL_REVIEW_ROUND = 34;
+
 }
 
 if (!PKP_STRICT_MODE) {
