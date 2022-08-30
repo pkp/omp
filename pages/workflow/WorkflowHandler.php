@@ -33,6 +33,7 @@ use APP\file\PublicFileManager;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\core\PKPApplication;
+use PKP\db\DAORegistry;
 use PKP\decision\types\Accept;
 use PKP\decision\types\BackFromCopyediting;
 use PKP\decision\types\BackFromProduction;
@@ -47,9 +48,8 @@ use PKP\decision\types\RevertDecline;
 use PKP\decision\types\RevertInitialDecline;
 use PKP\decision\types\SendToProduction;
 use PKP\decision\types\SkipExternalReview;
-use PKP\plugins\Hook;
 use PKP\pages\workflow\PKPWorkflowHandler;
-use PKP\plugins\HookRegistry;
+use PKP\plugins\Hook;
 use PKP\security\Role;
 
 class WorkflowHandler extends PKPWorkflowHandler
@@ -338,7 +338,7 @@ class WorkflowHandler extends PKPWorkflowHandler
             CancelInternalReviewRound::class,
             CancelReviewRound::class,
             BackFromCopyediting::class,
-            BackFromProduction::class,            
+            BackFromProduction::class,
         ];
     }
 }
