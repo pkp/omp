@@ -143,7 +143,14 @@ class Onix30ExportPlugin extends \PKP\plugins\ImportExportPlugin
                 return $result;
             case 'downloadExportFile':
                 $downloadPath = $request->getUserVar('downloadFilePath');
-                $this->downloadExportedFile($downloadPath);
+                $downloadFileName = $request->getUserVar('downloadFileName');
+                $downloadSuccess = $this->downloadExportedFile($downloadFileName, $downloadPath, $this->getDeployment());
+
+                if (!$downloadSuccess) {
+                    $dispatcher = $request->getDispatcher();
+                    $dispatcher->handle404();
+                } 
+
                 break;
             default:
                 $dispatcher = $request->getDispatcher();
