@@ -230,7 +230,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
             if ($n instanceof \DOMElement) {
                 switch ($n->tagName) {
                     case 'cover_image':
-                        $coverImage['uploadName'] = $n->textContent;
+                        $coverImage['uploadName'] = uniqid() . '-' . basename($n->textContent);
                         break;
                     case 'cover_image_alt_text':
                         $coverImage['altText'] = $n->textContent;
