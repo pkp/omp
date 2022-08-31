@@ -29,11 +29,11 @@ use APP\decision\types\RevertDeclineInternal;
 use APP\decision\types\SendExternalReview;
 use APP\decision\types\SendInternalReview;
 use APP\decision\types\SkipInternalReview;
+use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\core\PKPApplication;
-use PKP\db\DAORegistry;
 use PKP\decision\types\Accept;
 use PKP\decision\types\BackFromCopyediting;
 use PKP\decision\types\BackFromProduction;
@@ -136,14 +136,12 @@ class WorkflowHandler extends PKPWorkflowHandler
         $catalogEntryForm = new \APP\components\forms\publication\CatalogEntryForm($latestPublicationApiUrl, $locales, $latestPublication, $submission, $baseUrl, $temporaryFileApiUrl);
         $publicationDatesForm = new \APP\components\forms\submission\PublicationDatesForm($submissionApiUrl, $submission);
 
-        $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /** @var UserGroupDAO $userGroupDao */
-        $result = $userGroupDao->getByContextId($submission->getData('contextId'));
-        $authorUserGroups = [];
-        while ($userGroup = $result->next()) {
-            if ((int)$userGroup->getRoleId() === Role::ROLE_ID_AUTHOR) {
-                $authorUserGroups[] = $userGroup;
-            }
-        }
+
+        $authorUserGroups = Repo::userGroup()->getCollector()
+            ->filterByContextIds([$submission->getData('contextId')])
+            ->filterByRoleIds([Role::ROLE_ID_AUTHOR])
+            ->getMany();
+
         $publicationLicenseForm = new \APP\components\forms\publication\PublicationLicenseForm($latestPublicationApiUrl, $locales, $latestPublication, $submissionContext, $authorUserGroups);
 
         $templateMgr->setConstants([
