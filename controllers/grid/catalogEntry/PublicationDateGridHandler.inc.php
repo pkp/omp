@@ -127,7 +127,7 @@ class PublicationDateGridHandler extends GridHandler {
 		// Retrieve the associated publication format for this grid.
 		$publicationDateId = (int) $request->getUserVar('publicationDateId'); // set if editing or deleting a date
 
-		if ($publicationDateId != '') {
+		if ($publicationDateId) {
 			$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
 			$publicationDate = $publicationDateDao->getById($publicationDateId, $this->getPublication()->getId());
 			if ($publicationDate) {

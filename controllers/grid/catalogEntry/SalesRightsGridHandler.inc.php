@@ -124,7 +124,7 @@ class SalesRightsGridHandler extends GridHandler {
 		// Retrieve the associated publication format for this grid.
 		$salesRightsId = (int) $request->getUserVar('salesRightsId'); // set if editing or deleting a sales rights entry
 
-		if ($salesRightsId != '') {
+		if ($salesRightsId) {
 			$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
 			$salesRights = $salesRightsDao->getById($salesRightsId, $this->getPublication()->getId());
 			if ($salesRights) {

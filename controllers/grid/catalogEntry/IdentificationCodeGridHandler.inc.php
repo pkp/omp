@@ -127,7 +127,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 		// Retrieve the associated publication format for this grid.
 		$identificationCodeId = (int) $request->getUserVar('identificationCodeId'); // set if editing or deleting a code
 
-		if ($identificationCodeId != '') {
+		if ($identificationCodeId) {
 			$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
 			$identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getPublication()->getId());
 			if ($identificationCode) {

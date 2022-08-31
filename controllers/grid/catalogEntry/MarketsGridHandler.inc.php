@@ -127,7 +127,7 @@ class MarketsGridHandler extends GridHandler {
 		// Retrieve the associated publication format for this grid.
 		$marketId = (int) $request->getUserVar('marketId'); // set if editing or deleting a market entry
 
-		if ($marketId != '') {
+		if ($marketId) {
 			$marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
 			$market = $marketDao->getById($marketId, $this->getPublication()->getId());
 			if ($market) {
