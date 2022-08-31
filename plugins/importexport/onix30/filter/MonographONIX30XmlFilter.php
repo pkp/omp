@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/importexport/onix30/filter/MonographONIX30XmlFilter.inc.php
+ * @file plugins/importexport/onix30/filter/MonographONIX30XmlFilter.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky

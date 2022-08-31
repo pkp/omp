@@ -1,6 +1,6 @@
 <?php
 /**
- * @file classes/services/StatsPublicationService.inc.php
+ * @file classes/services/StatsPublicationService.php
  *
  * Copyright (c) 2022 Simon Fraser University
  * Copyright (c) 2022 John Willinsky

@@ -13,7 +13,7 @@
   *  1 => GENRE_CATEGORY_DOCUMENT
   *  2 => GENRE_CATEGORY_ARTWORK
   *  3 => GENRE_CATEGORY_SUPPLEMENTARY
-  * These are defined in classes/monograph/Genre.inc.php.
+  * These are defined in classes/monograph/Genre.php.
   -->
 <genres>
 	<genre key="APPENDIX" category="1" dependent="0" supplementary="1" localeKey="default.genres.appendix" />
