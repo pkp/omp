@@ -342,7 +342,7 @@ class DOIPubIdPlugin extends PubIdPlugin {
 				'value' => $form->publication->getData('pub-id::doi'),
 				'prefix' => $prefix,
 				'pattern' => $pattern,
-				'contextInitials' => $form->submissionContext->getData('acronym', $form->submissionContext->getData('primaryLocale')) ?? '',
+				'contextInitials' => PKPString::regexp_replace('/[^-._;()\/A-Za-z0-9]/', '', PKPString::strtolower($form->submissionContext->getData('acronym', $form->submissionContext->getData('primaryLocale')))) ?? '',
 				'isPForPress' => true,
 				'separator' => '/',
 				'submissionId' => $form->publication->getData('submissionId'),
