@@ -137,11 +137,7 @@ class WorkflowHandler extends PKPWorkflowHandler
         $publicationDatesForm = new \APP\components\forms\submission\PublicationDatesForm($submissionApiUrl, $submission);
 
 
-        $authorUserGroups = Repo::userGroup()->getCollector()
-            ->filterByContextIds([$submission->getData('contextId')])
-            ->filterByRoleIds([Role::ROLE_ID_AUTHOR])
-            ->getMany();
-
+        $authorUserGroups = Repo::userGroup()->getByRoleIds([Role::ROLE_ID_AUTHOR], $submission->getData('contextId'));
         $publicationLicenseForm = new \APP\components\forms\publication\PublicationLicenseForm($latestPublicationApiUrl, $locales, $latestPublication, $submissionContext, $authorUserGroups);
 
         $templateMgr->setConstants([
