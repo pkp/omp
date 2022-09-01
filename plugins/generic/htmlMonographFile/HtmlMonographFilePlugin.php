@@ -14,15 +14,14 @@
 namespace APP\plugins\generic\htmlMonographFile;
 
 use APP\core\Application;
+use APP\core\Services;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\observers\events\Usage;
 use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
-use PKP\plugins\GenericPlugin;
 use PKP\plugins\Hook;
 use PKP\submissionFile\SubmissionFile;
-use APP\core\Services;
 
 class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
 {
@@ -176,7 +175,7 @@ class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
         );
 
         foreach ($embeddableFiles as $embeddableFile) {
-            $fileUrl = $request->url(null, 'catalog', 'download', [$monograph->getBestId(), $publicationFormat->getBestId(), $embeddableFile->getBestId()], ['inline' => true]);
+            $fileUrl = $request->url(null, 'catalog', 'download', [$monograph->getBestId(), 'version', $publicationFormat->getData('publicationId'), $publicationFormat->getBestId(), $embeddableFile->getBestId()], ['inline' => true]);
             $pattern = preg_quote($embeddableFile->getLocalizedData('name'));
 
             $contents = preg_replace(
@@ -239,40 +238,40 @@ class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
         $urlParts = explode('/', $url);
         if (isset($urlParts[0])) {
             switch (strtolower_codesafe($urlParts[0])) {
-            case 'press':
-                $url = $request->url(
-                    $urlParts[1] ?? $request->getRequestedPressPath(),
-                    null,
-                    null,
-                    null,
-                    null,
-                    $anchor
-                );
-                break;
-            case 'monograph':
-                if (isset($urlParts[1])) {
+                case 'press':
                     $url = $request->url(
+                        $urlParts[1] ?? $request->getRequestedPressPath(),
                         null,
-                        'catalog',
-                        'book',
-                        $urlParts[1],
+                        null,
+                        null,
                         null,
                         $anchor
                     );
-                }
-                break;
-            case 'sitepublic':
-                array_shift($urlParts);
-                $publicFileManager = new PublicFileManager();
-                $url = $request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath() . '/' . implode('/', $urlParts) . ($anchor ? '#' . $anchor : '');
-                break;
-            case 'public':
-                array_shift($urlParts);
-                $press = $request->getPress();
-                $publicFileManager = new PublicFileManager();
-                $url = $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($press->getId()) . '/' . implode('/', $urlParts) . ($anchor ? '#' . $anchor : '');
-                break;
-        }
+                    break;
+                case 'monograph':
+                    if (isset($urlParts[1])) {
+                        $url = $request->url(
+                            null,
+                            'catalog',
+                            'book',
+                            $urlParts[1],
+                            null,
+                            $anchor
+                        );
+                    }
+                    break;
+                case 'sitepublic':
+                    array_shift($urlParts);
+                    $publicFileManager = new PublicFileManager();
+                    $url = $request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath() . '/' . implode('/', $urlParts) . ($anchor ? '#' . $anchor : '');
+                    break;
+                case 'public':
+                    array_shift($urlParts);
+                    $press = $request->getPress();
+                    $publicFileManager = new PublicFileManager();
+                    $url = $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($press->getId()) . '/' . implode('/', $urlParts) . ($anchor ? '#' . $anchor : '');
+                    break;
+            }
         }
         return $matchArray[1] . $url . $matchArray[3];
     }
