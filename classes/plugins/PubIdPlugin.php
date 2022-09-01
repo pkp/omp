@@ -142,7 +142,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
         ?Representation $representation = null,
         ?SubmissionFile $submissionFile = null
     ): string {
-        $pubIdSuffix = PKPString::strtolower($context->getAcronym($context->getPrimaryLocale()));
+        $pubIdSuffix = PKPString::regexp_replace('/[^-._;()\/A-Za-z0-9]/', '', PKPString::strtolower($context->getAcronym($context->getPrimaryLocale())));
 
         if ($submission) {
             $pubIdSuffix .= '.' . $submission->getId();
@@ -177,7 +177,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
         ?SubmissionFile $submissionFile = null
     ): string {
         // %p - press initials
-        $pubIdSuffix = PKPString::regexp_replace('/%p/', PKPString::strtolower($context->getAcronym($context->getPrimaryLocale())), $pubIdSuffix);
+        $pubIdSuffix = PKPString::regexp_replace('/%p/', PKPString::regexp_replace('/[^-._;()\/A-Za-z0-9]/', '', PKPString::strtolower($context->getAcronym($context->getPrimaryLocale()))), $pubIdSuffix);
 
         // %x - custom identifier
         if ($pubObject->getStoredPubId('publisher-id')) {
