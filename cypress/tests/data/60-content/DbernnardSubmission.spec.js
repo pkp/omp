@@ -89,7 +89,7 @@ describe('Data suite tests', function() {
 		cy.get('#myQueue').find('a').contains('View Bernnard').click({force: true});
 		// Recommend
 		cy.clickDecision('Recommend Accept');
-		cy.recordRecommendation('Recommend Accept', ['Daniel Barnes']);
+		cy.recordRecommendation('Recommend Accept', ['Daniel Barnes', 'David Buskins']);
 		cy.logout();
 		// Log in as editor and see the existing recommendation
 		cy.findSubmissionAsEditor('dbarnes', null, 'Bernnard');
