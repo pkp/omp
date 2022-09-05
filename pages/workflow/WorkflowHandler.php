@@ -15,7 +15,6 @@
 
 namespace APP\pages\workflow;
 
-use PKP\pages\workflow\PKPWorkflowHandler;
 use APP\core\Application;
 use APP\core\Services;
 use APP\decision\types\AcceptFromInternal;
@@ -30,6 +29,7 @@ use APP\decision\types\RevertDeclineInternal;
 use APP\decision\types\SendExternalReview;
 use APP\decision\types\SendInternalReview;
 use APP\decision\types\SkipInternalReview;
+use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
@@ -48,6 +48,7 @@ use PKP\decision\types\RevertDecline;
 use PKP\decision\types\RevertInitialDecline;
 use PKP\decision\types\SendToProduction;
 use PKP\decision\types\SkipExternalReview;
+use PKP\pages\workflow\PKPWorkflowHandler;
 use PKP\plugins\Hook;
 use PKP\security\Role;
 
@@ -135,6 +136,10 @@ class WorkflowHandler extends PKPWorkflowHandler
         $catalogEntryForm = new \APP\components\forms\publication\CatalogEntryForm($latestPublicationApiUrl, $locales, $latestPublication, $submission, $baseUrl, $temporaryFileApiUrl);
         $publicationDatesForm = new \APP\components\forms\submission\PublicationDatesForm($submissionApiUrl, $submission);
 
+
+        $authorUserGroups = Repo::userGroup()->getByRoleIds([Role::ROLE_ID_AUTHOR], $submission->getData('contextId'));
+        $publicationLicenseForm = new \APP\components\forms\publication\PublicationLicenseForm($latestPublicationApiUrl, $locales, $latestPublication, $submissionContext, $authorUserGroups);
+
         $templateMgr->setConstants([
             'FORM_AUDIENCE' => FORM_AUDIENCE,
             'FORM_CATALOG_ENTRY' => FORM_CATALOG_ENTRY,
@@ -146,6 +151,7 @@ class WorkflowHandler extends PKPWorkflowHandler
         $components[FORM_AUDIENCE] = $audienceForm->getConfig();
         $components[FORM_CATALOG_ENTRY] = $catalogEntryForm->getConfig();
         $components[FORM_PUBLICATION_DATES] = $publicationDatesForm->getConfig();
+        $components[$publicationLicenseForm->id] = $publicationLicenseForm->getConfig();
 
         $publicationFormIds = $templateMgr->getState('publicationFormIds');
         $publicationFormIds[] = FORM_CATALOG_ENTRY;
@@ -326,7 +332,7 @@ class WorkflowHandler extends PKPWorkflowHandler
             CancelInternalReviewRound::class,
             CancelReviewRound::class,
             BackFromCopyediting::class,
-            BackFromProduction::class,            
+            BackFromProduction::class,
         ];
     }
 }

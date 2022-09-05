@@ -553,3 +553,9 @@ msgstr "{$editorName} recommended that this submission be sent to the external r
 
 msgid "doi.submission.incorrectContext"
 msgstr "Could not create a DOI for the following submission: {$pubObjectTitle}. It does not exist in the current press context."
+
+msgid "publication.chapter.licenseUrl"
+msgstr "License URL"
+
+msgid "publication.chapterDefaultLicenseURL"
+msgstr "Default Chapter License URL"

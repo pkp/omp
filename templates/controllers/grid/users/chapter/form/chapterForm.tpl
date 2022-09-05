@@ -48,6 +48,13 @@
 		{/fbvFormSection}
 	{/if}
 
+	{if $submissionWorkType === 1}
+		{fbvFormSection title="publication.chapter.licenseUrl" for="customExtras"}
+		<div class="pkpFormField__description">{$chapterLicenseUrlDescription}</div>
+		{fbvElement type="text" id="licenseUrl" value=$licenseUrl inline=true size=$fbvStyles.size.LARGE}
+		{/fbvFormSection}
+	{/if}
+
 	{fbvFormSection list=true title="publication.chapter.landingPage" for="customExtras"}
 	{fbvElement type="checkbox" name="isPageEnabled" id="isPageEnabled" checked=$isPageEnabled|compare:true label="publication.chapter.hasLandingPage" value="1" translate="true"}
 	{/fbvFormSection}

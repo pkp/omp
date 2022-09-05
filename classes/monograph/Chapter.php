@@ -396,6 +396,26 @@ class Chapter extends \PKP\core\DataObject
             return $doiObject->getData('doi');
         }
     }
+
+    /**
+     * get license url
+     *
+     * @return null|string
+     */
+    public function getLicenseUrl()
+    {
+        return $this->getData('licenseUrl');
+    }
+
+    /**
+     * set license url
+     *
+     * @param $licenseUrl null|string
+     */
+    public function setLicenseUrl(?string $licenseUrl): void
+    {
+        $this->setData('licenseUrl', $licenseUrl);
+    }
 }
 
 if (!PKP_STRICT_MODE) {

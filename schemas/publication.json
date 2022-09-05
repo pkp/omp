@@ -32,6 +32,15 @@
 			"validation": [
 				"nullable"
 			]
+		},
+		"chapterLicenseUrl": {
+			"type": "string",
+			"description": "A URL to a webpage describing the default license terms for chapters of this publication.",
+			"apiSummary": true,
+			"validation": [
+				"nullable",
+				"url"
+			]
 		}
 	}
 }
