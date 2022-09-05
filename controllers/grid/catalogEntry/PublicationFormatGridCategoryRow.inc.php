@@ -67,7 +67,7 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow {
 
 		// Is this a new row or an existing row?
 		$representation = $this->getData();
-		if ($representation && is_numeric($representation->getId()) && $this->_canManage) {
+		if ($representation && is_numeric($representation->getId())) {
 			$router = $request->getRouter();
 			$actionArgs = array(
 				'submissionId' => $submission->getId(),
@@ -90,21 +90,23 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow {
 				)
 			);
 
-			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
-			$this->addAction(
-				new LinkAction(
-					'deleteFormat',
-					new RemoteActionConfirmationModal(
-						$request->getSession(),
-						__('common.confirmDelete'),
-						__('common.delete'),
-						$router->url($request, null, null, 'deleteFormat', null, $actionArgs),
-						'modal_delete'
-					),
-					__('grid.action.delete'),
-					'delete'
-				)
-			);
+			if ($this->_canManage) {
+				import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
+				$this->addAction(
+					new LinkAction(
+						'deleteFormat',
+						new RemoteActionConfirmationModal(
+							$request->getSession(),
+							__('common.confirmDelete'),
+							__('common.delete'),
+							$router->url($request, null, null, 'deleteFormat', null, $actionArgs),
+							'modal_delete'
+						),
+						__('grid.action.delete'),
+						'delete'
+					)
+				);
+			}
 		}
 	}
 

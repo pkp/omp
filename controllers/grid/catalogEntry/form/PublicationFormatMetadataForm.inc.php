@@ -42,6 +42,8 @@ class PublicationFormatMetadataForm extends Form {
 	/** @var array Parameters to configure the form template */
 	var $_formParams;
 
+	var $_isEditable;
+
 	/**
 	 * Constructor.
 	 * @param $submission Submission
@@ -51,12 +53,14 @@ class PublicationFormatMetadataForm extends Form {
 	 * @param $remoteURL string
 	 * @param $stageId integer
 	 * @param $formParams array
+	 * @param bool $isEditable
 	 */
-	public function __construct($submission, $publication, $representation, $isPhysicalFormat = true, $remoteURL = null, $stageId = null, $formParams = null) {
+	public function __construct($submission, $publication, $representation, $isPhysicalFormat = true, $remoteURL = null, $stageId = null, $formParams = null, $isEditable = true) {
 		parent::__construct('controllers/tab/catalogEntry/form/publicationMetadataFormFields.tpl');
 		$this->_submission = $submission;
 		$this->_publication = $publication;
 		$this->_publicationFormat = $representation;
+		$this->_isEditable = $isEditable;
 
 		if (!$this->_submission || !$this->_publication || !$this->_publicationFormat) {
 			throw new Exception('PublicationFormatMetadataForm was instantiated without required dependencies.');
@@ -132,6 +136,8 @@ class PublicationFormatMetadataForm extends Form {
 			),
 			NOTIFICATION_LEVEL_TRIVIAL => array()
 		));
+
+		$templateMgr->assign('formDisabled', !$this->_isEditable);
 
 		return parent::fetch($request, $template, $display);
 	}

@@ -30,22 +30,22 @@
 	<input type="hidden" name="publicationId" value="{$publicationId|escape}" />
 	{fbvFormArea id="addFormat" class="border" title="grid.catalogEntry.publicationFormatDetails"}
 		{fbvFormSection for="title"}
-			{fbvElement type="text" required="true" id="name" label="common.name" value=$name multilingual="true" size=$fbvStyles.size.MEDIUM inline=true}
-			{fbvElement type="select" label="grid.catalogEntry.publicationFormatType" from=$entryKeys selected=$entryKey id="entryKey" translate=false size=$fbvStyles.size.MEDIUM inline=true}
+			{fbvElement type="text" required="true" id="name" label="common.name" value=$name multilingual="true" size=$fbvStyles.size.MEDIUM inline=true disabled=$formDisabled}
+			{fbvElement type="select" label="grid.catalogEntry.publicationFormatType" from=$entryKeys selected=$entryKey id="entryKey" translate=false size=$fbvStyles.size.MEDIUM inline=true disabled=$formDisabled}
 		{/fbvFormSection}
 		{fbvFormSection for="publicationFormat" size=$fbvStyles.size.MEDIUM list=true}
-			{fbvElement type="checkbox" label="grid.catalogEntry.physicalFormat" id="isPhysicalFormat" checked=$isPhysicalFormat}
+			{fbvElement type="checkbox" label="grid.catalogEntry.physicalFormat" id="isPhysicalFormat" checked=$isPhysicalFormat disabled=$formDisabled}
 		{/fbvFormSection}
 		{fbvFormSection for="remotelyHostedContent" list=true}
-			{fbvElement type="checkbox" label="grid.catalogEntry.remotelyHostedContent" id="remotelyHostedContent"}
+			{fbvElement type="checkbox" label="grid.catalogEntry.remotelyHostedContent" id="remotelyHostedContent" disabled=$formDisabled}
 			<div id="remote" style="display:none">
-				{fbvElement type="url" id="remoteURL" label="grid.catalogEntry.remoteURL" value=$remoteURL}
+				{fbvElement type="url" id="remoteURL" label="grid.catalogEntry.remoteURL" value=$remoteURL disabled=$formDisabled}
 			</div>
 		{/fbvFormSection}
 		{fbvFormSection id="urlPathSection" title="publication.urlPath"}
-			{fbvElement type="text" label="publication.urlPath.description" value=$urlPath id="urlPath" size=$fbvStyles.size.MEDIUM inline=true}
+			{fbvElement type="text" label="publication.urlPath.description" value=$urlPath id="urlPath" size=$fbvStyles.size.MEDIUM inline=true disabled=$formDisabled}
 		{/fbvFormSection}
 	{/fbvFormArea}
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-	{fbvFormButtons}
+	{fbvFormButtons submitDisabled=$formDisabled hideCancel=$formDisabled}
 </form>

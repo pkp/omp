@@ -25,14 +25,18 @@ class PublicationFormatForm extends Form {
 	/** @var $_publication Publication */
 	var $_publication = null;
 
+	var $_isEditable;
+
 	/**
 	 * Constructor.
 	 */
-	function __construct($monograph, $publicationFormat, $publication) {
+	function __construct($monograph, $publicationFormat, $publication, $isEditable = true) {
 		parent::__construct('controllers/grid/catalogEntry/form/formatForm.tpl');
 		$this->setMonograph($monograph);
 		$this->setPublicationFormat($publicationFormat);
 		$this->setPublication($publication);
+
+		$this->_isEditable = $isEditable;
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'name', 'required', 'grid.catalogEntry.nameRequired'));
@@ -132,6 +136,9 @@ class PublicationFormatForm extends Form {
 			$templateMgr->assign('representationId', $publicationFormat->getId());
 		}
 		$templateMgr->assign('publicationId', $this->getPublication()->getId());
+
+		$templateMgr->assign('formDisabled', !$this->_isEditable);
+
 		return parent::fetch($request, $template, $display);
 	}
 

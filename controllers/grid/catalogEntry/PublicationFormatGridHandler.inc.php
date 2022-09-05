@@ -34,8 +34,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	/** @var Publication */
 	var $_publication;
 
-	/** @var boolean */
-	protected $_canManage;
+	// /** @var boolean */
+	// protected $_canManage;
 
 	/**
 	 * Constructor
@@ -130,13 +130,12 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 			LOCALE_COMPONENT_APP_EDITOR
 		);
 
-		if($this->getPublication()->getData('status') !== STATUS_PUBLISHED) {
-			// Grid actions
-			$router = $request->getRouter();
-			$actionArgs = $this->getRequestArgs();
-			$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
-			$this->_canManage = 0 != count(array_intersect($userRoles, array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT)));
-			if ($this->_canManage) $this->addAction(
+		// Grid actions
+		$router = $request->getRouter();
+		$actionArgs = $this->getRequestArgs();
+		
+		if ($this->canEdit()) {
+			$this->addAction(
 				new LinkAction(
 					'addFormat',
 					new AjaxModal(
@@ -152,7 +151,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 
 		// Columns
 		import('controllers.grid.catalogEntry.PublicationFormatGridCellProvider');
-		$this->_cellProvider = new PublicationFormatGridCellProvider($this->getSubmission()->getId(), $this->_canManage, $this->getPublication()->getId());
+		$this->_cellProvider = new PublicationFormatGridCellProvider($this->getSubmission()->getId(), $this->canEdit(), $this->getPublication()->getId());
 		$this->addColumn(
 			new GridColumn(
 				'name',
@@ -163,7 +162,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 				array('width' => 60, 'anyhtml' => true)
 			)
 		);
-		if ($this->_canManage) {
+		if ($this->canEdit()) {
 			$this->addColumn(
 				new GridColumn(
 					'isComplete',
@@ -214,7 +213,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @return PublicationFormatGridCategoryRow
 	 */
 	function getCategoryRowInstance() {
-		return new PublicationFormatGridCategoryRow($this->getSubmission(), $this->_cellProvider, $this->_canManage, $this->getPublication());
+		return new PublicationFormatGridCategoryRow($this->getSubmission(), $this->_cellProvider, $this->canEdit(), $this->getPublication());
 	}
 
 
@@ -241,6 +240,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$templateMgr->assign('publicationId', $this->getPublication()->getId());
 		$templateMgr->assign('representationId', $representationId);
 		$templateMgr->assign('remoteRepresentation', $remoteURL);
+		$templateMgr->assign('formDisabled', !$this->canEdit());
 
 		$publisherIdEnabled = in_array('representation', (array) $request->getContext()->getData('enablePublisherId'));
 		$pubIdPlugins = PluginRegistry::getPlugins('pubIds');
@@ -270,7 +270,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		);
 
 		import('controllers.grid.catalogEntry.form.PublicationFormatForm');
-		$publicationFormatForm = new PublicationFormatForm($this->getSubmission(), $representation, $this->getPublication());
+		$publicationFormatForm = new PublicationFormatForm($this->getSubmission(), $representation, $this->getPublication(), $this->canEdit());
 		$publicationFormatForm->initData();
 
 		return new JSONMessage(true, $publicationFormatForm->fetch($request));
@@ -482,7 +482,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @copydoc GridHandler::getRowInstance()
 	 */
 	function getRowInstance() {
-		return new PublicationFormatGridRow($this->_canManage);
+		return new PublicationFormatGridRow($this->canEdit());
 	}
 
 	/**
@@ -581,7 +581,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
 		import('controllers.grid.catalogEntry.form.PublicationFormatMetadataForm');
-		$publicationFormatForm = new PublicationFormatMetadataForm($this->getSubmission(), $this->getPublication(), $representation);
+		$publicationFormatForm = new PublicationFormatMetadataForm($this->getSubmission(), $this->getPublication(), $representation, true, null, null, null, $this->canEdit());
 		$publicationFormatForm->initData();
 
 		return new JSONMessage(true, $publicationFormatForm->fetch($request));
@@ -668,6 +668,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$submission = $this->getSubmission();
 		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
 		$submissionFile = Services::get('submissionFile')->get($request->getUserVar('submissionFileId'));
+		$isGridDisabled = $request->getUserVar('isGridDisabled');
 		if ($submissionFile->getData('fileStage') !== SUBMISSION_FILE_PROOF || $submissionFile->getData('submissionId') != $submission->getId()) {
 			return new JSONMessage(false);
 		}
@@ -677,7 +678,30 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$templateMgr->assign(array(
 			'submissionId' => $this->getSubmission()->getId(),
 			'submissionFile' => $submissionFile,
+			'isGridDisabled' => $isGridDisabled
 		));
 		return new JSONMessage(true, $templateMgr->fetch('controllers/grid/catalogEntry/dependentFiles.tpl'));
+	}
+
+	/**
+	 * Can the current user edit the galleys in this grid?
+	 *
+	 * The user must have an allowed role in one of the assigned stages.
+	 * If the user is not assigned, they can edit if they are an editor
+	 * or admin.
+	 *
+	 * @return boolean
+	 */
+	public function canEdit() {
+		return $this->getPublication()->getData('status') !== STATUS_PUBLISHED &&
+			Services::get('user')->canUserAccessStage(
+				WORKFLOW_STAGE_ID_PRODUCTION,
+				WORKFLOW_TYPE_EDITORIAL,
+				$this->getAuthorizedContextObject(ASSOC_TYPE_ACCESSIBLE_WORKFLOW_STAGES),
+				$this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES)
+			);
+
+			// $userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+			// $this->_canManage = 0 != count(array_intersect($userRoles, array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT)));
 	}
 }

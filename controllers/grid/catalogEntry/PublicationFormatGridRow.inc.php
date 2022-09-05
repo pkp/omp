@@ -27,9 +27,14 @@ class PublicationFormatGridRow extends SubmissionFilesGridRow {
 	function __construct($canManage) {
 		$this->_canManage = $canManage;
 
+		$capabilities = FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_MANAGE|FILE_GRID_EDIT|FILE_GRID_VIEW_NOTES;
+		if (!$this->_canManage) {
+			$capabilities = FILE_GRID_VIEW_NOTES;
+		}
+
 		parent::__construct(
 			new FilesGridCapabilities(
-				$canManage?FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_MANAGE|FILE_GRID_EDIT|FILE_GRID_VIEW_NOTES:0
+				$capabilities
 			),
 			WORKFLOW_STAGE_ID_PRODUCTION
 		);
@@ -49,7 +54,7 @@ class PublicationFormatGridRow extends SubmissionFilesGridRow {
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$router = $request->getRouter();
 		$mimetype = $submissionFile->getData('mimetype');
-		if ($this->_canManage && in_array($mimetype, array('application/xml', 'text/html'))) {
+		if (in_array($mimetype, array('application/xml', 'text/html'))) {
 			$this->addAction(new LinkAction(
 				'dependentFiles',
 				new AjaxModal(
@@ -57,6 +62,7 @@ class PublicationFormatGridRow extends SubmissionFilesGridRow {
 						$this->getRequestArgs(),
 						array(
 							'submissionFileId' => $submissionFile->getId(),
+							'isGridDisabled' => !$this->_canManage
 						)
 					)),
 					__('submission.dependentFiles'),
