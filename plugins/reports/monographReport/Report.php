@@ -16,6 +16,7 @@
 namespace APP\plugins\reports\monographReport;
 
 use APP\author\Author;
+use APP\core\Application;
 use APP\core\Request;
 use APP\decision\Decision;
 use APP\facades\Repo;
@@ -102,21 +103,6 @@ class Report implements IteratorAggregate
             // Calls the getter for each field and yields an array/row
             yield array_map(fn (callable $getter) => $getter(), $fieldMapper);
         }
-    }
-
-    /**
-     * Retrieves the stage label
-     */
-    public function getStageLabel(int $stageId): string
-    {
-        return match ($stageId) {
-            WORKFLOW_STAGE_ID_SUBMISSION => __('submission.submission'),
-            WORKFLOW_STAGE_ID_INTERNAL_REVIEW => __('workflow.review.internalReview'),
-            WORKFLOW_STAGE_ID_EXTERNAL_REVIEW => __('submission.review'),
-            WORKFLOW_STAGE_ID_EDITING => __('submission.copyediting'),
-            WORKFLOW_STAGE_ID_PRODUCTION => __('submission.production'),
-            default => ''
-        };
     }
 
     /**
@@ -370,7 +356,7 @@ class Report implements IteratorAggregate
     private function getStatus(): string
     {
         return $this->submission->getData('status') === Submission::STATUS_QUEUED
-            ? $this->getStageLabel($this->submission->getData('stageId'))
+            ? __(Application::getWorkflowStageName($this->submission->getData('stageId')))
             : __($this->statusMap[$this->submission->getData('status')]);
     }
 
