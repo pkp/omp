@@ -472,6 +472,7 @@ msgstr "Oceny recenzentów"
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
 msgstr "Zawiera bezpieczny link w emailu z zaproszeniem dla recenzentów."
 
+#, fuzzy
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
 msgstr ""
 "Recenzenci mogą mieć wysłane bezpieczne linki w emailu z zaproszeniem, który "

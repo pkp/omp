@@ -469,6 +469,7 @@ msgstr "Bedømmerklassificering"
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
 msgstr "Inkludér et sikkert link i e-mail-invitationen til bedømmere."
 
+#, fuzzy
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
 msgstr ""
 "Bedømmere kan få tilsendt et sikkert link i e-mail-invitationen, der giver "

@@ -915,6 +915,7 @@ msgstr "Vurdering av fagfeller"
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
 msgstr "Inkluder en sikker lenke i e-postinvitasjonen til anmeldere."
 
+#, fuzzy
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
 msgstr ""
 "<strong>NB:</strong> E-post-invitasjonen til fagkonsulenter kommer til å "
