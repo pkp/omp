@@ -78,11 +78,11 @@ class MonographReportPlugin extends ReportPlugin {
 				'orderBy' => 'dateSubmitted',
 				'orderDirection' => 'ASC'
 			]);
-			/** @var Monograph */
+			/** @var Submission */
 			foreach ($monographs as $monograph) {
 				$row = [];
 				foreach ($fields as $getter) {
-					$row[] = $getter($monograph);
+					$row[] = $getter($monograph->getCurrentPublication());
 				}
 				$output->fputcsv($row);
 			}
@@ -91,6 +91,9 @@ class MonographReportPlugin extends ReportPlugin {
 		}
 	}
 
+	/**
+	 * Retrieves a dictionary, where the keys represent the column titles and the values a value getter
+	 */
 	private function _getFieldMapper(Press $press, Request $request): array
 	{
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
@@ -106,38 +109,36 @@ class MonographReportPlugin extends ReportPlugin {
 		$categoryList = $categoryDao->getByContextId($press->getId())->toAssociativeArray();
 
 		return [
-			__('common.publication') => function (Submission $monograph) {
-				return $monograph->getCurrentPublication()->getLocalizedTitle();
+			__('common.publication') => function (Publication $publication) {
+				return $publication->getLocalizedTitle();
 			},
-			__('submission.authors') => function (Submission $monograph) {
+			__('submission.authors') => function (Publication $publication) {
 				$authors = [];
 				/** @var Author */
-				foreach ($monograph->getCurrentPublication()->getData('authors') ?? [] as $author) {
+				foreach ($publication->getData('authors') ?? [] as $author) {
 					$authors[] = $author->getFullName();
 				}
 				return implode("\n", $authors);
 			},
-			__('catalog.published') => function (Submission $monograph) {
-				return $monograph->getCurrentPublication()->getData('datePublished');
+			__('catalog.published') => function (Publication $publication) {
+				return $publication->getData('datePublished');
 			},
-			__('metadata.property.displayName.series') => function (Submission $monograph) use ($seriesList) {
-				return ($series = $seriesList[$monograph->getCurrentPublication()->getData('seriesId')] ?? null)
+			__('metadata.property.displayName.series') => function (Publication $publication) use ($seriesList) {
+				return ($series = $seriesList[$publication->getData('seriesId')] ?? null)
 					? $series->getLocalizedTitle()
 					: null;
 			},
-			__('submission.submit.seriesPosition') => function (Submission $monograph) {
-				return $monograph->getCurrentPublication()->getData('seriesPosition');
+			__('submission.submit.seriesPosition') => function (Publication $publication) {
+				return $publication->getData('seriesPosition');
 			},
-			__('submission.identifiers') => function (Submission $monograph) use ($seriesList) {
-				$format = static function (string $name, $value): string
-				{
+			__('submission.identifiers') => function (Publication $publication) use ($seriesList) {
+				$format = static function (string $name, $value): string {
 					return __('plugins.reports.monographReport.identifierFormat', ['name' => $name, 'value' => $value]);
 				};
 				$identifiers = [];
-				$publication = $monograph->getCurrentPublication();
 				if ($series = $seriesList[$publication->getData('seriesId')] ?? null) {
 					if ($issn = $series->getOnlineISSN()) {
-						$identifiers[] = $format(  __('catalog.manage.series.onlineIssn'), $issn);
+						$identifiers[] = $format(__('catalog.manage.series.onlineIssn'), $issn);
 					}
 
 					if ($issn = $series->getPrintISSN()) {
@@ -156,15 +157,15 @@ class MonographReportPlugin extends ReportPlugin {
 				}
 				return implode("\n", $identifiers);
 			},
-			__('common.url') => function (Submission $monograph) use ($press, $request) {
-				return $request->url($press->getPath(), 'monograph', 'view', [$monograph->getId()]);
+			__('common.url') => function (Publication $publication) use ($press, $request) {
+				return $request->url($press->getPath(), 'monograph', 'view', [$publication->getData('submissionId')]);
 			},
-			__('metadata.property.displayName.doi') => function (Submission $monograph) {
-				return $monograph->getCurrentPublication()->getStoredPubId('doi');
+			__('metadata.property.displayName.doi') => function (Publication $publication) {
+				return $publication->getStoredPubId('doi');
 			},
-			__('catalog.categories') => function (Submission $monograph) use ($categoryList) {
+			__('catalog.categories') => function (Publication $publication) use ($categoryList) {
 				$categories = [];
-				foreach ($monograph->getCurrentPublication()->getData('categoryIds') ?? [] as $id) {
+				foreach ($publication->getData('categoryIds') ?? [] as $id) {
 					if ($category = $categoryList[$id] ?? null) {
 						$categories[] = $category->getLocalizedTitle();
 					}
