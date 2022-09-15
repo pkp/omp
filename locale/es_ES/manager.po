@@ -1352,6 +1352,7 @@ msgstr ""
 "Incluir un enlace seguro en la invitación por correo electrónico a los "
 "revisores."
 
+#, fuzzy
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
 msgstr ""
 "A los revisores se les puede enviar un enlace seguro en la invitación por "

@@ -1106,6 +1106,7 @@ msgstr ""
 msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
 msgstr "Seleccioneu la sèrie a la qual voleu vincular aquest element del menú."
 
+#, fuzzy
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
 msgstr ""
 "El correu electrònic d'invitació per als revisors/ores pot incloure un "
