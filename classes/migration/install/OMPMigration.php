@@ -237,36 +237,10 @@ class OMPMigration extends \PKP\migration\Migration
             $table->unique(['author_id', 'chapter_id'], 'chapter_authors_pkey');
         });
 
-        // Presses and basic press settings.
-        Schema::create('presses', function (Blueprint $table) {
-            $table->bigInteger('press_id')->autoIncrement();
-            $table->string('path', 32);
-            $table->float('seq', 8, 2)->default(0);
-            $table->string('primary_locale', 14);
-            $table->smallInteger('enabled')->default(1);
-            $table->unique(['path'], 'press_path');
-        });
-
-        // DOI foreign key references Press, so it needs to be added AFTER the presses table has been created
-        Schema::table('dois', function (Blueprint $table) {
-            $table->foreign('context_id')->references('press_id')->on('presses');
-        });
-
         // Add doiId to submission files
         Schema::table('submission_files', function (Blueprint $table) {
             $table->bigInteger('doi_id')->nullable();
             $table->foreign('doi_id')->references('doi_id')->on('dois')->nullOnDelete();
-        });
-
-        // Press settings.
-        Schema::create('press_settings', function (Blueprint $table) {
-            $table->bigInteger('press_id');
-            $table->string('locale', 14)->default('');
-            $table->string('setting_name', 255);
-            $table->text('setting_value')->nullable();
-            $table->string('setting_type', 6)->nullable();
-            $table->index(['press_id'], 'press_settings_press_id');
-            $table->unique(['press_id', 'locale', 'setting_name'], 'press_settings_pkey');
         });
 
 
@@ -336,8 +310,6 @@ class OMPMigration extends \PKP\migration\Migration
         Schema::drop('submission_chapters');
         Schema::drop('submission_chapter_settings');
         Schema::drop('submission_chapter_authors');
-        Schema::drop('presses');
-        Schema::drop('press_settings');
         Schema::drop('spotlights');
         Schema::drop('spotlight_settings');
         Schema::drop('queued_payments');
