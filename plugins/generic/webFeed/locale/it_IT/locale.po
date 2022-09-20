@@ -1,11 +1,12 @@
 # Alfredo Cosco <alfredo.cosco@gmail.com>, 2021.
+# Fulvio Delle Donne <fulviodelledonne@libero.it>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-08T17:42:23+00:00\n"
-"PO-Revision-Date: 2021-08-23 13:51+0000\n"
-"Last-Translator: Alfredo Cosco <alfredo.cosco@gmail.com>\n"
+"PO-Revision-Date: 2022-08-09 10:00+0000\n"
+"Last-Translator: Fulvio Delle Donne <fulviodelledonne@libero.it>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/"
 "generic-webFeed/it_IT/>\n"
 "Language: it_IT\n"
@@ -13,21 +14,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.generic.webfeed.displayName"
-msgstr "Feed della rivista plugin"
+msgstr "Plugin dei Web Feed"
 
 msgid "plugins.generic.webfeed.description"
-msgstr "Questo plugin genera il feed RSS/Atom per la casa editrice corrente."
+msgstr "Questo plugin genera il feed RSS/Atom per la Casa Editrice corrente."
 
 msgid "plugins.generic.webfeed.settings"
 msgstr "Impostazioni"
 
 msgid "plugins.generic.webfeed.settings.recentItemsRequired"
-msgstr ""
-"Per favore inserisci un intero positivo per gli elementi pubblicati di "
-"recente."
+msgstr "Per favore inserisci un intero positivo per le pubblicazioni recenti."
 
 msgid "plugins.generic.webfeed.settings.all"
 msgstr "Mostra il link ai feed su tutte le pagine della casa editrice."
