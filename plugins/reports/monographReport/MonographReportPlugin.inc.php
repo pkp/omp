@@ -11,7 +11,8 @@
  * @ingroup plugins_reports_monographReport
  * @see MonographReportDAO
  *
- * @brief Monograph report plugin
+ * @brief The monograph report plugin will output a .csv file containing basic
+ * information (title, DOI, etc.) from published monographs
  */
 
 import('lib.pkp.classes.plugins.ReportPlugin');
@@ -54,7 +55,7 @@ class MonographReportPlugin extends ReportPlugin {
 	/**
 	 * @copydoc ReportPlugin::display()
 	 */
-	public function display(array $args, Request $request): void
+	public function display($args, $request): void
 	{
 		$press = $request->getContext();
 		if (!$press) {
@@ -62,7 +63,9 @@ class MonographReportPlugin extends ReportPlugin {
 		}
 
 		header('content-type: text/comma-separated-values');
-		header('content-disposition: attachment; filename=monograph-report-' . date('Ymd') . '.csv');
+		$filename = 'monograph-report-' . $press->getAcronym(AppLocale::getLocale()) . '-' . date('Ymd') . '.csv';
+		header("content-disposition: attachment; filename={$filename}");
+
 
 		$fields = $this->_getFieldMapper($press, $request);
 		$output = new SplFileObject('php://output', 'w');
