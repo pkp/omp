@@ -10,9 +10,8 @@
  * @class MonographReportPlugin
  * @ingroup plugins_reports_monographReport
  *
- * @see MonographReportDAO
- *
- * @brief Monograph report plugin
+ * @brief The monograph report plugin will output a .csv file containing basic
+ * information (title, DOI, etc.) from published monographs
  */
 
 namespace APP\plugins\reports\monographReport;
@@ -31,6 +30,7 @@ use APP\submission\Submission;
 use Exception;
 use PKP\category\Category;
 use PKP\db\DAORegistry;
+use PKP\facades\Locale;
 use PKP\plugins\ReportPlugin;
 use SplFileObject;
 
@@ -75,7 +75,7 @@ class MonographReportPlugin extends ReportPlugin
     /**
      * @copydoc ReportPlugin::display()
      */
-    public function display(array $args, Request $request): void
+    public function display($args, $request): void
     {
         $press = $request->getContext();
         if (!$press) {
@@ -83,9 +83,10 @@ class MonographReportPlugin extends ReportPlugin
         }
 
         header('content-type: text/comma-separated-values');
-        header('content-disposition: attachment; filename=monograph-report-' . date('Ymd') . '.csv');
+        $filename = 'monograph-report-' . $press->getAcronym(Locale::getLocale()) . '-' . date('Ymd') . '.csv';
+        header("content-disposition: attachment; filename={$filename}");
 
-        $fields = $this->_getFieldMapper($press, $request);
+        $fields = $this->getFieldMapper($press, $request);
         $output = new SplFileObject('php://output', 'w');
         try {
             // UTF-8 BOM to force the file to be read with the right encoding
@@ -110,7 +111,7 @@ class MonographReportPlugin extends ReportPlugin
     /**
      * Retrieves a dictionary, where the keys represent the column titles and the values a value getter
      */
-    private function _getFieldMapper(Press $press, Request $request): array
+    private function getFieldMapper(Press $press, Request $request): array
     {
         /** @var SeriesDAO */
         $seriesDAO = DAORegistry::getDAO('SeriesDAO');
@@ -147,7 +148,7 @@ class MonographReportPlugin extends ReportPlugin
                 ->map(fn (array $identifier) => __('plugins.reports.monographReport.identifierFormat', ['name' => reset($identifier), 'value' => end($identifier)]))
                 ->join("\n"),
             __('common.url') => fn (Publication $publication) => $request->url($press->getPath(), 'monograph', 'view', [$publication->getData('submissionId')]),
-            __('metadata.property.displayName.doi') => fn (Publication $publication) => $publication->getStoredPubId('doi'),
+            __('metadata.property.displayName.doi') => fn (Publication $publication) => $publication->getDoi(),
             __('catalog.categories') => fn (Publication $publication) => collect($publication->getData('categoryIds'))
                 ->map(fn (int $id) => $categoryList[$id]?->getLocalizedTitle())
                 ->join("\n")
