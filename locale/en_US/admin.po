@@ -126,3 +126,15 @@ msgstr "Chapter ID is not an integer"
 
 msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
 msgstr "Series ID is not an integer"
+
+msgid "admin.settings.statistics.geo.description"
+msgstr ""
+"Select the type of geographical usage statistics that can be collected by presses on this site. More detailed geographical statistics may increase your database size considerably and, in some rare cases, may undermine the anonymity of your visitors. Each press may configure this setting differently, but a press can never collect more detailed records than what is configured here. For example, if the site only supports country and region, the press may select country and region or only country. The press will not be able to track country, region and city."
+
+msgid "admin.settings.statistics.institutions.description"
+msgstr ""
+"Enable institutional statistics if you would like presses on this site to be able to collect usage statistics by institution. Presses will need to add the institution and its IP ranges in order to use this feature. Enabling institutional statistics may increase your database size considerably."
+
+msgid "admin.settings.statistics.sushi.public.description"
+msgstr ""
+"Whether or not to make the SUSHI API endpoints publicly accessible for all presses on this site. If you enable the public API, each press may override this setting to make their statistics private. However, if you disable the public API, presses can not make their own API public."
