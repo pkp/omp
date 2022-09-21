@@ -1,6 +1,7 @@
+# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-05-03 10:25+0000\n"
+"PO-Revision-Date: 2022-09-22 07:38+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "cs_CZ/>\n"
@@ -9,13 +10,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "submission.round"
 msgstr "Kolo&nbsp;{$round}"
 
 msgid "publication.scheduledIn"
-msgstr "Naplánováno k publikování v  <a href=\"{$issueUrl}\">{$issueName}</a>."
+msgstr "Naplánováno k publikování v <a href=\"{$issueUrl}\">{$issueName}</a>."
 
 msgid "publication.publish.confirmation"
 msgstr ""
@@ -23,7 +24,7 @@ msgstr ""
 "záznam zveřejnit?"
 
 msgid "publication.publishedIn"
-msgstr "Publikováno v  <a href=\"{$issueUrl}\">{$issueName}</a>."
+msgstr "Publikováno v <a href=\"{$issueUrl}\">{$issueName}</a>."
 
 msgid "publication.required.issue"
 msgstr "Publikace musí být před změřejněním přiřazena k číslu."
@@ -494,3 +495,28 @@ msgstr "Podrobnosti zveřejnění pro verzi {$version}"
 
 msgid "submission.queries.production"
 msgstr "Diskuse během produkčního procesu"
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr "Odeslat k interní recenzi"
+
+msgid "submission.chapterCreated"
+msgstr " – Kapitola vytvořena"
+
+msgid "chapter.pages"
+msgstr "Stránky"
+
+msgid "publication.chapter.landingPage"
+msgstr "Stránka kapitoly"
+
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+"Zobrazte tuto kapitolu na samostatné stránce a odkažte na ni z obsahu knihy."
+
+msgid "publication.publish.success"
+msgstr "Stav publikování byl úspěšně změněn."
+
+msgid "chapter.volume"
+msgstr "Svazek"
+
+msgid "submission.withoutChapter"
+msgstr "{$name} - Bez této kapitoly"
