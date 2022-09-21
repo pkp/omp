@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-07-19 15:30+0000\n"
+"PO-Revision-Date: 2022-09-22 07:38+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/emails/cs_CZ/>"
 "\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "emails.notification.subject"
 msgstr "Nové oznámení od {$contextName}"
@@ -35,7 +35,7 @@ msgstr ""
 "{$siteTitle}.<br />\n"
 "<br />\n"
 "Pokud jste o obnovu nepožádal/a, ignorujte, prosím, tuto zprávu a Vaše heslo "
-"se nezmění. Pokud si heslo přejete obnovit, klikněte, prosím, na odkaz  "
+"se nezmění. Pokud si heslo přejete obnovit, klikněte, prosím, na odkaz "
 "níže.<br />\n"
 "<br />\n"
 "Obnovit mé heslo: {$passwordResetUrl}<br />\n"
@@ -336,9 +336,8 @@ msgstr ""
 "<br />\n"
 "URL rukopisu: {$submissionUrl}"
 
-#, fuzzy
 msgid "emails.editorDecisionAccept.subject"
-msgstr "Rozhodnutí editora"
+msgstr "Váš příspěvek byl přijat do {$contextName}"
 
 msgid "emails.reviewRemindAutoOneclick.subject"
 msgstr "Automatické připomenutí recenze podání"
@@ -377,3 +376,16 @@ msgstr ""
 
 msgid "emails.userValidateContext.subject"
 msgstr "Ověřte svůj účet"
+
+msgid "emails.indexRequest.subject"
+msgstr "Požadavek na idexaci"
+
+msgid "emails.layoutRequest.subject"
+msgstr ""
+"Příspěvek {$submissionId} je připraven k produkci na adrese {$contextAcronym}"
+
+msgid "emails.editorDecisionSkipReview.subject"
+msgstr "Váš příspěvek byl odeslán k copyeditingu"
+
+msgid "emails.layoutComplete.subject"
+msgstr "Sazebnice jsou hotové"
