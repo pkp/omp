@@ -1,7 +1,8 @@
+# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-05-09 14:35+0000\n"
-"Last-Translator: Jiří Podhorecký <j.podhorecky@gmail.com>\n"
+"PO-Revision-Date: 2022-09-22 07:38+0000\n"
+"Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/manager/cs_CZ/"
 ">\n"
 "Language: cs_CZ\n"
@@ -9,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "manager.setup.lists.success"
 msgstr "Tento seznam nastavení byl aktualizován."
@@ -458,7 +459,6 @@ msgstr ""
 msgid "manager.setup.policies"
 msgstr "Zásady"
 
-#, fuzzy
 msgid "manager.setup.onlineIssn"
 msgstr "Online ISSN"
 
@@ -942,7 +942,7 @@ msgid "doi.editor.missingPrefix"
 msgstr "DOI musí začínat {$doiPrefix}."
 
 msgid "doi.editor.assignDoi.assigned"
-msgstr "DOI  {$pubId} bylo přiřazeno."
+msgstr "DOI {$pubId} bylo přiřazeno."
 
 msgid "doi.editor.assignDoi.pattern"
 msgstr "DOI {$pubId} nelze přiřadit, protože obsahuje neplatný vzor."
@@ -1009,10 +1009,9 @@ msgstr "Jste si jisti, že chcete smazat všechny existující identifikátory D
 
 msgid "doi.manager.settings.doiReassign.description"
 msgstr ""
-"Změníte-li konfiguraci DOI, DOI, které již byly přiřazeny, nebudou "
-"ovlivněny. Jakmile je konfigurace DOI uložena, použijte toto tlačítko pro "
-"vymazání všech stávajících DOI tak, aby se nová nastavení projevila i u "
-"stávajících objektů."
+"Pokud změníte konfiguraci DOI, již přiřazené DOI nebudou ovlivněny. Po "
+"uložení konfigurace DOI použijte toto tlačítko k vymazání všech stávajících "
+"DOI, aby se nové nastavení projevilo u všech existujících objektů."
 
 msgid "doi.manager.settings.doiReassign"
 msgstr "Znovu přidělit DOI"
@@ -1073,9 +1072,11 @@ msgstr ""
 "Zvolte, prosím, publikační objekty, které mají mít přiděleny Digital Object "
 "Identifiers (DOI):"
 
-#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
-msgstr "Zvolte, prosím, které objekty mají mít přiděleno DOI."
+msgstr ""
+"Vyberte typy prací publikovaných tímto vydavatelstvím, kterým by měly být "
+"přiděleny DOI. Většina vydavatelství přiděluje DOI monografiím/kapitolám, "
+"ale můžete chtít přidělit DOI všem publikovaným položkám."
 
 msgid "doi.manager.settings.description"
 msgstr ""
@@ -1092,3 +1093,167 @@ msgstr ""
 
 msgid "doi.displayName"
 msgstr "DOI"
+
+msgid "manager.setup.pressSetup"
+msgstr "Nastavení vydavatelství"
+
+msgid "manager.setup.useImageTitle"
+msgstr "Titulní obrázek"
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Je třeba zvolit formát."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr ""
+"Copyediting provede redaktor nebo redaktor sekce, který je k danému "
+"příspěvku přiřazen."
+
+msgid "manager.setup.useTextTitle"
+msgstr "Titulní text"
+
+msgid "manager.setup.typeExamples"
+msgstr ""
+"(např. historický výzkum, kvaziexperimentální výzkum, literární analýza, prů"
+"zkum/rozhovor)"
+
+msgid "manager.setup.submissions.description"
+msgstr "Pokyny pro autory, autorská práva a indexování (včetně registrace)."
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Zobrazit obsah monografie"
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Formát"
+
+msgid "manager.setup.enableDois.description"
+msgstr ""
+"Povolit přidělování identifikátorů digitálních objektů (DOI) pracím vydaným "
+"tímto vydavatelstvím."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr ""
+"Redaktor nebo redaktor sekce přidělený k danému příspěvku zkontroluje "
+"sazebnici."
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "Je vyžadována položka kontrolního seznamu."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Nový publikační formát"
+
+msgid "manager.setup.useCopyeditors"
+msgstr "Ke každému příspěvku bude přidělen copyeditor."
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Pět kroků k webové stránce vydavatelství"
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Jedná se o fyzický (nedigitální) formát?"
+
+msgid "manager.setup.selectEditorDescription"
+msgstr "Redaktor vydavatelství, který jej provede redakčním procesem."
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+"K přípravě souborů HTML, PDF atd. pro elektronickou publikaci bude přidělen "
+"editor rozvržení."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Toto nakladatelství v současné době nepřijímá příspěvky. Navštivte nastavení "
+"pracovního postupu a povolte zasílání příspěvků."
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Tiskový styl vydavatelství"
+
+msgid "manager.setup.subjectExamples"
+msgstr ""
+"(např. fotosyntéza, černé díry, problém čtyřbarevné mapy, Bayesova teorie)"
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "Vydavatelství bude používat redakční/recenzní radu."
+
+msgid "manager.setup.volumePerYear"
+msgstr "Svazků za rok"
+
+msgid "manager.setup.userRegistration"
+msgstr "Registrace uživatelů"
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Přístup ke stránkám"
+
+msgid "manager.setup.typeProvideExamples"
+msgstr ""
+"Uveďte příklady relevantních typů výzkumu, metod a přístupů pro tuto oblast"
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Sekce a redaktoři sekcí"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+"Protože tento formát publikace je v současné době používán monografií ve "
+"vašem vydavatelství, nelze jej odstranit."
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr "Vždy zobrazte odkazy na sazebnice a označte omezený přístup."
+
+msgid "manager.dois.formatIdentifier.file"
+msgstr "Formát / {$format}"
+
+msgid "manager.setup.workflow"
+msgstr "Pracovní postup"
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr "Uveďte příklady klíčových slov nebo témat jako vodítko pro autory"
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+"Před vydáním bude přidělen korektor, který zkontroluje (spolu s autory) "
+"sazebnice."
+
+msgid "manager.setup.submissionPreparationChecklist"
+msgstr "Kontrolní seznam pro přípravu příspěvků"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Typ (metoda/přístup)"
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Pokyny pro předkládání příspěvků"
+
+msgid "manager.setup.securitySettings.note"
+msgstr ""
+"Další možnosti týkající se zabezpečení a přístupu lze konfigurovat na "
+"stránce <a href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\"action"
+"\">Přístup a zabezpečení</a>."
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Tomuto formátu je třeba přiřadit název."
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Tyto žánry se používají pro účely pojmenování souborů a zobrazují se v "
+"rozbalovací nabídce při nahrávání souborů. Žánry označené ## umožňují "
+"uživateli přiřadit soubor buď k celé knize 99Z, nebo ke konkrétní kapitole "
+"podle čísla (např. 02)."
+
+msgid "doi.manager.settings.doiSuffixLegacy"
+msgstr ""
+"Použijte výchozí vzory.<br />%p.%m pro monografie<br />%p.%m.c%c pro "
+"kapitoly<br />%p.%m.%f pro publikační formáty<br />%p.%m.%f.%s pro soubory."
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Poskytněte redaktorům rozvržení pokyny."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr "Sekce vydavatelství, pro kterou bude příspěvek posuzován."
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Klíčová slova"
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+"Chcete-li vytvořit nový formát publikace, vyplňte níže uvedený formulář a "
+"klikněte na tlačítko \"Vytvořit\"."
+
+msgid "doi.manager.settings.doiCreationTime.copyedit"
+msgstr "Po dosažení fáze copyeditingu"
