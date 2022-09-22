@@ -15,7 +15,7 @@ msgid "emails.manualPaymentNotification.subject"
 msgstr "Obvestilo o ročnem plačilu"
 
 msgid "emails.manualPaymentNotification.body"
-msgstr "Ročno plačilo mora biti obdelano za založbo {$contextName} in uporabnika {$userFullName} (username &quot;{$userName}&quot;).<br /> <br /> Predmet plačila je &quot;{$itemName}&quot;.<br /> Cena je {$itemCost} ({$itemCurrencyCode}).<br /> <br /> Ta e-pošta je bila generirana z vtičnikom Open Monograph Press za ročna plačila."
+msgstr "Ročno plačilo mora biti obdelano za založbo {$contextName} in uporabnika {$senderName} (username &quot;{$senderUsername}&quot;).<br /> <br /> Predmet plačila je &quot;{$paymentName}&quot;.<br /> Cena je {$paymentAmount} ({$paymentCurrencyCode}).<br /> <br /> Ta e-pošta je bila generirana z vtičnikom Open Monograph Press za ročna plačila."
 
 msgid "emails.manualPaymentNotification.description"
 msgstr "Ta predloga e-pošte se uporablja za obveščanje kontakta upravitelja založbe, da je bilo zahtevano ročno plačilo."
