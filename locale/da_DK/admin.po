@@ -1,11 +1,12 @@
 # Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022.
+# Jesper B. Thestrup <jbt@kb.dk>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2022-08-05 19:42+0000\n"
-"Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
+"PO-Revision-Date: 2022-09-22 07:38+0000\n"
+"Last-Translator: Jesper B. Thestrup <jbt@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/admin/da_DK/>"
 "\n"
 "Language: da_DK\n"
@@ -158,3 +159,18 @@ msgstr "Serie ID er ikke et heltal"
 
 msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
 msgstr "Kapitel ID er ikke et heltal"
+
+msgid "admin.settings.statistics.sushi.public.description"
+msgstr ""
+"Hvorvidt SUSHI API-endepunkterne skal gøres offentligt tilgængelige for alle "
+"udgivere på dette websted. Hvis du aktiverer den offentlige API, kan enhver "
+"udgiver tilsidesætte denne indstilling for at gøre deres statistik private. "
+"Men hvis du deaktiverer den offentlige API, kan udgivere ikke gøre deres "
+"egen API offentlig."
+
+msgid "admin.settings.statistics.institutions.description"
+msgstr ""
+"Aktiver institutionel statistik, hvis du gerne vil kunne indsamle "
+"brugsstatistik pr. institution. Presse skal tilføje institutionen og dens IP-"
+"områder for at kunne bruge denne funktion. Aktivering af institutionel "
+"statistik kan øge din databasestørrelse betydeligt."
