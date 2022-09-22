@@ -405,6 +405,14 @@
 				</div>
 			{/if}
 
+            {* Data Availability Statement *}
+            {if $publication->getLocalizedData('dataAvailability')}
+                <section class="item dataAvailability">
+                    <h2 class="label">{translate key="submission.dataAvailability"}</h2>
+                    {$publication->getLocalizedData('dataAvailability')|escape}
+                </section>
+            {/if}
+
 			{* Copyright statement *}
 			{if $publication->getData('copyrightYear') && $publication->getLocalizedData('copyrightHolder')}
 				<div class="item copyright">
