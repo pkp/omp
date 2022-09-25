@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-09-22 07:38+0000\n"
+"PO-Revision-Date: 2022-09-25 19:01+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "cs_CZ/>\n"
@@ -520,3 +520,94 @@ msgstr "Svazek"
 
 msgid "submission.withoutChapter"
 msgstr "{$name} - Bez této kapitoly"
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgstr "Příspěvek, {$title}, byl odeslán k interní recenzi."
+
+msgid "editor.submission.decision.backToReview.completed"
+msgstr "Poslat zpět do recenzního řízení"
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr "Doporučit odeslání k externímu recenznímu řízení"
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr "Tento příspěvek je připraven k odeslání k interní recenzi."
+
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr "Odeslat do externího recenzního řízení"
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr "Vyberte soubory, které mají být odeslány do recenzního řízení."
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+"{$editorName} zrušil rozhodnutí o přijetí tohoto příspěvku a vrátil jej zpět "
+"do fáze recenzního řízení."
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr ""
+"Doporučujeme, aby tento příspěvek byl odeslán do fáze externího recenzního "
+"řízení."
+
+msgid "editor.submission.decision.backToReview"
+msgstr "Zpět do recenzního řízení"
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr "Příspěvek, {$title}, byl odeslán zpět do recenzního řízení."
+
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr "Příspěvek, {$title}, byl odeslán do externího recenzního řízení."
+
+msgid "editor.submission.decision.promoteFiles.internalReview"
+msgstr ""
+"Vyberte soubory, které mají být odeslány do fáze interního recenzního řízení."
+
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr ""
+"{$editorName} odeslal tento příspěvek do fáze externího recenzního řízení."
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr "Odeslat k interní recenzi"
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+"{$editorName} doporučil, aby tento příspěvek byl odeslán do fáze externího "
+"recenzního řízení."
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr "{$editorName} odeslal/a tento příspěvek do fáze interní recenze."
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr ""
+"Vrátit rozhodnutí o přijetí tohoto příspěvku a vrátit jej zpět do fáze "
+"revizního řízení."
+
+msgid "doi.submission.incorrectContext"
+msgstr ""
+"Nepodařilo se vytvořit DOI pro následující příspěvek: {$pubObjectTitle}. V "
+"aktuálním kontextu vydavatelství neexistuje."
+
+msgid "publication.chapter.licenseUrl"
+msgstr "URL licence"
+
+msgid "publication.chapterDefaultLicenseURL"
+msgstr "Výchozí URL adresa licence kapitoly"
+
+msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
+msgstr ""
+"Pošlete autorům e-mail s informací, že tento příspěvek bude odesláno k "
+"internímu recenzování. Pokud je to možné, naznačte autorům, jak dlouho může "
+"interní recenzní řízení trvat a kdy mají očekávat, že se jim redakce znovu "
+"ozve."
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+"Pošlete autorům e-mail, ve kterém jim oznámíte, že jejich příspěvky byly "
+"vráceny do fáze recenzního řízení. Vysvětlete, proč bylo toto rozhodnutí "
+"učiněno, a informujte autora o tom, jaké další recenze budou provedeny."
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+"Pošlete autorům e-mail s informací, že tento příspěvek bude odeslán k "
+"recenznímu řízení. Pokud je to možné, naznačte autorům, jak dlouho může "
+"recenzní řízení trvat a kdy mají očekávat, že se jim redakce znovu ozve."
