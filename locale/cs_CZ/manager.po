@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-09-22 07:38+0000\n"
+"PO-Revision-Date: 2022-09-29 04:05+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/manager/cs_CZ/"
 ">\n"
@@ -1045,9 +1045,15 @@ msgstr "Například, press%ppub%r vytvoří DOI ve tvaru 10.1234/pressESPpub100"
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""
-"Pro generování DOI suffixu použijte následující vzor. Použijte %p pro "
-"iniciály nakladatelsví, %m pro ID monografie, %c pro ID kapitoly, %f pro ID "
-"publikačního formátu, %s pro ID souboru a %x pro \"Vlastní identifikátor\"."
+"Zadejte vlastní vzor přípony pro každý typ publikace. Vlastní vzor přípony "
+"může pro generování přípony používat následující symboly:<br><br> <code>%p</"
+"code> Iniciály vydavatelství<br> <code>%m</code> ID monografie<br> <code>%c</"
+"code> ID kapitoly<br> <code>%f</code> ID formátu publikace<br> <code>%s</"
+"code> ID souboru<br> <code>%x</code> Identifikátor zákazníka<br><br> Pozor "
+"na to, že vlastní vzory přípon často vedou k problémům při generování a "
+"ukládání DOI. Při použití vlastního vzoru přípony pečlivě otestujte, zda "
+"editoři mohou generovat DOI a ukládat je u registrační agentury, jako je "
+"Crossref. "
 
 msgid "doi.manager.settings.doiPrefixPattern"
 msgstr "Prefix DOI je povinný a musí být ve formátu 10.xxxx."
@@ -1257,3 +1263,286 @@ msgstr ""
 
 msgid "doi.manager.settings.doiCreationTime.copyedit"
 msgstr "Po dosažení fáze copyeditingu"
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr ""
+"Název webové stránky v případě hostování více než jednoho nakladatelství"
+
+msgid "manager.institutions.noContext"
+msgstr "Vydavatelství této instituce se nepodařilo najít."
+
+msgid "manager.setup.resetPermissions.success"
+msgstr "Oprávnění k monografii byla úspěšně obnovena."
+
+msgid "manager.setup.editorialTeam"
+msgstr "Redakční tým"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "Výše platby"
+
+msgid "doi.manager.displayName"
+msgstr "Hodnoty DOI"
+
+msgid "grid.genres.title.short"
+msgstr "Komponenty"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "E-mailová adresa hlavní kontaktní osoby vydavatelství"
+
+msgid "stats.publications.abstracts"
+msgstr "Záznamy do katalogu"
+
+msgid "stats.publicationStats"
+msgstr "Statistiky monografie"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "Název typu platby"
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr ""
+"Jste si jisti, že si přejete obnovit údaje o oprávněních již připojené k "
+"monografiím?"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Obnovit výchozí nastavení"
+
+msgid "manager.setup.genres"
+msgstr "Žánry"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Manažerské role"
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Kategorie a řady"
+
+msgid "mailable.validateEmailContext.name"
+msgstr "Platní email (Registrace vydavatelství)"
+
+msgid "mailable.decision.initialDecline.notifyAuthor.description"
+msgstr ""
+"Tento e-mail oznamuje autorovi, že jeho příspěvek byl před odesláním k "
+"posouzení odmítnut, protože nesplňuje požadavky pro zveřejnění ve "
+"vydavatelství."
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Role pro interní recenze"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "URL domovské stránky vydavatelství"
+
+msgid "manager.setup.currentFormats"
+msgstr "Aktuální formáty"
+
+msgid "grid.genres.title"
+msgstr "Komponenty monografie"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Celkový počet zobrazení souboru podle data"
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr "Vyberte kategorii, na kterou má být tato položka nabídky odkazována."
+
+msgid "mailable.validateEmailContext.description"
+msgstr ""
+"Tento e-mail je automaticky odeslán novému uživateli při registraci do "
+"vydavatelství, pokud nastavení vyžaduje ověření e-mailové adresy."
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"Průvodce prospektem je dokument připravený redakcí, který pomáhá autorovi "
+"popsat předkládané materiály tak, aby redakce mohla určit hodnotu "
+"předkládaného materiálu. Prospekt může obsahovat mnoho položek - od "
+"marketingového potenciálu až po teoretickou hodnotu; v každém případě by "
+"mělo vydavatelství vytvořit prospektového průvodce, který doplňuje jeho "
+"vydavatelskou agendu."
+
+msgid "grid.series.pathExists"
+msgstr "Cesta k řadě již existuje. Zadejte, prosím, jedinečnou cestu."
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Vybrané objekty se nepodařilo převést."
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"Chcete-li vytvořit nový žánr, vyplňte níže uvedený formulář a klikněte na "
+"tlačítko „Vytvořit“."
+
+msgid "stats.publications.details"
+msgstr "Podrobnosti monografie"
+
+msgid "manager.setup.prospectus"
+msgstr "Průvodce prospekty"
+
+msgid "manager.setup.series.description"
+msgstr ""
+"Můžete si vytvořit libovolný počet řad, které vám pomohou uspořádat "
+"publikace. Řada představuje speciální soubor knih věnovaných určitému tématu "
+"nebo tématům, které někdo navrhne, obvykle jeden nebo dva členové fakulty, a "
+"pak na ně dohlíží. Návštěvníci budou moci vyhledávat a procházet tiskové "
+"materiály podle sérií."
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Celkový počet zobrazení katalogu podle data"
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
+msgstr "Zaslat k interní recenzi"
+
+msgid "manager.setup.newGenre"
+msgstr "Nový žánr pro monografie"
+
+msgid "manager.setup.submitToCategories"
+msgstr "Povolit podávání příspěvků v kategoriích"
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Zašlete kopii e-mailu s potvrzením o příspěvku na hlavní kontaktní osobu "
+"tohoto vydavatelství."
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "Jméno primárního kontaktu vydavatelství"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$count} z {$total} monografií"
+
+msgid "manager.setup.authorRoles"
+msgstr "Role autora"
+
+msgid "manager.setup.roleType"
+msgstr "Typ role"
+
+msgid "emailTemplate.variable.context.contextSignature"
+msgstr "Podpis vydavatelství pro automatizované e-maily"
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr ""
+"Odešlete kopii primárnímu kontaktu, který je uveden v nastavení "
+"vydavatelského domu."
+
+msgid "manager.setup.masthead"
+msgstr "Hlavička"
+
+msgid "manager.files.note"
+msgstr ""
+"Poznámka: Prohlížeč souborů je pokročilá funkce, která umožňuje přímé "
+"prohlížení a manipulaci se soubory a adresáři spojenými s vydavatelským "
+"domem."
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
+msgstr ""
+"Tento e-mail oznamuje autorovi, že jeho příspěvek byl odeslán do fáze "
+"interního recenzního řízení."
+
+msgid "manager.setup.resetPermissions"
+msgstr "Obnovení oprávnění k monografiím"
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Vybrat řadu"
+
+msgid "manager.setup.submitToSeries"
+msgstr "Povolit podávání příspěvků do řad"
+
+msgid "manager.setup.productionTemplates"
+msgstr "Produkční šablony"
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "Zadaný uživatel \"{$userName}\" neexistuje."
+
+msgid "manager.setup.deleteSelected"
+msgstr "Smazat vybrané"
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr "Cesta k řadě se musí skládat pouze z písmen a číslic."
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "Proces nedokázal analyzovat formáty publikací"
+
+msgid "stats.publications.none"
+msgstr ""
+"Nebyly nalezeny žádné monografie se statistikami použití odpovídajícími "
+"těmto parametrům."
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Export příspěvků"
+
+msgid "manager.setup.resetPermissions.description"
+msgstr ""
+"Prohlášení o autorských právech a licenční informace budou trvale připojeny "
+"k publikovanému obsahu, čímž se zajistí, že se tyto údaje nezmění v případě, "
+"že tisk změní zásady pro nové příspěvky. Chcete-li obnovit uložené informace "
+"o oprávněních, které již byly připojeny k publikovanému obsahu, použijte "
+"níže uvedené tlačítko."
+
+msgid "manager.setup.editorialTeam.description"
+msgstr "Seznam redaktorů, ředitelů a dalších osob spojených s vydavatelstvím."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Vybrat kategorii"
+
+msgid "manager.setup.reviewForms"
+msgstr "Recenzní formuláře"
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Zadané objekty se nepodařilo najít."
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "Proces nedokázal analyzovat kapitoly"
+
+msgid "emailTemplate.variable.context.contextName"
+msgstr "Jméno vydavatelství"
+
+msgid "manager.setup.currentRoles"
+msgstr "Současné role"
+
+msgid "manager.setup.files"
+msgstr "Soubory"
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Nejsou vybrány žádné objekty."
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "Neplatné XML:"
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"Pro toto vydavatelství nebyl definován žádný primární kontakt. Primární "
+"kontakt můžete zadat <a href=\"{$url}\">v nastavení vydavatelství</a>."
+
+msgid "doi.manager.submissionDois"
+msgstr "Hodnoty DOI pro monografie"
+
+msgid "manager.setup.availableRoles"
+msgstr "Dostupné role"
+
+msgid "grid.series.urlWillBe"
+msgstr "URL řady bude: {$sampleUrl}"
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"ISSN (International Standard Serial Number) je osmimístné číslo, které "
+"identifikuje periodické publikace včetně elektronických seriálů. Číslo lze "
+"získat <a href=\"https://www.issn.org\" target=\"_blank\">v Mezinárodním "
+"centru ISSN</a>."
+
+msgid "manager.publication.library"
+msgstr "Knihovna vydavatelství"
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Zabránit uživatelům v odesílání nových článků do tisku. Odesílání článků lze "
+"zakázat pro jednotlivé vydavatelské řady na stránce nastavení <a href=\""
+"{$url}\">vydavatelských řad</a> ."
+
+msgid "manager.setup.categories.description"
+msgstr ""
+"Můžete si vytvořit seznam kategorií, které vám pomohou uspořádat publikace. "
+"Kategorie jsou seskupení knih podle témat, například Ekonomie, Literatura, "
+"Poezie atd. Kategorie mohou být vnořeny do „nadřazených“ kategorií: "
+"například nadřazená kategorie Ekonomie může zahrnovat jednotlivé kategorie "
+"Mikroekonomie a Makroekonomie. Návštěvníci budou moci vyhledávat a procházet "
+"nakladatelství podle jednotlivých kategorií."
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr "Vyberte prosím řadu, na kterou má tato položka nabídky odkazovat."
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "Měna částky platby, například USD"
