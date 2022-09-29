@@ -20,6 +20,11 @@ class I6093_AddForeignKeys extends \PKP\migration\upgrade\v3_4_0\I6093_AddForeig
         return 'presses';
     }
 
+    protected function getContextSettingsTable(): string
+    {
+        return 'press_settings';
+    }
+
     protected function getContextKeyField(): string
     {
         return 'press_id';
