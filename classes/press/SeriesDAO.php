@@ -345,16 +345,6 @@ class SeriesDAO extends PKPSectionDAO
     }
 
     /**
-     * Get the ID of the last inserted series.
-     *
-     * @return int
-     */
-    public function getInsertId()
-    {
-        return $this->_getInsertId('series', 'series_id');
-    }
-
-    /**
      * Associate a category with a series.
      *
      * @param int $seriesId

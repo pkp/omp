@@ -374,7 +374,7 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
             ]
         );
 
-        $publicationFormat->setId($this->_getInsertId('publication_formats', 'publication_format_id'));
+        $publicationFormat->setId($this->_getInsertId());
         $this->updateLocaleFields($publicationFormat);
 
         return $publicationFormat->getId();

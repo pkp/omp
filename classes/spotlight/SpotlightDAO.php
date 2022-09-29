@@ -362,16 +362,6 @@ class SpotlightDAO extends \PKP\db\DAO
         $row = $result->current();
         return $row ? $this->_fromRow((array) $row) : null;
     }
-
-    /**
-     * Get the ID of the last inserted spotlight.
-     *
-     * @return int
-     */
-    public function getInsertId()
-    {
-        return $this->_getInsertId('spotlights', 'spotlight_id');
-    }
 }
 
 if (!PKP_STRICT_MODE) {
