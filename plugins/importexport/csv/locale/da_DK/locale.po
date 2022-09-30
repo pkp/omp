@@ -1,7 +1,7 @@
 # Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-08-05 19:42+0000\n"
+"PO-Revision-Date: 2022-10-01 08:01+0000\n"
 "Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-csv/da_DK/>\n"
@@ -25,14 +25,14 @@ msgstr ""
 
 msgid "plugins.importexport.csv.noAuthorGroup"
 msgstr ""
-"Der er ingen foruddefineret forfattergruppe hos forlaget {$press}. Springer "
+"Der er ingen foruddefineret forfattergruppe hos udgiveren {$press}. Springer "
 "over denne indsendelse."
 
 msgid "plugins.importexport.csv.noGenre"
 msgstr "Der er ingen manuskriptgenre. Afslutter."
 
 msgid "plugins.importexport.csv.unknownPress"
-msgstr "Ukendt forlag: \"{$contextPath}\". Springer over."
+msgstr "Ukendt udgiver: \"{$contextPath}\". Springer over."
 
 msgid "plugins.importexport.csv.unknownLocale"
 msgstr "Ukendt sprog: \"{$locale}\". Springer over."
@@ -62,7 +62,7 @@ msgstr ""
 "\t"
 
 msgid "plugins.importexport.csv.description"
-msgstr "Importér indsendelser til forlag fra tabulatorsepareret data."
+msgstr "Importér indsendelser til udgiveren fra tabulatorsepareret data."
 
 msgid "plugins.importexport.csv.displayName"
 msgstr "Plugin til import af tabulatorsepareret indhold"
