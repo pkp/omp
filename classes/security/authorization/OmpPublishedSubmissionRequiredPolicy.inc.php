@@ -45,6 +45,7 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy {
 		$submission = Services::get('submission')->getByUrlPath($submissionId, $this->context->getId());
 		if (!$submission && ctype_digit((string) $submissionId)) {
 			$submission = Services::get('submission')->get($submissionId);
+			if ($submission && $submission->getContextId() != $this->context->getId()) return AUTHORIZATION_DENY;
 		}
 		if (!$submission || $submission->getData('status') !== STATUS_PUBLISHED) return AUTHORIZATION_DENY;
 
