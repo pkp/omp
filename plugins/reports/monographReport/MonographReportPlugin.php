@@ -28,6 +28,7 @@ use APP\publicationFormat\PublicationFormat;
 use APP\submission\Submission;
 use DateTimeImmutable;
 use Exception;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use IteratorAggregate;
 use PKP\category\Category;
@@ -49,18 +50,25 @@ use Traversable;
 
 class MonographReportPlugin extends ReportPlugin implements IteratorAggregate
 {
+    /** Maximum quantity of authors in a submission */
     private int $maxAuthors;
+    /** Maximum quantity of editors in a submission */
     private int $maxEditors;
+    /** Maximum quantity of decisions in a submission */
     private int $maxDecisions;
+    /** The current press being processed */
     private Press $press;
+    /** The current submission being processed */
     private Submission $submission;
+    /** The current publication being processed */
     private Publication $publication;
-    /** @var Author[] */
+    /** @var Author[] The list of authors */
     private array $authors;
+    /** @var array<string, string> Map */
     private array $statusMap;
-    /** @var User[] */
+    /** @var User[] Editor list */
     private array $editors;
-    /** @var array<int,Decision[]> */
+    /** @var array<int, Decision[]> Decisions grouped by editor ID */
     private array $decisionsByEditor;
 
     /**
@@ -110,7 +118,6 @@ class MonographReportPlugin extends ReportPlugin implements IteratorAggregate
         }
 
         $output = $this->createOutputStream();
-
         // Display the data rows.
         foreach ($this as $row) {
             $output->fputcsv($row);
@@ -118,26 +125,23 @@ class MonographReportPlugin extends ReportPlugin implements IteratorAggregate
     }
 
     /**
-     * Retrieves a row generator
+     * Retrieves a row generator, it includes the report header
      */
     public function getIterator(): Traversable
     {
-        /** @var StageAssignmentDAO */
-        $stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
-        /** @var UserGroup[] */
-        $userGroups = Repo::userGroup()->getCollector()->filterByContextIds([$this->press->getId()])->getMany()->toArray();
-        $editorUserGroupIds = array_map(
-            fn (UserGroup $userGroup) => $userGroup->getId(),
-            array_filter($userGroups, fn (UserGroup $userGroup) => in_array($userGroup->getRoleId(), [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR]))
-        );
-
         $this->retrieveLimits();
 
-        $dataMapper = $this->getDataMapper();
-        yield array_keys($dataMapper);
+        $fieldMapper = $this->getFieldMapper();
+
+        // Yields the report headers
+        yield array_keys($fieldMapper);
+
+        /** @var StageAssignmentDAO */
+        $stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
 
         /** @var Submission */
         foreach (Repo::submission()->getCollector()->filterByContextIds([$this->press->getId()])->getMany() as $this->submission) {
+            // Shared getter data related to the current submission being processed
             $this->statusMap ??= $this->submission->getStatusMap();
             $this->publication = $this->submission->getCurrentPublication();
             $this->authors = $this->publication->getData('authors')->values()->toArray();
@@ -145,12 +149,13 @@ class MonographReportPlugin extends ReportPlugin implements IteratorAggregate
                 ->groupBy(fn (Decision $decision) => $decision->getData('editorId'))
                 ->toArray();
             $this->editors = collect($stageAssignmentDao->getBySubmissionAndStageId($this->submission->getId())->toIterator())
-                ->filter(fn (StageAssignment $stageAssignment) => in_array($stageAssignment->getUserGroupId(), $editorUserGroupIds))
+                ->filter(fn (StageAssignment $stageAssignment) => $this->getEditorUserGroups()->get($stageAssignment->getUserGroupId()))
                 ->map(fn (StageAssignment $stageAssignment) => $this->getUser($stageAssignment->getUserId()))
                 ->unique(fn (User $user) => $user->getId())
                 ->values()
                 ->toArray();
-            yield array_map(fn (callable $callable) => $callable(), $dataMapper);
+            // Calls the getter for each field and yields an array
+            yield array_map(fn (callable $getter) => $getter(), $fieldMapper);
         }
     }
 
@@ -214,7 +219,7 @@ class MonographReportPlugin extends ReportPlugin implements IteratorAggregate
     /**
      * Retrieves the report header
      */
-    private function getDataMapper(): array
+    private function getFieldMapper(): array
     {
         /** @var SeriesDAO */
         $seriesDao = DAORegistry::getDAO('SeriesDAO');
@@ -235,6 +240,11 @@ class MonographReportPlugin extends ReportPlugin implements IteratorAggregate
             ->getMany()
             ->keyBy(fn (Category $category) => $category->getId())
             ->toArray();
+
+        $roleHeader = fn (string $title, string $role, int $index) => "{$title} ({$role} " . ($index + 1) . ')';
+        $authorHeader = fn (string $title, int $index) => $roleHeader($title, __('user.role.author'), $index);
+        $editorHeader = fn (string $title, int $index) => $roleHeader($title, __('user.role.editor'), $index);
+        $decisionHeader = fn (string $title, int $editorIndex, int $decisionIndex) => $editorHeader("{$title} " . ($decisionIndex + 1), $editorIndex);
 
         return [
             __('common.id') => fn () => $this->submission->getId(),
@@ -284,34 +294,44 @@ class MonographReportPlugin extends ReportPlugin implements IteratorAggregate
                 ->implode("\n"),
             __('common.dateSubmitted') => fn () => $this->submission->getData('dateSubmitted'),
             __('submission.lastModified') => fn () => $this->submission->getData('lastModified'),
-            __('submission.firstPublished') => fn () => $this->submission->getOriginalPublication()?->getData('datePublished') ?? '',
-            ...collect(range(0, $this->maxAuthors - 1))
-                ->map(fn ($i) => [
-                    __('user.givenName') . ' (' . __('user.role.author') . ' ' . ($i + 1) . ')' => fn () => $this->getAuthor($i)?->getLocalizedGivenName(),
-                    __('user.familyName') . ' (' . __('user.role.author') . ' ' . ($i + 1) . ')' => fn () => $this->getAuthor($i)?->getLocalizedFamilyName(),
-                    __('user.orcid') . ' (' . __('user.role.author') . ' ' . ($i + 1) . ')' => fn () => $this->getAuthor($i)?->getData('orcid'),
-                    __('common.country') . ' (' . __('user.role.author') . ' ' . ($i + 1) . ')' => fn () => $this->getAuthor($i)?->getData('country'),
-                    __('user.affiliation') . ' (' . __('user.role.author') . ' ' . ($i + 1) . ')' => fn () => $this->getAuthor($i)?->getLocalizedData('affiliation'),
-                    __('user.email') . ' (' . __('user.role.author') . ' ' . ($i + 1) . ')' => fn () => $this->getAuthor($i)?->getData('email'),
-                    __('user.url') . ' (' . __('user.role.author') . ' ' . ($i + 1) . ')' => fn () => $this->getAuthor($i)?->getData('url'),
-                    __('user.biography') . ' (' . __('user.role.author') . ' ' . ($i + 1) . ')' => fn () => html_entity_decode(strip_tags($this->getAuthor($i)?->getLocalizedData('biography')))
-                ])
-                ->collapse(),
-            ...collect(range(0, $this->maxEditors - 1))
-                ->map(fn ($i) => [
-                    __('user.givenName') . ' (' . __('user.role.editor') . ' ' . ($i + 1) . ')' => fn () => $this->getEditor($i)?->getLocalizedGivenName(),
-                    __('user.familyName') . ' (' . __('user.role.editor') . ' ' . ($i + 1) . ')' => fn () => $this->getEditor($i)?->getLocalizedFamilyName(),
-                    __('user.orcid') . ' (' . __('user.role.editor') . ' ' . ($i + 1) . ')' => fn () => $this->getEditor($i)?->getData('orcid'),
-                    __('user.email') . ' (' . __('user.role.editor') . ' ' . ($i + 1) . ')' => fn () => $this->getEditor($i)?->getEmail(),
-                    ...collect(range(0, $this->maxDecisions - 1))
-                        ->map(fn ($j) => [
-                            __('manager.setup.editorDecision') . ' ' . ($j + 1) . ' (' . __('user.role.editor') . ' ' . ($i + 1) . ')' => fn () => $this->getDecisionMessage($this->getDecision($i, $j)?->getData('decision')),
-                            __('common.dateDecided') . ' ' . ($j + 1) . ' (' . __('user.role.editor') . ' ' . ($i + 1) . ')' => fn () => $this->getDecision($i, $j)?->getData('dateDecided')
-                        ])
-                        ->collapse()
-                ])
-                ->collapse()
-        ];
+            __('submission.firstPublished') => fn () => $this->submission->getOriginalPublication()?->getData('datePublished') ?? ''
+        ]
+        /** @todo: PHP 8.0 doesn't support unpacking arrays with string keys (PHP 8.1 does, so the "collects" below could be ...unpacked into the array) */
+        + collect($this->maxAuthors ? range(0, $this->maxAuthors - 1) : [])
+            ->map(
+                fn ($i) => [
+                    $authorHeader(__('user.givenName'), $i) => fn () => $this->getAuthor($i)?->getLocalizedGivenName(),
+                    $authorHeader(__('user.familyName'), $i) => fn () => $this->getAuthor($i)?->getLocalizedFamilyName(),
+                    $authorHeader(__('user.orcid'), $i) => fn () => $this->getAuthor($i)?->getData('orcid'),
+                    $authorHeader(__('common.country'), $i) => fn () => $this->getAuthor($i)?->getData('country'),
+                    $authorHeader(__('user.affiliation'), $i) => fn () => $this->getAuthor($i)?->getLocalizedData('affiliation'),
+                    $authorHeader(__('user.email'), $i) => fn () => $this->getAuthor($i)?->getData('email'),
+                    $authorHeader(__('user.url'), $i) => fn () => $this->getAuthor($i)?->getData('url'),
+                    $authorHeader(__('user.biography'), $i) => fn () => html_entity_decode(strip_tags($this->getAuthor($i)?->getLocalizedData('biography')))
+                ]
+            )
+            ->collapse()
+            ->toArray()
+        + collect($this->maxEditors ? range(0, $this->maxEditors - 1) : [])
+            ->map(
+                fn ($i) => [
+                    $editorHeader(__('user.givenName'), $i) => fn () => $this->getEditor($i)?->getLocalizedGivenName(),
+                    $editorHeader(__('user.familyName'), $i) => fn () => $this->getEditor($i)?->getLocalizedFamilyName(),
+                    $editorHeader(__('user.orcid'), $i) => fn () => $this->getEditor($i)?->getData('orcid'),
+                    $editorHeader(__('user.email'), $i) => fn () => $this->getEditor($i)?->getEmail()
+                ]
+                + collect($this->maxDecisions ? range(0, $this->maxDecisions - 1) : [])
+                    ->map(
+                        fn ($j) => [
+                            $decisionHeader(__('manager.setup.editorDecision'), $i, $j) => fn () => $this->getDecisionMessage($this->getDecision($i, $j)?->getData('decision')),
+                            $decisionHeader(__('common.dateDecided'), $i, $j) => fn () => $this->getDecision($i, $j)?->getData('dateDecided')
+                        ]
+                    )
+                    ->collapse()
+                    ->toArray()
+            )
+            ->collapse()
+            ->toArray();
     }
 
     /**
@@ -346,6 +366,7 @@ class MonographReportPlugin extends ReportPlugin implements IteratorAggregate
      */
     private function retrieveLimits(): void
     {
+        $editorUserGroupIds = $this->getEditorUserGroups()->keys()->toArray();
         $query = DB::selectOne(
             'SELECT MAX(tmp.authors) AS authors, MAX(tmp.editors) AS editors, MAX(tmp.decisions) AS decisions
             FROM (
@@ -358,12 +379,7 @@ class MonographReportPlugin extends ReportPlugin implements IteratorAggregate
                     SELECT COUNT(sa.user_id)
                     FROM stage_assignments sa
                     WHERE sa.submission_id = s.submission_id
-                    AND sa.user_group_id IN (
-                        SELECT
-                            ug.user_group_id
-                            FROM user_groups ug
-                            WHERE ug.role_id IN (?, ?)
-                    )
+                    AND sa.user_group_id IN (0' . str_repeat(',?', count($editorUserGroupIds)) . ')
                 ) AS editors,
                 (
                     SELECT MAX(count)
@@ -376,7 +392,7 @@ class MonographReportPlugin extends ReportPlugin implements IteratorAggregate
                 ) AS decisions
                 FROM submissions s
             ) AS tmp',
-            [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR]
+            $editorUserGroupIds
         );
         $this->maxAuthors = (int) $query->authors;
         $this->maxEditors = (int) $query->editors;
@@ -405,5 +421,16 @@ class MonographReportPlugin extends ReportPlugin implements IteratorAggregate
     private function getDecision(int $editorIndex, int $decisionIndex): ?Decision
     {
         return $this->decisionsByEditor[$this->getEditor($editorIndex)?->getId()][$decisionIndex] ?? null;
+    }
+
+    /**
+     * Retrieves
+     */
+    private function getEditorUserGroups(): Collection
+    {
+        static $cache;
+        return $cache ??= collect(Repo::userGroup()->getCollector()->filterByContextIds([$this->press->getId()])->getMany())
+            ->filter(fn (UserGroup $userGroup) => in_array($userGroup->getRoleId(), [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR]))
+            ->mapWithKeys(fn (UserGroup $userGroup) => [$userGroup->getId() => true]);
     }
 }
