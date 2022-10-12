@@ -15,7 +15,4 @@ msgid "plugins.reports.monographReport.displayName"
 msgstr "Monograph Report"
 
 msgid "plugins.reports.monographReport.description"
-msgstr "This plugin outputs a report with published monographs in the .CSV format. The report contains the monograph's title, authors, publication date, series name, ISBN/ISSN, URL, DOI and assigned categories."
-
-msgid "plugins.reports.monographReport.identifierFormat"
-msgstr "{$name}: {$value}"
+msgstr "This plugin outputs a report with monographs in the .CSV format."
