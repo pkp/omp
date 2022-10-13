@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-10-01 08:01+0000\n"
+"PO-Revision-Date: 2022-10-14 11:39+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/manager/cs_CZ/"
 ">\n"
@@ -1616,3 +1616,14 @@ msgstr ""
 "přidat odkaz na reference, které lze nalézt online, pomocí následujících "
 "pokynů (které lze upravit).</p></li>\n"
 "</ol>"
+
+msgid "stats.publications.downloadReport.description"
+msgstr ""
+"Stáhněte si tabulku CSV/Excel se statistikami používání monografií, které "
+"odpovídají následujícím parametrům."
+
+msgid "stats.publications.downloadReport.downloadSubmissions"
+msgstr "Stáhnout monografie"
+
+msgid "stats.publications.downloadReport.downloadSubmissions.description"
+msgstr "Počet zobrazení abstraktů a stažení souborů pro každou monografii."
