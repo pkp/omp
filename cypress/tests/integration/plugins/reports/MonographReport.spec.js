@@ -18,14 +18,15 @@ describe('Monograph report plugin tests', () => {
 
 	// Just checks whether some key data is present
 	function validateReport(reportResponse) {
-		cy.request(`publicknowledge/api/v1/submissions?status=3`).then(submissionResponse => {
-			const {itemsMax: publishedCount, items: [firstMonograph]} = submissionResponse.body;
+		cy.request(`publicknowledge/api/v1/submissions`).then(submissionResponse => {
+			const {itemsMax: submissionCount, items: [firstMonograph]} = submissionResponse.body;
 			const publication = firstMonograph.publications.pop();
 			expect(reportResponse.headers['content-type']).to.contain('text/comma-separated-values');
-			expect(reportResponse.body.match(/\/publicknowledge\/monograph\/view\/\d+/g).length).to.equal(publishedCount);
+			expect(reportResponse.body.match(/\/publicknowledge\/workflow\/access\/\d+/g).length).to.equal(submissionCount);
 			expect(reportResponse.body).contains(publication.title.en_US);
-			for (const author of publication.chapters.flatMap(chapter => chapter.authors.map(author => `${author.givenName.en_US} ${author.familyName.en_US}`))) {
-				expect(reportResponse.body).contains(author);
+			for (const author of publication.chapters.flatMap(chapter => Object.values(chapter.authors))) {
+				expect(reportResponse.body).contains(author.givenName.en_US);
+				expect(reportResponse.body).contains(author.familyName.en_US);
 			}
 		});
 	}
