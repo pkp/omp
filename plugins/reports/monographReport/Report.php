@@ -264,13 +264,12 @@ class Report implements IteratorAggregate
                     AND sa.user_group_id IN (0' . str_repeat(',?', count($editorUserGroupIds)) . ')
                 ) AS editors,
                 (
-                    SELECT MAX(count)
-                    FROM (
-                        SELECT COUNT(0) AS count
-                        FROM edit_decisions ed
-                        WHERE ed.submission_id = s.submission_id
-                        GROUP BY ed.editor_id
-                    ) AS tmp
+                    SELECT COUNT(0) AS count
+                    FROM edit_decisions ed
+                    WHERE ed.submission_id = s.submission_id
+                    GROUP BY ed.editor_id
+                    ORDER BY count DESC
+                    LIMIT 1
                 ) AS decisions
                 FROM submissions s
             ) AS tmp',
