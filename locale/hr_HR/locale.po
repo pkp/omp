@@ -2,7 +2,7 @@
 # Boris Badurina <boris.badurina@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-10-13 15:55+0000\n"
+"PO-Revision-Date: 2022-10-13 15:59+0000\n"
 "Last-Translator: Boris Badurina <boris.badurina@gmail.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "hr_HR/>\n"
@@ -133,3 +133,9 @@ msgstr "Sve knjige"
 
 msgid "catalog.noTitles"
 msgstr "Nema objavljenih naslova."
+
+msgid "catalog.noTitlesNew"
+msgstr "Trenutno nema novih objavljenih naslova."
+
+msgid "catalog.noTitlesSearch"
+msgstr "Nema pronađenih naslova za traženo pretraživanje - \"{$searchQuery}\"."
