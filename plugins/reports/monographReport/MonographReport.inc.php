@@ -86,26 +86,6 @@ class MonographReport implements IteratorAggregate
 	}
 
 	/**
-	 * Retrieves the stage label
-	 */
-	public function getStageLabel(int $stageId): string
-	{
-		switch ($stageId) {
-			case WORKFLOW_STAGE_ID_SUBMISSION:
-				return __('submission.submission');
-			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
-				return __('submission.review');
-			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
-				return __('workflow.review.internalReview');
-			case WORKFLOW_STAGE_ID_EDITING:
-				return __('submission.copyediting');
-			case WORKFLOW_STAGE_ID_PRODUCTION:
-				return __('submission.production');
-		}
-		return '';
-	}
-
-	/**
 	 * Retrieves the decision message
 	 */
 	private function getDecisionMessage(?int $decision): string
@@ -466,7 +446,7 @@ class MonographReport implements IteratorAggregate
 	private function getStatus(): string
 	{
 		return $this->submission->getData('status') === STATUS_QUEUED
-			? $this->getStageLabel($this->submission->getData('stageId'))
+			? __(Application::getWorkflowStageName($this->submission->getData('stageId')))
 			: __($this->statusMap[$this->submission->getData('status')]);
 	}
 
