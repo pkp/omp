@@ -19,34 +19,36 @@ use Illuminate\Support\LazyCollection;
 
 class MonographReport implements IteratorAggregate
 {
-	/** Maximum quantity of authors in a submission */
-	private int $maxAuthors;
-	/** Maximum quantity of editors in a submission */
-	private int $maxEditors;
-	/** Maximum quantity of decisions in a submission */
-	private int $maxDecisions;
-	/** The current submission being processed */
-	private Submission $submission;
-	/** The current publication being processed */
-	private Publication $publication;
+	/** @var int Maximum quantity of authors in a submission */
+	private $maxAuthors;
+	/** @var int Maximum quantity of editors in a submission */
+	private $maxEditors;
+	/** @var int Maximum quantity of decisions in a submission */
+	private $maxDecisions;
+	/** @var Submission The current submission being processed */
+	private $submission;
+	/** @var Publication The current publication being processed */
+	private $publication;
 	/** @var Author[] The list of authors */
-	private array $authors;
-	/** @var array<string, string> Map */
-	private array $statusMap;
+	private $authors;
+	/** @@var array var array<string, string> Map */
+	private $statusMap;
 	/** @var User[] Editor list */
-	private array $editors;
+	private $editors;
 	/** @var array<int, array<array{editDecisionId: int,reviewRoundId: int, stageId: int, round: int, editorId: int, decision: int, dateDecided: string}>> Decisions grouped by editor ID */
-	private array $decisionsByEditor;
-	/** @var array<int, Category> Categories keyed by ID */
-	private array $categories;
+	private $decisionsByEditor;
+	/** @@var array var array<int, Category> Categories keyed by ID */
+	private $categories;
 	/** @var LazyCollection<int, bool> Editor user groups keyed by ID for faster access, the value is "true" */
-	private Collection $editorUserGroups;
+	private $editorUserGroups;
 	/** @var Series[] Series keyed by ID */
-	private array $series;
+	private $series;
 	/** @var User[] Users keyed by ID */
-	private array $users;
-	private Press $press;
-	private Request $request;
+	private $users;
+	/** @var Press */
+	private $press;
+	/** @var Request */
+	private $request;
 
 	/**
 	 * Constructor
@@ -150,7 +152,7 @@ class MonographReport implements IteratorAggregate
 	 */
 	private function getFieldMapper(): array
 	{
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_READER);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_READER, LOCALE_COMPONENT_APP_MANAGER);
 
 		$roleHeader = function (string $title, string $role, int $index) {
 			return "{$title} ({$role} " . ($index + 1) . ')';
@@ -293,7 +295,7 @@ class MonographReport implements IteratorAggregate
 						->map(
 							function ($j) use ($decisionHeader, $i) {
 								return [
-									$decisionHeader(__('submission.editorDecision'), $i, $j) => function () use ($i, $j) {
+									$decisionHeader(__('manager.setup.editorDecision'), $i, $j) => function () use ($i, $j) {
 										return $this->getDecisionMessage($this->getDecision($i, $j)['decision'] ?? null);
 									},
 									$decisionHeader(__('common.dateDecided'), $i, $j) => function () use ($i, $j) {

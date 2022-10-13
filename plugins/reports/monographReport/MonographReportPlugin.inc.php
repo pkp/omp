@@ -17,7 +17,8 @@ import('lib.pkp.classes.plugins.ReportPlugin');
 
 class MonographReportPlugin extends ReportPlugin
 {
-	private Press $press;
+	/** @var Press */
+	private $press;
 
 	/**
 	 * @copydoc Plugin::register()
