@@ -47,6 +47,8 @@
 	<migration class="PKP\migration\install\InstitutionsMigration" />
 	<migration class="APP\migration\install\MetricsMigration" />
 
+	<migration class="APP\migration\install\SeriesCategoriesMigration" />
+
 	<code function="createData" />
 	<code function="createConfig" />
 	<code function="addPluginVersions"/>
