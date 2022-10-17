@@ -32,7 +32,7 @@
 
 <form class="pkp_form" id="seriesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="updateSeries" seriesId=$seriesId}">
 	{csrf}
-	<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
+	<input type="hidden" name="seriesId" value="{$seriesId|default:""|escape}"/>
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="seriesFormNotification"}
 
 	{fbvFormArea id="file"}
