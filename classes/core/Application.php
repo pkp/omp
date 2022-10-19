@@ -175,6 +175,7 @@ class Application extends PKPApplication
             'importexport',
             'oaiMetadataFormats',
             'paymethod',
+            'reports',
         ];
     }
 
