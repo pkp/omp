@@ -412,9 +412,6 @@ msgstr "Тек на работа"
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Потребна е ставка од списокот за проверка."
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Список за подготовка на поднесување"
-
 msgid "manager.setup.submissionGuidelines"
 msgstr "Упатства за поднесување"
 

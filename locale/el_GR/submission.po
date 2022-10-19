@@ -47,9 +47,6 @@ msgstr "Κεφάλαιο"
 msgid "submission.chapters"
 msgstr "Κεφάλαια"
 
-msgid "submission.chaptersDescription"
-msgstr "Εδώ μπορείτε να απαριθμείσετε τα κεφάλαια, τα οποία μπορείτε να ανθέσετε στους συντελεστές του έργου από την παραπάνω λίστα. Οι συντελεστές θα έχουν πρόσβαση στα συγκεκριμένα κεφάλαια σε διάφορες φάσεις της εκδοτικής διαδικασίας."
-
 msgid "submission.chapter.addChapter"
 msgstr "Προσθήκη Κεφαλαίου"
 
@@ -83,9 +80,6 @@ msgstr "Σε αξιολόγηση (In Review)"
 msgid "manuscript.submissions"
 msgstr "Χειρόγραφο Υποβολών"
 
-msgid "submission.confirmSubmit"
-msgstr "Είστε σίγουροι ότι επιθυμείτε να υποβάλετε αυτό το χειρόγραφο στις Εκδόσεις μας;"
-
 msgid "submission.metadata"
 msgstr "Μεταδεδομένα"
 
@@ -113,20 +107,11 @@ msgstr "Μεταφόρτωση"
 msgid "submission.submit.upload.description"
 msgstr "Η μεταφόρτωση αρχείων που σχετίζεται με αυτή την υποβολή, συμπεριλαμβάνει χειρόγραφα, πρόταση για μια έκδοση, συνοδευτική επιστολή, καλλιτεχνικά έργα κλπ. Έαν είναι εφικτό, για τα έργα υπο επιμέλεια, καθώς και για τις μονογραφίες, ανεβάστε το κείμενο του έργου σε ξεχωριστό αρχείο."
 
-msgid "submission.submit.cancelSubmission"
-msgstr "Μπορείτε να ολοκληρώσετε τη διαδικασία υποβολής μετέπειτα, επιλέγοντας Ενεργές Υποβολές από την Αρχική Σελίδα του Συγγραφέα."
-
 msgid "submission.submit.copyrightNoticeAgree"
 msgstr "Συμφωνώ να τηρήσω και δεσμέυομαι από τους όρους της δήλωσης πνευματικών δικαιωμάτων."
 
-msgid "submission.submit.selectSeries"
-msgstr "Επιλογή Σειράς..."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Θέση σε αυτή τη Σειρά (πχ. Βιβλίο 2, ή Τόμος 2)"
-
-msgid "submission.submit.form.localeRequired"
-msgstr "Παρακαλώ επιλέξτε τη γλώσσα της υποβολής σας"
 
 msgid "submission.submit.submissionChecklist"
 msgstr "Λίστα Υποβολών"
@@ -139,21 +124,6 @@ msgstr "Πολιτική Προστασίας Προσωπικών Δεδομέ�
 
 msgid "submission.submit.contributorRole"
 msgstr "Ρόλος Συντελεστή"
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Απαιτείται τουλάχιστον ένας συγγραφέας."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "Απαιτείται το όνομα, το επίθετο και η ηλεκτρονική διεύθυνση του/ων συγγραφέα/ων."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Παρακαλούμε εισάγετε τον τίτλο της μονογραφίας."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Παρακαλούμε εισάγετε μια σύντομη περίληψη της μονογραφίας."
-
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Παρακαλούμε επιλέξτε το ρόλο του συντελεστή."
 
 msgid "submission.submit.submissionFile"
 msgstr "Αρχείο Υποβολής"
@@ -196,12 +166,6 @@ msgstr "Τα βιβλία που ανήκουν σε μια σειρά διατ�
 
 msgid "submission.submit.userGroup"
 msgstr "Υποβολή με το ρόλο μου ως..."
-
-msgid "submission.submit.userGroupDescription"
-msgstr "Εάν υποβάλλετε ένα 'Εργο υπο Επιμέλεια, τότε θα πρέπει να επιλέξετε το ρόλο του επιμελητή τόμου."
-
-msgid "submission.submit.titleAndSummary"
-msgstr "Τίτλος και Περίληψη"
 
 msgid "submission.upload.selectBookElement"
 msgstr "Επιλέξτε στοιχείο βιβλίου"

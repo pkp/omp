@@ -15,28 +15,14 @@ msgstr ""
 msgid "submission.submit.privacyStatement"
 msgstr "Integritetspolicy"
 
-msgid "submission.submit.form.localeRequired"
-msgstr "Välj språk för ditt bidrag."
-
 msgid "submission.submit.seriesPosition.description"
 msgstr "Exempel: Bok 2, Volym 2"
 
 msgid "submission.submit.seriesPosition"
 msgstr "Position i serien"
 
-msgid "author.submit.seriesRequired"
-msgstr "En giltig serie måste anges."
-
 msgid "author.isVolumeEditor"
 msgstr "Markera denna person som redaktör för volymen."
-
-msgid "submission.submit.selectSeries"
-msgstr "Välj serie (valfritt)"
-
-msgid "submission.submit.cancelSubmission"
-msgstr ""
-"Du kan färdigställa detta bidrag senare genom att välja aktiva bidrag från "
-"författarens sida."
 
 msgid "submission.submit.upload"
 msgstr "Ladda upp bidrag"
@@ -61,9 +47,6 @@ msgstr "Skapa ett nytt kapitel"
 
 msgid "submission.metadata"
 msgstr "Metadata"
-
-msgid "submission.confirmSubmit"
-msgstr "Är du säker på att du vill skicka in detta manuskript?"
 
 msgid "manuscript.submissions"
 msgstr "Inskickade bidrag"
@@ -97,12 +80,6 @@ msgstr "Redigera kapitel"
 
 msgid "submission.chapter.addChapter"
 msgstr "Lägg till kapitel"
-
-msgid "submission.chaptersDescription"
-msgstr ""
-"Du kan lista kapitlen här, och tilldela författare från listan ovan. Dessa "
-"författare kommer ha tillgång till kapitlet under de olika stegen i "
-"publiceringsprocessen."
 
 msgid "submission.chapters"
 msgstr "Kapitel"
@@ -161,9 +138,6 @@ msgstr "Boktitel"
 msgid "submission.upload.selectComponent"
 msgstr "Välj komponent"
 
-msgid "submission.submit.title"
-msgstr "Skicka in en bok"
-
 msgid "submission.incomplete"
 msgstr "Inväntar godkännande"
 
@@ -178,9 +152,6 @@ msgstr "Kapitel"
 
 msgid "submission.submit.noContext"
 msgstr "Bidragets press kunde inte hittas."
-
-msgid "submission.submit.userGroupDescription"
-msgstr "Välj redaktörsrollen om bidraget som skickas in är en antologi."
 
 msgid "submission.submit.userGroup"
 msgstr "Skicka in bidraget i min roll som..."
@@ -224,21 +195,6 @@ msgstr "Förbered"
 
 msgid "submission.submit.submissionFile"
 msgstr "Fil"
-
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Välj medarbetarens roll."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Ange en kort sammanfattning av din bok."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Ange bokens titel."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "För- och efternamn samt e-postadress för varje författare krävs."
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Det krävs minst en författare."
 
 msgid "submission.submit.contributorRole"
 msgstr "Medarbetarens roll"
@@ -319,9 +275,6 @@ msgstr "Extern granskning"
 
 msgid "editor.submission.decision.sendExternalReview"
 msgstr "Skicka till extern granskning"
-
-msgid "submission.submit.titleAndSummary"
-msgstr "Titel och sammanfattning"
 
 msgid "submission.event.publicationFormatRemoved"
 msgstr "Publiceringsformatet \"{$formatName}\" har raderats."

@@ -1173,9 +1173,6 @@ msgstr "Workflow"
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Tjeklisteindhold er påkrævet."
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Tjekliste til forberedelse af indsendelse"
-
 msgid "manager.setup.submissionGuidelines"
 msgstr "Retningslinjer for indsendelse"
 

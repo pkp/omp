@@ -4,6 +4,8 @@
  * @defgroup api_v1_submissions Submission API requests
  */
 
+use APP\core\Application;
+
 /**
  * @file api/v1/submissions/index.php
  *

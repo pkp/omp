@@ -24,5 +24,5 @@ switch ($op) {
     case 'submission':
     case 'readSubmissionEmail':
     case 'reviewRoundInfo':
-        define('HANDLER_CLASS', 'PKP\pages\authorDashboard\AuthorDashboardHandler');
+        define('HANDLER_CLASS', 'APP\pages\authorDashboard\AuthorDashboardHandler');
 }

@@ -1135,9 +1135,6 @@ msgstr ""
 "Ви можете залишити наступний розділ пустим, якщо Ви надаєте власні послуги "
 "своїм клієнтам."
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Пов'язані редактори"
-
 msgid "grid.action.proofApproved"
 msgstr "Формат перевірено"
 

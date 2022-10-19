@@ -1504,9 +1504,6 @@ msgstr "Online e print ISSN non devono essere identici."
 msgid "catalog.manage.series.issn.validation"
 msgstr "indicare un ISSN valido."
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Editor assegnati"
-
 msgid "grid.catalogEntry.availableRepresentation.notApproved"
 msgstr "In attesa di approvazione"
 

@@ -20,9 +20,6 @@ msgstr ""
 msgid "submission.authorListSeparator"
 msgstr "; "
 
-msgid "submission.submit.title"
-msgstr "Proponi una monografia"
-
 msgid "submission.upload.selectBookElement"
 msgstr "Seleziona un elemento del libro"
 
@@ -71,9 +68,6 @@ msgstr "Capitolo"
 msgid "submission.chapters"
 msgstr "Capitoli"
 
-msgid "submission.chaptersDescription"
-msgstr "? possibile elencare qui i capitoli e assegnare ad essi i rispettivi autori prendendoli dall'elenco dei collaboratori, qui in alto. Questi collaboratori potranno accedere al proprio capitolo durante le varie fasi del processo di pubblicazione."
-
 msgid "submission.chapter.addChapter"
 msgstr "Aggiungi un nuovo capitolo"
 
@@ -107,9 +101,6 @@ msgstr "In corso di valutazione"
 msgid "manuscript.submissions"
 msgstr "Proposte di documenti"
 
-msgid "submission.confirmSubmit"
-msgstr "Vuoi pubblicare questo manoscritto?"
-
 msgid "submission.metadata"
 msgstr "Metadati"
 
@@ -140,43 +131,17 @@ msgstr "Carica"
 msgid "submission.submit.upload.description"
 msgstr "Carica i file associati a questa immissione, compresi: manoscritto, prospetto, lettera di presentazione, ecc. Per i volumi A cura di, come pure per le Monografie, carica il manoscritto in un unico file, se possibile."
 
-msgid "submission.submit.cancelSubmission"
-msgstr ""
-"Puoi completare questo caricamento in un secondo momento selezionando Attiva "
-"immissioni a partire dalla homepage dell'Autore."
-
 msgid "submission.submit.copyrightNoticeAgree"
 msgstr "Accetto i termini stabiliti dalla legge sul copyright."
 
-msgid "submission.submit.selectSeries"
-msgstr "Scegli una collana (ozionale)"
-
 msgid "submission.submit.seriesPosition"
 msgstr "Posizione occupata nella collana (cio?, Libro 2, o Volume 2)"
-
-msgid "submission.submit.form.localeRequired"
-msgstr "Per favore, scegli la lingua del caricamento."
 
 msgid "submission.submit.privacyStatement"
 msgstr "Informativa sulla privacy"
 
 msgid "submission.submit.contributorRole"
 msgstr "Ruolo del collaboratore"
-
-msgid "submission.submit.form.authorRequired"
-msgstr "? obbligatorio inserire almeno un autore."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "? obbligatorio inserire il nome, il cognome e l'indirizzo email di ciascun autore."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Per favore, inserisci il titolo della tua Monografia."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Per favore, inserisci un breve riassunto della tua Monografia."
-
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Per favore, scegli il ruolo del collaboratore."
 
 msgid "submission.submit.submissionFile"
 msgstr "File da sottomettere"
@@ -225,9 +190,6 @@ msgstr "Seleziona una delle categorie della Press che vuoi attribuire a questo d
 
 msgid "submission.submit.userGroup"
 msgstr "Carico nel mio ruolo di..."
-
-msgid "submission.submit.userGroupDescription"
-msgstr "Se stai caricando un \"Volume edito\" devi scegliere il ruolo \"Curatore del volume\"."
 
 msgid "submission.submit.confirmExpedite"
 msgstr "Conferma i metadati per velocizzare il caricamento"
@@ -297,9 +259,6 @@ msgstr "Il formato \"{$formatName}\" ? stato creato."
 
 msgid "submission.event.publicationFormatRemoved"
 msgstr "Il formato \"{$formatName}\" ? stato rimosso."
-
-msgid "submission.submit.titleAndSummary"
-msgstr "Titolo e Sommario"
 
 msgid "metadata.property.displayName.date"
 msgstr "Data di pubblicazione"
@@ -512,9 +471,6 @@ msgstr "Conferma"
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "Esempi: Libro 2, Volume 2"
-
-msgid "author.submit.seriesRequired"
-msgstr "E' necessario indicare una collana valida."
 
 msgid "author.isVolumeEditor"
 msgstr "Identifica questo contributore come il curatore del volume."

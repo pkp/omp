@@ -1395,9 +1395,6 @@ msgstr "Эти серии появится в основной навигаци�
 msgid "series.series"
 msgstr "Серии"
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Назначенные редакторы"
-
 msgid "grid.reviewAttachments.availableFiles"
 msgstr "Доступные файлы"
 

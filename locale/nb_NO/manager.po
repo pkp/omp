@@ -779,9 +779,6 @@ msgstr "Arbeidsflyt"
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Sjekklisteelement kreves."
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Sjekkliste for klargjøring av manuskript"
-
 msgid "manager.setup.submissionGuidelines"
 msgstr "Retningslinjer for innlevering av manuskript"
 
