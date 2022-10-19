@@ -1496,9 +1496,6 @@ msgstr ""
 "Aquesta monografia és una novetat. Fer que la monografia no sigui una "
 "novetat."
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Editors/ores assignats"
-
 msgid "installer.updatingInstructions"
 msgstr ""
 "Si esteu actualitzant una instal·lació d'OMP que ja existeix, feu clic <a "

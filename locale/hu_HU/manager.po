@@ -42,9 +42,6 @@ msgstr "Munkafolyamat"
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Tétel hozzáadása szükséges az ellenőrző listához."
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Beküldés előkészítésének ellenőrzőlistája"
-
 msgid "manager.setup.submissionGuidelines"
 msgstr "Beküldési útmutatók"
 

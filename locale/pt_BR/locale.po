@@ -1528,9 +1528,6 @@ msgstr "Categoria em destaque"
 msgid "catalog.manage.featured"
 msgstr "Destaque"
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Editores atribuídos"
-
 msgid "grid.catalogEntry.approvedRepresentation.message"
 msgstr ""
 "<p>Aprove os metadados para este formato. Os metadados podem ser verificados "

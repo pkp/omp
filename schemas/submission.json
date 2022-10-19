@@ -35,6 +35,11 @@
 		"enableChapterPublicationDates": {
 			"type": "boolean"
 		},
+		"seriesId": {
+			"type": "integer",
+			"description": "The series this submission should be assigned to. This can only be passed when creating a new submission and the data is assigned to the first publication. Edit the publication to change the `seriesId`.",
+			"writeOnly": true
+		},
 		"workType": {
 			"type": "integer",
 			"description": "Whether this submission is a monograph or an edited volume. One of `WORK_TYPE_EDITED_VOLUME` or `WORK_TYPE_AUTHORED_WORK`. Default: `WORK_TYPE_AUTHORED_WORK`.",

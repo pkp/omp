@@ -137,17 +137,8 @@ msgstr "Naslov knjige"
 msgid "submission.upload.selectComponent"
 msgstr "Odaberi komponentu"
 
-msgid "submission.submit.title"
-msgstr "Prijavite Monografiju"
-
 msgid "submission.authorListSeparator"
 msgstr "; "
-
-msgid "submission.chaptersDescription"
-msgstr ""
-"Ovdje možete navesti poglavlja i dodijeliti suradnike s popisa suradnika, "
-"gore. Ovi će suradnici moći pristupiti poglavlju tijekom različitih faza "
-"procesa objavljivanja."
 
 msgid "submission.fairCopy"
 msgstr "Finalna kopija"

@@ -15,6 +15,7 @@
 
 namespace APP\pages\workflow;
 
+use APP\components\forms\publication\TitleAbstractForm;
 use APP\core\Application;
 use APP\core\Services;
 use APP\decision\types\AcceptFromInternal;
@@ -31,8 +32,10 @@ use APP\decision\types\SendInternalReview;
 use APP\decision\types\SkipInternalReview;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
+use APP\publication\Publication;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
+use PKP\context\Context;
 use PKP\core\PKPApplication;
 use PKP\decision\types\Accept;
 use PKP\decision\types\BackFromCopyediting;
@@ -197,9 +200,6 @@ class WorkflowHandler extends PKPWorkflowHandler
         return null;
     }
 
-    /**
-     * @copydoc PKPWorkflowHandler::_getRepresentationsGridUrl()
-     */
     protected function _getRepresentationsGridUrl($request, $submission)
     {
         return $request->getDispatcher()->url(
@@ -334,5 +334,14 @@ class WorkflowHandler extends PKPWorkflowHandler
             BackFromCopyediting::class,
             BackFromProduction::class,
         ];
+    }
+
+    protected function getTitleAbstractForm(string $latestPublicationApiUrl, array $locales, Publication $latestPublication, Context $context): TitleAbstractForm
+    {
+        return new TitleAbstractForm(
+            $latestPublicationApiUrl,
+            $locales,
+            $latestPublication
+        );
     }
 }

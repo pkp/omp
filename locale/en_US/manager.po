@@ -841,9 +841,6 @@ msgstr "Provide examples of keywords or topics as a guide for authors"
 msgid "manager.setup.submissionGuidelines"
 msgstr "Submission guidelines"
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Submission Preparation Checklist"
-
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Checklist item is required."
 
@@ -1407,3 +1404,7 @@ msgstr "Index Requested"
 
 msgid "mailable.indexComplete.name"
 msgstr "Index Completed"
+
+msgid "mailable.submissionNeedsEditor.description"
+msgstr ""
+"This email is sent to press managers when a new submission is made and no editors are assigned."

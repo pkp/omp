@@ -15,18 +15,18 @@
 
 namespace APP\controllers\grid\settings\series;
 
-use APP\controllers\grid\settings\series\SeriesGridCellProvider;
 use APP\controllers\grid\settings\series\form\SeriesForm;
-use PKP\db\DAO;
-use PKP\controllers\grid\settings\SetupGridHandler;
-use APP\controllers\grid\settings\series\SeriesGridRow;
+use APP\core\Application;
 use APP\notification\NotificationManager;
+use PKP\context\SubEditorsDAO;
 use PKP\controllers\grid\feature\OrderGridItemsFeature;
 use PKP\controllers\grid\GridColumn;
+use PKP\controllers\grid\settings\SetupGridHandler;
 use PKP\core\JSONMessage;
+use PKP\db\DAO;
+use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
-use PKP\db\DAORegistry;
 use PKP\security\Role;
 
 class SeriesGridHandler extends SetupGridHandler
@@ -81,8 +81,8 @@ class SeriesGridHandler extends SetupGridHandler
             }
 
             // Get the series editors data for the row
-            $assignedSeriesEditors = $subEditorsDao->getBySubmissionGroupId($series->getId(), ASSOC_TYPE_SECTION, $press->getId());
-            if (empty($assignedSeriesEditors)) {
+            $assignedSeriesEditors = $subEditorsDao->getBySubmissionGroupIds([$series->getId()], Application::ASSOC_TYPE_SECTION, $press->getId());
+            if ($assignedSeriesEditors->empty()) {
                 $editorsString = __('common.none');
             } else {
                 $editors = [];

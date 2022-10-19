@@ -86,9 +86,6 @@ msgstr "Externí recenze"
 msgid "editor.submission.decision.sendExternalReview"
 msgstr "Poslat k externí recenzi"
 
-msgid "submission.submit.titleAndSummary"
-msgstr "Název a abstrakt"
-
 msgid "submission.event.publicationFormatRemoved"
 msgstr "Publikační formát \"{$formatName}\" byl odstraněn."
 
@@ -180,9 +177,6 @@ msgstr "Kapitoly"
 msgid "submission.submit.noContext"
 msgstr "Není možné nalézt nakladatelství tohoto příspěvku."
 
-msgid "submission.submit.userGroupDescription"
-msgstr "Pokud je příspěvkem sborník, měl/a byste vybrat roli editora sborníku."
-
 msgid "submission.submit.userGroup"
 msgstr "Označit mou roli jako..."
 
@@ -227,29 +221,11 @@ msgstr "Příprava"
 msgid "submission.submit.submissionFile"
 msgstr "Soubor příspěvku"
 
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Vyberte prosím roli přispěvatele."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Zadejte prosím stručný souhrn monografie."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Zadejte prosím název monografie."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "Je třeba zadat jméno, příjmení a e-mailovou adresu pro každého autora."
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Je třeba zadat alespoň jednoho autora."
-
 msgid "submission.submit.contributorRole"
 msgstr "Role přispěvatele"
 
 msgid "submission.submit.privacyStatement"
 msgstr "Prohlášení o osobních údajích"
-
-msgid "submission.submit.form.localeRequired"
-msgstr "Vyberte jazyk příspěvku."
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "např. Kniha 2, Sborník 2"
@@ -257,19 +233,8 @@ msgstr "např. Kniha 2, Sborník 2"
 msgid "submission.submit.seriesPosition"
 msgstr "Číslo svazku v edici"
 
-msgid "author.submit.seriesRequired"
-msgstr "Je vyžadována platná edice."
-
 msgid "author.isVolumeEditor"
 msgstr "Určit připěvatele jako editora sborníku."
-
-msgid "submission.submit.selectSeries"
-msgstr "Vyberte edici (volitelné)"
-
-msgid "submission.submit.cancelSubmission"
-msgstr ""
-"Později můžete tento příspěvek doplnit v sekci Aktuální příspěvky na domácí "
-"stránce autora."
 
 msgid "submission.submit.upload"
 msgstr "Nahrát příspěvek"
@@ -297,9 +262,6 @@ msgstr "Podporovatelé"
 
 msgid "submission.metadata"
 msgstr "Metadata"
-
-msgid "submission.confirmSubmit"
-msgstr "Opravdu si přejete předložit nakladatelství tento rukopis?"
 
 msgid "manuscript.submissions"
 msgstr "Předložené rukopisy"
@@ -333,12 +295,6 @@ msgstr "Upravit kapitolu"
 
 msgid "submission.chapter.addChapter"
 msgstr "Přidat kapitolu"
-
-msgid "submission.chaptersDescription"
-msgstr ""
-"Zde můžete vypsat kapitoly knihy a přiřadit k nim autory ze seznamu "
-"přispěvatelů výše. Tito přispěvatelé budou mít ke svým kapitolám přístup v "
-"různých fázích publikačního procesu."
 
 msgid "submission.chapters"
 msgstr "Kapitoly"
@@ -396,9 +352,6 @@ msgstr "Název knihy"
 
 msgid "submission.upload.selectComponent"
 msgstr "Vyberte část knihy"
-
-msgid "submission.submit.title"
-msgstr "Předložit rukopis"
 
 msgid "publication.inactiveSeries"
 msgstr "{$series} (Neaktivní)"

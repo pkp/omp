@@ -40,12 +40,6 @@ msgstr "Fejezet szerkesztése"
 msgid "submission.chapter.addChapter"
 msgstr "Fejezet hozzáadása"
 
-msgid "submission.chaptersDescription"
-msgstr ""
-"Itt felsorolhatja a fejezeteket és közreműködőket rendelhet hozzájuk a "
-"közreműködők fenti listájából. Ezek a közreműködők hozzáférhetnek a "
-"fejezethez a közzétételi munkafolyamat különböző szakaszaiban."
-
 msgid "submission.chapters"
 msgstr "Fejezetek"
 
@@ -100,9 +94,6 @@ msgstr "Könyv címe"
 msgid "submission.upload.selectComponent"
 msgstr "Alkotóelem kiválasztása"
 
-msgid "submission.submit.title"
-msgstr "Kiadvány beküldése"
-
 msgid "submission.submit.generalInformation"
 msgstr "Általános információ"
 
@@ -130,30 +121,11 @@ msgstr "Előkészítés"
 msgid "submission.submit.submissionFile"
 msgstr "Beküldés fájl"
 
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Kérjük, válassza ki a közreműködő szerepkörét."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Kérjük, adja meg a kiadvány rövid összefoglalóját."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Kérjük, adja meg a kiadvány címét."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr ""
-"Minden szerző keresztnevét, vezetéknevét és e-mail címét kötelező megadni."
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Legalább egy szerző megadás kötelező."
-
 msgid "submission.submit.contributorRole"
 msgstr "Közreműködő szerepköre"
 
 msgid "submission.submit.privacyStatement"
 msgstr "Adatvédelmi nyilatkozat"
-
-msgid "submission.submit.form.localeRequired"
-msgstr "Válassza ki a beküldés nyelvét."
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "Példa: 2. könyv, 2. kötet"
@@ -161,19 +133,8 @@ msgstr "Példa: 2. könyv, 2. kötet"
 msgid "submission.submit.seriesPosition"
 msgstr "Sorozati pozíció"
 
-msgid "author.submit.seriesRequired"
-msgstr "Érvényes sorozat szükséges."
-
 msgid "author.isVolumeEditor"
 msgstr "Ez a közreműködő a kötet szerkesztője."
-
-msgid "submission.submit.selectSeries"
-msgstr "Sorozat megadása (opcionális)"
-
-msgid "submission.submit.cancelSubmission"
-msgstr ""
-"A beküldést később is befejezheti, ha a szerzői kezdőoldalon az  'Aktív "
-"beküldések' menüpontot választva."
 
 msgid "submission.submit.upload"
 msgstr "Beküldés feltöltése"
@@ -201,9 +162,6 @@ msgstr "Támogató szervezetek"
 
 msgid "submission.metadata"
 msgstr "Mataadat"
-
-msgid "submission.confirmSubmit"
-msgstr "Biztos benne, hogy ezt a kéziratot be kívánja küldeni a kiadóhoz?"
 
 msgid "manuscript.submissions"
 msgstr "Kézirat beküldések"
@@ -384,9 +342,6 @@ msgstr "Külső szakmai lektorálás"
 msgid "editor.submission.decision.sendExternalReview"
 msgstr "Külső szakmai lektorálásra küldés"
 
-msgid "submission.submit.titleAndSummary"
-msgstr "Cím és összefoglaló"
-
 msgid "submission.event.publicationFormatRemoved"
 msgstr "A(z) \"{$formatName}\" kiadványformátum eltávolításra került."
 
@@ -481,10 +436,6 @@ msgstr "Fejezetek"
 
 msgid "submission.submit.noContext"
 msgstr "Ennek a beküldésnek a kiadója nem található."
-
-msgid "submission.submit.userGroupDescription"
-msgstr ""
-"Ha szerkesztett kötetet küld be, akkor válassza a kötetszerkesztő szerepkört."
 
 msgid "submission.submit.userGroup"
 msgstr "Szerepköröm a beküldött anyagban..."

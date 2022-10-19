@@ -17,7 +17,9 @@
 
 namespace APP\press;
 
+use APP\core\Application;
 use PKP\context\PKPSection;
+use PKP\context\SubEditorsDAO;
 use PKP\db\DAORegistry;
 
 class Series extends PKPSection
@@ -324,7 +326,7 @@ class Series extends PKPSection
     public function getEditorsString()
     {
         $subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /** @var SubEditorsDAO $subEditorsDao */
-        $editors = $subEditorsDao->getBySubmissionGroupId($this->getId(), ASSOC_TYPE_SECTION, $this->getPressId());
+        $editors = $subEditorsDao->getBySubmissionGroupIds([$this->getId()], Application::ASSOC_TYPE_SECTION, $this->getPressId());
 
         $separator = ', ';
         $str = '';

@@ -185,9 +185,6 @@ msgstr "Revisión externa"
 msgid "editor.submission.decision.sendExternalReview"
 msgstr "Enviar para revisión externa"
 
-msgid "submission.submit.titleAndSummary"
-msgstr "Título e resumo"
-
 msgid "submission.event.publicationFormatRemoved"
 msgstr "Eliminouse o formato de publicación \"{$formatName}\"."
 
@@ -283,9 +280,6 @@ msgstr "Capítulos"
 msgid "submission.submit.noContext"
 msgstr "Non se puido atopar a editorial deste envío."
 
-msgid "submission.submit.userGroupDescription"
-msgstr "Se envías unha obra conxunta, debes escoller o rol de Editor de volume."
-
 msgid "submission.submit.userGroup"
 msgstr "Enviar no meu rol de..."
 
@@ -330,31 +324,11 @@ msgstr "Preparar"
 msgid "submission.submit.submissionFile"
 msgstr "Arquivo do envío"
 
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Seleccione o rol do colaborador."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Insira un breve resumo da súa monografía."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Insira o título da súa monografía."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr ""
-"É necesario o nome, apelidos e enderezo de correo electrónico de cada autor/"
-"a."
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Requírese polo menos un autor/a."
-
 msgid "submission.submit.contributorRole"
 msgstr "Rol de colaborador"
 
 msgid "submission.submit.privacyStatement"
 msgstr "Declaración de privacidade"
-
-msgid "submission.submit.form.localeRequired"
-msgstr "Selecciona o idioma do envío."
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "Exemplos: libro 2, volumen 2"
@@ -362,19 +336,8 @@ msgstr "Exemplos: libro 2, volumen 2"
 msgid "submission.submit.seriesPosition"
 msgstr "Posición na serie"
 
-msgid "author.submit.seriesRequired"
-msgstr "Requírese unha serie válida."
-
 msgid "author.isVolumeEditor"
 msgstr "Identificar a este colaborador/a como editor/a deste volume."
-
-msgid "submission.submit.selectSeries"
-msgstr "Seleccionar serie (opcional)"
-
-msgid "submission.submit.cancelSubmission"
-msgstr ""
-"Podes completar este envío nunha data posterior seleccionando Envíos activos "
-"dende a páxina de inicio do autor."
 
 msgid "submission.submit.upload"
 msgstr "Cargar"
@@ -402,9 +365,6 @@ msgstr "Axencias de apoio"
 
 msgid "submission.metadata"
 msgstr "Metadatos"
-
-msgid "submission.confirmSubmit"
-msgstr "Seguro que desexas enviar este manuscrito á editorial?"
 
 msgid "manuscript.submissions"
 msgstr "Envíos de manuscritos"
@@ -441,12 +401,6 @@ msgstr "Editar capítulo"
 
 msgid "submission.chapter.addChapter"
 msgstr "Engadir capítulo"
-
-msgid "submission.chaptersDescription"
-msgstr ""
-"Podes enumerar os capítulos aquí e asignar colaboradores da lista de "
-"colaboradores arriba. Estes colaboradores poderán acceder ao capítulo "
-"durante varias fases do proceso de publicación."
 
 msgid "submission.chapters"
 msgstr "Capítulos"
@@ -504,6 +458,3 @@ msgstr "Título do libro"
 
 msgid "submission.upload.selectComponent"
 msgstr "Seleccionar compoñente"
-
-msgid "submission.submit.title"
-msgstr "Enviar unha monografía"
