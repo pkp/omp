@@ -74,12 +74,12 @@ class OAIDAO extends PKPOAIDAO {
 
 	/**
 	 * Return hierarchy of OAI sets (presses plus press series).
-	 * @param $pressId int
+	 * @param $pressId int|null
 	 * @param $offset int
 	 * @param $total int
 	 * @return array OAISet
 	 */
-	function getSets($pressId = null, $offset, $limit, &$total) {
+	function getSets($pressId, $offset, $limit, &$total) {
 		if (isset($pressId)) {
 			$presses = [$this->getPress($pressId)];
 		} else {
