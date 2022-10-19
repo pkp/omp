@@ -15,9 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "submission.submit.title"
-msgstr "Monographie einreichen"
-
 msgid "submission.upload.selectComponent"
 msgstr "Komponente auswählen"
 
@@ -65,9 +62,6 @@ msgstr "Kapitel"
 msgid "submission.chapters"
 msgstr "Kapitel"
 
-msgid "submission.chaptersDescription"
-msgstr "Hier können Sie die Kapitel auflisten und ihnen Personen zuordnen, die in der oben stehenden Liste der Beiträger/innen (z.B. Kapitelautor/innen, Übersetzer/innen) verzeichnet sind. Beiträger/innen, die Sie an dieser Stelle dem Kapitel zuordnen, werden während des Veröffentlichungsprozesses Zugang zu dem Kapitel haben."
-
 msgid "submission.chapter.addChapter"
 msgstr "Kapitel hinzufügen"
 
@@ -101,9 +95,6 @@ msgstr "In Begutachtung"
 msgid "manuscript.submissions"
 msgstr "Manuskripte einreichen"
 
-msgid "submission.confirmSubmit"
-msgstr "Sind Sie sicher, dass Sie das Manuskript einreichen möchten?"
-
 msgid "submission.metadata"
 msgstr "Metadaten"
 
@@ -131,41 +122,17 @@ msgstr "Ein neues Manuskript bei {$contextName} einreichen"
 msgid "submission.submit.upload"
 msgstr "Einreichung hochladen"
 
-msgid "submission.submit.cancelSubmission"
-msgstr "Sie können den Einreichungsprozess auch zu einem späteren Zeitpunkt abschließen. Gehen Sie dazu auf die Startseite und wählen Sie die entsprechenden Manuskripte aus."
-
-msgid "submission.submit.selectSeries"
-msgstr "Reihe auswählen"
-
 msgid "submission.submit.seriesPosition"
 msgstr "Position innerhalb der Reihe (z.B. Band 2)"
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "Beispiel: Buch 2, Band 2"
 
-msgid "submission.submit.form.localeRequired"
-msgstr "Bitte wählen Sie die Sprache des Manuskripts aus."
-
 msgid "submission.submit.privacyStatement"
 msgstr "Datenschutzerklärung"
 
 msgid "submission.submit.contributorRole"
 msgstr "Funktion des Beiträgers/der Beiträgerin"
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Es muss mindestens ein Autor/eine Autorin angegeben werden."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "Es werden Vorname, Nachname und E-Mail-Adresse aller Autor/innen benötigt."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Bitte geben Sie den Titel Ihrer Monographie ein."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Bitte geben Sie eine kurze Zusammenfassung Ihrer Monographie ein."
-
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Bitte wählen Sie die Funktion der Beiträgerin/des Beiträgers."
 
 msgid "submission.submit.submissionFile"
 msgstr "Manuskriptdatei"
@@ -205,9 +172,6 @@ msgstr "Manuskriptplatzierung"
 
 msgid "submission.submit.userGroup"
 msgstr "Einreichen in meiner Funktion als ..."
-
-msgid "submission.submit.userGroupDescription"
-msgstr "Wenn Sie einen Sammelband einreichen, sollten Sie die Funktion \"Sammelbandherausgeber/in\" auswählen."
 
 msgid "grid.chapters.title"
 msgstr "Kapitel"
@@ -281,9 +245,6 @@ msgstr "Das Format \"{$formatName}\" wurde erstellt."
 
 msgid "submission.event.publicationFormatRemoved"
 msgstr "Das Format \"{$formatName}\" wurde entfernt."
-
-msgid "submission.submit.titleAndSummary"
-msgstr "Titel und Zusammenfassung"
 
 msgid "workflow.review.externalReview"
 msgstr "Externe Begutachtung"
@@ -484,9 +445,6 @@ msgstr "Auswahl dem Katalog hinzufügen"
 
 msgid "submission.submit.noContext"
 msgstr "Der Verlag der Einreichung konnte nicht gefunden werden."
-
-msgid "author.submit.seriesRequired"
-msgstr "Eine gültige Reihe wird benötigt."
 
 msgid "author.isVolumeEditor"
 msgstr "Diese Person als Herausgeber/in des Bandes identifizieren."

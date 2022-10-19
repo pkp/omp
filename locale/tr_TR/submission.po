@@ -24,9 +24,6 @@ msgstr "{$series} (Inactive)"
 msgid "submission.authorListSeparator"
 msgstr "; "
 
-msgid "submission.submit.title"
-msgstr "Bir yazı gönderin"
-
 msgid "submission.upload.selectComponent"
 msgstr "Bileşeni Seçin"
 
@@ -78,12 +75,6 @@ msgstr "Bölüm"
 msgid "submission.chapters"
 msgstr "Bölümler"
 
-msgid "submission.chaptersDescription"
-msgstr ""
-"Bölümleri burada listeleyebilir ve yukarıdaki katkıda bulunanlar listesinden "
-"katılımcı atayabilirsiniz. Bu katılımcılar, yayın sürecinin çeşitli "
-"aşamalarında bölüme erişebilecekler."
-
 msgid "submission.chapter.addChapter"
 msgstr "Bölüm Ekle"
 
@@ -117,9 +108,6 @@ msgstr "Değerlendirmede"
 msgid "manuscript.submissions"
 msgstr "Yazı Taslağı Gönderimleri"
 
-msgid "submission.confirmSubmit"
-msgstr "Bu yazı taslağını yayınevine göndermek istediğinizden emin misiniz?"
-
 msgid "submission.metadata"
 msgstr "Üst Veri"
 
@@ -147,19 +135,8 @@ msgstr "Yeni Gönderi"
 msgid "submission.submit.upload"
 msgstr "Gönderi yükle"
 
-msgid "submission.submit.cancelSubmission"
-msgstr ""
-"Yazarın ana sayfasından Etkin Gönderimleri seçerek bu gönderiyi daha sonraki "
-"bir tarihte tamamlayabilirsiniz."
-
-msgid "submission.submit.selectSeries"
-msgstr "Dizi seçin (isteğe bağlı)"
-
 msgid "author.isVolumeEditor"
 msgstr "Bu katılımcıyı bu cildin editörü olarak tanımlayın."
-
-msgid "author.submit.seriesRequired"
-msgstr "Geçerli bir dizi gereklidir."
 
 msgid "submission.submit.seriesPosition"
 msgstr "Dizi Konumu"
@@ -167,29 +144,11 @@ msgstr "Dizi Konumu"
 msgid "submission.submit.seriesPosition.description"
 msgstr "Örnekler: Kitap 2, Cilt 2"
 
-msgid "submission.submit.form.localeRequired"
-msgstr "Lütfen bir gönderim dili seçin."
-
 msgid "submission.submit.privacyStatement"
 msgstr "Gizlilik Bildirimi"
 
 msgid "submission.submit.contributorRole"
 msgstr "Katkıda bulunan kişinin görevi"
-
-msgid "submission.submit.form.authorRequired"
-msgstr "En az bir yazar gereklidir."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "Her yazarın adı, soyadı ve e-posta adresi gereklidir."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Lütfen yazınızın başlığını girin."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Lütfen yazınızın kısa bir özetini girin."
-
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Lütfen katkıda bulunanın görevini seçin."
 
 msgid "submission.submit.submissionFile"
 msgstr "Gönderi Dosyası"
@@ -234,10 +193,6 @@ msgstr "Gönderi Yerleştirme"
 
 msgid "submission.submit.userGroup"
 msgstr "Benim görevimde şu olarak gönder..."
-
-msgid "submission.submit.userGroupDescription"
-msgstr ""
-"Düzenlenmiş Cilt gönderiyorsanız, cilt düzenleyici görevini seçmelisiniz."
 
 msgid "submission.submit.noContext"
 msgstr "Bu gönderinin yayınevi bulunamadı."
@@ -328,9 +283,6 @@ msgstr "\"{$formatName}\" yayın biçimi oluşturuldu."
 
 msgid "submission.event.publicationFormatRemoved"
 msgstr "\"{$formatName}\" yayın biçimi kaldırıldı."
-
-msgid "submission.submit.titleAndSummary"
-msgstr "Başlık ve Öz"
 
 msgid "editor.submission.decision.sendExternalReview"
 msgstr "Dış Değerlendirmeye Gönder"

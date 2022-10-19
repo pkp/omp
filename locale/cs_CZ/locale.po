@@ -924,9 +924,6 @@ msgstr "Tato edice se zobrazí v hlavní nabídce"
 msgid "series.series"
 msgstr "Edice"
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Přidělit editory"
-
 msgid "grid.reviewAttachments.availableFiles"
 msgstr "Dostupné soubory"
 

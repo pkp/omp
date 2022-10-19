@@ -1015,9 +1015,6 @@ msgstr "Esta colección aparecerá no menú principal"
 msgid "series.series"
 msgstr "Colección"
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Editores/as asignados"
-
 msgid "grid.reviewAttachments.availableFiles"
 msgstr "Arquivos dispoñibeis"
 

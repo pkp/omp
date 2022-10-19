@@ -208,9 +208,6 @@ msgstr ""
 msgid "manager.setup.submissionGuidelines"
 msgstr "Gönderim yönergeleri"
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Gönderi Hazırlık Kontrol Listesi"
-
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Kontrol listesi öğesi gerekli."
 

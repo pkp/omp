@@ -14,9 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "submission.submit.title"
-msgstr "Lähetä käsikirjoitus"
-
 msgid "submission.upload.selectComponent"
 msgstr "Valitse osa"
 
@@ -68,9 +65,6 @@ msgstr "Luku"
 msgid "submission.chapters"
 msgstr "Luvut"
 
-msgid "submission.chaptersDescription"
-msgstr "Tässä voit luetella luvut ja valita tekijät yllä olevasta tekijälistasta. Nämä tekijät saavat pääsyn lukuihin julkaisuprosessin eri vaiheissa."
-
 msgid "submission.chapter.addChapter"
 msgstr "Lisää luku"
 
@@ -104,9 +98,6 @@ msgstr "Arvioitavana"
 msgid "manuscript.submissions"
 msgstr "Vastaanotetut käsikirjoitukset"
 
-msgid "submission.confirmSubmit"
-msgstr "Oletko varma, että haluat lähettää tämän käsikirjoituksen?"
-
 msgid "submission.metadata"
 msgstr "Metatiedot"
 
@@ -134,44 +125,17 @@ msgstr "Uusi käsikirjoitus"
 msgid "submission.submit.upload"
 msgstr "Lataa käsikirjoitus"
 
-msgid "submission.submit.cancelSubmission"
-msgstr "Voit viimeistellä tämän lähetyksen myöhemmin valitsemalla Aktiiviset käsikirjoitukset Kirjoittajan etusivulta."
-
-msgid "submission.submit.selectSeries"
-msgstr "Valitse sarja (valinnainen)"
-
-msgid "author.submit.seriesRequired"
-msgstr "Kelvollinen sarja vaaditaan."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Sijoitus sarjassa"
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "Esimerkiksi: Kirja 2, Nide 2"
 
-msgid "submission.submit.form.localeRequired"
-msgstr "Valitse käsikirjoituksen kieli."
-
 msgid "submission.submit.privacyStatement"
 msgstr "Tietosuojaseloste"
 
 msgid "submission.submit.contributorRole"
 msgstr "Tekijän rooli"
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Vähintään yksi kirjoittaja vaaditaan."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "Jokaisen kirjoittajan etunimi, sukunimi ja sähköpostiosoite vaaditaan."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Syötä kirjasi nimeke."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Kirjoita lyhyt yhteenveto kirjastasi."
-
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Valitse tekijän rooli."
 
 msgid "submission.submit.submissionFile"
 msgstr "Käsikirjoitustiedosto"
@@ -220,9 +184,6 @@ msgstr "Valitse painon kategorioista se, jonne tämä työ lähetetään käsite
 
 msgid "submission.submit.userGroup"
 msgstr "Lähetä roolissani..."
-
-msgid "submission.submit.userGroupDescription"
-msgstr "Jos olet lähettämässä toimitettua teosta, sinun tulee valita niteen toimittajan rooli."
 
 msgid "grid.chapters.title"
 msgstr "Luvut"
@@ -301,9 +262,6 @@ msgstr "Julkaisumuoto \"{$formatName}\" luotiin."
 
 msgid "submission.event.publicationFormatRemoved"
 msgstr "Julkaisumuoto \"{$formatName}\" poistettiin."
-
-msgid "submission.submit.titleAndSummary"
-msgstr "Nimeke ja yhteenveto"
 
 msgid "workflow.review.externalReview"
 msgstr "Ulkopuolinen arviointi"

@@ -16,9 +16,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "submission.submit.title"
-msgstr "Indsend en monografi"
-
 msgid "submission.upload.selectComponent"
 msgstr "Vælg komponent"
 
@@ -64,9 +61,6 @@ msgstr "Kapitel"
 msgid "submission.chapters"
 msgstr "Kapitler"
 
-msgid "submission.chaptersDescription"
-msgstr "Du kan opstille en liste over kapitlerne her og tilknytte forfattere fra listen over bidragydere ovenfor. Disse forfattere kan få adgang til kapitlet i forskellige faser af den redaktionelle proces."
-
 msgid "submission.chapter.addChapter"
 msgstr "Tilføj kapitel"
 
@@ -103,10 +97,6 @@ msgstr "Til bedømmelse"
 msgid "manuscript.submissions"
 msgstr "Manuskriptindsendelser"
 
-msgid "submission.confirmSubmit"
-msgstr ""
-"Er du sikker på, at du ønsker at indsende dette manuskript til udgiveren?"
-
 msgid "submission.metadata"
 msgstr "Metadata"
 
@@ -134,44 +124,17 @@ msgstr "Ny indsendelse"
 msgid "submission.submit.upload"
 msgstr "Upload indsendelse"
 
-msgid "submission.submit.cancelSubmission"
-msgstr "Du kan afslutte denne indsendelse på et senere tidspunkt ved at vælge aktive indsendelser fra forfatterens webside."
-
-msgid "submission.submit.selectSeries"
-msgstr "Vælg serie"
-
-msgid "author.submit.seriesRequired"
-msgstr "En gyldig serie er påkrævet."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Seriens position"
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "Eksempler: Bog 2, bind 2"
 
-msgid "submission.submit.form.localeRequired"
-msgstr "Vælg et indsendelsessprog."
-
 msgid "submission.submit.privacyStatement"
 msgstr "Erklæring om beskyttelse af personlige oplysninger"
 
 msgid "submission.submit.contributorRole"
 msgstr "Bidragyderens rolle"
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Der kræves mindst en forfatter."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "Forfatterens fornavn, efternavn og e-mail-adresse er påkrævet."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Indtast titlen på din monografi."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Indsæt et kort resumé over din monografi."
-
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Vælg bidragyderens rolle."
 
 msgid "submission.submit.submissionFile"
 msgstr "Indsendelsesfil"
@@ -216,9 +179,6 @@ msgstr "Indsendelsesplacering"
 
 msgid "submission.submit.userGroup"
 msgstr "Indsend i min rolle som ..."
-
-msgid "submission.submit.userGroupDescription"
-msgstr "Hvis du sender et redigeret værk, bør du vælge redaktørrollen."
 
 msgid "grid.chapters.title"
 msgstr "Kapitler"
@@ -310,9 +270,6 @@ msgstr "Publikationsformatet \"{$formatName}\" blev oprettet."
 
 msgid "submission.event.publicationFormatRemoved"
 msgstr "Publikationsformatet \"{$formatName}\" blev fjernet."
-
-msgid "submission.submit.titleAndSummary"
-msgstr "Titel og resume"
 
 msgid "workflow.review.externalReview"
 msgstr "Ekstern bedømmelse"

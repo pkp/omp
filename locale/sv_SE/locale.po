@@ -1299,9 +1299,6 @@ msgstr ""
 msgid "monograph.audience.rangeQualifier"
 msgstr "Kvalificering av publikintervallet"
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Tilldelade redaktörer"
-
 msgid "grid.action.featureMonograph"
 msgstr "Visa i katalogkarusellen"
 

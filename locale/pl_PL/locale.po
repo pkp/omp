@@ -1043,9 +1043,6 @@ msgstr "Seria wyświetli się w głównym menu"
 msgid "series.series"
 msgstr "Serie"
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Przypisani edytorzy"
-
 msgid "grid.reviewAttachments.availableFiles"
 msgstr "Dostępne pliki"
 

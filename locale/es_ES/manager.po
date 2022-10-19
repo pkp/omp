@@ -998,12 +998,6 @@ msgstr "Proporcione ejemplos de palabras clave y temas que sirvan de guía para 
 msgid "manager.setup.submissionGuidelines"
 msgstr "Indicaciones para el envío"
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Lista de comprobación de preparación de propuestas"
-
-msgid "manager.setup.submissionPreparationChecklistDescription"
-msgstr "Cuando se realiza un envío a la publicación, se pide a los autores/as que comprueben que se ha completado cada elemento de la lista de comprobación de preparación de envíos antes de continuar. La lista de comprobación también aparece en las indicaciones para el autor/a, en Acerca de la publicación. Se puede editar la lista a continuación, pero todos los elementos de la lista necesitarán haberse comprobado para que los autores/as puedan continuar con el envío. "
-
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "La lista de comprobación de elementos es obligatoria."
 

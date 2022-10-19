@@ -67,9 +67,6 @@ msgstr "Назва книги"
 msgid "submission.upload.selectComponent"
 msgstr "Обрати компонент"
 
-msgid "submission.submit.title"
-msgstr "Подати монографію"
-
 msgid "publication.scheduledIn"
 msgstr "Заплановано до публікації в <a href=\"{$issueUrl}\">{$issueName}</a>."
 
@@ -109,9 +106,6 @@ msgstr "Зовнішнє рецензування"
 
 msgid "editor.submission.decision.sendExternalReview"
 msgstr "Надіслати на зовнішнє рецензування"
-
-msgid "submission.submit.titleAndSummary"
-msgstr "Назва і резюме"
 
 msgid "submission.event.publicationFormatRemoved"
 msgstr "Формат публікації \"{$formatName}\" видалено."
@@ -231,30 +225,11 @@ msgstr "Підготовка"
 msgid "submission.submit.submissionFile"
 msgstr "Файл подання"
 
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Будь ласка, оберіть роль користувача."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Будь ласка, введіть коротку анотацію Вашої монографії."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Будь ласка, введіть назву Вашої монографії."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr ""
-"Необхідно ввести ім'я, прізвище й адресу електронної пошти кожного автора."
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Необхідно обрати хоча б одного автора."
-
 msgid "submission.submit.contributorRole"
 msgstr "Роль користувача"
 
 msgid "submission.submit.privacyStatement"
 msgstr "Заява про конфіденційність"
-
-msgid "submission.submit.form.localeRequired"
-msgstr "Будь ласка, оберіть мову подання."
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "Приклади: Книга 2, Том 2"
@@ -262,14 +237,8 @@ msgstr "Приклади: Книга 2, Том 2"
 msgid "submission.submit.seriesPosition"
 msgstr "Позиція серії"
 
-msgid "author.submit.seriesRequired"
-msgstr "Необхідно ввести дійсну серію."
-
 msgid "author.isVolumeEditor"
 msgstr "Позначити цього автора як редактора цього тому."
-
-msgid "submission.submit.selectSeries"
-msgstr "Оберіть серію (за бажанням)"
 
 msgid "submission.submit.upload"
 msgstr "Вивантажити подання"
@@ -294,9 +263,6 @@ msgstr "Створити нову главу"
 
 msgid "submission.metadata"
 msgstr "Метадані"
-
-msgid "submission.confirmSubmit"
-msgstr "Ви впевнені, що хочете надіслати цей рукопис до е-видавництва?"
 
 msgid "manuscript.submissions"
 msgstr "Подання рукописів"
@@ -331,11 +297,6 @@ msgstr "Редагувати главу"
 msgid "submission.chapter.addChapter"
 msgstr "Додати главу"
 
-msgid "submission.chaptersDescription"
-msgstr ""
-"Ви можете тут перерахувати глави і призначити авторів зі списку вище. Ці "
-"автори матимуть доступ до глав під час різних стадій видавничого процесу."
-
 msgid "submission.workflowType.authoredWork"
 msgstr "Монографія: автори, що пов'язані з цією книгою в цілому."
 
@@ -359,20 +320,11 @@ msgstr "Метадані для формату публікації \"{$formatNa
 msgid "submission.event.metadataUnpublished"
 msgstr "Метадані монографії більше не публікуються."
 
-msgid "submission.submit.userGroupDescription"
-msgstr ""
-"Якщо ви надсилаєте відредагований том, ви маєте обрати роль редактора тому."
-
 msgid "submission.submit.whatNext.description"
 msgstr ""
 "Е-видавництво отримало повідомлення про подання Вашого рукопису, лист із "
 "підтвердженням було направлено на Вашу електронну пошту. Щойно редактори "
 "переглянуть Ваш матеріал, ми зв'яжемося з Вами."
-
-msgid "submission.submit.cancelSubmission"
-msgstr ""
-"Ви можете завершити це подання пізніше, вибравши його у списку активних "
-"подань на своїй персональній сторінці."
 
 msgid "submission.supportingAgencies"
 msgstr "Спонсори"

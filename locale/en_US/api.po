@@ -34,3 +34,6 @@ msgstr "The publication that you requested is not part of this submission."
 
 msgid "api.submissions.403.cantChangeContext"
 msgstr "You can not change the press of a submission."
+
+msgid "api.submission.400.inactiveSection"
+msgstr "This section is no longer receiving submissions."
