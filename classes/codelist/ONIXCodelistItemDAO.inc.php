@@ -189,7 +189,7 @@ class ONIXCodelistItemDAO extends DAO {
 		$cache =& $this->_getCache($locale);
 		$returner = [];
 		$cacheContents =& $cache->getContents();
-		if ($codesFilter = trim($codesFilter)) {
+		if ($codesFilter = trim($codesFilter ?? '')) {
 			$codesFilter = '/' . implode('|', array_map('preg_quote', PKPString::regexp_split('/\s+/', $codesFilter))) . '/i';
 		}
 		if (is_array($cacheContents)) {

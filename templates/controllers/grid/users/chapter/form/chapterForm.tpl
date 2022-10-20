@@ -22,7 +22,7 @@
 	{csrf}
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="publicationId" value="{$publicationId|escape}" />
-	<input type="hidden" name="chapterId" value="{$chapterId|escape}" />
+	<input type="hidden" name="chapterId" value="{$chapterId|default:""|escape}" />
 
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="chapterFormNotification"}
 

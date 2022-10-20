@@ -20,7 +20,7 @@
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="publicationId" value="{$publicationId|escape}" />
 	<input type="hidden" name="representationId" value="{$representationId|escape}" />
-	<input type="hidden" name="identificationCodeId" value="{$identificationCodeId|escape}" />
+	<input type="hidden" name="identificationCodeId" value="{$identificationCodeId|default:""|escape}" />
 	{fbvFormArea id="addCode"}
 		{fbvFormSection title="grid.catalogEntry.identificationCodeValue" for="value" required="true"}
 			{fbvElement type="text" id="value" value=$value size=$fbvStyles.size.MEDIUM required="true"}

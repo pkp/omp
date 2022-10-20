@@ -20,7 +20,7 @@
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="publicationId" value="{$publicationId|escape}" />
 	<input type="hidden" name="representationId" value="{$representationId|escape}" />
-	<input type="hidden" name="salesRightsId" value="{$salesRightsId|escape}" />
+	<input type="hidden" name="salesRightsId" value="{$salesRightsId|default:""|escape}" />
 	{fbvFormArea id="addRights"}
 		{fbvFormSection title="grid.catalogEntry.salesRightsType" for="type" required="true"}
 			{fbvElement type="select" from=$salesRights selected=$type id="type" translate=false required="true"}
