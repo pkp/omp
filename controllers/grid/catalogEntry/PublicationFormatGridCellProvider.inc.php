@@ -207,7 +207,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 			$submissionFile = $data['submissionFile'];
 			switch ($column->getId()) {
 				case 'isAvailable':
-					$salesType = preg_replace('/[^\da-z]/i', '', $submissionFile->getSalesType());
+					$salesType = preg_replace('/[^\da-z]/i', '', $submissionFile->getSalesType() ?? '');
 					$salesTypeString = 'editor.monograph.approvedProofs.edit.linkTitle';
 					if ($salesType == 'openAccess') {
 						$salesTypeString = 'payment.directSales.openAccess';

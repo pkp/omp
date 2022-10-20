@@ -545,6 +545,6 @@ class MonographReport implements IteratorAggregate
 	 */
 	private function toPlainText(?string $html): string
 	{
-		return html_entity_decode(strip_tags($html));
+		return html_entity_decode(strip_tags($html ?? ''));
 	}
 }
