@@ -20,7 +20,7 @@
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="publicationId" value="{$publicationId|escape}" />
 	<input type="hidden" name="representationId" value="{$representationId|escape}" />
-	<input type="hidden" name="publicationDateId" value="{$publicationDateId|escape}" />
+	<input type="hidden" name="publicationDateId" value="{$publicationDateId|default:""|escape}" />
 	{fbvFormArea id="addDate"}
 		{fbvFormSection title="grid.catalogEntry.dateValue" for="date" required="true"}
 			{fbvElement type="text" id="date" value=$date size=$fbvStyles.size.MEDIUM required="true"}

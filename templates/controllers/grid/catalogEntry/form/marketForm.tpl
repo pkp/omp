@@ -20,7 +20,7 @@
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="publicationId" value="{$publicationId|escape}" />
 	<input type="hidden" name="representationId" value="{$representationId|escape}" />
-	<input type="hidden" name="marketId" value="{$marketId|escape}" />
+	<input type="hidden" name="marketId" value="{$marketId|default:""|escape}" />
 
 	<!-- Collect a Date for this Market (availability, stock, re-issue, etc) -->
 	{fbvFormArea id="dateArea" class="border"}

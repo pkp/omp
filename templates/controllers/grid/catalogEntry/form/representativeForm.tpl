@@ -19,7 +19,7 @@
 	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="representativesFormNotification"}
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
-	<input type="hidden" name="representativeId" value="{$representativeId|escape}" />
+	<input type="hidden" name="representativeId" value="{$representativeId|default:""|escape}" />
 	{fbvFormArea id="addSupplier"}
 		{fbvFormSection list="true" title="grid.catalogEntry.representativeType" required="true"}
 			{fbvElement type="radio" id="agent" name="isSupplier" value="0" label="grid.catalogEntry.agent" inline="true" checked=!$isSupplier required="true"}
