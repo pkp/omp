@@ -55,42 +55,6 @@ class Repository extends \PKP\publication\Repository
         return $errors;
     }
 
-    /** @copydoc \PKP\publication\Repository::add() */
-    public function add(Publication $publication): int
-    {
-        $id = parent::add($publication);
-
-        $publication = $this->get($id);
-
-        // Create a thumbnail for the cover image
-        if ($publication->getData('coverImage')) {
-            $submission = Repo::submission()->get($publication->getData('submissionId'));
-            $submissionContext = $this->request->getContext();
-            if ($submissionContext->getId() !== $submission->getData('contextId')) {
-                $submissionContext = Services::get('context')->get($submission->getData('contextId'));
-            }
-
-            $supportedLocales = $submissionContext->getSupportedSubmissionLocales();
-            foreach ($supportedLocales as $localeKey) {
-                if (!array_key_exists($localeKey, $publication->getData('coverImage'))) {
-                    continue;
-                }
-
-                $publicFileManager = new PublicFileManager();
-                $coverImage = $publication->getData('coverImage', $localeKey);
-                $coverImageFilePath = $publicFileManager->getContextFilesPath($submissionContext->getId()) . '/' . $coverImage['uploadName'];
-                $this->makeThumbnail(
-                    $coverImageFilePath,
-                    $this->getThumbnailFileName($coverImage['uploadName']),
-                    $submissionContext->getData('coverThumbnailsMaxWidth'),
-                    $submissionContext->getData('coverThumbnailsMaxHeight')
-                );
-            }
-        }
-
-        return $id;
-    }
-
     /** @copydoc \PKP\publication\Repository::version() */
     public function version(Publication $publication): int
     {
@@ -221,51 +185,6 @@ class Repository extends \PKP\publication\Repository
         return $newId;
     }
 
-    /** @copydoc \PKP\publication\Repository::edit() */
-    public function edit(Publication $publication, array $params)
-    {
-        $oldCoverImage = $publication->getData('coverImage');
-
-        parent::edit($publication, $params);
-
-        // Create or delete the thumbnail of a cover image
-        if (array_key_exists('coverImage', $params)) {
-            $publicFileManager = new PublicFileManager();
-            $submission = Repo::submission()->get($publication->getData('submissionId'));
-
-            // Get the submission context
-            $submissionContext = $this->request->getContext();
-            if ($submissionContext->getId() !== $submission->getData('contextId')) {
-                $submissionContext = Services::get('context')->get($submission->getData('contextId'));
-            }
-
-            foreach ($params['coverImage'] as $localeKey => $newCoverImage) {
-
-                // Delete the thumbnail if the cover image has been deleted
-                if (is_null($newCoverImage)) {
-                    if (empty($oldCoverImage[$localeKey])) {
-                        continue;
-                    }
-
-                    $coverImageFilePath = $publicFileManager->getContextFilesPath($submission->getData('contextId')) . '/' . $oldCoverImage[$localeKey]['uploadName'];
-                    if (!file_exists($coverImageFilePath)) {
-                        $publicFileManager->removeContextFile($submission->getData('contextId'), $this->getThumbnailFileName($oldCoverImage[$localeKey]['uploadName']));
-                    }
-
-                // Otherwise generate a new thumbnail if a cover image exists
-                } elseif (!empty($newCoverImage)) {
-                    $coverImageFilePath = $publicFileManager->getContextFilesPath($submission->getData('contextId')) . '/' . $newCoverImage['uploadName'];
-                    $this->makeThumbnail(
-                        $coverImageFilePath,
-                        $this->getThumbnailFileName($newCoverImage['uploadName']),
-                        $submissionContext->getData('coverThumbnailsMaxWidth'),
-                        $submissionContext->getData('coverThumbnailsMaxHeight')
-                    );
-                }
-            }
-        }
-    }
-
     /** @copydoc \PKP\publication\Repository::publish() */
     public function publish(Publication $publication)
     {
@@ -380,80 +299,6 @@ class Repository extends \PKP\publication\Repository
         }
 
         parent::delete($publication);
-    }
-
-    /**
-     * Derive a thumbnail filename from the cover image filename
-     *
-     * book_1_1_cover.png --> book_1_1_cover_t.png
-     *
-     * @param string $fileName
-     *
-     * @return string The thumbnail filename
-     */
-    public function getThumbnailFileName($fileName)
-    {
-        $pathInfo = pathinfo($fileName);
-        return $pathInfo['filename'] . '_t.' . $pathInfo['extension'];
-    }
-
-    /**
-     * Generate a thumbnail of an image
-     *
-     * @param string $filePath The full path and name of the file
-     * @param int $maxWidth The maximum allowed width of the thumbnail
-     * @param int $maxHeight The maximum allowed height of the thumbnail
-     */
-    public function makeThumbnail($filePath, $thumbFileName, $maxWidth, $maxHeight)
-    {
-        $pathParts = pathinfo($filePath);
-        $thumbFilePath = $pathParts['dirname'] . '/' . $thumbFileName;
-
-        $cover = null;
-        switch ($pathParts['extension']) {
-            case 'jpg': $cover = imagecreatefromjpeg($filePath);
-                break;
-            case 'png': $cover = imagecreatefrompng($filePath);
-                break;
-            case 'gif': $cover = imagecreatefromgif($filePath);
-                break;
-            case 'webp': $cover = imagecreatefromwebp($filePath);
-                break;
-            case 'svg': $cover = copy($filePath, $thumbFilePath);
-                break;
-        }
-        if (!isset($cover)) {
-            throw new \Exception('Can not build thumbnail because the file was not found or the file extension was not recognized.');
-        }
-
-        if ($pathParts['extension'] != 'svg') {
-
-            // Calculate the scaling ratio for each dimension.
-            $originalSizeArray = getimagesize($filePath);
-            $xRatio = min(1, $maxWidth / $originalSizeArray[0]);
-            $yRatio = min(1, $maxHeight / $originalSizeArray[1]);
-
-            // Choose the smallest ratio and create the target.
-            $ratio = min($xRatio, $yRatio);
-
-            $thumbWidth = round($ratio * $originalSizeArray[0]);
-            $thumbHeight = round($ratio * $originalSizeArray[1]);
-            $thumb = imagecreatetruecolor($thumbWidth, $thumbHeight);
-            imagecopyresampled($thumb, $cover, 0, 0, 0, 0, $thumbWidth, $thumbHeight, $originalSizeArray[0], $originalSizeArray[1]);
-
-            switch ($pathParts['extension']) {
-                case 'jpg': imagejpeg($thumb, $pathParts['dirname'] . '/' . $thumbFileName);
-                    break;
-                case 'png': imagepng($thumb, $pathParts['dirname'] . '/' . $thumbFileName);
-                    break;
-                case 'gif': imagegif($thumb, $pathParts['dirname'] . '/' . $thumbFileName);
-                    break;
-                case 'webp': imagewebp($thumb, $thumbFilePath);
-                    break;
-            }
-
-            imagedestroy($thumb);
-        }
     }
 
     /**
