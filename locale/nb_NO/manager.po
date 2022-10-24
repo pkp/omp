@@ -1,7 +1,8 @@
+# Tormod Strømme <tormod.stromme@uib.no>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-20 02:01+0000\n"
-"Last-Translator: Eirik Hanssen <eirikh@oslomet.no>\n"
+"PO-Revision-Date: 2022-09-22 07:38+0000\n"
+"Last-Translator: Tormod Strømme <tormod.stromme@uib.no>\n"
 "Language-Team: Norwegian Bokmål <http://translate.pkp.sfu.ca/projects/omp/"
 "manager/nb_NO/>\n"
 "Language: nb_NO\n"
@@ -9,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "manager.setup.forAuthorsToIndexTheirWork"
 msgstr "Til forfattere for å indeksere eget verk"
@@ -359,10 +360,10 @@ msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
 msgstr "Visninger av seriens hovedside"
 
 msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
-msgstr "Monografi abstrakt og nedlastinger"
+msgstr "Monografisammendrag og nedlastinger"
 
 msgid "manager.statistics.reports.defaultReport.monographAbstract"
-msgstr "Visninger av monografi abstrakter"
+msgstr "Visninger av monografiers sammendragside"
 
 msgid "manager.statistics.reports.defaultReport.monographDownloads"
 msgstr "Nedlasting av filer"
@@ -465,7 +466,7 @@ msgid "manager.series.disableComments"
 msgstr "Deaktiver leserkommentarer vedrørende denne serien."
 
 msgid "manager.series.abstractsNotRequired"
-msgstr "Krev ikke abstrakt"
+msgstr "Krev ikke sammendrag"
 
 msgid "manager.series.submissionsToThisSection"
 msgstr "Innleveringer til denne serien"

@@ -1,7 +1,7 @@
 # Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-08-05 19:42+0000\n"
+"PO-Revision-Date: 2022-10-01 08:01+0000\n"
 "Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/da_DK/>\n"
@@ -71,7 +71,7 @@ msgid "plugins.themes.default.name"
 msgstr "Standard-tema"
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
-msgstr "Tilføj liste over links til alle forlagets serier på katalogsiden"
+msgstr "Tilføj liste over links til alle udgiverens serier på katalogsiden"
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
 msgstr "Vis serier"

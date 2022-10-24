@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-08-06 07:25+0000\n"
+"PO-Revision-Date: 2022-10-13 06:01+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "uk_UA/>\n"
@@ -1677,3 +1677,15 @@ msgstr "Підпис електронних листів е-видавництв
 
 msgid "manager.institutions.noContext"
 msgstr "Е-видавництво цієї інституції не було знайдено."
+
+msgid "stats.publications.downloadReport.description"
+msgstr ""
+"Завантажте електронну таблицю CSV/Excel зі статистикою використання для "
+"монографій, що відповідають наступним параметрам."
+
+msgid "stats.publications.downloadReport.downloadSubmissions"
+msgstr "Завантажити монографії"
+
+msgid "stats.publications.downloadReport.downloadSubmissions.description"
+msgstr ""
+"Кількість переглядів анотацій і завантажень файлів для кожної монографії."
