@@ -50,11 +50,13 @@
 					{translate key="plugins.block.browse.series"}
 					<ul>
 						{foreach from=$browseSeries item=browseSeriesItem}
-							<li class="series_{$browseSeriesItem->getId()}{if $browseBlockSelectedSeries == $browseSeriesItem->getPath() && $browseBlockSelectedSeries != ''} current{/if}">
-								<a href="{url router=PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$browseSeriesItem->getPath()|escape}">
-									{$browseSeriesItem->getLocalizedTitle()|escape}
-								</a>
-							</li>
+							{if !$browseSeriesItem->getIsInactive()}
+								<li class="series_{$browseSeriesItem->getId()}{if $browseBlockSelectedSeries == $browseSeriesItem->getPath() && $browseBlockSelectedSeries != ''} current{/if}">
+									<a href="{url router=PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$browseSeriesItem->getPath()|escape}">
+										{$browseSeriesItem->getLocalizedTitle()|escape}
+									</a>
+								</li>
+							{/if}
 						{/foreach}
 					</ul>
 				</li>
