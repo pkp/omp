@@ -44,7 +44,7 @@ class DAO extends \PKP\submission\DAO
         $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /** @var NewReleaseDAO $newReleaseDao */
         $newReleaseDao->deleteByMonographId($id);
 
-        event(new SubmissionDeleted($this->get($id)));
+        event(new SubmissionDeleted($id));
 
         parent::deleteById($id);
     }
