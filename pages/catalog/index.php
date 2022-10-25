@@ -24,6 +24,7 @@ switch ($op) {
     case 'newReleases':
     case 'series':
     case 'thumbnail':
+    case 'seriesIndex':
     case 'results':
         define('HANDLER_CLASS', 'APP\pages\catalog\CatalogHandler');
         break;
