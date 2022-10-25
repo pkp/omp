@@ -15,12 +15,13 @@
 namespace APP\components\forms\submission;
 
 use APP\submission\Submission;
+use Illuminate\Support\Enumerable;
 use PKP\components\forms\FieldOptions;
 use PKP\context\Context;
 
 class StartSubmission extends \PKP\components\forms\submission\StartSubmission
 {
-    public function __construct(string $action, Context $context, array $userGroups)
+    public function __construct(string $action, Context $context, Enumerable $userGroups)
     {
         parent::__construct($action, $context, $userGroups);
 
