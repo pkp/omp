@@ -18,7 +18,7 @@ use APP\submission\Submission;
 use PKP\components\forms\FieldOptions;
 use PKP\context\Context;
 
-class ContributorForm extends \PKP\components\forms\publication\PKPContributorForm
+class ContributorForm extends \PKP\components\forms\publication\ContributorForm
 {
     public function __construct(string $action, array $locales, Submission $submission, Context $context)
     {
