@@ -16,6 +16,7 @@
 namespace APP\pages\workflow;
 
 use APP\components\forms\publication\TitleAbstractForm;
+use APP\components\listPanels\ContributorsListPanel;
 use APP\core\Application;
 use APP\core\Services;
 use APP\decision\types\AcceptFromInternal;
@@ -342,6 +343,19 @@ class WorkflowHandler extends PKPWorkflowHandler
             $latestPublicationApiUrl,
             $locales,
             $latestPublication
+        );
+    }
+
+    protected function getContributorsListPanel(Submission $submission, Context $context, array $locales, array $authorItems, bool $canEditPublication): ContributorsListPanel
+    {
+        return new ContributorsListPanel(
+            'contributors',
+            __('publication.contributors'),
+            $submission,
+            $context,
+            $locales,
+            $authorItems,
+            $canEditPublication
         );
     }
 }

@@ -19,6 +19,7 @@ use APP\components\forms\publication\TitleAbstractForm;
 use APP\components\forms\submission\ForTheEditors;
 use APP\components\forms\submission\ReconfigureSubmission;
 use APP\components\forms\submission\StartSubmission;
+use APP\components\listPanels\ContributorsListPanel;
 use APP\controllers\grid\users\chapter\ChapterGridHandler;
 use APP\core\Application;
 use APP\core\Request;
@@ -233,5 +234,18 @@ class SubmissionHandler extends PKPSubmissionHandler
     protected function getReconfigureSubmissionProps(): array
     {
         return ['locale', 'workType'];
+    }
+
+    protected function getContributorsListPanel(Request $request, Submission $submission, Publication $publication, array $locales): ContributorsListPanel
+    {
+        return new ContributorsListPanel(
+            'contributors',
+            __('publication.contributors'),
+            $submission,
+            $request->getContext(),
+            $locales,
+            [], // Populated by publication state
+            true
+        );
     }
 }

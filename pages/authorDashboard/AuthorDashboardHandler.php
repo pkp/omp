@@ -16,7 +16,9 @@
 namespace APP\pages\authorDashboard;
 
 use APP\components\forms\publication\TitleAbstractForm;
+use APP\components\listPanels\ContributorsListPanel;
 use APP\publication\Publication;
+use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\context\Context;
 use PKP\core\PKPApplication;
@@ -136,6 +138,19 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler
             $latestPublicationApiUrl,
             $locales,
             $latestPublication
+        );
+    }
+
+    protected function getContributorsListPanel(Submission $submission, Context $context, array $locales, array $authorItems, ?bool $canEditPublication): ContributorsListPanel
+    {
+        return new ContributorsListPanel(
+            'contributors',
+            __('publication.contributors'),
+            $submission,
+            $context,
+            $locales,
+            $authorItems,
+            $canEditPublication
         );
     }
 }
