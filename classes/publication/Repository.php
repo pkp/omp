@@ -110,12 +110,19 @@ class Repository extends \PKP\publication\Repository
 
         $newPublication = $this->get($newId);
 
+        $context = Application::get()->getRequest()->getContext();
+
+        $isDoiVersioningEnabled = $context->getData(Context::SETTING_DOI_VERSIONING);
+
         // Publication Formats (and all associated objects)
         $newSubmissionFiles = [];
         foreach ($oldPublicationFormats as $oldPublicationFormat) {
             $newPublicationFormat = clone $oldPublicationFormat;
             $newPublicationFormat->setData('id', null);
             $newPublicationFormat->setData('publicationId', $newPublication->getId());
+            if ($isDoiVersioningEnabled) {
+                $newPublicationFormat->setData('doiId', null);
+            }
             Application::getRepresentationDAO()->insertObject($newPublicationFormat);
 
             // Duplicate publication format metadata
@@ -145,6 +152,9 @@ class Repository extends \PKP\publication\Repository
                 $newSubmissionFile = clone $submissionFile;
                 $newSubmissionFile->setData('id', null);
                 $newSubmissionFile->setData('assocId', $newPublicationFormat->getId());
+                if ($isDoiVersioningEnabled) {
+                    $newSubmissionFile->setData('doiId', null);
+                }
                 $newSubmissionFileId = Repo::submissionFile()->add($newSubmissionFile);
                 $newSubmissionFile = Repo::submissionFile()->get($newSubmissionFileId);
                 $newSubmissionFiles[] = $newSubmissionFile;
@@ -177,6 +187,9 @@ class Repository extends \PKP\publication\Repository
             $newChapter = clone $oldChapter;
             $newChapter->setData('id', null);
             $newChapter->setData('publicationId', $newPublication->getId());
+            if ($isDoiVersioningEnabled) {
+                $newChapter->setData('doiId', null);
+            }
             $newChapterId = $chapterDao->insertChapter($newChapter);
             $newChapter = $chapterDao->getChapter($newChapterId);
 
