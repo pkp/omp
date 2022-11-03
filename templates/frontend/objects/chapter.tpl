@@ -35,7 +35,7 @@
 <div class="obj_monograph_full obj_chapter">
 
 	{* Notification that this is an old version *}
-	{if $currentPublication->getID() !== $publication->getId()}
+	{if $currentPublication->getId() !== $publication->getId()}
 		<div class="cmp_notification notice">
 			{if $currentPublication->getID()|in_array:$chapterPublicationIds}
 				{capture assign="latestVersionUrl"}{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"chapter":$chapter->getSourceChapterId()}{/capture}

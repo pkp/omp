@@ -83,7 +83,7 @@
 	{/if}
 
 	{* Notification that this is an old version *}
-	{if $currentPublication->getID() !== $publication->getId()}
+	{if $currentPublication->getId() !== $publication->getId()}
 		<div class="cmp_notification notice">
 			{capture assign="latestVersionUrl"}{url page="catalog" op="book" path=$monograph->getBestId()}{/capture}
 			{translate key="submission.outdatedVersion"
@@ -179,7 +179,7 @@
 									</div>
 								{/if}
 
-								{* DOI (requires plugin) *}
+								{* DOI *}
 								{assign var=chapterDoiObject value=$chapter->getData('doiObject')}
 								{if $chapterDoiObject}
 									{assign var="doiUrl" value=$chapterDoiObject->getData('resolvingUrl')|escape}
