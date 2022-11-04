@@ -13,7 +13,6 @@
 
 namespace APP\publication;
 
-use Illuminate\Support\Facades\App;
 use APP\core\Application;
 use APP\core\Services;
 use APP\facades\Repo;
@@ -23,11 +22,12 @@ use APP\notification\NotificationManager;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\submission\Submission;
 use HookRegistry;
+use Illuminate\Support\Facades\App;
 use PKP\core\Core;
 use PKP\db\DAORegistry;
+use PKP\publication\Collector;
 use PKP\submission\PKPSubmission;
 use PKP\submissionFile\SubmissionFile;
-use PKP\publication\Collector;
 
 class Repository extends \PKP\publication\Repository
 {
@@ -228,20 +228,19 @@ class Repository extends \PKP\publication\Repository
 
         parent::edit($publication, $params);
 
+        $updatedPublication = $this->get($publication->getId());
+        $coverImages = $updatedPublication->getData('coverImage');
+
         // Create or delete the thumbnail of a cover image
         if (array_key_exists('coverImage', $params)) {
             $publicFileManager = new PublicFileManager();
             $submission = Repo::submission()->get($publication->getData('submissionId'));
-
-            // Get the submission context
             $submissionContext = $this->request->getContext();
             if ($submissionContext->getId() !== $submission->getData('contextId')) {
                 $submissionContext = Services::get('context')->get($submission->getData('contextId'));
             }
 
             foreach ($params['coverImage'] as $localeKey => $newCoverImage) {
-
-                // Delete the thumbnail if the cover image has been deleted
                 if (is_null($newCoverImage)) {
                     if (empty($oldCoverImage[$localeKey])) {
                         continue;
@@ -253,11 +252,11 @@ class Repository extends \PKP\publication\Repository
                     }
 
                 // Otherwise generate a new thumbnail if a cover image exists
-                } elseif (!empty($newCoverImage)) {
-                    $coverImageFilePath = $publicFileManager->getContextFilesPath($submission->getData('contextId')) . '/' . $newCoverImage['uploadName'];
+                } elseif (!empty($newCoverImage) && array_key_exists('temporaryFileId', $newCoverImage)) {
+                    $coverImageFilePath = $publicFileManager->getContextFilesPath($submission->getData('contextId')) . '/' . $coverImages[$localeKey]['uploadName'];
                     $this->makeThumbnail(
                         $coverImageFilePath,
-                        $this->getThumbnailFileName($newCoverImage['uploadName']),
+                        $this->getThumbnailFileName($coverImages[$localeKey]['uploadName']),
                         $submissionContext->getData('coverThumbnailsMaxWidth'),
                         $submissionContext->getData('coverThumbnailsMaxHeight')
                     );
@@ -427,7 +426,6 @@ class Repository extends \PKP\publication\Repository
         }
 
         if ($pathParts['extension'] != 'svg') {
-
             // Calculate the scaling ratio for each dimension.
             $originalSizeArray = getimagesize($filePath);
             $xRatio = min(1, $maxWidth / $originalSizeArray[0]);
