@@ -7,7 +7,7 @@
 | 3.4.x   | :heavy_check_mark: Active development                 |               |
 | 3.3.x   | :heavy_check_mark: Active maintenance                 |               |
 | 3.2.x   | :white_check_mark: Security only                      |               |
-| 3.1.x   | :white_check_mark: Security only; upgrade recommended |               |
+| 3.1.x   | :x: Not supported                                     | 2022          |
 | 1.x     | :x: Security only; upgrade recommended                | 2022          |
 
 ## Reporting a Vulnerability
