@@ -391,6 +391,7 @@ msgstr "Identificazione email"
 msgid "manager.setup.emailSignature"
 msgstr "Firma"
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "Le email preparate che vengono inviate dal sistema per conto della Casa "

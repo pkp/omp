@@ -148,10 +148,10 @@ msgstr ""
 "<br />Teşekkür ederim,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Gönderi Kabulü"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Merhaba,<br />\n"
 "<br />\n"
@@ -401,12 +401,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.indexRequest.description"
-msgstr ""
-"Dizi Editöründen Dizin Oluşturucuya gönderilen bu e-posta, kendilerine bir "
-"gönderi için dizin oluşturma görevinin atandığını bildirir. Gönderim ve ona "
-"nasıl erişileceği hakkında bilgi sağlar."
-
 msgid "emails.indexComplete.subject"
 msgstr "Dizin provaları Hazır"
 
@@ -420,11 +414,6 @@ msgstr ""
 "Herhangi bir sorunuz olursa, lütfen bizimle iletişime geçin.<br />\n"
 "<br />\n"
 "{$signatureFullName}"
-
-msgid "emails.indexComplete.description"
-msgstr ""
-"Dizin Oluşturucudan Dizi Editörüne gönderilen bu e-posta, dizin oluşturma "
-"işleminin tamamlandığını bildirir."
 
 msgid "emails.emailLink.subject"
 msgstr "İlginizi Çekebilecek Bir Kitap"
@@ -477,17 +466,6 @@ msgid "emails.notifyFile.description"
 msgstr ""
 "Dosya bilgi merkezi penceresi aracılığıyla kullanıcıdan gönderilen bir "
 "bildirim"
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "{$contextName} ile ilgili bir ileti"
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Lütfen mesajınızı yazınız."
-
-msgid "emails.notificationCenterDefault.description"
-msgstr ""
-"Bildirim Merkezi İleti Listesi Oluşturucusunda kullanılan varsayılan (boş) "
-"ileti."
 
 msgid "emails.statisticsReportNotification.subject"
 msgstr "{$month}, {$year} için editoryal etkinlik"

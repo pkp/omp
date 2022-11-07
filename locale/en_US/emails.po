@@ -110,10 +110,10 @@ msgstr ""
 "Thank you,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Submission Acknowledgement"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Hello,<br />\n"
 "<br />\n"
@@ -390,9 +390,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.indexRequest.description"
-msgstr "This email from the Series Editor to the Indexer notifies them that they have been assigned the task of creating indexes for a submission. It provides information about the submission and how to access it."
-
 msgid "emails.indexComplete.subject"
 msgstr "Index Galleys Complete"
 
@@ -405,9 +402,6 @@ msgstr ""
 "If you have any questions, please contact me.<br />\n"
 "<br />\n"
 "{$signatureFullName}"
-
-msgid "emails.indexComplete.description"
-msgstr "This email from the Indexer to the Series Editor notifies them that the index creation process has been completed."
 
 msgid "emails.emailLink.subject"
 msgstr "Manuscript of Possible Interest"
@@ -445,15 +439,6 @@ msgstr ""
 
 msgid "emails.notifyFile.description"
 msgstr "A notification from a user sent from a file information center modal"
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "A message regarding {$contextName}"
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Please enter your message."
-
-msgid "emails.notificationCenterDefault.description"
-msgstr "The default (blank) message used in the Notification Center Message Listbuilder."
 
 msgid "emails.statisticsReportNotification.subject"
 msgstr "Editorial activity for {$month}, {$year}"

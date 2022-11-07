@@ -492,6 +492,7 @@ msgstr ""
 "Hasznos, amikor a kiadó szakterületi határokat keresztez és/vagy a szerzők "
 "multidiszciplináris elemeket küldenek be."
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "A rendszer által a kiadó nevében küldött automatikus e-mailek a következő "

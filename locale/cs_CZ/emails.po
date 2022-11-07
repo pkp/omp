@@ -231,7 +231,7 @@ msgstr ""
 msgid "emails.editorAssign.subject"
 msgstr "Redakční přiřazení"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Dobrý den, <br />\n"
 "<br />\n"
@@ -243,7 +243,7 @@ msgstr ""
 "<br />\n"
 "{$contextSignature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Potvrzení Podání"
 
 msgid "emails.reviewerRegister.body"
@@ -473,12 +473,6 @@ msgstr ""
 msgid "emails.indexComplete.subject"
 msgstr "Indexace sazebnic je dokončena"
 
-msgid "emails.indexRequest.description"
-msgstr ""
-"Tento e-mail od redaktora řady oznamuje indexátorovi, že mu byl přidělen "
-"úkol vytvořit indexy pro příspěvek Poskytuje informace o příspěvku a o tom, "
-"jak k němu přistupovat."
-
 msgid "emails.notifySubmission.subject"
 msgstr "Upozornění na příspěvek"
 
@@ -511,11 +505,6 @@ msgstr "Upozornění na soubor příspěvku"
 msgid "emails.statisticsReportNotification.subject"
 msgstr "Redakční aktivity pro {$month}, {$year}"
 
-msgid "emails.notificationCenterDefault.description"
-msgstr ""
-"Výchozí (prázdná) zpráva použitá v nástroji pro vytváření seznamu zpráv "
-"Centra oznámení."
-
 msgid "emails.notifySubmission.body"
 msgstr ""
 "Máte zprávu od {$sender}, která se týká příspěvku "
@@ -524,12 +513,6 @@ msgstr ""
 "\t\t{$message}<br />\n"
 "<br />\n"
 "\t\t"
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Zpráva týkající se {$contextName}"
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Zadejte, prosím, svůj vzkaz."
 
 msgid "emails.notifyFile.description"
 msgstr ""
@@ -543,11 +526,6 @@ msgstr ""
 "\t\t{$message}<br />\n"
 "<br />\n"
 "\t\t"
-
-msgid "emails.indexComplete.description"
-msgstr ""
-"Tímto e-mailem indexátor informuje redaktora série o dokončení procesu "
-"vytváření indexu."
 
 msgid "emails.emailLink.body"
 msgstr ""

@@ -60,7 +60,7 @@ msgstr ""
 msgid "emails.editorAssign.subject"
 msgstr "Назначение редактором"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Здравствуйте!<br />\n"
 "<br />\n"
@@ -72,7 +72,7 @@ msgstr ""
 "<br />\n"
 "{$contextSignature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Благодарность за подачу рукописи"
 
 msgid "emails.reviewerRegister.body"
@@ -271,17 +271,6 @@ msgstr ""
 "С уважением,<br />\n"
 "{$contextSignature}"
 
-msgid "emails.notificationCenterDefault.description"
-msgstr ""
-"Сообщение по умолчанию (пустое) используется в редакторе списка сообщений "
-"Центра уведомлений."
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Пожалуйста, введите свое сообщение."
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Сообщение об  «{$contextName}»"
-
 msgid "emails.notifyFile.description"
 msgstr "Уведомление от пользователя, посланное из модуля отправки файлов"
 
@@ -330,11 +319,6 @@ msgstr ""
 msgid "emails.emailLink.subject"
 msgstr "Эта статья, возможно, будет Вам интересна"
 
-msgid "emails.indexComplete.description"
-msgstr ""
-"Это письмо индексатора, отправляемое редактору раздела с уведомлением о том, "
-"что индексирование завершено."
-
 msgid "emails.indexComplete.body"
 msgstr ""
 "Здравствуйте, {$recipientName}!<br />\n"
@@ -348,12 +332,6 @@ msgstr ""
 
 msgid "emails.indexComplete.subject"
 msgstr "Индексы сделаны"
-
-msgid "emails.indexRequest.description"
-msgstr ""
-"Это письмо редактора раздела, отправляемое индексатору с уведомлением о том, "
-"что ему поручено выполнить индексирование материала. В письме содержится "
-"информация о материале и о том, как получить к нему доступ."
 
 msgid "emails.indexRequest.body"
 msgstr ""

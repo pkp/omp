@@ -98,10 +98,10 @@ msgstr ""
 "Σας ευχαριστούμε,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Επιβεβαίωση υποβολής"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Αγαπητέ κύριε/α,<br />\n"
 "<br />\n"
@@ -288,9 +288,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.indexRequest.description"
-msgstr "Το συγκεκριμένο μήνυμα στέλνεται από τον Επιμελητή Σειράς στον Ευρετηριαστή και τον ενημερώνει ότι του ανατίθεται η ευρετηρίαση μιας  υποβολής. Παρέχει πληροφορίες σχετικά με την υποβολή και τον τρόπο πρόσβασης σε αυτή."
-
 msgid "emails.indexComplete.subject"
 msgstr "Ολοκλήρωση Ευρετηρίασης"
 
@@ -303,9 +300,6 @@ msgstr ""
 "Εάν έχετε απορίες, επικοινωνήστε μαζί μου.<br />\n"
 "<br />\n"
 "{$signatureFullName}"
-
-msgid "emails.indexComplete.description"
-msgstr "Το συγκεκριμένο μήνυμα στέλνεται από τον Υπεύθυνο Ευρετηρίασης προς τον Επιμελητή Σειράς και τον ενημερώνει για την ολοκλήρωση της διαδικασίας ευρετηρίασης της εργασίας."
 
 msgid "emails.emailLink.subject"
 msgstr "E-book πιθανού ενδιαφέροντος"
@@ -339,12 +333,3 @@ msgstr ""
 
 msgid "emails.notifyFile.description"
 msgstr "A notification from a user sent from a file information center modal"
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Ένα μήνυμα σχετικά με τις Εκδόσεις {$contextName}"
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Παρακαλώ πληκτρολογείστε το μήνυμα σας"
-
-msgid "emails.notificationCenterDefault.description"
-msgstr "The default (blank) message used in the Notification Center Message Listbuilder."

@@ -110,9 +110,6 @@ msgstr ""
 "<br />\n"
 "{$signatureFullName}"
 
-msgid "emails.indexComplete.description"
-msgstr "Denne e-mail fra kartotekføreren til serieredaktøren underretter serieredaktøren om, at udfærdigelsen af registeret er fuldført."
-
 msgid "emails.indexRequest.subject"
 msgstr "Forespørgsel om indeksering"
 
@@ -132,12 +129,6 @@ msgstr ""
 "Hvis du ikke er i stand til at påtage dig dette arbejde på nuværende tidspunkt eller har spørgsmål, bedes du kontakte mig. Tak for dit bidrag til dette tidsskrift.<br />\n"
 "<br />\n"
 "{$signature}"
-
-msgid "emails.indexRequest.description"
-msgstr ""
-"Denne e-mail fra Serieredaktøren til Indexeren giver besked om, at "
-"vedkommende har fået til opgave at oprette indekser til en indsendelse. Den "
-"giver information om indsendelsen og hvordan man får adgang til den."
 
 msgid "emails.layoutComplete.subject"
 msgstr "Publiceringsversion færdiggjort"
@@ -181,15 +172,6 @@ msgstr ""
 "<br />\n"
 "Dette er en automatisk genereret email, som ikke kan besvares.<br />\n"
 "{$contextSignature}<hr />{$unsubscribeLink}"
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Besked omhandlende {$contextName}"
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Skriv venligst din besked."
-
-msgid "emails.notificationCenterDefault.description"
-msgstr "Standardmeddelelsen (tom), der bliver brugt i Notification Center Message Listbuilder."
 
 msgid "emails.passwordReset.subject"
 msgstr "Nulstil adgangskode"
@@ -376,10 +358,10 @@ msgstr ""
 "Mange hilsner<br />\n"
 "{$signature}<br />\n"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Indsendelsesbekræftelse"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Hej<br />\n"
 "<br />\n"

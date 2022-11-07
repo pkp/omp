@@ -860,6 +860,7 @@ msgstr "Registra un utente esistente"
 msgid "doi.editor.assigned"
 msgstr "Il DOI è assegnato a questo {$pubObjectType}."
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "Le email preparate che vengono inviate dal sistema per conto della Casa "
