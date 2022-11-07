@@ -1,11 +1,12 @@
 # Carla Marques <carla.marques@usdb.uminho.pt>, 2021, 2022.
+# José Carvalho <jcarvalho@keep.pt>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-22 20:40+0000\n"
-"PO-Revision-Date: 2022-03-14 23:55+0000\n"
-"Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
+"PO-Revision-Date: 2022-11-07 20:02+0000\n"
+"Last-Translator: José Carvalho <jcarvalho@keep.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/submission/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -13,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "submission.publication"
 msgstr "Publicação"
@@ -318,7 +319,7 @@ msgstr ""
 "entrada ao catálogo?"
 
 msgid "publication.publishedIn"
-msgstr "Publicada em  <a href=\"{$issueUrl}\">{$issueName}</a>."
+msgstr "Publicado em <a href=\"{$issueUrl}\">{$issueName}</a>."
 
 msgid "publication.required.issue"
 msgstr "A publicação deve ser atribuída a um volume antes de ser publicada."
@@ -620,3 +621,14 @@ msgstr ""
 "Enviar um e-mail aos autores para informá-los que a sua submissão será "
 "enviada de volta para a etapa de revisão. Explique o porquê de ter sido "
 "tomada esta decisão e informe o autor que revisão adicional será realizada."
+
+msgid "doi.submission.incorrectContext"
+msgstr ""
+"Não foi possível criar um DOI para a seguinte submissão: {$pubObjectTitle}. "
+"Não existe no contexto atual da editora."
+
+msgid "publication.chapter.licenseUrl"
+msgstr "URL de licença"
+
+msgid "publication.chapterDefaultLicenseURL"
+msgstr "URL da licença de capítulo padrão"
