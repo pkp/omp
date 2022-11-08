@@ -17,6 +17,7 @@ namespace APP\controllers\grid\settings\series;
 
 use APP\controllers\grid\settings\series\form\SeriesForm;
 use APP\core\Application;
+use APP\facades\Repo;
 use APP\notification\NotificationManager;
 use PKP\context\SubEditorsDAO;
 use PKP\controllers\grid\feature\OrderGridItemsFeature;
@@ -28,6 +29,7 @@ use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\security\Role;
+use stdClass;
 
 class SeriesGridHandler extends SetupGridHandler
 {
@@ -81,7 +83,16 @@ class SeriesGridHandler extends SetupGridHandler
             }
 
             // Get the series editors data for the row
-            $assignedSeriesEditors = $subEditorsDao->getBySubmissionGroupIds([$series->getId()], Application::ASSOC_TYPE_SECTION, $press->getId());
+            $assignments = $subEditorsDao->getBySubmissionGroupIds([$series->getId()], Application::ASSOC_TYPE_SECTION, $press->getId());
+            $assignedSeriesEditors = Repo::user()
+                ->getCollector()
+                ->filterByUserIds(
+                    $assignments
+                        ->map(fn (stdClass $assignment) => $assignment->userId)
+                        ->filter()
+                        ->toArray()
+                )
+                ->getMany();
             if ($assignedSeriesEditors->empty()) {
                 $editorsString = __('common.none');
             } else {
