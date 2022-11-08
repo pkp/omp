@@ -18,9 +18,11 @@
 namespace APP\press;
 
 use APP\core\Application;
+use APP\facades\Repo;
 use PKP\context\PKPSection;
 use PKP\context\SubEditorsDAO;
 use PKP\db\DAORegistry;
+use stdClass;
 
 class Series extends PKPSection
 {
@@ -326,7 +328,16 @@ class Series extends PKPSection
     public function getEditorsString()
     {
         $subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /** @var SubEditorsDAO $subEditorsDao */
-        $editors = $subEditorsDao->getBySubmissionGroupIds([$this->getId()], Application::ASSOC_TYPE_SECTION, $this->getPressId());
+        $assignments = $subEditorsDao->getBySubmissionGroupIds([$this->getId()], Application::ASSOC_TYPE_SECTION, $this->getPressId());
+        $editors = Repo::user()
+            ->getCollector()
+            ->filterByUserIds(
+                $assignments
+                    ->map(fn (stdClass $assignment) => $assignment->userId)
+                    ->filter()
+                    ->toArray()
+            )
+            ->getMany();
 
         $separator = ', ';
         $str = '';
