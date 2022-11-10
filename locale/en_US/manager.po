@@ -1110,6 +1110,33 @@ msgstr "Please select the category to which you would like this menu item to lin
 msgid "grid.series.urlWillBe"
 msgstr "The series's URL will be: {$sampleUrl}"
 
+msgid "stats.contextStats"
+msgstr "Press Stats"
+
+msgid "stats.context.tooltip.text"
+msgstr "Number of visitors viewing the press's and catalog's index page."
+
+msgid "stats.context.tooltip.label"
+msgstr "About press statistics"
+
+msgid "stats.context.downloadReport.description"
+msgstr "Download a CSV/Excel spreadsheet with usage statistics for this press matching the following parameters."
+
+msgid "stats.context.downloadReport.downloadContext.description"
+msgstr "The number of press's and catalog's index page views."
+
+msgid "stats.context.downloadReport.downloadContext"
+msgstr "Download Press"
+
+msgid "stats.publications.downloadReport.description"
+msgstr "Download a CSV/Excel spreadsheet with usage statistics for monographs matching the following parameters."
+
+msgid "stats.publications.downloadReport.downloadSubmissions"
+msgstr "Download Monographs"
+
+msgid "stats.publications.downloadReport.downloadSubmissions.description"
+msgstr "The number of abstract views and file downloads for each monograph."
+
 msgid "stats.publicationStats"
 msgstr "Monograph Stats"
 

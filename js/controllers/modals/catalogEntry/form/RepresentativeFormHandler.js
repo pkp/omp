@@ -18,6 +18,7 @@
 	/** @type {Object} */
 	$.pkp.controllers.modals = $.pkp.controllers.modals || {};
 
+
 	/** @type {Object} */
 	$.pkp.controllers.modals.catalogEntry =
 			$.pkp.controllers.modals.catalogEntry || {form: { } };

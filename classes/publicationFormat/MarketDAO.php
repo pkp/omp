@@ -217,14 +217,4 @@ class MarketDAO extends \PKP\db\DAO
     {
         $this->update('DELETE FROM markets WHERE market_id = ?', [(int) $entryId]);
     }
-
-    /**
-     * Get the ID of the last inserted market entry.
-     *
-     * @return int
-     */
-    public function getInsertId()
-    {
-        return $this->_getInsertId('markets', 'market_id');
-    }
 }

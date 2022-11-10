@@ -116,16 +116,6 @@ class OMPCompletedPaymentDAO extends DAO
     }
 
     /**
-     * Get the ID of the last inserted completed payment.
-     *
-     * @return int
-     */
-    public function getInsertId()
-    {
-        return $this->_getInsertId('completed_payments', 'completed_payment_id');
-    }
-
-    /**
      * Look for a completed PURCHASE_PUBLICATION_FORMAT payment matching the article ID
      *
      * @param int $userId

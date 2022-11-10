@@ -27,6 +27,7 @@ class I7132_AddSourceChapterId extends \PKP\migration\Migration
         {
             $table->bigInteger('source_chapter_id')->nullable();
             $table->foreign('source_chapter_id')->references('chapter_id')->on('submission_chapters')->onDelete('set null');
+            $table->index(['source_chapter_id'], 'submission_chapters_source_chapter_id');
         });
     }
 

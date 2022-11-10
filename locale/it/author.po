@@ -1,0 +1,19 @@
+# Fulvio Delle Donne <fulviodelledonne@libero.it>, 2022.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2022-08-08 04:51+0000\n"
+"Last-Translator: Fulvio Delle Donne <fulviodelledonne@libero.it>\n"
+"Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/author/it/>"
+"\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "author.submit.notAccepting"
+msgstr "Questa Casa editrice al momento non accetta proposte."
+
+msgid "author.submit"
+msgstr "Nuova proposta"

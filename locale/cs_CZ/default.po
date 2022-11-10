@@ -1,7 +1,8 @@
+# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-03 13:50+0000\n"
-"Last-Translator: Radek Gomola <gomola@press.muni.cz>\n"
+"PO-Revision-Date: 2022-07-19 15:30+0000\n"
+"Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/default/cs_CZ/"
 ">\n"
 "Language: cs_CZ\n"
@@ -9,15 +10,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 msgid "default.contextSettings.forLibrarians"
 msgstr ""
 "Podporujeme, aby zaměstnanci vědeckých knihoven uváděli toto nakladatelství "
 "v seznamech svých elektronických zdrojů. Tento otevřený publikační systém je "
 "rovněž vhodný pro knihovny, které jej mohou využívat pro vědecké pracovniky "
-"svých institucí a nakladatelství, s nimiž spolupracují.(viz <a href=\""
-"http://pkp.sfu.ca/omp\">Open Monograph Press</a>)."
+"svých institucí a nakladatelství, s nimiž spolupracují.(viz <a href=\"https"
+"://pkp.sfu.ca/omp\">Open Monograph Press</a>)."
 
 msgid "default.contextSettings.privacyStatement"
 msgstr ""
@@ -172,3 +173,12 @@ msgstr "Bibliografie"
 
 msgid "default.genres.appendix"
 msgstr "Dodatek"
+
+msgid "default.groups.abbrev.subscriptionManager"
+msgstr "SubM"
+
+msgid "default.groups.plural.subscriptionManager"
+msgstr "Správci předplatného"
+
+msgid "default.groups.name.subscriptionManager"
+msgstr "Správce předplatného"

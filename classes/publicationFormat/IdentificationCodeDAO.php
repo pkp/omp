@@ -167,16 +167,6 @@ class IdentificationCodeDAO extends \PKP\db\DAO
             [(int) $entryId]
         );
     }
-
-    /**
-     * Get the ID of the last inserted identification code.
-     *
-     * @return int
-     */
-    public function getInsertId()
-    {
-        return $this->_getInsertId('identification_codes', 'identification_code_id');
-    }
 }
 
 if (!PKP_STRICT_MODE) {

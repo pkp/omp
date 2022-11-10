@@ -118,7 +118,7 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
             return $response->withStatus(400)->withJsonError('api.submissions.400.missingRequired');
         }
 
-        $featureDao = \DAORegistry::getDAO('FeatureDAO');
+        $featureDao = DAORegistry::getDAO('FeatureDAO');
         $featureDao->deleteByMonographId($submissionId);
         if (!empty($params['featured'])) {
             foreach ($params['featured'] as $feature) {
@@ -126,7 +126,7 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
             }
         }
 
-        $newReleaseDao = \DAORegistry::getDAO('NewReleaseDAO');
+        $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
         $newReleaseDao->deleteByMonographId($submissionId);
         if (!empty($params['newRelease'])) {
             foreach ($params['newRelease'] as $newRelease) {

@@ -130,9 +130,12 @@ class ManageCatalogHandler extends Handler
         $genreDao = DAORegistry::getDAO('GenreDAO');
         $genres = $genreDao->getByContextId($context->getId())->toArray();
 
+        $items = Repo::submission()->getSchemaMap()
+            ->mapManyToSubmissionsList($submissions, $userGroups, $genres)
+            ->values();
 
         $catalogList->set([
-            'items' => Repo::submission()->getSchemaMap()->mapManyToSubmissionsList($submissions, $userGroups, $genres),
+            'items' => $items,
             'itemsMax' => $total,
         ]);
 

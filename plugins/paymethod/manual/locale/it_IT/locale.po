@@ -1,8 +1,9 @@
 # Alfredo Cosco <alfredo.cosco@gmail.com>, 2021.
+# Fulvio Delle Donne <fulviodelledonne@libero.it>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-08-25 10:05+0000\n"
-"Last-Translator: Alfredo Cosco <alfredo.cosco@gmail.com>\n"
+"PO-Revision-Date: 2022-08-08 09:16+0000\n"
+"Last-Translator: Fulvio Delle Donne <fulviodelledonne@libero.it>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/"
 "paymethod-manual/it_IT/>\n"
 "Language: it_IT\n"
@@ -10,7 +11,33 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.paymethod.manual.displayName"
 msgstr "Pagamento manuale"
+
+msgid "plugins.paymethod.manual.sendNotificationOfPayment"
+msgstr "Manda notifica di pagamento"
+
+msgid "plugins.paymethod.manual.notificationSent"
+msgstr "Notifica di pagamento inviata"
+
+msgid "plugins.paymethod.manual.purchase.title"
+msgstr "Titolo"
+
+msgid "plugins.paymethod.manual.description"
+msgstr ""
+"L'amministratore registrerà manualmente la ricezione del pagamento di un "
+"utente (al di fuori di questo software)."
+
+msgid "plugins.paymethod.manual.settings"
+msgstr "Istruzioni per il pagamento manuale"
+
+msgid "plugins.paymethod.manual.purchase.fee"
+msgstr "Quota"
+
+msgid "plugins.paymethod.manual"
+msgstr "Quota di pagamento manuale"
+
+msgid "plugins.paymethod.manual.paymentNotification"
+msgstr "Notifica di pagamento"

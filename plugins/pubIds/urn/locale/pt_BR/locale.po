@@ -1,7 +1,7 @@
 # Diego José Macêdo <diegojmacedo@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-06-06 13:39+0000\n"
+"PO-Revision-Date: 2022-09-29 20:48+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "pubIds-urn/pt_BR/>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.pubIds.urn.manager.settings.explainURNs"
 msgstr ""
@@ -128,7 +128,7 @@ msgid "plugins.pubIds.urn.manager.settings.form.urnResolverRequired"
 msgstr "Favor informar a URL do resolvedor."
 
 msgid "plugins.pubIds.urn.manager.settings.urnResolver.description"
-msgstr "(por exemplo, http://nbn-resolving.de/)"
+msgstr "(por exemplo, https://nbn-resolving.de)"
 
 msgid "plugins.pubIds.urn.manager.settings.urnResolver"
 msgstr "Resolver URL"

@@ -209,16 +209,6 @@ class RepresentativeDAO extends \PKP\db\DAO
             [(int) $entryId]
         );
     }
-
-    /**
-     * Get the ID of the last inserted representative entry.
-     *
-     * @return int
-     */
-    public function getInsertId()
-    {
-        return $this->_getInsertId('representatives', 'representative_id');
-    }
 }
 
 if (!PKP_STRICT_MODE) {

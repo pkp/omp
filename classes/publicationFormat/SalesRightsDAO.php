@@ -199,16 +199,6 @@ class SalesRightsDAO extends \PKP\db\DAO
     {
         $this->update('DELETE FROM sales_rights WHERE sales_rights_id = ?', [(int) $entryId]);
     }
-
-    /**
-     * Get the ID of the last inserted sales rights entry.
-     *
-     * @return int
-     */
-    public function getInsertId()
-    {
-        return $this->_getInsertId('sales_rights', 'sales_rights_id');
-    }
 }
 
 if (!PKP_STRICT_MODE) {
