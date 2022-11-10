@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class DublinCoreMetaPlugin
+ *
  * @brief Inject Dublin Core meta tags into monograph views to facilitate indexing.
  */
 
@@ -70,7 +71,6 @@ class DublinCoreMetaPlugin extends GenericPlugin
         $isChapterRequest = $templateMgr->getTemplateVars('isChapterRequest');
         $chapter = $templateMgr->getTemplateVars('chapter');
 
-
         $templateMgr = TemplateManager::getManager($request);
         $templateMgr->addHeader('dublinCoreSchema', '<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />');
 
@@ -113,6 +113,11 @@ class DublinCoreMetaPlugin extends GenericPlugin
             if ($pubId = $monograph->getStoredPubId($pubIdPlugin->getPubIdType())) {
                 $templateMgr->addHeader('dublinCorePubId' . $pubIdPlugin->getPubIdDisplayType(), '<meta name="DC.Identifier.' . htmlspecialchars($pubIdPlugin->getPubIdDisplayType()) . '" content="' . htmlspecialchars($pubId) . '"/>');
             }
+        }
+
+        $doi = $isChapterRequest ? $chapter->getDoi() : $publication->getDoi();
+        if ($doi) {
+            $templateMgr->addHeader('dublinCorePubIdDOI', '<meta name="DC.Identifier.DOI" content="' . htmlspecialchars($doi) . '"/>');
         }
 
         $templateMgr->addHeader('dublinCoreUri', '<meta name="DC.Identifier.URI" content="' . $request->url(null, 'catalog', 'book', [$monograph->getBestId()]) . '"/>');
