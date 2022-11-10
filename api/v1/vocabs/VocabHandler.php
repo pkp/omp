@@ -8,14 +8,15 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class VocabHandler
+ *
  * @ingroup api_v1_vocab
  *
  * @brief Handle API requests for vocab operations.
  *
  */
 
-namespace APP\API\v1\vocab;
- 
+namespace APP\API\v1\vocabs;
+
 use APP\codelist\ONIXCodelistItemDAO;
 use APP\core\Application;
 use PKP\core\APIResponse;
