@@ -1,26 +1,26 @@
 # paola <pjukic@yahoo.com>, 2021.
+# Iva Nedić <iva.nedic99@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-12-30 11:33+0000\n"
-"Last-Translator: paola <pjukic@yahoo.com>\n"
+"PO-Revision-Date: 2022-11-12 10:02+0000\n"
+"Last-Translator: Iva Nedić <iva.nedic99@gmail.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/admin/"
 "hr_HR/>\n"
 "Language: hr_HR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9.1\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "admin.settings.config.success"
 msgstr "Konfiguracijske  postavke mrežnog mjesta su uspješno ažurirane."
 
-#, fuzzy
 msgid "admin.settings.redirectInstructions"
 msgstr ""
-"Requests to the main site will be redirected to this press. This may be "
-"useful if the site is hosting only a single press, for example."
+"Zahtjevi za glavnu stranicu biti će preusmjereni ovdje. To može biti korisno "
+"ako je glavno računalo pokriva samo jedan press, na primjer."
 
 #, fuzzy
 msgid "admin.languages.confirmDisable"
@@ -35,25 +35,22 @@ msgstr ""
 "must be installed before they can be used by hosted presses. See the OMP "
 "documentation for information on adding support for new languages."
 
-#, fuzzy
 msgid "admin.languages.confirmUninstall"
 msgstr ""
-"Are you sure you want to uninstall this locale? This may affect any hosted "
-"presses currently using the locale."
+"Jeste li sigurni da želite deinstalirati ovo mjesto? To može utjecati bilo "
+"koji press koji koristi to mjesto."
 
-#, fuzzy
 msgid "admin.locale.maybeIncomplete"
-msgstr "* Marked locales may be incomplete."
+msgstr "* Označena mjesta mogu biti nepotpuna."
 
-#, fuzzy
 msgid "admin.languages.supportedLocalesInstructions"
 msgstr ""
-"Select all locales to support on the site. The selected locales will be "
-"available for use by all presses hosted on the site, and also appear in a "
-"language select menu to appear on each site page (which can be overridden on "
-"press-specific pages). If multiple locales are not selected, the language "
-"toggle menu will not appear and extended language settings will not be "
-"available to presses."
+"Odaberite sve lokacije za potporu na stranici. Odabrane lokacije bit će "
+"dostupne za korištenje svim pressovima na stranici te se također pojavljuju "
+"u jezičnom izborniku koji će se nalaziti na svakoj stranici web stranice ("
+"koja se može poništiti na stranicama za press). Ako se ne odabere više "
+"lokacija, neće se pojaviti izbornik za jezik i dodatne postavke za jezik "
+"neće biti dostupne."
 
 msgid "admin.languages.primaryLocaleInstructions"
 msgstr "Ovo će biti zadani jezik za web-mjesto i sve objavljene publikacije."
