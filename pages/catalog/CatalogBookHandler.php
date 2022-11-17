@@ -22,7 +22,7 @@ use APP\facades\Repo;
 use APP\handler\Handler;
 use APP\monograph\Chapter;
 use APP\monograph\ChapterDAO;
-use APP\observers\events\Usage;
+use APP\observers\events\UsageEvent;
 use APP\payment\omp\OMPPaymentManager;
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 use APP\submission\Submission;
@@ -283,9 +283,9 @@ class CatalogBookHandler extends Handler
         if (!Hook::call('CatalogBookHandler::book', [&$request, &$submission])) {
             $templateMgr->display('frontend/pages/book.tpl');
             if ($this->isChapterRequest) {
-                event(new Usage(Application::ASSOC_TYPE_CHAPTER, $request->getContext(), $submission, null, null, $this->chapter));
+                event(new UsageEvent(Application::ASSOC_TYPE_CHAPTER, $request->getContext(), $submission, null, null, $this->chapter));
             } else {
-                event(new Usage(Application::ASSOC_TYPE_SUBMISSION, $request->getContext(), $submission));
+                event(new UsageEvent(Application::ASSOC_TYPE_SUBMISSION, $request->getContext(), $submission));
             }
             return;
         }
@@ -428,7 +428,7 @@ class CatalogBookHandler extends Handler
                 if ($genre->getCategory() != Genre::GENRE_CATEGORY_DOCUMENT || $genre->getSupplementary() || $genre->getDependent()) {
                     $assocType = Application::ASSOC_TYPE_SUBMISSION_FILE_COUNTER_OTHER;
                 }
-                event(new Usage($assocType, $request->getContext(), $submission, $publicationFormat, $submissionFile, $chapter));
+                event(new UsageEvent($assocType, $request->getContext(), $submission, $publicationFormat, $submissionFile, $chapter));
             }
             $returner = true;
             Hook::call('FileManager::downloadFileFinished', [&$returner]);

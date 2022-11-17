@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @file classes/observers/events/Usage.php
+ * @file classes/observers/events/UsageEvent.php
  *
  * Copyright (c) 2022 Simon Fraser University
  * Copyright (c) 2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class Usage
+ * @class UsageEvent
  * @ingroup observers_events
  *
- * @brief Usage event.
+ * @brief Adds chapter and series tracking to the usage event data.
  *
  */
 
@@ -21,22 +21,19 @@ use APP\monograph\Chapter;
 use APP\press\Series;
 use APP\submission\Submission;
 use PKP\context\Context;
-use PKP\observers\traits\UsageEvent;
 use PKP\submission\Representation;
 use PKP\submissionFile\SubmissionFile;
 
-class Usage
+class UsageEvent extends \PKP\observers\events\UsageEvent
 {
-    use UsageEvent;
-
     /** Chapter ID */
     public ?Chapter $chapter;
 
     public function __construct(int $assocType, Context $context, Submission $submission = null, Representation $publicationFormat = null, SubmissionFile $submissionFile = null, Chapter $chapter = null, Series $series = null)
     {
+        parent::__construct($assocType, $context, $submission, $publicationFormat, $submissionFile);
         $this->chapter = $chapter;
         $this->series = $series;
-        $this->traitConstruct($assocType, $context, $submission, $publicationFormat, $submissionFile);
     }
 
     /**
@@ -85,13 +82,13 @@ class Usage
                         $canonicalUrlOp = 'index';
                         break;
                     } else {
-                        return $this->getTraitCanonicalUrl();
+                        return parent::getCanonicalUrl();
                     }
             }
             $canonicalUrl = $this->getRouterCanonicalUrl($this->request, $canonicalUrlPage, $canonicalUrlOp, $canonicalUrlParams);
             return $canonicalUrl;
         } else {
-            return $this->getTraitCanonicalUrl();
+            return parent::getCanonicalUrl();
         }
     }
 }
