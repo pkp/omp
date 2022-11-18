@@ -69,7 +69,7 @@ class SeriesForm extends PKPSectionForm
         ));
     }
 
-    public function getSeries(): Series
+    public function getSeries(): ?Series
     {
         return $this->section;
     }
@@ -197,7 +197,7 @@ class SeriesForm extends PKPSectionForm
 
         $templateMgr->assign([
             'allCategories' => $allCategories,
-            'selectedCategories' => $this->getData('categories')->values()->all(),
+            'selectedCategories' => $this->getData('categories')?->values()?->all() ?? [],
         ]);
 
         return parent::fetch($request, $template, $display);
