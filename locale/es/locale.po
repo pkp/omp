@@ -1,8 +1,86 @@
 # Adolfo Muñoz Aguilar <adolfo@uco.es>, 2022.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2022-11-23 13:02+0000\n"
+"Last-Translator: Adolfo Muñoz Aguilar <adolfo@uco.es>\n"
+"Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/locale/es/>"
+"\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "common.payments"
+msgstr "Pagos"
+
+msgid "monograph.audience"
+msgstr "Audiencia"
+
+msgid "monograph.audience.success"
+msgstr "Los detalles de la audiencia han sido actualizados"
+
+msgid "monograph.coverImage"
+msgstr "Imagen de portada"
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Calificador de rango de audiencia"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Rango de audiencia (desde)"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Rango de audiencia (hasta)"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Rango de audiencia (exacto)"
+
+msgid "monograph.languages"
+msgstr "Idiomas (inglés, francés, español)"
+
+msgid "monograph.publicationFormats"
+msgstr "Formatos de publicación"
+
+msgid "monograph.publicationFormat"
+msgstr "Formato"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "Detalles sobre el formato de publicación disponible: {$format}"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Detalles sobre esta monografía"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Formatos:"
+
+msgid "monograph.type"
+msgstr "monografía"
+
+msgid "submission.pageProofs"
+msgstr "Pruebas de página"
+
+msgid "monograph.task.addNote"
+msgstr "Agregar a tarea"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Acceso Abierto"
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "Impresión (nombre de marca)"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Recuento de páginas"
+
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Paratexto Portada (dedicatoria, prólogo ...)"
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Paratexto contraportada (colofón, guardas ...)"
+
+msgid "monograph.proofReadingDescription"
+msgstr ""
+"El editor de diseño carga aquí los archivos listos para producción que se "
+"han preparado para su publicación. Utilice <em>+Asign</em> para designar "
+"autores y otras personas para revisar las pruebas de página, con los "
+"archivos corregidos cargados para su aprobación antes de la publicación."
