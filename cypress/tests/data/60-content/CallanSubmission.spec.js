@@ -11,20 +11,18 @@
  */
 
 describe('Data suite tests', function() {
-	it('Create a submission', function() {
-		cy.register({
-			'username': 'callan',
-			'givenName': 'Chantal',
-			'familyName': 'Allan',
-			'affiliation': 'University of Southern California',
-			'country': 'Canada'
-		});
 
-		var author = 'Chantal Allan';
-		var submission = {
+	let submission;
+	let author = 'Chantal Allan';
+	before(function() {
+		const title = 'Bomb Canada and Other Unkind Remarks in the American Media';
+		submission = {
+			id: 0,
+			prefix: '',
+			title: title,
+			subtitle: '',
 			'type': 'monograph',
 			//'series': '',
-			'title': 'Bomb Canada and Other Unkind Remarks in the American Media',
 			'abstract': 'Canada and the United States. Two nations, one border, same continent. Anti-American sentiment in Canada is well documented, but what have Americans had to say about their northern neighbour? Allan examines how the American media has portrayed Canada, from Confederation to Obama’s election. By examining major events that have tested bilateral relations, Bomb Canada tracks the history of anti-Canadianism in the U.S. Informative, thought provoking and at times hilarious, this book reveals another layer of the complex relationship between Canada and the United States.',
 			'keywords': [
 				'Canadian Studies',
@@ -36,35 +34,97 @@ describe('Data suite tests', function() {
 				{
 					'title': 'Prologue',
 					'contributors': [author],
+					files: ['prologue.pdf']
 				},
 				{
 					'title': 'Chapter 1: The First Five Years: 1867-1872',
 					'contributors': [author],
+					files: ['chapter1.pdf']
 				},
 				{
 					'title': 'Chapter 2: Free Trade or "Freedom": 1911',
 					'contributors': [author],
+					files: ['chapter2.pdf']
 				},
 				{
 					'title': 'Chapter 3: Castro, Nukes & the Cold War: 1953-1968',
 					'contributors': [author],
+					files: ['chapter3.pdf']
 				},
 				{
 					'title': 'Chapter 4: Enter the Intellect: 1968-1984',
 					'contributors': [author],
+					files: ['chapter4.pdf']
 				},
 				{
 					'title': 'Epilogue',
 					'contributors': [author],
+					files: ['epilogue.pdf']
 				},
-			]
-		};
-		cy.createSubmission(submission);
+			],
+			files: [
+				{
+					'file': 'dummy.pdf',
+					'fileName': 'prologue.pdf',
+					'mimeType': 'application/pdf',
+					'genre': Cypress.env('defaultGenre')
+				},
+				{
+					'file': 'dummy.pdf',
+					'fileName': 'chapter1.pdf',
+					'mimeType': 'application/pdf',
+					'genre': Cypress.env('defaultGenre')
+				},
+				{
+					'file': 'dummy.pdf',
+					'fileName': 'chapter2.pdf',
+					'mimeType': 'application/pdf',
+					'genre': Cypress.env('defaultGenre')
+				},
+				{
+					'file': 'dummy.pdf',
+					'fileName': 'chapter3.pdf',
+					'mimeType': 'application/pdf',
+					'genre': Cypress.env('defaultGenre')
+				},
+				{
+					'file': 'dummy.pdf',
+					'fileName': 'chapter4.pdf',
+					'mimeType': 'application/pdf',
+					'genre': Cypress.env('defaultGenre')
+				},
+				{
+					'file': 'dummy.pdf',
+					'fileName': 'epilogue.pdf',
+					'mimeType': 'application/pdf',
+					'genre': Cypress.env('defaultGenre')
+				}
+			],
+		}
+	});
+
+	it('Create a submission', function() {
+		cy.register({
+			'username': 'callan',
+			'givenName': 'Chantal',
+			'familyName': 'Allan',
+			'affiliation': 'University of Southern California',
+			'country': 'Canada'
+		});
+
+		cy.getCsrfToken();
+		cy.window()
+			.then(() => {
+				return cy.createSubmissionWithApi(submission, this.csrfToken);
+			})
+			.then(xhr => {
+				return cy.submitSubmissionWithApi(submission.id, this.csrfToken);
+			});
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Allan');
 		cy.clickDecision('Send to Internal Review');
-		cy.recordDecisionSendToReview('Send to Internal Review', [author], [submission.title]);
+		cy.recordDecisionSendToReview('Send to Internal Review', [author], submission.files.map(file => file.fileName));
 		cy.isActiveStageTab('Internal Review');
 		cy.assignReviewer('Paul Hudson');
 		cy.clickDecision('Send to External Review');
@@ -106,12 +166,12 @@ describe('Data suite tests', function() {
 		cy.waitJQuery();
 
 		// File completion
-		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("' + Cypress.$.escapeSelector(submission.title) + '") a[id*="-isComplete-not_approved-button-"]').click();
+		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("epilogue.pdf") a[id*="-isComplete-not_approved-button-"]').click();
 		cy.get('form[id="assignPublicIdentifierForm"] button[id^="submitFormButton-"]').click();
 		cy.waitJQuery();
 
 		// File availability
-		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("' + Cypress.$.escapeSelector(submission.title) + '") a[id*="-isAvailable-editApprovedProof-button-"]').click();
+		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("epilogue.pdf") a[id*="-isAvailable-editApprovedProof-button-"]').click();
 		cy.get('input[id="openAccess"]').click();
 		cy.get('form#approvedProofForm button.submitFormButton').click();
 
