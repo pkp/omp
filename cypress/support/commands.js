@@ -78,8 +78,8 @@ Cypress.Commands.add('createSubmissionWithApi', (data, csrfToken) => {
 			cy.get('.pkpButton--isPrimary').click();
 			cy.get('.pkpSteps__step__label--current span:contains("3")');
 		})
-		.addChapters(data.chapters)
-		.addSubmissionAuthorsWithApi(api, data, csrfToken);
+		.addSubmissionAuthorsWithApi(api, data, csrfToken)
+		.addChapters(data.chapters);
 });
 
 

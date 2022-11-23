@@ -11,20 +11,18 @@
  */
 
 describe('Data suite tests', function() {
-	it('Create a submission', function() {
-		cy.register({
-			'username': 'mdawson',
-			'givenName': 'Michael',
-			'familyName': 'Dawson',
-			'affiliation': 'University of Alberta',
-			'country': 'Canada'
-		});
 
-		var author = 'Michael Dawson';
-		var submission = {
+	let submission;
+	let author = 'Michael Dawson';
+	before(function() {
+		const title = 'From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots';
+		submission = {
+			id: 0,
+			prefix: '',
+			title: title,
+			subtitle: '',
 			'type': 'editedVolume',
 			'series': 'Psychology',
-			'title': 'From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots',
 			'abstract': 'From Bricks to Brains introduces embodied cognitive science, and illustrates its foundational ideas through the construction and observation of LEGO Mindstorms robots. Discussing the characteristics that distinguish embodied cognitive science from classical cognitive science, From Bricks to Brains places a renewed emphasis on sensing and acting, the importance of embodiment, the exploration of distributed notions of control, and the development of theories by synthesizing simple systems and exploring their behaviour. Numerous examples are used to illustrate a key theme: the importance of an agent’s environment. Even simple agents, such as LEGO robots, are capable of exhibiting complex behaviour when they can sense and affect the world around them.',
 			'keywords': [
 				'Psychology'
@@ -32,41 +30,47 @@ describe('Data suite tests', function() {
 			'submitterRole': 'Volume editor',
 			'additionalAuthors': [
 				{
-					'givenName': 'Brian',
-					'familyName': 'Dupuis',
-					'country': 'Canada',
-					'affiliation': 'Athabasca University',
+					'givenName': {en_US: 'Brian'},
+					'familyName': {en_US: 'Dupuis'},
+					'country': 'CA',
+					'affiliation': {en_US: 'Athabasca University'},
 					'email': 'bdupuis@mailinator.com',
-					'role': 'Author'
+					userGroupId: Cypress.env('authorUserGroupId')
 				},
 				{
-					'givenName': 'Michael',
-					'familyName': 'Wilson',
-					'country': 'Canada',
-					'affiliation': 'University of Calgary',
+					'givenName': {en_US: 'Michael'},
+					'familyName': {en_US: 'Wilson'},
+					'country': 'CA',
+					'affiliation': {en_US: 'University of Calgary'},
 					'email': 'mwilson@mailinator.com',
-					'role': 'Author'
+					userGroupId: Cypress.env('authorUserGroupId')
 				}
 			],
-			'chapters': [
+			files: [
 				{
-					'title': 'Chapter 1: Mind Control—Internal or External?',
-					'contributors': ['Michael Dawson']
+					'file': 'dummy.pdf',
+					'fileName': 'chapter1.pdf',
+					'mimeType': 'application/pdf',
+					'genre': Cypress.env('defaultGenre')
 				},
 				{
-					'title': 'Chapter 2: Classical Music and the Classical Mind',
-					'contributors': ['Brian Dupuis']
+					'file': 'dummy.pdf',
+					'fileName': 'chapter2.pdf',
+					'mimeType': 'application/pdf',
+					'genre': Cypress.env('defaultGenre')
 				},
 				{
-					'title': 'Chapter 3: Situated Cognition and Bricolage',
-					'contributors': ['Michael Wilson']
+					'file': 'dummy.pdf',
+					'fileName': 'chapter3.pdf',
+					'mimeType': 'application/pdf',
+					'genre': Cypress.env('defaultGenre')
 				},
 				{
-					'title': 'Chapter 4: Braitenberg’s Vehicle 2',
-					'contributors': ['Michael Dawson']
-				}
-			],
-			'additionalFiles': [
+					'file': 'dummy.pdf',
+					'fileName': 'chapter4.pdf',
+					'mimeType': 'application/pdf',
+					'genre': Cypress.env('defaultGenre')
+				},
 				{
 					'fileTitle': 'Segmentation of Vascular Ultrasound Image Sequences.',
 					'fileName': 'Segmentation of Vascular Ultrasound Image Sequences.'.substr(0, 40) + '.pdf',
@@ -93,14 +97,54 @@ describe('Data suite tests', function() {
 						'language': 'en'
 					}
 				}
-			]
-		};
-		cy.createSubmission(submission);
+			],
+			'chapters': [
+				{
+					'title': 'Chapter 1: Mind Control—Internal or External?',
+					'contributors': ['Michael Dawson'],
+					files: ['chapter1.pdf']
+				},
+				{
+					'title': 'Chapter 2: Classical Music and the Classical Mind',
+					'contributors': ['Brian Dupuis'],
+					files: ['chapter2.pdf']
+				},
+				{
+					'title': 'Chapter 3: Situated Cognition and Bricolage',
+					'contributors': ['Michael Wilson'],
+					files: ['chapter3.pdf']
+				},
+				{
+					'title': 'Chapter 4: Braitenberg’s Vehicle 2',
+					'contributors': ['Michael Dawson'],
+					files: ['chapter4.pdf']
+				}
+			],
+		}
+	});
+
+	it('Create a submission', function() {
+		cy.register({
+			'username': 'mdawson',
+			'givenName': 'Michael',
+			'familyName': 'Dawson',
+			'affiliation': 'University of Alberta',
+			'country': 'Canada'
+		});
+
+		cy.getCsrfToken();
+		cy.window()
+			.then(() => {
+				return cy.createSubmissionWithApi(submission, this.csrfToken);
+			})
+			.then(xhr => {
+				return cy.submitSubmissionWithApi(submission.id, this.csrfToken);
+			});
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Dawson');
 		cy.clickDecision('Send to Internal Review');
-		cy.recordDecisionSendToReview('Send to Internal Review', [author], submission.chapters.map(chapter => chapter.title.substring(0, 35)));
+		cy.recordDecisionSendToReview('Send to Internal Review', [author], submission.files.map(file => file.fileName));
 		cy.isActiveStageTab('Internal Review');
 		cy.assignReviewer('Julie Janssen');
 		cy.clickDecision('Send to External Review');
@@ -131,11 +175,10 @@ describe('Data suite tests', function() {
 		cy.get('*[id=allStages]').click();
 		var proofFiles = [];
 		submission.chapters.forEach(chapter => {
-			proofFiles.push(chapter.title);
+			proofFiles.push(chapter.files[0]);
 		});
-		submission.additionalFiles.forEach(additionalFile => {
-			proofFiles.push(additionalFile.fileTitle);
-		});
+		proofFiles.push('Segmentation of Vascular Ultrasound Image Sequences.');
+		proofFiles.push('The Canadian Nutrient File: Nutrient Value of Some Common Foods');
 		proofFiles.forEach(proofFile => {
 			cy.get('tbody[id^="component-grid-files-proof-manageprooffilesgrid-category-"] a:contains("' + Cypress.$.escapeSelector(proofFile.substring(0, 40)) + '"):first').parents('tr.gridRow').find('input[type=checkbox]').click();
 		});

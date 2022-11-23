@@ -11,6 +11,47 @@
  */
 
 describe('Data suite tests', function() {
+
+	let submission;
+	before(function() {
+		const title = 'Dreamwork';
+		submission = {
+			id: 0,
+			prefix: '',
+			title: title,
+			subtitle: '',
+			'type': 'monograph',
+			'abstract': 'Dreamwork is a poetic exploration of the then and there, here and now, of landscapes and inscapes over time. It is part of a poetry series on dream and its relation to actuality. The poems explore past, present, and future in different places from Canada through New Jersey, New York and New England to England and Europe, part of the speaker’s journey. A typology of home and displacement, of natural beauty and industrial scars unfolds in the movement of the book.',
+			'submitterRole': 'Author',
+			files: [
+				{
+					'file': 'dummy.pdf',
+					'fileName': 'intro.pdf',
+					'mimeType': 'application/pdf',
+					'genre': Cypress.env('defaultGenre')
+				},
+				{
+					'file': 'dummy.pdf',
+					'fileName': 'poems.pdf',
+					'mimeType': 'application/pdf',
+					'genre': Cypress.env('defaultGenre')
+				},
+			],
+			'chapters': [
+				{
+					'title': 'Introduction',
+					'contributors': ['Jonathan Locke Hart'],
+					files: ['intro.pdf']
+				},
+				{
+					'title': 'Poems',
+					'contributors': ['Jonathan Locke Hart'],
+					files: ['poems.pdf']
+				},
+			]
+		}
+	});
+
 	it('Create a submission', function() {
 		cy.register({
 			'username': 'jlockehart',
@@ -20,28 +61,19 @@ describe('Data suite tests', function() {
 			'country': 'Canada'
 		});
 
-		var submission = {
-			'type': 'monograph',
-			'title': 'Dreamwork',
-			'abstract': 'Dreamwork is a poetic exploration of the then and there, here and now, of landscapes and inscapes over time. It is part of a poetry series on dream and its relation to actuality. The poems explore past, present, and future in different places from Canada through New Jersey, New York and New England to England and Europe, part of the speaker’s journey. A typology of home and displacement, of natural beauty and industrial scars unfolds in the movement of the book.',
-			'submitterRole': 'Author',
-			'chapters': [
-				{
-					'title': 'Introduction',
-					'contributors': ['Jonathan Locke Hart']
-				},
-				{
-					'title': 'Poems',
-					'contributors': ['Jonathan Locke Hart']
-				},
-			]
-		};
-		cy.createSubmission(submission);
+		cy.getCsrfToken();
+		cy.window()
+			.then(() => {
+				return cy.createSubmissionWithApi(submission, this.csrfToken);
+			})
+			.then(xhr => {
+				return cy.submitSubmissionWithApi(submission.id, this.csrfToken);
+			});
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Locke Hart');
 		cy.clickDecision('Send to Internal Review');
-		cy.recordDecisionSendToReview('Send to Internal Review', ['Jonathan Locke Hart'], [submission.title]);
+		cy.recordDecisionSendToReview('Send to Internal Review', ['Jonathan Locke Hart'], submission.files.map(file => file.fileName));
 		cy.isActiveStageTab('Internal Review');
 		cy.assignReviewer('Aisla McCrae');
 		cy.clickDecision('Send to External Review');

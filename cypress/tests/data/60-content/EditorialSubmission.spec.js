@@ -11,14 +11,40 @@
  */
 
 describe('Data suite tests', function() {
+
+	let submission;
+	before(function() {
+		const title = 'Editorial';
+		submission = {
+			id: 0,
+			prefix: '',
+			title: title,
+			subtitle: '',
+			'type': 'monograph',
+			'abstract': 'A Note From The Publisher',
+			'submitterRole': 'Author',
+			files: [
+				{
+					'file': 'dummy.pdf',
+					'fileName': 'note.pdf',
+					'mimeType': 'application/pdf',
+					'genre': Cypress.env('defaultGenre')
+				},
+			],
+			chapters: []
+		}
+	});
+
 	it('Create a submission', function() {
 		cy.login('dbarnes', null, 'publicknowledge');
 
-		cy.createSubmission({
-			'type': 'monograph',
-			'title': 'Editorial',
-			'abstract': 'A Note From The Publisher',
-			'submitterRole': 'Author'
-		}, 'backend');
+		cy.getCsrfToken();
+		cy.window()
+			.then(() => {
+				return cy.createSubmissionWithApi(submission, this.csrfToken);
+			})
+			.then(xhr => {
+				return cy.submitSubmissionWithApi(submission.id, this.csrfToken);
+			});
 	});
 });
