@@ -11,28 +11,23 @@
  */
 
 describe('Data suite tests', function() {
-	it('Create a submission', function() {
-		cy.register({
-			'username': 'callan',
-			'givenName': 'Chantal',
-			'familyName': 'Allan',
-			'affiliation': 'University of Southern California',
-			'country': 'Canada'
-		});
 
-		var author = 'Chantal Allan';
-		var submission = {
-			'type': 'monograph',
-			//'series': '',
-			'title': 'Bomb Canada and Other Unkind Remarks in the American Media',
-			'abstract': 'Canada and the United States. Two nations, one border, same continent. Anti-American sentiment in Canada is well documented, but what have Americans had to say about their northern neighbour? Allan examines how the American media has portrayed Canada, from Confederation to Obama’s election. By examining major events that have tested bilateral relations, Bomb Canada tracks the history of anti-Canadianism in the U.S. Informative, thought provoking and at times hilarious, this book reveals another layer of the complex relationship between Canada and the United States.',
-			'keywords': [
+	let submission;
+	var author = 'Chantal Allan';
+
+	before(function() {
+		submission = {
+			id: 0,
+			type: 'monograph',
+			title: 'Bomb Canada and Other Unkind Remarks in the American Media',
+			abstract: 'Canada and the United States. Two nations, one border, same continent. Anti-American sentiment in Canada is well documented, but what have Americans had to say about their northern neighbour? Allan examines how the American media has portrayed Canada, from Confederation to Obama’s election. By examining major events that have tested bilateral relations, Bomb Canada tracks the history of anti-Canadianism in the U.S. Informative, thought provoking and at times hilarious, this book reveals another layer of the complex relationship between Canada and the United States.',
+			keywords: [
 				'Canadian Studies',
 				'Communication & Cultural Studies',
 				'Political & International Studies',
 			],
-			'submitterRole': 'Author',
-			'chapters': [
+			submitterRole: 'Author',
+			chapters: [
 				{
 					'title': 'Prologue',
 					'contributors': [author],
@@ -59,6 +54,17 @@ describe('Data suite tests', function() {
 				},
 			]
 		};
+	});
+
+	it('Create a submission', function() {
+		cy.register({
+			'username': 'callan',
+			'givenName': 'Chantal',
+			'familyName': 'Allan',
+			'affiliation': 'University of Southern California',
+			'country': 'Canada'
+		});
+
 		cy.createSubmission(submission);
 		cy.logout();
 
@@ -117,5 +123,31 @@ describe('Data suite tests', function() {
 
 		// Add to catalog
 		cy.addToCatalog();
+	});
+
+	it('Book is not available when unpublished', function() {
+		cy.findSubmissionAsEditor('dbarnes', null, 'Allan');
+		cy.get('#publication-button').click();
+		cy.get('button').contains('Unpublish').click();
+		cy.contains('Are you sure you don\'t want this to be published?');
+		cy.get('.modal__panel button').contains('Unpublish').click();
+		cy.wait(1000);
+		cy.visit('index.php/publicknowledge/catalog');
+		cy.contains('Bomb Canada and Other Unkind Remarks in the American Media').should('not.exist');
+		cy.logout();
+		cy.request({
+				url: 'index.php/publicknowledge/catalog/book/' + submission.id,
+				failOnStatusCode: false
+			})
+			.then((response) => {
+				expect(response.status).to.equal(404);
+		});
+
+		// Re-publish it
+		cy.findSubmissionAsEditor('dbarnes', null, 'Allan');
+		cy.get('#publication-button').click();
+		cy.get('.pkpPublication button').contains('Publish').click();
+		cy.contains('All publication requirements have been met.');
+		cy.get('.pkpWorkflow__publishModal button').contains('Publish').click();
 	});
 });
