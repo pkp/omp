@@ -21,7 +21,7 @@ msgid "plugins.themes.default.option.typography.label"
 msgstr "Typography"
 
 msgid "plugins.themes.default.option.typography.description"
-msgstr "Choose a font combination that suits this journal."
+msgstr "Choose a font combination that suits this press."
 
 msgid "plugins.themes.default.option.typography.notoSans"
 msgstr "Noto Sans: A digital-native font designed by Google for extensive language support."
