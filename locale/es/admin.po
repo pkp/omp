@@ -1,7 +1,7 @@
 # Adolfo Muñoz Aguilar <adolfo@uco.es>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-11-29 13:17+0000\n"
+"PO-Revision-Date: 2022-11-30 18:18+0000\n"
 "Last-Translator: Adolfo Muñoz Aguilar <adolfo@uco.es>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/admin/es/>\n"
 "Language: es\n"
@@ -22,3 +22,37 @@ msgstr "Apariencia del portal configurada correctamente."
 
 msgid "admin.settings.config.success"
 msgstr "La configuración del portal se ha actualizado correctamente."
+
+msgid "admin.settings.redirect"
+msgstr "Redirigir Editorial"
+
+msgid "admin.settings.noPressRedirect"
+msgstr "No redirigir"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr ""
+"Este será el idioma predeterminado para el portal y cualquier editorial "
+"alojada."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Las traducciones marcadas pueden estar incompletas."
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Las solicitudes al sitio principal se redirigirán a esta Editorial. Útil si "
+"el portal aloja solo una editorial, por ejemplo."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr ""
+"Seleccione todas las configuraciones regionales posibles. Las "
+"configuraciones regionales seleccionadas estarán disponibles para que las "
+"utilicen todas las editoriales alojadas, y también aparecerán en un menú de "
+"selección de idioma para aparecer en cada página (se puede desactivar en las "
+"páginas específicas de cada editorial). Si no hay varias configuraciones "
+"regionales, el menú de cambio de idioma no aparecerá y la configuración de "
+"idioma ampliada no estará disponible para las editoriales."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"¿Está seguro de que desea desinstalar esta configuración regional? Esto "
+"puede afectar a editoriales alojadas que la estén utilizando."
