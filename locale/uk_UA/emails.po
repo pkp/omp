@@ -112,7 +112,7 @@ msgstr ""
 "<br />\n"
 "Дякую,"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Вітаємо,<br />\n"
 "<br />\n"
@@ -124,7 +124,7 @@ msgstr ""
 "<br />\n"
 "{$contextSignature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Подяка за подання рукопису"
 
 msgid "emails.reviewerRegister.body"
@@ -385,17 +385,6 @@ msgstr ""
 msgid "emails.statisticsReportNotification.subject"
 msgstr "Діяльність редакції за {$month}, {$year}"
 
-msgid "emails.notificationCenterDefault.description"
-msgstr ""
-"Типове (пусте) повідомлення, яке використовується в конструкторі повідомлень "
-"Центру сповіщень."
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Будь ласка, введіть своє повідомлення."
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Повідомлення стосовно {$contextName}"
-
 msgid "emails.notifyFile.description"
 msgstr ""
 "Повідомлення від користувача, надіслане з модулю інформаційного центру файлу"
@@ -445,11 +434,6 @@ msgstr ""
 msgid "emails.emailLink.subject"
 msgstr "Рукопис можливого інтересу"
 
-msgid "emails.indexComplete.description"
-msgstr ""
-"Цей електронний лист від індексатора до редактора серії повідомляє їх про "
-"завершення процесу створення індексу."
-
 msgid "emails.indexComplete.body"
 msgstr ""
 "Шановний(на) {$recipientName}!<br />\n"
@@ -463,12 +447,6 @@ msgstr ""
 
 msgid "emails.indexComplete.subject"
 msgstr "Індексні гранки зроблено"
-
-msgid "emails.indexRequest.description"
-msgstr ""
-"Цей електронний лист від редактора серії до індексатора сповіщає їх, що їм "
-"було доручено завдання створити індекси для подання. Він надає інформацію "
-"про подання та про те, як отримати доступ до нього."
 
 msgid "emails.indexRequest.body"
 msgstr ""

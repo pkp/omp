@@ -114,10 +114,10 @@ msgstr ""
 "Atenciosamente,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Agradecimento pela submissão"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Olá,<br />\n"
 "<br />\n"
@@ -305,9 +305,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.indexRequest.description"
-msgstr "Esta mensagem é enviada pelo editor de série ao indexador, notificando-o de que é necessário produzir os índices de uma submissão. Fornece instruções sobre a submissão e como acessá-la."
-
 msgid "emails.indexComplete.subject"
 msgstr "Composição de índices concluída"
 
@@ -320,9 +317,6 @@ msgstr ""
 "Em caso de dúvidas, entre em contato.<br />\n"
 "<br />\n"
 "{$signatureFullName}"
-
-msgid "emails.indexComplete.description"
-msgstr "Esta mensagem é enviada pelo indexador ao editor de série, notificando da criação dos índices para a submissão."
 
 msgid "emails.emailLink.subject"
 msgstr "Manuscrito de seu interesse"
@@ -362,15 +356,6 @@ msgid "emails.notifyFile.description"
 msgstr ""
 "Notificação de usuário enviada pela janela modal do centro de informações de "
 "arquivos submissão"
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Uma mensagem sobre a editora {$contextName}"
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Informe sua mensagem aqui."
-
-msgid "emails.notificationCenterDefault.description"
-msgstr "Uma mensagem padrão em branco, a ser usada no centro de mensagens."
 
 msgid "emails.reviewResponseOverdueAuto.subject"
 msgstr "Pedido de Avaliação de Manuscrito"

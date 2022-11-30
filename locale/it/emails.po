@@ -81,10 +81,10 @@ msgstr ""
 "benvenuto nel sistema e fornirgli una registrazione del suo nome utente e "
 "della sua password."
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Conferma della proposta"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Buongiorno,<br />\n"
 "<br />\n"
@@ -96,7 +96,7 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotUser.description"
+msgid "emails.submissionAckNotAuthor.description"
 msgstr ""
 "Questa e-mail, se abilitata, viene inviata automaticamente agli altri autori "
 "che non sono utenti di OMP specificati durante il processo di invio."
@@ -246,12 +246,6 @@ msgstr ""
 msgid "emails.indexRequest.subject"
 msgstr "Indice delle richieste"
 
-msgid "emails.indexRequest.description"
-msgstr ""
-"Questa email inviata dall'Editor della Collana all'indicizzatore notifica "
-"che gli è stato assegnato il compito di creare gli indici per una proposta. "
-"Fornisce informazioni sull'invio e su come accedervi."
-
 msgid "emails.indexComplete.subject"
 msgstr "Indice completato"
 
@@ -266,12 +260,6 @@ msgstr ""
 "In caso di domande, contattami.<br />\n"
 "<br />\n"
 "{$signatureFullName}"
-
-msgid "emails.indexComplete.description"
-msgstr ""
-"Questo messaggio di posta elettronica inviato dall'indicizzatore all'Editore "
-"della Collana notifica che il processo di creazione dell'indice è stato "
-"completato."
 
 msgid "emails.emailLink.subject"
 msgstr "Manoscritto di possibile interesse"
@@ -319,17 +307,6 @@ msgstr ""
 
 msgid "emails.notifyFile.description"
 msgstr "Notifica inviata da un utente"
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Messaggio su {$contextName}"
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Inserisci il messaggio."
-
-msgid "emails.notificationCenterDefault.description"
-msgstr ""
-"Il messaggio predefinito (vuoto) utilizzato nel Generatore di messaggi del "
-"Centro notifiche."
 
 msgid "emails.statisticsReportNotification.subject"
 msgstr "Attività editoriale per {$month}, {$year}"

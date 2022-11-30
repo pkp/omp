@@ -106,10 +106,10 @@ msgstr ""
 "Gràcies,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Justificant de recepció de la tramesa"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Hola,<br />\n"
 "<br />\n"
@@ -332,9 +332,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.indexRequest.description"
-msgstr "Aquest correu de l'editor/a a l'indexador/a li notifica que se li ha assignat la tasca de crear els índexs d'una tramesa. Proporciona informació de la tramesa i de com accedir-hi."
-
 msgid "emails.indexComplete.subject"
 msgstr "Galerades d'indexació completades"
 
@@ -347,9 +344,6 @@ msgstr ""
 "Si teniu cap pregunta, contacteu amb mi.<br />\n"
 "<br />\n"
 "{$signatureFullName}"
-
-msgid "emails.indexComplete.description"
-msgstr "Aquest correu electrònic de l'indexador/a a l'editor/a de sèrie per notificar-li que el procés de creació d'índexs ja s'ha completat."
 
 msgid "emails.emailLink.subject"
 msgstr "Manuscrit de possible interès"
@@ -387,15 +381,6 @@ msgstr ""
 
 msgid "emails.notifyFile.description"
 msgstr "Una notificació d'un usuari/ària enviada des del centre d'informació de l'fitxer"
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Un missatge referent a {$contextName}"
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Introduïu-hi el missatge."
-
-msgid "emails.notificationCenterDefault.description"
-msgstr "El missatge (en blanc) per defecte utilitzat al generador de llistes de missatges del centre de notificacions."
 
 msgid "emails.announcement.subject"
 msgstr "{$announcementTitle}"

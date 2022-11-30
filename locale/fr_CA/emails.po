@@ -100,10 +100,10 @@ msgstr ""
 "Merci,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Accusé de réception d'une soumission"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Bonjour,<br />\n"
 "<br />\n"
@@ -291,9 +291,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.indexRequest.description"
-msgstr "Ce courriel est envoyé à l'indexateur par le rédacteur en chef d'une série pour lui indiquer qu'il devra créer les index de la soumission en question. Il contient des renseignements sur la soumission et explique comment y accéder."
-
 msgid "emails.indexComplete.subject"
 msgstr "Indexage des épreuves en placard complété"
 
@@ -306,9 +303,6 @@ msgstr ""
 "Si vous avez questions, n'hésitez pas à me contacter.<br />\n"
 "<br />\n"
 "{$signatureFullName}"
-
-msgid "emails.indexComplete.description"
-msgstr "Ce courriel est envoyé par l'indexateur au rédacteur en chef d'une série pour lui indiquer que l'indexage est terminé."
 
 msgid "emails.emailLink.subject"
 msgstr "Manuscrit susceptible d'intéresser"
@@ -346,12 +340,3 @@ msgstr ""
 
 msgid "emails.notifyFile.description"
 msgstr "Avis envoyé par un usager à partir d'un centre de renseignements sur les fichiers."
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Un message à propos de la presse {$contextName}"
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Veuillez saisir votre message."
-
-msgid "emails.notificationCenterDefault.description"
-msgstr "Le message (vierge) par défaut utilisé par le centre d'alerte."

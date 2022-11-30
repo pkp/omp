@@ -1165,6 +1165,7 @@ msgstr ""
 "Notícias podem ser publicados para informar os leitores sobre eventos e "
 "novidades. As notícias publicadas aparecerão na Página de Notícias."
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "Os e-mails preparados que são enviados pelo sistema em nome da editora terão "

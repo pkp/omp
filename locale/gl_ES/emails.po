@@ -29,7 +29,7 @@ msgstr ""
 msgid "emails.editorAssign.subject"
 msgstr "Tarefa editorial"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Ola,<br />\n"
 "<br />\n"
@@ -41,7 +41,7 @@ msgstr ""
 "<br />\n"
 "{$contextSignature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Agradecemento do envío"
 
 msgid "emails.reviewerRegister.body"

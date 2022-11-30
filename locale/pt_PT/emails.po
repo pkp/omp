@@ -160,7 +160,7 @@ msgstr ""
 msgid "emails.editorAssign.subject"
 msgstr "Tarefa editorial"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Olá,<br />\n"
 "<br />\n"
@@ -172,7 +172,7 @@ msgstr ""
 "<br />\n"
 "{$contextSignature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Agradecimento pela submissão"
 
 msgid "emails.reviewCancel.subject"
@@ -375,17 +375,6 @@ msgstr ""
 msgid "emails.statisticsReportNotification.subject"
 msgstr "Atividade editorial em {$month}, {$year}"
 
-msgid "emails.notificationCenterDefault.description"
-msgstr ""
-"Uma mensagem padrão (em branco) utilizada no Centro de Notificações de "
-"Mensagens."
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Insira a sua mensagem."
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Nova mensagem sobre {$contextName}"
-
 msgid "emails.notifyFile.description"
 msgstr ""
 "Notificação enviada por um utilizador através de uma janela na informação da "
@@ -438,11 +427,6 @@ msgstr ""
 msgid "emails.emailLink.subject"
 msgstr "Manuscrito do seu possível interesse"
 
-msgid "emails.indexComplete.description"
-msgstr ""
-"Este e-mail é enviado pelo Indexador ao Editor de Série para o notificar que "
-"o processo de criação de índices já se encontra concluído."
-
 msgid "emails.indexComplete.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -457,12 +441,6 @@ msgstr ""
 
 msgid "emails.indexComplete.subject"
 msgstr "Composições Finais de Inídices concluída"
-
-msgid "emails.indexRequest.description"
-msgstr ""
-"Este e-mail é enviado pelo Editor de Série para o Indexador para o notificar "
-"que foi designado para realizar a tarefa de criar índices para a submissão. "
-"Fornece informação sobre a submissão e como aceder-lhe."
 
 msgid "emails.indexRequest.body"
 msgstr ""

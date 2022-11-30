@@ -19,6 +19,7 @@ import AdminPage from '@/components/Container/AdminPage.vue';
 import DecisionPage from '@/components/Container/DecisionPage.vue';
 import DoiPage from '@/components/Container/DoiPageOMP.vue';
 import ImportExportPage from '@/components/Container/ImportExportPage.vue';
+import ManageEmailsPage from '@/components/Container/ManageEmailsPage.vue';
 import SettingsPage from '@/components/Container/SettingsPage.vue';
 import StatsEditorialPage from '@/components/Container/StatsEditorialPage.vue';
 import StatsPublicationsPage from '@/components/Container/StatsPublicationsPage.vue';
@@ -43,6 +44,7 @@ window.pkp = Object.assign(PkpLoad, {
 		DecisionPage,
 		DoiPage,
 		ImportExportPage,
+		ManageEmailsPage,
 		JobsPage,
 		SettingsPage,
 		StatsEditorialPage,

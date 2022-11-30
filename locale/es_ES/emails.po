@@ -102,10 +102,10 @@ msgstr ""
 "Gracias,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Acuse de recibo del envío"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Hola:<br />\n"
 "<br />\n"
@@ -318,9 +318,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.indexRequest.description"
-msgstr "El editor/a de la serie envía este correo electrónico al indexador/a para notificar que se les asignó la tarea de creación de índices para un envío. Proporciona información sobre el envío y cómo acceder al mismo."
-
 msgid "emails.indexComplete.subject"
 msgstr "Galeradas de índice completadas"
 
@@ -333,9 +330,6 @@ msgstr ""
 "Si tiene alguna duda, puede ponerse en contacto conmigo.<br />\n"
 "<br />\n"
 "{$signatureFullName}"
-
-msgid "emails.indexComplete.description"
-msgstr "El indexador/a envía este correo electrónico al editor/a de la serie para notificar que el proceso de creación de índices se completó."
 
 msgid "emails.emailLink.subject"
 msgstr "Manuscrito de posible interés"
@@ -373,15 +367,6 @@ msgstr ""
 
 msgid "emails.notifyFile.description"
 msgstr "Notificación de un usuario/a enviada desde un centro de información sobre archivos"
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Mensaje sobre {$contextName}"
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Introduzca su mensaje."
-
-msgid "emails.notificationCenterDefault.description"
-msgstr "El mensaje por defecto (en blanco) usado en el Creador de listas de mensajes del Centro de notificación."
 
 msgid "emails.statisticsReportNotification.subject"
 msgstr "Actividad editorial del {$month}, {$year}"

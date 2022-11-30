@@ -1398,6 +1398,7 @@ msgstr ""
 "Se pueden publicar avisos para informar a los lectores sobre noticias y "
 "eventos. Los avisos publicados aparecerán en la página de avisos."
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "Los correos electrónicos predefinidos que envía el sistema en nombre de la "

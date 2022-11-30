@@ -84,7 +84,7 @@ msgstr ""
 msgid "emails.editorAssign.subject"
 msgstr "Szerkesztői hozzárendelés"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Üdvözlet,<br />\n"
 "<br />\n"
@@ -96,7 +96,7 @@ msgstr ""
 "<br />\n"
 "Köszönettel, {$contextSignature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Beküldés visszaigazolása"
 
 msgid "emails.reviewerRegister.body"
@@ -405,17 +405,6 @@ msgstr ""
 msgid "emails.statisticsReportNotification.subject"
 msgstr "Szerkesztői tevékenység {$month}, {$year}"
 
-msgid "emails.notificationCenterDefault.description"
-msgstr ""
-"Az Értesítési Központ Üzenetlista készítőjében használt alapértelmezett "
-"(üres) üzenet."
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Kérjük, írja be üzenetét."
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Üzenet a(z) {$contextName} oldalával kapcsolatban"
-
 msgid "emails.notifyFile.description"
 msgstr ""
 "Értesítés egy felhasználótól, amit a beküldött anyag fájlinformációs "
@@ -467,11 +456,6 @@ msgstr ""
 msgid "emails.emailLink.subject"
 msgstr "Lehetséges érdeklődésre számot tartó kézirat"
 
-msgid "emails.indexComplete.description"
-msgstr ""
-"Ezt az e-mailt az Indexelő küldi a Sorozatszerkesztőnek, értesítve, hogy az "
-"index létrehozásának folyamata befejeződött."
-
 msgid "emails.indexComplete.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -486,12 +470,6 @@ msgstr ""
 
 msgid "emails.indexComplete.subject"
 msgstr "Index formátumok létrehozva"
-
-msgid "emails.indexRequest.description"
-msgstr ""
-"Ezt az e-mailt a Sorozatszerkesztő küldi az Indexelőnek, jelezve, hogy "
-"megbízást kapott az indexek létrehozására egy beküldött anyaghoz. "
-"Információkat közöl a beküldött anyagról és a hozzáférés módjáról."
 
 msgid "emails.indexRequest.body"
 msgstr ""

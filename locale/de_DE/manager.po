@@ -1198,6 +1198,7 @@ msgstr ""
 "und Events zu informieren. Veröffentlichte Ankündigungen erscheinen auf der "
 "Seite \"Ankündigungen\"."
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "Den vorbereiteten E-Mails, die das System im Namen des Verlags verschickt, "
