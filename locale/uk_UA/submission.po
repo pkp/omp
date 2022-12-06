@@ -550,6 +550,7 @@ msgstr ""
 "як довго може тривати процедура внутрішнього рецензування і коли їм слід "
 "знов очікувати новин від редакторів."
 
+#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr "Подання, {$title}, було направлено на стадію внутрішнього рецензування."
 

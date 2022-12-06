@@ -581,6 +581,7 @@ msgstr ""
 "szerzőket arról, hogy mennyi ideig tarthat a belső szakmai lektorálás "
 "folyamat, és mikorra várhatják, hogy a szerkesztők ismét jelentkeznek."
 
+#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr ""
 "A {$title} című beküldést továbbküldték a belső szakmai lektorálási "

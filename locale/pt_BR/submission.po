@@ -590,6 +590,7 @@ msgstr ""
 "de quanto tempo o processo de avaliação interna pode levar e quando eles "
 "devem esperar para terem notícias dos editores novamente."
 
+#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr "A submissão, {$title}, foi enviada para a fase de avaliação interna."
 

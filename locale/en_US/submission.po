@@ -501,7 +501,7 @@ msgid "editor.submission.decision.sendInternalReview.completed"
 msgstr "Sent for Internal Review"
 
 msgid "editor.submission.decision.sendInternalReview.completed.description"
-msgstr "The submission, {$title}, has been sent to the internal review stage."
+msgstr "The submission, {$title}, has been sent to the internal review stage. The author has been notified, unless you chose to skip that email."
 
 msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
 msgstr "Send an email to the authors to let them know that this submission will be sent for internal review. If possible, give the authors some indication of how long the internal review process might take and when they should expect to hear from the editors again."

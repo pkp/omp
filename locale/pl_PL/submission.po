@@ -506,6 +506,7 @@ msgstr "Publikacja"
 msgid "submission.withoutChapter"
 msgstr "{$name} — Bez tego rozdziału"
 
+#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr ""
 "To zgłoszenie, {$title}, zostało przesłane do etapu recenzji wewnętrznej."
