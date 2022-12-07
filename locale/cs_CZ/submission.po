@@ -521,6 +521,7 @@ msgstr "Svazek"
 msgid "submission.withoutChapter"
 msgstr "{$name} - Bez této kapitoly"
 
+#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr "Příspěvek, {$title}, byl odeslán k interní recenzi."
 

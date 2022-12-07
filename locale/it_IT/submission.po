@@ -569,6 +569,7 @@ msgstr ""
 msgid "publication.chapter.landingPage"
 msgstr "Pagina del capitolo"
 
+#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr "La proposta, {$title}, è stata inviata alla fase di revisione interna."
 
