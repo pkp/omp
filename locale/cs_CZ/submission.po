@@ -474,9 +474,10 @@ msgstr "Svazek"
 msgid "submission.withoutChapter"
 msgstr "{$name} - Bez této kapitoly"
 
-#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.completed.description"
-msgstr "Příspěvek, {$title}, byl odeslán k interní recenzi."
+msgstr ""
+"Příspěvek, {$title}, byl odeslán k interní recenzi. Pokud jste nezadali "
+"„neodeslat email autorovi“, tak bude autor upozorněn."
 
 msgid "editor.submission.decision.backToReview.completed"
 msgstr "Poslat zpět do recenzního řízení"
@@ -565,3 +566,50 @@ msgstr ""
 "Pošlete autorům e-mail s informací, že tento příspěvek bude odeslán k "
 "recenznímu řízení. Pokud je to možné, naznačte autorům, jak dlouho může "
 "recenzní řízení trvat a kdy mají očekávat, že se jim redakce znovu ozve."
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Název a abstrakt"
+
+msgid "submission.submit.userGroupDescription"
+msgstr "Pokud je příspěvkem sborník, měl/a byste vybrat roli editora sborníku."
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Vyberte prosím roli přispěvatele."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Zadejte prosím stručný souhrn monografie."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Zadejte prosím název monografie."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "Je třeba zadat jméno, příjmení a e-mailovou adresu pro každého autora."
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Je třeba zadat alespoň jednoho autora."
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Vyberte jazyk příspěvku."
+
+msgid "author.submit.seriesRequired"
+msgstr "Je vyžadována platná edice."
+
+msgid "submission.submit.selectSeries"
+msgstr "Vyberte edici (volitelné)"
+
+msgid "submission.submit.cancelSubmission"
+msgstr ""
+"Později můžete tento příspěvek doplnit v sekci Aktuální příspěvky na domácí "
+"stránce autora."
+
+msgid "submission.confirmSubmit"
+msgstr "Opravdu si přejete předložit nakladatelství tento rukopis?"
+
+msgid "submission.chaptersDescription"
+msgstr ""
+"Zde můžete vypsat kapitoly knihy a přiřadit k nim autory ze seznamu "
+"přispěvatelů výše. Tito přispěvatelé budou mít ke svým kapitolám přístup v "
+"různých fázích publikačního procesu."
+
+msgid "submission.submit.title"
+msgstr "Předložit rukopis"
