@@ -77,6 +77,10 @@ class GoogleScholarPlugin extends GenericPlugin
         // Book/Edited volume or Chapter title of the submission
         $title = $isChapterRequest ? $chapter->getLocalizedFullTitle($publication->getData('locale')) : $publication->getLocalizedFullTitle($publication->getData('locale'));
         $templateMgr->addHeader('googleScholarTitle', '<meta name="citation_title" content="' . htmlspecialchars($title) . '"/>');
+        // Language
+        if ($locale = $publication->getData('locale')) {
+            $templateMgr->addHeader('googleScholarLanguage', '<meta name="citation_language" content="' . htmlspecialchars(substr($locale, 0, 2)) . '"/>');
+        }
 
         // Publication date
         $templateMgr->addHeader('googleScholarDate', '<meta name="citation_publication_date" content="' . date('Y-m-d', strtotime($publication->getData('datePublished'))) . '"/>');
@@ -90,7 +94,7 @@ class GoogleScholarPlugin extends GenericPlugin
 
         // Abstract
         $i = 0;
-        $abstracts = $isChapterRequest ? $chapter->getData('abstract') : $submission->getCurrentPublication()->getData('abstract');
+        $abstracts = $isChapterRequest ? $chapter->getData('abstract') : $publication->getData('abstract');
         foreach ($abstracts as $locale => $abstract) {
             $templateMgr->addHeader('googleScholarAbstract' . $i++, '<meta name="citation_abstract" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
         }
@@ -99,13 +103,6 @@ class GoogleScholarPlugin extends GenericPlugin
         // Publication DOI
         if ($publication->getData('pub-id::doi')) {
             $templateMgr->addHeader('googleScholarPublicationDOI', '<meta name="citation_doi" content="' . htmlspecialchars($publication->getData('pub-id::doi')) . '"/>');
-        }
-
-        // Language
-        if ($languages = $publication->getData('languages')) {
-            foreach ($languages as $language) {
-                $templateMgr->addHeader('googleScholarLanguage', '<meta name="citation_language" content="' . htmlspecialchars($language) . '"/>');
-            }
         }
 
         // Subjects
