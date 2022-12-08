@@ -263,4 +263,9 @@ class Application extends PKPApplication
     {
         return new \APP\payment\omp\OMPPaymentManager($context);
     }
+
+    public static function getSectionIdPropName(): string
+    {
+        return 'seriesId';
+    }
 }

@@ -15,25 +15,26 @@
 
 namespace APP\controllers\grid\users\chapter;
 
-use APP\controllers\grid\users\chapter\ChapterGridCategoryRowCellProvider;
+use APP\author\Author;
+use APP\controllers\grid\users\chapter\form\ChapterForm;
 use APP\controllers\tab\pubIds\form\PublicIdentifiersForm;
 use APP\core\Application;
-use PKP\plugins\PluginRegistry;
-use APP\controllers\grid\users\chapter\form\ChapterForm;
-use PKP\db\DAO;
-use PKP\controllers\grid\users\author\PKPAuthorGridCellProvider;
-use APP\controllers\grid\users\chapter\ChapterGridCategoryRow;
 use APP\facades\Repo;
+use APP\monograph\Chapter;
 use APP\notification\NotificationManager;
+use APP\publication\Publication;
+use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\controllers\grid\CategoryGridHandler;
 use PKP\controllers\grid\feature\OrderCategoryGridItemsFeature;
 use PKP\controllers\grid\GridColumn;
 use PKP\core\JSONMessage;
+use PKP\db\DAO;
+use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
+use PKP\plugins\PluginRegistry;
 use PKP\security\authorization\PublicationAccessPolicy;
-use PKP\db\DAORegistry;
 use PKP\security\Role;
 use PKP\submission\PKPSubmission;
 
@@ -69,20 +70,16 @@ class ChapterGridHandler extends CategoryGridHandler
     //
     /**
      * Get the monograph associated with this chapter grid.
-     *
-     * @return Monograph
      */
-    public function getMonograph()
+    public function getMonograph(): Submission
     {
         return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
     }
 
     /**
      * Get the publication associated with this chapter grid.
-     *
-     * @return Publication
      */
-    public function getPublication()
+    public function getPublication(): Publication
     {
         return $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION);
     }
@@ -160,11 +157,11 @@ class ChapterGridHandler extends CategoryGridHandler
 
         // Columns
         // reuse the cell providers for the AuthorGrid
-        $cellProvider = new PKPAuthorGridCellProvider($this->getPublication());
+        $cellProvider = new ChapterGridAuthorCellProvider($this->getPublication());
         $this->addColumn(
             new GridColumn(
                 'name',
-                'author.users.contributor.name',
+                'common.name',
                 null,
                 null,
                 $cellProvider,
@@ -174,7 +171,7 @@ class ChapterGridHandler extends CategoryGridHandler
         $this->addColumn(
             new GridColumn(
                 'email',
-                'author.users.contributor.email',
+                'email.email',
                 null,
                 null,
                 $cellProvider
@@ -183,7 +180,7 @@ class ChapterGridHandler extends CategoryGridHandler
         $this->addColumn(
             new GridColumn(
                 'role',
-                'author.users.contributor.role',
+                'common.role',
                 null,
                 null,
                 $cellProvider
@@ -524,7 +521,13 @@ class ChapterGridHandler extends CategoryGridHandler
             $notificationMgr = new NotificationManager();
             $notificationMgr->createTrivialNotification($request->getUser()->getId());
             $chapterForm->execute();
-            return DAO::getDataChangedEvent($chapterForm->getChapter()->getId());
+            $json = DAO::getDataChangedEvent($chapterForm->getChapter()->getId());
+            if (!$chapter) {
+                $json->setGlobalEvent('chapter:added', $this->getChapterData($chapterForm->getChapter(), $this->getPublication()));
+            } else {
+                $json->setGlobalEvent('chapter:edited', $this->getChapterData($chapterForm->getChapter(), $this->getPublication()));
+            }
+            return $json;
         } else {
             // Return an error
             return new JSONMessage(false);
@@ -553,7 +556,9 @@ class ChapterGridHandler extends CategoryGridHandler
 
         $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
         $chapterDao->deleteById($chapterId);
-        return DAO::getDataChangedEvent();
+        $json = DAO::getDataChangedEvent();
+        $json->setGlobalEvent('chapter:deleted', $this->getChapterData($chapter, $this->getPublication()));
+        return $json;
     }
 
     /**
@@ -565,5 +570,23 @@ class ChapterGridHandler extends CategoryGridHandler
             (int) $request->getUserVar('chapterId'),
             $this->getPublication()->getId()
         );
+    }
+
+    /**
+     * Get chapter data to be returned as JSON in a global event
+     */
+    public function getChapterData(Chapter $chapter, Publication $publication): array
+    {
+        return [
+            'id' => $chapter->getId(),
+            'title' => $chapter->getLocalizedFullTitle(),
+            'authors' => Repo::author()
+                ->getCollector()
+                ->filterByChapterIds([$chapter->getId()])
+                ->filterByPublicationIds([$publication->getId()])
+                ->getMany()
+                ->map(fn (Author $author) => $author->getFullName())
+                ->join(__('common.commaListSeparator')),
+        ];
     }
 }

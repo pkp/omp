@@ -721,12 +721,6 @@ msgstr "Fournir des exemples de mots clés ou sujets pour guider les auteurs."
 msgid "manager.setup.submissionGuidelines"
 msgstr "Lignes directrices concernant les soumissions"
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Liste de vérification pour la préparation de la soumission"
-
-msgid "manager.setup.submissionPreparationChecklistDescription"
-msgstr "Après avoir envoyé leur soumission à la presse, on demande aux auteurs de cocher tous les éléments de la liste de vérification avant d'envoyer leur soumission. La liste de vérification est aussi disponible dans la section Lignes directrices à l'intention des auteurs, dans la rubrique À propos de cette presse. La liste peut être modifiée ci-dessous, mais tous les éléments apparaissant sur la liste doivent être cochés avant que les auteurs puissent envoyer leur soumission."
-
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Vous devez cocher cet élément sur la liste."
 

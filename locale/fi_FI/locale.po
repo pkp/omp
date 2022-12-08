@@ -1491,9 +1491,6 @@ msgstr ""
 msgid "catalog.manage.isFeatured"
 msgstr "Tämä teos on esittelyssä etusivulla. Poista tämä teos esittelystä."
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Osoitetut toimittajat"
-
 msgid "monograph.audience.success"
 msgstr "Kohderyhmäasetukset päivitetty."
 

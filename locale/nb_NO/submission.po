@@ -82,9 +82,6 @@ msgstr "Ekstern bedømming"
 msgid "editor.submission.decision.sendExternalReview"
 msgstr "Send til ekstern bedømming"
 
-msgid "submission.submit.titleAndSummary"
-msgstr "Tittel og sammendrag"
-
 msgid "submission.event.publicationFormatRemoved"
 msgstr "Publikasjonsformatet \"{$formatName}\" ble fjernet."
 
@@ -182,9 +179,6 @@ msgstr "Kapitler"
 msgid "submission.submit.noContext"
 msgstr "Utgiveren til denne innleveringen ble ikke funnet."
 
-msgid "submission.submit.userGroupDescription"
-msgstr "Hvis du sender inn et redigert verk bør du velge redaktørrollen."
-
 msgid "submission.submit.userGroup"
 msgstr "Lever inn i min rolle som…"
 
@@ -229,29 +223,11 @@ msgstr "Forbered"
 msgid "submission.submit.submissionFile"
 msgstr "Inlleveringsfil"
 
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Velg bidragsyterens rolle."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Legg inn et kort sammendrag av monografien."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Legg inn tittelen på monografien din."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "Forfatterens fornavn, etternavn og e-post må fylles ut."
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Minst en forfatter kreves."
-
 msgid "submission.submit.contributorRole"
 msgstr "Bidragsyterens rolle"
 
 msgid "submission.submit.privacyStatement"
 msgstr "Personvernerklæring"
-
-msgid "submission.submit.form.localeRequired"
-msgstr "Velg et innleveringsspråk."
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "Eksempler: Bok 2, bind 2"
@@ -259,19 +235,8 @@ msgstr "Eksempler: Bok 2, bind 2"
 msgid "submission.submit.seriesPosition"
 msgstr "Posisjon i serien"
 
-msgid "author.submit.seriesRequired"
-msgstr "En gyldig serie er nødvendig."
-
 msgid "author.isVolumeEditor"
 msgstr "Sett denne bidragsyteren som redaktør for dette bindet."
-
-msgid "submission.submit.selectSeries"
-msgstr "Velg serie (valgfritt)"
-
-msgid "submission.submit.cancelSubmission"
-msgstr ""
-"Du kan fullføre denne innleveringen ved en senere anledning om du velger «"
-"Aktive innleveringer» fra forfattersiden."
 
 msgid "submission.submit.upload"
 msgstr "Last opp innlevering"
@@ -299,9 +264,6 @@ msgstr "Sponsorer"
 
 msgid "submission.metadata"
 msgstr "Metadata"
-
-msgid "submission.confirmSubmit"
-msgstr "Er du sikker på at du vil sende dette manuskriptet til utgiveren?"
 
 msgid "manuscript.submissions"
 msgstr "Manusinnleveringer"
@@ -338,12 +300,6 @@ msgstr "Rediger kapittel"
 
 msgid "submission.chapter.addChapter"
 msgstr "Legg til kapittel"
-
-msgid "submission.chaptersDescription"
-msgstr ""
-"Du kan lage en liste over kapitlene her og knytte forfattere fra listen over "
-"bidragsytere ovenfor. Disse forfatterne kan få tilgang til kapittelet på "
-"forskjellige stadier i den redaksjonelle prosessen."
 
 msgid "submission.chapters"
 msgstr "Kapitler"
@@ -401,9 +357,6 @@ msgstr "Boktittel"
 
 msgid "submission.upload.selectComponent"
 msgstr "Velg komponent"
-
-msgid "submission.submit.title"
-msgstr "Lever inn en monografi"
 
 msgid "submission.publication"
 msgstr "Publikasjon"

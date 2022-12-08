@@ -35,6 +35,7 @@ describe('Data suite tests', function() {
 		cy.get('a[id^=component-grid-settings-series-seriesgrid-addSeries-button-]').click();
 		cy.wait(1000); // Avoid occasional failure due to form init taking time
 		cy.get('input[id^="title-en_US-"]').type('History');
+		cy.get('label').contains('Daniel Barnes').click();
 		cy.get('input[id^="path"]').type('his');
 		cy.get('form[id=seriesForm]').contains('Save').click();
 
@@ -42,6 +43,7 @@ describe('Data suite tests', function() {
 		cy.get('a[id^=component-grid-settings-series-seriesgrid-addSeries-button-]').click();
 		cy.wait(1000); // Avoid occasional failure due to form init taking time
 		cy.get('input[id^="title-en_US-"]').type('Education');
+		cy.get('label').contains('Daniel Barnes').click();
 		cy.get('input[id^="path"]').type('ed');
 		cy.get('form[id=seriesForm]').contains('Save').click();
 
@@ -49,6 +51,7 @@ describe('Data suite tests', function() {
 		cy.get('a[id^=component-grid-settings-series-seriesgrid-addSeries-button-]').click();
 		cy.wait(1000); // Avoid occasional failure due to form init taking time
 		cy.get('input[id^="title-en_US-"]').type('Psychology');
+		cy.get('label').contains('Daniel Barnes').click();
 		cy.get('input[id^="path"]').type('psy');
 		cy.get('form[id=seriesForm]').contains('Save').click();
 	});

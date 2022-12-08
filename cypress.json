@@ -11,7 +11,9 @@
     "contextAcronyms": {
       "en_US": "PKP"
     },
-    "defaultGenre": "Book Manuscript"
+    "defaultGenre": "Book Manuscript",
+    "authorUserGroupId": 13,
+    "volumeEditorUserGroupId": 14
   },
   "integrationFolder": "cypress/tests",
   "pluginsFile": "lib/pkp/cypress/plugins/index.js",

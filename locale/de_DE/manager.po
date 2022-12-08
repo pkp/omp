@@ -721,9 +721,6 @@ msgstr "Geben Sie Beispiele für Schlüsselwörter oder Themengebiete als Orient
 msgid "manager.setup.submissionGuidelines"
 msgstr "Richtlinien für die Einreichung"
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Einreichungs-Checkliste"
-
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Dieser Punkt der Checkliste muss bestätigt sein."
 

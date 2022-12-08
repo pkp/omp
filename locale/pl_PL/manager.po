@@ -352,9 +352,6 @@ msgstr "Workflow"
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Lista kontrolna pozycji jest wymagana."
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Lista kontrolna przygotowań zgłoszenia"
-
 msgid "manager.setup.submissionGuidelines"
 msgstr "Wskazówki dla zgłoszeń"
 

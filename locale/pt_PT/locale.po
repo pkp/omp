@@ -509,9 +509,6 @@ msgstr "Esta série aparecerá no menu de navegação"
 msgid "series.series"
 msgstr "Séries"
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Designar editores"
-
 msgid "grid.reviewAttachments.availableFiles"
 msgstr "Ficheiros disponíveis"
 
