@@ -59,7 +59,11 @@ class GoogleScholarPlugin extends GenericPlugin {
 		$templateMgr->addHeader('googleScholarRevision', '<meta name="gs_meta_revision" content="1.1"/>');
 
 		// Book/Edited volume title of the submission
-		$templateMgr->addHeader('googleScholarTitle', '<meta name="citation_title" content="' . htmlspecialchars($publication->getLocalizedFullTitle()) . '"/>');
+		$templateMgr->addHeader('googleScholarTitle', '<meta name="citation_title" content="' . htmlspecialchars($publication->getLocalizedFullTitle($submission->getLocale())) . '"/>');
+		// Language
+		if ($locale = $submission->getLocale()) {
+            $templateMgr->addHeader('googleScholarLanguage', '<meta name="citation_language" content="' . htmlspecialchars(substr($locale, 0, 2)) . '"/>');
+        }
 
 		// Publication date
 		$templateMgr->addHeader('googleScholarDate', '<meta name="citation_publication_date" content="' . strftime('%Y-%m-%d', strtotime($publication->getData('datePublished'))) . '"/>');
@@ -80,11 +84,6 @@ class GoogleScholarPlugin extends GenericPlugin {
 		// Publication DOI
 		if ($publication->getData('pub-id::doi')) {
 			$templateMgr->addHeader('googleScholarPublicationDOI', '<meta name="citation_doi" content="' . htmlspecialchars($publication->getData('pub-id::doi')) . '"/>');
-		}
-
-		// Language
-		if ($languages = $publication->getData('languages')) foreach ($languages as $language) {
-			$templateMgr->addHeader('googleScholarLanguage', '<meta name="citation_language" content="' . htmlspecialchars($language) . '"/>');
 		}
 
 		// Subjects
