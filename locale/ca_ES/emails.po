@@ -15,21 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "emails.notification.subject"
-msgstr "Notificació nova de {$contextName}"
-
-msgid "emails.notification.body"
-msgstr ""
-"Teniu una notificació nova de {$contextName}:<br />\n"
-"<br />\n"
-"{$notificationContents}<br />\n"
-"<br />\n"
-"Enllaç: {$notificationUrl}<br />\n"
-"<br />\n"
-"Aquest correu s'ha generat automàticament, no respongueu a aquest missatge.<"
-"br />\n"
-"{$contextSignature}<hr />{$unsubscribeLink}"
-
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Confirmació del restabliment de contrasenya"
 

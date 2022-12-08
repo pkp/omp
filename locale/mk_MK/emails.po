@@ -188,21 +188,6 @@ msgstr ""
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Потврда за ресетирање на лозинка"
 
-msgid "emails.notification.body"
-msgstr ""
-"Имате ново известување од {$contextName}: <br />\n"
-"<br />\n"
-"{$notificationContents} <br />\n"
-"<br />\n"
-"Врска: {$notificationUrl} <br />\n"
-"<br />\n"
-"Ова е автоматски генерирана е-пошта; Ве молиме, не одговарајте на оваа "
-"порака. <br />\n"
-"{$contextSignature}<hr />{$unsubscribeLink}"
-
-msgid "emails.notification.subject"
-msgstr "Ново известување од {$contextName}"
-
 #, fuzzy
 msgid "emails.editorDecisionAccept.body"
 msgstr ""

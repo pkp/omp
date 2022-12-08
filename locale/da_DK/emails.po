@@ -159,20 +159,6 @@ msgstr ""
 "spørgsmål, bedes du kontakte mig. Tak for dit bidrag til denne udgivers "
 "arbejde.</p><p>Med venlig hilsen</p>{$signature}"
 
-msgid "emails.notification.subject"
-msgstr "Ny meddelelse fra {$contextName}"
-
-msgid "emails.notification.body"
-msgstr ""
-"Du har modtaget en ny meddelelse fra {$contextName}:<br />\n"
-"<br />\n"
-"{$notificationContents}<br />\n"
-"<br />\n"
-"Link: {$notificationUrl}<br />\n"
-"<br />\n"
-"Dette er en automatisk genereret email, som ikke kan besvares.<br />\n"
-"{$contextSignature}<hr />{$unsubscribeLink}"
-
 msgid "emails.passwordReset.subject"
 msgstr "Nulstil adgangskode"
 

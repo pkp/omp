@@ -12,9 +12,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "emails.notification.subject"
-msgstr "Nové oznámení od {$contextName}"
-
 msgid "emails.passwordReset.body"
 msgstr ""
 "Vaše heslo pro vstup na stránku {$siteTitle} bylo úspěšně obnoveno. Toto "
@@ -44,17 +41,6 @@ msgstr ""
 
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Potvrzení obnovy hesla"
-
-msgid "emails.notification.body"
-msgstr ""
-"Obdržel jste nové oznámení od {$contextName}:<br />\n"
-"<br />\n"
-"{$notificationContents}<br />\n"
-"<br />\n"
-"Odkaz: {$notificationUrl}<br />\n"
-"<br />\n"
-"Toto je automaticky generovaný e-mail. Prosím neodpovídejte na něj.<br />\n"
-"{$contextSignature}<hr />{$unsubscribeLink}"
 
 msgid "emails.reviewRemindAuto.body"
 msgstr ""

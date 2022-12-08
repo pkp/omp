@@ -12,9 +12,6 @@ msgstr ""
 "4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "emails.notification.subject"
-msgstr "Новое сообщение от {$contextName}"
-
 msgid "emails.reviewResponseOverdueAuto.subject"
 msgstr "Запрос на рецензирование рукописи"
 
@@ -166,18 +163,6 @@ msgstr ""
 
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Подтверждение сброса пароля"
-
-msgid "emails.notification.body"
-msgstr ""
-"Вы получили новое уведомление с сайта  «{$contextName}»:<br />\n"
-"<br />\n"
-"{$notificationContents}<br />\n"
-"<br />\n"
-"Ссылка: {$notificationUrl}<br />\n"
-"<br />\n"
-"Это письмо сгенерировано автоматически, пожалуйста, не отвечаыте на него.<br "
-"/>\n"
-"{$contextSignature}<hr />{$unsubscribeLink}"
 
 msgid "emails.announcement.subject"
 msgstr "{$announcementTitle}"
