@@ -1407,3 +1407,11 @@ msgstr "Index Requested"
 
 msgid "mailable.indexComplete.name"
 msgstr "Index Completed"
+
+msgid "mailable.publicationVersionNotify.name"
+msgstr "Publication Version Notification"
+
+msgid "mailable.publicationVersionNotify.description"
+msgstr ""
+"This email automatically notifies assigned editors about new version of the "
+"publication"
