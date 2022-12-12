@@ -26,27 +26,27 @@ describe('Data suite tests', function() {
 			'chapters': [
 				{
 					'title': 'Foreward',
-					'contributors': ['Michael Power']
+					'contributors': ['Michael Power'],
 					files: ['foreward.pdf']
 				},
 				{
 					'title': 'Preface',
-					'contributors': ['Michael Power']
+					'contributors': ['Michael Power'],
 					files: ['preface.pdf']
 				},
 				{
 					'title': 'The Case Studies',
-					'contributors': ['Michael Power']
+					'contributors': ['Michael Power'],
 					files: ['cases.pdf']
 				},
 				{
 					'title': 'Conclusion',
-					'contributors': ['Michael Power']
+					'contributors': ['Michael Power'],
 					files: ['conclusion.pdf']
 				},
 				{
 					'title': 'Bibliography',
-					'contributors': ['Michael Power']
+					'contributors': ['Michael Power'],
 					files: ['bibliography.pdf']
 				}
 			],
