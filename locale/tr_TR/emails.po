@@ -43,21 +43,6 @@ msgstr ""
 "Şu anda bu işi üstlenemiyorsanız veya herhangi bir sorunuz olursa, lütfen "
 "bizimle iletişime geçin. Bu yayınevine katkılarınız için teşekkür ederiz."
 
-msgid "emails.notification.subject"
-msgstr "{$contextName}’den yeni bildirim"
-
-msgid "emails.notification.body"
-msgstr ""
-"{$contextName}'dan yeni bir bildiriminiz var:<br />\n"
-"<br />\n"
-"{$notificationContents}<br />\n"
-"<br />\n"
-"Bağlantı: {$notificationUrl}<br />\n"
-"<br />\n"
-"Bu otomatik olarak oluşturulan bir e-postadır; lütfen bu mesajı "
-"yanıtlamayın.<br />\n"
-"{$contextSignature}<hr />{$unsubscribeLink}"
-
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Parola Sıfırlama Onayı"
 

@@ -464,19 +464,3 @@ msgstr ""
 
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Bekreft tilbakestilling av passord"
-
-#, fuzzy
-msgid "emails.notification.body"
-msgstr ""
-"Du har mottatt en ny melding fra {$contextName}: <br />\n"
-"<br />\n"
-"{$notificationContents} <br />\n"
-"<br />\n"
-"Lenke: {$notificationUrl} <br />\n"
-"<br />\n"
-"Dette er en automatisk generert e-post; ikke svar på denne meldingen. <br />"
-"\n"
-"{$contextSignature}"
-
-msgid "emails.notification.subject"
-msgstr "Ny melding fra {$contextName}"
