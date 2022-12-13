@@ -405,7 +405,8 @@ msgstr ""
 "матеріалу."
 
 msgid "submission.copyrightOther.description"
-msgstr "Призначити авторські права на опубліковані матеріали наступній стороні."
+msgstr ""
+"Призначити авторські права на опубліковані матеріали наступній стороні."
 
 msgid "publication.unpublish"
 msgstr "Зняти з публікації"
@@ -470,8 +471,8 @@ msgstr "Знову направлено на рецензування"
 
 msgid "editor.submission.decision.backToReview.log"
 msgstr ""
-"{$editorName} скасував(ла) рішення про прийняття цього подання і направив(ла)"
-" його знову на стадію рецензування."
+"{$editorName} скасував(ла) рішення про прийняття цього подання і "
+"направив(ла) його знову на стадію рецензування."
 
 msgid "editor.submission.decision.backToReview.description"
 msgstr ""
@@ -502,9 +503,10 @@ msgstr ""
 "як довго може тривати процедура внутрішнього рецензування і коли їм слід "
 "знов очікувати новин від редакторів."
 
-#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.completed.description"
-msgstr "Подання, {$title}, було направлено на стадію внутрішнього рецензування."
+msgstr ""
+"Подання, {$title}, було направлено на стадію внутрішнього рецензування. "
+"Автора було повідомлено, якщо ви не вирішили пропустити цей електронний лист."
 
 msgid "editor.submission.decision.sendInternalReview.completed"
 msgstr "Направлено для внутрішнього рецензування"
@@ -573,3 +575,51 @@ msgid "doi.submission.incorrectContext"
 msgstr ""
 "Не вдалося створити DOI для такого подання: {$pubObjectTitle}. Його не існує "
 "в рамках поточного е-видавництва."
+
+msgid "submission.submit.title"
+msgstr "Подати монографію"
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Назва і резюме"
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Будь ласка, оберіть роль користувача."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Будь ласка, введіть коротку анотацію Вашої монографії."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Будь ласка, введіть назву Вашої монографії."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr ""
+"Необхідно ввести ім'я, прізвище й адресу електронної пошти кожного автора."
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Необхідно обрати хоча б одного автора."
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Будь ласка, оберіть мову подання."
+
+msgid "author.submit.seriesRequired"
+msgstr "Необхідно ввести дійсну серію."
+
+msgid "submission.submit.selectSeries"
+msgstr "Оберіть серію (за бажанням)"
+
+msgid "submission.confirmSubmit"
+msgstr "Ви впевнені, що хочете надіслати цей рукопис до е-видавництва?"
+
+msgid "submission.chaptersDescription"
+msgstr ""
+"Ви можете тут перерахувати глави і призначити авторів зі списку вище. Ці "
+"автори матимуть доступ до глав під час різних стадій видавничого процесу."
+
+msgid "submission.submit.userGroupDescription"
+msgstr ""
+"Якщо ви надсилаєте відредагований том, ви маєте обрати роль редактора тому."
+
+msgid "submission.submit.cancelSubmission"
+msgstr ""
+"Ви можете завершити це подання пізніше, вибравши його у списку активних "
+"подань на своїй персональній сторінці."
