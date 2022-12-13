@@ -46,6 +46,7 @@ describe('Data suite tests', function() {
 					'country': 'Canada',
 					// 'affiliation': '',
 					'email': 'gfriesen@mailinator.com',
+					'role': 'Chapter Author',
 				},
 				{
 					'givenName': 'Lyle',
@@ -53,6 +54,7 @@ describe('Data suite tests', function() {
 					'country': 'Canada',
 					// 'affiliation': '',
 					'email': 'ldick@mailinator.com',
+					'role': 'Chapter Author',
 				},
 				{
 					'givenName': 'Winona',
@@ -60,6 +62,7 @@ describe('Data suite tests', function() {
 					'country': 'Canada',
 					// 'affiliation': '',
 					'email': 'wwheeler@mailinator.com',
+					'role': 'Chapter Author',
 				},
 				{
 					'givenName': 'Matt',
@@ -67,6 +70,7 @@ describe('Data suite tests', function() {
 					'country': 'Canada',
 					// 'affiliation': '',
 					'email': 'mdyce@mailinator.com',
+					'role': 'Chapter Author',
 				},
 				{
 					'givenName': 'James',
@@ -74,6 +78,7 @@ describe('Data suite tests', function() {
 					'country': 'Canada',
 					// 'affiliation': '',
 					'email': 'jopp@mailinator.com',
+					'role': 'Chapter Author',
 				}
 			],
 			files: [
@@ -198,6 +203,7 @@ describe('Data suite tests', function() {
 		cy.get('#contributor-country-error').contains('This field is required.');
 		cy.get('.pkpFormField:contains("Given Name")').find('input[name*="en_US"]').type(submission.authors[0].givenName);
 		cy.get('.pkpFormField:contains("Family Name")').find('input[name*="en_US"]').type(submission.authors[0].familyName);
+		cy.get('label').contains(submission.authors[0].role).parent().find('input').click();
 		cy.get('.pkpFormField:contains("Country")').find('select').select(submission.authors[0].country)
 		cy.get('.pkpFormField:contains("Email")').find('input').type('notanemail');
 		cy.get('.modal__panel:contains("Add Contributor")').find('button').contains('Save').click();
@@ -209,16 +215,16 @@ describe('Data suite tests', function() {
 		cy.get('button').contains('Save Order').click();
 		cy.get('button:contains("Preview")').click(); // Will only appear after order is saved
 		cy.get('.modal__panel:contains("List of Contributors")').find('tr:contains("Abbreviated")').contains('Carter et al.');
-		cy.get('.modal__panel:contains("List of Contributors")').find('tr:contains("Publication Lists")').contains('Sarah Carter, Alvin Finkel (Author)');
-		cy.get('.modal__panel:contains("List of Contributors")').find('tr:contains("Full")').contains('Sarah Carter, Alvin Finkel (Author)');
+		cy.get('.modal__panel:contains("List of Contributors")').find('tr:contains("Publication Lists")').contains('Sarah Carter (Volume editor); Alvin Finkel (Author)');
+		cy.get('.modal__panel:contains("List of Contributors")').find('tr:contains("Full")').contains('Sarah Carter (Volume editor); Alvin Finkel (Author)');
 		cy.get('.modal__panel:contains("List of Contributors")').find('.modal__closeButton').click();
 		cy.get('.listPanel:contains("Contributors")').find('button').contains('Order').click();
 		cy.get('button:contains("Increase position of Alvin Finkel")').click();
 		cy.get('.listPanel:contains("Contributors")').find('button').contains('Save Order').click();
 		cy.get('.listPanel:contains("Contributors") button:contains("Preview")').click(); // Will only appear after order is saved
 		cy.get('.modal__panel:contains("List of Contributors")').find('tr:contains("Abbreviated")').contains('Finkel et al.');
-		cy.get('.modal__panel:contains("List of Contributors")').find('tr:contains("Publication Lists")').contains('Alvin Finkel, Sarah Carter (Author)');
-		cy.get('.modal__panel:contains("List of Contributors")').find('tr:contains("Full")').contains('Alvin Finkel, Sarah Carter (Author)');
+		cy.get('.modal__panel:contains("List of Contributors")').find('tr:contains("Publication Lists")').contains('Alvin Finkel (Author); Sarah Carter (Volume editor)');
+		cy.get('.modal__panel:contains("List of Contributors")').find('tr:contains("Full")').contains('Alvin Finkel (Author); Sarah Carter (Volume editor)');
 		cy.get('.modal__panel:contains("List of Contributors")').find('.modal__closeButton').click();
 
 		submission.authors.slice(1).forEach((author) => {
@@ -226,6 +232,7 @@ describe('Data suite tests', function() {
 			cy.get('.modal__panel:contains("Add Contributor")').find('button').contains('Save').click();
 			cy.get('.pkpFormField:contains("Given Name")').find('input[name*="en_US"]').type(author.givenName);
 			cy.get('.pkpFormField:contains("Family Name")').find('input[name*="en_US"]').type(author.familyName);
+			cy.get('label').contains(author.role).parent().find('input').click();
 			cy.get('.pkpFormField:contains("Country")').find('select').select(author.country)
 			cy.get('.pkpFormField:contains("Email")').find('input').type(author.email);
 			cy.get('.modal__panel:contains("Add Contributor")').find('button').contains('Save').click();
@@ -280,9 +287,7 @@ describe('Data suite tests', function() {
 				.contains('Contributors')
 				.parents('.submissionWizard__reviewPanel')
 				.contains(author)
-				.parents('.submissionWizard__reviewPanel__item__value')
-				.find('.pkpBadge')
-				.contains('Author');
+				.parents('.submissionWizard__reviewPanel__item__value');
 		});
 		cy.get('h3').contains('Details (English/English)') // FIXME: Should be (English)
 			.parents('.submissionWizard__reviewPanel')
