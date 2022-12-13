@@ -12,7 +12,7 @@ describe('DOI tests', function() {
 	const publicationId = 14;
 	const chapterId = 54;
 	const publicationFormatId = 3;
-	const submissionFileId = 83;
+	const submissionFileId = 113;
 	const unpublishedSubmissionId = 4;
 
 	const loginAndGoToDoiPage = () => {
