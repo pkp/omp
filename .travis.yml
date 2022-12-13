@@ -50,6 +50,10 @@ addons:
   postgresql: "9.5"
   apt:
     update: true
+    packages:
+      - libvulkan1
+      - libu2f-udev
+
 before_install:
   # Check out submodules (this script checks out developer forks if necessary)
   - ./tools/startSubmodulesTRAVIS.sh
@@ -72,6 +76,7 @@ before_install:
       npm install
       ./lib/pkp/tools/travis/install-linter.sh
     fi
+
 script:
   - |
     if [[ "$TEST" != "validation" ]]; then
