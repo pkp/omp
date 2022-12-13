@@ -130,6 +130,8 @@ describe('Data suite tests', function() {
 		cy.clickDecision('Send to Internal Review');
 		cy.recordDecisionSendToReview('Send to Internal Review', [author], submission.files.map(file => file.fileName));
 		cy.isActiveStageTab('Internal Review');
+		cy.assignParticipant('Press editor', 'Daniel Barnes');
+		cy.assignParticipant('Series editor', 'David Buskins');
 		// Assign a recommendOnly section editor
 		cy.assignParticipant('Series editor', 'Minoti Inoue', true);
 		cy.logout();
