@@ -30,33 +30,58 @@ describe('Monograph View Metadata - DC Plugin', function() {
 			],
 			chapters: [
 				{
-					'title': 'Choosing the Future',
-					'contributors': ['Name 1 Author 1']
+					title: 'Choosing the Future',
+					contributors: ['Name 1 Author 1'],
+					files: ['chapter1.pdf'],
 				},
 				{
-					'title': 'Axioms',
-					'contributors': ['Name 1 Author 1']
+					title: 'Axioms',
+					contributors: ['Name 1 Author 1'],
+					files: ['chapter2.pdf'],
 				},
 				{
-					'title': 'Paradigm Shift',
-					'contributors': ['Name 2 Author 2']
+					title: 'Paradigm Shift',
+					contributors: ['Name 2 Author 2'],
+					files: ['chapter3.pdf'],
 				}
+			],
+			files: [
+				{
+					file: 'dummy.pdf',
+					fileName: 'chapter1.pdf',
+					mimeType: 'application/pdf',
+					genre: Cypress.env('defaultGenre')
+				},
+				{
+					file: 'dummy.pdf',
+					fileName: 'chapter2.pdf',
+					mimeType: 'application/pdf',
+					genre: Cypress.env('defaultGenre')
+				},
+				{
+					file: 'dummy.pdf',
+					fileName: 'chapter3.pdf',
+					mimeType: 'application/pdf',
+					genre: Cypress.env('defaultGenre')
+				},
 			],
 			submitterRole: 'Press manager',
 			additionalAuthors: [
 				{
-					'givenName': 'Name 1',
-					'familyName': 'Author 1',
-					'country': 'United States',
-					'affiliation': 'Stanford University',
-					'email': 'nameauthor1Test@mailinator.com',
+					givenName: {en_US: 'Name 1'},
+					familyName: {en_US: 'Author 1'},
+					country: 'US',
+					affiliation: {en_US: 'Stanford University'},
+					email: 'nameauthor1Test@mailinator.com',
+					userGroupId: Cypress.env('authorUserGroupId')
 				},
 				{
-					'givenName': 'Name 2',
-					'familyName': 'Author 2',
-					'country': 'United States',
-					'affiliation': 'Stanford University',
-					'email': 'nameauthor2Test@mailinator.com',
+					givenName: {en_US: 'Name 2'},
+					familyName: {en_US: 'Author 2'},
+					country: 'US',
+					affiliation: {en_US: 'Stanford University'},
+					email: 'nameauthor2Test@mailinator.com',
+					userGroupId: Cypress.env('authorUserGroupId')
 				}
 			],
 			localeTitles: {
@@ -376,10 +401,18 @@ describe('Monograph View Metadata - DC Plugin', function() {
 		cy.get('.app__nav a').contains('Submissions').click();
 
 		// Create a new submission
-		cy.createSubmission(submission);
+		cy.getCsrfToken();
+		cy.window()
+			.then(() => {
+				return cy.createSubmissionWithApi(submission, this.csrfToken);
+			})
+			.then(xhr => {
+				return cy.submitSubmissionWithApi(submission.id, this.csrfToken);
+			})
+			.then(xhr => {
+				cy.visit('/index.php/publicknowledge/workflow/index/' + submission.id + '/1');
+			});
 
-		// Go to the new submission's workflow
-		cy.get('a').contains('Review this submission').click();
 
 		// Go to publication tabs
 		cy.get('#publication-button').click();
@@ -458,12 +491,12 @@ describe('Monograph View Metadata - DC Plugin', function() {
 			cy.waitJQuery();
 
 			// File completion
-			cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("' + Cypress.$.escapeSelector(submission.title) + '") a[id*="-isComplete-not_approved-button-"]').click();
+			cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("chapter3.pdf") a[id*="-isComplete-not_approved-button-"]').click();
 			cy.get('form[id="assignPublicIdentifierForm"] button[id^="submitFormButton-"]').click();
 			cy.waitJQuery();
 
 			// File availability
-			cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("' + Cypress.$.escapeSelector(submission.title) + '") a[id*="-isAvailable-editApprovedProof-button-"]').click();
+			cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("chapter3.pdf") a[id*="-isAvailable-editApprovedProof-button-"]').click();
 			cy.get('input[id="openAccess"]').click();
 			cy.get('form#approvedProofForm button.submitFormButton').click();
 		});
