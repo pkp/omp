@@ -1,0 +1,26 @@
+# Adolfo Muñoz Aguilar <adolfo@uco.es>, 2022.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2022-12-01 15:51+0000\n"
+"Last-Translator: Adolfo Muñoz Aguilar <adolfo@uco.es>\n"
+"Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/api/es/>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "No se pudo encontrar uno o más de los envíos especificados."
+
+msgid "api.submissions.400.submissionIdsRequired"
+msgstr "Debe proporcionar uno o más ID de envío para agregarlos al catálogo."
+
+msgid "api.submissions.400.wrongContext"
+msgstr "El envío que solicitó no se encuentra en esta editorial."
+
+msgid "api.emails.403.disabled"
+msgstr ""
+"La notificación por correo electrónico no se ha habilitado para esta "
+"editorial."
