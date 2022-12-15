@@ -29,9 +29,4 @@ class PreflightCheckMigration extends \PKP\migration\upgrade\v3_4_0\PreflightChe
     {
         return 'press_id';
     }
-
-    protected function getContextSettingsTable(): string
-    {
-        return 'press_settings';
-    }
 }
