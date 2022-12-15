@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:05-08:00\n"
-"PO-Revision-Date: 2022-10-01 08:01+0000\n"
+"PO-Revision-Date: 2022-12-15 16:52+0000\n"
 "Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "da_DK/>\n"
@@ -34,11 +34,12 @@ msgstr "Indsendelsestype"
 msgid "submission.workflowType.description"
 msgstr ""
 "En monografi er et værk, der helt igennem er skrevet af en eller flere "
-"forfattere. Et redigeret værk har forskellige forfattere til hvert enkelt "
-"kapitel (med kapiteloplysninger indtastet senere i denne proces.)"
+"forfattere. En antologi (redigeret værk) har forskellige forfattere til "
+"hvert enkelt kapitel (med kapiteloplysninger indtastet senere i denne "
+"proces.)"
 
 msgid "submission.workflowType.editedVolume"
-msgstr "Redigeret værk: Forfattere er knyttet til deres eget kapitel."
+msgstr "Antologi: Forfattere er knyttet til deres eget kapitel."
 
 msgid "submission.workflowType.authoredWork"
 msgstr "Monografi: Forfattere er forbundet med bogen som helhed."
@@ -365,7 +366,7 @@ msgid "submission.workflowType.change"
 msgstr "Skift"
 
 msgid "submission.workflowType.editedVolume.label"
-msgstr "Redigeret bind"
+msgstr "Antologi"
 
 msgid "publication.inactiveSeries"
 msgstr "{$series} (Inaktiv)"
@@ -633,3 +634,48 @@ msgstr "Hvis du sender et redigeret værk, bør du vælge redaktørrollen."
 
 msgid "submission.submit.titleAndSummary"
 msgstr "Titel og resume"
+
+msgid "submission.copyright.description"
+msgstr ""
+"Læs og forstå venligst ophavsretsbetingelserne for at indsende til denne "
+"udgiver/forlag."
+
+msgid "submission.wizard.notAllowed.description"
+msgstr ""
+"Du har ikke lov til at indsende et manuskript til denne udgiver, idet "
+"forfattere skal registreres først af redaktionen. Hvis du mener, dette er en "
+"fejl, så kontakt venligst <a href='mailto:{$email}'>{$name}</a>."
+
+msgid "submission.wizard.submitting.monographInLanguage"
+msgstr ""
+"Indsender en <strong>Monografi</strong> på <strong>{$language}</strong>."
+
+msgid "submission.wizard.chapters.description"
+msgstr ""
+"Vær venlig at angive alle kapitler i denne indsendelse. Hvis du indsender en "
+"antologi, så sørg for at angive alle bidragydere til hver enkelt kapitel."
+
+msgid "author.volumeEditor"
+msgstr "Bindredaktør"
+
+msgid "submission.wizard.noSectionAllowed.description"
+msgstr ""
+"Du har ikke lov til at indsende et manuskript til denne udgiver, idet "
+"indsendelser til alle sektioner hos denne udgiver er blevet deaktiveret "
+"eller begrænset. Hvis du mener, dette er en fejl, så kontakt venligst <a "
+"href='mailto:{$email}'>{$name}</a>."
+
+msgid "submission.sectionNotFound"
+msgstr "Denne indsendelses serie kunne ikke findes."
+
+msgid "submission.sectionRestrictedToEditors"
+msgstr "Kun medlemmer af redaktionen kan indsende til denne serie."
+
+msgid "submission.wizard.submitting.monograph"
+msgstr "Indsender en <strong>Monografi</strong>."
+
+msgid "submission.wizard.submitting.editedVolume"
+msgstr "Indsender en <strong>Antologi</strong>."
+
+msgid "submission.wizard.submitting.editedVolumeInLanguage"
+msgstr "Indsender en <strong>Antologi</strong> på <strong>{$language}</strong>."
