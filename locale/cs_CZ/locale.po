@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-09-22 07:38+0000\n"
+"PO-Revision-Date: 2022-12-15 16:52+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/locale/cs_CZ/>"
 "\n"
@@ -112,11 +112,10 @@ msgid "user.authorization.invalidReviewAssignment"
 msgstr ""
 "Přístup byl odepřen. Zdá se, že nejste platným recenzentem tohoto rukopisu."
 
-#, fuzzy
 msgid "notification.type.visitCatalog"
 msgstr ""
-"Monografie byla schválena. Navštivte prosím katalog kliknutím na odkaz výše, "
-"kde můžete spravovat katalogové informace."
+"Monografie byla schválena. Navštivte stránku Marketing a publikace a "
+"spravujte její katalogové údaje pomocí výše uvedených odkazů."
 
 msgid "notification.type.visitCatalogTitle"
 msgstr "Správa katalogu"
