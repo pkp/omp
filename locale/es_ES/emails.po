@@ -48,21 +48,6 @@ msgstr ""
 msgid "emails.passwordResetConfirm.description"
 msgstr "Este correo electrónico se envía a un usuario/a registrado cuando indica que olvidó su contraseña o cuando no puede iniciar sesión. Proporciona una dirección URL con la que se puede restablecer la contraseña."
 
-msgid "emails.passwordReset.subject"
-msgstr "Restablecer contraseña"
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"La contraseña se restableció con éxito en la página web {$siteTitle}. Recuerde el nombre de usuario/a y contraseña, son necesarios para trabajar en la publicación.<br />\n"
-"<br />\n"
-"Nombre de usuario/a: {$username}<br />\n"
-"Nueva contraseña: {$password}<br />\n"
-"<br />\n"
-"{$principalContactSignature}"
-
-msgid "emails.passwordReset.description"
-msgstr "Este correo electrónico se envía a un usuario/a registrado cuando se restablece su contraseña con éxito tras seguir el proceso descrito en el correo RESTABLECER_CONTRASEÑA_CONFIRMACIÓN."
-
 msgid "emails.userRegister.subject"
 msgstr "Registro en la publicación"
 

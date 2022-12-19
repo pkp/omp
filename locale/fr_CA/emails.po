@@ -43,21 +43,6 @@ msgstr ""
 msgid "emails.passwordResetConfirm.description"
 msgstr "Ce courriel est envoyé à un utilisateur lorsqu'il a indiqué avoir oublié son mot de passe ou être incapable d'ouvrir une session. On lui fournit une adresse URL sur laquelle il peut cliquer pour modifier son mot de passe."
 
-msgid "emails.passwordReset.subject"
-msgstr "Réinitialisation du mot de passe"
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"Votre mot de passe vous permettant d'avoir accès au site Web {$siteTitle} a été réinitialisé. Veuillez noter votre nom d'utilisateur et mot de passe dans vos dossiers, car vous en aurez besoin pour vos travaux auprès de la presse.<br />\n"
-"<br />\n"
-"Votre nom d'utilisateur: {$username}<br />\n"
-"Votre nouveau mot de passe: {$password}<br />\n"
-"<br />\n"
-"{$principalContactSignature}"
-
-msgid "emails.passwordReset.description"
-msgstr "Ce courriel est envoyé à un utilisateur lorsque son mot de passe a été réinitialisé après avoir suivi les instructions du courriel \"PASSWORD_RESET_CONFIRM\"."
-
 msgid "emails.userRegister.subject"
 msgstr "Inscription à la presse"
 

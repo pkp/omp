@@ -43,21 +43,6 @@ msgstr ""
 msgid "emails.passwordResetConfirm.description"
 msgstr "This email is sent to a registered user when they indicate that they have forgotten their password or are unable to login. It provides a URL they can follow to reset their password."
 
-msgid "emails.passwordReset.subject"
-msgstr "Επαναφορά κωδικού πρόσβασης"
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"Η επαναφορά (αλλαγή) του κωδικού πρόσβασής σας πραγματοποιήθηκε επιτυχώς για χρήση στον ιστότοπο {$siteTitle} . Παρακαλούμε διατηρήστε το συγκεκριμένο όνομα χρήστη και τον κωδικό πρόσβασης, καθώς είναι απαραίτητα για όλες τις εργασίες σας στην έκδοση.<br />\n"
-"<br />\n"
-"Όνομα χρήστη: {$username}<br />\n"
-"Νέος κωδικός πρόσβασης: {$password}<br />\n"
-"<br />\n"
-"{$principalContactSignature}"
-
-msgid "emails.passwordReset.description"
-msgstr "Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται σε εγγεγραμμένους χρήστες αφού ολοκληρώσουν επιτυχώς την επαναφορά του κωδικού πρόσβασής τους ακολουθώντας τη διαδικασία που περιγράφεται στο email PASSWORD_RESET_CONFIRM."
-
 msgid "emails.userRegister.subject"
 msgstr "Εγγραφή χρήστη"
 

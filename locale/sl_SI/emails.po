@@ -29,15 +29,6 @@ msgstr "Prejeli smo zahtevo za ponastavitev gesla za spletno mesto {$ siteTitle}
 msgid "emails.passwordResetConfirm.description"
 msgstr "To e-poštno sporočilo je poslano registriranemu uporabniku, če označijo, da so pozabili svoje geslo ali se ne morejo prijaviti. Sporočilo vsebuje URL, do katerega lahko dostopajo, če želijo ponastaviti geslo."
 
-msgid "emails.passwordReset.subject"
-msgstr "Ponastavitev gesla"
-
-msgid "emails.passwordReset.body"
-msgstr "Vaše geslo za dostop do spletišča {$siteTitle} je bilo ponastavljeno.<br /> <br /> Uporabniško ime: {$username}<br /> Vaše novo geslo: {$password}<br /> <br /> {$principalContactSignature}"
-
-msgid "emails.passwordReset.description"
-msgstr "To e-poštno sporočilo je poslano registriranemu uporabniku, ko je uspešno ponastavil svoje geslo po postopku, opisanem v e-poštnem sporočilu PASSWORD_RESET_CONFIRM."
-
 msgid "emails.userRegister.subject"
 msgstr "Registracija založbe"
 
