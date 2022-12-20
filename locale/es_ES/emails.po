@@ -28,18 +28,6 @@ msgstr ""
 "<br />\n"
 "{$siteContactName}"
 
-msgid "emails.passwordReset.subject"
-msgstr "Restablecer contraseña"
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"La contraseña se restableció con éxito en la página web {$siteTitle}. Recuerde el nombre de usuario/a y contraseña, son necesarios para trabajar en la publicación.<br />\n"
-"<br />\n"
-"Nombre de usuario/a: {$recipientUsername}<br />\n"
-"Nueva contraseña: {$password}<br />\n"
-"<br />\n"
-"{$siteContactName}"
-
 msgid "emails.userRegister.subject"
 msgstr "Registro en la publicación"
 

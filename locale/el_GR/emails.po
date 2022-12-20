@@ -24,18 +24,6 @@ msgstr ""
 "<br />\n"
 "{$siteContactName}"
 
-msgid "emails.passwordReset.subject"
-msgstr "Επαναφορά κωδικού πρόσβασης"
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"Η επαναφορά (αλλαγή) του κωδικού πρόσβασής σας πραγματοποιήθηκε επιτυχώς για χρήση στον ιστότοπο {$siteTitle} . Παρακαλούμε διατηρήστε το συγκεκριμένο όνομα χρήστη και τον κωδικό πρόσβασης, καθώς είναι απαραίτητα για όλες τις εργασίες σας στην έκδοση.<br />\n"
-"<br />\n"
-"Όνομα χρήστη: {$recipientUsername}<br />\n"
-"Νέος κωδικός πρόσβασης: {$password}<br />\n"
-"<br />\n"
-"{$siteContactName}"
-
 msgid "emails.userRegister.subject"
 msgstr "Εγγραφή χρήστη"
 

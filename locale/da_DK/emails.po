@@ -159,18 +159,6 @@ msgstr ""
 "spørgsmål, bedes du kontakte mig. Tak for dit bidrag til denne udgivers "
 "arbejde.</p><p>Med venlig hilsen</p>{$signature}"
 
-msgid "emails.passwordReset.subject"
-msgstr "Nulstil adgangskode"
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"Din adgangskode er blevet nulstillet og kan benyttes på webstedet {$siteTitle}.<br />\n"
-"<br />\n"
-"Dit brugernavn: {$recipientUsername}<br />\n"
-"Dit nye password: {$password}<br />\n"
-"<br />\n"
-"{$siteContactName}"
-
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Bekræftelse af nulstilling af adgangskode"
 
