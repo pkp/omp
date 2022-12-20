@@ -256,6 +256,14 @@ describe('Data suite tests', function() {
 		cy.get('h2').contains('Submission Details');
 		cy.setTinyMceContent('titleAbstract-abstract-control-en_US', submission.abstract);
 		cy.get('#titleAbstract-abstract-control-en_US').click(); // Ensure blur event is fired
+
+		// Save for later
+		cy.get('button').contains('Save for Later').click();
+		cy.contains('Saved for Later');
+		cy.contains('Your submission details have been saved');
+		cy.contains('We have emailed a copy of this link to you at afinkel@mailinator.com.');
+		cy.get('a').contains(submission.title).click();
+
 		cy.addChapters(submission.chapters);
 
 		cy.get('.submissionWizard__footer button').contains('Continue').click();
@@ -307,13 +315,6 @@ describe('Data suite tests', function() {
 		cy.get('h3').contains('For the Editors (French/Français (Canada))') // FIXME: Should be (English)
 			.parents('.submissionWizard__reviewPanel')
 			.find('h4').contains('Keywords').siblings('.submissionWizard__reviewPanel__item__value').contains('None provided');
-
-		// Save for later
-		cy.get('button').contains('Save for Later').click();
-		cy.contains('Saved for Later');
-		cy.contains('Your submission details have been saved');
-		cy.contains('We have emailed a copy of this link to you at afinkel@mailinator.com.');
-		cy.get('a').contains(submission.title).click();
 
 		// Submit
 		cy.contains('Make a Submission: Review');
