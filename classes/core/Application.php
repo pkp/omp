@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Application
+ *
  * @ingroup core
  *
  * @see PKPApplication
@@ -140,7 +141,6 @@ class Application extends PKPApplication
             'PublicationFormatDAO' => 'APP\publicationFormat\PublicationFormatDAO',
             'QualifierDAO' => 'APP\codelist\QualifierDAO',
             'RepresentativeDAO' => 'APP\monograph\RepresentativeDAO',
-            'ReviewerSubmissionDAO' => 'APP\submission\reviewer\ReviewerSubmissionDAO',
             'SalesRightsDAO' => 'APP\publicationFormat\SalesRightsDAO',
             'SeriesDAO' => 'APP\press\SeriesDAO',
             'SpotlightDAO' => 'APP\spotlight\SpotlightDAO',
