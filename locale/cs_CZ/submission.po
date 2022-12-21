@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-12-15 16:52+0000\n"
+"PO-Revision-Date: 2022-12-22 10:16+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "cs_CZ/>\n"
@@ -661,3 +661,9 @@ msgid "submission.wizard.submitting.editedVolumeInLanguage"
 msgstr ""
 "Odeslání <strong>editovaného svazku</strong> v jazyce: "
 "<strong>{$language}</strong>."
+
+msgid "submission.wizard.sectionClosed.message"
+msgstr ""
+"{$contextName} nepřijímá příspěvky do seriálu {$section}. Pokud potřebujete "
+"pomoc s obnovou svého příspěvku, obraťte se na <a "
+"href='mailto:{$email}'>{$name}</a>."
