@@ -45,7 +45,33 @@ class ReviewerSubmissionDAO extends SubmissionDAO {
 		$locale = AppLocale::getLocale();
 		$result = $this->retrieve(
 			'SELECT	m.*, p.date_published,
-				r.*,
+				r.review_id,
+				r.submission_id,
+				r.reviewer_id,
+				r.competing_interests,
+				r.recommendation,
+				r.date_assigned,
+				r.date_notified,
+				r.date_confirmed,
+				r.date_completed,
+				r.date_acknowledged,
+				r.date_due,
+				r.date_response_due,
+				r.last_modified as last_modified_ra,
+				r.reminder_was_automatic,
+				r.declined,
+				r.cancelled,
+				r.reviewer_file_id,
+				r.date_rated,
+				r.date_reminded,
+				r.quality,
+				r.review_round_id,
+				r.stage_id as stage_id_ra,
+				r.review_method,
+				r.round,
+				r.step,
+				r.review_form_id,
+				r.unconsidered,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title
 			FROM	submissions m
 				LEFT JOIN publications p ON (m.current_publication_id = p.publication_id)
@@ -106,6 +132,7 @@ class ReviewerSubmissionDAO extends SubmissionDAO {
 		$reviewerSubmission->setRound($row['round']);
 		$reviewerSubmission->setStep($row['step']);
 		$reviewerSubmission->setStageId($row['stage_id']);
+		$reviewerSubmission->setReviewAssignmentStageId($row['stage_id_ra']);
 		$reviewerSubmission->setReviewMethod($row['review_method']);
 
 		HookRegistry::call('ReviewerSubmissionDAO::_fromRow', array(&$reviewerSubmission, &$row));
@@ -148,7 +175,7 @@ class ReviewerSubmissionDAO extends SubmissionDAO {
 			[
 				(int) $reviewerSubmission->getId(),
 				(int) $reviewerSubmission->getReviewerId(),
-				(int) $reviewerSubmission->getStageId(),
+				(int) $reviewerSubmission->getReviewAssignmentStageId(),
 				(int) $reviewerSubmission->getReviewMethod(),
 				(int) $reviewerSubmission->getRound(),
 				(int) $reviewerSubmission->getStep(),
