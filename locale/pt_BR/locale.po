@@ -1,10 +1,10 @@
-# Diego José Macêdo <diegojmacedo@gmail.com>, 2021, 2022.
+# Diego José Macêdo <diegojmacedo@gmail.com>, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T12:00:53-07:00\n"
-"PO-Revision-Date: 2022-09-29 20:48+0000\n"
+"PO-Revision-Date: 2023-01-05 17:02+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "locale/pt_BR/>\n"
@@ -1225,7 +1225,6 @@ msgstr "Acesso negado ao arquivo específico da monografia."
 msgid "user.authorization.invalidMonograph"
 msgstr "Monografia inválida ou nenhuma monografia solicitada!"
 
-#, fuzzy
 msgid "user.authorization.noContext"
 msgstr "Nenhuma editora no contexto!"
 
