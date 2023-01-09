@@ -29,6 +29,7 @@ import StatsUsersPage from '@/components/Container/StatsUsersPage.vue';
 import SubmissionWizardPage from '@/components/Container/SubmissionWizardPageOMP.vue';
 import WorkflowPage from '@/components/Container/WorkflowPageOMP.vue';
 import JobsPage from '@/components/Container/JobsPage.vue';
+import FailedJobsPage from '@/components/Container/FailedJobsPage.vue';
 
 import CatalogListPanel from '@/components/ListPanel/submissions/CatalogListPanel.vue';
 
@@ -48,6 +49,7 @@ window.pkp = Object.assign(PkpLoad, {
 		ImportExportPage,
 		ManageEmailsPage,
 		JobsPage,
+		FailedJobsPage,
 		SettingsPage,
 		StartSubmissionPage,
 		StatsEditorialPage,

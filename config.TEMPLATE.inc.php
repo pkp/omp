@@ -582,3 +582,7 @@ job_runner_max_execution_time = 30
 ; When setting a fixed value in megabytes, this should be less than the
 ; memory_limit the server has configured for PHP.
 job_runner_max_memory = 80
+
+; The number of days older failed jobs will be removed from failed list automatically
+; Comment out this setting if do not want to clean much older failed jobs
+failed_job_clean_period = 180

@@ -58,4 +58,8 @@
 		<descr>Process pending queue jobs in the default queue driver and queue</descr>
 		<frequency second="0"/>
 	</task>
+	<task class="PKP\task\RemoveFailedJobs">
+		<descr>Automatically remove much older failed jobs from failed list.</descr>
+		<frequency day="1"/>
+	</task>
 </scheduled_tasks>
