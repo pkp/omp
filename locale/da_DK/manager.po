@@ -1,12 +1,13 @@
 # Niels Erik Frederiksen <nef@kb.dk>, 2021.
 # Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022.
+# Jesper B. Thestrup <jbt@kb.dk>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2022-11-07 20:02+0000\n"
-"Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
+"PO-Revision-Date: 2023-01-11 02:34+0000\n"
+"Last-Translator: Jesper B. Thestrup <jbt@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "da_DK/>\n"
 "Language: da_DK\n"
@@ -903,11 +904,10 @@ msgstr ""
 msgid "manager.setup.enableAnnouncements.enable"
 msgstr "Aktivér meddelelser"
 
-#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
-"De forberedte e-mails, der sendes af systemet på vegne af udgiveren, "
-"tilføjes følgende signatur i bunden."
+"E-mails, der sendes af systemet på vegne af udgiveren, tilføjes følgende "
+"signatur i bunden."
 
 msgid "manager.setup.emailSignature"
 msgstr "Signatur"
@@ -1682,3 +1682,25 @@ msgstr "Antal visninger af udgiverens og katalogets indekssider."
 
 msgid "stats.context.downloadReport.downloadContext"
 msgstr "Download udgiver"
+
+msgid "mailable.indexRequest.name"
+msgstr "Indeks krævet"
+
+msgid "mailable.indexComplete.name"
+msgstr "Indeksering afsluttet"
+
+msgid "mailable.publicationVersionNotify.name"
+msgstr "Ny version skabt"
+
+msgid "mailable.submissionNeedsEditor.description"
+msgstr ""
+"Denne e-mail sendes til pressechefer, når der er lavet en ny indsendelse, og "
+"der ikke er tildelt redaktører."
+
+msgid "manager.manageEmails.description"
+msgstr "Rediger beskederne sendt i e-mails fra denne udgiver."
+
+msgid "mailable.publicationVersionNotify.description"
+msgstr ""
+"Denne e-mail giver automatisk de tildelte redaktører besked, når en ny "
+"version af indsendelsen er blevet oprettet."
