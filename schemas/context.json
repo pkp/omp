@@ -75,7 +75,8 @@
 				"validation": [
 					"in:publication,representation,file,chapter"
 				]
-			}
+			},
+		  	"default": ["publication"]
 		},
 		"doiCreationTime": {
 			"type": "string",
