@@ -41,6 +41,11 @@ session_cookie_name = OMPSID
 ; (set to 0 to force expiration at end of current session)
 session_lifetime = 30
 
+; SameSite configuration for the cookie, see possible values and explanations
+; at https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
+; To set the "Secure" attribute for the cookie see the setting force_ssl at the [security] group
+session_samesite = lax
+
 ; Enable support for running scheduled tasks
 ; Set this to On if you have set up the scheduled tasks script to
 ; execute periodically
@@ -94,7 +99,7 @@ allow_url_fopen = Off
 ; See FAQ for more details.
 restful_urls = Off
 
- Restrict the list of allowed hosts to prevent HOST header injection.
+; Restrict the list of allowed hosts to prevent HOST header injection.
 ; See docs/README.md for more details. The list should be JSON-formatted.
 ; An empty string indicates that all hosts should be trusted (not recommended!)
 ; Example:
@@ -222,6 +227,7 @@ umask = 0022
 ; a possible revision
 filename_revision_match = 70
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Fileinfo (MIME) Settings ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -236,7 +242,8 @@ filename_revision_match = 70
 
 [security]
 
-; Force SSL connections site-wide
+; Force SSL connections site-wide and also sets the "Secure" flag for session cookies
+; See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#secure
 force_ssl = Off
 
 ; Force SSL connections for login only
@@ -259,8 +266,7 @@ salt = "YouMustSetASecretKeyHere!!"
 ; The unique secret used for encoding and decoding API keys
 api_key_secret = ""
 
-; The number of seconds before a password reset hash expires (defaults to
-; 7200 seconds (2 hours)
+; The number of seconds before a password reset hash expires (defaults to 7200 / 2 hours)
 reset_seconds = 7200
 
 ; Allowed HTML tags for fields that permit restricted HTML.
@@ -335,7 +341,7 @@ allowed_html = "a[href|target|title],em,strong,cite,code,ul,ol,li[class],dl,dt,d
 ; default_envelope_sender = my_address@my_host.com
 
 ; Force the default envelope sender (if present)
-; This is useful if setting up a site-wide noreply address
+; This is useful if setting up a site-wide no-reply address
 ; The reply-to field will be set with the reply-to or from address.
 ; force_default_envelope_sender = Off
 
@@ -361,7 +367,7 @@ allowed_html = "a[href|target|title],em,strong,cite,code,ul,ol,li[class],dl,dt,d
 time_between_emails = 3600
 
 ; Maximum number of recipients that can be included in a single email
-; (either as To:, Cc:, or Bcc: addresses) for a non-priveleged user
+; (either as To:, Cc:, or Bcc: addresses) for a non-privileged user
 max_recipients = 10
 
 ; If enabled, email addresses must be validated before login is possible.
@@ -427,10 +433,10 @@ repository_id = omp.pkp.sfu.ca
 
 [interface]
 
-; Number of items to display per page; overridable on a per-press basis
+; Number of items to display per page; can be overridden on a per-press basis
 items_per_page = 50
 
-; Number of page links to display; overridable on a per-press basis
+; Number of page links to display; can be overridden on a per-press basis
 page_links = 10
 
 
