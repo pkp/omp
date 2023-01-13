@@ -1,9 +1,10 @@
 # paola <pjukic@yahoo.com>, 2022.
 # Boris Badurina <boris.badurina@gmail.com>, 2022.
+# Melita Aleksa Varga <melita.aleksa@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-10-13 15:51+0000\n"
-"Last-Translator: Boris Badurina <boris.badurina@gmail.com>\n"
+"PO-Revision-Date: 2023-01-14 11:02+0000\n"
+"Last-Translator: Melita Aleksa Varga <melita.aleksa@gmail.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "hr_HR/>\n"
 "Language: hr_HR\n"
@@ -148,3 +149,21 @@ msgstr "Stranice"
 
 msgid "catalog.browseTitles"
 msgstr "{$numTitles} Naslova"
+
+msgid "submission.proofs"
+msgstr "Inačice"
+
+msgid "submission.round"
+msgstr "Broj&nbsp;{$round}"
+
+msgid "submissions.queuedReview"
+msgstr "U postupku recenzije"
+
+msgid "submission.copyedit"
+msgstr "Uređivanje"
+
+msgid "author.volumeEditor"
+msgstr "Urednik broja"
+
+msgid "author.isVolumeEditor"
+msgstr "Označi ovog autora kao urednika broja."
