@@ -3,8 +3,8 @@
 # Maja Jurić <maja-juric@windowslive.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-13 11:33+0000\n"
-"Last-Translator: Melita Aleksa Varga <melita.aleksa@gmail.com>\n"
+"PO-Revision-Date: 2023-01-14 11:02+0000\n"
+"Last-Translator: Maja Jurić <maja-juric@windowslive.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/editor/"
 "hr_HR/>\n"
 "Language: hr_HR\n"
@@ -32,3 +32,47 @@ msgstr "Prijedlog"
 
 msgid "editor.monograph.enterReviewerRecommendation"
 msgstr "Unesi prijedlog recenzenta"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Trenutačne datoteke"
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Podjela odlomka"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Rad na rukopisu"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Opcije stručnog mišljenja"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Editor unosi prijedloge/komentare za recenzenta"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr ""
+"Odaberite datoteke u nastavku da biste ih poslali u fazu internog pregleda."
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr ""
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Zamijeni recenzenta"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Poruka korisniku"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Uredi stavku"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr ""
+"Odaberi recenzenta iznad i pritisnite gumb 'Odaberi recenzenta' za nastavak."
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Datoteke za lekturu"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Učitaj recenziju"
+
+msgid "editor.monograph.internalReview"
+msgstr "Pokrenite internu pregleda"
