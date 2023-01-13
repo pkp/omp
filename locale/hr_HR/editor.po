@@ -1,9 +1,10 @@
 # paola <pjukic@yahoo.com>, 2022.
 # Melita Aleksa Varga <melita.aleksa@gmail.com>, 2023.
+# Maja Jurić <maja-juric@windowslive.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-13 11:26+0000\n"
-"Last-Translator: Melita Aleksa Varga <melita.aleksa@gmail.com>\n"
+"PO-Revision-Date: 2023-01-13 11:33+0000\n"
+"Last-Translator: Maja Jurić <maja-juric@windowslive.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/editor/"
 "hr_HR/>\n"
 "Language: hr_HR\n"
@@ -25,3 +26,6 @@ msgstr "Obriši recenzenta"
 
 msgid "editor.monograph.cancelReview"
 msgstr "Odbaci zamolbu"
+
+msgid "editor.monograph.recommendation"
+msgstr "Prijedlog"
