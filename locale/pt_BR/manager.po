@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T12:00:53-07:00\n"
-"PO-Revision-Date: 2023-01-05 17:02+0000\n"
+"PO-Revision-Date: 2023-01-18 06:03+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "manager/pt_BR/>\n"
@@ -1578,3 +1578,27 @@ msgstr "O número de exibições de página de índice da editora e do catálogo
 
 msgid "stats.context.downloadReport.downloadContext"
 msgstr "Baixar Editora"
+
+msgid "manager.manageEmails.description"
+msgstr "Edite as mensagens enviadas em e-mails desta editora."
+
+#, fuzzy
+msgid "mailable.indexRequest.name"
+msgstr "Índice Solicitado"
+
+#, fuzzy
+msgid "mailable.indexComplete.name"
+msgstr "Índice Concluído"
+
+msgid "mailable.publicationVersionNotify.name"
+msgstr "Nova Versão Criada"
+
+msgid "mailable.submissionNeedsEditor.description"
+msgstr ""
+"Este e-mail é enviado aos gerentes da editora quando uma nova submissão é "
+"feita e nenhum editor é designado."
+
+msgid "mailable.publicationVersionNotify.description"
+msgstr ""
+"Este e-mail notifica automaticamente os editores designados quando uma nova "
+"versão da submissão foi criada."
