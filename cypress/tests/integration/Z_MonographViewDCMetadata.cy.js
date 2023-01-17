@@ -427,7 +427,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 		cy.get('#titleAbstract input[name=prefix-fr_CA]').type(submission.localeTitles.fr_CA.prefix, {delay: 0});
 		cy.get('#titleAbstract input[name=subtitle-fr_CA]').type(submission.localeTitles.fr_CA.subtitle, {delay: 0});
 		cy.setTinyMceContent('titleAbstract-abstract-control-fr_CA', submission.localeTitles.fr_CA.abstract);
-		cy.get('#titleAbstract-abstract-control-fr_CA').click(); // Ensure blur event is fired
+		cy.get('#titleAbstract-title-control-fr_CA').click(); // Ensure blur event is fired
 		cy.get('#titleAbstract input[name=subtitle-fr_CA]').click();
 		cy.get('#titleAbstract button').contains('Save').click();
 		cy.get('#titleAbstract [role="status"]').contains('Saved');
