@@ -117,13 +117,6 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $this->_cleanFiles();
     }
 
-    /**
-     * @covers SubmissionFileDAO
-     * @covers SubmissionFileDAO
-     * @covers SubmissionFileDAODelegate
-     * @covers SubmissionArtworkFileDAODelegate
-     * @covers SubmissionFileDAODelegate
-     */
     public function testSubmissionFileCrud()
     {
         //
