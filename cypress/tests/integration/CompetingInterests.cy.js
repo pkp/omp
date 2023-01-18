@@ -58,11 +58,7 @@ describe('Data suite tests', function() {
 		cy.get('.app__nav a').contains('Workflow').click();
 		cy.get('button[id="review-button"]').click();
 		cy.get('button[id="reviewerGuidance-button"]').click();
-		cy.wait(2000); // Give TinyMCE control time to load
 		cy.setTinyMceContent('reviewerGuidance-competingInterests-control-en_US', 'Reviewer competing interests disclosure');
-		// FIXME: Weird TinyMCE interaction, apparently affects only automated testing.
-		// The PUT request won't contain the entered content for this forum unless we click it first.
-		cy.get('p:contains("Reviewer competing interests disclosure")').click();
 		cy.get('div[id="reviewerGuidance"] button:contains("Save")').click();
 		cy.get('#reviewerGuidance [role="status"]').contains('Saved');
 		cy.logout();
@@ -111,7 +107,6 @@ describe('Data suite tests', function() {
 		cy.get('.app__nav a').contains('Workflow').click();
 		cy.get('button[id="review-button"]').click();
 		cy.get('button[id="reviewerGuidance-button"]').click();
-		cy.wait(2000); // Give TinyMCE control time to load
 		cy.setTinyMceContent('reviewerGuidance-competingInterests-control-en_US', '');
 		cy.get('div[id="reviewerGuidance"] button:contains("Save")').click();
 		cy.get('#reviewerGuidance [role="status"]').contains('Saved');
