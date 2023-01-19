@@ -184,7 +184,7 @@ msgstr ""
 "<br />\n"
 "<br />\n"
 "Ystävällisin terveisin,<br />\n"
-"{$signature}<br />\n"
+"{$contextSignature}<br />\n"
 
 msgid "emails.reviewCancel.subject"
 msgstr "Arviointipyynnön peruminen"
@@ -273,7 +273,7 @@ msgstr ""
 "Vahvistattehan vielä voitteko suorittaa tämän arvioinnin.<br />\n"
 "<br />\n"
 "Yhteydenottoanne odottaen,<br />\n"
-"{$signature}"
+"{$contextSignature}"
 
 #, fuzzy
 msgid "emails.editorDecisionAccept.subject"

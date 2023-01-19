@@ -231,7 +231,7 @@ msgstr ""
 "contribución para el trabajo de la publicación. Esperamos tener noticias "
 "suyas.<br />\n"
 "<br />\n"
-"{$signature}"
+"{$contextSignature}"
 
 #, fuzzy
 msgid "emails.editorDecisionAccept.subject"
@@ -387,7 +387,7 @@ msgstr ""
 "<br />\n"
 "<br />\n"
 "Sinceramente,<br />\n"
-"{$signature}<br />\n"
+"{$contextSignature}<br />\n"
 
 msgid "emails.reviewReinstate.body"
 msgstr ""

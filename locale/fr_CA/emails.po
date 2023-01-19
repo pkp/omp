@@ -204,7 +204,7 @@ msgstr ""
 "<br />\n"
 "Nous vous prions de confirmer si vous êtes encore disponible pour participer à cette étape cruciale de notre processus éditorial. Veuillez agréer l'expression de nos sentiments les plus distingués. <br />\n"
 "<br />\n"
-"{$signature}"
+"{$contextSignature}"
 
 #, fuzzy
 msgid "emails.editorDecisionAccept.subject"
