@@ -42,18 +42,6 @@ msgstr ""
 "<br />\n"
 "{$principalContactSignature}"
 
-msgid "emails.passwordReset.subject"
-msgstr "Salasana vaihdettu"
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"Salasananne sivustolle {$siteTitle} on vaihdettu onnistuneesti.<br />\n"
-"<br />\n"
-"Käyttäjätunnus: {$username}<br />\n"
-"Uusi salasana: {$password}<br />\n"
-"<br />\n"
-"{$principalContactSignature}"
-
 msgid "emails.userRegister.subject"
 msgstr "Julkaisijan sivustolle rekisteröityminen"
 
@@ -1018,12 +1006,6 @@ msgid "emails.userRegister.description"
 msgstr ""
 "This email is sent to a newly registered user to welcome them to the system "
 "and provide them with a record of their username and password."
-
-msgid "emails.passwordReset.description"
-msgstr ""
-"Tämä sähköposti lähetetään rekisteröityneille käyttäjille, kun he ovat "
-"onnistuneesti uusineet salasanansa PASSWORD_RESET_CONFIRM-sähköpostipohjan "
-"kuvaamalla tavalla."
 
 msgid "emails.notification.description"
 msgstr ""

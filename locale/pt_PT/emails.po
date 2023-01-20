@@ -37,23 +37,6 @@ msgstr ""
 msgid "emails.userRegister.subject"
 msgstr "Registo da Editora"
 
-msgid "emails.passwordReset.description"
-msgstr ""
-"Este e-mail é enviada a utilizadores registados quando a senha é alterada "
-"com sucesso quando seguem o processo do e-mail PASSWORD_RESET_CONFIRM."
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"A sua senha foi alterada com sucesso para o site de {$siteTitle}.<br />\n"
-"<br />\n"
-"Nome de utilizador: {$username}<br />\n"
-"Senha: {$password}<br />\n"
-"<br />\n"
-"{$principalContactSignature}"
-
-msgid "emails.passwordReset.subject"
-msgstr "Senha alterada"
-
 msgid "emails.passwordResetConfirm.description"
 msgstr ""
 "Este e-mail é enviado para um utilizador registado que indique que se "

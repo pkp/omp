@@ -54,9 +54,6 @@ msgstr "Підтвердіть Ваш Обліковий Запис"
 msgid "emails.userRegister.subject"
 msgstr "Реєстрація Видавництва"
 
-msgid "emails.passwordReset.subject"
-msgstr "Скидання Пароля"
-
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Підтвердження Скидання Пароля"
 
@@ -312,22 +309,6 @@ msgstr ""
 "Пароль: {$password}<br />\n"
 "<br />\n"
 "З Повагою,<br />\n"
-"{$principalContactSignature}"
-
-msgid "emails.passwordReset.description"
-msgstr ""
-"Цей лист надсилається зареєстрованому користувачу після того, як він успішно "
-"скинув свій пароль за допомогою процесу, викладеного у листі "
-"PASSWORD_RESET_CONFIRM."
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"Ваш пароль для доступу до веб-сайту {$siteTitle} був успішно змінений. <br />"
-"\n"
-"<br />\n"
-"Ваше ім'я користувача: {$username}<br />\n"
-"Пароль: {$password}<br />\n"
-"<br />\n"
 "{$principalContactSignature}"
 
 msgid "emails.passwordResetConfirm.description"

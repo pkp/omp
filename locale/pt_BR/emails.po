@@ -48,21 +48,6 @@ msgstr ""
 msgid "emails.passwordResetConfirm.description"
 msgstr "Esta mensagem é enviada a usuário cadastrados que indicam ter esquecido a senha ou não conseguem acessar o sistema. A mensagem oferece um endereço para redefinir sua senha."
 
-msgid "emails.passwordReset.subject"
-msgstr "Senha redefinida"
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"Sua senha foi redefinida com sucesso e já pode ser usada para acesso ao site {$siteTitle}. Guarde seu login e sua senha, pois são essenciais para execução das atividades na editora.<br />\n"
-"<br />\n"
-"Login: {$username}<br />\n"
-"Nova senha: {$password}<br />\n"
-"<br />\n"
-"{$principalContactSignature}"
-
-msgid "emails.passwordReset.description"
-msgstr "Esta mensagem é enviada a usuário cadastrado quando a senha é redefinida com sucesso, seguindo o processo descrito em PASSWORD_RESET_CONFIRM."
-
 msgid "emails.userRegister.subject"
 msgstr "Cadastro na editora"
 

@@ -48,21 +48,6 @@ msgstr ""
 msgid "emails.passwordResetConfirm.description"
 msgstr "Aquest correu s'envia a un usuari/ària registrat quan indica que ha oblidat la seva contrasenya o no pot iniciar sessió. Proporciona una URL que l'usuari/ària pot seguir per restablir la seva contrasenya."
 
-msgid "emails.passwordReset.subject"
-msgstr "Contrasenya restablerta"
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"Ja s'ha restablert la vostra contrasenya amb èxit per utilitzar-la al lloc web {$siteTitle}. Conserveu aquest nom d'usuari/ària i contrasenya perquè són necessaris per treballar amb la publicació.<br />\n"
-"<br />\n"
-"Nom d'usuari/ària: {$username}<br />\n"
-"Contrasenya nova: {$password}<br />\n"
-"<br />\n"
-"{$principalContactSignature}"
-
-msgid "emails.passwordReset.description"
-msgstr "Aquest correu s'envia a usuaris/àries registrats quan han canviat amb èxit la seva contrasenya seguint els passos descrits al correu electrònic PASSWORD_RESET_CONFIRM."
-
 msgid "emails.userRegister.subject"
 msgstr "Registre de publicació"
 
