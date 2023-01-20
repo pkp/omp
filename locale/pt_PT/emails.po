@@ -16,18 +16,6 @@ msgstr ""
 msgid "emails.userRegister.subject"
 msgstr "Registo da Editora"
 
-msgid "emails.passwordReset.body"
-msgstr ""
-"A sua senha foi alterada com sucesso para o site de {$siteTitle}.<br />\n"
-"<br />\n"
-"Nome de utilizador: {$recipientUsername}<br />\n"
-"Senha: {$password}<br />\n"
-"<br />\n"
-"{$siteContactName}"
-
-msgid "emails.passwordReset.subject"
-msgstr "Senha alterada"
-
 msgid "emails.passwordResetConfirm.body"
 msgstr ""
 "Recebemos um pedido de alteração da sua senha para o site de {$siteTitle}.<"

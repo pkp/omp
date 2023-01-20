@@ -17,12 +17,6 @@ msgstr "Potrditev ponastavitve gesla"
 msgid "emails.passwordResetConfirm.body"
 msgstr "Prejeli smo zahtevo za ponastavitev gesla za spletno mesto {$siteTitle}. <br /> <br /> Če te zahteve niste podali vi, prezrite to e-poštno sporočilo in vaše geslo ne bo spremenjeno. Če želite ponastaviti geslo, kliknite spodnjo povezavo.<br /> <br /> Ponastavi geslo: <a href=\"{$passwordResetUrl}\">{$passwordResetUrl}</a><br /> <br /> {$siteContactName}"
 
-msgid "emails.passwordReset.subject"
-msgstr "Ponastavitev gesla"
-
-msgid "emails.passwordReset.body"
-msgstr "Vaše geslo za dostop do spletišča {$siteTitle} je bilo ponastavljeno.<br /> <br /> Uporabniško ime: {$recipientUsername}<br /> Vaše novo geslo: {$password}<br /> <br /> {$siteContactName}"
-
 msgid "emails.userRegister.subject"
 msgstr "Registracija založbe"
 

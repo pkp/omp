@@ -28,18 +28,6 @@ msgstr ""
 "<br />\n"
 "{$siteContactName}"
 
-msgid "emails.passwordReset.subject"
-msgstr "Contrasenya restablerta"
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"Ja s'ha restablert la vostra contrasenya amb èxit per utilitzar-la al lloc web {$siteTitle}. Conserveu aquest nom d'usuari/ària i contrasenya perquè són necessaris per treballar amb la publicació.<br />\n"
-"<br />\n"
-"Nom d'usuari/ària: {$recipientUsername}<br />\n"
-"Contrasenya nova: {$password}<br />\n"
-"<br />\n"
-"{$siteContactName}"
-
 msgid "emails.userRegister.subject"
 msgstr "Registre de publicació"
 

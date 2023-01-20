@@ -58,19 +58,6 @@ msgstr ""
 "<br />\n"
 "{$siteContactName}"
 
-msgid "emails.passwordReset.subject"
-msgstr "Parola Sıfırlama"
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"Parolanız {$siteTitle} web sitesinde kullanılmak üzere başarıyla sıfırlandı.<"
-"br />\n"
-"<br />\n"
-"Kullanıcı adınız: {$recipientUsername}<br />\n"
-"Yeni parolanız: {$password}<br />\n"
-"<br />\n"
-"{$siteContactName}"
-
 msgid "emails.userRegister.subject"
 msgstr "Yayınevi Kaydı"
 

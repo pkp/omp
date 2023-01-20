@@ -24,18 +24,6 @@ msgstr ""
 "<br />\n"
 "{$siteContactName}"
 
-msgid "emails.passwordReset.subject"
-msgstr "Réinitialisation du mot de passe"
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"Votre mot de passe vous permettant d'avoir accès au site Web {$siteTitle} a été réinitialisé. Veuillez noter votre nom d'utilisateur et mot de passe dans vos dossiers, car vous en aurez besoin pour vos travaux auprès de la presse.<br />\n"
-"<br />\n"
-"Votre nom d'utilisateur: {$recipientUsername}<br />\n"
-"Votre nouveau mot de passe: {$password}<br />\n"
-"<br />\n"
-"{$siteContactName}"
-
 msgid "emails.userRegister.subject"
 msgstr "Inscription à la presse"
 
