@@ -15,21 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "emails.notification.subject"
-msgstr "Nueva notificación de {$contextName}"
-
-msgid "emails.notification.body"
-msgstr ""
-"Tiene una notificación nueva de {$contextName}:<br />\n"
-"<br />\n"
-"{$notificationContents}<br />\n"
-"<br />\n"
-"Enlace: {$notificationUrl}<br />\n"
-"<br />\n"
-"Esto es un correo electrónico generado automáticamente; no responda a este "
-"mensaje.<br />\n"
-"{$contextSignature}<hr />{$unsubscribeLink}"
-
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Confirmación para restablecer la contraseña"
 
@@ -40,18 +25,6 @@ msgstr ""
 "Si no realizó esta solicitud, ignore este correo electrónico y su contraseña no se cambiará. Si desea restablecer su contraseña, haga clic en la dirección URL que aparece debajo.<br />\n"
 "<br />\n"
 "Restablecer contraseña: {$passwordResetUrl}<br />\n"
-"<br />\n"
-"{$siteContactName}"
-
-msgid "emails.passwordReset.subject"
-msgstr "Restablecer contraseña"
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"La contraseña se restableció con éxito en la página web {$siteTitle}. Recuerde el nombre de usuario/a y contraseña, son necesarios para trabajar en la publicación.<br />\n"
-"<br />\n"
-"Nombre de usuario/a: {$recipientUsername}<br />\n"
-"Nueva contraseña: {$password}<br />\n"
 "<br />\n"
 "{$siteContactName}"
 
@@ -102,10 +75,10 @@ msgstr ""
 "Gracias,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Acuse de recibo del envío"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Hola:<br />\n"
 "<br />\n"
@@ -318,9 +291,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.indexRequest.description"
-msgstr "El editor/a de la serie envía este correo electrónico al indexador/a para notificar que se les asignó la tarea de creación de índices para un envío. Proporciona información sobre el envío y cómo acceder al mismo."
-
 msgid "emails.indexComplete.subject"
 msgstr "Galeradas de índice completadas"
 
@@ -333,9 +303,6 @@ msgstr ""
 "Si tiene alguna duda, puede ponerse en contacto conmigo.<br />\n"
 "<br />\n"
 "{$signatureFullName}"
-
-msgid "emails.indexComplete.description"
-msgstr "El indexador/a envía este correo electrónico al editor/a de la serie para notificar que el proceso de creación de índices se completó."
 
 msgid "emails.emailLink.subject"
 msgstr "Manuscrito de posible interés"
@@ -373,15 +340,6 @@ msgstr ""
 
 msgid "emails.notifyFile.description"
 msgstr "Notificación de un usuario/a enviada desde un centro de información sobre archivos"
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Mensaje sobre {$contextName}"
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Introduzca su mensaje."
-
-msgid "emails.notificationCenterDefault.description"
-msgstr "El mensaje por defecto (en blanco) usado en el Creador de listas de mensajes del Centro de notificación."
 
 msgid "emails.statisticsReportNotification.subject"
 msgstr "Actividad editorial del {$month}, {$year}"

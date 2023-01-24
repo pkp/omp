@@ -46,17 +46,6 @@ msgstr ""
 msgid "emails.statisticsReportNotification.subject"
 msgstr "Redaksjonel aktivitet for {$month}, {$year}"
 
-msgid "emails.notificationCenterDefault.description"
-msgstr ""
-"Standardmeldingen (blank) som brukes i Notification Center Message "
-"Listbuilder."
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Skriv inn meldingen din."
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Melding vedrørende {$contextName}"
-
 msgid "emails.notifyFile.description"
 msgstr "En melding fra en bruker sendt fra en filinformasjonssentral modal"
 
@@ -106,11 +95,6 @@ msgstr ""
 msgid "emails.emailLink.subject"
 msgstr "Utgivelse som kan være av interesse for deg"
 
-msgid "emails.indexComplete.description"
-msgstr ""
-"Denne e-posten fra indeksøren til serieredaktør informerer om indeks er "
-"ferdiggjort."
-
 msgid "emails.indexComplete.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -125,12 +109,6 @@ msgstr ""
 
 msgid "emails.indexComplete.subject"
 msgstr "Indeksering fullført"
-
-msgid "emails.indexRequest.description"
-msgstr ""
-"Denne e-posten fra serieredaktøren til indeksøren informerer om at "
-"vedkommende har fått i oppgave å lage indekser for innleveringen. Den gir "
-"informasjon om innleveringen og hvordan man får tilgang til den."
 
 msgid "emails.indexRequest.body"
 msgstr ""
@@ -381,7 +359,7 @@ msgstr ""
 msgid "emails.editorAssign.subject"
 msgstr "Redaksjonelt oppdrag"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Hei<br />\n"
 "<br />\n"
@@ -393,7 +371,7 @@ msgstr ""
 "<br />\n"
 "{$contextSignature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Innleveringsbekreftelse"
 
 msgid "emails.reviewerRegister.body"
@@ -458,19 +436,6 @@ msgstr ""
 msgid "emails.userRegister.subject"
 msgstr "Registrering hos utgiver"
 
-msgid "emails.passwordReset.body"
-msgstr ""
-"Passordet ditt er tilbakestilt og kan brukes på nettstedet {$siteTitle}. <br "
-"/>\n"
-"<br />\n"
-"Brukernavnet ditt: {$recipientUsername} <br />\n"
-"Ditt nye passord: {$password} <br />\n"
-"<br />\n"
-"{$siteContactName}"
-
-msgid "emails.passwordReset.subject"
-msgstr "Nullstill passord"
-
 msgid "emails.passwordResetConfirm.body"
 msgstr ""
 "Vi har mottatt en forespørsel om å tilbakestille passordet ditt for "
@@ -486,19 +451,3 @@ msgstr ""
 
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Bekreft tilbakestilling av passord"
-
-#, fuzzy
-msgid "emails.notification.body"
-msgstr ""
-"Du har mottatt en ny melding fra {$contextName}: <br />\n"
-"<br />\n"
-"{$notificationContents} <br />\n"
-"<br />\n"
-"Lenke: {$notificationUrl} <br />\n"
-"<br />\n"
-"Dette er en automatisk generert e-post; ikke svar på denne meldingen. <br />"
-"\n"
-"{$contextSignature}"
-
-msgid "emails.notification.subject"
-msgstr "Ny melding fra {$contextName}"

@@ -24,9 +24,6 @@ msgstr "Catalog"
 msgid "submission.authorListSeparator"
 msgstr "; "
 
-msgid "submission.submit.title"
-msgstr "Cuir monograf"
-
 msgid "submission.upload.selectComponent"
 msgstr "Tagh co-phàirt"
 
@@ -83,13 +80,6 @@ msgstr "Caibideil"
 msgid "submission.chapters"
 msgstr "Caibideilean"
 
-msgid "submission.chaptersDescription"
-msgstr ""
-"’S urrainn dhut liosta dhe na caibideilean a dhèanamh an-seo agus luchd-"
-"pàirteachaidh iomruineadh on liosta gu h-àrd. ’S urrainn dhan luchd-"
-"phàirteachaidh cothrom fhaighinn air a’ chaibideil rè ceumannan a’ phròiseis "
-"fhoillseachaidh."
-
 msgid "submission.chapter.addChapter"
 msgstr "Cuir caibideil ris"
 
@@ -123,11 +113,6 @@ msgstr "Fo lèirmheas"
 msgid "manuscript.submissions"
 msgstr "Tagraidhean sgrìobhainnean"
 
-msgid "submission.confirmSubmit"
-msgstr ""
-"A bheil thu cinnteach gu bheil thu airson an sgrìobhainn seo a chur dhan "
-"chlò?"
-
 msgid "submission.metadata"
 msgstr "Meata-dàta"
 
@@ -155,19 +140,8 @@ msgstr "Tagradh ùr"
 msgid "submission.submit.upload"
 msgstr "Luchdaich an tagradh suas"
 
-msgid "submission.submit.cancelSubmission"
-msgstr ""
-"’S urrainn dhut an tagradh seo a choileanadh uaireigin eile le bhith a’ "
-"taghadh “Tagraidhean gnìomhach” o dhachaigh an ùghdair."
-
-msgid "submission.submit.selectSeries"
-msgstr "Tagh sreath (roghainneil)"
-
 msgid "author.isVolumeEditor"
 msgstr "Comharraich an com-pàirtiche seo mar dheasaiche an iom-leabhair seo."
-
-msgid "author.submit.seriesRequired"
-msgstr "Tha feum air sreath dligheach."
 
 msgid "submission.submit.seriesPosition"
 msgstr "Ionad san t-sreath"
@@ -175,29 +149,11 @@ msgstr "Ionad san t-sreath"
 msgid "submission.submit.seriesPosition.description"
 msgstr "Mar eisimpleir: Leabhar 2, Iom-leabhar 2"
 
-msgid "submission.submit.form.localeRequired"
-msgstr "Tagh cànan an tagraidh."
-
 msgid "submission.submit.privacyStatement"
 msgstr "An aithris prìobhaideachd"
 
 msgid "submission.submit.contributorRole"
 msgstr "Dreuchd neach-pàirteachaidh"
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Tha feum air co-dhiù aon ùghdar."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "Tha ainm, sloinneadh is post-d gach ùghdar riatanach."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Cuir a-steach tiotal a’ mhonograf seo."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Cuir a-steach geàrr-chunntas air a’ mhonograf agad."
-
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Tagh dreuchd neach-pàirteachaidh."
 
 msgid "submission.submit.submissionFile"
 msgstr "Faidhle tagraidh"
@@ -239,11 +195,6 @@ msgstr "Suidheachadh an tagraidh"
 
 msgid "submission.submit.userGroup"
 msgstr "Cuir e ’s mi nam dhreuchd a leanas…"
-
-msgid "submission.submit.userGroupDescription"
-msgstr ""
-"Ma tha thu a’ cur iom-leabhar deasaichte, bu chòir dhut dreuchd deasaiche "
-"iom-leabhair a thaghadh."
 
 msgid "submission.submit.noContext"
 msgstr "Cha b’ urrainn dhuinn clò an tagraidh seo a lorg."
@@ -340,9 +291,6 @@ msgstr "Chaidh am fòrmat foillseachaidh “{$formatName}” a chruthachadh."
 
 msgid "submission.event.publicationFormatRemoved"
 msgstr "Chaidh am fòrmat foillseachaidh “{$formatName}” a thoirt air falbh."
-
-msgid "submission.submit.titleAndSummary"
-msgstr "An tiotal is geàrr-chunntas"
 
 msgid "editor.submission.decision.sendExternalReview"
 msgstr "Cuir airson lèirmheas air an taobh a-muigh"

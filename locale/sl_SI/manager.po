@@ -683,9 +683,6 @@ msgstr "V pomoč avtorjem podajte primere ključnih besed ali vsebin."
 msgid "manager.setup.submissionGuidelines"
 msgstr "Navodila za oddajo prispevka"
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Seznam pogojev za oddajo prispevka"
-
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Vpišite element seznama."
 

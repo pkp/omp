@@ -2,7 +2,7 @@
 # Fulvio Delle Donne <fulviodelledonne@libero.it>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-08-09 10:00+0000\n"
+"PO-Revision-Date: 2022-12-08 17:26+0000\n"
 "Last-Translator: Fulvio Delle Donne <fulviodelledonne@libero.it>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "it_IT/>\n"
@@ -860,6 +860,7 @@ msgstr "Registra un utente esistente"
 msgid "doi.editor.assigned"
 msgstr "Il DOI è assegnato a questo {$pubObjectType}."
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "Le email preparate che vengono inviate dal sistema per conto della Casa "
@@ -1663,3 +1664,40 @@ msgstr ""
 
 msgid "doi.manager.submissionDois"
 msgstr "DOI della monografia"
+
+msgid "stats.contextStats"
+msgstr "Statistiche per la casa editrice"
+
+msgid "stats.context.tooltip.text"
+msgstr ""
+"Numero di visitatori che visualizzano la pagina indice della casa editrice e "
+"del catalogo."
+
+msgid "stats.context.tooltip.label"
+msgstr "Sulle statistiche della casa editrice"
+
+msgid "stats.context.downloadReport.downloadContext.description"
+msgstr ""
+"Numero di visualizzazioni delle pagine dell'indice della casa editrice e del "
+"catalogo."
+
+msgid "stats.context.downloadReport.downloadContext"
+msgstr "Scarica Casa editrice"
+
+msgid "stats.context.downloadReport.description"
+msgstr ""
+"Scaricate un foglio di calcolo CSV/Excel con le statistiche di utilizzo di "
+"questa casa editrice in base ai seguenti parametri."
+
+msgid "stats.publications.downloadReport.description"
+msgstr ""
+"Scarica un foglio di calcolo CSV/Excel con le statistiche di utilizzo delle "
+"monografie corrispondenti ai seguenti parametri."
+
+msgid "stats.publications.downloadReport.downloadSubmissions"
+msgstr "Scarica Monografie"
+
+msgid "stats.publications.downloadReport.downloadSubmissions.description"
+msgstr ""
+"Numero di visualizzazioni di abstract e di download di file per ogni "
+"monografia."

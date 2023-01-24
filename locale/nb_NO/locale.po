@@ -1066,9 +1066,6 @@ msgstr "Serien kommer til å vises i hovedmenyen"
 msgid "series.series"
 msgstr "Serier"
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Valgte redaktører"
-
 msgid "grid.reviewAttachments.availableFiles"
 msgstr "Tilgjengelige filer"
 

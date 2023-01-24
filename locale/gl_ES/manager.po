@@ -523,6 +523,7 @@ msgstr ""
 msgid "manager.setup.enableAnnouncements.enable"
 msgstr "Habilitar avisos"
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "Os correos electrónicos predefinidos que o sistema envíe en nome da "
@@ -780,9 +781,6 @@ msgstr ""
 "doc, etc.) con anotacións engadidas especificando a fonte, o tamaño , "
 "marxes, etc. para servir de guía para os maquetadores/as e correctores/as de "
 "probas."
-
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Lista de verificación do envío"
 
 msgid "manager.setup.submissionGuidelines"
 msgstr "Directrices para o envío"

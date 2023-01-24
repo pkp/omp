@@ -11,20 +11,6 @@ msgstr ""
 "PO-Revision-Date: 2019-12-03T14:14:06-08:00\n"
 "Language: \n"
 
-msgid "emails.notification.subject"
-msgstr "Nouvelle notification de {$contextName}"
-
-#, fuzzy
-msgid "emails.notification.body"
-msgstr ""
-"Vous avez reçu une nouvelle notification de {$contextName}:<br />\n"
-"<br />\n"
-"{$notificationContents}<br />\n"
-"<br />\n"
-"Lien: {$notificationUrl}<br />\n"
-"<br />\n"
-"{$contextSignature}"
-
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Confirmation de réinitialisation du mot de passe"
 
@@ -35,18 +21,6 @@ msgstr ""
 "Si vous n'avez pas fait cette requête, veuillez ignorer ce courriel et votre mot de passe demeurera le même. Si vous souhaitez modifier votre mot de passe, cliquez sur l'adresse URL ci-dessous.<br />\n"
 "<br />\n"
 "Modifier mon mot de passe: {$passwordResetUrl}<br />\n"
-"<br />\n"
-"{$siteContactName}"
-
-msgid "emails.passwordReset.subject"
-msgstr "Réinitialisation du mot de passe"
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"Votre mot de passe vous permettant d'avoir accès au site Web {$siteTitle} a été réinitialisé. Veuillez noter votre nom d'utilisateur et mot de passe dans vos dossiers, car vous en aurez besoin pour vos travaux auprès de la presse.<br />\n"
-"<br />\n"
-"Votre nom d'utilisateur: {$recipientUsername}<br />\n"
-"Votre nouveau mot de passe: {$password}<br />\n"
 "<br />\n"
 "{$siteContactName}"
 
@@ -100,10 +74,10 @@ msgstr ""
 "Merci,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Accusé de réception d'une soumission"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Bonjour,<br />\n"
 "<br />\n"
@@ -291,9 +265,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.indexRequest.description"
-msgstr "Ce courriel est envoyé à l'indexateur par le rédacteur en chef d'une série pour lui indiquer qu'il devra créer les index de la soumission en question. Il contient des renseignements sur la soumission et explique comment y accéder."
-
 msgid "emails.indexComplete.subject"
 msgstr "Indexage des épreuves en placard complété"
 
@@ -306,9 +277,6 @@ msgstr ""
 "Si vous avez questions, n'hésitez pas à me contacter.<br />\n"
 "<br />\n"
 "{$signatureFullName}"
-
-msgid "emails.indexComplete.description"
-msgstr "Ce courriel est envoyé par l'indexateur au rédacteur en chef d'une série pour lui indiquer que l'indexage est terminé."
 
 msgid "emails.emailLink.subject"
 msgstr "Manuscrit susceptible d'intéresser"
@@ -346,12 +314,3 @@ msgstr ""
 
 msgid "emails.notifyFile.description"
 msgstr "Avis envoyé par un usager à partir d'un centre de renseignements sur les fichiers."
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Un message à propos de la presse {$contextName}"
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Veuillez saisir votre message."
-
-msgid "emails.notificationCenterDefault.description"
-msgstr "Le message (vierge) par défaut utilisé par le centre d'alerte."

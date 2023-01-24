@@ -16,9 +16,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "submission.submit.title"
-msgstr "Indsend en monografi"
-
 msgid "submission.upload.selectComponent"
 msgstr "Vælg komponent"
 
@@ -35,7 +32,10 @@ msgid "submission.workflowType"
 msgstr "Indsendelsestype"
 
 msgid "submission.workflowType.description"
-msgstr "En monografi er et værk, der helt igennem er skrevet af en eller flere forfattere. Et redigeret værk har forskellige forfattere til hvert enkelt kapitel (med kapiteloplysninger indtastet senere i denne proces.)"
+msgstr ""
+"En monografi er et værk, der helt igennem er skrevet af en eller flere "
+"forfattere. Et redigeret værk har forskellige forfattere til hvert enkelt "
+"kapitel (med kapiteloplysninger indtastet senere i denne proces.)"
 
 msgid "submission.workflowType.editedVolume"
 msgstr "Redigeret værk: Forfattere er knyttet til deres eget kapitel."
@@ -63,9 +63,6 @@ msgstr "Kapitel"
 
 msgid "submission.chapters"
 msgstr "Kapitler"
-
-msgid "submission.chaptersDescription"
-msgstr "Du kan opstille en liste over kapitlerne her og tilknytte forfattere fra listen over bidragydere ovenfor. Disse forfattere kan få adgang til kapitlet i forskellige faser af den redaktionelle proces."
 
 msgid "submission.chapter.addChapter"
 msgstr "Tilføj kapitel"
@@ -103,10 +100,6 @@ msgstr "Til bedømmelse"
 msgid "manuscript.submissions"
 msgstr "Manuskriptindsendelser"
 
-msgid "submission.confirmSubmit"
-msgstr ""
-"Er du sikker på, at du ønsker at indsende dette manuskript til udgiveren?"
-
 msgid "submission.metadata"
 msgstr "Metadata"
 
@@ -134,44 +127,17 @@ msgstr "Ny indsendelse"
 msgid "submission.submit.upload"
 msgstr "Upload indsendelse"
 
-msgid "submission.submit.cancelSubmission"
-msgstr "Du kan afslutte denne indsendelse på et senere tidspunkt ved at vælge aktive indsendelser fra forfatterens webside."
-
-msgid "submission.submit.selectSeries"
-msgstr "Vælg serie"
-
-msgid "author.submit.seriesRequired"
-msgstr "En gyldig serie er påkrævet."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Seriens position"
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "Eksempler: Bog 2, bind 2"
 
-msgid "submission.submit.form.localeRequired"
-msgstr "Vælg et indsendelsessprog."
-
 msgid "submission.submit.privacyStatement"
 msgstr "Erklæring om beskyttelse af personlige oplysninger"
 
 msgid "submission.submit.contributorRole"
 msgstr "Bidragyderens rolle"
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Der kræves mindst en forfatter."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "Forfatterens fornavn, efternavn og e-mail-adresse er påkrævet."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Indtast titlen på din monografi."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Indsæt et kort resumé over din monografi."
-
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Vælg bidragyderens rolle."
 
 msgid "submission.submit.submissionFile"
 msgstr "Indsendelsesfil"
@@ -217,9 +183,6 @@ msgstr "Indsendelsesplacering"
 msgid "submission.submit.userGroup"
 msgstr "Indsend i min rolle som ..."
 
-msgid "submission.submit.userGroupDescription"
-msgstr "Hvis du sender et redigeret værk, bør du vælge redaktørrollen."
-
 msgid "grid.chapters.title"
 msgstr "Kapitler"
 
@@ -245,7 +208,9 @@ msgid "submission.catalogEntry.select"
 msgstr "Vælg de monografier, der skal føjes til kataloget"
 
 msgid "submission.catalogEntry.selectionMissing"
-msgstr "Du skal vælge mindst en monografi for at foretage en tilføjelse til kataloget."
+msgstr ""
+"Du skal vælge mindst en monografi for at foretage en tilføjelse til "
+"kataloget."
 
 msgid "submission.catalogEntry.confirm"
 msgstr "Føj denne bog til det offentlige katalog"
@@ -286,13 +251,18 @@ msgid "submission.event.metadataUnpublished"
 msgstr "Monografiens metadata er ikke længere publiceret."
 
 msgid "submission.event.publicationFormatMadeAvailable"
-msgstr "Publikationsformatet \"{$publicationFormatName}\" stilles til rådighed."
+msgstr ""
+"Publikationsformatet \"{$publicationFormatName}\" stilles til rådighed."
 
 msgid "submission.event.publicationFormatMadeUnavailable"
-msgstr "Publikationsformatet \"{$publicationFormatName}\" er ikke længere tilgængeligt."
+msgstr ""
+"Publikationsformatet \"{$publicationFormatName}\" er ikke længere "
+"tilgængeligt."
 
 msgid "submission.event.publicationFormatPublished"
-msgstr "Publikationsformatet \"{$publicationFormatName}\" er godkendt til publicering."
+msgstr ""
+"Publikationsformatet \"{$publicationFormatName}\" er godkendt til "
+"publicering."
 
 msgid "submission.event.publicationFormatUnpublished"
 msgstr ""
@@ -310,9 +280,6 @@ msgstr "Publikationsformatet \"{$formatName}\" blev oprettet."
 
 msgid "submission.event.publicationFormatRemoved"
 msgstr "Publikationsformatet \"{$formatName}\" blev fjernet."
-
-msgid "submission.submit.titleAndSummary"
-msgstr "Titel og resume"
 
 msgid "workflow.review.externalReview"
 msgstr "Ekstern bedømmelse"
@@ -344,10 +311,14 @@ msgid "submission.list.orderFeatures"
 msgstr "Bestil funktioner"
 
 msgid "submission.list.orderingFeatures"
-msgstr "Træk og slip eller tryk på op- og ned-knapperne for at ændre rækkefølgen af funktionerne på startsiden."
+msgstr ""
+"Træk og slip eller tryk på op- og ned-knapperne for at ændre rækkefølgen af "
+"funktionerne på startsiden."
 
 msgid "submission.list.orderingFeaturesSection"
-msgstr "Træk og slip eller tryk på op- og ned-knapperne for at ændre rækkefølgen af funktionerne i {$title}."
+msgstr ""
+"Træk og slip eller tryk på op- og ned-knapperne for at ændre rækkefølgen af "
+"funktionerne i {$title}."
 
 msgid "submission.list.saveFeatureOrder"
 msgstr "Gem rækkefølge"
@@ -467,8 +438,8 @@ msgstr ""
 
 msgid "submission.license.description"
 msgstr ""
-"Licensen indstilles automatisk til <a href='{$licenseUrl}' target='_blank'>{$"
-" licensnavn}</a>, når dette publiceres."
+"Licensen indstilles automatisk til <a href='{$licenseUrl}' "
+"target='_blank'>{$ licensnavn}</a>, når dette publiceres."
 
 msgid "submission.copyrightHolder.description"
 msgstr "Copyright tildeles automatisk {$copyright}, når dette publiceres."
@@ -518,7 +489,9 @@ msgid "publication.publish.success"
 msgstr "Publikationens status blev ændret."
 
 msgid "editor.submission.decision.sendInternalReview.completed.description"
-msgstr "Indsendelsen, {$title}, er blevet sendt til intern bedømmelsestrinnet."
+msgstr ""
+"Indsendelsen, {$title}, er blevet sendt til intern bedømmelsestrinnet. "
+"Forfatteren har fået besked, medmindre du valgte at springe e-mailen over."
 
 msgid "editor.submission.decision.sendInternalReview.completed"
 msgstr "Sendt til intern bedømmelse"
@@ -557,7 +530,8 @@ msgstr ""
 "indsendelsen vil gå igennem."
 
 msgid "editor.submission.decision.backToReview.completed.description"
-msgstr "Indsendelsen, {$title}, er blevet sendt tilbage til bedømmelsestrinnet."
+msgstr ""
+"Indsendelsen, {$title}, er blevet sendt tilbage til bedømmelsestrinnet."
 
 msgid "editor.submission.decision.backToReview.completed"
 msgstr "Sendt tilbage til bedømmelse"
@@ -576,7 +550,8 @@ msgid "editor.submission.decision.backToReview"
 msgstr "Tilbage til bedømmelse"
 
 msgid "editor.submission.decision.sendExternalReview.completed.description"
-msgstr "Indsendelsen, {$title}, er blevet sendt til ekstern bedømmelsestrinnet."
+msgstr ""
+"Indsendelsen, {$title}, er blevet sendt til ekstern bedømmelsestrinnet."
 
 msgid "editor.submission.decision.sendExternalReview.completed"
 msgstr "Sendt til ekstern bedømmelse"
@@ -610,3 +585,51 @@ msgstr "Standard kapitel licens URL"
 
 msgid "publication.chapter.licenseUrl"
 msgstr "Licens URL"
+
+msgid "submission.submit.title"
+msgstr "Indsend en monografi"
+
+msgid "submission.chaptersDescription"
+msgstr ""
+"Du kan opstille en liste over kapitlerne her og tilknytte forfattere fra "
+"listen over bidragydere ovenfor. Disse forfattere kan få adgang til kapitlet "
+"i forskellige faser af den redaktionelle proces."
+
+msgid "submission.confirmSubmit"
+msgstr ""
+"Er du sikker på, at du ønsker at indsende dette manuskript til udgiveren?"
+
+msgid "submission.submit.cancelSubmission"
+msgstr ""
+"Du kan afslutte denne indsendelse på et senere tidspunkt ved at vælge aktive "
+"indsendelser fra forfatterens webside."
+
+msgid "submission.submit.selectSeries"
+msgstr "Vælg serie"
+
+msgid "author.submit.seriesRequired"
+msgstr "En gyldig serie er påkrævet."
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Vælg et indsendelsessprog."
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Der kræves mindst en forfatter."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "Forfatterens fornavn, efternavn og e-mail-adresse er påkrævet."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Indtast titlen på din monografi."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Indsæt et kort resumé over din monografi."
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Vælg bidragyderens rolle."
+
+msgid "submission.submit.userGroupDescription"
+msgstr "Hvis du sender et redigeret værk, bør du vælge redaktørrollen."
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Titel og resume"

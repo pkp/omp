@@ -61,6 +61,7 @@ msgstr ""
 msgid "manager.setup.enableAnnouncements.enable"
 msgstr "Aktiver mulighet for å lage oppslag"
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "De forberedte e-postene som blir sendt av systemet på vegne av tidsskriftet "
@@ -777,9 +778,6 @@ msgstr "Arbeidsflyt"
 
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Sjekklisteelement kreves."
-
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Sjekkliste for klargjøring av manuskript"
 
 msgid "manager.setup.submissionGuidelines"
 msgstr "Retningslinjer for innlevering av manuskript"

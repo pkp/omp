@@ -696,9 +696,6 @@ msgstr "Indiqueu exemples de paraules clau o temes que poden fer servir de guia 
 msgid "manager.setup.submissionGuidelines"
 msgstr "Directrius per a les trameses"
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Llista de verificació per preparar trameses"
-
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "L'element de la llista de verificació és necessari."
 
@@ -1128,6 +1125,7 @@ msgstr ""
 "Es poden publicar avisos per informar els lectors/ores de noticies i "
 "esdeveniments. Els avisos publicats apareixeran a la pàgina d'avisos."
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "Els correus electrònics predefinits que envia el sistema en nom de "

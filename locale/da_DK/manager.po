@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2022-10-13 13:52+0000\n"
+"PO-Revision-Date: 2022-11-07 20:02+0000\n"
 "Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "da_DK/>\n"
@@ -903,6 +903,7 @@ msgstr ""
 msgid "manager.setup.enableAnnouncements.enable"
 msgstr "Aktivér meddelelser"
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "De forberedte e-mails, der sendes af systemet på vegne af udgiveren, "
@@ -1171,9 +1172,6 @@ msgstr "Workflow"
 
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Tjeklisteindhold er påkrævet."
-
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Tjekliste til forberedelse af indsendelse"
 
 msgid "manager.setup.submissionGuidelines"
 msgstr "Retningslinjer for indsendelse"
@@ -1664,3 +1662,23 @@ msgstr "Antal resume-visninger og fildownloads for hver monografi."
 
 msgid "stats.publications.downloadReport.downloadSubmissions"
 msgstr "Download monografier"
+
+msgid "stats.contextStats"
+msgstr "Statistik for udgiveren"
+
+msgid "stats.context.tooltip.text"
+msgstr "Antal besøgende på udgiverens og katalogets indeksside."
+
+msgid "stats.context.tooltip.label"
+msgstr "Om statistik for udgiveren"
+
+msgid "stats.context.downloadReport.description"
+msgstr ""
+"Download et CSV/Excel-regneark med brugsstatistik for denne udgiver, der "
+"matcher de følgende parametre."
+
+msgid "stats.context.downloadReport.downloadContext.description"
+msgstr "Antal visninger af udgiverens og katalogets indekssider."
+
+msgid "stats.context.downloadReport.downloadContext"
+msgstr "Download udgiver"

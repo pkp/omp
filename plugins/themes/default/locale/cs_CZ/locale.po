@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-09-22 07:38+0000\n"
+"PO-Revision-Date: 2022-11-29 15:08+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/cs_CZ/>\n"
@@ -59,7 +59,7 @@ msgstr ""
 "rozsáhlou podporu jazyků."
 
 msgid "plugins.themes.default.option.typography.description"
-msgstr "Vyberte kombinaci fontů, která vyhovuje tomuto nakladatelství."
+msgstr "Vyberte kombinaci fontů, která vyhovuje pro toto nakladatelství."
 
 msgid "plugins.themes.default.option.typography.label"
 msgstr "Typografie"

@@ -14,9 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "submission.submit.title"
-msgstr "Tramet una monografia"
-
 msgid "submission.title"
 msgstr "Títol del llibre"
 
@@ -59,9 +56,6 @@ msgstr "Capítol"
 msgid "submission.chapters"
 msgstr "Capítols"
 
-msgid "submission.chaptersDescription"
-msgstr "Podeu enumerar-hi els capítols i assignar-hi contribuïdors de la llista de contribuïdors de dalt. Aquests contribuïdors podran accedir al capítol en diverses fases del procés de publicació."
-
 msgid "submission.chapter.addChapter"
 msgstr "Afegeix-hi un capítol"
 
@@ -95,9 +89,6 @@ msgstr "En revisió"
 msgid "manuscript.submissions"
 msgstr "Trameses de manuscrits"
 
-msgid "submission.confirmSubmit"
-msgstr "Esteu segur/a que voleu enviar aquest manuscrit a la publicació?"
-
 msgid "submission.metadata"
 msgstr "Metadades"
 
@@ -125,38 +116,14 @@ msgstr "Comença una tramesa nova a {$contextName}"
 msgid "submission.submit.upload"
 msgstr "Penja"
 
-msgid "submission.submit.cancelSubmission"
-msgstr "Podeu completar aquesta tramesa més endavant si seleccioneu «Trameses actives» a la pàgina d'inici de l’autor/a."
-
-msgid "submission.submit.selectSeries"
-msgstr "Seleccionar sèries (opcional)"
-
 msgid "submission.submit.seriesPosition"
 msgstr "Posició dins aquesta sèrie (p. ex. Llibre 2 o Volum 2)"
-
-msgid "submission.submit.form.localeRequired"
-msgstr "Seleccioneu la llengua per a la tramesa."
 
 msgid "submission.submit.privacyStatement"
 msgstr "Declaració de privacitat"
 
 msgid "submission.submit.contributorRole"
 msgstr "Rol del contribuïdor"
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Heu d’introduir un autor/a com a mínim."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "Heu d’introduir el nom, els cognoms i l'adreça de correu electrònic de cada autor/a."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Introduïu-hi el títol de la monografia."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Introduïu-hi un resum breu de la monografia."
-
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Seleccioneu el rol del contribuïdor."
 
 msgid "submission.submit.submissionFile"
 msgstr "Fitxer de la tramesa"
@@ -193,9 +160,6 @@ msgstr "Ubicació de la tramesa"
 
 msgid "submission.submit.userGroup"
 msgstr "Envia amb el rol de..."
-
-msgid "submission.submit.userGroupDescription"
-msgstr "Si envieu un volum editat, és recomanable que seleccioneu el rol d'editor/a de volum."
 
 msgid "grid.chapters.title"
 msgstr "Capítols"
@@ -259,9 +223,6 @@ msgstr "S'ha creat el format de publicació «{$formatName}»."
 
 msgid "submission.event.publicationFormatRemoved"
 msgstr "S'ha eliminat el format de publicació «{$formatName}»."
-
-msgid "submission.submit.titleAndSummary"
-msgstr "Títol i resum"
 
 msgid "publication.scheduledIn"
 msgstr "Programat per publicar-se a <a href=\"{$issueUrl}\">{$issueName}</a>."
@@ -366,9 +327,6 @@ msgstr "Confirmació"
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "Exemples: llibre 2, volum 2"
-
-msgid "author.submit.seriesRequired"
-msgstr "Són necessàries series vàlides."
 
 msgid "author.isVolumeEditor"
 msgstr "Identificar aquest contribuïdor/a com l'editor/a d'aquest volum."

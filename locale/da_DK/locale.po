@@ -1526,9 +1526,6 @@ msgstr "Forsidebillede"
 msgid "user.authorization.invalidPublishedSubmission"
 msgstr "En ugyldig publiceret indsendelse blev angivet."
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Valgte redaktører"
-
 msgid "site.noPresses"
 msgstr "Der er ingen udgivere eller forlag tilgængelige."
 

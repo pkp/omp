@@ -11,22 +11,6 @@ msgstr ""
 "PO-Revision-Date: 2019-12-03T14:14:06-08:00\n"
 "Language: \n"
 
-msgid "emails.notification.subject"
-msgstr "New notification from {$contextName}"
-
-msgid "emails.notification.body"
-msgstr ""
-"You have a new notification from {$contextName}:<br />\n"
-"<br />\n"
-"{$notificationContents}<br />\n"
-"<br />\n"
-"Link: {$notificationUrl}<br />\n"
-"<br />\n"
-"This is an automatically generated email; please do not reply to this message.<br />\n"
-"{$contextSignature}"
-"<hr />"
-"{$unsubscribeLink}"
-
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Password Reset Confirmation"
 
@@ -37,18 +21,6 @@ msgstr ""
 "If you did not make this request, please ignore this email and your password will not be changed. If you wish to reset your password, click on the below URL.<br />\n"
 "<br />\n"
 "Reset my password: {$passwordResetUrl}<br />\n"
-"<br />\n"
-"{$siteContactName}"
-
-msgid "emails.passwordReset.subject"
-msgstr "Password Reset"
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"Your password has been successfully reset for use with the {$siteTitle} web site.<br />\n"
-"<br />\n"
-"Your username: {$recipientUsername}<br />\n"
-"Your new password: {$password}<br />\n"
 "<br />\n"
 "{$siteContactName}"
 
@@ -110,10 +82,10 @@ msgstr ""
 "Thank you,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Submission Acknowledgement"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Hello,<br />\n"
 "<br />\n"
@@ -390,9 +362,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.indexRequest.description"
-msgstr "This email from the Series Editor to the Indexer notifies them that they have been assigned the task of creating indexes for a submission. It provides information about the submission and how to access it."
-
 msgid "emails.indexComplete.subject"
 msgstr "Index Galleys Complete"
 
@@ -405,9 +374,6 @@ msgstr ""
 "If you have any questions, please contact me.<br />\n"
 "<br />\n"
 "{$signatureFullName}"
-
-msgid "emails.indexComplete.description"
-msgstr "This email from the Indexer to the Series Editor notifies them that the index creation process has been completed."
 
 msgid "emails.emailLink.subject"
 msgstr "Manuscript of Possible Interest"
@@ -445,15 +411,6 @@ msgstr ""
 
 msgid "emails.notifyFile.description"
 msgstr "A notification from a user sent from a file information center modal"
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "A message regarding {$contextName}"
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Please enter your message."
-
-msgid "emails.notificationCenterDefault.description"
-msgstr "The default (blank) message used in the Notification Center Message Listbuilder."
 
 msgid "emails.statisticsReportNotification.subject"
 msgstr "Editorial activity for {$month}, {$year}"

@@ -829,9 +829,6 @@ msgstr "Değerlendirmeye Ek Dosya İlave Et"
 msgid "grid.reviewAttachments.availableFiles"
 msgstr "Kullanılabilir Dosyalar"
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Atanmış editörler"
-
 msgid "series.series"
 msgstr "Dizi"
 

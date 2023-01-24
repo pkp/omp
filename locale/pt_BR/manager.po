@@ -776,12 +776,6 @@ msgstr "Ofereça exemplos de termos ou assuntos como auxílio ao autores"
 msgid "manager.setup.submissionGuidelines"
 msgstr "Diretrizes de submissão"
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Verificação da submissão"
-
-msgid "manager.setup.submissionPreparationChecklistDescription"
-msgstr "Ao submter à editora, autores precisam primeiro marcar cada item de verificação da submissão como realizados, antes de proceder. A lista também aparece nas diretrizes de submissão, na página Sobre a editora. A lista pode ser editada a seguir, porém, é obrigatório marcar todos os itens na lista antes de continuar o processo de submissão."
-
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Item de verificação obrigatório."
 
@@ -1165,6 +1159,7 @@ msgstr ""
 "Notícias podem ser publicados para informar os leitores sobre eventos e "
 "novidades. As notícias publicadas aparecerão na Página de Notícias."
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "Os e-mails preparados que são enviados pelo sistema em nome da editora terão "

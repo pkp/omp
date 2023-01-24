@@ -15,19 +15,21 @@
 
 namespace APP\controllers\grid\settings\series;
 
-use APP\controllers\grid\settings\series\SeriesGridCellProvider;
 use APP\controllers\grid\settings\series\form\SeriesForm;
-use PKP\db\DAO;
-use PKP\controllers\grid\settings\SetupGridHandler;
-use APP\controllers\grid\settings\series\SeriesGridRow;
+use APP\core\Application;
+use APP\facades\Repo;
 use APP\notification\NotificationManager;
+use PKP\context\SubEditorsDAO;
 use PKP\controllers\grid\feature\OrderGridItemsFeature;
 use PKP\controllers\grid\GridColumn;
+use PKP\controllers\grid\settings\SetupGridHandler;
 use PKP\core\JSONMessage;
+use PKP\db\DAO;
+use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
-use PKP\db\DAORegistry;
 use PKP\security\Role;
+use stdClass;
 
 class SeriesGridHandler extends SetupGridHandler
 {
@@ -81,8 +83,17 @@ class SeriesGridHandler extends SetupGridHandler
             }
 
             // Get the series editors data for the row
-            $assignedSeriesEditors = $subEditorsDao->getBySubmissionGroupId($series->getId(), ASSOC_TYPE_SECTION, $press->getId());
-            if (empty($assignedSeriesEditors)) {
+            $assignments = $subEditorsDao->getBySubmissionGroupIds([$series->getId()], Application::ASSOC_TYPE_SECTION, $press->getId());
+            $assignedSeriesEditors = Repo::user()
+                ->getCollector()
+                ->filterByUserIds(
+                    $assignments
+                        ->map(fn (stdClass $assignment) => $assignment->userId)
+                        ->filter()
+                        ->toArray()
+                )
+                ->getMany();
+            if ($assignedSeriesEditors->empty()) {
                 $editorsString = __('common.none');
             } else {
                 $editors = [];

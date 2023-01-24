@@ -22,12 +22,6 @@ msgstr "Edytuj rozdział"
 msgid "submission.chapter.addChapter"
 msgstr "Dodaj rozdział"
 
-msgid "submission.chaptersDescription"
-msgstr ""
-"Możesz zamieścić rozdziały tutaj i przypisać współpracowników z listy "
-"powyżej. Wskazani współpracownicy będą mieli dostęp do rozdziału w trakcie "
-"różnych etapów procesu publikacji."
-
 msgid "submission.chapters"
 msgstr "Rozdziały"
 
@@ -85,9 +79,6 @@ msgstr "Tytuł książki"
 msgid "submission.upload.selectComponent"
 msgstr "Wybierz komponent"
 
-msgid "submission.submit.title"
-msgstr "Zgłoś monografię"
-
 msgid "submission.list.countMonographs"
 msgstr "{$count} monografie"
 
@@ -113,9 +104,6 @@ msgstr "Zewnętrzna recenzja"
 
 msgid "editor.submission.decision.sendExternalReview"
 msgstr "Wyślij do zewnętrznej recenzji"
-
-msgid "submission.submit.titleAndSummary"
-msgstr "Tytuł i streszczenie"
 
 msgid "submission.event.publicationFormatRemoved"
 msgstr "Format publikacji \"{$formatName}\"został usunięty."
@@ -211,9 +199,6 @@ msgstr "Rozdziały"
 msgid "submission.submit.noContext"
 msgstr "Wydanie zgłoszenia nie mogło być znalezione."
 
-msgid "submission.submit.userGroupDescription"
-msgstr "Jeśli zgłaszasz edytowany tom, powinieneś wybrać rolę redaktora tomu."
-
 msgid "submission.submit.userGroup"
 msgstr "Zgłoś moją rolę jako..."
 
@@ -258,29 +243,11 @@ msgstr "Przygotuj"
 msgid "submission.submit.submissionFile"
 msgstr "Plik zgłoszenia"
 
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Proszę wybierz rolę współautora."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Proszę wprowadź krótki opis monografii."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Proszę wprowadź tytuł monografii."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "Imię, nazwisko i adres email każdego autora jest wymagany."
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Przynajmniej jeden autor jest wymagany."
-
 msgid "submission.submit.contributorRole"
 msgstr "Rola współautora"
 
 msgid "submission.submit.privacyStatement"
 msgstr "Oświadczenie o ochronie prywatności"
-
-msgid "submission.submit.form.localeRequired"
-msgstr "Proszę wybierz język zgłoszenia."
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "Przykłady: książka 2, tom 2"
@@ -288,19 +255,8 @@ msgstr "Przykłady: książka 2, tom 2"
 msgid "submission.submit.seriesPosition"
 msgstr "Pozycja w serii"
 
-msgid "author.submit.seriesRequired"
-msgstr "Aktualna seria jest wymagana."
-
 msgid "author.isVolumeEditor"
 msgstr "Dobierz współautora jako redaktora tego tomu."
-
-msgid "submission.submit.selectSeries"
-msgstr "Wybierz serię (opcjonalnie)"
-
-msgid "submission.submit.cancelSubmission"
-msgstr ""
-"Możesz dokończyć zgłoszenie w późniejszym terminie poprzez wybranie "
-"Aktywnych Zgłoszeń ze strony autora."
 
 msgid "submission.submit.upload"
 msgstr "Wprowadź zgłoszenie"
@@ -328,9 +284,6 @@ msgstr "Wspierające agencje"
 
 msgid "submission.metadata"
 msgstr "Metadane"
-
-msgid "submission.confirmSubmit"
-msgstr "Czy jesteś pewien, że chcesz zgłosić swój manuskrypt do wydania?"
 
 msgid "manuscript.submissions"
 msgstr "Zgłoszenia manuskryptu"
@@ -506,6 +459,7 @@ msgstr "Publikacja"
 msgid "submission.withoutChapter"
 msgstr "{$name} — Bez tego rozdziału"
 
+#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr ""
 "To zgłoszenie, {$title}, zostało przesłane do etapu recenzji wewnętrznej."

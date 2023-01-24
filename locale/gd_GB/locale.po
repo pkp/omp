@@ -1508,9 +1508,6 @@ msgstr "Cuir ceanglachan ris an lèirmheas"
 msgid "grid.reviewAttachments.availableFiles"
 msgstr "Faidhlichean a tha ri làimh"
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Deasaichean iomruinte"
-
 msgid "series.series"
 msgstr "Sreath"
 

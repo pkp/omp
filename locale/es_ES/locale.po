@@ -1585,9 +1585,6 @@ msgstr ""
 msgid "monograph.audience.success"
 msgstr "Los detalles de audiencia han sido actualizados."
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Editores/as asignados"
-
 msgid "about.aboutSoftware"
 msgstr "Acerca de Open Monograph Press"
 

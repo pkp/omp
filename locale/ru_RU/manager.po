@@ -495,9 +495,6 @@ msgstr "Рабочий поток"
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Требуется элемент контрольного списка."
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Контрольный список подготовки материала к отправке"
-
 msgid "manager.setup.submissionGuidelines"
 msgstr "Руководство по отправке материала"
 
@@ -1017,6 +1014,7 @@ msgstr ""
 msgid "manager.setup.enableAnnouncements.enable"
 msgstr "Включить объявления"
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "Подготовленные письма, отправляемые системой от имени редакции, будут "

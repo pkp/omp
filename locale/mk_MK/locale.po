@@ -496,9 +496,6 @@ msgstr "Оваа серија ќе се појави на главната на�
 msgid "series.series"
 msgstr "Серии"
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Доделени уредници"
-
 msgid "grid.reviewAttachments.availableFiles"
 msgstr "Достапни датотеки"
 

@@ -21,7 +21,7 @@ use PKP\config\Config;
 use PKP\pages\catalog\PKPCatalogHandler;
 use APP\core\Application;
 use APP\facades\Repo;
-use APP\observers\events\Usage;
+use APP\observers\events\UsageEvent;
 use APP\submission\Collector;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
@@ -101,7 +101,7 @@ class CatalogHandler extends PKPCatalogHandler
         ]);
 
         $templateMgr->display('frontend/pages/catalog.tpl');
-        event(new Usage(Application::ASSOC_TYPE_PRESS, $context));
+        event(new UsageEvent(Application::ASSOC_TYPE_PRESS, $context));
         return;
     }
 
@@ -192,7 +192,7 @@ class CatalogHandler extends PKPCatalogHandler
         ]);
 
         $templateMgr->display('frontend/pages/catalogSeries.tpl');
-        event(new Usage(Application::ASSOC_TYPE_SERIES, $context, null, null, null, null, $series));
+        event(new UsageEvent(Application::ASSOC_TYPE_SERIES, $context, null, null, null, null, $series));
         return;
     }
 

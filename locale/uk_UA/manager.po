@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-10-13 06:01+0000\n"
+"PO-Revision-Date: 2022-11-06 17:48+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "uk_UA/>\n"
@@ -593,9 +593,6 @@ msgstr ""
 msgid "manager.setup.workflow"
 msgstr "Робочий процес"
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Контрольний список із підготовки подання"
-
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Вимагається елемент контрольного списку."
 
@@ -1136,6 +1133,7 @@ msgstr ""
 msgid "manager.setup.enableAnnouncements.enable"
 msgstr "Включити оголошення"
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "Підготовлені листи, що відправляються системою від імени видавництва, "
@@ -1689,3 +1687,25 @@ msgstr "Завантажити монографії"
 msgid "stats.publications.downloadReport.downloadSubmissions.description"
 msgstr ""
 "Кількість переглядів анотацій і завантажень файлів для кожної монографії."
+
+msgid "stats.context.tooltip.label"
+msgstr "Про статистику е-видавництва"
+
+msgid "stats.context.downloadReport.downloadContext.description"
+msgstr "Кількість переглядів головної сторінки е-видавництва й каталогу."
+
+msgid "stats.context.downloadReport.downloadContext"
+msgstr "Завантажити Е-видавництво"
+
+msgid "stats.contextStats"
+msgstr "Статистика е-видавництва"
+
+msgid "stats.context.tooltip.text"
+msgstr ""
+"Кількість відвідувачів, які переглядають головну сторінку е-видавництва й "
+"каталогу."
+
+msgid "stats.context.downloadReport.description"
+msgstr ""
+"Завантажити електронну таблицю CSV/Excel зі статистикою використання для "
+"цього е-видавництва, яка відповідає таким параметрам."

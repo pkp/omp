@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-10-14 11:39+0000\n"
+"PO-Revision-Date: 2022-11-06 17:48+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/manager/cs_CZ/"
 ">\n"
@@ -684,6 +684,7 @@ msgstr ""
 msgid "manager.setup.enableAnnouncements.enable"
 msgstr "Povolit oznámení"
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "Připravené e-maily, které systém odesílá jménem tisku, budou na konci "
@@ -1627,3 +1628,25 @@ msgstr "Stáhnout monografie"
 
 msgid "stats.publications.downloadReport.downloadSubmissions.description"
 msgstr "Počet zobrazení abstraktů a stažení souborů pro každou monografii."
+
+msgid "stats.contextStats"
+msgstr "Statistiky vydavatelství"
+
+msgid "stats.context.tooltip.label"
+msgstr "O statistikách vydavatelství"
+
+msgid "stats.context.downloadReport.downloadContext.description"
+msgstr "Počet zobrazení indexových stránek vydavatelství a katalogu."
+
+msgid "stats.context.downloadReport.downloadContext"
+msgstr "Stáhnout statistiky vydavatelství"
+
+msgid "stats.context.tooltip.text"
+msgstr ""
+"Počet návštěvníků, kteří si prohlížejí vstupní stránku vydavatelství a "
+"katalogu."
+
+msgid "stats.context.downloadReport.description"
+msgstr ""
+"Stáhněte si tabulku CSV/Excel se statistikami použití stránek tohoto "
+"vydavatelství, které odpovídají následujícím parametrům."

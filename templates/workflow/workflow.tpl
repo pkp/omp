@@ -43,6 +43,13 @@
 			>
 				{translate key="common.view"}
 			</pkp-button>
+			<pkp-button
+				v-else-if="submission.status !== getConstant('STATUS_PUBLISHED') && submission.stageId >= getConstant('WORKFLOW_STAGE_ID_EDITING')"
+				element="a"
+				:href="submission.urlPublished"
+			>
+				{translate key="common.preview"}
+			</pkp-button>
 			<dropdown
 				class="pkpWorkflow__identificationWorkType"
 				:label="workTypeLabel"
