@@ -1,7 +1,7 @@
 # Jula Dakić <juladakic@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-14 11:02+0000\n"
+"PO-Revision-Date: 2023-01-26 15:49+0000\n"
 "Last-Translator: Jula Dakić <juladakic@gmail.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/"
 "generic-pdfJsViewer/hr/>\n"
@@ -15,3 +15,8 @@ msgstr ""
 
 msgid "plugins.generic.pdfJsViewer.displayName"
 msgstr "PDF.js PDF preglednik"
+
+msgid "plugins.generic.pdfJsViewer.description"
+msgstr ""
+"Ovaj dodatak pruža podršku za renderiranje PDF-ova pomoću baze PDF.js. "
+"datoteka."
