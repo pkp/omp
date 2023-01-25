@@ -81,6 +81,7 @@ msgstr ""
 "<br />\n"
 "Köszönettel,"
 
+#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Szerkesztői hozzárendelés"
 

@@ -53,6 +53,7 @@ msgstr "{$authors}: <br /> <br /> V začetni recenziji prispevka &quot;{$submiss
 msgid "emails.submissionUnsuitable.description"
 msgstr ""
 
+#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Uredniške zadolžitve"
 

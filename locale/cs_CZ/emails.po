@@ -200,6 +200,7 @@ msgstr ""
 "<br />\n"
 "Děkujeme,"
 
+#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Redakční přiřazení"
 

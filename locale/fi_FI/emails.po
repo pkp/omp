@@ -101,6 +101,7 @@ msgstr ""
 "<br />\n"
 "{$contextSignature}"
 
+#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Toimituksellinen toimeksianto"
 
@@ -115,7 +116,7 @@ msgstr ""
 "Käyttäjätunnus: {$recipientUsername}<br />\n"
 "<br />\n"
 "Ystävällisin terveisin,<br />\n"
-"{$signature}"
+"{$contextSignature}"
 
 msgid "emails.reviewRequest.subject"
 msgstr "Käsikirjoituksen arviointipyyntö"

@@ -130,6 +130,7 @@ msgstr ""
 "<br />\n"
 "Atenciosamente,"
 
+#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Tarefa editorial"
 
