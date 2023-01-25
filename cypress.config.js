@@ -20,7 +20,7 @@ module.exports = defineConfig({
     volumeEditorUserGroupId: 14,
     dataAvailabilityTest: {
       submission: {
-        title: 'The ABCs of Human Survival: A Paradigm for Global Citizenship',
+        title: 'The West and Beyond: New Perspectives on an Imagined Region',
         authorFamilyName: 'Finkel'
       },
       anonymousReviewer: 'gfavio',

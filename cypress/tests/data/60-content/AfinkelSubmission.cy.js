@@ -14,7 +14,6 @@ describe('Data suite tests', function() {
 
 	let submission;
 	before(function() {
-		const title = 'The ABCs of Human Survival: A Paradigm for Global Citizenship';
 		submission = {
 			type: 'editedVolume',
 			title: 'The West and Beyond: New Perspectives on an Imagined Region',
