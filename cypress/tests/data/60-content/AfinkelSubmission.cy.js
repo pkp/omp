@@ -332,9 +332,7 @@ describe('Data suite tests', function() {
 		cy.clickDecision('Send to External Review');
 		cy.recordDecisionSendToReview('Send to External Review', ['Alvin Finkel'], submission.files.map(file => file.fileName));
 		cy.isActiveStageTab('External Review');
-		cy.assignReviewer('Al Zacharia');
+		cy.assignReviewer('Al Zacharia', 'Anonymous Reviewer/Disclosed Author');
 		cy.assignReviewer('Gonzalo Favio');
-
-		// FIXME: reviewers need to be assigned, decision recorded
 	});
 });

@@ -18,6 +18,14 @@ module.exports = defineConfig({
     defaultGenre: 'Book Manuscript',
     authorUserGroupId: 13,
     volumeEditorUserGroupId: 14,
+    dataAvailabilityTest: {
+      submission: {
+        title: 'The ABCs of Human Survival: A Paradigm for Global Citizenship',
+        authorFamilyName: 'Finkel'
+      },
+      anonymousReviewer: 'gfavio',
+      anonymousDisclosedReviewer: 'alzacharia'
+    }
   },
   watchForFileChanges: false,
   defaultCommandTimeout: 10000,
