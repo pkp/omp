@@ -17,6 +17,7 @@ namespace APP\components\forms\submission;
 use APP\press\Series;
 use APP\publication\Publication;
 use APP\submission\Submission;
+use Illuminate\Support\LazyCollection;
 use PKP\components\forms\FieldOptions;
 use PKP\context\Context;
 
@@ -25,9 +26,9 @@ class ForTheEditors extends \PKP\components\forms\submission\ForTheEditors
     /**
      * @param Series[] $series
      */
-    public function __construct(string $action, array $locales, Publication $publication, Submission $submission, Context $context, string $suggestionUrlBase, array $series)
+    public function __construct(string $action, array $locales, Publication $publication, Submission $submission, Context $context, string $suggestionUrlBase, array $series, LazyCollection $categories)
     {
-        parent::__construct($action, $locales, $publication, $submission, $context, $suggestionUrlBase);
+        parent::__construct($action, $locales, $publication, $submission, $context, $suggestionUrlBase, $categories);
 
         $this->addSeriesField($series, $publication);
     }
