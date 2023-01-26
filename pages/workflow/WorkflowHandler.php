@@ -15,7 +15,6 @@
 
 namespace APP\pages\workflow;
 
-use APP\components\forms\publication\TitleAbstractForm;
 use APP\components\listPanels\ContributorsListPanel;
 use APP\core\Application;
 use APP\core\Services;
@@ -36,6 +35,7 @@ use APP\file\PublicFileManager;
 use APP\publication\Publication;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
+use PKP\components\forms\publication\TitleAbstractForm;
 use PKP\context\Context;
 use PKP\core\PKPApplication;
 use PKP\decision\types\Accept;
