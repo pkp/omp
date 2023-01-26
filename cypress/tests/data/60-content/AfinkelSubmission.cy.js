@@ -14,7 +14,6 @@ describe('Data suite tests', function() {
 
 	let submission;
 	before(function() {
-		const title = 'The ABCs of Human Survival: A Paradigm for Global Citizenship';
 		submission = {
 			type: 'editedVolume',
 			title: 'The West and Beyond: New Perspectives on an Imagined Region',
@@ -332,9 +331,7 @@ describe('Data suite tests', function() {
 		cy.clickDecision('Send to External Review');
 		cy.recordDecisionSendToReview('Send to External Review', ['Alvin Finkel'], submission.files.map(file => file.fileName));
 		cy.isActiveStageTab('External Review');
-		cy.assignReviewer('Al Zacharia');
+		cy.assignReviewer('Al Zacharia', 'Anonymous Reviewer/Disclosed Author');
 		cy.assignReviewer('Gonzalo Favio');
-
-		// FIXME: reviewers need to be assigned, decision recorded
 	});
 });
