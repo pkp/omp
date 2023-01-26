@@ -317,16 +317,6 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     }
 
     /**
-     * Get the ID of the last inserted board chapter.
-     *
-     * @return int
-     */
-    public function getInsertId()
-    {
-        return $this->_getInsertId('submission_chapters', 'chapter_id');
-    }
-
-    /**
      * @copydoc PKPPubIdPluginDAO::pubIdExists()
      */
     public function pubIdExists($pubIdType, $pubId, $excludePubObjectId, $contextId)

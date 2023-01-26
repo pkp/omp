@@ -15,21 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "emails.notification.subject"
-msgstr "Notificació nova de {$contextName}"
-
-msgid "emails.notification.body"
-msgstr ""
-"Teniu una notificació nova de {$contextName}:<br />\n"
-"<br />\n"
-"{$notificationContents}<br />\n"
-"<br />\n"
-"Enllaç: {$notificationUrl}<br />\n"
-"<br />\n"
-"Aquest correu s'ha generat automàticament, no respongueu a aquest missatge.<"
-"br />\n"
-"{$contextSignature}<hr />{$unsubscribeLink}"
-
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Confirmació del restabliment de contrasenya"
 
@@ -40,18 +25,6 @@ msgstr ""
 "Si no heu fet cap sol·licitud, ignoreu aquest correu electrònic i no es canviarà la vostra contrasenya. Si voleu restablir la vostra contrasenya, cliqueu a la URL de sota.<br />\n"
 "<br />\n"
 "Restableix la meva contrasenya: {$passwordResetUrl}<br />\n"
-"<br />\n"
-"{$siteContactName}"
-
-msgid "emails.passwordReset.subject"
-msgstr "Contrasenya restablerta"
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"Ja s'ha restablert la vostra contrasenya amb èxit per utilitzar-la al lloc web {$siteTitle}. Conserveu aquest nom d'usuari/ària i contrasenya perquè són necessaris per treballar amb la publicació.<br />\n"
-"<br />\n"
-"Nom d'usuari/ària: {$recipientUsername}<br />\n"
-"Contrasenya nova: {$password}<br />\n"
 "<br />\n"
 "{$siteContactName}"
 
@@ -106,10 +79,10 @@ msgstr ""
 "Gràcies,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Justificant de recepció de la tramesa"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Hola,<br />\n"
 "<br />\n"
@@ -332,9 +305,6 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.indexRequest.description"
-msgstr "Aquest correu de l'editor/a a l'indexador/a li notifica que se li ha assignat la tasca de crear els índexs d'una tramesa. Proporciona informació de la tramesa i de com accedir-hi."
-
 msgid "emails.indexComplete.subject"
 msgstr "Galerades d'indexació completades"
 
@@ -347,9 +317,6 @@ msgstr ""
 "Si teniu cap pregunta, contacteu amb mi.<br />\n"
 "<br />\n"
 "{$signatureFullName}"
-
-msgid "emails.indexComplete.description"
-msgstr "Aquest correu electrònic de l'indexador/a a l'editor/a de sèrie per notificar-li que el procés de creació d'índexs ja s'ha completat."
 
 msgid "emails.emailLink.subject"
 msgstr "Manuscrit de possible interès"
@@ -387,15 +354,6 @@ msgstr ""
 
 msgid "emails.notifyFile.description"
 msgstr "Una notificació d'un usuari/ària enviada des del centre d'informació de l'fitxer"
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Un missatge referent a {$contextName}"
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Introduïu-hi el missatge."
-
-msgid "emails.notificationCenterDefault.description"
-msgstr "El missatge (en blanc) per defecte utilitzat al generador de llistes de missatges del centre de notificacions."
 
 msgid "emails.announcement.subject"
 msgstr "{$announcementTitle}"

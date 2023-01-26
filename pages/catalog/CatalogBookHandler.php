@@ -22,7 +22,7 @@ use APP\facades\Repo;
 use APP\handler\Handler;
 use APP\monograph\Chapter;
 use APP\monograph\ChapterDAO;
-use APP\observers\events\Usage;
+use APP\observers\events\UsageEvent;
 use APP\payment\omp\OMPPaymentManager;
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 use APP\submission\Submission;
@@ -33,6 +33,7 @@ use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\plugins\Hook;
 use PKP\plugins\PluginRegistry;
+use PKP\security\authorization\ContextRequiredPolicy;
 use PKP\security\Validation;
 use PKP\submission\Genre;
 use PKP\submission\PKPSubmission;
@@ -66,6 +67,7 @@ class CatalogBookHandler extends Handler
      */
     public function authorize($request, &$args, $roleAssignments)
     {
+        $this->addPolicy(new ContextRequiredPolicy($request));
         $this->addPolicy(new OmpPublishedSubmissionAccessPolicy($request, $args, $roleAssignments));
         return parent::authorize($request, $args, $roleAssignments);
     }
@@ -84,7 +86,13 @@ class CatalogBookHandler extends Handler
     {
         $templateMgr = TemplateManager::getManager($request);
         $submission = $this->getAuthorizedContextObject(PKPApplication::ASSOC_TYPE_SUBMISSION);
+        $user = $request->getUser();
         $this->setupTemplate($request, $submission);
+
+        // Serve 404 if no submission available OR submission is unpublished and no user is logged in OR submission is unpublished and we have a user logged in but the user does not have access to preview
+        if (!$submission || ($submission->getData('status') !== PKPSubmission::STATUS_PUBLISHED && !$user) || ($submission->getData('status') !== PKPSubmission::STATUS_PUBLISHED && $user && !Repo::submission()->canPreview($user, $submission))) {
+            $request->getDispatcher()->handle404();
+        }
 
         // Get the requested publication or default to the current publication
         $submissionId = array_shift($args);
@@ -101,7 +109,7 @@ class CatalogBookHandler extends Handler
             $this->publication = $submission->getCurrentPublication();
         }
 
-        if (!$this->publication || $this->publication->getData('status') !== PKPSubmission::STATUS_PUBLISHED) {
+        if (!$this->publication || ($this->publication->getData('status') !== PKPSubmission::STATUS_PUBLISHED && !Repo::submission()->canPreview($user, $submission))) {
             $request->getDispatcher()->handle404();
         }
 
@@ -283,9 +291,9 @@ class CatalogBookHandler extends Handler
         if (!Hook::call('CatalogBookHandler::book', [&$request, &$submission, &$this->publication, &$this->chapter])) {
             $templateMgr->display('frontend/pages/book.tpl');
             if ($this->isChapterRequest) {
-                event(new Usage(Application::ASSOC_TYPE_CHAPTER, $request->getContext(), $submission, null, null, $this->chapter));
+                event(new UsageEvent(Application::ASSOC_TYPE_CHAPTER, $request->getContext(), $submission, null, null, $this->chapter));
             } else {
-                event(new Usage(Application::ASSOC_TYPE_SUBMISSION, $request->getContext(), $submission));
+                event(new UsageEvent(Application::ASSOC_TYPE_SUBMISSION, $request->getContext(), $submission));
             }
             return;
         }
@@ -428,7 +436,7 @@ class CatalogBookHandler extends Handler
                 if ($genre->getCategory() != Genre::GENRE_CATEGORY_DOCUMENT || $genre->getSupplementary() || $genre->getDependent()) {
                     $assocType = Application::ASSOC_TYPE_SUBMISSION_FILE_COUNTER_OTHER;
                 }
-                event(new Usage($assocType, $request->getContext(), $submission, $publicationFormat, $submissionFile, $chapter));
+                event(new UsageEvent($assocType, $request->getContext(), $submission, $publicationFormat, $submissionFile, $chapter));
             }
             $returner = true;
             Hook::call('FileManager::downloadFileFinished', [&$returner]);

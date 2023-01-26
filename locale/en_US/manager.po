@@ -413,7 +413,7 @@ msgid "manager.setup.emailSignature"
 msgstr "Signature"
 
 msgid "manager.setup.emailSignature.description"
-msgstr "The prepared emails that are sent by the system on behalf of the press will have the following signature added to the end."
+msgstr "Emails sent automatically on behalf of the press will have the following signature added."
 
 msgid "manager.setup.enableAnnouncements.enable"
 msgstr "Enable announcements"
@@ -841,9 +841,6 @@ msgstr "Provide examples of keywords or topics as a guide for authors"
 msgid "manager.setup.submissionGuidelines"
 msgstr "Submission guidelines"
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Submission Preparation Checklist"
-
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Checklist item is required."
 
@@ -1110,6 +1107,33 @@ msgstr "Please select the category to which you would like this menu item to lin
 msgid "grid.series.urlWillBe"
 msgstr "The series's URL will be: {$sampleUrl}"
 
+msgid "stats.contextStats"
+msgstr "Press Stats"
+
+msgid "stats.context.tooltip.text"
+msgstr "Number of visitors viewing the press's and catalog's index page."
+
+msgid "stats.context.tooltip.label"
+msgstr "About press statistics"
+
+msgid "stats.context.downloadReport.description"
+msgstr "Download a CSV/Excel spreadsheet with usage statistics for this press matching the following parameters."
+
+msgid "stats.context.downloadReport.downloadContext.description"
+msgstr "The number of press's and catalog's index page views."
+
+msgid "stats.context.downloadReport.downloadContext"
+msgstr "Download Press"
+
+msgid "stats.publications.downloadReport.description"
+msgstr "Download a CSV/Excel spreadsheet with usage statistics for monographs matching the following parameters."
+
+msgid "stats.publications.downloadReport.downloadSubmissions"
+msgstr "Download Monographs"
+
+msgid "stats.publications.downloadReport.downloadSubmissions.description"
+msgstr "The number of abstract views and file downloads for each monograph."
+
 msgid "stats.publicationStats"
 msgstr "Monograph Stats"
 
@@ -1357,9 +1381,6 @@ msgstr "Item"
 msgid "doi.manager.submissionDois"
 msgstr "Monograph DOIs"
 
-msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
-msgstr "Sent to Internal Review"
-
 msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
 msgstr "This email notifies the author that their submission is being sent to the internal review stage."
 
@@ -1368,3 +1389,25 @@ msgstr "This email notifies the author that their submission is being declined, 
 
 msgid "manager.institutions.noContext"
 msgstr "This institution's press could not be found."
+
+msgid "manager.manageEmails.description"
+msgstr "Edit the messages sent in emails from this press."
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
+msgstr "Sent to Internal Review"
+
+msgid "mailable.indexRequest.name"
+msgstr "Index Requested"
+
+msgid "mailable.indexComplete.name"
+msgstr "Index Completed"
+
+msgid "mailable.publicationVersionNotify.name"
+msgstr "New Version Created"
+
+msgid "mailable.publicationVersionNotify.description"
+msgstr "This email automatically notifies the assigned editors when a new version of the submission has been created."
+
+msgid "mailable.submissionNeedsEditor.description"
+msgstr ""
+"This email is sent to press managers when a new submission is made and no editors are assigned."

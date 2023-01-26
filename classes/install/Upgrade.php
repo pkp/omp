@@ -31,6 +31,12 @@ use PKP\submissionFile\SubmissionFile;
 
 class Upgrade extends Installer
 {
+    protected $appEmailTemplateVariableNames = [
+        'contextName' => 'pressName',
+        'contextUrl' => 'pressUrl',
+        'contextSignature' => 'pressSignature',
+    ];
+
     /**
      * Constructor.
      *
@@ -214,7 +220,7 @@ class Upgrade extends Installer
                 $stageAssignmentDao->update('UPDATE stage_assignments sa SET can_change_metadata=1 FROM user_groups ug WHERE sa.user_group_id = ug.user_group_id AND ug.role_id IN ' . $roleString);
                 break;
             default: throw new Exception('Unknown database type!');
-            }
+        }
 
         return true;
     }

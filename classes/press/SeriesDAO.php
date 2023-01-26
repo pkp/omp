@@ -19,25 +19,40 @@ namespace APP\press;
 
 use APP\core\Application;
 use APP\facades\Repo;
+use Illuminate\Support\Enumerable;
+use Illuminate\Support\Facades\DB;
 use PKP\context\PKPSectionDAO;
 use PKP\db\DAORegistry;
 use PKP\db\DAOResultFactory;
 use PKP\plugins\Hook;
-use Illuminate\Support\Facades\DB;
 
 use PKP\submission\PKPSubmission;
 
 class SeriesDAO extends PKPSectionDAO
 {
+    protected function _getTableName(): string
+    {
+        return 'series';
+    }
+
+    protected function _getIdColumnName(): string
+    {
+        return 'series_id';
+    }
+
+    protected function _getContextIdColumnName(): string
+    {
+        return 'press_id';
+    }
+
     /**
      * Retrieve an series by ID.
      *
      * @param int $seriesId
      * @param int $pressId optional
      *
-     * @return Series|null
      */
-    public function getById($seriesId, $pressId = null)
+    public function getById($seriesId, $pressId = null): ?Series
     {
         $params = [(int) $seriesId];
         if ($pressId) {
@@ -225,14 +240,14 @@ class SeriesDAO extends PKPSectionDAO
 
         // Remove monographs from this series
         $submissionIds = Repo::submission()
-                ->getCollector()
-                ->filterBySeriesIds([$seriesId])
-                ->filterByContextIds([Application::CONTEXT_ID_ALL])
-                ->getIds();
+            ->getCollector()
+            ->filterBySeriesIds([$seriesId])
+            ->filterByContextIds([Application::CONTEXT_ID_ALL])
+            ->getIds();
 
         $publications = Repo::publication()->getCollector()
-                ->filterBySubmissionIds($submissionIds->toArray())
-                ->getMany();
+            ->filterBySubmissionIds($submissionIds->toArray())
+            ->getMany();
 
         foreach ($publications as $publication) {
             Repo::publication()->edit($publication, ['seriesId' => 0]);
@@ -293,7 +308,7 @@ class SeriesDAO extends PKPSectionDAO
             'SELECT s.*
                 FROM series AS s
                 WHERE s.press_id = ?
-                ' . ($submittableOnly ? ' AND s.editor_restricted = 0' : '') . '
+                ' . ($submittableOnly ? ' AND s.editor_restricted = 0 AND is_inactive = 0' : '') . '
                 ' . ($withPublicationsOnly ? ' AND (SELECT COUNT(*) FROM publications AS p WHERE p.series_id = s.series_id AND p.status = ?) > 0' : '') . '
                 ORDER BY s.seq',
             $params,
@@ -345,16 +360,6 @@ class SeriesDAO extends PKPSectionDAO
     }
 
     /**
-     * Get the ID of the last inserted series.
-     *
-     * @return int
-     */
-    public function getInsertId()
-    {
-        return $this->_getInsertId('series', 'series_id');
-    }
-
-    /**
      * Associate a category with a series.
      *
      * @param int $seriesId
@@ -382,39 +387,27 @@ class SeriesDAO extends PKPSectionDAO
     }
 
     /**
-     * Get the categories associated with a given series.
-     * @return Collection
+     * Get the category ids associated with a series
      */
-    public function getCategories(int $seriesId, ?int $pressId = null) : array
+    public function getCategoryIds(int $seriesId, ?int $contextId = null): Enumerable
     {
-        $categoryIds = DB::table('series_categories AS sc')
+        return DB::table('series_categories AS sc')
             ->join('series AS s', 's.series_id', '=', 'sc.series_id')
-            ->when($pressId !== null, function($q) use ($pressId) {
-                $q->where('s.press_id', '=', $pressId);
+            ->when($contextId !== null, function ($q) use ($contextId) {
+                $q->where('s.press_id', '=', $contextId);
             })
             ->where('s.series_id', '=', $seriesId)
             ->pluck('sc.category_id');
-        return array_map(fn($categoryId) => Repo::category()->get($categoryId), iterator_to_array($categoryIds));
     }
 
     /**
-     * Get the categories not associated with a given series.
+     * Get the categories associated with a given series.
      */
-    public function getUnassignedCategories(int $seriesId, ?int $pressId = null) : array
+    public function getCategories(int $seriesId, ?int $contextId = null): Enumerable
     {
-        $categoryIds = DB::table('series AS s')
-            ->join('categories AS c', 'c.context_id', '=', 's.press_id')
-            ->leftJoin('series_categories AS sc', function($join) {
-                $join->where('s.series_id', '=', 'sc.series_id')
-                     ->where('sc.category_id', '='. 'c.category_id');
-            })
-            ->when($pressId !== null, function($q) {
-                $q->where('s.press_id', '=', $pressId);
-            })
-            ->where('s.series_id', '=', $seriesId)
-            ->whereNull('sc.series_id')
-            ->pluck('c.category_id');
-        return array_map([Repo::category(), 'get'], $categoryIds);
+        return $this
+            ->getCategoryIds($seriesId, $contextId)
+            ->map(fn ($categoryId) => Repo::category()->get($categoryId));
     }
 
     /**

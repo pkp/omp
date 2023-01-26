@@ -17,7 +17,7 @@
  */
 
 namespace APP\API\v1\stats;
- 
+
 use APP\core\Application;
 
 $requestPath = Application::get()->getRequest()->getRequestPath();

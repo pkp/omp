@@ -1,7 +1,8 @@
+# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-03 13:50+0000\n"
-"Last-Translator: Radek Gomola <gomola@press.muni.cz>\n"
+"PO-Revision-Date: 2022-07-19 15:30+0000\n"
+"Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/author/cs_CZ/>"
 "\n"
 "Language: cs_CZ\n"
@@ -9,7 +10,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 msgid "author.submit.notAccepting"
 msgstr "Nakladatelství v tuto chvíli nepřijímá nové články."
+
+msgid "author.submit"
+msgstr "Nový příspěvek"

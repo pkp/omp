@@ -175,6 +175,7 @@ class Application extends PKPApplication
             'importexport',
             'oaiMetadataFormats',
             'paymethod',
+            'reports',
         ];
     }
 
@@ -261,5 +262,10 @@ class Application extends PKPApplication
     public static function getPaymentManager($context)
     {
         return new \APP\payment\omp\OMPPaymentManager($context);
+    }
+
+    public static function getSectionIdPropName(): string
+    {
+        return 'seriesId';
     }
 }

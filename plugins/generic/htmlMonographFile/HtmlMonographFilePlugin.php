@@ -17,7 +17,7 @@ use APP\core\Application;
 use APP\core\Services;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
-use APP\observers\events\Usage;
+use APP\observers\events\UsageEvent;
 use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
 use PKP\plugins\Hook;
@@ -131,7 +131,7 @@ class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
 
                 $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
                 $chapter = $chapterDao->getChapter($submissionFile->getData('chapterId'));
-                event(new Usage(Application::ASSOC_TYPE_SUBMISSION_FILE, $request->getContext(), $submission, $publicationFormat, $submissionFile, $chapter));
+                event(new UsageEvent(Application::ASSOC_TYPE_SUBMISSION_FILE, $request->getContext(), $submission, $publicationFormat, $submissionFile, $chapter));
                 return true;
             }
         }

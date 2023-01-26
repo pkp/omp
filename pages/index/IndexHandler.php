@@ -21,7 +21,7 @@ use PKP\config\Config;
 use PKP\pages\index\PKPIndexHandler;
 use APP\core\Application;
 use APP\facades\Repo;
-use APP\observers\events\Usage;
+use APP\observers\events\UsageEvent;
 use APP\spotlight\Spotlight;
 use APP\template\TemplateManager;
 
@@ -145,7 +145,7 @@ class IndexHandler extends PKPIndexHandler
         }
 
         $templateMgr->display('frontend/pages/index.tpl');
-        event(new Usage(Application::ASSOC_TYPE_PRESS, $press));
+        event(new UsageEvent(Application::ASSOC_TYPE_PRESS, $press));
         return;
     }
 }

@@ -11,24 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2019-12-03T14:14:07-08:00\n"
 "Language: \n"
 
-msgid "emails.notification.subject"
-msgstr "Novo obvestilo od {$contextName}"
-
-#, fuzzy
-msgid "emails.notification.body"
-msgstr "Imate novo obvestilo od {$contextName}: <br /> <br /> {$notificationContents}<br /> <br /> Povezava: <a href=\"{$notificationUrl}\">{$notificationUrl}</a><br /> <br /> Ne odgovarjajte na to sporočilo, ker gre za samodejno ustvarjeno sporočilo. <br /> {$contextSignature}"
-
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Potrditev ponastavitve gesla"
 
 msgid "emails.passwordResetConfirm.body"
 msgstr "Prejeli smo zahtevo za ponastavitev gesla za spletno mesto {$siteTitle}. <br /> <br /> Če te zahteve niste podali vi, prezrite to e-poštno sporočilo in vaše geslo ne bo spremenjeno. Če želite ponastaviti geslo, kliknite spodnjo povezavo.<br /> <br /> Ponastavi geslo: <a href=\"{$passwordResetUrl}\">{$passwordResetUrl}</a><br /> <br /> {$siteContactName}"
-
-msgid "emails.passwordReset.subject"
-msgstr "Ponastavitev gesla"
-
-msgid "emails.passwordReset.body"
-msgstr "Vaše geslo za dostop do spletišča {$siteTitle} je bilo ponastavljeno.<br /> <br /> Uporabniško ime: {$recipientUsername}<br /> Vaše novo geslo: {$password}<br /> <br /> {$siteContactName}"
 
 msgid "emails.userRegister.subject"
 msgstr "Registracija založbe"
@@ -51,10 +38,10 @@ msgstr "Registracija za recenzenta pri {$contextName}"
 msgid "emails.reviewerRegister.body"
 msgstr "Glede na vaše področje delovanja, smo si dovolili registrirati vaše ime v bazo recenzentov za publikacijo {$contextName}. To ne pomeni nobene obveze z vaše strani in nam le omogoča, da vas lahko povabimo k recenziji prispevkov. Ko boste povabljeni k recenziji, boste lahko videli naslov in povzetek prispevka in se boste lahko odločili, ali boste pri recenziji sodelovali ali ne. Kadar koli lahko zahtevate, da vas odstranimo iz seznama recenzentov.<br /> <br /> Pošiljamo vam uporabniško ime in geslo, ki ju potrebujete za vso interakcijo z založbo preko spleta. Če želite lahko posodobite vaš račun, vključno z recenzentskimi interesi.<br /> <br />Uporabniško ime: {$recipientUsername}<br /> Geslo: {$password}<br /> <br />Hvala,<br /> {$signature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Potrditev oddaje prispevka"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr "Pozdravljeni, <br /> <br /> {$submitterName} je predložil_a rokopis &quot;{$submissionTitle}&quot; za {$contextName}. Če imate kakršno koli vprašanje, se, prosim, obrnite name. {$signature} Hvala, da ste se odločili za našo založbo.<br /> <br /> {$contextSignature}"
 
 msgid "emails.submissionUnsuitable.subject"
@@ -147,17 +134,11 @@ msgstr "Zahteva za kazalo"
 msgid "emails.indexRequest.body"
 msgstr "{$recipientName}:<br /> <br /> Prispevek &quot;{$submissionTitle}&quot; za {$contextName} potrebuje kazalo, ki se ga ustvari po naslednjih korakih.<br /> 1. Kliknite na URL povezavo do prispevka spodaj.<br /> 2. Prijavite se v založbo in uporabite datoteko Page Proofs, da pripravite prelom skladno s standardi založbe.<br /> 3. Uredniku pošljite e-poštno sporočilo Zaključeno.<br /> <br /> {$contextName} URL: <a href=\"{$contextUrl}\">{$contextUrl}</a><br /> Povezava URL do prispevka: <a href=\"{$submissionUrl}\">{$submissionUrl}</a><br /> Uporabniško ime: {$recipientUsername}<br /> <br /> Če v tem trenutku dela ne morete opraviti ali imate kakšno vprašanje, se prosim obrnite name. Hvala za vaš prispevek založbi.<br /> <br /> {$signature}"
 
-msgid "emails.indexRequest.description"
-msgstr "To e-poštno sporočilo od urednika zbirke obvešča klasifikatorja, da mu je bil dodeljen prispevek, ki potrebuje kazala. Vsebuje informacije o prispevku in o tem, kako je možno dostopati do prispevka. "
-
 msgid "emails.indexComplete.subject"
 msgstr "Prelomi kazala končani"
 
 msgid "emails.indexComplete.body"
 msgstr "{$recipientName}:<br /> <br />Kazala za rokopis, &quot;{$submissionTitle},&quot, za {$contextName} so pripravljena in so na voljo za korekturo. <br /> <br />Če imate kakršno koli vprašanje, se prosim obrnite name.<br /> <br /> {$signatureFullName}"
-
-msgid "emails.indexComplete.description"
-msgstr "To e-poštno sporočilo od klasifikatorja obvešča urednika zbirke, da je zaključil proces ustvarjanja kazal."
 
 msgid "emails.emailLink.subject"
 msgstr "Rokopis, ki bi vas morda zanimal"
@@ -189,12 +170,3 @@ msgstr ""
 
 msgid "emails.notifyFile.description"
 msgstr "Obvestilo uporabnika, poslano iz modula informacijskega centra za datoteke."
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Sporočilo o {$contextName}"
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Prosimo, vnesite vaše sporočilo."
-
-msgid "emails.notificationCenterDefault.description"
-msgstr "Privzeto (prazno) sporočilo, uporabljeno v seznamu sporočilnega centra za obvestila."

@@ -92,13 +92,13 @@ class OAIDAO extends PKPOAIDAO
     /**
      * Return hierarchy of OAI sets (presses plus press series).
      *
-     * @param int $pressId
+     * @param int|null $pressId
      * @param int $offset
      * @param int $total
      *
      * @return array OAISet
      */
-    public function getSets($pressId = null, $offset, $limit, &$total)
+    public function getSets($pressId, $offset, $limit, &$total)
     {
         if (isset($pressId)) {
             $presses = [$this->getPress($pressId)];
@@ -261,35 +261,35 @@ class OAIDAO extends PKPOAIDAO
                         'dot.oai_identifier',
                     ])
                     ->when(isset($pressId), function ($query, $pressId) {
-                    return $query->join('data_object_tombstone_oai_set_objects AS tsop', function ($join) use ($pressId) {
-                        $join->on('tsop.tombstone_id', '=', 'dot.tombstone_id');
-                        $join->where('tsop.assoc_type', '=', ASSOC_TYPE_PRESS);
-                        $join->where('tsop.assoc_id', '=', (int) $pressId);
-                    })->addSelect(['tsop.assoc_id AS press_id']);
-                }, function ($query) {
-                    return $query->addSelect([DB::raw('NULL AS press_id')]);
-                })
+                        return $query->join('data_object_tombstone_oai_set_objects AS tsop', function ($join) use ($pressId) {
+                            $join->on('tsop.tombstone_id', '=', 'dot.tombstone_id');
+                            $join->where('tsop.assoc_type', '=', ASSOC_TYPE_PRESS);
+                            $join->where('tsop.assoc_id', '=', (int) $pressId);
+                        })->addSelect(['tsop.assoc_id AS press_id']);
+                    }, function ($query) {
+                        return $query->addSelect([DB::raw('NULL AS press_id')]);
+                    })
                     ->when(isset($seriesId), function ($query, $seriesId) {
-                    return $query->join('data_object_tombstone_oai_set_objects AS tsos', function ($join) use ($seriesId) {
-                        $join->on('tsos.tombstone_id', '=', 'dot.tombstone_id');
-                        $join->where('tsos.assoc_type', '=', ASSOC_TYPE_SERIES);
-                        $join->where('tsos.assoc_id', '=', (int) $seriesId);
-                    })->addSelect(['tsos.assoc_id AS series_id']);
-                }, function ($query) {
-                    return $query->addSelect([DB::raw('NULL AS series_id')]);
-                })
+                        return $query->join('data_object_tombstone_oai_set_objects AS tsos', function ($join) use ($seriesId) {
+                            $join->on('tsos.tombstone_id', '=', 'dot.tombstone_id');
+                            $join->where('tsos.assoc_type', '=', ASSOC_TYPE_SERIES);
+                            $join->where('tsos.assoc_id', '=', (int) $seriesId);
+                        })->addSelect(['tsos.assoc_id AS series_id']);
+                    }, function ($query) {
+                        return $query->addSelect([DB::raw('NULL AS series_id')]);
+                    })
                     ->when(isset($set), function ($query) use ($set) {
-                    return $query->where('dot.set_spec', '=', $set);
-                })
+                        return $query->where('dot.set_spec', '=', $set);
+                    })
                     ->when($from, function ($query, $from) {
-                    return $query->where('dot.date_deleted', '>=', $from);
-                })
+                        return $query->where('dot.date_deleted', '>=', $from);
+                    })
                     ->when($until, function ($query, $until) {
-                    return $query->where('dot.date_deleted', '<=', $until);
-                })
+                        return $query->where('dot.date_deleted', '<=', $until);
+                    })
                     ->when($submissionId, function ($query, $submissionId) {
-                    return $query->where('dot.data_object_id', '=', (int) $submissionId);
-                })
+                        return $query->where('dot.data_object_id', '=', (int) $submissionId);
+                    })
             )
             ->orderBy(DB::raw($orderBy));
     }

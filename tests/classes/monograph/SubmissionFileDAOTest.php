@@ -32,16 +32,25 @@ use PKP\tests\DatabaseTestCase;
 
 class SubmissionFileDAOTest extends DatabaseTestCase
 {
-    // Define test ids.
-    private const SUBMISSION_FILE_DAO_TEST_PRESS_ID = 999;
-    private const SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID = 9999;
+    // Define test ids. WARNING: These are expected to match present data!
+    // The dataset data (https://github.com/pkp/datasets) provides conforming data.
+    private const SUBMISSION_FILE_DAO_TEST_PRESS_ID = 1;
+    private const SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID = 1;
     private const SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID = 1;
-    private const SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID = 2;
+    private const SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID = 9;
     // Define a temp file location for testing.
     private const TMP_FILES = '/tmp';
     private string $testFile1;
     private string $testFile2;
     private string $testFile3;
+
+    /**
+     * @see DatabaseTestCase::getAffectedTables()
+     */
+    protected function getAffectedTables()
+    {
+        return \PKP\tests\PKPTestHelper::PKP_TEST_ENTIRE_DB;
+    }
 
     protected function setUp(): void
     {
@@ -108,13 +117,6 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $this->_cleanFiles();
     }
 
-    /**
-     * @covers SubmissionFileDAO
-     * @covers SubmissionFileDAO
-     * @covers SubmissionFileDAODelegate
-     * @covers SubmissionArtworkFileDAODelegate
-     * @covers SubmissionFileDAODelegate
-     */
     public function testSubmissionFileCrud()
     {
         //
@@ -225,9 +227,6 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         static::assertNull($submissionFile2);
 
         $this->_cleanFiles($submissionId);
-
-        // Delete the test submission
-        Repo::submission()->dao->deleteById($submissionId);
     }
 
     /**

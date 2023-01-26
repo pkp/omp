@@ -47,9 +47,6 @@ msgstr "Chapitre"
 msgid "submission.chapters"
 msgstr "Chapitres"
 
-msgid "submission.chaptersDescription"
-msgstr "Vous pouvez ajouter la liste des chapitres ici et assigner des contributeurs à la liste des contributeurs ci-dessus. Ces contributeurs auront accès au chapitre pendant différentes étapes du processus de publication."
-
 msgid "submission.chapter.addChapter"
 msgstr "Ajouter un chapitre"
 
@@ -83,9 +80,6 @@ msgstr "En cours d'évaluation"
 msgid "manuscript.submissions"
 msgstr "Manuscrits soumis"
 
-msgid "submission.confirmSubmit"
-msgstr "Vous souhaitez soumettre ce manuscrit à la presse?"
-
 msgid "submission.metadata"
 msgstr "Métadonnées"
 
@@ -116,41 +110,17 @@ msgstr "Télécharger"
 msgid "submission.submit.upload.description"
 msgstr "Les fichiers téléchargés associés à cette soumision, y compris le manuscrit, le prospectus, la lettre de présentation, les illustrations, etc. Pour les volumes édités, ainsi que pour les monographies, téléchargez le manuscrit en un seul fichier, si possible."
 
-msgid "submission.submit.cancelSubmission"
-msgstr "Vous pouvez compléter cette soumission plus tard. Il suffit de sélectionner Soumissions actives à partir de la page Auteur."
-
 msgid "submission.submit.copyrightNoticeAgree"
 msgstr "J'accepte de respecter les conditions stipulées dans l'énonce concernant le droit d'auteur."
 
-msgid "submission.submit.selectSeries"
-msgstr "Choisir une série..."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Position dans cette série (ex: livre 2 ou Volume 2)"
-
-msgid "submission.submit.form.localeRequired"
-msgstr "Veuillez choisir une langue pour la soumission."
 
 msgid "submission.submit.privacyStatement"
 msgstr "Énoncé de confidentialité"
 
 msgid "submission.submit.contributorRole"
 msgstr "Rôle du contributeur"
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Il faut ajouter au moins un auteur."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "Vous devez indiquer le prénom, le nom de famille et l'adresse courriel de chaque auteur."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Veuillez saisir le titre de votre monographie."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Veuillez saisir un bref résumé de votre monographie."
-
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Veuillez sélectionner le rôle du contributeur."
 
 msgid "submission.submit.submissionFile"
 msgstr "Fichier de soumission"
@@ -193,12 +163,6 @@ msgstr "Les livres d'une série sont généralement conservés dans l'ordre inve
 
 msgid "submission.submit.userGroup"
 msgstr "Soumettre selon mon rôle à titre de..."
-
-msgid "submission.submit.userGroupDescription"
-msgstr "S'il s'agit d'un volume édité, vous devriez choisir le rôle de rédacteur en chef du volume."
-
-msgid "submission.submit.titleAndSummary"
-msgstr "Titre et sommaire"
 
 msgid "submission.upload.selectBookElement"
 msgstr "Choisir un élément du livre"
@@ -265,9 +229,6 @@ msgstr "Le format de publication \"{$formatName}\" a été créé."
 
 msgid "submission.event.publicationFormatRemoved"
 msgstr "Le format de publication \"{$formatName}\" a été supprimé."
-
-msgid "submission.submit.title"
-msgstr "Soumettre une monographie"
 
 msgid "submission.title"
 msgstr "Titre du livre"

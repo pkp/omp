@@ -56,7 +56,9 @@
 				<description>{$submission->getLocalizedAbstract()|strip|escape:"html"}</description>
 
 				{* optional elements *}
-				<author>{$submission->getAuthorString()|escape:"html"}</author>
+				{if !empty($submission->getAuthorString())}
+					<author>{$submission->getAuthorString()|escape:"html"}</author>
+				{/if}
 				{* <category/> *}
 				{* <comments/> *}
 				{* <source/> *}

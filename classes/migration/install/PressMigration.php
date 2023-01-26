@@ -36,11 +36,14 @@ class PressMigration extends \PKP\migration\Migration
         // Press settings.
         Schema::create('press_settings', function (Blueprint $table) {
             $table->bigInteger('press_id');
+            $table->foreign('press_id')->references('press_id')->on('presses')->onDelete('cascade');
+            $table->index(['press_id'], 'press_settings_press_id');
+
             $table->string('locale', 14)->default('');
             $table->string('setting_name', 255);
             $table->text('setting_value')->nullable();
             $table->string('setting_type', 6)->nullable();
-            $table->index(['press_id'], 'press_settings_press_id');
+
             $table->unique(['press_id', 'locale', 'setting_name'], 'press_settings_pkey');
         });
     }

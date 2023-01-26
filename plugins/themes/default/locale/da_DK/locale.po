@@ -1,7 +1,8 @@
+# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-04-30 12:34+0000\n"
-"Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
+"PO-Revision-Date: 2022-11-30 18:18+0000\n"
+"Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/da_DK/>\n"
 "Language: da_DK\n"
@@ -9,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
 msgstr "Vis hjemmesidebilledet på sidehovedets baggrund."
@@ -58,7 +59,7 @@ msgstr ""
 "sprogunderstøttelse."
 
 msgid "plugins.themes.default.option.typography.description"
-msgstr "Vælg en skrifttypekombination, der passer til dette tidsskrift."
+msgstr "Vælg en skrifttypekombination, der passer til denne udgiver."
 
 msgid "plugins.themes.default.option.typography.label"
 msgstr "Typografi"
@@ -70,7 +71,28 @@ msgid "plugins.themes.default.name"
 msgstr "Standard-tema"
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
-msgstr "Tilføj liste over links til alle forlagets serier på katalogsiden"
+msgstr "Tilføj liste over links til alle udgiverens serier på katalogsiden"
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
 msgstr "Vis serier"
+
+msgid "plugins.themes.default.option.displayStats.label"
+msgstr "Visningsmuligheder for brugsstatistik"
+
+msgid "plugins.themes.default.option.displayStats.none"
+msgstr "Fremvis ikke diagram over indsendelsesstatistik for læseren."
+
+msgid "plugins.themes.default.option.displayStats.bar"
+msgstr "Anvend søjlediagram til at vise brugsstatistik."
+
+msgid "plugins.themes.default.option.displayStats.line"
+msgstr "Anvend kurvediagram til visning af brugsstatistik."
+
+msgid "plugins.themes.default.displayStats.monthInitials"
+msgstr "Jan Feb Mar Apr Maj Jun Jul Aug Sep Okt Nov Dec"
+
+msgid "plugins.themes.default.displayStats.downloads"
+msgstr "Downloads"
+
+msgid "plugins.themes.default.displayStats.noStats"
+msgstr "Download-data er endnu ikke tilgængelige."

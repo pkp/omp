@@ -12,9 +12,6 @@ msgstr ""
 "4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "emails.notification.subject"
-msgstr "Новое сообщение от {$contextName}"
-
 msgid "emails.reviewResponseOverdueAuto.subject"
 msgstr "Запрос на рецензирование рукописи"
 
@@ -60,7 +57,7 @@ msgstr ""
 msgid "emails.editorAssign.subject"
 msgstr "Назначение редактором"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Здравствуйте!<br />\n"
 "<br />\n"
@@ -72,7 +69,7 @@ msgstr ""
 "<br />\n"
 "{$contextSignature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Благодарность за подачу рукописи"
 
 msgid "emails.reviewerRegister.body"
@@ -140,18 +137,6 @@ msgstr ""
 msgid "emails.userRegister.subject"
 msgstr "Регистрация издательства"
 
-msgid "emails.passwordReset.body"
-msgstr ""
-"Ваш пароль на сайте «{$siteTitle}» был успешно сброшен.<br />\n"
-"<br />\n"
-"Имя пользователя: {$recipientUsername}<br />\n"
-"Ваш Новый Пароль: {$password}<br />\n"
-"<br />\n"
-"{$siteContactName}"
-
-msgid "emails.passwordReset.subject"
-msgstr "Сброс пароля"
-
 msgid "emails.passwordResetConfirm.body"
 msgstr ""
 "Мы получили запрос на сброс Вашего пароля на сайте «{$siteTitle}».<br />\n"
@@ -166,18 +151,6 @@ msgstr ""
 
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Подтверждение сброса пароля"
-
-msgid "emails.notification.body"
-msgstr ""
-"Вы получили новое уведомление с сайта  «{$contextName}»:<br />\n"
-"<br />\n"
-"{$notificationContents}<br />\n"
-"<br />\n"
-"Ссылка: {$notificationUrl}<br />\n"
-"<br />\n"
-"Это письмо сгенерировано автоматически, пожалуйста, не отвечаыте на него.<br "
-"/>\n"
-"{$contextSignature}<hr />{$unsubscribeLink}"
 
 msgid "emails.announcement.subject"
 msgstr "{$announcementTitle}"
@@ -271,17 +244,6 @@ msgstr ""
 "С уважением,<br />\n"
 "{$contextSignature}"
 
-msgid "emails.notificationCenterDefault.description"
-msgstr ""
-"Сообщение по умолчанию (пустое) используется в редакторе списка сообщений "
-"Центра уведомлений."
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Пожалуйста, введите свое сообщение."
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Сообщение об  «{$contextName}»"
-
 msgid "emails.notifyFile.description"
 msgstr "Уведомление от пользователя, посланное из модуля отправки файлов"
 
@@ -330,11 +292,6 @@ msgstr ""
 msgid "emails.emailLink.subject"
 msgstr "Эта статья, возможно, будет Вам интересна"
 
-msgid "emails.indexComplete.description"
-msgstr ""
-"Это письмо индексатора, отправляемое редактору раздела с уведомлением о том, "
-"что индексирование завершено."
-
 msgid "emails.indexComplete.body"
 msgstr ""
 "Здравствуйте, {$recipientName}!<br />\n"
@@ -348,12 +305,6 @@ msgstr ""
 
 msgid "emails.indexComplete.subject"
 msgstr "Индексы сделаны"
-
-msgid "emails.indexRequest.description"
-msgstr ""
-"Это письмо редактора раздела, отправляемое индексатору с уведомлением о том, "
-"что ему поручено выполнить индексирование материала. В письме содержится "
-"информация о материале и о том, как получить к нему доступ."
 
 msgid "emails.indexRequest.body"
 msgstr ""

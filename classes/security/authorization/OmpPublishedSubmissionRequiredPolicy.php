@@ -16,7 +16,6 @@ namespace APP\security\authorization;
 
 use APP\facades\Repo;
 use PKP\security\authorization\DataObjectRequiredPolicy;
-use PKP\submission\PKPSubmission;
 
 class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy
 {
@@ -54,9 +53,9 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy
         // Make sure the published submissions belongs to the press.
         $submission = Repo::submission()->getByUrlPath($submissionId, $this->context->getId());
         if (!$submission && ctype_digit((string) $submissionId)) {
-            $submission = Repo::submission()->get($submissionId);
+            $submission = Repo::submission()->get($submissionId, $this->context->getId());
         }
-        if (!$submission || $submission->getData('status') !== PKPSubmission::STATUS_PUBLISHED) {
+        if (!$submission) {
             return AUTHORIZATION_DENY;
         }
 

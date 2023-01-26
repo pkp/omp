@@ -167,16 +167,6 @@ class PublicationDateDAO extends \PKP\db\DAO
     {
         $this->update('DELETE FROM publication_dates WHERE publication_date_id = ?', [(int) $entryId]);
     }
-
-    /**
-     * Get the ID of the last inserted publication date.
-     *
-     * @return int
-     */
-    public function getInsertId()
-    {
-        return $this->_getInsertId('publication_dates', 'publication_date_id');
-    }
 }
 
 if (!PKP_STRICT_MODE) {

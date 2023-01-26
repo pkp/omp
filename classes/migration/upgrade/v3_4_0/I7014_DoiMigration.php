@@ -32,18 +32,21 @@ class I7014_DoiMigration extends PKPI7014_DoiMigration
         Schema::table('submission_chapters', function (Blueprint $table) {
             $table->bigInteger('doi_id')->nullable();
             $table->foreign('doi_id')->references('doi_id')->on('dois')->nullOnDelete();
+            $table->index(['doi_id'], 'submission_chapters_doi_id');
         });
 
         // Add doiId to publication formats
         Schema::table('publication_formats', function (Blueprint $table) {
             $table->bigInteger('doi_id')->nullable();
             $table->foreign('doi_id')->references('doi_id')->on('dois')->nullOnDelete();
+            $table->index(['doi_id'], 'publication_formats_doi_id');
         });
 
         // Add doiId to submission files
         Schema::table('submission_files', function (Blueprint $table) {
             $table->bigInteger('doi_id')->nullable();
             $table->foreign('doi_id')->references('doi_id')->on('dois')->nullOnDelete();
+            $table->index(['doi_id'], 'submission_files_doi_id');
         });
 
         $this->migrateExistingDataUp();

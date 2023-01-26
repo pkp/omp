@@ -412,9 +412,6 @@ msgstr "Тек на работа"
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Потребна е ставка од списокот за проверка."
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Список за подготовка на поднесување"
-
 msgid "manager.setup.submissionGuidelines"
 msgstr "Упатства за поднесување"
 
@@ -944,6 +941,7 @@ msgstr ""
 msgid "manager.setup.enableAnnouncements.enable"
 msgstr "Овозможете соопштенија"
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "Подготвените е-пошти што системот ги испраќа во име на изданието ќе го "

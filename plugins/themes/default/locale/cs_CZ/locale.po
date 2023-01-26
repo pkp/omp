@@ -1,7 +1,8 @@
+# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-05-06 16:44+0000\n"
-"Last-Translator: Jiří Podhorecký <j.podhorecky@gmail.com>\n"
+"PO-Revision-Date: 2022-11-29 15:08+0000\n"
+"Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/cs_CZ/>\n"
 "Language: cs_CZ\n"
@@ -9,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
 msgstr "Zobrazit obrázek úvodní stránky jako pozadí záhlaví."
@@ -58,7 +59,7 @@ msgstr ""
 "rozsáhlou podporu jazyků."
 
 msgid "plugins.themes.default.option.typography.description"
-msgstr "Vyberte kombinaci fontů, která vyhovuje tomuto nakladatelství."
+msgstr "Vyberte kombinaci fontů, která vyhovuje pro toto nakladatelství."
 
 msgid "plugins.themes.default.option.typography.label"
 msgstr "Typografie"
@@ -74,3 +75,24 @@ msgstr "Přidání seznamu odkazů na všechny série tisku na stránku katalogu
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
 msgstr "Zobrazit Serie"
+
+msgid "plugins.themes.default.option.displayStats.label"
+msgstr "Možnosti zobrazení statistik používání"
+
+msgid "plugins.themes.default.option.displayStats.line"
+msgstr "Pro zobrazení statistik používání použijte čarový graf."
+
+msgid "plugins.themes.default.option.displayStats.none"
+msgstr "Nezobrazovat čtenářům graf statistik využití příspěvků."
+
+msgid "plugins.themes.default.option.displayStats.bar"
+msgstr "Pro zobrazení statistik používání použijte sloupcový graf."
+
+msgid "plugins.themes.default.displayStats.monthInitials"
+msgstr "Led Uno Bře Dub Kvě Čer Čvc Srp Zář Říj Lis Pro"
+
+msgid "plugins.themes.default.displayStats.downloads"
+msgstr "Stažení"
+
+msgid "plugins.themes.default.displayStats.noStats"
+msgstr "Údaje o stažení zatím nejsou k dispozici."

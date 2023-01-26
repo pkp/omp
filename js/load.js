@@ -17,12 +17,16 @@ import AccessPage from '@/components/Container/AccessPage.vue';
 import AddContextContainer from '@/components/Container/AddContextContainer.vue';
 import AdminPage from '@/components/Container/AdminPage.vue';
 import DecisionPage from '@/components/Container/DecisionPage.vue';
-import DoiPage from "@/components/Container/DoiPageOMP.vue";
+import DoiPage from '@/components/Container/DoiPageOMP.vue';
 import ImportExportPage from '@/components/Container/ImportExportPage.vue';
+import ManageEmailsPage from '@/components/Container/ManageEmailsPage.vue';
 import SettingsPage from '@/components/Container/SettingsPage.vue';
+import StartSubmissionPage from '@/components/Container/StartSubmissionPage.vue';
 import StatsEditorialPage from '@/components/Container/StatsEditorialPage.vue';
 import StatsPublicationsPage from '@/components/Container/StatsPublicationsPage.vue';
+import StatsContextPage from '@/components/Container/StatsContextPage.vue';
 import StatsUsersPage from '@/components/Container/StatsUsersPage.vue';
+import SubmissionWizardPage from '@/components/Container/SubmissionWizardPageOMP.vue';
 import WorkflowPage from '@/components/Container/WorkflowPageOMP.vue';
 import JobsPage from '@/components/Container/JobsPage.vue';
 
@@ -42,13 +46,17 @@ window.pkp = Object.assign(PkpLoad, {
 		DecisionPage,
 		DoiPage,
 		ImportExportPage,
+		ManageEmailsPage,
 		JobsPage,
 		SettingsPage,
+		StartSubmissionPage,
 		StatsEditorialPage,
 		StatsPublicationsPage,
+		StatsContextPage,
 		StatsUsersPage,
-		WorkflowPage
-	}
+		SubmissionWizardPage,
+		WorkflowPage,
+	},
 });
 
 // Required by the URN plugin

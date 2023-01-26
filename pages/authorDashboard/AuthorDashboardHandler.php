@@ -15,11 +15,16 @@
 
 namespace APP\pages\authorDashboard;
 
-use PKP\db\DAORegistry;
-use PKP\core\PKPApplication;
+use APP\components\forms\publication\TitleAbstractForm;
+use APP\components\listPanels\ContributorsListPanel;
+use APP\publication\Publication;
+use APP\submission\Submission;
 use APP\template\TemplateManager;
-use PKP\submissionFile\SubmissionFile;
+use PKP\context\Context;
+use PKP\core\PKPApplication;
+use PKP\db\DAORegistry;
 use PKP\pages\authorDashboard\PKPAuthorDashboardHandler;
+use PKP\submissionFile\SubmissionFile;
 
 class AuthorDashboardHandler extends PKPAuthorDashboardHandler
 {
@@ -124,6 +129,28 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler
                 'submissionId' => $submission->getId(),
                 'publicationId' => '__publicationId__',
             ]
+        );
+    }
+
+    protected function getTitleAbstractForm(string $latestPublicationApiUrl, array $locales, Publication $latestPublication, Context $context): TitleAbstractForm
+    {
+        return new TitleAbstractForm(
+            $latestPublicationApiUrl,
+            $locales,
+            $latestPublication
+        );
+    }
+
+    protected function getContributorsListPanel(Submission $submission, Context $context, array $locales, array $authorItems, ?bool $canEditPublication): ContributorsListPanel
+    {
+        return new ContributorsListPanel(
+            'contributors',
+            __('publication.contributors'),
+            $submission,
+            $context,
+            $locales,
+            $authorItems,
+            $canEditPublication
         );
     }
 }

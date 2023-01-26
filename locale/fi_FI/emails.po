@@ -14,22 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "emails.notification.subject"
-msgstr "Uusi ilmoitus sivustolta {$contextName}"
-
-#, fuzzy
-msgid "emails.notification.body"
-msgstr ""
-"Teille on uusi ilmoitus sivustolta {$contextName}:<br />\n"
-"<br />\n"
-"{$notificationContents}<br />\n"
-"<br />\n"
-"Linkki: {$notificationUrl}<br />\n"
-"<br />\n"
-"Tämä on automaattisesti luotu sähköposti; Älkää vastatko tähän viestiin.<br "
-"/>\n"
-"{$contextSignature}"
-
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Vahvista salasanan vaihtaminen"
 
@@ -40,18 +24,6 @@ msgstr ""
 "Jos ette tehnyt tätä pyyntöä, voitte jättää tämän sähköpostin huomiotta. Jos haluatte vaihtaa salasanan, klikatkaa alla olevaa linkkiä.<br />\n"
 "<br />\n"
 "Vaihda salasana: {$passwordResetUrl}<br />\n"
-"<br />\n"
-"{$siteContactName}"
-
-msgid "emails.passwordReset.subject"
-msgstr "Salasana vaihdettu"
-
-msgid "emails.passwordReset.body"
-msgstr ""
-"Salasananne sivustolle {$siteTitle} on vaihdettu onnistuneesti.<br />\n"
-"<br />\n"
-"Käyttäjätunnus: {$recipientUsername}<br />\n"
-"Uusi salasana: {$password}<br />\n"
 "<br />\n"
 "{$siteContactName}"
 
@@ -114,10 +86,10 @@ msgstr ""
 "Ystävällisin terveisin,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Käsikirjoitus vastaanotettu"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Hei,<br />\n"
 "<br />\n"
@@ -417,12 +389,6 @@ msgstr ""
 "<br />\n"
 "\t\t"
 
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Viesti julkaisijaa {$contextName} koskien"
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Kirjoita viesti."
-
 msgid "emails.announcement.body"
 msgstr ""
 "<b>{$announcementTitle}</b><br />\n"
@@ -458,11 +424,6 @@ msgstr ""
 msgid "emails.statisticsReportNotification.subject"
 msgstr "Toimitustyötä koskeva raportti {$month}/{$year}"
 
-msgid "emails.notificationCenterDefault.description"
-msgstr ""
-"The default (blank) message used in the Notification Center Message "
-"Listbuilder."
-
 msgid "emails.notifyFile.description"
 msgstr "A notification from a user sent from a file information center modal"
 
@@ -476,17 +437,6 @@ msgstr ""
 "send information about a monograph to somebody who may be interested. It is "
 "available via the Reading Tools and must be enabled by the Press Manager in "
 "the Reading Tools Administration page."
-
-msgid "emails.indexComplete.description"
-msgstr ""
-"This email from the Indexer to the Series Editor notifies them that the "
-"index creation process has been completed."
-
-msgid "emails.indexRequest.description"
-msgstr ""
-"This email from the Series Editor to the Indexer notifies them that they "
-"have been assigned the task of creating indexes for a submission. It "
-"provides information about the submission and how to access it."
 
 msgid "emails.reviewReinstate.body"
 msgstr ""

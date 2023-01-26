@@ -692,9 +692,6 @@ msgstr "Ez a sorozat a fő navigációban jelenik meg"
 msgid "series.series"
 msgstr "Sorozatok"
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Hozzárendelt szerkesztők"
-
 msgid "grid.reviewAttachments.availableFiles"
 msgstr "Elérhető fájlok"
 

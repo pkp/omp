@@ -42,11 +42,6 @@ msgstr "Главы"
 msgid "submission.submit.noContext"
 msgstr "Издание этой подачи не может быть найдено."
 
-msgid "submission.submit.userGroupDescription"
-msgstr ""
-"Если Вы посылаете Редактируемое издание, Вы должны выбрать роль редактора "
-"издания."
-
 msgid "submission.submit.userGroup"
 msgstr "Послать от меня в роли..."
 
@@ -90,29 +85,11 @@ msgstr "Подготовка"
 msgid "submission.submit.submissionFile"
 msgstr "Файл подачи"
 
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Выберите роль участника пожалуйста."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Введите краткое резюме вашей монографии."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Введите название монографии, пожалуйста."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "Требуются Имя, Фамилия и адрес email  каждого автора."
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Требуется хотя бы один автор."
-
 msgid "submission.submit.contributorRole"
 msgstr "Роль участника"
 
 msgid "submission.submit.privacyStatement"
 msgstr "Заявление о конфиденциальности"
-
-msgid "submission.submit.form.localeRequired"
-msgstr "Выберите язык подачи, пожалуйста."
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "Примеры: Книга 2, Том 2"
@@ -120,19 +97,8 @@ msgstr "Примеры: Книга 2, Том 2"
 msgid "submission.submit.seriesPosition"
 msgstr "Место серии"
 
-msgid "author.submit.seriesRequired"
-msgstr "Требуется серия."
-
 msgid "author.isVolumeEditor"
 msgstr "Обозначьте этого автора как редактора этого издания."
-
-msgid "submission.submit.selectSeries"
-msgstr "Выбор серии (не обязательно)"
-
-msgid "submission.submit.cancelSubmission"
-msgstr ""
-"Вы можете завершить эту подачу позже выбрав \"Активные подачи\" на домашней "
-"странице автора."
 
 msgid "submission.submit.upload"
 msgstr "Загрузить подачу"
@@ -160,9 +126,6 @@ msgstr "Поддерживающие агенства"
 
 msgid "submission.metadata"
 msgstr "Метаданные"
-
-msgid "submission.confirmSubmit"
-msgstr "Вы уверены что хотите отправить эту рукопись в издательство?"
 
 msgid "manuscript.submissions"
 msgstr "Подачи рукописи"
@@ -199,12 +162,6 @@ msgstr "Редактировать главу"
 
 msgid "submission.chapter.addChapter"
 msgstr "Добавить главу"
-
-msgid "submission.chaptersDescription"
-msgstr ""
-"Вы можете здесь перечислить главы и назначить авторов из списка авторов "
-"выше. Эти авторы будут иметь доступ к главам во время различных стадий "
-"издательского процесса."
 
 msgid "submission.chapters"
 msgstr "Главы"
@@ -262,9 +219,6 @@ msgstr "Название книги"
 
 msgid "submission.upload.selectComponent"
 msgstr "Выбрать компонент"
-
-msgid "submission.submit.title"
-msgstr "Послать монографию"
 
 msgid "publication.scheduledIn"
 msgstr ""
@@ -337,9 +291,6 @@ msgstr "Внешнее рецензирование"
 
 msgid "editor.submission.decision.sendExternalReview"
 msgstr "Послать на внешнее рецензирование"
-
-msgid "submission.submit.titleAndSummary"
-msgstr "Название и резюме"
 
 msgid "submission.event.publicationFormatRemoved"
 msgstr "Формат публикации  \"{$formatName}\" был удален."

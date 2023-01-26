@@ -836,9 +836,6 @@ msgstr "Anna esimerkkejä avainsanoista tai aiheista kirjoittajien avuksi"
 msgid "manager.setup.submissionGuidelines"
 msgstr "Käsikirjoituksen lähettämisen ohjeet"
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Käsikirjoituksen lähettämisen tarkistuslista"
-
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Tarkistuslistan kohta vaaditaan."
 
@@ -1350,6 +1347,7 @@ msgstr ""
 msgid "manager.setup.enableAnnouncements.enable"
 msgstr "Ota ilmoitukset käyttöön"
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "Valmiisiin sähköposteihin, jotka järjestelmä lähettää julkaisijan puolesta, "

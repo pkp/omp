@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T12:00:54-07:00\n"
-"PO-Revision-Date: 2022-02-25 20:38+0000\n"
+"PO-Revision-Date: 2022-09-29 20:48+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/pt_BR/>\n"
@@ -13,10 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.9.1\n"
-
-msgid "submission.submit.title"
-msgstr "Enviar Monografia"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "submission.upload.selectComponent"
 msgstr "Seleciona o componente"
@@ -60,9 +57,6 @@ msgstr "Capítulo"
 msgid "submission.chapters"
 msgstr "Capítulos"
 
-msgid "submission.chaptersDescription"
-msgstr "Liste os capítulos aqui, aos quais também pode designar contribuidores a partir da lista acima. Os contribuidores poderão acessar o capítulo durante os vários estágios do processo de publicação."
-
 msgid "submission.chapter.addChapter"
 msgstr "Incluir capítulo"
 
@@ -96,9 +90,6 @@ msgstr "Em avaliação"
 msgid "manuscript.submissions"
 msgstr "Submissões de manuscritos"
 
-msgid "submission.confirmSubmit"
-msgstr "Deseja realmente enviar este manuscrito para a editora?"
-
 msgid "submission.metadata"
 msgstr "Metadados"
 
@@ -126,12 +117,6 @@ msgstr "Novo envio"
 msgid "submission.submit.upload"
 msgstr "Enviar"
 
-msgid "submission.submit.cancelSubmission"
-msgstr "O envio pode ser concluído posteriormente, escolhendo da lista de Submissões ativas, na página inicial do papel de autor."
-
-msgid "submission.submit.selectSeries"
-msgstr "Escolher séries (opcional)"
-
 msgid "submission.submit.seriesPosition"
 msgstr "Posição na série (ex.: Livro 2, ou Volume 2)"
 
@@ -141,29 +126,11 @@ msgstr "Caso o livro também deva ser considerado para uma série..."
 msgid "submission.submit.placement.seriesPositionDescription"
 msgstr "Livros em séries são normalmente mantidos na ordem inversa em que são publicados, para proporcionar uma visão do desenvolvimento da série, bem como manter as mais recentes à frente."
 
-msgid "submission.submit.form.localeRequired"
-msgstr "Escolha o idioma da submissão."
-
 msgid "submission.submit.privacyStatement"
 msgstr "Declaração de Privacidade"
 
 msgid "submission.submit.contributorRole"
 msgstr "Papel do contribuidor"
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Pelo menos um autor é obrigatório."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "São informações obrigatórias para cada autor o prénome, o sobrenome e o endereço de e-mail."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "O título da monografia é obrigatório."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Informe um breve resumo da monografia."
-
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Escolha o papel do contribuidor."
 
 msgid "submission.submit.submissionFile"
 msgstr "Arquivo de submissão"
@@ -203,9 +170,6 @@ msgstr "Colocação da submissão"
 
 msgid "submission.submit.userGroup"
 msgstr "Enviar no meu papel como..."
-
-msgid "submission.submit.userGroupDescription"
-msgstr "Caso esteja submetendo um volume editado, escolha o papel do editor do volume."
 
 msgid "grid.chapters.title"
 msgstr "Capítulos"
@@ -269,9 +233,6 @@ msgstr "O formato de publicação \"{$formatName}\" foi criado."
 
 msgid "submission.event.publicationFormatRemoved"
 msgstr "O formato de publicação \"{$formatName}\" foi excluído."
-
-msgid "submission.submit.titleAndSummary"
-msgstr "Título e Resumo"
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "Exemplos: Livro 2, Volume 2"
@@ -377,9 +338,6 @@ msgstr "Adicionar Seleção ao Catálogo"
 
 msgid "submission.submit.noContext"
 msgstr "Não foi possível encontrar a editora desta submissão."
-
-msgid "author.submit.seriesRequired"
-msgstr "Uma série válida é necessária."
 
 msgid "author.isVolumeEditor"
 msgstr "Identifique esse colaborador como o editor deste volume."
@@ -590,6 +548,7 @@ msgstr ""
 "de quanto tempo o processo de avaliação interna pode levar e quando eles "
 "devem esperar para terem notícias dos editores novamente."
 
+#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr "A submissão, {$title}, foi enviada para a fase de avaliação interna."
 
@@ -604,3 +563,14 @@ msgstr "Esta submissão está pronta para ser enviada para avaliação interna."
 
 msgid "editor.submission.decision.sendInternalReview"
 msgstr "Enviar para avaliação interna"
+
+msgid "doi.submission.incorrectContext"
+msgstr ""
+"Não foi possível criar um DOI para a seguinte submissão: {$pubObjectTitle}. "
+"Não existe no contexto atual da editora."
+
+msgid "publication.chapter.licenseUrl"
+msgstr "URL de licença"
+
+msgid "publication.chapterDefaultLicenseURL"
+msgstr "URL de licença de capítulo padrão"

@@ -80,7 +80,7 @@ msgstr ""
 msgid "emails.editorAssign.subject"
 msgstr "Уредувачка задача"
 
-msgid "emails.submissionAckNotUser.body"
+msgid "emails.submissionAckNotAuthor.body"
 msgstr ""
 "Здраво, <br />\n"
 "<br />\n"
@@ -92,7 +92,7 @@ msgstr ""
 "<br />\n"
 "{$contextSignature}"
 
-msgid "emails.submissionAckNotUser.subject"
+msgid "emails.submissionAckNotAuthor.subject"
 msgstr "Признание за поднесување"
 
 msgid "emails.reviewerRegister.body"
@@ -159,19 +159,6 @@ msgstr ""
 msgid "emails.userRegister.subject"
 msgstr "Притиснете Регистрација"
 
-msgid "emails.passwordReset.body"
-msgstr ""
-"Вашата лозинка е успешно ресетирана за употреба со веб-страницата "
-"{$siteTitle}. <br />\n"
-"<br />\n"
-"Вашето корисничко име: {$recipientUsername} <br />\n"
-"Вашата нова лозинка: {$password} <br />\n"
-"<br />\n"
-"{$siteContactName}"
-
-msgid "emails.passwordReset.subject"
-msgstr "Ресетирање на лозинка"
-
 msgid "emails.passwordResetConfirm.body"
 msgstr ""
 "Добивме барање за ресетирање на вашата лозинка за веб-страницата "
@@ -187,21 +174,6 @@ msgstr ""
 
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Потврда за ресетирање на лозинка"
-
-msgid "emails.notification.body"
-msgstr ""
-"Имате ново известување од {$contextName}: <br />\n"
-"<br />\n"
-"{$notificationContents} <br />\n"
-"<br />\n"
-"Врска: {$notificationUrl} <br />\n"
-"<br />\n"
-"Ова е автоматски генерирана е-пошта; Ве молиме, не одговарајте на оваа "
-"порака. <br />\n"
-"{$contextSignature}<hr />{$unsubscribeLink}"
-
-msgid "emails.notification.subject"
-msgstr "Ново известување од {$contextName}"
 
 #, fuzzy
 msgid "emails.editorDecisionAccept.body"
@@ -364,17 +336,6 @@ msgstr ""
 msgid "emails.statisticsReportNotification.subject"
 msgstr "Уредувачка активност за {$month}, {$year}"
 
-msgid "emails.notificationCenterDefault.description"
-msgstr ""
-"Стандардната (празна) порака користена во Изградувачот на пораки во Центарот "
-"за известувања."
-
-msgid "emails.notificationCenterDefault.body"
-msgstr "Ве молиме внесете ја вашата порака."
-
-msgid "emails.notificationCenterDefault.subject"
-msgstr "Порака во врска со {$contextName}"
-
 msgid "emails.notifyFile.description"
 msgstr ""
 "Известување од корисник пратено од модалот на центарот за информации за "
@@ -425,11 +386,6 @@ msgstr ""
 msgid "emails.emailLink.subject"
 msgstr "Ракопис од можен интерес"
 
-msgid "emails.indexComplete.description"
-msgstr ""
-"Оваа е-пошта од Индексаторот до Уредникот на сериите ги известува дека "
-"процесот на создавање индекс е завршен."
-
 msgid "emails.indexComplete.body"
 msgstr ""
 "{$recipientName}: <br />\n"
@@ -443,12 +399,6 @@ msgstr ""
 
 msgid "emails.indexComplete.subject"
 msgstr "Индексирањето на отисоците на труд е комплетирано"
-
-msgid "emails.indexRequest.description"
-msgstr ""
-"Оваа е-пошта од Уредувачот на серии до Индексаторот ги известува дека им е "
-"доделена задача да создаваат индекси за поднесување. Дава информации за "
-"поднесувањето и начинот на пристап до него."
 
 msgid "emails.indexRequest.body"
 msgstr ""

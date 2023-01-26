@@ -45,6 +45,11 @@ session_cookie_name = OMPSID
 ; (set to 0 to force expiration at end of current session)
 session_lifetime = 30
 
+; SameSite configuration for the cookie, see possible values and explanations
+; at https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
+; To set the "Secure" attribute for the cookie see the setting force_ssl at the [security] group
+session_samesite = Lax
+
 ; Enable support for running scheduled tasks
 ; Set this to On if you have set up the scheduled tasks script to
 ; execute periodically
@@ -106,8 +111,7 @@ restful_urls = Off
 allowed_hosts = ''
 
 ; Allow the X_FORWARDED_FOR header to override the REMOTE_ADDR as the source IP
-; Set this to "On" if you are behind a reverse proxy and you control the
-; X_FORWARDED_FOR header.
+; Set this to "On" if you are behind a reverse proxy and you control the X_FORWARDED_FOR
 ; Warning: This defaults to "On" if unset for backwards compatibility.
 trust_x_forwarded_for = Off
 
@@ -194,9 +198,6 @@ web_cache_hours = 1
 ; Default locale
 locale = en_US
 
-; Client output/input character set
-client_charset = utf-8
-
 ; Database connection character set
 connection_charset = utf8
 
@@ -232,6 +233,7 @@ umask = 0022
 ; a possible revision
 filename_revision_match = 70
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Fileinfo (MIME) Settings ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -246,7 +248,8 @@ filename_revision_match = 70
 
 [security]
 
-; Force SSL connections site-wide
+; Force SSL connections site-wide and also sets the "Secure" flag for session cookies
+; See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#secure
 force_ssl = Off
 
 ; Force SSL connections for login only
@@ -269,8 +272,7 @@ salt = "YouMustSetASecretKeyHere!!"
 ; The unique secret used for encoding and decoding API keys
 api_key_secret = ""
 
-; The number of seconds before a password reset hash expires (defaults to
-; 7200 seconds (2 hours)
+; The number of seconds before a password reset hash expires (defaults to 7200 / 2 hours)
 reset_seconds = 7200
 
 ; Allowed HTML tags for fields that permit restricted HTML.
@@ -279,28 +281,7 @@ reset_seconds = 7200
 ; stripped.
 allowed_html = "a[href|target|title],em,strong,cite,code,ul,ol,li[class],dl,dt,dd,b,i,u,img[src|alt],sup,sub,br,p"
 
-;Is implicit authentication enabled or not
-
-;implicit_auth = On
-
-;Implicit Auth Header Variables
-
-;implicit_auth_header_first_name = HTTP_TDL_GIVENNAME
-;implicit_auth_header_last_name = HTTP_TDL_SN
-;implicit_auth_header_email = HTTP_TDL_MAIL
-;implicit_auth_header_phone = HTTP_TDL_TELEPHONENUMBER
-;implicit_auth_header_initials = HTTP_TDL_METADATA_INITIALS
-;implicit_auth_header_mailing_address = HTTP_TDL_METADATA_TDLHOMEPOSTALADDRESS
-;implicit_auth_header_uin = HTTP_TDL_TDLUID
-
-; A space delimited list of uins to make admin
-;implicit_auth_admin_list = "100000040@tdl.org 85B7FA892DAA90F7@utexas.edu 100000012@tdl.org"
-
-; URL of the implicit auth 'Way Finder' page. See pages/login/LoginHandler.php for usage.
-
-;implicit_auth_wayf_url = "/Shibboleth.sso/wayf"
-
-
+;N.b.: The implicit_auth parameter has been removed in favor of plugin implementations such as shibboleth
 
 ;;;;;;;;;;;;;;;;;;
 ; Email Settings ;
@@ -352,7 +333,7 @@ sendmail_path = "/usr/sbin/sendmail -bs"
 ; default_envelope_sender = my_address@my_host.com
 
 ; Force the default envelope sender (if present)
-; This is useful if setting up a site-wide noreply address
+; This is useful if setting up a site-wide no-reply address
 ; The reply-to field will be set with the reply-to or from address.
 ; force_default_envelope_sender = Off
 
@@ -378,7 +359,7 @@ sendmail_path = "/usr/sbin/sendmail -bs"
 time_between_emails = 3600
 
 ; Maximum number of recipients that can be included in a single email
-; (either as To:, Cc:, or Bcc: addresses) for a non-priveleged user
+; (either as To:, Cc:, or Bcc: addresses) for a non-privileged user
 max_recipients = 10
 
 ; If enabled, email addresses must be validated before login is possible.
@@ -444,10 +425,10 @@ repository_id = omp.pkp.sfu.ca
 
 [interface]
 
-; Number of items to display per page; overridable on a per-press basis
+; Number of items to display per page; can be overridden on a per-press basis
 items_per_page = 50
 
-; Number of page links to display; overridable on a per-press basis
+; Number of page links to display; can be overridden on a per-press basis
 page_links = 10
 
 
@@ -548,6 +529,7 @@ log_web_service_info = Off
 [curl]
 ; cainfo = ""
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;
 ; Job Queues Settings ;
 ;;;;;;;;;;;;;;;;;;;;;;;
@@ -560,8 +542,43 @@ default_connection = "database"
 ; Default queue to use when a job is added to the queue
 default_queue = "queue"
 
-; Do not run jobs on shutdown
-; By default, jobs in the queue will be run during PHP's shutdown
-; function. Disable this if you want to run jobs through a separate
-; cron job or workers.
-disable_jobs_run_at_shutdown = Off
+; Whether or not to turn on the built-in job runner
+;
+; When enabled, jobs will be processed at the end of each web
+; request to the application.
+;
+; Use of the built-in job runner is highly discouraged for high-volume
+; sites. Instead, a worker daemon or cron job should be configured
+; to process jobs off the application's main thread.
+;
+; See: <link-to-documentation>
+;
+job_runner = On
+
+; The maximum number of jobs to run in a single request when using
+; the built-in job runner.
+job_runner_max_jobs = 30
+
+; The maximum number of seconds the built-in job runner should spend
+; running jobs in a single request.
+;
+; This should be less than the max_execution_time the server has
+; configured for PHP.
+;
+; Lower this setting if jobs are failing due to timeouts.
+job_runner_max_execution_time = 30
+
+; The maximum consumerable memory that should be spent by the built-in
+; job runner when running jobs.
+;
+; Set as a percentage, such as 80%:
+;
+; job_runner_max_memory = 80
+;
+; Or set as a fixed value in megabytes:
+;
+; job_runner_max_memory = 128M
+;
+; When setting a fixed value in megabytes, this should be less than the
+; memory_limit the server has configured for PHP.
+job_runner_max_memory = 80

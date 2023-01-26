@@ -555,9 +555,6 @@ msgstr "Add Attachment to Review"
 msgid "grid.reviewAttachments.availableFiles"
 msgstr "Available Files"
 
-msgid "submissionGroup.assignedSubEditors"
-msgstr "Assigned editors"
-
 msgid "series.series"
 msgstr "Series"
 

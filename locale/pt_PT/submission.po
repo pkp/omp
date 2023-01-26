@@ -1,11 +1,12 @@
 # Carla Marques <carla.marques@usdb.uminho.pt>, 2021, 2022.
+# José Carvalho <jcarvalho@keep.pt>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-22 20:40+0000\n"
-"PO-Revision-Date: 2022-03-14 23:55+0000\n"
-"Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
+"PO-Revision-Date: 2022-11-07 20:02+0000\n"
+"Last-Translator: José Carvalho <jcarvalho@keep.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/submission/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -13,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "submission.publication"
 msgstr "Publicação"
@@ -130,30 +131,11 @@ msgstr "Preparar"
 msgid "submission.submit.submissionFile"
 msgstr "Ficheiro de Submissão"
 
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Selecionar o papel do contribuidor."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Insira um breve resumo da sua monografia."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Insira o título da monografia."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr ""
-"É obrigatório inserir o nome, apelido, e endereço de e-mail de cada autor."
-
-msgid "submission.submit.form.authorRequired"
-msgstr "É obrigatório inserir pelo menos um autor."
-
 msgid "submission.submit.contributorRole"
 msgstr "Papel do contribuidor"
 
 msgid "submission.submit.privacyStatement"
 msgstr "Política de Privacidade"
-
-msgid "submission.submit.form.localeRequired"
-msgstr "Selecione o idioma da submissão."
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "Exemplos: Livro 2, Volume 2"
@@ -161,19 +143,8 @@ msgstr "Exemplos: Livro 2, Volume 2"
 msgid "submission.submit.seriesPosition"
 msgstr "Posição na Série"
 
-msgid "author.submit.seriesRequired"
-msgstr "É obrigatório selecionar uma série válida."
-
 msgid "author.isVolumeEditor"
 msgstr "Identificar este autor como editor do livro."
-
-msgid "submission.submit.selectSeries"
-msgstr "Selecionar séries (opcional)"
-
-msgid "submission.submit.cancelSubmission"
-msgstr ""
-"Pode concluir esta submissão mais tarde ao selecionar Submissões Ativas na "
-"página de Autor."
 
 msgid "submission.submit.upload"
 msgstr "Upload Submissão"
@@ -201,9 +172,6 @@ msgstr "Agências de Financiamento"
 
 msgid "submission.metadata"
 msgstr "Metadados"
-
-msgid "submission.confirmSubmit"
-msgstr "Deseja realmente submeter este manuscrito a esta editora?"
 
 msgid "manuscript.submissions"
 msgstr "Submissões de Manuscritos"
@@ -240,12 +208,6 @@ msgstr "Editar Capítulo"
 
 msgid "submission.chapter.addChapter"
 msgstr "Adicionar Capítulo"
-
-msgid "submission.chaptersDescription"
-msgstr ""
-"Pode inserir a lista de capítulos aqui, e atribuir contribuidores da lista "
-"de contribuidores abaixo. Estes contribuidores terão acesso ao capítulo "
-"durante as várias etapas do processo de publicação."
 
 msgid "submission.chapters"
 msgstr "Capítulos"
@@ -306,9 +268,6 @@ msgstr "Título do Livro"
 msgid "submission.upload.selectComponent"
 msgstr "Selecionar Componente"
 
-msgid "submission.submit.title"
-msgstr "Submeter Monografia"
-
 msgid "publication.scheduledIn"
 msgstr "Agendada para publicação em <a href=\"{$issueUrl}\">{$issueName}</a>."
 
@@ -318,7 +277,7 @@ msgstr ""
 "entrada ao catálogo?"
 
 msgid "publication.publishedIn"
-msgstr "Publicada em  <a href=\"{$issueUrl}\">{$issueName}</a>."
+msgstr "Publicado em <a href=\"{$issueUrl}\">{$issueName}</a>."
 
 msgid "publication.required.issue"
 msgstr "A publicação deve ser atribuída a um volume antes de ser publicada."
@@ -385,9 +344,6 @@ msgstr "Revisão Externa"
 
 msgid "editor.submission.decision.sendExternalReview"
 msgstr "Enviar para Revisão Externa"
-
-msgid "submission.submit.titleAndSummary"
-msgstr "Título e Resumo"
 
 msgid "submission.event.publicationFormatRemoved"
 msgstr "O formato de publicação \"{$formatName}\" foi removido."
@@ -488,11 +444,6 @@ msgstr "Capítulos"
 msgid "submission.submit.noContext"
 msgstr "A submissão à editora não foi encontrada."
 
-msgid "submission.submit.userGroupDescription"
-msgstr ""
-"Se estiver a submeter um livro com capítulos independentes, deve selecionar "
-"o papel de editor de volume."
-
 msgid "submission.submit.userGroup"
 msgstr "Submeter com o papel..."
 
@@ -587,6 +538,7 @@ msgstr ""
 "tempo que o processo de revisão interna irá demorar e quando poderão esperar "
 "uma resposta dos editores."
 
+#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr "A submissão, {$title}, foi enviada para a etapa de revisão interna."
 
@@ -620,3 +572,14 @@ msgstr ""
 "Enviar um e-mail aos autores para informá-los que a sua submissão será "
 "enviada de volta para a etapa de revisão. Explique o porquê de ter sido "
 "tomada esta decisão e informe o autor que revisão adicional será realizada."
+
+msgid "doi.submission.incorrectContext"
+msgstr ""
+"Não foi possível criar um DOI para a seguinte submissão: {$pubObjectTitle}. "
+"Não existe no contexto atual da editora."
+
+msgid "publication.chapter.licenseUrl"
+msgstr "URL de licença"
+
+msgid "publication.chapterDefaultLicenseURL"
+msgstr "URL da licença de capítulo padrão"

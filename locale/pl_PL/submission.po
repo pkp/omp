@@ -1,7 +1,8 @@
+# Dorota Siwecka <dorota.k.siwecka@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-12-15 13:16+0000\n"
-"Last-Translator: rl <biuro@fimagis.pl>\n"
+"PO-Revision-Date: 2022-08-09 10:00+0000\n"
+"Last-Translator: Dorota Siwecka <dorota.k.siwecka@gmail.com>\n"
 "Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "pl_PL/>\n"
 "Language: pl_PL\n"
@@ -10,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "submission.chapter.pages"
 msgstr "Strony"
@@ -20,12 +21,6 @@ msgstr "Edytuj rozdział"
 
 msgid "submission.chapter.addChapter"
 msgstr "Dodaj rozdział"
-
-msgid "submission.chaptersDescription"
-msgstr ""
-"Możesz zamieścić rozdziały tutaj i przypisać współpracowników z listy "
-"powyżej.  Wskazani współpracownicy będą mieli dostęp do rozdziału w trakcie "
-"różnych etapów procesu publikacji."
 
 msgid "submission.chapters"
 msgstr "Rozdziały"
@@ -84,9 +79,6 @@ msgstr "Tytuł książki"
 msgid "submission.upload.selectComponent"
 msgstr "Wybierz komponent"
 
-msgid "submission.submit.title"
-msgstr "Zgłoś monografię"
-
 msgid "submission.list.countMonographs"
 msgstr "{$count} monografie"
 
@@ -113,9 +105,6 @@ msgstr "Zewnętrzna recenzja"
 msgid "editor.submission.decision.sendExternalReview"
 msgstr "Wyślij do zewnętrznej recenzji"
 
-msgid "submission.submit.titleAndSummary"
-msgstr "Tytuł i streszczenie"
-
 msgid "submission.event.publicationFormatRemoved"
 msgstr "Format publikacji \"{$formatName}\"został usunięty."
 
@@ -124,7 +113,7 @@ msgstr "Format publikacji \"{$formatName}\" został utworzony."
 
 msgid "submission.event.publicationMetadataUpdated"
 msgstr ""
-"Metadane formatu publikacji dla  \"{$formatName}\" zostały zaktualizowane."
+"Metadane formatu publikacji dla \"{$formatName}\" zostały zaktualizowane."
 
 msgid "submission.event.catalogMetadataUpdated"
 msgstr "Metadane katalogu zostały zaktualizowane."
@@ -135,14 +124,14 @@ msgstr ""
 
 msgid "submission.event.publicationFormatPublished"
 msgstr ""
-"Format publikacji  \"{$publicationFormatName}\" został zatwierdzony dla tej "
+"Format publikacji \"{$publicationFormatName}\" został zatwierdzony dla tej "
 "publikacji."
 
 msgid "submission.event.publicationFormatMadeUnavailable"
 msgstr "Format publikacji \"{$publicationFormatName}\" nie jest już dostępny."
 
 msgid "submission.event.publicationFormatMadeAvailable"
-msgstr "Format publikacji \"{$publicationFormatName}\"  jest udostępniony."
+msgstr "Format publikacji \"{$publicationFormatName}\" jest udostępniony."
 
 msgid "submission.event.metadataUnpublished"
 msgstr "Metadane monografii nie są już publikowane."
@@ -210,9 +199,6 @@ msgstr "Rozdziały"
 msgid "submission.submit.noContext"
 msgstr "Wydanie zgłoszenia nie mogło być znalezione."
 
-msgid "submission.submit.userGroupDescription"
-msgstr "Jeśli zgłaszasz edytowany tom, powinieneś wybrać rolę redaktora tomu."
-
 msgid "submission.submit.userGroup"
 msgstr "Zgłoś moją rolę jako..."
 
@@ -257,29 +243,11 @@ msgstr "Przygotuj"
 msgid "submission.submit.submissionFile"
 msgstr "Plik zgłoszenia"
 
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Proszę wybierz rolę współautora."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Proszę wprowadź krótki opis monografii."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Proszę wprowadź tytuł monografii."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "Imię, nazwisko i adres email każdego autora jest wymagany."
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Przynajmniej jeden autor jest wymagany."
-
 msgid "submission.submit.contributorRole"
 msgstr "Rola współautora"
 
 msgid "submission.submit.privacyStatement"
 msgstr "Oświadczenie o ochronie prywatności"
-
-msgid "submission.submit.form.localeRequired"
-msgstr "Proszę wybierz język zgłoszenia."
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "Przykłady: książka 2, tom 2"
@@ -287,19 +255,8 @@ msgstr "Przykłady: książka 2, tom 2"
 msgid "submission.submit.seriesPosition"
 msgstr "Pozycja w serii"
 
-msgid "author.submit.seriesRequired"
-msgstr "Aktualna seria jest wymagana."
-
 msgid "author.isVolumeEditor"
 msgstr "Dobierz współautora jako redaktora tego tomu."
-
-msgid "submission.submit.selectSeries"
-msgstr "Wybierz serię (opcjonalnie)"
-
-msgid "submission.submit.cancelSubmission"
-msgstr ""
-"Możesz dokończyć zgłoszenie w późniejszym terminie poprzez wybranie "
-"Aktywnych Zgłoszeń ze strony autora."
 
 msgid "submission.submit.upload"
 msgstr "Wprowadź zgłoszenie"
@@ -327,9 +284,6 @@ msgstr "Wspierające agencje"
 
 msgid "submission.metadata"
 msgstr "Metadane"
-
-msgid "submission.confirmSubmit"
-msgstr "Czy jesteś pewien, że chcesz zgłosić swój manuskrypt do wydania?"
 
 msgid "manuscript.submissions"
 msgstr "Zgłoszenia manuskryptu"
@@ -433,7 +387,7 @@ msgstr "Prawa autorskie zostaną przydzielone automatycznie dla {$copyright}."
 
 msgid "submission.license.description"
 msgstr ""
-"Licencja zostanie ustawiona automatycznie na  <a href='{$licenseUrl}' "
+"Licencja zostanie ustawiona automatycznie na <a href='{$licenseUrl}' "
 "target='_blank'>{$licenseName}</a> w momencie publikacji."
 
 msgid "publication.required.reviewStage"
@@ -501,3 +455,109 @@ msgstr "Opublikowana"
 
 msgid "submission.publication"
 msgstr "Publikacja"
+
+msgid "submission.withoutChapter"
+msgstr "{$name} — Bez tego rozdziału"
+
+#, fuzzy
+msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgstr ""
+"To zgłoszenie, {$title}, zostało przesłane do etapu recenzji wewnętrznej."
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+"Wyślij e-mail do autorów, aby poinformować ich, że to zgłoszenie zostanie "
+"wysłane do recenzji. Jeśli to możliwe, poinformuj autorów o tym, jak długo "
+"może potrwać proces recenzji i kiedy powinni spodziewać się ponownego "
+"kontaktu z redakcją."
+
+msgid "editor.submission.decision.backToReview.completed"
+msgstr "Wyślij z powrotem do recenzji"
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr "Zalecenie przesłania do recenzji zewnętrznej"
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr "To zgłoszenie jest gotowe do wysłania do recenzji wewnętrznej."
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr "Wyślij do recenzji wewnętrznej"
+
+msgid "submission.chapterCreated"
+msgstr " — Rozdział utworzony"
+
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr "Wyślij do recenzji zewnętrznej"
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr "Wybierz pliki, które powinny zostać wysłane do etapu recenzji."
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+"{$editorName} cofnął decyzję o przyjęciu tego zgłoszenia i skierował je z "
+"powrotem do etapu recenzji."
+
+msgid "chapter.pages"
+msgstr "Strony"
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr "Zaleca się przesłanie tego zgłoszenia do etapu recenzji zewnętrznej."
+
+msgid "chapter.volume"
+msgstr "Wolumen"
+
+msgid "publication.chapter.landingPage"
+msgstr "Strona rozdziału"
+
+msgid "editor.submission.decision.backToReview"
+msgstr "Wróć do recenzji"
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr "Zgłoszenie, {$title}, zostało przesłane z powrotem do etapu recenzji."
+
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr "Zgłoszenie, {$title}, zostało przesłane do etapu recenzji zewnętrznej."
+
+msgid "editor.submission.decision.promoteFiles.internalReview"
+msgstr ""
+"Wybierz pliki, które powinny zostać wysłane do etapu recenzji wewnętrznej."
+
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr "{$editorName} przesłał to zgłoszenie do etapu recenzji zewnętrznej."
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+"Wyślij e-mail do autorów, aby poinformować ich, że ich zgłoszenie jest "
+"odsyłane do etapu recenzji. Wyjaśnij, dlaczego podjęto taką decyzję i "
+"poinformuj autora o tym, jakie dalsze recenzje zostaną podjęte."
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr "Wyślij do recenzji wewnętrznej"
+
+msgid "publication.publish.success"
+msgstr "Status publikacji zmieniony pomyślnie."
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+"{$editorName} zalecił przesłanie tego zgłoszenia do etapu recenzji "
+"zewnętrznej."
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr "{$editorName} przesłał to zgłoszenie do etapu recenzji wewnętrznej."
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr ""
+"Uchylenie decyzji o przyjęciu tego zgłoszenia i odesłanie go do etapu "
+"recenzji."
+
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+"Pokaż ten rozdział na nowej stronie i umieść link do tej strony w spisie "
+"treści książki."
+
+msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
+msgstr ""
+"Wyślij e-mail do autorów, aby poinformować ich, że to zgłoszenie zostanie "
+"wysłane do recenzji wewnętrznej. Jeśli to możliwe, poinformuj autorów o tym, "
+"jak długo może potrwać proces recenzji wewnętrznej i kiedy powinni "
+"spodziewać się ponownego kontaktu z redakcją."

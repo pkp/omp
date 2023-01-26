@@ -208,9 +208,6 @@ msgstr ""
 msgid "manager.setup.submissionGuidelines"
 msgstr "Gönderim yönergeleri"
 
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Gönderi Hazırlık Kontrol Listesi"
-
 msgid "maganer.setup.submissionChecklistItemRequired"
 msgstr "Kontrol listesi öğesi gerekli."
 
@@ -832,6 +829,7 @@ msgstr "E-posta Kimliği"
 msgid "manager.setup.emailSignature"
 msgstr "İmza"
 
+#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "Sistem tarafından yayınevi adına gönderilen hazır e-postaların sonuna "
