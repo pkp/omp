@@ -155,4 +155,19 @@ class I7265_EditorialDecisions extends \PKP\migration\upgrade\v3_4_0\I7265_Edito
             ],
         ];
     }
+
+    protected function getContextTable(): string
+    {
+        return 'presses';
+    }
+
+    protected function getContextSettingsTable(): string
+    {
+        return 'press_settings';
+    }
+
+    protected function getContextIdColumn(): string
+    {
+        return 'press_id';
+    }
 }
