@@ -3,7 +3,7 @@
 # Maja Jurić <maja-juric@windowslive.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-26 17:16+0000\n"
+"PO-Revision-Date: 2023-01-27 17:48+0000\n"
 "Last-Translator: Maja Jurić <maja-juric@windowslive.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "hr_HR/>\n"
@@ -149,7 +149,7 @@ msgid "doi.displayName"
 msgstr "DOI"
 
 msgid "manager.series.abstractsNotRequired"
-msgstr ""
+msgstr "Sažeci nisu potrebni"
 
 msgid "manager.series.submissionReview"
 msgstr "Nema recenzije"
@@ -248,3 +248,32 @@ msgstr "Urednici ove serije"
 
 msgid "manager.settings.pressSettings"
 msgstr "Postavke izdavača"
+
+msgid "manager.settings.publisher.identity"
+msgstr "Identitet izdavača"
+
+msgid "manager.settings.publisher"
+msgstr "Ime izdavača"
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Vrsta koda izdavača"
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Ovo nije ispravna vrsta koda izdavača."
+
+msgid "manager.settings.press"
+msgstr "Izdavač"
+
+msgid "manager.settings.location"
+msgstr "Mjesto"
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Postavke koje utječu na distribuciju (obavijest, indeksiranje, arhiviranje, "
+"plaćanje, alati za čitanje)."
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Preuzimanje datoteka monografije"
+
+msgid "manager.settings.publisherCode"
+msgstr "Kod izdavača"
