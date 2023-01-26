@@ -85,6 +85,7 @@ msgstr ""
 "Questa e-mail, se abilitata, viene inviata automaticamente agli altri autori "
 "che non sono utenti di OMP specificati durante il processo di invio."
 
+#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Incarico redazionale"
 

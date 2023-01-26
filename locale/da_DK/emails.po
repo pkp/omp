@@ -52,6 +52,7 @@ msgstr ""
 msgid "emails.userValidate.description"
 msgstr "Denne e-mail sendes til ny-registrerede brugere for at byde dem velkommen til systemet og give dem deres brugernavn og adgangskode."
 
+#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Redaktionel tildeling"
 

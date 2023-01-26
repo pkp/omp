@@ -54,6 +54,7 @@ msgstr ""
 "<br />\n"
 "С уважением,"
 
+#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Назначение редактором"
 

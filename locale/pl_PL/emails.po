@@ -320,6 +320,7 @@ msgstr ""
 "Dziękujemy,<br />\n"
 "{$signature}"
 
+#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Zadania redakcyjne"
 

@@ -26,6 +26,7 @@ msgstr ""
 "<br />\n"
 "Grazas,"
 
+#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Tarefa editorial"
 
