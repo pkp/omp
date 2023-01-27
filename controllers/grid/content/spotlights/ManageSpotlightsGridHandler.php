@@ -15,10 +15,6 @@
 
 namespace APP\controllers\grid\content\spotlights;
 
-use PKP\db\DAO;
-use PKP\db\DAORegistry;
-use APP\controllers\grid\content\spotlights\SpotlightsGridCellProvider;
-use APP\controllers\grid\content\spotlights\SpotlightsGridRow;
 use APP\controllers\grid\content\spotlights\form\SpotlightForm;
 use APP\facades\Repo;
 use APP\notification\NotificationManager;
@@ -27,6 +23,8 @@ use APP\submission\Submission;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
+use PKP\db\DAO;
+use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\security\authorization\ContextAccessPolicy;
@@ -365,9 +363,11 @@ class ManageSpotlightsGridHandler extends GridHandler
 
         $matches = [];
 
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
-        $allSeries = $seriesDao->getByPressId($press->getId());
-        while ($series = $allSeries->next()) {
+        $allSeries = Repo::section()
+            ->getCollector()
+            ->filterByContextIds([$press->getId()])
+            ->getMany();
+        foreach ($allSeries as $series) {
             if ($name == '' || preg_match('/' . preg_quote($name, '/') . '/i', $series->getLocalizedTitle())) {
                 $matches[] = ['label' => $series->getLocalizedTitle(), 'value' => $series->getId() . ':' . Spotlight::SPOTLIGHT_TYPE_SERIES];
             }

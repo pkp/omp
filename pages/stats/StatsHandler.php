@@ -16,10 +16,10 @@
 namespace APP\pages\stats;
 
 use APP\core\Application;
-use PKP\plugins\Hook;
-use PKP\db\DAORegistry;
+use APP\facades\Repo;
+use APP\section\Section;
 use PKP\pages\stats\PKPStatsHandler;
-use APP\template\TemplateManager;
+use PKP\plugins\Hook;
 
 class StatsHandler extends PKPStatsHandler
 {
@@ -53,15 +53,16 @@ class StatsHandler extends PKPStatsHandler
             return;
         }
 
-        $seriesFilters = [];
-        $result = \DAORegistry::getDAO('SeriesDAO')->getByContextId($context->getId());
-        while ($series = $result->next()) {
-            $seriesFilters[] = [
+        $seriesFilters = Repo::section()
+            ->getCollector()
+            ->filterByContextIds([$context->getId()])
+            ->getMany()
+            ->map(fn (Section $series) => [
                 'param' => 'seriesIds',
                 'value' => $series->getId(),
                 'title' => $series->getLocalizedTitle(),
-            ];
-        }
+            ])
+            ->toArray();
 
         if (empty($seriesFilters)) {
             return;

@@ -142,7 +142,6 @@ class Application extends PKPApplication
             'QualifierDAO' => 'APP\codelist\QualifierDAO',
             'RepresentativeDAO' => 'APP\monograph\RepresentativeDAO',
             'SalesRightsDAO' => 'APP\publicationFormat\SalesRightsDAO',
-            'SeriesDAO' => 'APP\press\SeriesDAO',
             'SpotlightDAO' => 'APP\spotlight\SpotlightDAO',
             'SubjectDAO' => 'APP\codelist\SubjectDAO',
             'TemporaryTotalsDAO' => 'APP\statistics\TemporaryTotalsDAO',
@@ -185,16 +184,6 @@ class Application extends PKPApplication
     public static function getContextDAO()
     {
         return DAORegistry::getDAO('PressDAO');
-    }
-
-    /**
-     * Get the section DAO.
-     *
-     * @return SeriesDAO
-     */
-    public static function getSectionDAO()
-    {
-        return DAORegistry::getDAO('SeriesDAO');
     }
 
     /**

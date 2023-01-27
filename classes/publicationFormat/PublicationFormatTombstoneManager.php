@@ -15,6 +15,7 @@
 
 namespace APP\publicationFormat;
 
+use APP\core\Application;
 use APP\facades\Repo;
 use APP\oai\omp\OAIDAO;
 use APP\submission\Submission;
@@ -42,15 +43,14 @@ class PublicationFormatTombstoneManager
     {
         $publication = Repo::publication()->get($publicationFormat->getData('publicationId'));
         $monograph = Repo::submission()->get($publication->getData('submissionId'));
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
-        $series = $seriesDao->getById($monograph->getSeriesId());
+        $series = $publication->getData('seriesId') ? Repo::section()->get($publication->getData('seriesId')) : null;
 
         $dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO'); /** @var DataObjectTombstoneDAO $dataObjectTombstoneDao */
         // delete publication format tombstone to ensure that there aren't
         // more than one tombstone for this publication format
         $dataObjectTombstoneDao->deleteByDataObjectId($publicationFormat->getId());
         // insert publication format tombstone
-        if (is_a($series, 'Series')) {
+        if ($series) {
             $setSpec = OAIDAO::setSpec($press, $series);
             $setName = $series->getLocalizedTitle();
         } else {
@@ -59,8 +59,8 @@ class PublicationFormatTombstoneManager
         }
         $oaiIdentifier = 'oai:' . Config::getVar('oai', 'repository_id') . ':' . 'publicationFormat/' . $publicationFormat->getId();
         $OAISetObjectsIds = [
-            ASSOC_TYPE_PRESS => $monograph->getPressId(),
-            ASSOC_TYPE_SERIES => $monograph->getSeriesId()
+            Application::ASSOC_TYPE_PRESS => $monograph->getPressId(),
+            Application::ASSOC_TYPE_SERIES => $publication->getData('seriesId')
         ];
 
         $publicationFormatTombstone = $dataObjectTombstoneDao->newDataObject(); /** @var DataObjectTombstone $publicationFormatTombstone */
@@ -99,10 +99,10 @@ class PublicationFormatTombstoneManager
     public function insertTombstonesByPress($press)
     {
         $submissions = Repo::submission()
-                ->getCollector()
-                ->filterByContextIds([$press->getId()])
-                ->filterByStatus([Submission::STATUS_PUBLISHED])
-                ->getMany();
+            ->getCollector()
+            ->filterByContextIds([$press->getId()])
+            ->filterByStatus([Submission::STATUS_PUBLISHED])
+            ->getMany();
 
         foreach ($submissions as $submission) {
             foreach ($submission->getData('publications') as $publication) {
@@ -134,10 +134,10 @@ class PublicationFormatTombstoneManager
     public function deleteTombstonesByPressId($pressId)
     {
         $submissions = Repo::submission()
-                ->getCollector()
-                ->filterByContextIds([$press->getId()])
-                ->filterByStatus([Submission::STATUS_PUBLISHED])
-                ->getMany();
+            ->getCollector()
+            ->filterByContextIds([$press->getId()])
+            ->filterByStatus([Submission::STATUS_PUBLISHED])
+            ->getMany();
 
         foreach ($submissions as $submission) {
             foreach ($submission->getData('publications') as $publication) {

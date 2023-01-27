@@ -15,9 +15,9 @@
 
 namespace APP\plugins\importexport\native\filter;
 
-use PKP\db\DAORegistry;
-use PKP\plugins\importexport\PKPImportExportFilter;
+use APP\facades\Repo;
 use PKP\plugins\importexport\native\filter\PKPNativeFilterHelper;
+use PKP\plugins\importexport\PKPImportExportFilter;
 
 class PublicationNativeXmlFilter extends \PKP\plugins\importexport\native\filter\PKPPublicationNativeXmlFilter
 {
@@ -127,9 +127,7 @@ class PublicationNativeXmlFilter extends \PKP\plugins\importexport\native\filter
 
         $seriesNode = null;
         if ($seriesId = $object->getData('seriesId')) {
-            $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
-            $series = $seriesDao->getById($seriesId, $context->getId());
-
+            $series = Repo::section()->get($seriesId, $context->getId());
             if ($series) {
                 $seriesNode = $doc->createElementNS($deployment->getNamespace(), 'series');
 

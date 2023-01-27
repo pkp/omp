@@ -17,6 +17,7 @@
 
 namespace APP\oai\omp;
 
+use APP\core\Application;
 use APP\facades\Repo;
 use Illuminate\Support\Facades\DB;
 use PKP\db\DAORegistry;
@@ -30,9 +31,6 @@ class OAIDAO extends PKPOAIDAO
 {
     /** @var PublicationFormatDAO */
     public $_publicationFormatDao;
-
-    /** @var SeriesDAO */
-    public $_seriesDao;
 
     /** @var PressDAO */
     public $_pressDao;
@@ -51,7 +49,6 @@ class OAIDAO extends PKPOAIDAO
         parent::__construct();
 
         $this->_publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-        $this->_seriesDao = DAORegistry::getDAO('SeriesDAO');
         $this->_pressDao = DAORegistry::getDAO('PressDAO');
     }
 
@@ -80,7 +77,7 @@ class OAIDAO extends PKPOAIDAO
     public function getSeries($seriesId)
     {
         if (!isset($this->_seriesCache[$seriesId])) {
-            $this->_seriesCache[$seriesId] = $this->_seriesDao->getById($seriesId);
+            $this->_seriesCache[$seriesId] = $seriesId ? Repo::section()->get($seriesId) : null;
         }
         return $this->_seriesCache[$seriesId];
     }
@@ -119,8 +116,11 @@ class OAIDAO extends PKPOAIDAO
                 array_push($sets, new OAISet(self::setSpec($press), $title, ''));
             }
 
-            $seriesFactory = $this->_seriesDao->getByPressId($press->getId());
-            foreach ($seriesFactory->toArray() as $series) {
+            $seriesFactory = Repo::section()
+                ->getCollector()
+                ->filterByContextIds([$press->getId()])
+                ->getMany();
+            foreach ($seriesFactory as $series) {
                 $setSpec = self::setSpec($press, $series);
                 if (array_key_exists($setSpec, $publicationFormatSets)) {
                     unset($publicationFormatSets[$setSpec]);
@@ -160,12 +160,8 @@ class OAIDAO extends PKPOAIDAO
         $seriesId = null;
 
         if (isset($seriesSpec)) {
-            $series = $this->_seriesDao->getByPath($seriesSpec, $press->getId());
-            if ($series && is_a($series, 'Series')) {
-                $seriesId = $series->getId();
-            } else {
-                $seriesId = 0;
-            }
+            $series = Repo::section()->getByPath($seriesSpec, $press->getId());
+            $seriesId = !is_null($series) ? $series->getId() : 0;
         }
 
         return [$pressId, $seriesId];
@@ -263,7 +259,7 @@ class OAIDAO extends PKPOAIDAO
                     ->when(isset($pressId), function ($query, $pressId) {
                         return $query->join('data_object_tombstone_oai_set_objects AS tsop', function ($join) use ($pressId) {
                             $join->on('tsop.tombstone_id', '=', 'dot.tombstone_id');
-                            $join->where('tsop.assoc_type', '=', ASSOC_TYPE_PRESS);
+                            $join->where('tsop.assoc_type', '=', Application::ASSOC_TYPE_PRESS);
                             $join->where('tsop.assoc_id', '=', (int) $pressId);
                         })->addSelect(['tsop.assoc_id AS press_id']);
                     }, function ($query) {
@@ -272,7 +268,7 @@ class OAIDAO extends PKPOAIDAO
                     ->when(isset($seriesId), function ($query, $seriesId) {
                         return $query->join('data_object_tombstone_oai_set_objects AS tsos', function ($join) use ($seriesId) {
                             $join->on('tsos.tombstone_id', '=', 'dot.tombstone_id');
-                            $join->where('tsos.assoc_type', '=', ASSOC_TYPE_SERIES);
+                            $join->where('tsos.assoc_type', '=', Application::ASSOC_TYPE_SERIES);
                             $join->where('tsos.assoc_id', '=', (int) $seriesId);
                         })->addSelect(['tsos.assoc_id AS series_id']);
                     }, function ($query) {

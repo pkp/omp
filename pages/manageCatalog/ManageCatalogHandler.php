@@ -89,9 +89,11 @@ class ManageCatalogHandler extends Handler
         $context = $request->getContext();
 
         // Catalog list
-        [$catalogSortBy, $catalogSortDir] = explode('-', $context->getData('catalogSortOption'));
-        $catalogSortBy = empty($catalogSortBy) ? Collector::ORDERBY_DATE_PUBLISHED : $catalogSortBy;
-        $catalogSortDir = $catalogSortDir == Collector::ORDER_DIR_ASC ? 'ASC' : 'DESC';
+        $catalogSortBy = Collector::ORDERBY_DATE_PUBLISHED;
+        $catalogSortDir = 'DESC';
+        if ($context->getData('catalogSortOption')) {
+            [$catalogSortBy, $catalogSortDir] = explode('-', $context->getData('catalogSortOption'));
+        }
         $catalogList = new \APP\components\listPanels\CatalogListPanel(
             'catalog',
             __('submission.list.monographs'),

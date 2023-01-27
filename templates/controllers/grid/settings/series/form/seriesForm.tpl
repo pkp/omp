@@ -68,7 +68,7 @@
 
 		{fbvFormSection list="true"}
 			{fbvElement type="checkbox" id="isInactive" value=1 checked=$isInactive label="manager.sections.form.deactivateSection"}
-			{fbvElement type="checkbox" id="restricted" value=1 label="manager.series.restricted" checked=$restricted}
+			{fbvElement type="checkbox" id="editorRestricted" value=1 label="manager.series.restricted" checked=$editorRestricted}
 		{/fbvFormSection}
 
 		{fbvFormSection label="catalog.manage.series.issn" description="manager.setup.issnDescription"}

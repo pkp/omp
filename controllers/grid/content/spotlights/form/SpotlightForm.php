@@ -16,8 +16,8 @@ namespace APP\controllers\grid\content\spotlights\form;
 
 use APP\facades\Repo;
 use APP\spotlight\Spotlight;
-use PKP\db\DAORegistry;
 use APP\template\TemplateManager;
+use PKP\db\DAORegistry;
 use PKP\form\Form;
 
 class SpotlightForm extends Form
@@ -173,8 +173,7 @@ class SpotlightForm extends Form
                 $returner = isset($submission) ? $submission->getLocalizedTitle() : '';
                 break;
             case Spotlight::SPOTLIGHT_TYPE_SERIES:
-                $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
-                $series = $seriesDao->getById($assocId, $this->getPressId());
+                $series = Repo::section()->get($assocId, $this->getPressId());
                 $returner = isset($series) ? $series->getLocalizedTitle() : '';
                 break;
             default:

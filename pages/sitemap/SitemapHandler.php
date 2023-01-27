@@ -15,11 +15,12 @@
 
 namespace APP\pages\sitemap;
 
-use PKP\plugins\Hook;
-use PKP\pages\sitempa\PKPSitemapHandler;
+use APP\core\Application;
 use APP\facades\Repo;
 use APP\submission\Submission;
 use PKP\db\DAORegistry;
+use PKP\pages\sitemap\PKPSitemapHandler;
+use PKP\plugins\Hook;
 
 class SitemapHandler extends PKPSitemapHandler
 {
@@ -37,10 +38,10 @@ class SitemapHandler extends PKPSitemapHandler
         // Catalog
         $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog')));
         $submissions = Repo::submission()
-                ->getCollector()
-                ->filterByContextIds([$pressId])
-                ->filterByStatus([Submission::STATUS_PUBLISHED])
-                ->getMany()
+            ->getCollector()
+            ->filterByContextIds([$pressId])
+            ->filterByStatus([Submission::STATUS_PUBLISHED])
+            ->getMany();
 
         foreach ($submissions as $submission) {
             // Book
@@ -54,7 +55,9 @@ class SitemapHandler extends PKPSitemapHandler
             }
             // Files
             // Get publication formats
-            $publicationFormats = DAORegistry::getDAO('PublicationFormatDAO')->getApprovedByPublicationId($submission->getCurrentPublication()->getId())->toArray();
+            /** @var \APP\publicationFormat\PublicationFormatDAO $publicationFormatDao */
+            $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+            $publicationFormats = $publicationFormatDao->getApprovedByPublicationId($submission->getCurrentPublication()->getId())->toArray();
             foreach ($publicationFormats as $format) {
                 // Consider only available publication formats
                 if ($format->getIsAvailable()) {
@@ -62,7 +65,7 @@ class SitemapHandler extends PKPSitemapHandler
                     $submissionFiles = Repo::submissionFile()
                         ->getCollector()
                         ->filterByAssoc(
-                            ASSOC_TYPE_PUBLICATION_FORMAT,
+                            Application::ASSOC_TYPE_PUBLICATION_FORMAT,
                             [$format->getId()]
                         )
                         ->filterBySubmissionIds([$submission->getId()])
@@ -85,9 +88,11 @@ class SitemapHandler extends PKPSitemapHandler
         // New releases
         $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'newReleases')));
         // Browse by series
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
-        $seriesResult = $seriesDao->getByPressId($pressId);
-        while ($series = $seriesResult->next()) {
+        $seriesResult = Repo::section()
+            ->getCollector()
+            ->filterByContextIds([$pressId])
+            ->getMany();
+        foreach ($seriesResult as $series) {
             $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'series', $series->getPath())));
         }
         // Browse by categories

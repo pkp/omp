@@ -47,7 +47,7 @@ class Repository extends \PKP\publication\Repository
 
         // Ensure that the specified series exists
         if (isset($props['seriesId'])) {
-            $series = Application::get()->getSectionDAO()->getById($props['seriesId']);
+            $series = Repo::section()->get($props['seriesId']);
             if (!$series) {
                 $errors['seriesId'] = [__('publication.invalidSeries')];
             }

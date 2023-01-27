@@ -16,10 +16,10 @@
 namespace APP\services;
 
 use APP\core\Application;
+use APP\facades\Repo;
 use APP\template\TemplateManager;
 
 use PKP\core\PKPApplication;
-use PKP\db\DAORegistry;
 use PKP\plugins\Hook;
 use PKP\security\Validation;
 
@@ -66,10 +66,12 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
         $context = $request->getContext();
         $contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
 
-        $seriesDao = DAORegistry::getDAO('SeriesDAO');
-        $series = $seriesDao->getByContextId($contextId);
+        $series = Repo::section()
+            ->getCollector()
+            ->filterByContextIds([$contextId])
+            ->getMany();
 
-        if ($series->count) {
+        if ($series->count()) {
             $newArray = [
                 self::NMI_TYPE_SERIES => [
                     'title' => __('navigation.navigationMenus.series.generic'),
@@ -152,19 +154,14 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
             switch ($menuItemType) {
                 case self::NMI_TYPE_SERIES:
                     $seriesId = $navigationMenuItem->getPath();
-
-                    $seriesDao = DAORegistry::getDAO('SeriesDAO');
-                    $relatedObject = $seriesDao->getById($seriesId, $contextId);
-
+                    $relatedObject = $seriesId ? Repo::section()->get($seriesId, $contextId) : null;
                     break;
                 case self::NMI_TYPE_CATEGORY:
                     $categoryId = $navigationMenuItem->getPath();
-
                     $relatedObject = Repo::category()->get($categoryId);
                     if ($relatedObject && $relatedObject->getContextId() != $contextId) {
                         $relatedObject = null;
                     }
-
                     break;
             }
 

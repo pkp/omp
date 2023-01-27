@@ -14,8 +14,8 @@
 
 namespace APP\components\forms\submission;
 
-use APP\press\Series;
 use APP\publication\Publication;
+use APP\section\Section;
 use APP\submission\Submission;
 use Illuminate\Support\LazyCollection;
 use PKP\components\forms\FieldOptions;
@@ -24,7 +24,7 @@ use PKP\context\Context;
 class ForTheEditors extends \PKP\components\forms\submission\ForTheEditors
 {
     /**
-     * @param Series[] $series
+     * @param Section[] $series
      */
     public function __construct(string $action, array $locales, Publication $publication, Submission $submission, Context $context, string $suggestionUrlBase, array $series, LazyCollection $categories)
     {
@@ -39,7 +39,7 @@ class ForTheEditors extends \PKP\components\forms\submission\ForTheEditors
             return;
         }
         $seriesOptions = [];
-        /** @var Series $iSeries */
+        /** @var Section $iSeries */
         foreach ($series as $iSeries) {
             $seriesOptions[] = [
                 'value' => $iSeries->getId(),

@@ -20,9 +20,9 @@ use APP\file\PublicFileManager;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\submission\Submission;
 use PKP\db\DAORegistry;
-use PKP\plugins\Hook;
 use PKP\file\ContextFileManager;
 use PKP\file\FileManager;
+use PKP\plugins\Hook;
 
 class ContextService extends \PKP\services\PKPContextService
 {
@@ -139,8 +139,11 @@ class ContextService extends \PKP\services\PKPContextService
     {
         $context = $args[0];
 
-        $seriesDao = DAORegistry::getDAO('SeriesDAO');
-        $seriesDao->deleteByPressId($context->getId());
+        Repo::section()->deleteMany(
+            Repo::section()
+                ->getCollector()
+                ->filterByContextIds([$context->getId()])
+        );
 
         Repo::submission()->deleteByContextId($context->getId());
 
@@ -193,23 +196,27 @@ class ContextService extends \PKP\services\PKPContextService
 
         $objectDaos = [
             Repo::publication()->dao,
-            DAORegistry::getDAO('SeriesDAO'),
+            Repo::section()->dao,
             Repo::submission()->dao,
         ];
         foreach ($objectDaos as $objectDao) {
             if ($objectDao instanceof \PKP\submission\DAO) {
                 $objects = Repo::submission()
-                        ->getCollector()
-                        ->filterByContextIds([$context->getId()])
-                        ->getMany()
-                        ->toArray();
+                    ->getCollector()
+                    ->filterByContextIds([$context->getId()])
+                    ->getMany()
+                    ->toArray();
             } elseif ($objectDao instanceof \PKP\category\DAO) {
                 $objects = Repo::category()->getCollector()
                     ->filterByContextIds([$context->getId()])
                     ->getMany()
                     ->toArray();
             } else {
-                $objects = $objectDao->getByContextId($context->getId())->toArray();
+                $objects = Repo::section()
+                    ->getCollector()
+                    ->filterByContextIds([$context->getId()])
+                    ->getMany()
+                    ->toArray();
             }
             foreach ($objects as $object) {
                 if ($object instanceof Submission) {
@@ -226,7 +233,7 @@ class ContextService extends \PKP\services\PKPContextService
                     }
                 } else {
                     $cover = $object->getImage();
-                    if ($object instanceof \APP\press\Series) {
+                    if ($object instanceof \APP\section\Section) {
                         $basePath = $contextFileManager->getBasePath() . 'series/';
                     } elseif ($object instanceof \PKP\category\Category) {
                         $basePath = $contextFileManager->getBasePath() . 'categories/';
@@ -249,9 +256,12 @@ class ContextService extends \PKP\services\PKPContextService
 
                     // generate the image of the original cover
                     switch ($coverExtension) {
-                        case 'jpg': $coverImage = imagecreatefromjpeg($basePath . $cover['name']); break;
-                        case 'png': $coverImage = imagecreatefrompng($basePath . $cover['name']); break;
-                        case 'gif': $coverImage = imagecreatefromgif($basePath . $cover['name']); break;
+                        case 'jpg': $coverImage = imagecreatefromjpeg($basePath . $cover['name']);
+                            break;
+                        case 'png': $coverImage = imagecreatefrompng($basePath . $cover['name']);
+                            break;
+                        case 'gif': $coverImage = imagecreatefromgif($basePath . $cover['name']);
+                            break;
                         default: $coverImage = null; // Suppress warn
                     }
                     assert($coverImage);
@@ -261,9 +271,12 @@ class ContextService extends \PKP\services\PKPContextService
 
                     // create the thumbnail file
                     switch ($coverExtension) {
-                        case 'jpg': imagejpeg($thumbnail, $basePath . $cover['thumbnailName']); break;
-                        case 'png': imagepng($thumbnail, $basePath . $cover['thumbnailName']); break;
-                        case 'gif': imagegif($thumbnail, $basePath . $cover['thumbnailName']); break;
+                        case 'jpg': imagejpeg($thumbnail, $basePath . $cover['thumbnailName']);
+                            break;
+                        case 'png': imagepng($thumbnail, $basePath . $cover['thumbnailName']);
+                            break;
+                        case 'gif': imagegif($thumbnail, $basePath . $cover['thumbnailName']);
+                            break;
                     }
 
                     imagedestroy($thumbnail);

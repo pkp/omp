@@ -18,10 +18,10 @@ namespace APP\controllers\grid\settings\series\form;
 
 use APP\core\Application;
 use APP\facades\Repo;
-use APP\press\Series;
-use APP\press\SeriesDAO;
+use APP\section\Section;
 use APP\template\TemplateManager;
 use PKP\controllers\grid\settings\sections\form\PKPSectionForm;
+use PKP\core\Core;
 use PKP\db\DAORegistry;
 use PKP\file\ContextFileManager;
 use PKP\file\TemporaryFileManager;
@@ -62,19 +62,17 @@ class SeriesForm extends PKPSectionForm
             'required',
             'grid.series.pathExists',
             function ($path) use ($form, $pressId) {
-                $seriesDao = DAORegistry::getDAO('SeriesDAO');
-                /** @var SeriesDAO $seriesDao */
-                return !$seriesDao->getByPath($path, $pressId) || ($form->getData('oldPath') != null && $form->getData('oldPath') == $path);
+                return !Repo::section()->getByPath($path, $pressId) || ($form->getData('oldPath') != null && $form->getData('oldPath') == $path);
             }
         ));
     }
 
-    public function getSeries(): ?Series
+    public function getSeries(): ?Section
     {
         return $this->section;
     }
 
-    public function setSeries(Series $series): void
+    public function setSeries(Section $series): void
     {
         $this->section = $series;
     }
@@ -87,14 +85,12 @@ class SeriesForm extends PKPSectionForm
         $request = Application::get()->getRequest();
         $context = $request->getContext();
 
-        /** @var SeriesDAO $seriesDao */
-        $seriesDao = DAORegistry::getDAO('SeriesDAO');
         $seriesId = $this->getSeriesId();
         if ($seriesId) {
-            $series = $seriesDao->getById($seriesId, $context->getId());
+            $series = Repo::section()->get($seriesId, $context->getId());
             if ($series) {
                 $this->setSeries($series);
-                $categoryIds = $seriesDao->getCategoryIds($series->getId(), $context->getId());
+                $categoryIds = Repo::section()->getAssignedCategoryIds($series->getId(), $context->getId());
             }
         }
 
@@ -109,7 +105,7 @@ class SeriesForm extends PKPSectionForm
                 'prefix' => $this->getSeries()->getPrefix(null),
                 'subtitle' => $this->getSeries()->getSubtitle(null),
                 'image' => $this->getSeries()->getImage(),
-                'restricted' => $this->getSeries()->getEditorRestricted(),
+                'editorRestricted' => $this->getSeries()->getEditorRestricted(),
                 'isInactive' => $this->getSeries()->getIsInactive(),
                 'onlineIssn' => $this->getSeries()->getOnlineISSN(),
                 'printIssn' => $this->getSeries()->getPrintISSN(),
@@ -148,16 +144,15 @@ class SeriesForm extends PKPSectionForm
             $context = $request->getContext();
             $seriesId = $this->getSeriesId();
 
-            $seriesDao = DAORegistry::getDAO('SeriesDAO');
-            /** @var SeriesDAO $seriesDao */
-            $seriesIterator = $seriesDao->getByContextId($context->getId());
-            $activeSeriesCount = 0;
-            while ($series = $seriesIterator->next()) {
-                if (!$series->getIsInactive() && ($seriesId != $series->getId())) {
-                    $activeSeriesCount++;
-                }
-            }
-            if ($activeSeriesCount < 1 && $this->getData('isInactive')) {
+            $activeSeries = Repo::section()
+                ->getCollector()
+                ->filterByContextIds([$context->getId()])
+                ->excludeInactive()
+                ->getMany();
+            $otherActiveSeries = $activeSeries->filter(function ($activeSection) use ($seriesId) {
+                return $activeSection->getId() != $seriesId;
+            });
+            if ($otherActiveSeries->count() < 1) {
                 $this->addError('isInactive', __('manager.series.confirmDeactivateSeries.error'));
             }
         }
@@ -211,12 +206,10 @@ class SeriesForm extends PKPSectionForm
     public function readInputData()
     {
         parent::readInputData();
-        $this->readUserVars(['seriesId', 'path', 'featured', 'restricted', 'description', 'categories', 'prefix', 'subtitle', 'temporaryFileId', 'onlineIssn', 'printIssn', 'sortOption', 'isInactive']);
+        $this->readUserVars(['seriesId', 'path', 'featured', 'editorRestricted', 'description', 'categories', 'prefix', 'subtitle', 'temporaryFileId', 'onlineIssn', 'printIssn', 'sortOption', 'isInactive']);
         // For path duplicate checking; excuse the current path.
         if ($seriesId = $this->getSeriesId()) {
-            $seriesDao = DAORegistry::getDAO('SeriesDAO');
-            /** @var SeriesDAO $seriesDao */
-            $series = $seriesDao->getById($seriesId, $this->_pressId);
+            $series = Repo::section()->get($seriesId, $this->_pressId);
             $this->setData('oldPath', $series->getPath());
         }
     }
@@ -228,27 +221,26 @@ class SeriesForm extends PKPSectionForm
     {
         parent::execute(...$functionParams);
 
-        $seriesDao = DAORegistry::getDAO('SeriesDAO');
-        /** @var SeriesDAO $seriesDao */
         $request = Application::get()->getRequest();
         $press = $request->getPress();
 
         // Get or create the series object
         if ($this->getSeriesId()) {
-            $series = $seriesDao->getById($this->getSeriesId(), $press->getId());
+            $series = Repo::section()->get($this->getSeriesId(), $press->getId());
         } else {
-            $series = $seriesDao->newDataObject();
-            $series->setPressId($press->getId());
+            $series = Repo::section()->newDataObject();
+            $series->setContextId($press->getId());
+            $series->setImage([]);
         }
 
         // Populate/update the series object from the form
         $series->setPath($this->getData('path'));
-        $series->setFeatured($this->getData('featured'));
+        $series->setFeatured($this->getData('featured') ? 1 : 0);
         $series->setTitle($this->getData('title'), null); // Localized
         $series->setDescription($this->getData('description'), null); // Localized
         $series->setPrefix($this->getData('prefix'), null); // Localized
         $series->setSubtitle($this->getData('subtitle'), null); // Localized
-        $series->setEditorRestricted($this->getData('restricted'));
+        $series->setEditorRestricted($this->getData('editorRestricted') ? 1 : 0);
         $series->setIsInactive($this->getData('isInactive') ? 1 : 0);
         $series->setOnlineISSN($this->getData('onlineIssn'));
         $series->setPrintISSN($this->getData('printIssn'));
@@ -256,9 +248,9 @@ class SeriesForm extends PKPSectionForm
 
         // Insert or update the series in the DB
         if ($this->getSeriesId()) {
-            $seriesDao->updateObject($series);
+            Repo::section()->edit($series, []);
         } else {
-            $this->setSeriesId($seriesDao->insertObject($series));
+            $this->setSeriesId(Repo::section()->add($series));
         }
 
         // Handle the image upload if there was one.
@@ -347,16 +339,14 @@ class SeriesForm extends PKPSectionForm
         }
 
         // Update series object to store image information.
-        $seriesDao->updateObject($series);
+        Repo::section()->edit($series, []);
 
         // Save the category associations.
-        $seriesDao = DAORegistry::getDAO('SeriesDAO');
-        /** @var SeriesDAO $seriesDao */
-        $seriesDao->removeCategories($this->getSeriesId());
+        Repo::section()->removeFromCategory($this->getSeriesId());
         $categoryIds = $this->getData('categories');
         if (!empty($categoryIds)) {
             foreach ($categoryIds as $categoryId) {
-                $seriesDao->addCategory($this->getSeriesId(), $categoryId);
+                Repo::section()->addToCategory($this->getSeriesId(), $categoryId);
             }
         }
 

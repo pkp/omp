@@ -244,7 +244,6 @@ class MonographSearch extends SubmissionSearch
     public function formatResults($results, $user = null)
     {
         $contextDao = Application::getContextDAO();
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
 
         $publishedSubmissionCache = [];
         $monographCache = [];
@@ -266,7 +265,7 @@ class MonographSearch extends SubmissionSearch
             if ($monograph) {
                 $seriesId = $monograph->getSeriesId();
                 if (!isset($seriesCache[$seriesId])) {
-                    $seriesCache[$seriesId] = $seriesDao->getById($seriesId);
+                    $seriesCache[$seriesId] = $seriesId ? Repo::section()->get($seriesId) : null;
                 }
 
                 // Get the context, storing in cache if necessary.

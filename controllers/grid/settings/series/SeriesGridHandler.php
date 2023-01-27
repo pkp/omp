@@ -63,14 +63,16 @@ class SeriesGridHandler extends SetupGridHandler
         $this->setTitle('catalog.manage.series');
 
         // Elements to be displayed in the grid
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         $subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /** @var SubEditorsDAO $subEditorsDao */
-        $seriesIterator = $seriesDao->getByPressId($press->getId());
+        $seriesIterator = Repo::section()
+            ->getCollector()
+            ->filterByContextIds([$press->getId()])
+            ->getMany();
 
         $gridData = [];
-        while ($series = $seriesIterator->next()) {
+        foreach ($seriesIterator as $series) {
             // Get the categories data for the row
-            $categories = $seriesDao->getCategories($series->getId(), $press->getId());
+            $categories = Repo::section()->getAssignedCategories($series->getId(), $press->getId());
             $categoriesString = null;
             foreach ($categories as $category) {
                 if (!empty($categoriesString)) {
@@ -199,11 +201,10 @@ class SeriesGridHandler extends SetupGridHandler
      */
     public function setDataElementSequence($request, $rowId, $gridDataElement, $newSequence)
     {
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         $press = $request->getPress();
-        $series = $seriesDao->getById($rowId, $press->getId());
+        $series = Repo::section()->get($rowId, $press->getId());
         $series->setSequence($newSequence);
-        $seriesDao->updateObject($series);
+        Repo::section()->edit($series, []);
     }
 
     //
@@ -276,31 +277,20 @@ class SeriesGridHandler extends SetupGridHandler
     public function deleteSeries($args, $request)
     {
         $press = $request->getPress();
-
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
-        $series = $seriesDao->getById(
-            $request->getUserVar('seriesId'),
-            $press->getId()
-        );
-
-        if (isset($series)) {
-            $result = $seriesDao->getByContextId($press->getId());
-            $activeSeriesCount = (!$series->getIsInactive()) ? -1 : 0;
-            while (!$result->eof()) {
-                if (!$result->next()->getIsInactive()) {
-                    $activeSeriesCount++;
-                }
-            }
-            if ($activeSeriesCount < 1) {
-                return new JSONMessage(false, __('manager.series.confirmDeactivateSeries.error'));
-                return false;
-            }
-
-            $seriesDao->deleteObject($series);
-            return DAO::getDataChangedEvent($series->getId());
-        } else {
+        $series = Repo::section()->get($request->getUserVar('seriesId'), $press->getId());
+        if (!isset($series)) {
             return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
         }
+        $activeSectionsCount = Repo::section()->getCollector()
+            ->filterByContextIds([$press->getId()])
+            ->excludeInactive()
+            ->getCount();
+        $activeSectionsCount = (!$series->getIsInactive()) ? $activeSectionsCount - 1 : $activeSectionsCount;
+        if ($activeSectionsCount < 1) {
+            return new JSONMessage(false, __('manager.series.confirmDeactivateSeries.error'));
+        }
+        Repo::section()->delete($series);
+        return DAO::getDataChangedEvent($series->getId());
     }
 
     /**
@@ -319,22 +309,17 @@ class SeriesGridHandler extends SetupGridHandler
         // Identify the context id.
         $context = $request->getContext();
 
-        // Get series object
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
         // Validate if it can be inactive
-        $seriesIterator = $seriesDao->getByContextId($context->getId(), null, false);
-        $activeSeriesCount = 0;
-        while ($series = $seriesIterator->next()) {
-            if (!$series->getIsInactive()) {
-                $activeSeriesCount++;
-            }
-        }
+        $activeSeriesCount = Repo::section()
+            ->getCollector()
+            ->filterByContextIds([$context->getId()])
+            ->excludeInactive()
+            ->getCount();
         if ($activeSeriesCount > 1) {
-            $series = $seriesDao->getById($seriesId, $context->getId());
-
+            $series = Repo::section()->get($seriesId, $context->getId());
             if ($request->checkCSRF() && isset($series) && !$series->getIsInactive()) {
                 $series->setIsInactive(1);
-                $seriesDao->updateObject($series);
+                Repo::section()->edit($series, []);
 
                 // Create the notification.
                 $notificationMgr = new NotificationManager();
@@ -372,12 +357,11 @@ class SeriesGridHandler extends SetupGridHandler
         $context = $request->getContext();
 
         // Get series object
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
-        $series = $seriesDao->getById($seriesId, $context->getId());
+        $series = Repo::section()->get($seriesId, $context->getId());
 
         if ($request->checkCSRF() && isset($series) && $series->getIsInactive()) {
             $series->setIsInactive(0);
-            $seriesDao->updateObject($series);
+            Repo::section()->edit($series, []);
 
             // Create the notification.
             $notificationMgr = new NotificationManager();

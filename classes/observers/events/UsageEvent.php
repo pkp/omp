@@ -18,7 +18,7 @@ namespace APP\observers\events;
 
 use APP\core\Application;
 use APP\monograph\Chapter;
-use APP\press\Series;
+use APP\section\Section;
 use APP\submission\Submission;
 use PKP\context\Context;
 use PKP\submission\Representation;
@@ -26,10 +26,10 @@ use PKP\submissionFile\SubmissionFile;
 
 class UsageEvent extends \PKP\observers\events\UsageEvent
 {
-    /** Chapter ID */
     public ?Chapter $chapter;
+    public ?Section $series;
 
-    public function __construct(int $assocType, Context $context, Submission $submission = null, Representation $publicationFormat = null, SubmissionFile $submissionFile = null, Chapter $chapter = null, Series $series = null)
+    public function __construct(int $assocType, Context $context, Submission $submission = null, Representation $publicationFormat = null, SubmissionFile $submissionFile = null, Chapter $chapter = null, Section $series = null)
     {
         parent::__construct($assocType, $context, $submission, $publicationFormat, $submissionFile);
         $this->chapter = $chapter;
@@ -72,7 +72,7 @@ class UsageEvent extends \PKP\observers\events\UsageEvent
                     $router = $this->request->getRouter(); /** @var PageRouter $router */
                     $args = $router->getRequestedArgs($this->request);
                     $canonicalUrlOp = 'series';
-                    $canonicalUrlParams = [$args[0]];
+                    $canonicalUrlParams = [$args[0]]; // series path
                     break;
                 case Application::ASSOC_TYPE_PRESS:
                     $router = $this->request->getRouter(); /** @var PageRouter $router */
