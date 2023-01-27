@@ -1,11 +1,12 @@
 # Karla Zapalac <karlazapalac98@gmail.com>, 2023.
+# paola <pjukic@yahoo.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-08T17:42:23+00:00\n"
 "PO-Revision-Date: 2023-01-27 16:54+0000\n"
-"Last-Translator: Karla Zapalac <karlazapalac98@gmail.com>\n"
+"Last-Translator: paola <pjukic@yahoo.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/"
 "generic-webFeed/hr_HR/>\n"
 "Language: hr_HR\n"
@@ -45,3 +46,6 @@ msgstr "Prikazuj poveznice web-sadržaja na početnoj stranici."
 
 msgid "plugins.generic.webfeed.newcontent"
 msgstr "Novi sadržaj"
+
+msgid "plugins.generic.webfeed.settings.recentBooks"
+msgstr "Broj stavki za prikaz"
