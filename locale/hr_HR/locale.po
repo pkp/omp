@@ -4,8 +4,8 @@
 # Maria Češnik <mariaces237@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-28 18:48+0000\n"
-"Last-Translator: Maria Češnik <mariaces237@gmail.com>\n"
+"PO-Revision-Date: 2023-01-29 19:48+0000\n"
+"Last-Translator: Iva Nedić <iva.nedic99@gmail.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "hr_HR/>\n"
 "Language: hr_HR\n"
@@ -1257,3 +1257,394 @@ msgstr "ISBN"
 
 msgid "grid.catalogEntry.isbn10.description"
 msgstr "10-znamenkasti ISBN kod, npr. 951-98548-9-4."
+
+msgid "installer.localeSettingsInstructions"
+msgstr ""
+"Za potpunu Unicode podršku PHP mora biti kompajliran s podrškom za "
+"biblioteku <a href=\"https://www.php.net/mbstring\" target=\"_blank\""
+">mbstring</a> (omogućena prema zadanim postavkama u najnovijim PHP "
+"instalacijama ). Mogući su problemi s korištenjem proširenih skupova znakova "
+"ako vaš poslužitelj ne ispunjava ove zahtjeve.\n"
+"<br /><br />\n"
+"Vaš poslužitelj trenutno podržava mbstring: "
+"<strong>{$supportsMBString}</strong>"
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr "Pristup odbijen! Niste dodijeljeni ovoj fazi tijeka rada."
+
+msgid "notification.type.site"
+msgstr "Događaji na stranici"
+
+msgid "installer.localeInstructions"
+msgstr ""
+"Primarni jezik koji se koristi za ovaj sustav. Molimo pogledajte OMP "
+"dokumentaciju ako ste zainteresirani za podršku za jezike koji nisu ovdje "
+"navedeni."
+
+msgid "notification.editedSpotlight"
+msgstr "Uređeno središte pažnje."
+
+msgid "user.authorization.monographAuthor"
+msgstr "Pristup vam je odbijen jer se niste autor ove monografije."
+
+msgid "installer.upgradeComplete"
+msgstr ""
+"<p>Nadogradnja OMP-a na verziju {$version} uspješno je dovršena.</p>\n"
+"<p>Ne zaboravite vratiti postavku \"instalirano\" u konfiguracijskoj "
+"datoteci <tt>config.inc.php</tt> na <em>Uključeno</em>.</p>\n"
+"<p>Ako se već niste registrirali, a želite primati novosti i ažuriranja, "
+"<strong>molimo vas da se registrirate na <a href=\"https://lists."
+"publicknowledgeproject.org/lists/\" target=\"_blank\">https: //lists."
+"publicknowledgeproject.org/lists/</a>.</strong> Ako imate pitanja ili "
+"komentara, posjetite <a href=\"https://forum.pkp.sfu.ca\" target=\"_blank \""
+">forum podrške</a>.</p>"
+
+msgid "notification.removedIdentificationCode"
+msgstr "Uklonjen identifikacijski kod."
+
+msgid "search.results.orderBy.popularityAll"
+msgstr "Popularnost (sva vremena)"
+
+msgid "debug.notes.helpMappingLoad"
+msgstr ""
+"Ponovno učitana XML datoteka za mapiranje pomoći {$filename} u potrazi za "
+"{$id}."
+
+msgid "installer.upgradeApplication"
+msgstr "Nadogradi Open Monograph Press"
+
+msgid "payment.directSales.purchase"
+msgstr "Kupi {$format} ({$amount} {$currency})"
+
+msgid "log.review.reviewAccepted"
+msgstr ""
+"{$reviewerName} je prihvatio krug {$round} recenziju za prijavu "
+"{$submissionId}."
+
+msgid "notification.addedMarket"
+msgstr "Dodano tržište."
+
+msgid "installer.databaseSettingsInstructions"
+msgstr ""
+"OMP zahtijeva pristup SQL bazi podataka za pohranu svojih podataka. "
+"Pogledajte gornje sistemske zahtjeve za popis podržanih baza podataka. U "
+"donjim poljima unesite postavke koje će se koristiti za povezivanje s bazom "
+"podataka."
+
+msgid "payment.directSales.price.description"
+msgstr ""
+"Formati datoteka mogu biti dostupni za preuzimanje s web stranice za tisak "
+"putem otvorenog pristupa bez troškova za čitatelje ili izravne prodaje ("
+"koristeći online procesor plaćanja, kako je konfigurirano u Distribuciji). "
+"Za ovu datoteku navedite osnovu pristupa."
+
+msgid "notification.editedRepresentative"
+msgstr "Uređen predstavnik."
+
+msgid "installer.maxFileUploadSize"
+msgstr ""
+"Vaš poslužitelj trenutno dopušta maksimalnu veličinu datoteke za učitavanje "
+"od: <strong>{$maxFileUploadSize}</strong>"
+
+msgid "notification.removedSalesRights"
+msgstr "Uklonjena prava prodaje."
+
+msgid "notification.removedPublicationDate"
+msgstr "Uklonjen datum objave."
+
+msgid "notification.editedSalesRights"
+msgstr "Uređena prava prodaje."
+
+msgid "notification.removedSpotlight"
+msgstr "Uklonjeno središte pažnje."
+
+msgid "user.authorization.monographReviewer"
+msgstr "Pristup vam je odbijen jer niste dodijeljeni recenzent ove monografije."
+
+msgid "log.proofread.complete"
+msgstr "{$proofreaderName} je prijavio/la {$submissionId} na zakazivanje."
+
+msgid "notification.removedRepresentative"
+msgstr "Uklonjen predstavnik."
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "Koraci prije instalacije"
+
+msgid "notification.type.approveSubmission"
+msgstr ""
+"Ova prijava trenutno čeka odobrenje u alatu za unos kataloga prije nego što "
+"se pojavi u javnom katalogu."
+
+msgid "notification.editedMarket"
+msgstr "Uređeno tržište."
+
+msgid "log.imported"
+msgstr "{$userName} je prenio/la monografiju {$submissionId}."
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "Naveden je nevažeća objavljena prijava."
+
+msgid "user.authorization.seriesAssignment"
+msgstr "Pokušavate pristupiti monografiji koja nije dio vašeg niza."
+
+msgid "notification.addedSalesRights"
+msgstr "Dodana prava prodaje."
+
+msgid "notification.addedIdentificationCode"
+msgstr "Dodan identifikacijski kod."
+
+msgid "notification.removedSubmission"
+msgstr "Prijave uklonjene."
+
+msgid "search.results.orderBy.monograph"
+msgstr "Naslov monografije"
+
+msgid "notification.addedPublicationFormat"
+msgstr "Dodan format publikacije."
+
+msgid "payment.directSales.download"
+msgstr "Preuzmi {$format}"
+
+msgid "notification.type.reviewing"
+msgstr "Pregledavanje događaja"
+
+msgid "notification.type.editorAssignmentTask"
+msgstr "Prijavljena je nova monografija kojoj je potrebno odrediti urednika."
+
+msgid "submission.round"
+msgstr "Krug&nbsp;{$round}"
+
+msgid "notification.editedPublicationFormat"
+msgstr "Uređen format publikacije."
+
+msgid "log.editor.recommendation"
+msgstr ""
+"Preporuku urednika ({$decision}) za monografiju {$submissionId} zabilježio "
+"je {$editorName}."
+
+msgid "log.proofread.assign"
+msgstr ""
+"{$assignerName} je dodijelio {$proofreaderName} da lektorira prijavu "
+"{$submissionId}."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "Metapodaci kataloga spremljeni."
+
+msgid "notification.editedPublicationDate"
+msgstr "Uređen datum objave."
+
+msgid "notification.addedSpotlight"
+msgstr "Dodano središte pažnje."
+
+msgid "notification.type.submissions"
+msgstr "Događaji prijava"
+
+msgid "user.authorization.monographFile"
+msgstr "Odbijen vam je pristup navedenoj datoteci monografije."
+
+msgid "payment.directSales.amount"
+msgstr "{$amount} ({$currency})"
+
+msgid "log.editor.editorAssigned"
+msgstr "{$editorName} je određen kao urednik prijave {$submissionId}."
+
+msgid "payment.directSales.notSet"
+msgstr "Nije postavljeno"
+
+msgid "log.review.reviewUnconsidered"
+msgstr ""
+"{$editorName} je označio krug {$round} recenzije za prijavu {$submissionId} "
+"kao nerazmotrenu."
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr "Pristup vam je odbijen jer niste važeći recenzent za ovu monografiju."
+
+msgid "notification.removedPublicationFormat"
+msgstr "Uklonjen format publikacije."
+
+msgid "payment.directSales.monograph.description"
+msgstr ""
+"Ova se transakcija odnosi na kupnju izravnog preuzimanja jedne monografije "
+"ili monografskog poglavlja."
+
+msgid "installer.installationComplete"
+msgstr ""
+"<p>Instalacija OMP-a je uspješno dovršena.</p>\n"
+"<p>Za početak korištenja sustava, <a href=\"{$loginUrl}\">prijavite se</a> s "
+"korisničkim imenom i lozinkom unesenim na prethodnoj stranici.</p>\n"
+"<p>Ako želite primati novosti i ažuriranja, <strong>molimo vas da se "
+"registrirate na <a href=\"https://lists.publicknowledgeproject.org/lists/\" "
+"target=\"_blank\">https://lists.publicknowledgeproject. org/lists/</a>.</"
+"strong> Ako imate pitanja ili komentara, posjetite <a href=\"https://forum."
+"pkp.sfu.ca\" target=\"_blank\">forum za podršku</ a>.</p>"
+
+msgid "payment.directSales.monograph.name"
+msgstr "Kupi monografiju ili preuzmi poglavlje"
+
+msgid "search.results.orderBy.date"
+msgstr "Datum objavljivanja"
+
+msgid "notification.type.layouteditorRequest"
+msgstr "Zamoljeni ste da pregledate izglede za \"{$title}\"."
+
+msgid "notification.addedRepresentative"
+msgstr "Dodan predstavnik."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "Započet je postupak interne provjere."
+
+msgid "notification.type.visitCatalog"
+msgstr ""
+"Monografija je odobrena. Posjetite Marketing and Publication kako biste "
+"upravljali pojedinostima kataloga, koristeći veze iznad."
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "Metapodaci formata publikacije spremljeni."
+
+msgid "notification.type.userComment"
+msgstr "Čitatelj je komentirao \"{$title}\"."
+
+msgid "notification.type.public"
+msgstr "Javne objave"
+
+msgid "notification.type.indexRequest"
+msgstr "Zamoljeni ste da izradite indeks za \"{$title}\"."
+
+msgid "user.authorization.noContext"
+msgstr "Nije pronađen nijedan tisak koji odgovara vašem zahtjevu."
+
+msgid "log.review.reviewDueDateSet"
+msgstr ""
+"Rok za pregled kruga {$round} prijave {$submissionId} od strane "
+"{$reviewerName} postavljen je na {$dueDate}."
+
+msgid "notification.removedMarket"
+msgstr "Uklonjeno tržište."
+
+msgid "notification.type.configurePaymentMethod"
+msgstr ""
+"Prije definiranja postavki e-trgovine potreban je konfigurirani način "
+"plaćanja."
+
+msgid "log.editor.archived"
+msgstr "Prijava {$submissionId} je arhivirana."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+"Monografija neće biti uvrštena u katalog do objave. Za dodavanje ove knjige "
+"u katalog kliknite na karticu Publikacije."
+
+msgid "notification.addedPublicationDate"
+msgstr "Dodan datum objave."
+
+msgid "notification.type.editing"
+msgstr "Uređivanje događaja"
+
+msgid "installer.upgradeInstructions"
+msgstr ""
+"<h4>OMP verzija {$version}</h4>\n"
+"\n"
+"<p>Hvala što ste preuzeli <strong>Open Monograph Press</strong> Public "
+"Knowledge Project. Prije nego nastavite, pročitajte <a href=\"{$baseUrl}/"
+"docs/README.md\">README</a> i <a href=\"{$baseUrl}/docs/UPGRADE.md\""
+">NADOGRADNJU</a > datoteke uključene u ovaj softver. Za više informacija o "
+"Projektu javnog znanja i njegovim softverskim projektima posjetite <a href="
+"\"https://pkp.sfu.ca/\" target=\"_blank\">web-mjesto PKP-a</a>. Ako imate "
+"izvješća o greškama ili upite o tehničkoj podršci za Open Monograph Press, "
+"pogledajte <a href=\"https://forum.pkp.sfu.ca\" target=\"_blank\">forum za "
+"podršku</a> ili posjetite PKP-ov online < href=\"https://github.com/pkp/"
+"pkp-lib/issues\" target=\"_blank\">sustav za prijavu grešaka</a>. Iako je "
+"forum za podršku preferirani način kontaktiranja, timu također možete "
+"poslati e-poruku na <a href=\"mailto:pkp.contact@gmail.com\">pkp."
+"contact@gmail.com</a>.</p>\n"
+"<p><strong>Snažno se preporučuje</strong> da napravite sigurnosnu kopiju "
+"svoje baze podataka, direktorija datoteka i OMP instalacijskog direktorija "
+"prije nastavka.</p>"
+
+msgid "installer.additionalLocalesInstructions"
+msgstr ""
+"Odaberite dodatne jezike za podršku u ovom sustavu. Ti će jezici biti "
+"dostupni za korištenje u tiskovnim medijima koji se nalaze na stranici. "
+"Dodatni jezici također se mogu instalirati u bilo kojem trenutku iz "
+"administrativnog sučelja stranice. Lokacije označene * mogu biti nepotpune."
+
+msgid "installer.filesDirInstructions"
+msgstr ""
+"Unesite punu putanju do postojećeg direktorija u kojem će se čuvati učitane "
+"datoteke. Ovaj direktorij ne bi trebao biti izravno dostupan webu. "
+"<strong>Uvjerite se da ovaj direktorij postoji i da je u njega moguće pisati "
+"prije instalacije.</strong> Windows nazivi putanja trebaju koristiti kose "
+"crte, npr. \"C:/mypress/files\"."
+
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>VAŽNO!</h4>\n"
+"<p>Instalacijski program nije mogao automatski prebrisati konfiguracijsku "
+"datoteku. Prije nego pokušate koristiti sustav, otvorite <tt>config.inc.php</"
+"tt> u odgovarajućem uređivaču teksta i zamijenite njegov sadržaj sadržajem "
+"tekstualnog polja ispod.</p>"
+
+msgid "log.editor.restored"
+msgstr "Prijava {$submissionId} je vraćena u red čekanja."
+
+msgid "notification.proofsApproved"
+msgstr "Dokazi odobreni."
+
+msgid "notification.type.copyeditorRequest"
+msgstr "Zamoljeni ste da pregledate kopije za \"{$file}\"."
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+"Pristup odbijen! Grupa korisnika pod kojom trenutno djelujete nije "
+"dodijeljena ovoj fazi tijeka rada. Provjerite postavke tiska."
+
+msgid "installer.preInstallationInstructions"
+msgstr ""
+"<p>1. Sljedeće datoteke i direktoriji (i njihov sadržaj) moraju biti "
+"omogućeni za pisanje:</p>\n"
+"<ul>\n"
+"<li><tt>config.inc.php</tt> može se pisati (izborno): {$writable_config}</li>"
+"\n"
+"<li><tt>public/</tt> može se pisati: {$writable_public}</li>\n"
+"U <li><tt>cache/</tt> se može pisati: {$writable_cache}</li>\n"
+"<li><tt>cache/t_cache/</tt> može se pisati: {$writable_templates_cache}</li>"
+"\n"
+"<li><tt>cache/t_compile/</tt> može se pisati: "
+"{$writable_templates_compile}</li>\n"
+"<li><tt>cache/_db</tt> može se pisati: {$writable_db_cache}</li>\n"
+"</ul>\n"
+"\n"
+"<p>2. Imenik za pohranjivanje učitanih datoteka mora biti kreiran i u njega "
+"moguće pisati (vidi \"Postavke datoteke\" u nastavku).</p>"
+
+msgid "installer.allowFileUploads"
+msgstr ""
+"Vaš poslužitelj trenutno dopušta učitavanje datoteka: "
+"<strong>{$allowFileUploads}</strong>"
+
+msgid "log.review.reviewDeclined"
+msgstr ""
+"{$reviewerName} je odbio krug {$round} recenzije za prijavu {$submissionId}."
+
+msgid "log.editor.decision"
+msgstr ""
+"Odluku urednika ({$decision}) za monografiju {$submissionId} zabilježio je "
+"{$editorName}."
+
+msgid "notification.editedIdentificationCode"
+msgstr "Uređen identifikacijski kod."
+
+msgid "notification.type.submissionSubmitted"
+msgstr "Nova monografija \"{$title}\" je predana."
+
+msgid "user.authorization.invalidMonograph"
+msgstr "Nevažeća monografija ili monografija nije tražena!"
+
+msgid "payment.directSales.numericOnly"
+msgstr "Cijene trebaju biti samo numeričke. Nemojte uključivati simbole valuta."
+
+msgid "search.results.orderBy.press"
+msgstr "Naslov tiska"
+
+msgid "search.results.orderDir.desc"
+msgstr "Silazni"
