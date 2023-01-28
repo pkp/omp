@@ -4,7 +4,7 @@
 # Tadej Grlić <tadejgrlic@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-28 18:48+0000\n"
+"PO-Revision-Date: 2023-01-29 19:48+0000\n"
 "Last-Translator: Tadej Grlić <tadejgrlic@gmail.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "hr_HR/>\n"
@@ -20,7 +20,7 @@ msgid "submission.submit.privacyStatement"
 msgstr "Izjava o privatnosti"
 
 msgid "publication.catalogEntry"
-msgstr "Zapis u katalogu"
+msgstr "Unos u katalog"
 
 msgid "submission.list.itemsOfTotalMonographs"
 msgstr "{$count} od {$total} monografija"
@@ -544,8 +544,7 @@ msgstr ""
 "jesu li u svakom poglavlju navedeni suradnici za to poglavlje."
 
 msgid "submission.copyright.description"
-msgstr ""
-"Molimo pročitajte i razumite uvjete autorskih prava za prijave za ovaj tisak."
+msgstr "Molimo pročitajte uvjete autorskih prava za prijave za ovaj tisak."
 
 msgid "submission.wizard.notAllowed.description"
 msgstr ""
@@ -592,7 +591,7 @@ msgid "publication.chapter.licenseUrl"
 msgstr "URL licence"
 
 msgid "publication.chapterDefaultLicenseURL"
-msgstr "Zadani URL licence poglavlja"
+msgstr "URL licence zadanih poglavlja"
 
 msgid "section.any"
 msgstr "Bilo koja serija"
