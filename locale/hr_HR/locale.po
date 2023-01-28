@@ -1,10 +1,11 @@
 # Iva Melinscak Zlodi <imelinsc@ffzg.hr>, 2022.
 # Boris Badurina <boris.badurina@gmail.com>, 2022.
 # Iva Nedić <iva.nedic99@gmail.com>, 2023.
+# Maria Češnik <mariaces237@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "PO-Revision-Date: 2023-01-28 18:48+0000\n"
-"Last-Translator: Iva Nedić <iva.nedic99@gmail.com>\n"
+"Last-Translator: Maria Češnik <mariaces237@gmail.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "hr_HR/>\n"
 "Language: hr_HR\n"
@@ -953,3 +954,306 @@ msgstr "Nema dostupnih tisaka."
 
 msgid "user.authorization.representationNotFound"
 msgstr "Traženi format publikacije nije pronađen."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Format"
+
+msgid "search.results.orderBy.relevance"
+msgstr "Relevantnost"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "Email adresa"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Otvori Access"
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "Potreban je kôd."
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "Veličina datoteke u MB"
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "Unesite format datuma."
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Zemlja proizvodnje"
+
+msgid "submission.pdf.download"
+msgstr "Preuzmi PDF"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Funkcija"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Odaberite funkciju:"
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Format nije u kataloškom unosu."
+
+msgid "catalog.coverImageTitle"
+msgstr "Naslovna fotografija"
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Molimo unesite vrijednost."
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Sastav proizvoda"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Broj stranica"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Dostupnost formata"
+
+msgid "grid.catalogEntry.availability"
+msgstr "Dostupnost"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Razina obrazovanja (od)"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "Prikaži druge izdavače"
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Vrijednost"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Podaci o monografiji"
+
+msgid "payment.directSales"
+msgstr "Preuzmite s web stranice izdavača"
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Neka polja metapodataka nisu popunjena."
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Visina"
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Prihvaćeno"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Razina obrazovanja (do)"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Tržišni teritorij"
+
+msgid "grid.catalogEntry.chapters"
+msgstr "Poglavlje"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Širina"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Davatelj usluga"
+
+msgid "payment.directSales.priceCurrency"
+msgstr "Cijena ({$currency})"
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Dostupno"
+
+msgid "search.results.orderBy.article"
+msgstr "Naslov članka"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Datum se odnosi na..."
+
+msgid "search.results.orderBy.popularityMonth"
+msgstr "Popularnost (prošli mjesec)"
+
+msgid "monograph.publicationFormat.taxType"
+msgstr "Vrsta poreza"
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Prodajni partner"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Podaci o proizvodu (nije potrebno)"
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "Potrebna je valjana ponuda."
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Knjiga"
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Ostatak svijeta?"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Predstavnici"
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Nedostaju informacije o tržištu i cijenama."
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "Impresum (ime robne marke/izdavača)"
+
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Porezna stopa"
+
+msgid "monograph.languages"
+msgstr "Jezici (engleski, francuski, španjolski)"
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "Sakrij druge izdavače"
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "Za monografiju je potreban identifikator."
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Osnova za sužavanje ciljne skupine"
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Kataloški unos nije prihvaćen."
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Telefon"
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Datum objave"
+
+msgid "monograph.task.addNote"
+msgstr "Dodaj u zadatke"
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "Nijedan način plaćanja još nije konfiguriran."
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Težina"
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Dimenzije"
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "Čeka odobrenje."
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Uvjeti prodaje"
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "Molimo naznačite dostupnost proizvoda."
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Fizički format"
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Više informacija za ovaj format"
+
+msgid "payment.directSales.availability"
+msgstr "Dostupnost"
+
+msgid "payment.directSales.notAvailable"
+msgstr "Nije dostupno"
+
+msgid "monograph.coverImage"
+msgstr "Naslovna fotografija"
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Uvjeti prodaje"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Debljina"
+
+msgid "search.results.orderDir.asc"
+msgstr "Uzlazni"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "Identifikacijski broj tvrtke"
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Davatelj usluga"
+
+msgid "monograph.audience.success"
+msgstr "Podaci o ciljnoj skupini su ažurirani."
+
+msgid "payment.directSales.catalog"
+msgstr "Katalog"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Web stranica"
+
+msgid "monograph.audience"
+msgstr "Ciljna skupina"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Regije"
+
+msgid "payment.directSales.openAccess"
+msgstr "Otvori Access"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Nije dostupno"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Ime"
+
+msgid "payment.directSales.approved"
+msgstr "Prihvaćeno"
+
+msgid "payment.directSales.directSales"
+msgstr "Izravna prodaja"
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Datum"
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "Potrebno je ime."
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "Za digitalne formate potrebna je veličina datoteke."
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "Upravljanje katalogom"
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "Vrsta ONIX koda"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Dostupnost"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Digitalne informacije"
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Želite li unijeti vlastitu veličinu datoteke?"
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "13-znamenkasti ISBN kod, npr. 978-951-98548-9-2."
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Čeka se odobrenje"
+
+msgid "grid.catalogEntry.countries"
+msgstr "Zemlje"
+
+msgid "search.results.orderBy.author"
+msgstr "Autor/ica"
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Odjavnica"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Šifra proizvoda"
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Nedostaje identifikacijski kod."
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "Odaberite šifru sastava proizvoda."
+
+msgid "grid.catalogEntry.included"
+msgstr "Obuhvaćeno"
+
+msgid "payment.directSales.price"
+msgstr "Cijena"
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "Unesite valjanu cijenu (kao broj)."
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "10-znamenkasti ISBN kod, npr. 951-98548-9-4."
