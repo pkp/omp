@@ -3,7 +3,7 @@
 # Maja Jurić <maja-juric@windowslive.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-27 17:48+0000\n"
+"PO-Revision-Date: 2023-01-28 18:48+0000\n"
 "Last-Translator: Maja Jurić <maja-juric@windowslive.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "hr_HR/>\n"
@@ -172,10 +172,10 @@ msgstr ""
 "stranice ako želite koristiti dodatne jezike."
 
 msgid "manager.series.indexed"
-msgstr "indeksirano"
+msgstr "Indeksirano"
 
 msgid "manager.series.open"
-msgstr "Otvori podneske"
+msgstr "Otvorene prijave"
 
 msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr ""
@@ -232,7 +232,7 @@ msgid "manager.series.form.abbrevRequired"
 msgstr "Za seriju je potreban skraćeni naslov."
 
 msgid "manager.series.noneCreated"
-msgstr "Nijedna serija nije stvorena"
+msgstr "Nijedna serija nije stvorena."
 
 msgid "manager.payment.success"
 msgstr "Postavke plaćanja su ažurirane."
@@ -277,3 +277,18 @@ msgstr "Preuzimanje datoteka monografije"
 
 msgid "manager.settings.publisherCode"
 msgstr "Kod izdavača"
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Provjerite je li barem jedno polje za označavanje kvačicom označeno za svaki "
+"zadatak urednika serije."
+
+msgid "manager.series.editorRestriction"
+msgstr "Naslove mogu slati samo urednici i urednici serijala."
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Iako ova polja nisu inherentno potrebna za korištenje OMP-a, potrebna su za "
+"generiranje valjanih <a href=\"https://en.wikipedia.org/wiki/ONIX_for_Books\""
+">ONIX metapodataka</a>. Uključite ih ako želite koristiti ONIX "
+"funkcionalnost."
