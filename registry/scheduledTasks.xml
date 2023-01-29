@@ -59,7 +59,7 @@
 		<frequency second="0"/>
 	</task>
 	<task class="PKP\task\RemoveFailedJobs">
-		<descr>Automatically remove much older failed jobs from failed list.</descr>
+		<descr>Automatically remove jobs that failed more than X days ago. The time limit can be changed in the the delete_failed_jobs_after setting in the config file.</descr>
 		<frequency day="1"/>
 	</task>
 </scheduled_tasks>

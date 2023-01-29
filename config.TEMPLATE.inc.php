@@ -583,6 +583,6 @@ job_runner_max_execution_time = 30
 ; memory_limit the server has configured for PHP.
 job_runner_max_memory = 80
 
-; The number of days older failed jobs will be removed from failed list automatically
-; Comment out this setting if do not want to clean much older failed jobs
-failed_job_clean_period = 180
+; Remove failed jobs from the database after the following number of days.
+; Remove this setting to leave failed jobs in the database.
+delete_failed_jobs_after = 180
