@@ -3,7 +3,7 @@
 # Maja Jurić <maja-juric@windowslive.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-28 18:48+0000\n"
+"PO-Revision-Date: 2023-01-29 16:35+0000\n"
 "Last-Translator: Maja Jurić <maja-juric@windowslive.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "hr_HR/>\n"
@@ -33,7 +33,7 @@ msgstr "Prikaži na naslovnoj stranici"
 msgid "manager.setup.look.description"
 msgstr ""
 "Zaglavlje naslovne, sadržaj, zaglavlje publikacije, podnožje, navigacijska "
-"traka i stilska tablica"
+"traka i stilska tablica."
 
 msgid "manager.setup.look"
 msgstr "Izgled"
@@ -66,43 +66,42 @@ msgid "manager.setup.publisher"
 msgstr "Izdavač"
 
 msgid "manager.setup.printIssn"
-msgstr "ISSN tisak"
+msgstr "ISSN tiskanog izdanja"
 
 msgid "manager.setup.contextTitle"
-msgstr "Ime publikacije"
+msgstr "Ime izdavača"
 
 msgid "manager.setup.pressThumbnail.description"
-msgstr ""
-"Mali logo ili prikaz publikacije koji se može koristiti u popisima izdanja."
+msgstr "Mali logo izdavača koji se može koristiti u popisima nakladnika."
 
 msgid "manager.setup.pressThumbnail"
-msgstr "Press thumbnail"
+msgstr "Thumbnail izdavača"
 
 msgid "manager.setup.pressTheme"
-msgstr "Tema publikacije"
+msgstr "Tema izdavača"
 
 msgid "manager.setup.styleSheetInvalid"
 msgstr "Nevažeći format stilova. Prihvaćeni format je .css."
 
 msgid "manager.setup.pressSetupUpdated"
-msgstr "Postavke publikacije su ažurirane"
+msgstr "Postavke izdavača su ažurirane"
 
 msgid "manager.setup.pressSetup"
-msgstr "Postavljanje publikacije"
+msgstr "Postavke izdavača"
 
 msgid "manager.setup.pressPolicies"
-msgstr "Korak 2. Politika izdane publikacije"
+msgstr "2. korak: smjernice za izdavače"
 
 msgid "manager.setup.pageHeader"
-msgstr "Zaglavlje publikacije"
+msgstr "Zaglavlje stranice"
 
 msgid "manager.setup.layout"
-msgstr "Izgled publikacije"
+msgstr "Layout izdavača"
 
 msgid "manager.setup.selectCountry"
 msgstr ""
-"Odaberite zemlju u kojoj se nalazi ova publikacija ili zemlju poštanske "
-"adrese za tisak ili izdavača."
+"Odaberite ili državu u kojoj se izdavač nalazi, zemlju izdavača ili adresu e-"
+"pošte izdavača."
 
 msgid "manager.setup.aboutPress.description"
 msgstr ""
@@ -114,32 +113,32 @@ msgstr ""
 msgid "manager.setup.appearanceDescription"
 msgstr ""
 "S ove stranice mogu se konfigurirati različite komponente izgleda za tisak, "
-"uključujući elemente zaglavlja i podnožja, stil i temu tiska te način na "
+"uključujući elemente zaglavlja i podnožja, stil i temu izdavača te način na "
 "koji se popisi informacija predstavljaju korisnicima."
 
 msgid "manager.setup.pressDescription.description"
-msgstr "Kratak opis vaše publikacije"
+msgstr "Kratak opis vašeg izdavača."
 
 msgid "manager.setup.pressDescription"
-msgstr "Sažetak publikacije"
+msgstr "Opis izdavača"
 
 msgid "manager.setup.privacyStatement.success"
 msgstr "Izjava o privatnosti je ažurirana."
 
 msgid "manager.setup.policies.description"
 msgstr ""
-"Fokus, stručni pregled, odjeljci, privatnost, sigurnost i dodatne "
-"informacije o stavkama."
+"Fokus, stručni pregled, rubrike, privatnost, sigurnost i dodatne informacije "
+"o stavkama."
 
 msgid "manager.setup.policies"
-msgstr "Politika"
+msgstr "Politike"
 
 msgid "manager.setup.onlineIssn"
 msgstr "Online ISSN"
 
 msgid "manager.setup.noUseLayoutEditors"
 msgstr ""
-"Urednik ili urednik dijela koji je prijavljen pripremit će HTML, PDF, itd. "
+"Urednik ili urednik rubrike koji je prijavljen pripremit će HTML, PDF, itd. "
 "datoteke."
 
 msgid "doi.readerDisplayName"
@@ -292,3 +291,621 @@ msgstr ""
 "generiranje valjanih <a href=\"https://en.wikipedia.org/wiki/ONIX_for_Books\""
 ">ONIX metapodataka</a>. Uključite ih ako želite koristiti ONIX "
 "funkcionalnost."
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Dodajte urednika serije s popisa dostupnih urednika serije. Zatim odredite "
+"treba li urednik serije koordinirati postupak recenziranja i preuzeti "
+"uređivanje (uređivanje, raspored i lekturu) rukopisa u ovoj seriji ili samo "
+"jedno od dva područja odgovornosti. Ako želite stvoriti novog urednika "
+"serije, idite na \"Administracija\" > \"Postavke i funkcije\" na \"Funkcije\""
+" i kliknite na <a href=\"{$seriesEditorsUrl}\">Uređivači serije</a> ."
+
+msgid "manager.setup.customTags"
+msgstr "Prilagođene oznake"
+
+msgid "manager.setup.guidelines"
+msgstr "Smjernice"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Predlošci layouta"
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr "Uređivanje je odgovornost urednika ili urednika rubrike."
+
+msgid "manager.setup.contextAbout"
+msgstr "O nama"
+
+msgid "manager.pressManagement"
+msgstr "Izdavačka uprava"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Sažetak monografije i preuzimanja"
+
+msgid "manager.setup.identity"
+msgstr "Identitet izdavača"
+
+msgid "manager.tools"
+msgstr "Alati"
+
+msgid "manager.setup.information.success"
+msgstr "Podaci o ovom izdavaču su ažurirani."
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+"Ako je rukopis zajednički napisalo nekoliko autora, molimo uključite e-mail "
+"adrese svih autora u e-poruku s obavijesti autoru, a ne samo onu osobe koja "
+"je predala rukopis."
+
+msgid "doi.manager.settings.doiCreationTime.copyedit"
+msgstr "U koraku \"Uređivanje\""
+
+msgid "manager.setup.copyediting"
+msgstr "Urednici"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Dodajte stavku \"kontrolna lista\""
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Adresa e-pošte za povratne poruke (bounce poruke)"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Maksimalna visina naslovne slike"
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Sadržaj početne stranice"
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "E-mail adresa glavne kontakt osobe je obavezna."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Profil izdavača"
+
+msgid "manager.system.payments"
+msgstr "Način plaćanja"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Dodajte stavku koja se pojavljuje pod \"O nama\""
+
+msgid "manager.setup.details"
+msgstr "Detalji"
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr ""
+"Prilagođeni identifikatori koriste se za identifikaciju objavljenih naslova."
+
+msgid "manager.people.allSiteUsers"
+msgstr "Registrirajte korisnika ove web stranice za ovog izdavača"
+
+msgid "manager.setup.contextInitials"
+msgstr "Inicijali izdavača"
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Upravljanje osnovnim redakcijskim koracima"
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Za slanje e-pošte koja se ne može isporučiti na adresu za odbijanje, "
+"administrator treba omogućiti opciju <code>allow_envelope_sender</code> u "
+"konfiguracijskoj datoteci web-mjesta. Možda će biti potrebna konfiguracija "
+"poslužitelja, kao što je navedeno u OMP dokumentaciji."
+
+msgid "manager.people.allUsers"
+msgstr "Svi registrirani korisnici"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Korisnici registrirani kod ovog izdavača"
+
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+"Početna stranica izdavača prema zadanim se postavkama sastoji od poveznica "
+"za navigaciju. Dodatni sadržaj može se dodati na početnu stranicu pomoću "
+"jedne ili više sljedećih opcija. Pojavljuju se na početnoj stranici "
+"redoslijedom kojim su navedeni na ovoj stranici."
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Uključite kratak opis svog izdavača i identificirajte urednike, upravne "
+"direktore i druge članove uredničkog tima."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr "Urednik ili urednik rubrika dodijeljen rukopisu pregledava galije."
+
+msgid "manager.users.availableRoles"
+msgstr "Dostupne funkcije"
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"OMP se pridržava <a href=\"https://www.openarchives.org\" target=\"_blank\""
+">Open Archives Initiative</a> protokola za prikupljanje metapodataka, koji "
+"je standard u nastajanju za pružanje dobro indeksiranog pristupa "
+"elektroničkim istraživačkih resursa na globalnoj razini. Autori će koristiti "
+"odgovarajući predložak za pružanje metapodataka za svoj rukopis. Voditelj "
+"izdavaštva trebao bi odabrati kategorije za indeksiranje i pokazati primjere "
+"autorima kako bi im pomogao indeksirati svoja djela; pojmovi kategorije "
+"međusobno su odvojeni točkom i zarezom (na primjer: pojam 1; pojam 2). Unose "
+"treba uvoditi kao primjere korištenjem \"Npr.\" ili \"Na primjer\"."
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "1. korak: upoznajte se sa sustavom"
+
+msgid "manager.setup.focusScope"
+msgstr "Profil izdavača"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Istaknute knjige"
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Uredncima layouta pružite upute."
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr ""
+"Korisnici moraju biti registrirani i prijavljeni za pregled web stranice "
+"izdavača."
+
+msgid "manager.setup.addSponsor"
+msgstr "Dodajte sponzorsku organizaciju"
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Pristup sadržaju izdavača"
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Nije učitana nijedna slika."
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"Ovom sinkronizacijom svi korisnici koji su registrirani u određenoj funkciji "
+"kod određenog izdavača također su registrirani u istoj funkciji kod ovog "
+"izdavača. To omogućuje sinkronizaciju zajedničke korisničke grupe (npr. "
+"recenzenti) između izdavača."
+
+msgid "manager.system.reviewForms"
+msgstr "Obrasci recenzije"
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Pojavljuje se u 'O nama') "
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Urednici layouta"
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Korak 5. Prilagodite Look & Fell"
+
+msgid "manager.setup.announcements.success"
+msgstr "Postavke obavijesti su ažurirane."
+
+msgid "manager.users.selectRole"
+msgstr "Odaberite funkciju"
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr ""
+"Početna stranica izdavača prema zadanim se postavkama sastoji od poveznica "
+"za navigaciju. Dodatni sadržaj može se dodati na početnu stranicu pomoću "
+"jedne ili više sljedećih opcija. Pojavljuju se na početnoj stranici "
+"redoslijedom kojim su navedeni na ovoj stranici."
+
+msgid "manager.system"
+msgstr "Postavke sustava"
+
+msgid "manager.setup.note"
+msgstr "Bilješka"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Slike će biti smanjene ako su veće od dopuštenih. Nikada se ne povećavaju "
+"ili rastežu kako bi odgovarale dimenzijama."
+
+msgid "manager.setup.referenceLinking"
+msgstr ""
+"Povezivanje referenci (povezivanje citata iz literature s cjelovitim "
+"elektroničkim tekstovima)"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "3. korak: priprema radnog tijeka"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr ""
+"Uključite kratku prezentaciju o izdavaču(dostupnu na web stranici pod 'O "
+"nama') dajući autorima, čitateljima i knjižničarima predodžbu o rasponu "
+"monografija i drugih izdavačkih proizvoda koje će izdavač objaviti."
+
+msgid "manager.setup.information.description"
+msgstr ""
+"Ovi kratki opisi izdavača, namijenjeni knjižničarima, zainteresiranim "
+"autorima i čitateljima, pojavljuju se na bočnoj traci pod \"Informacije\"."
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>PRIMJER HTML PODATAKA</strong>"
+
+msgid "manager.system.archiving"
+msgstr "Arhivirati"
+
+msgid "manager.setup.generalInformation"
+msgstr "Opće informacije"
+
+msgid "manager.setup.coverage"
+msgstr "Opseg sadržaja"
+
+msgid "manager.setup.institution"
+msgstr "Institucija"
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Maksimalna širina naslovne slike"
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr "Navedite primjere relevantnih akademskih disciplina vaše izdavačke kuće"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Sadržaj"
+
+msgid "manager.setup.editorDecision"
+msgstr "Odluka urednika"
+
+msgid "manager.setup.labelName"
+msgstr "Naziv oznake"
+
+msgid "manager.setup.emails"
+msgstr "Identifikacija e-pošte"
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Smjernice za vanjsku recenziju"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Smjernice za layout"
+
+msgid "manager.setup.enableUserRegistration"
+msgstr "Korisnici se mogu registrirati kod izdavača."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Poveznice"
+
+msgid "manager.setup.aboutPress"
+msgstr "O izdavaču"
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Kod izdavača"
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Prilagođene HTML oznake zaglavlja umetnute u zaglavlje svake stranice (npr. "
+"meta oznake)."
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr ""
+"Odaberite vrste radova koje je objavio ovaj izdavač kojima treba dodijeliti "
+"DOI. Većina izdavača dodjeljuje DOI monografijama/poglavljima, ali možda "
+"ćete htjeti dodijeliti DOI svim objavljenim stavkama."
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Nemate administrativna prava za ovaj korisnički račun. Razlog tome može biti "
+"sljedeći:\n"
+"<ul>\n"
+"<li>korisnik je administrator stranice</li>\n"
+"<li>korisnik je aktivan u izdavaču kojim ne upravljate</li>\n"
+"</ul>\n"
+"Ovaj zadatak mora izvršiti administrator web stranice.\n"
+"\t"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"Predlošci se mogu učitati kako bi se pojavili u Layoutu za svaki od "
+"standardnih formata izdavača (npr. monografija, recenzija knjige itd.) "
+"koristeći bilo koji format datoteke (npr. pdf, doc itd.) s dodanim "
+"komentarima koji određuju font, veličinu , margine itd. koji će poslužiti "
+"kao vodič za urednike layouta i lektore."
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Ime podrške je obavezno."
+
+msgid "manager.setup.keyInfo"
+msgstr "Glavne informacije"
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Unesite postojećeg korisnika"
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"E-pošta poslana automatski u ime izdavača imat će dodan sljedeći potpis."
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Za autore kako bi indeksirali svoj rad"
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"Svaka e-pošta koja se ne može isporučiti rezultirat će slanjem poruke o "
+"pogrešci na tu adresu e-pošte."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+"Prilagođeni identifikatori koriste se za identifikaciju oznaka (npr. HTML "
+"ili PDF datoteka) za objavljene sveske."
+
+msgid "manager.dois.formatIdentifier.file"
+msgstr "Format / {$format}"
+
+msgid "manager.setup.publisherDescription"
+msgstr "Naziv organizacije koja vodi izdavaštvo pojavljuje se pod 'O nama'."
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Ograničite broj prikazanih poveznica koje vode na daljnje stranice na popisu."
+
+msgid "doi.manager.settings.doiSuffixLegacy"
+msgstr ""
+"Koristite standardne obrasce.<br />%p.%m za monografije<br />%p.%m.c%c za "
+"poglavlja<br />%p.%m.%f za formate publikacija<br />%p. %m.%f.%s za datoteke."
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Pregledi glavne stranice izdavača"
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Smjernice layouta za povezivanje referenci"
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr ""
+"Smjernice za vanjsku recenziju pružaju vanjskim recenzentima kriterije koje "
+"mogu koristiti za procjenu prikladnosti dostavljenog rukopisa. Smjernice "
+"također mogu sadržavati detaljne upute o tome kako napraviti uspješnu i "
+"smislenu recenziju. Prilikom izrade recenzije, recenzentima se prikazuju dva "
+"otvorena tekstualna okvira, prvi za recenzije koje se upućuju \"autoru i "
+"uredniku\", drugi za recenzije koje se upućuju samo \"urednicima\". "
+"Alternativno, voditelj izdavaštva može kreirati vlastite obrasce za procjenu "
+"pod \"Obrascima za procjenu\". U svim slučajevima, međutim, urednici uvijek "
+"imaju mogućnost uključiti recenzije u svoju korespondenciju s autorom."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Odobrite ovom izdavaču javno pojavljivanje na web stranici"
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Omogući obavijesti"
+
+msgid "manager.setup.homepageContent"
+msgstr "Sadržaj"
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Smjernice za ispravak"
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Nije učitana nijedna lista stilova."
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Jeste li sigurni da želite ukloniti ovog korisnika iz ovog izdavača? Ova "
+"radnja uklanja osobu iz svih uloga koje su joj dodijeljene."
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Prikažite knjige na početnoj stranici tako da budu u centru pažnje"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Dodajte stavku \"O nama\""
+
+msgid "user.authorization.pluginLevel"
+msgstr "Nemate dovoljno ovlasti za upravljanje ovim dodatkom."
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Nova izdanja"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Prikaz stranice sa sažetkom monografije"
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr ""
+
+msgid "manager.setup"
+msgstr "Postavke"
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Datoteka predloška"
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Želite li deaktivirati ovog korisnika? Korisnik se tada više neće moći "
+"prijaviti.\n"
+"\n"
+"Korisniku možete reći razlog za deaktivaciju računa (nije obavezno)."
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Odaberite korisnika čiji se podaci trebaju spojiti s drugim računom (npr. "
+"ako netko ima dva računa). Prvi odabrani račun bit će izbrisan, njegovi "
+"doprinosi, zadaci itd. bit će pripisani drugom računu."
+
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Uz pomoć obavijesti možete informirati čitatelje o novostima i skrenuti "
+"pozornost na događanja izdavača. Obavijesti se pojavljuju na stranici "
+"\"Obavijesti\"."
+
+msgid "manager.setup.announcements"
+msgstr "Obavijesti"
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Dodatne informacije"
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Za autore"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Obavijesti se mogu objavljivati kako bi se čitatelji informirali o novostima "
+"i događajima. Objavljene obavijesti pojavit će se na stranici Obavijesti."
+
+msgid "manager.setup.masthead.success"
+msgstr "Detalji o impresumu za ovog izdavača ažurirani su."
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Stavke po stranici"
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+"Unesite sve dodatne informacije koje bi trebale biti prikazane čitateljima "
+"na stranici s obavijestima."
+
+msgid "manager.users.currentRoles"
+msgstr "Trenutne funkcije"
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Sadržaj"
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Ime primarnog kontakta je obavezno."
+
+msgid "manager.setup.contextSummary"
+msgstr "Opis izdavača"
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Ograničite broj stavki (npr. podnesaka, korisnika ili zadataka za uređivanje)"
+" koje se pojavljuju na popisu prije nego što se dodatne stavke pojave na "
+"sljedećoj stranici."
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Svi alati specifični za uvoz i izvoz podataka (izdavači, monografije, "
+"korisnici)"
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Obavijest o autorskim pravima"
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr ""
+"Smjernice za ispravke dostupne su lektorima, autorima, urednicima layouta i "
+"izdavačima rubrika u fazi 'uredničke obrade'. Ispod su standardne smjernice "
+"u HTML-u koje voditelj izdavaštva može uređivati ili mijenjati (u HTML-u ili "
+"običnom tekstu)."
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+"Direktori izdavača registriraju sve korisnike. Zajedno s urednicima i "
+"urednicima rubrika, oni jedini mogu prijaviti recenzente."
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Prikaži istaknute knjige na početnoj stranici"
+
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Ovo je korisno kada izdavač prelazi granice discipline i/ili autori predaju "
+"interdisciplinarne radove."
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Smjernice za korekturu"
+
+msgid "manager.setup.pressArchiving"
+msgstr "Arhiviranje"
+
+msgid "manager.people.allPresses"
+msgstr "Svi izdavači"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Pregledi glavne stranice serije"
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Odaberite korisnički račun na koji želite prenijeti postojeća autorstva, "
+"zadatke i sl."
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Centar pažnje"
+
+msgid "mailable.submissionNeedsEditor.description"
+msgstr ""
+"Ova e-poruka šalje se voditeljima izdavača kada se podnese nova prijava i "
+"nisu dodijeljeni urednici."
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"Za oblikovanje publikacija mogu se izraditi smjernice za layout i uključiti "
+"u nastavku u HTML-u ili običnom tekstu. Oni će biti dostupni uredniku "
+"layouta i uređivaču odjeljka na stranici za uređivanje svakog rukopisa.("
+"Budući da svaki izdavač može koristiti vlastite formate datoteka, "
+"bibliografske standarde, stilske listove itd., nisu navedene standardne "
+"smjernice za izgled.)"
+
+msgid "manager.setup.details.description"
+msgstr "Ime izdavača, kontakt osoba, sponzori i tražilice."
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Prikaži nova izdanja na početnoj stranici"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Koliko se obavijesti pojavljuje na početnoj stranici. Ostavite polje prazno "
+"da se obavijesti ne prikazuju."
+
+msgid "manager.setup.management.description"
+msgstr ""
+"Pristup i sigurnost, zakazivanje rokova, najave, uređivanje, layout i "
+"lektura."
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Uključite sadržaj sadašnje monografije (ako je dostupan)."
+
+msgid "manager.setup.enableDois.description"
+msgstr ""
+"Dodijelite identifikatore digitalnih objekata (DOI) monografijama, "
+"poglavljima, formatima publikacija i datotekama."
+
+msgid "manager.setup.information.forReaders"
+msgstr "Za čitatelje"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Alati za generiranje izvješća vezanih uz statistiku korištenja (prikaz "
+"stranice indeksa kataloga, prikaz stranice sa sažetkom monografije, "
+"preuzimanje datoteka monografije)"
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Uključite sve informacije o svom izdavaču koje bi mogle zanimati čitatelje, "
+"autore ili recenzente. To može uključivati vašu politiku otvorenog pristupa, "
+"fokus i doseg izdavača, sponzore i povijest vašeg izdavača."
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+"Smjernice za korekturu dostupne su urednicima, autorima i urednicima rubrika "
+"u fazi 'redakcijske obrade'. Na dnu stranice nalazi se skup zadanih HTML "
+"unaprijed postavljenih postavki. Upravitelj izdavanja može ih promijeniti "
+"ili zamijeniti u bilo kojem trenutku (u HTML-u ili u običnom tekstu)."
+
+msgid "manager.setup.disciplineExamples"
+msgstr ""
+"(npr. povijest; obrazovna znanost; sociologija; psihologija; kulturalni "
+"studiji; pravo)"
+
+msgid "manager.setup.discipline"
+msgstr "Znanstvene discipline i poddiscipline"
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Molimo navedite broj recenzenata po rukopisu."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "E-pošta podrške je obavezna."
+
+msgid "manager.setup.information"
+msgstr "Informacije"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Za knjižničare"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Postavljanje administrativnog i objavljivačkog postupka"
+
+msgid "manager.setup.managingThePress"
+msgstr "4. korak: Upravljanje postavkama"
+
+msgid "manager.setup.proofreading"
+msgstr "Lektori"
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr ""
+"Članci se mogu objavljivati zajedno, kao dijelovi monografije, sa svojim "
+"sadržajem. Međutim, moguće ih je objaviti i pojedinačno dodavanjem članaka u "
+"sadržaj \"trenutačnog\" sveska. Pod 'O nama', obavijestite svoje čitatelje o "
+"postupku koji će izdavač koristiti i koliko često će se nove publikacije "
+"pojavljivati."
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr ""
+"Za pregled sadržaja otvorenog pristupa korisnici moraju biti registrirani i "
+"prijavljeni."
