@@ -1,10 +1,11 @@
 # paola <pjukic@yahoo.com>, 2021, 2022.
 # Maria Češnik <mariaces237@gmail.com>, 2023.
 # Maja Jurić <maja-juric@windowslive.com>, 2023.
+# Jula Dakić <juladakic@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-29 16:35+0000\n"
-"Last-Translator: Maja Jurić <maja-juric@windowslive.com>\n"
+"PO-Revision-Date: 2023-01-29 19:48+0000\n"
+"Last-Translator: Jula Dakić <juladakic@gmail.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "hr_HR/>\n"
 "Language: hr_HR\n"
@@ -690,7 +691,7 @@ msgid "manager.statistics.reports.defaultReport.monographAbstract"
 msgstr "Prikaz stranice sa sažetkom monografije"
 
 msgid "manager.setup.internalReviewGuidelines"
-msgstr ""
+msgstr "Smjernice za internu recenziju"
 
 msgid "manager.setup"
 msgstr "Postavke"
@@ -909,3 +910,186 @@ msgid "manager.setup.restrictMonographAccess"
 msgstr ""
 "Za pregled sadržaja otvorenog pristupa korisnici moraju biti registrirani i "
 "prijavljeni."
+
+msgid "manager.setup.useImageTitle"
+msgstr "Slika naslova"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr ""
+"Recenzenti će imati pristup podnesenoj datoteci tek nakon što pristanu na "
+"recenziju datoteke."
+
+msgid "manager.setup.typeExamples"
+msgstr ""
+"(Npr. povijesno istraživanje; prirodni eksperiment; književna analiza; "
+"anketa/intervju)"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Ograničenje pristupa datoteci"
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Indeksiranje pretraživanja"
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+"Za izradu novog formata publikacije, ispunite donji obrazac i kliknite gumb "
+"\"Stvori\"."
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr ""
+"Kako bi olakšali pronalaženje ove stranice pomoću mrežnih tražilica, "
+"priložite svoj <a href=\"{$sitemapUrl}\" target=\"_blank\">sitemap</a>."
+
+msgid "manager.setup.submissions.description"
+msgstr ""
+"Smjernice za autore, autorska prava i indeksiranje (uključujući "
+"registraciju)."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr "Rubrika tiska čija će se stavka razmatrati."
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Ocjena rada recenzenata"
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Pregled sadržaja monografije"
+
+msgid "manager.setup.reviewOptions"
+msgstr "Opcije recenzije"
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr ""
+"Urednici će nakon svake recenzije procjenjivati kvalitetu rada i suradnje "
+"pojedinih recenzenata ocjenom između 1 i 5."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Novi format publikacije"
+
+msgid "manager.setup.useCopyeditors"
+msgstr ""
+"Urednik tiskovnih izdanja bit će dodijeljen za rad sa svakim podnesenim "
+"tiskom."
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Postavljanje mrežne stranice tiska u pet koraka"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Podsjetnici za recenzente"
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Je li ovo fizički (nedigitalni) format?"
+
+msgid "manager.setup.selectEditorDescription"
+msgstr "Urednik tiska koji će ga pregledati tokom uređivačkog procesa."
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Tiskovni predložak"
+
+msgid "manager.setup.subjectExamples"
+msgstr "(Npr. fotosinteza; crne rupe; mirovinska reforma; Bayesova teorija)"
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "Tisak će koristiti uredništvo/recenzenti."
+
+msgid "manager.setup.volumePerYear"
+msgstr "Broj svezaka po godini"
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Automatski podsjetnici putem e-pošte"
+
+msgid "manager.setup.userRegistration"
+msgstr "Registracija korisnika"
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Pristup stranici"
+
+msgid "manager.setup.typeProvideExamples"
+msgstr ""
+"Navedite primjere tipova istraživanja, istraživačkih metoda i pristupa "
+"relevantne za područje ovog tiska"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr "Dodajte sigurnu poveznicu u e-mail pozivu recenzentima."
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Rubrike i rubrika urednika"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+"Budući da se ovaj format publikacije trenutno koristi kod monografije u "
+"Vašem tisku, ne može se izbrisati."
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr ""
+"Uvijek prikaži poveznicu na pun tekst priloga, uz naznaku ograničenja "
+"pristupa."
+
+msgid "manager.setup.workflow"
+msgstr "Radni proces"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Pristup recenziji preko poveznice"
+
+msgid "manager.setup.securitySettings"
+msgstr "Postavke pristupa i sigurnosti"
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr ""
+"Navedite primjere ključnih riječi ili tema koji će služiti kao vodič autorima"
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Kratki opis (50-300 znakova) tiska kojeg će tražilice prikazati na prikazu "
+"tiska u rezultatima pretraživanja."
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+"Prije same publikacije lektoru će biti dodijeljen zadatak provjere (zajedno "
+"s autorima) oglednog primjerka."
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr ""
+"(Ako rubrike nisu dodane, stavke će biti dodane standardnoj rubrici "
+"\"monografije\".)"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Tip (Metoda/Pristup)"
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr ""
+"Kako biste aktivirali ove opcije, administrator stranice mora aktivirati "
+"<tt>scheduled_tasks</tt> opciju u OMP konfiguracijskoj datoteci. Ovo može "
+"zahtijevati dodatnu konfiguraciju poslužitelja (koja ne mora biti moguća na "
+"svim poslužiteljima), na način naveden u OMP dokumentaciji."
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Pristup za recenzente"
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Smjernice za prijave"
+
+msgid "manager.setup.securitySettings.note"
+msgstr ""
+"Ostale opcije vezane uz sigurnost i pristup mogu se konfigurirati na "
+"stranici <a href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\"action"
+"\">Pristup i sigurnost</a>."
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Potrebno je dodijeliti naziv ovom formatu."
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+"Grafičkom uredniku bit će dodijeljen zadatak pripreme HTML, PDF itd. "
+"datoteka za elektroničku publikaciju."
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Recenzijska politika"
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr "Postavke indeksa tražilice su ažurirane."
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "Potrebno je označiti stavku s popisa."
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Potrebno je odabrati format."
