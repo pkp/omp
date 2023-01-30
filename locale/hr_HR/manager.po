@@ -4,7 +4,7 @@
 # Jula Dakić <juladakic@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-29 19:48+0000\n"
+"PO-Revision-Date: 2023-01-30 15:07+0000\n"
 "Last-Translator: Jula Dakić <juladakic@gmail.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "hr_HR/>\n"
@@ -437,7 +437,7 @@ msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Istaknute knjige"
 
 msgid "manager.setup.provideRefLinkInstructions"
-msgstr "Uredncima layouta pružite upute."
+msgstr "Urednicima layouta pružite upute."
 
 msgid "manager.setup.restrictSiteAccess"
 msgstr ""
@@ -966,12 +966,10 @@ msgid "manager.setup.newPublicationFormat"
 msgstr "Novi format publikacije"
 
 msgid "manager.setup.useCopyeditors"
-msgstr ""
-"Urednik tiskovnih izdanja bit će dodijeljen za rad sa svakim podnesenim "
-"tiskom."
+msgstr "Urednik tiskovnih izdanja bit će dodijeljen za rad sa svakom prijavom."
 
 msgid "manager.setup.stepsToPressSite"
-msgstr "Postavljanje mrežne stranice tiska u pet koraka"
+msgstr "Postavljanje web stranice izdavača u pet koraka"
 
 msgid "manager.setup.reviewOptions.reviewerReminders"
 msgstr "Podsjetnici za recenzente"
@@ -989,7 +987,7 @@ msgid "manager.setup.subjectExamples"
 msgstr "(Npr. fotosinteza; crne rupe; mirovinska reforma; Bayesova teorija)"
 
 msgid "manager.setup.useEditorialReviewBoard"
-msgstr "Tisak će koristiti uredništvo/recenzenti."
+msgstr "Izdavač će koristiti uredništvo/recenzente."
 
 msgid "manager.setup.volumePerYear"
 msgstr "Broj svezaka po godini"
@@ -1039,8 +1037,8 @@ msgstr ""
 
 msgid "manager.setup.searchDescription.description"
 msgstr ""
-"Kratki opis (50-300 znakova) tiska kojeg će tražilice prikazati na prikazu "
-"tiska u rezultatima pretraživanja."
+"Kratki opis (50-300 znakova) tiska kojeg će tražilice prikazati u "
+"rezultatima pretraživanja."
 
 msgid "manager.setup.useProofreaders"
 msgstr ""
@@ -1093,3 +1091,581 @@ msgstr "Potrebno je označiti stavku s popisa."
 
 msgid "manager.setup.publicationFormat.codeRequired"
 msgstr "Potrebno je odabrati format."
+
+msgid "manager.institutions.noContext"
+msgstr "Tisak ove institucije nije pronađen."
+
+msgid "stats.context.downloadReport.downloadContext"
+msgstr "Preuzmi tisak"
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "Navedeni korisnik, \"{$userName}\", ne postoji."
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "Proces nije uspio analizirati formate publikacije"
+
+msgid "emailTemplate.variable.context.contextName"
+msgstr "Naziv izdavača"
+
+msgid "emailTemplate.variable.context.contextSignature"
+msgstr "Potpis izdavača putem e-pošte za automatiziranu e-poštu"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Formati publikacije"
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "DOI Prefiks"
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "za datoteke"
+
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Unesite DOI uzorak sufiksa za poglavlja."
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr "DOI {$pubId} nije moguće dodijeliti jer sadrži nedovršeni uzorak."
+
+msgid "manager.manageEmails.description"
+msgstr "Uredite poruke poslane u e-pošti ovog izdavača."
+
+msgid "mailable.indexRequest.name"
+msgstr "Indeks zatražen"
+
+msgid "mailable.indexComplete.name"
+msgstr "Indeks završen"
+
+msgid "mailable.publicationVersionNotify.name"
+msgstr "Nova verzija stvorena"
+
+msgid "stats.context.tooltip.label"
+msgstr "O statistici izdavača"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "monografiju"
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "DOI {$pubId} je dodijeljen."
+
+msgid "doi.editor.doi"
+msgstr "DOI"
+
+msgid "grid.genres.title.short"
+msgstr "Sastavnice"
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Izbriši"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "Adresa e-pošte primarnog kontakta za izdavača"
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"DOI nije moguće generirati jer jednom ili više dijelova DOI uzorka nedostaju "
+"podaci."
+
+msgid "doi.editor.doi.description"
+msgstr "DOI mora započinjati s {$prefix}."
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "datoteku"
+
+msgid "manager.setup.referenceLinkingDescription"
+msgstr ""
+"<p>Kako bi čitatelji lakše pristupili mrežno dostupnim inačicama referenci "
+"koje navode autori priloga objavljenih u tisku, moguće je učiniti "
+"sljedeće:</p>\n"
+"\n"
+"<ol>\n"
+"\t<li><strong>Dodaj alate za čitanje</strong><p>Glavni urednik može dodati "
+"\"Traženje referenci\" alatima za čitanje koji su pridruženi objavljenim "
+"prilozima. Ovo omogućava čitateljima da zalijepe naslov reference i potraže "
+"ih u određenim bazama.</p></li>\n"
+"\t<li><strong>Uključi poveznice u popis literature</strong><p>Grafički "
+"urednik može dodati poveznice u reference čiji se sadržaj može pronaći "
+"online. Pri tome se treba ravnati prema sljedećim naputcima (koji se mogu "
+"urediti).</p></li>\n"
+"</ol>"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "Naziv vrste plaćanja"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Vrati zadane postavke"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "format publikacije"
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Ovi se žanrovi koriste za imenovanje datoteka i prikazani su u padajućem "
+"izborniku pri učitavanju datoteka. Žanrovi označeni s ## dopuštaju korisniku "
+"da poveže datoteku ili s cijelom knjigom 99Z ili s određenim poglavljem "
+"prema broju (npr. 02)."
+
+msgid "manager.setup.genres"
+msgstr "Žanrovi"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Menadžerske funkcije"
+
+msgid "mailable.validateEmailContext.name"
+msgstr "Potvrda e-pošte (registracija izdavača)"
+
+msgid "mailable.decision.initialDecline.notifyAuthor.description"
+msgstr ""
+"Ova poruka e-pošte obavještava autora da je njegova prijava odbijena, prije "
+"slanja za recenziju, jer prijava ne ispunjava uvjete za publikaciju kod "
+"izdavača."
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Funkcije interne recenzije"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "URL naslovne stranice izdavača"
+
+msgid "grid.genres.title"
+msgstr "Sastavnice monografije"
+
+msgid "manager.setup.currentFormats"
+msgstr "Trenutni formati"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Ukupni broj pregleda datoteke po datumu"
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Dodijeli"
+
+msgid "mailable.validateEmailContext.description"
+msgstr ""
+"Ova se e-pošta automatski šalje novom korisniku prilikom registriracije "
+"preko izdavača kada postavke zahtijevaju potvrdu adrese e-pošte."
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"Prospekt je dokument pripremljen za izdavača koji pomaže autoru opisati "
+"predane materijale na način koji omogućuje izdavaču da odredi vrijednost "
+"predanog materijala. Prospekt može uključivati mnogo stavki - od "
+"marketinškog potencijala do teorijske vrijednosti; u svakom slučaju, izdavač "
+"bi trebao izraditi prospekt koji odgovara njihovoj izdavačkoj agendi."
+
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr "Na primjer, press%ppub%r može stvoriti DOI poput 10.1234/pressESPub100"
+
+msgid "grid.series.pathExists"
+msgstr "Putanja serije već postoji. Unesite novu putanju."
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Nemoguće konvertirati odabrane stavke."
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"Za izradu novog žanra, ispunite donji obrazac i kliknite gumb \"Stvori\"."
+
+msgid "manager.setup.prospectus"
+msgstr "Prospekt"
+
+msgid "doi.editor.customSuffixMissing"
+msgstr "DOI nije moguće dodijeliti jer nedostaje prilagođeni sufiks."
+
+msgid "doi.editor.canBeAssigned"
+msgstr ""
+"Ovo je pregled DOI-a. Označite kućicu i spremite obrazac kako biste "
+"dodijelili DOI."
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr "DOI nije moguće dodijeliti jer nedostaje prilagođeni sufiks."
+
+msgid "manager.setup.series.description"
+msgstr ""
+"Možete stvoriti bilo koji broj serija kako biste organizirali svoje "
+"publikacije. Serija predstavlja poseban skup knjiga posvećen temi ili temama "
+"koje je netko predložio, obično jedan ili dva akademika, koji ih zatim "
+"nadzire. Posjetitelji će moći pretraživati i pregledavati tisak po serijama."
+
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "za poglavlja"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Monografije"
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Ovaj tisak trenutno ne prihvaća prijave. Posjetite postavke radnog procesa "
+"kako biste dopustili prijave."
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Unesite DOI uzorak sufiksa za datoteke."
+
+msgid "manager.setup.newGenre"
+msgstr "Novi žanr monografije"
+
+msgid "manager.setup.submitToCategories"
+msgstr "Dozvoli prijave kategorija"
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Pošaljite kopiju o potvrdi prijave putem e-pošte primarnom kontaktu za ovog "
+"izdavača."
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "DOI prefiks je obavezan i mora biti u obliku 10.xxxx."
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr ""
+"Ako promijenite konfiguraciju DOI-ja, to neće utjecati na DOI-je koji su već "
+"dodijeljeni. Nakon što je DOI konfiguracija spremljena, koristite ovaj gumb "
+"za brisanje svih postojećih DOI-ja tako da se nove postavke mogu primijeniti "
+"na sve postojeće objekte."
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "Naziv primarnog kontakta za izdavača"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$count} od {$total} monografija"
+
+msgid "manager.setup.authorRoles"
+msgstr "Funkcije autora"
+
+msgid "doi.editor.preview.objects"
+msgstr "Stavka"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "Iznos plaćanja"
+
+msgid "manager.setup.roleType"
+msgstr "Tip funkcije"
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Unesite DOI uzorak sufiksa za monografije."
+
+msgid "doi.manager.settings.description"
+msgstr ""
+"Konfigurirajte DOI dodatak kako biste mogli koristiti DOI i upravljati njime "
+"u OMP-u:"
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Format publikacije: {$title}"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "Valuta iznosa plaćanja, poput USD"
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "za monografije"
+
+msgid "manager.setup.masthead"
+msgstr "Impresum"
+
+msgid "manager.files.note"
+msgstr ""
+"Napomena: Preglednik datoteka napredna je značajka koja omogućuje izravan "
+"pregled i upravljanje datotekama i direktorijima povezanima s izdavačem."
+
+msgid "doi.editor.preview.files"
+msgstr "Datoteka: {$title}"
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+"<h3>Predložene obavijesti o autorskim pravima Creative Commons</h3>\n"
+"<h4>Predložena pravila za izdavače koji nude otvoreni pristup</h4>\n"
+"Autori koji objavljuju putem ovog izdavača suglasni su sa sljedećim uvjetima:"
+"\n"
+"<ol type=\"a\">\n"
+"<li>Autori zadržavaju autorska prava i daju izdavaču pravo prvog "
+"objavljivanja rada i licenciraju ga <a target=\"_blank\" href=\"https"
+"://creativecommons.org/licenses/by/3.0\">Creative Commons imenovanje "
+"licencom </a> koja omogućuje drugima dijeljenje rada uz uvjet navođenja "
+"autorstva i izvornog objavljivanja u ovom tisku.</li>\n"
+"<li>Autori mogu izraditi zasebne, ugovorne aranžmane za neekskluzivnu "
+"distribuciju rada objavljenog u tisku (npr. postavljanje u institucionalni "
+"repozitorij ili objavljivanje u knjizi), uz navođenje da je rad izvorno "
+"objavljen u ovom tisku. </li>\n"
+"<li>Autorima je dozvoljeno i potiču se da postave objavljeni rad online ("
+"npr. u institucionalnom repozitoriju ili na svojim mrežnim stranicama) prije "
+"i tijekom postupka prijave, s obzirom da takav postupak može voditi "
+"produktivnoj razmjeni ideja, te ranijoj i većoj citiranosti objavljenog rada "
+"(Pogledajte <a target=\"_blank\" href=\"https://web-archive.southampton.ac."
+"uk/opcit.eprints.org/oacitation-biblio.html\">Učinak otvorenog pristupa</a>)"
+". </li>\n"
+"</ol>\n"
+"\n"
+"<h4>Prijedlog za izdavače koji omogućuju odgođeni otvoren pristup</h4>\n"
+"Autori koji objavljuju putem ovog izdavača suglasni su sa sljedećim uvjetima:"
+"\n"
+"<ol type=\"a\">\n"
+"<li>Autori zadržavaju autorska prava i pružaju izdavaču pravo prvog "
+"objavljivanja, pri čemu će rad [NAVEDITE VREMENSKI PERIOD] po objavljivanju "
+"biti podložan licenci <a target=\"_blank\" href=\"https://creativecommons."
+"org/licenses/ by/3.0\">Creative Commons imenovanje licenca</a> koja "
+"omogućuje drugima da dijele rad uz uvijet navođenja autorstva i izvornog "
+"objavljivanja u ovom tisku.</li>\n"
+"<li>Autori mogu izraditi zasebne, ugovorne aranžmane za neekskluzivnu "
+"distribuciju rada objavljenog u tisku (npr. postavljanje u institucionalni "
+"repozitorij ili objavljivanje u knjizi), uz navođenje da je rad izvorno "
+"objavljen u ovom tisku.</li>\n"
+"<li>Autorima je dozvoljeno i potiču se da postave objavljeni rad online ("
+"npr. u institucionalnom repozitoriju ili na svojim mrežnim stranicama) prije "
+"i tijekom postupka prijave, s obzirom da takav postupak može voditi "
+"produktivnoj razmjeni ideja, te ranijoj i većoj citiranosti objavljenog rada "
+"(Pogledajte <a target=\"_blank\" href=\"https://web-archive.southampton.ac."
+"uk/opcit.eprints.org/oacitation-biblio.html\"> Učinak otvorenog pristupa</a>)"
+". </li>\n"
+"</ol>"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Resetiraj dopuštenja za monografiju"
+
+msgid "doi.editor.preview.chapters"
+msgstr "Poglavlje: {$title}"
+
+msgid "doi.editor.assigned"
+msgstr "DOI je dodijeljen ovom {$pubObjectType}."
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "poglavlje"
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Unesite DOI uzorak sufiksa za formate publikacije."
+
+msgid "doi.editor.patternNotResolved"
+msgstr "DOI nije moguće dodijeliti jer sadrži nedovršeni uzorak."
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Navedeni se DOI sufiks već koristi za drugu objavljenu stavku. Unesite novi "
+"DOI sufiks za svaku stavku."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Odaberi seriju"
+
+msgid "manager.setup.submitToSeries"
+msgstr "Dozvoli prijave serija"
+
+msgid "doi.manager.settings.explainDois"
+msgstr ""
+"Odaberite objekte za publikaciju kojima će biti dodijeljen Digitalni "
+"identifikator objekta (DOI):"
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "Ponovno dodijeli DOI"
+
+msgid "manager.setup.productionTemplates"
+msgstr "Proizvodni predlošci"
+
+msgid "manager.setup.deleteSelected"
+msgstr "Izbriši odabrano"
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Datoteke"
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr "Putanja serije mora se sastojati samo od slova i brojeva."
+
+msgid "stats.publications.none"
+msgstr ""
+"Nisu pronađene monografije sa statističkim podacima o korištenju koje "
+"odgovaraju ovim parametrima."
+
+msgid "manager.setup.resetPermissions.success"
+msgstr "Dozvole za monografiju uspješno su resetirane."
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Eksport prijava"
+
+msgid "manager.setup.resetPermissions.description"
+msgstr ""
+"Izjava o autorskim pravima i podaci o licenci bit će trajno priloženi "
+"objavljenom sadržaju, čime se osigurava da se ti podaci neće promijeniti u "
+"slučaju da izdavač promijeni pravila za nove prijave. Za resetiranje "
+"informacija o pohranjenim dozvolama koje su već priložene objavljenom "
+"sadržaju, upotrijebite gumb u nastavku."
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Spriječite korisnike da šalju nove članke izdavaču. Prijave se mogu "
+"onemogućiti za pojedine serije tiska na stranici za postavke <a href=\"{$url}"
+"\"> serija tiska </a>."
+
+msgid "manager.setup.editorialTeam.description"
+msgstr ""
+"Popis urednika, izvršnih direktora i drugih osoba povezanih s izdavačem."
+
+msgid "doi.editor.preview.publication"
+msgstr "DOI za ovu publikaciju je {$doi}."
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Poglavlja"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "za formate publikacije"
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Odaberi kategoriju"
+
+msgid "manager.setup.reviewForms"
+msgstr "Recenzijski obrasci"
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Navedene stavke nisu pronađene."
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "Proces nije uspio analizirati poglavlja"
+
+msgid "manager.setup.files"
+msgstr "Datoteke"
+
+msgid "manager.setup.currentRoles"
+msgstr "Trenutne funkcije"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Jeste li sigurni da želite izbrisati postojeći DOI?"
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Nijedna stavka nije odabrana."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"Za ovog izdavača nije definiran primarni kontakt. Možete unijeti primarni "
+"kontakt u <a href=\"{$url}\">postavkama tiska</a>."
+
+msgid "doi.manager.submissionDois"
+msgstr "DOI monografije"
+
+msgid "manager.setup.availableRoles"
+msgstr "Dostupne funkcije"
+
+msgid "grid.series.urlWillBe"
+msgstr "URL serije je: {$sampleUrl}"
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"ISSN (International Standard Serial Number) je osmeroznamenkasti broj koji "
+"identificira periodične publikacije uključujući elektroničke serijske "
+"publikacije. Broj se može dobiti u <a href=\"https://www.issn.org\" target="
+"\"_blank\">ISSN Međunarodnom centru</a>."
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr "Naziv web stranice kada je hostirano više od jednog izdavača"
+
+msgid "manager.publication.library"
+msgstr "Knjižnica tiska"
+
+msgid "stats.contextStats"
+msgstr "Statistika izdavača"
+
+msgid "doi.description"
+msgstr ""
+"Ovaj dodatak omogućuje dodjelu Digitalnih identifikatora objekata "
+"monografijama, poglavljima, formatima publikacije i datotekama u OMP-u."
+
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Unesite prilagođeni uzorak sufiksa za svaku vrstu publikacije. Prilagođeni "
+"uzorak sufiksa može koristiti sljedeće simbole za generiranje sufiksa:"
+"<br><br> <code>%p</code> Inicijali izdavača<br> <code>%m</code> ID "
+"monografije<br> <code >%c</code> ID poglavlja<br> <code>%f</code> ID formata "
+"publikacije<br> <code>%s</code> ID datoteke<br> <code>%x</code> Prilagođeni "
+"identifikator<br><br> Pripazite jer prilagođeni uzorci sufiksa često dovode "
+"do problema pri generiranju i pohrani DOI-ja. Kada koristite prilagođeni "
+"uzorak sufiksa, pažljivo provjerite mogu li urednici generirati DOI i "
+"pohraniti ih agenciji za registraciju poput Crossref-a. "
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Jeste li sigurni da želite izbrisati sve postojeće DOI-je?"
+
+msgid "doi.editor.assignDoi"
+msgstr "Dodijelite DOI {$pubId} ovom {$pubObjectType}"
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
+msgstr ""
+"Ova e-poruka obavještava autora da je njegova prijava u procesu slanja u "
+"fazu interne recenzije."
+
+msgid "mailable.publicationVersionNotify.description"
+msgstr ""
+"Ova e-poruka automatski obavještava dodijeljene urednike kada je izrađena "
+"nova verzija prijave."
+
+msgid "stats.context.tooltip.text"
+msgstr ""
+"Broj posjetitelja koji su pregledali indeksnu stranicu izdavača i kataloga."
+
+msgid "stats.context.downloadReport.description"
+msgstr ""
+"Preuzmite CSV/Excel spreadsheet sa statističkim podacima o korištenju za "
+"ovaj tisak koji odgovaraju sljedećim parametrima."
+
+msgid "stats.context.downloadReport.downloadContext.description"
+msgstr "Broj pregleda stranice indeksa tiska i kataloga."
+
+msgid "stats.publications.downloadReport.description"
+msgstr ""
+"Preuzmite CSV/Excel spreadsheet sa statističkim podacima o monografijama "
+"koji odgovaraju sljedećim parametrima."
+
+msgid "stats.publications.downloadReport.downloadSubmissions"
+msgstr "Preuzmi monografije"
+
+msgid "stats.publications.downloadReport.downloadSubmissions.description"
+msgstr "Broj pregleda sažetaka i preuzimanja datoteka za svaku monografiju."
+
+msgid "stats.publicationStats"
+msgstr "Statistika monografije"
+
+msgid "stats.publications.details"
+msgstr "Detalji o monografiji"
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Ukupni broj pregleda kataloga po datumu"
+
+msgid "stats.publications.abstracts"
+msgstr "Unosi u katalog"
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Kategorije i serije"
+
+msgid "manager.setup.categories.description"
+msgstr ""
+"Možete izraditi popis kategorija kako biste lakše organizirali svoje "
+"publikacije. Kategorije su skupine knjiga grupirane prema predmetu, na "
+"primjer Ekonomija; Književnost; Poezija; i tako dalje. Kategorije mogu "
+"pripadati \"nadređenim\" kategorijama: na primjer, nadređena kategorija "
+"Ekonomija može uključivati pojedinačne kategorije Mikroekonomija i "
+"Makroekonomija. Posjetitelji će moći pretraživati i pregledavati tisak po "
+"kategorijama."
+
+msgid "manager.setup.basicEditorialStepsDescription"
+msgstr ""
+"Koraci: Red čekanja za prijavu &gt; Recenzija prijava &gt; Uređivanje "
+"prijava &gt; Sadržaj.<br /><br />\n"
+"Odaberite model za upravljanje ovim aspektima uređivačkog procesa. (Da biste "
+"odredili glavnog urednika i urednike serije, idite na Urednici u Upravljanje "
+"tiskom.)"
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr ""
+"Jeste li sigurni da želite resetirati podatke o dopuštenjima koji su već "
+"primijenjeni na monografijama?"
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr "Pošalji kopiju primarnom kontaktu identificiranom u Postavkama tiska."
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr "Odaberite seriju s kojom želite povezati ovu stavku izbornika."
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr "Odaberite kategoriju s kojom želite povezati ovu stavku izbornika."
+
+msgid "doi.manager.displayName"
+msgstr "DOI"
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "Neispravan XML:"
+
+msgid "doi.editor.preview.publication.none"
+msgstr "Ovoj publikaciji nije dodijeljen DOI."
+
+msgid "doi.editor.missingPrefix"
+msgstr "DOI mora započinjati s {$doiPrefix}."
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
+msgstr "Poslano za internu recenziju"
