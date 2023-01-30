@@ -11,8 +11,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3;\n"
 "X-Generator: Weblate 3.9.1\n"
 
 msgid "plugins.importexport.onix30.displayName"
@@ -22,7 +22,8 @@ msgid "plugins.importexport.onix30.description"
 msgstr "Izvozi metapodatke monografske publikacije v formatu ONIX 3.0"
 
 msgid "plugins.importexport.onix30.cliUsage"
-msgstr "Uporaba: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId] "
+msgstr ""
+"Uporaba: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId] "
 
 msgid "plugins.importexport.onix30.cliError"
 msgstr "NAPAKA:"
@@ -34,10 +35,15 @@ msgid "plugins.importexport.onix30.export.error.couldNotWrite"
 msgstr "V datoteko \"{$fileName}\" ni bilo mogoče pisati."
 
 msgid "plugins.importexport.onix30.export.error.monographNotFound"
-msgstr "Monografske publikacije, ki bi se ujemala z določenim ID monografske publikacije\"{$monographId}\" ni bilo mogoče najti."
+msgstr ""
+"Monografske publikacije, ki bi se ujemala z določenim ID monografske "
+"publikacije\"{$monographId}\" ni bilo mogoče najti."
 
 msgid "plugins.importexport.onix30.noFormats"
 msgstr "Monografske publikacije brez formatov publikacij niso prikazane."
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Izberi monografijo za izvoz"
 
 msgid "plugins.importexport.onix30.selectMonograph"
 msgstr "Izberite monografsko publikacijo za izvoz:"
@@ -61,13 +67,39 @@ msgid "plugins.importexport.onix30.formatInvalid"
 msgstr "Neveljaven"
 
 msgid "plugins.importexport.onix30.pressMissingFields"
-msgstr "Tej tiskovini manjka nekaj zahtevanih podatkov. Pojdite v Nastavitve > Potek dela > Produkcija in izpolnite manjkajoče podrobnosti."
+msgstr ""
+"Tej tiskovini manjka nekaj zahtevanih podatkov. Pojdite v Nastavitve > Potek "
+"dela > Produkcija in izpolnite manjkajoče podrobnosti."
 
 msgid "plugins.importexport.onix30.form.addresseeField"
 msgstr "Naslovnik (prejemnik) te izvozne datoteke"
 
 msgid "plugins.importexport.onix30.form.addresseeField.tip"
-msgstr "To polje lahko pustite prazno in ustvarite splošni izvoz. V tem primeru izvoz ONIX ne bo vseboval komponente &lt;Addressee&gt;. "
+msgstr ""
+"To polje lahko pustite prazno in ustvarite splošni izvoz. V tem primeru "
+"izvoz ONIX ne bo vseboval komponente &lt;Addressee&gt;. "
 
-msgid "plugins.importexport.onix30.exportSubmissionsSelect"
-msgstr "Izberi monografijo za izvoz"
+msgid ""
+"plugins.importExport.onix30.common.error.monographWithNoPublicationFormats"
+msgstr ""
+
+msgid "plugins.importExport.onix30.common.error.exportFailed"
+msgstr ""
+
+msgid "plugins.importexport.onix30.processFailed"
+msgstr ""
+
+msgid "plugins.importexport.onix30.export.type.submission"
+msgstr ""
+
+msgid "plugins.importexport.onix30.export.type.any"
+msgstr ""
+
+msgid "plugins.importexport.onix30.export.completed"
+msgstr ""
+
+msgid "plugins.importexport.onix30.export.completed.downloadFile"
+msgstr ""
+
+msgid "plugins.importexport.native.onix30.download.results"
+msgstr ""

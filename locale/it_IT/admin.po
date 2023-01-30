@@ -2,44 +2,70 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-22T20:59:36+00:00\n"
+"PO-Revision-Date: 2020-01-22T20:59:36+00:00\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-01-22T20:59:36+00:00\n"
-"PO-Revision-Date: 2020-01-22T20:59:36+00:00\n"
-"Language: \n"
 
-msgid "admin.hostedPresses"
-msgstr "Case editrici ospitate sul server"
+msgid "admin.hostedContexts"
+msgstr ""
 
-msgid "admin.settings.pressRedirect"
-msgstr "Reindirizzamento della Casa Editrice"
+msgid "admin.settings.appearance.success"
+msgstr ""
 
-msgid "admin.settings.pressRedirectInstructions"
-msgstr "Le richieste al sito principale verranno reindirizzate presso questa casa editrice. Questo può essere utile se, ad esempio, il sito ospita una sola casa editrice."
+msgid "admin.settings.config.success"
+msgstr ""
+
+msgid "admin.settings.info.success"
+msgstr ""
+
+msgid "admin.settings.redirect"
+msgstr ""
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
 
 msgid "admin.settings.noPressRedirect"
 msgstr "Non reindirizzare"
 
 msgid "admin.languages.primaryLocaleInstructions"
-msgstr "Questa sarà la lingua predefinita per il sito e per qualsiasi Casa Editrice ospitata."
+msgstr ""
+"Questa sarà la lingua predefinita per il sito e per qualsiasi Casa Editrice "
+"ospitata."
 
 msgid "admin.languages.supportedLocalesInstructions"
-msgstr "Selezionare tutti i parametri che saranno supportati sul sito. Tutte le Case Editrici ospitate sul sito potranno utilizzare i parametri selezionati. Questi ultimi faranno parte del menu per selezionare la lingua che appare in tutte le pagine del sito (che possono essere sovrascritte sulle pagine di una specifica Press). Se non si selezionano più parametri, il pulsante per il menu della lingua non apparirà e le Case Editrici non avranno accesso alle impostazioni di lingua avanzate."
+msgstr ""
+"Selezionare tutti i parametri che saranno supportati sul sito. Tutte le Case "
+"Editrici ospitate sul sito potranno utilizzare i parametri selezionati. "
+"Questi ultimi faranno parte del menu per selezionare la lingua che appare in "
+"tutte le pagine del sito (che possono essere sovrascritte sulle pagine di "
+"una specifica Press). Se non si selezionano più parametri, il pulsante per "
+"il menu della lingua non apparirà e le Case Editrici non avranno accesso "
+"alle impostazioni di lingua avanzate."
 
 msgid "admin.locale.maybeIncomplete"
 msgstr "* I parametri contrassegnati possono essere incompleti."
 
 msgid "admin.languages.confirmUninstall"
-msgstr "Sei certo di voler disinstallare questo parametro? Questo può influenzare eventuali Case Editrici che utilizzano al momento questo parametro."
+msgstr ""
+"Sei certo di voler disinstallare questo parametro? Questo può influenzare "
+"eventuali Case Editrici che utilizzano al momento questo parametro."
 
 msgid "admin.languages.installNewLocalesInstructions"
-msgstr "Selezionare eventuali ulteriori localizzazioni per installare il supporto per questo sistema. Le localizzazioni devono essere installate prima di poter essere utilizzate da case editrici ospitate. Vedere la documentazione OMP per informazioni sull'aggiunta di supporto per nuove lingue."
+msgstr ""
+"Selezionare eventuali ulteriori localizzazioni per installare il supporto "
+"per questo sistema. Le localizzazioni devono essere installate prima di "
+"poter essere utilizzate da case editrici ospitate. Vedere la documentazione "
+"OMP per informazioni sull'aggiunta di supporto per nuove lingue."
 
 msgid "admin.languages.confirmDisable"
-msgstr "Sei certo di voler disinstallare questo parametro? Questo può influenzare eventuali Case Editrici che utilizzano al momento questo parametro."
+msgstr ""
+"Sei certo di voler disinstallare questo parametro? Questo può influenzare "
+"eventuali Case Editrici che utilizzano al momento questo parametro."
 
 msgid "admin.systemVersion"
 msgstr "Versione OMP"
@@ -53,17 +79,8 @@ msgstr "Configurazione della Casa Editrice"
 msgid "admin.presses.noneCreated"
 msgstr "Non è stato creato nessuna Casa Editrice."
 
-msgid "admin.contexts.confirmDelete"
-msgstr "Sei sicuro di voler cancellare in modo permanente questa Casa Editrice e tutti i suoi contenuti?"
-
 msgid "admin.contexts.create"
 msgstr "Creare una Casa Editrice"
-
-msgid "admin.presses.createInstructions"
-msgstr "Verrai automaticamente iscritto come Manager di questa Casa Editrice. Dopo aver creato una nuova Casa Editrice, verrai reindirizzato alla sua procedura guidata delle impostazioni che serve a completare la configurazione iniziale."
-
-msgid "admin.presses.urlWillBe"
-msgstr "L'indirizzo URL della press URL sarà {$sampleUrl}"
 
 msgid "admin.contexts.form.titleRequired"
 msgstr "È obbligatorio scegliere un titolo."
@@ -72,16 +89,24 @@ msgid "admin.contexts.form.pathRequired"
 msgstr "È obbligatorio scegliere un path (percorso)."
 
 msgid "admin.contexts.form.pathAlphaNumeric"
-msgstr "Il path può contenere solo caratteri alfanumerici, underscore e trattini, e deve iniziare e finire con un carattere alfanumerico."
+msgstr ""
+"Il path può contenere solo caratteri alfanumerici, underscore e trattini, e "
+"deve iniziare e finire con un carattere alfanumerico."
 
 msgid "admin.contexts.form.pathExists"
 msgstr "Il path selezionato è già stato usato da un'altra Casa Editrice."
 
-msgid "admin.presses.enablePressInstructions"
-msgstr "Abilitare questa Casa Editrice ad apparire pubblicamente sul sito"
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr ""
 
-msgid "admin.presses.pressDescription"
-msgstr "Descrizione della Casa Editrice"
+msgid "admin.contexts.form.create.success"
+msgstr ""
+
+msgid "admin.contexts.form.edit.success"
+msgstr ""
+
+msgid "admin.contexts.contextDescription"
+msgstr ""
 
 msgid "admin.presses.addPress"
 msgstr "Aggiungi una Casa Editrice"
@@ -89,4 +114,49 @@ msgstr "Aggiungi una Casa Editrice"
 msgid "admin.overwriteConfigFileInstructions"
 msgstr ""
 "<h4>NOTE!</div>\r\n"
-"<p>Il sistema non può sovrascrivere in automatico il file di configurazione. Per applicare le modifiche alla configurazione è necessario aprire <tt>config.inc.php</tt> con  editor testuale e sostituire il contenuto con il contenuto del campo di testo sottostante.</p>"
+"<p>Il sistema non può sovrascrivere in automatico il file di configurazione. "
+"Per applicare le modifiche alla configurazione è necessario aprire "
+"<tt>config.inc.php</tt> con  editor testuale e sostituire il contenuto con "
+"il contenuto del campo di testo sottostante.</p>"
+
+msgid "admin.settings.enableBulkEmails.description"
+msgstr ""
+
+msgid "admin.settings.disableBulkEmailRoles.description"
+msgstr ""
+
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgstr ""
+
+#~ msgid "admin.hostedPresses"
+#~ msgstr "Case editrici ospitate sul server"
+
+#~ msgid "admin.settings.pressRedirect"
+#~ msgstr "Reindirizzamento della Casa Editrice"
+
+#~ msgid "admin.settings.pressRedirectInstructions"
+#~ msgstr ""
+#~ "Le richieste al sito principale verranno reindirizzate presso questa casa "
+#~ "editrice. Questo può essere utile se, ad esempio, il sito ospita una sola "
+#~ "casa editrice."
+
+#~ msgid "admin.contexts.confirmDelete"
+#~ msgstr ""
+#~ "Sei sicuro di voler cancellare in modo permanente questa Casa Editrice e "
+#~ "tutti i suoi contenuti?"
+
+#~ msgid "admin.presses.createInstructions"
+#~ msgstr ""
+#~ "Verrai automaticamente iscritto come Manager di questa Casa Editrice. "
+#~ "Dopo aver creato una nuova Casa Editrice, verrai reindirizzato alla sua "
+#~ "procedura guidata delle impostazioni che serve a completare la "
+#~ "configurazione iniziale."
+
+#~ msgid "admin.presses.urlWillBe"
+#~ msgstr "L'indirizzo URL della press URL sarà {$sampleUrl}"
+
+#~ msgid "admin.presses.enablePressInstructions"
+#~ msgstr "Abilitare questa Casa Editrice ad apparire pubblicamente sul sito"
+
+#~ msgid "admin.presses.pressDescription"
+#~ msgstr "Descrizione della Casa Editrice"

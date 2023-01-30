@@ -8,300 +8,57 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "monograph.publicationFormat.missingONIXFields"
-msgstr "Відсутні певні поля з метаданими."
-
-msgid "monograph.publicationFormat.noCodesAssigned"
-msgstr "Відсутній ідентифікатор."
-
-msgid "monograph.publicationFormat.noMarketsAssigned"
-msgstr "Відсутні магазини і ціни."
-
-msgid "monograph.publicationFormat.productRegion"
-msgstr "Регіон Росповсюдження"
-
-msgid "monograph.publicationFormat.countryOfManufacture"
-msgstr "Країна-виробник"
-
-msgid "monograph.publicationFormat.productWidth"
-msgstr "Довжина"
-
-msgid "monograph.publicationFormat.productWeight"
-msgstr "Вага"
-
-msgid "monograph.publicationFormat.productThickness"
-msgstr "Товщина"
-
-msgid "monograph.publicationFormat.productHeight"
-msgstr "Висота"
-
-msgid "monograph.publicationFormat.productFileSize"
-msgstr "Розмір файлу в Мб"
-
-msgid "monograph.publicationFormat.productDimensions"
-msgstr "Фізичні розміри"
-
-msgid "monograph.publicationFormat.digitalInformation"
-msgstr "Цифрова Інформація"
-
-msgid "monograph.publicationFormat.discountAmount"
-msgstr "Відсоток знижки, якщо така застосовується"
-
-msgid "monograph.publicationFormat.priceRequired"
-msgstr "Необхідно зазначити ціну."
-
-msgid "monograph.publicationFormat.price"
-msgstr "Ціна"
-
-msgid "monograph.publicationFormat.pageCounts"
-msgstr "Кількість сторінок"
-
-msgid "monograph.accessLogoOpen.altText"
-msgstr "Відкритий Доступ"
-
-msgid "monograph.task.addNote"
-msgstr "Додати до завдання"
-
-msgid "monograph.type"
-msgstr "Тип Подання"
-
-msgid "monograph.carousel.publicationFormats"
-msgstr "Формати:"
-
-msgid "monograph.miscellaneousDetails"
-msgstr "Деталі про цю монографію"
-
-msgid "monograph.languages"
-msgstr "Мови (Англійська, Французька, Іспанська)"
-
-msgid "monograph.coverImage"
-msgstr "Зображення Обкладинки"
+msgid "common.payments"
+msgstr ""
 
 msgid "monograph.audience"
 msgstr "Аудиторія"
 
-msgid "grid.catalogEntry.representativeIdType"
-msgstr "ID Тип Представника (рекомендовано GLN)"
+msgid "monograph.audience.success"
+msgstr "Деталі аудиторії збережено."
 
-msgid "grid.catalogEntry.representativeIdValue"
-msgstr "ID Представника"
-
-msgid "grid.catalogEntry.representativeWebsite"
-msgstr "Адреса веб-сайту"
-
-msgid "grid.catalogEntry.representativeEmail"
-msgstr "Адреса електронної пошти"
-
-msgid "grid.catalogEntry.representativePhone"
-msgstr "Телефон"
-
-msgid "grid.catalogEntry.representativeName"
-msgstr "Ім'я"
-
-msgid "grid.catalogEntry.representativeRole"
-msgstr "Роль"
-
-msgid "grid.catalogEntry.representativeRoleChoice"
-msgstr "Оберіть роль:"
-
-msgid "grid.catalogEntry.supplier"
-msgstr "Постачальник"
-
-msgid "grid.catalogEntry.agentTip"
-msgstr ""
-"Ви можете призначити агента для представництва ваших інтересів у обраному "
-"вами регіоні.  Не є обов'язковим."
-
-msgid "grid.catalogEntry.agent"
-msgstr "Агент"
-
-msgid "grid.catalogEntry.suppliersCategory"
-msgstr "Постачальники"
-
-msgid "grid.catalogEntry.agentsCategory"
-msgstr "Агенти"
-
-msgid "grid.catalogEntry.representativeType"
-msgstr "Тип Представництва"
-
-msgid "grid.catalogEntry.representatives"
-msgstr "Представники"
-
-msgid "grid.catalogEntry.dateRequired"
-msgstr ""
-"Необхідно ввести дату, і значення дати має співпадати з обраним форматом "
-"дати."
-
-msgid "grid.catalogEntry.dateFormat"
-msgstr "Формат Дати"
-
-msgid "grid.catalogEntry.dateRole"
-msgstr "Роль"
-
-msgid "grid.catalogEntry.dateValue"
-msgstr "Дата"
-
-msgid "grid.catalogEntry.dateFormatRequired"
-msgstr "Необхідно ввести формат дати"
-
-msgid "grid.catalogEntry.roleRequired"
-msgstr "Необхідна роль представника."
-
-msgid "grid.catalogEntry.publicationDates"
-msgstr "Дати Публікації"
-
-msgid "grid.catalogEntry.marketTerritory"
-msgstr "Територія"
-
-msgid "grid.catalogEntry.markets"
-msgstr "Території Магазинів"
-
-msgid "grid.catalogEntry.excluded"
-msgstr "Виключено"
-
-msgid "grid.catalogEntry.included"
-msgstr "Включно"
-
-msgid "grid.catalogEntry.regions"
-msgstr "Регіони\\Області"
-
-msgid "grid.catalogEntry.countries"
-msgstr "Країни"
-
-msgid "grid.catalogEntry.oneROWPerFormat"
-msgstr ""
-
-msgid "grid.catalogEntry.salesRightsROW.tip"
-msgstr ""
-
-msgid "grid.catalogEntry.salesRightsROW"
-msgstr "Решта Світу?"
-
-msgid "grid.catalogEntry.salesRightsType"
-msgstr "Види Прав на росповсюдження"
-
-msgid "grid.catalogEntry.salesRightsValue"
-msgstr "Значення Коду"
-
-msgid "grid.catalogEntry.salesRights"
-msgstr "Права на Росповсюдження"
-
-msgid "grid.catalogEntry.valueRequired"
-msgstr "Необхідно ввести значення."
+msgid "monograph.coverImage"
+msgstr "Зображення Обкладинки"
 
 msgid "monograph.audience.rangeQualifier"
 msgstr ""
 
-msgid "monograph.publicationFormat.taxRate"
-msgstr "Ставка Податку"
+msgid "monograph.audience.rangeFrom"
+msgstr "Вибір Аудиторії (від)"
 
-msgid "monograph.publicationFormat.productFormDetailCode"
-msgstr "Деталі Товару (не обов'язково)"
+msgid "monograph.audience.rangeTo"
+msgstr "Вибір Аудиторії (до)"
 
-msgid "grid.catalogEntry.identificationCodeValue"
-msgstr "Значення Коду"
+msgid "monograph.audience.rangeExact"
+msgstr "Вибір Аудиторії (конкретно)"
 
-msgid "grid.catalogEntry.productAvailabilityRequired"
-msgstr "Необхідно ввести код доступності товару."
+msgid "monograph.languages"
+msgstr "Мови (Англійська, Французька, Іспанська)"
 
-msgid "grid.catalogEntry.fileSizeRequired"
-msgstr "Необхідно ввести розмір файлу для цифрових форматів."
+msgid "monograph.publicationFormats"
+msgstr "Види Видань"
 
-msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
-msgstr "Коректура не затверджена."
+msgid "monograph.publicationFormat"
+msgstr "Формат"
 
-msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
-msgstr "Формат відсутній в каталозі."
+msgid "monograph.publicationFormatDetails"
+msgstr "Деталі щодо доступних видів видань: {$format}"
 
-msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
-msgstr "Запис у каталозі не підтверджено."
+msgid "monograph.miscellaneousDetails"
+msgstr "Деталі про цю монографію"
 
-msgid "grid.catalogEntry.availableRepresentation.title"
-msgstr "Доступність Формату"
+msgid "monograph.carousel.publicationFormats"
+msgstr "Формати:"
 
-msgid "grid.catalogEntry.approvedRepresentation.title"
-msgstr "Підтвердження формату"
+msgid "monograph.type"
+msgstr "Тип Подання"
 
-msgid "grid.catalogEntry.proof"
-msgstr "Коректура"
-
-msgid "grid.catalogEntry.publicationFormatRequired"
-msgstr "Необхідно обрати Вид Видання."
-
-msgid "grid.catalogEntry.remoteURL"
-msgstr "URL дистанційно розміщеного контенту"
-
-msgid "grid.catalogEntry.remotelyHostedContent"
-msgstr "Цей формат буде доступний на окремому сайті"
-
-msgid "grid.catalogEntry.physicalFormat"
-msgstr "Фізичний формат"
-
-msgid "grid.catalogEntry.publicationFormatDetails"
-msgstr "Деталі Формату"
-
-msgid "grid.catalogEntry.publicationFormatType"
-msgstr "Вид Видання"
-
-msgid "monograph.publicationFormat.isApproved"
-msgstr "Включити метадані для цього виду видання в каталозі для цієї книги."
-
-msgid "monograph.publicationFormat.taxType"
-msgstr "Види податку"
-
-msgid "monograph.publicationFormat.returnInformation"
-msgstr "Індикатор можливості повернення"
-
-msgid "monograph.publicationFormat.productIdentifierType"
-msgstr "Ідентифікація Товару"
-
-msgid "grid.catalogEntry.codeRequired"
-msgstr "Необхідно ввести Ідентифікаційний код."
-
-msgid "grid.catalogEntry.identificationCodeType"
-msgstr "Тип Коду ONIX"
-
-msgid "grid.catalogEntry.productCompositionRequired"
-msgstr ""
-
-msgid "grid.catalogEntry.availableRepresentation.notApproved"
-msgstr "Очікує підтвердження"
-
-msgid "grid.catalogEntry.availableRepresentation.approved"
-msgstr "Підтверджено"
-
-msgid "grid.catalogEntry.availableRepresentation.removeMessage"
-msgstr ""
-"<p>Цей формат буде <em>недоступним для читачів</em>. Можливість завантаження "
-"файлів і інші види доставки більше не відображатимуться на сторінці книги у "
-"каталозі.</p>"
-
-msgid "grid.catalogEntry.availableRepresentation.message"
-msgstr ""
-"<p>Зробіть цей формат<em>доступним для читачів</em>. Можливість завантаження "
-"файлів і інші види доставки з'являться на сторінці книги у каталозі.</p>"
-
-msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
-msgstr ""
-
-msgid "grid.catalogEntry.approvedRepresentation.message"
-msgstr ""
-
-msgid "grid.catalogEntry.isNotAvailable"
-msgstr "Не доступно"
-
-msgid "grid.catalogEntry.isAvailable"
-msgstr "Доступно"
-
-msgid "grid.catalogEntry.availability"
-msgstr "Доступність"
-
-msgid "grid.catalogEntry.monographRequired"
-msgstr "Необхідно ввести ID  Монографії."
+msgid "submission.pageProofs"
+msgstr "Підтвердження сторінок"
 
 msgid "monograph.proofReadingDescription"
 msgstr ""
@@ -310,668 +67,1104 @@ msgstr ""
 "користувачів для коректури гранок, із завантаженням відкоригованих файлів та "
 "їх схваленням перед публікацією."
 
-msgid "grid.catalogEntry.validPriceRequired"
-msgstr "Необхідно ввести коректну ціну."
+msgid "monograph.task.addNote"
+msgstr "Додати до завдання"
 
-msgid "grid.catalogEntry.nameRequired"
-msgstr "Необхідно ввести Ім'я."
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Відкритий Доступ"
 
-msgid "monograph.publicationFormat.openTab"
-msgstr "Відкрити вкладку \"Вид Видання\"."
+msgid "monograph.publicationFormat.imprint"
+msgstr "Видавництво (Назва Компанії)"
 
-msgid "monograph.publicationFormat.formatDoesNotExist"
-msgstr "<p>Обраний вами вид видання більше не існує для цієї монографії.</p>"
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Кількість сторінок"
 
-msgid "monograph.publicationFormat.technicalProtection"
-msgstr "Цифровий Захист"
-
-msgid "monograph.publicationFormat.productFileSize.override"
-msgstr "Ввести власне значення розміру файлу?"
-
-msgid "monograph.publicationFormat.productDimensionsSeparator"
-msgstr " x "
-
-msgid "monograph.publicationFormat.productAvailability"
-msgstr "Доступність Товару"
-
-msgid "monograph.publicationFormat.priceType"
-msgstr "Тип Ціни"
-
-msgid "monograph.publicationFormat.productComposition"
+msgid "monograph.publicationFormat.frontMatterCount"
 msgstr ""
 
 msgid "monograph.publicationFormat.backMatterCount"
 msgstr ""
 
-msgid "monograph.publicationFormat.frontMatterCount"
+msgid "monograph.publicationFormat.productComposition"
 msgstr ""
 
-msgid "monograph.publicationFormat.imprint"
-msgstr "Видавництво (Назва Компанії)"
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Деталі Товару (не обов'язково)"
 
-msgid "submission.pageProofs"
-msgstr "Підтвердження сторінок"
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Ідентифікація Товару"
 
-msgid "monograph.publicationFormatDetails"
-msgstr "Деталі щодо доступних видів видань: {$format}"
+msgid "monograph.publicationFormat.price"
+msgstr "Ціна"
 
-msgid "monograph.publicationFormat"
-msgstr "Формат"
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "Необхідно зазначити ціну."
 
-msgid "monograph.publicationFormats"
-msgstr "Види Видань"
+msgid "monograph.publicationFormat.priceType"
+msgstr "Тип Ціни"
 
-msgid "monograph.audience.rangeExact"
-msgstr "Вибір Аудиторії (конкретно)"
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Відсоток знижки, якщо така застосовується"
 
-msgid "monograph.audience.rangeTo"
-msgstr "Вибір Аудиторії (до)"
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Доступність Товару"
 
-msgid "monograph.audience.rangeFrom"
-msgstr "Вибір Аудиторії (від)"
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Індикатор можливості повернення"
 
-msgid "monograph.audience.success"
-msgstr "Деталі аудиторії збережено."
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Цифрова Інформація"
 
-msgid "installer.installApplication"
-msgstr "Інсталювати Open Monograph Press"
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Фізичні розміри"
 
-msgid "installer.ompUpgrade"
-msgstr "Оновлення OMP"
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
 
-msgid "installer.appInstallation"
-msgstr "Інсталяція OMP"
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "Розмір файлу в Мб"
 
-msgid "help.goToEditPage"
-msgstr "Відкрийте нову сторінку для редагування цієї інформації"
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Ввести власне значення розміру файлу?"
 
-msgid "help.searchReturnResults"
-msgstr "Повернутися до результатів пошуку"
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Висота"
 
-msgid "about.aboutThisPublishingSystem"
-msgstr "Про цю Видавничу Систему"
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Товщина"
 
-msgid "about.openAccessPolicy"
-msgstr "Політика Відкритого Доступу"
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Вага"
 
-msgid "about.reviewPolicy"
-msgstr "Процес рецензування"
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Довжина"
 
-msgid "about.privacyStatement"
-msgstr "Заява Про Конфіденційність"
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Країна-виробник"
 
-msgid "about.copyrightNotice"
-msgstr "Положення про авторські права"
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Цифровий Захист"
 
-msgid "about.authorGuidelines"
-msgstr "Керівництво для авторів"
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Регіон Росповсюдження"
 
-msgid "about.onlineSubmissions.newSubmission"
-msgstr "Зробити нове подання"
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Ставка Податку"
 
-msgid "about.onlineSubmissions.submissionActions"
-msgstr "{$newSubmission} або {$viewSubmissions}."
+msgid "monograph.publicationFormat.taxType"
+msgstr "Види податку"
 
-msgid "about.onlineSubmissions.registrationRequired"
-msgstr "{$login} або {$register} щоб зробити подання."
+msgid "monograph.publicationFormat.isApproved"
+msgstr "Включити метадані для цього виду видання в каталозі для цієї книги."
 
-msgid "about.onlineSubmissions.register"
-msgstr "Зареєструватися"
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Відсутні магазини і ціни."
 
-msgid "about.onlineSubmissions.login"
-msgstr "Увійти"
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Відсутній ідентифікатор."
 
-msgid "about.submissions"
-msgstr "Подання"
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Відсутні певні поля з метаданими."
 
-msgid "about.editorialPolicies"
-msgstr "Редакційна Політика"
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr "<p>Обраний вами вид видання більше не існує для цієї монографії.</p>"
 
-msgid "about.editorialTeam"
-msgstr "Редакційний штат"
+msgid "monograph.publicationFormat.openTab"
+msgstr "Відкрити вкладку \"Вид Видання\"."
 
-msgid "user.register.form.userGroupRequired"
-msgstr "Ви маєте обрати принаймі одну роль"
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Вид Видання"
 
-msgid "user.register.form.passwordLengthTooShort"
-msgstr "Пароь недостатньо довгий."
+msgid "grid.catalogEntry.nameRequired"
+msgstr "Необхідно ввести Ім'я."
 
-msgid "user.register.privacyStatement"
-msgstr "Заява Про Конфіденційність"
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "Необхідно ввести коректну ціну."
 
-msgid "user.role.productionEditors"
-msgstr "Редактори з Виробництва"
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Деталі Формату"
 
-msgid "user.role.copyeditors"
-msgstr "Літературні Редактори"
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Фізичний формат"
 
-msgid "user.role.editors"
-msgstr "Редактори"
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Цей формат буде доступний на окремому сайті"
 
-msgid "user.role.subEditors"
-msgstr "Редактори Серійних Видань"
+msgid "grid.catalogEntry.remoteURL"
+msgstr "URL дистанційно розміщеного контенту"
 
-msgid "user.role.productionEditor"
-msgstr "Редактор Виробництва"
+msgid "grid.catalogEntry.monographRequired"
+msgstr "Необхідно ввести ID  Монографії."
 
-msgid "user.role.copyeditor"
-msgstr "Літературний Редактор"
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Необхідно обрати Вид Видання."
 
-msgid "user.role.subEditor"
-msgstr "Редактор Серійних Видань"
+msgid "grid.catalogEntry.availability"
+msgstr "Доступність"
 
-msgid "user.register.otherContextRoles"
-msgstr "Відправити запит на наступні ролі."
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Доступно"
 
-msgid "user.noRoles.regReviewer"
-msgstr "Зареєструватися як Рецензент"
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Не доступно"
 
-msgid "user.noRoles.submitMonograph"
-msgstr "Подати Пропозицію"
+msgid "grid.catalogEntry.proof"
+msgstr "Коректура"
 
-msgid "context.select"
-msgstr "Переключити на інше видавництво:"
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Підтвердження формату"
 
-msgid "context.context"
-msgstr "Видавництво"
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
 
-msgid "context.contexts"
-msgstr "Видавництва"
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr ""
 
-msgid "navigation.navigationMenus.newRelease.description"
-msgstr "Посилання на нові видання."
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Доступність Формату"
 
-msgid "navigation.navigationMenus.newRelease"
-msgstr "Нові видання"
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p>Зробіть цей формат<em>доступним для читачів</em>. Можливість завантаження "
+"файлів і інші види доставки з'являться на сторінці книги у каталозі.</p>"
 
-msgid "navigation.navigationMenus.category.description"
-msgstr "Посилання на категорію."
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p>Цей формат буде <em>недоступним для читачів</em>. Можливість завантаження "
+"файлів і інші види доставки більше не відображатимуться на сторінці книги у "
+"каталозі.</p>"
 
-msgid "navigation.navigationMenus.category.generic"
-msgstr "Категорія"
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Запис у каталозі не підтверджено."
 
-msgid "navigation.navigationMenus.series.description"
-msgstr "Посилання на серії."
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Формат відсутній в каталозі."
 
-msgid "navigation.navigationMenus.series.generic"
-msgstr "Серії"
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Коректура не затверджена."
 
-msgid "navigation.navigationMenus.catalog.description"
-msgstr "Посилання на Ваш Каталог."
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Підтверджено"
 
-msgid "navigation.linksAndMedia"
-msgstr "Посилання і Соціальні Медіа"
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Очікує підтвердження"
 
-msgid "navigation.wizard"
-msgstr "Майстер-налаштувань"
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "Необхідно ввести розмір файлу для цифрових форматів."
 
-msgid "navigation.published"
-msgstr "Видано"
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "Необхідно ввести код доступності товару."
 
-msgid "navigation.newReleases"
-msgstr "Нові Видання"
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr ""
 
-msgid "navigation.infoForLibrarians.long"
-msgstr "Інформація для Бібіліотекарів"
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Значення Коду"
 
-msgid "navigation.infoForAuthors.long"
-msgstr "Інформація для Авторів"
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "Тип Коду ONIX"
 
-msgid "navigation.infoForLibrarians"
-msgstr "Для Бібліотекарів"
+msgid "grid.catalogEntry.codeRequired"
+msgstr "Необхідно ввести Ідентифікаційний код."
 
-msgid "navigation.infoForAuthors"
-msgstr "Для Авторів"
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Необхідно ввести значення."
 
-msgid "navigation.catalog.administration.series"
-msgstr "Серії"
+msgid "grid.catalogEntry.salesRights"
+msgstr "Права на Росповсюдження"
 
-msgid "navigation.catalog.administration.categories"
-msgstr "Категорії"
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Значення Коду"
 
-msgid "navigation.catalog.administration.short"
-msgstr "Адміністрування"
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Види Прав на росповсюдження"
 
-msgid "navigation.catalog.manage"
-msgstr "Керувати"
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Решта Світу?"
 
-msgid "navigation.catalog.allMonographs"
-msgstr "Усі Монографії"
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
 
-msgid "navigation.catalog"
-msgstr "Каталог"
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr ""
 
-msgid "common.homePageHeader.altText"
-msgstr "Заголовок Домашньої Сторінки"
+msgid "grid.catalogEntry.countries"
+msgstr "Країни"
 
-msgid "common.omp"
-msgstr "OMP"
+msgid "grid.catalogEntry.regions"
+msgstr "Регіони\\Області"
 
-msgid "common.software"
-msgstr "Open Monograph Press"
+msgid "grid.catalogEntry.included"
+msgstr "Включно"
 
-msgid "common.listbuilder.itemExists"
-msgstr "Ви не можете додати один і той самий товар двічі."
+msgid "grid.catalogEntry.excluded"
+msgstr "Виключено"
 
-msgid "common.listbuilder.selectValidOption"
-msgstr "Будь ласка, оберіть дійсну опцію зі списку."
+msgid "grid.catalogEntry.markets"
+msgstr "Території Магазинів"
 
-msgid "common.listbuilder.completeForm"
-msgstr "Будь ласка, заповніть форму повністю."
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Територія"
 
-msgid "common.moreInfo"
-msgstr "Детальніше"
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Дати Публікації"
 
-msgid "common.searchCatalog"
-msgstr "Пошук у Каталозі"
+msgid "grid.catalogEntry.roleRequired"
+msgstr "Необхідна роль представника."
 
-msgid "common.preview"
-msgstr "Передогляд"
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "Необхідно ввести формат дати"
 
-msgid "common.prefix"
-msgstr "Префікс"
+msgid "grid.catalogEntry.dateValue"
+msgstr "Дата"
 
-msgid "common.publications"
-msgstr "Монографії"
+msgid "grid.catalogEntry.dateRole"
+msgstr "Роль"
 
-msgid "common.publication"
-msgstr "Монографія"
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Формат Дати"
 
-msgid "submission.search"
-msgstr "Пошук книг"
+msgid "grid.catalogEntry.dateRequired"
+msgstr ""
+"Необхідно ввести дату, і значення дати має співпадати з обраним форматом "
+"дати."
 
-msgid "catalog.viewableFile.return"
-msgstr "Повернутися до перегляду деталей про {$monographTitle}"
+msgid "grid.catalogEntry.representatives"
+msgstr "Представники"
 
-msgid "catalog.sortBy.catalogDescription"
-msgstr "Оберіть, як замовляти книги у каталозі."
+msgid "grid.catalogEntry.representativeType"
+msgstr "Тип Представництва"
 
-msgid "catalog.sortBy.categoryDescription"
-msgstr "Оберіть, як замовляти книги з цієї категорії."
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Агенти"
 
-msgid "catalog.sortBy.seriesDescription"
-msgstr "Оберіть як замовляти книги з цієї серії."
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Постачальники"
 
-msgid "catalog.sortBy"
-msgstr "Замовити монографії"
+msgid "grid.catalogEntry.agent"
+msgstr "Агент"
 
-msgid "catalog.aboutTheAuthor"
-msgstr "Детальніше про {$roleName}"
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"Ви можете призначити агента для представництва ваших інтересів у обраному "
+"вами регіоні.  Не є обов'язковим."
 
-msgid "catalog.category.subcategories"
-msgstr "Підкатегорії"
+msgid "grid.catalogEntry.supplier"
+msgstr "Постачальник"
 
-msgid "catalog.parentCategory"
-msgstr "Батьківська Категорія"
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Оберіть роль:"
 
-msgid "catalog.categories"
-msgstr "Категорії"
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Роль"
 
-msgid "catalog.published"
-msgstr "Опубліковано"
+msgid "grid.catalogEntry.representativeName"
+msgstr "Ім'я"
 
-msgid "catalog.publicationInfo"
-msgstr "Інформація про видання"
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Телефон"
 
-msgid "catalog.dateAdded"
-msgstr "Додано"
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "Адреса електронної пошти"
 
-msgid "catalog.newReleases"
-msgstr "Нові Видання"
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Адреса веб-сайту"
 
-msgid "catalog.category.heading"
-msgstr "Усі Книги"
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "ID Представника"
 
-msgid "catalog.noTitlesNew"
-msgstr "Недоступно нових видань на цей час."
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "ID Тип Представника (рекомендовано GLN)"
 
-msgid "catalog.manage.filter.searchByAuthorOrTitle"
-msgstr "Пошук за автором або назвою"
-
-msgid "catalog.manage.feature.seriesNewRelease"
-msgstr "Нові видання в Серіях"
-
-msgid "catalog.manage.feature.categoryNewRelease"
-msgstr "Нові Видання в категорії"
-
-msgid "catalog.manage.feature.newRelease"
-msgstr "Нова версія"
-
-msgid "catalog.manage.newReleaseSuccess"
-msgstr "Монографія позначена \"Нове Видання\""
-
-msgid "catalog.manage.seriesFeatured"
-msgstr "Популярні в Серіях"
-
-msgid "catalog.manage.categoryFeatured"
-msgstr "Популярні в категорії"
-
-msgid "catalog.manage.featured"
-msgstr "Популярні"
-
-msgid "catalog.manage.noMonographs"
-msgstr "Відсутні призначені монографії."
-
-msgid "catalog.manage.manageCategories"
-msgstr "Керувати категоріями"
-
-msgid "catalog.manage.manageSeries"
-msgstr "Керувати Серіями"
-
-msgid "catalog.manage.newRelease"
-msgstr "Версія"
-
-msgid "catalog.manage.placeIntoCarousel"
-msgstr "Карусель"
-
-msgid "catalog.selectCategory"
-msgstr "Оберіть Категорію"
-
-msgid "catalog.selectSeries"
-msgstr "Оберіть Серії"
-
-msgid "catalog.manage.series.printIssn"
-msgstr "Друкований ISSN"
-
-msgid "catalog.manage.series.onlineIssn"
-msgstr "Електронний ISSN"
-
-msgid "catalog.manage.series.issn.equalValidation"
-msgstr "Електронний і друкований ISSN-и мають відрізнятися."
-
-msgid "catalog.manage.series.issn.validation"
-msgstr "Введіть корректний ISSN."
-
-msgid "catalog.manage.series.issn"
-msgstr "ISSN"
-
-msgid "catalog.manage.series"
-msgstr "Серії"
-
-msgid "catalog.manage.category"
-msgstr "Категорія"
-
-msgid "catalog.manage.newReleases"
-msgstr "Нові Видання"
-
-msgid "catalog.manage"
-msgstr "Управління каталогом"
-
-msgid "series.path"
-msgstr "Шлях"
-
-msgid "series.series"
-msgstr "Серії"
-
-msgid "grid.reviewAttachments.availableFiles"
-msgstr "Доступні файли"
-
-msgid "grid.reviewAttachments.add"
-msgstr "Додати вкладення до рецензії"
-
-msgid "grid.action.submissionEmail"
-msgstr "Натисніть щоб прочитати цей електронний лист"
-
-msgid "grid.action.moreAnnouncements"
-msgstr "Перейти до сторінки з оголошеннями видавництва"
-
-msgid "grid.action.createContext"
-msgstr "Створити нове видавництво"
-
-msgid "grid.action.deleteDate"
-msgstr "Видалити цю дату"
-
-msgid "grid.action.editDate"
-msgstr "Редагувати цю дату"
-
-msgid "grid.action.addDate"
-msgstr "Додати дату публікації"
-
-msgid "grid.action.deleteMarket"
-msgstr "Видалити цей магазин"
-
-msgid "grid.action.editMarket"
-msgstr "Редагувати цей магазин"
-
-msgid "grid.action.addMarket"
-msgstr "Додати магазин"
-
-msgid "grid.action.deleteRights"
-msgstr "Видалити ці права"
-
-msgid "grid.action.editRights"
-msgstr "редагувати ці права"
-
-msgid "grid.action.addRights"
-msgstr "Додати Права на Росповсюдження"
-
-msgid "grid.action.manageSeries"
-msgstr "Налаштувати \"Серійні видання\" для цього видавництва"
-
-msgid "grid.action.manageCategories"
-msgstr "Налаштувати категорії для цього видавництва"
-
-msgid "grid.action.releaseMonograph"
-msgstr "Додати мітку \"Нове Видання\" до цього Подання"
-
-msgid "grid.action.publicCatalog"
-msgstr "Переглянути цей елемент в каталозі"
-
-msgid "grid.action.newCatalogEntry"
-msgstr "Новий запис у каталозі"
-
-msgid "grid.action.addAnnouncement"
-msgstr "Додати Оголошення"
-
-msgid "grid.libraryFiles.column.files"
-msgstr "Файли"
-
-msgid "manager.series.indexed"
-msgstr "Індексовано"
-
-msgid "manager.series.open"
-msgstr "Відкрити Подання"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Книга"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Домашня сторінка"
-
-msgid "spotlight.author"
-msgstr "Автор, "
-
-msgid "grid.action.deleteRepresentative"
-msgstr "Видалити цього представника"
-
-msgid "grid.action.editRepresentative"
-msgstr "Редагувати цього представника"
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
 
 msgid "grid.action.addRepresentative"
 msgstr "Додати представника"
 
-msgid "submission.round"
-msgstr "Раунд&nbsp;{$round}"
+msgid "grid.action.editRepresentative"
+msgstr "Редагувати цього представника"
 
-msgid "about.pressContact"
-msgstr "Контакти Видавництва"
+msgid "grid.action.deleteRepresentative"
+msgstr "Видалити цього представника"
 
-msgid "site.pressView"
-msgstr "Переглянути Сайт Видавництва"
-
-msgid "user.register.reviewerInterests"
-msgstr "Вкажіть коло наукових інтересів (галузі та методологічні підходи):"
-
-msgid "user.register.reviewerDescription"
-msgstr "Дає свою згоду на рецензування рукописів для редакції."
-
-msgid "user.register.reviewerDescriptionNoInterests"
-msgstr "Дає свою згоду на рецензування рукописів для видавництва."
-
-msgid "user.register.authorDescription"
-msgstr "Має можливість подавати матеріали до видавництв."
-
-msgid "user.register.readerDescription"
-msgstr "Повідомляється поштою про публікацію нових монографій."
-
-msgid "user.register.registrationDisabled"
-msgstr "Зараз це видавництво не дозволяє реєстрацію користувачів."
-
-msgid "user.register.noContexts"
-msgstr "На цьому сайті немає видавництв, у яких Ви можете зареєструватись."
-
-msgid "user.register.selectContext"
-msgstr "Вибрати видавництво для реєстрації:"
-
-msgid "user.role.proofreaders"
-msgstr "Коректори"
-
-msgid "user.role.managers"
-msgstr "Менеджери видавництва"
-
-msgid "user.role.proofreader"
-msgstr "Коректор"
-
-msgid "user.role.pressEditor"
-msgstr "Редактор Видавництва"
-
-msgid "user.role.manager"
-msgstr "Менеджер видавництва"
-
-msgid "user.register.noContextReviewerInterests"
+msgid "spotlight"
 msgstr ""
-"Якщо Ви запитуєте в видавництві роль рецензента, будь ласка, зазначте свої "
-"наукові інтереси."
 
-msgid "user.register.contextsPrompt"
-msgstr "У яких видавництвах на цьому сайті Ви хочете зареєструватися?"
+msgid "spotlight.spotlights"
+msgstr ""
+
+msgid "spotlight.noneExist"
+msgstr ""
+
+msgid "spotlight.title.homePage"
+msgstr ""
+
+msgid "spotlight.author"
+msgstr "Автор, "
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr ""
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "Домашня сторінка"
+
+msgid "grid.content.spotlights.form.location"
+msgstr ""
+
+msgid "grid.content.spotlights.form.item"
+msgstr ""
+
+msgid "grid.content.spotlights.form.title"
+msgstr ""
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Книга"
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr ""
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr ""
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr ""
+
+msgid "grid.action.editSpotlight"
+msgstr ""
+
+msgid "grid.action.deleteSpotlight"
+msgstr ""
+
+msgid "grid.action.addSpotlight"
+msgstr ""
+
+msgid "manager.series.open"
+msgstr "Відкрити Подання"
+
+msgid "manager.series.indexed"
+msgstr "Індексовано"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Файли"
+
+msgid "grid.action.catalogEntry"
+msgstr "Переглянути форму запису каталога"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "Формат з'явиться в каталозі"
+
+msgid "grid.action.editFormat"
+msgstr "Редагувати цей формат"
+
+msgid "grid.action.deleteFormat"
+msgstr "Видалити цей формат"
+
+msgid "grid.action.addFormat"
+msgstr "Додати вид видання"
+
+msgid "grid.action.approveProof"
+msgstr "Схвалити цю правку для індексування та включення в каталог"
+
+msgid "grid.action.pageProofApproved"
+msgstr ""
+
+msgid "grid.action.addAnnouncement"
+msgstr "Додати Оголошення"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "Новий запис у каталозі"
+
+msgid "grid.action.publicCatalog"
+msgstr "Переглянути цей елемент в каталозі"
+
+msgid "grid.action.feature"
+msgstr ""
+
+msgid "grid.action.featureMonograph"
+msgstr ""
+
+msgid "grid.action.releaseMonograph"
+msgstr "Додати мітку \"Нове Видання\" до цього Подання"
+
+msgid "grid.action.manageCategories"
+msgstr "Налаштувати категорії для цього видавництва"
+
+msgid "grid.action.manageSeries"
+msgstr "Налаштувати \"Серійні видання\" для цього видавництва"
+
+msgid "grid.action.addCode"
+msgstr "Додати Код"
+
+msgid "grid.action.editCode"
+msgstr "Редагувати цей Код"
+
+msgid "grid.action.deleteCode"
+msgstr "Видалити цей Код"
+
+msgid "grid.action.addRights"
+msgstr "Додати Права на Росповсюдження"
+
+msgid "grid.action.editRights"
+msgstr "редагувати ці права"
+
+msgid "grid.action.deleteRights"
+msgstr "Видалити ці права"
+
+msgid "grid.action.addMarket"
+msgstr "Додати магазин"
+
+msgid "grid.action.editMarket"
+msgstr "Редагувати цей магазин"
+
+msgid "grid.action.deleteMarket"
+msgstr "Видалити цей магазин"
+
+msgid "grid.action.addDate"
+msgstr "Додати дату публікації"
+
+msgid "grid.action.editDate"
+msgstr "Редагувати цю дату"
+
+msgid "grid.action.deleteDate"
+msgstr "Видалити цю дату"
+
+msgid "grid.action.createContext"
+msgstr "Створити нове видавництво"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Показати вкладку \"Вид Видання\""
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Перейти до сторінки з оголошеннями видавництва"
+
+msgid "grid.action.submissionEmail"
+msgstr "Натисніть щоб прочитати цей електронний лист"
+
+msgid "grid.action.approveProofs"
+msgstr ""
+
+msgid "grid.action.proofApproved"
+msgstr ""
+
+msgid "grid.action.availableRepresentation"
+msgstr "Підтвердити/скасувати цей формат"
+
+msgid "grid.action.formatAvailable"
+msgstr ""
+
+msgid "grid.reviewAttachments.add"
+msgstr "Додати вкладення до рецензії"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Доступні файли"
+
+msgid "submissionGroup.assignedSubEditors"
+msgstr ""
+
+msgid "series.series"
+msgstr "Серії"
+
+msgid "series.featured.description"
+msgstr "Ці Серії з'являться у головній навігації"
+
+msgid "series.path"
+msgstr "Шлях"
+
+msgid "catalog.manage"
+msgstr "Управління каталогом"
+
+msgid "catalog.manage.newReleases"
+msgstr "Нові Видання"
+
+msgid "catalog.manage.category"
+msgstr "Категорія"
+
+msgid "catalog.manage.series"
+msgstr "Серії"
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Введіть корректний ISSN."
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "Електронний і друкований ISSN-и мають відрізнятися."
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "Електронний ISSN"
+
+msgid "catalog.manage.series.printIssn"
+msgstr "Друкований ISSN"
+
+msgid "catalog.selectSeries"
+msgstr "Оберіть Серії"
+
+msgid "catalog.selectCategory"
+msgstr "Оберіть Категорію"
+
+msgid "catalog.manage.homepageDescription"
+msgstr ""
+
+msgid "catalog.manage.categoryDescription"
+msgstr ""
+
+msgid "catalog.manage.seriesDescription"
+msgstr ""
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "Карусель"
+
+msgid "catalog.manage.newRelease"
+msgstr "Версія"
+
+msgid "catalog.manage.manageSeries"
+msgstr "Керувати Серіями"
+
+msgid "catalog.manage.manageCategories"
+msgstr "Керувати категоріями"
+
+msgid "catalog.manage.noMonographs"
+msgstr "Відсутні призначені монографії."
+
+msgid "catalog.manage.featured"
+msgstr "Популярні"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "Популярні в категорії"
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "Популярні в Серіях"
+
+msgid "catalog.manage.featuredSuccess"
+msgstr ""
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr ""
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "Монографія позначена \"Нове Видання\""
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "Мітка \"Нове Видання\" знято з монографії."
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "Нова версія"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "Нові Видання в категорії"
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Нові видання в Серіях"
+
+msgid "catalog.manage.nonOrderable"
+msgstr ""
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Пошук за автором або назвою"
+
+msgid "catalog.manage.isFeatured"
+msgstr ""
+
+msgid "catalog.manage.isNotFeatured"
+msgstr ""
+
+msgid "catalog.manage.isNewRelease"
+msgstr ""
+"Цю монографію відмічено як \"Нове Видання\". Зняти мітку \"Нове Видання\" з "
+"монографії."
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr ""
+"Цю монографію не відмічено як \"Нове Видання\". Поставити мітку \"Нове "
+"Видання\" монографії."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr ""
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr ""
+
+msgid "catalog.manage.findSubmissions"
+msgstr ""
+
+msgid "catalog.noTitles"
+msgstr ""
+
+msgid "catalog.noTitlesNew"
+msgstr "Недоступно нових видань на цей час."
+
+msgid "catalog.noTitlesSearch"
+msgstr ""
+"Жодних матеріалів не знайдено за вказаним вами пошуковим запитом "
+"\"{$searchQuery}\"."
+
+msgid "catalog.feature"
+msgstr "Популярне"
+
+msgid "catalog.featured"
+msgstr "Популярні"
+
+msgid "catalog.featuredBooks"
+msgstr "Популярні Книги"
+
+msgid "catalog.foundTitleSearch"
+msgstr "Один запис знайдено за вашим запитом \"{$searchQuery}\"."
+
+msgid "catalog.foundTitlesSearch"
+msgstr "{$number} назв знайдено за вашим запитом \"{$searchQuery}\"."
+
+msgid "catalog.category.heading"
+msgstr "Усі Книги"
+
+msgid "catalog.newReleases"
+msgstr "Нові Видання"
+
+msgid "catalog.dateAdded"
+msgstr "Додано"
+
+msgid "catalog.publicationInfo"
+msgstr "Інформація про видання"
+
+msgid "catalog.published"
+msgstr "Опубліковано"
+
+msgid "catalog.forthcoming"
+msgstr ""
+
+msgid "catalog.categories"
+msgstr "Категорії"
+
+msgid "catalog.parentCategory"
+msgstr "Батьківська Категорія"
+
+msgid "catalog.category.subcategories"
+msgstr "Підкатегорії"
+
+msgid "catalog.aboutTheAuthor"
+msgstr "Детальніше про {$roleName}"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr ""
+"Зауважте: Щоб придбати книги. необхідно увійти в систему. Вибір книги для "
+"придбання автоматично переадресує вас на сторінку входу. Кожин елемент зі "
+"значком вільного доступу може бути завантажено без усіляких обмежень, "
+"безкоштовно, без потреби входити до системи."
+
+msgid "catalog.sortBy"
+msgstr "Замовити монографії"
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr "Оберіть як замовляти книги з цієї серії."
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr "Оберіть, як замовляти книги з цієї категорії."
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr "Оберіть, як замовляти книги у каталозі."
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr "Позиція Серій (спочатку найнижча)"
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr "Позиція Серій (спочатку найвища)"
+
+msgid "catalog.viewableFile.title"
+msgstr "{$type} переглядів файлу {$title}"
+
+msgid "catalog.viewableFile.return"
+msgstr "Повернутися до перегляду деталей про {$monographTitle}"
+
+msgid "submission.search"
+msgstr "Пошук книг"
+
+msgid "common.publication"
+msgstr "Монографія"
+
+msgid "common.publications"
+msgstr "Монографії"
+
+msgid "common.prefix"
+msgstr "Префікс"
+
+msgid "common.preview"
+msgstr "Передогляд"
+
+msgid "common.feature"
+msgstr "Популярне"
+
+msgid "common.searchCatalog"
+msgstr "Пошук у Каталозі"
+
+msgid "common.moreInfo"
+msgstr "Детальніше"
+
+msgid "common.listbuilder.completeForm"
+msgstr "Будь ласка, заповніть форму повністю."
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "Будь ласка, оберіть дійсну опцію зі списку."
+
+msgid "common.listbuilder.itemExists"
+msgstr "Ви не можете додати один і той самий товар двічі."
+
+msgid "common.software"
+msgstr "Open Monograph Press"
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "common.homePageHeader.altText"
+msgstr "Заголовок Домашньої Сторінки"
+
+msgid "navigation.catalog"
+msgstr "Каталог"
+
+msgid "navigation.competingInterestPolicy"
+msgstr "Політика щодо конфлікту інтересів"
+
+msgid "navigation.catalog.allMonographs"
+msgstr "Усі Монографії"
+
+msgid "navigation.catalog.manage"
+msgstr "Керувати"
+
+msgid "navigation.catalog.administration.short"
+msgstr "Адміністрування"
+
+msgid "navigation.catalog.administration"
+msgstr "Адміністрування Каталогу"
+
+msgid "navigation.catalog.administration.categories"
+msgstr "Категорії"
+
+msgid "navigation.catalog.administration.series"
+msgstr "Серії"
+
+msgid "navigation.infoForAuthors"
+msgstr "Для Авторів"
+
+msgid "navigation.infoForLibrarians"
+msgstr "Для Бібліотекарів"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Інформація для Авторів"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Інформація для Бібіліотекарів"
+
+msgid "navigation.newReleases"
+msgstr "Нові Видання"
+
+msgid "navigation.published"
+msgstr "Видано"
+
+msgid "navigation.wizard"
+msgstr "Майстер-налаштувань"
+
+msgid "navigation.linksAndMedia"
+msgstr "Посилання і Соціальні Медіа"
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Посилання на Ваш Каталог."
+
+msgid "navigation.skip.spotlights"
+msgstr ""
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Серії"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Посилання на серії."
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Категорія"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Посилання на категорію."
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Нові видання"
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Посилання на нові видання."
+
+msgid "context.contexts"
+msgstr "Видавництва"
+
+msgid "context.context"
+msgstr "Видавництво"
+
+msgid "context.current"
+msgstr "Поточне Видавництво:"
+
+msgid "context.select"
+msgstr "Переключити на інше видавництво:"
+
+msgid "user.authorization.representationNotFound"
+msgstr ""
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "Включити користувачів без призначених ролей в цьому видавництві."
+
+msgid "user.noRoles.submitMonograph"
+msgstr "Подати Пропозицію"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr "Надіслати Монографію: Реєстрація авторів наразі відключена."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Зареєструватися як Рецензент"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr ""
+"Зареєструватися як рецензент: Реєстрація рецензентів наразі відключена."
+
+msgid "user.reviewerPrompt"
+msgstr "Хотіли б Ви рецензувати рукописи для цього видавництва?"
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Так, запитати роль {$userGroup}."
 
 msgid "user.reviewerPrompt.optin"
 msgstr ""
 "Так, я хочу, щоб до мене зверталися з запитами на рецензування матеріалів "
 "для даного видавництва."
 
-msgid "user.reviewerPrompt.userGroup"
-msgstr "Так, запитати роль {$userGroup}."
+msgid "user.register.contextsPrompt"
+msgstr "У яких видавництвах на цьому сайті Ви хочете зареєструватися?"
 
-msgid "user.reviewerPrompt"
-msgstr "Хотіли б Ви рецензувати рукописи для цього видавництва?"
+msgid "user.register.otherContextRoles"
+msgstr "Відправити запит на наступні ролі."
 
-msgid "user.noRoles.regReviewerClosed"
-msgstr "Зареєструватися як рецензент: Реєстрація рецензентів наразі відключена."
-
-msgid "user.noRoles.submitMonographRegClosed"
-msgstr "Надіслати Монографію: Реєстрація авторів наразі відключена."
-
-msgid "user.noRoles.selectUsersWithoutRoles"
-msgstr "Включити користувачів без призначених ролей в цьому видавництві."
-
-msgid "context.current"
-msgstr "Поточне Видавництво:"
-
-msgid "navigation.catalog.administration"
-msgstr "Адміністрування Каталогу"
-
-msgid "navigation.competingInterestPolicy"
-msgstr "Політика щодо конфлікту інтересів"
-
-msgid "catalog.featuredBooks"
-msgstr "Популярні Книги"
-
-msgid "catalog.featured"
-msgstr "Популярні"
-
-msgid "catalog.manage.notNewReleaseSuccess"
-msgstr "Мітка \"Нове Видання\" знято з монографії."
-
-msgid "grid.action.availableRepresentation"
-msgstr "Підтвердити/скасувати цей формат"
-
-msgid "grid.action.publicationFormatTab"
-msgstr "Показати вкладку \"Вид Видання\""
-
-msgid "grid.action.deleteCode"
-msgstr "Видалити цей Код"
-
-msgid "grid.action.editCode"
-msgstr "Редагувати цей Код"
-
-msgid "grid.action.addCode"
-msgstr "Додати Код"
-
-msgid "grid.action.approveProof"
-msgstr "Схвалити цю правку для індексування та включення в каталог"
-
-msgid "grid.action.addFormat"
-msgstr "Додати вид видання"
-
-msgid "grid.action.deleteFormat"
-msgstr "Видалити цей формат"
-
-msgid "grid.action.editFormat"
-msgstr "Редагувати цей формат"
-
-msgid "grid.action.formatInCatalogEntry"
-msgstr "Формат з'явиться в каталозі"
-
-msgid "grid.action.catalogEntry"
-msgstr "Переглянути форму запису каталога"
-
-msgid "installer.localeInstructions"
+msgid "user.register.noContextReviewerInterests"
 msgstr ""
-"Основна мова для цієї системи. Якщо Вам необхідна підтримка мови, не "
-"вказаної тут, будь ласка, звертайтеся до документації OMP."
+"Якщо Ви запитуєте в видавництві роль рецензента, будь ласка, зазначте свої "
+"наукові інтереси."
 
-msgid "installer.maxFileUploadSize"
-msgstr ""
-"Ваш сервер наразі дозволяє вивантаження файлів розміром не більше: "
-"<strong>{$maxFileUploadSize}</strong>"
+msgid "user.role.manager"
+msgstr "Менеджер видавництва"
 
-msgid "installer.allowFileUploads"
-msgstr ""
-"Ваш сервер наразі дозволяє вивантаження файлів: "
-"<strong>{$allowFileUploads}</strong>"
+msgid "user.role.pressEditor"
+msgstr "Редактор Видавництва"
 
-msgid "installer.localeSettingsInstructions"
-msgstr ""
-"Для повної підтримки формату Unicode (UTF-8), оберіть UTF-8 у всіх "
-"налаштуваннях таблиць кодування. Зауважте, що повна підтримка наразі вимагає "
-"СУБД MySQL >= 4.1.1 або PostgreSQL >= 9.1.5. Крім того, будь ласка, "
-"зауважте, що повна підтримка Unicode також вимагає бібліотеку <a href=\""
-"http://www.php.net/mbstring\" target=\"_blank\">mbstring</a> (у більшості "
-"сучасних інсталяцій PHP включена за замовчуванням). Якщо Ваш сервер не "
-"відповідає цим вимогам, Ви можете зустрітись з проблемами під час "
-"використання розширених таблиць кодування.\n"
-"<br /><br />\n"
-"Зараз Ваш сервер має підтримку mbstring: <strong>{$supportsMBString}</strong>"
+msgid "user.role.subEditor"
+msgstr "Редактор Серійних Видань"
 
-msgid "installer.upgradeInstructions"
+msgid "user.role.copyeditor"
+msgstr "Літературний Редактор"
+
+msgid "user.role.proofreader"
+msgstr "Коректор"
+
+msgid "user.role.productionEditor"
+msgstr "Редактор Виробництва"
+
+msgid "user.role.managers"
+msgstr "Менеджери видавництва"
+
+msgid "user.role.subEditors"
+msgstr "Редактори Серійних Видань"
+
+msgid "user.role.editors"
+msgstr "Редактори"
+
+msgid "user.role.copyeditors"
+msgstr "Літературні Редактори"
+
+msgid "user.role.proofreaders"
+msgstr "Коректори"
+
+msgid "user.role.productionEditors"
+msgstr "Редактори з Виробництва"
+
+msgid "user.register.selectContext"
+msgstr "Вибрати видавництво для реєстрації:"
+
+msgid "user.register.noContexts"
+msgstr "На цьому сайті немає видавництв, у яких Ви можете зареєструватись."
+
+msgid "user.register.privacyStatement"
+msgstr "Заява Про Конфіденційність"
+
+msgid "user.register.registrationDisabled"
+msgstr "Зараз це видавництво не дозволяє реєстрацію користувачів."
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "Пароь недостатньо довгий."
+
+msgid "user.register.readerDescription"
+msgstr "Повідомляється поштою про публікацію нових монографій."
+
+msgid "user.register.authorDescription"
+msgstr "Має можливість подавати матеріали до видавництв."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr "Дає свою згоду на рецензування рукописів для видавництва."
+
+msgid "user.register.reviewerDescription"
+msgstr "Дає свою згоду на рецензування рукописів для редакції."
+
+msgid "user.register.reviewerInterests"
+msgstr "Вкажіть коло наукових інтересів (галузі та методологічні підходи):"
+
+msgid "user.register.form.userGroupRequired"
+msgstr "Ви маєте обрати принаймі одну роль"
+
+msgid "user.register.form.privacyConsentThisContext"
 msgstr ""
-"<h4>OMP версії {$version}</h4>\n"
+
+msgid "site.noPresses"
+msgstr ""
+
+msgid "site.pressView"
+msgstr "Переглянути Сайт Видавництва"
+
+msgid "about.pressContact"
+msgstr "Контакти Видавництва"
+
+msgid "about.aboutContext"
+msgstr "Про Видавництво"
+
+msgid "about.editorialTeam"
+msgstr "Редакційний штат"
+
+msgid "about.editorialPolicies"
+msgstr "Редакційна Політика"
+
+msgid "about.focusAndScope"
+msgstr "Галузь та проблематика"
+
+msgid "about.seriesPolicies"
+msgstr "Серії та Політика Категорій"
+
+msgid "about.submissions"
+msgstr "Подання"
+
+#, fuzzy
+msgid "about.onlineSubmissions"
+msgstr "Подання Онлайн"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Увійти"
+
+msgid "about.onlineSubmissions.register"
+msgstr "Зареєструватися"
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "{$login} або {$register} щоб зробити подання."
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} або {$viewSubmissions}."
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Зробити нове подання"
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "переглянути раніше подані матеріали"
+
+msgid "about.authorGuidelines"
+msgstr "Керівництво для авторів"
+
+msgid "about.submissionPreparationChecklist"
+msgstr "Вимоги до подання"
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr ""
+"Під час подання рукопису до журналу автори повинні підтвердити його "
+"відповідність всім встановленим вимогам, вказаним нижче. В разі виявлення "
+"невідповідності поданої роботи пунктам цих вимог редакція повертатиме "
+"авторам матеріали на доопрацювання."
+
+msgid "about.copyrightNotice"
+msgstr "Положення про авторські права"
+
+msgid "about.privacyStatement"
+msgstr "Заява Про Конфіденційність"
+
+msgid "about.reviewPolicy"
+msgstr "Процес рецензування"
+
+msgid "about.publicationFrequency"
+msgstr "Періодичність публікації"
+
+msgid "about.openAccessPolicy"
+msgstr "Політика Відкритого Доступу"
+
+msgid "about.pressSponsorship"
+msgstr "Спонсори Видавництва"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr "Про цю Видавничу Систему"
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "Редакційно-видавничий процес OMP"
+
+msgid "about.aboutSoftware"
+msgstr ""
+
+#, fuzzy
+msgid "about.aboutOMPPress"
+msgstr ""
+"Це видавництво використовує Open Monograph Press {$ompVersion} - програмний "
+"пакет з відкритим вихідним кодом, який підтримує процеси менеджменту та "
+"публікації для видавництв. Пакет розробляється, підтримується та вільно "
+"розповсюджується <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> "
+"на умовах ліцензії GNU General Public License."
+
+#, fuzzy
+msgid "about.aboutOMPSite"
+msgstr ""
+"Цей сайт використовує Open Monograph Press {$ompVersion} - програмний пакет "
+"з відкритим вихідним кодом, який підтримує процеси менеджменту та публікації "
+"для видавництв. Пакет розробляється, підтримується та вільно "
+"розповсюджується <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> "
+"на умовах ліцензії GNU General Public License."
+
+msgid "help.searchReturnResults"
+msgstr "Повернутися до результатів пошуку"
+
+msgid "help.goToEditPage"
+msgstr "Відкрийте нову сторінку для редагування цієї інформації"
+
+msgid "installer.appInstallation"
+msgstr "Інсталяція OMP"
+
+msgid "installer.ompUpgrade"
+msgstr "Оновлення OMP"
+
+msgid "installer.installApplication"
+msgstr "Інсталювати Open Monograph Press"
+
+msgid "installer.updatingInstructions"
+msgstr ""
+
+#, fuzzy
+msgid "installer.installationInstructions"
+msgstr ""
 "\n"
-"<p>Дякуємо, що завантажили <strong>Open Monograph Press</strong> виробництва "
-"Public Knowledge Project. Перед тим, як продовжити, будь ласка, прочитайте "
-"файл <a href=\"{$baseUrl}/docs/README\">README</a> та<a href=\"{$baseUrl}/"
-"docs/UPGRADE\">UPGRADE</a>, включені до цього дистрибутиву. Для того, щоб "
-"дізнатися більше про Public Knowledge Project та розроблені ним програмні "
-"пакети, будь ласка, завітайте на <a href=\"http://pkp.sfu.ca/\" target=\""
-"_blank\">веб-сайт PKP</a>. Якщо Ви маєте звіти про помилки або запити до "
-"служби підтримки Open Monograph Press, дивіться <a href=\""
-"http://forum.pkp.sfu.ca\" target=\"_blank\">форум підтримки</a> або "
-"завітайте до онлайнової служби PKP <a href=\"http://pkp.sfu.ca/bugzilla/\" "
-"target=\"_blank\">система звітування про помилки</a>. Хоча форум підтримки є "
-"пріоритетним методом контакту з розробниками, Ви можете також написати "
-"розробникам листа на адресу <a href=\"mailto:pkp.contact@gmail.com\""
-">pkp.contact@gmail.com</a>.</p>\n"
-"<p>Перед тим, як продовжити, <strong>наполегливо рекомендуємо</strong> "
-"зробити резервну копію Вашої бази даних, файлових тек та теки інсталяції "
-"OMP.</p>\n"
-"<p>Якщо Ви працюєте у режимі <a href=\"http://www.php.net/features.safe-"
-"mode\" target=\"_blank\">PHP Safe Mode</a>, будь ласка, переконайтеся, що "
-"значення параметру max_execution_time у Вашому файлі конфігурації php.ini "
-"має найвище припустиме значення. Якщо цей або будь-який інший ліміт часу ("
-"наприклад, параметр \"Timeout\" налаштувань Apache) буде перевищений, процес "
-"оновлення буде перерваний і знадобиться ручне втручання.</p>"
+"<p>Дякуємо, що завантажили <strong>Open Monograph Press {$version}</strong> "
+"виробництва Public Knowledge Project. Перед тим, як продовжити, будь ласка, "
+"прочитайте файл <a href=\"{$baseUrl}/docs/README\">README</a>, включений до "
+"цього дистрибутиву. Для того, щоб дізнатися більше про Public Knowledge "
+"Project та розроблені ним програмні пакети, будь ласка, завітайте на<a href="
+"\"http://pkp.sfu.ca/\" target=\"_blank\">веб-сайт PKP</a>. Якщо Ви маєте "
+"звіти про помилки або запити до служби підтримки  Open Monograph Press, "
+"дивіться <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">форум "
+"підтримки</a> або завітайте до онлайнової служби PKP <a href=\"http://pkp."
+"sfu.ca/bugzilla/\" target=\"_blank\">система звітування про помилки</a>. "
+"Хоча форум підтримки є пріоритетним методом контакту з розробниками, Ви "
+"можете також написати розробникам листа на адресу <a href=\"mailto:pkp."
+"contact@gmail.com\">pkp.contact@gmail.com</a>.</p>\n"
+"\n"
+"<h4>Оновлення</h4>\n"
+"\n"
+"<p>Якщо ви оновлюєте існуючу інсталяцію системи OMP, <a href="
+"\"{$upgradeUrl}\">Натисніть ТУТ</a> щоб продовжити.</p>"
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "Кроки підготовки до встановлення"
 
 msgid "installer.preInstallationInstructions"
 msgstr ""
@@ -993,127 +1186,352 @@ msgstr ""
 "створений та до нього має бути доступ для запису (дивись «Налаштування "
 "файлів» ниже).</p>"
 
-msgid "installer.preInstallationInstructionsTitle"
-msgstr "Кроки підготовки до встановлення"
-
-#, fuzzy
-msgid "installer.installationInstructions"
+msgid "installer.upgradeInstructions"
 msgstr ""
+"<h4>OMP версії {$version}</h4>\n"
 "\n"
-"<p>Дякуємо, що завантажили <strong>Open Monograph Press {$version}</strong> "
-"виробництва Public Knowledge Project. Перед тим, як продовжити, будь ласка, "
-"прочитайте файл <a href=\"{$baseUrl}/docs/README\">README</a>, включений до "
-"цього дистрибутиву. Для того, щоб дізнатися більше про Public Knowledge "
-"Project та розроблені ним програмні пакети, будь ласка, завітайте на<a href="
-"\"http://pkp.sfu.ca/\" target=\"_blank\">веб-сайт PKP</a>. Якщо Ви маєте "
-"звіти про помилки або запити до служби підтримки  Open Monograph Press, "
-"дивіться <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">форум "
-"підтримки</a> або завітайте до онлайнової служби PKP <a href=\""
-"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">система звітування про "
-"помилки</a>. Хоча форум підтримки є пріоритетним методом контакту з "
-"розробниками, Ви можете також написати розробникам листа на адресу <a href=\""
-"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>\n"
-"\n"
-"<h4>Оновлення</h4>\n"
-"\n"
-"<p>Якщо ви оновлюєте існуючу інсталяцію системи OMP, <a href=\""
-"{$upgradeUrl}\">Натисніть ТУТ</a> щоб продовжити.</p>"
+"<p>Дякуємо, що завантажили <strong>Open Monograph Press</strong> виробництва "
+"Public Knowledge Project. Перед тим, як продовжити, будь ласка, прочитайте "
+"файл <a href=\"{$baseUrl}/docs/README\">README</a> та<a href=\"{$baseUrl}/"
+"docs/UPGRADE\">UPGRADE</a>, включені до цього дистрибутиву. Для того, щоб "
+"дізнатися більше про Public Knowledge Project та розроблені ним програмні "
+"пакети, будь ласка, завітайте на <a href=\"http://pkp.sfu.ca/\" target="
+"\"_blank\">веб-сайт PKP</a>. Якщо Ви маєте звіти про помилки або запити до "
+"служби підтримки Open Monograph Press, дивіться <a href=\"http://forum.pkp."
+"sfu.ca\" target=\"_blank\">форум підтримки</a> або завітайте до онлайнової "
+"служби PKP <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">система "
+"звітування про помилки</a>. Хоча форум підтримки є пріоритетним методом "
+"контакту з розробниками, Ви можете також написати розробникам листа на "
+"адресу <a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</"
+"p>\n"
+"<p>Перед тим, як продовжити, <strong>наполегливо рекомендуємо</strong> "
+"зробити резервну копію Вашої бази даних, файлових тек та теки інсталяції OMP."
+"</p>\n"
+"<p>Якщо Ви працюєте у режимі <a href=\"http://www.php.net/features.safe-mode"
+"\" target=\"_blank\">PHP Safe Mode</a>, будь ласка, переконайтеся, що "
+"значення параметру max_execution_time у Вашому файлі конфігурації php.ini "
+"має найвище припустиме значення. Якщо цей або будь-який інший ліміт часу "
+"(наприклад, параметр \"Timeout\" налаштувань Apache) буде перевищений, "
+"процес оновлення буде перерваний і знадобиться ручне втручання.</p>"
 
-#, fuzzy
-msgid "about.aboutOMPSite"
+msgid "installer.localeSettingsInstructions"
 msgstr ""
-"Цей сайт використовує Open Monograph Press {$ompVersion} - програмний пакет "
-"з відкритим вихідним кодом, який підтримує процеси менеджменту та публікації "
-"для видавництв. Пакет розробляється, підтримується та вільно "
-"розповсюджується <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> "
-"на умовах ліцензії GNU General Public License."
+"Для повної підтримки формату Unicode (UTF-8), оберіть UTF-8 у всіх "
+"налаштуваннях таблиць кодування. Зауважте, що повна підтримка наразі вимагає "
+"СУБД MySQL >= 4.1.1 або PostgreSQL >= 9.1.5. Крім того, будь ласка, "
+"зауважте, що повна підтримка Unicode також вимагає бібліотеку <a href="
+"\"http://www.php.net/mbstring\" target=\"_blank\">mbstring</a> (у більшості "
+"сучасних інсталяцій PHP включена за замовчуванням). Якщо Ваш сервер не "
+"відповідає цим вимогам, Ви можете зустрітись з проблемами під час "
+"використання розширених таблиць кодування.\n"
+"<br /><br />\n"
+"Зараз Ваш сервер має підтримку mbstring: <strong>{$supportsMBString}</strong>"
 
-#, fuzzy
-msgid "about.aboutOMPPress"
+msgid "installer.allowFileUploads"
 msgstr ""
-"Це видавництво використовує Open Monograph Press {$ompVersion} - програмний "
-"пакет з відкритим вихідним кодом, який підтримує процеси менеджменту та "
-"публікації для видавництв. Пакет розробляється, підтримується та вільно "
-"розповсюджується <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> "
-"на умовах ліцензії GNU General Public License."
+"Ваш сервер наразі дозволяє вивантаження файлів: <strong>{$allowFileUploads}</"
+"strong>"
 
-msgid "about.aboutThisPublishingSystem.altText"
-msgstr "Редакційно-видавничий процес OMP"
-
-msgid "about.pressSponsorship"
-msgstr "Спонсори Видавництва"
-
-msgid "about.publicationFrequency"
-msgstr "Періодичність публікації"
-
-msgid "about.submissionPreparationChecklist.description"
+msgid "installer.maxFileUploadSize"
 msgstr ""
-"Під час подання рукопису до журналу автори повинні підтвердити його "
-"відповідність всім встановленим вимогам, вказаним нижче. В разі виявлення "
-"невідповідності поданої роботи пунктам цих вимог редакція повертатиме "
-"авторам матеріали на доопрацювання."
+"Ваш сервер наразі дозволяє вивантаження файлів розміром не більше: "
+"<strong>{$maxFileUploadSize}</strong>"
 
-msgid "about.submissionPreparationChecklist"
-msgstr "Вимоги до подання"
-
-msgid "about.onlineSubmissions.viewSubmissions"
-msgstr "переглянути раніше подані матеріали"
-
-#, fuzzy
-msgid "about.onlineSubmissions"
-msgstr "Подання Онлайн"
-
-msgid "about.seriesPolicies"
-msgstr "Серії та Політика Категорій"
-
-msgid "about.focusAndScope"
-msgstr "Галузь та проблематика"
-
-msgid "about.aboutContext"
-msgstr "Про Видавництво"
-
-msgid "common.feature"
-msgstr "Популярне"
-
-msgid "catalog.viewableFile.title"
-msgstr "{$type} переглядів файлу {$title}"
-
-msgid "catalog.sortBy.seriesPositionDesc"
-msgstr "Позиція Серій (спочатку найвища)"
-
-msgid "catalog.sortBy.seriesPositionAsc"
-msgstr "Позиція Серій (спочатку найнижча)"
-
-msgid "catalog.loginRequiredForPayment"
+msgid "installer.localeInstructions"
 msgstr ""
-"Зауважте: Щоб придбати книги. необхідно увійти в систему. Вибір книги для "
-"придбання автоматично переадресує вас на сторінку входу. Кожин елемент зі "
-"значком вільного доступу може бути завантажено без усіляких обмежень, "
-"безкоштовно, без потреби входити до системи."
+"Основна мова для цієї системи. Якщо Вам необхідна підтримка мови, не "
+"вказаної тут, будь ласка, звертайтеся до документації OMP."
 
-msgid "catalog.foundTitlesSearch"
-msgstr "{$number} назв знайдено за вашим запитом \"{$searchQuery}\"."
-
-msgid "catalog.foundTitleSearch"
-msgstr "Один запис знайдено за вашим запитом \"{$searchQuery}\"."
-
-msgid "catalog.feature"
-msgstr "Популярне"
-
-msgid "catalog.noTitlesSearch"
+msgid "installer.additionalLocalesInstructions"
 msgstr ""
-"Жодних матеріалів не знайдено за вказаним вами пошуковим запитом \""
-"{$searchQuery}\"."
 
-msgid "catalog.manage.isNotNewRelease"
+msgid "installer.filesDirInstructions"
 msgstr ""
-"Цю монографію не відмічено як \"Нове Видання\". Поставити мітку \"Нове "
-"Видання\" монографії."
 
-msgid "catalog.manage.isNewRelease"
+msgid "installer.databaseSettingsInstructions"
 msgstr ""
-"Цю монографію відмічено як \"Нове Видання\". Зняти мітку \"Нове Видання\" з "
-"монографії."
 
-msgid "series.featured.description"
-msgstr "Ці Серії з'являться у головній навігації"
+msgid "installer.upgradeApplication"
+msgstr ""
+
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+
+msgid "installer.installationComplete"
+msgstr ""
+
+msgid "installer.upgradeComplete"
+msgstr ""
+
+msgid "log.review.reviewDueDateSet"
+msgstr ""
+
+msgid "log.review.reviewDeclined"
+msgstr ""
+
+msgid "log.review.reviewAccepted"
+msgstr ""
+
+msgid "log.review.reviewUnconsidered"
+msgstr ""
+
+msgid "log.editor.decision"
+msgstr ""
+
+msgid "log.editor.recommendation"
+msgstr ""
+
+msgid "log.editor.archived"
+msgstr ""
+
+msgid "log.editor.restored"
+msgstr ""
+
+msgid "log.editor.editorAssigned"
+msgstr ""
+
+msgid "log.proofread.assign"
+msgstr ""
+
+msgid "log.proofread.complete"
+msgstr ""
+
+msgid "log.imported"
+msgstr ""
+
+msgid "notification.addedIdentificationCode"
+msgstr ""
+
+msgid "notification.editedIdentificationCode"
+msgstr ""
+
+msgid "notification.removedIdentificationCode"
+msgstr ""
+
+msgid "notification.addedPublicationDate"
+msgstr ""
+
+msgid "notification.editedPublicationDate"
+msgstr ""
+
+msgid "notification.removedPublicationDate"
+msgstr ""
+
+msgid "notification.addedPublicationFormat"
+msgstr ""
+
+msgid "notification.editedPublicationFormat"
+msgstr ""
+
+msgid "notification.removedPublicationFormat"
+msgstr ""
+
+msgid "notification.addedSalesRights"
+msgstr ""
+
+msgid "notification.editedSalesRights"
+msgstr ""
+
+msgid "notification.removedSalesRights"
+msgstr ""
+
+msgid "notification.addedRepresentative"
+msgstr ""
+
+msgid "notification.editedRepresentative"
+msgstr ""
+
+msgid "notification.removedRepresentative"
+msgstr ""
+
+msgid "notification.addedMarket"
+msgstr ""
+
+msgid "notification.editedMarket"
+msgstr ""
+
+msgid "notification.removedMarket"
+msgstr ""
+
+msgid "notification.addedSpotlight"
+msgstr ""
+
+msgid "notification.editedSpotlight"
+msgstr ""
+
+msgid "notification.removedSpotlight"
+msgstr ""
+
+msgid "notification.savedCatalogMetadata"
+msgstr ""
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr ""
+
+msgid "notification.proofsApproved"
+msgstr ""
+
+msgid "notification.removedSubmission"
+msgstr ""
+
+msgid "notification.type.submissionSubmitted"
+msgstr ""
+
+msgid "notification.type.editing"
+msgstr ""
+
+msgid "notification.type.reviewing"
+msgstr ""
+
+msgid "notification.type.site"
+msgstr ""
+
+msgid "notification.type.submissions"
+msgstr ""
+
+msgid "notification.type.userComment"
+msgstr ""
+
+msgid "notification.type.public"
+msgstr ""
+
+msgid "notification.type.editorAssignmentTask"
+msgstr ""
+
+msgid "notification.type.copyeditorRequest"
+msgstr ""
+
+msgid "notification.type.layouteditorRequest"
+msgstr ""
+
+msgid "notification.type.indexRequest"
+msgstr ""
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr ""
+
+msgid "notification.type.approveSubmission"
+msgstr ""
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr ""
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr ""
+
+msgid "notification.type.configurePaymentMethod"
+msgstr ""
+
+msgid "notification.type.visitCatalogTitle"
+msgstr ""
+
+msgid "notification.type.visitCatalog"
+msgstr ""
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr ""
+
+msgid "user.authorization.monographAuthor"
+msgstr ""
+
+msgid "user.authorization.monographReviewer"
+msgstr ""
+
+msgid "user.authorization.monographFile"
+msgstr ""
+
+msgid "user.authorization.invalidMonograph"
+msgstr ""
+
+msgid "user.authorization.noContext"
+msgstr ""
+
+msgid "user.authorization.seriesAssignment"
+msgstr ""
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr ""
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+
+msgid "payment.directSales"
+msgstr ""
+
+msgid "payment.directSales.price"
+msgstr ""
+
+msgid "payment.directSales.availability"
+msgstr ""
+
+msgid "payment.directSales.catalog"
+msgstr ""
+
+msgid "payment.directSales.approved"
+msgstr ""
+
+msgid "payment.directSales.priceCurrency"
+msgstr ""
+
+msgid "payment.directSales.numericOnly"
+msgstr ""
+
+msgid "payment.directSales.directSales"
+msgstr ""
+
+msgid "payment.directSales.amount"
+msgstr ""
+
+msgid "payment.directSales.notAvailable"
+msgstr ""
+
+msgid "payment.directSales.notSet"
+msgstr ""
+
+msgid "payment.directSales.openAccess"
+msgstr ""
+
+msgid "payment.directSales.price.description"
+msgstr ""
+
+msgid "payment.directSales.validPriceRequired"
+msgstr ""
+
+msgid "payment.directSales.purchase"
+msgstr ""
+
+msgid "payment.directSales.download"
+msgstr ""
+
+msgid "payment.directSales.monograph.name"
+msgstr ""
+
+msgid "payment.directSales.monograph.description"
+msgstr ""
+
+msgid "debug.notes.helpMappingLoad"
+msgstr ""
+
+msgid "rt.metadata.pkp.dctype"
+msgstr ""
+
+msgid "submission.pdf.download"
+msgstr ""
+
+msgid "user.profile.form.showOtherContexts"
+msgstr ""
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr ""
+
+msgid "submission.round"
+msgstr "Раунд&nbsp;{$round}"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr ""
+
+msgid "catalog.coverImageTitle"
+msgstr ""

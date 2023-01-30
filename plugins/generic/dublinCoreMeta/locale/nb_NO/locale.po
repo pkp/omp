@@ -11,10 +11,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
+msgid "plugins.generic.dublinCoreMeta.name"
+msgstr "Doblin Core-indeksering"
+
 msgid "plugins.generic.dublinCoreMeta.description"
 msgstr ""
 "Programtillegget bygger inn metatagger for Dublin Core i artikkelvisninger "
 "for indekseringsformål."
-
-msgid "plugins.generic.dublinCoreMeta.name"
-msgstr "Doblin Core-indeksering"

@@ -23,14 +23,25 @@ msgstr "Importa i exporta llibres a OMP en format nadiu XML."
 msgid "plugins.importexport.native.import"
 msgstr "Importa"
 
+msgid "plugins.importexport.native.import.instructions"
+msgstr "Carregar un arxiu XML per importar"
+
 msgid "plugins.importexport.native.export"
 msgstr "Exporta"
+
+msgid "plugins.importexport.native.exportSubmissionsSelect"
+msgstr "Seleccionar monografies per exportar"
 
 msgid "plugins.importexport.native.results"
 msgstr "Resultats"
 
-msgid "plugins.importexport.native.error.unknownSeries"
-msgstr "Series desconegudes {$param}"
+msgid "plugins.inportexport.native.uploadFile"
+msgstr "Carregueu un arxiu a \"Importar\" per continuar."
+
+msgid "plugins.importexport.native.importComplete"
+msgstr ""
+"La importació s'ha completat correctament. S'han importat els següents "
+"elements:"
 
 msgid "plugins.importexport.native.onix30.pressMissingFields"
 msgstr ""
@@ -38,16 +49,5 @@ msgstr ""
 "metadades ONIX utilitzades en aquesta exportació. Aneu a Configuració > Flux "
 "de treball > Producció i completeu les dades que falten."
 
-msgid "plugins.importexport.native.importComplete"
-msgstr ""
-"La importació s'ha completat correctament. S'han importat els següents "
-"elements:"
-
-msgid "plugins.inportexport.native.uploadFile"
-msgstr "Carregueu un arxiu a \"Importar\" per continuar."
-
-msgid "plugins.importexport.native.exportSubmissionsSelect"
-msgstr "Seleccionar monografies per exportar"
-
-msgid "plugins.importexport.native.import.instructions"
-msgstr "Carregar un arxiu XML per importar"
+msgid "plugins.importexport.native.error.unknownSeries"
+msgstr "Series desconegudes {$param}"

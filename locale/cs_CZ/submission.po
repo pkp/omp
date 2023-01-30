@@ -11,369 +11,23 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "submission.round"
-msgstr "Kolo&nbsp;{$round}"
+msgid "submission.submit.title"
+msgstr "Předložit rukopis"
 
-msgid "publication.scheduledIn"
-msgstr "Naplánováno k publikování v  <a href=\"{$issueUrl}\">{$issueName}</a>."
+msgid "submission.upload.selectComponent"
+msgstr "Vyberte část knihy"
 
-msgid "publication.publish.confirmation"
-msgstr ""
-"Všechny publikační požadavky byly splněny. Skutečně chcete tento katalogvý "
-"záznam zveřejnit?"
+msgid "submission.title"
+msgstr "Název knihy"
 
-msgid "publication.publishedIn"
-msgstr "Publikováno v  <a href=\"{$issueUrl}\">{$issueName}</a>."
+msgid "submission.select"
+msgstr "Vybrat příspěvek"
 
-msgid "publication.required.issue"
-msgstr "Publikace musí být před změřejněním přiřazena k číslu."
+msgid "submission.synopsis"
+msgstr "Anotace"
 
-msgid "publication.invalidSeries"
-msgstr "Edice publikace nebyla nalezena."
-
-msgid "publication.catalogEntry.success"
-msgstr "Detaily příspěvku byly aktualizovány."
-
-msgid "publication.catalogEntry"
-msgstr "Katalogový příspěvek"
-
-msgid "catalog.browseTitles"
-msgstr "{$numTitles} titulů"
-
-msgid "submission.list.saveFeatureOrder"
-msgstr "Uložit pořadí"
-
-msgid "submission.list.orderingFeaturesSection"
-msgstr ""
-"Použíjte metodu drag-and-drop nebo klikněte na tlačítka nahoru/dolů pro "
-"změnu pořadí doporučených publikací na stránce {$title}."
-
-msgid "submission.list.orderingFeatures"
-msgstr ""
-"Použíjte metodu drag-and-drop nebo klikněte na tlačítka nahoru/dolů pro "
-"změnu pořadí doporučených publikací na domovské stránce."
-
-msgid "submission.list.orderFeatures"
-msgstr "Setřídit doporučené knihy"
-
-msgid "submission.list.itemsOfTotalMonographs"
-msgstr "{$count} z {$total} monografií"
-
-msgid "submission.list.countMonographs"
-msgstr "{$count} monografií"
-
-msgid "submission.list.monographs"
-msgstr "Monografie"
-
-msgid "section.any"
-msgstr "Libovolná edice"
-
-msgid "submission.metadataDescription"
-msgstr ""
-"Tyto specifikace jsou založeny na mezinárodním metadatovém standardu Dublin "
-"Core, který je využíván k popisu obsahu nakladatelství."
-
-msgid "submission.dependentFiles"
-msgstr "Související soubory"
-
-msgid "submission.upload.fileContents"
-msgstr "Součást příspěvku"
-
-msgid "workflow.review.externalReview"
-msgstr "Externí recenze"
-
-msgid "editor.submission.decision.sendExternalReview"
-msgstr "Poslat k externí recenzi"
-
-msgid "submission.submit.titleAndSummary"
-msgstr "Název a abstrakt"
-
-msgid "submission.event.publicationFormatRemoved"
-msgstr "Publikační formát \"{$formatName}\" byl odstraněn."
-
-msgid "submission.event.publicationFormatCreated"
-msgstr "Publikační formát \"{$formatName}\" byl vytvořen."
-
-msgid "submission.event.publicationMetadataUpdated"
-msgstr "Metadata publikačního formátu \"{$formatName}\" byla aktualizována."
-
-msgid "submission.event.catalogMetadataUpdated"
-msgstr "Katalogová metadata byla aktualizována."
-
-msgid "submission.event.publicationFormatUnpublished"
-msgstr "Publikační formát \"{$publicationFormatName}\" již není veřejný."
-
-msgid "submission.event.publicationFormatPublished"
-msgstr ""
-"Publikační formát \"{$publicationFormatName}\" je schválen ke zveřejnění."
-
-msgid "submission.event.publicationFormatMadeUnavailable"
-msgstr "Publikační formát \"{$publicationFormatName}\" již není k dispozici."
-
-msgid "submission.event.publicationFormatMadeAvailable"
-msgstr "Publikační formát \"{$publicationFormatName}\" je nyní k dispozici."
-
-msgid "submission.event.metadataUnpublished"
-msgstr "Metadata monografie již nejsou veřejná."
-
-msgid "submission.event.metadataPublished"
-msgstr "Metadata monografie jsou schválena ke zveřejnění."
-
-msgid "submission.catalogEntry.publicationMetadata"
-msgstr "Publikační formát"
-
-msgid "submission.catalogEntry.catalogMetadata"
-msgstr "Katalog"
-
-msgid "submission.catalogEntry.monographMetadata"
-msgstr "Monografie"
-
-msgid "submission.catalogEntry.enableChapterPublicationDates"
-msgstr "Každá kapitola může mít nastaveno vlastní datum publikování."
-
-msgid "submission.catalogEntry.disableChapterPublicationDates"
-msgstr "Všechny kapitoly budou používat datum publikování monografie."
-
-msgid "submission.catalogEntry.chapterPublicationDates"
-msgstr "Datum publikování"
-
-msgid "submission.catalogEntry.viewSubmission"
-msgstr "Prohlédnout příspěvek"
-
-msgid "submission.catalogEntry.isAvailable"
-msgstr "Tato monografie je připravena k vložení do veřejného katalogu."
-
-msgid "submission.catalogEntry.confirm.required"
-msgstr "Potvrďte prosím, že příspěvek je připraven k vložení do katalogu."
-
-msgid "submission.catalogEntry.confirm"
-msgstr "Přidat knihu do veřejného katalogu"
-
-msgid "submission.catalogEntry.selectionMissing"
-msgstr "Musíte vybrat alespoň jednu monografii k přidání do katalogu."
-
-msgid "submission.catalogEntry.select"
-msgstr "Vyberte knihy k přidání do katalogu"
-
-msgid "submission.catalogEntry.add"
-msgstr "Přidat vybrané do katalogu"
-
-msgid "submission.catalogEntry.new"
-msgstr "Nová katalogová položka"
-
-msgid "submission.editCatalogEntry"
-msgstr "Položka"
-
-msgid "submission.incomplete"
-msgstr "Čeká na schválení"
-
-msgid "submission.complete"
-msgstr "Schváleno"
-
-msgid "grid.copyediting.deleteCopyeditorResponse"
-msgstr "Odstranit redigovanou verzi"
-
-msgid "grid.chapters.title"
-msgstr "Kapitoly"
-
-msgid "submission.submit.noContext"
-msgstr "Není možné nalézt nakladatelství tohoto příspěvku."
-
-msgid "submission.submit.userGroupDescription"
-msgstr "Pokud je příspěvkem sborník, měl/a byste vybrat roli editora sborníku."
-
-msgid "submission.submit.userGroup"
-msgstr "Označit mou roli jako..."
-
-msgid "submission.submit.placement"
-msgstr "Vložení příspěvku"
-
-msgid "submission.submit.checklistErrors"
-msgstr ""
-"Pročtěte si a odškrtněte prosím položky z kontrolního seznamu pro nové "
-"příspěvky. Počet zbývajících položek: {$itemsRemaining}."
-
-msgid "submission.submit.whatNext.description"
-msgstr ""
-"Nakladatelství bylo informováno o Vašem příspěvku. Potvrzení bylo odesláno i "
-"do Vaší e-mailové schránky. Jakmile editor Váš příspěvek přezkoumá, "
-"kontaktuje Vás."
-
-msgid "submission.submit.generalInformation"
-msgstr "Obecné informace"
-
-msgid "submission.submit.coverNote"
-msgstr "Průvodní dopis pro editora"
-
-msgid "submission.submit.nextSteps"
-msgstr "Další kroky"
-
-msgid "submission.submit.confirmation"
-msgstr "Potvrzení"
-
-msgid "submission.submit.finishingUp"
-msgstr "Konečné úpravy"
-
-msgid "submission.submit.metadata"
-msgstr "Metadata"
-
-msgid "submission.submit.catalog"
-msgstr "Katalog"
-
-msgid "submission.submit.prepare"
-msgstr "Příprava"
-
-msgid "submission.submit.submissionFile"
-msgstr "Soubor příspěvku"
-
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Vyberte prosím roli přispěvatele."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Zadejte prosím stručný souhrn monografie."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Zadejte prosím název monografie."
-
-msgid "submission.submit.form.authorRequiredFields"
-msgstr "Je třeba zadat jméno, příjmení a e-mailovou adresu pro každého autora."
-
-msgid "submission.submit.form.authorRequired"
-msgstr "Je třeba zadat alespoň jednoho autora."
-
-msgid "submission.submit.contributorRole"
-msgstr "Role přispěvatele"
-
-msgid "submission.submit.privacyStatement"
-msgstr "Prohlášení o osobních údajích"
-
-msgid "submission.submit.form.localeRequired"
-msgstr "Vyberte jazyk příspěvku."
-
-msgid "submission.submit.seriesPosition.description"
-msgstr "např. Kniha 2, Sborník 2"
-
-msgid "submission.submit.seriesPosition"
-msgstr "Číslo svazku v edici"
-
-msgid "author.submit.seriesRequired"
-msgstr "Je vyžadována platná edice."
-
-msgid "author.isVolumeEditor"
-msgstr "Určit připěvatele jako editora sborníku."
-
-msgid "submission.submit.selectSeries"
-msgstr "Vyberte edici (volitelné)"
-
-msgid "submission.submit.cancelSubmission"
-msgstr ""
-"Později můžete tento příspěvek doplnit v sekci Aktuální příspěvky na domácí "
-"stránce autora."
-
-msgid "submission.submit.upload"
-msgstr "Nahrát příspěvek"
-
-msgid "submission.submit.newSubmissionSingle"
-msgstr "Nový příspěvek"
-
-msgid "submission.submit.newSubmissionMultiple"
-msgstr "Předložit nový rukopis do"
-
-msgid "submission.submit"
-msgstr "Předložit nový rukopis"
-
-msgid "grid.action.deleteChapter"
-msgstr "Odstranit tuto kapitolu"
-
-msgid "grid.action.editChapter"
-msgstr "Upravit tuto kapitolu"
-
-msgid "grid.action.addChapter"
-msgstr "Vytvořit novou kapitolu"
-
-msgid "submission.supportingAgencies"
-msgstr "Podporovatelé"
-
-msgid "submission.metadata"
-msgstr "Metadata"
-
-msgid "submission.confirmSubmit"
-msgstr "Opravdu si přejete předložit nakladatelství tento rukopis?"
-
-msgid "manuscript.submissions"
-msgstr "Předložené rukopisy"
-
-msgid "submissions.queuedReview"
-msgstr "V recenzním řízení"
-
-msgid "manuscript.submission"
-msgstr "Předložený rukopis"
-
-msgid "submission.sharing"
-msgstr "Sdílet"
-
-msgid "submission.download"
-msgstr "Ke stažení"
-
-msgid "submission.proofs"
-msgstr "Korektury"
-
-msgid "submission.publicationFormats"
-msgstr "Publikační formáty"
-
-msgid "submission.copyedit"
-msgstr "Redakce"
-
-msgid "submission.chapter.pages"
-msgstr "Strany"
-
-msgid "submission.chapter.editChapter"
-msgstr "Upravit kapitolu"
-
-msgid "submission.chapter.addChapter"
-msgstr "Přidat kapitolu"
-
-msgid "submission.chaptersDescription"
-msgstr ""
-"Zde můžete vypsat kapitoly knihy a přiřadit k nim autory ze seznamu "
-"přispěvatelů výše. Tito přispěvatelé budou mít ke svým kapitolám přístup v "
-"různých fázích publikačního procesu."
-
-msgid "submission.chapters"
-msgstr "Kapitoly"
-
-msgid "submission.chapter"
-msgstr "Kapitola"
-
-msgid "submission.artwork.permissions"
-msgstr "Oprávnění"
-
-msgid "submission.authorListSeparator"
-msgstr "; "
-
-msgid "submission.fairCopy"
-msgstr "Čistopis"
-
-msgid "submission.published"
-msgstr "Připraveno k tisku"
-
-msgid "submission.monograph"
-msgstr "Monografie"
-
-msgid "submission.editorName"
-msgstr "{$editorName} (ed.)"
-
-msgid "submission.workflowType.change"
-msgstr "Změnit"
-
-msgid "submission.workflowType.authoredWork"
-msgstr "Monografie: Autoři jsou přiřazeni ke knize jako k celku."
-
-msgid "submission.workflowType.editedVolume"
-msgstr "Sborník: Autoři jsou přiřazeni k jednotlivým kapitolám."
-
-msgid "submission.workflowType.editedVolume.label"
-msgstr "Sborník"
+msgid "submission.workflowType"
+msgstr "Druh knihy"
 
 msgid "submission.workflowType.description"
 msgstr ""
@@ -381,29 +35,375 @@ msgstr ""
 "je kniha, ve které má každá kapitola jiného autora (detaily kapitol se "
 "zadávají později.)"
 
-msgid "submission.workflowType"
-msgstr "Druh knihy"
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Sborník"
 
-msgid "submission.synopsis"
-msgstr "Anotace"
+msgid "submission.workflowType.editedVolume"
+msgstr "Sborník: Autoři jsou přiřazeni k jednotlivým kapitolám."
 
-msgid "submission.select"
-msgstr "Vybrat příspěvek"
+msgid "submission.workflowType.authoredWork"
+msgstr "Monografie: Autoři jsou přiřazeni ke knize jako k celku."
 
-msgid "submission.title"
-msgstr "Název knihy"
+msgid "submission.workflowType.change"
+msgstr "Změnit"
 
-msgid "submission.upload.selectComponent"
-msgstr "Vyberte část knihy"
+msgid "submission.editorName"
+msgstr "{$editorName} (ed.)"
 
-msgid "submission.submit.title"
-msgstr "Předložit rukopis"
+msgid "submission.monograph"
+msgstr "Monografie"
+
+msgid "submission.published"
+msgstr "Připraveno k tisku"
+
+msgid "submission.fairCopy"
+msgstr "Čistopis"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.artwork.permissions"
+msgstr "Oprávnění"
+
+msgid "submission.chapter"
+msgstr "Kapitola"
+
+msgid "submission.chapters"
+msgstr "Kapitoly"
+
+msgid "submission.chaptersDescription"
+msgstr ""
+"Zde můžete vypsat kapitoly knihy a přiřadit k nim autory ze seznamu "
+"přispěvatelů výše. Tito přispěvatelé budou mít ke svým kapitolám přístup v "
+"různých fázích publikačního procesu."
+
+msgid "submission.chapter.addChapter"
+msgstr "Přidat kapitolu"
+
+msgid "submission.chapter.editChapter"
+msgstr "Upravit kapitolu"
+
+msgid "submission.chapter.pages"
+msgstr "Strany"
+
+msgid "submission.copyedit"
+msgstr "Redakce"
+
+msgid "submission.publicationFormats"
+msgstr "Publikační formáty"
+
+msgid "submission.proofs"
+msgstr "Korektury"
+
+msgid "submission.download"
+msgstr "Ke stažení"
+
+msgid "submission.sharing"
+msgstr "Sdílet"
+
+msgid "manuscript.submission"
+msgstr "Předložený rukopis"
+
+msgid "submission.round"
+msgstr "Kolo&nbsp;{$round}"
+
+msgid "submissions.queuedReview"
+msgstr "V recenzním řízení"
+
+msgid "manuscript.submissions"
+msgstr "Předložené rukopisy"
+
+msgid "submission.confirmSubmit"
+msgstr "Opravdu si přejete předložit nakladatelství tento rukopis?"
+
+msgid "submission.metadata"
+msgstr "Metadata"
+
+msgid "submission.supportingAgencies"
+msgstr "Podporovatelé"
+
+msgid "grid.action.addChapter"
+msgstr "Vytvořit novou kapitolu"
+
+msgid "grid.action.editChapter"
+msgstr "Upravit tuto kapitolu"
+
+msgid "grid.action.deleteChapter"
+msgstr "Odstranit tuto kapitolu"
+
+msgid "submission.submit"
+msgstr "Předložit nový rukopis"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Předložit nový rukopis do"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Nový příspěvek"
+
+msgid "submission.submit.upload"
+msgstr "Nahrát příspěvek"
+
+msgid "submission.submit.cancelSubmission"
+msgstr ""
+"Později můžete tento příspěvek doplnit v sekci Aktuální příspěvky na domácí "
+"stránce autora."
+
+msgid "submission.submit.selectSeries"
+msgstr "Vyberte edici (volitelné)"
+
+msgid "author.isVolumeEditor"
+msgstr "Určit připěvatele jako editora sborníku."
+
+msgid "author.submit.seriesRequired"
+msgstr "Je vyžadována platná edice."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Číslo svazku v edici"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "např. Kniha 2, Sborník 2"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Vyberte jazyk příspěvku."
+
+msgid "submission.submit.privacyStatement"
+msgstr "Prohlášení o osobních údajích"
+
+msgid "submission.submit.contributorRole"
+msgstr "Role přispěvatele"
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Je třeba zadat alespoň jednoho autora."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "Je třeba zadat jméno, příjmení a e-mailovou adresu pro každého autora."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Zadejte prosím název monografie."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Zadejte prosím stručný souhrn monografie."
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Vyberte prosím roli přispěvatele."
+
+msgid "submission.submit.submissionFile"
+msgstr "Soubor příspěvku"
+
+msgid "submission.submit.prepare"
+msgstr "Příprava"
+
+msgid "submission.submit.catalog"
+msgstr "Katalog"
+
+msgid "submission.submit.metadata"
+msgstr "Metadata"
+
+msgid "submission.submit.finishingUp"
+msgstr "Konečné úpravy"
+
+msgid "submission.submit.confirmation"
+msgstr "Potvrzení"
+
+msgid "submission.submit.nextSteps"
+msgstr "Další kroky"
+
+msgid "submission.submit.coverNote"
+msgstr "Průvodní dopis pro editora"
+
+msgid "submission.submit.generalInformation"
+msgstr "Obecné informace"
+
+msgid "submission.submit.whatNext.description"
+msgstr ""
+"Nakladatelství bylo informováno o Vašem příspěvku. Potvrzení bylo odesláno i "
+"do Vaší e-mailové schránky. Jakmile editor Váš příspěvek přezkoumá, "
+"kontaktuje Vás."
+
+msgid "submission.submit.checklistErrors"
+msgstr ""
+"Pročtěte si a odškrtněte prosím položky z kontrolního seznamu pro nové "
+"příspěvky. Počet zbývajících položek: {$itemsRemaining}."
+
+msgid "submission.submit.placement"
+msgstr "Vložení příspěvku"
+
+msgid "submission.submit.userGroup"
+msgstr "Označit mou roli jako..."
+
+msgid "submission.submit.userGroupDescription"
+msgstr "Pokud je příspěvkem sborník, měl/a byste vybrat roli editora sborníku."
+
+msgid "submission.submit.noContext"
+msgstr "Není možné nalézt nakladatelství tohoto příspěvku."
+
+msgid "grid.chapters.title"
+msgstr "Kapitoly"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Odstranit redigovanou verzi"
+
+msgid "submission.complete"
+msgstr "Schváleno"
+
+msgid "submission.incomplete"
+msgstr "Čeká na schválení"
+
+msgid "submission.editCatalogEntry"
+msgstr "Položka"
+
+msgid "submission.catalogEntry.new"
+msgstr "Nová katalogová položka"
+
+msgid "submission.catalogEntry.add"
+msgstr "Přidat vybrané do katalogu"
+
+msgid "submission.catalogEntry.select"
+msgstr "Vyberte knihy k přidání do katalogu"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr "Musíte vybrat alespoň jednu monografii k přidání do katalogu."
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Přidat knihu do veřejného katalogu"
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Potvrďte prosím, že příspěvek je připraven k vložení do katalogu."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Tato monografie je připravena k vložení do veřejného katalogu."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Prohlédnout příspěvek"
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Datum publikování"
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Všechny kapitoly budou používat datum publikování monografie."
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Každá kapitola může mít nastaveno vlastní datum publikování."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Monografie"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Katalog"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Publikační formát"
+
+msgid "submission.event.metadataPublished"
+msgstr "Metadata monografie jsou schválena ke zveřejnění."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Metadata monografie již nejsou veřejná."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "Publikační formát \"{$publicationFormatName}\" je nyní k dispozici."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "Publikační formát \"{$publicationFormatName}\" již není k dispozici."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr ""
+"Publikační formát \"{$publicationFormatName}\" je schválen ke zveřejnění."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "Publikační formát \"{$publicationFormatName}\" již není veřejný."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Katalogová metadata byla aktualizována."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "Metadata publikačního formátu \"{$formatName}\" byla aktualizována."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Publikační formát \"{$formatName}\" byl vytvořen."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Publikační formát \"{$formatName}\" byl odstraněn."
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Název a abstrakt"
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Poslat k externí recenzi"
+
+msgid "workflow.review.externalReview"
+msgstr "Externí recenze"
+
+msgid "submission.upload.fileContents"
+msgstr "Součást příspěvku"
+
+msgid "submission.dependentFiles"
+msgstr "Související soubory"
+
+msgid "submission.metadataDescription"
+msgstr ""
+"Tyto specifikace jsou založeny na mezinárodním metadatovém standardu Dublin "
+"Core, který je využíván k popisu obsahu nakladatelství."
+
+msgid "section.any"
+msgstr "Libovolná edice"
+
+msgid "submission.list.monographs"
+msgstr "Monografie"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} monografií"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} z {$total} monografií"
+
+msgid "submission.list.orderFeatures"
+msgstr "Setřídit doporučené knihy"
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Použíjte metodu drag-and-drop nebo klikněte na tlačítka nahoru/dolů pro "
+"změnu pořadí doporučených publikací na domovské stránce."
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"Použíjte metodu drag-and-drop nebo klikněte na tlačítka nahoru/dolů pro "
+"změnu pořadí doporučených publikací na stránce {$title}."
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Uložit pořadí"
+
+msgid "submission.list.viewEntry"
+msgstr "Zobrazit vstup"
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} titulů"
+
+msgid "publication.catalogEntry"
+msgstr "Katalogový příspěvek"
+
+msgid "publication.catalogEntry.success"
+msgstr "Detaily příspěvku byly aktualizovány."
+
+msgid "publication.invalidSeries"
+msgstr "Edice publikace nebyla nalezena."
 
 msgid "publication.inactiveSeries"
 msgstr "{$series} (Neaktivní)"
 
-msgid "submission.list.viewEntry"
-msgstr "Zobrazit vstup"
+msgid "publication.required.issue"
+msgstr "Publikace musí být před změřejněním přiřazena k číslu."
+
+msgid "publication.publishedIn"
+msgstr "Publikováno v  <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Všechny publikační požadavky byly splněny. Skutečně chcete tento katalogvý "
+"záznam zveřejnit?"
+
+msgid "publication.scheduledIn"
+msgstr "Naplánováno k publikování v  <a href=\"{$issueUrl}\">{$issueName}</a>."
 
 msgid "submission.publication"
 msgstr "Vydání"
@@ -494,4 +494,3 @@ msgstr "Podrobnosti publikace pro verzi {$version}"
 
 msgid "submission.queries.production"
 msgstr "Diskuse během produkčního procesu"
-

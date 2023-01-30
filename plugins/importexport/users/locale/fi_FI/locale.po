@@ -11,73 +11,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.importexport.users.uploadFile"
-msgstr "Ole hyvä ja lataa tiedosto kohdassa \"Tuo\" jatkaaksesi."
+msgid "plugins.importexport.users.displayName"
+msgstr "Käyttäjät -siirtolisäosa"
 
-msgid "plugins.importexport.users.results"
-msgstr "Tulokset"
-
-msgid "plugins.importexport.users.importComplete"
-msgstr ""
-"Tuonti suoritettiin onnistuneesti. Kaikki käyttäjäryhmät ja käyttäjät, "
-"joiden mukaisia käyttäjänimiä tai sähköpostiosoitteita ei ollut vielä "
-"järjestelmässä,  tuotiin järjestelmään."
-
-msgid "plugins.importexport.users.export.errorsOccurred"
-msgstr "Viennin aikana tapahtuneet virheet"
-
-msgid "plugins.importexport.users.export.exportAllUsers"
-msgstr "Vie kaikki"
-
-msgid "plugins.importexport.users.export.exportByRole"
-msgstr "Vie roolin mukaan"
-
-msgid "plugins.importexport.users.export.exportUsers"
-msgstr "Vie käyttäjiä"
-
-msgid "plugins.importexport.users.unknownPress"
-msgstr "Tuntematon julkaisijan sivuston polku \"{$contextPath}\"."
-
-msgid "plugins.importexport.users.import.encryptionMismatch"
-msgstr ""
-"Tiivistettä {$importHash} käyttäviä salasanoja ei voi käyttää. Järjestelmä "
-"on määritetty käyttämään tiivistettä {$ompHash}. Mikäli jatkat, sinun on "
-"uusittava tuotavien käyttäjien salasanat."
-
-msgid "plugins.importexport.users.import.warning"
-msgstr "Varoitus"
-
-msgid "plugins.importexport.users.import.confirmUsers"
-msgstr "Vahvista, että haluat tuoda nämä käyttäjät järjestelmään"
-
-msgid "plugins.importexport.users.import.errorsOccurred"
-msgstr "Tuonnin aikana tapahtuneet virheet"
-
-msgid "plugins.importexport.users.import.usersWereImported"
-msgstr "Seuraavat käyttäjät tuotiin järjestelmään onnistuneesti"
-
-msgid "plugins.importexport.users.import.continueOnError"
-msgstr "Jatka tuontia virheiden sattuessa."
-
-msgid "plugins.importexport.users.import.sendNotify"
-msgstr ""
-"Lähetä tuotaville käyttäjille ilmoitussähköposti, jossa on hänen "
-"käyttäjätunnuksensa ja salasanansa."
-
-msgid "plugins.importexport.users.import.dataFile"
-msgstr "Käyttäjätietotiedosto"
-
-msgid "plugins.importexport.users.import.instructions"
-msgstr ""
-"Valitse XML-tiedosto, joka sisältää tuotavien käyttäjien tiedot. Katso "
-"tarkemmat ohjeet tämän tiedoston oikeasta muotoilemisesta.<br /><br />"
-"Huomaa, että mikäli tiedosto sisältää järjestelmässä jo käytössä olevia "
-"käyttäjänimiä tai sähköpostiosoitteita, näitä tietoja ei tuoda järjestelmään "
-"ja mahdolliset uudet luotavat roolit osoitetaan olemassa oleville "
-"käyttäjille."
-
-msgid "plugins.importexport.users.import.importUsers"
-msgstr "Tuo käyttäjiä"
+msgid "plugins.importexport.users.description"
+msgstr "Vie ja tuo käyttäjiä"
 
 msgid "plugins.importexport.users.cliUsage"
 msgstr ""
@@ -105,8 +43,70 @@ msgstr ""
 "\tVie kaikki arvioijat:\n"
 "\t{$scriptName} {$pluginName} export myExportFile.xml myPress reviewer\n"
 
-msgid "plugins.importexport.users.description"
-msgstr "Vie ja tuo käyttäjiä"
+msgid "plugins.importexport.users.import.importUsers"
+msgstr "Tuo käyttäjiä"
 
-msgid "plugins.importexport.users.displayName"
-msgstr "Käyttäjät -siirtolisäosa"
+msgid "plugins.importexport.users.import.instructions"
+msgstr ""
+"Valitse XML-tiedosto, joka sisältää tuotavien käyttäjien tiedot. Katso "
+"tarkemmat ohjeet tämän tiedoston oikeasta muotoilemisesta.<br /><br /"
+">Huomaa, että mikäli tiedosto sisältää järjestelmässä jo käytössä olevia "
+"käyttäjänimiä tai sähköpostiosoitteita, näitä tietoja ei tuoda järjestelmään "
+"ja mahdolliset uudet luotavat roolit osoitetaan olemassa oleville "
+"käyttäjille."
+
+msgid "plugins.importexport.users.import.dataFile"
+msgstr "Käyttäjätietotiedosto"
+
+msgid "plugins.importexport.users.import.sendNotify"
+msgstr ""
+"Lähetä tuotaville käyttäjille ilmoitussähköposti, jossa on hänen "
+"käyttäjätunnuksensa ja salasanansa."
+
+msgid "plugins.importexport.users.import.continueOnError"
+msgstr "Jatka tuontia virheiden sattuessa."
+
+msgid "plugins.importexport.users.import.usersWereImported"
+msgstr "Seuraavat käyttäjät tuotiin järjestelmään onnistuneesti"
+
+msgid "plugins.importexport.users.import.errorsOccurred"
+msgstr "Tuonnin aikana tapahtuneet virheet"
+
+msgid "plugins.importexport.users.import.confirmUsers"
+msgstr "Vahvista, että haluat tuoda nämä käyttäjät järjestelmään"
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "Varoitus"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr ""
+"Tiivistettä {$importHash} käyttäviä salasanoja ei voi käyttää. Järjestelmä "
+"on määritetty käyttämään tiivistettä {$ompHash}. Mikäli jatkat, sinun on "
+"uusittava tuotavien käyttäjien salasanat."
+
+msgid "plugins.importexport.users.unknownPress"
+msgstr "Tuntematon julkaisijan sivuston polku \"{$contextPath}\"."
+
+msgid "plugins.importexport.users.export.exportUsers"
+msgstr "Vie käyttäjiä"
+
+msgid "plugins.importexport.users.export.exportByRole"
+msgstr "Vie roolin mukaan"
+
+msgid "plugins.importexport.users.export.exportAllUsers"
+msgstr "Vie kaikki"
+
+msgid "plugins.importexport.users.export.errorsOccurred"
+msgstr "Viennin aikana tapahtuneet virheet"
+
+msgid "plugins.importexport.users.importComplete"
+msgstr ""
+"Tuonti suoritettiin onnistuneesti. Kaikki käyttäjäryhmät ja käyttäjät, "
+"joiden mukaisia käyttäjänimiä tai sähköpostiosoitteita ei ollut vielä "
+"järjestelmässä,  tuotiin järjestelmään."
+
+msgid "plugins.importexport.users.results"
+msgstr "Tulokset"
+
+msgid "plugins.importexport.users.uploadFile"
+msgstr "Ole hyvä ja lataa tiedosto kohdassa \"Tuo\" jatkaaksesi."

@@ -38,11 +38,18 @@ msgstr ""
 "Toimitetussa teoksessa jokaisella luvulla on eri kirjoittaja (lukujen tiedot "
 "syötetään myöhemmin.)"
 
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Toimitettu teos"
+
 msgid "submission.workflowType.editedVolume"
 msgstr "Toimitettu teos: Jokaisella luvulla on eri kirjoittaja."
 
 msgid "submission.workflowType.authoredWork"
-msgstr "Erillisteos: Yhden tai useamman kirjoittajan kokonaan kirjoittama teos."
+msgstr ""
+"Erillisteos: Yhden tai useamman kirjoittajan kokonaan kirjoittama teos."
+
+msgid "submission.workflowType.change"
+msgstr "Vaihda"
 
 msgid "submission.editorName"
 msgstr "{$editorName} (toim.)"
@@ -69,13 +76,18 @@ msgid "submission.chapters"
 msgstr "Luvut"
 
 msgid "submission.chaptersDescription"
-msgstr "Tässä voit luetella luvut ja valita tekijät yllä olevasta tekijälistasta. Nämä tekijät saavat pääsyn lukuihin julkaisuprosessin eri vaiheissa."
+msgstr ""
+"Tässä voit luetella luvut ja valita tekijät yllä olevasta tekijälistasta. "
+"Nämä tekijät saavat pääsyn lukuihin julkaisuprosessin eri vaiheissa."
 
 msgid "submission.chapter.addChapter"
 msgstr "Lisää luku"
 
 msgid "submission.chapter.editChapter"
 msgstr "Muokkaa lukua"
+
+msgid "submission.chapter.pages"
+msgstr "Sivut"
 
 msgid "submission.copyedit"
 msgstr "Tekninen toimittaminen"
@@ -135,10 +147,15 @@ msgid "submission.submit.upload"
 msgstr "Lataa käsikirjoitus"
 
 msgid "submission.submit.cancelSubmission"
-msgstr "Voit viimeistellä tämän lähetyksen myöhemmin valitsemalla Aktiiviset käsikirjoitukset Kirjoittajan etusivulta."
+msgstr ""
+"Voit viimeistellä tämän lähetyksen myöhemmin valitsemalla Aktiiviset "
+"käsikirjoitukset Kirjoittajan etusivulta."
 
 msgid "submission.submit.selectSeries"
 msgstr "Valitse sarja (valinnainen)"
+
+msgid "author.isVolumeEditor"
+msgstr "Merkitse tämä tekijä teoksen toimittajaksi."
 
 msgid "author.submit.seriesRequired"
 msgstr "Kelvollinen sarja vaaditaan."
@@ -207,22 +224,23 @@ msgstr ""
 "käsikirjoituksen sinuun otetaan yhteyttä."
 
 msgid "submission.submit.checklistErrors"
-msgstr "Lue ja kuittaa käsikirjoituksen tarkistuslistan kohdat. {$itemsRemaining} kohtaa on vielä kuittaamatta."
+msgstr ""
+"Lue ja kuittaa käsikirjoituksen tarkistuslistan kohdat. {$itemsRemaining} "
+"kohtaa on vielä kuittaamatta."
 
 msgid "submission.submit.placement"
 msgstr "Käsikirjoituksen sijoittaminen"
-
-msgid "submission.submit.placement.categories"
-msgstr "Kategoriat"
-
-msgid "submission.submit.placement.categoriesDescription"
-msgstr "Valitse painon kategorioista se, jonne tämä työ lähetetään käsiteltäväksi."
 
 msgid "submission.submit.userGroup"
 msgstr "Lähetä roolissani..."
 
 msgid "submission.submit.userGroupDescription"
-msgstr "Jos olet lähettämässä toimitettua teosta, sinun tulee valita niteen toimittajan rooli."
+msgstr ""
+"Jos olet lähettämässä toimitettua teosta, sinun tulee valita niteen "
+"toimittajan rooli."
+
+msgid "submission.submit.noContext"
+msgstr "Käsikirjoitusta vastaavaa julkaisijaa ei löytynyt."
 
 msgid "grid.chapters.title"
 msgstr "Luvut"
@@ -263,6 +281,15 @@ msgstr "Tämä kirja on valmis sisällytettäväksi julkiseen luetteloon."
 msgid "submission.catalogEntry.viewSubmission"
 msgstr "Näytä käsikirjoitus"
 
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Julkaisupäivät"
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Kaikki luvut käyttävät teoksen julkaisupäivää."
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Jokaisella luvulla voi olla oma julkaisupäivä."
+
 msgid "submission.catalogEntry.monographMetadata"
 msgstr "Kirja"
 
@@ -285,7 +312,8 @@ msgid "submission.event.publicationFormatMadeUnavailable"
 msgstr "Julkaisumuoto \"{$publicationFormatName}\" ei ole enää saatavissa."
 
 msgid "submission.event.publicationFormatPublished"
-msgstr "Julkaisumuoto \"{$publicationFormatName}\" on hyväksytty julkaistavaksi."
+msgstr ""
+"Julkaisumuoto \"{$publicationFormatName}\" on hyväksytty julkaistavaksi."
 
 msgid "submission.event.publicationFormatUnpublished"
 msgstr "Julkaisumuoto \"{$publicationFormatName}\" ei ole enää julkaistuna."
@@ -305,11 +333,11 @@ msgstr "Julkaisumuoto \"{$formatName}\" poistettiin."
 msgid "submission.submit.titleAndSummary"
 msgstr "Nimeke ja yhteenveto"
 
-msgid "workflow.review.externalReview"
-msgstr "Ulkopuolinen arviointi"
-
 msgid "editor.submission.decision.sendExternalReview"
 msgstr "Lähetä ulkopuoliseen arviointiin"
+
+msgid "workflow.review.externalReview"
+msgstr "Ulkopuolinen arviointi"
 
 msgid "submission.upload.fileContents"
 msgstr "Käsikirjoituksen osa"
@@ -338,63 +366,49 @@ msgid "submission.list.orderFeatures"
 msgstr "Järjestä esittelyssä olevat"
 
 msgid "submission.list.orderingFeatures"
-msgstr "Vedä ja pudota tai napauta ylös- ja alas-painikkeita muuttaaksesi esittelyssä olevien kohteiden järjestystä etusivulla."
+msgstr ""
+"Vedä ja pudota tai napauta ylös- ja alas-painikkeita muuttaaksesi "
+"esittelyssä olevien kohteiden järjestystä etusivulla."
 
 msgid "submission.list.orderingFeaturesSection"
-msgstr "Vedä ja pudota tai napauta ylös- ja alas-painikkeita muuttaaksesi kohteen {$title} ominaisuuksien järjestystä."
+msgstr ""
+"Vedä ja pudota tai napauta ylös- ja alas-painikkeita muuttaaksesi kohteen "
+"{$title} ominaisuuksien järjestystä."
 
 msgid "submission.list.saveFeatureOrder"
 msgstr "Tallenna järjestys"
 
-msgid "publication.scheduledIn"
-msgstr "Tullaan julkaisemaan <a href=\"{$issueUrl}\">{$issueName}</a>."
+msgid "submission.list.viewEntry"
+msgstr "Näytä merkintä"
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} nimikettä"
+
+msgid "publication.catalogEntry"
+msgstr "Luettelomerkintä"
+
+msgid "publication.catalogEntry.success"
+msgstr "Luettelomerkinnän tiedot on päivitetty."
+
+msgid "publication.invalidSeries"
+msgstr "Sarjaa ei löytynyt."
+
+msgid "publication.inactiveSeries"
+msgstr "{$series} (Inactive)"
+
+msgid "publication.required.issue"
+msgstr "Julkaisu pitää lisätä numeroon ennen kuin sen von julkaista."
+
+msgid "publication.publishedIn"
+msgstr "Julkaistu <a href=\"{$issueUrl}\">{$issueName}</a>."
 
 msgid "publication.publish.confirmation"
 msgstr ""
 "Kaikki julkaisuun liittyvät vaatimukset täyttyvät. Haluatko julkaista "
 "teoksen?"
 
-msgid "publication.publishedIn"
-msgstr "Julkaistu <a href=\"{$issueUrl}\">{$issueName}</a>."
-
-msgid "publication.required.issue"
-msgstr "Julkaisu pitää lisätä numeroon ennen kuin sen von julkaista."
-
-msgid "publication.invalidSeries"
-msgstr "Sarjaa ei löytynyt."
-
-msgid "publication.catalogEntry.success"
-msgstr "Luettelomerkinnän tiedot on päivitetty."
-
-msgid "publication.catalogEntry"
-msgstr "Luettelomerkintä"
-
-msgid "catalog.browseTitles"
-msgstr "{$numTitles} nimikettä"
-
-msgid "submission.catalogEntry.enableChapterPublicationDates"
-msgstr "Jokaisella luvulla voi olla oma julkaisupäivä."
-
-msgid "submission.catalogEntry.disableChapterPublicationDates"
-msgstr "Kaikki luvut käyttävät teoksen julkaisupäivää."
-
-msgid "submission.catalogEntry.chapterPublicationDates"
-msgstr "Julkaisupäivät"
-
-msgid "submission.submit.noContext"
-msgstr "Käsikirjoitusta vastaavaa julkaisijaa ei löytynyt."
-
-msgid "author.isVolumeEditor"
-msgstr "Merkitse tämä tekijä teoksen toimittajaksi."
-
-msgid "submission.chapter.pages"
-msgstr "Sivut"
-
-msgid "submission.workflowType.change"
-msgstr "Vaihda"
-
-msgid "submission.workflowType.editedVolume.label"
-msgstr "Toimitettu teos"
+msgid "publication.scheduledIn"
+msgstr "Tullaan julkaisemaan <a href=\"{$issueUrl}\">{$issueName}</a>."
 
 msgid "submission.publication"
 msgstr "Julkaistu versio"
@@ -485,8 +499,9 @@ msgstr "Version {$version} tiedot"
 msgid "submission.queries.production"
 msgstr "Tuotantoon liittyvät keskustelut"
 
-msgid "publication.inactiveSeries"
-msgstr "{$series} (Inactive)"
+#~ msgid "submission.submit.placement.categories"
+#~ msgstr "Kategoriat"
 
-msgid "submission.list.viewEntry"
-msgstr "Näytä merkintä"
+#~ msgid "submission.submit.placement.categoriesDescription"
+#~ msgstr ""
+#~ "Valitse painon kategorioista se, jonne tämä työ lähetetään käsiteltäväksi."

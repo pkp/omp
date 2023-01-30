@@ -1,3 +1,375 @@
+msgid "submission.submit.title"
+msgstr ""
+
+msgid "submission.upload.selectComponent"
+msgstr ""
+
+msgid "submission.title"
+msgstr ""
+
+msgid "submission.select"
+msgstr ""
+
+msgid "submission.synopsis"
+msgstr ""
+
+msgid "submission.workflowType"
+msgstr ""
+
+msgid "submission.workflowType.description"
+msgstr ""
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr ""
+
+msgid "submission.workflowType.editedVolume"
+msgstr ""
+
+msgid "submission.workflowType.authoredWork"
+msgstr ""
+
+msgid "submission.workflowType.change"
+msgstr ""
+
+msgid "submission.editorName"
+msgstr ""
+
+msgid "submission.monograph"
+msgstr ""
+
+msgid "submission.published"
+msgstr ""
+
+msgid "submission.fairCopy"
+msgstr ""
+
+msgid "submission.authorListSeparator"
+msgstr ""
+
+msgid "submission.artwork.permissions"
+msgstr ""
+
+msgid "submission.chapter"
+msgstr ""
+
+msgid "submission.chapters"
+msgstr ""
+
+msgid "submission.chaptersDescription"
+msgstr ""
+
+msgid "submission.chapter.addChapter"
+msgstr ""
+
+msgid "submission.chapter.editChapter"
+msgstr ""
+
+msgid "submission.chapter.pages"
+msgstr ""
+
+msgid "submission.copyedit"
+msgstr ""
+
+msgid "submission.publicationFormats"
+msgstr ""
+
+msgid "submission.proofs"
+msgstr ""
+
+msgid "submission.download"
+msgstr ""
+
+msgid "submission.sharing"
+msgstr ""
+
+msgid "manuscript.submission"
+msgstr ""
+
+msgid "submission.round"
+msgstr ""
+
+msgid "submissions.queuedReview"
+msgstr ""
+
+msgid "manuscript.submissions"
+msgstr ""
+
+msgid "submission.confirmSubmit"
+msgstr ""
+
+msgid "submission.metadata"
+msgstr ""
+
+msgid "submission.supportingAgencies"
+msgstr ""
+
+msgid "grid.action.addChapter"
+msgstr ""
+
+msgid "grid.action.editChapter"
+msgstr ""
+
+msgid "grid.action.deleteChapter"
+msgstr ""
+
+msgid "submission.submit"
+msgstr ""
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr ""
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr ""
+
+msgid "submission.submit.upload"
+msgstr ""
+
+msgid "submission.submit.cancelSubmission"
+msgstr ""
+
+msgid "submission.submit.selectSeries"
+msgstr ""
+
+msgid "author.isVolumeEditor"
+msgstr ""
+
+msgid "author.submit.seriesRequired"
+msgstr ""
+
+msgid "submission.submit.seriesPosition"
+msgstr ""
+
+msgid "submission.submit.seriesPosition.description"
+msgstr ""
+
+msgid "submission.submit.form.localeRequired"
+msgstr ""
+
+msgid "submission.submit.privacyStatement"
+msgstr ""
+
+msgid "submission.submit.contributorRole"
+msgstr ""
+
+msgid "submission.submit.form.authorRequired"
+msgstr ""
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr ""
+
+msgid "submission.submit.form.titleRequired"
+msgstr ""
+
+msgid "submission.submit.form.abstractRequired"
+msgstr ""
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr ""
+
+msgid "submission.submit.submissionFile"
+msgstr ""
+
+msgid "submission.submit.prepare"
+msgstr ""
+
+msgid "submission.submit.catalog"
+msgstr ""
+
+msgid "submission.submit.metadata"
+msgstr ""
+
+msgid "submission.submit.finishingUp"
+msgstr ""
+
+msgid "submission.submit.confirmation"
+msgstr ""
+
+msgid "submission.submit.nextSteps"
+msgstr ""
+
+msgid "submission.submit.coverNote"
+msgstr ""
+
+msgid "submission.submit.generalInformation"
+msgstr ""
+
+msgid "submission.submit.whatNext.description"
+msgstr ""
+
+msgid "submission.submit.checklistErrors"
+msgstr ""
+
+msgid "submission.submit.placement"
+msgstr ""
+
+msgid "submission.submit.userGroup"
+msgstr ""
+
+msgid "submission.submit.userGroupDescription"
+msgstr ""
+
+msgid "submission.submit.noContext"
+msgstr ""
+
+msgid "grid.chapters.title"
+msgstr ""
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr ""
+
+msgid "submission.complete"
+msgstr ""
+
+msgid "submission.incomplete"
+msgstr ""
+
+msgid "submission.editCatalogEntry"
+msgstr ""
+
+msgid "submission.catalogEntry.new"
+msgstr ""
+
+msgid "submission.catalogEntry.add"
+msgstr ""
+
+msgid "submission.catalogEntry.select"
+msgstr ""
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr ""
+
+msgid "submission.catalogEntry.confirm"
+msgstr ""
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr ""
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr ""
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr ""
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr ""
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr ""
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr ""
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr ""
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr ""
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr ""
+
+msgid "submission.event.metadataPublished"
+msgstr ""
+
+msgid "submission.event.metadataUnpublished"
+msgstr ""
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr ""
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr ""
+
+msgid "submission.event.publicationFormatPublished"
+msgstr ""
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr ""
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr ""
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr ""
+
+msgid "submission.event.publicationFormatCreated"
+msgstr ""
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr ""
+
+msgid "submission.submit.titleAndSummary"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr ""
+
+msgid "workflow.review.externalReview"
+msgstr ""
+
+msgid "submission.upload.fileContents"
+msgstr ""
+
+msgid "submission.dependentFiles"
+msgstr ""
+
+msgid "submission.metadataDescription"
+msgstr ""
+
+msgid "section.any"
+msgstr ""
+
+msgid "submission.list.monographs"
+msgstr ""
+
+msgid "submission.list.countMonographs"
+msgstr ""
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr ""
+
+msgid "submission.list.orderFeatures"
+msgstr ""
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+
+msgid "submission.list.saveFeatureOrder"
+msgstr ""
+
+msgid "submission.list.viewEntry"
+msgstr ""
+
+msgid "catalog.browseTitles"
+msgstr ""
+
+msgid "publication.catalogEntry"
+msgstr ""
+
+msgid "publication.catalogEntry.success"
+msgstr ""
+
+msgid "publication.invalidSeries"
+msgstr ""
+
+msgid "publication.inactiveSeries"
+msgstr ""
+
+msgid "publication.required.issue"
+msgstr ""
+
+msgid "publication.publishedIn"
+msgstr ""
+
+msgid "publication.publish.confirmation"
+msgstr ""
+
+msgid "publication.scheduledIn"
+msgstr ""
+
 msgid "submission.publication"
 msgstr "Publikasi"
 
@@ -90,4 +462,3 @@ msgstr "PRincian publikasi naskah versi {$version}"
 
 msgid "submission.queries.production"
 msgstr "Diskusi Produksi"
-

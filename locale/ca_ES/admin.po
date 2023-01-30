@@ -16,32 +16,63 @@ msgstr ""
 msgid "admin.hostedContexts"
 msgstr "Publicacions allotjades"
 
+msgid "admin.settings.appearance.success"
+msgstr "La configuració d'aparença del lloc s'ha actualitzat correctament."
+
+msgid "admin.settings.config.success"
+msgstr "La configuració del lloc s'ha actualitzat correctament."
+
+msgid "admin.settings.info.success"
+msgstr "La informació del lloc s'ha actualitzat correctament."
+
 msgid "admin.settings.redirect"
 msgstr "Redirecció a la publicació"
 
 msgid "admin.settings.redirectInstructions"
-msgstr "Les peticions al lloc web principal són redireccionades a aquesta publicació. Això pot ser útil si el lloc web únicament allotja una sola publicació, per exemple."
+msgstr ""
+"Les peticions al lloc web principal són redireccionades a aquesta "
+"publicació. Això pot ser útil si el lloc web únicament allotja una sola "
+"publicació, per exemple."
 
 msgid "admin.settings.noPressRedirect"
 msgstr "No redireccionis"
 
 msgid "admin.languages.primaryLocaleInstructions"
-msgstr "Aquesta és la llengua predeterminada per al lloc web i per a qualsevol publicació allotjada."
+msgstr ""
+"Aquesta és la llengua predeterminada per al lloc web i per a qualsevol "
+"publicació allotjada."
 
 msgid "admin.languages.supportedLocalesInstructions"
-msgstr "Seleccioneu totes les configuracions regionals que oferirà el lloc web. Les configuracions regionals seleccionades estan disponibles per al seu ús a totes les publicacions allotjades al lloc web, i també apareixen en un menú de selecció d'idioma disponible a cada pàgina del lloc web (que es pot desactivar en pàgines concretes de les publicacions). Si no se seleccionen diferents configuracions regionals, el menú de selecció de llengua no apareix i la configuració avançada de llengua no està disponible a les publicacions."
+msgstr ""
+"Seleccioneu totes les configuracions regionals que oferirà el lloc web. Les "
+"configuracions regionals seleccionades estan disponibles per al seu ús a "
+"totes les publicacions allotjades al lloc web, i també apareixen en un menú "
+"de selecció d'idioma disponible a cada pàgina del lloc web (que es pot "
+"desactivar en pàgines concretes de les publicacions). Si no se seleccionen "
+"diferents configuracions regionals, el menú de selecció de llengua no "
+"apareix i la configuració avançada de llengua no està disponible a les "
+"publicacions."
 
 msgid "admin.locale.maybeIncomplete"
 msgstr "* Les configuracions regionals marcades poden estar incompletes."
 
 msgid "admin.languages.confirmUninstall"
-msgstr "Esteu segur que voleu desinstal·lar aquesta configuració regional? Podria afectar qualsevol de les publicacions allotjades que la utilitzin."
+msgstr ""
+"Esteu segur que voleu desinstal·lar aquesta configuració regional? Podria "
+"afectar qualsevol de les publicacions allotjades que la utilitzin."
 
 msgid "admin.languages.installNewLocalesInstructions"
-msgstr "Seleccioneu qualsevol configuració regional addicional per instal·lar-hi ajuda en aquest sistema. Cal que instal·leu les configuracions regionals abans que les publicacions allotjades les puguin fer servir. Consulteu la documentació de l'OMP per obtenir més informació sobre com instal·lar llengües addicionals."
+msgstr ""
+"Seleccioneu qualsevol configuració regional addicional per instal·lar-hi "
+"ajuda en aquest sistema. Cal que instal·leu les configuracions regionals "
+"abans que les publicacions allotjades les puguin fer servir. Consulteu la "
+"documentació de l'OMP per obtenir més informació sobre com instal·lar "
+"llengües addicionals."
 
 msgid "admin.languages.confirmDisable"
-msgstr "Esteu segur que voleu desactivar aquesta configuració regional? Podria afectar qualsevol de les publicacions allotjades que la utilitzin."
+msgstr ""
+"Esteu segur que voleu desactivar aquesta configuració regional? Podria "
+"afectar qualsevol de les publicacions allotjades que la utilitzin."
 
 msgid "admin.systemVersion"
 msgstr "Versió de l'OMP"
@@ -55,9 +86,6 @@ msgstr "Configuració de la publicació"
 msgid "admin.presses.noneCreated"
 msgstr "No s’ha creat cap publicació."
 
-msgid "admin.contexts.confirmDelete"
-msgstr "Esteu segurs que voleu eliminar aquesta publicació i els seus continguts de manera permanent?"
-
 msgid "admin.contexts.create"
 msgstr "Crea una publicació"
 
@@ -68,10 +96,21 @@ msgid "admin.contexts.form.pathRequired"
 msgstr "Cal que introduïu una ruta."
 
 msgid "admin.contexts.form.pathAlphaNumeric"
-msgstr "La ruta només pot contenir caràcters alfanumèrics, guions baixos i guionets i ha de començar i acabar amb un caràcter alfanumèric."
+msgstr ""
+"La ruta només pot contenir caràcters alfanumèrics, guions baixos i guionets "
+"i ha de començar i acabar amb un caràcter alfanumèric."
 
 msgid "admin.contexts.form.pathExists"
 msgstr "Ja hi ha una altra publicació que utilitza la ruta seleccionada."
+
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr ""
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} s'ha creat correctament."
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} s'ha editat correctament."
 
 msgid "admin.contexts.contextDescription"
 msgstr "Descripció de la publicació"
@@ -82,19 +121,22 @@ msgstr "Afegeix una publicació"
 msgid "admin.overwriteConfigFileInstructions"
 msgstr ""
 "<h4>Atenció!</h4>\n"
-"<p>El sistema no ha pogut sobreescriure la configuració del fitxer de manera automàtica. Per poder aplicar els canvis que heu fet de la configuració obriu <tt>config.inc.php</tt> amb un editor/a de textos apropiat i substituïu el contingut que hi hagi amb el contingut del camp de text de sota.</p>"
+"<p>El sistema no ha pogut sobreescriure la configuració del fitxer de manera "
+"automàtica. Per poder aplicar els canvis que heu fet de la configuració "
+"obriu <tt>config.inc.php</tt> amb un editor/a de textos apropiat i "
+"substituïu el contingut que hi hagi amb el contingut del camp de text de "
+"sota.</p>"
 
-msgid "admin.contexts.form.edit.success"
-msgstr "{$name} s'ha editat correctament."
+msgid "admin.settings.enableBulkEmails.description"
+msgstr ""
 
-msgid "admin.contexts.form.create.success"
-msgstr "{$name} s'ha creat correctament."
+msgid "admin.settings.disableBulkEmailRoles.description"
+msgstr ""
 
-msgid "admin.settings.info.success"
-msgstr "La informació del lloc s'ha actualitzat correctament."
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgstr ""
 
-msgid "admin.settings.config.success"
-msgstr "La configuració del lloc s'ha actualitzat correctament."
-
-msgid "admin.settings.appearance.success"
-msgstr "La configuració d'aparença del lloc s'ha actualitzat correctament."
+#~ msgid "admin.contexts.confirmDelete"
+#~ msgstr ""
+#~ "Esteu segurs que voleu eliminar aquesta publicació i els seus continguts "
+#~ "de manera permanent?"

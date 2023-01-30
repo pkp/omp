@@ -11,90 +11,242 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "manager.series.form.mustAllowPermission"
+msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr ""
-"Minst en ruta i checklistan behöver kryssas i for varje serieredaktörs "
-"uppdrag."
-
-msgid "manager.languages.primaryLocaleInstructions"
-msgstr "Detta kommer vara pressens default-språk."
+"Detta kommer ersätta alla språkspecifika inställningar du har för detta språk"
 
 msgid "manager.languages.noneAvailable"
 msgstr ""
 "Det finns inga ytterligare språk. Kontakta din systemadministratör om du "
 "vill använda andra språk."
 
-msgid "manager.language.confirmDefaultSettingsOverwrite"
-msgstr ""
-"Detta kommer ersätta alla språkspecifika inställningar du har för detta språk"
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Detta kommer vara pressens default-språk."
 
-msgid "manager.series.open"
-msgstr "Öppna bidrag"
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Minst en ruta i checklistan behöver kryssas i for varje serieredaktörs "
+"uppdrag."
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Kontroller så du har valt ett giltigt formulär för granskning."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Kommer inte inkluderas i indexering av pressen"
+
+msgid "manager.series.editorRestriction"
+msgstr "Objekt kan bara skickas in av redaktörer och serieredaktörer."
+
+msgid "manager.series.confirmDelete"
+msgstr "Är du säker på att du vill permanent radera serien?"
 
 msgid "manager.series.indexed"
 msgstr "Indexerad"
 
+msgid "manager.series.open"
+msgstr "Öppna bidrag"
+
+msgid "manager.series.readingTools"
+msgstr "Läsverktyg"
+
+msgid "manager.series.submissionReview"
+msgstr "Kommer inte sakkunniggranskas"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Inskickade bidrag till serien"
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Kräv inte abstract"
+
+msgid "manager.series.disableComments"
+msgstr "Stäng av läsarkommentarer för serien."
+
+msgid "manager.series.book"
+msgstr "Bokserier"
+
+msgid "manager.series.create"
+msgstr "Skapa serie"
+
+msgid "manager.series.policy"
+msgstr "Beskrivning av serie"
+
+msgid "manager.series.assigned"
+msgstr "Redaktörer för serie"
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Ange en redaktör för serien. Ange därefter om serieredaktören ska ha tillsyn "
+"över granskning (peer review) och/eller redaktion (manusredigering, layout "
+"och korrektur) för bidrag till serien. Serieredaktörer kan skapas genom att "
+"klicka på <a href=\"{$seriesEditorsUrl}\">Series Editors</a> under Roller i "
+"Pressinställningar."
+
+msgid "manager.series.hideAbout"
+msgstr "Undanta den här serien från \"Om pressen\"."
+
+msgid "manager.series.unassigned"
+msgstr "Tillgängliga serieredaktörer"
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "En förkortning av seriens titel krävs."
+
+msgid "manager.series.form.titleRequired"
+msgstr "En titel för serien krävs."
+
+msgid "manager.series.noneCreated"
+msgstr "Inga serier har skapats än."
+
+msgid "manager.series.existingUsers"
+msgstr "Befintliga användare"
+
+msgid "manager.series.seriesTitle"
+msgstr "Serietitel"
+
+msgid "manager.series.restricted"
+msgstr "Tillåt inte författare att skicka in bidrag direkt till serien."
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+
+msgid "manager.payment.generalOptions"
+msgstr "Allmänna inställningar"
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Betalningar kommer vara aktiverade för pressen. Användare måste logga in för "
+"att betala."
+
+msgid "manager.payment.success"
+msgstr "Betalningsinställningarna har uppdaterats."
+
+msgid "manager.settings"
+msgstr "Inställningar"
+
+msgid "manager.settings.pressSettings"
+msgstr "Pressinställningar"
+
 msgid "manager.settings.press"
 msgstr "Press"
+
+msgid "manager.settings.publisher.identity"
+msgstr "Förlagets identitet"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Dessa fält är obligatoriska för att publicera giltig <a href=\"https://en."
+"wikipedia.org/wiki/ONIX_for_Books\">ONIX-metadata</a>."
+
+msgid "manager.settings.publisher"
+msgstr "Förlagets namn"
+
+msgid "manager.settings.location"
+msgstr "Geografisk plats"
+
+msgid "manager.settings.publisherCode"
+msgstr "Förlagskod"
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Typ av förlagskod"
 
 msgid "manager.settings.publisherCodeType.invalid"
 msgstr "Detta är inte en giltig typ av förlagskod."
 
-msgid "manager.setup.announcementsIntroduction"
-msgstr "Ytterligare information"
-
-msgid "manager.setup.announcementsDescription"
+msgid "manager.settings.distributionDescription"
 msgstr ""
-"Meddelanden kan publiceras för att informera pressens läsare om nyheter och "
-"evenemang. Publicerade meddelanden är synliga på sidan \"Meddelanden\"."
+"Inställningar för distributionsprocessen (avisering, indexering, arkivering, "
+"betalning, läsverktyg)."
 
-msgid "manager.setup.announcements.success"
-msgstr "Meddelandeinställningarna har uppdaterats."
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Nedladdningar av filer"
 
-msgid "manager.setup.announcements"
-msgstr "Meddelanden"
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Visningar av böckers abstractsidor"
 
-msgid "manager.setup.addSponsor"
-msgstr "Lägg till sponsor"
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Abstractsidor och nedladdningar"
 
-msgid "manager.setup.addNavItem"
-msgstr "Lägg till objekt"
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Visningar av seriers landningssidor"
 
-msgid "manager.setup.addItemtoAboutPress"
-msgstr "Lägg till objekt i \"Om pressen\""
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Visningar av pressens huvudsida"
 
-msgid "manager.setup.addItem"
-msgstr "Lägg till objekt"
+msgid "manager.statistics.reports.filters.byContext.description"
+msgstr "Begränsa resultat efter kontext (serie och/eller bok)."
 
-msgid "manager.setup.addChecklistItem"
-msgstr "Lägg till objekt i checklistan"
+msgid "manager.statistics.reports.filters.byObject.description"
+msgstr ""
+"Begränsa resultat efter typ av objekt (press, serie, bok, filtyp) och/eller "
+"efter ett eller flera objekt-id."
 
-msgid "manager.setup.aboutItemContent"
-msgstr "Innehåll"
+msgid "manager.tools"
+msgstr "Verktyg"
 
-msgid "manager.setup"
-msgstr "Inställningar"
+msgid "manager.tools.importExport"
+msgstr ""
+"Alla verktyg för att importera och exportera data (press, bok, användare)"
 
-msgid "manager.pressManagement"
-msgstr "Pressinställningar"
+msgid "manager.tools.statistics"
+msgstr ""
+"Verktyg för att generera rapporter för användningsstatistik (visningar av "
+"katalogindex, visningar av abstractsidor, filnedladdningar)"
 
-msgid "user.authorization.pluginLevel"
-msgstr "Du har inte tillräckliga rättigheter för att hantera denna plugin."
+msgid "manager.users.availableRoles"
+msgstr "Tillgängliga roller"
 
-msgid "manager.system.payments"
-msgstr "Betalningar"
+msgid "manager.users.currentRoles"
+msgstr "Aktuella roller"
 
-msgid "manager.system.readingTools"
-msgstr "Läsverktyg"
+msgid "manager.users.selectRole"
+msgstr "Välj roll"
 
-msgid "manager.system.reviewForms"
-msgstr "Granskningsformulär"
+msgid "manager.people.allEnrolledUsers"
+msgstr "Användare anmälda till pressen"
 
-msgid "manager.system.archiving"
-msgstr "Arkivering"
+msgid "manager.people.allPresses"
+msgstr "Alla pressar"
 
-msgid "manager.system"
-msgstr "Systeminställningar"
+msgid "manager.people.allSiteUsers"
+msgstr "Anmäl användare från systemet till pressen"
+
+msgid "manager.people.allUsers"
+msgstr "Alla anmälda användare"
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Radera användaren från pressen? Detta kommer avanmäla användaren från alla "
+"roller inom pressen."
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Anmäl en existerande användare"
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Med pressen"
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Välj en användare att slå ihop med ett annat användarkonto (t.ex. om en "
+"person har två användarkonton). Det först valda kontot kommer raderas och "
+"dess bidrag, uppdrag, etc. kommer flyttas över till det andra kontot."
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Välj en användare till vilken den föregående användares bidrag, uppdrag, "
+"etc. flyttas."
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"Synkroniserad tilldelning innebär att samtliga användare inom en specifik "
+"tidskrift kan tilldelas samma roll/funktion i den här pressen. Funktionen "
+"gör det möjligt för en vald grupp av användare/funktioner (t.ex., granskare) "
+"att synkroniseras mellan olika pressar."
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Avaktivera användaren? Detta kommer förhindra användaren från att logga in i "
+"systemet.\n"
+"\n"
+"Du kan även ge användaren ett skäl till avaktiveringen."
 
 msgid "manager.people.noAdministrativeRights"
 msgstr ""
@@ -106,267 +258,195 @@ msgstr ""
 "\tDetta måste utföras av en administratör.\n"
 "\t"
 
-msgid "manager.people.confirmDisable"
-msgstr ""
-"Avaktivera användaren? Detta kommer förhindra användaren från att logga in i "
-"systemet.\n"
-"\n"
-"Du kan även ge användaren ett skäl till avaktiveringen."
+msgid "manager.system"
+msgstr "Systeminställningar"
 
-msgid "manager.people.syncUserDescription"
-msgstr ""
-"Synkroniserad tilldelning innebär att samtliga användare inom en specifik "
-"tidskrift kan tilldelas samma roll/funktion i den här pressen. Funktionen "
-"gör det möjligt för en vald grupp av användare/funktioner (t.ex., granskare) "
-"att synkroniseras mellan olika pressar."
+msgid "manager.system.archiving"
+msgstr "Arkivering"
 
-msgid "manager.people.mergeUsers.into.description"
-msgstr ""
-"Välj en användare till vilken den föregående användares bidrag, uppdrag, "
-"etc. flyttas."
+msgid "manager.system.reviewForms"
+msgstr "Granskningsformulär"
 
-msgid "manager.people.mergeUsers.from.description"
-msgstr ""
-"Välj en användare att slå ihop med ett annat användarkonto (t.ex. om en "
-"person har två användarkonton). Det först valda kontot kommer raderas och "
-"dess bidrag, uppdrag, etc. kommer flyttas över till det andra kontot."
-
-msgid "manager.people.enrollSyncPress"
-msgstr "Med pressen"
-
-msgid "manager.people.enrollExistingUser"
-msgstr "Anmäl en existerande användare"
-
-msgid "manager.people.confirmRemove"
-msgstr ""
-"Radera användaren från pressen? Detta kommer avanmäla användaren från alla "
-"roller inom pressen."
-
-msgid "manager.people.allUsers"
-msgstr "Alla anmälda användare"
-
-msgid "manager.people.allSiteUsers"
-msgstr "Anmäl användare från systemet till pressen"
-
-msgid "manager.people.allPresses"
-msgstr "Alla pressar"
-
-msgid "manager.people.allEnrolledUsers"
-msgstr "Användare anmälda till pressen"
-
-msgid "manager.users.selectRole"
-msgstr "Välj roll"
-
-msgid "manager.users.currentRoles"
-msgstr "Aktuella roller"
-
-msgid "manager.users.availableRoles"
-msgstr "Tillgängliga roller"
-
-msgid "manager.tools.statistics"
-msgstr ""
-"Verktyg för att generera rapporter för användningsstatistik (visningar av "
-"katalogindex, visningar av abstractsidor, filnedladdningar)"
-
-msgid "manager.tools.importExport"
-msgstr ""
-"Alla verktyg för att importera och exportera data (press, bok, användare)"
-
-msgid "manager.tools"
-msgstr "Verktyg"
-
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr ""
-"Begränsa resultat efter typ av objekt (press, serie, bok, filtyp) och/eller "
-"efter ett eller flera objekt-id."
-
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Begränsa resultat efter kontext (serie och/eller bok)."
-
-msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
-msgstr "Visningar av pressens huvudsida"
-
-msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
-msgstr "Visningar av seriers landningssidor"
-
-msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
-msgstr "Abstractsidor och nedladdningar"
-
-msgid "manager.statistics.reports.defaultReport.monographAbstract"
-msgstr "Visningar av böckers abstractsidor"
-
-msgid "manager.statistics.reports.defaultReport.monographDownloads"
-msgstr "Nedladdningar av filer"
-
-msgid "manager.settings.distributionDescription"
-msgstr ""
-"Inställningar för distributionsprocessen (avisering, indexering, arkivering, "
-"betalning, läsverktyg)."
-
-msgid "manager.settings.publisherCodeType"
-msgstr "Typ av förlagskod"
-
-msgid "manager.settings.publisherCode"
-msgstr "Förlagskod"
-
-msgid "manager.settings.location"
-msgstr "Geografisk plats"
-
-msgid "manager.settings.publisher"
-msgstr "Förlagets namn"
-
-msgid "manager.settings.publisher.identity.description"
-msgstr ""
-"Dessa fält är obligatoriska för att publicera giltig <a href=\""
-"https://en.wikipedia.org/wiki/ONIX_for_Books\">ONIX-metadata</a>."
-
-msgid "manager.settings.publisher.identity"
-msgstr "Förlagets identitet"
-
-msgid "manager.settings.pressSettings"
-msgstr "Pressinställningar"
-
-msgid "manager.settings"
-msgstr "Inställningar"
-
-msgid "manager.payment.success"
-msgstr "Betalningsinställningarna har uppdaterats."
-
-msgid "manager.payment.options.enablePayments"
-msgstr ""
-"Betalningar kommer vara aktiverade för pressen. Användare måste logga in för "
-"att betala."
-
-msgid "manager.payment.generalOptions"
-msgstr "Allmänna inställningar"
-
-msgid "manager.series.restricted"
-msgstr "Tillåt inte författare att skicka in bidrag direkt till serien."
-
-msgid "manager.series.seriesTitle"
-msgstr "Serietitel"
-
-msgid "manager.series.existingUsers"
-msgstr "Befintliga användare"
-
-msgid "manager.series.noneCreated"
-msgstr "Inga serier har skapats än."
-
-msgid "manager.series.form.titleRequired"
-msgstr "En titel för serien krävs."
-
-msgid "manager.series.form.abbrevRequired"
-msgstr "En förkortning av seriens titel krävs."
-
-msgid "manager.series.unassigned"
-msgstr "Tillgängliga serieredaktörer"
-
-msgid "manager.series.hideAbout"
-msgstr "Undanta den här serien från \"Om pressen\"."
-
-msgid "manager.series.seriesEditorInstructions"
-msgstr ""
-"Ange en redaktör för serien. Ange därefter om serieredaktören ska ha tillsyn "
-"över granskning (peer review) och/eller redaktion (manusredigering, layout "
-"och korrektur) för bidrag till serien. Serieredaktörer kan skapas genom att "
-"klicka på <a href=\"{$seriesEditorsUrl}\">Series Editors</a> under Roller i "
-"Pressinställningar."
-
-msgid "manager.series.assigned"
-msgstr "Redaktörer för serie"
-
-msgid "manager.series.policy"
-msgstr "Beskrivning av serie"
-
-msgid "manager.series.create"
-msgstr "Skapa serie"
-
-msgid "manager.series.book"
-msgstr "Bokserier"
-
-msgid "manager.series.disableComments"
-msgstr "Stäng av läsarkommentarer för serien."
-
-msgid "manager.series.abstractsNotRequired"
-msgstr "Kräv inte abstract"
-
-msgid "manager.series.submissionsToThisSection"
-msgstr "Inskickade bidrag till serien"
-
-msgid "manager.series.submissionReview"
-msgstr "Kommer inte sakkunniggranskas"
-
-msgid "manager.series.readingTools"
+msgid "manager.system.readingTools"
 msgstr "Läsverktyg"
 
-msgid "manager.series.confirmDelete"
-msgstr "Är du säker på att du vill permanent radera serien?"
+msgid "manager.system.payments"
+msgstr "Betalningar"
 
-msgid "manager.series.editorRestriction"
-msgstr "Objekt kan bara skickas in av redaktörer och serieredaktörer."
+msgid "user.authorization.pluginLevel"
+msgstr "Du har inte tillräckliga rättigheter för att hantera denna plugin."
 
-msgid "manager.series.submissionIndexing"
-msgstr "Kommer inte inkluderas i indexering av pressen"
+msgid "manager.pressManagement"
+msgstr "Pressinställningar"
 
-msgid "manager.series.form.reviewFormId"
-msgstr "Kontroller så du har valt ett giltigt formulär för granskning."
+msgid "manager.setup"
+msgstr "Inställningar"
 
-msgid "manager.setup.aboutPress"
+msgid "manager.setup.aboutItemContent"
+msgstr "Innehåll"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Lägg till \"Om\"-objekt"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Lägg till objekt i checklistan"
+
+msgid "manager.setup.addItem"
+msgstr "Lägg till objekt"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Lägg till objekt i \"Om pressen\""
+
+msgid "manager.setup.addNavItem"
+msgstr "Lägg till objekt"
+
+msgid "manager.setup.addSponsor"
+msgstr "Lägg till sponsor"
+
+msgid "manager.setup.announcements"
+msgstr "Meddelanden"
+
+msgid "manager.setup.announcements.success"
+msgstr "Meddelandeinställningarna har uppdaterats."
+
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Meddelanden kan publiceras för att informera pressens läsare om nyheter och "
+"evenemang. Publicerade meddelanden är synliga på sidan \"Meddelanden\"."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Ytterligare information"
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+"Lägg till ytterligare information som ska visas för läsare under Meddelanden."
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Kommer att visas under Om pressen) "
+
+msgid "manager.setup.contextAbout"
 msgstr "Om pressen"
 
-msgid "manager.setup.focusScopeDescription"
-msgstr "<strong>EXEMPELDATA</strong>"
-
-msgid "manager.setup.focusScope"
-msgstr "Ämnesinriktning"
-
-msgid "manager.setup.focusAndScope.description"
-msgstr "Beskriv pressens inriktning för läsare, författare och bibliotekarier."
-
-msgid "manager.setup.focusAndScope"
-msgstr "Pressens ämnesinriktning"
-
-msgid "manager.setup.enableUserRegistration"
-msgstr "Besökare kan registrera sig som användare av pressen."
-
-msgid "manager.setup.enablePublicGalleyId"
+msgid "manager.setup.contextAbout.description"
 msgstr ""
-"Anpassade identifierare kommer användas för att identifiera "
-"publiceringsversioner (t.ex. HTML- eller PDF-filer) för publicerade verk."
+"Skriv in information som kan vara intressant för läsare, författare eller "
+"granskare. Detta kan exempelvis vara pressens open access-policy, "
+"ämnesinriktning, sponsorer, och pressens historik."
 
-msgid "manager.setup.enablePublicMonographId"
+msgid "manager.setup.contextSummary"
+msgstr "Kort beskrivning av pressen"
+
+msgid "manager.setup.copyediting"
+msgstr "Manusredaktörer"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Instruktioner för manusredaktörer"
+
+msgid "manager.setup.copyeditInstructionsDescription"
 msgstr ""
-"Anpassade identifierare kommer användas för att identifiera publicerade verk."
+"Instruktionerna kommer vara tillgängliga för manusredaktörer, författare och "
+"sektionsredaktörer i manusredigeringssteget. Nedan finns default-"
+"instruktioner i HTML, dessa kan ändras och/eller ersättas av pressansvarig "
+"(i HTML eller fritext)."
 
-msgid "manager.setup.enablePressInstructions"
-msgstr "Gör pressen publik"
+msgid "manager.setup.copyrightNotice"
+msgstr "Upphovsrättsvillkor"
 
-msgid "manager.setup.numAnnouncementsHomepage.description"
+msgid "manager.setup.coverage"
+msgstr "Täckning"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Maximal höjd för omslagsbild"
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Maximal bredd för omslagsbild"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
 msgstr ""
-"Hur många meddelanden som är synliga på förstasidan. Lämna fältet tomt för "
-"att inte visa meddelanden på förstasidan."
+"Bilder kommer förminskas om de överstiger denna storlek, men kommer aldrig "
+"att bli uppskalade eller utsträckta för att passa."
 
-msgid "manager.setup.numAnnouncementsHomepage"
-msgstr "Visa på förstasidan"
+msgid "manager.setup.customizingTheLook"
+msgstr "Steg 5. Anpassa utseendet"
 
-msgid "manager.setup.enableAnnouncements.description"
+msgid "manager.setup.customTags"
+msgstr "Egna taggar"
+
+msgid "manager.setup.customTagsDescription"
 msgstr ""
-"Meddelanden kan innehålla information om nyheter och evenemang. Publicerade "
-"meddelanden kommer att synas på sidan \"Meddelanden\"."
+"Anpassade header-taggar i HTML som kan placeras i varje sidas header (t.ex. "
+"META-taggar)."
 
-msgid "manager.setup.enableAnnouncements.enable"
-msgstr "Aktivera meddelanden"
+msgid "manager.setup.details"
+msgstr "Detaljer"
 
-msgid "manager.setup.emailSignature.description"
+msgid "manager.setup.details.description"
+msgstr "Pressens namn, kontaktuppgifter, sponsorer och sökmotorer."
+
+msgid "manager.setup.disableUserRegistration"
 msgstr ""
-"E-postmeddelanden som skickas för pressens räkning av systemet kommer att ha "
-"följande signatur i slutet."
+"Pressansvarig registrerar alla användarkonton. Redaktörer och "
+"sektionsredaktörer kan registrera användarkonton för granskare."
 
-msgid "manager.setup.emailSignature"
-msgstr "Signatur"
+msgid "manager.setup.discipline"
+msgstr "Akademiskt ämnesområde"
 
-msgid "manager.setup.emails"
-msgstr "E-postidentifiering"
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Kan exempelvis användas om pressen täcker in flera olika ämnesområden och/"
+"eller när författare skickar in tvärvetenskapliga bidrag."
+
+msgid "manager.setup.disciplineExamples"
+msgstr ""
+"(T.ex.  historia, pedagogik, sociologi, psykologi, kulturvetenskaper, "
+"juridik)"
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr "Ge exempel på relevanta akademiska ämnesområden för pressen"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Lägg till innehållsförteckningen för denna bok (om tillgängligt)."
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Innehåll på förstasidan"
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Visa utvalda böcker på förstasidan"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Utvalda böcker"
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Visa böcker i spotlight på förstasidan"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Spotlight"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Visa nya utgivningar på förstasidan"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Nya utgivningar"
+
+msgid "manager.setup.doiPrefix"
+msgstr "DOI-prefix"
+
+msgid "manager.setup.doiPrefixDescription"
+msgstr ""
+"DOI (Digital Object Identifier)-prefixet tilldelas av  <a href=\"http://www."
+"crossref.org\" target=\"_blank\">CrossRef</a> och är i formatet 10.xxxx (t."
+"ex. 10.1234)."
+
+msgid "manager.setup.editorDecision"
+msgstr "Redaktörens beslut"
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Bounce-adress"
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"E-postmeddelanden som inte kan levereras producerar ett felmeddelande som "
+"skickas till denna adress."
 
 msgid "manager.setup.emailBounceAddress.disabled"
 msgstr ""
@@ -376,133 +456,336 @@ msgstr ""
 "nödvändig för att stödja den här funktionaliteten (något som inte alla "
 "servrar tillåter, se OMP-dokumentationen för information)."
 
-msgid "manager.setup.emailBounceAddress.description"
+msgid "manager.setup.emails"
+msgstr "E-postidentifiering"
+
+msgid "manager.setup.emailSignature"
+msgstr "Signatur"
+
+msgid "manager.setup.emailSignature.description"
 msgstr ""
-"E-postmeddelanden som inte kan levereras producerar ett felmeddelande som "
-"skickas till denna adress."
+"E-postmeddelanden som skickas för pressens räkning av systemet kommer att ha "
+"följande signatur i slutet."
 
-msgid "manager.setup.emailBounceAddress"
-msgstr "Bounce-adress"
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Aktivera meddelanden"
 
-msgid "manager.setup.editorDecision"
-msgstr "Redaktörens beslut"
-
-msgid "manager.setup.doiPrefixDescription"
+msgid "manager.setup.enableAnnouncements.description"
 msgstr ""
-"DOI (Digital Object Identifier)-prefixet tilldelas av  <a href=\""
-"http://www.crossref.org\" target=\"_blank\">CrossRef</a> och är i formatet "
-"10.xxxx (t.ex. 10.1234)."
+"Meddelanden kan innehålla information om nyheter och evenemang. Publicerade "
+"meddelanden kommer att synas på sidan \"Meddelanden\"."
 
-msgid "manager.setup.doiPrefix"
-msgstr "DOI-prefix"
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Visa på förstasidan"
 
-msgid "manager.setup.displayNewReleases.label"
-msgstr "Nya utgivningar"
-
-msgid "manager.setup.displayNewReleases"
-msgstr "Visa nya utgivningar på förstasidan"
-
-msgid "manager.setup.displayOnHomepage"
-msgstr "Innehåll på förstasidan"
-
-msgid "manager.setup.displayCurrentMonograph"
-msgstr "Lägg till innehållsförteckningen för denna bok (om tillgängligt)."
-
-msgid "manager.setup.disciplineProvideExamples"
-msgstr "Ge exempel på relevanta akademiska ämnesområden för pressen"
-
-msgid "manager.setup.disciplineExamples"
+msgid "manager.setup.numAnnouncementsHomepage.description"
 msgstr ""
-"(T.ex.  historia, pedagogik, sociologi, psykologi, kulturvetenskaper, "
-"juridik)"
+"Hur många meddelanden som är synliga på förstasidan. Lämna fältet tomt för "
+"att inte visa meddelanden på förstasidan."
 
-msgid "manager.setup.disciplineDescription"
+msgid "manager.setup.enablePressInstructions"
+msgstr "Gör pressen publik"
+
+msgid "manager.setup.enablePublicMonographId"
 msgstr ""
-"Kan exempelvis användas om pressen täcker in flera olika ämnesområden och/"
-"eller när författare skickar in tvärvetenskapliga bidrag."
+"Anpassade identifierare kommer användas för att identifiera publicerade verk."
 
-msgid "manager.setup.discipline"
-msgstr "Akademiskt ämnesområde"
-
-msgid "manager.setup.disableUserRegistration"
+msgid "manager.setup.enablePublicGalleyId"
 msgstr ""
-"Pressansvarig registrerar alla användarkonton. Redaktörer och "
-"sektionsredaktörer kan registrera användarkonton för granskare."
+"Anpassade identifierare kommer användas för att identifiera "
+"publiceringsversioner (t.ex. HTML- eller PDF-filer) för publicerade verk."
 
-msgid "manager.setup.details.description"
-msgstr "Pressens namn, kontaktuppgifter, sponsorer och sökmotorer."
+msgid "manager.setup.enableUserRegistration"
+msgstr "Besökare kan registrera sig som användare av pressen."
 
-msgid "manager.setup.details"
-msgstr "Detaljer"
+msgid "manager.setup.focusAndScope"
+msgstr "Pressens ämnesinriktning"
 
-msgid "manager.setup.customTagsDescription"
+msgid "manager.setup.focusAndScope.description"
+msgstr "Beskriv pressens inriktning för läsare, författare och bibliotekarier."
+
+msgid "manager.setup.focusScope"
+msgstr "Ämnesinriktning"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>EXEMPELDATA</strong>"
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Indexering av innehåll"
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
 msgstr ""
-"Anpassade header-taggar i HTML som kan placeras i varje sidas header (t.ex. "
-"META-taggar)."
+"OMP är anslutet till <a href=\"http://www.openarchives.org/\" target=\"_blank"
+"\">Open Archives Initiative</a> Protokoll för Metadata Harvesting, som är en "
+"väletablerad standard som stöder tillgängliggörandet av välindexerad data i "
+"en global kontext. Författare använder ett generellt formulär för att "
+"beskriva bidragets metadata. Den tidskriftsansvarige anger "
+"indexeringskategorier och förse författare med relevanta exempel som kan "
+"vara till hjälp vid indexeringen."
 
-msgid "manager.setup.customTags"
-msgstr "Egna taggar"
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "Den primära kontaktens e-postadress krävs."
 
-msgid "manager.setup.customizingTheLook"
-msgstr "Steg 5. Anpassa utseendet"
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Den primära kontaktens namn krävs."
 
-msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Antal granskare per bidrag krävs."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "Supportens e-postadress krävs."
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Supportens namn krävs."
+
+msgid "manager.setup.generalInformation"
+msgstr "Allmän information"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Steg 1. Detaljer"
+
+msgid "manager.setup.guidelines"
+msgstr "Riktlinjer"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Steg 3. Ställ in arbetsflödet"
+
+msgid "manager.setup.identity"
+msgstr "Pressens identitet"
+
+msgid "manager.setup.information"
+msgstr "Information"
+
+msgid "manager.setup.information.description"
 msgstr ""
-"Bilder kommer förminskas om de överstiger denna storlek, men kommer aldrig "
-"att bli uppskalade eller utsträckta för att passa."
+"Korta beskrivningar av pressen för bibliotekarier och eventuella författare "
+"eller läsare. Informationen blir synlig på webbsidans sidomeny när "
+"informationsblocket är tillagt."
 
-msgid "manager.setup.coverThumbnailsMaxWidth"
-msgstr "Maximal bredd för omslagsbild"
+msgid "manager.setup.information.forAuthors"
+msgstr "För författare"
 
-msgid "manager.setup.coverThumbnailsMaxHeight"
-msgstr "Maximal höjd för omslagsbild"
+msgid "manager.setup.information.forLibrarians"
+msgstr "För bibliotekarier"
 
-msgid "manager.setup.coverage"
-msgstr "Täckning"
+msgid "manager.setup.information.forReaders"
+msgstr "För läsare"
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Upphovsrättsvillkor"
+msgid "manager.setup.information.success"
+msgstr "Pressens information har uppdaterats."
 
-msgid "manager.setup.copyeditInstructionsDescription"
+msgid "manager.setup.institution"
+msgstr "Institution"
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Objekt per sida"
+
+msgid "manager.setup.itemsPerPage.description"
 msgstr ""
-"Instruktionerna kommer vara tillgängliga för manusredaktörer, författare och "
-"sektionsredaktörer i manusredigeringssteget. Nedan finns default-"
-"instruktioner i HTML, dessa kan ändras och/eller ersättas av pressansvarig ("
-"i HTML eller fritext)."
+"Begränsa antalet objekt (till exempel bidrag, användare, eller uppdrag) i en "
+"lista innan sidbrytning."
 
-msgid "manager.setup.copyeditInstructions"
-msgstr "Instruktioner för manusredaktörer"
+msgid "manager.setup.keyInfo"
+msgstr "Översiktsinformation"
 
-msgid "manager.setup.copyediting"
-msgstr "Manusredaktörer"
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"En kort beskrivning av pressen, samt information om redaktörer, "
+"tidskriftsansvariga och andra medlemmar av din redaktion."
 
-msgid "manager.setup.contextSummary"
+msgid "manager.setup.labelName"
+msgstr "Etikettsnamn"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Layoutredaktörer"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Layoutinstruktioner"
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"Layoutinstruktioner kan anges nedan i HTML eller fritext. De blir då "
+"tillgängliga för layout- och sektionsredaktörer på varje bidrags "
+"redigeringssida."
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Layoutmallar"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"Layoutmallar i olika filformat (t.ex. pdf, doc, etc.) kan laddas upp, "
+"tillsammans med anteckningar som specificerar typsnitt, textstorlek, "
+"marginaler, etc."
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Layoutmall"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Titel"
+
+msgid "manager.setup.lists"
+msgstr "Listor"
+
+msgid "manager.setup.lists.success"
+msgstr "Pressens inställningar för listor har uppdaterats."
+
+msgid "manager.setup.look"
+msgstr "Utseende"
+
+msgid "manager.setup.look.description"
+msgstr ""
+"Hemsidans rubrik, innehåll, sidhuvud och sidfot, navigationsmeny, och "
+"stilmall."
+
+msgid "manager.setup.settings"
+msgstr "Inställningar"
+
+msgid "manager.setup.management.description"
+msgstr ""
+"Tillgång och säkerhet, schemaläggning, meddelanden, manusredigering, layout "
+"och korrektur."
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Administration av redaktionellt arbetsflöde"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Inställningar"
+
+msgid "manager.setup.managingThePress"
+msgstr "Steg 4. Hantera inställningar"
+
+msgid "manager.setup.masthead.success"
+msgstr "Redaktionsrutan har uppdaterats."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Ingen bild har laddats upp."
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Ingen stilmall har laddats upp."
+
+msgid "manager.setup.note"
+msgstr "Anteckning"
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr "Manusredigering kommer utföras av en redaktör eller sektionsredaktör."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+"En redaktör eller sektionsredaktör kommer iordningställa filen eller filerna "
+"(HTML, PDF, etc.)."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr ""
+"En redaktör eller sektionsredaktör kommer kontrollera publiceringsversionen."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Länkar"
+
+msgid "manager.setup.numPageLinks.description"
+msgstr "Begränsa antalet länkar som visas till efterföljande sidor i en lista."
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Tillgång till pressens innehåll"
+
+msgid "manager.setup.onlineIssn"
+msgstr "Online-ISSN"
+
+msgid "manager.setup.policies"
+msgstr "Riktlinjer"
+
+msgid "manager.setup.policies.description"
+msgstr ""
+"Inriktning, kvalitetsgranskning, avdelningar, integritet, säkerhet och "
+"övrigt."
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "Integritetspolicyn har uppdaterats."
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+"Olika delar av pressens utseende kan ändras från den här sidan, inklusive "
+"sidhuvud och sidfot, stilmall och tema, och hur listor fungerar."
+
+msgid "manager.setup.pressDescription"
 msgstr "Kort beskrivning av pressen"
 
-msgid "manager.setup.contextAbout.description"
-msgstr ""
-"Skriv in information som kan vara intressant för läsare, författare eller "
-"granskare. Detta kan exempelvis vara pressens open access-policy, "
-"ämnesinriktning, sponsorer, och pressens historik."
+msgid "manager.setup.pressDescription.description"
+msgstr "En kort beskrivning av pressen."
 
-msgid "manager.setup.contextAbout"
+msgid "manager.setup.aboutPress"
 msgstr "Om pressen"
 
-msgid "manager.setup.appearInAboutPress"
-msgstr "(Kommer att visas under Om pressen) "
-
-msgid "manager.setup.announcementsIntroduction.description"
+msgid "manager.setup.aboutPress.description"
 msgstr ""
-"Lägg till ytterligare information som ska visas för läsare under Meddelanden."
+"Information som kan vara av intresse för läsare, eventuella författare eller "
+"granskare. Det kan t.ex. vara er open access-policy, pressens ämnesmässiga "
+"inriktning, upphovsrättspolicy, pressens historik, integritetspolicy."
 
-msgid "manager.setup.addAboutItem"
-msgstr "Lägg till \"Om\"-objekt"
+msgid "manager.setup.pressArchiving"
+msgstr "Arkivering"
 
-msgid "manager.setup.provideRefLinkInstructions"
-msgstr "Ge instruktioner till layoutredaktörer."
+msgid "manager.setup.homepageContent"
+msgstr "Hemsidans innehåll"
 
-msgid "manager.setup.proofreading"
-msgstr "Korrekturläsare"
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+"Hemsidan har ett antal förinställda navigationslänkar. Ytterligare innehåll "
+"kan läggas till genom att använda något av alternativen nedan."
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Hemsidans innehåll"
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr ""
+"Hemsidan har ett antal förinställda navigationslänkar. Ytterligare innehåll "
+"kan läggas till genom att använda något av alternativen nedan."
+
+msgid "manager.setup.contextInitials"
+msgstr "Förkortning"
+
+msgid "manager.setup.layout"
+msgstr "Layout"
+
+msgid "manager.setup.pageHeader"
+msgstr "Sidhuvud"
+
+msgid "manager.setup.pageHeaderDescription"
+msgstr ""
+
+msgid "manager.setup.pressPolicies"
+msgstr "Steg 2. Pressens riktlinjer"
+
+msgid "manager.setup.pressSetup"
+msgstr "Konfiguration"
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Konfigurationen har uppdaterats."
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Ogiltigt format på stilmall. Formatet måste vara \".css\"."
+
+msgid "manager.setup.pressTheme"
+msgstr "Tema"
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Miniatyrbild"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr ""
+"En liten logotyp eller annan bild som kan användas för att representera "
+"pressen i listor."
+
+msgid "manager.setup.contextTitle"
+msgstr "Pressens namn"
+
+msgid "manager.setup.printIssn"
+msgstr "ISSN för fysiskt format"
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Instruktioner för korrektur"
 
 msgid "manager.setup.proofingInstructionsDescription"
 msgstr ""
@@ -512,282 +795,398 @@ msgstr ""
 "eller bytas ut när som helst av pressansvarig (i HTML-format eller i "
 "fritext)."
 
-msgid "manager.setup.proofingInstructions"
-msgstr "Instruktioner för korrektur"
+msgid "manager.setup.proofreading"
+msgstr "Korrekturläsare"
 
-msgid "manager.setup.printIssn"
-msgstr "ISSN för fysiskt format"
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Ge instruktioner till layoutredaktörer."
 
-msgid "manager.setup.contextTitle"
-msgstr "Pressens namn"
-
-msgid "manager.setup.pressThumbnail.description"
+msgid "manager.setup.publicationScheduleDescription"
 msgstr ""
-"En liten logotyp eller annan bild som kan användas för att representera "
-"pressen i listor."
 
-msgid "manager.setup.pressThumbnail"
-msgstr "Miniatyrbild"
-
-msgid "manager.setup.pressTheme"
-msgstr "Tema"
-
-msgid "manager.setup.styleSheetInvalid"
-msgstr "Ogiltigt format på stilmall. Formatet måste vara \".css\"."
-
-msgid "manager.setup.pressSetupUpdated"
-msgstr "Konfigurationen har uppdaterats."
-
-msgid "manager.setup.pressSetup"
-msgstr "Konfiguration"
-
-msgid "manager.setup.pressPolicies"
-msgstr "Steg 2. Pressens riktlinjer"
-
-msgid "manager.setup.pageHeader"
-msgstr "Sidhuvud"
-
-msgid "manager.setup.layout"
-msgstr "Layout"
-
-msgid "manager.setup.contextInitials"
-msgstr "Förkortning"
-
-msgid "manager.setup.pressHomepageContentDescription"
+msgid "manager.setup.publisher"
 msgstr ""
-"Hemsidan har ett antal förinställda navigationslänkar. Ytterligare innehåll "
-"kan läggas till genom att använda något av alternativen nedan."
 
-msgid "manager.setup.pressHomepageContent"
-msgstr "Hemsidans innehåll"
-
-msgid "manager.setup.homepageContentDescription"
+msgid "manager.setup.publisherDescription"
 msgstr ""
-"Hemsidan har ett antal förinställda navigationslänkar. Ytterligare innehåll "
-"kan läggas till genom att använda något av alternativen nedan."
 
-msgid "manager.setup.homepageContent"
-msgstr "Hemsidans innehåll"
-
-msgid "manager.setup.pressArchiving"
-msgstr "Arkivering"
-
-msgid "manager.setup.aboutPress.description"
+msgid "manager.setup.referenceLinking"
 msgstr ""
-"Information som kan vara av intresse för läsare, eventuella författare eller "
-"granskare. Det kan t.ex. vara er open access-policy, pressens ämnesmässiga "
-"inriktning, upphovsrättspolicy, pressens historik, integritetspolicy."
 
-msgid "manager.setup.pressDescription.description"
-msgstr "En kort beskrivning av pressen."
-
-msgid "manager.setup.pressDescription"
-msgstr "Kort beskrivning av pressen"
-
-msgid "manager.setup.appearanceDescription"
+msgid "manager.setup.refLinkInstructions.description"
 msgstr ""
-"Olika delar av pressens utseende kan ändras från den här sidan, inklusive "
-"sidhuvud och sidfot, stilmall och tema, och hur listor fungerar."
 
-msgid "manager.setup.privacyStatement.success"
-msgstr "Integritetspolicyn har uppdaterats."
-
-msgid "manager.setup.policies.description"
+msgid "manager.setup.restrictMonographAccess"
 msgstr ""
-"Inriktning, kvalitetsgranskning, avdelningar, integritet, säkerhet och "
-"övrigt."
 
-msgid "manager.setup.policies"
-msgstr "Riktlinjer"
-
-msgid "manager.setup.onlineIssn"
-msgstr "Online-ISSN"
-
-msgid "manager.setup.onlineAccessManagement"
-msgstr "Tillgång till pressens innehåll"
-
-msgid "manager.setup.numPageLinks.description"
-msgstr "Begränsa antalet länkar som visas till efterföljande sidor i en lista."
-
-msgid "manager.setup.numPageLinks"
-msgstr "Länkar"
-
-msgid "manager.setup.noUseProofreaders"
+msgid "manager.setup.restrictSiteAccess"
 msgstr ""
-"En redaktör eller sektionsredaktör kommer kontrollera publiceringsversionen."
 
-msgid "manager.setup.noUseLayoutEditors"
+msgid "manager.setup.reviewGuidelines"
 msgstr ""
-"En redaktör eller sektionsredaktör kommer iordningställa filen eller filerna "
-"(HTML, PDF, etc.)."
 
-msgid "manager.setup.noUseCopyeditors"
-msgstr "Manusredigering kommer utföras av en redaktör eller sektionsredaktör."
-
-msgid "manager.setup.note"
-msgstr "Anteckning"
-
-msgid "manager.setup.noStyleSheetUploaded"
-msgstr "Ingen stilmall har laddats upp."
-
-msgid "manager.setup.noImageFileUploaded"
-msgstr "Ingen bild har laddats upp."
-
-msgid "manager.setup.masthead.success"
-msgstr "Redaktionsrutan har uppdaterats."
-
-msgid "manager.setup.managingThePress"
-msgstr "Steg 4. Hantera inställningar"
-
-msgid "manager.setup.managingPublishingSetup"
-msgstr "Inställningar"
-
-msgid "manager.setup.managementOfBasicEditorialSteps"
-msgstr "Administration av redaktionellt arbetsflöde"
-
-msgid "manager.setup.management.description"
+msgid "manager.setup.reviewGuidelinesDescription"
 msgstr ""
-"Tillgång och säkerhet, schemaläggning, meddelanden, manusredigering, layout "
-"och korrektur."
 
-msgid "manager.setup.settings"
-msgstr "Inställningar"
-
-msgid "manager.setup.look.description"
+msgid "manager.setup.internalReviewGuidelines"
 msgstr ""
-"Hemsidans rubrik, innehåll, sidhuvud och sidfot, navigationsmeny, och "
-"stilmall."
 
-msgid "manager.setup.look"
-msgstr "Utseende"
-
-msgid "manager.setup.lists"
-msgstr "Listor"
-
-msgid "manager.setup.layoutTemplates.title"
-msgstr "Titel"
-
-msgid "manager.setup.layoutTemplates.file"
-msgstr "Layoutmall"
-
-msgid "manager.setup.layoutTemplatesDescription"
+msgid "manager.setup.reviewOptions"
 msgstr ""
-"Layoutmallar i olika filformat (t.ex. pdf, doc, etc.) kan laddas upp, "
-"tillsammans med anteckningar som specificerar typsnitt, textstorlek, "
-"marginaler, etc."
 
-msgid "manager.setup.layoutTemplates"
-msgstr "Layoutmallar"
-
-msgid "manager.setup.layoutInstructionsDescription"
+msgid "manager.setup.reviewOptions.automatedReminders"
 msgstr ""
-"Layoutinstruktioner kan anges nedan i HTML eller fritext. De blir då "
-"tillgängliga för layout- och sektionsredaktörer på varje bidrags "
-"redigeringssida."
 
-msgid "manager.setup.layoutInstructions"
-msgstr "Layoutinstruktioner"
-
-msgid "manager.setup.layoutAndGalleys"
-msgstr "Layoutredaktörer"
-
-msgid "manager.setup.labelName"
-msgstr "Etikettsnamn"
-
-msgid "manager.setup.keyInfo.description"
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
 msgstr ""
-"En kort beskrivning av pressen, samt information om redaktörer, "
-"tidskriftsansvariga och andra medlemmar av din redaktion."
 
-msgid "manager.setup.keyInfo"
-msgstr "Översiktsinformation"
-
-msgid "manager.setup.itemsPerPage.description"
+msgid "manager.setup.reviewOptions.onQuality"
 msgstr ""
-"Begränsa antalet objekt (till exempel bidrag, användare, eller uppdrag) i en "
-"lista innan sidbrytning."
 
-msgid "manager.setup.itemsPerPage"
-msgstr "Objekt per sida"
-
-msgid "manager.setup.institution"
-msgstr "Institution"
-
-msgid "manager.setup.information.success"
-msgstr "Pressens information har uppdaterats."
-
-msgid "manager.setup.information.forReaders"
-msgstr "För läsare"
-
-msgid "manager.setup.information.forLibrarians"
-msgstr "För bibliotekarier"
-
-msgid "manager.setup.information.forAuthors"
-msgstr "För författare"
-
-msgid "manager.setup.information.description"
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
 msgstr ""
-"Korta beskrivningar av pressen för bibliotekarier och eventuella författare "
-"eller läsare. Informationen blir synlig på webbsidans sidomeny när "
-"informationsblocket är tillagt."
 
-msgid "manager.setup.information"
-msgstr "Information"
-
-msgid "manager.setup.identity"
-msgstr "Pressens identitet"
-
-msgid "manager.setup.preparingWorkflow"
-msgstr "Steg 3. Ställ in arbetsflödet"
-
-msgid "manager.setup.guidelines"
-msgstr "Riktlinjer"
-
-msgid "manager.setup.gettingDownTheDetails"
-msgstr "Steg 1. Detaljer"
-
-msgid "manager.setup.generalInformation"
-msgstr "Allmän information"
-
-msgid "manager.setup.form.supportNameRequired"
-msgstr "Supportens namn krävs."
-
-msgid "manager.setup.form.supportEmailRequired"
-msgstr "Supportens e-postadress krävs."
-
-msgid "manager.setup.form.numReviewersPerSubmission"
-msgstr "Antal granskare per bidrag krävs."
-
-msgid "manager.setup.form.contactNameRequired"
-msgstr "Den primära kontaktens namn krävs."
-
-msgid "manager.setup.form.contactEmailRequired"
-msgstr "Den primära kontaktens e-postadress krävs."
-
-msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
 msgstr ""
-"OMP är anslutet till <a href=\"http://www.openarchives.org/\" target=\""
-"_blank\">Open Archives Initiative</a> Protokoll för Metadata Harvesting, som "
-"är en väletablerad standard som stöder tillgängliggörandet av välindexerad "
-"data i en global kontext. Författare använder ett generellt formulär för att "
-"beskriva bidragets metadata. Den tidskriftsansvarige anger "
-"indexeringskategorier och förse författare med relevanta exempel som kan "
-"vara till hjälp vid indexeringen."
 
-msgid "manager.setup.forAuthorsToIndexTheirWork"
-msgstr "Indexering av innehåll"
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr ""
 
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Spotlight"
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr ""
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Visa böcker i spotlight på förstasidan"
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
+msgstr ""
 
-msgid "manager.setup.displayFeaturedBooks.label"
-msgstr "Utvalda böcker"
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr ""
 
-msgid "manager.setup.displayFeaturedBooks"
-msgstr "Visa utvalda böcker på förstasidan"
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr ""
 
-msgid "manager.setup.lists.success"
-msgstr "Pressens inställningar för listor har uppdaterats."
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr ""
+
+msgid "manager.setup.reviewPolicy"
+msgstr ""
+
+msgid "manager.setup.reviewProcess"
+msgstr ""
+
+msgid "manager.setup.reviewProcessDescription"
+msgstr ""
+
+msgid "manager.setup.reviewProcessEmail"
+msgstr ""
+
+msgid "manager.setup.reviewProcessStandard"
+msgstr ""
+
+msgid "manager.setup.reviewProcessStandardDescription"
+msgstr ""
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr ""
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr ""
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr ""
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr ""
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr ""
+
+msgid "manager.setup.sectionsDescription"
+msgstr ""
+
+msgid "manager.setup.securitySettings"
+msgstr ""
+
+msgid "manager.setup.securitySettings.note"
+msgstr ""
+
+msgid "manager.setup.selectEditorDescription"
+msgstr ""
+
+msgid "manager.setup.selectSectionDescription"
+msgstr ""
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr ""
+
+msgid "manager.setup.siteAccess.view"
+msgstr ""
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr ""
+
+msgid "manager.setup.stepsToPressSite"
+msgstr ""
+
+msgid "manager.setup.subjectExamples"
+msgstr ""
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr ""
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr ""
+
+msgid "manager.setup.submissionGuidelines"
+msgstr ""
+
+msgid "manager.setup.submissionPreparationChecklist"
+msgstr ""
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr ""
+
+msgid "manager.setup.workflow"
+msgstr ""
+
+msgid "manager.setup.submissions.description"
+msgstr ""
+
+msgid "manager.setup.typeExamples"
+msgstr ""
+
+msgid "manager.setup.typeMethodApproach"
+msgstr ""
+
+msgid "manager.setup.typeProvideExamples"
+msgstr ""
+
+msgid "manager.setup.useCopyeditors"
+msgstr ""
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr ""
+
+msgid "manager.setup.useImageTitle"
+msgstr ""
+
+msgid "manager.setup.useStyleSheet"
+msgstr ""
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+
+msgid "manager.setup.userRegistration"
+msgstr ""
+
+msgid "manager.setup.useTextTitle"
+msgstr ""
+
+msgid "manager.setup.volumePerYear"
+msgstr ""
+
+msgid "manager.setup.publicationFormat.code"
+msgstr ""
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr ""
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr ""
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr ""
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+
+msgid "manager.setup.newPublicationFormat"
+msgstr ""
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+
+msgid "manager.setup.reviewProcessEmailDescription"
+msgstr ""
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+
+msgid "manager.setup.genres"
+msgstr ""
+
+msgid "manager.setup.newGenre"
+msgstr ""
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+
+msgid "manager.setup.deleteSelected"
+msgstr ""
+
+msgid "manager.setup.restoreDefaults"
+msgstr ""
+
+msgid "manager.setup.prospectus"
+msgstr ""
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+
+msgid "manager.setup.submitToCategories"
+msgstr ""
+
+msgid "manager.setup.submitToSeries"
+msgstr ""
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+
+msgid "manager.setup.currentFormats"
+msgstr ""
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr ""
+
+msgid "manager.setup.categories.description"
+msgstr ""
+
+msgid "manager.setup.series.description"
+msgstr ""
+
+msgid "manager.setup.reviewForms"
+msgstr ""
+
+msgid "manager.setup.roleType"
+msgstr ""
+
+msgid "manager.setup.authorRoles"
+msgstr ""
+
+msgid "manager.setup.managerialRoles"
+msgstr ""
+
+msgid "manager.setup.availableRoles"
+msgstr ""
+
+msgid "manager.setup.currentRoles"
+msgstr ""
+
+msgid "manager.setup.internalReviewRoles"
+msgstr ""
+
+msgid "manager.setup.masthead"
+msgstr ""
+
+msgid "manager.setup.editorialTeam"
+msgstr ""
+
+msgid "manager.setup.editorialTeam.description"
+msgstr ""
+
+msgid "manager.setup.files"
+msgstr ""
+
+msgid "manager.setup.productionTemplates"
+msgstr ""
+
+msgid "manager.files.note"
+msgstr ""
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+
+msgid "manager.setup.basicEditorialStepsDescription"
+msgstr ""
+
+msgid "manager.setup.referenceLinkingDescription"
+msgstr ""
+
+msgid "manager.publication.library"
+msgstr ""
+
+msgid "manager.setup.resetPermissions"
+msgstr ""
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr ""
+
+msgid "manager.setup.resetPermissions.description"
+msgstr ""
+
+msgid "manager.setup.resetPermissions.success"
+msgstr ""
+
+msgid "grid.genres.title.short"
+msgstr ""
+
+msgid "grid.genres.title"
+msgstr ""
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr ""
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr ""
+
+msgid "grid.series.pathExists"
+msgstr ""
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr ""
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr ""
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr ""
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr ""
+
+msgid "grid.series.urlWillBe"
+msgstr ""
+
+msgid "stats.publicationStats"
+msgstr ""
+
+msgid "stats.publications.details"
+msgstr ""
+
+msgid "stats.publications.none"
+msgstr ""
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr ""
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr ""
+
+msgid "stats.publications.countOfTotal"
+msgstr ""
+
+msgid "stats.publications.abstracts"
+msgstr ""
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr ""
+
+msgid "plugins.importexport.common.error.validation"
+msgstr ""
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr ""
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr ""

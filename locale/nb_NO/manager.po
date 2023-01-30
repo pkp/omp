@@ -11,265 +11,248 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "manager.setup.forAuthorsToIndexTheirWork"
-msgstr "Til forfattere for å indeksere eget verk"
-
-msgid "manager.setup.focusScopeDescription"
-msgstr "<strong>EXAMPLE HTML DATA</strong>"
-
-msgid "manager.setup.focusScope"
-msgstr "Hovedfokus og spennvidde"
-
-msgid "manager.setup.focusAndScope.description"
+msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr ""
-"Beskriv spennvidden på artikler og annet innhold som utgiveren vil publisere "
-"til forfattere, lesere og bibliotekarer."
+"Dette vil erstatte alle standard utgiverinnstillingene du hadde for dette "
+"språket"
 
-msgid "manager.setup.focusAndScope"
-msgstr "Hovedfokus og spennvidde"
-
-msgid "manager.setup.enableUserRegistration"
-msgstr "La brukere registrere seg på utgiverens nettsted."
-
-msgid "manager.setup.enablePublicGalleyId"
+msgid "manager.languages.noneAvailable"
 msgstr ""
-"Brukerdefinerte identifikatorer brukes til å identifisere "
-"publiseringsversjoner (for eksempel HTML- eller PDF-filer) av publisert "
-"innhold."
+"Beklager, ingen flere språk er tilgjengelig. Kontakt "
+"nettstedsadministratoren din hvis du ønsker å bruke flere språk i dette "
+"tidsskriftet."
 
-msgid "manager.setup.enablePublicMonographId"
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Dette vil bli standard språk for utgiverens nettsted."
+
+msgid "manager.series.form.mustAllowPermission"
 msgstr ""
-"Brukerdefinerte identifikatorer brukes til å identifisere publisert innhold."
+"Minst en avkrysningsrute må være valgt for hver serieredigeringsoppgave."
 
-msgid "manager.setup.enablePressInstructions"
-msgstr "Vis denne utgiveren på nettstedet"
+msgid "manager.series.form.reviewFormId"
+msgstr "Kontroller at du har valgt et gyldig vurderingsskjema."
 
-msgid "manager.setup.numAnnouncementsHomepage.description"
-msgstr ""
-"Hvor mange oppslag som skal vises på hovedsiden. La dette være tomt hvis du "
-"ikke ønsker å vise noen."
+msgid "manager.series.submissionIndexing"
+msgstr "Vil ikke bli inkludert i utgivernes indeksering"
 
-msgid "manager.setup.numAnnouncementsHomepage"
-msgstr "Vis på hovedsiden"
+msgid "manager.series.editorRestriction"
+msgstr "Innleveringer kan bare sendes inn av redaktører og serieredaktører."
 
-msgid "manager.setup.enableAnnouncements.description"
-msgstr ""
-"Oppslag kan publiseres for å informere lesere om tidsskriftnyheter og "
-"begivenheter. Publiserte oppslag vises på oppslagstavlen."
+msgid "manager.series.confirmDelete"
+msgstr "Er du sikker på at du vil slette denne serien for alltid?"
 
-msgid "manager.setup.enableAnnouncements.enable"
-msgstr "Aktiver mulighet for å lage oppslag"
+msgid "manager.series.indexed"
+msgstr "Indeksert"
 
-msgid "manager.setup.emailSignature.description"
-msgstr ""
-"De forberedte e-postene som blir sendt av systemet på vegne av tidsskriftet "
-"kommer til å ha følgende signatur nederst."
+msgid "manager.series.open"
+msgstr "Åpne innleveringer"
 
-msgid "manager.setup.emailSignature"
-msgstr "Signatur"
-
-msgid "manager.setup.emails"
-msgstr "E-post identifikasjon"
-
-msgid "manager.setup.emailBounceAddress.disabled"
-msgstr ""
-"<strong>NB:</strong> For å aktivere denne valgmuligheten, må "
-"nettstedsadministratoren slå på <code>allow_envelope_sender</code> "
-"valgmuligheten i OMP konfigurasjonsfilen. Ytterligere serverkonfigurasjon "
-"kan være nødvendig for å støtte denne funksjonen (som likevel kan være "
-"umulig å bruke på enkelte servere), som oppgitt i OMP-dokumentasjonen."
-
-msgid "manager.setup.emailBounceAddress.description"
-msgstr ""
-"Alle e-poster som ikke kan leveres, vil utløse en feilmelding som sendes til "
-"denne adressen."
-
-msgid "manager.setup.emailBounceAddress"
-msgstr "Feilmeldingsadresse"
-
-msgid "manager.setup.editorDecision"
-msgstr "Redaktørens beslutning"
-
-msgid "manager.setup.doiPrefixDescription"
-msgstr ""
-"DOI-prefikset er tildelt av <a href=\"http://www.crossref.org\" target=\""
-"_blank\">CrossRef</a> og er i 10.xxxx-format (f.eks. 10.1234)."
-
-msgid "manager.setup.doiPrefix"
-msgstr "DOI-prefiks"
-
-msgid "manager.setup.displayNewReleases.label"
-msgstr "Nyutgivelser"
-
-msgid "manager.setup.displayNewReleases"
-msgstr "Vis nye utgivelser på hovedsiden"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Spotlight"
-
-msgid "manager.setup.displayInSpotlight"
-msgstr "Vis bøker fra spotlight på hovedsiden"
-
-msgid "manager.setup.displayFeaturedBooks.label"
-msgstr "Utvalgte bøker"
-
-msgid "manager.setup.displayFeaturedBooks"
-msgstr "Vis utvalgte bøker på hovedsiden"
-
-msgid "manager.setup.displayOnHomepage"
-msgstr "Innhold på hovedsiden"
-
-msgid "manager.setup.displayCurrentMonograph"
-msgstr "Legg till innholdsfortegnelsen for denne boken (hvis den finnes)."
-
-msgid "manager.setup.disciplineProvideExamples"
-msgstr "Gi eksempler på relevante fagemner for denne utgiveren"
-
-msgid "manager.setup.disciplineExamples"
-msgstr ""
-"(For eks. historie; utdanningsvitenskap; sosiologi; psykologi; kulturstudier;"
-" statsvitenskap)"
-
-msgid "manager.setup.disciplineDescription"
-msgstr ""
-"Spesielt nyttig når tidsskrift krysser grensene mellom fagfelt og/eller "
-"forfattere sender inn tverrfaglige bidrag."
-
-msgid "manager.setup.discipline"
-msgstr "Akademisk fagområde og felt"
-
-msgid "manager.setup.disableUserRegistration"
-msgstr ""
-"Slå av brukerregistrering. Brukere må opprettes manuelt av en "
-"redaksjonsleder."
-
-msgid "manager.setup.details.description"
-msgstr "Navn på utgiver, ISSN, kontakter, sponsorer, og søkemotorer."
-
-msgid "manager.setup.details"
-msgstr "Detaljer"
-
-msgid "manager.setup.customTagsDescription"
-msgstr ""
-"Brukerdefinerte HTML header-tagger som skal føres inn i header-seksjonen til "
-"hver side (for eks. META tagger)."
-
-msgid "manager.setup.customTags"
-msgstr "Brukerdefinerte etiketter"
-
-msgid "manager.setup.customizingTheLook"
-msgstr "Trinn 5. Tilpasning av utseendet"
-
-msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
-msgstr ""
-"Bilder forminskes når de er større enn denne størrelsen, men blir aldri "
-"oppskalert eller strukket for å passe til disse dimensjonene."
-
-msgid "manager.setup.coverThumbnailsMaxWidth"
-msgstr "Maksbredde for forsidebilde"
-
-msgid "manager.setup.coverThumbnailsMaxHeight"
-msgstr "Makshøyde for forsidebilde"
-
-msgid "manager.setup.coverage"
-msgstr "Dekning"
-
-msgid "manager.setup.copyrightNotice"
-msgstr "Erklæring om opphavsrett"
-
-msgid "manager.setup.copyeditInstructionsDescription"
-msgstr ""
-"Manuskriptredigeringsveiledninger blir gjort tilgjengelig for "
-"manuskriptredaktører, forfattere og seksjonsredaktører på redigeringsstadiet "
-"for innlevering. Nedenfor er et standard sett med instruksjoner i HTML, som "
-"kan endres eller erstattes av utgiveren når som helst (i HTML eller ren "
-"tekst)."
-
-msgid "manager.setup.copyeditInstructions"
-msgstr "Manuskriptredaktørveiledninger"
-
-msgid "manager.setup.copyediting"
-msgstr "Manusredaktører"
-
-msgid "manager.setup.contextSummary"
-msgstr "Kort beskrivelse av utgiveren"
-
-msgid "manager.setup.contextAbout.description"
-msgstr ""
-"Ta med informasjon om utgiveren din som kan være av interesse for lesere, "
-"forfattere eller fagfeller. Dette kan omfatte policyen for åpen tilgang, "
-"fokus og utgiverens mål, sponsing og utgiverens historie."
-
-msgid "manager.setup.contextAbout"
-msgstr "Om utgiveren"
-
-msgid "manager.setup.appearInAboutPress"
-msgstr "(Vises i Om utgiveren) "
-
-msgid "manager.setup.announcementsIntroduction.description"
-msgstr ""
-"Skriv inn øvrig informasjon som skal vises til lesere på oppslagstavlen."
-
-msgid "manager.setup.announcementsIntroduction"
-msgstr "Annen informasjon"
-
-msgid "manager.setup.announcementsDescription"
-msgstr ""
-"Oppslag kan publiseres for å informere leserne om nyheter og hendelser. "
-"Publiserte oppslag vises på 'Oppslag'-siden."
-
-msgid "manager.setup.announcements.success"
-msgstr "Oppslagsinnstillingene har blitt oppdatert."
-
-msgid "manager.setup.announcements"
-msgstr "Oppslagstavle"
-
-msgid "manager.setup.addSponsor"
-msgstr "Legg til sponsor"
-
-msgid "manager.setup.addNavItem"
-msgstr "Legg til element"
-
-msgid "manager.setup.addItemtoAboutPress"
-msgstr "Legg til element i \"Om utgiveren\""
-
-msgid "manager.setup.addItem"
-msgstr "Legg til element"
-
-msgid "manager.setup.addChecklistItem"
-msgstr "Legg til sjekklisteelement"
-
-msgid "manager.setup.addAboutItem"
-msgstr "Legg til om-element"
-
-msgid "manager.setup.aboutItemContent"
-msgstr "Innhold"
-
-msgid "manager.setup"
-msgstr "Innstillinger"
-
-msgid "manager.pressManagement"
-msgstr "Utgiverinnstillinger"
-
-msgid "user.authorization.pluginLevel"
-msgstr ""
-"Du har ikke tilstrekkelige brukerrettigheter til å administrere dette "
-"programtillegget."
-
-msgid "manager.system.payments"
-msgstr "Betalinger"
-
-msgid "manager.system.readingTools"
+msgid "manager.series.readingTools"
 msgstr "Leseverktøy"
 
-msgid "manager.system.reviewForms"
-msgstr "Fagfellevurderingsskjema"
+msgid "manager.series.submissionReview"
+msgstr "Vil ikke bli fagfellevurdert"
 
-msgid "manager.system.archiving"
-msgstr "Arkivering"
+msgid "manager.series.submissionsToThisSection"
+msgstr "Innleveringer til denne serien"
 
-msgid "manager.system"
-msgstr "Systeminnstillinger"
+msgid "manager.series.abstractsNotRequired"
+msgstr "Krev ikke abstrakt"
+
+msgid "manager.series.disableComments"
+msgstr "Deaktiver leserkommentarer vedrørende denne serien."
+
+msgid "manager.series.book"
+msgstr "Bokserier"
+
+msgid "manager.series.create"
+msgstr "Opprett serie"
+
+msgid "manager.series.policy"
+msgstr "Seriebeskrivelse"
+
+msgid "manager.series.assigned"
+msgstr "Redaktører til denne serien"
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Legg til en serieredaktør i denne serien fra tilgjengelige serieredaktører. "
+"Når redaktøren er lagt til, må du indikere om serieredaktøren vil ha tilsyn "
+"med VURDERING (fagfellevurdering) og/eller REDIGERING (redigering av "
+"manuskript, layout og korrekturlesing) av innleveringer i forbindelse med "
+"denne serien. Serieredaktører opprettes ved å klikke på <a href="
+"\"{$seriesEditorsUrl}\">Serieredaktører</a> under Roller i utgiver-"
+"administrasjon."
+
+msgid "manager.series.hideAbout"
+msgstr "Utelat denne serien fra \"Om utgiveren\"."
+
+msgid "manager.series.unassigned"
+msgstr "Tilgjengelige serieredaktører"
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "En forkortet tittel til serien kreves."
+
+msgid "manager.series.form.titleRequired"
+msgstr "En serietittel kreves."
+
+msgid "manager.series.noneCreated"
+msgstr "Det er ikke opprettet noen serier."
+
+msgid "manager.series.existingUsers"
+msgstr "Eksisterende brukere"
+
+msgid "manager.series.seriesTitle"
+msgstr "Serietittel"
+
+msgid "manager.series.restricted"
+msgstr "Ikke tillat forfattere å sende inn direkte til denne serien."
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"Minst en serie må være aktiv. Gå til arbeidsflytinnstillingene for å "
+"deaktivere alle innleveringer til denne utgiveren."
+
+msgid "manager.payment.generalOptions"
+msgstr "Generelle innstillinger"
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Slå på betalinger vedrørende denne utgiveren. Merk at brukerne må logge på "
+"for å foreta betalinger."
+
+msgid "manager.payment.success"
+msgstr "Betalingsinnsillingene har blitt oppdatert."
+
+msgid "manager.settings"
+msgstr "Innstillinger"
+
+msgid "manager.settings.pressSettings"
+msgstr "Utgiverinnstillinger"
+
+msgid "manager.settings.press"
+msgstr "Utgiver"
+
+msgid "manager.settings.publisher.identity"
+msgstr "Utgiveridentitet"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Disse feltene er obligatoriske for å publiserer gyldige <a href=\"https://en."
+"wikipedia.org/wiki/ONIX_for_Books\">ONIX-metadata</a>."
+
+msgid "manager.settings.publisher"
+msgstr "Utgiverens navn"
+
+msgid "manager.settings.location"
+msgstr "Geografisk plassering"
+
+msgid "manager.settings.publisherCode"
+msgstr "Utgiverkode"
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Type utgiverkode"
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Dette er ikke en gyldig utgiverkode."
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Alle innstillinger som er spesifikke for distribusjonsprosessen (meldinger, "
+"indeksering, arkivering, betaling, leseverktøy)."
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Nedlasting av filer"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Visninger av monografi abstrakter"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Monografi abstrakt og nedlastinger"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Visninger av seriens hovedside"
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Visninger av utgiverens hovedside"
+
+msgid "manager.statistics.reports.filters.byContext.description"
+msgstr "Avgrens resultater etter kontekst (serie og/eller monografi)."
+
+msgid "manager.statistics.reports.filters.byObject.description"
+msgstr ""
+"Avgrens resultater etter objekttype (utgivelse, serie, monografi, filtype) "
+"og/eller etter en eller flere objektID-er."
+
+msgid "manager.tools"
+msgstr "Verktøy"
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Alle verktøy som er spesifikke for import og eksport av data (utgivere, "
+"monografier, brukere)"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Verktøy for å generere rapporter relatert til bruksstatistikk (sideindeks "
+"for katalogindeks, oversikt over sidevisning, nedlasting av monografifiler)"
+
+msgid "manager.users.availableRoles"
+msgstr "Tilgjengelige roller"
+
+msgid "manager.users.currentRoles"
+msgstr "Aktuelle roller"
+
+msgid "manager.users.selectRole"
+msgstr "Velg rolle"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Registrerte brukere med roller hos denne utgiveren"
+
+msgid "manager.people.allPresses"
+msgstr "Alle utgivere"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Verv en bruker fra denne plattformen til denne utgiveren"
+
+msgid "manager.people.allUsers"
+msgstr "Alle brukere"
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Vil du fjerne denne brukeren fra denne utgiveren? Denne handlingen vil "
+"frigjøre brukeren fra alle roller hos denne utgiveren."
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Verv en eksisterende bruker"
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Med utgiver"
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Velg en bruker du vil slå sammen med en annen brukerkonto (for eks. når noen "
+"har to brukerkontoer). Den først valgte kontoen vil bli slettet og "
+"tilhørende manuskript, oppdrag etc. vil bli overført til den andre kontoen."
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Velg en bruker du vil overføre den foregående brukerens forfatterskap, "
+"redigeringsoppdrag etc."
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"Vervingssynkronisering verver alle brukere som allerede er vervet i angitt "
+"rolle hos den spsifiserte utgiveren til samme rolle hos denne utgiveren. "
+"Denne funksjonen tillater at et felles sett brukere (for eks. fagfeller) "
+"synkroniseres mellom utgivere."
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Slå av denne brukeren? Dette vil hindre brukeren fra å logge inn på "
+"systemet.\n"
+"\n"
+"Du kan velge å gi brukeren en begrunnelse for at kontoen er slått av."
 
 msgid "manager.people.noAdministrativeRights"
 msgstr ""
@@ -282,273 +265,987 @@ msgstr ""
 "\tDenne handlingen må utføres av en nettstedsadministrator.\n"
 "\t"
 
-msgid "manager.people.confirmDisable"
-msgstr ""
-"Slå av denne brukeren? Dette vil hindre brukeren fra å logge inn på systemet."
-"\n"
-"\n"
-"Du kan velge å gi brukeren en begrunnelse for at kontoen er slått av."
+msgid "manager.system"
+msgstr "Systeminnstillinger"
 
-msgid "manager.people.syncUserDescription"
-msgstr ""
-"Vervingssynkronisering verver alle brukere som allerede er vervet i angitt "
-"rolle hos den spsifiserte utgiveren til samme rolle hos denne utgiveren. "
-"Denne funksjonen tillater at et felles sett brukere (for eks. fagfeller) "
-"synkroniseres mellom utgivere."
+msgid "manager.system.archiving"
+msgstr "Arkivering"
 
-msgid "manager.people.mergeUsers.into.description"
-msgstr ""
-"Velg en bruker du vil overføre den foregående brukerens forfatterskap, "
-"redigeringsoppdrag etc."
+msgid "manager.system.reviewForms"
+msgstr "Fagfellevurderingsskjema"
 
-msgid "manager.people.mergeUsers.from.description"
-msgstr ""
-"Velg en bruker du vil slå sammen med en annen brukerkonto (for eks. når noen "
-"har to brukerkontoer). Den først valgte kontoen vil bli slettet og "
-"tilhørende manuskript, oppdrag etc. vil bli overført til den andre kontoen."
-
-msgid "manager.people.enrollSyncPress"
-msgstr "Med utgiver"
-
-msgid "manager.people.enrollExistingUser"
-msgstr "Verv en eksisterende bruker"
-
-msgid "manager.people.confirmRemove"
-msgstr ""
-"Vil du fjerne denne brukeren fra denne utgiveren? Denne handlingen vil "
-"frigjøre brukeren fra alle roller hos denne utgiveren."
-
-msgid "manager.people.allUsers"
-msgstr "Alle brukere"
-
-msgid "manager.people.allSiteUsers"
-msgstr "Verv en bruker fra denne plattformen til denne utgiveren"
-
-msgid "manager.people.allPresses"
-msgstr "Alle utgivere"
-
-msgid "manager.people.allEnrolledUsers"
-msgstr "Registrerte brukere med roller hos denne utgiveren"
-
-msgid "manager.users.selectRole"
-msgstr "Velg rolle"
-
-msgid "manager.users.currentRoles"
-msgstr "Aktuelle roller"
-
-msgid "manager.users.availableRoles"
-msgstr "Tilgjengelige roller"
-
-msgid "manager.tools.statistics"
-msgstr ""
-"Verktøy for å generere rapporter relatert til bruksstatistikk (sideindeks "
-"for katalogindeks, oversikt over sidevisning, nedlasting av monografifiler)"
-
-msgid "manager.tools.importExport"
-msgstr ""
-"Alle verktøy som er spesifikke for import og eksport av data (utgivere, "
-"monografier, brukere)"
-
-msgid "manager.tools"
-msgstr "Verktøy"
-
-msgid "manager.statistics.reports.filters.byObject.description"
-msgstr ""
-"Avgrens resultater etter objekttype (utgivelse, serie, monografi, filtype) "
-"og/eller etter en eller flere objektID-er."
-
-msgid "manager.statistics.reports.filters.byContext.description"
-msgstr "Avgrens resultater etter kontekst (serie og/eller monografi)."
-
-msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
-msgstr "Visninger av utgiverens hovedside"
-
-msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
-msgstr "Visninger av seriens hovedside"
-
-msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
-msgstr "Monografi abstrakt og nedlastinger"
-
-msgid "manager.statistics.reports.defaultReport.monographAbstract"
-msgstr "Visninger av monografi abstrakter"
-
-msgid "manager.statistics.reports.defaultReport.monographDownloads"
-msgstr "Nedlasting av filer"
-
-msgid "manager.settings.distributionDescription"
-msgstr ""
-"Alle innstillinger som er spesifikke for distribusjonsprosessen (meldinger, "
-"indeksering, arkivering, betaling, leseverktøy)."
-
-msgid "manager.settings.publisherCodeType.invalid"
-msgstr "Dette er ikke en gyldig utgiverkode."
-
-msgid "manager.settings.publisherCodeType"
-msgstr "Type utgiverkode"
-
-msgid "manager.settings.publisherCode"
-msgstr "Utgiverkode"
-
-msgid "manager.settings.location"
-msgstr "Geografisk plassering"
-
-msgid "manager.settings.publisher"
-msgstr "Utgiverens navn"
-
-msgid "manager.settings.publisher.identity.description"
-msgstr ""
-"Disse feltene er obligatoriske for å publiserer gyldige <a href=\""
-"https://en.wikipedia.org/wiki/ONIX_for_Books\">ONIX-metadata</a>."
-
-msgid "manager.settings.publisher.identity"
-msgstr "Utgiveridentitet"
-
-msgid "manager.settings.press"
-msgstr "Utgiver"
-
-msgid "manager.settings.pressSettings"
-msgstr "Utgiverinnstillinger"
-
-msgid "manager.settings"
-msgstr "Innstillinger"
-
-msgid "manager.payment.success"
-msgstr "Betalingsinnsillingene har blitt oppdatert."
-
-msgid "manager.payment.options.enablePayments"
-msgstr ""
-"Slå på betalinger vedrørende denne utgiveren. Merk at brukerne må logge på "
-"for å foreta betalinger."
-
-msgid "manager.payment.generalOptions"
-msgstr "Generelle innstillinger"
-
-msgid "manager.series.restricted"
-msgstr "Ikke tillat forfattere å sende inn direkte til denne serien."
-
-msgid "manager.series.seriesTitle"
-msgstr "Serietittel"
-
-msgid "manager.series.existingUsers"
-msgstr "Eksisterende brukere"
-
-msgid "manager.series.noneCreated"
-msgstr "Det er ikke opprettet noen serier."
-
-msgid "manager.series.form.titleRequired"
-msgstr "En serietittel kreves."
-
-msgid "manager.series.form.abbrevRequired"
-msgstr "En forkortet tittel til serien kreves."
-
-msgid "manager.series.unassigned"
-msgstr "Tilgjengelige serieredaktører"
-
-msgid "manager.series.hideAbout"
-msgstr "Utelat denne serien fra \"Om utgiveren\"."
-
-msgid "manager.series.seriesEditorInstructions"
-msgstr ""
-"Legg til en serieredaktør i denne serien fra tilgjengelige serieredaktører. "
-"Når redaktøren er lagt til, må du indikere om serieredaktøren vil ha tilsyn "
-"med VURDERING (fagfellevurdering) og/eller REDIGERING (redigering av "
-"manuskript, layout og korrekturlesing) av innleveringer i forbindelse med "
-"denne serien. Serieredaktører opprettes ved å klikke på <a href=\""
-"{$seriesEditorsUrl}\">Serieredaktører</a> under Roller i utgiver-"
-"administrasjon."
-
-msgid "manager.series.assigned"
-msgstr "Redaktører til denne serien"
-
-msgid "manager.series.policy"
-msgstr "Seriebeskrivelse"
-
-msgid "manager.series.create"
-msgstr "Opprett serie"
-
-msgid "manager.series.book"
-msgstr "Bokserier"
-
-msgid "manager.series.disableComments"
-msgstr "Deaktiver leserkommentarer vedrørende denne serien."
-
-msgid "manager.series.abstractsNotRequired"
-msgstr "Krev ikke abstrakt"
-
-msgid "manager.series.submissionsToThisSection"
-msgstr "Innleveringer til denne serien"
-
-msgid "manager.series.submissionReview"
-msgstr "Vil ikke bli fagfellevurdert"
-
-msgid "manager.series.readingTools"
+msgid "manager.system.readingTools"
 msgstr "Leseverktøy"
 
-msgid "manager.series.open"
-msgstr "Åpne innleveringer"
+msgid "manager.system.payments"
+msgstr "Betalinger"
 
-msgid "manager.series.indexed"
-msgstr "Indeksert"
-
-msgid "manager.series.confirmDelete"
-msgstr "Er du sikker på at du vil slette denne serien for alltid?"
-
-msgid "manager.series.editorRestriction"
-msgstr "Innleveringer kan bare sendes inn av redaktører og serieredaktører."
-
-msgid "manager.series.submissionIndexing"
-msgstr "Vil ikke bli inkludert i utgivernes indeksering"
-
-msgid "manager.series.form.reviewFormId"
-msgstr "Kontroller at du har valgt et gyldig vurderingsskjema."
-
-msgid "manager.series.form.mustAllowPermission"
+msgid "user.authorization.pluginLevel"
 msgstr ""
-"Minst en avkrysningsrute må være valgt for hver serieredigeringsoppgave."
+"Du har ikke tilstrekkelige brukerrettigheter til å administrere dette "
+"programtillegget."
 
-msgid "manager.languages.primaryLocaleInstructions"
-msgstr "Dette vil bli standard språk for utgiverens nettsted."
+msgid "manager.pressManagement"
+msgstr "Utgiverinnstillinger"
 
-msgid "manager.languages.noneAvailable"
+msgid "manager.setup"
+msgstr "Innstillinger"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Innhold"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Legg til om-element"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Legg til sjekklisteelement"
+
+msgid "manager.setup.addItem"
+msgstr "Legg til element"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Legg til element i \"Om utgiveren\""
+
+msgid "manager.setup.addNavItem"
+msgstr "Legg til element"
+
+msgid "manager.setup.addSponsor"
+msgstr "Legg til sponsor"
+
+msgid "manager.setup.announcements"
+msgstr "Oppslagstavle"
+
+msgid "manager.setup.announcements.success"
+msgstr "Oppslagsinnstillingene har blitt oppdatert."
+
+msgid "manager.setup.announcementsDescription"
 msgstr ""
-"Beklager, ingen flere språk er tilgjengelig. Kontakt "
-"nettstedsadministratoren din hvis du ønsker å bruke flere språk i dette "
-"tidsskriftet."
+"Oppslag kan publiseres for å informere leserne om nyheter og hendelser. "
+"Publiserte oppslag vises på 'Oppslag'-siden."
 
-msgid "manager.language.confirmDefaultSettingsOverwrite"
-msgstr ""
-"Dette vil erstatte alle standard utgiverinnstillingene du hadde for dette "
-"språket"
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Annen informasjon"
 
-msgid "manager.setup.referenceLinkingDescription"
+msgid "manager.setup.announcementsIntroduction.description"
 msgstr ""
-"<p>For at lesere lett skal kunne finne nettpubliserte versjoner av verk "
-"forfattere henviser til i artiklene sine, finnes følgende muligheter.</p>\n"
-"\n"
-"<ol>\n"
-"\t<li><strong>Legg til et Leseverktøy</strong><p>Redaksjonslederen kan legge "
-"til verktøyet \"Finn henvisning\" i Leseverktøy som vises i sidespalten ved "
-"publiserte artikler. Med dette verktøyet kan leseren lime inn tittelen fra "
-"en henvisning for å søke etter verket i egnete søkeverktøy som er valgt på "
-"forhånd av tidsskriftet.</p></li>\n"
-"\t<li><strong>Legg inn lenker i henvisningene</strong><p>Layoutredaktøren "
-"kan legge inn aktive lenker direkte i artikkelfilens henvisninger ved å "
-"følge instruksen nedenfor (som kan redigeres).</p></li>\n"
-"</ol>"
+"Skriv inn øvrig informasjon som skal vises til lesere på oppslagstavlen."
 
-msgid "manager.setup.basicEditorialStepsDescription"
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Vises i Om utgiveren) "
+
+msgid "manager.setup.contextAbout"
+msgstr "Om utgiveren"
+
+msgid "manager.setup.contextAbout.description"
 msgstr ""
-"Trinn: Manuskriptarbeidskø &gt; Manuskriptvurdering &gt; "
-"Manuskriptbehandling &gt; Innholdsfortegnelse.<br /><br />\n"
-"Velg en modell for håndtering av disse sidene av den redaksjonelle "
-"prosessen. (For å oppnevne ansvarlig redaktør og seksjonsredaktører; gå til "
-"Redaktører i tidsskriftadministrasjon.)"
+"Ta med informasjon om utgiveren din som kan være av interesse for lesere, "
+"forfattere eller fagfeller. Dette kan omfatte policyen for åpen tilgang, "
+"fokus og utgiverens mål, sponsing og utgiverens historie."
+
+msgid "manager.setup.contextSummary"
+msgstr "Kort beskrivelse av utgiveren"
+
+msgid "manager.setup.copyediting"
+msgstr "Manusredaktører"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Manuskriptredaktørveiledninger"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+"Manuskriptredigeringsveiledninger blir gjort tilgjengelig for "
+"manuskriptredaktører, forfattere og seksjonsredaktører på redigeringsstadiet "
+"for innlevering. Nedenfor er et standard sett med instruksjoner i HTML, som "
+"kan endres eller erstattes av utgiveren når som helst (i HTML eller ren "
+"tekst)."
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Erklæring om opphavsrett"
+
+msgid "manager.setup.coverage"
+msgstr "Dekning"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Makshøyde for forsidebilde"
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Maksbredde for forsidebilde"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Bilder forminskes når de er større enn denne størrelsen, men blir aldri "
+"oppskalert eller strukket for å passe til disse dimensjonene."
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Trinn 5. Tilpasning av utseendet"
+
+msgid "manager.setup.customTags"
+msgstr "Brukerdefinerte etiketter"
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Brukerdefinerte HTML header-tagger som skal føres inn i header-seksjonen til "
+"hver side (for eks. META tagger)."
+
+msgid "manager.setup.details"
+msgstr "Detaljer"
+
+msgid "manager.setup.details.description"
+msgstr "Navn på utgiver, ISSN, kontakter, sponsorer, og søkemotorer."
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+"Slå av brukerregistrering. Brukere må opprettes manuelt av en "
+"redaksjonsleder."
+
+msgid "manager.setup.discipline"
+msgstr "Akademisk fagområde og felt"
+
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Spesielt nyttig når tidsskrift krysser grensene mellom fagfelt og/eller "
+"forfattere sender inn tverrfaglige bidrag."
+
+msgid "manager.setup.disciplineExamples"
+msgstr ""
+"(For eks. historie; utdanningsvitenskap; sosiologi; psykologi; "
+"kulturstudier; statsvitenskap)"
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr "Gi eksempler på relevante fagemner for denne utgiveren"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Legg till innholdsfortegnelsen for denne boken (hvis den finnes)."
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Innhold på hovedsiden"
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Vis utvalgte bøker på hovedsiden"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Utvalgte bøker"
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Vis bøker fra spotlight på hovedsiden"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Spotlight"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Vis nye utgivelser på hovedsiden"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Nyutgivelser"
+
+msgid "manager.setup.doiPrefix"
+msgstr "DOI-prefiks"
+
+msgid "manager.setup.doiPrefixDescription"
+msgstr ""
+"DOI-prefikset er tildelt av <a href=\"http://www.crossref.org\" target="
+"\"_blank\">CrossRef</a> og er i 10.xxxx-format (f.eks. 10.1234)."
+
+msgid "manager.setup.editorDecision"
+msgstr "Redaktørens beslutning"
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Feilmeldingsadresse"
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"Alle e-poster som ikke kan leveres, vil utløse en feilmelding som sendes til "
+"denne adressen."
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"<strong>NB:</strong> For å aktivere denne valgmuligheten, må "
+"nettstedsadministratoren slå på <code>allow_envelope_sender</code> "
+"valgmuligheten i OMP konfigurasjonsfilen. Ytterligere serverkonfigurasjon "
+"kan være nødvendig for å støtte denne funksjonen (som likevel kan være "
+"umulig å bruke på enkelte servere), som oppgitt i OMP-dokumentasjonen."
+
+msgid "manager.setup.emails"
+msgstr "E-post identifikasjon"
+
+msgid "manager.setup.emailSignature"
+msgstr "Signatur"
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"De forberedte e-postene som blir sendt av systemet på vegne av tidsskriftet "
+"kommer til å ha følgende signatur nederst."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Aktiver mulighet for å lage oppslag"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Oppslag kan publiseres for å informere lesere om tidsskriftnyheter og "
+"begivenheter. Publiserte oppslag vises på oppslagstavlen."
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Vis på hovedsiden"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Hvor mange oppslag som skal vises på hovedsiden. La dette være tomt hvis du "
+"ikke ønsker å vise noen."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Vis denne utgiveren på nettstedet"
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr ""
+"Brukerdefinerte identifikatorer brukes til å identifisere publisert innhold."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+"Brukerdefinerte identifikatorer brukes til å identifisere "
+"publiseringsversjoner (for eksempel HTML- eller PDF-filer) av publisert "
+"innhold."
+
+msgid "manager.setup.enableUserRegistration"
+msgstr "La brukere registrere seg på utgiverens nettsted."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Hovedfokus og spennvidde"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr ""
+"Beskriv spennvidden på artikler og annet innhold som utgiveren vil publisere "
+"til forfattere, lesere og bibliotekarer."
+
+msgid "manager.setup.focusScope"
+msgstr "Hovedfokus og spennvidde"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>EXAMPLE HTML DATA</strong>"
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Til forfattere for å indeksere eget verk"
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"OMP følger <a href=\"http://www.openarchives.org/\" target=\"_blank\">Open "
+"Archives Initiative</a> protokoll for innhøsting av metadata, som er en "
+"framtidsrettet indekseringsstandard som gir tilgang til elektroniske "
+"forskningsressurser på verdensbasis. Forfatterene kommer til å bruke en "
+"tilpasset mal for å oppgi slike metadata for sitt manuskript. "
+"Redaksjonslederen bør velge kategoriene for indeksering, og gi forfatterene "
+"relevante eksempler til hjelp ved indekseringen. Disse termene skal holdes "
+"atskilt med a semikolon (for eks. term1; term2). Merk eksemplene som "
+"eksempler ved å bruke \"For eks.\" eller \"For eksempel,\"."
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "Hovedkontaktens e-post kreves."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Hovedkontaktens navn kreves."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Antallet fagkonsulenter per manuskript kreves."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "Kontaktpersonens e-post må legges inn."
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Navn på teknisk Teknisk kontaktpersons navn legges inn."
+
+msgid "manager.setup.generalInformation"
+msgstr "Generell informasjon"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Trinn 1. Detaljene først"
+
+msgid "manager.setup.guidelines"
+msgstr "Retningslinjer"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Trinn 3. Forbered arbeidsflyten"
+
+msgid "manager.setup.identity"
+msgstr "Utgiveridentitet"
+
+msgid "manager.setup.information"
+msgstr "Informasjon"
+
+msgid "manager.setup.information.description"
+msgstr ""
+"Korte beskrivelser av utgivelsen for interesserte bibliotekarer, forfattere, "
+"og lesere som blir tilgjengelig i 'informasjon'-delen av sidefeltet."
+
+msgid "manager.setup.information.forAuthors"
+msgstr "For forfattere"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "For bibliotekarer"
+
+msgid "manager.setup.information.forReaders"
+msgstr "For lesere"
+
+msgid "manager.setup.information.success"
+msgstr "Utgiverinformasjonen har blitt oppdatert."
+
+msgid "manager.setup.institution"
+msgstr "Institusjon"
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Elementer per side"
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Begrens antall oppføringer (for eksempel innleveringer, brukere eller "
+"redigeringsoppgaver) som skal vises i en liste på én nettside, før de resten "
+"av oppføringene vises på en annen side."
+
+msgid "manager.setup.keyInfo"
+msgstr "Nøkkelinformasjon"
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Gi en kort beskrivelse av utgiveren din og identifiser redaktører, "
+"tidsskriftsansvarlige og andre medlemmer av redaksjonen din."
+
+msgid "manager.setup.labelName"
+msgstr "Etikettnavn"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Layoutredaktører"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Layoutinstruksjoner"
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"Layoutinstruksjoner for formatering av forlagets publiseringsmateriale kan "
+"utarbeides og angis nedenfor i HTML eller ren tekst. De vil bli gjort "
+"tilgjengelig for layoutredigereren og seksjonsredigereren på "
+"manuskriptredigeringssiden for hver innsending. (Ettersom hver utgiver kan "
+"velge sine egne filformater, bibliografiske standarder, stilark osv., Gis "
+"ikke en standardinstruksjon.)"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Layoutmaler"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"Maler kan lastes opp slik at de vises under layout for hvert av "
+"standardformatene som utgis av utgiveren (f.eks. Monografi, bokanmeldelse "
+"osv.) Og for ethvert filformat (f.eks. Pdf, doc osv.) Med tillegg "
+"kommentarer og spesifisering av skrift, størrelse, marginer osv. slik at den "
+"kan fungere som en veiledning for layoutredaktører og språkvaskere."
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Malfil"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Tittel"
+
+msgid "manager.setup.lists"
+msgstr "Lister"
+
+msgid "manager.setup.lists.success"
+msgstr "Utgiverens listeinnstillinger har blitt oppdatert."
+
+msgid "manager.setup.look"
+msgstr "Utseendet"
+
+msgid "manager.setup.look.description"
+msgstr ""
+"Hjemmesidetopptekst, innhold, utgiverens-topptekst, bunntekst, "
+"navigasjonsfelt, og stylesheet."
+
+msgid "manager.setup.settings"
+msgstr "Innstillinger"
+
+msgid "manager.setup.management.description"
+msgstr ""
+"Planlegging, nettilgang, oppslag, og bruk av manusredaktører, "
+"layoutredaktører og korrekturlesere."
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Administrasjon av grunnleggende redaksjonelle trinn"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Administrasjons- og publiseringsoppsett"
+
+msgid "manager.setup.managingThePress"
+msgstr "Steg 4. Håndtering av innstillingene"
+
+msgid "manager.setup.masthead.success"
+msgstr "Tidsskriftets kolofonopplysninger har blitt oppdatert."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Ingen bildefil er lastet opp."
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Ingen stylesheet lastet opp."
+
+msgid "manager.setup.note"
+msgstr "Merknad"
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+"Når e-postfunksjonen 'Send beskjed til forfatter' brukes skal e-posten "
+"sendes til alle medforfattere, ikke bare til den forfatteren som sendte inn "
+"manuskriptet."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr "Språkvask vil bli utført av redaktøren eller en seksjonsredaktør."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+"Redaktørene kommer til å lage sideoppsett i format som egner seg for "
+"elektronisk publisering."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr "Redaktørene og forfattere kommer til å korrigere sideoppsett."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Sidelenker"
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Begrens antallet lenker som skal vises på hver side i en liste, før resten "
+"blir vist på påfølgende sider."
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Tilgang til utgiverinnhold"
+
+msgid "manager.setup.onlineIssn"
+msgstr "ISSN for nettutgaven"
+
+msgid "manager.setup.policies"
+msgstr "Retningslinjer"
+
+msgid "manager.setup.policies.description"
+msgstr ""
+"Hovedfokus, fagvurdering, seksjoner, personopplysninger, sikkerhet, og "
+"øvrige Om-emner."
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "Personvernerklæringen har blitt oppdatert."
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+"Ulike komponenter som inngår i utgiverens utseende og design, kan "
+"konfigureres fra denne siden, inkludert topp- og bunntekstelementer, temaer "
+"og hvordan informasjonslister presenteres for brukerne."
+
+msgid "manager.setup.pressDescription"
+msgstr "Utgiversammendrag"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "En kort beskrivelse av utgiveren."
+
+msgid "manager.setup.aboutPress"
+msgstr "Om utgiveren"
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+"Ta med all informasjon om utgiveren din som kan være av interesse for "
+"lesere, forfattere eller anmeldere. Dette kan omfatte retningslinjene for "
+"åpen tilgang, forlagets fokusområde, opphavsrett, sponsormelding, "
+"forlagshistorikk og en personvernerklæring."
+
+msgid "manager.setup.pressArchiving"
+msgstr "Arkivering"
+
+msgid "manager.setup.homepageContent"
+msgstr "Innhold på hjemmesiden"
+
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+"Som standard består hjemmesiden av navigasjonslenker. Ytterligere "
+"hjemmesideinnhold kan legges til ved å bruke en eller flere av følgende "
+"valgmuligheter, som vil bli vist i den viste rekkefølgen."
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Utgiverens hovedside"
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr ""
+"Som standard består forlagets nettsted av en serie navigasjonskoblinger. "
+"Ytterligere nettstedinnhold kan legges til ved hjelp av ett eller flere av "
+"følgende alternativer som vises i den viste rekkefølgen."
+
+msgid "manager.setup.contextInitials"
+msgstr "Utgiverinitialer"
+
+msgid "manager.setup.layout"
+msgstr "Utgiverlayout"
+
+msgid "manager.setup.pageHeader"
+msgstr "Utgiverens topptekst"
+
+msgid "manager.setup.pageHeaderDescription"
+msgstr ""
+
+msgid "manager.setup.pressPolicies"
+msgstr "Trinn 2. Utgiverens retningslinjer"
+
+msgid "manager.setup.pressSetup"
+msgstr "Utgiverkonfigurasjon"
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Utgiverkonfigurasjonen har blitt oppdatert."
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Ugyldig stylesheet-format. Godkjent format er .css."
+
+msgid "manager.setup.pressTheme"
+msgstr "Utseendemal"
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Utgiverens miniatyrbilde"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr ""
+"En liten logo eller representasjon av forlaget som kan brukes i oppføringer."
+
+msgid "manager.setup.contextTitle"
+msgstr "Utgivernavn"
+
+msgid "manager.setup.printIssn"
+msgstr "ISSN for trykt utgave"
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Instruks for korrekturlesing"
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr ""
+"Instruksen for korrekturlesing vil bli gjort tilgjengelig for "
+"korrekturlesere, forfattere, layoutredaktører og seksjonsredaktører i "
+"manuskriptbehandlingsstadiet. Nedenfor finner du standardinstruksjoner (i "
+"HTML), som kan redigeres eller erstattes av redaksjonslederen når som helst "
+"(i HTML eller ren tekst)."
+
+msgid "manager.setup.proofreading"
+msgstr "Korrekturlesere"
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Gjør instruksjoner tilgjengelig for layoutredaktører."
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr ""
+"Innhold kan publiseres samlet, som del av en utgave med egen "
+"innholdsoversikt. Alternativt kan enkeltelementene publiseres løpende, etter "
+"hvert som de er ferdigstilt, og da legges de til i nyeste nummers "
+"innholdsoversikt. I 'Om' tidsskriftet skal leserne finne opplysningene om "
+"hvilket av disse to systemene dette tidsskriftet vil bruke, og om forventet "
+"utgivelsesfrekvens."
+
+msgid "manager.setup.publisher"
+msgstr "Utgiver"
+
+msgid "manager.setup.publisherDescription"
+msgstr "Navnet på organisasjonen bak utgiveren vises i 'Om forlaget'."
+
+msgid "manager.setup.referenceLinking"
+msgstr "Aktive henvisningslenker"
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Layoutinstruksjoner for referanselinking"
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr ""
+"Brukere må være registrert og logget inn for å se innhold med åpen tilgang."
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr "Brukere må logge inn for å se tidsskriftets nettsted."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Instruks for fagfeller"
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr ""
+"Vis kriterier for å gjøre en vurdering av innleveringens egnethet for "
+"publisering hos forlaget tilgjengelig for eksterne korrekturlesere. Den kan "
+"inneholde instruksjoner om hvordan du forbereder en effektiv og nyttig "
+"vurdering. Kritikere vil ha muligheten til å formidle kommentarer adressert "
+"til forfatteren og redaktøren, samt separate kommentarer til redaktøren."
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Retningslinjer for intern vurdering"
+
+msgid "manager.setup.reviewOptions"
+msgstr "Fagfellevurderingsinnstillinger"
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Automatiserte e-post purringer"
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr ""
+"<strong>Merk</strong> For å aktivere automatiske epostvarsler, må "
+"nettstedsadministratoren slå på valgmuligheten <tt>planlagte_oppgaver</tt> i "
+"OJS-konfigurasjonsfilen. Annen serverkonfigurasjon kan være nødvendig for å "
+"støtte denne funksjonen (som likevel kan være umulig å bruke på enkelte "
+"servere), som oppgitt i OJS-dokumentasjonen."
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr ""
+"Redaktører kommer til å vurdere fagfellene på en fempunkts skala etter hvert "
+"vurderingsoppdrag."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Begrens filtilgang"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr ""
+"Fagfeller kommer til å få tilgang til manuskriptfilen bare etter å ha "
+"akseptert vurderingsoppdraget."
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Fagfelletilgang"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Slå på ettklikks tilgang for fagfellene"
+
+#, fuzzy
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
+msgstr ""
+"<strong>NB:</strong> E-post-invitasjonen til fagkonsulenter kommer til å "
+"inneholde en spesiell URL som binger den inviterte fagfellen direkte til "
+"fagvurderingssiden for det aktuelle manuskriptet (tilgang til andre sider "
+"vil likevel kreve innlogging).  Med denne valgmuligheten slått på, kan ikke "
+"redaktørene endre e-postadresser eller legge til kopier eller blindkopier "
+"ved bestilling av fagvurderinger (av sikkerhetsgrunner)."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr "Inkluder en sikker lenke i e-postinvitasjonen til anmeldere."
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Vurdering av fagfeller"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Fagfelle-purringer"
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Om fagvurderingsprosessen"
+
+msgid "manager.setup.reviewProcess"
+msgstr "Fagvurderingsprosessen"
+
+msgid "manager.setup.reviewProcessDescription"
+msgstr ""
+"OMP støtter to modeller for vurderingsprosessen. Standard "
+"fagvurderingsprosess er å anbefale, fordi den følger opp fagkonsulentene "
+"gjennom hele prosessen, sikrer en komplett vurderingshistorikk for hvert "
+"innsendt manuskript, og gjør bruk av automatiske purringer og standardiserte "
+"anbefalinger for innsendte manuskript (aksepteres; aksepteres, med forbehold "
+"om omarbeiding: sendes til enda en fagvurdering; sendes inn til et annet "
+"publiseringssted; avvises; annet: se kommentarer).<br /><br />Velg en av "
+"følgende:"
+
+msgid "manager.setup.reviewProcessEmail"
+msgstr "Fagvurderingsprosess med e-post-vedlegg"
+
+msgid "manager.setup.reviewProcessStandard"
+msgstr "Standard fagvurderingsprosess"
+
+msgid "manager.setup.reviewProcessStandardDescription"
+msgstr ""
+"Redaktøren sender e-post til de utvalgte Fagkonsulentene med tittelen og "
+"sammendrag av manuskriptet, og dessuten en invitasjon til å logge inn på "
+"tidsskriftets nettsted for å ferdigstille vurderingen. Fagkonsulenten går "
+"inn på nettstedet for å ta på seg vurderingsoppdraget, for å laste ned "
+"manuskriptet, sende inn sine kommentarer, og velge en anbefaling."
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Gi en kort beskrivelse (50-300 tegn) av tidsskriftet som søkemotorene kan "
+"presentere når tidsskriftet vises blant søkeresultatene."
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Søkermotorindeksering"
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr ""
+"For at brukere av søkemotorer skal finne dette tidsskriftet, bør du gi en "
+"kort beskrivelse av tidsskriftet. Du oppfordres til å sende inn <a href="
+"\"{$sitemapUrl}\" target=\"_blank\">sitemap</a>."
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr "Innstillingene knyttet til søkemotorindeksen er oppdatert."
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Seksjoner og seksjonsredaktører"
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr ""
+"(Hvis seksjoner ikke er angitt, vil bidraget bli sendt inn til Monografier.)"
+
+msgid "manager.setup.sectionsDescription"
+msgstr ""
+"For å opprette eller endre seksjoner for utgiveren (f.eks. monografier, "
+"bokanmeldelser, etc.), gå til seksjonsadministrasjon.<br /><br />Når "
+"forfattere sender en innlevering til utgiveren, kommer de til å angi ..."
+
+msgid "manager.setup.securitySettings"
+msgstr "Tilgang og sikkerhetsinnstillinger"
+
+msgid "manager.setup.securitySettings.note"
+msgstr ""
+"Andre sikkerhets- og tilgangsrelaterte innstillinger kan konfigureres fra <a "
+"href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\"action\">Tilgang "
+"og sikkerhet</a>-siden."
+
+msgid "manager.setup.selectEditorDescription"
+msgstr ""
+"Utgiverredaktøren som skal følge bidraget gjennom den redaksjonelle "
+"prosessen."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr "Seksjonen bidraget skal vurderes for."
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr "Vis alltid sideoppsettlenker og indikér om tilgangen er begrenset."
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Nettstedstilgang"
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Se monografiinnhold"
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Fem trinn til et utgivernettsted"
+
+msgid "manager.setup.subjectExamples"
+msgstr "(F.eks. fotosyntese; sorte hull; Gödels teorem; Zenons paradokser)"
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Emneord"
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr ""
+"Gi eksempler på relevante nøkkelord eller emneord, til veiledning for "
+"forfatterene"
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Retningslinjer for innlevering av manuskript"
+
+msgid "manager.setup.submissionPreparationChecklist"
+msgstr "Sjekkliste for klargjøring av manuskript"
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "Sjekklisteelement kreves."
+
+msgid "manager.setup.workflow"
+msgstr "Arbeidsflyt"
+
+msgid "manager.setup.submissions.description"
+msgstr ""
+"Forfatterinstruks, opphavsrett, og indeksering (herunder registrering)."
+
+msgid "manager.setup.typeExamples"
+msgstr ""
+"(F.eks. historisk studium; tankeeksperiment; feltundersøkelse; retorisk "
+"analyse; aksjonsforskning; kartlegging/intervju)"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Type (metode/innfallsvinkel)"
+
+msgid "manager.setup.typeProvideExamples"
+msgstr ""
+"Gi eksempler på relevante forskningstyper, metoder og innfallsvinkler for "
+"dette fagfeltet"
+
+msgid "manager.setup.useCopyeditors"
+msgstr ""
+"Utgiveren kommer til å utpeke manusredaktører for bearbeiding av hvert "
+"manuskript."
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "Utgiveren skal ha redaksjons- eller fagfelleråd."
+
+msgid "manager.setup.useImageTitle"
+msgstr "Tittelbilde"
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Utgiverens stilark"
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+"Tidsskriftet kommer til å utpeke layoutredaktører for å lage sideoppsett i "
+"HTML, PDF, PS osv. for elektronisk publisering."
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+"Utgiveren kommer til å utpeke korrekturlesere som vil korrigere "
+"korrekturutskriftene (sammen med forfatterene)."
+
+msgid "manager.setup.userRegistration"
+msgstr "Brukerregistrering"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Titteltekst"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Utgaver per år"
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Format"
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Et format må velges."
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Du må gi et navn til dette formatet."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Er dette et fysisk (ikke-digitalt) format?"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+"Siden dette publiseringsformatet for øyeblikket er koblet til en av "
+"forlagets monografier, kan det ikke slettes."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Nytt publiseringsformat"
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+"For å opprette et nytt publiseringsformat må du fylle ut følgende skjema og "
+"tryppe på knappen 'Opprett'."
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Disse sjangrene brukes til filnavn og presenteres i en rullegardinmeny når "
+"du laster opp filer. Sjangrene som heter ## tillater brukeren å knytte filen "
+"til enten hele 99Z-boka eller et bestemt kapittel etter nummer (f.eks. 02)."
+
+msgid "manager.setup.reviewProcessEmailDescription"
+msgstr ""
+"Redaktørene sender fagfellevurderere forespørsel om å være fagfellevurderer "
+"med det innsendte manuskriptet vedlagt e-posten. Fagfellevurdererne sender "
+"sin aksept eller avslag til redaktørene på e-post, og sine kommentarer og "
+"anbefalinger. Redaktørene legger inn fagfellevurderernes aksept eller avslag "
+"på forespørselen, og deres vurderinger og anbefalinger på innleveringens "
+"vurderingsside for å dokumentere fagfellevurderingsprosessen."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Denne utgiveren tar ikke imot innleveringer på nåværende tidspunkt. Gå til "
+"arbeidsflytinnstillingene for å tillate innleveringer."
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Forhindre brukere fra å sende inn nye innleveringer til utgiveren. "
+"Innleveringer kan deaktiveres for individuelle serier på siden <a href="
+"\"{$url}\">utgiverserier</a>."
+
+msgid "manager.setup.genres"
+msgstr "Sjanger"
+
+msgid "manager.setup.newGenre"
+msgstr "Ny monografisjanger"
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"For å opprette en ny sjanger, fyll ut skjemaet nedenfor og klikk \"Opprett\" "
+"-knappen."
+
+msgid "manager.setup.deleteSelected"
+msgstr "Slett valgte"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Gjenopprett standardinnstillinger"
+
+msgid "manager.setup.prospectus"
+msgstr "Prospektveiledning"
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"Prospektveiledningen er et dokument utarbeidet av forlaget for å hjelpe "
+"forfatteren med å beskrive materialet som sendes inn på en måte som gjør at "
+"en forlegger kan bestemme verdien av innleveringen. Et prospekt kan dekke en "
+"rekke aspekter - fra markedsføringspotensial til teoretisk verdi. Uansett "
+"bør en utgiver lage en prospektveiledning som utfyller deres "
+"publiseringsagenda."
+
+msgid "manager.setup.submitToCategories"
+msgstr "Tillat kategoriinnleveringer"
+
+msgid "manager.setup.submitToSeries"
+msgstr "Tillat serieinnleveringer"
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"ISSN (International Standard Serial Number) er et åttesifret nummer som "
+"identifiserer tidsskrifter inkludert elektroniske serier. Et nummer er "
+"tilgjengelig fra <a href=\"http://www.issn.org\" target=\"_blank\"> ISSN "
+"International Center </a>."
+
+msgid "manager.setup.currentFormats"
+msgstr "Aktuelle formater"
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Kategorier og serier"
+
+msgid "manager.setup.categories.description"
+msgstr ""
+"Du kan lage en liste over kategorier for å organisere publikasjonene dine. "
+"Kategorier kan være grupperinger av bøker etter emne, for eksempel økonomi; "
+"litteratur; poesi; etc. Kategorier kan være innebygd under \"overordnede\" "
+"kategorier: For eksempel kan en hovedkategori av økonomi omfatte "
+"individuelle mikroøkonomiske og makroøkonomiske kategorier. Besøkende vil "
+"kunne søke i og bla gjennom forlaget via kategorier."
+
+msgid "manager.setup.series.description"
+msgstr ""
+"Du kan lage et hvilket som helst antall serier for å organisere "
+"publikasjonene dine. En serie representerer et bestemt sett med bøker som er "
+"knyttet til et tema eller emner som noen har foreslått, ofte et "
+"fakultetsmedlem, og den personen fører tilsyn med. Besøkende vil kunne søke "
+"i og bla gjennom forlaget via serier."
+
+msgid "manager.setup.reviewForms"
+msgstr "Fagfellevurderingsskjema"
+
+msgid "manager.setup.roleType"
+msgstr "Rolletype"
+
+msgid "manager.setup.authorRoles"
+msgstr "Forfatterroller"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Administrative roller"
+
+msgid "manager.setup.availableRoles"
+msgstr "Tilgjengelige roller"
+
+msgid "manager.setup.currentRoles"
+msgstr "Aktuelle roller"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Interne vurderingsroller"
+
+msgid "manager.setup.masthead"
+msgstr "Kolofon"
+
+msgid "manager.setup.editorialTeam"
+msgstr "Redaksjon"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr "Liste over redaktører, ledelse og andre personer tilknyttet utgiveren."
+
+msgid "manager.setup.files"
+msgstr "Filer"
+
+msgid "manager.setup.productionTemplates"
+msgstr "Produksjonsmaler"
+
+msgid "manager.files.note"
+msgstr ""
+"NB: Filutforskeren er en avansert funksjon som gir mulighet til å manipulere "
+"filene og mappene til tidsskriftet direkte."
 
 msgid "manager.setup.copyrightNotice.sample"
 msgstr ""
 "<h3>Forslag til <i>Creative Commons Copyright Notices</i> på engelsk</h3>\n"
-"<h4>1. Forslag til retningslinjer for tidsskrift som tilbyr <i>Open "
-"Access</i></h4>\n"
+"<h4>1. Forslag til retningslinjer for tidsskrift som tilbyr <i>Open Access</"
+"i></h4>\n"
 "Authors who publish with this journal agree to the following terms:\n"
 "<ol type=\"a\">\n"
 "\t<li>Authors retain copyright and grant the journal right of first "
@@ -576,10 +1273,10 @@ msgstr ""
 "<ol type=\"a\">\n"
 "\t<li>Authors retain copyright and grant the journal right of first "
 "publication, with the work [SPECIFY PERIOD OF TIME] after publication "
-"simultaneously licensed under a <a target=\"_new\" href=\""
-"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution "
-"License</a> that allows others to share the work with an acknowledgement of "
-"the work's authorship and initial publication in this journal.</li>\n"
+"simultaneously licensed under a <a target=\"_new\" href=\"http://"
+"creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution License</"
+"a> that allows others to share the work with an acknowledgement of the "
+"work's authorship and initial publication in this journal.</li>\n"
 "\t <li>Authors are able to enter into separate, additional contractual "
 "arrangements for the non-exclusive distribution of the journal's published "
 "version of the work (e.g., post it to an institutional repository or publish "
@@ -593,777 +1290,40 @@ msgstr ""
 "Access</a>).</li>\n"
 "</ol>"
 
-msgid "manager.files.note"
+msgid "manager.setup.basicEditorialStepsDescription"
 msgstr ""
-"NB: Filutforskeren er en avansert funksjon som gir mulighet til å manipulere "
-"filene og mappene til tidsskriftet direkte."
+"Trinn: Manuskriptarbeidskø &gt; Manuskriptvurdering &gt; "
+"Manuskriptbehandling &gt; Innholdsfortegnelse.<br /><br />\n"
+"Velg en modell for håndtering av disse sidene av den redaksjonelle "
+"prosessen. (For å oppnevne ansvarlig redaktør og seksjonsredaktører; gå til "
+"Redaktører i tidsskriftadministrasjon.)"
 
-msgid "manager.setup.productionTemplates"
-msgstr "Produksjonsmaler"
-
-msgid "manager.setup.files"
-msgstr "Filer"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr "Liste over redaktører, ledelse og andre personer tilknyttet utgiveren."
-
-msgid "manager.setup.editorialTeam"
-msgstr "Redaksjon"
-
-msgid "manager.setup.masthead"
-msgstr "Kolofon"
-
-msgid "manager.setup.internalReviewRoles"
-msgstr "Interne vurderingsroller"
-
-msgid "manager.setup.currentRoles"
-msgstr "Aktuelle roller"
-
-msgid "manager.setup.availableRoles"
-msgstr "Tilgjengelige roller"
-
-msgid "manager.setup.managerialRoles"
-msgstr "Administrative roller"
-
-msgid "manager.setup.authorRoles"
-msgstr "Forfatterroller"
-
-msgid "manager.setup.roleType"
-msgstr "Rolletype"
-
-msgid "manager.setup.reviewForms"
-msgstr "Fagfellevurderingsskjema"
-
-msgid "manager.setup.series.description"
+msgid "manager.setup.referenceLinkingDescription"
 msgstr ""
-"Du kan lage et hvilket som helst antall serier for å organisere "
-"publikasjonene dine. En serie representerer et bestemt sett med bøker som er "
-"knyttet til et tema eller emner som noen har foreslått, ofte et "
-"fakultetsmedlem, og den personen fører tilsyn med. Besøkende vil kunne søke "
-"i og bla gjennom forlaget via serier."
-
-msgid "manager.setup.categories.description"
-msgstr ""
-"Du kan lage en liste over kategorier for å organisere publikasjonene dine. "
-"Kategorier kan være grupperinger av bøker etter emne, for eksempel økonomi; "
-"litteratur; poesi; etc. Kategorier kan være innebygd under \"overordnede\" "
-"kategorier: For eksempel kan en hovedkategori av økonomi omfatte "
-"individuelle mikroøkonomiske og makroøkonomiske kategorier. Besøkende vil "
-"kunne søke i og bla gjennom forlaget via kategorier."
-
-msgid "manager.setup.categoriesAndSeries"
-msgstr "Kategorier og serier"
-
-msgid "manager.setup.currentFormats"
-msgstr "Aktuelle formater"
-
-msgid "manager.setup.issnDescription"
-msgstr ""
-"ISSN (International Standard Serial Number) er et åttesifret nummer som "
-"identifiserer tidsskrifter inkludert elektroniske serier. Et nummer er "
-"tilgjengelig fra <a href=\"http://www.issn.org\" target=\"_blank\"> ISSN "
-"International Center </a>."
-
-msgid "manager.setup.submitToSeries"
-msgstr "Tillat serieinnleveringer"
-
-msgid "manager.setup.submitToCategories"
-msgstr "Tillat kategoriinnleveringer"
-
-msgid "manager.setup.prospectusDescription"
-msgstr ""
-"Prospektveiledningen er et dokument utarbeidet av forlaget for å hjelpe "
-"forfatteren med å beskrive materialet som sendes inn på en måte som gjør at "
-"en forlegger kan bestemme verdien av innleveringen. Et prospekt kan dekke en "
-"rekke aspekter - fra markedsføringspotensial til teoretisk verdi. Uansett "
-"bør en utgiver lage en prospektveiledning som utfyller deres "
-"publiseringsagenda."
-
-msgid "manager.setup.prospectus"
-msgstr "Prospektveiledning"
-
-msgid "manager.setup.restoreDefaults"
-msgstr "Gjenopprett standardinnstillinger"
-
-msgid "manager.setup.deleteSelected"
-msgstr "Slett valgte"
-
-msgid "manager.setup.newGenreDescription"
-msgstr ""
-"For å opprette en ny sjanger, fyll ut skjemaet nedenfor og klikk \"Opprett\" "
-"-knappen."
-
-msgid "manager.setup.newGenre"
-msgstr "Ny monografisjanger"
-
-msgid "manager.setup.genres"
-msgstr "Sjanger"
-
-msgid "manager.setup.reviewProcessEmailDescription"
-msgstr ""
-"Redaktørene sender fagfellevurderere forespørsel om å være fagfellevurderer "
-"med det innsendte manuskriptet vedlagt e-posten. Fagfellevurdererne sender "
-"sin aksept eller avslag til redaktørene på e-post, og sine kommentarer og "
-"anbefalinger. Redaktørene legger inn fagfellevurderernes aksept eller avslag "
-"på forespørselen, og deres vurderinger og anbefalinger på innleveringens "
-"vurderingsside for å dokumentere fagfellevurderingsprosessen."
-
-msgid "manager.setup.genresDescription"
-msgstr ""
-"Disse sjangrene brukes til filnavn og presenteres i en rullegardinmeny når "
-"du laster opp filer. Sjangrene som heter ## tillater brukeren å knytte filen "
-"til enten hele 99Z-boka eller et bestemt kapittel etter nummer (f.eks. 02)."
-
-msgid "manager.setup.newPublicationFormatDescription"
-msgstr ""
-"For å opprette et nytt publiseringsformat må du fylle ut følgende skjema og "
-"tryppe på knappen 'Opprett'."
-
-msgid "manager.setup.newPublicationFormat"
-msgstr "Nytt publiseringsformat"
-
-msgid "manager.setup.publicationFormat.inUse"
-msgstr ""
-"Siden dette publiseringsformatet for øyeblikket er koblet til en av "
-"forlagets monografier, kan det ikke slettes."
-
-msgid "manager.setup.publicationFormat.physicalFormat"
-msgstr "Er dette et fysisk (ikke-digitalt) format?"
-
-msgid "manager.setup.publicationFormat.nameRequired"
-msgstr "Du må gi et navn til dette formatet."
-
-msgid "manager.setup.publicationFormat.codeRequired"
-msgstr "Et format må velges."
-
-msgid "manager.setup.publicationFormat.code"
-msgstr "Format"
-
-msgid "manager.setup.volumePerYear"
-msgstr "Utgaver per år"
-
-msgid "manager.setup.useTextTitle"
-msgstr "Titteltekst"
-
-msgid "manager.setup.userRegistration"
-msgstr "Brukerregistrering"
-
-msgid "manager.setup.useProofreaders"
-msgstr ""
-"Utgiveren kommer til å utpeke korrekturlesere som vil korrigere "
-"korrekturutskriftene (sammen med forfatterene)."
-
-msgid "manager.setup.useLayoutEditors"
-msgstr ""
-"Tidsskriftet kommer til å utpeke layoutredaktører for å lage sideoppsett i "
-"HTML, PDF, PS osv. for elektronisk publisering."
-
-msgid "manager.setup.useStyleSheet"
-msgstr "Utgiverens stilark"
-
-msgid "manager.setup.useImageTitle"
-msgstr "Tittelbilde"
-
-msgid "manager.setup.useEditorialReviewBoard"
-msgstr "Utgiveren skal ha redaksjons- eller fagfelleråd."
-
-msgid "manager.setup.useCopyeditors"
-msgstr ""
-"Utgiveren kommer til å utpeke manusredaktører for bearbeiding av hvert "
-"manuskript."
-
-msgid "manager.setup.typeProvideExamples"
-msgstr ""
-"Gi eksempler på relevante forskningstyper, metoder og innfallsvinkler for "
-"dette fagfeltet"
-
-msgid "manager.setup.typeMethodApproach"
-msgstr "Type (metode/innfallsvinkel)"
-
-msgid "manager.setup.typeExamples"
-msgstr ""
-"(F.eks. historisk studium; tankeeksperiment; feltundersøkelse; retorisk "
-"analyse; aksjonsforskning; kartlegging/intervju)"
-
-msgid "manager.setup.submissions.description"
-msgstr "Forfatterinstruks, opphavsrett, og indeksering (herunder registrering)."
-
-msgid "manager.setup.workflow"
-msgstr "Arbeidsflyt"
-
-msgid "maganer.setup.submissionChecklistItemRequired"
-msgstr "Sjekklisteelement kreves."
-
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Sjekkliste for klargjøring av manuskript"
-
-msgid "manager.setup.submissionGuidelines"
-msgstr "Retningslinjer for innlevering av manuskript"
-
-msgid "manager.setup.subjectProvideExamples"
-msgstr ""
-"Gi eksempler på relevante nøkkelord eller emneord, til veiledning for "
-"forfatterene"
-
-msgid "manager.setup.subjectKeywordTopic"
-msgstr "Emneord"
-
-msgid "manager.setup.subjectExamples"
-msgstr "(F.eks. fotosyntese; sorte hull; Gödels teorem; Zenons paradokser)"
-
-msgid "manager.setup.stepsToPressSite"
-msgstr "Fem trinn til et utgivernettsted"
-
-msgid "manager.setup.siteAccess.viewContent"
-msgstr "Se monografiinnhold"
-
-msgid "manager.setup.siteAccess.view"
-msgstr "Nettstedstilgang"
-
-msgid "manager.setup.showGalleyLinksDescription"
-msgstr "Vis alltid sideoppsettlenker og indikér om tilgangen er begrenset."
-
-msgid "manager.setup.selectSectionDescription"
-msgstr "Seksjonen bidraget skal vurderes for."
-
-msgid "manager.setup.selectEditorDescription"
-msgstr ""
-"Utgiverredaktøren som skal følge bidraget gjennom den redaksjonelle "
-"prosessen."
-
-msgid "manager.setup.securitySettings.note"
-msgstr ""
-"Andre sikkerhets- og tilgangsrelaterte innstillinger kan konfigureres fra <a "
-"href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\"action\">Tilgang "
-"og sikkerhet</a>-siden."
-
-msgid "manager.setup.securitySettings"
-msgstr "Tilgang og sikkerhetsinnstillinger"
-
-msgid "manager.setup.sectionsDescription"
-msgstr ""
-"For å opprette eller endre seksjoner for utgiveren (f.eks. monografier, "
-"bokanmeldelser, etc.), gå til seksjonsadministrasjon.<br /><br />Når "
-"forfattere sender en innlevering til utgiveren, kommer de til å angi ..."
-
-msgid "manager.setup.sectionsDefaultSectionDescription"
-msgstr ""
-"(Hvis seksjoner ikke er angitt, vil bidraget bli sendt inn til Monografier.)"
-
-msgid "manager.setup.sectionsAndSectionEditors"
-msgstr "Seksjoner og seksjonsredaktører"
-
-msgid "manager.setup.searchEngineIndexing.success"
-msgstr "Innstillingene knyttet til søkemotorindeksen er oppdatert."
-
-msgid "manager.setup.searchEngineIndexing.description"
-msgstr ""
-"For at brukere av søkemotorer skal finne dette tidsskriftet, bør du gi en "
-"kort beskrivelse av tidsskriftet. Du oppfordres til å sende inn <a href=\""
-"{$sitemapUrl}\" target=\"_blank\">sitemap</a>."
-
-msgid "manager.setup.searchEngineIndexing"
-msgstr "Søkermotorindeksering"
-
-msgid "manager.setup.searchDescription.description"
-msgstr ""
-"Gi en kort beskrivelse (50-300 tegn) av tidsskriftet som søkemotorene kan "
-"presentere når tidsskriftet vises blant søkeresultatene."
-
-msgid "manager.setup.reviewProcessStandardDescription"
-msgstr ""
-"Redaktøren sender e-post til de utvalgte Fagkonsulentene med tittelen og "
-"sammendrag av manuskriptet, og dessuten en invitasjon til å logge inn på "
-"tidsskriftets nettsted for å ferdigstille vurderingen. Fagkonsulenten går "
-"inn på nettstedet for å ta på seg vurderingsoppdraget, for å laste ned "
-"manuskriptet, sende inn sine kommentarer, og velge en anbefaling."
-
-msgid "manager.setup.reviewProcessStandard"
-msgstr "Standard fagvurderingsprosess"
-
-msgid "manager.setup.reviewProcessEmail"
-msgstr "Fagvurderingsprosess med e-post-vedlegg"
-
-msgid "manager.setup.reviewProcessDescription"
-msgstr ""
-"OMP støtter to modeller for vurderingsprosessen. Standard "
-"fagvurderingsprosess er å anbefale, fordi den følger opp fagkonsulentene "
-"gjennom hele prosessen, sikrer en komplett vurderingshistorikk for hvert "
-"innsendt manuskript, og gjør bruk av automatiske purringer og standardiserte "
-"anbefalinger for innsendte manuskript (aksepteres; aksepteres, med forbehold "
-"om omarbeiding: sendes til enda en fagvurdering; sendes inn til et annet "
-"publiseringssted; avvises; annet: se kommentarer).<br /><br />Velg en av "
-"følgende:"
-
-msgid "manager.setup.reviewProcess"
-msgstr "Fagvurderingsprosessen"
-
-msgid "manager.setup.reviewPolicy"
-msgstr "Om fagvurderingsprosessen"
-
-msgid "manager.setup.reviewOptions.showEnsuringLink"
-msgstr ""
-"Sett inn lenke til \"Sikre blind gjennomgang\" på sider der forfattere og "
-"fagfeller laster opp filer."
-
-msgid "manager.setup.reviewOptions.reviewerReminders"
-msgstr "Fagfelle-purringer"
-
-msgid "manager.setup.reviewOptions.reviewerRatings"
-msgstr "Vurdering av fagfeller"
-
-msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
-msgstr "Inkluder en sikker lenke i e-postinvitasjonen til anmeldere."
-
-#, fuzzy
-msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
-msgstr ""
-"<strong>NB:</strong> E-post-invitasjonen til fagkonsulenter kommer til å "
-"inneholde en spesiell URL som binger den inviterte fagfellen direkte til "
-"fagvurderingssiden for det aktuelle manuskriptet (tilgang til andre sider "
-"vil likevel kreve innlogging).  Med denne valgmuligheten slått på, kan ikke "
-"redaktørene endre e-postadresser eller legge til kopier eller blindkopier "
-"ved bestilling av fagvurderinger (av sikkerhetsgrunner)."
-
-msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
-msgstr "Slå på ettklikks tilgang for fagfellene"
-
-msgid "manager.setup.reviewOptions.reviewerAccess"
-msgstr "Fagfelletilgang"
-
-msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
-msgstr ""
-"Fagfeller kommer til å få tilgang til manuskriptfilen bare etter å ha "
-"akseptert vurderingsoppdraget."
-
-msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
-msgstr "Begrens filtilgang"
-
-msgid "manager.setup.reviewOptions.onQuality"
-msgstr ""
-"Redaktører kommer til å vurdere fagfellene på en fempunkts skala etter hvert "
-"vurderingsoppdrag."
-
-msgid "manager.setup.reviewOptions.blindReview"
-msgstr "Blind fagfellevurdering"
-
-msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
-msgstr ""
-"<strong>Merk</strong> For å aktivere automatiske epostvarsler, må "
-"nettstedsadministratoren slå på valgmuligheten <tt>planlagte_oppgaver</tt> i "
-"OJS-konfigurasjonsfilen. Annen serverkonfigurasjon kan være nødvendig for å "
-"støtte denne funksjonen (som likevel kan være umulig å bruke på enkelte "
-"servere), som oppgitt i OJS-dokumentasjonen."
-
-msgid "manager.setup.reviewOptions.automatedReminders"
-msgstr "Automatiserte e-post purringer"
-
-msgid "manager.setup.reviewOptions"
-msgstr "Fagfellevurderingsinnstillinger"
-
-msgid "manager.setup.internalReviewGuidelines"
-msgstr "Retningslinjer for intern vurdering"
-
-msgid "manager.setup.reviewGuidelinesDescription"
-msgstr ""
-"Vis kriterier for å gjøre en vurdering av innleveringens egnethet for "
-"publisering hos forlaget tilgjengelig for eksterne korrekturlesere. Den kan "
-"inneholde instruksjoner om hvordan du forbereder en effektiv og nyttig "
-"vurdering. Kritikere vil ha muligheten til å formidle kommentarer adressert "
-"til forfatteren og redaktøren, samt separate kommentarer til redaktøren."
-
-msgid "manager.setup.reviewGuidelines"
-msgstr "Instruks for fagfeller"
-
-msgid "manager.setup.restrictSiteAccess"
-msgstr "Brukere må logge inn for å se tidsskriftets nettsted."
-
-msgid "manager.setup.restrictMonographAccess"
-msgstr ""
-"Brukere må være registrert og logget inn for å se innhold med åpen tilgang."
-
-msgid "manager.setup.refLinkInstructions.description"
-msgstr "Layoutinstruksjoner for referanselinking"
-
-msgid "manager.setup.referenceLinking"
-msgstr "Aktive henvisningslenker"
-
-msgid "manager.setup.publisherDescription"
-msgstr "Navnet på organisasjonen bak utgiveren vises i 'Om forlaget'."
-
-msgid "manager.setup.publisher"
-msgstr "Utgiver"
-
-msgid "manager.setup.publicationScheduleDescription"
-msgstr ""
-"Innhold kan publiseres samlet, som del av en utgave med egen "
-"innholdsoversikt. Alternativt kan enkeltelementene publiseres løpende, etter "
-"hvert som de er ferdigstilt, og da legges de til i nyeste nummers "
-"innholdsoversikt. I 'Om' tidsskriftet skal leserne finne opplysningene om "
-"hvilket av disse to systemene dette tidsskriftet vil bruke, og om forventet "
-"utgivelsesfrekvens."
-
-msgid "manager.setup.provideRefLinkInstructions"
-msgstr "Gjør instruksjoner tilgjengelig for layoutredaktører."
-
-msgid "manager.setup.proofreading"
-msgstr "Korrekturlesere"
-
-msgid "manager.setup.proofingInstructionsDescription"
-msgstr ""
-"Instruksen for korrekturlesing vil bli gjort tilgjengelig for "
-"korrekturlesere, forfattere, layoutredaktører og seksjonsredaktører i "
-"manuskriptbehandlingsstadiet. Nedenfor finner du standardinstruksjoner (i "
-"HTML), som kan redigeres eller erstattes av redaksjonslederen når som helst ("
-"i HTML eller ren tekst)."
-
-msgid "manager.setup.proofingInstructions"
-msgstr "Instruks for korrekturlesing"
-
-msgid "manager.setup.printIssn"
-msgstr "ISSN for trykt utgave"
-
-msgid "manager.setup.contextTitle"
-msgstr "Utgivernavn"
-
-msgid "manager.setup.pressThumbnail.description"
-msgstr ""
-"En liten logo eller representasjon av forlaget som kan brukes i oppføringer."
-
-msgid "manager.setup.pressThumbnail"
-msgstr "Utgiverens miniatyrbilde"
-
-msgid "manager.setup.pressTheme"
-msgstr "Utseendemal"
-
-msgid "manager.setup.styleSheetInvalid"
-msgstr "Ugyldig stylesheet-format. Godkjent format er .css."
-
-msgid "manager.setup.pressSetupUpdated"
-msgstr "Utgiverkonfigurasjonen har blitt oppdatert."
-
-msgid "manager.setup.pressSetup"
-msgstr "Utgiverkonfigurasjon"
-
-msgid "manager.setup.pressPolicies"
-msgstr "Trinn 2. Utgiverens retningslinjer"
-
-msgid "manager.setup.pageHeader"
-msgstr "Utgiverens topptekst"
-
-msgid "manager.setup.layout"
-msgstr "Utgiverlayout"
-
-msgid "manager.setup.contextInitials"
-msgstr "Utgiverinitialer"
-
-msgid "manager.setup.pressHomepageContentDescription"
-msgstr ""
-"Som standard består forlagets nettsted av en serie navigasjonskoblinger. "
-"Ytterligere nettstedinnhold kan legges til ved hjelp av ett eller flere av "
-"følgende alternativer som vises i den viste rekkefølgen."
-
-msgid "manager.setup.pressHomepageContent"
-msgstr "Utgiverens hovedside"
-
-msgid "manager.setup.homepageContentDescription"
-msgstr ""
-"Som standard består hjemmesiden av navigasjonslenker. Ytterligere "
-"hjemmesideinnhold kan legges til ved å bruke en eller flere av følgende "
-"valgmuligheter, som vil bli vist i den viste rekkefølgen."
-
-msgid "manager.setup.homepageContent"
-msgstr "Innhold på hjemmesiden"
-
-msgid "manager.setup.pressArchiving"
-msgstr "Arkivering"
-
-msgid "manager.setup.aboutPress.description"
-msgstr ""
-"Ta med all informasjon om utgiveren din som kan være av interesse for "
-"lesere, forfattere eller anmeldere. Dette kan omfatte retningslinjene for "
-"åpen tilgang, forlagets fokusområde, opphavsrett, sponsormelding, "
-"forlagshistorikk og en personvernerklæring."
-
-msgid "manager.setup.aboutPress"
-msgstr "Om utgiveren"
-
-msgid "manager.setup.pressDescription.description"
-msgstr "En kort beskrivelse av utgiveren."
-
-msgid "manager.setup.pressDescription"
-msgstr "Utgiversammendrag"
-
-msgid "manager.setup.appearanceDescription"
-msgstr ""
-"Ulike komponenter som inngår i utgiverens utseende og design, kan "
-"konfigureres fra denne siden, inkludert topp- og bunntekstelementer, temaer "
-"og hvordan informasjonslister presenteres for brukerne."
-
-msgid "manager.setup.privacyStatement.success"
-msgstr "Personvernerklæringen har blitt oppdatert."
-
-msgid "manager.setup.policies.description"
-msgstr ""
-"Hovedfokus, fagvurdering, seksjoner, personopplysninger, sikkerhet, og "
-"øvrige Om-emner."
-
-msgid "manager.setup.policies"
-msgstr "Retningslinjer"
-
-msgid "manager.setup.onlineIssn"
-msgstr "ISSN for nettutgaven"
-
-msgid "manager.setup.onlineAccessManagement"
-msgstr "Tilgang til utgiverinnhold"
-
-msgid "manager.setup.numPageLinks.description"
-msgstr ""
-"Begrens antallet lenker som skal vises på hver side i en liste, før resten "
-"blir vist på påfølgende sider."
-
-msgid "manager.setup.numPageLinks"
-msgstr "Sidelenker"
-
-msgid "manager.setup.noUseProofreaders"
-msgstr "Redaktørene og forfattere kommer til å korrigere sideoppsett."
-
-msgid "manager.setup.noUseLayoutEditors"
-msgstr ""
-"Redaktørene kommer til å lage sideoppsett i format som egner seg for "
-"elektronisk publisering."
-
-msgid "manager.setup.noUseCopyeditors"
-msgstr "Språkvask vil bli utført av redaktøren eller en seksjonsredaktør."
-
-msgid "manager.setup.notifyAllAuthorsOnDecision"
-msgstr ""
-"Når e-postfunksjonen 'Send beskjed til forfatter' brukes skal e-posten "
-"sendes til alle medforfattere, ikke bare til den forfatteren som sendte inn "
-"manuskriptet."
-
-msgid "manager.setup.note"
-msgstr "Merknad"
-
-msgid "manager.setup.noStyleSheetUploaded"
-msgstr "Ingen stylesheet lastet opp."
-
-msgid "manager.setup.noImageFileUploaded"
-msgstr "Ingen bildefil er lastet opp."
-
-msgid "manager.setup.masthead.success"
-msgstr "Tidsskriftets kolofonopplysninger har blitt oppdatert."
-
-msgid "manager.setup.managingThePress"
-msgstr "Steg 4. Håndtering av innstillingene"
-
-msgid "manager.setup.managingPublishingSetup"
-msgstr "Administrasjons- og publiseringsoppsett"
-
-msgid "manager.setup.managementOfBasicEditorialSteps"
-msgstr "Administrasjon av grunnleggende redaksjonelle trinn"
-
-msgid "manager.setup.management.description"
-msgstr ""
-"Planlegging, nettilgang, oppslag, og bruk av manusredaktører, "
-"layoutredaktører og korrekturlesere."
-
-msgid "manager.setup.settings"
-msgstr "Innstillinger"
-
-msgid "manager.setup.look.description"
-msgstr ""
-"Hjemmesidetopptekst, innhold, utgiverens-topptekst, bunntekst, "
-"navigasjonsfelt, og stylesheet."
-
-msgid "manager.setup.look"
-msgstr "Utseendet"
-
-msgid "manager.setup.lists"
-msgstr "Lister"
-
-msgid "manager.setup.layoutTemplates.title"
-msgstr "Tittel"
-
-msgid "manager.setup.layoutTemplates.file"
-msgstr "Malfil"
-
-msgid "manager.setup.layoutTemplatesDescription"
-msgstr ""
-"Maler kan lastes opp slik at de vises under layout for hvert av "
-"standardformatene som utgis av utgiveren (f.eks. Monografi, bokanmeldelse "
-"osv.) Og for ethvert filformat (f.eks. Pdf, doc osv.) Med tillegg "
-"kommentarer og spesifisering av skrift, størrelse, marginer osv. slik at den "
-"kan fungere som en veiledning for layoutredaktører og språkvaskere."
-
-msgid "manager.setup.layoutTemplates"
-msgstr "Layoutmaler"
-
-msgid "manager.setup.layoutInstructionsDescription"
-msgstr ""
-"Layoutinstruksjoner for formatering av forlagets publiseringsmateriale kan "
-"utarbeides og angis nedenfor i HTML eller ren tekst. De vil bli gjort "
-"tilgjengelig for layoutredigereren og seksjonsredigereren på "
-"manuskriptredigeringssiden for hver innsending. (Ettersom hver utgiver kan "
-"velge sine egne filformater, bibliografiske standarder, stilark osv., Gis "
-"ikke en standardinstruksjon.)"
-
-msgid "manager.setup.layoutInstructions"
-msgstr "Layoutinstruksjoner"
-
-msgid "manager.setup.layoutAndGalleys"
-msgstr "Layoutredaktører"
-
-msgid "manager.setup.labelName"
-msgstr "Etikettnavn"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Gi en kort beskrivelse av utgiveren din og identifiser redaktører, "
-"tidsskriftsansvarlige og andre medlemmer av redaksjonen din."
-
-msgid "manager.setup.keyInfo"
-msgstr "Nøkkelinformasjon"
-
-msgid "manager.setup.itemsPerPage.description"
-msgstr ""
-"Begrens antall oppføringer (for eksempel innleveringer, brukere eller "
-"redigeringsoppgaver) som skal vises i en liste på én nettside, før de resten "
-"av oppføringene vises på en annen side."
-
-msgid "manager.setup.itemsPerPage"
-msgstr "Elementer per side"
-
-msgid "manager.setup.institution"
-msgstr "Institusjon"
-
-msgid "manager.setup.information.success"
-msgstr "Utgiverinformasjonen har blitt oppdatert."
-
-msgid "manager.setup.information.forReaders"
-msgstr "For lesere"
-
-msgid "manager.setup.information.forLibrarians"
-msgstr "For bibliotekarer"
-
-msgid "manager.setup.information.forAuthors"
-msgstr "For forfattere"
-
-msgid "manager.setup.information.description"
-msgstr ""
-"Korte beskrivelser av utgivelsen for interesserte bibliotekarer, forfattere, "
-"og lesere som blir tilgjengelig i 'informasjon'-delen av sidefeltet."
-
-msgid "manager.setup.information"
-msgstr "Informasjon"
-
-msgid "manager.setup.identity"
-msgstr "Utgiveridentitet"
-
-msgid "manager.setup.preparingWorkflow"
-msgstr "Trinn 3. Forbered arbeidsflyten"
-
-msgid "manager.setup.guidelines"
-msgstr "Retningslinjer"
-
-msgid "manager.setup.gettingDownTheDetails"
-msgstr "Trinn 1. Detaljene først"
-
-msgid "manager.setup.generalInformation"
-msgstr "Generell informasjon"
-
-msgid "manager.setup.form.supportNameRequired"
-msgstr "Navn på teknisk Teknisk kontaktpersons navn legges inn."
-
-msgid "manager.setup.form.supportEmailRequired"
-msgstr "Kontaktpersonens e-post må legges inn."
-
-msgid "manager.setup.form.numReviewersPerSubmission"
-msgstr "Antallet fagkonsulenter per manuskript kreves."
-
-msgid "manager.setup.form.contactNameRequired"
-msgstr "Hovedkontaktens navn kreves."
-
-msgid "manager.setup.form.contactEmailRequired"
-msgstr "Hovedkontaktens e-post kreves."
-
-msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
-msgstr ""
-"OMP følger <a href=\"http://www.openarchives.org/\" target=\"_blank\">Open "
-"Archives Initiative</a> protokoll for innhøsting av metadata, som er en "
-"framtidsrettet indekseringsstandard som gir tilgang til elektroniske "
-"forskningsressurser på verdensbasis. Forfatterene kommer til å bruke en "
-"tilpasset mal for å oppgi slike metadata for sitt manuskript. "
-"Redaksjonslederen bør velge kategoriene for indeksering, og gi forfatterene "
-"relevante eksempler til hjelp ved indekseringen. Disse termene skal holdes "
-"atskilt med a semikolon (for eks. term1; term2). Merk eksemplene som "
-"eksempler ved å bruke \"For eks.\" eller \"For eksempel,\"."
-
-msgid "manager.setup.lists.success"
-msgstr "Utgiverens listeinnstillinger har blitt oppdatert."
+"<p>For at lesere lett skal kunne finne nettpubliserte versjoner av verk "
+"forfattere henviser til i artiklene sine, finnes følgende muligheter.</p>\n"
+"\n"
+"<ol>\n"
+"\t<li><strong>Legg til et Leseverktøy</strong><p>Redaksjonslederen kan legge "
+"til verktøyet \"Finn henvisning\" i Leseverktøy som vises i sidespalten ved "
+"publiserte artikler. Med dette verktøyet kan leseren lime inn tittelen fra "
+"en henvisning for å søke etter verket i egnete søkeverktøy som er valgt på "
+"forhånd av tidsskriftet.</p></li>\n"
+"\t<li><strong>Legg inn lenker i henvisningene</strong><p>Layoutredaktøren "
+"kan legge inn aktive lenker direkte i artikkelfilens henvisninger ved å "
+"følge instruksen nedenfor (som kan redigeres).</p></li>\n"
+"</ol>"
+
+msgid "manager.publication.library"
+msgstr "Utgivers bibliotek"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Tilbakestill monografirettigheter"
 
 msgid "manager.setup.resetPermissions.confirm"
 msgstr ""
 "Er du sikker på at du vil tilbakestille data om rettighetene som allerede er "
 "knyttet til artiklene?"
-
-msgid "stats.publications.abstracts"
-msgstr "Kataloginnganger"
-
-msgid "stats.publications.countOfTotal"
-msgstr "{$count} av {$total} monografier"
-
-msgid "stats.publications.totalGalleyViews.timelineInterval"
-msgstr "Totalt antall filvisninger etter dato"
-
-msgid "stats.publications.totalAbstractViews.timelineInterval"
-msgstr "Totalt antall katalogvisninger etter dato"
-
-msgid "stats.publications.none"
-msgstr ""
-"Ingen monografier med bruksstatistikk som samsvarer med disse parameterne "
-"ble funnet."
-
-msgid "stats.publications.details"
-msgstr "Monografiopplysninger"
-
-msgid "stats.publicationStats"
-msgstr "Monografistatistikk"
-
-msgid "grid.series.urlWillBe"
-msgstr "Seriens URL blir: {$sampleUrl}"
-
-msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
-msgstr "Velg den kategorien som du ønsker at dette menypunktet skal lenke til."
-
-msgid "manager.navigationMenus.form.navigationMenuItem.category"
-msgstr "Velg kategori"
-
-msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
-msgstr "Velg serien som du ønsker at dette menypunktet skal lenke til."
-
-msgid "manager.navigationMenus.form.navigationMenuItem.series"
-msgstr "Velg serier"
-
-msgid "grid.series.pathExists"
-msgstr "Seriestien finnes allerede. Skriv inn en unik sti."
-
-msgid "grid.series.pathAlphaNumeric"
-msgstr "Seriestien kan kun bestå av bokstaver og tall."
-
-msgid "manager.setup.notifications.copyPrimaryContact"
-msgstr ""
-"Send en kopi til tidsskriftets hovedkontakt, som ble oppgitt i "
-"utgiverinnstillingene."
-
-msgid "grid.genres.title"
-msgstr "Monografikomponenter"
-
-msgid "grid.genres.title.short"
-msgstr "Komponenter"
-
-msgid "manager.setup.resetPermissions.success"
-msgstr "Monografitillatelsene ble tilbakestilt."
 
 msgid "manager.setup.resetPermissions.description"
 msgstr ""
@@ -1373,36 +1333,80 @@ msgstr ""
 "tilbakestille informasjonen allerede lagt ved det publiserte materialet, "
 "bruk knappen under."
 
-msgid "manager.setup.resetPermissions"
-msgstr "Tilbakestill monografirettigheter"
+msgid "manager.setup.resetPermissions.success"
+msgstr "Monografitillatelsene ble tilbakestilt."
 
-msgid "manager.publication.library"
-msgstr "Utgivers bibliotek"
+msgid "grid.genres.title.short"
+msgstr "Komponenter"
 
-msgid "plugins.importexport.native.exportSubmissions"
-msgstr "Eksporter innleveringer"
+msgid "grid.genres.title"
+msgstr "Monografikomponenter"
 
-msgid "plugins.importexport.common.invalidXML"
-msgstr "Ugyldig XML:"
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr ""
+"Send en kopi til tidsskriftets hovedkontakt, som ble oppgitt i "
+"utgiverinnstillingene."
 
-msgid "plugins.importexport.common.error.validation"
-msgstr "Kunne ikke konvertere valgte objekt."
+msgid "grid.series.pathAlphaNumeric"
+msgstr "Seriestien kan kun bestå av bokstaver og tall."
+
+msgid "grid.series.pathExists"
+msgstr "Seriestien finnes allerede. Skriv inn en unik sti."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Velg serier"
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr "Velg serien som du ønsker at dette menypunktet skal lenke til."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Velg kategori"
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr "Velg den kategorien som du ønsker at dette menypunktet skal lenke til."
+
+msgid "grid.series.urlWillBe"
+msgstr "Seriens URL blir: {$sampleUrl}"
+
+msgid "stats.publicationStats"
+msgstr "Monografistatistikk"
+
+msgid "stats.publications.details"
+msgstr "Monografiopplysninger"
+
+msgid "stats.publications.none"
+msgstr ""
+"Ingen monografier med bruksstatistikk som samsvarer med disse parameterne "
+"ble funnet."
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Totalt antall katalogvisninger etter dato"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Totalt antall filvisninger etter dato"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$count} av {$total} monografier"
+
+msgid "stats.publications.abstracts"
+msgstr "Kataloginnganger"
 
 msgid "plugins.importexport.common.error.noObjectsSelected"
 msgstr "Ingen objekt valgt."
 
-msgid "manager.setup.disableSubmissions.description"
-msgstr ""
-"Forhindre brukere fra å sende inn nye innleveringer til utgiveren. "
-"Innleveringer kan deaktiveres for individuelle serier på siden <a href=\""
-"{$url}\">utgiverserier</a>."
+msgid "plugins.importexport.common.error.validation"
+msgstr "Kunne ikke konvertere valgte objekt."
 
-msgid "manager.setup.disableSubmissions.notAccepting"
-msgstr ""
-"Denne utgiveren tar ikke imot innleveringer på nåværende tidspunkt. Gå til "
-"arbeidsflytinnstillingene for å tillate innleveringer."
+msgid "plugins.importexport.common.invalidXML"
+msgstr "Ugyldig XML:"
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-"Minst en serie må være aktiv. Gå til arbeidsflytinnstillingene for å "
-"deaktivere alle innleveringer til denne utgiveren."
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Eksporter innleveringer"
+
+#~ msgid "manager.setup.reviewOptions.showEnsuringLink"
+#~ msgstr ""
+#~ "Sett inn lenke til \"Sikre blind gjennomgang\" på sider der forfattere og "
+#~ "fagfeller laster opp filer."
+
+#~ msgid "manager.setup.reviewOptions.blindReview"
+#~ msgstr "Blind fagfellevurdering"

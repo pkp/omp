@@ -10,81 +10,31 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "admin.settings.info.success"
-msgstr "Informace o stránkách byla úspěšně aktualizována."
-
-msgid "admin.settings.config.success"
-msgstr "Nastavení stránek bylo úspěšně aktualizováno."
+msgid "admin.hostedContexts"
+msgstr "Hostované tisky"
 
 msgid "admin.settings.appearance.success"
 msgstr "Nastavení vzhledu stránek bylo úspěšně aktualizováno."
 
-msgid "admin.hostedContexts"
-msgstr "Hostované tisky"
+msgid "admin.settings.config.success"
+msgstr "Nastavení stránek bylo úspěšně aktualizováno."
 
-msgid "admin.presses.addPress"
-msgstr "Přidat tisk"
+msgid "admin.settings.info.success"
+msgstr "Informace o stránkách byla úspěšně aktualizována."
 
-msgid "admin.contexts.contextDescription"
-msgstr "Popis tisku"
+msgid "admin.settings.redirect"
+msgstr "Přesměrování tisků"
 
-msgid "admin.contexts.form.edit.success"
-msgstr "{$name} úspěšně upraven."
-
-msgid "admin.contexts.form.create.success"
-msgstr "{$name} úspěšně vytvořen."
-
-msgid "admin.contexts.form.pathExists"
-msgstr "Zvolená cesta je již využívána jiným tiskem."
-
-msgid "admin.contexts.form.pathAlphaNumeric"
+msgid "admin.settings.redirectInstructions"
 msgstr ""
-"Cesta může obsahovat pouze písmena, čísla a znaky \"_\" a \"-\". Musí "
-"začínat a končit písmenem, nebo číslem."
+"Požadavek na hlavní stranu bude přesměrován na tuto stránku tisku. To může "
+"být užitečné například pokud stránky obsahují jediný tisk."
 
-msgid "admin.contexts.form.pathRequired"
-msgstr "Je požadována cesta."
+msgid "admin.settings.noPressRedirect"
+msgstr "Nepřesměrovávat"
 
-msgid "admin.contexts.form.titleRequired"
-msgstr "Je požadován název."
-
-msgid "admin.contexts.create"
-msgstr "Vytvořit tisk"
-
-msgid "admin.presses.noneCreated"
-msgstr "Nebyly vytvořeny žádné tisky."
-
-msgid "admin.presses.pressSettings"
-msgstr "Nastavení tisků"
-
-msgid "admin.systemConfiguration"
-msgstr "Konfigurátor OMP"
-
-msgid "admin.systemVersion"
-msgstr "Verze OMP"
-
-msgid "admin.languages.downloadFailed"
-msgstr ""
-"Stahování lokalizace bylo neúspěšné. Chybová hláška(y) níže popisuje(í) "
-"chybu."
-
-msgid "admin.languages.noLocalesToDownload"
-msgstr "Nejsou k dispozici ke stažení žádné lokalizace."
-
-msgid "admin.languages.installNewLocalesInstructions"
-msgstr ""
-"Zvolte všechny dodatečné lokalizace, které mají být nainstalovány do vašeho "
-"systému. Lokalizace je třeba instalovat dříve, než budou používány v "
-"hostovaných tiscích. Více informací o podpoře nových jazyků najdete v "
-"dokumentaci OMP."
-
-msgid "admin.languages.confirmUninstall"
-msgstr ""
-"Jste si jisti, že chcete odinstalovat tuto lokalizaci? Vaše rozhodnutí "
-"ovlivní všechny tisky, které v současnosti využívají tuto lokalizaci."
-
-msgid "admin.locale.maybeIncomplete"
-msgstr "* Označené lokalizace nemusí být kompletní."
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "Toto bude výchozí jazyk pro stránky a všechny hostované tisky."
 
 msgid "admin.languages.supportedLocalesInstructions"
 msgstr ""
@@ -95,19 +45,69 @@ msgstr ""
 "lokalizací,  nebude dostupné menu na výběr jazyka a také nebude možné měnit "
 "jazyk u jednotlivých tisků."
 
-msgid "admin.languages.primaryLocaleInstructions"
-msgstr "Toto bude výchozí jazyk pro stránky a všechny hostované tisky."
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Označené lokalizace nemusí být kompletní."
 
-msgid "admin.settings.noPressRedirect"
-msgstr "Nepřesměrovávat"
-
-msgid "admin.settings.redirectInstructions"
+msgid "admin.languages.confirmUninstall"
 msgstr ""
-"Požadavek na hlavní stranu bude přesměrován na tuto stránku tisku. To může "
-"být užitečné například pokud stránky obsahují jediný tisk."
+"Jste si jisti, že chcete odinstalovat tuto lokalizaci? Vaše rozhodnutí "
+"ovlivní všechny tisky, které v současnosti využívají tuto lokalizaci."
 
-msgid "admin.settings.redirect"
-msgstr "Přesměrování tisků"
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Zvolte všechny dodatečné lokalizace, které mají být nainstalovány do vašeho "
+"systému. Lokalizace je třeba instalovat dříve, než budou používány v "
+"hostovaných tiscích. Více informací o podpoře nových jazyků najdete v "
+"dokumentaci OMP."
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Jste si jisti,že chcete zakázat tuto lokalizaci? To může ovlivnit všechny "
+"hostované tisky, které tuto lokalizaci používají."
+
+msgid "admin.systemVersion"
+msgstr "Verze OMP"
+
+msgid "admin.systemConfiguration"
+msgstr "Konfigurátor OMP"
+
+msgid "admin.presses.pressSettings"
+msgstr "Nastavení tisků"
+
+msgid "admin.presses.noneCreated"
+msgstr "Nebyly vytvořeny žádné tisky."
+
+msgid "admin.contexts.create"
+msgstr "Vytvořit tisk"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Je požadován název."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Je požadována cesta."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"Cesta může obsahovat pouze písmena, čísla a znaky \"_\" a \"-\". Musí "
+"začínat a končit písmenem, nebo číslem."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Zvolená cesta je již využívána jiným tiskem."
+
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr ""
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} úspěšně vytvořen."
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} úspěšně upraven."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Popis tisku"
+
+msgid "admin.presses.addPress"
+msgstr "Přidat tisk"
 
 msgid "admin.overwriteConfigFileInstructions"
 msgstr ""
@@ -117,19 +117,31 @@ msgstr ""
 "textovém editoru a nahradit jeho obsah obsahem, který najdete v textovém "
 "poli níže.</p>"
 
-msgid "admin.languages.confirmDisable"
+msgid "admin.settings.enableBulkEmails.description"
 msgstr ""
-"Jste si jisti,že chcete zakázat tuto lokalizaci? To může ovlivnit všechny "
-"hostované tisky, které tuto lokalizaci používají."
 
-msgid "admin.languages.downloadUnavailable"
+msgid "admin.settings.disableBulkEmailRoles.description"
 msgstr ""
-"<p>Stahování jazykových balíčků ze serveru projektu PKP (Public Knowledge "
-"Project) není v tomto momentě k dispozici, protože:</p>\n"
-"\t<ul>\n"
-"\t\t<li>Váš server nemá, nebo nepovoluje utilitu GNU \"tar\"</li>\n"
-"\t\t<li>OMP neumí změnit místní soubr registrů lokalizace, typicky to bývá "
-"soubor \"registry/locales.xml\".</li>\n"
-"\t</ul>\n"
-"<p>Jazykové balíčky mohou být staženy ručně z <a href=\"http://pkp.sfu.ca\" "
-"target=\"_blank\">webové stránky PKP</a>.</p>"
+
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgstr ""
+
+#~ msgid "admin.languages.downloadFailed"
+#~ msgstr ""
+#~ "Stahování lokalizace bylo neúspěšné. Chybová hláška(y) níže popisuje(í) "
+#~ "chybu."
+
+#~ msgid "admin.languages.noLocalesToDownload"
+#~ msgstr "Nejsou k dispozici ke stažení žádné lokalizace."
+
+#~ msgid "admin.languages.downloadUnavailable"
+#~ msgstr ""
+#~ "<p>Stahování jazykových balíčků ze serveru projektu PKP (Public Knowledge "
+#~ "Project) není v tomto momentě k dispozici, protože:</p>\n"
+#~ "\t<ul>\n"
+#~ "\t\t<li>Váš server nemá, nebo nepovoluje utilitu GNU \"tar\"</li>\n"
+#~ "\t\t<li>OMP neumí změnit místní soubr registrů lokalizace, typicky to "
+#~ "bývá soubor \"registry/locales.xml\".</li>\n"
+#~ "\t</ul>\n"
+#~ "<p>Jazykové balíčky mohou být staženy ručně z <a href=\"http://pkp.sfu.ca"
+#~ "\" target=\"_blank\">webové stránky PKP</a>.</p>"

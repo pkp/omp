@@ -10,27 +10,30 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "api.submissions.403.contextRequired"
+msgid "api.submissions.400.submissionIdsRequired"
 msgstr ""
-"K vytvoření nebo úpravě příspěvku musíte zadat požadavek na API "
-"nakladatelství."
+"Chcete-li přidat do katalogu, musíte zadat jedno nebo více ID příspěvku."
 
-msgid "api.submissions.403.cantChangeContext"
-msgstr "Pro tento příspěvek nemůžete změnit nakladatelství."
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "Jeden nebo více zadaných příspěvků nelze najít."
 
-msgid "api.publications.403.submissionsDidNotMatch"
-msgstr "Požadovaná publikace není součástí tohoto příspěvku."
-
-msgid "api.publications.403.contextsDidNotMatch"
-msgstr "Požadovaná publikace není součástí tohoto nakladatelství."
+msgid "api.emails.403.disabled"
+msgstr ""
 
 msgid "api.emailTemplates.403.notAllowedChangeContext"
 msgstr ""
 "Nemáte opravnění k přesunu této šablony e-mailu do jiného nakladatelství."
 
-msgid "api.submissions.400.submissionsNotFound"
-msgstr "Jeden nebo více zadaných příspěvků nelze najít."
+msgid "api.publications.403.contextsDidNotMatch"
+msgstr "Požadovaná publikace není součástí tohoto nakladatelství."
 
-msgid "api.submissions.400.submissionIdsRequired"
+msgid "api.publications.403.submissionsDidNotMatch"
+msgstr "Požadovaná publikace není součástí tohoto příspěvku."
+
+msgid "api.submissions.403.cantChangeContext"
+msgstr "Pro tento příspěvek nemůžete změnit nakladatelství."
+
+msgid "api.submissions.403.contextRequired"
 msgstr ""
-"Chcete-li přidat do katalogu, musíte zadat jedno nebo více ID příspěvku."
+"K vytvoření nebo úpravě příspěvku musíte zadat požadavek na API "
+"nakladatelství."

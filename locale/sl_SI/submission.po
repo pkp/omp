@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-28T15:10:10-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:10-08:00\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-11-28T15:10:10-08:00\n"
-"PO-Revision-Date: 2019-11-28T15:10:10-08:00\n"
-"Language: \n"
 
 msgid "submission.submit.title"
 msgstr "Oddaj monografsko publikacijo"
@@ -19,9 +19,6 @@ msgstr "Izberi komponento"
 
 msgid "submission.title"
 msgstr "Naslov knjige"
-
-msgid "submission.title.tip"
-msgstr "Vrsta oddaje je običajno \"slika\", \"besedilo\" ali druga vrsta večpredstavnostne datoteke, vključno s \"programsko opremo\" ali \"interaktivno vsebino\". Izberite vrsto, ki je najbližja naravi vašega prispevka. Primere lahko najdete na <a target=\"_blank\" href=\"http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type\">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>"
 
 msgid "submission.select"
 msgstr "Izberi prispevek"
@@ -33,13 +30,25 @@ msgid "submission.workflowType"
 msgstr "Vrsta prispevka"
 
 msgid "submission.workflowType.description"
-msgstr "Monografska publikacija je delo, ki ga je v celoti napisal en ali več avtorjev. Pri zborniku ima vsako poglavje drugega avtorja (v enem od naslednjih korakov je treba navesti podrobnosti o posameznih poglavjih)."
+msgstr ""
+"Monografska publikacija je delo, ki ga je v celoti napisal en ali več "
+"avtorjev. Pri zborniku ima vsako poglavje drugega avtorja (v enem od "
+"naslednjih korakov je treba navesti podrobnosti o posameznih poglavjih)."
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr ""
 
 msgid "submission.workflowType.editedVolume"
 msgstr "Zbornik: Vsako poglavje ima svojega avtorja."
 
 msgid "submission.workflowType.authoredWork"
 msgstr "Monografska publikacija: Knjiga ima enega avtorja."
+
+msgid "submission.workflowType.change"
+msgstr ""
+
+msgid "submission.editorName"
+msgstr ""
 
 msgid "submission.monograph"
 msgstr "Monografska publikacija"
@@ -63,13 +72,19 @@ msgid "submission.chapters"
 msgstr "Poglavja"
 
 msgid "submission.chaptersDescription"
-msgstr "Tu lahko navedete poglavja, zgoraj pa iz seznama sodelavcev izberete sodelavce. Sodelavci bodo do poglavja lahko dostopali med različnimi fazami procesa objave."
+msgstr ""
+"Tu lahko navedete poglavja, zgoraj pa iz seznama sodelavcev izberete "
+"sodelavce. Sodelavci bodo do poglavja lahko dostopali med različnimi fazami "
+"procesa objave."
 
 msgid "submission.chapter.addChapter"
 msgstr "Dodaj poglavje"
 
 msgid "submission.chapter.editChapter"
 msgstr "Uredi poglavje"
+
+msgid "submission.chapter.pages"
+msgstr ""
 
 msgid "submission.copyedit"
 msgstr "Lektoriranje"
@@ -129,10 +144,15 @@ msgid "submission.submit.upload"
 msgstr "Naloži prispevek"
 
 msgid "submission.submit.cancelSubmission"
-msgstr "Oddajo prispevka lahko dokončate tudi pozneje, in sicer s klikom na Aktivne oddaje na meniju avtorjeve domače strani."
+msgstr ""
+"Oddajo prispevka lahko dokončate tudi pozneje, in sicer s klikom na Aktivne "
+"oddaje na meniju avtorjeve domače strani."
 
 msgid "submission.submit.selectSeries"
 msgstr "Izberi zbirko (izbirno)"
+
+msgid "author.isVolumeEditor"
+msgstr ""
 
 msgid "author.submit.seriesRequired"
 msgstr "Vnesite veljavno zbirko."
@@ -195,10 +215,15 @@ msgid "submission.submit.generalInformation"
 msgstr "Splošne informacije"
 
 msgid "submission.submit.whatNext.description"
-msgstr "Založba je bila obveščena o vašem prispevku. Poslali smo vam potrditveno e-pošto za vašo evidenco. Ko urednik zaključi recenzijo vašega prispevka, boste prejeli obvestilo."
+msgstr ""
+"Založba je bila obveščena o vašem prispevku. Poslali smo vam potrditveno e-"
+"pošto za vašo evidenco. Ko urednik zaključi recenzijo vašega prispevka, "
+"boste prejeli obvestilo."
 
 msgid "submission.submit.checklistErrors"
-msgstr "Preberite in izberite elemente na seznamu pogojev za oddajo prispevka. Nekateri elementi {$itemsRemaining} niso bili izbrani."
+msgstr ""
+"Preberite in izberite elemente na seznamu pogojev za oddajo prispevka. "
+"Nekateri elementi {$itemsRemaining} niso bili izbrani."
 
 msgid "submission.submit.placement"
 msgstr "Oddaja prispevka"
@@ -209,14 +234,14 @@ msgstr "Izberi vlogo ..."
 msgid "submission.submit.userGroupDescription"
 msgstr "Če želite oddati zbornik, izberite vlogo urednika zbornika."
 
+msgid "submission.submit.noContext"
+msgstr ""
+
 msgid "grid.chapters.title"
 msgstr "Poglavja"
 
 msgid "grid.copyediting.deleteCopyeditorResponse"
 msgstr "Odstrani naloženo lektorsko datoteko"
-
-msgid "publication.catalogEntry"
-msgstr "Vnos v katalog"
 
 msgid "submission.complete"
 msgstr "Odobreno"
@@ -230,6 +255,15 @@ msgstr "Vnos"
 msgid "submission.catalogEntry.new"
 msgstr "Nov vnos v katalog"
 
+msgid "submission.catalogEntry.add"
+msgstr ""
+
+msgid "submission.catalogEntry.select"
+msgstr ""
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr ""
+
 msgid "submission.catalogEntry.confirm"
 msgstr "Dodajte knjigo v javni katalog"
 
@@ -238,6 +272,18 @@ msgstr "Potrdite, da je prispevek pripravljen za vnos v katalog."
 
 msgid "submission.catalogEntry.isAvailable"
 msgstr "Monografska publikacija je pripravljena za vnos v javni katalog."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr ""
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr ""
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr ""
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr ""
 
 msgid "submission.catalogEntry.monographMetadata"
 msgstr "Monografska publikacija"
@@ -281,11 +327,11 @@ msgstr "Format publikacije \"{$formatName}\" je odstranjen."
 msgid "submission.submit.titleAndSummary"
 msgstr "Naslov in povzetek"
 
-msgid "workflow.review.externalReview"
-msgstr "Zunanja recenzija"
-
 msgid "editor.submission.decision.sendExternalReview"
 msgstr "Pošlji na zunanjo recenzijo"
+
+msgid "workflow.review.externalReview"
+msgstr "Zunanja recenzija"
 
 msgid "submission.upload.fileContents"
 msgstr "Komponenta prispevka"
@@ -294,10 +340,63 @@ msgid "submission.dependentFiles"
 msgstr "Povezane datoteke"
 
 msgid "submission.metadataDescription"
-msgstr "Te specifikacije temeljijo na metapodatkih po mednarodnem standardu Dublin Core, ki se uporablja za opis vsebine publikacij."
+msgstr ""
+"Te specifikacije temeljijo na metapodatkih po mednarodnem standardu Dublin "
+"Core, ki se uporablja za opis vsebine publikacij."
 
 msgid "section.any"
 msgstr "Zbirke"
+
+msgid "submission.list.monographs"
+msgstr ""
+
+msgid "submission.list.countMonographs"
+msgstr ""
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr ""
+
+msgid "submission.list.orderFeatures"
+msgstr ""
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+
+msgid "submission.list.saveFeatureOrder"
+msgstr ""
+
+msgid "submission.list.viewEntry"
+msgstr ""
+
+msgid "catalog.browseTitles"
+msgstr ""
+
+msgid "publication.catalogEntry"
+msgstr "Vnos v katalog"
+
+msgid "publication.catalogEntry.success"
+msgstr ""
+
+msgid "publication.invalidSeries"
+msgstr ""
+
+msgid "publication.inactiveSeries"
+msgstr ""
+
+msgid "publication.required.issue"
+msgstr ""
+
+msgid "publication.publishedIn"
+msgstr ""
+
+msgid "publication.publish.confirmation"
+msgstr ""
+
+msgid "publication.scheduledIn"
+msgstr ""
 
 msgid "submission.publication"
 msgstr "Objava"
@@ -390,3 +489,12 @@ msgstr "Podrobnosti objave za verzijo {$version}"
 msgid "submission.queries.production"
 msgstr "Produkcijska diskusija"
 
+#~ msgid "submission.title.tip"
+#~ msgstr ""
+#~ "Vrsta oddaje je običajno \"slika\", \"besedilo\" ali druga vrsta "
+#~ "večpredstavnostne datoteke, vključno s \"programsko opremo\" ali "
+#~ "\"interaktivno vsebino\". Izberite vrsto, ki je najbližja naravi vašega "
+#~ "prispevka. Primere lahko najdete na <a target=\"_blank\" href=\"http://"
+#~ "dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type"
+#~ "\">http://dublincore.org/documents/2001/04/12/usageguide/generic."
+#~ "shtml#type</a>"

@@ -11,30 +11,30 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "api.submissions.403.contextRequired"
-msgstr ""
-"Para enviar ou editar uma submissão deve fazer um pedido ao endpoint da API "
-"da editora."
-
-msgid "api.submissions.403.cantChangeContext"
-msgstr "Não pode alterar a editora de uma submissão."
-
-msgid "api.publications.403.submissionsDidNotMatch"
-msgstr "A publicação que solicitou não faz parte desta submissão."
-
-msgid "api.publications.403.contextsDidNotMatch"
-msgstr "A publicação que solicitou não faz parte desta editora."
-
-msgid "api.emailTemplates.403.notAllowedChangeContext"
-msgstr "Não tem permissões para mover este e-mail padrão para outra editora."
-
-msgid "api.submissions.400.submissionsNotFound"
-msgstr "Uma ou mais submissões que especificou não foram encontradas."
-
 msgid "api.submissions.400.submissionIdsRequired"
 msgstr ""
 "Deve forneceere um ou mais IDs de submissões para serem adicionados ao "
 "catálogo."
 
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "Uma ou mais submissões que especificou não foram encontradas."
+
 msgid "api.emails.403.disabled"
 msgstr "O recurso de notificação de e-mail não foi ativado para esta editora."
+
+msgid "api.emailTemplates.403.notAllowedChangeContext"
+msgstr "Não tem permissões para mover este e-mail padrão para outra editora."
+
+msgid "api.publications.403.contextsDidNotMatch"
+msgstr "A publicação que solicitou não faz parte desta editora."
+
+msgid "api.publications.403.submissionsDidNotMatch"
+msgstr "A publicação que solicitou não faz parte desta submissão."
+
+msgid "api.submissions.403.cantChangeContext"
+msgstr "Não pode alterar a editora de uma submissão."
+
+msgid "api.submissions.403.contextRequired"
+msgstr ""
+"Para enviar ou editar uma submissão deve fazer um pedido ao endpoint da API "
+"da editora."

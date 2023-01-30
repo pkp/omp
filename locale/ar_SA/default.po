@@ -12,26 +12,128 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "default.genres.table"
-msgstr "جدول"
-
-msgid "default.genres.preface"
-msgstr "تقديم"
-
-msgid "default.genres.index"
-msgstr "الفهرس"
-
-msgid "default.genres.glossary"
-msgstr "المفردات"
-
-msgid "default.genres.chapter"
-msgstr "ملف الفصل"
-
-msgid "default.genres.manuscript"
-msgstr "ملف الكتاب"
+msgid "default.genres.appendix"
+msgstr "الملحقات"
 
 msgid "default.genres.bibliography"
 msgstr "المصادر"
 
-msgid "default.genres.appendix"
-msgstr "الملحقات"
+msgid "default.genres.manuscript"
+msgstr "ملف الكتاب"
+
+msgid "default.genres.chapter"
+msgstr "ملف الفصل"
+
+msgid "default.genres.glossary"
+msgstr "المفردات"
+
+msgid "default.genres.index"
+msgstr "الفهرس"
+
+msgid "default.genres.preface"
+msgstr "تقديم"
+
+msgid "default.genres.prospectus"
+msgstr ""
+
+msgid "default.genres.table"
+msgstr "جدول"
+
+msgid "default.genres.figure"
+msgstr ""
+
+msgid "default.genres.photo"
+msgstr ""
+
+msgid "default.genres.illustration"
+msgstr ""
+
+msgid "default.genres.other"
+msgstr ""
+
+msgid "default.groups.name.manager"
+msgstr ""
+
+msgid "default.groups.plural.manager"
+msgstr ""
+
+msgid "default.groups.abbrev.manager"
+msgstr ""
+
+msgid "default.groups.name.editor"
+msgstr ""
+
+msgid "default.groups.plural.editor"
+msgstr ""
+
+msgid "default.groups.abbrev.editor"
+msgstr ""
+
+msgid "default.groups.name.sectionEditor"
+msgstr ""
+
+msgid "default.groups.plural.sectionEditor"
+msgstr ""
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr ""
+
+msgid "default.groups.name.chapterAuthor"
+msgstr ""
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr ""
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr ""
+
+msgid "default.groups.name.volumeEditor"
+msgstr ""
+
+msgid "default.groups.plural.volumeEditor"
+msgstr ""
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr ""
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr ""
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr ""
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr ""
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr ""
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr ""
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr ""
+
+msgid "default.contextSettings.emailSignature"
+msgstr ""
+
+msgid "default.contextSettings.forReaders"
+msgstr ""
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+
+msgid "default.contextSettings.forLibrarians"
+msgstr ""
+
+msgid "default.groups.name.externalReviewer"
+msgstr ""
+
+msgid "default.groups.plural.externalReviewer"
+msgstr ""
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr ""

@@ -11,11 +11,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.block.developedBy.description"
-msgstr "Este plugin fornece um link para \"Desenvolvido por\" na barra lateral."
-
 msgid "plugins.block.developedBy.displayName"
 msgstr "Bloco \"Desenvolvido por\""
+
+msgid "plugins.block.developedBy.description"
+msgstr ""
+"Este plugin fornece um link para \"Desenvolvido por\" na barra lateral."
 
 msgid "plugins.block.developedBy.blockTitle"
 msgstr "Desenvolvido por"

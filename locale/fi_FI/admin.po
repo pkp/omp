@@ -13,14 +13,24 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "admin.hostedPresses"
-msgstr "Ylläpidetyt painot"
+msgid "admin.hostedContexts"
+msgstr "Ylläpidetyt julkaisijoiden sivustot"
 
-msgid "admin.settings.pressRedirect"
-msgstr "Painon uudelleenohjaus"
+msgid "admin.settings.appearance.success"
+msgstr "Sivuston ulkoasua koskevat asetukset on päivitetty."
 
-msgid "admin.settings.pressRedirectInstructions"
-msgstr "Pyynnöt pääsivustolle uudelleenohjataan tähän painoon. Tämä saattaa olla hyödyllinen toiminto, jos sivustolla ylläpidetään vain yhtä painoa."
+msgid "admin.settings.config.success"
+msgstr "Sivuston asetukset on päivitetty."
+
+msgid "admin.settings.info.success"
+msgstr "Sivuston tietoja koskevat asetukset on päivitetty."
+
+msgid "admin.settings.redirect"
+msgstr "Julkaisijan sivuston uudelleenohjaus"
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Koko sivustoon kohdistuvat pyynnöt ohjataan tämän julkaisijan sivustolle."
 
 msgid "admin.settings.noPressRedirect"
 msgstr "Älä uudelleenohjaa"
@@ -74,12 +84,6 @@ msgstr "Yhtään julkaisijan sivustoa ei ole luotu."
 msgid "admin.contexts.create"
 msgstr "Luo julkaisijan sivusto"
 
-msgid "admin.presses.createInstructions"
-msgstr "Sinut lisätään automaattisesti tämän painon hallinnoijaksi. Uuden painon luonnin jälkeen sinut uudelleenohjataan ohjattuun asetusten luontiin painon aloitusasetusten loppuun saattamiseksi."
-
-msgid "admin.presses.urlWillBe"
-msgstr "Painon URL-osoitteeksi tulee {$sampleUrl}"
-
 msgid "admin.contexts.form.titleRequired"
 msgstr "Otsikko vaaditaan."
 
@@ -87,16 +91,24 @@ msgid "admin.contexts.form.pathRequired"
 msgstr "Polku vaaditaan."
 
 msgid "admin.contexts.form.pathAlphaNumeric"
-msgstr "Polku voi sisältää vain aakkosnumeerisia merkkejä, alaviivoja ja yhdysmerkkejä, ja sen täytyy alkaa ja päättyä aakkosnumeeriseen merkkiin."
+msgstr ""
+"Polku voi sisältää vain aakkosnumeerisia merkkejä, alaviivoja ja "
+"yhdysmerkkejä, ja sen täytyy alkaa ja päättyä aakkosnumeeriseen merkkiin."
 
 msgid "admin.contexts.form.pathExists"
 msgstr "Valittu polku on jo toisen julkaisijan sivuston käytössä."
 
-msgid "admin.presses.enablePressInstructions"
-msgstr "Näytä tämä paino julkisesti sivustolla"
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr ""
 
-msgid "admin.presses.pressDescription"
-msgstr "Painon kuvaus"
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} luotiin onnistuneesti."
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} päivitettiin onnistuneesti."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Julkaisijan kuvaus"
 
 msgid "admin.presses.addPress"
 msgstr "Lisää julkaisijan sivusto"
@@ -104,32 +116,42 @@ msgstr "Lisää julkaisijan sivusto"
 msgid "admin.overwriteConfigFileInstructions"
 msgstr ""
 "<h4>HUOM!</div>\n"
-"<p>Järjestelmä ei voinut korvata määritystiedostoa automaattisesti. Ottaaksesi määritysmuutokset käyttöön avaa <tt>config.inc.php</tt> sopivassa tekstieditorissa ja korvaa sen sisältö alla olevan tekstikentän sisällöllä.</p>"
+"<p>Järjestelmä ei voinut korvata määritystiedostoa automaattisesti. "
+"Ottaaksesi määritysmuutokset käyttöön avaa <tt>config.inc.php</tt> sopivassa "
+"tekstieditorissa ja korvaa sen sisältö alla olevan tekstikentän sisällöllä.</"
+"p>"
 
-msgid "admin.contexts.contextDescription"
-msgstr "Julkaisijan kuvaus"
-
-msgid "admin.contexts.form.edit.success"
-msgstr "{$name} päivitettiin onnistuneesti."
-
-msgid "admin.contexts.form.create.success"
-msgstr "{$name} luotiin onnistuneesti."
-
-msgid "admin.settings.redirectInstructions"
+msgid "admin.settings.enableBulkEmails.description"
 msgstr ""
-"Koko sivustoon kohdistuvat pyynnöt ohjataan tämän julkaisijan sivustolle."
 
-msgid "admin.settings.redirect"
-msgstr "Julkaisijan sivuston uudelleenohjaus"
+msgid "admin.settings.disableBulkEmailRoles.description"
+msgstr ""
 
-msgid "admin.settings.info.success"
-msgstr "Sivuston tietoja koskevat asetukset on päivitetty."
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgstr ""
 
-msgid "admin.settings.config.success"
-msgstr "Sivuston asetukset on päivitetty."
+#~ msgid "admin.hostedPresses"
+#~ msgstr "Ylläpidetyt painot"
 
-msgid "admin.settings.appearance.success"
-msgstr "Sivuston ulkoasua koskevat asetukset on päivitetty."
+#~ msgid "admin.settings.pressRedirect"
+#~ msgstr "Painon uudelleenohjaus"
 
-msgid "admin.hostedContexts"
-msgstr "Ylläpidetyt julkaisijoiden sivustot"
+#~ msgid "admin.settings.pressRedirectInstructions"
+#~ msgstr ""
+#~ "Pyynnöt pääsivustolle uudelleenohjataan tähän painoon. Tämä saattaa olla "
+#~ "hyödyllinen toiminto, jos sivustolla ylläpidetään vain yhtä painoa."
+
+#~ msgid "admin.presses.createInstructions"
+#~ msgstr ""
+#~ "Sinut lisätään automaattisesti tämän painon hallinnoijaksi. Uuden painon "
+#~ "luonnin jälkeen sinut uudelleenohjataan ohjattuun asetusten luontiin "
+#~ "painon aloitusasetusten loppuun saattamiseksi."
+
+#~ msgid "admin.presses.urlWillBe"
+#~ msgstr "Painon URL-osoitteeksi tulee {$sampleUrl}"
+
+#~ msgid "admin.presses.enablePressInstructions"
+#~ msgstr "Näytä tämä paino julkisesti sivustolla"
+
+#~ msgid "admin.presses.pressDescription"
+#~ msgstr "Painon kuvaus"

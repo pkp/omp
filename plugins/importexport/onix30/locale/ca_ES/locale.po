@@ -17,8 +17,35 @@ msgstr ""
 msgid "plugins.importexport.onix30.displayName"
 msgstr "Mòdul d'exportació de monografies ONIX 3.0"
 
+msgid "plugins.importexport.onix30.description"
+msgstr "Exportar metadades de monografies en format ONIX 3.0"
+
+msgid "plugins.importexport.onix30.cliUsage"
+msgstr ""
+"Ús: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId] "
+
 msgid "plugins.importexport.onix30.cliError"
 msgstr "ERROR:"
+
+msgid "plugins.importexport.onix30.error.unknownPress"
+msgstr "La ruta editorial especificada, \"{$contextPath}\", no existeix."
+
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr "No s'ha pogut escriure en l'arxiu \"{$fileName}\"."
+
+msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgstr ""
+"Cap monografia coincideix amb l'identificador de monografia especificat "
+"\"{$monographId}\"."
+
+msgid "plugins.importexport.onix30.noFormats"
+msgstr "Les monografies sense formats de publicació no es mostren."
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Seleccionar les monografies per exportar"
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr "Seleccionar una monografia per exportar:"
 
 msgid "plugins.importexport.onix30.exportButton"
 msgstr "Exporta"
@@ -38,43 +65,41 @@ msgstr "Vàlid"
 msgid "plugins.importexport.onix30.formatInvalid"
 msgstr "Invàlid"
 
-msgid "plugins.importexport.onix30.form.addresseeField.tip"
-msgstr ""
-"Podeu deixar aquest camp en blanc i crear una exportació general. Això "
-"suposarà que l'exportació ONIX no tingui &lt;destinatari&gt; compost. "
-
-msgid "plugins.importexport.onix30.form.addresseeField"
-msgstr "Destinatari (receptor/a) d'aquesta exportació"
-
 msgid "plugins.importexport.onix30.pressMissingFields"
 msgstr ""
 "A aquesta publicació li manca alguna informació necessària. Aneu a "
 "Configuració > Flux de treball > Producció i completeu les dades que hi "
 "falten."
 
-msgid "plugins.importexport.onix30.selectMonograph"
-msgstr "Seleccionar una monografia per exportar:"
+msgid "plugins.importexport.onix30.form.addresseeField"
+msgstr "Destinatari (receptor/a) d'aquesta exportació"
 
-msgid "plugins.importexport.onix30.exportSubmissionsSelect"
-msgstr "Seleccionar les monografies per exportar"
-
-msgid "plugins.importexport.onix30.noFormats"
-msgstr "Les monografies sense formats de publicació no es mostren."
-
-msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
 msgstr ""
-"Cap monografia coincideix amb l'identificador de monografia especificat \""
-"{$monographId}\"."
+"Podeu deixar aquest camp en blanc i crear una exportació general. Això "
+"suposarà que l'exportació ONIX no tingui &lt;destinatari&gt; compost. "
 
-msgid "plugins.importexport.onix30.export.error.couldNotWrite"
-msgstr "No s'ha pogut escriure en l'arxiu \"{$fileName}\"."
-
-msgid "plugins.importexport.onix30.error.unknownPress"
-msgstr "La ruta editorial especificada, \"{$contextPath}\", no existeix."
-
-msgid "plugins.importexport.onix30.cliUsage"
+msgid ""
+"plugins.importExport.onix30.common.error.monographWithNoPublicationFormats"
 msgstr ""
-"Ús: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId] "
 
-msgid "plugins.importexport.onix30.description"
-msgstr "Exportar metadades de monografies en format ONIX 3.0"
+msgid "plugins.importExport.onix30.common.error.exportFailed"
+msgstr ""
+
+msgid "plugins.importexport.onix30.processFailed"
+msgstr ""
+
+msgid "plugins.importexport.onix30.export.type.submission"
+msgstr ""
+
+msgid "plugins.importexport.onix30.export.type.any"
+msgstr ""
+
+msgid "plugins.importexport.onix30.export.completed"
+msgstr ""
+
+msgid "plugins.importexport.onix30.export.completed.downloadFile"
+msgstr ""
+
+msgid "plugins.importexport.native.onix30.download.results"
+msgstr ""

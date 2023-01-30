@@ -11,47 +11,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.importexport.csv.import.success.description"
+msgid "plugins.importexport.csv.displayName"
+msgstr "Mòdul d'importació de contingut delimitat per tabuladors (TSV)"
+
+msgid "plugins.importexport.csv.description"
 msgstr ""
-"La importació s'ha fet correctament. Els elements importats es mostren a "
-"continuació."
-
-msgid "plugins.importexport.csv.import.submission"
-msgstr "Tramesa: '{$title}' importada correctament."
-
-msgid "plugins.importexport.csv.noSeries"
-msgstr ""
-"La ruta de la sèrie {$seriesPath} no existeix. Impossible afegir-la a "
-"aquesta tramesa."
-
-msgid "plugins.importexport.csv.noAuthorGroup"
-msgstr ""
-"No hi ha un grup d'autors/ores predeterminat en l'editorial {$press}. "
-"Ometent aquesta tramesa."
-
-msgid "plugins.importexport.csv.noGenre"
-msgstr "No hi ha gènere de manuscrit. Sortint."
-
-msgid "plugins.importexport.csv.unknownPress"
-msgstr "Editorial desconeguda: \"{$contextPath}\". Ometent."
-
-msgid "plugins.importexport.csv.unknownLocale"
-msgstr "Configuració regional desconeguda: \"{$locale}\". Ometent."
-
-msgid "plugins.importexport.csv.unknownUser"
-msgstr "Usuari/ària desconegut: \"{$username}\". Sortint."
-
-msgid "plugins.importexport.csv.fileDoesNotExist"
-msgstr "L'arxiu \"{$filename}\" no existeix. Sortint."
-
-msgid "plugins.importexport.csv.cliUsage"
-msgstr ""
-"Eina de línia d'ordres per importar dades CSV a OMP\n"
-"\t\t\tÚs:\n"
-"\t\t\t{$scriptName} [--dry-run] fileName.csv username\n"
-"\t\t\tEs pot utilitzar l'opció --dry-run per fer proves sense realitzar "
-"canvis.\n"
-"\t\t\tEspecifiqueu el nom d'usuari/ària que voleu assignar a les trameses.\n"
+"Importar trameses a les publicacions des de les dades delimitades per "
+"tabuladors."
 
 msgid "plugins.importexport.csv.cliOnly"
 msgstr ""
@@ -62,10 +28,44 @@ msgstr ""
 "\t\t\t... per obtenir més informació.</p>\n"
 "\t"
 
-msgid "plugins.importexport.csv.description"
+msgid "plugins.importexport.csv.cliUsage"
 msgstr ""
-"Importar trameses a les publicacions des de les dades delimitades per "
-"tabuladors."
+"Eina de línia d'ordres per importar dades CSV a OMP\n"
+"\t\t\tÚs:\n"
+"\t\t\t{$scriptName} [--dry-run] fileName.csv username\n"
+"\t\t\tEs pot utilitzar l'opció --dry-run per fer proves sense realitzar "
+"canvis.\n"
+"\t\t\tEspecifiqueu el nom d'usuari/ària que voleu assignar a les trameses.\n"
 
-msgid "plugins.importexport.csv.displayName"
-msgstr "Mòdul d'importació de contingut delimitat per tabuladors (TSV)"
+msgid "plugins.importexport.csv.fileDoesNotExist"
+msgstr "L'arxiu \"{$filename}\" no existeix. Sortint."
+
+msgid "plugins.importexport.csv.unknownUser"
+msgstr "Usuari/ària desconegut: \"{$username}\". Sortint."
+
+msgid "plugins.importexport.csv.unknownLocale"
+msgstr "Configuració regional desconeguda: \"{$locale}\". Ometent."
+
+msgid "plugins.importexport.csv.unknownPress"
+msgstr "Editorial desconeguda: \"{$contextPath}\". Ometent."
+
+msgid "plugins.importexport.csv.noGenre"
+msgstr "No hi ha gènere de manuscrit. Sortint."
+
+msgid "plugins.importexport.csv.noAuthorGroup"
+msgstr ""
+"No hi ha un grup d'autors/ores predeterminat en l'editorial {$press}. "
+"Ometent aquesta tramesa."
+
+msgid "plugins.importexport.csv.noSeries"
+msgstr ""
+"La ruta de la sèrie {$seriesPath} no existeix. Impossible afegir-la a "
+"aquesta tramesa."
+
+msgid "plugins.importexport.csv.import.submission"
+msgstr "Tramesa: '{$title}' importada correctament."
+
+msgid "plugins.importexport.csv.import.success.description"
+msgstr ""
+"La importació s'ha fet correctament. Els elements importats es mostren a "
+"continuació."

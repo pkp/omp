@@ -11,8 +11,33 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "manager.setup.lists.success"
-msgstr "Tento seznam nastavení byl aktualizován."
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"Toto nahradí všechna nastavení specifická pro danou lokalizaci v "
+"nakladatelství"
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Promiňte, žádné další jazyky nejsou dostupné. Pokud chcete v nakladatelství "
+"používat další jazyky, kontaktujte svého administrátora stránek."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Toto bude výchozí jazyk pro stránky vašeho nakladatelství."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+
+msgid "manager.series.form.reviewFormId"
+msgstr ""
+
+msgid "manager.series.submissionIndexing"
+msgstr ""
+
+msgid "manager.series.editorRestriction"
+msgstr ""
+
+msgid "manager.series.confirmDelete"
+msgstr ""
 
 msgid "manager.series.indexed"
 msgstr "Indexované"
@@ -20,15 +45,1025 @@ msgstr "Indexované"
 msgid "manager.series.open"
 msgstr "Otevřít příspěvky"
 
-msgid "manager.languages.primaryLocaleInstructions"
-msgstr "Toto bude výchozí jazyk pro stránky vašeho nakladatelství."
-
-msgid "manager.languages.noneAvailable"
+msgid "manager.series.readingTools"
 msgstr ""
-"Promiňte, žádné další jazyky nejsou dostupné. Pokud chcete v nakladatelství "
-"používat další jazyky, kontaktujte svého administrátora stránek."
 
-msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgid "manager.series.submissionReview"
 msgstr ""
-"Toto nahradí všechna nastavení specifická pro danou lokalizaci v "
-"nakladatelství"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr ""
+
+msgid "manager.series.abstractsNotRequired"
+msgstr ""
+
+msgid "manager.series.disableComments"
+msgstr ""
+
+msgid "manager.series.book"
+msgstr ""
+
+msgid "manager.series.create"
+msgstr ""
+
+msgid "manager.series.policy"
+msgstr ""
+
+msgid "manager.series.assigned"
+msgstr ""
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+
+msgid "manager.series.hideAbout"
+msgstr ""
+
+msgid "manager.series.unassigned"
+msgstr ""
+
+msgid "manager.series.form.abbrevRequired"
+msgstr ""
+
+msgid "manager.series.form.titleRequired"
+msgstr ""
+
+msgid "manager.series.noneCreated"
+msgstr ""
+
+msgid "manager.series.existingUsers"
+msgstr ""
+
+msgid "manager.series.seriesTitle"
+msgstr ""
+
+msgid "manager.series.restricted"
+msgstr ""
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+
+msgid "manager.payment.generalOptions"
+msgstr ""
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+
+msgid "manager.payment.success"
+msgstr ""
+
+msgid "manager.settings"
+msgstr ""
+
+msgid "manager.settings.pressSettings"
+msgstr ""
+
+msgid "manager.settings.press"
+msgstr ""
+
+msgid "manager.settings.publisher.identity"
+msgstr ""
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+
+msgid "manager.settings.publisher"
+msgstr ""
+
+msgid "manager.settings.location"
+msgstr ""
+
+msgid "manager.settings.publisherCode"
+msgstr ""
+
+msgid "manager.settings.publisherCodeType"
+msgstr ""
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr ""
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr ""
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr ""
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr ""
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr ""
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr ""
+
+msgid "manager.statistics.reports.filters.byContext.description"
+msgstr ""
+
+msgid "manager.statistics.reports.filters.byObject.description"
+msgstr ""
+
+msgid "manager.tools"
+msgstr ""
+
+msgid "manager.tools.importExport"
+msgstr ""
+
+msgid "manager.tools.statistics"
+msgstr ""
+
+msgid "manager.users.availableRoles"
+msgstr ""
+
+msgid "manager.users.currentRoles"
+msgstr ""
+
+msgid "manager.users.selectRole"
+msgstr ""
+
+msgid "manager.people.allEnrolledUsers"
+msgstr ""
+
+msgid "manager.people.allPresses"
+msgstr ""
+
+msgid "manager.people.allSiteUsers"
+msgstr ""
+
+msgid "manager.people.allUsers"
+msgstr ""
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+
+msgid "manager.people.enrollExistingUser"
+msgstr ""
+
+msgid "manager.people.enrollSyncPress"
+msgstr ""
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+
+msgid "manager.system"
+msgstr ""
+
+msgid "manager.system.archiving"
+msgstr ""
+
+msgid "manager.system.reviewForms"
+msgstr ""
+
+msgid "manager.system.readingTools"
+msgstr ""
+
+msgid "manager.system.payments"
+msgstr ""
+
+msgid "user.authorization.pluginLevel"
+msgstr ""
+
+msgid "manager.pressManagement"
+msgstr ""
+
+msgid "manager.setup"
+msgstr ""
+
+msgid "manager.setup.aboutItemContent"
+msgstr ""
+
+msgid "manager.setup.addAboutItem"
+msgstr ""
+
+msgid "manager.setup.addChecklistItem"
+msgstr ""
+
+msgid "manager.setup.addItem"
+msgstr ""
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr ""
+
+msgid "manager.setup.addNavItem"
+msgstr ""
+
+msgid "manager.setup.addSponsor"
+msgstr ""
+
+msgid "manager.setup.announcements"
+msgstr ""
+
+msgid "manager.setup.announcements.success"
+msgstr ""
+
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr ""
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+
+msgid "manager.setup.appearInAboutPress"
+msgstr ""
+
+msgid "manager.setup.contextAbout"
+msgstr ""
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+
+msgid "manager.setup.contextSummary"
+msgstr ""
+
+msgid "manager.setup.copyediting"
+msgstr ""
+
+msgid "manager.setup.copyeditInstructions"
+msgstr ""
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+
+msgid "manager.setup.copyrightNotice"
+msgstr ""
+
+msgid "manager.setup.coverage"
+msgstr ""
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr ""
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr ""
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+
+msgid "manager.setup.customizingTheLook"
+msgstr ""
+
+msgid "manager.setup.customTags"
+msgstr ""
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+
+msgid "manager.setup.details"
+msgstr ""
+
+msgid "manager.setup.details.description"
+msgstr ""
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+
+msgid "manager.setup.discipline"
+msgstr ""
+
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+
+msgid "manager.setup.disciplineExamples"
+msgstr ""
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr ""
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr ""
+
+msgid "manager.setup.displayOnHomepage"
+msgstr ""
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr ""
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr ""
+
+msgid "manager.setup.displayInSpotlight"
+msgstr ""
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr ""
+
+msgid "manager.setup.displayNewReleases"
+msgstr ""
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr ""
+
+msgid "manager.setup.doiPrefix"
+msgstr ""
+
+msgid "manager.setup.doiPrefixDescription"
+msgstr ""
+
+msgid "manager.setup.editorDecision"
+msgstr ""
+
+msgid "manager.setup.emailBounceAddress"
+msgstr ""
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+
+msgid "manager.setup.emails"
+msgstr ""
+
+msgid "manager.setup.emailSignature"
+msgstr ""
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr ""
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr ""
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+
+msgid "manager.setup.enablePressInstructions"
+msgstr ""
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr ""
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+
+msgid "manager.setup.enableUserRegistration"
+msgstr ""
+
+msgid "manager.setup.focusAndScope"
+msgstr ""
+
+msgid "manager.setup.focusAndScope.description"
+msgstr ""
+
+msgid "manager.setup.focusScope"
+msgstr ""
+
+msgid "manager.setup.focusScopeDescription"
+msgstr ""
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr ""
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr ""
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr ""
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr ""
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr ""
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr ""
+
+msgid "manager.setup.generalInformation"
+msgstr ""
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr ""
+
+msgid "manager.setup.guidelines"
+msgstr ""
+
+msgid "manager.setup.preparingWorkflow"
+msgstr ""
+
+msgid "manager.setup.identity"
+msgstr ""
+
+msgid "manager.setup.information"
+msgstr ""
+
+msgid "manager.setup.information.description"
+msgstr ""
+
+msgid "manager.setup.information.forAuthors"
+msgstr ""
+
+msgid "manager.setup.information.forLibrarians"
+msgstr ""
+
+msgid "manager.setup.information.forReaders"
+msgstr ""
+
+msgid "manager.setup.information.success"
+msgstr ""
+
+msgid "manager.setup.institution"
+msgstr ""
+
+msgid "manager.setup.itemsPerPage"
+msgstr ""
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+
+msgid "manager.setup.keyInfo"
+msgstr ""
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+
+msgid "manager.setup.labelName"
+msgstr ""
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr ""
+
+msgid "manager.setup.layoutInstructions"
+msgstr ""
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+
+msgid "manager.setup.layoutTemplates"
+msgstr ""
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr ""
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr ""
+
+msgid "manager.setup.lists"
+msgstr ""
+
+msgid "manager.setup.lists.success"
+msgstr "Tento seznam nastavení byl aktualizován."
+
+msgid "manager.setup.look"
+msgstr ""
+
+msgid "manager.setup.look.description"
+msgstr ""
+
+msgid "manager.setup.settings"
+msgstr ""
+
+msgid "manager.setup.management.description"
+msgstr ""
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr ""
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr ""
+
+msgid "manager.setup.managingThePress"
+msgstr ""
+
+msgid "manager.setup.masthead.success"
+msgstr ""
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr ""
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr ""
+
+msgid "manager.setup.note"
+msgstr ""
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr ""
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+
+msgid "manager.setup.noUseProofreaders"
+msgstr ""
+
+msgid "manager.setup.numPageLinks"
+msgstr ""
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr ""
+
+msgid "manager.setup.onlineIssn"
+msgstr ""
+
+msgid "manager.setup.policies"
+msgstr ""
+
+msgid "manager.setup.policies.description"
+msgstr ""
+
+msgid "manager.setup.privacyStatement.success"
+msgstr ""
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+
+msgid "manager.setup.pressDescription"
+msgstr ""
+
+msgid "manager.setup.pressDescription.description"
+msgstr ""
+
+msgid "manager.setup.aboutPress"
+msgstr ""
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+
+msgid "manager.setup.pressArchiving"
+msgstr ""
+
+msgid "manager.setup.homepageContent"
+msgstr ""
+
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+
+msgid "manager.setup.pressHomepageContent"
+msgstr ""
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr ""
+
+msgid "manager.setup.contextInitials"
+msgstr ""
+
+msgid "manager.setup.layout"
+msgstr ""
+
+msgid "manager.setup.pageHeader"
+msgstr ""
+
+msgid "manager.setup.pageHeaderDescription"
+msgstr ""
+
+msgid "manager.setup.pressPolicies"
+msgstr ""
+
+msgid "manager.setup.pressSetup"
+msgstr ""
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr ""
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr ""
+
+msgid "manager.setup.pressTheme"
+msgstr ""
+
+msgid "manager.setup.pressThumbnail"
+msgstr ""
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr ""
+
+msgid "manager.setup.contextTitle"
+msgstr ""
+
+msgid "manager.setup.printIssn"
+msgstr ""
+
+msgid "manager.setup.proofingInstructions"
+msgstr ""
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr ""
+
+msgid "manager.setup.proofreading"
+msgstr ""
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr ""
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr ""
+
+msgid "manager.setup.publisher"
+msgstr ""
+
+msgid "manager.setup.publisherDescription"
+msgstr ""
+
+msgid "manager.setup.referenceLinking"
+msgstr ""
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr ""
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr ""
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr ""
+
+msgid "manager.setup.reviewGuidelines"
+msgstr ""
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr ""
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr ""
+
+msgid "manager.setup.reviewOptions"
+msgstr ""
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr ""
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr ""
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr ""
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr ""
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr ""
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr ""
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr ""
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
+msgstr ""
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr ""
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr ""
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr ""
+
+msgid "manager.setup.reviewPolicy"
+msgstr ""
+
+msgid "manager.setup.reviewProcess"
+msgstr ""
+
+msgid "manager.setup.reviewProcessDescription"
+msgstr ""
+
+msgid "manager.setup.reviewProcessEmail"
+msgstr ""
+
+msgid "manager.setup.reviewProcessStandard"
+msgstr ""
+
+msgid "manager.setup.reviewProcessStandardDescription"
+msgstr ""
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr ""
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr ""
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr ""
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr ""
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr ""
+
+msgid "manager.setup.sectionsDescription"
+msgstr ""
+
+msgid "manager.setup.securitySettings"
+msgstr ""
+
+msgid "manager.setup.securitySettings.note"
+msgstr ""
+
+msgid "manager.setup.selectEditorDescription"
+msgstr ""
+
+msgid "manager.setup.selectSectionDescription"
+msgstr ""
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr ""
+
+msgid "manager.setup.siteAccess.view"
+msgstr ""
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr ""
+
+msgid "manager.setup.stepsToPressSite"
+msgstr ""
+
+msgid "manager.setup.subjectExamples"
+msgstr ""
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr ""
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr ""
+
+msgid "manager.setup.submissionGuidelines"
+msgstr ""
+
+msgid "manager.setup.submissionPreparationChecklist"
+msgstr ""
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr ""
+
+msgid "manager.setup.workflow"
+msgstr ""
+
+msgid "manager.setup.submissions.description"
+msgstr ""
+
+msgid "manager.setup.typeExamples"
+msgstr ""
+
+msgid "manager.setup.typeMethodApproach"
+msgstr ""
+
+msgid "manager.setup.typeProvideExamples"
+msgstr ""
+
+msgid "manager.setup.useCopyeditors"
+msgstr ""
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr ""
+
+msgid "manager.setup.useImageTitle"
+msgstr ""
+
+msgid "manager.setup.useStyleSheet"
+msgstr ""
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+
+msgid "manager.setup.userRegistration"
+msgstr ""
+
+msgid "manager.setup.useTextTitle"
+msgstr ""
+
+msgid "manager.setup.volumePerYear"
+msgstr ""
+
+msgid "manager.setup.publicationFormat.code"
+msgstr ""
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr ""
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr ""
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr ""
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+
+msgid "manager.setup.newPublicationFormat"
+msgstr ""
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+
+msgid "manager.setup.reviewProcessEmailDescription"
+msgstr ""
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+
+msgid "manager.setup.genres"
+msgstr ""
+
+msgid "manager.setup.newGenre"
+msgstr ""
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+
+msgid "manager.setup.deleteSelected"
+msgstr ""
+
+msgid "manager.setup.restoreDefaults"
+msgstr ""
+
+msgid "manager.setup.prospectus"
+msgstr ""
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+
+msgid "manager.setup.submitToCategories"
+msgstr ""
+
+msgid "manager.setup.submitToSeries"
+msgstr ""
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+
+msgid "manager.setup.currentFormats"
+msgstr ""
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr ""
+
+msgid "manager.setup.categories.description"
+msgstr ""
+
+msgid "manager.setup.series.description"
+msgstr ""
+
+msgid "manager.setup.reviewForms"
+msgstr ""
+
+msgid "manager.setup.roleType"
+msgstr ""
+
+msgid "manager.setup.authorRoles"
+msgstr ""
+
+msgid "manager.setup.managerialRoles"
+msgstr ""
+
+msgid "manager.setup.availableRoles"
+msgstr ""
+
+msgid "manager.setup.currentRoles"
+msgstr ""
+
+msgid "manager.setup.internalReviewRoles"
+msgstr ""
+
+msgid "manager.setup.masthead"
+msgstr ""
+
+msgid "manager.setup.editorialTeam"
+msgstr ""
+
+msgid "manager.setup.editorialTeam.description"
+msgstr ""
+
+msgid "manager.setup.files"
+msgstr ""
+
+msgid "manager.setup.productionTemplates"
+msgstr ""
+
+msgid "manager.files.note"
+msgstr ""
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+
+msgid "manager.setup.basicEditorialStepsDescription"
+msgstr ""
+
+msgid "manager.setup.referenceLinkingDescription"
+msgstr ""
+
+msgid "manager.publication.library"
+msgstr ""
+
+msgid "manager.setup.resetPermissions"
+msgstr ""
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr ""
+
+msgid "manager.setup.resetPermissions.description"
+msgstr ""
+
+msgid "manager.setup.resetPermissions.success"
+msgstr ""
+
+msgid "grid.genres.title.short"
+msgstr ""
+
+msgid "grid.genres.title"
+msgstr ""
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr ""
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr ""
+
+msgid "grid.series.pathExists"
+msgstr ""
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr ""
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr ""
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr ""
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr ""
+
+msgid "grid.series.urlWillBe"
+msgstr ""
+
+msgid "stats.publicationStats"
+msgstr ""
+
+msgid "stats.publications.details"
+msgstr ""
+
+msgid "stats.publications.none"
+msgstr ""
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr ""
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr ""
+
+msgid "stats.publications.countOfTotal"
+msgstr ""
+
+msgid "stats.publications.abstracts"
+msgstr ""
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr ""
+
+msgid "plugins.importexport.common.error.validation"
+msgstr ""
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr ""
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr ""

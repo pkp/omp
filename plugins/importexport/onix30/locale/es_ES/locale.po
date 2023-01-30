@@ -34,10 +34,15 @@ msgid "plugins.importexport.onix30.export.error.couldNotWrite"
 msgstr "No se pudo escribir en el fichero \"{$fileName}\"."
 
 msgid "plugins.importexport.onix30.export.error.monographNotFound"
-msgstr "Ninguna monografía coincide con el ID de monografías indicado \"{$monographId}\"."
+msgstr ""
+"Ninguna monografía coincide con el ID de monografías indicado "
+"\"{$monographId}\"."
 
 msgid "plugins.importexport.onix30.noFormats"
 msgstr "No se muestran las monografías sin formato de publicación."
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Seleccionar monografías para exportar"
 
 msgid "plugins.importexport.onix30.selectMonograph"
 msgstr "Seleccionar una monografía para exportar:"
@@ -62,8 +67,8 @@ msgstr "No válido"
 
 msgid "plugins.importexport.onix30.pressMissingFields"
 msgstr ""
-"A esta publicación le falta información necesaria. Vaya a <a href=\"{$url}\">"
-"ajustes editoriales</a> y complete los datos que faltan."
+"A esta publicación le falta información necesaria. Vaya a <a href="
+"\"{$url}\">ajustes editoriales</a> y complete los datos que faltan."
 
 msgid "plugins.importexport.onix30.form.addresseeField"
 msgstr "Destinatario (receptor/a) de esta exportación"
@@ -73,5 +78,27 @@ msgstr ""
 "Puede dejar este campo en blanco y crear una exportación general. Esto "
 "supondrá que la exportación ONIX no tenga &lt;Destinatario%gt; compuesto. "
 
-msgid "plugins.importexport.onix30.exportSubmissionsSelect"
-msgstr "Seleccionar monografías para exportar"
+msgid ""
+"plugins.importExport.onix30.common.error.monographWithNoPublicationFormats"
+msgstr ""
+
+msgid "plugins.importExport.onix30.common.error.exportFailed"
+msgstr ""
+
+msgid "plugins.importexport.onix30.processFailed"
+msgstr ""
+
+msgid "plugins.importexport.onix30.export.type.submission"
+msgstr ""
+
+msgid "plugins.importexport.onix30.export.type.any"
+msgstr ""
+
+msgid "plugins.importexport.onix30.export.completed"
+msgstr ""
+
+msgid "plugins.importexport.onix30.export.completed.downloadFile"
+msgstr ""
+
+msgid "plugins.importexport.native.onix30.download.results"
+msgstr ""

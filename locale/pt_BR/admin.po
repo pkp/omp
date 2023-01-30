@@ -17,50 +17,56 @@ msgstr ""
 msgid "admin.hostedContexts"
 msgstr "Editoras hospedadas"
 
+msgid "admin.settings.appearance.success"
+msgstr "As configurações de aparência do site foram atualizadas com sucesso."
+
+msgid "admin.settings.config.success"
+msgstr "As configurações do site foram atualizadas com sucesso."
+
+msgid "admin.settings.info.success"
+msgstr "As informações do site foram atualizadas com sucesso."
+
 msgid "admin.settings.redirect"
 msgstr "Redirecionar para editora"
 
 msgid "admin.settings.redirectInstructions"
-msgstr "Solicitações para o site principal serão redirecionados para esta editora. Isso pode ser útil se o site está hospedando apenas uma editora, por exemplo."
+msgstr ""
+"Solicitações para o site principal serão redirecionados para esta editora. "
+"Isso pode ser útil se o site está hospedando apenas uma editora, por exemplo."
 
 msgid "admin.settings.noPressRedirect"
 msgstr "Não redirecionar"
-
-msgid "admin.contexts.confirmDelete"
-msgstr "Tem certeza que deseja apagar definitivamente esta editora e todo seu conteúdo?"
-
-msgid "admin.contexts.create"
-msgstr "Criar Editora"
-
-msgid "admin.contexts.form.titleRequired"
-msgstr "Um título é necessário."
-
-msgid "admin.contexts.form.pathRequired"
-msgstr "Um caminho é requerido."
-
-msgid "admin.contexts.form.pathAlphaNumeric"
-msgstr "O caminho pode conter somente caracteres alfanuméricos, sublinhado, e hífens, e deve começar e terminar com um caractere alfanumérico."
-
-msgid "admin.contexts.form.pathExists"
-msgstr "O caminho selecionado já é utilizado por outra editora."
 
 msgid "admin.languages.primaryLocaleInstructions"
 msgstr "Este será o idioma padrão para o site e quaisquer editoras hospedadas."
 
 msgid "admin.languages.supportedLocalesInstructions"
-msgstr "Selecione todas os idiomas que estarão disponíveis no site. Os idiomas selecionados estarão disponíveis para utilização por todas as editoras hospedados, e também aparecem em uma lista de idiomas em cada página do site (que pode ser substituída nas páginas específicas de cada editora). Se vários idiomas não forem selecionados, a lista de idiomas não aparecerá e as configurações de idioma não estarão disponíveis para as editoras."
+msgstr ""
+"Selecione todas os idiomas que estarão disponíveis no site. Os idiomas "
+"selecionados estarão disponíveis para utilização por todas as editoras "
+"hospedados, e também aparecem em uma lista de idiomas em cada página do site "
+"(que pode ser substituída nas páginas específicas de cada editora). Se "
+"vários idiomas não forem selecionados, a lista de idiomas não aparecerá e as "
+"configurações de idioma não estarão disponíveis para as editoras."
 
 msgid "admin.locale.maybeIncomplete"
 msgstr "* Idiomas marcados podem estar incompletos."
 
 msgid "admin.languages.confirmUninstall"
-msgstr "Tem certeza que deseja desinstalar este idioma? Pode afetar editora que o estão usando atualmente."
+msgstr ""
+"Tem certeza que deseja desinstalar este idioma? Pode afetar editora que o "
+"estão usando atualmente."
 
 msgid "admin.languages.installNewLocalesInstructions"
-msgstr "Selecione idiomas adicionais para instalar no  sistema. Idiomas devem ser instalados antes de poderem ser usados por editoras hospedados. Consulte a documentação do OMP para obter informações sobre a adição de novos idiomas."
+msgstr ""
+"Selecione idiomas adicionais para instalar no  sistema. Idiomas devem ser "
+"instalados antes de poderem ser usados por editoras hospedados. Consulte a "
+"documentação do OMP para obter informações sobre a adição de novos idiomas."
 
 msgid "admin.languages.confirmDisable"
-msgstr "Tem certeza que deseja desabilitar este idioma? Pode afetar editora que o estão usando atualmente."
+msgstr ""
+"Tem certeza que deseja desabilitar este idioma? Pode afetar editora que o "
+"estão usando atualmente."
 
 msgid "admin.systemVersion"
 msgstr "Versão do OMP"
@@ -74,6 +80,32 @@ msgstr "Configurações de Editora"
 msgid "admin.presses.noneCreated"
 msgstr "Não foram criadas editoras."
 
+msgid "admin.contexts.create"
+msgstr "Criar Editora"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Um título é necessário."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Um caminho é requerido."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"O caminho pode conter somente caracteres alfanuméricos, sublinhado, e "
+"hífens, e deve começar e terminar com um caractere alfanumérico."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "O caminho selecionado já é utilizado por outra editora."
+
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr "A tradução principal deve ser uma das suportadas pela editora."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} foi criado com sucesso."
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} foi editado com sucesso."
+
 msgid "admin.contexts.contextDescription"
 msgstr "Descrição da editora"
 
@@ -83,38 +115,10 @@ msgstr "Adicionar Editora"
 msgid "admin.overwriteConfigFileInstructions"
 msgstr ""
 "<h4>ATENÇÃO!</div>\n"
-"<p>O sistema não pode substituir automaticamente o arquivo de configuração. Para aplicar as alterações de configuração que você deve abrir <tt> config.inc.php </ tt> em um editor de texto, substituindo o seu conteúdo com o conteúdo do campo de texto abaixo.</p>"
-
-msgid "admin.contexts.form.edit.success"
-msgstr "{$name} foi editado com sucesso."
-
-msgid "admin.contexts.form.create.success"
-msgstr "{$name} foi criado com sucesso."
-
-msgid "admin.settings.info.success"
-msgstr "As informações do site foram atualizadas com sucesso."
-
-msgid "admin.settings.config.success"
-msgstr "As configurações do site foram atualizadas com sucesso."
-
-msgid "admin.settings.appearance.success"
-msgstr "As configurações de aparência do site foram atualizadas com sucesso."
-
-msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
-msgstr ""
-"O recurso de e-mail em massa foi desativado para esta editora. Habilite este "
-"recurso em <a href=\"{$siteSettingsUrl}\">Administração> Configurações do "
-"site </a>."
-
-msgid "admin.settings.disableBulkEmailRoles.description"
-msgstr ""
-"Um gerente de editora não poderá enviar e-mails em massa para nenhuma das "
-"funções selecionadas abaixo. Use esta configuração para limitar o abuso do "
-"recurso de notificação por e-mail. Por exemplo, pode ser mais seguro "
-"desativar e-mails em massa para leitores, autores ou outros grandes grupos "
-"de usuários que não consentiram em receber esses e-mails. <br><br> O recurso "
-"de e-mail em massa pode ser desativado completamente para esta editora em <a "
-"href = \"{$siteSettingsUrl}\"> Administração> Configurações do site </a>."
+"<p>O sistema não pode substituir automaticamente o arquivo de configuração. "
+"Para aplicar as alterações de configuração que você deve abrir <tt> config."
+"inc.php </ tt> em um editor de texto, substituindo o seu conteúdo com o "
+"conteúdo do campo de texto abaixo.</p>"
 
 msgid "admin.settings.enableBulkEmails.description"
 msgstr ""
@@ -130,5 +134,23 @@ msgstr ""
 "assistente de configurações na lista de <a href = \"{$BasedContextsUrl}\"> "
 "Editoras Hospedadas </a>."
 
-msgid "admin.contexts.form.primaryLocaleNotSupported"
-msgstr "A tradução principal deve ser uma das suportadas pela editora."
+msgid "admin.settings.disableBulkEmailRoles.description"
+msgstr ""
+"Um gerente de editora não poderá enviar e-mails em massa para nenhuma das "
+"funções selecionadas abaixo. Use esta configuração para limitar o abuso do "
+"recurso de notificação por e-mail. Por exemplo, pode ser mais seguro "
+"desativar e-mails em massa para leitores, autores ou outros grandes grupos "
+"de usuários que não consentiram em receber esses e-mails. <br><br> O recurso "
+"de e-mail em massa pode ser desativado completamente para esta editora em <a "
+"href = \"{$siteSettingsUrl}\"> Administração> Configurações do site </a>."
+
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgstr ""
+"O recurso de e-mail em massa foi desativado para esta editora. Habilite este "
+"recurso em <a href=\"{$siteSettingsUrl}\">Administração> Configurações do "
+"site </a>."
+
+#~ msgid "admin.contexts.confirmDelete"
+#~ msgstr ""
+#~ "Tem certeza que deseja apagar definitivamente esta editora e todo seu "
+#~ "conteúdo?"

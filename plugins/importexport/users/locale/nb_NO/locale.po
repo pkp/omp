@@ -11,6 +11,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
+msgid "plugins.importexport.users.displayName"
+msgstr "Bruker-XML"
+
+msgid "plugins.importexport.users.description"
+msgstr ""
+"Dette programtillegget gjør det mulig å importere og eksportere brukere"
+
 msgid "plugins.importexport.users.cliUsage"
 msgstr ""
 "Usage: {$scriptName} {$pluginName} [command] ...\n"
@@ -38,62 +45,8 @@ msgstr ""
 "only:\n"
 "\t{$scriptName} {$pluginName} export myExportFile.xml myPress reviewer\n"
 
-msgid "plugins.importexport.users.uploadFile"
-msgstr "Last opp en fil under «Import» for å fortsette."
-
-msgid "plugins.importexport.users.results"
-msgstr "Resultater"
-
-msgid "plugins.importexport.users.importComplete"
-msgstr ""
-"Importen var vellykket. Brukere med brukernavn og e-postadresser som ikke "
-"allerede er i bruk har blitt importert, sammen med de følgende "
-"brukergruppene."
-
-msgid "plugins.importexport.users.export.couldNotWriteFile"
-msgstr "Kunne ikke skrive til filen «{$fileName}»."
-
-msgid "plugins.importexport.users.export.errorsOccurred"
-msgstr "Det oppstod feil under eksporten"
-
-msgid "plugins.importexport.users.export.exportAllUsers"
-msgstr "Eksporter alle"
-
-msgid "plugins.importexport.users.export.exportByRole"
-msgstr "Eksporter etter rolle"
-
-msgid "plugins.importexport.users.export.exportUsers"
-msgstr "Eksporter brukere"
-
-msgid "plugins.importexport.users.unknownPress"
-msgstr "Du spesifiserte en ukjent tidsskriftsti, «{$journalPath}»."
-
-msgid "plugins.importexport.users.import.encryptionMismatch"
-msgstr ""
-"Kan ikke bruke passord hashet med {$importHash}. OJS er konfigurert til å "
-"bruke {$ojsHash}. Dersom du fortsetter, vil du måtte gjenopprette passordene "
-"til de importerte brukerne."
-
-msgid "plugins.importexport.users.import.warning"
-msgstr "Advarsel"
-
-msgid "plugins.importexport.users.import.confirmUsers"
-msgstr "Bekreft at disse er brukerne du vil importere til systemet"
-
-msgid "plugins.importexport.users.import.errorsOccurred"
-msgstr "Det oppsto feil under importen"
-
-msgid "plugins.importexport.users.import.usersWereImported"
-msgstr "Disse brukerne ble importert til systemet"
-
-msgid "plugins.importexport.users.import.continueOnError"
-msgstr "Fortsett for å importere andre brukere dersom det oppstår en feil."
-
-msgid "plugins.importexport.users.import.sendNotify"
-msgstr "Send en e-post med brukernavn og passord til hver importerte bruker."
-
-msgid "plugins.importexport.users.import.dataFile"
-msgstr "Fil med brukerdata"
+msgid "plugins.importexport.users.import.importUsers"
+msgstr "Importer brukere"
 
 msgid "plugins.importexport.users.import.instructions"
 msgstr ""
@@ -103,11 +56,59 @@ msgstr ""
 "som allerede finnes i systemet, vil brukerdata for disse brukerne ikke bli "
 "importert og nye roller som skal lages vil bli lagt til eksisterende brukere."
 
-msgid "plugins.importexport.users.import.importUsers"
-msgstr "Importer brukere"
+msgid "plugins.importexport.users.import.dataFile"
+msgstr "Fil med brukerdata"
 
-msgid "plugins.importexport.users.description"
-msgstr "Dette programtillegget gjør det mulig å importere og eksportere brukere"
+msgid "plugins.importexport.users.import.sendNotify"
+msgstr "Send en e-post med brukernavn og passord til hver importerte bruker."
 
-msgid "plugins.importexport.users.displayName"
-msgstr "Bruker-XML"
+msgid "plugins.importexport.users.import.continueOnError"
+msgstr "Fortsett for å importere andre brukere dersom det oppstår en feil."
+
+msgid "plugins.importexport.users.import.usersWereImported"
+msgstr "Disse brukerne ble importert til systemet"
+
+msgid "plugins.importexport.users.import.errorsOccurred"
+msgstr "Det oppsto feil under importen"
+
+msgid "plugins.importexport.users.import.confirmUsers"
+msgstr "Bekreft at disse er brukerne du vil importere til systemet"
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "Advarsel"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr ""
+"Kan ikke bruke passord hashet med {$importHash}. OJS er konfigurert til å "
+"bruke {$ojsHash}. Dersom du fortsetter, vil du måtte gjenopprette passordene "
+"til de importerte brukerne."
+
+msgid "plugins.importexport.users.unknownPress"
+msgstr "Du spesifiserte en ukjent tidsskriftsti, «{$journalPath}»."
+
+msgid "plugins.importexport.users.export.exportUsers"
+msgstr "Eksporter brukere"
+
+msgid "plugins.importexport.users.export.exportByRole"
+msgstr "Eksporter etter rolle"
+
+msgid "plugins.importexport.users.export.exportAllUsers"
+msgstr "Eksporter alle"
+
+msgid "plugins.importexport.users.export.errorsOccurred"
+msgstr "Det oppstod feil under eksporten"
+
+msgid "plugins.importexport.users.importComplete"
+msgstr ""
+"Importen var vellykket. Brukere med brukernavn og e-postadresser som ikke "
+"allerede er i bruk har blitt importert, sammen med de følgende "
+"brukergruppene."
+
+msgid "plugins.importexport.users.results"
+msgstr "Resultater"
+
+msgid "plugins.importexport.users.uploadFile"
+msgstr "Last opp en fil under «Import» for å fortsette."
+
+#~ msgid "plugins.importexport.users.export.couldNotWriteFile"
+#~ msgstr "Kunne ikke skrive til filen «{$fileName}»."

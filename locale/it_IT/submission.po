@@ -2,29 +2,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-22T21:00:19+00:00\n"
+"PO-Revision-Date: 2020-01-22T21:00:19+00:00\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-01-22T21:00:19+00:00\n"
-"PO-Revision-Date: 2020-01-22T21:00:19+00:00\n"
-"Language: \n"
-
-msgid "submission.authorListSeparator"
-msgstr "; "
 
 msgid "submission.submit.title"
 msgstr "Seleziona un documento da proporre"
 
-msgid "submission.upload.selectBookElement"
-msgstr "Seleziona un elemento del libro"
+msgid "submission.upload.selectComponent"
+msgstr ""
 
 msgid "submission.title"
 msgstr "Titolo"
-
-msgid "submission.title.tip"
-msgstr "Puoi scegliere di caricare questi tipi: 'immagine', 'testo' oppure un altro tipo di elemento multimediale scelto tra 'software' o 'interattivo'. Per favore, scegli solo quello che meglio identifica il prodotto da te caricato. Puoi trovare alcuni esempi qui <a target=\"_blank\" href=\"http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type\">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>"
 
 msgid "submission.select"
 msgstr "Seleziona il caricamento"
@@ -36,13 +30,28 @@ msgid "submission.workflowType"
 msgstr "Tipo di Libro"
 
 msgid "submission.workflowType.description"
-msgstr "Una Monografia ? un volume scritto interamente da uno o pi? autori. Un volume A cura di ? costituito da capitoli scritti ciascuno da un diverso autore (i dettagli di ogni capitolo verranno inseriti pi? avanti)"
+msgstr ""
+"Una Monografia ? un volume scritto interamente da uno o pi? autori. Un "
+"volume A cura di ? costituito da capitoli scritti ciascuno da un diverso "
+"autore (i dettagli di ogni capitolo verranno inseriti pi? avanti)"
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr ""
 
 msgid "submission.workflowType.editedVolume"
-msgstr "Volume A cura di: gli Autori vengono associati solo ai contenuti dei propri Capitoli."
+msgstr ""
+"Volume A cura di: gli Autori vengono associati solo ai contenuti dei propri "
+"Capitoli."
 
 msgid "submission.workflowType.authoredWork"
-msgstr "Monografia: gli Autori vengono associati a tutti i contenuti del libro."
+msgstr ""
+"Monografia: gli Autori vengono associati a tutti i contenuti del libro."
+
+msgid "submission.workflowType.change"
+msgstr ""
+
+msgid "submission.editorName"
+msgstr ""
 
 msgid "submission.monograph"
 msgstr "Monografia"
@@ -52,6 +61,9 @@ msgstr "Pronto per andare in produzione"
 
 msgid "submission.fairCopy"
 msgstr "Bella copia"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
 
 msgid "submission.artwork.permissions"
 msgstr "Permessi"
@@ -63,13 +75,20 @@ msgid "submission.chapters"
 msgstr "Capitoli"
 
 msgid "submission.chaptersDescription"
-msgstr "? possibile elencare qui i capitoli e assegnare ad essi i rispettivi autori prendendoli dall'elenco dei collaboratori, qui in alto. Questi collaboratori potranno accedere al proprio capitolo durante le varie fasi del processo di pubblicazione."
+msgstr ""
+"? possibile elencare qui i capitoli e assegnare ad essi i rispettivi autori "
+"prendendoli dall'elenco dei collaboratori, qui in alto. Questi collaboratori "
+"potranno accedere al proprio capitolo durante le varie fasi del processo di "
+"pubblicazione."
 
 msgid "submission.chapter.addChapter"
 msgstr "Aggiungi un nuovo capitolo"
 
 msgid "submission.chapter.editChapter"
 msgstr "Edita i Capitoli"
+
+msgid "submission.chapter.pages"
+msgstr ""
 
 msgid "submission.copyedit"
 msgstr "Fai il copyediting"
@@ -128,22 +147,26 @@ msgstr "Dai inizio ad nuova immissione in {$contextName}"
 msgid "submission.submit.upload"
 msgstr "Carica"
 
-msgid "submission.submit.upload.description"
-msgstr "Carica i file associati a questa immissione, compresi: manoscritto, prospetto, lettera di presentazione, ecc. Per i volumi A cura di, come pure per le Monografie, carica il manoscritto in un unico file, se possibile."
-
 msgid "submission.submit.cancelSubmission"
 msgstr ""
 "\n"
-"? possibile completare questo caricamento in un secondo momento selezionando Attiva immissioni a partire dalla homepage dell'Autore."
-
-msgid "submission.submit.copyrightNoticeAgree"
-msgstr "Accetto i termini stabiliti dalla legge sul copyright."
+"? possibile completare questo caricamento in un secondo momento selezionando "
+"Attiva immissioni a partire dalla homepage dell'Autore."
 
 msgid "submission.submit.selectSeries"
 msgstr "Scegli una collana... "
 
+msgid "author.isVolumeEditor"
+msgstr ""
+
+msgid "author.submit.seriesRequired"
+msgstr ""
+
 msgid "submission.submit.seriesPosition"
 msgstr "Posizione occupata nella collana (cio?, Libro 2, o Volume 2)"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr ""
 
 msgid "submission.submit.form.localeRequired"
 msgstr "Per favore, scegli la lingua del caricamento."
@@ -158,7 +181,9 @@ msgid "submission.submit.form.authorRequired"
 msgstr "? obbligatorio inserire almeno un autore."
 
 msgid "submission.submit.form.authorRequiredFields"
-msgstr "? obbligatorio inserire il nome, il cognome e l'indirizzo email di ciascun autore."
+msgstr ""
+"? obbligatorio inserire il nome, il cognome e l'indirizzo email di ciascun "
+"autore."
 
 msgid "submission.submit.form.titleRequired"
 msgstr "Per favore, inserisci il titolo della tua Monografia."
@@ -184,6 +209,9 @@ msgstr "Metadati"
 msgid "submission.submit.finishingUp"
 msgstr "Concludi"
 
+msgid "submission.submit.confirmation"
+msgstr ""
+
 msgid "submission.submit.nextSteps"
 msgstr "Prossimi passi"
 
@@ -194,34 +222,29 @@ msgid "submission.submit.generalInformation"
 msgstr "Informazioni generali"
 
 msgid "submission.submit.whatNext.description"
-msgstr "La Press ? stata informata del tuo caricamento e ti ? stata inviata una email di conferma. Appena l'editor avr? visionato il tuo lavoro, si metter? in contatto con te."
+msgstr ""
+"La Press ? stata informata del tuo caricamento e ti ? stata inviata una "
+"email di conferma. Appena l'editor avr? visionato il tuo lavoro, si metter? "
+"in contatto con te."
 
 msgid "submission.submit.checklistErrors"
-msgstr "Per favore, leggi e spunta le voci della checklist per il caricamento. Ci sono {$itemsRemaining} voci ancora non controllate."
+msgstr ""
+"Per favore, leggi e spunta le voci della checklist per il caricamento. Ci "
+"sono {$itemsRemaining} voci ancora non controllate."
 
 msgid "submission.submit.placement"
 msgstr "Posizione del caricamento"
-
-msgid "submission.submit.placement.seriesDescription"
-msgstr "Nel caso in cui il libro debbe far parte di una collana..."
-
-msgid "submission.submit.placement.seriesPositionDescription"
-msgstr "I titoli presenti in una collana vengono di norma riportati in un ordine inverso rispetto a quello di pubblicazione; ci? serve a dare il senso dello sviluppo della collana e per mantenere in testa i titoli pi? recenti."
-
-msgid "submission.submit.placement.categories"
-msgstr "Categorie"
-
-msgid "submission.submit.placement.categoriesDescription"
-msgstr "Seleziona una delle categorie della Press che vuoi attribuire a questo documento."
 
 msgid "submission.submit.userGroup"
 msgstr "Carico nel mio ruolo di..."
 
 msgid "submission.submit.userGroupDescription"
-msgstr "Se stai caricando un \"Volume edito\" devi scegliere il ruolo \"Curatore del volume\"."
+msgstr ""
+"Se stai caricando un \"Volume edito\" devi scegliere il ruolo \"Curatore del "
+"volume\"."
 
-msgid "submission.submit.confirmExpedite"
-msgstr "Conferma i metadati per velocizzare il caricamento"
+msgid "submission.submit.noContext"
+msgstr ""
 
 msgid "grid.chapters.title"
 msgstr "Capitoli"
@@ -229,20 +252,50 @@ msgstr "Capitoli"
 msgid "grid.copyediting.deleteCopyeditorResponse"
 msgstr "Cancella il caricamento del Copyeditor"
 
+msgid "submission.complete"
+msgstr ""
+
+msgid "submission.incomplete"
+msgstr ""
+
 msgid "submission.editCatalogEntry"
 msgstr "Accesso"
 
 msgid "submission.catalogEntry.new"
 msgstr "Nuovo accesso al Catalogo"
 
+msgid "submission.catalogEntry.add"
+msgstr ""
+
+msgid "submission.catalogEntry.select"
+msgstr ""
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr ""
+
 msgid "submission.catalogEntry.confirm"
-msgstr "Crea un punto di accesso nel Catalogo per questo libro a partire dai metadati che seguono."
+msgstr ""
+"Crea un punto di accesso nel Catalogo per questo libro a partire dai "
+"metadati che seguono."
 
 msgid "submission.catalogEntry.confirm.required"
-msgstr "Per favore, conferma che l'immissione ? pronta per entrare nel Catalogo."
+msgstr ""
+"Per favore, conferma che l'immissione ? pronta per entrare nel Catalogo."
 
 msgid "submission.catalogEntry.isAvailable"
 msgstr "Questa Monografia ? pronta per essere aggiunta al Catalogo pubblico."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr ""
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr ""
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr ""
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr ""
 
 msgid "submission.catalogEntry.monographMetadata"
 msgstr "Monografia"
@@ -252,12 +305,6 @@ msgstr "Catalogo"
 
 msgid "submission.catalogEntry.publicationMetadata"
 msgstr "Formato di Pubblicazione"
-
-msgid "submission.event.participantAdded"
-msgstr "\"{$name}\" ({$username}) ? stato aggiunto a {$userGroupName}."
-
-msgid "submission.event.participantRemoved"
-msgstr "\"{$name}\" ({$username}) ? stato cancellato da {$userGroupName}."
 
 msgid "submission.event.metadataPublished"
 msgstr "I metadati della Monografia sono stati approvati per la pubblicazione."
@@ -272,7 +319,9 @@ msgid "submission.event.publicationFormatMadeUnavailable"
 msgstr "Il formato \"{$publicationFormatName}\" non ? pi? disponibile."
 
 msgid "submission.event.publicationFormatPublished"
-msgstr "Il formato \"{$publicationFormatName}\" ? stato approvato per la pubblicazione."
+msgstr ""
+"Il formato \"{$publicationFormatName}\" ? stato approvato per la "
+"pubblicazione."
 
 msgid "submission.event.publicationFormatUnpublished"
 msgstr "Il formato \"{$publicationFormatName}\" non ? pi? pubblicato."
@@ -292,8 +341,74 @@ msgstr "Il formato \"{$formatName}\" ? stato rimosso."
 msgid "submission.submit.titleAndSummary"
 msgstr "Titolo e Sommario"
 
-msgid "metadata.property.displayName.date"
-msgstr "Data di pubblicazione"
+msgid "editor.submission.decision.sendExternalReview"
+msgstr ""
+
+msgid "workflow.review.externalReview"
+msgstr ""
+
+msgid "submission.upload.fileContents"
+msgstr ""
+
+msgid "submission.dependentFiles"
+msgstr ""
+
+msgid "submission.metadataDescription"
+msgstr ""
+
+msgid "section.any"
+msgstr ""
+
+msgid "submission.list.monographs"
+msgstr ""
+
+msgid "submission.list.countMonographs"
+msgstr ""
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr ""
+
+msgid "submission.list.orderFeatures"
+msgstr ""
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+
+msgid "submission.list.saveFeatureOrder"
+msgstr ""
+
+msgid "submission.list.viewEntry"
+msgstr ""
+
+msgid "catalog.browseTitles"
+msgstr ""
+
+msgid "publication.catalogEntry"
+msgstr ""
+
+msgid "publication.catalogEntry.success"
+msgstr ""
+
+msgid "publication.invalidSeries"
+msgstr ""
+
+msgid "publication.inactiveSeries"
+msgstr ""
+
+msgid "publication.required.issue"
+msgstr ""
+
+msgid "publication.publishedIn"
+msgstr ""
+
+msgid "publication.publish.confirmation"
+msgstr ""
+
+msgid "publication.scheduledIn"
+msgstr ""
 
 msgid "submission.publication"
 msgstr "Pubblicazione"
@@ -307,10 +422,16 @@ msgstr "Pianificato"
 msgid "publication.status.unscheduled"
 msgstr "Rimosso dalla pianficazione"
 
+msgid "submission.publications"
+msgstr ""
+
 msgid "publication.copyrightYearBasis.issueDescription"
 msgstr ""
 "L'anno di copyright sarà configurato automaticamente quando questo articolo "
 "sarà assegnato ad un'uscita."
+
+msgid "publication.copyrightYearBasis.submissionDescription"
+msgstr ""
 
 msgid "publication.datePublished"
 msgstr "Data di pubblicazione"
@@ -353,6 +474,15 @@ msgstr ""
 "Per essere pubblicato un'articolo deve essere nella fase di copy-editing o "
 "produzione."
 
+msgid "submission.license.description"
+msgstr ""
+
+msgid "submission.copyrightHolder.description"
+msgstr ""
+
+msgid "submission.copyrightOther.description"
+msgstr ""
+
 msgid "publication.unpublish"
 msgstr "Rimuovi dalla pubblicazione"
 
@@ -368,3 +498,55 @@ msgstr "Dettagli di pubblicazione per la versione {$version}"
 msgid "submission.queries.production"
 msgstr "Discussioni durante la produzione"
 
+#~ msgid "submission.upload.selectBookElement"
+#~ msgstr "Seleziona un elemento del libro"
+
+#~ msgid "submission.title.tip"
+#~ msgstr ""
+#~ "Puoi scegliere di caricare questi tipi: 'immagine', 'testo' oppure un "
+#~ "altro tipo di elemento multimediale scelto tra 'software' o "
+#~ "'interattivo'. Per favore, scegli solo quello che meglio identifica il "
+#~ "prodotto da te caricato. Puoi trovare alcuni esempi qui <a target=\"_blank"
+#~ "\" href=\"http://dublincore.org/documents/2001/04/12/usageguide/generic."
+#~ "shtml#type\">http://dublincore.org/documents/2001/04/12/usageguide/"
+#~ "generic.shtml#type</a>"
+
+#~ msgid "submission.submit.upload.description"
+#~ msgstr ""
+#~ "Carica i file associati a questa immissione, compresi: manoscritto, "
+#~ "prospetto, lettera di presentazione, ecc. Per i volumi A cura di, come "
+#~ "pure per le Monografie, carica il manoscritto in un unico file, se "
+#~ "possibile."
+
+#~ msgid "submission.submit.copyrightNoticeAgree"
+#~ msgstr "Accetto i termini stabiliti dalla legge sul copyright."
+
+#~ msgid "submission.submit.placement.seriesDescription"
+#~ msgstr "Nel caso in cui il libro debbe far parte di una collana..."
+
+#~ msgid "submission.submit.placement.seriesPositionDescription"
+#~ msgstr ""
+#~ "I titoli presenti in una collana vengono di norma riportati in un ordine "
+#~ "inverso rispetto a quello di pubblicazione; ci? serve a dare il senso "
+#~ "dello sviluppo della collana e per mantenere in testa i titoli pi? "
+#~ "recenti."
+
+#~ msgid "submission.submit.placement.categories"
+#~ msgstr "Categorie"
+
+#~ msgid "submission.submit.placement.categoriesDescription"
+#~ msgstr ""
+#~ "Seleziona una delle categorie della Press che vuoi attribuire a questo "
+#~ "documento."
+
+#~ msgid "submission.submit.confirmExpedite"
+#~ msgstr "Conferma i metadati per velocizzare il caricamento"
+
+#~ msgid "submission.event.participantAdded"
+#~ msgstr "\"{$name}\" ({$username}) ? stato aggiunto a {$userGroupName}."
+
+#~ msgid "submission.event.participantRemoved"
+#~ msgstr "\"{$name}\" ({$username}) ? stato cancellato da {$userGroupName}."
+
+#~ msgid "metadata.property.displayName.date"
+#~ msgstr "Data di pubblicazione"

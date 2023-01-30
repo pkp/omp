@@ -10,42 +10,33 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "admin.settings.noPressRedirect"
-msgstr "Omdirigera ej"
+msgid "admin.hostedContexts"
+msgstr "Pressar på den här webbplatsen"
+
+msgid "admin.settings.appearance.success"
+msgstr "Webbplatsens utseende har uppdaterats."
+
+msgid "admin.settings.config.success"
+msgstr "Webbplatsens inställningar har uppdaterats."
+
+msgid "admin.settings.info.success"
+msgstr "Informationen om webbplatsen har uppdaterats."
+
+msgid "admin.settings.redirect"
+msgstr "Omdirigering av press"
 
 msgid "admin.settings.redirectInstructions"
 msgstr ""
 "Anrop till huvudsidan kommer att dirigeras om till den valda pressen. Detta "
 "kan till exempel vara lämpligt om webbplatsen endast hyser en press."
 
-msgid "admin.settings.redirect"
-msgstr "Omdirigering av press"
+msgid "admin.settings.noPressRedirect"
+msgstr "Omdirigera ej"
 
-msgid "admin.settings.info.success"
-msgstr "Informationen om webbplatsen har uppdaterats."
-
-msgid "admin.settings.config.success"
-msgstr "Webbplatsens inställningar har uppdaterats."
-
-msgid "admin.settings.appearance.success"
-msgstr "Webbplatsens utseende har uppdaterats."
-
-msgid "admin.hostedContexts"
-msgstr "Pressar på den här webbplatsen"
-
-msgid "admin.languages.installNewLocalesInstructions"
+msgid "admin.languages.primaryLocaleInstructions"
 msgstr ""
-"Välj ytterligare språk/regioner för installation i systemet. Språk/regioner "
-"måste installeras innan de kan användas av pressar på sidan. För "
-"instruktioner om hur ytterligare språk läggs till, se OMP-dokumentationen."
-
-msgid "admin.languages.confirmUninstall"
-msgstr ""
-"Är du säker på att du vill avinstallera detta språk/region? Detta kan "
-"påverka pressar som för tillfället använder språket/regionen."
-
-msgid "admin.locale.maybeIncomplete"
-msgstr "* Markerade språk/regioner kan vara ofullständiga."
+"Detta kommer vara det förinställda språket för installationen och för alla "
+"hysta pressar."
 
 msgid "admin.languages.supportedLocalesInstructions"
 msgstr ""
@@ -56,61 +47,82 @@ msgstr ""
 "vara synlig, och ytterligare språkinställningar kommer inte vara "
 "tillgängliga för pressarna."
 
-msgid "admin.languages.primaryLocaleInstructions"
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Markerade språk/regioner kan vara ofullständiga."
+
+msgid "admin.languages.confirmUninstall"
 msgstr ""
-"Detta kommer vara det förinställda språket för installationen och för alla "
-"hysta pressar."
+"Är du säker på att du vill avinstallera detta språk/region? Detta kan "
+"påverka pressar som för tillfället använder språket/regionen."
 
-msgid "admin.overwriteConfigFileInstructions"
+msgid "admin.languages.installNewLocalesInstructions"
 msgstr ""
-"<h4>OBS</div>\n"
-"<p>Systemet kunde inte skriva över konfigurationsfilen automatiskt. För att "
-"göra ändringarna måste du öppna <tt>config.inc.php</tt> i en lämplig "
-"texthanterare och byta ut dess innehåll med innehållet i textfältet "
-"nedan.</p>"
+"Välj ytterligare språk/regioner för installation i systemet. Språk/regioner "
+"måste installeras innan de kan användas av pressar på sidan. För "
+"instruktioner om hur ytterligare språk läggs till, se OMP-dokumentationen."
 
-msgid "admin.presses.addPress"
-msgstr "Lägg till press"
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Är du säker på att du vill avaktivera detta språk? Det kan påverka pressar "
+"som använder språket."
 
-msgid "admin.contexts.contextDescription"
-msgstr "Beskrivning av pressen"
+msgid "admin.systemVersion"
+msgstr "OMP-version"
 
-msgid "admin.contexts.form.edit.success"
-msgstr "{$name} har redigerats."
+msgid "admin.systemConfiguration"
+msgstr "OMP-konfiguration"
 
-msgid "admin.contexts.form.create.success"
-msgstr "{$name} har skapats."
+msgid "admin.presses.pressSettings"
+msgstr "Pressinställningar"
 
-msgid "admin.contexts.form.pathExists"
-msgstr "Den valda sökvägen används redan av en annan press."
+msgid "admin.presses.noneCreated"
+msgstr "Inga pressar har skapats."
+
+msgid "admin.contexts.create"
+msgstr "Skapa press"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "En titel krävs."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "En sökväg krävs."
 
 msgid "admin.contexts.form.pathAlphaNumeric"
 msgstr ""
 "Sökvägen får bara innehålla bokstäver, nummer och tecknen _ och -. Den måste "
 "börja och sluta med en bokstav eller ett nummer."
 
-msgid "admin.contexts.form.pathRequired"
-msgstr "En sökväg krävs."
+msgid "admin.contexts.form.pathExists"
+msgstr "Den valda sökvägen används redan av en annan press."
 
-msgid "admin.contexts.form.titleRequired"
-msgstr "En titel krävs."
-
-msgid "admin.contexts.create"
-msgstr "Skapa press"
-
-msgid "admin.presses.noneCreated"
-msgstr "Inga pressar har skapats."
-
-msgid "admin.presses.pressSettings"
-msgstr "Pressinställningar"
-
-msgid "admin.systemConfiguration"
-msgstr "OMP-konfiguration"
-
-msgid "admin.systemVersion"
-msgstr "OMP-version"
-
-msgid "admin.languages.confirmDisable"
+msgid "admin.contexts.form.primaryLocaleNotSupported"
 msgstr ""
-"Är du säker på att du vill avaktivera detta språk? Det kan påverka pressar "
-"som använder språket."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} har skapats."
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} har redigerats."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Beskrivning av pressen"
+
+msgid "admin.presses.addPress"
+msgstr "Lägg till press"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>OBS</div>\n"
+"<p>Systemet kunde inte skriva över konfigurationsfilen automatiskt. För att "
+"göra ändringarna måste du öppna <tt>config.inc.php</tt> i en lämplig "
+"texthanterare och byta ut dess innehåll med innehållet i textfältet nedan.</"
+"p>"
+
+msgid "admin.settings.enableBulkEmails.description"
+msgstr ""
+
+msgid "admin.settings.disableBulkEmailRoles.description"
+msgstr ""
+
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgstr ""

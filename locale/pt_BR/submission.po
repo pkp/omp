@@ -33,13 +33,25 @@ msgid "submission.workflowType"
 msgstr "Tipo de livro"
 
 msgid "submission.workflowType.description"
-msgstr "Uma monografia é um trabalho produzido por um ou mais autores. Um volume editado possui diferentes autores para cada capítulo, sendo que os detalhes de cada capítulo são informados mais tarde durante o processo."
+msgstr ""
+"Uma monografia é um trabalho produzido por um ou mais autores. Um volume "
+"editado possui diferentes autores para cada capítulo, sendo que os detalhes "
+"de cada capítulo são informados mais tarde durante o processo."
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Volume Editado"
 
 msgid "submission.workflowType.editedVolume"
 msgstr "Volume editado: Autores são associados com seu próprio capítulo."
 
 msgid "submission.workflowType.authoredWork"
 msgstr "Monografia: Autores são associados com o livro com um todo."
+
+msgid "submission.workflowType.change"
+msgstr "Alterar"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (ed)"
 
 msgid "submission.monograph"
 msgstr "Monografia"
@@ -49,6 +61,9 @@ msgstr "Pronto para editoração"
 
 msgid "submission.fairCopy"
 msgstr "Cópia limpa"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
 
 msgid "submission.artwork.permissions"
 msgstr "Permissões"
@@ -60,13 +75,19 @@ msgid "submission.chapters"
 msgstr "Capítulos"
 
 msgid "submission.chaptersDescription"
-msgstr "Liste os capítulos aqui, aos quais também pode designar contribuidores a partir da lista acima. Os contribuidores poderão acessar o capítulo durante os vários estágios do processo de publicação."
+msgstr ""
+"Liste os capítulos aqui, aos quais também pode designar contribuidores a "
+"partir da lista acima. Os contribuidores poderão acessar o capítulo durante "
+"os vários estágios do processo de publicação."
 
 msgid "submission.chapter.addChapter"
 msgstr "Incluir capítulo"
 
 msgid "submission.chapter.editChapter"
 msgstr "Editar capítulo"
+
+msgid "submission.chapter.pages"
+msgstr "Páginas"
 
 msgid "submission.copyedit"
 msgstr "Editar texto"
@@ -126,19 +147,24 @@ msgid "submission.submit.upload"
 msgstr "Enviar"
 
 msgid "submission.submit.cancelSubmission"
-msgstr "O envio pode ser concluído posteriormente, escolhendo da lista de Submissões ativas, na página inicial do papel de autor."
+msgstr ""
+"O envio pode ser concluído posteriormente, escolhendo da lista de Submissões "
+"ativas, na página inicial do papel de autor."
 
 msgid "submission.submit.selectSeries"
 msgstr "Escolher séries (opcional)"
 
+msgid "author.isVolumeEditor"
+msgstr "Identifique esse colaborador como o editor deste volume."
+
+msgid "author.submit.seriesRequired"
+msgstr "Uma série válida é necessária."
+
 msgid "submission.submit.seriesPosition"
 msgstr "Posição na série (ex.: Livro 2, ou Volume 2)"
 
-msgid "submission.submit.placement.seriesDescription"
-msgstr "Caso o livro também deva ser considerado para uma série..."
-
-msgid "submission.submit.placement.seriesPositionDescription"
-msgstr "Livros em séries são normalmente mantidos na ordem inversa em que são publicados, para proporcionar uma visão do desenvolvimento da série, bem como manter as mais recentes à frente."
+msgid "submission.submit.seriesPosition.description"
+msgstr "Exemplos: Livro 2, Volume 2"
 
 msgid "submission.submit.form.localeRequired"
 msgstr "Escolha o idioma da submissão."
@@ -153,7 +179,9 @@ msgid "submission.submit.form.authorRequired"
 msgstr "Pelo menos um autor é obrigatório."
 
 msgid "submission.submit.form.authorRequiredFields"
-msgstr "São informações obrigatórias para cada autor o prénome, o sobrenome e o endereço de e-mail."
+msgstr ""
+"São informações obrigatórias para cada autor o prénome, o sobrenome e o "
+"endereço de e-mail."
 
 msgid "submission.submit.form.titleRequired"
 msgstr "O título da monografia é obrigatório."
@@ -192,10 +220,15 @@ msgid "submission.submit.generalInformation"
 msgstr "Informações gerais"
 
 msgid "submission.submit.whatNext.description"
-msgstr "A editora foi notificada de sua submissão, bem como uma mensagem de confirmação enviada ao seu endereço de e-mail para seus registros. O editor entrará em contato assim que concluir sua avaliação da submissão."
+msgstr ""
+"A editora foi notificada de sua submissão, bem como uma mensagem de "
+"confirmação enviada ao seu endereço de e-mail para seus registros. O editor "
+"entrará em contato assim que concluir sua avaliação da submissão."
 
 msgid "submission.submit.checklistErrors"
-msgstr "Leia atentamente e marque os itens da lista de verificação. Ainda há {$itemsRemaining} itens não marcados."
+msgstr ""
+"Leia atentamente e marque os itens da lista de verificação. Ainda há "
+"{$itemsRemaining} itens não marcados."
 
 msgid "submission.submit.placement"
 msgstr "Colocação da submissão"
@@ -204,7 +237,12 @@ msgid "submission.submit.userGroup"
 msgstr "Enviar no meu papel como..."
 
 msgid "submission.submit.userGroupDescription"
-msgstr "Caso esteja submetendo um volume editado, escolha o papel do editor do volume."
+msgstr ""
+"Caso esteja submetendo um volume editado, escolha o papel do editor do "
+"volume."
+
+msgid "submission.submit.noContext"
+msgstr "Não foi possível encontrar a editora desta submissão."
 
 msgid "grid.chapters.title"
 msgstr "Capítulos"
@@ -212,14 +250,27 @@ msgstr "Capítulos"
 msgid "grid.copyediting.deleteCopyeditorResponse"
 msgstr "Excluir arquivo do editor de texto"
 
-msgid "publication.catalogEntry"
-msgstr "Catálogo"
+msgid "submission.complete"
+msgstr "Aprovado"
+
+msgid "submission.incomplete"
+msgstr "Esperando Aprovação"
 
 msgid "submission.editCatalogEntry"
 msgstr "Entrada"
 
 msgid "submission.catalogEntry.new"
 msgstr "Nova entrada no catálogo"
+
+msgid "submission.catalogEntry.add"
+msgstr "Adicionar Seleção ao Catálogo"
+
+msgid "submission.catalogEntry.select"
+msgstr "Selecione monografias para adicionar ao catálogo"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr ""
+"Você deve selecionar ao menos uma monografia para adicionar ao catálogo."
 
 msgid "submission.catalogEntry.confirm"
 msgstr "Adicionar este livro ao catálogo público"
@@ -229,6 +280,18 @@ msgstr "Confirme que a submissão está pronta para entrar no catálogo."
 
 msgid "submission.catalogEntry.isAvailable"
 msgstr "Esta monografia está pronta para entrar no catálogo."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Ver Submissão"
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Datas de publicação"
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Todos os capítulos usarão a data de publicação da monografia."
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Cada capítulo pode ter sua própria data de publicação."
 
 msgid "submission.catalogEntry.monographMetadata"
 msgstr "Monografia"
@@ -249,19 +312,25 @@ msgid "submission.event.publicationFormatMadeAvailable"
 msgstr "O formato de publicação \"{$publicationFormatName}\" está disponível."
 
 msgid "submission.event.publicationFormatMadeUnavailable"
-msgstr "O formato de publicação \"{$publicationFormatName}\" não está mais disponível."
+msgstr ""
+"O formato de publicação \"{$publicationFormatName}\" não está mais "
+"disponível."
 
 msgid "submission.event.publicationFormatPublished"
-msgstr "O formato de publicação \"{$publicationFormatName}\" foi aprovado para publicação."
+msgstr ""
+"O formato de publicação \"{$publicationFormatName}\" foi aprovado para "
+"publicação."
 
 msgid "submission.event.publicationFormatUnpublished"
-msgstr "O formato de publicação \"{$publicationFormatName}\" não está mais publicado."
+msgstr ""
+"O formato de publicação \"{$publicationFormatName}\" não está mais publicado."
 
 msgid "submission.event.catalogMetadataUpdated"
 msgstr "Os metadados do catálogo foram atualizados."
 
 msgid "submission.event.publicationMetadataUpdated"
-msgstr "Os metadados do formato de publicação \"{$formatName}\" foram atualizados."
+msgstr ""
+"Os metadados do formato de publicação \"{$formatName}\" foram atualizados."
 
 msgid "submission.event.publicationFormatCreated"
 msgstr "O formato de publicação \"{$formatName}\" foi criado."
@@ -272,128 +341,83 @@ msgstr "O formato de publicação \"{$formatName}\" foi excluído."
 msgid "submission.submit.titleAndSummary"
 msgstr "Título e Resumo"
 
-msgid "submission.submit.seriesPosition.description"
-msgstr "Exemplos: Livro 2, Volume 2"
-
-msgid "submission.complete"
-msgstr "Aprovado"
-
-msgid "submission.incomplete"
-msgstr "Esperando Aprovação"
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Enviar ao Avaliador Externo"
 
 msgid "workflow.review.externalReview"
 msgstr "Avaliador Externo"
 
-msgid "editor.submission.decision.sendExternalReview"
-msgstr "Enviar ao Avaliador Externo"
-
 msgid "submission.upload.fileContents"
 msgstr "Componente da Submissão"
 
-msgid "submission.workflowType.editedVolume.label"
-msgstr "Volume Editado"
-
-msgid "publication.scheduledIn"
-msgstr "Programado para publicação em <a href=\"{$issueUrl}\">{$issueName}</a>."
-
-msgid "publication.publish.confirmation"
-msgstr ""
-"Todos os requisitos de publicação foram atendidos. Tem certeza de que deseja "
-"tornar pública essa entrada no catálogo?"
-
-msgid "publication.publishedIn"
-msgstr "Publicado em <a href=\"{$issueUrl}\">{$issueName}</a>."
-
-msgid "publication.required.issue"
-msgstr "A publicação deve ser atribuída a uma edição antes de ser publicada."
-
-msgid "publication.invalidSeries"
-msgstr "Não foi possível encontrar a série desta publicação."
-
-msgid "publication.catalogEntry.success"
-msgstr "Os detalhes da entrada do catálogo foram atualizados."
-
-msgid "catalog.browseTitles"
-msgstr "{$numTitles} Títulos"
-
-msgid "submission.list.saveFeatureOrder"
-msgstr "Salvar pedido"
-
-msgid "submission.list.orderingFeaturesSection"
-msgstr ""
-"Arraste e solte ou toque nos botões para cima e para baixo para alterar a "
-"ordem dos recursos em {$title}."
-
-msgid "submission.list.orderingFeatures"
-msgstr ""
-"Arraste e solte ou toque nos botões para cima e para baixo para alterar a "
-"ordem dos recursos na página inicial."
-
-msgid "submission.list.orderFeatures"
-msgstr "Recursos de pedidos"
-
-msgid "submission.list.itemsOfTotalMonographs"
-msgstr "{$count} de {$total} monografias"
-
-msgid "submission.list.countMonographs"
-msgstr "{$count} monografias"
-
-msgid "submission.list.monographs"
-msgstr "Monografias"
-
-msgid "section.any"
-msgstr "Qualquer Série"
+msgid "submission.dependentFiles"
+msgstr "Arquivos Dependentes"
 
 msgid "submission.metadataDescription"
 msgstr ""
 "Estas especificações estão baseadas no conjunto de metadados Dublin Core, um "
 "padrão internacional utilizado para descrever conteúdo."
 
-msgid "submission.dependentFiles"
-msgstr "Arquivos Dependentes"
+msgid "section.any"
+msgstr "Qualquer Série"
 
-msgid "submission.catalogEntry.enableChapterPublicationDates"
-msgstr "Cada capítulo pode ter sua própria data de publicação."
+msgid "submission.list.monographs"
+msgstr "Monografias"
 
-msgid "submission.catalogEntry.disableChapterPublicationDates"
-msgstr "Todos os capítulos usarão a data de publicação da monografia."
+msgid "submission.list.countMonographs"
+msgstr "{$count} monografias"
 
-msgid "submission.catalogEntry.chapterPublicationDates"
-msgstr "Datas de publicação"
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} de {$total} monografias"
 
-msgid "submission.catalogEntry.viewSubmission"
-msgstr "Ver Submissão"
+msgid "submission.list.orderFeatures"
+msgstr "Recursos de pedidos"
 
-msgid "submission.catalogEntry.selectionMissing"
+msgid "submission.list.orderingFeatures"
 msgstr ""
-"Você deve selecionar ao menos uma monografia para adicionar ao catálogo."
+"Arraste e solte ou toque nos botões para cima e para baixo para alterar a "
+"ordem dos recursos na página inicial."
 
-msgid "submission.catalogEntry.select"
-msgstr "Selecione monografias para adicionar ao catálogo"
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"Arraste e solte ou toque nos botões para cima e para baixo para alterar a "
+"ordem dos recursos em {$title}."
 
-msgid "submission.catalogEntry.add"
-msgstr "Adicionar Seleção ao Catálogo"
+msgid "submission.list.saveFeatureOrder"
+msgstr "Salvar pedido"
 
-msgid "submission.submit.noContext"
-msgstr "Não foi possível encontrar a editora desta submissão."
+msgid "submission.list.viewEntry"
+msgstr ""
 
-msgid "author.submit.seriesRequired"
-msgstr "Uma série válida é necessária."
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} Títulos"
 
-msgid "author.isVolumeEditor"
-msgstr "Identifique esse colaborador como o editor deste volume."
+msgid "publication.catalogEntry"
+msgstr "Catálogo"
 
-msgid "submission.chapter.pages"
-msgstr "Páginas"
+msgid "publication.catalogEntry.success"
+msgstr "Os detalhes da entrada do catálogo foram atualizados."
 
-msgid "submission.authorListSeparator"
-msgstr "; "
+msgid "publication.invalidSeries"
+msgstr "Não foi possível encontrar a série desta publicação."
 
-msgid "submission.editorName"
-msgstr "{$editorName} (ed)"
+msgid "publication.inactiveSeries"
+msgstr ""
 
-msgid "submission.workflowType.change"
-msgstr "Alterar"
+msgid "publication.required.issue"
+msgstr "A publicação deve ser atribuída a uma edição antes de ser publicada."
+
+msgid "publication.publishedIn"
+msgstr "Publicado em <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Todos os requisitos de publicação foram atendidos. Tem certeza de que deseja "
+"tornar pública essa entrada no catálogo?"
+
+msgid "publication.scheduledIn"
+msgstr ""
+"Programado para publicação em <a href=\"{$issueUrl}\">{$issueName}</a>."
 
 msgid "submission.publication"
 msgstr "Publicação"
@@ -491,3 +515,11 @@ msgstr "Detalhes da publicação da versão {$version}"
 msgid "submission.queries.production"
 msgstr "Discussão da Editoração"
 
+#~ msgid "submission.submit.placement.seriesDescription"
+#~ msgstr "Caso o livro também deva ser considerado para uma série..."
+
+#~ msgid "submission.submit.placement.seriesPositionDescription"
+#~ msgstr ""
+#~ "Livros em séries são normalmente mantidos na ordem inversa em que são "
+#~ "publicados, para proporcionar uma visão do desenvolvimento da série, bem "
+#~ "como manter as mais recentes à frente."
