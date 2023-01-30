@@ -29,7 +29,7 @@
 			</a>
 		</{$heading}>
 		<div class="author">
-			{$monograph->getAuthorOrEditorString()|escape}
+			{$monograph->getCurrentPublication()->getAuthorString($authorUserGroups, true)|escape}
 		</div>
 		<div class="date">
 			{$monograph->getDatePublished()|date_format:$dateFormatLong}

@@ -16,16 +16,16 @@
 
 namespace APP\pages\catalog;
 
-use PKP\db\DAORegistry;
-use PKP\config\Config;
-use PKP\pages\catalog\PKPCatalogHandler;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\observers\events\UsageEvent;
 use APP\submission\Collector;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
+use PKP\config\Config;
+use PKP\db\DAORegistry;
 use PKP\file\ContextFileManager;
+use PKP\pages\catalog\PKPCatalogHandler;
 
 class CatalogHandler extends PKPCatalogHandler
 {
@@ -96,6 +96,7 @@ class CatalogHandler extends PKPCatalogHandler
 
         $templateMgr->assign([
             'publishedSubmissions' => $submissions->toArray(),
+            'authorUserGroups' => $authorUserGroups = Repo::userGroup()->getCollector()->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])->filterByContextIds([$context->getId()])->getMany(),
             'featuredMonographIds' => $featuredMonographIds,
             'contextSeries' => $seriesIterator->toArray(),
         ]);
@@ -120,7 +121,10 @@ class CatalogHandler extends PKPCatalogHandler
         // Provide a list of new releases to browse
         $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /** @var NewReleaseDAO $newReleaseDao */
         $newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
-        $templateMgr->assign('publishedSubmissions', $newReleases);
+        $templateMgr->assign([
+            'publishedSubmissions' => $newReleases,
+            'authorUserGroups' => $authorUserGroups = Repo::userGroup()->getCollector()->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])->filterByContextIds([$press->getId()])->getMany(),
+        ]);
 
         // Display
         $templateMgr->display('frontend/pages/catalogNewReleases.tpl');
@@ -189,6 +193,7 @@ class CatalogHandler extends PKPCatalogHandler
             'publishedSubmissions' => $submissions->toArray(),
             'featuredMonographIds' => $featuredMonographIds,
             'newReleasesMonographs' => $newReleases,
+            'authorUserGroups' => $authorUserGroups = Repo::userGroup()->getCollector()->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])->filterByContextIds([$context->getId()])->getMany(),
         ]);
 
         $templateMgr->display('frontend/pages/catalogSeries.tpl');

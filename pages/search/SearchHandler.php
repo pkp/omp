@@ -15,6 +15,7 @@
 
 namespace APP\pages\search;
 
+use APP\facades\Repo;
 use APP\handler\Handler;
 use APP\search\MonographSearch;
 use APP\template\TemplateManager;
@@ -46,17 +47,21 @@ class SearchHandler extends Handler
         $press = $request->getPress();
         $this->setupTemplate($request);
 
-        $query = $request->getUserVar('query');
-        $templateMgr->assign('searchQuery', $query);
-
         // Get the range info.
         $rangeInfo = $this->getRangeInfo($request, 'search');
 
         // Fetch the monographs to display
         $monographSearch = new MonographSearch();
         $error = null;
-        $results = $monographSearch->retrieveResults($request, $press, [null => $query], $error, null, null, $rangeInfo);
-        $templateMgr->assign('results', $results);
+        $query = $request->getUserVar('query');
+        $templateMgr->assign([
+            'results' => $monographSearch->retrieveResults($request, $press, [null => $query], $error, null, null, $rangeInfo),
+            'searchQuery' => $query,
+            'authorUserGroups' => Repo::userGroup()->getCollector()
+                ->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])
+                ->filterByContextIds($press ? [$press->getId()] : null)
+                ->getMany(),
+        ]);
 
         // Display
         $templateMgr->display('frontend/pages/search.tpl');
