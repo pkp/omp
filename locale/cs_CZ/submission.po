@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-09-25 19:01+0000\n"
+"PO-Revision-Date: 2022-12-22 10:16+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "cs_CZ/>\n"
@@ -613,3 +613,57 @@ msgstr ""
 
 msgid "submission.submit.title"
 msgstr "Předložit rukopis"
+
+msgid "author.volumeEditor"
+msgstr "Redaktor svazku"
+
+msgid "submission.copyright.description"
+msgstr ""
+"Přečtěte si prosím podmínky autorských práv pro zasílání příspěvků do tohoto "
+"vydavatelství a seznamte se s nimi."
+
+msgid "submission.wizard.notAllowed.description"
+msgstr ""
+"Do tohoto vydavatelství nemůžete zasílat příspěvky, protože autoři musí být "
+"redakcí zaregistrováni. Pokud se domníváte, že se jedná o chybu, kontaktujte "
+"prosím <a href='mailto:{$email}'>{$name}</a>."
+
+msgid "submission.wizard.submitting.monographInLanguage"
+msgstr ""
+"Odeslání <strong>monografie</strong> v jazyce: <strong>{$language}</strong>."
+
+msgid "submission.wizard.chapters.description"
+msgstr ""
+"Uveďte všechny kapitoly tohoto příspěvku. Pokud předkládáte editovaný "
+"svazek, ujistěte se, že u každé kapitoly jsou uvedeni autoři, kteří se na ní "
+"podíleli."
+
+msgid "submission.wizard.noSectionAllowed.description"
+msgstr ""
+"Do tohoto tisku nemůžete přispívat, protože zasílání příspěvků do všech "
+"sekcí tohoto vydavatelství bylo deaktivováno nebo omezeno. Pokud se "
+"domníváte, že se jedná o chybu, kontaktujte prosím <a "
+"href='mailto:{$email}'>{$name}</a>."
+
+msgid "submission.sectionNotFound"
+msgstr "Sérii pro tento příspěvek se nepodařilo najít."
+
+msgid "submission.sectionRestrictedToEditors"
+msgstr "Do této série mohou přispívat pouze redaktoři."
+
+msgid "submission.wizard.submitting.monograph"
+msgstr "Odeslání <strong>monografie</strong>."
+
+msgid "submission.wizard.submitting.editedVolume"
+msgstr "Odeslání <strong>editovaného svazku</strong>."
+
+msgid "submission.wizard.submitting.editedVolumeInLanguage"
+msgstr ""
+"Odeslání <strong>editovaného svazku</strong> v jazyce: "
+"<strong>{$language}</strong>."
+
+msgid "submission.wizard.sectionClosed.message"
+msgstr ""
+"{$contextName} nepřijímá příspěvky do seriálu {$section}. Pokud potřebujete "
+"pomoc s obnovou svého příspěvku, obraťte se na <a "
+"href='mailto:{$email}'>{$name}</a>."

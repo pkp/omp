@@ -1,0 +1,78 @@
+# Karla Zapalac <karlazapalac98@gmail.com>, 2023.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-01-28 18:48+0000\n"
+"Last-Translator: Karla Zapalac <karlazapalac98@gmail.com>\n"
+"Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-onix30/hr/>\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "plugins.importexport.onix30.displayName"
+msgstr "Dodatak za izvoz monografije ONIX 3.0"
+
+msgid "plugins.importexport.onix30.description"
+msgstr "Izvezi metapodatke monografije u ONIX 3.0 format"
+
+msgid "plugins.importexport.onix30.cliUsage"
+msgstr ""
+"Korištenje: {$scriptName} {$pluginName} [xmlFileName] [pressPath] "
+"[monographId] "
+
+msgid "plugins.importexport.onix30.cliError"
+msgstr "GREŠKA:"
+
+msgid "plugins.importexport.onix30.error.unknownPress"
+msgstr "Navedeni naziv putanje tiska, \"{$contextPath}\" ne postoji."
+
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr "Datoteka \"{$fileName}\" ne može biti napisana."
+
+msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgstr "Ne postoji monografija s ID-om monografije \"{$monographId}\"."
+
+msgid "plugins.importexport.onix30.noFormats"
+msgstr "Monografije za koje nema formata publikacije, ne mogu biti prikazane."
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Odaberi monografije za izvoz"
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr "Odaberi monografiju za izvoz:"
+
+msgid "plugins.importexport.onix30.exportButton"
+msgstr "Izvoz"
+
+msgid "plugins.importexport.onix30.exportFormats"
+msgstr "Dostupni formati"
+
+msgid "plugins.importexport.onix30.unavailable"
+msgstr "Nedostupno"
+
+msgid "plugins.importexport.onix30.validityStatus"
+msgstr "ONIX status"
+
+msgid "plugins.importexport.onix30.formatValid"
+msgstr "Važeće"
+
+msgid "plugins.importexport.onix30.formatInvalid"
+msgstr "Nevažeće"
+
+msgid "plugins.importexport.onix30.pressMissingFields"
+msgstr ""
+"Neke potrebne informacije nedostaju u podacima o izdavaču. Molimo idite na "
+"<a href=\"{$url}\">Postavke izdavača</a> i ispunite informacije koje "
+"nedostaju."
+
+msgid "plugins.importexport.onix30.form.addresseeField"
+msgstr "Adresa (primatelj/ica) za ovaj izvoz"
+
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
+msgstr ""
+"Ovo polje možete ostaviti praznim i generirati opći izvoz. To rezultira time "
+"da ONIX izvoz nema /n &lt;Primatelja/in&gt; "

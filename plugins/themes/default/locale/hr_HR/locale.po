@@ -1,17 +1,18 @@
 # paola <pjukic@yahoo.com>, 2021.
+# Tadej Grlić <tadejgrlic@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-12-30 11:33+0000\n"
-"Last-Translator: paola <pjukic@yahoo.com>\n"
+"PO-Revision-Date: 2023-01-28 18:48+0000\n"
+"Last-Translator: Tadej Grlić <tadejgrlic@gmail.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/hr_HR/>\n"
 "Language: hr_HR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9.1\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
 msgstr "Dodajte popis poveznica na sve izdane serije na stranici kataloga"
@@ -44,3 +45,56 @@ msgstr "Tipografija"
 
 msgid "plugins.themes.default.name"
 msgstr "Zadana tema"
+
+msgid "plugins.themes.default.option.displayStats.bar"
+msgstr "Za prikaz statistike korištenja upotrijebite trakastu vrstu grafikona."
+
+msgid "plugins.themes.default.option.displayStats.line"
+msgstr "Koristite linijski tip grafikona za prikaz statistike korištenja."
+
+msgid "plugins.themes.default.displayStats.monthInitials"
+msgstr "sij velj ožu tra svi lip srp kol ruj lis stu pro"
+
+msgid "plugins.themes.default.displayStats.noStats"
+msgstr "Podaci o preuzimanju još nisu dostupni."
+
+msgid "plugins.themes.default.option.typography.lora_openSans"
+msgstr ""
+"Lora/Open Sans: besplatno uparivanje sa serifnim naslovima i sans-serifnim "
+"tekstom."
+
+msgid "plugins.themes.default.option.typography.notoSans_notoSerif"
+msgstr ""
+"Noto Sans/Noto Serif: komplementarno uparivanje sa sans-serif naslovima i "
+"serifnim glavnim tekstom."
+
+msgid "plugins.themes.default.option.typography.notoSerif"
+msgstr "Noto Serif: Serifna varijanta Googleovog digitalnog izvornog fonta."
+
+msgid "plugins.themes.default.description"
+msgstr "Ova tema implementira zadanu temu."
+
+msgid "plugins.themes.default.option.typography.notoSerif_notoSans"
+msgstr ""
+"Noto Serif/Noto Sans: Komplementarno uparivanje sa serifnim naslovima i sans-"
+"serifnim tekstom."
+
+msgid "plugins.themes.default.option.typography.lora"
+msgstr "Lora: široki serifni font dobar za čitanje online."
+
+msgid "plugins.themes.default.displayStats.downloads"
+msgstr "Preuzimanja"
+
+msgid "plugins.themes.default.option.typography.notoSans"
+msgstr ""
+"Noto Sans: digitalni izvorni font koji je dizajnirao Google za opsežnu "
+"jezičnu podršku."
+
+msgid "plugins.themes.default.option.typography.lato"
+msgstr "Lato: popularan moderni sans-serif font."
+
+msgid "plugins.themes.default.option.displayStats.label"
+msgstr "Opcije prikaza statistike korištenja"
+
+msgid "plugins.themes.default.option.displayStats.none"
+msgstr "Ne prikazuj grafikon statistike upotrebe podneska za čitača."

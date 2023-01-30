@@ -2,7 +2,7 @@
 # José Carvalho <jcarvalho@keep.pt>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-11-07 20:02+0000\n"
+"PO-Revision-Date: 2022-12-19 08:36+0000\n"
 "Last-Translator: José Carvalho <jcarvalho@keep.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/locale/pt_PT/>\n"
@@ -1272,7 +1272,6 @@ msgstr ""
 "Foi-lhe negado acesso porque não parece ser um revisor válido para esta "
 "monografia."
 
-#, fuzzy
 msgid "notification.type.visitCatalog"
 msgstr ""
 "A monografia foi aprovada. Visite o Catálogo para gerir os detalhes do "

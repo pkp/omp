@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-22 20:40+0000\n"
-"PO-Revision-Date: 2022-11-07 20:02+0000\n"
+"PO-Revision-Date: 2022-12-27 10:02+0000\n"
 "Last-Translator: José Carvalho <jcarvalho@keep.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/submission/pt_PT/>\n"
@@ -538,9 +538,10 @@ msgstr ""
 "tempo que o processo de revisão interna irá demorar e quando poderão esperar "
 "uma resposta dos editores."
 
-#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.completed.description"
-msgstr "A submissão, {$title}, foi enviada para a etapa de revisão interna."
+msgstr ""
+"A submissão, {$title}, foi enviada para a fase de avaliação interna. O autor "
+"foi notificado, a menos que opte por ignorar esse e-mail."
 
 msgid "editor.submission.decision.sendInternalReview.completed"
 msgstr "Enviar para Revisão Interna"
@@ -583,3 +584,57 @@ msgstr "URL de licença"
 
 msgid "publication.chapterDefaultLicenseURL"
 msgstr "URL da licença de capítulo padrão"
+
+msgid "submission.wizard.sectionClosed.message"
+msgstr ""
+"{$contextName} não está a aceitar envios para a série {$section}. Se "
+"precisar de ajuda para recuperar a sua submissão, entre em contato com <a "
+"href='mailto:{$email}'>{$name}</a>."
+
+msgid "submission.sectionRestrictedToEditors"
+msgstr ""
+"Apenas a equipa editorial está autorizada a enviar artigos para esta série."
+
+msgid "submission.wizard.submitting.monograph"
+msgstr "A submeter uma <strong>Monografia</strong>."
+
+msgid "submission.wizard.submitting.monographInLanguage"
+msgstr ""
+"A submeter uma <strong>Monografia</strong> em <strong>{$language}</strong>."
+
+msgid "submission.wizard.submitting.editedVolume"
+msgstr "A submeter um <strong>Volume Editado</strong>."
+
+msgid "submission.wizard.submitting.editedVolumeInLanguage"
+msgstr ""
+"A submeter um <strong>Volume Editado</strong> em "
+"<strong>{$language}</strong>."
+
+msgid "submission.wizard.chapters.description"
+msgstr ""
+"Forneça todos os capítulos desta submissão. Se estiver a submete um volume "
+"editado, certifique-se de que em cada capítulo indica os colaboradores desse "
+"mesmo capítulo."
+
+msgid "author.volumeEditor"
+msgstr "Editor de Volume"
+
+msgid "submission.copyright.description"
+msgstr ""
+"Por favor, leia e entenda os termos de direitos de autor para submissões a "
+"esta editora."
+
+msgid "submission.wizard.notAllowed.description"
+msgstr ""
+"Sem permissão para submeter a esta editora porque os autores devem ser "
+"registados pela equip editorial. Se acredita que isto é um erro, entre em "
+"contato com <a href='mailto:{$email}'>{$name}</a>."
+
+msgid "submission.wizard.noSectionAllowed.description"
+msgstr ""
+"Sem permissão para submeter a esta editora porque as submissões para todas "
+"as secções desta editora foram desativadas ou restritas. Se acredita que "
+"isto é um erro, entre em contato com <a href='mailto:{$email}'>{$name}</a>."
+
+msgid "submission.sectionNotFound"
+msgstr "Não foi possível encontrar a série para esta submissão."

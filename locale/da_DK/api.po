@@ -1,7 +1,7 @@
 # Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-10-01 08:01+0000\n"
+"PO-Revision-Date: 2022-12-15 16:52+0000\n"
 "Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/api/da_DK/>\n"
 "Language: da_DK\n"
@@ -40,3 +40,6 @@ msgstr ""
 
 msgid "api.submissions.400.wrongContext"
 msgstr "Den indsendelse, du anmodede om, findes ikke hos denne udgiver."
+
+msgid "api.submission.400.inactiveSection"
+msgstr "Denne sektion modtager ikke længere indsendelser."

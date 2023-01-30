@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-09-22 07:38+0000\n"
+"PO-Revision-Date: 2022-12-16 13:19+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/uk_UA/>\n"
@@ -41,16 +41,16 @@ msgid "submission.workflowType.change"
 msgstr "Змінити"
 
 msgid "submission.workflowType.editedVolume"
-msgstr "Редагований том: автори пов'язані з їхніми главами."
+msgstr "Том за редакцією: автори пов'язані з їхніми главами."
 
 msgid "submission.workflowType.editedVolume.label"
-msgstr "Редагований том"
+msgstr "Том за редакцією"
 
 msgid "submission.workflowType.description"
 msgstr ""
 "Монографія - це видання за цілковитим авторством одного або декількох "
-"авторів. Відредагований том має різних авторів для кожної глави (з деталям "
-"глав, введеними пізніше в цьому процесі.)"
+"авторів. Том за редакцією має різних авторів для кожної глави (з деталям "
+"глав, введеними пізніше в цьому процесі)"
 
 msgid "submission.workflowType"
 msgstr "Тип подання"
@@ -623,3 +623,48 @@ msgid "submission.submit.cancelSubmission"
 msgstr ""
 "Ви можете завершити це подання пізніше, вибравши його у списку активних "
 "подань на своїй персональній сторінці."
+
+msgid "submission.wizard.chapters.description"
+msgstr ""
+"Будь ласка, надайте всі глави цього подання. Якщо ви подаєте том за "
+"редакцією, переконайтеся, що в кожній главі вказано авторів цієї глави."
+
+msgid "submission.wizard.noSectionAllowed.description"
+msgstr ""
+"Вам не дозволено робити подання до цього е-видавництва, оскільки подання до "
+"всіх розділів до цього е-видавництва було деактивовано або обмежено. Якщо ви "
+"вважаєте, що це помилка, зверніться до <a href='mailto:{$email}'>{$name}</a>."
+
+msgid "author.volumeEditor"
+msgstr "Редактор тому"
+
+msgid "submission.copyright.description"
+msgstr ""
+"Будь ласка, прочитайте та зрозумійте умови щодо авторського права стосовно "
+"подання до цього е-видавництва."
+
+msgid "submission.wizard.notAllowed.description"
+msgstr ""
+"Ви не маєте права зробити подання до цього е-видавництва, оскільки автори "
+"повинні бути зареєстровані редакцією. Якщо ви вважаєте, що це помилка, "
+"зверніться до <a href='mailto:{$email}'>{$name}</a>."
+
+msgid "submission.sectionNotFound"
+msgstr "Серію для цього подання не знайдено."
+
+msgid "submission.sectionRestrictedToEditors"
+msgstr "До цієї серії дозволяється подаватися лише редакції."
+
+msgid "submission.wizard.submitting.monograph"
+msgstr "Подання <strong>монографії</strong>."
+
+msgid "submission.wizard.submitting.monographInLanguage"
+msgstr "Подання <strong>монографії</strong> мовою <strong>{$language}</strong>."
+
+msgid "submission.wizard.submitting.editedVolume"
+msgstr "Подання <strong>тому за редакцією</strong>."
+
+msgid "submission.wizard.submitting.editedVolumeInLanguage"
+msgstr ""
+"Подання <strong>тому за редакцією</strong> мовою "
+"<strong>{$language}</strong>."

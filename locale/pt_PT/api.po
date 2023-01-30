@@ -1,8 +1,9 @@
 # Carla Marques <carla.marques@usdb.uminho.pt>, 2022.
+# José Carvalho <jcarvalho@keep.pt>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-01 15:26+0000\n"
-"Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
+"PO-Revision-Date: 2023-01-03 09:02+0000\n"
+"Last-Translator: José Carvalho <jcarvalho@keep.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/api/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -10,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "api.submissions.403.cantChangeContext"
 msgstr "Não pode alterar a editora de uma submissão."
@@ -37,3 +38,6 @@ msgstr "O recurso de notificação de e-mail não foi ativado para esta editora.
 
 msgid "api.submissions.400.wrongContext"
 msgstr "A submissão solicitada não está nesta editora."
+
+msgid "api.submission.400.inactiveSection"
+msgstr "Esta secção não está a aceitar novas submissões."

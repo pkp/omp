@@ -1,10 +1,10 @@
-# Diego José Macêdo <diegojmacedo@gmail.com>, 2022.
+# Diego José Macêdo <diegojmacedo@gmail.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T12:01:00-07:00\n"
-"PO-Revision-Date: 2022-08-05 19:42+0000\n"
+"PO-Revision-Date: 2023-01-18 06:03+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/pt_BR/>\n"
@@ -68,7 +68,7 @@ msgstr ""
 "extensivo de linguagem."
 
 msgid "plugins.themes.default.option.typography.description"
-msgstr "Escolha uma combinação de fontes adequada a este site."
+msgstr "Escolha uma combinação de fontes adequada a esta editora."
 
 msgid "plugins.themes.default.option.typography.label"
 msgstr "Tipografia"

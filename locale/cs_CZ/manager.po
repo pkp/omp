@@ -1,7 +1,7 @@
-# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022.
+# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-11-06 17:48+0000\n"
+"PO-Revision-Date: 2023-01-07 23:38+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/manager/cs_CZ/"
 ">\n"
@@ -684,11 +684,10 @@ msgstr ""
 msgid "manager.setup.enableAnnouncements.enable"
 msgstr "Povolit oznámení"
 
-#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
-"Připravené e-maily, které systém odesílá jménem tisku, budou na konci "
-"opatřeny následujícím podpisem."
+"E-maily odesílané automaticky jménem vydavatelství budou opatřeny "
+"následujícím podpisem."
 
 msgid "manager.setup.emailSignature"
 msgstr "Podpis"
@@ -1650,3 +1649,25 @@ msgid "stats.context.downloadReport.description"
 msgstr ""
 "Stáhněte si tabulku CSV/Excel se statistikami použití stránek tohoto "
 "vydavatelství, které odpovídají následujícím parametrům."
+
+msgid "manager.manageEmails.description"
+msgstr "Úprava zpráv odeslaných v e-mailech z tohoto vydavatelství."
+
+msgid "mailable.indexRequest.name"
+msgstr "Požadovaný seznam"
+
+msgid "mailable.indexComplete.name"
+msgstr "Seznam je hotový"
+
+msgid "mailable.publicationVersionNotify.name"
+msgstr "Byla vytvořena nová verze"
+
+msgid "mailable.publicationVersionNotify.description"
+msgstr ""
+"Tento e-mail automaticky upozorní přiřazené editory na vytvoření nové verze "
+"příspěvku."
+
+msgid "mailable.submissionNeedsEditor.description"
+msgstr ""
+"Tento e-mail je zasílán manažerům vydavatelství, když je podán nový "
+"příspěvek a není k němu přiřazen žádný redaktor."
