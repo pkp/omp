@@ -11,37 +11,22 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.importexport.csv.import.success.description"
+msgid "plugins.importexport.csv.displayName"
+msgstr "Plug-in de importação de conteúdo delimitado por tabulação"
+
+msgid "plugins.importexport.csv.description"
 msgstr ""
-"A importação foi bem-sucedida. Os itens importados com sucesso estão "
-"listados abaixo."
+"Importar submissões para editoras a partir de dados delimitados por "
+"tabulações."
 
-msgid "plugins.importexport.csv.import.submission"
-msgstr "Submissão: '{$title}' importada com sucesso."
-
-msgid "plugins.importexport.csv.noSeries"
+msgid "plugins.importexport.csv.cliOnly"
 msgstr ""
-"O caminho da série {$seriesPath} não existe. Não foi possível adicioná-lo a "
-"esta submissão."
-
-msgid "plugins.importexport.csv.noAuthorGroup"
-msgstr ""
-"Não há grupo de autores padrão na editora {$press}. Ignorando esta submissão."
-
-msgid "plugins.importexport.csv.noGenre"
-msgstr "Não há gênero de manuscrito. Sair."
-
-msgid "plugins.importexport.csv.unknownPress"
-msgstr "Editora desconhecida \"{$contextPath}\".  Ignorando."
-
-msgid "plugins.importexport.csv.unknownLocale"
-msgstr "Código de Idioma desconhecido  \"{$locale}\". Ignorando."
-
-msgid "plugins.importexport.csv.unknownUser"
-msgstr "Usuário desconhecido: \"{$username}\".  Saindo."
-
-msgid "plugins.importexport.csv.fileDoesNotExist"
-msgstr "O arquivo \"{$filename}\" não existe.\t\tSaindo."
+"\n"
+"\t\t<p> No momento, este plugin suporta apenas operações de linha de "
+"comando. Execute...\n"
+"<pre> php tools/importExport.php CSVImportExportPlugi</pre>\n"
+"... para mais informações. </p>\n"
+"\t"
 
 msgid "plugins.importexport.csv.cliUsage"
 msgstr ""
@@ -53,19 +38,34 @@ msgstr ""
 "\t\t\tEspecifique o nome de usuário ao qual você deseja atribuir as "
 "submissões.\n"
 
-msgid "plugins.importexport.csv.cliOnly"
-msgstr ""
-"\n"
-"\t\t<p> No momento, este plugin suporta apenas operações de linha de "
-"comando. Execute...\n"
-"<pre> php tools/importExport.php CSVImportExportPlugi</pre>\n"
-"... para mais informações. </p>\n"
-"\t"
+msgid "plugins.importexport.csv.fileDoesNotExist"
+msgstr "O arquivo \"{$filename}\" não existe.\t\tSaindo."
 
-msgid "plugins.importexport.csv.description"
-msgstr ""
-"Importar submissões para editoras a partir de dados delimitados por "
-"tabulações."
+msgid "plugins.importexport.csv.unknownUser"
+msgstr "Usuário desconhecido: \"{$username}\".  Saindo."
 
-msgid "plugins.importexport.csv.displayName"
-msgstr "Plug-in de importação de conteúdo delimitado por tabulação"
+msgid "plugins.importexport.csv.unknownLocale"
+msgstr "Código de Idioma desconhecido  \"{$locale}\". Ignorando."
+
+msgid "plugins.importexport.csv.unknownPress"
+msgstr "Editora desconhecida \"{$contextPath}\".  Ignorando."
+
+msgid "plugins.importexport.csv.noGenre"
+msgstr "Não há gênero de manuscrito. Sair."
+
+msgid "plugins.importexport.csv.noAuthorGroup"
+msgstr ""
+"Não há grupo de autores padrão na editora {$press}. Ignorando esta submissão."
+
+msgid "plugins.importexport.csv.noSeries"
+msgstr ""
+"O caminho da série {$seriesPath} não existe. Não foi possível adicioná-lo a "
+"esta submissão."
+
+msgid "plugins.importexport.csv.import.submission"
+msgstr "Submissão: '{$title}' importada com sucesso."
+
+msgid "plugins.importexport.csv.import.success.description"
+msgstr ""
+"A importação foi bem-sucedida. Os itens importados com sucesso estão "
+"listados abaixo."

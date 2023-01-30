@@ -59,23 +59,16 @@ msgstr ""
 "cadastrados no sistema, os dados cadastrais não serão importados e quaisquer "
 "funções adicionais serão designadas aos usuários existentes."
 
-msgid "plugins.importexport.users.import.failedToImportUser"
-msgstr "Falha na importação de cadastro"
-
-msgid "plugins.importexport.users.import.failedToImportRole"
-msgstr "Falha ao designar função ao cadastro"
-
 msgid "plugins.importexport.users.import.dataFile"
 msgstr "Arquivo de dados do Usuário"
 
 msgid "plugins.importexport.users.import.sendNotify"
-msgstr "Enviar notificação via e-mail para cada cadastro importado, com login e senha do usuário."
+msgstr ""
+"Enviar notificação via e-mail para cada cadastro importado, com login e "
+"senha do usuário."
 
 msgid "plugins.importexport.users.import.continueOnError"
 msgstr "Continuar a importação de outros cadastros caso ocorra uma falha."
-
-msgid "plugins.importexport.users.import.noFileError"
-msgstr "Nenhum arquivo enviado!"
 
 msgid "plugins.importexport.users.import.usersWereImported"
 msgstr "Os seguintes cadastros foram importados com sucesso para o sistema"
@@ -85,6 +78,15 @@ msgstr "Erros ocorridos durante a importação"
 
 msgid "plugins.importexport.users.import.confirmUsers"
 msgstr "Deseja importar os usuários listados para o sistema"
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "Aviso"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr ""
+"Não é possível usar senhas criptografadas com {$importHash}; o sistema está "
+"configurado para utilizar {$ompHash}. Caso continue, será necessário recriar "
+"todas as senhas de usuários importados."
 
 msgid "plugins.importexport.users.unknownPress"
 msgstr "Caminho está inválido: \"{$contextPath}\"."
@@ -101,20 +103,23 @@ msgstr "Exportar Todos"
 msgid "plugins.importexport.users.export.errorsOccurred"
 msgstr "Error ocorridos durante a exportação"
 
-msgid "plugins.importexport.users.import.warning"
-msgstr "Aviso"
-
-msgid "plugins.importexport.users.import.encryptionMismatch"
+msgid "plugins.importexport.users.importComplete"
 msgstr ""
-"Não é possível usar senhas criptografadas com {$importHash}; o sistema está "
-"configurado para utilizar {$ompHash}. Caso continue, será necessário recriar "
-"todas as senhas de usuários importados."
+"A importação foi concluída com êxito. Usuários com nomes de usuários e "
+"endereços de e-mail que ainda não estão em uso foram importados, juntamente "
+"com os grupos de usuários que os acompanham."
 
 msgid "plugins.importexport.users.results"
 msgstr "Resultados"
 
-msgid "plugins.importexport.users.importComplete"
-msgstr "A importação foi concluída com êxito. Usuários com nomes de usuários e endereços de e-mail que ainda não estão em uso foram importados, juntamente com os grupos de usuários que os acompanham."
-
 msgid "plugins.importexport.users.uploadFile"
 msgstr "Faça o upload de um arquivo em \"Importar\" para continuar."
+
+#~ msgid "plugins.importexport.users.import.failedToImportUser"
+#~ msgstr "Falha na importação de cadastro"
+
+#~ msgid "plugins.importexport.users.import.failedToImportRole"
+#~ msgstr "Falha ao designar função ao cadastro"
+
+#~ msgid "plugins.importexport.users.import.noFileError"
+#~ msgstr "Nenhum arquivo enviado!"

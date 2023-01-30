@@ -1,5 +1,342 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Weblate\n"
+
+msgid "submission.upload.selectComponent"
+msgstr ""
+
+msgid "submission.title"
+msgstr ""
+
+msgid "submission.select"
+msgstr ""
+
+msgid "submission.synopsis"
+msgstr ""
+
+msgid "submission.workflowType"
+msgstr ""
+
+msgid "submission.workflowType.description"
+msgstr ""
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr ""
+
+msgid "submission.workflowType.editedVolume"
+msgstr ""
+
+msgid "submission.workflowType.authoredWork"
+msgstr ""
+
+msgid "submission.workflowType.change"
+msgstr ""
+
+msgid "submission.editorName"
+msgstr ""
+
+msgid "submission.monograph"
+msgstr ""
+
+msgid "submission.published"
+msgstr ""
+
+msgid "submission.fairCopy"
+msgstr ""
+
+msgid "submission.authorListSeparator"
+msgstr ""
+
+msgid "submission.artwork.permissions"
+msgstr ""
+
+msgid "submission.chapter"
+msgstr ""
+
+msgid "submission.chapters"
+msgstr ""
+
+msgid "submission.chapter.addChapter"
+msgstr ""
+
+msgid "submission.chapter.editChapter"
+msgstr ""
+
+msgid "submission.chapter.pages"
+msgstr ""
+
+msgid "submission.copyedit"
+msgstr ""
+
+msgid "submission.publicationFormats"
+msgstr ""
+
+msgid "submission.proofs"
+msgstr ""
+
+msgid "submission.download"
+msgstr ""
+
+msgid "submission.sharing"
+msgstr ""
+
+msgid "manuscript.submission"
+msgstr ""
+
+msgid "submission.round"
+msgstr ""
+
+msgid "submissions.queuedReview"
+msgstr ""
+
+msgid "manuscript.submissions"
+msgstr ""
+
+msgid "submission.metadata"
+msgstr ""
+
+msgid "submission.supportingAgencies"
+msgstr ""
+
+msgid "grid.action.addChapter"
+msgstr ""
+
+msgid "grid.action.editChapter"
+msgstr ""
+
+msgid "grid.action.deleteChapter"
+msgstr ""
+
+msgid "submission.submit"
+msgstr ""
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr ""
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr ""
+
+msgid "submission.submit.upload"
+msgstr ""
+
+msgid "author.volumeEditor"
+msgstr ""
+
+msgid "author.isVolumeEditor"
+msgstr ""
+
+msgid "submission.submit.seriesPosition"
+msgstr ""
+
+msgid "submission.submit.seriesPosition.description"
+msgstr ""
+
+msgid "submission.submit.privacyStatement"
+msgstr ""
+
+msgid "submission.submit.contributorRole"
+msgstr ""
+
+msgid "submission.submit.submissionFile"
+msgstr ""
+
+msgid "submission.submit.prepare"
+msgstr ""
+
+msgid "submission.submit.catalog"
+msgstr ""
+
+msgid "submission.submit.metadata"
+msgstr ""
+
+msgid "submission.submit.finishingUp"
+msgstr ""
+
+msgid "submission.submit.confirmation"
+msgstr ""
+
+msgid "submission.submit.nextSteps"
+msgstr ""
+
+msgid "submission.submit.coverNote"
+msgstr ""
+
+msgid "submission.submit.generalInformation"
+msgstr ""
+
+msgid "submission.submit.whatNext.description"
+msgstr ""
+
+msgid "submission.submit.checklistErrors"
+msgstr ""
+
+msgid "submission.submit.placement"
+msgstr ""
+
+msgid "submission.submit.userGroup"
+msgstr ""
+
+msgid "submission.submit.noContext"
+msgstr ""
+
+msgid "grid.chapters.title"
+msgstr ""
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr ""
+
+msgid "submission.complete"
+msgstr ""
+
+msgid "submission.incomplete"
+msgstr ""
+
+msgid "submission.editCatalogEntry"
+msgstr ""
+
+msgid "submission.catalogEntry.new"
+msgstr ""
+
+msgid "submission.catalogEntry.add"
+msgstr ""
+
+msgid "submission.catalogEntry.select"
+msgstr ""
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr ""
+
+msgid "submission.catalogEntry.confirm"
+msgstr ""
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr ""
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr ""
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr ""
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr ""
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr ""
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr ""
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr ""
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr ""
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr ""
+
+msgid "submission.event.metadataPublished"
+msgstr ""
+
+msgid "submission.event.metadataUnpublished"
+msgstr ""
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr ""
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr ""
+
+msgid "submission.event.publicationFormatPublished"
+msgstr ""
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr ""
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr ""
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr ""
+
+msgid "submission.event.publicationFormatCreated"
+msgstr ""
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr ""
+
+msgid "workflow.review.externalReview"
+msgstr ""
+
+msgid "submission.upload.fileContents"
+msgstr ""
+
+msgid "submission.dependentFiles"
+msgstr ""
+
+msgid "submission.metadataDescription"
+msgstr ""
+
+msgid "section.any"
+msgstr ""
+
+msgid "submission.list.monographs"
+msgstr ""
+
+msgid "submission.list.countMonographs"
+msgstr ""
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr ""
+
+msgid "submission.list.orderFeatures"
+msgstr ""
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+
+msgid "submission.list.saveFeatureOrder"
+msgstr ""
+
+msgid "submission.list.viewEntry"
+msgstr ""
+
+msgid "catalog.browseTitles"
+msgstr ""
+
+msgid "publication.catalogEntry"
+msgstr ""
+
+msgid "publication.catalogEntry.success"
+msgstr ""
+
+msgid "publication.invalidSeries"
+msgstr ""
+
+msgid "publication.inactiveSeries"
+msgstr ""
+
+msgid "publication.required.issue"
+msgstr ""
+
+msgid "publication.publishedIn"
+msgstr ""
+
+msgid "publication.publish.confirmation"
+msgstr ""
+
+msgid "publication.scheduledIn"
+msgstr ""
 
 msgid "submission.publication"
 msgstr "Xuất bản"
@@ -93,3 +430,128 @@ msgstr "Chi tiết xuất bản cho phiên bản {$version}"
 msgid "submission.queries.production"
 msgstr "Thảo luận về sản xuất"
 
+msgid "publication.chapter.landingPage"
+msgstr ""
+
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+
+msgid "publication.publish.success"
+msgstr ""
+
+msgid "chapter.volume"
+msgstr ""
+
+msgid "submission.withoutChapter"
+msgstr ""
+
+msgid "submission.chapterCreated"
+msgstr ""
+
+msgid "chapter.pages"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
+msgstr ""
+
+msgid "editor.submission.decision.promoteFiles.internalReview"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.completed"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr ""
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr ""
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr ""
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+
+msgid "doi.submission.incorrectContext"
+msgstr ""
+
+msgid "publication.chapter.licenseUrl"
+msgstr ""
+
+msgid "publication.chapterDefaultLicenseURL"
+msgstr ""
+
+msgid "submission.copyright.description"
+msgstr ""
+
+msgid "submission.wizard.notAllowed.description"
+msgstr ""
+
+msgid "submission.wizard.noSectionAllowed.description"
+msgstr ""
+
+msgid "submission.wizard.sectionClosed.message"
+msgstr ""
+
+msgid "submission.sectionNotFound"
+msgstr ""
+
+msgid "submission.sectionRestrictedToEditors"
+msgstr ""
+
+msgid "submission.wizard.submitting.monograph"
+msgstr ""
+
+msgid "submission.wizard.submitting.monographInLanguage"
+msgstr ""
+
+msgid "submission.wizard.submitting.editedVolume"
+msgstr ""
+
+msgid "submission.wizard.submitting.editedVolumeInLanguage"
+msgstr ""
+
+msgid "submission.wizard.chapters.description"
+msgstr ""

@@ -11,31 +11,31 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "api.submissions.403.cantChangeContext"
-msgstr "Pro tento příspěvek nemůžete změnit nakladatelství."
+msgid "api.submissions.400.submissionIdsRequired"
+msgstr ""
+"Chcete-li přidat do katalogu, musíte zadat jedno nebo více ID příspěvku."
 
-msgid "api.publications.403.submissionsDidNotMatch"
-msgstr "Požadovaná publikace není součástí tohoto příspěvku."
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "Jeden nebo více zadaných příspěvků nelze najít."
 
-msgid "api.publications.403.contextsDidNotMatch"
-msgstr "Požadovaná publikace není součástí tohoto nakladatelství."
+msgid "api.submissions.400.wrongContext"
+msgstr "Vámi požadovaný příspěvek se v tomto tisku nenachází."
+
+msgid "api.emails.403.disabled"
+msgstr "U tohoto tisku nebyla povolena funkce e-mailových upozornění."
 
 msgid "api.emailTemplates.403.notAllowedChangeContext"
 msgstr ""
 "Nemáte opravnění k přesunu této šablony e-mailu do jiného nakladatelství."
 
-msgid "api.submissions.400.submissionsNotFound"
-msgstr "Jeden nebo více zadaných příspěvků nelze najít."
+msgid "api.publications.403.contextsDidNotMatch"
+msgstr "Požadovaná publikace není součástí tohoto nakladatelství."
 
-msgid "api.submissions.400.submissionIdsRequired"
-msgstr ""
-"Chcete-li přidat do katalogu, musíte zadat jedno nebo více ID příspěvku."
+msgid "api.publications.403.submissionsDidNotMatch"
+msgstr "Požadovaná publikace není součástí tohoto příspěvku."
 
-msgid "api.emails.403.disabled"
-msgstr "U tohoto tisku nebyla povolena funkce e-mailových upozornění."
-
-msgid "api.submissions.400.wrongContext"
-msgstr "Vámi požadovaný příspěvek se v tomto tisku nenachází."
+msgid "api.submissions.403.cantChangeContext"
+msgstr "Pro tento příspěvek nemůžete změnit nakladatelství."
 
 msgid "api.submission.400.inactiveSection"
 msgstr "Tato sekce již nepřijímá příspěvky."

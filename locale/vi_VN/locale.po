@@ -1,2 +1,1443 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Weblate\n"
+
+msgid "common.payments"
+msgstr ""
+
+msgid "monograph.audience"
+msgstr ""
+
+msgid "monograph.audience.success"
+msgstr ""
+
+msgid "monograph.coverImage"
+msgstr ""
+
+msgid "monograph.audience.rangeQualifier"
+msgstr ""
+
+msgid "monograph.audience.rangeFrom"
+msgstr ""
+
+msgid "monograph.audience.rangeTo"
+msgstr ""
+
+msgid "monograph.audience.rangeExact"
+msgstr ""
+
+msgid "monograph.languages"
+msgstr ""
+
+msgid "monograph.publicationFormats"
+msgstr ""
+
+msgid "monograph.publicationFormat"
+msgstr ""
+
+msgid "monograph.publicationFormatDetails"
+msgstr ""
+
+msgid "monograph.miscellaneousDetails"
+msgstr ""
+
+msgid "monograph.carousel.publicationFormats"
+msgstr ""
+
+msgid "monograph.type"
+msgstr ""
+
+msgid "submission.pageProofs"
+msgstr ""
+
+msgid "monograph.proofReadingDescription"
+msgstr ""
+
+msgid "monograph.task.addNote"
+msgstr ""
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr ""
+
+msgid "monograph.publicationFormat.imprint"
+msgstr ""
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr ""
+
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr ""
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr ""
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr ""
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr ""
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr ""
+
+msgid "monograph.publicationFormat.price"
+msgstr ""
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr ""
+
+msgid "monograph.publicationFormat.priceType"
+msgstr ""
+
+msgid "monograph.publicationFormat.discountAmount"
+msgstr ""
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr ""
+
+msgid "monograph.publicationFormat.returnInformation"
+msgstr ""
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr ""
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr ""
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr ""
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr ""
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr ""
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr ""
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr ""
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr ""
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr ""
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr ""
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr ""
+
+msgid "monograph.publicationFormat.productRegion"
+msgstr ""
+
+msgid "monograph.publicationFormat.taxRate"
+msgstr ""
+
+msgid "monograph.publicationFormat.taxType"
+msgstr ""
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr ""
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr ""
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr ""
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr ""
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr ""
+
+msgid "monograph.publicationFormat.openTab"
+msgstr ""
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr ""
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr ""
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr ""
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr ""
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr ""
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr ""
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr ""
+
+msgid "grid.catalogEntry.isbn"
+msgstr ""
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr ""
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr ""
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr ""
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr ""
+
+msgid "grid.catalogEntry.availability"
+msgstr ""
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr ""
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr ""
+
+msgid "grid.catalogEntry.proof"
+msgstr ""
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr ""
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr ""
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr ""
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr ""
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr ""
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr ""
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr ""
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr ""
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr ""
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr ""
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr ""
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr ""
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr ""
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr ""
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr ""
+
+msgid "grid.catalogEntry.salesRights"
+msgstr ""
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr ""
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr ""
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr ""
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr ""
+
+msgid "grid.catalogEntry.countries"
+msgstr ""
+
+msgid "grid.catalogEntry.regions"
+msgstr ""
+
+msgid "grid.catalogEntry.included"
+msgstr ""
+
+msgid "grid.catalogEntry.excluded"
+msgstr ""
+
+msgid "grid.catalogEntry.markets"
+msgstr ""
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr ""
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr ""
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr ""
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr ""
+
+msgid "grid.catalogEntry.dateValue"
+msgstr ""
+
+msgid "grid.catalogEntry.dateRole"
+msgstr ""
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr ""
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr ""
+
+msgid "grid.catalogEntry.representatives"
+msgstr ""
+
+msgid "grid.catalogEntry.representativeType"
+msgstr ""
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr ""
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr ""
+
+msgid "grid.catalogEntry.agent"
+msgstr ""
+
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+
+msgid "grid.catalogEntry.supplier"
+msgstr ""
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr ""
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr ""
+
+msgid "grid.catalogEntry.representativeName"
+msgstr ""
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr ""
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr ""
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr ""
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr ""
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr ""
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+
+msgid "grid.action.addRepresentative"
+msgstr ""
+
+msgid "grid.action.editRepresentative"
+msgstr ""
+
+msgid "grid.action.deleteRepresentative"
+msgstr ""
+
+msgid "spotlight"
+msgstr ""
+
+msgid "spotlight.spotlights"
+msgstr ""
+
+msgid "spotlight.noneExist"
+msgstr ""
+
+msgid "spotlight.title.homePage"
+msgstr ""
+
+msgid "spotlight.author"
+msgstr ""
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr ""
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr ""
+
+msgid "grid.content.spotlights.form.location"
+msgstr ""
+
+msgid "grid.content.spotlights.form.item"
+msgstr ""
+
+msgid "grid.content.spotlights.form.title"
+msgstr ""
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr ""
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr ""
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr ""
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr ""
+
+msgid "grid.action.editSpotlight"
+msgstr ""
+
+msgid "grid.action.deleteSpotlight"
+msgstr ""
+
+msgid "grid.action.addSpotlight"
+msgstr ""
+
+msgid "manager.series.open"
+msgstr ""
+
+msgid "manager.series.indexed"
+msgstr ""
+
+msgid "grid.libraryFiles.column.files"
+msgstr ""
+
+msgid "grid.action.catalogEntry"
+msgstr ""
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr ""
+
+msgid "grid.action.editFormat"
+msgstr ""
+
+msgid "grid.action.deleteFormat"
+msgstr ""
+
+msgid "grid.action.addFormat"
+msgstr ""
+
+msgid "grid.action.approveProof"
+msgstr ""
+
+msgid "grid.action.pageProofApproved"
+msgstr ""
+
+msgid "grid.action.newCatalogEntry"
+msgstr ""
+
+msgid "grid.action.publicCatalog"
+msgstr ""
+
+msgid "grid.action.feature"
+msgstr ""
+
+msgid "grid.action.featureMonograph"
+msgstr ""
+
+msgid "grid.action.releaseMonograph"
+msgstr ""
+
+msgid "grid.action.manageCategories"
+msgstr ""
+
+msgid "grid.action.manageSeries"
+msgstr ""
+
+msgid "grid.action.addCode"
+msgstr ""
+
+msgid "grid.action.editCode"
+msgstr ""
+
+msgid "grid.action.deleteCode"
+msgstr ""
+
+msgid "grid.action.addRights"
+msgstr ""
+
+msgid "grid.action.editRights"
+msgstr ""
+
+msgid "grid.action.deleteRights"
+msgstr ""
+
+msgid "grid.action.addMarket"
+msgstr ""
+
+msgid "grid.action.editMarket"
+msgstr ""
+
+msgid "grid.action.deleteMarket"
+msgstr ""
+
+msgid "grid.action.addDate"
+msgstr ""
+
+msgid "grid.action.editDate"
+msgstr ""
+
+msgid "grid.action.deleteDate"
+msgstr ""
+
+msgid "grid.action.createContext"
+msgstr ""
+
+msgid "grid.action.publicationFormatTab"
+msgstr ""
+
+msgid "grid.action.moreAnnouncements"
+msgstr ""
+
+msgid "grid.action.submissionEmail"
+msgstr ""
+
+msgid "grid.action.approveProofs"
+msgstr ""
+
+msgid "grid.action.proofApproved"
+msgstr ""
+
+msgid "grid.action.availableRepresentation"
+msgstr ""
+
+msgid "grid.action.formatAvailable"
+msgstr ""
+
+msgid "grid.reviewAttachments.add"
+msgstr ""
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr ""
+
+msgid "series.series"
+msgstr ""
+
+msgid "series.featured.description"
+msgstr ""
+
+msgid "series.path"
+msgstr ""
+
+msgid "catalog.manage"
+msgstr ""
+
+msgid "catalog.manage.newReleases"
+msgstr ""
+
+msgid "catalog.manage.category"
+msgstr ""
+
+msgid "catalog.manage.series"
+msgstr ""
+
+msgid "catalog.manage.series.issn"
+msgstr ""
+
+msgid "catalog.manage.series.issn.validation"
+msgstr ""
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr ""
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr ""
+
+msgid "catalog.manage.series.printIssn"
+msgstr ""
+
+msgid "catalog.selectSeries"
+msgstr ""
+
+msgid "catalog.selectCategory"
+msgstr ""
+
+msgid "catalog.manage.homepageDescription"
+msgstr ""
+
+msgid "catalog.manage.categoryDescription"
+msgstr ""
+
+msgid "catalog.manage.seriesDescription"
+msgstr ""
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr ""
+
+msgid "catalog.manage.newRelease"
+msgstr ""
+
+msgid "catalog.manage.manageSeries"
+msgstr ""
+
+msgid "catalog.manage.manageCategories"
+msgstr ""
+
+msgid "catalog.manage.noMonographs"
+msgstr ""
+
+msgid "catalog.manage.featured"
+msgstr ""
+
+msgid "catalog.manage.categoryFeatured"
+msgstr ""
+
+msgid "catalog.manage.seriesFeatured"
+msgstr ""
+
+msgid "catalog.manage.featuredSuccess"
+msgstr ""
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr ""
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr ""
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr ""
+
+msgid "catalog.manage.feature.newRelease"
+msgstr ""
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr ""
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr ""
+
+msgid "catalog.manage.nonOrderable"
+msgstr ""
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr ""
+
+msgid "catalog.manage.isFeatured"
+msgstr ""
+
+msgid "catalog.manage.isNotFeatured"
+msgstr ""
+
+msgid "catalog.manage.isNewRelease"
+msgstr ""
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr ""
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr ""
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr ""
+
+msgid "catalog.manage.findSubmissions"
+msgstr ""
+
+msgid "catalog.noTitles"
+msgstr ""
+
+msgid "catalog.noTitlesNew"
+msgstr ""
+
+msgid "catalog.noTitlesSearch"
+msgstr ""
+
+msgid "catalog.feature"
+msgstr ""
+
+msgid "catalog.featured"
+msgstr ""
+
+msgid "catalog.featuredBooks"
+msgstr ""
+
+msgid "catalog.foundTitleSearch"
+msgstr ""
+
+msgid "catalog.foundTitlesSearch"
+msgstr ""
+
+msgid "catalog.category.heading"
+msgstr ""
+
+msgid "catalog.newReleases"
+msgstr ""
+
+msgid "catalog.dateAdded"
+msgstr ""
+
+msgid "catalog.publicationInfo"
+msgstr ""
+
+msgid "catalog.published"
+msgstr ""
+
+msgid "catalog.forthcoming"
+msgstr ""
+
+msgid "catalog.categories"
+msgstr ""
+
+msgid "catalog.parentCategory"
+msgstr ""
+
+msgid "catalog.category.subcategories"
+msgstr ""
+
+msgid "catalog.aboutTheAuthor"
+msgstr ""
+
+msgid "catalog.loginRequiredForPayment"
+msgstr ""
+
+msgid "catalog.sortBy"
+msgstr ""
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr ""
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr ""
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr ""
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr ""
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr ""
+
+msgid "catalog.viewableFile.title"
+msgstr ""
+
+msgid "catalog.viewableFile.return"
+msgstr ""
+
+msgid "submission.search"
+msgstr ""
+
+msgid "common.publication"
+msgstr ""
+
+msgid "common.publications"
+msgstr ""
+
+msgid "common.prefix"
+msgstr ""
+
+msgid "common.preview"
+msgstr ""
+
+msgid "common.feature"
+msgstr ""
+
+msgid "common.searchCatalog"
+msgstr ""
+
+msgid "common.moreInfo"
+msgstr ""
+
+msgid "common.listbuilder.completeForm"
+msgstr ""
+
+msgid "common.listbuilder.selectValidOption"
+msgstr ""
+
+msgid "common.listbuilder.itemExists"
+msgstr ""
+
+msgid "common.software"
+msgstr ""
+
+msgid "common.omp"
+msgstr ""
+
+msgid "common.homePageHeader.altText"
+msgstr ""
+
+msgid "navigation.catalog"
+msgstr ""
+
+msgid "navigation.competingInterestPolicy"
+msgstr ""
+
+msgid "navigation.catalog.allMonographs"
+msgstr ""
+
+msgid "navigation.catalog.manage"
+msgstr ""
+
+msgid "navigation.catalog.administration.short"
+msgstr ""
+
+msgid "navigation.catalog.administration"
+msgstr ""
+
+msgid "navigation.catalog.administration.categories"
+msgstr ""
+
+msgid "navigation.catalog.administration.series"
+msgstr ""
+
+msgid "navigation.infoForAuthors"
+msgstr ""
+
+msgid "navigation.infoForLibrarians"
+msgstr ""
+
+msgid "navigation.infoForAuthors.long"
+msgstr ""
+
+msgid "navigation.infoForLibrarians.long"
+msgstr ""
+
+msgid "navigation.newReleases"
+msgstr ""
+
+msgid "navigation.published"
+msgstr ""
+
+msgid "navigation.wizard"
+msgstr ""
+
+msgid "navigation.linksAndMedia"
+msgstr ""
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr ""
+
+msgid "navigation.skip.spotlights"
+msgstr ""
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr ""
+
+msgid "navigation.navigationMenus.series.description"
+msgstr ""
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr ""
+
+msgid "navigation.navigationMenus.category.description"
+msgstr ""
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr ""
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr ""
+
+msgid "context.contexts"
+msgstr ""
+
+msgid "context.context"
+msgstr ""
+
+msgid "context.current"
+msgstr ""
+
+msgid "context.select"
+msgstr ""
+
+msgid "user.authorization.representationNotFound"
+msgstr ""
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr ""
+
+msgid "user.noRoles.submitMonograph"
+msgstr ""
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr ""
+
+msgid "user.noRoles.regReviewer"
+msgstr ""
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr ""
+
+msgid "user.reviewerPrompt"
+msgstr ""
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr ""
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+
+msgid "user.register.contextsPrompt"
+msgstr ""
+
+msgid "user.register.otherContextRoles"
+msgstr ""
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+
+msgid "user.role.manager"
+msgstr ""
+
+msgid "user.role.pressEditor"
+msgstr ""
+
+msgid "user.role.subEditor"
+msgstr ""
+
+msgid "user.role.copyeditor"
+msgstr ""
+
+msgid "user.role.proofreader"
+msgstr ""
+
+msgid "user.role.productionEditor"
+msgstr ""
+
+msgid "user.role.managers"
+msgstr ""
+
+msgid "user.role.subEditors"
+msgstr ""
+
+msgid "user.role.editors"
+msgstr ""
+
+msgid "user.role.copyeditors"
+msgstr ""
+
+msgid "user.role.proofreaders"
+msgstr ""
+
+msgid "user.role.productionEditors"
+msgstr ""
+
+msgid "user.register.selectContext"
+msgstr ""
+
+msgid "user.register.noContexts"
+msgstr ""
+
+msgid "user.register.privacyStatement"
+msgstr ""
+
+msgid "user.register.registrationDisabled"
+msgstr ""
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr ""
+
+msgid "user.register.readerDescription"
+msgstr ""
+
+msgid "user.register.authorDescription"
+msgstr ""
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr ""
+
+msgid "user.register.reviewerDescription"
+msgstr ""
+
+msgid "user.register.reviewerInterests"
+msgstr ""
+
+msgid "user.register.form.userGroupRequired"
+msgstr ""
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+
+msgid "site.noPresses"
+msgstr ""
+
+msgid "site.pressView"
+msgstr ""
+
+msgid "about.pressContact"
+msgstr ""
+
+msgid "about.aboutContext"
+msgstr ""
+
+msgid "about.editorialTeam"
+msgstr ""
+
+msgid "about.editorialPolicies"
+msgstr ""
+
+msgid "about.focusAndScope"
+msgstr ""
+
+msgid "about.seriesPolicies"
+msgstr ""
+
+msgid "about.submissions"
+msgstr ""
+
+msgid "about.onlineSubmissions"
+msgstr ""
+
+msgid "about.onlineSubmissions.login"
+msgstr ""
+
+msgid "about.onlineSubmissions.register"
+msgstr ""
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr ""
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr ""
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr ""
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr ""
+
+msgid "about.authorGuidelines"
+msgstr ""
+
+msgid "about.submissionPreparationChecklist"
+msgstr ""
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr ""
+
+msgid "about.copyrightNotice"
+msgstr ""
+
+msgid "about.privacyStatement"
+msgstr ""
+
+msgid "about.reviewPolicy"
+msgstr ""
+
+msgid "about.publicationFrequency"
+msgstr ""
+
+msgid "about.openAccessPolicy"
+msgstr ""
+
+msgid "about.pressSponsorship"
+msgstr ""
+
+msgid "about.aboutThisPublishingSystem"
+msgstr ""
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr ""
+
+msgid "about.aboutSoftware"
+msgstr ""
+
+msgid "about.aboutOMPPress"
+msgstr ""
+
+msgid "about.aboutOMPSite"
+msgstr ""
+
+msgid "help.searchReturnResults"
+msgstr ""
+
+msgid "help.goToEditPage"
+msgstr ""
+
+msgid "installer.appInstallation"
+msgstr ""
+
+msgid "installer.ompUpgrade"
+msgstr ""
+
+msgid "installer.installApplication"
+msgstr ""
+
+msgid "installer.updatingInstructions"
+msgstr ""
+
+msgid "installer.installationInstructions"
+msgstr ""
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr ""
+
+msgid "installer.preInstallationInstructions"
+msgstr ""
+
+msgid "installer.upgradeInstructions"
+msgstr ""
+
+msgid "installer.localeSettingsInstructions"
+msgstr ""
+
+msgid "installer.allowFileUploads"
+msgstr ""
+
+msgid "installer.maxFileUploadSize"
+msgstr ""
+
+msgid "installer.localeInstructions"
+msgstr ""
+
+msgid "installer.additionalLocalesInstructions"
+msgstr ""
+
+msgid "installer.filesDirInstructions"
+msgstr ""
+
+msgid "installer.databaseSettingsInstructions"
+msgstr ""
+
+msgid "installer.upgradeApplication"
+msgstr ""
+
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+
+msgid "installer.installationComplete"
+msgstr ""
+
+msgid "installer.upgradeComplete"
+msgstr ""
+
+msgid "log.review.reviewDueDateSet"
+msgstr ""
+
+msgid "log.review.reviewDeclined"
+msgstr ""
+
+msgid "log.review.reviewAccepted"
+msgstr ""
+
+msgid "log.review.reviewUnconsidered"
+msgstr ""
+
+msgid "log.editor.decision"
+msgstr ""
+
+msgid "log.editor.recommendation"
+msgstr ""
+
+msgid "log.editor.archived"
+msgstr ""
+
+msgid "log.editor.restored"
+msgstr ""
+
+msgid "log.editor.editorAssigned"
+msgstr ""
+
+msgid "log.proofread.assign"
+msgstr ""
+
+msgid "log.proofread.complete"
+msgstr ""
+
+msgid "log.imported"
+msgstr ""
+
+msgid "notification.addedIdentificationCode"
+msgstr ""
+
+msgid "notification.editedIdentificationCode"
+msgstr ""
+
+msgid "notification.removedIdentificationCode"
+msgstr ""
+
+msgid "notification.addedPublicationDate"
+msgstr ""
+
+msgid "notification.editedPublicationDate"
+msgstr ""
+
+msgid "notification.removedPublicationDate"
+msgstr ""
+
+msgid "notification.addedPublicationFormat"
+msgstr ""
+
+msgid "notification.editedPublicationFormat"
+msgstr ""
+
+msgid "notification.removedPublicationFormat"
+msgstr ""
+
+msgid "notification.addedSalesRights"
+msgstr ""
+
+msgid "notification.editedSalesRights"
+msgstr ""
+
+msgid "notification.removedSalesRights"
+msgstr ""
+
+msgid "notification.addedRepresentative"
+msgstr ""
+
+msgid "notification.editedRepresentative"
+msgstr ""
+
+msgid "notification.removedRepresentative"
+msgstr ""
+
+msgid "notification.addedMarket"
+msgstr ""
+
+msgid "notification.editedMarket"
+msgstr ""
+
+msgid "notification.removedMarket"
+msgstr ""
+
+msgid "notification.addedSpotlight"
+msgstr ""
+
+msgid "notification.editedSpotlight"
+msgstr ""
+
+msgid "notification.removedSpotlight"
+msgstr ""
+
+msgid "notification.savedCatalogMetadata"
+msgstr ""
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr ""
+
+msgid "notification.proofsApproved"
+msgstr ""
+
+msgid "notification.removedSubmission"
+msgstr ""
+
+msgid "notification.type.submissionSubmitted"
+msgstr ""
+
+msgid "notification.type.editing"
+msgstr ""
+
+msgid "notification.type.reviewing"
+msgstr ""
+
+msgid "notification.type.site"
+msgstr ""
+
+msgid "notification.type.submissions"
+msgstr ""
+
+msgid "notification.type.userComment"
+msgstr ""
+
+msgid "notification.type.public"
+msgstr ""
+
+msgid "notification.type.editorAssignmentTask"
+msgstr ""
+
+msgid "notification.type.copyeditorRequest"
+msgstr ""
+
+msgid "notification.type.layouteditorRequest"
+msgstr ""
+
+msgid "notification.type.indexRequest"
+msgstr ""
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr ""
+
+msgid "notification.type.approveSubmission"
+msgstr ""
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr ""
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr ""
+
+msgid "notification.type.configurePaymentMethod"
+msgstr ""
+
+msgid "notification.type.visitCatalogTitle"
+msgstr ""
+
+msgid "notification.type.visitCatalog"
+msgstr ""
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr ""
+
+msgid "user.authorization.monographAuthor"
+msgstr ""
+
+msgid "user.authorization.monographReviewer"
+msgstr ""
+
+msgid "user.authorization.monographFile"
+msgstr ""
+
+msgid "user.authorization.invalidMonograph"
+msgstr ""
+
+msgid "user.authorization.noContext"
+msgstr ""
+
+msgid "user.authorization.seriesAssignment"
+msgstr ""
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr ""
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+
+msgid "payment.directSales"
+msgstr ""
+
+msgid "payment.directSales.price"
+msgstr ""
+
+msgid "payment.directSales.availability"
+msgstr ""
+
+msgid "payment.directSales.catalog"
+msgstr ""
+
+msgid "payment.directSales.approved"
+msgstr ""
+
+msgid "payment.directSales.priceCurrency"
+msgstr ""
+
+msgid "payment.directSales.numericOnly"
+msgstr ""
+
+msgid "payment.directSales.directSales"
+msgstr ""
+
+msgid "payment.directSales.amount"
+msgstr ""
+
+msgid "payment.directSales.notAvailable"
+msgstr ""
+
+msgid "payment.directSales.notSet"
+msgstr ""
+
+msgid "payment.directSales.openAccess"
+msgstr ""
+
+msgid "payment.directSales.price.description"
+msgstr ""
+
+msgid "payment.directSales.validPriceRequired"
+msgstr ""
+
+msgid "payment.directSales.purchase"
+msgstr ""
+
+msgid "payment.directSales.download"
+msgstr ""
+
+msgid "payment.directSales.monograph.name"
+msgstr ""
+
+msgid "payment.directSales.monograph.description"
+msgstr ""
+
+msgid "debug.notes.helpMappingLoad"
+msgstr ""
+
+msgid "rt.metadata.pkp.dctype"
+msgstr ""
+
+msgid "submission.pdf.download"
+msgstr ""
+
+msgid "user.profile.form.showOtherContexts"
+msgstr ""
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr ""
+
+msgid "submission.round"
+msgstr ""
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr ""
+
+msgid "catalog.coverImageTitle"
+msgstr ""
+
+msgid "grid.catalogEntry.chapters"
+msgstr ""
+
+msgid "search.results.orderBy.article"
+msgstr ""
+
+msgid "search.results.orderBy.author"
+msgstr ""
+
+msgid "search.results.orderBy.date"
+msgstr ""
+
+msgid "search.results.orderBy.monograph"
+msgstr ""
+
+msgid "search.results.orderBy.press"
+msgstr ""
+
+msgid "search.results.orderBy.popularityAll"
+msgstr ""
+
+msgid "search.results.orderBy.popularityMonth"
+msgstr ""
+
+msgid "search.results.orderBy.relevance"
+msgstr ""
+
+msgid "search.results.orderDir.asc"
+msgstr ""
+
+msgid "search.results.orderDir.desc"
+msgstr ""

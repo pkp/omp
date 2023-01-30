@@ -13,182 +13,98 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "default.groups.plural.externalReviewer"
-msgstr "Зовнішні рецензенти"
-
-msgid "default.groups.name.externalReviewer"
-msgstr "Зовнішній рецензент"
-
-msgid "default.groups.plural.volumeEditor"
-msgstr "Редактори тому"
-
-msgid "default.groups.name.volumeEditor"
-msgstr "Редактор тому"
-
-msgid "default.groups.plural.chapterAuthor"
-msgstr "Автори глави"
-
-msgid "default.groups.name.chapterAuthor"
-msgstr "Автор глави"
-
-msgid "default.groups.plural.sectionEditor"
-msgstr "Редактори серії"
-
-msgid "default.groups.name.sectionEditor"
-msgstr "Редактор серії"
-
-msgid "default.groups.plural.editor"
-msgstr "Редактори е-видавництва"
-
-msgid "default.groups.name.editor"
-msgstr "Редактор видавництва"
-
-msgid "default.groups.plural.manager"
-msgstr "Менеджери е-видавництва"
-
-msgid "default.groups.name.manager"
-msgstr "Менеджер е-видавництва"
-
-msgid "default.genres.other"
-msgstr "Інше"
-
-msgid "default.genres.illustration"
-msgstr "Ілюстрація"
-
-msgid "default.genres.photo"
-msgstr "Фото"
-
-msgid "default.genres.figure"
-msgstr "Рисунок"
-
-msgid "default.genres.table"
-msgstr "Таблиця"
-
-msgid "default.genres.preface"
-msgstr "Передмова"
-
-msgid "default.genres.glossary"
-msgstr "Глосарій"
-
-msgid "default.genres.chapter"
-msgstr "Рукопис глави"
-
-msgid "default.genres.manuscript"
-msgstr "Рукопис книги"
+msgid "default.genres.appendix"
+msgstr "Додаток"
 
 msgid "default.genres.bibliography"
 msgstr "Бібліографія"
 
-msgid "default.contextSettings.forLibrarians"
-msgstr ""
-"Ми пропонуємо науковим бібліотекам включити це е-видавництво до списків "
-"своїх електронних колекцій. Додатково в цій видавничій системі передбачено "
-"засоби інтеграції з бібліотечним програмним забезпеченням, що дозволяє "
-"бібліотекам забезпечувати архівне збереження електронного контенту "
-"видавництв та/або безпосередньо брати участь у видавничому процесі (більш "
-"детально про ці можливості див. на сайті <a href=\"https://pkp.sfu.ca/omp\""
-">Open Monograph Press</a>)."
+msgid "default.genres.manuscript"
+msgstr "Рукопис книги"
 
-msgid "default.contextSettings.forAuthors"
-msgstr ""
-"Бажаєте опублікувати свою роботу в цьому е-видавництві? Рекомендуємо "
-"ознайомитися з редакційною політикою на сторінці <a href=\""
-"{$indexUrl}/{$contextPath}/about\">Про е-видавництво</a> й переглянути <a "
-"href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\">"
-"Настанови для авторів</a>. Для того, щоб мати можливість подавати рукописи "
-"до е-видавництва, автори повинні <a href=\"{$indexUrl}/{$contextPath}/user/"
-"register\">зареєструватися</a> в е-видавництві. Якщо Ви вже зареєстровані, "
-"просто <a href=\"{$indexUrl}/index/login\">увійдіть</a> і почніть 5-кроковий "
-"процес подання рукопису на розгляд."
+msgid "default.genres.chapter"
+msgstr "Рукопис глави"
 
-msgid "default.contextSettings.forReaders"
-msgstr ""
-"Ми пропонуємо авторам реєструватися на сайті, щоб скористатися службою "
-"повідомлень цього е-видавництва. Для реєстрації використайте посилання <a "
-"href=\"{$indexUrl}/{$contextPath}/user/register\">Зареєструватися</a> у "
-"верхньому меню домашньої сторінки е-видавництва. У Вас буде можливість "
-"оперативно отримувати поштою сторінки змісту нових опублікованих монографій "
-"е-видавництва. Також це дасть змогу редакції відстежувати читацькі "
-"пріоритети й інтереси. Будь ласка, ознайомтеся із <a href=\""
-"{$indexUrl}/{$contextPath}/about/submissions#privacyStatement\">заявою про "
-"конфіденційність</a>, у якій ідеться про те, що е-видавництво гарантує "
-"нерозповсюдження імен та електронних адрес своїх читачів стороннім особам."
-
-msgid "default.contextSettings.openAccessPolicy"
-msgstr ""
-"Це е-видавництво підтримує політику миттєвого відкритого доступу до "
-"опублікованого контенту, слідуючи принципам вільного поширення наукової "
-"інформації та глобального обміну знаннями задля загального суспільного "
-"прогресу."
-
-msgid "default.contextSettings.privacyStatement"
-msgstr ""
-"<p>Імена й електронні адреси, указані користувачами на вебсайті цього е-"
-"видавництва, будуть використані виключно для заявлених цілей цього "
-"е-видавництва; вони не будуть поширюватися та передаватися стороннім "
-"особам.</p>"
-
-msgid "default.contextSettings.checklist.submissionAppearance"
-msgstr ""
-"Текст набраний 12-м розміром кеглю з одинарним міжрядковим інтервалом; "
-"авторські акценти виділені курсивом, а не підкресленням (всюди, крім адрес "
-"URL); всі ілюстрації, графіки та таблиці розміщені безпосередньо у тексті, "
-"там, де вони повинні бути за змістом (а не у кінці документу)."
-
-msgid "default.contextSettings.checklist.addressesLinked"
-msgstr "Де це можливо, посилання супроводжуються URL-адресами."
-
-msgid "default.contextSettings.checklist.fileFormat"
-msgstr ""
-"Файл подання є документом у форматі Microsoft Word, RTF або OpenDocument."
-
-msgid "default.contextSettings.checklist.notPreviouslyPublished"
-msgstr ""
-"Це подання раніше не було опубліковане і не надсилалося на розгляд до інших "
-"е-видавництв (або вкажіть пояснення у коментарях для редактора)."
-
-msgid "default.genres.prospectus"
-msgstr "Проспект"
+msgid "default.genres.glossary"
+msgstr "Глосарій"
 
 msgid "default.genres.index"
 msgstr "Індекс"
 
-msgid "default.genres.appendix"
-msgstr "Додаток"
+msgid "default.genres.preface"
+msgstr "Передмова"
 
-msgid "default.contextSettings.checklist.bibliographicRequirements"
-msgstr ""
-"Текст відповідає стилістичним і бібліографічним вимогам, описаним у <a href="
-"\"{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines\" target=\""
-"_blank\">Настановах для авторів</a>, що містяться на сторінці \"Про е-"
-"видавництво\"."
+msgid "default.genres.prospectus"
+msgstr "Проспект"
 
-msgid "default.groups.abbrev.externalReviewer"
-msgstr "ЗР"
+msgid "default.genres.table"
+msgstr "Таблиця"
 
-msgid "default.groups.abbrev.subscriptionManager"
-msgstr "МП"
+msgid "default.genres.figure"
+msgstr "Рисунок"
 
-msgid "default.groups.plural.subscriptionManager"
-msgstr "Менеджери подання"
+msgid "default.genres.photo"
+msgstr "Фото"
 
-msgid "default.groups.name.subscriptionManager"
-msgstr "Менеджер подання"
+msgid "default.genres.illustration"
+msgstr "Ілюстрація"
 
-msgid "default.groups.abbrev.sectionEditor"
-msgstr "РС"
+msgid "default.genres.other"
+msgstr "Інше"
 
-msgid "default.groups.abbrev.editor"
-msgstr "РВ"
+msgid "default.groups.name.manager"
+msgstr "Менеджер е-видавництва"
+
+msgid "default.groups.plural.manager"
+msgstr "Менеджери е-видавництва"
 
 msgid "default.groups.abbrev.manager"
 msgstr "МВ"
 
-msgid "default.groups.abbrev.volumeEditor"
-msgstr "РТ"
+msgid "default.groups.name.editor"
+msgstr "Редактор видавництва"
+
+msgid "default.groups.plural.editor"
+msgstr "Редактори е-видавництва"
+
+msgid "default.groups.abbrev.editor"
+msgstr "РВ"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Редактор серії"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Редактори серії"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "РС"
+
+msgid "default.groups.name.subscriptionManager"
+msgstr "Менеджер подання"
+
+msgid "default.groups.plural.subscriptionManager"
+msgstr "Менеджери подання"
+
+msgid "default.groups.abbrev.subscriptionManager"
+msgstr "МП"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Автор глави"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Автори глави"
 
 msgid "default.groups.abbrev.chapterAuthor"
 msgstr "АГ"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Редактор тому"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Редактори тому"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "РТ"
 
 msgid "default.contextSettings.authorGuidelines"
 msgstr ""
@@ -211,10 +127,94 @@ msgstr ""
 msgid "default.contextSettings.checklist"
 msgstr ""
 "<p>Усі подання мають відповідати наведеним нижче вимогам.</p><ul><li>Це "
-"подання відповідає вимогам, викладеним у <a href=\"{$submissionGuidelinesUrl}"
-"\">Настановах для авторів</a>.</li ><li>Це подання не було опубліковано "
-"раніше, і воно не передано для розгляду в іншому видавництві.</li><li>Усі "
-"посилання були перевірені на точність і повноту.</li><li>Усі таблиці та "
-"малюнки було пронумеровано та позначено.</li><li>Було отримано дозвіл на "
-"публікацію всіх фотографій, наборів даних та інших матеріалів, наданих разом "
-"із цим поданням.</li></ul>"
+"подання відповідає вимогам, викладеним у <a href="
+"\"{$submissionGuidelinesUrl}\">Настановах для авторів</a>.</li ><li>Це "
+"подання не було опубліковано раніше, і воно не передано для розгляду в "
+"іншому видавництві.</li><li>Усі посилання були перевірені на точність і "
+"повноту.</li><li>Усі таблиці та малюнки було пронумеровано та позначено.</"
+"li><li>Було отримано дозвіл на публікацію всіх фотографій, наборів даних та "
+"інших матеріалів, наданих разом із цим поданням.</li></ul>"
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+"<p>Імена й електронні адреси, указані користувачами на вебсайті цього е-"
+"видавництва, будуть використані виключно для заявлених цілей цього е-"
+"видавництва; вони не будуть поширюватися та передаватися стороннім особам.</"
+"p>"
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr ""
+"Це е-видавництво підтримує політику миттєвого відкритого доступу до "
+"опублікованого контенту, слідуючи принципам вільного поширення наукової "
+"інформації та глобального обміну знаннями задля загального суспільного "
+"прогресу."
+
+msgid "default.contextSettings.forReaders"
+msgstr ""
+"Ми пропонуємо авторам реєструватися на сайті, щоб скористатися службою "
+"повідомлень цього е-видавництва. Для реєстрації використайте посилання <a "
+"href=\"{$indexUrl}/{$contextPath}/user/register\">Зареєструватися</a> у "
+"верхньому меню домашньої сторінки е-видавництва. У Вас буде можливість "
+"оперативно отримувати поштою сторінки змісту нових опублікованих монографій "
+"е-видавництва. Також це дасть змогу редакції відстежувати читацькі "
+"пріоритети й інтереси. Будь ласка, ознайомтеся із <a href=\"{$indexUrl}/"
+"{$contextPath}/about/submissions#privacyStatement\">заявою про "
+"конфіденційність</a>, у якій ідеться про те, що е-видавництво гарантує "
+"нерозповсюдження імен та електронних адрес своїх читачів стороннім особам."
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+"Бажаєте опублікувати свою роботу в цьому е-видавництві? Рекомендуємо "
+"ознайомитися з редакційною політикою на сторінці <a href=\"{$indexUrl}/"
+"{$contextPath}/about\">Про е-видавництво</a> й переглянути <a href="
+"\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\">Настанови "
+"для авторів</a>. Для того, щоб мати можливість подавати рукописи до е-"
+"видавництва, автори повинні <a href=\"{$indexUrl}/{$contextPath}/user/"
+"register\">зареєструватися</a> в е-видавництві. Якщо Ви вже зареєстровані, "
+"просто <a href=\"{$indexUrl}/index/login\">увійдіть</a> і почніть 5-кроковий "
+"процес подання рукопису на розгляд."
+
+msgid "default.contextSettings.forLibrarians"
+msgstr ""
+"Ми пропонуємо науковим бібліотекам включити це е-видавництво до списків "
+"своїх електронних колекцій. Додатково в цій видавничій системі передбачено "
+"засоби інтеграції з бібліотечним програмним забезпеченням, що дозволяє "
+"бібліотекам забезпечувати архівне збереження електронного контенту "
+"видавництв та/або безпосередньо брати участь у видавничому процесі (більш "
+"детально про ці можливості див. на сайті <a href=\"https://pkp.sfu.ca/omp"
+"\">Open Monograph Press</a>)."
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Зовнішній рецензент"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Зовнішні рецензенти"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "ЗР"
+
+#~ msgid "default.contextSettings.checklist.submissionAppearance"
+#~ msgstr ""
+#~ "Текст набраний 12-м розміром кеглю з одинарним міжрядковим інтервалом; "
+#~ "авторські акценти виділені курсивом, а не підкресленням (всюди, крім "
+#~ "адрес URL); всі ілюстрації, графіки та таблиці розміщені безпосередньо у "
+#~ "тексті, там, де вони повинні бути за змістом (а не у кінці документу)."
+
+#~ msgid "default.contextSettings.checklist.addressesLinked"
+#~ msgstr "Де це можливо, посилання супроводжуються URL-адресами."
+
+#~ msgid "default.contextSettings.checklist.fileFormat"
+#~ msgstr ""
+#~ "Файл подання є документом у форматі Microsoft Word, RTF або OpenDocument."
+
+#~ msgid "default.contextSettings.checklist.notPreviouslyPublished"
+#~ msgstr ""
+#~ "Це подання раніше не було опубліковане і не надсилалося на розгляд до "
+#~ "інших е-видавництв (або вкажіть пояснення у коментарях для редактора)."
+
+#~ msgid "default.contextSettings.checklist.bibliographicRequirements"
+#~ msgstr ""
+#~ "Текст відповідає стилістичним і бібліографічним вимогам, описаним у <a "
+#~ "href=\"{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines\" "
+#~ "target=\"_blank\">Настановах для авторів</a>, що містяться на сторінці "
+#~ "\"Про е-видавництво\"."

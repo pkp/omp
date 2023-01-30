@@ -11,12 +11,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.block.developedBy.blockTitle"
-msgstr "Utviklet av"
+msgid "plugins.block.developedBy.displayName"
+msgstr "Blokk for «Utviklet av»"
 
 msgid "plugins.block.developedBy.description"
 msgstr ""
 "Dette programtillegget lager en lenke merket «Utviklet av» i sidemenyen."
 
-msgid "plugins.block.developedBy.displayName"
-msgstr "Blokk for «Utviklet av»"
+msgid "plugins.block.developedBy.blockTitle"
+msgstr "Utviklet av"

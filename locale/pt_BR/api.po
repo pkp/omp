@@ -13,32 +13,32 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "api.emailTemplates.403.notAllowedChangeContext"
-msgstr ""
-"Você não tem permissão para mover este modelo de e-mail para outra editora."
-
-msgid "api.submissions.403.cantChangeContext"
-msgstr "Você não pode alterar a editora de uma submissão."
-
-msgid "api.publications.403.submissionsDidNotMatch"
-msgstr "A publicação solicitada não é parte desta submissão."
-
-msgid "api.publications.403.contextsDidNotMatch"
-msgstr "A publicação solicitada não é parte desta editora."
-
-msgid "api.emails.403.disabled"
-msgstr "O recurso de notificação por e-mail não foi ativado para esta editora."
-
-msgid "api.submissions.400.submissionsNotFound"
-msgstr "Uma ou mais submissões que você especificou não foram encontradas."
-
 msgid "api.submissions.400.submissionIdsRequired"
 msgstr ""
 "Você deve fornecer um ou mais IDs de submissão para serem adicionados ao "
 "catálogo."
 
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "Uma ou mais submissões que você especificou não foram encontradas."
+
 msgid "api.submissions.400.wrongContext"
 msgstr "A submissão solicitada não está nesta editora."
+
+msgid "api.emails.403.disabled"
+msgstr "O recurso de notificação por e-mail não foi ativado para esta editora."
+
+msgid "api.emailTemplates.403.notAllowedChangeContext"
+msgstr ""
+"Você não tem permissão para mover este modelo de e-mail para outra editora."
+
+msgid "api.publications.403.contextsDidNotMatch"
+msgstr "A publicação solicitada não é parte desta editora."
+
+msgid "api.publications.403.submissionsDidNotMatch"
+msgstr "A publicação solicitada não é parte desta submissão."
+
+msgid "api.submissions.403.cantChangeContext"
+msgstr "Você não pode alterar a editora de uma submissão."
 
 msgid "api.submission.400.inactiveSection"
 msgstr "Esta seção não está mais recebendo submissões."

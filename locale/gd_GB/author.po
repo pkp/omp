@@ -14,3 +14,6 @@ msgstr ""
 
 msgid "author.submit.notAccepting"
 msgstr "Chan eil an clò seo a’ gabhail ri tagraidhean aig an àm seo."
+
+msgid "author.submit"
+msgstr ""

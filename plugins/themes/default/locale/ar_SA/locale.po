@@ -12,36 +12,34 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.themes.default.option.colour.description"
-msgstr "اختر لونًا لرأس الصفحة(الهيدر)."
+msgid "plugins.themes.default.name"
+msgstr "السمة الإفتراضية"
+
+msgid "plugins.themes.default.description"
+msgstr "تم تعيين هذه السمة الى الافتراضية"
+
+msgid "plugins.themes.default.option.typography.label"
+msgstr "الخطوط والطباعة"
 
 #, fuzzy
-msgid "plugins.themes.default.option.typography.lora_openSans"
+msgid "plugins.themes.default.option.typography.description"
+msgstr "Choose a font combination that suits this journal."
+
+#, fuzzy
+msgid "plugins.themes.default.option.typography.notoSans"
 msgstr ""
-"Lora/Open Sans: A complimentary pairing with serif headings and sans-serif "
-"body text."
+"Noto Sans: A digital-native font designed by Google for extensive language "
+"support."
 
 #, fuzzy
 msgid "plugins.themes.default.option.typography.notoSerif"
 msgstr "Noto Serif: A serif variant of Google's digital-native font."
 
-msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
-msgstr "إظهار صورة الصفحة الرئيسية كخلفية رأس الصفحة(الهيدر)."
-
-msgid "plugins.themes.default.option.useHomepageImageAsHeader.description"
-msgstr ""
-"عندما يتم تحميل صورة الصفحة الرئيسية ، قم بعرضها في خلفية العنوان بدلاً من "
-"وضعها المعتاد في الصفحة الرئيسية."
-
-msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
-msgstr "صورة خلفية الهيدر"
-
-msgid "plugins.themes.default.option.colour.label"
-msgstr "اللون"
-
 #, fuzzy
-msgid "plugins.themes.default.option.typography.lora"
-msgstr "Lora: A wide-set serif font good for reading online."
+msgid "plugins.themes.default.option.typography.notoSerif_notoSans"
+msgstr ""
+"Noto Serif/Noto Sans: A complementary pairing with serif headings and sans-"
+"serif body text."
 
 #, fuzzy
 msgid "plugins.themes.default.option.typography.notoSans_notoSerif"
@@ -54,26 +52,55 @@ msgid "plugins.themes.default.option.typography.lato"
 msgstr "Lato: A popular modern sans-serif font."
 
 #, fuzzy
-msgid "plugins.themes.default.option.typography.notoSerif_notoSans"
-msgstr ""
-"Noto Serif/Noto Sans: A complementary pairing with serif headings and sans-"
-"serif body text."
-
-msgid "plugins.themes.default.option.typography.label"
-msgstr "الخطوط والطباعة"
+msgid "plugins.themes.default.option.typography.lora"
+msgstr "Lora: A wide-set serif font good for reading online."
 
 #, fuzzy
-msgid "plugins.themes.default.option.typography.notoSans"
+msgid "plugins.themes.default.option.typography.lora_openSans"
 msgstr ""
-"Noto Sans: A digital-native font designed by Google for extensive language "
-"support."
+"Lora/Open Sans: A complimentary pairing with serif headings and sans-serif "
+"body text."
 
-#, fuzzy
-msgid "plugins.themes.default.option.typography.description"
-msgstr "Choose a font combination that suits this journal."
+msgid "plugins.themes.default.option.colour.label"
+msgstr "اللون"
 
-msgid "plugins.themes.default.description"
-msgstr "تم تعيين هذه السمة الى الافتراضية"
+msgid "plugins.themes.default.option.colour.description"
+msgstr "اختر لونًا لرأس الصفحة(الهيدر)."
 
-msgid "plugins.themes.default.name"
-msgstr "السمة الإفتراضية"
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
+msgstr "صورة خلفية الهيدر"
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.description"
+msgstr ""
+"عندما يتم تحميل صورة الصفحة الرئيسية ، قم بعرضها في خلفية العنوان بدلاً من "
+"وضعها المعتاد في الصفحة الرئيسية."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
+msgstr "إظهار صورة الصفحة الرئيسية كخلفية رأس الصفحة(الهيدر)."
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
+msgstr ""
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
+msgstr ""
+
+msgid "plugins.themes.default.option.displayStats.label"
+msgstr ""
+
+msgid "plugins.themes.default.option.displayStats.none"
+msgstr ""
+
+msgid "plugins.themes.default.option.displayStats.bar"
+msgstr ""
+
+msgid "plugins.themes.default.option.displayStats.line"
+msgstr ""
+
+msgid "plugins.themes.default.displayStats.monthInitials"
+msgstr ""
+
+msgid "plugins.themes.default.displayStats.downloads"
+msgstr ""
+
+msgid "plugins.themes.default.displayStats.noStats"
+msgstr ""

@@ -13,435 +13,53 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "grid.action.addFormat"
-msgstr "Adicionar Formato da Publicação"
+msgid "common.payments"
+msgstr "Pagamentos"
 
-msgid "grid.action.deleteFormat"
-msgstr "Remover este formato"
+msgid "monograph.audience"
+msgstr "Público"
 
-msgid "grid.action.editFormat"
-msgstr "Editar este formato"
+msgid "monograph.audience.success"
+msgstr "Os detalhes do público foram atualizados."
 
-msgid "grid.action.formatInCatalogEntry"
-msgstr "O formato aparece na entrada do catálogo"
+msgid "monograph.coverImage"
+msgstr "Imagem da capa"
 
-msgid "grid.action.catalogEntry"
-msgstr "Ver o formulário de entrada de catálogo"
+msgid "monograph.audience.rangeQualifier"
+msgstr "Qualificadores de alcance de público"
 
-msgid "grid.libraryFiles.column.files"
-msgstr "Ficheiros"
+msgid "monograph.audience.rangeFrom"
+msgstr "Alcance de público (de)"
 
-msgid "manager.series.indexed"
-msgstr "Indexado"
+msgid "monograph.audience.rangeTo"
+msgstr "Alcance de público (a)"
 
-msgid "manager.series.open"
-msgstr "Submissões Abertas"
+msgid "monograph.audience.rangeExact"
+msgstr "Alcance de público (exato)"
 
-msgid "grid.action.deleteRepresentative"
-msgstr "Remover este Representante"
+msgid "monograph.languages"
+msgstr "Idiomas (Inglês, Francês, Espanhol)"
 
-msgid "grid.action.editRepresentative"
-msgstr "Editar este Representante"
+msgid "monograph.publicationFormats"
+msgstr "Formatos de publicação"
 
-msgid "grid.action.addRepresentative"
-msgstr "Adicionar Representante"
+msgid "monograph.publicationFormat"
+msgstr "Formato"
 
-msgid "grid.catalogEntry.representativesDescription"
-msgstr ""
-"Pode deixar a seguinte secção vazia se fornecer serviços próprios aos seus "
-"clientes."
+msgid "monograph.publicationFormatDetails"
+msgstr "Detalhes sobre o formato disponível para publicação: {$format}"
 
-msgid "grid.catalogEntry.representativeIdType"
-msgstr "Tipo de ID Representante (GLN is recommended)"
+msgid "monograph.miscellaneousDetails"
+msgstr "Detalhes sobre esta monografia"
 
-msgid "grid.catalogEntry.representativeIdValue"
-msgstr "ID de Representante"
+msgid "monograph.carousel.publicationFormats"
+msgstr "Formatos:"
 
-msgid "grid.catalogEntry.representativeWebsite"
-msgstr "Website"
+msgid "monograph.type"
+msgstr "Tipo de Submissão"
 
-msgid "grid.catalogEntry.representativeEmail"
-msgstr "E-mail"
-
-msgid "grid.catalogEntry.representativePhone"
-msgstr "Telefone"
-
-msgid "grid.catalogEntry.representativeName"
-msgstr "Noome"
-
-msgid "grid.catalogEntry.representativeRole"
-msgstr "Função"
-
-msgid "grid.catalogEntry.representativeRoleChoice"
-msgstr "Escolha uma função:"
-
-msgid "grid.catalogEntry.supplier"
-msgstr "Fornecedor"
-
-msgid "grid.catalogEntry.agentTip"
-msgstr ""
-"Pode designar um agente para o representar neste território definido. Não é "
-"necessário."
-
-msgid "grid.catalogEntry.agent"
-msgstr "Agente"
-
-msgid "grid.catalogEntry.suppliersCategory"
-msgstr "Fornecedores"
-
-msgid "grid.catalogEntry.agentsCategory"
-msgstr "Agentes"
-
-msgid "grid.catalogEntry.salesRightsValue"
-msgstr "Código do valor"
-
-msgid "notification.removedSpotlight"
-msgstr "Destaque removido."
-
-msgid "notification.editedSpotlight"
-msgstr "Destaque editado."
-
-msgid "notification.addedSpotlight"
-msgstr "Destaque adicionado."
-
-msgid "navigation.skip.spotlights"
-msgstr "Saltar para os destaques"
-
-msgid "grid.action.addSpotlight"
-msgstr "Adicionar Destaque"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Remover este destaque"
-
-msgid "grid.action.editSpotlight"
-msgstr "Editar este destaque"
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Por favor escolha uma localização para este destaque."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "É necessário um título de destaque."
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "É necessário um item."
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Livro"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Título do destaque"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Introduzir o título do destaque (autocompletar)"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Posição dos destaques"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Página inicial"
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Item Destacado"
-
-msgid "spotlight.author"
-msgstr "Autor, "
-
-msgid "spotlight.title.homePage"
-msgstr "Em destaque"
-
-msgid "spotlight.noneExist"
-msgstr "Não existem destaques."
-
-msgid "spotlight.spotlights"
-msgstr "Destaques"
-
-msgid "spotlight"
-msgstr "Destaque"
-
-msgid "catalog.featuredBooks"
-msgstr "Livros em Destaque"
-
-msgid "catalog.featured"
-msgstr "Destaque"
-
-msgid "navigation.newReleases"
-msgstr "Novos Lançamentos"
-
-msgid "grid.catalogEntry.representativeType"
-msgstr "Tipo de representante"
-
-msgid "grid.catalogEntry.representatives"
-msgstr "Representantes"
-
-msgid "grid.catalogEntry.dateRequired"
-msgstr ""
-"É necessária uma data e esta deve corresponder ao formato da data escolhida."
-
-msgid "grid.catalogEntry.dateFormat"
-msgstr "Formato de Data"
-
-msgid "grid.catalogEntry.dateRole"
-msgstr "Função"
-
-msgid "grid.catalogEntry.dateValue"
-msgstr "Data"
-
-msgid "grid.catalogEntry.dateFormatRequired"
-msgstr "É necessário um formato de data."
-
-msgid "grid.catalogEntry.roleRequired"
-msgstr "A indicação de um representante é necessária."
-
-msgid "grid.catalogEntry.publicationDates"
-msgstr "Datas de publicação"
-
-msgid "grid.catalogEntry.marketTerritory"
-msgstr "Território"
-
-msgid "grid.catalogEntry.markets"
-msgstr "Territórios de Mercado"
-
-msgid "grid.catalogEntry.excluded"
-msgstr "Excluído"
-
-msgid "grid.catalogEntry.included"
-msgstr "Incluído"
-
-msgid "grid.catalogEntry.regions"
-msgstr "Regiões"
-
-msgid "grid.catalogEntry.countries"
-msgstr "Países"
-
-msgid "grid.catalogEntry.oneROWPerFormat"
-msgstr ""
-"O \"Resto do Mundo\" já foi definido como o âmbito de aplicação para as "
-"condições de distribuição deste formato."
-
-msgid "grid.catalogEntry.salesRightsROW.tip"
-msgstr ""
-"Marque esta caixa para usar esta entrada de Direitos de Venda como um \""
-"catch-all\" para o seu formato. Os países e regiões não precisam ser "
-"escolhidos neste caso."
-
-msgid "grid.catalogEntry.salesRightsROW"
-msgstr "Resto do Mundo?"
-
-msgid "grid.catalogEntry.salesRightsType"
-msgstr "Tipo de direitos de venda"
-
-msgid "grid.catalogEntry.salesRights"
-msgstr "Direitos de Venda"
-
-msgid "grid.catalogEntry.valueRequired"
-msgstr "É necessário um valor."
-
-msgid "grid.catalogEntry.codeRequired"
-msgstr "É necessário um código de identificação."
-
-msgid "grid.catalogEntry.identificationCodeType"
-msgstr "Tipo de código ONIX"
-
-msgid "grid.catalogEntry.identificationCodeValue"
-msgstr "Valor de código"
-
-msgid "grid.catalogEntry.productCompositionRequired"
-msgstr "Deve ser escolhido um código de composição do produto."
-
-msgid "grid.catalogEntry.productAvailabilityRequired"
-msgstr "É necessário um código de disponibilidade do produto."
-
-msgid "grid.catalogEntry.fileSizeRequired"
-msgstr "É necessário um tamanho de ficheiro para formatos digitais."
-
-msgid "grid.catalogEntry.availableRepresentation.notApproved"
-msgstr "A aguardar aprovação"
-
-msgid "grid.catalogEntry.availableRepresentation.approved"
-msgstr "Aprovado"
-
-msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
-msgstr "Prova não aprovada."
-
-msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
-msgstr "Formato não disponível na entrada do catálogo."
-
-msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
-msgstr "Entrada no catálogo não aprovada."
-
-msgid "grid.catalogEntry.availableRepresentation.removeMessage"
-msgstr ""
-"<p>Este formato estará <em>indisponível para os leitores</em>. Qualquer "
-"ficheiro descarregável ou outras distribuições deixarão de aparecer na "
-"entrada do livro no catálogo .</p>"
-
-msgid "grid.catalogEntry.availableRepresentation.message"
-msgstr ""
-"<p>Disponibilize este formato <em>aos leitores</em>. Os ficheiros para "
-"download e quaisquer outras distribuições aparecerão na entrada do catálogo "
-"do livro.</p>"
-
-msgid "grid.catalogEntry.availableRepresentation.title"
-msgstr "Disponibilidade do Formato"
-
-msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
-msgstr "<p>Indicar que os metadados para este formato não foram aprovados.</p>"
-
-msgid "grid.catalogEntry.approvedRepresentation.message"
-msgstr ""
-"<p>Aprovar os metadados para este formato. Os metadados podem ser "
-"verificados a partir do painel Editar em cada formato.</p>"
-
-msgid "grid.catalogEntry.approvedRepresentation.title"
-msgstr "Aprovação do Formato"
-
-msgid "grid.catalogEntry.proof"
-msgstr "Prova"
-
-msgid "grid.catalogEntry.isNotAvailable"
-msgstr "Não Disponível"
-
-msgid "grid.catalogEntry.isAvailable"
-msgstr "Disponível"
-
-msgid "grid.catalogEntry.availability"
-msgstr "Disponibilidade"
-
-msgid "grid.catalogEntry.publicationFormatRequired"
-msgstr "Deve ser selecionado um formato de publicação."
-
-msgid "grid.catalogEntry.monographRequired"
-msgstr "O ID da monoografia é obrigatório."
-
-msgid "grid.catalogEntry.remoteURL"
-msgstr "URL do conteúdo alojado remotamente"
-
-msgid "grid.catalogEntry.remotelyHostedContent"
-msgstr "Este formato estará disponível num website separado"
-
-msgid "grid.catalogEntry.physicalFormat"
-msgstr "Formato físico"
-
-msgid "grid.catalogEntry.publicationFormatDetails"
-msgstr "Detalhes do Formato"
-
-msgid "grid.catalogEntry.validPriceRequired"
-msgstr "Um preço válido é obrigatório."
-
-msgid "grid.catalogEntry.nameRequired"
-msgstr "O nome é obrigatório."
-
-msgid "grid.catalogEntry.publicationFormatType"
-msgstr "Formato de publicação"
-
-msgid "monograph.publicationFormat.openTab"
-msgstr "Abrir separador Formato de publicação."
-
-msgid "monograph.publicationFormat.formatDoesNotExist"
-msgstr ""
-"<p>O formato de publicação que escolheu já não existe para esta "
-"monografia.</p>"
-
-msgid "monograph.publicationFormat.missingONIXFields"
-msgstr "Faltam alguns metadados."
-
-msgid "monograph.publicationFormat.noCodesAssigned"
-msgstr "Falta um código de identificação."
-
-msgid "monograph.publicationFormat.noMarketsAssigned"
-msgstr "Mercados e preços em falta."
-
-msgid "monograph.publicationFormat.isApproved"
-msgstr ""
-"Incluir os metadados para este formato de publicação na entrada do catálogo "
-"deste livro."
-
-msgid "monograph.publicationFormat.taxType"
-msgstr "Tipo de Imposto"
-
-msgid "monograph.publicationFormat.taxRate"
-msgstr "Taxa de imposto"
-
-msgid "monograph.publicationFormat.productRegion"
-msgstr "Região de Distribuição"
-
-msgid "monograph.publicationFormat.technicalProtection"
-msgstr "Proteção Técnica Digital"
-
-msgid "monograph.publicationFormat.countryOfManufacture"
-msgstr "País de Produção"
-
-msgid "monograph.publicationFormat.productWidth"
-msgstr "Largura"
-
-msgid "monograph.publicationFormat.productWeight"
-msgstr "Peso"
-
-msgid "monograph.publicationFormat.productThickness"
-msgstr "Espessura"
-
-msgid "monograph.publicationFormat.productHeight"
-msgstr "Altura"
-
-msgid "monograph.publicationFormat.productFileSize.override"
-msgstr "Introduzir o tamanho do seu ficheiro?"
-
-msgid "monograph.publicationFormat.productFileSize"
-msgstr "Tamanho do ficheiro em Mbytes"
-
-msgid "monograph.publicationFormat.productDimensionsSeparator"
-msgstr " x "
-
-msgid "monograph.publicationFormat.productDimensions"
-msgstr "Dimensões Físicas"
-
-msgid "monograph.publicationFormat.digitalInformation"
-msgstr "Informação Digital"
-
-msgid "monograph.publicationFormat.returnInformation"
-msgstr "Indicador de Devolução"
-
-msgid "monograph.publicationFormat.productAvailability"
-msgstr "Disponibilidade do produto"
-
-msgid "monograph.publicationFormat.discountAmount"
-msgstr "Percentagem de desconto, se aplicável"
-
-msgid "monograph.publicationFormat.priceType"
-msgstr "Tipo de Preço"
-
-msgid "monograph.publicationFormat.priceRequired"
-msgstr "O preço é obrigatório."
-
-msgid "monograph.publicationFormat.price"
-msgstr "Preço"
-
-msgid "monograph.publicationFormat.productIdentifierType"
-msgstr "Identificação do produto"
-
-msgid "monograph.publicationFormat.productFormDetailCode"
-msgstr "Detalhe do produto (opcional)"
-
-msgid "monograph.publicationFormat.productComposition"
-msgstr "Composição do produto"
-
-msgid "monograph.publicationFormat.backMatterCount"
-msgstr "Páginas finais"
-
-msgid "monograph.publicationFormat.frontMatterCount"
-msgstr "Páginas iniciais"
-
-msgid "monograph.publicationFormat.pageCounts"
-msgstr "Número de páginas"
-
-msgid "monograph.publicationFormat.imprint"
-msgstr "Marca (nome comercial)"
-
-msgid "monograph.accessLogoOpen.altText"
-msgstr "Acesso Aberto"
-
-msgid "monograph.task.addNote"
-msgstr "Adicionar à tarefa"
+msgid "submission.pageProofs"
+msgstr "Revisão de provas"
 
 msgid "monograph.proofReadingDescription"
 msgstr ""
@@ -449,190 +67,558 @@ msgstr ""
 "Utilize <em>+Designar</em> para designar autores e outros para rever as "
 "provas, adicionando ficheiros corrigidos para aprovação antes da publicação."
 
-msgid "submission.pageProofs"
-msgstr "Revisão de provas"
+msgid "monograph.task.addNote"
+msgstr "Adicionar à tarefa"
 
-msgid "monograph.type"
-msgstr "Tipo de Submissão"
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Acesso Aberto"
 
-msgid "monograph.carousel.publicationFormats"
-msgstr "Formatos:"
+msgid "monograph.publicationFormat.imprint"
+msgstr "Marca (nome comercial)"
 
-msgid "monograph.miscellaneousDetails"
-msgstr "Detalhes sobre esta monografia"
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Número de páginas"
 
-msgid "monograph.publicationFormatDetails"
-msgstr "Detalhes sobre o formato disponível para publicação: {$format}"
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Páginas iniciais"
 
-msgid "monograph.publicationFormat"
-msgstr "Formato"
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Páginas finais"
 
-msgid "monograph.publicationFormats"
-msgstr "Formatos de publicação"
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Composição do produto"
 
-msgid "monograph.languages"
-msgstr "Idiomas (Inglês, Francês, Espanhol)"
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Detalhe do produto (opcional)"
 
-msgid "monograph.audience.rangeExact"
-msgstr "Alcance de público (exato)"
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Identificação do produto"
 
-msgid "monograph.audience.rangeTo"
-msgstr "Alcance de público (a)"
+msgid "monograph.publicationFormat.price"
+msgstr "Preço"
 
-msgid "monograph.audience.rangeFrom"
-msgstr "Alcance de público (de)"
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "O preço é obrigatório."
 
-msgid "monograph.audience.rangeQualifier"
-msgstr "Qualificadores de alcance de público"
+msgid "monograph.publicationFormat.priceType"
+msgstr "Tipo de Preço"
 
-msgid "monograph.coverImage"
-msgstr "Imagem da capa"
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Percentagem de desconto, se aplicável"
 
-msgid "monograph.audience.success"
-msgstr "Os detalhes do público foram atualizados."
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Disponibilidade do produto"
 
-msgid "monograph.audience"
-msgstr "Público"
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Indicador de Devolução"
 
-msgid "catalog.manage.newReleases"
-msgstr "Novos Lançamentos"
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Informação Digital"
 
-msgid "catalog.manage"
-msgstr "Gestão do Catálogo"
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Dimensões Físicas"
 
-msgid "series.path"
-msgstr "Caminho"
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
 
-msgid "series.featured.description"
-msgstr "Esta série aparecerá no menu de navegação"
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "Tamanho do ficheiro em Mbytes"
 
-msgid "series.series"
-msgstr "Séries"
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Introduzir o tamanho do seu ficheiro?"
 
-msgid "grid.reviewAttachments.availableFiles"
-msgstr "Ficheiros disponíveis"
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Altura"
 
-msgid "grid.reviewAttachments.add"
-msgstr "Adicionar Anexo à Revisão"
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Espessura"
 
-msgid "grid.action.formatAvailable"
-msgstr "Ativar e desativar a disponibilidade deste formato"
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Peso"
 
-msgid "grid.action.availableRepresentation"
-msgstr "Aprovar/Rejeitar este formato"
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Largura"
 
-msgid "grid.action.proofApproved"
-msgstr "O formato foi revisto"
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "País de Produção"
 
-msgid "grid.action.approveProofs"
-msgstr "Ver grelha de provas"
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Proteção Técnica Digital"
 
-msgid "grid.action.submissionEmail"
-msgstr "Clique para ler o e-mail"
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Região de Distribuição"
 
-msgid "grid.action.moreAnnouncements"
-msgstr "Ir para página das notícias da editora"
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Taxa de imposto"
 
-msgid "grid.action.publicationFormatTab"
-msgstr "Disponibilizar separador do formato de publicação"
+msgid "monograph.publicationFormat.taxType"
+msgstr "Tipo de Imposto"
 
-msgid "grid.action.createContext"
-msgstr "Criar nova Editora"
+msgid "monograph.publicationFormat.isApproved"
+msgstr ""
+"Incluir os metadados para este formato de publicação na entrada do catálogo "
+"deste livro."
 
-msgid "grid.action.deleteDate"
-msgstr "Eliminar data"
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Mercados e preços em falta."
 
-msgid "grid.action.editDate"
-msgstr "Editar data"
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Falta um código de identificação."
 
-msgid "grid.action.addDate"
-msgstr "Adicionar data de publicação"
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Faltam alguns metadados."
 
-msgid "grid.action.deleteMarket"
-msgstr "Eliminar este mercado"
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr ""
+"<p>O formato de publicação que escolheu já não existe para esta monografia.</"
+"p>"
 
-msgid "grid.action.editMarket"
-msgstr "Editar este mercado"
+msgid "monograph.publicationFormat.openTab"
+msgstr "Abrir separador Formato de publicação."
 
-msgid "grid.action.addMarket"
-msgstr "Adicionar mercado"
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Formato de publicação"
 
-msgid "grid.action.deleteRights"
-msgstr "Eliminar estes direitos"
+msgid "grid.catalogEntry.nameRequired"
+msgstr "O nome é obrigatório."
 
-msgid "grid.action.editRights"
-msgstr "Editar estes direitos"
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "Um preço válido é obrigatório."
 
-msgid "grid.action.addRights"
-msgstr "Incluir direitos de venda"
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Detalhes do Formato"
 
-msgid "grid.action.deleteCode"
-msgstr "Eliminar este código"
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Formato físico"
 
-msgid "grid.action.editCode"
-msgstr "Editar o código"
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Este formato estará disponível num website separado"
 
-msgid "grid.action.addCode"
-msgstr "Adicionar código"
+msgid "grid.catalogEntry.remoteURL"
+msgstr "URL do conteúdo alojado remotamente"
 
-msgid "grid.action.manageSeries"
-msgstr "Configurar séries para esta editora"
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"
 
-msgid "grid.action.manageCategories"
-msgstr "Configurar categorias para esta editora"
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "Código ISBN com 13 dígitos, tal como 978-951-98548-9-2."
 
-msgid "grid.action.releaseMonograph"
-msgstr "Marcar esta submissão como 'novo lançamento'"
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "Código ISBN com 10 dígitos, tal como 951-98548-9-4."
 
-msgid "grid.action.featureMonograph"
-msgstr "Destacar no carrossel do catálogo"
+msgid "grid.catalogEntry.monographRequired"
+msgstr "O ID da monoografia é obrigatório."
 
-msgid "grid.action.feature"
-msgstr "Alternar a disponibilização de destaques"
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Deve ser selecionado um formato de publicação."
 
-msgid "grid.action.publicCatalog"
-msgstr "Ver este item no catálogo"
+msgid "grid.catalogEntry.availability"
+msgstr "Disponibilidade"
 
-msgid "grid.action.newCatalogEntry"
-msgstr "Nova Entrada no Catálogo"
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Disponível"
 
-msgid "grid.action.pageProofApproved"
-msgstr "A página de ficheiro de provas está pronto para publicação"
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Não Disponível"
+
+msgid "grid.catalogEntry.proof"
+msgstr "Prova"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Aprovação do Formato"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p>Aprovar os metadados para este formato. Os metadados podem ser "
+"verificados a partir do painel Editar em cada formato.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr "<p>Indicar que os metadados para este formato não foram aprovados.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Disponibilidade do Formato"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p>Disponibilize este formato <em>aos leitores</em>. Os ficheiros para "
+"download e quaisquer outras distribuições aparecerão na entrada do catálogo "
+"do livro.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p>Este formato estará <em>indisponível para os leitores</em>. Qualquer "
+"ficheiro descarregável ou outras distribuições deixarão de aparecer na "
+"entrada do livro no catálogo .</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Entrada no catálogo não aprovada."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Formato não disponível na entrada do catálogo."
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Prova não aprovada."
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Aprovado"
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "A aguardar aprovação"
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "É necessário um tamanho de ficheiro para formatos digitais."
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "É necessário um código de disponibilidade do produto."
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "Deve ser escolhido um código de composição do produto."
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Valor de código"
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "Tipo de código ONIX"
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "É necessário um código de identificação."
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "É necessário um valor."
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Direitos de Venda"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Código do valor"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Tipo de direitos de venda"
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Resto do Mundo?"
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+"Marque esta caixa para usar esta entrada de Direitos de Venda como um "
+"\"catch-all\" para o seu formato. Os países e regiões não precisam ser "
+"escolhidos neste caso."
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr ""
+"O \"Resto do Mundo\" já foi definido como o âmbito de aplicação para as "
+"condições de distribuição deste formato."
+
+msgid "grid.catalogEntry.countries"
+msgstr "Países"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Regiões"
+
+msgid "grid.catalogEntry.included"
+msgstr "Incluído"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "Excluído"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Territórios de Mercado"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Território"
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Datas de publicação"
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr "A indicação de um representante é necessária."
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "É necessário um formato de data."
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Data"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Função"
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Formato de Data"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr ""
+"É necessária uma data e esta deve corresponder ao formato da data escolhida."
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Representantes"
+
+msgid "grid.catalogEntry.representativeType"
+msgstr "Tipo de representante"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Agentes"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Fornecedores"
+
+msgid "grid.catalogEntry.agent"
+msgstr "Agente"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"Pode designar um agente para o representar neste território definido. Não é "
+"necessário."
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Fornecedor"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Escolha uma função:"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Função"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Noome"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Telefone"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "E-mail"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Website"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "ID de Representante"
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Tipo de ID Representante (GLN is recommended)"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+"Pode deixar a seguinte secção vazia se fornecer serviços próprios aos seus "
+"clientes."
+
+msgid "grid.action.addRepresentative"
+msgstr "Adicionar Representante"
+
+msgid "grid.action.editRepresentative"
+msgstr "Editar este Representante"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Remover este Representante"
+
+msgid "spotlight"
+msgstr "Destaque"
+
+msgid "spotlight.spotlights"
+msgstr "Destaques"
+
+msgid "spotlight.noneExist"
+msgstr "Não existem destaques."
+
+msgid "spotlight.title.homePage"
+msgstr "Em destaque"
+
+msgid "spotlight.author"
+msgstr "Autor, "
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "Item Destacado"
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "Página inicial"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "Posição dos destaques"
+
+msgid "grid.content.spotlights.form.item"
+msgstr "Introduzir o título do destaque (autocompletar)"
+
+msgid "grid.content.spotlights.form.title"
+msgstr "Título do destaque"
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Livro"
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "É necessário um item."
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "É necessário um título de destaque."
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Por favor escolha uma localização para este destaque."
+
+msgid "grid.action.editSpotlight"
+msgstr "Editar este destaque"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Remover este destaque"
+
+msgid "grid.action.addSpotlight"
+msgstr "Adicionar Destaque"
+
+msgid "manager.series.open"
+msgstr "Submissões Abertas"
+
+msgid "manager.series.indexed"
+msgstr "Indexado"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Ficheiros"
+
+msgid "grid.action.catalogEntry"
+msgstr "Ver o formulário de entrada de catálogo"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "O formato aparece na entrada do catálogo"
+
+msgid "grid.action.editFormat"
+msgstr "Editar este formato"
+
+msgid "grid.action.deleteFormat"
+msgstr "Remover este formato"
+
+msgid "grid.action.addFormat"
+msgstr "Adicionar Formato da Publicação"
 
 msgid "grid.action.approveProof"
 msgstr "Aprove a prova para indexação e inclusão no catálogo"
 
-msgid "catalog.manage.series.issn.equalValidation"
-msgstr "O ISSN impresso e o online devem ser diferentes."
+msgid "grid.action.pageProofApproved"
+msgstr "A página de ficheiro de provas está pronto para publicação"
 
-msgid "catalog.manage.series.issn.validation"
-msgstr "Insira um ISSN válido."
+msgid "grid.action.newCatalogEntry"
+msgstr "Nova Entrada no Catálogo"
 
-msgid "catalog.manage.series.issn"
-msgstr "ISSN"
+msgid "grid.action.publicCatalog"
+msgstr "Ver este item no catálogo"
 
-msgid "catalog.manage.series"
-msgstr "Série"
+msgid "grid.action.feature"
+msgstr "Alternar a disponibilização de destaques"
+
+msgid "grid.action.featureMonograph"
+msgstr "Destacar no carrossel do catálogo"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Marcar esta submissão como 'novo lançamento'"
+
+msgid "grid.action.manageCategories"
+msgstr "Configurar categorias para esta editora"
+
+msgid "grid.action.manageSeries"
+msgstr "Configurar séries para esta editora"
+
+msgid "grid.action.addCode"
+msgstr "Adicionar código"
+
+msgid "grid.action.editCode"
+msgstr "Editar o código"
+
+msgid "grid.action.deleteCode"
+msgstr "Eliminar este código"
+
+msgid "grid.action.addRights"
+msgstr "Incluir direitos de venda"
+
+msgid "grid.action.editRights"
+msgstr "Editar estes direitos"
+
+msgid "grid.action.deleteRights"
+msgstr "Eliminar estes direitos"
+
+msgid "grid.action.addMarket"
+msgstr "Adicionar mercado"
+
+msgid "grid.action.editMarket"
+msgstr "Editar este mercado"
+
+msgid "grid.action.deleteMarket"
+msgstr "Eliminar este mercado"
+
+msgid "grid.action.addDate"
+msgstr "Adicionar data de publicação"
+
+msgid "grid.action.editDate"
+msgstr "Editar data"
+
+msgid "grid.action.deleteDate"
+msgstr "Eliminar data"
+
+msgid "grid.action.createContext"
+msgstr "Criar nova Editora"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Disponibilizar separador do formato de publicação"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Ir para página das notícias da editora"
+
+msgid "grid.action.submissionEmail"
+msgstr "Clique para ler o e-mail"
+
+msgid "grid.action.approveProofs"
+msgstr "Ver grelha de provas"
+
+msgid "grid.action.proofApproved"
+msgstr "O formato foi revisto"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Aprovar/Rejeitar este formato"
+
+msgid "grid.action.formatAvailable"
+msgstr "Ativar e desativar a disponibilidade deste formato"
+
+msgid "grid.reviewAttachments.add"
+msgstr "Adicionar Anexo à Revisão"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Ficheiros disponíveis"
+
+msgid "series.series"
+msgstr "Séries"
+
+msgid "series.featured.description"
+msgstr "Esta série aparecerá no menu de navegação"
+
+msgid "series.path"
+msgstr "Caminho"
+
+msgid "catalog.manage"
+msgstr "Gestão do Catálogo"
+
+msgid "catalog.manage.newReleases"
+msgstr "Novos Lançamentos"
 
 msgid "catalog.manage.category"
 msgstr "Categoria"
 
-msgid "catalog.selectCategory"
-msgstr "Selecionar Categoria"
+msgid "catalog.manage.series"
+msgstr "Série"
 
-msgid "catalog.selectSeries"
-msgstr "Selecionar Série"
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
 
-msgid "catalog.manage.series.printIssn"
-msgstr "ISSN impresso"
+msgid "catalog.manage.series.issn.validation"
+msgstr "Insira um ISSN válido."
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "O ISSN impresso e o online devem ser diferentes."
 
 msgid "catalog.manage.series.onlineIssn"
 msgstr "ISSN online"
 
-msgid "catalog.manage.categoryDescription"
-msgstr ""
-"Clique em \"Destacar\", depois na estrela para selecionar um livro destacado "
-"para esta categoria; arraste para ordenar."
+msgid "catalog.manage.series.printIssn"
+msgstr "ISSN impresso"
+
+msgid "catalog.selectSeries"
+msgstr "Selecionar Série"
+
+msgid "catalog.selectCategory"
+msgstr "Selecionar Categoria"
 
 msgid "catalog.manage.homepageDescription"
 msgstr ""
@@ -641,29 +627,10 @@ msgstr ""
 "selecione a estrela para adicionar o livro ao carrossel; clique no ponto de "
 "exclamação para destacar como novo lançamento; arraste para ordenar."
 
-msgid "catalog.manage.seriesFeatured"
-msgstr "Série em Destaque"
-
-msgid "catalog.manage.categoryFeatured"
-msgstr "Categoria em Destaque"
-
-msgid "catalog.manage.featured"
-msgstr "Destaque"
-
-msgid "catalog.manage.noMonographs"
-msgstr "Nenhuma monografia selecionada."
-
-msgid "catalog.manage.manageCategories"
-msgstr "Gerir Categorias"
-
-msgid "catalog.manage.manageSeries"
-msgstr "Gerir Séries"
-
-msgid "catalog.manage.newRelease"
-msgstr "Lançamento"
-
-msgid "catalog.manage.placeIntoCarousel"
-msgstr "Carrossel"
+msgid "catalog.manage.categoryDescription"
+msgstr ""
+"Clique em \"Destacar\", depois na estrela para selecionar um livro destacado "
+"para esta categoria; arraste para ordenar."
 
 msgid "catalog.manage.seriesDescription"
 msgstr ""
@@ -671,187 +638,134 @@ msgstr ""
 "arraste para ordenar. As séries são identificadas com um editor e um título, "
 "com ou sem categoria."
 
-msgid "catalog.foundTitleSearch"
-msgstr "Encontrada uma correspondência à sua pesquisa \"{$searchQuery}\"."
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "Carrossel"
 
-msgid "catalog.feature"
-msgstr "Destacado"
+msgid "catalog.manage.newRelease"
+msgstr "Lançamento"
 
-msgid "catalog.noTitlesSearch"
-msgstr "Não existem títulos para a sua pesquisa por \"{$searchQuery}\"."
+msgid "catalog.manage.manageSeries"
+msgstr "Gerir Séries"
 
-msgid "catalog.noTitlesNew"
-msgstr "Sem novos lançamentos disponíveis."
+msgid "catalog.manage.manageCategories"
+msgstr "Gerir Categorias"
 
-msgid "catalog.noTitles"
-msgstr "Ainda não existem títulos publicados."
+msgid "catalog.manage.noMonographs"
+msgstr "Nenhuma monografia selecionada."
 
-msgid "catalog.manage.isNotNewRelease"
-msgstr "Esta monografia não é um novo lançamento. Torná-la um novo lançamento."
+msgid "catalog.manage.featured"
+msgstr "Destaque"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "Categoria em Destaque"
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "Série em Destaque"
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "A monografia foi destacada."
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "A monografia não foi destacada."
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "A monografia encontra-se marcada como novo lançamento."
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "A monografia foi desmarcada como novo lançamento."
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "Novo lançamento"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "Novo lançamento na categoria"
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Novo lançamento na série"
+
+msgid "catalog.manage.nonOrderable"
+msgstr "Esta monografia não é encomendável até ser lançada."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Pesquisar por título ou autor"
+
+msgid "catalog.manage.isFeatured"
+msgstr "Esta monografia está destacada. Torná-la não destacada."
+
+msgid "catalog.manage.isNotFeatured"
+msgstr "Esta monografia não está destacada. Tornar esta monografia destacada."
 
 msgid "catalog.manage.isNewRelease"
 msgstr ""
 "Esta monografia é um novo lançamento. Retirar esta monografia dos novos "
 "lançamentos."
 
-msgid "catalog.manage.isNotFeatured"
-msgstr "Esta monografia não está destacada. Tornar esta monografia destacada."
+msgid "catalog.manage.isNotNewRelease"
+msgstr "Esta monografia não é um novo lançamento. Torná-la um novo lançamento."
 
-msgid "catalog.manage.isFeatured"
-msgstr "Esta monografia está destacada. Torná-la não destacada."
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr ""
+"Não existem submissões selecionadas para serem adicionadas ao catálogo."
 
-msgid "catalog.manage.filter.searchByAuthorOrTitle"
-msgstr "Pesquisar por título ou autor"
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Uma ou mais submissões não foram encontradas."
 
-msgid "catalog.manage.nonOrderable"
-msgstr "Esta monografia não é encomendável até ser lançada."
+msgid "catalog.manage.findSubmissions"
+msgstr "Pesquisar monografias para adicionar ao catálogo"
 
-msgid "catalog.manage.feature.seriesNewRelease"
-msgstr "Novo lançamento na série"
+msgid "catalog.noTitles"
+msgstr "Ainda não existem títulos publicados."
 
-msgid "catalog.manage.feature.categoryNewRelease"
-msgstr "Novo lançamento na categoria"
+msgid "catalog.noTitlesNew"
+msgstr "Sem novos lançamentos disponíveis."
 
-msgid "catalog.manage.feature.newRelease"
-msgstr "Novo lançamento"
+msgid "catalog.noTitlesSearch"
+msgstr "Não existem títulos para a sua pesquisa por \"{$searchQuery}\"."
 
-msgid "catalog.manage.notNewReleaseSuccess"
-msgstr "A monografia foi desmarcada como novo lançamento."
+msgid "catalog.feature"
+msgstr "Destacado"
 
-msgid "catalog.manage.newReleaseSuccess"
-msgstr "A monografia encontra-se marcada como novo lançamento."
-
-msgid "catalog.manage.notFeaturedSuccess"
-msgstr "A monografia não foi destacada."
-
-msgid "catalog.manage.featuredSuccess"
-msgstr "A monografia foi destacada."
-
-msgid "navigation.navigationMenus.category.description"
-msgstr "Link para uma categoria."
-
-msgid "navigation.navigationMenus.category.generic"
-msgstr "Categoria"
-
-msgid "navigation.navigationMenus.series.description"
-msgstr "Link para um série."
-
-msgid "navigation.navigationMenus.series.generic"
-msgstr "Séries"
-
-msgid "navigation.navigationMenus.catalog.description"
-msgstr "Link para o seu catálogo."
-
-msgid "navigation.linksAndMedia"
-msgstr "Links e Redes Sociais"
-
-msgid "navigation.wizard"
-msgstr "Guia"
-
-msgid "navigation.published"
-msgstr "Publicado"
-
-msgid "navigation.infoForLibrarians.long"
-msgstr "Informação aos Bibliotecários"
-
-msgid "navigation.infoForAuthors.long"
-msgstr "Informação aos Autores"
-
-msgid "navigation.infoForLibrarians"
-msgstr "Para Bibliotecários"
-
-msgid "navigation.infoForAuthors"
-msgstr "Para Autores"
-
-msgid "navigation.catalog.administration.series"
-msgstr "Séries"
-
-msgid "navigation.catalog.administration.categories"
-msgstr "Categorias"
-
-msgid "navigation.catalog.administration"
-msgstr "Administração do Catálogo"
-
-msgid "navigation.catalog.administration.short"
-msgstr "Administração"
-
-msgid "navigation.catalog.manage"
-msgstr "Gerir"
-
-msgid "navigation.catalog.allMonographs"
-msgstr "Todas as Monografias"
-
-msgid "navigation.competingInterestPolicy"
-msgstr "Política de conflito de interesses"
-
-msgid "navigation.catalog"
-msgstr "Catálogo"
-
-msgid "common.homePageHeader.altText"
-msgstr "Cabeçalho da página de início"
-
-msgid "common.omp"
-msgstr "OMP"
-
-msgid "common.software"
-msgstr "Open Monograph Press"
-
-msgid "common.listbuilder.itemExists"
-msgstr "Não pode adicionar o mesmo item mais do que uma vez."
-
-msgid "common.listbuilder.selectValidOption"
-msgstr "Selecione uma opção válida da lista."
-
-msgid "common.listbuilder.completeForm"
-msgstr "Preencha todos os campos do formulário."
-
-msgid "common.moreInfo"
-msgstr "Mais Informações"
-
-msgid "common.searchCatalog"
-msgstr "Pesquisar no Catálogo"
-
-msgid "common.feature"
+msgid "catalog.featured"
 msgstr "Destaque"
 
-msgid "common.preview"
-msgstr "Pré-visualização"
+msgid "catalog.featuredBooks"
+msgstr "Livros em Destaque"
 
-msgid "common.prefix"
-msgstr "Prefixo"
+msgid "catalog.foundTitleSearch"
+msgstr "Encontrada uma correspondência à sua pesquisa \"{$searchQuery}\"."
 
-msgid "common.publications"
-msgstr "Monografias"
+msgid "catalog.foundTitlesSearch"
+msgstr "{$number} títulos correspondem à sua pesquisa por \"{$searchQuery}\"."
 
-msgid "common.publication"
-msgstr "Monografia"
+msgid "catalog.category.heading"
+msgstr "Todos os Livros"
 
-msgid "submission.search"
-msgstr "Pesquisa de Livros"
+msgid "catalog.newReleases"
+msgstr "Novos lançamentos"
 
-msgid "catalog.viewableFile.return"
-msgstr "Regressar para visualizar os detalhes sobre {$monographTitle}"
+msgid "catalog.dateAdded"
+msgstr "Adicionado"
 
-msgid "catalog.viewableFile.title"
-msgstr "Versão {$type} do ficheiro {$title}"
+msgid "catalog.publicationInfo"
+msgstr "Informação da Publicação"
 
-msgid "catalog.sortBy.seriesPositionDesc"
-msgstr "Posição da série (maior primeiro)"
+msgid "catalog.published"
+msgstr "Publicado"
 
-msgid "catalog.sortBy.seriesPositionAsc"
-msgstr "Posição da série (menor primeiro)"
+msgid "catalog.forthcoming"
+msgstr "Próximo"
 
-msgid "catalog.sortBy.catalogDescription"
-msgstr "Ecolha a forma de ordenação dos livros no catálogo."
+msgid "catalog.categories"
+msgstr "Categorias"
 
-msgid "catalog.sortBy.categoryDescription"
-msgstr "Escolha a forma de ordenação dos livros desta categoria."
+msgid "catalog.parentCategory"
+msgstr "Categoria principal"
 
-msgid "catalog.sortBy.seriesDescription"
-msgstr "Escolha a forma de ordenação dos livros desta série."
+msgid "catalog.category.subcategories"
+msgstr "Subcategorias"
 
-msgid "catalog.sortBy"
-msgstr "Ordem das publicações"
+msgid "catalog.aboutTheAuthor"
+msgstr "Sobre o {$roleName}"
 
 msgid "catalog.loginRequiredForPayment"
 msgstr ""
@@ -860,41 +774,400 @@ msgstr ""
 "Qualquer item marcado com o ícone de Acesso Aberto pode ser descarregado "
 "gratuitamente, sem acesso ao sistema."
 
-msgid "catalog.aboutTheAuthor"
-msgstr "Sobre o {$roleName}"
+msgid "catalog.sortBy"
+msgstr "Ordem das publicações"
 
-msgid "catalog.category.subcategories"
-msgstr "Subcategorias"
+msgid "catalog.sortBy.seriesDescription"
+msgstr "Escolha a forma de ordenação dos livros desta série."
 
-msgid "catalog.parentCategory"
-msgstr "Categoria principal"
+msgid "catalog.sortBy.categoryDescription"
+msgstr "Escolha a forma de ordenação dos livros desta categoria."
 
-msgid "catalog.categories"
+msgid "catalog.sortBy.catalogDescription"
+msgstr "Ecolha a forma de ordenação dos livros no catálogo."
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr "Posição da série (menor primeiro)"
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr "Posição da série (maior primeiro)"
+
+msgid "catalog.viewableFile.title"
+msgstr "Versão {$type} do ficheiro {$title}"
+
+msgid "catalog.viewableFile.return"
+msgstr "Regressar para visualizar os detalhes sobre {$monographTitle}"
+
+msgid "submission.search"
+msgstr "Pesquisa de Livros"
+
+msgid "common.publication"
+msgstr "Monografia"
+
+msgid "common.publications"
+msgstr "Monografias"
+
+msgid "common.prefix"
+msgstr "Prefixo"
+
+msgid "common.preview"
+msgstr "Pré-visualização"
+
+msgid "common.feature"
+msgstr "Destaque"
+
+msgid "common.searchCatalog"
+msgstr "Pesquisar no Catálogo"
+
+msgid "common.moreInfo"
+msgstr "Mais Informações"
+
+msgid "common.listbuilder.completeForm"
+msgstr "Preencha todos os campos do formulário."
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "Selecione uma opção válida da lista."
+
+msgid "common.listbuilder.itemExists"
+msgstr "Não pode adicionar o mesmo item mais do que uma vez."
+
+msgid "common.software"
+msgstr "Open Monograph Press"
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "common.homePageHeader.altText"
+msgstr "Cabeçalho da página de início"
+
+msgid "navigation.catalog"
+msgstr "Catálogo"
+
+msgid "navigation.competingInterestPolicy"
+msgstr "Política de conflito de interesses"
+
+msgid "navigation.catalog.allMonographs"
+msgstr "Todas as Monografias"
+
+msgid "navigation.catalog.manage"
+msgstr "Gerir"
+
+msgid "navigation.catalog.administration.short"
+msgstr "Administração"
+
+msgid "navigation.catalog.administration"
+msgstr "Administração do Catálogo"
+
+msgid "navigation.catalog.administration.categories"
 msgstr "Categorias"
 
-msgid "catalog.forthcoming"
-msgstr "Próximo"
+msgid "navigation.catalog.administration.series"
+msgstr "Séries"
 
-msgid "catalog.published"
+msgid "navigation.infoForAuthors"
+msgstr "Para Autores"
+
+msgid "navigation.infoForLibrarians"
+msgstr "Para Bibliotecários"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Informação aos Autores"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Informação aos Bibliotecários"
+
+msgid "navigation.newReleases"
+msgstr "Novos Lançamentos"
+
+msgid "navigation.published"
 msgstr "Publicado"
 
-msgid "catalog.publicationInfo"
-msgstr "Informação da Publicação"
+msgid "navigation.wizard"
+msgstr "Guia"
 
-msgid "catalog.dateAdded"
-msgstr "Adicionado"
+msgid "navigation.linksAndMedia"
+msgstr "Links e Redes Sociais"
 
-msgid "catalog.newReleases"
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Link para o seu catálogo."
+
+msgid "navigation.skip.spotlights"
+msgstr "Saltar para os destaques"
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Séries"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Link para um série."
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Categoria"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Link para uma categoria."
+
+msgid "navigation.navigationMenus.newRelease"
 msgstr "Novos lançamentos"
 
-msgid "catalog.category.heading"
-msgstr "Todos os Livros"
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Link para os Novos Lançamentos."
 
-msgid "catalog.foundTitlesSearch"
-msgstr "{$number} títulos correspondem à sua pesquisa por \"{$searchQuery}\"."
+msgid "context.contexts"
+msgstr "Editoras"
 
-msgid "installer.preInstallationInstructionsTitle"
-msgstr "Passos de Pré-Instalação"
+msgid "context.context"
+msgstr "Editora"
+
+msgid "context.current"
+msgstr "Editora Atual:"
+
+msgid "context.select"
+msgstr "Selecione outra editora:"
+
+msgid "user.authorization.representationNotFound"
+msgstr "O formato de publicação solicitado não pode ser encontrado."
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "Incluir utilizadores sem papéis nesta editora."
+
+msgid "user.noRoles.submitMonograph"
+msgstr "Submeter nova Proposta"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr ""
+"Submeter uma Monografia: registo de Autores temporariamente desativado."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Registar como Revisor"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr "Registar como Revisor: registo de Revisor temporariamente desativado."
+
+msgid "user.reviewerPrompt"
+msgstr "Encontra-se disponível para rever submissões a esta editora?"
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Sim, solicitar o papel de {$userGroup}."
+
+msgid "user.reviewerPrompt.optin"
+msgstr "Sim, gostaria de ser contactado para rever submissões a esta editora."
+
+msgid "user.register.contextsPrompt"
+msgstr "Em que editoras deste portal se pretende registar?"
+
+msgid "user.register.otherContextRoles"
+msgstr "Solicitar os seguintes papéis."
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+"Se solicitou permissão para ser revisor para uma das editoras do portal, "
+"insira os seus assuntos de interesse."
+
+msgid "user.role.manager"
+msgstr "Editor-gestor"
+
+msgid "user.role.pressEditor"
+msgstr "Editor"
+
+msgid "user.role.subEditor"
+msgstr "Editor de Série"
+
+msgid "user.role.copyeditor"
+msgstr "Editor de texto"
+
+msgid "user.role.proofreader"
+msgstr "Leitor de prova"
+
+msgid "user.role.productionEditor"
+msgstr "Editor de produção"
+
+msgid "user.role.managers"
+msgstr "Editores-gestores"
+
+msgid "user.role.subEditors"
+msgstr "Editores de Série"
+
+msgid "user.role.editors"
+msgstr "Editores"
+
+msgid "user.role.copyeditors"
+msgstr "Editores de texto"
+
+msgid "user.role.proofreaders"
+msgstr "Leitores de prova"
+
+msgid "user.role.productionEditors"
+msgstr "Editores de Produção"
+
+msgid "user.register.selectContext"
+msgstr "Selecione a editora onde pretende registar-se:"
+
+msgid "user.register.noContexts"
+msgstr "Não existem editoras disponíveis para se registar."
+
+msgid "user.register.privacyStatement"
+msgstr "Política de Privacidade"
+
+msgid "user.register.registrationDisabled"
+msgstr ""
+"Esta editora não se encontra de momento a aceitar registos de utilizadores."
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "A senha que inseriu é demasiado curta."
+
+msgid "user.register.readerDescription"
+msgstr "Notificado por e-mail aquando da publicação de uma monografia."
+
+msgid "user.register.authorDescription"
+msgstr "Permitida a submissão de itens à editora."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr ""
+"Disponível para realizar revisão por pares de submissões a esta editora."
+
+msgid "user.register.reviewerDescription"
+msgstr ""
+"Disponível para realizar revisão por pares de submissões a este portal."
+
+msgid "user.register.reviewerInterests"
+msgstr ""
+"Identificar as suas áreas de interesses de revisão (áreas do conhecimento e "
+"métodos de investigação):"
+
+msgid "user.register.form.userGroupRequired"
+msgstr "É necessário selecionar pelo menos um papel"
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Sim, concordo em ter os meus dados recolhidos e armazenados de acordo com a "
+"<a href=\"{$privacyUrl}\" target=\"_blank\">política de privacidade</a> da "
+"editora."
+
+msgid "site.noPresses"
+msgstr "Não existem editoras disponíveis."
+
+msgid "site.pressView"
+msgstr "Ver Site da Editora"
+
+msgid "about.pressContact"
+msgstr "Contacto da Editora"
+
+msgid "about.aboutContext"
+msgstr "Sobre a Editora"
+
+msgid "about.editorialTeam"
+msgstr "Equipa Editorial"
+
+msgid "about.editorialPolicies"
+msgstr "Políticas Editoriais"
+
+msgid "about.focusAndScope"
+msgstr "Âmbito"
+
+msgid "about.seriesPolicies"
+msgstr "Políticas de Séries e Categorias"
+
+msgid "about.submissions"
+msgstr "Submissões"
+
+msgid "about.onlineSubmissions"
+msgstr "Submissões online"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Acesso"
+
+msgid "about.onlineSubmissions.register"
+msgstr "Registo"
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "{$login} ou {$register} para enviar uma nova submissão."
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} ou {$viewSubmissions}."
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Enviar uma nova submissão"
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "ver as suas submissões pendentes"
+
+msgid "about.authorGuidelines"
+msgstr "Instruções aos Autores"
+
+msgid "about.submissionPreparationChecklist"
+msgstr "Verificação da Submissão"
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr ""
+"Como parte do processo de submissão, os autores têm que verificar que "
+"cumprem todos os seguintes requisitos nas suas submissões, e as submissões "
+"poderão ser enviadas de volta aos autores se não cumprirem estas instruções."
+
+msgid "about.copyrightNotice"
+msgstr "Aviso de Direitos de Autor"
+
+msgid "about.privacyStatement"
+msgstr "Política de Privacidade"
+
+msgid "about.reviewPolicy"
+msgstr "Processo de Revisão por pares"
+
+msgid "about.publicationFrequency"
+msgstr "Periodicidade"
+
+msgid "about.openAccessPolicy"
+msgstr "Política de Acesso Aberto"
+
+msgid "about.pressSponsorship"
+msgstr "Patrocínios à Editora"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr ""
+"Mais informações sobre o sistema de publicação, Plataforma e Fluxo de "
+"trabalho do OMP/PKP."
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "Processo Editorial e de Publicação do OMP"
+
+msgid "about.aboutSoftware"
+msgstr "Sobre o Open Monograph Press"
+
+msgid "about.aboutOMPPress"
+msgstr ""
+"Esta editora usa o Open Monograph Press {$ompVersion}, um software em open "
+"source de gestão editorial e publicação para editoras desenvolvido, "
+"suportado, e distribuído gratuitamente pelo Public Knowledge Project sob a "
+"GNU General Public License. Visite o website do PKP para <a href=\"https://"
+"pkp.sfu.ca/\">saber mais sobre o software</a>. <a href="
+"\"{$contactUrl}\">Contacte a editora</a> diretamente para questões sobre a "
+"editora e submissões à editora."
+
+msgid "about.aboutOMPSite"
+msgstr ""
+"Esta editora utiliza o Open Monograph Press {$ompVersion}, um software em "
+"open source de gestão e publicação editorial, desenvolvido, suportado e "
+"livremente distribuído pelo <a href=\"http://pkp.sfu.ca/\">Public Knowledge "
+"Project</a> sob a Licença Públicar Geral GNU."
+
+msgid "help.searchReturnResults"
+msgstr "Voltar aos Resultados de Pesquisa"
+
+msgid "help.goToEditPage"
+msgstr "Abrir uma nova página para editar esta informação"
+
+msgid "installer.appInstallation"
+msgstr "Instalação do OMP"
+
+msgid "installer.ompUpgrade"
+msgstr "Atualização do OMP"
+
+msgid "installer.installApplication"
+msgstr "Instalar o Open Monograph Press"
+
+msgid "installer.updatingInstructions"
+msgstr ""
+"Se está a atualizar uma instalação existente do OMP, <a href="
+"\"{$upgradeUrl}\">clique aqui</a> para continuar."
 
 msgid "installer.installationInstructions"
 msgstr ""
@@ -912,626 +1185,26 @@ msgstr ""
 "para a equipa através do <a href=\"mailto:pkp.contact@gmail.com\">pkp."
 "contact@gmail.com</a>.</p>"
 
-msgid "installer.installApplication"
-msgstr "Instalar o Open Monograph Press"
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "Passos de Pré-Instalação"
 
-msgid "installer.ompUpgrade"
-msgstr "Atualização do OMP"
-
-msgid "installer.appInstallation"
-msgstr "Instalação do OMP"
-
-msgid "help.goToEditPage"
-msgstr "Abrir uma nova página para editar esta informação"
-
-msgid "help.searchReturnResults"
-msgstr "Voltar aos Resultados de Pesquisa"
-
-msgid "about.aboutOMPSite"
+msgid "installer.preInstallationInstructions"
 msgstr ""
-"Esta editora utiliza o Open Monograph Press {$ompVersion}, um software em "
-"open source de gestão e publicação editorial, desenvolvido, suportado e "
-"livremente distribuído pelo <a href=\"http://pkp.sfu.ca/\">Public Knowledge "
-"Project</a> sob a Licença Públicar Geral GNU."
-
-msgid "about.aboutOMPPress"
-msgstr ""
-"Esta editora usa o Open Monograph Press {$ompVersion}, um software em open "
-"source de gestão editorial e publicação para editoras desenvolvido, "
-"suportado, e distribuído gratuitamente pelo Public Knowledge Project sob a "
-"GNU General Public License. Visite o website do PKP para <a href=\"https"
-"://pkp.sfu.ca/\">saber mais sobre o software</a>. <a href=\"{$contactUrl}\""
-">Contacte a editora</a> diretamente para questões sobre a editora e "
-"submissões à editora."
-
-msgid "about.aboutThisPublishingSystem.altText"
-msgstr "Processo Editorial e de Publicação do OMP"
-
-msgid "about.aboutThisPublishingSystem"
-msgstr ""
-"Mais informações sobre o sistema de publicação, Plataforma e Fluxo de "
-"trabalho do OMP/PKP."
-
-msgid "about.pressSponsorship"
-msgstr "Patrocínios à Editora"
-
-msgid "about.openAccessPolicy"
-msgstr "Política de Acesso Aberto"
-
-msgid "about.publicationFrequency"
-msgstr "Periodicidade"
-
-msgid "about.reviewPolicy"
-msgstr "Processo de Revisão por pares"
-
-msgid "about.privacyStatement"
-msgstr "Política de Privacidade"
-
-msgid "about.copyrightNotice"
-msgstr "Aviso de Direitos de Autor"
-
-msgid "about.submissionPreparationChecklist.description"
-msgstr ""
-"Como parte do processo de submissão, os autores têm que verificar que "
-"cumprem todos os seguintes requisitos nas suas submissões, e as submissões "
-"poderão ser enviadas de volta aos autores se não cumprirem estas instruções."
-
-msgid "about.submissionPreparationChecklist"
-msgstr "Verificação da Submissão"
-
-msgid "about.authorGuidelines"
-msgstr "Instruções aos Autores"
-
-msgid "about.onlineSubmissions.viewSubmissions"
-msgstr "ver as suas submissões pendentes"
-
-msgid "about.onlineSubmissions.newSubmission"
-msgstr "Enviar uma nova submissão"
-
-msgid "about.onlineSubmissions.submissionActions"
-msgstr "{$newSubmission} ou {$viewSubmissions}."
-
-msgid "about.onlineSubmissions.registrationRequired"
-msgstr "{$login} ou {$register} para enviar uma nova submissão."
-
-msgid "about.onlineSubmissions.register"
-msgstr "Registo"
-
-msgid "about.onlineSubmissions.login"
-msgstr "Acesso"
-
-msgid "about.onlineSubmissions"
-msgstr "Submissões online"
-
-msgid "about.submissions"
-msgstr "Submissões"
-
-msgid "about.seriesPolicies"
-msgstr "Políticas de Séries e Categorias"
-
-msgid "about.focusAndScope"
-msgstr "Âmbito"
-
-msgid "about.editorialPolicies"
-msgstr "Políticas Editoriais"
-
-msgid "about.editorialTeam"
-msgstr "Equipa Editorial"
-
-msgid "about.aboutContext"
-msgstr "Sobre a Editora"
-
-msgid "about.pressContact"
-msgstr "Contacto da Editora"
-
-msgid "site.pressView"
-msgstr "Ver Site da Editora"
-
-msgid "user.register.form.userGroupRequired"
-msgstr "É necessário selecionar pelo menos um papel"
-
-msgid "user.register.reviewerInterests"
-msgstr ""
-"Identificar as suas áreas de interesses de revisão (áreas do conhecimento e "
-"métodos de investigação):"
-
-msgid "user.register.reviewerDescription"
-msgstr "Disponível para realizar revisão por pares de submissões a este portal."
-
-msgid "user.register.reviewerDescriptionNoInterests"
-msgstr ""
-"Disponível para realizar revisão por pares de submissões a esta editora."
-
-msgid "user.register.authorDescription"
-msgstr "Permitida a submissão de itens à editora."
-
-msgid "user.register.readerDescription"
-msgstr "Notificado por e-mail aquando da publicação de uma monografia."
-
-msgid "user.register.form.passwordLengthTooShort"
-msgstr "A senha que inseriu é demasiado curta."
-
-msgid "user.register.registrationDisabled"
-msgstr ""
-"Esta editora não se encontra de momento a aceitar registos de utilizadores."
-
-msgid "user.register.privacyStatement"
-msgstr "Política de Privacidade"
-
-msgid "user.register.noContexts"
-msgstr "Não existem editoras disponíveis para se registar."
-
-msgid "user.register.selectContext"
-msgstr "Selecione a editora onde pretende registar-se:"
-
-msgid "user.role.productionEditors"
-msgstr "Editores de Produção"
-
-msgid "user.role.proofreaders"
-msgstr "Leitores de prova"
-
-msgid "user.role.copyeditors"
-msgstr "Editores de texto"
-
-msgid "user.role.editors"
-msgstr "Editores"
-
-msgid "user.role.subEditors"
-msgstr "Editores de Série"
-
-msgid "user.role.managers"
-msgstr "Editores-gestores"
-
-msgid "user.role.productionEditor"
-msgstr "Editor de produção"
-
-msgid "user.role.proofreader"
-msgstr "Leitor de prova"
-
-msgid "user.role.copyeditor"
-msgstr "Editor de texto"
-
-msgid "user.role.subEditor"
-msgstr "Editor de Série"
-
-msgid "user.role.pressEditor"
-msgstr "Editor"
-
-msgid "user.role.manager"
-msgstr "Editor-gestor"
-
-msgid "user.register.noContextReviewerInterests"
-msgstr ""
-"Se solicitou permissão para ser revisor para uma das editoras do portal, "
-"insira os seus assuntos de interesse."
-
-msgid "user.register.otherContextRoles"
-msgstr "Solicitar os seguintes papéis."
-
-msgid "user.register.contextsPrompt"
-msgstr "Em que editoras deste portal se pretende registar?"
-
-msgid "user.reviewerPrompt.optin"
-msgstr "Sim, gostaria de ser contactado para rever submissões a esta editora."
-
-msgid "user.reviewerPrompt.userGroup"
-msgstr "Sim, solicitar o papel de {$userGroup}."
-
-msgid "user.reviewerPrompt"
-msgstr "Encontra-se disponível para rever submissões a esta editora?"
-
-msgid "user.noRoles.regReviewerClosed"
-msgstr "Registar como Revisor: registo de Revisor temporariamente desativado."
-
-msgid "user.noRoles.regReviewer"
-msgstr "Registar como Revisor"
-
-msgid "user.noRoles.submitMonographRegClosed"
-msgstr "Submeter uma Monografia: registo de Autores temporariamente desativado."
-
-msgid "user.noRoles.submitMonograph"
-msgstr "Submeter nova Proposta"
-
-msgid "user.noRoles.selectUsersWithoutRoles"
-msgstr "Incluir utilizadores sem papéis nesta editora."
-
-msgid "context.select"
-msgstr "Selecione outra editora:"
-
-msgid "context.current"
-msgstr "Editora Atual:"
-
-msgid "context.context"
-msgstr "Editora"
-
-msgid "context.contexts"
-msgstr "Editoras"
-
-msgid "navigation.navigationMenus.newRelease.description"
-msgstr "Link para os Novos Lançamentos."
-
-msgid "navigation.navigationMenus.newRelease"
-msgstr "Novos lançamentos"
-
-msgid "catalog.coverImageTitle"
-msgstr "Capa"
-
-msgid "user.authorization.invalidPublishedSubmission"
-msgstr "Não foi especificada uma submissão publicada válida."
-
-msgid "submission.round"
-msgstr "Ronda&nbsp;{$round}"
-
-msgid "user.profile.form.hideOtherContexts"
-msgstr "Esconder outras editoras"
-
-msgid "user.profile.form.showOtherContexts"
-msgstr "Registar-se em outras editoras"
-
-msgid "submission.pdf.download"
-msgstr "Transferir PDF"
-
-msgid "rt.metadata.pkp.dctype"
-msgstr "Livro"
-
-msgid "debug.notes.helpMappingLoad"
-msgstr ""
-"Ficheiro XML de ajuda de mapeamento recarregado {$filename} na procura por "
-"{$id}."
-
-msgid "payment.directSales.monograph.description"
-msgstr ""
-"Esta transação refere-se à compra do download direto de apenas uma "
-"monografia ou um capítulo de monografia."
-
-msgid "payment.directSales.monograph.name"
-msgstr "Comprar Monografia ou Capítulo"
-
-msgid "payment.directSales.download"
-msgstr "Transferir {$format}"
-
-msgid "payment.directSales.purchase"
-msgstr "Comprar {$format} ({$amount} {$currency})"
-
-msgid "payment.directSales.validPriceRequired"
-msgstr "É obrigatório inserir um preço com valor numérico."
-
-msgid "payment.directSales.price.description"
-msgstr ""
-"Formatos de ficheiros podem estar disponíveis para download através do site "
-"da editora em acesso aberto sem custos para os leitores ou vendas diretas ("
-"utilizando um processador de pagamentos online, configurado em Distribuição)"
-". Indique a forma de acesso a este ficheiro."
-
-msgid "payment.directSales.openAccess"
-msgstr "Acesso Aberto"
-
-msgid "payment.directSales.notSet"
-msgstr "Não definido"
-
-msgid "payment.directSales.notAvailable"
-msgstr "Indisponível"
-
-msgid "payment.directSales.amount"
-msgstr "{$amount} ({$currency})"
-
-msgid "payment.directSales.directSales"
-msgstr "Venda Direta"
-
-msgid "payment.directSales.numericOnly"
-msgstr "Preços devem ser apenas numéricos. Não inclua símbolos monetários."
-
-msgid "payment.directSales.priceCurrency"
-msgstr "Preço ({$currency})"
-
-msgid "payment.directSales.approved"
-msgstr "Aprovado"
-
-msgid "payment.directSales.catalog"
-msgstr "Catálogo"
-
-msgid "payment.directSales.availability"
-msgstr "Disponibilidade"
-
-msgid "payment.directSales.price"
-msgstr "Preço"
-
-msgid "payment.directSales"
-msgstr "Download através do Website da Editora"
-
-msgid "user.authorization.workflowStageSettingMissing"
-msgstr ""
-"Acesso negado! O grupo de utilizadores em que se encontra não foi designado "
-"a esta etapa do fluxo de trabalho. Verifique as configurações da editora."
-
-msgid "user.authorization.workflowStageAssignmentMissing"
-msgstr "Acesso negado! Não foi designado e esta etapa do fluxo de trabalho."
-
-msgid "user.authorization.seriesAssignment"
-msgstr "Está a tentar aceder a uma monografia que não faz parte da sua série."
-
-msgid "user.authorization.noContext"
-msgstr "Nenhuma editora neste contexto."
-
-msgid "user.authorization.invalidMonograph"
-msgstr "Monografia inválida ou nenhum monografia solicitada!"
-
-msgid "user.authorization.monographFile"
-msgstr "Foi-lhe negado o acesso a este ficheiro específico da monografia."
-
-msgid "user.authorization.monographReviewer"
-msgstr ""
-"Foi-lhe negado o acesso porque não é um revisor designado para esta "
-"monografia."
-
-msgid "user.authorization.monographAuthor"
-msgstr "Foi-lhe negado o acesso à submissão porque não é o autor da monografia."
-
-msgid "user.authorization.invalidReviewAssignment"
-msgstr ""
-"Foi-lhe negado acesso porque não parece ser um revisor válido para esta "
-"monografia."
-
-msgid "notification.type.visitCatalog"
-msgstr ""
-"A monografia foi aprovada. Visite o Catálogo para gerir os detalhes do "
-"catálogo, utilizando o link de catálogo logo acima."
-
-msgid "notification.type.visitCatalogTitle"
-msgstr "Gestão do Catálogo"
-
-msgid "notification.type.configurePaymentMethod"
-msgstr ""
-"Um método de pagamento configurado é necessário antes de definir as "
-"configurações de e-commerce."
-
-msgid "notification.type.configurePaymentMethod.title"
-msgstr "Não existem formas de pagamento configuradas."
-
-msgid "notification.type.formatNeedsApprovedSubmission"
-msgstr ""
-"A monografia não ficará listada no catálogo até ser publicada. Para "
-"adicionar este livro ao catálogo, clique no separador da Publicação."
-
-msgid "notification.type.approveSubmissionTitle"
-msgstr "A aguardar aprovação."
-
-msgid "notification.type.approveSubmission"
-msgstr ""
-"Esta submissão encontra-se de momento a aguardar aprovação na ferramenta de "
-"entrada do Catálogo antes de aparecer no catálogo público."
-
-msgid "notification.type.editorDecisionInternalReview"
-msgstr "Processo de revisão interna iniciado."
-
-msgid "notification.type.indexRequest"
-msgstr "Foi-lhe solicitado que criasse um índice de \"{$title}\"."
-
-msgid "notification.type.layouteditorRequest"
-msgstr "Foi-lhe solicitado que reveja o design de \"{$title}\"."
-
-msgid "notification.type.copyeditorRequest"
-msgstr "Foi-lhe solicitado que realize a edição de texto de \"{$file}\"."
-
-msgid "notification.type.editorAssignmentTask"
-msgstr ""
-"Uma nova monografia foi submetida e necessita de ser designada a um editor."
-
-msgid "notification.type.public"
-msgstr "Notícias Públicas"
-
-msgid "notification.type.userComment"
-msgstr "Um leitor fez um comentário sobre \"{$title}\"."
-
-msgid "notification.type.submissions"
-msgstr "Eventos da Submissão"
-
-msgid "notification.type.site"
-msgstr "Eventos do site"
-
-msgid "notification.type.reviewing"
-msgstr "Eventos da Revisão"
-
-msgid "notification.type.editing"
-msgstr "Eventos da Edição"
-
-msgid "notification.type.submissionSubmitted"
-msgstr "Uma nova monografia, \"{$title}\", foi submetida."
-
-msgid "notification.removedSubmission"
-msgstr "Submissão eliminada."
-
-msgid "notification.proofsApproved"
-msgstr "Provas aprovadas."
-
-msgid "notification.savedPublicationFormatMetadata"
-msgstr "Metadados do formato de publicação guardados."
-
-msgid "notification.savedCatalogMetadata"
-msgstr "Metadados do catálogo guardados."
-
-msgid "notification.removedMarket"
-msgstr "Mercado removido."
-
-msgid "notification.editedMarket"
-msgstr "Mercado editado."
-
-msgid "notification.addedMarket"
-msgstr "Mercado adicionado."
-
-msgid "notification.removedRepresentative"
-msgstr "Representante removido."
-
-msgid "notification.editedRepresentative"
-msgstr "Representante editado."
-
-msgid "notification.addedRepresentative"
-msgstr "Representante adicionado."
-
-msgid "notification.removedSalesRights"
-msgstr "Direitos de Venda removidos."
-
-msgid "notification.editedSalesRights"
-msgstr "Direitos de Venda editados."
-
-msgid "notification.addedSalesRights"
-msgstr "Direitos de Venda adicionados."
-
-msgid "notification.removedPublicationFormat"
-msgstr "Formato de Publicação removido."
-
-msgid "notification.editedPublicationFormat"
-msgstr "Formato de Publicação editado."
-
-msgid "notification.addedPublicationFormat"
-msgstr "Formato de Publicação adicionado."
-
-msgid "notification.removedPublicationDate"
-msgstr "Data de Publicação removida."
-
-msgid "notification.editedPublicationDate"
-msgstr "Data de Publicação editada."
-
-msgid "notification.addedPublicationDate"
-msgstr "Data de Publicação adicionada."
-
-msgid "notification.removedIdentificationCode"
-msgstr "Código de Identificação removido."
-
-msgid "notification.editedIdentificationCode"
-msgstr "Código de Identificação editado."
-
-msgid "notification.addedIdentificationCode"
-msgstr "Código de Identificação adicionado."
-
-msgid "log.imported"
-msgstr "{$userName} importou a monografia {$submissionId}."
-
-msgid "log.proofread.complete"
-msgstr "{$proofreaderName} submeteu {$submissionId} para agendamento."
-
-msgid "log.proofread.assign"
-msgstr ""
-"{$assignerName} designou {$proofreaderName} para realizar a leitura de "
-"provas da submissão {$submissionId}."
-
-msgid "log.editor.editorAssigned"
-msgstr "{$editorName} foi designado como editor à submissão {$submissionId}."
-
-msgid "log.editor.restored"
-msgstr "A submissão {$submissionId} foi restaurada para a fila."
-
-msgid "log.editor.archived"
-msgstr "A submissão {$submissionId} foi arquivada."
-
-msgid "log.editor.recommendation"
-msgstr ""
-"A recomendação do editor ({$decision}) para a monografia {$submissionId} foi "
-"registada por {$editorName}."
-
-msgid "log.editor.decision"
-msgstr ""
-"A decisão editorial ({$decision}) para a monografia {$submissionId} foi "
-"registada por {$editorName}."
-
-msgid "log.review.reviewUnconsidered"
-msgstr ""
-"{$editorName} marcou a {$round} ronda de revisão da submissão {$submissionId}"
-" como não considerada."
-
-msgid "log.review.reviewAccepted"
-msgstr ""
-"{$reviewerName} aceitou a {$round} ronda de revisão da submissão "
-"{$submissionId}."
-
-msgid "log.review.reviewDeclined"
-msgstr ""
-"{$reviewerName} rejeitou a {$round} de revisão da submissão {$submissionId}."
-
-msgid "log.review.reviewDueDateSet"
-msgstr ""
-"A data prevista para a {$round} ronda de revisão da submissão {$submissionId}"
-" atribuída a {$reviewerName} foi definida para {$dueDate}."
-
-msgid "installer.upgradeComplete"
-msgstr ""
-"<p>Atualização do OMP para a versão {$version} concluída com sucesso.</p>\n"
-"<p>Não se esqueça de configurar como \"instalado\" no seu ficheiro de "
-"configuração <tt>config.inc.php</tt> de volta para <em>Ativo</em>.</p>\n"
-"<p>Se ainda não se registou e deseja receber notícias e novidades, <strong"
-">registe-se em <a href=\"https://lists.publicknowledgeproject.org/lists/\" "
-"target=\"_blank\">https://lists.publicknowledgeproject.org/lists/</a></"
-"strong>. Se tiver questões ou comentários, visite o <a href=\"http://forum."
-"pkp.sfu.ca\" target=\"_blank\">fórum de apoio</a>.</p>"
-
-msgid "installer.installationComplete"
-msgstr ""
-"<p>Instalação do OMP concluída com sucesso.</p>\n"
-"<p>Para começar a utilizar o sistema, <a href=\"{$loginUrl}\">aceda</a> com "
-"o nome de utilizador e senha inseridos na página anterior.</p>\n"
-"<p>Se desejar receber notícias e novidades, <strong>registe-se em <a href="
-"\"https://lists.publicknowledgeproject.org/lists/\" target=\"_blank\""
-">https://lists.publicknowledgeproject.org/lists/</a>.</strong> Se tiver "
-"questões ou comentários, visite o <a href=\"http://forum.pkp.sfu.ca\" target="
-"\"_blank\">fórum de apoio</a>.</p>"
-
-msgid "installer.overwriteConfigFileInstructions"
-msgstr ""
-"<h4>IMPORTANTE!</h4>\n"
-"<p>O instalador não pode alterar automaticamente o ficheiro de configuração. "
-"Antes de tentar usar o sistema, abra <tt>config.inc.php</tt> num editor de "
-"texto e substitua os seus conteúdos pelos do campo de texto abaixo. .</p>"
-
-msgid "installer.upgradeApplication"
-msgstr "Atualizar Open Monograph Press"
-
-msgid "installer.databaseSettingsInstructions"
-msgstr ""
-"O OMP necessita de acesso à base de dados SQL para armazenar os dados. Veja "
-"os requisitos de sistema abaixo com a lista de bases de dados suportadas. "
-"Nos campos abaixo, forneça as configurações a ser usadas para conectar à "
-"base de dados."
-
-msgid "installer.filesDirInstructions"
-msgstr ""
-"Insira o caminho completo para uma pasta existente onde os ficheiros "
-"transferidos serão guardados. Esta pasta não deve ser acessível diretamente "
-"através da web. <strong>Assegure-se que esta pasta existe e é editável antes "
-"da instalação.</strong> Caminhos Windows devem usar barra, ex. \"C:/mypress/"
-"files\"."
-
-msgid "installer.additionalLocalesInstructions"
-msgstr ""
-"Selecione qualquer idioma adicional para utilizar neste sistema. Estes "
-"idiomas estarão disponíveis para utilização das editoras alojadas neste "
-"site. Idiomas adicionais podem ser instalados a qualquer momento através da "
-"interface de administração. Idiomas marcados com * podem estar incompletos."
-
-msgid "installer.localeInstructions"
-msgstr ""
-"Idioma principal para uso neste sistema. Consulte a documentação do OMP se "
-"estiver interessado em apoio em outros idiomas que não estejam nesta lista."
-
-msgid "installer.maxFileUploadSize"
-msgstr ""
-"O seu servidor de momento permite-lhe a transferência de ficheiro com "
-"tamanho máximo de: <strong>{$maxFileUploadSize}</strong>"
-
-msgid "installer.allowFileUploads"
-msgstr ""
-"O seu servidor de momento permite transferências de ficheiros: "
-"<strong>{$allowFileUploads}</strong>"
-
-msgid "installer.localeSettingsInstructions"
-msgstr ""
-"Para uma compatibilidade completa de Unicode, o PHP deve ser compilado com a "
-"biblioteca <a href=\"https://www.php.net/mbstring\" target=\"_blank\""
-">mbstring</a> (ativa por defeito nas instalações mais recentes do PHP). Pode "
-"ter alguns problemas com alguns conjuntos de caracteres caso o seu servidor "
-"não possua estes requisitos.\n"
-"<br /><br />\n"
-"O seu servidor de momento suporta mbstring: "
-"<strong>{$supportsMBString}</strong>"
+"<p>1. Os seguintes ficheiros e diretórios (e os seus conteúdos) devem ser "
+"editáveis:</p>\n"
+"<ul>\n"
+"\t<li><tt>config.inc.php</tt> é editável (opcional): {$writable_config}</"
+"li>\n"
+"\t<li><tt>public/</tt> é editável: {$writable_public}</li>\n"
+"\t<li><tt>cache/</tt> é editável: {$writable_cache}</li>\n"
+"\t<li><tt>cache/t_cache/</tt> é editável: {$writable_templates_cache}</li>\n"
+"\t<li><tt>cache/t_compile/</tt> é editável: {$writable_templates_compile}</"
+"li>\n"
+"\t<li><tt>cache/_db</tt> é editável: {$writable_db_cache}</li>\n"
+"</ul>\n"
+"\n"
+"<p>2. Um diretório para armazenar ficheiros deve ser criado e tornado "
+"editável (ver \"Configurações Ficheiro\" abaixo).</p>"
 
 msgid "installer.upgradeInstructions"
 msgstr ""
@@ -1548,103 +1221,434 @@ msgstr ""
 "\"_blank\">fórum de suporte</a> ou visite o <a href=\"http://pkp.sfu.ca/"
 "bugzilla/\" target=\"_blank\">sistema de comunicação de erros</a> online do "
 "PKP. Apesar do fórum de suporte ser o método de contacto preferencial, "
-"também pode enviar e-mail para a equipa através do e-mail <a href=\"mailto"
-":pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>\n"
+"também pode enviar e-mail para a equipa através do e-mail <a href=\"mailto:"
+"pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>\n"
 "<p>É <strong>altamente recomendado</strong> que faça backups da sua base de "
 "dados, diretório de ficheiros, e do diretório da instalação do OMP antes de "
 "proceder.</p>"
 
-msgid "installer.preInstallationInstructions"
+msgid "installer.localeSettingsInstructions"
 msgstr ""
-"<p>1. Os seguintes ficheiros e diretórios (e os seus conteúdos) devem ser "
-"editáveis:</p>\n"
-"<ul>\n"
-"\t<li><tt>config.inc.php</tt> é editável (opcional): {$writable_config}</li>"
-"\n"
-"\t<li><tt>public/</tt> é editável: {$writable_public}</li>\n"
-"\t<li><tt>cache/</tt> é editável: {$writable_cache}</li>\n"
-"\t<li><tt>cache/t_cache/</tt> é editável: {$writable_templates_cache}</li>\n"
-"\t<li><tt>cache/t_compile/</tt> é editável: "
-"{$writable_templates_compile}</li>\n"
-"\t<li><tt>cache/_db</tt> é editável: {$writable_db_cache}</li>\n"
-"</ul>\n"
-"\n"
-"<p>2. Um diretório para armazenar ficheiros deve ser criado e tornado "
-"editável (ver \"Configurações Ficheiro\" abaixo).</p>"
+"Para uma compatibilidade completa de Unicode, o PHP deve ser compilado com a "
+"biblioteca <a href=\"https://www.php.net/mbstring\" target=\"_blank"
+"\">mbstring</a> (ativa por defeito nas instalações mais recentes do PHP). "
+"Pode ter alguns problemas com alguns conjuntos de caracteres caso o seu "
+"servidor não possua estes requisitos.\n"
+"<br /><br />\n"
+"O seu servidor de momento suporta mbstring: <strong>{$supportsMBString}</"
+"strong>"
 
-msgid "site.noPresses"
-msgstr "Não existem editoras disponíveis."
-
-msgid "user.register.form.privacyConsentThisContext"
+msgid "installer.allowFileUploads"
 msgstr ""
-"Sim, concordo em ter os meus dados recolhidos e armazenados de acordo com a "
-"<a href=\"{$privacyUrl}\" target=\"_blank\">política de privacidade</a> da "
-"editora."
+"O seu servidor de momento permite transferências de ficheiros: "
+"<strong>{$allowFileUploads}</strong>"
 
-msgid "about.aboutSoftware"
-msgstr "Sobre o Open Monograph Press"
-
-msgid "user.authorization.representationNotFound"
-msgstr "O formato de publicação solicitado não pode ser encontrado."
-
-msgid "catalog.manage.findSubmissions"
-msgstr "Pesquisar monografias para adicionar ao catálogo"
-
-msgid "catalog.manage.submissionsNotFound"
-msgstr "Uma ou mais submissões não foram encontradas."
-
-msgid "catalog.manage.noSubmissionsSelected"
-msgstr "Não existem submissões selecionadas para serem adicionadas ao catálogo."
-
-msgid "common.payments"
-msgstr "Pagamentos"
-
-msgid "installer.updatingInstructions"
+msgid "installer.maxFileUploadSize"
 msgstr ""
-"Se está a atualizar uma instalação existente do OMP, <a href=\"{$upgradeUrl}"
-"\">clique aqui</a> para continuar."
+"O seu servidor de momento permite-lhe a transferência de ficheiro com "
+"tamanho máximo de: <strong>{$maxFileUploadSize}</strong>"
 
-msgid "grid.catalogEntry.isbn10.description"
-msgstr "Código ISBN com 10 dígitos, tal como 951-98548-9-4."
+msgid "installer.localeInstructions"
+msgstr ""
+"Idioma principal para uso neste sistema. Consulte a documentação do OMP se "
+"estiver interessado em apoio em outros idiomas que não estejam nesta lista."
 
-msgid "grid.catalogEntry.isbn13.description"
-msgstr "Código ISBN com 13 dígitos, tal como 978-951-98548-9-2."
+msgid "installer.additionalLocalesInstructions"
+msgstr ""
+"Selecione qualquer idioma adicional para utilizar neste sistema. Estes "
+"idiomas estarão disponíveis para utilização das editoras alojadas neste "
+"site. Idiomas adicionais podem ser instalados a qualquer momento através da "
+"interface de administração. Idiomas marcados com * podem estar incompletos."
 
-msgid "grid.catalogEntry.isbn"
-msgstr "ISBN"
+msgid "installer.filesDirInstructions"
+msgstr ""
+"Insira o caminho completo para uma pasta existente onde os ficheiros "
+"transferidos serão guardados. Esta pasta não deve ser acessível diretamente "
+"através da web. <strong>Assegure-se que esta pasta existe e é editável antes "
+"da instalação.</strong> Caminhos Windows devem usar barra, ex. \"C:/mypress/"
+"files\"."
+
+msgid "installer.databaseSettingsInstructions"
+msgstr ""
+"O OMP necessita de acesso à base de dados SQL para armazenar os dados. Veja "
+"os requisitos de sistema abaixo com a lista de bases de dados suportadas. "
+"Nos campos abaixo, forneça as configurações a ser usadas para conectar à "
+"base de dados."
+
+msgid "installer.upgradeApplication"
+msgstr "Atualizar Open Monograph Press"
+
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>IMPORTANTE!</h4>\n"
+"<p>O instalador não pode alterar automaticamente o ficheiro de configuração. "
+"Antes de tentar usar o sistema, abra <tt>config.inc.php</tt> num editor de "
+"texto e substitua os seus conteúdos pelos do campo de texto abaixo. .</p>"
+
+msgid "installer.installationComplete"
+msgstr ""
+"<p>Instalação do OMP concluída com sucesso.</p>\n"
+"<p>Para começar a utilizar o sistema, <a href=\"{$loginUrl}\">aceda</a> com "
+"o nome de utilizador e senha inseridos na página anterior.</p>\n"
+"<p>Se desejar receber notícias e novidades, <strong>registe-se em <a href="
+"\"https://lists.publicknowledgeproject.org/lists/\" target=\"_blank"
+"\">https://lists.publicknowledgeproject.org/lists/</a>.</strong> Se tiver "
+"questões ou comentários, visite o <a href=\"http://forum.pkp.sfu.ca\" target="
+"\"_blank\">fórum de apoio</a>.</p>"
+
+msgid "installer.upgradeComplete"
+msgstr ""
+"<p>Atualização do OMP para a versão {$version} concluída com sucesso.</p>\n"
+"<p>Não se esqueça de configurar como \"instalado\" no seu ficheiro de "
+"configuração <tt>config.inc.php</tt> de volta para <em>Ativo</em>.</p>\n"
+"<p>Se ainda não se registou e deseja receber notícias e novidades, "
+"<strong>registe-se em <a href=\"https://lists.publicknowledgeproject.org/"
+"lists/\" target=\"_blank\">https://lists.publicknowledgeproject.org/lists/</"
+"a></strong>. Se tiver questões ou comentários, visite o <a href=\"http://"
+"forum.pkp.sfu.ca\" target=\"_blank\">fórum de apoio</a>.</p>"
+
+msgid "log.review.reviewDueDateSet"
+msgstr ""
+"A data prevista para a {$round} ronda de revisão da submissão "
+"{$submissionId} atribuída a {$reviewerName} foi definida para {$dueDate}."
+
+msgid "log.review.reviewDeclined"
+msgstr ""
+"{$reviewerName} rejeitou a {$round} de revisão da submissão {$submissionId}."
+
+msgid "log.review.reviewAccepted"
+msgstr ""
+"{$reviewerName} aceitou a {$round} ronda de revisão da submissão "
+"{$submissionId}."
+
+msgid "log.review.reviewUnconsidered"
+msgstr ""
+"{$editorName} marcou a {$round} ronda de revisão da submissão "
+"{$submissionId} como não considerada."
+
+msgid "log.editor.decision"
+msgstr ""
+"A decisão editorial ({$decision}) para a monografia {$submissionId} foi "
+"registada por {$editorName}."
+
+msgid "log.editor.recommendation"
+msgstr ""
+"A recomendação do editor ({$decision}) para a monografia {$submissionId} foi "
+"registada por {$editorName}."
+
+msgid "log.editor.archived"
+msgstr "A submissão {$submissionId} foi arquivada."
+
+msgid "log.editor.restored"
+msgstr "A submissão {$submissionId} foi restaurada para a fila."
+
+msgid "log.editor.editorAssigned"
+msgstr "{$editorName} foi designado como editor à submissão {$submissionId}."
+
+msgid "log.proofread.assign"
+msgstr ""
+"{$assignerName} designou {$proofreaderName} para realizar a leitura de "
+"provas da submissão {$submissionId}."
+
+msgid "log.proofread.complete"
+msgstr "{$proofreaderName} submeteu {$submissionId} para agendamento."
+
+msgid "log.imported"
+msgstr "{$userName} importou a monografia {$submissionId}."
+
+msgid "notification.addedIdentificationCode"
+msgstr "Código de Identificação adicionado."
+
+msgid "notification.editedIdentificationCode"
+msgstr "Código de Identificação editado."
+
+msgid "notification.removedIdentificationCode"
+msgstr "Código de Identificação removido."
+
+msgid "notification.addedPublicationDate"
+msgstr "Data de Publicação adicionada."
+
+msgid "notification.editedPublicationDate"
+msgstr "Data de Publicação editada."
+
+msgid "notification.removedPublicationDate"
+msgstr "Data de Publicação removida."
+
+msgid "notification.addedPublicationFormat"
+msgstr "Formato de Publicação adicionado."
+
+msgid "notification.editedPublicationFormat"
+msgstr "Formato de Publicação editado."
+
+msgid "notification.removedPublicationFormat"
+msgstr "Formato de Publicação removido."
+
+msgid "notification.addedSalesRights"
+msgstr "Direitos de Venda adicionados."
+
+msgid "notification.editedSalesRights"
+msgstr "Direitos de Venda editados."
+
+msgid "notification.removedSalesRights"
+msgstr "Direitos de Venda removidos."
+
+msgid "notification.addedRepresentative"
+msgstr "Representante adicionado."
+
+msgid "notification.editedRepresentative"
+msgstr "Representante editado."
+
+msgid "notification.removedRepresentative"
+msgstr "Representante removido."
+
+msgid "notification.addedMarket"
+msgstr "Mercado adicionado."
+
+msgid "notification.editedMarket"
+msgstr "Mercado editado."
+
+msgid "notification.removedMarket"
+msgstr "Mercado removido."
+
+msgid "notification.addedSpotlight"
+msgstr "Destaque adicionado."
+
+msgid "notification.editedSpotlight"
+msgstr "Destaque editado."
+
+msgid "notification.removedSpotlight"
+msgstr "Destaque removido."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "Metadados do catálogo guardados."
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "Metadados do formato de publicação guardados."
+
+msgid "notification.proofsApproved"
+msgstr "Provas aprovadas."
+
+msgid "notification.removedSubmission"
+msgstr "Submissão eliminada."
+
+msgid "notification.type.submissionSubmitted"
+msgstr "Uma nova monografia, \"{$title}\", foi submetida."
+
+msgid "notification.type.editing"
+msgstr "Eventos da Edição"
+
+msgid "notification.type.reviewing"
+msgstr "Eventos da Revisão"
+
+msgid "notification.type.site"
+msgstr "Eventos do site"
+
+msgid "notification.type.submissions"
+msgstr "Eventos da Submissão"
+
+msgid "notification.type.userComment"
+msgstr "Um leitor fez um comentário sobre \"{$title}\"."
+
+msgid "notification.type.public"
+msgstr "Notícias Públicas"
+
+msgid "notification.type.editorAssignmentTask"
+msgstr ""
+"Uma nova monografia foi submetida e necessita de ser designada a um editor."
+
+msgid "notification.type.copyeditorRequest"
+msgstr "Foi-lhe solicitado que realize a edição de texto de \"{$file}\"."
+
+msgid "notification.type.layouteditorRequest"
+msgstr "Foi-lhe solicitado que reveja o design de \"{$title}\"."
+
+msgid "notification.type.indexRequest"
+msgstr "Foi-lhe solicitado que criasse um índice de \"{$title}\"."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "Processo de revisão interna iniciado."
+
+msgid "notification.type.approveSubmission"
+msgstr ""
+"Esta submissão encontra-se de momento a aguardar aprovação na ferramenta de "
+"entrada do Catálogo antes de aparecer no catálogo público."
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "A aguardar aprovação."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+"A monografia não ficará listada no catálogo até ser publicada. Para "
+"adicionar este livro ao catálogo, clique no separador da Publicação."
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "Não existem formas de pagamento configuradas."
+
+msgid "notification.type.configurePaymentMethod"
+msgstr ""
+"Um método de pagamento configurado é necessário antes de definir as "
+"configurações de e-commerce."
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "Gestão do Catálogo"
+
+msgid "notification.type.visitCatalog"
+msgstr ""
+"A monografia foi aprovada. Visite o Catálogo para gerir os detalhes do "
+"catálogo, utilizando o link de catálogo logo acima."
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr ""
+"Foi-lhe negado acesso porque não parece ser um revisor válido para esta "
+"monografia."
+
+msgid "user.authorization.monographAuthor"
+msgstr ""
+"Foi-lhe negado o acesso à submissão porque não é o autor da monografia."
+
+msgid "user.authorization.monographReviewer"
+msgstr ""
+"Foi-lhe negado o acesso porque não é um revisor designado para esta "
+"monografia."
+
+msgid "user.authorization.monographFile"
+msgstr "Foi-lhe negado o acesso a este ficheiro específico da monografia."
+
+msgid "user.authorization.invalidMonograph"
+msgstr "Monografia inválida ou nenhum monografia solicitada!"
+
+msgid "user.authorization.noContext"
+msgstr "Nenhuma editora neste contexto."
+
+msgid "user.authorization.seriesAssignment"
+msgstr "Está a tentar aceder a uma monografia que não faz parte da sua série."
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr "Acesso negado! Não foi designado e esta etapa do fluxo de trabalho."
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+"Acesso negado! O grupo de utilizadores em que se encontra não foi designado "
+"a esta etapa do fluxo de trabalho. Verifique as configurações da editora."
+
+msgid "payment.directSales"
+msgstr "Download através do Website da Editora"
+
+msgid "payment.directSales.price"
+msgstr "Preço"
+
+msgid "payment.directSales.availability"
+msgstr "Disponibilidade"
+
+msgid "payment.directSales.catalog"
+msgstr "Catálogo"
+
+msgid "payment.directSales.approved"
+msgstr "Aprovado"
+
+msgid "payment.directSales.priceCurrency"
+msgstr "Preço ({$currency})"
+
+msgid "payment.directSales.numericOnly"
+msgstr "Preços devem ser apenas numéricos. Não inclua símbolos monetários."
+
+msgid "payment.directSales.directSales"
+msgstr "Venda Direta"
+
+msgid "payment.directSales.amount"
+msgstr "{$amount} ({$currency})"
+
+msgid "payment.directSales.notAvailable"
+msgstr "Indisponível"
+
+msgid "payment.directSales.notSet"
+msgstr "Não definido"
+
+msgid "payment.directSales.openAccess"
+msgstr "Acesso Aberto"
+
+msgid "payment.directSales.price.description"
+msgstr ""
+"Formatos de ficheiros podem estar disponíveis para download através do site "
+"da editora em acesso aberto sem custos para os leitores ou vendas diretas "
+"(utilizando um processador de pagamentos online, configurado em "
+"Distribuição). Indique a forma de acesso a este ficheiro."
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "É obrigatório inserir um preço com valor numérico."
+
+msgid "payment.directSales.purchase"
+msgstr "Comprar {$format} ({$amount} {$currency})"
+
+msgid "payment.directSales.download"
+msgstr "Transferir {$format}"
+
+msgid "payment.directSales.monograph.name"
+msgstr "Comprar Monografia ou Capítulo"
+
+msgid "payment.directSales.monograph.description"
+msgstr ""
+"Esta transação refere-se à compra do download direto de apenas uma "
+"monografia ou um capítulo de monografia."
+
+msgid "debug.notes.helpMappingLoad"
+msgstr ""
+"Ficheiro XML de ajuda de mapeamento recarregado {$filename} na procura por "
+"{$id}."
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Livro"
+
+msgid "submission.pdf.download"
+msgstr "Transferir PDF"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "Registar-se em outras editoras"
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "Esconder outras editoras"
+
+msgid "submission.round"
+msgstr "Ronda&nbsp;{$round}"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "Não foi especificada uma submissão publicada válida."
+
+msgid "catalog.coverImageTitle"
+msgstr "Capa"
 
 msgid "grid.catalogEntry.chapters"
 msgstr "Capítulos"
 
-msgid "search.results.orderDir.desc"
-msgstr "Descendente"
-
-msgid "search.results.orderDir.asc"
-msgstr "Ascendente"
-
-msgid "search.results.orderBy.relevance"
-msgstr "Relevância"
-
-msgid "search.results.orderBy.popularityMonth"
-msgstr "Popularidade (Último Mês)"
-
-msgid "search.results.orderBy.popularityAll"
-msgstr "Popularidade (Sempre)"
-
-msgid "search.results.orderBy.press"
-msgstr "Título da Editora"
-
-msgid "search.results.orderBy.monograph"
-msgstr "Título da Monografia"
-
-msgid "search.results.orderBy.date"
-msgstr "Data de Publicação"
+msgid "search.results.orderBy.article"
+msgstr "Título do Artigo"
 
 msgid "search.results.orderBy.author"
 msgstr "Autor"
 
-msgid "search.results.orderBy.article"
-msgstr "Título do Artigo"
+msgid "search.results.orderBy.date"
+msgstr "Data de Publicação"
 
-msgid "grid.action.addAnnouncement"
-msgstr "Adicionar Notícia"
+msgid "search.results.orderBy.monograph"
+msgstr "Título da Monografia"
+
+msgid "search.results.orderBy.press"
+msgstr "Título da Editora"
+
+msgid "search.results.orderBy.popularityAll"
+msgstr "Popularidade (Sempre)"
+
+msgid "search.results.orderBy.popularityMonth"
+msgstr "Popularidade (Último Mês)"
+
+msgid "search.results.orderBy.relevance"
+msgstr "Relevância"
+
+msgid "search.results.orderDir.asc"
+msgstr "Ascendente"
+
+msgid "search.results.orderDir.desc"
+msgstr "Descendente"
+
+#~ msgid "grid.action.addAnnouncement"
+#~ msgstr "Adicionar Notícia"

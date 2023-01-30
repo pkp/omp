@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2022-08-09 10:00+0000\n"
 "Last-Translator: Dorota Siwecka <dorota.k.siwecka@gmail.com>\n"
-"Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/"
-"themes-default/pl_PL/>\n"
+"Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/themes-"
+"default/pl_PL/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -13,79 +13,65 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
-msgstr "Pokazuj obraz strony głównej jako tło nagłówka."
+msgid "plugins.themes.default.name"
+msgstr "Motyw domyślny"
 
-msgid "plugins.themes.default.option.useHomepageImageAsHeader.description"
-msgstr ""
-"Kiedy obraz strony głównej zostanie załadowany, wyświetl w tle nagłówka ("
-"zamiast jego tradycyjnego miejsca na stronie głównej)."
+msgid "plugins.themes.default.description"
+msgstr "Ten motyw wdraża motyw domyślny."
 
-msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
-msgstr "Obraz tła nagłówka"
+msgid "plugins.themes.default.option.typography.label"
+msgstr "Typografia"
 
-msgid "plugins.themes.default.option.colour.description"
-msgstr "Wybierz kolor dla nagłówka."
-
-msgid "plugins.themes.default.option.colour.label"
-msgstr "Kolor"
-
-msgid "plugins.themes.default.option.typography.lora_openSans"
-msgstr ""
-"Lora/Open Sans: Komplementarne parowanie szeryfowych nagłówków i "
-"bezszeryfowego tekstu."
-
-msgid "plugins.themes.default.option.typography.lora"
-msgstr ""
-"Lora: Szeryfowa czcionka z szerokimi odstępami odpowiednia do czytania "
-"online."
-
-msgid "plugins.themes.default.option.typography.lato"
-msgstr "Lato: Powszechna, nowoczesna, bezszeryfowa czcionka."
-
-msgid "plugins.themes.default.option.typography.notoSans_notoSerif"
-msgstr ""
-"Noto Serif/Noto Sans: Komplementarne parowanie  bezszeryfowych nagłówków i "
-"szeryfowego tekstu."
-
-msgid "plugins.themes.default.option.typography.notoSerif_notoSans"
-msgstr ""
-"Noto Serif/Noto Sans: Komplementarne parowanie  szeryfowych nagłówków i "
-"bezszeryfowego tekstu."
-
-msgid "plugins.themes.default.option.typography.notoSerif"
-msgstr "Noto Serif: Szeryfowy wariant natywnej cyfrowej czcionki Google."
+msgid "plugins.themes.default.option.typography.description"
+msgstr "Wybierz odpowiednią kombinacją czcionki dla tego pisma."
 
 msgid "plugins.themes.default.option.typography.notoSans"
 msgstr ""
 "Noto Sans: Cyfrowa czcionka natywnie zaprojektowana przez Google do "
 "rozszerzenia obsługi językowej."
 
-msgid "plugins.themes.default.option.typography.description"
-msgstr "Wybierz odpowiednią kombinacją czcionki dla tego pisma."
+msgid "plugins.themes.default.option.typography.notoSerif"
+msgstr "Noto Serif: Szeryfowy wariant natywnej cyfrowej czcionki Google."
 
-msgid "plugins.themes.default.option.typography.label"
-msgstr "Typografia"
-
-msgid "plugins.themes.default.description"
-msgstr "Ten motyw wdraża motyw domyślny."
-
-msgid "plugins.themes.default.name"
-msgstr "Motyw domyślny"
-
-msgid "plugins.themes.default.option.displayStats.none"
+msgid "plugins.themes.default.option.typography.notoSerif_notoSans"
 msgstr ""
-"Nie wyświetlaj wykresu pokazującego statystyki wykorzystania zgłoszenia "
-"czytelnikowi."
+"Noto Serif/Noto Sans: Komplementarne parowanie  szeryfowych nagłówków i "
+"bezszeryfowego tekstu."
 
-msgid "plugins.themes.default.option.displayStats.line"
-msgstr "Użyj typu wykresu liniowego do wyświetlania statystyk użycia."
+msgid "plugins.themes.default.option.typography.notoSans_notoSerif"
+msgstr ""
+"Noto Serif/Noto Sans: Komplementarne parowanie  bezszeryfowych nagłówków i "
+"szeryfowego tekstu."
 
-msgid "plugins.themes.default.displayStats.downloads"
-msgstr "Pobrania"
+msgid "plugins.themes.default.option.typography.lato"
+msgstr "Lato: Powszechna, nowoczesna, bezszeryfowa czcionka."
 
-msgid "plugins.themes.default.displayStats.noStats"
-msgstr "Dane dotyczące pobrań nie są jeszcze dostępne."
+msgid "plugins.themes.default.option.typography.lora"
+msgstr ""
+"Lora: Szeryfowa czcionka z szerokimi odstępami odpowiednia do czytania "
+"online."
+
+msgid "plugins.themes.default.option.typography.lora_openSans"
+msgstr ""
+"Lora/Open Sans: Komplementarne parowanie szeryfowych nagłówków i "
+"bezszeryfowego tekstu."
+
+msgid "plugins.themes.default.option.colour.label"
+msgstr "Kolor"
+
+msgid "plugins.themes.default.option.colour.description"
+msgstr "Wybierz kolor dla nagłówka."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
+msgstr "Obraz tła nagłówka"
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.description"
+msgstr ""
+"Kiedy obraz strony głównej zostanie załadowany, wyświetl w tle nagłówka "
+"(zamiast jego tradycyjnego miejsca na stronie głównej)."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
+msgstr "Pokazuj obraz strony głównej jako tło nagłówka."
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
 msgstr "Pokaż serie"
@@ -96,8 +82,22 @@ msgstr "Dodaj listy linków do wszystkich serii wydawnictwa na stronie katalogu"
 msgid "plugins.themes.default.option.displayStats.label"
 msgstr "Opcje wyświetlania statystyk użycia"
 
+msgid "plugins.themes.default.option.displayStats.none"
+msgstr ""
+"Nie wyświetlaj wykresu pokazującego statystyki wykorzystania zgłoszenia "
+"czytelnikowi."
+
 msgid "plugins.themes.default.option.displayStats.bar"
 msgstr "Użyj typu słupkowego wykresu do wyświetlania statystyk użytkowania."
 
+msgid "plugins.themes.default.option.displayStats.line"
+msgstr "Użyj typu wykresu liniowego do wyświetlania statystyk użycia."
+
 msgid "plugins.themes.default.displayStats.monthInitials"
 msgstr "St Lut Mrz Kw Maj Cz Lip Sier Wrz Paź Lis Gr"
+
+msgid "plugins.themes.default.displayStats.downloads"
+msgstr "Pobrania"
+
+msgid "plugins.themes.default.displayStats.noStats"
+msgstr "Dane dotyczące pobrań nie są jeszcze dostępne."

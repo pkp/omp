@@ -11,26 +11,32 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "api.submissions.403.cantChangeContext"
-msgstr "Du kan ikke endre utgiver for en innlevering."
-
-msgid "api.publications.403.submissionsDidNotMatch"
-msgstr "Publikasjonen du ba om er ikke en del av denne innleveringen."
-
-msgid "api.publications.403.contextsDidNotMatch"
-msgstr "Publikasjonen du ba om er ikke tilgjengelig fra denne utgiveren."
-
-msgid "api.emailTemplates.403.notAllowedChangeContext"
-msgstr ""
-"Du har ikke tillatelse til å flytte denne e-postmalen til en annen utgiver."
-
-msgid "api.submissions.400.submissionsNotFound"
-msgstr "En eller flere av innleveringene ble ikke funnet."
-
 msgid "api.submissions.400.submissionIdsRequired"
 msgstr ""
 "Du må legge inn en eller flere innleverings ID-er som skal bli lagt til "
 "katalogen."
 
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "En eller flere av innleveringene ble ikke funnet."
+
+msgid "api.submissions.400.wrongContext"
+msgstr ""
+
 msgid "api.emails.403.disabled"
 msgstr "E-post utsending har ikke blitt aktiverrt for denne utgiveren."
+
+msgid "api.emailTemplates.403.notAllowedChangeContext"
+msgstr ""
+"Du har ikke tillatelse til å flytte denne e-postmalen til en annen utgiver."
+
+msgid "api.publications.403.contextsDidNotMatch"
+msgstr "Publikasjonen du ba om er ikke tilgjengelig fra denne utgiveren."
+
+msgid "api.publications.403.submissionsDidNotMatch"
+msgstr "Publikasjonen du ba om er ikke en del av denne innleveringen."
+
+msgid "api.submissions.403.cantChangeContext"
+msgstr "Du kan ikke endre utgiver for en innlevering."
+
+msgid "api.submission.400.inactiveSection"
+msgstr ""

@@ -13,33 +13,33 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "api.submissions.403.cantChangeContext"
-msgstr "Ви не можете змінити е-видавництво для подання."
+msgid "api.submissions.400.submissionIdsRequired"
+msgstr ""
+"Вам необхідно ввести одне або декілька ID подань для додавання в каталог."
 
-msgid "api.publications.403.contextsDidNotMatch"
-msgstr "Публікація, яку Ви шукаєте, не є частиною цього е-видавництва."
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "Одне або більше подань, які Ви вказали, не вдалося знайти."
+
+msgid "api.submissions.400.wrongContext"
+msgstr "Подання, яке Ви запросили, у цьому е-видавництві нема."
+
+msgid "api.emails.403.disabled"
+msgstr ""
+"Фунцію сповіщення електронною поштою для цього е-видавництва не включено."
 
 msgid "api.emailTemplates.403.notAllowedChangeContext"
 msgstr ""
 "У вас недостатньо прав для переносу цього шаблону електронного листа в інше "
 "е-видавництво."
 
+msgid "api.publications.403.contextsDidNotMatch"
+msgstr "Публікація, яку Ви шукаєте, не є частиною цього е-видавництва."
+
 msgid "api.publications.403.submissionsDidNotMatch"
 msgstr "Публікація, яку Ви шукаєте, не є частиною цього подання."
 
-msgid "api.emails.403.disabled"
-msgstr ""
-"Фунцію сповіщення електронною поштою для цього е-видавництва не включено."
-
-msgid "api.submissions.400.wrongContext"
-msgstr "Подання, яке Ви запросили, у цьому е-видавництві нема."
-
-msgid "api.submissions.400.submissionsNotFound"
-msgstr "Одне або більше подань, які Ви вказали, не вдалося знайти."
-
-msgid "api.submissions.400.submissionIdsRequired"
-msgstr ""
-"Вам необхідно ввести одне або декілька ID подань для додавання в каталог."
+msgid "api.submissions.403.cantChangeContext"
+msgstr "Ви не можете змінити е-видавництво для подання."
 
 msgid "api.submission.400.inactiveSection"
 msgstr "Цей розділ більше не приймає подання."

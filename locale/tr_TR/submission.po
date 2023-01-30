@@ -12,18 +12,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "submission.round"
-msgstr "{$round}. Tur"
-
-msgid "submission.editorName"
-msgstr "{$editorName} (ed)"
-
-msgid "publication.inactiveSeries"
-msgstr "{$series} (Inactive)"
-
-msgid "submission.authorListSeparator"
-msgstr "; "
-
 msgid "submission.upload.selectComponent"
 msgstr "Bileşeni Seçin"
 
@@ -57,6 +45,9 @@ msgstr "Kitap: Yazarlar bir bütün olarak kitapla ilişkilendirilir."
 msgid "submission.workflowType.change"
 msgstr "Değiştir"
 
+msgid "submission.editorName"
+msgstr "{$editorName} (ed)"
+
 msgid "submission.monograph"
 msgstr "Yazı"
 
@@ -65,6 +56,9 @@ msgstr "Üretime Hazır"
 
 msgid "submission.fairCopy"
 msgstr "Temiz Nüsha"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
 
 msgid "submission.artwork.permissions"
 msgstr "İzinler"
@@ -102,6 +96,9 @@ msgstr "Paylaş"
 msgid "manuscript.submission"
 msgstr "Yazı Taslağı Gönderimi"
 
+msgid "submission.round"
+msgstr "{$round}. Tur"
+
 msgid "submissions.queuedReview"
 msgstr "Değerlendirmede"
 
@@ -134,6 +131,9 @@ msgstr "Yeni Gönderi"
 
 msgid "submission.submit.upload"
 msgstr "Gönderi yükle"
+
+msgid "author.volumeEditor"
+msgstr ""
 
 msgid "author.isVolumeEditor"
 msgstr "Bu katılımcıyı bu cildin editörü olarak tanımlayın."
@@ -344,6 +344,9 @@ msgstr "Fihrist girişi ayrıntıları güncellendi."
 msgid "publication.invalidSeries"
 msgstr "Bu yayına ait dizi bulunamadı."
 
+msgid "publication.inactiveSeries"
+msgstr "{$series} (Inactive)"
+
 msgid "publication.required.issue"
 msgstr "Yayın, yayınlanmadan önce bir sayıya atanmalıdır."
 
@@ -450,11 +453,128 @@ msgstr "{$version} sürümü için yayın ayrıntıları"
 msgid "submission.queries.production"
 msgstr "Üretim Tartışmaları"
 
-msgid "chapter.pages"
-msgstr "Sayfalar"
-
 msgid "publication.chapter.landingPage"
 msgstr "Kısım Sayfası"
 
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+
+msgid "publication.publish.success"
+msgstr ""
+
 msgid "chapter.volume"
 msgstr "Cilt"
+
+msgid "submission.withoutChapter"
+msgstr ""
+
+msgid "submission.chapterCreated"
+msgstr ""
+
+msgid "chapter.pages"
+msgstr "Sayfalar"
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
+msgstr ""
+
+msgid "editor.submission.decision.promoteFiles.internalReview"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.completed"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr ""
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr ""
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr ""
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+
+msgid "doi.submission.incorrectContext"
+msgstr ""
+
+msgid "publication.chapter.licenseUrl"
+msgstr ""
+
+msgid "publication.chapterDefaultLicenseURL"
+msgstr ""
+
+msgid "submission.copyright.description"
+msgstr ""
+
+msgid "submission.wizard.notAllowed.description"
+msgstr ""
+
+msgid "submission.wizard.noSectionAllowed.description"
+msgstr ""
+
+msgid "submission.wizard.sectionClosed.message"
+msgstr ""
+
+msgid "submission.sectionNotFound"
+msgstr ""
+
+msgid "submission.sectionRestrictedToEditors"
+msgstr ""
+
+msgid "submission.wizard.submitting.monograph"
+msgstr ""
+
+msgid "submission.wizard.submitting.monographInLanguage"
+msgstr ""
+
+msgid "submission.wizard.submitting.editedVolume"
+msgstr ""
+
+msgid "submission.wizard.submitting.editedVolumeInLanguage"
+msgstr ""
+
+msgid "submission.wizard.chapters.description"
+msgstr ""

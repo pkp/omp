@@ -6,3 +6,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Weblate\n"
+
+msgid "plugins.block.browse"
+msgstr ""
+
+msgid "plugins.block.browse.displayName"
+msgstr ""
+
+msgid "plugins.block.browse.description"
+msgstr ""
+
+msgid "plugins.block.browse.settings"
+msgstr ""
+
+msgid "plugins.block.browse.settings.title"
+msgstr ""
+
+msgid "plugins.block.browse.category"
+msgstr ""
+
+msgid "plugins.block.browse.series"
+msgstr ""
+
+msgid "plugins.block.browse.newReleases"
+msgstr ""

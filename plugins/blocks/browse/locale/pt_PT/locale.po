@@ -11,26 +11,26 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.block.browse.newReleases"
-msgstr "Novos lançamentos"
-
-msgid "plugins.block.browse.series"
-msgstr "Séries"
-
-msgid "plugins.block.browse.category"
-msgstr "Categorias"
-
-msgid "plugins.block.browse.settings.title"
-msgstr "Possibilidades de Pesquisa"
-
-msgid "plugins.block.browse.settings"
-msgstr "Configurações"
-
-msgid "plugins.block.browse.description"
-msgstr "Este plugin fornece ferramentas de \"pesquisa\" na barra lateral."
+msgid "plugins.block.browse"
+msgstr "Pesquisar"
 
 msgid "plugins.block.browse.displayName"
 msgstr "Bloco de Pesquisa"
 
-msgid "plugins.block.browse"
-msgstr "Pesquisar"
+msgid "plugins.block.browse.description"
+msgstr "Este plugin fornece ferramentas de \"pesquisa\" na barra lateral."
+
+msgid "plugins.block.browse.settings"
+msgstr "Configurações"
+
+msgid "plugins.block.browse.settings.title"
+msgstr "Possibilidades de Pesquisa"
+
+msgid "plugins.block.browse.category"
+msgstr "Categorias"
+
+msgid "plugins.block.browse.series"
+msgstr "Séries"
+
+msgid "plugins.block.browse.newReleases"
+msgstr "Novos lançamentos"

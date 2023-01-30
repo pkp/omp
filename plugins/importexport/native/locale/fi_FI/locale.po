@@ -11,38 +11,41 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.importexport.native.error.unknownSeries"
-msgstr "Tuntematon sarja  {$param}"
-
-msgid "plugins.importexport.native.onix30.pressMissingFields"
-msgstr ""
-"Julkaisijan asetuksista puuttuu joitain tietoja, joita vaaditaan ONIX-"
-"kuvailutietojen käyttöön. Siirry <a href=\"{$url}\">julkaisijan "
-"asetuksiin</a> ja täytä puuttuvat tiedot."
-
-msgid "plugins.importexport.native.importComplete"
-msgstr "Tuonti onnistui. Seuraavat kohteet tuotiin:"
-
-msgid "plugins.inportexport.native.uploadFile"
-msgstr "Ole hyvä ja lataa tiedosto kohdassa \"Tuo\" jatkaaksesi."
-
-msgid "plugins.importexport.native.results"
-msgstr "Tulokset"
-
-msgid "plugins.importexport.native.exportSubmissionsSelect"
-msgstr "Valitse vietävät teokset"
-
-msgid "plugins.importexport.native.export"
-msgstr "Vie"
-
-msgid "plugins.importexport.native.import.instructions"
-msgstr "Lataa tuotava XML-tiedosto"
-
-msgid "plugins.importexport.native.import"
-msgstr "Tuo"
+msgid "plugins.importexport.native.displayName"
+msgstr "Järjestelmän XML-lisäosa"
 
 msgid "plugins.importexport.native.description"
 msgstr "Tuo ja vie teoksia OMP-järjestelmän omassa XML-muodossa."
 
-msgid "plugins.importexport.native.displayName"
-msgstr "Järjestelmän XML-lisäosa"
+msgid "plugins.importexport.native.import"
+msgstr "Tuo"
+
+msgid "plugins.importexport.native.import.instructions"
+msgstr "Lataa tuotava XML-tiedosto"
+
+msgid "plugins.importexport.native.export"
+msgstr "Vie"
+
+msgid "plugins.importexport.native.exportSubmissionsSelect"
+msgstr "Valitse vietävät teokset"
+
+msgid "plugins.importexport.native.results"
+msgstr "Tulokset"
+
+msgid "plugins.inportexport.native.uploadFile"
+msgstr "Ole hyvä ja lataa tiedosto kohdassa \"Tuo\" jatkaaksesi."
+
+msgid "plugins.importexport.native.importComplete"
+msgstr "Tuonti onnistui. Seuraavat kohteet tuotiin:"
+
+msgid "plugins.importexport.native.onix30.pressMissingFields"
+msgstr ""
+"Julkaisijan asetuksista puuttuu joitain tietoja, joita vaaditaan ONIX-"
+"kuvailutietojen käyttöön. Siirry <a href=\"{$url}\">julkaisijan asetuksiin</"
+"a> ja täytä puuttuvat tiedot."
+
+msgid "plugins.importexport.native.error.unknownSeries"
+msgstr "Tuntematon sarja  {$param}"
+
+msgid "plugins.importexport.native.cliUsage"
+msgstr ""
