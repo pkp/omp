@@ -115,9 +115,9 @@ class SubmissionHandler extends PKPSubmissionHandler
     /**
      * Add the chapters grid to the details step
      */
-    protected function getDetailsStep(Request $request, Submission $submission, Publication $publication, array $locales, string $publicationApiUrl, array $sections): array
+    protected function getDetailsStep(Request $request, Submission $submission, Publication $publication, array $locales, string $publicationApiUrl, array $sections, string $controlledVocabUrl): array
     {
-        $step = parent::getDetailsStep($request, $submission, $publication, $locales, $publicationApiUrl, $sections);
+        $step = parent::getDetailsStep($request, $submission, $publication, $locales, $publicationApiUrl, $sections, $controlledVocabUrl);
         $step['sections'][] = [
             'id' => self::CHAPTERS_SECTION_ID,
             'name' => __('submission.chapters'),
