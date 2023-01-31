@@ -156,7 +156,7 @@ describe('Data suite tests', function() {
 		cy.contains('Begin Submission').click();
 
 		// The submission wizard has loaded
-		cy.contains('Make a Submission: Upload Files');
+		cy.contains('Make a Submission: Details');
 		cy.get('.submissionWizard__submissionDetails').contains('Finkel');
 		cy.get('.submissionWizard__submissionDetails').contains(submission.title);
 		cy.contains('Submitting an Edited Volume in English');
@@ -172,7 +172,18 @@ describe('Data suite tests', function() {
 				submission.id = parseInt(search.split('=')[1]);
 			});
 
+		// Enter details
+		cy.get('.pkpSteps__step__label--current').contains('Details');
+		cy.get('h2').contains('Submission Details');
+		cy.setTinyMceContent('titleAbstract-abstract-control-en_US', submission.abstract);
+		cy.get('#titleAbstract-title-control-en_US').click(); // Ensure blur event is fired
+
+		cy.addChapters(submission.chapters);
+
+		cy.get('.submissionWizard__footer button').contains('Continue').click();
+
 		// Upload files and set file genres
+		cy.contains('Make a Submission: Upload Files');
 		cy.get('h2').contains('Upload Files');
 		cy.get('h2').contains('Files');
 		cy.uploadSubmissionFiles(submission.files);
@@ -247,14 +258,6 @@ describe('Data suite tests', function() {
 		cy.get('.modal__panel:contains("Are you sure you want to remove Fake Author Name as a contributor?")').find('button').contains('Delete Contributor').click();
 		cy.get('.listPanel__item:contains("Fake Author Name")').should('not.exist');
 
-		cy.get('.submissionWizard__footer button').contains('Continue').click();
-
-		// Enter details
-		cy.contains('Make a Submission: Details');
-		cy.get('.pkpSteps__step__label--current').contains('Details');
-		cy.get('h2').contains('Submission Details');
-		cy.setTinyMceContent('titleAbstract-abstract-control-en_US', submission.abstract);
-		cy.get('#titleAbstract-title-control-en_US').click(); // Ensure blur event is fired
 
 		// Save for later
 		cy.get('button').contains('Save for Later').click();
@@ -262,8 +265,6 @@ describe('Data suite tests', function() {
 		cy.contains('Your submission details have been saved');
 		cy.contains('We have emailed a copy of this link to you at afinkel@mailinator.com.');
 		cy.get('a').contains(submission.title).click();
-
-		cy.addChapters(submission.chapters);
 
 		cy.get('.submissionWizard__footer button').contains('Continue').click();
 
