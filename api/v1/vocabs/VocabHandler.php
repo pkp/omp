@@ -59,7 +59,7 @@ class VocabHandler extends \PKP\API\v1\vocabs\PKPVocabHandler
 
         /** @var ONIXCodelistItemDAO */
         $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
-        $codes = array_map(fn ($value) => trim($value), array_values($onixCodelistItemDao->getCodes('List' . $codeList, [], $term)));
+        $codes = array_map(fn ($value) => trim($value)), array_values($onixCodelistItemDao->getCodes('List' . $codeList, [], $term));
         asort($codes);
         return $response->withJson($codes, 200);
     }
