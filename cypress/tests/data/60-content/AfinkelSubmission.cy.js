@@ -305,18 +305,18 @@ describe('Data suite tests', function() {
 			.parents('.submissionWizard__reviewPanel')
 			.find('h4').contains('Title').siblings('.submissionWizard__reviewPanel__item__value').contains(submission.title)
 			.parents('.submissionWizard__reviewPanel')
+			.find('h4').contains('Keywords').siblings('.submissionWizard__reviewPanel__item__value').contains('None provided')
+			.parents('.submissionWizard__reviewPanel')
 			.find('h4').contains('Abstract').siblings('.submissionWizard__reviewPanel__item__value').contains(submission.abstract);
 		cy.get('h3').contains('Details (French/Français (Canada))') // FIXME: Should be (French)
 			.parents('.submissionWizard__reviewPanel')
 			.find('h4').contains('Title').siblings('.submissionWizard__reviewPanel__item__value').contains('None provided')
 			.parents('.submissionWizard__reviewPanel')
-			.find('h4').contains('Abstract').siblings('.submissionWizard__reviewPanel__item__value').contains('None provided');
-		cy.get('h3').contains('For the Editors (English/English)') // FIXME: Should be (English)
-			.parents('.submissionWizard__reviewPanel')
 			.find('h4').contains('Keywords').siblings('.submissionWizard__reviewPanel__item__value').contains('None provided')
-		cy.get('h3').contains('For the Editors (French/Français (Canada))') // FIXME: Should be (English)
 			.parents('.submissionWizard__reviewPanel')
-			.find('h4').contains('Keywords').siblings('.submissionWizard__reviewPanel__item__value').contains('None provided');
+			.find('h4').contains('Abstract').siblings('.submissionWizard__reviewPanel__item__value').contains('None provided');
+		cy.get('h3').contains('For the Editors (English/English)'); // FIXME: Should be (English)
+		cy.get('h3').contains('For the Editors (French/Français (Canada))'); // FIXME: Should be (English)
 
 		// Submit
 		cy.contains('Make a Submission: Review');
