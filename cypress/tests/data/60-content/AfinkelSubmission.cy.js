@@ -160,9 +160,9 @@ describe('Data suite tests', function() {
 		cy.get('.submissionWizard__submissionDetails').contains('Finkel');
 		cy.get('.submissionWizard__submissionDetails').contains(submission.title);
 		cy.contains('Submitting an Edited Volume in English');
-		cy.get('.pkpSteps__step__label--current').contains('Upload Files');
+		cy.get('.pkpSteps__step__label--current').contains('Details');
+		cy.get('.pkpSteps__step__label').contains('Upload Files');
 		cy.get('.pkpSteps__step__label').contains('Contributors');
-		cy.get('.pkpSteps__step__label').contains('Details');
 		cy.get('.pkpSteps__step__label').contains('For the Editors');
 		cy.get('.pkpSteps__step__label').contains('Review');
 
@@ -177,8 +177,6 @@ describe('Data suite tests', function() {
 		cy.get('h2').contains('Submission Details');
 		cy.setTinyMceContent('titleAbstract-abstract-control-en_US', submission.abstract);
 		cy.get('#titleAbstract-title-control-en_US').click(); // Ensure blur event is fired
-
-		cy.addChapters(submission.chapters);
 
 		cy.get('.submissionWizard__footer button').contains('Continue').click();
 
@@ -266,6 +264,12 @@ describe('Data suite tests', function() {
 		cy.contains('We have emailed a copy of this link to you at afinkel@mailinator.com.');
 		cy.get('a').contains(submission.title).click();
 
+		// Go back to Details step and add chapters
+		cy.get('.pkpSteps__step__label:contains("Details")').click();
+		cy.addChapters(submission.chapters);
+
+		cy.get('.submissionWizard__footer button').contains('Continue').click();
+		cy.get('.submissionWizard__footer button').contains('Continue').click();
 		cy.get('.submissionWizard__footer button').contains('Continue').click();
 
 		// For the Editors
