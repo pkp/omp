@@ -13,38 +13,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "manager.series.submissionsToThisSection"
-msgstr "Proposte inviate a questa Collana"
-
-msgid "manager.series.submissionReview"
-msgstr "Non verrà sottoposto a revisione paritaria"
-
-msgid "manager.series.readingTools"
-msgstr "Strumenti di lettura"
-
-msgid "manager.series.open"
-msgstr "Proposte libere"
-
-msgid "manager.series.indexed"
-msgstr "Indicizzato"
-
-msgid "manager.series.confirmDelete"
-msgstr "Sei sicuro di voler eliminare definitivamente questa Collana?"
-
-msgid "manager.series.editorRestriction"
+msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr ""
-"Gli articoli possono essere inviati solo da Editori ed Editori di Collana."
-
-msgid "manager.series.submissionIndexing"
-msgstr "Non sarà incluso nell'indicizzazione della Casa Editrice"
-
-msgid "manager.series.form.mustAllowPermission"
-msgstr ""
-"Assicurati che almeno una casella di controllo sia selezionata per ogni "
-"assegnazione di Editore di Collana."
-
-msgid "manager.languages.primaryLocaleInstructions"
-msgstr "Questa sarà la lingua predefinita per il sito della Casa Editrice."
+"Questo sostituirà tutte le impostazioni specifiche che avevi impostato per "
+"la lingua"
 
 msgid "manager.languages.noneAvailable"
 msgstr ""
@@ -52,365 +24,219 @@ msgstr ""
 "del tuo sito se desideri utilizzare lingue aggiuntive con questa Casa "
 "Editrice."
 
-msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Questa sarà la lingua predefinita per il sito della Casa Editrice."
+
+msgid "manager.series.form.mustAllowPermission"
 msgstr ""
-"Questo sostituirà tutte le impostazioni specifiche che avevi impostato per "
-"la lingua"
+"Assicurati che almeno una casella di controllo sia selezionata per ogni "
+"assegnazione di Editore di Collana."
 
-msgid "manager.setup.managerialRoles"
-msgstr "Ruoli manageriali"
+msgid "manager.series.form.reviewFormId"
+msgstr "Assicurati di aver scelto un modulo di revisione valido."
 
-msgid "manager.system.archiving"
-msgstr "Archiviazione"
+msgid "manager.series.submissionIndexing"
+msgstr "Non sarà incluso nell'indicizzazione della Casa Editrice"
 
-msgid "manager.setup.useImageTitle"
-msgstr "Immagine"
-
-msgid "manager.setup.publicationFormat.codeRequired"
-msgstr "È necessario scegliere un formato."
-
-msgid "manager.setup.customTags"
-msgstr "Tag personalizzati"
-
-msgid "doi.editor.doi"
-msgstr "DOI"
-
-msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgid "manager.series.editorRestriction"
 msgstr ""
-"I revisori avranno accesso al file della proposta solo dopo aver accettato "
-"di revisionarlo."
+"Gli articoli possono essere inviati solo da Editori ed Editori di Collana."
 
-msgid "doi.editor.preview.publication.none"
-msgstr "A questa pubblicazione non è stato assegnato un DOI."
+msgid "manager.series.confirmDelete"
+msgstr "Sei sicuro di voler eliminare definitivamente questa Collana?"
 
-msgid "manager.setup.guidelines"
-msgstr "Linee guida"
+msgid "manager.series.indexed"
+msgstr "Indicizzato"
 
-msgid "manager.setup.layoutTemplates"
-msgstr "Modelli di layout"
+msgid "manager.series.open"
+msgstr "Proposte libere"
 
-msgid "manager.setup.information"
-msgstr "Informazioni"
+msgid "manager.series.readingTools"
+msgstr "Strumenti di lettura"
 
-msgid "manager.setup.subjectKeywordTopic"
-msgstr "Parole chiave"
+msgid "manager.series.submissionReview"
+msgstr "Non verrà sottoposto a revisione paritaria"
 
-msgid "grid.genres.title.short"
-msgstr "Componenti"
+msgid "manager.series.submissionsToThisSection"
+msgstr "Proposte inviate a questa Collana"
 
-msgid "manager.setup.contextAbout"
-msgstr "Informazioni sulla Casa Editrice"
+msgid "manager.series.abstractsNotRequired"
+msgstr "Non si richiedono abstract"
 
-msgid "manager.setup.noUseCopyeditors"
+msgid "manager.series.disableComments"
+msgstr "Disabilita i commenti dei lettori per questa Collana."
+
+msgid "manager.series.book"
+msgstr "Collane"
+
+msgid "manager.series.create"
+msgstr "Crea Collana"
+
+msgid "manager.series.policy"
+msgstr "Descrizione della Collana"
+
+msgid "manager.series.assigned"
+msgstr "Editori per questa Collana"
+
+msgid "manager.series.seriesEditorInstructions"
 msgstr ""
-"La correzione redazionale sarà effettuata da un Editore o da un Editore di "
-"sezione assegnato."
+"Aggiungi un Editore di Collana a questa Collana prendendolo dagli Editori di "
+"Collana disponibili. Una volta aggiunto, designa l'editor di Collana che "
+"supervisionerà la REVISIONE (revisione tra pari) e/o l'EDITING (ritocco del "
+"testo, layout e correzione di bozze) delle proposte fatte a questa Collana. "
+"Gli Editori vengono creati facendo clic su <a href="
+"\"{$seriesEditorsUrl}\">Editori di Collana</a> in Ruoli in Gestione Casa "
+"Editrice."
 
-msgid "doi.editor.clearObjectsDoi"
-msgstr "Cancella"
+msgid "manager.series.hideAbout"
+msgstr "Ometti questa Collana da Informazioni sulla Casa Editrice."
 
-msgid "manager.setup.contextTitle"
-msgstr "Nome della Casa Editrice"
+msgid "manager.series.unassigned"
+msgstr "Editori di Collana disponibili"
 
-msgid "doi.editor.missingParts"
-msgstr ""
-"Non è possibile generare un DOI perché in una o più parti del modello DOI "
-"mancano dati."
-
-msgid "manager.setup.policies.description"
-msgstr ""
-"Interessi, peer review, sezioni, privacy, sicurezza e ulteriori informazioni."
-
-msgid "manager.setup.useTextTitle"
-msgstr "Titolo"
-
-msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
-msgstr "Abstract della monografia e download"
-
-msgid "doi.editor.doi.description"
-msgstr "Il DOI deve iniziare con {$prefix}."
-
-msgid "manager.setup.typeExamples"
-msgstr ""
-"(per es. Ricerca storica; Esperimento; Analisi letteraria; Sondaggio/"
-"Intervista)"
+msgid "manager.series.form.abbrevRequired"
+msgstr "Per la Collana è richiesto un titolo abbreviato."
 
 msgid "manager.series.form.titleRequired"
 msgstr "Per la Collana è richiesto un titolo."
 
-msgid "manager.setup.identity"
-msgstr "Identificativi della Casa Editrice"
+msgid "manager.series.noneCreated"
+msgstr "Nessuna Collana è stata creata."
 
-msgid "manager.setup.pageHeader"
-msgstr "Intestazione della pagina della Casa Editrice"
+msgid "manager.series.existingUsers"
+msgstr "Utenti esistenti"
 
-msgid "manager.setup.searchEngineIndexing"
-msgstr "Indicizzazione per la ricerca"
+msgid "manager.series.seriesTitle"
+msgstr "Titolo della Collana"
 
-msgid "manager.setup.newPublicationFormatDescription"
+msgid "manager.series.restricted"
 msgstr ""
-"Per creare un nuovo formato di pubblicazione, compilare il modulo "
-"sottostante e fare clic sul pulsante 'Crea'."
-
-msgid "stats.publicationStats"
-msgstr "Statistiche della monografia"
-
-msgid "doi.editor.doiObjectTypeSubmissionFile"
-msgstr "file"
-
-msgid "manager.setup.notifyAllAuthorsOnDecision"
-msgstr ""
-"Quando si usa l'email di notifica all'autore, includere gli indirizzi email "
-"di tutti i coautori per le proposte con più autori, e non solo del "
-"proponente."
-
-msgid "emailTemplate.variable.queuedPayment.itemName"
-msgstr "Nome del tipo di pagamento"
-
-msgid "manager.setup.resetPermissions.confirm"
-msgstr ""
-"Sei sicuro di voler azzerare i dati dei permessi già allegati alle "
-"monografie?"
-
-msgid "manager.setup.form.numReviewersPerSubmission"
-msgstr "È richiesto il numero di revisori per ogni proposta."
-
-msgid "manager.setup.restoreDefaults"
-msgstr "Ripristina impostazioni predefinite"
-
-msgid "manager.setup.searchEngineIndexing.description"
-msgstr ""
-"Aiuta i motori di ricerca come Google a trovare e mostrare il tuo sito. "
-"Invia la <a href=\"{$sitemapUrl}\" target=\"_blank\">mappa del sito</a>."
-
-msgid "doi.editor.doiObjectTypeRepresentation"
-msgstr "formato di pubblicazione"
-
-msgid "manager.setup.copyediting"
-msgstr "Redattori"
-
-msgid "manager.setup.pressThumbnail.description"
-msgstr ""
-"Un piccolo logo o una immagine della Casa Editrice che può essere utilizzata "
-"negli elenchi delle Case Editrici."
-
-msgid "manager.setup.emailBounceAddress"
-msgstr "Indirizzo di inoltro"
-
-msgid "manager.setup.coverThumbnailsMaxHeight"
-msgstr "Altezza massima dell'immagine di copertina"
-
-msgid "mailable.validateEmailContext.name"
-msgstr "Convalida dell'email (Registrazione alla stampa)"
-
-msgid "mailable.decision.initialDecline.notifyAuthor.description"
-msgstr ""
-"Questa email informa l'autore che la sua proposta è stata rifiutata prima di "
-"essere inviata alla revisione, perché non soddisfa i requisiti per la "
-"pubblicazione con la Casa editrice."
-
-msgid "manager.setup.addNavItem"
-msgstr "Aggiungi voce"
-
-msgid "manager.setup.reviewOptions.reviewerRatings"
-msgstr "Valutazioni dei revisori"
-
-msgid "manager.setup.displayOnHomepage"
-msgstr "Contenuto della home page"
-
-msgid "manager.setup.form.contactEmailRequired"
-msgstr "L'email del contatto principale è obbligatoria."
-
-msgid "manager.setup.editorialTeam"
-msgstr "Team editoriale"
-
-msgid "manager.system.payments"
-msgstr "Pagamenti"
-
-msgid "manager.setup.siteAccess.viewContent"
-msgstr "Visualizza contenuto monografia"
-
-msgid "emailTemplate.variable.context.contextUrl"
-msgstr "L'URL della homepage della Casa Editrice"
-
-msgid "doi.description"
-msgstr ""
-"Questo plugin consente di assegnare i DOI (Digital Object Identifier) a "
-"monografie, capitoli, formati di pubblicazione e file in OMP."
-
-msgid "grid.genres.title"
-msgstr "Componenti monografia"
-
-msgid "doi.editor.doi.assignDoi"
-msgstr "Assegna"
-
-msgid "manager.setup.addItemtoAboutPress"
-msgstr "Aggiungi voce da visualizzare in \"Informazioni sulla Casa Editrice\""
-
-msgid "manager.setup.managingPublishingSetup"
-msgstr "Gestione e impostazione della pubblicazione"
-
-msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
-msgstr ""
-"Selezionare la categoria a cui si desidera collegare questa voce di menu."
-
-msgid "manager.setup.displayCurrentMonograph"
-msgstr "Aggiungi il sommario per la monografia corrente (se disponibile)."
-
-msgid "doi.readerDisplayName"
-msgstr "DOI:"
-
-msgid "manager.settings.publisher.identity.description"
-msgstr ""
-"Questi campi sono obbligatori per pubblicare <a href=\"https://en.wikipedia."
-"org/wiki/ONIX_for_Books\">metadati ONIX</a> validi."
+"Non consentire agli autori di inviare proposte direttamente a questa Collana."
 
 msgid "manager.series.confirmDeactivateSeries.error"
 msgstr ""
 "Deve essere attiva almeno una Collana. Visita le impostazioni del Flusso di "
 "lavoro per disabilitare tutti gli invii a questa Casa Editrice."
 
-msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
-msgstr "Selezionare la Collana a cui si desidera collegare questa voce di menu."
-
-msgid "manager.setup.reviewPolicy"
-msgstr "Politica di revisione"
+msgid "manager.payment.generalOptions"
+msgstr "Opzioni generali"
 
 msgid "manager.payment.options.enablePayments"
 msgstr ""
 "I pagamenti saranno abilitati per questa Casa Editrice. Tieni presente che "
 "agli utenti sarà richiesto di accedere per effettuare i pagamenti."
 
-msgid "manager.setup.reviewOptions"
-msgstr "Opzioni di revisione"
+msgid "manager.payment.success"
+msgstr "Le impostazioni di pagamento sono state aggiornate."
 
-msgid "manager.people.allSiteUsers"
-msgstr "Registra un utente di questo sito a questa Casa Editrice"
+msgid "manager.settings"
+msgstr "Impostazioni"
 
-msgid "manager.series.unassigned"
-msgstr "Editori di Collana disponibili"
+msgid "manager.settings.pressSettings"
+msgstr "Impostazioni Casa Editrice"
 
-msgid "manager.setup.reviewOptions.onQuality"
+msgid "manager.settings.press"
+msgstr "Casa Editrice"
+
+msgid "manager.settings.publisher.identity"
+msgstr "Identificativi della Casa Editrice"
+
+msgid "manager.settings.publisher.identity.description"
 msgstr ""
-"Gli Editori valutano i revisori su una scala di qualità da 1 a 5 dopo ogni "
-"lettura."
+"Questi campi sono obbligatori per pubblicare <a href=\"https://en.wikipedia."
+"org/wiki/ONIX_for_Books\">metadati ONIX</a> validi."
 
-msgid "manager.setup.contextInitials"
-msgstr "Acronimo della Casa Editrice"
+msgid "manager.settings.publisher"
+msgstr "Nome Casa Editrice"
 
-msgid "doi.displayName"
-msgstr "DOI"
-
-msgid "manager.setup.managementOfBasicEditorialSteps"
-msgstr "Gestione delle fasi editoriali principali"
-
-msgid "manager.setup.emailBounceAddress.disabled"
-msgstr ""
-"Per inviare email non recapitate a un indirizzo di inoltro, l'amministratore "
-"del sito deve abilitare l'opzione <code>allow_envelope_sender</code> nel "
-"file di configurazione del sito. Potrebbe essere necessaria la "
-"configurazione del server, come indicato nella documentazione di OMP."
+msgid "manager.settings.location"
+msgstr "Localizzazione geografica"
 
 msgid "manager.settings.publisherCode"
 msgstr "Codice Casa Editrice"
 
-msgid "manager.people.allUsers"
-msgstr "Tutti gli utenti registrati"
+msgid "manager.settings.publisherCodeType"
+msgstr "Tipo di codice Casa Editrice"
 
-msgid "manager.setup.enableDois.description"
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Questo non è un tipo di codice Casa Editrice valido."
+
+msgid "manager.settings.distributionDescription"
 msgstr ""
-"Consentire l'assegnazione dei Digital Object Identifier (DOI) ai lavori "
-"pubblicati da questa Casa Editrice."
+"Tutte le impostazioni specifiche necessarie al processo di distribuzione "
+"(notifica, indicizzazione, archiviazione, pagamento, strumenti di lettura)."
 
-msgid "manager.setup.searchEngineIndexing.success"
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Download delle monografie"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Visualizzazione della pagina estratta dalla monografia"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Abstract della monografia e download"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Visualizzazione della pagina principale della Collana"
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Visualizzazionie della pagina principale della Casa Editrice"
+
+msgid "manager.tools"
+msgstr "Strumenti"
+
+msgid "manager.tools.importExport"
 msgstr ""
-"Le impostazioni dell'indice del motore di ricerca sono state aggiornate."
+"Tutti gli strumenti specifici per l'importazione e l'esportazione dei dati "
+"(Case Editrici, monografie, utenti)"
 
-msgid "doi.manager.settings.doiSuffixPattern.example"
-msgstr "Per esempio, press%ppub%r può creare un DOI come 10.1234/pressESPpub100"
-
-msgid "manager.setup.settings"
-msgstr "Impostazioni"
-
-msgid "manager.people.allEnrolledUsers"
-msgstr "Utenti registrati a questa Casa Editrice"
-
-msgid "manager.setup.homepageContentDescription"
+msgid "manager.tools.statistics"
 msgstr ""
-"La homepage della Casa Editrice è costituita di default da link di "
-"navigazione. È possibile aggiungere ulteriori contenuti alla homepage "
-"utilizzando una o tutte le opzioni seguenti, che appariranno nell'ordine "
-"indicato."
-
-msgid "manager.setup.discipline"
-msgstr "Discipline accademiche e sottodiscipline"
-
-msgid "manager.setup.noUseProofreaders"
-msgstr ""
-"Un Editore o un Editore di sezione assegnato all'invio controllerà il "
-"materiale."
+"Strumenti per generare report relativi alle statistiche di utilizzo "
+"(visualizzazioni della pagina indice del catalogo, visualizzazioni "
+"dell'abstract della monografia, download della monografia)"
 
 msgid "manager.users.availableRoles"
 msgstr "Ruoli disponibili"
 
-msgid "manager.setup.newGenreDescription"
+msgid "manager.users.currentRoles"
+msgstr "Ruoli correnti"
+
+msgid "manager.users.selectRole"
+msgstr "Seleziona ruolo"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Utenti registrati a questa Casa Editrice"
+
+msgid "manager.people.allPresses"
+msgstr "Tutte le Case Editrici"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Registra un utente di questo sito a questa Casa Editrice"
+
+msgid "manager.people.allUsers"
+msgstr "Tutti gli utenti registrati"
+
+msgid "manager.people.confirmRemove"
 msgstr ""
-"Per creare un nuovo genere, compilare il modulo sottostante e cliccare sul "
-"pulsante 'Crea'."
+"Rimuovere questo utente da questa Casa Editrice? Questa azione escluderà "
+"l'utente da tutti i ruoli di questa Casa Editrice."
 
-msgid "plugins.importexport.common.error.validation"
-msgstr "Impossibile convertire gli oggetti selezionati."
+msgid "manager.people.enrollExistingUser"
+msgstr "Registra un utente esistente"
 
-msgid "maganer.setup.submissionChecklistItemRequired"
-msgstr "L'elemento della lista di controllo è richiesto."
+msgid "manager.people.enrollSyncPress"
+msgstr "Con la Casa Editrice"
 
-msgid "manager.setup.displayFeaturedBooks.label"
-msgstr "Libri in primo piano"
-
-msgid "manager.setup.newPublicationFormat"
-msgstr "Nuovo formato di pubblicazione"
-
-msgid "manager.setup.useCopyeditors"
-msgstr "Verrà assegnato un Redattore a ogni proposta."
-
-msgid "manager.setup.provideRefLinkInstructions"
-msgstr "Fornisci istruzioni agli Editori di layout."
-
-msgid "stats.publications.details"
-msgstr "Dettagli della monografia"
-
-msgid "manager.setup.prospectus"
-msgstr "Guida al prospetto informativo"
-
-msgid "doi.editor.customSuffixMissing"
+msgid "manager.people.mergeUsers.from.description"
 msgstr ""
-"Il DOI non può essere assegnato perché manca il suffisso personalizzato."
+"Seleziona un utente da unire a un altro account (ad es., quando qualcuno ha "
+"due account). L'account selezionato per primo verrà eliminato e le sue "
+"proposte, assegnazioni, ecc. verranno attribuite al secondo account."
 
-msgid "manager.series.disableComments"
-msgstr "Disabilita i commenti dei lettori per questa Collana."
-
-msgid "manager.setup.restrictSiteAccess"
+msgid "manager.people.mergeUsers.into.description"
 msgstr ""
-"Gli utenti devono essere registrati ed effettuare il login per visualizzare "
-"il sito della Casa Editrice."
-
-msgid "manager.setup.look"
-msgstr "Aspetto"
-
-msgid "manager.setup.pressTheme"
-msgstr "Tema della Casa Editrice"
-
-msgid "manager.setup.stepsToPressSite"
-msgstr "Cinque passi da seguire per il sito web per la Casa Editrice"
-
-msgid "manager.setup.addSponsor"
-msgstr "Aggiungi sponsor"
-
-msgid "manager.setup.publicationFormat.physicalFormat"
-msgstr "Si tratta di un formato fisico (non digitale)?"
-
-msgid "manager.setup.onlineAccessManagement"
-msgstr "Accesso ai contenuti della Casa Editrice"
+"Seleziona un utente a cui attribuire i ruoli dell'utente precedente, le "
+"assegnazioni di editing, ecc."
 
 msgid "manager.people.syncUserDescription"
 msgstr ""
@@ -420,96 +246,551 @@ msgstr ""
 "sincronizzare un gruppo comune di utenti (ad es. Revisori) tra le Case "
 "Editrici."
 
-msgid "manager.setup.noImageFileUploaded"
-msgstr "Nessuna immagine caricata."
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Disabilitare questo utente? Ciò impedirà all'utente di accedere al sistema.\n"
+"\n"
+"Puoi facoltativamente fornire all'utente un motivo per la disabilitazione "
+"dell'account."
 
-msgid "manager.settings.publisher"
-msgstr "Nome Casa Editrice"
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Spiacenti, non disponi dei diritti di amministratore su questo utente. Ciò "
+"potrebbe essere dovuto a:\n"
+"\t\t<ul>\n"
+"\t\t\t<li>L'utente è un amministratore del sito</li>\n"
+"\t\t\t<li>L'utente è attivo in Case Editrici che non gestisci</li>\n"
+"\t\t</ul>\n"
+"\tQuesta attività deve essere eseguita da un amministratore del sito.\n"
+"\t"
 
-msgid "manager.setup.pressThumbnail"
-msgstr "Thumbnail della Casa Editrice"
+msgid "manager.system"
+msgstr "Impostazioni di sistema"
+
+msgid "manager.system.archiving"
+msgstr "Archiviazione"
 
 msgid "manager.system.reviewForms"
 msgstr "Moduli di revisione"
 
-msgid "doi.editor.assignDoi.emptySuffix"
-msgstr ""
-"Il DOI non può essere assegnato perché manca il suffisso personalizzato."
+msgid "manager.system.readingTools"
+msgstr "Strumenti di lettura"
 
-msgid "manager.setup.series.description"
-msgstr ""
-"È possibile creare un numero qualsiasi di Collane per organizzare le "
-"pubblicazioni. Una collana rappresenta una serie speciale di libri dedicati "
-"a un tema o a degli argomenti che qualcuno ha proposto (di solito uno o due "
-"membri della Struttura) e poi supervisionato. I visitatori potranno cercare "
-"e navigare nella Casa Editrice per Collana."
+msgid "manager.system.payments"
+msgstr "Pagamenti"
 
-msgid "manager.settings.publisherCodeType"
-msgstr "Tipo di codice Casa Editrice"
+msgid "user.authorization.pluginLevel"
+msgstr "Non hai privilegi sufficienti per gestire questo plugin."
 
-msgid "doi.manager.settings.doiSuffixPattern.chapters"
-msgstr "per i capitoli"
+msgid "manager.pressManagement"
+msgstr "Amministrazione Casa Editrice"
 
-msgid "manager.settings"
-msgstr "Impostazioni"
+msgid "manager.setup"
+msgstr "Installazione"
 
-msgid "doi.manager.settings.enableRepresentationDoi"
-msgstr "Formati di pubblicazione"
+msgid "manager.setup.aboutItemContent"
+msgstr "Contenuto"
 
-msgid "doi.manager.settings.enablePublicationDoi"
-msgstr "Monografie"
+msgid "manager.setup.addAboutItem"
+msgstr "Aggiungi informazioni"
 
-msgid "manager.setup.layoutAndGalleys"
-msgstr "Editori di layout"
+msgid "manager.setup.addChecklistItem"
+msgstr "Aggiungi voci all'elenco di controllo"
 
-msgid "manager.setup.layoutTemplates.title"
-msgstr "Titolo"
+msgid "manager.setup.addItem"
+msgstr "Aggiungi voce"
 
-msgid "manager.setup.selectEditorDescription"
-msgstr "L'Editore della Casa Editrice che seguirà il processo editoriale."
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Aggiungi voce da visualizzare in \"Informazioni sulla Casa Editrice\""
 
-msgid "manager.setup.layout"
-msgstr "Aspetto della Casa Editrice"
+msgid "manager.setup.addNavItem"
+msgstr "Aggiungi voce"
 
-msgid "manager.setup.restrictMonographAccess"
-msgstr ""
-"Gli utenti devono essere registrati e accedere per visualizzare i contenuti "
-"ad accesso libero."
+msgid "manager.setup.addSponsor"
+msgstr "Aggiungi sponsor"
 
-msgid "manager.setup.disableSubmissions.notAccepting"
-msgstr ""
-"Questa Casa Editrice non accetta proposte in questo momento. Vedi le "
-"impostazioni del flusso di lavoro per consentire l'invio di materiale."
-
-msgid "stats.publications.totalAbstractViews.timelineInterval"
-msgstr "Visualizzazioni totali del catalogo per data"
-
-msgid "manager.setup.customizingTheLook"
-msgstr "Passaggio 5. Personalizzazione dell'aspetto grafico"
-
-msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
-msgstr "Inserire il suffisso DOI per i file."
-
-msgid "manager.setup.useStyleSheet"
-msgstr "Foglio di stile della Casa Editrice"
-
-msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
-msgstr "Visualizzazione della pagina principale della Collana"
-
-msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
-msgstr "Inviato alla revisione interna"
+msgid "manager.setup.announcements"
+msgstr "Avvisi"
 
 msgid "manager.setup.announcements.success"
 msgstr "Le impostazioni degli avvisi sono state aggiornate."
 
-msgid "manager.setup.newGenre"
-msgstr "Nuovo genere"
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Gli avvisi possono essere pubblicati per informare i lettori di notizie ed "
+"eventi relativi alla Casa Editrice. Gli avvisi pubblicati verranno "
+"visualizzati nella pagina degli Avvisi."
 
-msgid "manager.payment.generalOptions"
-msgstr "Opzioni generali"
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Informazioni supplementari"
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+"Inserisci qualsiasi informazione supplementare che dovrebbe essere mostrata "
+"ai lettori nella pagina Avvisi."
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Per apparire in Informazioni sulla Casa Editrice) "
+
+msgid "manager.setup.contextAbout"
+msgstr "Informazioni sulla Casa Editrice"
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Includi tutte le informazioni sulla tua Casa Editrice che potrebbero essere "
+"di interesse per lettori, autori o revisori. Ciò potrebbe includere la tua "
+"politica di accesso aperto, l'obiettivo e gli scopi della Casa Editrice, le "
+"sponsorizzazioni e la storia della Casa Editrice."
+
+msgid "manager.setup.contextSummary"
+msgstr "Riepilogo Casa Editrice"
+
+msgid "manager.setup.copyediting"
+msgstr "Redattori"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Istruzioni redazionali"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+"Le istruzioni redazionali saranno messe a disposizione di Redattori, Autori "
+"e Editori di Sezione nella fase di revisione editoriale della proposta. Di "
+"seguito è riportato un insieme predefinito di istruzioni in HTML, che "
+"possono essere modificate o sostituite dall'amministratore della Casa "
+"Editrice in qualsiasi momento (in HTML o testo normale)."
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Avviso sul copyright"
+
+msgid "manager.setup.coverage"
+msgstr "Copertura"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Altezza massima dell'immagine di copertina"
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Larghezza massima dell'immagine di copertina"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Le immagini verranno ridotte se più grandi di queste dimensioni, ma non "
+"verranno mai distorte in altezza o larghezza per adattarsi a queste "
+"dimensioni."
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Passaggio 5. Personalizzazione dell'aspetto grafico"
+
+msgid "manager.setup.customTags"
+msgstr "Tag personalizzati"
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Tag di intestazione HTML personalizzati da inserire nell'intestazione di "
+"ogni pagina (ad es. tag META)."
+
+msgid "manager.setup.details"
+msgstr "Dettagli"
+
+msgid "manager.setup.details.description"
+msgstr "Nome della Casa Editrice, contatti, sponsor e motori di ricerca."
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+"L'amministratore della Casa Editrice registrerà tutti gli account degli "
+"utenti. Gli Editori o gli Editori di sezione possono registrare gli account "
+"utente per i revisori."
+
+msgid "manager.setup.discipline"
+msgstr "Discipline accademiche e sottodiscipline"
+
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Utile quando la Casa Editrice oltrepassa i confini disciplinari e/o gli "
+"autori inviano articoli multidisciplinari."
+
+msgid "manager.setup.disciplineExamples"
+msgstr ""
+"(Ad es.: Storia; Educazione; Sociologia; Psicologia; Studi culturali; "
+"Giurisprudenza)"
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr ""
+"Fornire esempi di discipline accademiche rilevanti per questa Casa Editrice"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Aggiungi il sommario per la monografia corrente (se disponibile)."
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Contenuto della home page"
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Mostra i libri in primo piano nella home page"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Libri in primo piano"
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Mostra i libri sotto i riflettori nella home page"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Sotto i riflettori"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Mostra le nuove uscite nella home page"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Nuove uscite"
+
+msgid "manager.setup.enableDois.description"
+msgstr ""
+"Consentire l'assegnazione dei Digital Object Identifier (DOI) ai lavori "
+"pubblicati da questa Casa Editrice."
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr ""
+"Selezionare i tipi di lavori pubblicati da questa casa editrice a cui "
+"assegnare i DOI. La maggior parte delle case editrici assegna i DOI alle "
+"monografie/capitoli, ma è possibile che si desideri assegnare i DOI a tutti "
+"ciò che è pubblicato."
+
+msgid "doi.manager.settings.doiSuffixLegacy"
+msgstr ""
+"Utilizzare i modelli predefiniti.<br />%p.%m per le monografie<br />%p.%m.c"
+"%c per i capitoli<br />%p.%m.%f per i formati di publicazione<br />%p.%m.%f."
+"%s per i files."
+
+msgid "doi.manager.settings.doiCreationTime.copyedit"
+msgstr "Una volta raggiunta la fase di copyediting"
+
+msgid "manager.dois.formatIdentifier.file"
+msgstr "Formato / {$format}"
+
+msgid "manager.setup.editorDecision"
+msgstr "Decisione editoriale"
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Indirizzo di inoltro"
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"Qualsiasi email non recapitata comporterà un messaggio di errore inviato a "
+"questo indirizzo."
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Per inviare email non recapitate a un indirizzo di inoltro, l'amministratore "
+"del sito deve abilitare l'opzione <code>allow_envelope_sender</code> nel "
+"file di configurazione del sito. Potrebbe essere necessaria la "
+"configurazione del server, come indicato nella documentazione di OMP."
+
+msgid "manager.setup.emails"
+msgstr "Identificazione email"
+
+msgid "manager.setup.emailSignature"
+msgstr "Firma"
+
+#, fuzzy
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"Le email preparate che vengono inviate dal sistema per conto della Casa "
+"Editrice recheranno la seguente firma aggiunta alla fine."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Abilita avvisi"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Gli avvisi possono essere pubblicati per informare i lettori di notizie ed "
+"eventi. Gli avvisi pubblicati appariranno nella pagina Avvisi."
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Mostra sulla home page"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Numero di avvisi da mostrare sulla home page. Lascia vuoto questo campo per "
+"non mostrarne nessuno."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Abilita a questa Casa Editrice di apparire pubblicamente sul sito"
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr ""
+"Gli identificatori personalizzati verranno utilizzati per identificare gli "
+"elementi pubblicati."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+"Gli identificatori personalizzati verranno utilizzati per identificare il "
+"materiale (ad es. file HTML o PDF) per gli elementi pubblicati."
+
+msgid "manager.setup.enableUserRegistration"
+msgstr ""
+"I visitatori possono registrare un account utente con la Casa Editrice."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Interessi e ambito della Casa Editrice"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr ""
+"Descrivi ad autori, lettori e bibliotecari la tipologia di monografie e "
+"altri prodotti pubblicati dalla Casa Editrice."
+
+msgid "manager.setup.focusScope"
+msgstr "Interessi e ambito"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>ESEMPIO DATI HTML</strong>"
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Affinché gli autori possano indicizzare il loro lavoro"
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"OMP aderisce al <a href=\"http://www.openarchives.org/\" target=\"_blank\\"
+"\">Protocollo per la raccolta dei metadati di Open Archives Initiative</a>, "
+"che è lo standard emergente per fornire un accesso ben indicizzato alle "
+"risorse elettroniche di ricerca su scala globale. Gli autori utilizzeranno "
+"un modello simile per fornire i metadati per la loro proposta. Il "
+"responsabile della Casa Editrice deve selezionare le categorie per "
+"l'indicizzazione e presentare agli autori esempi pertinenti per aiutarli a "
+"indicizzare il loro lavoro, separando i termini con un punto e virgola (ad "
+"esempio, termine1; termine2). Le voci devono essere introdotte come esempi "
+"usando \"Per esempio,\" o \"Per es.,\"."
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "L'email del contatto principale è obbligatoria."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Il nome del contatto primario è obbligatorio."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "È richiesto il numero di revisori per ogni proposta."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "È richiesta l'email di supporto."
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Il nome della persona di supporto è richiesto."
+
+msgid "manager.setup.generalInformation"
+msgstr "Informazioni generali"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Passo 1. Scendere nei dettagli"
+
+msgid "manager.setup.guidelines"
+msgstr "Linee guida"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Passo 3. Preparazione del flusso di lavoro"
+
+msgid "manager.setup.identity"
+msgstr "Identificativi della Casa Editrice"
+
+msgid "manager.setup.information"
+msgstr "Informazioni"
+
+msgid "manager.setup.information.description"
+msgstr ""
+"Breve descrizione della Casa Editrice per bibliotecari, potenziali autori e "
+"lettori. Sono disponibili nella barra laterale del sito quando è stato "
+"aggiunto il blocco Informazioni."
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Per gli autori"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Per i bibliotecari"
+
+msgid "manager.setup.information.forReaders"
+msgstr "Per i lettori"
+
+msgid "manager.setup.information.success"
+msgstr "Le informazioni su questa Casa Editrice sono state aggiornate."
+
+msgid "manager.setup.institution"
+msgstr "Istituzione"
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Elementi per pagina"
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Limita il numero di elementi (per es., proposte, utenti o incarichi di "
+"redazione) da mostrare in un elenco prima di mostrare gli elementi "
+"successivi in un'altra pagina."
+
+msgid "manager.setup.keyInfo"
+msgstr "Informazioni chiave"
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Fornisci una breve descrizione della Casa Editrice e identifica i redattori, "
+"gli amministratori e gli altri membri del team editoriale."
+
+msgid "manager.setup.labelName"
+msgstr "Nome dell'etichetta"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Editori di layout"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Istruzioni di layout"
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"Le istruzioni di layout possono essere preparate per la formattazione degli "
+"articoli che saranno pubblicati dalla Casa Editrice ed essere inserite di "
+"seguito in una pagina HTML o in testo normale. Saranno messe a disposizione "
+"dell'Editore di Layout e dell'Editore di Sezione nella pagina di modifica di "
+"ogni pubblicazione. (Ogni Casa Editrice può utilizzare propri formati, "
+"standard bibliografici, fogli di stile, norme redazionali ecc.)"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Modelli di layout"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"I modelli possono essere caricati per apparire in Layout per ciascuno dei "
+"formati standard pubblicati dalla Casa Editrice (ad esempio, monografia, "
+"recensione di un libro, ecc.) utilizzando qualsiasi formato di file (ad "
+"esempio, pdf, doc, ecc.) con l'aggiunta di annotazioni che specificano il "
+"carattere, le dimensioni, i margini, ecc. perché servano da guida per i "
+"redattori e i correttori di bozze."
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "File di modello"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Titolo"
+
+msgid "manager.setup.lists"
+msgstr "Elenchi"
+
+msgid "manager.setup.lists.success"
+msgstr "Le impostazioni degli elenchi sono state aggiornate."
+
+msgid "manager.setup.look"
+msgstr "Aspetto"
+
+msgid "manager.setup.look.description"
+msgstr ""
+"Intestazione della homepage, contenuto, intestazione della Casa Editrice, "
+"piè di pagina, barra di navigazione e foglio di stile."
+
+msgid "manager.setup.settings"
+msgstr "Impostazioni"
+
+msgid "manager.setup.management.description"
+msgstr ""
+"Accesso e sicurezza, programmazione, avvisi, copyediting, impaginazione e "
+"correzione di bozze."
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Gestione delle fasi editoriali principali"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Gestione e impostazione della pubblicazione"
+
+msgid "manager.setup.managingThePress"
+msgstr "Passo 4. Gestione delle impostazioni"
+
+msgid "manager.setup.masthead.success"
+msgstr ""
+"I dettagli della testata di questa Casa Editrice sono stati aggiornati."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Nessuna immagine caricata."
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Nessun foglio di stile caricato."
+
+msgid "manager.setup.note"
+msgstr "Nota"
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+"Quando si usa l'email di notifica all'autore, includere gli indirizzi email "
+"di tutti i coautori per le proposte con più autori, e non solo del "
+"proponente."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr ""
+"La correzione redazionale sarà effettuata da un Editore o da un Editore di "
+"sezione assegnato."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+"Un Editore o un Editore di sezione assegnato preparerà i file HTML, PDF, ecc."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr ""
+"Un Editore o un Editore di sezione assegnato all'invio controllerà il "
+"materiale."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Collegamenti alle pagine"
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Limita il numero di collegamenti alle pagine successive da visualizzare."
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Accesso ai contenuti della Casa Editrice"
+
+msgid "manager.setup.onlineIssn"
+msgstr "ISSN online"
+
+msgid "manager.setup.policies"
+msgstr "Politiche editoriali"
+
+msgid "manager.setup.policies.description"
+msgstr ""
+"Interessi, peer review, sezioni, privacy, sicurezza e ulteriori informazioni."
 
 msgid "manager.setup.privacyStatement.success"
 msgstr "L'informativa sulla privacy è stata aggiornata."
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+"Da questa pagina è possibile configurare vari componenti dell'aspetto della "
+"Casa Editrice, tra cui gli elementi dell'intestazione e del piè di pagina, "
+"lo stile e il tema della Casa Editrice e il modo in cui le informazioni "
+"vengono presentate agli utenti."
+
+msgid "manager.setup.pressDescription"
+msgstr "Sommario della Casa Editrice"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "Breve descrizione della Casa Editrice."
+
+msgid "manager.setup.aboutPress"
+msgstr "Informazioni sulla Casa Editrice"
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+"Includi tutte le informazioni sulla Casa Editrice che possono essere di "
+"interesse per i lettori, gli autori o i recensori. Tra queste, la politica "
+"di accesso aperto, l'obiettivo e gli interessi della Casa Editrice, le "
+"informazioni sul copyright, le informazioni sulle sponsorizzazioni, la "
+"storia della Casa Editrice e l'informativa sulla privacy."
+
+msgid "manager.setup.pressArchiving"
+msgstr "Archivio della Casa Editrice"
+
+msgid "manager.setup.homepageContent"
+msgstr "Contenuto della Homepage della Casa Editrice"
+
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+"La homepage della Casa Editrice è costituita di default da link di "
+"navigazione. È possibile aggiungere ulteriori contenuti alla homepage "
+"utilizzando una o tutte le opzioni seguenti, che appariranno nell'ordine "
+"indicato."
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Contenuto della homepage della Casa Editrice"
 
 msgid "manager.setup.pressHomepageContentDescription"
 msgstr ""
@@ -518,113 +799,69 @@ msgstr ""
 "utilizzando una o tutte le opzioni seguenti, che appariranno nell'ordine "
 "indicato."
 
-msgid "manager.system.readingTools"
-msgstr "Strumenti di lettura"
-
-msgid "manager.system"
-msgstr "Impostazioni di sistema"
-
-msgid "manager.setup.subjectExamples"
-msgstr ""
-"(ad esempio, Fotosintesi; Buchi neri; Problema della stampa a quattro colori;"
-" Teoria bayesiana)"
-
-msgid "manager.setup.note"
-msgstr "Nota"
-
-msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
-msgstr ""
-"Le immagini verranno ridotte se più grandi di queste dimensioni, ma non "
-"verranno mai distorte in altezza o larghezza per adattarsi a queste "
-"dimensioni."
-
-msgid "manager.setup.emailSignature"
-msgstr "Firma"
-
-msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
-msgstr ""
-"Invia una copia dell'email di conferma dell'invio al contatto principale di "
-"questa Casa Editrice."
-
-msgid "manager.setup.referenceLinking"
-msgstr "Collegamenti ai riferimenti bibliografici"
-
-msgid "manager.setup.preparingWorkflow"
-msgstr "Passo 3. Preparazione del flusso di lavoro"
-
-msgid "manager.setup.useEditorialReviewBoard"
-msgstr "La Casa Editrice utilizzerà un Comitato editoriale o di revisione."
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "Il prefisso DOI è obbligatorio e deve avere la forma 10.xxxx."
-
-msgid "doi.editor.missingPrefix"
-msgstr "Il DOI deve iniziare con {$doiPrefix}."
-
-msgid "manager.series.policy"
-msgstr "Descrizione della Collana"
-
-msgid "emailTemplate.variable.context.contactName"
-msgstr "Il nome del contatto principale della Casa Editrice"
-
-msgid "manager.setup.information.description"
-msgstr ""
-"Breve descrizione della Casa Editrice per bibliotecari, potenziali autori e "
-"lettori. Sono disponibili nella barra laterale del sito quando è stato "
-"aggiunto il blocco Informazioni."
-
-msgid "stats.publications.countOfTotal"
-msgstr "{$count} di {$total} monografie"
-
-msgid "manager.setup.look.description"
-msgstr ""
-"Intestazione della homepage, contenuto, intestazione della Casa Editrice, "
-"piè di pagina, barra di navigazione e foglio di stile."
-
-msgid "manager.setup.focusScopeDescription"
-msgstr "<strong>ESEMPIO DATI HTML</strong>"
-
-msgid "manager.setup.volumePerYear"
-msgstr "Volumi per anno"
-
-msgid "manager.setup.generalInformation"
-msgstr "Informazioni generali"
-
-msgid "manager.setup.coverage"
-msgstr "Copertura"
+msgid "manager.setup.contextInitials"
+msgstr "Acronimo della Casa Editrice"
 
 msgid "manager.setup.selectCountry"
 msgstr ""
 "Selezionare il paese in cui si trova la Casa Editrice o il paese "
 "dell'indirizzo postale della Casa Editrice."
 
-msgid "manager.setup.coverThumbnailsMaxWidth"
-msgstr "Larghezza massima dell'immagine di copertina"
+msgid "manager.setup.layout"
+msgstr "Aspetto della Casa Editrice"
 
-msgid "manager.setup.policies"
-msgstr "Politiche editoriali"
+msgid "manager.setup.pageHeader"
+msgstr "Intestazione della pagina della Casa Editrice"
 
-msgid "manager.setup.authorRoles"
-msgstr "Ruoli autoriali"
-
-msgid "doi.editor.preview.objects"
-msgstr "Oggetto"
-
-msgid "manager.setup.reviewOptions.automatedReminders"
-msgstr "Promemoria automatici via email"
-
-msgid "emailTemplate.variable.queuedPayment.itemCost"
-msgstr "Ammontare del pagamento"
-
-msgid "manager.settings.publisherCodeType.invalid"
-msgstr "Questo non è un tipo di codice Casa Editrice valido."
-
-msgid "manager.setup.details.description"
-msgstr "Nome della Casa Editrice, contatti, sponsor e motori di ricerca."
-
-msgid "manager.setup.disciplineProvideExamples"
+msgid "manager.setup.pageHeaderDescription"
 msgstr ""
-"Fornire esempi di discipline accademiche rilevanti per questa Casa Editrice"
+
+msgid "manager.setup.pressPolicies"
+msgstr "Passo 2. Politiche editoriali della Casa Editrice"
+
+msgid "manager.setup.pressSetup"
+msgstr "Impostazioni della Casa Editrice"
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Le impostazioni della Casa Editrice sono state aggiornate."
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Formato del foglio di stile non valido. Il formato accettato è .css."
+
+msgid "manager.setup.pressTheme"
+msgstr "Tema della Casa Editrice"
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Thumbnail della Casa Editrice"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr ""
+"Un piccolo logo o una immagine della Casa Editrice che può essere utilizzata "
+"negli elenchi delle Case Editrici."
+
+msgid "manager.setup.contextTitle"
+msgstr "Nome della Casa Editrice"
+
+msgid "manager.setup.printIssn"
+msgstr "ISSN"
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Istruzioni per le bozze"
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr ""
+"Le istruzioni per la correzione delle bozze saranno rese disponibili ai "
+"correttori di bozze, agli autori, agli Editori di layout e agli Editori di "
+"sezione nella fase di modifica dell'invio. Di seguito sono riportate le "
+"istruzioni predefinite in HTML, che possono essere modificate o sostituite "
+"dal Manager della Casa Editrice in qualsiasi momento (in HTML o in testo "
+"normale)."
+
+msgid "manager.setup.proofreading"
+msgstr "Correttori di bozze"
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Fornisci istruzioni agli Editori di layout."
 
 msgid "manager.setup.publicationScheduleDescription"
 msgstr ""
@@ -635,139 +872,374 @@ msgstr ""
 "dichiarazione sul sistema che questa Casa Editrice utilizzerà e sulla "
 "frequenza di pubblicazione prevista."
 
-msgid "manager.series.form.abbrevRequired"
-msgstr "Per la Collana è richiesto un titolo abbreviato."
+msgid "manager.setup.publisher"
+msgstr "Casa Editrice"
 
-msgid "manager.setup.roleType"
-msgstr "Tipo di ruolo"
+msgid "manager.setup.publisherDescription"
+msgstr ""
+"Il nome dell'organizzazione che ospita la Casa Editrice apparirà in "
+"Informazioni sulla Casa Editrice."
 
-msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
-msgstr "Inserire il suffisso DOI per le monografie."
+msgid "manager.setup.referenceLinking"
+msgstr "Collegamenti ai riferimenti bibliografici"
 
-msgid "doi.manager.settings.description"
-msgstr "Configurare il plug-in DOI per poter gestire e utilizzare i DOI in OMP:"
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Istruzioni per il layout dei collegamenti di riferimento bibliografico"
 
-msgid "doi.editor.assignDoi"
-msgstr "Assegna il DOI {$pubId} a questo {$pubObjectType}"
+msgid "manager.setup.restrictMonographAccess"
+msgstr ""
+"Gli utenti devono essere registrati e accedere per visualizzare i contenuti "
+"ad accesso libero."
 
-msgid "manager.setup.userRegistration"
-msgstr "Registrazione utente"
+msgid "manager.setup.restrictSiteAccess"
+msgstr ""
+"Gli utenti devono essere registrati ed effettuare il login per visualizzare "
+"il sito della Casa Editrice."
 
-msgid "emailTemplate.variable.context.contextSignature"
-msgstr "La firma email della Casa Editrice per le email automatiche"
+msgid "manager.setup.reviewGuidelines"
+msgstr "Linee guida per la revisione esterna"
 
-msgid "manager.setup.aboutItemContent"
-msgstr "Contenuto"
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr ""
+"Fornire ai revisori esterni i criteri per giudicare l'idoneità alla "
+"pubblicazione di un prodotto. I criteri possono includere istruzioni per "
+"preparare una nota di lettura efficace e utile. I revisori avranno la "
+"possibilità di fornire commenti destinati all'autore e all'editore, o "
+"commenti separati solo per l'editore."
 
-msgid "doi.editor.preview.publicationFormats"
-msgstr "Formato di pubblicazione: {$title}"
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Linee guida per la revisione interna"
 
-msgid "manager.setup.displayNewReleases"
-msgstr "Mostra le nuove uscite nella home page"
+msgid "manager.setup.reviewOptions"
+msgstr "Opzioni di revisione"
 
-msgid "manager.setup.labelName"
-msgstr "Nome dell'etichetta"
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Promemoria automatici via email"
 
-msgid "manager.setup.editorDecision"
-msgstr "Decisione editoriale"
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr ""
+"Per attivare queste opzioni, l'amministratore del sito deve abilitare "
+"l'opzione <tt> scheduled_tasks</tt> nel file di configurazione di OMP. Per "
+"supportare questa funzionalità potrebbe essere necessaria una configurazione "
+"aggiuntiva del server (che potrebbe non essere disponibile in tutti i "
+"server), come indicato nella documentazione di OMP."
 
-msgid "manager.setup.lists"
-msgstr "Elenchi"
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr ""
+"Gli Editori valutano i revisori su una scala di qualità da 1 a 5 dopo ogni "
+"lettura."
 
-msgid "manager.setup.emails"
-msgstr "Identificazione email"
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Limitazioni di accesso ai file"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr ""
+"I revisori avranno accesso al file della proposta solo dopo aver accettato "
+"di revisionarlo."
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Accesso revisori"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Accesso revisore con un solo clic"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
+msgstr ""
+"Ai revisori può essere inviato un link sicuro nell'e-mail di invito, che "
+"consentirà loro di accedere al testo da leggere senza effettuare il login. "
+"Per accedere ad altre pagine è necessario effettuare il login."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr "Includi un link sicuro nell'e-mail di invito ai revisori."
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Valutazioni dei revisori"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Promemoria revisori"
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Politica di revisione"
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Fornisci una breve descrizione (50-300 caratteri) della Casa Editrice che i "
+"motori di ricerca possono visualizzare quando la Casa Editrice viene "
+"elencata nei risultati di ricerca."
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Indicizzazione per la ricerca"
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr ""
+"Aiuta i motori di ricerca come Google a trovare e mostrare il tuo sito. "
+"Invia la <a href=\"{$sitemapUrl}\" target=\"_blank\">mappa del sito</a>."
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr ""
+"Le impostazioni dell'indice del motore di ricerca sono state aggiornate."
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Sezioni ed Editori di sezione"
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr ""
+"(Se non vengono aggiunte sezioni, gli articoli vengono inviati di default "
+"alla sezione Monografie)"
+
+msgid "manager.setup.sectionsDescription"
+msgstr ""
+
+msgid "manager.setup.securitySettings"
+msgstr "Impostazioni di accesso e sicurezza"
+
+msgid "manager.setup.securitySettings.note"
+msgstr ""
+"Altre opzioni relative alla sicurezza e all'accesso possono essere "
+"configurate nella pagina <a href=\"{$accessAndSecurityUrl}\" target=\"_blank"
+"\" class=\"action\">Accesso e sicurezza</a>."
+
+msgid "manager.setup.selectEditorDescription"
+msgstr "L'Editore della Casa Editrice che seguirà il processo editoriale."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr ""
+"La sezione della Casa Editrice per la quale la proposta sarà presa in "
+"considerazione."
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr "Mostra sempre i collegamenti al materiale e indica l'accesso limitato."
 
 msgid "manager.setup.siteAccess.view"
 msgstr "Accesso al sito"
 
-msgid "manager.series.noneCreated"
-msgstr "Nessuna Collana è stata creata."
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Visualizza contenuto monografia"
 
-msgid "manager.setup.management.description"
+msgid "manager.setup.stepsToPressSite"
+msgstr "Cinque passi da seguire per il sito web per la Casa Editrice"
+
+msgid "manager.setup.subjectExamples"
 msgstr ""
-"Accesso e sicurezza, programmazione, avvisi, copyediting, impaginazione e "
-"correzione di bozze."
+"(ad esempio, Fotosintesi; Buchi neri; Problema della stampa a quattro "
+"colori; Teoria bayesiana)"
 
-msgid "manager.setup.layoutInstructions"
-msgstr "Istruzioni di layout"
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Parole chiave"
 
-msgid "manager.payment.success"
-msgstr "Le impostazioni di pagamento sono state aggiornate."
+msgid "manager.setup.subjectProvideExamples"
+msgstr "Fornisci esempi di parole chiave o argomenti come guida per gli autori"
 
-msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
-msgstr "La valuta dell'importo del pagamento, ad esempio USD o EUR"
+msgid "manager.setup.submissionGuidelines"
+msgstr "Linee guida per l'invio di proposte"
 
-msgid "doi.manager.settings.doiSuffixPattern.submissions"
-msgstr "per le monografie"
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "L'elemento della lista di controllo è richiesto."
 
-msgid "manager.setup.notifications.copyPrimaryContact"
+msgid "manager.setup.workflow"
+msgstr "Flusso di lavoro"
+
+msgid "manager.setup.submissions.description"
 msgstr ""
-"Invia una copia al contatto primario, identificato nelle Impostazioni della "
-"Casa Editrice."
+"Linee guida per l'autore, copyright e indicizzazione (inclusa la "
+"registrazione)."
+
+msgid "manager.setup.typeExamples"
+msgstr ""
+"(per es. Ricerca storica; Esperimento; Analisi letteraria; Sondaggio/"
+"Intervista)"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Tipo (Metodo/Approccio)"
 
 msgid "manager.setup.typeProvideExamples"
 msgstr ""
 "Fornisci esempi di tipi di ricerca, metodi e approcci rilevanti per questo "
 "ambito"
 
-msgid "manager.series.abstractsNotRequired"
-msgstr "Non si richiedono abstract"
+msgid "manager.setup.useCopyeditors"
+msgstr "Verrà assegnato un Redattore a ogni proposta."
 
-msgid "manager.setup.masthead"
-msgstr "Testata"
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "La Casa Editrice utilizzerà un Comitato editoriale o di revisione."
 
-msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
-msgstr "Includi un link sicuro nell'e-mail di invito ai revisori."
+msgid "manager.setup.useImageTitle"
+msgstr "Immagine"
 
-msgid "manager.setup.sectionsAndSectionEditors"
-msgstr "Sezioni ed Editori di sezione"
+msgid "manager.setup.useStyleSheet"
+msgstr "Foglio di stile della Casa Editrice"
 
-msgid "manager.files.note"
+msgid "manager.setup.useLayoutEditors"
 msgstr ""
-"Nota: la navigazione dei file è una funzione avanzata che consente di "
-"visualizzare e manipolare direttamente i file e le directory associati a una "
-"Casa Editrice."
+"Verrà assegnato un Editore di layout per preparare i file HTML, PDF ecc. per "
+"la pubblicazione elettronica."
 
-msgid "manager.setup.enableUserRegistration"
-msgstr "I visitatori possono registrare un account utente con la Casa Editrice."
-
-msgid "manager.setup.addItem"
-msgstr "Aggiungi voce"
-
-msgid "manager.settings.press"
-msgstr "Casa Editrice"
-
-msgid "manager.setup.numPageLinks"
-msgstr "Collegamenti alle pagine"
-
-msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
+msgid "manager.setup.useProofreaders"
 msgstr ""
-"Questa email notifica all'autore che il suo lavoro è stato inviato alla fase "
-"di revisione interna."
+"Verrà assegnato un correttore di bozze per controllare (assieme agli autori) "
+"le bozze prima della pubblicazione."
+
+msgid "manager.setup.userRegistration"
+msgstr "Registrazione utente"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Titolo"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Volumi per anno"
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Formato"
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "È necessario scegliere un formato."
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "È necessario assegnare un nome a questo formato."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Si tratta di un formato fisico (non digitale)?"
 
 msgid "manager.setup.publicationFormat.inUse"
 msgstr ""
 "Poiché questo formato di pubblicazione è attualmente utilizzato da una "
 "monografia della Casa Editrice, non può essere cancellato."
 
-msgid "manager.setup.aboutPress"
-msgstr "Informazioni sulla Casa Editrice"
+msgid "manager.setup.newPublicationFormat"
+msgstr "Nuovo formato di pubblicazione"
 
-msgid "manager.setup.showGalleyLinksDescription"
-msgstr "Mostra sempre i collegamenti al materiale e indica l'accesso limitato."
-
-msgid "doi.editor.preview.files"
-msgstr "File: {$title}"
-
-msgid "manager.people.enrollSyncPress"
-msgstr "Con la Casa Editrice"
-
-msgid "doi.manager.settings.doiObjectsRequired"
+msgid "manager.setup.newPublicationFormatDescription"
 msgstr ""
-"Selezionare i tipi di lavori pubblicati da questa casa editrice a cui "
-"assegnare i DOI. La maggior parte delle case editrici assegna i DOI alle "
-"monografie/capitoli, ma è possibile che si desideri assegnare i DOI a tutti "
-"ciò che è pubblicato."
+"Per creare un nuovo formato di pubblicazione, compilare il modulo "
+"sottostante e fare clic sul pulsante 'Crea'."
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Questi generi sono utilizzati per la denominazione dei file e sono "
+"presentati in un menu a tendina durante il caricamento dei file. I generi "
+"designati ## consentono all'utente di associare il file all'intero libro 99Z "
+"o a un particolare capitolo per numero (ad esempio, 02)."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Questa Casa Editrice non accetta proposte in questo momento. Vedi le "
+"impostazioni del flusso di lavoro per consentire l'invio di materiale."
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Impedisci agli utenti di inviare nuove proposte alla Casa Editrice. L'invio "
+"può essere disabilitato per le singole Collane della Casa Editrice nella "
+"pagina delle impostazioni delle <a href=\"{$url}\">Collane</a>."
+
+msgid "manager.setup.genres"
+msgstr "Generi"
+
+msgid "manager.setup.newGenre"
+msgstr "Nuovo genere"
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"Per creare un nuovo genere, compilare il modulo sottostante e cliccare sul "
+"pulsante 'Crea'."
+
+msgid "manager.setup.deleteSelected"
+msgstr "Elimina selezionati"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Ripristina impostazioni predefinite"
+
+msgid "manager.setup.prospectus"
+msgstr "Guida al prospetto informativo"
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"La guida al prospetto informativo è un documento preparato dalla Casa "
+"Editrice che aiuta l'autore a descrivere il materiale presentato in modo da "
+"consentire alla Casa Editrice di determinare il valore della proposta. Un "
+"prospetto informativo può includere molti elementi, dal potenziale di "
+"marketing alla valenza teorica; in ogni caso, una Casa Editrice dovrebbe "
+"creare una guida al prospetto informativo a integrazione della sua agenda "
+"editoriale."
+
+msgid "manager.setup.submitToCategories"
+msgstr "Consenti proposte di categorie"
+
+msgid "manager.setup.submitToSeries"
+msgstr "Consenti la proposta di Collane"
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"L'ISSN (International Standard Serial Number) è un numero di otto cifre che "
+"identifica le pubblicazioni periodiche, compresi i seriali elettronici. Il "
+"numero può essere ottenuto dal <a href=\"http://www.issn.org\" target="
+"\"_blank\">Centro Internazionale ISSN</a>."
+
+msgid "manager.setup.currentFormats"
+msgstr "Formati attuali"
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Categorie e Collane"
+
+msgid "manager.setup.categories.description"
+msgstr ""
+"È possibile creare un elenco di categorie per organizzare le pubblicazioni. "
+"Le categorie sono raggruppamenti di libri in base all'argomento, ad esempio: "
+"Economia, Letteratura, Poesia e così via. Le categorie possono essere "
+"annidate all'interno di categorie \"padre\": ad esempio, una categoria padre "
+"Economia può includere singole categorie Microeconomia e Macroeconomia. I "
+"visitatori potranno cercare e navigare nella Casa Editrice per categoria."
+
+msgid "manager.setup.series.description"
+msgstr ""
+"È possibile creare un numero qualsiasi di Collane per organizzare le "
+"pubblicazioni. Una collana rappresenta una serie speciale di libri dedicati "
+"a un tema o a degli argomenti che qualcuno ha proposto (di solito uno o due "
+"membri della Struttura) e poi supervisionato. I visitatori potranno cercare "
+"e navigare nella Casa Editrice per Collana."
+
+msgid "manager.setup.reviewForms"
+msgstr "Moduli di revisione"
+
+msgid "manager.setup.roleType"
+msgstr "Tipo di ruolo"
+
+msgid "manager.setup.authorRoles"
+msgstr "Ruoli autoriali"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Ruoli manageriali"
+
+msgid "manager.setup.availableRoles"
+msgstr "Ruoli disponibili"
+
+msgid "manager.setup.currentRoles"
+msgstr "Ruoli attuali"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Ruoli di revisione interna"
+
+msgid "manager.setup.masthead"
+msgstr "Testata"
+
+msgid "manager.setup.editorialTeam"
+msgstr "Team editoriale"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr ""
+"Elenco degli editori, dei redattori, degli amministratori e delle altre "
+"persone associate alla Casa Editrice."
+
+msgid "manager.setup.files"
+msgstr "File"
+
+msgid "manager.setup.productionTemplates"
+msgstr "Modelli di produzione"
+
+msgid "manager.files.note"
+msgstr ""
+"Nota: la navigazione dei file è una funzione avanzata che consente di "
+"visualizzare e manipolare direttamente i file e le directory associati a una "
+"Casa Editrice."
 
 msgid "manager.setup.copyrightNotice.sample"
 msgstr ""
@@ -779,11 +1251,11 @@ msgstr ""
 "<ol type=\"a\">\n"
 "\t<li>Gli autori mantengono il diritto d'autore e concedono alla Casa "
 "Editrice il diritto di prima pubblicazione con l'opera simultaneamente "
-"concessa in licenza sotto una <a target=\"_blank\" href=\"http"
-"://creativecommons.org/licenses/by/3.0\">Creative Commons Attribution "
-"License</a> che permette ad altri di condividere l'opera con un "
-"riconoscimento della paternità dell'opera e della pubblicazione iniziale con "
-"questa Casa Editrice.</li>\n"
+"concessa in licenza sotto una <a target=\"_blank\" href=\"http://"
+"creativecommons.org/licenses/by/3.0\">Creative Commons Attribution License</"
+"a> che permette ad altri di condividere l'opera con un riconoscimento della "
+"paternità dell'opera e della pubblicazione iniziale con questa Casa Editrice."
+"</li>\n"
 "\t<li>Gli autori possono stipulare contratti separati e aggiuntivi per la "
 "distribuzione non esclusiva di una versione dell'opera pubblicata dalla casa "
 "editrice (ad esempio, per inserirla in un archivio istituzionale o "
@@ -805,8 +1277,8 @@ msgstr ""
 "\t<li>Gli autori mantengono il diritto d'autore e concedono alla Casa "
 "Editrice il diritto di prima pubblicazione, con l'opera [SPECIFICARE IL "
 "PERIODO DI TEMPO] dopo la pubblicazione simultaneamente concessa in licenza "
-"sotto una <a target=\"_blank\" href=\"http://creativecommons.org/licenses/by/"
-"3.0\">Creative Commons Attribution License</a> che permette ad altri di "
+"sotto una <a target=\"_blank\" href=\"http://creativecommons.org/licenses/"
+"by/3.0\">Creative Commons Attribution License</a> che permette ad altri di "
 "condividere l'opera con un riconoscimento della paternità dell'opera e della "
 "pubblicazione iniziale in questa Casa Editrice.</li>\n"
 "\t<li>Gli autori possono stipulare serie contrattuali separate e aggiuntive "
@@ -822,626 +1294,13 @@ msgstr ""
 "oacitation-biblio.html\"> The Effect of Open Access</a>).</li>\n"
 "</ol>"
 
-msgid "manager.people.noAdministrativeRights"
+msgid "manager.setup.basicEditorialStepsDescription"
 msgstr ""
-"Spiacenti, non disponi dei diritti di amministratore su questo utente. Ciò "
-"potrebbe essere dovuto a:\n"
-"\t\t<ul>\n"
-"\t\t\t<li>L'utente è un amministratore del sito</li>\n"
-"\t\t\t<li>L'utente è attivo in Case Editrici che non gestisci</li>\n"
-"\t\t</ul>\n"
-"\tQuesta attività deve essere eseguita da un amministratore del sito.\n"
-"\t"
-
-msgid "manager.setup.layoutTemplatesDescription"
-msgstr ""
-"I modelli possono essere caricati per apparire in Layout per ciascuno dei "
-"formati standard pubblicati dalla Casa Editrice (ad esempio, monografia, "
-"recensione di un libro, ecc.) utilizzando qualsiasi formato di file (ad "
-"esempio, pdf, doc, ecc.) con l'aggiunta di annotazioni che specificano il "
-"carattere, le dimensioni, i margini, ecc. perché servano da guida per i "
-"redattori e i correttori di bozze."
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Sotto i riflettori"
-
-msgid "manager.setup.form.supportNameRequired"
-msgstr "Il nome della persona di supporto è richiesto."
-
-msgid "doi.editor.preview.chapters"
-msgstr "Capitolo: {$title}"
-
-msgid "manager.setup.keyInfo"
-msgstr "Informazioni chiave"
-
-msgid "manager.people.enrollExistingUser"
-msgstr "Registra un utente esistente"
-
-msgid "doi.editor.assigned"
-msgstr "Il DOI è assegnato a questo {$pubObjectType}."
-
-#, fuzzy
-msgid "manager.setup.emailSignature.description"
-msgstr ""
-"Le email preparate che vengono inviate dal sistema per conto della Casa "
-"Editrice recheranno la seguente firma aggiunta alla fine."
-
-msgid "doi.editor.doiObjectTypeChapter"
-msgstr "capitolo"
-
-msgid "manager.setup.copyeditInstructionsDescription"
-msgstr ""
-"Le istruzioni redazionali saranno messe a disposizione di Redattori, Autori "
-"e Editori di Sezione nella fase di revisione editoriale della proposta. Di "
-"seguito è riportato un insieme predefinito di istruzioni in HTML, che "
-"possono essere modificate o sostituite dall'amministratore della Casa "
-"Editrice in qualsiasi momento (in HTML o testo normale)."
-
-msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
-msgstr "Inserire il suffisso DOI per i formati di pubblicazione."
-
-msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
-msgstr ""
-"Ai revisori può essere inviato un link sicuro nell'e-mail di invito, che "
-"consentirà loro di accedere al testo da leggere senza effettuare il login. "
-"Per accedere ad altre pagine è necessario effettuare il login."
-
-msgid "manager.setup.emailBounceAddress.description"
-msgstr ""
-"Qualsiasi email non recapitata comporterà un messaggio di errore inviato a "
-"questo indirizzo."
-
-msgid "manager.setup.enablePublicGalleyId"
-msgstr ""
-"Gli identificatori personalizzati verranno utilizzati per identificare il "
-"materiale (ad es. file HTML o PDF) per gli elementi pubblicati."
-
-msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
-msgstr ""
-"Il suffisso DOI indicato è già in uso per un'altra pubblicazione. Si prega "
-"di inserire un suffisso DOI specifico per ogni articolo."
-
-msgid "manager.setup.managingThePress"
-msgstr "Passo 4. Gestione delle impostazioni"
-
-msgid "manager.setup.publisherDescription"
-msgstr ""
-"Il nome dell'organizzazione che ospita la Casa Editrice apparirà in "
-"Informazioni sulla Casa Editrice."
-
-msgid "manager.dois.formatIdentifier.file"
-msgstr "Formato / {$format}"
-
-msgid "manager.navigationMenus.form.navigationMenuItem.series"
-msgstr "Seleziona Collana"
-
-msgid "manager.tools.statistics"
-msgstr ""
-"Strumenti per generare report relativi alle statistiche di utilizzo ("
-"visualizzazioni della pagina indice del catalogo, visualizzazioni "
-"dell'abstract della monografia, download della monografia)"
-
-msgid "manager.setup.numPageLinks.description"
-msgstr ""
-"Limita il numero di collegamenti alle pagine successive da visualizzare."
-
-msgid "manager.series.create"
-msgstr "Crea Collana"
-
-msgid "doi.manager.settings.doiSuffixLegacy"
-msgstr ""
-"Utilizzare i modelli predefiniti.<br />%p.%m per le monografie<br /"
-">%p.%m.c%c per i capitoli<br />%p.%m.%f per i formati di publicazione<br /"
-">%p.%m.%f.%s per i files."
-
-msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
-msgstr "Visualizzazionie della pagina principale della Casa Editrice"
-
-msgid "doi.manager.settings.explainDois"
-msgstr ""
-"Selezionare gli oggetti editoriali a cui verranno assegnati i Digital Object "
-"Identifier (DOI):"
-
-msgid "manager.settings.location"
-msgstr "Localizzazione geografica"
-
-msgid "manager.setup.refLinkInstructions.description"
-msgstr "Istruzioni per il layout dei collegamenti di riferimento bibliografico"
-
-msgid "manager.setup.workflow"
-msgstr "Flusso di lavoro"
-
-msgid "manager.setup.reviewGuidelinesDescription"
-msgstr ""
-"Fornire ai revisori esterni i criteri per giudicare l'idoneità alla "
-"pubblicazione di un prodotto. I criteri possono includere istruzioni per "
-"preparare una nota di lettura efficace e utile. I revisori avranno la "
-"possibilità di fornire commenti destinati all'autore e all'editore, o "
-"commenti separati solo per l'editore."
-
-msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
-msgstr "Accesso revisore con un solo clic"
-
-msgid "manager.setup.securitySettings"
-msgstr "Impostazioni di accesso e sicurezza"
-
-msgid "manager.setup.numAnnouncementsHomepage"
-msgstr "Mostra sulla home page"
-
-msgid "manager.setup.enablePressInstructions"
-msgstr "Abilita a questa Casa Editrice di apparire pubblicamente sul sito"
-
-msgid "doi.manager.settings.doiReassign"
-msgstr "Riassegna DOI"
-
-msgid "manager.setup.enableAnnouncements.enable"
-msgstr "Abilita avvisi"
-
-msgid "manager.setup.proofingInstructions"
-msgstr "Istruzioni per le bozze"
-
-msgid "plugins.importexport.native.error.unknownUser"
-msgstr "L'utente specificato, \"{$userName}\", non esiste."
-
-msgid "manager.setup.pressSetupUpdated"
-msgstr "Le impostazioni della Casa Editrice sono state aggiornate."
-
-msgid "manager.setup.productionTemplates"
-msgstr "Modelli di produzione"
-
-msgid "manager.setup.noStyleSheetUploaded"
-msgstr "Nessun foglio di stile caricato."
-
-msgid "manager.setup.deleteSelected"
-msgstr "Elimina selezionati"
-
-msgid "doi.manager.settings.enableSubmissionFileDoi"
-msgstr "File"
-
-msgid "manager.setup.printIssn"
-msgstr "ISSN"
-
-msgid "grid.series.pathAlphaNumeric"
-msgstr ""
-"Il percorso della Collana deve essere composto solo da lettere e numeri."
-
-msgid "plugins.importexport.publicationformat.exportFailed"
-msgstr "Il processo non è riuscito ad analizzare i formati di pubblicazione"
-
-msgid "manager.setup.subjectProvideExamples"
-msgstr "Fornisci esempi di parole chiave o argomenti come guida per gli autori"
-
-msgid "stats.publications.none"
-msgstr ""
-"Non sono state trovate monografie con statistiche d'uso corrispondenti a "
-"questi parametri."
-
-msgid "manager.people.confirmRemove"
-msgstr ""
-"Rimuovere questo utente da questa Casa Editrice? Questa azione escluderà "
-"l'utente da tutti i ruoli di questa Casa Editrice."
-
-msgid "manager.setup.displayInSpotlight"
-msgstr "Mostra i libri sotto i riflettori nella home page"
-
-msgid "doi.manager.settings.doiReassign.confirm"
-msgstr "Siete sicuri di voler cancellare tutti i DOI esistenti?"
-
-msgid "doi.editor.assignDoi.pattern"
-msgstr ""
-"Il DOI {$pubId} non può essere assegnato perché contiene un modello non "
-"risolto."
-
-msgid "manager.setup.addAboutItem"
-msgstr "Aggiungi informazioni"
-
-msgid "manager.setup.resetPermissions.description"
-msgstr ""
-"Le informazioni sui diritti d'autore e sulle licenze vengono allegate in "
-"modo permanente ai contenuti pubblicati, garantendo che questi dati non "
-"cambino nel caso in cui una Casa Editrice modifichi le politiche per le "
-"nuove proposte. Per ripristinare le informazioni sui permessi memorizzate "
-"già allegate ai contenuti pubblicati, utilizzare il pulsante sottostante."
-
-msgid "manager.people.mergeUsers.into.description"
-msgstr ""
-"Seleziona un utente a cui attribuire i ruoli dell'utente precedente, le "
-"assegnazioni di editing, ecc."
-
-msgid "manager.setup.disableSubmissions.description"
-msgstr ""
-"Impedisci agli utenti di inviare nuove proposte alla Casa Editrice. L'invio "
-"può essere disabilitato per le singole Collane della Casa Editrice nella "
-"pagina delle impostazioni delle <a href=\"{$url}\">Collane</a>."
-
-msgid "user.authorization.pluginLevel"
-msgstr "Non hai privilegi sufficienti per gestire questo plugin."
-
-msgid "manager.setup.displayNewReleases.label"
-msgstr "Nuove uscite"
-
-msgid "doi.editor.assignDoi.assigned"
-msgstr "Il DOI {$pubId} è stato assegnato."
-
-msgid "manager.statistics.reports.defaultReport.monographAbstract"
-msgstr "Visualizzazione della pagina estratta dalla monografia"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Elenco degli editori, dei redattori, degli amministratori e delle altre "
-"persone associate alla Casa Editrice."
-
-msgid "manager.settings.distributionDescription"
-msgstr ""
-"Tutte le impostazioni specifiche necessarie al processo di distribuzione ("
-"notifica, indicizzazione, archiviazione, pagamento, strumenti di lettura)."
-
-msgid "manager.setup.internalReviewGuidelines"
-msgstr "Linee guida per la revisione interna"
-
-msgid "manager.setup.styleSheetInvalid"
-msgstr "Formato del foglio di stile non valido. Il formato accettato è .css."
-
-msgid "doi.editor.preview.publication"
-msgstr "Il DOI di questa pubblicazione sarà {$doi}."
-
-msgid "doi.manager.settings.doiSuffixPattern.representations"
-msgstr "per i formati di pubblicazione"
-
-msgid "doi.manager.settings.enableChapterDoi"
-msgstr "Capitoli"
-
-msgid "manager.navigationMenus.form.navigationMenuItem.category"
-msgstr "Selezionare la categoria"
-
-msgid "manager.series.restricted"
-msgstr ""
-"Non consentire agli autori di inviare proposte direttamente a questa Collana."
-
-msgid "manager.series.existingUsers"
-msgstr "Utenti esistenti"
-
-msgid "manager.setup.searchDescription.description"
-msgstr ""
-"Fornisci una breve descrizione (50-300 caratteri) della Casa Editrice che i "
-"motori di ricerca possono visualizzare quando la Casa Editrice viene "
-"elencata nei risultati di ricerca."
-
-msgid "manager.setup.layoutTemplates.file"
-msgstr "File di modello"
-
-msgid "manager.setup.reviewForms"
-msgstr "Moduli di revisione"
-
-msgid "manager.setup.useProofreaders"
-msgstr ""
-"Verrà assegnato un correttore di bozze per controllare (assieme agli autori) "
-"le bozze prima della pubblicazione."
-
-msgid "manager.people.confirmDisable"
-msgstr ""
-"Disabilitare questo utente? Ciò impedirà all'utente di accedere al sistema.\n"
-"\n"
-"Puoi facoltativamente fornire all'utente un motivo per la disabilitazione "
-"dell'account."
-
-msgid "manager.people.mergeUsers.from.description"
-msgstr ""
-"Seleziona un utente da unire a un altro account (ad es., quando qualcuno ha "
-"due account). L'account selezionato per primo verrà eliminato e le sue "
-"proposte, assegnazioni, ecc. verranno attribuite al secondo account."
-
-msgid "plugins.importexport.chapter.exportFailed"
-msgstr "Il processo non è riuscito ad analizzare i capitoli"
-
-msgid "manager.setup.submissionPreparationChecklist"
-msgstr "Lista di controllo per la preparazione della proposta"
-
-msgid "manager.setup.announcementsDescription"
-msgstr ""
-"Gli avvisi possono essere pubblicati per informare i lettori di notizie ed "
-"eventi relativi alla Casa Editrice. Gli avvisi pubblicati verranno "
-"visualizzati nella pagina degli Avvisi."
-
-msgid "manager.setup.sectionsDefaultSectionDescription"
-msgstr ""
-"(Se non vengono aggiunte sezioni, gli articoli vengono inviati di default "
-"alla sezione Monografie)"
-
-msgid "emailTemplate.variable.context.contextName"
-msgstr "Il nome della Casa Editrice"
-
-msgid "manager.setup.form.supportEmailRequired"
-msgstr "È richiesta l'email di supporto."
-
-msgid "manager.setup.typeMethodApproach"
-msgstr "Tipo (Metodo/Approccio)"
-
-msgid "manager.setup.files"
-msgstr "File"
-
-msgid "manager.setup.currentRoles"
-msgstr "Ruoli attuali"
-
-msgid "manager.setup.announcementsIntroduction"
-msgstr "Informazioni supplementari"
-
-msgid "manager.setup.announcements"
-msgstr "Avvisi"
-
-msgid "manager.setup.information.forAuthors"
-msgstr "Per gli autori"
-
-msgid "manager.setup.enableAnnouncements.description"
-msgstr ""
-"Gli avvisi possono essere pubblicati per informare i lettori di notizie ed "
-"eventi. Gli avvisi pubblicati appariranno nella pagina Avvisi."
-
-msgid "manager.setup.masthead.success"
-msgstr "I dettagli della testata di questa Casa Editrice sono stati aggiornati."
-
-msgid "manager.setup.lists.success"
-msgstr "Le impostazioni degli elenchi sono state aggiornate."
-
-msgid "manager.setup.itemsPerPage"
-msgstr "Elementi per pagina"
-
-msgid "manager.setup.publisher"
-msgstr "Casa Editrice"
-
-msgid "manager.setup.announcementsIntroduction.description"
-msgstr ""
-"Inserisci qualsiasi informazione supplementare che dovrebbe essere mostrata "
-"ai lettori nella pagina Avvisi."
-
-msgid "manager.users.currentRoles"
-msgstr "Ruoli correnti"
-
-msgid "manager.setup.pressHomepageContent"
-msgstr "Contenuto della homepage della Casa Editrice"
-
-msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
-msgstr "Inserire il suffisso DOI per i capitoli."
-
-msgid "doi.editor.clearObjectsDoi.confirm"
-msgstr "Sei sicuro di voler eliminare il DOI esistente?"
-
-msgid "manager.setup.form.contactNameRequired"
-msgstr "Il nome del contatto primario è obbligatorio."
-
-msgid "manager.setup.reviewOptions.reviewerAccess"
-msgstr "Accesso revisori"
-
-msgid "plugins.importexport.common.error.noObjectsSelected"
-msgstr "Nessun oggetto selezionato."
-
-msgid "plugins.importexport.common.invalidXML"
-msgstr "XML non valido:"
-
-msgid "manager.setup.information.forReaders"
-msgstr "Per i lettori"
-
-msgid "manager.setup.noUseLayoutEditors"
-msgstr ""
-"Un Editore o un Editore di sezione assegnato preparerà i file HTML, PDF, ecc."
-
-msgid "manager.setup.contextSummary"
-msgstr "Riepilogo Casa Editrice"
-
-msgid "manager.setup.numAnnouncementsHomepage.description"
-msgstr ""
-"Numero di avvisi da mostrare sulla home page. Lascia vuoto questo campo per "
-"non mostrarne nessuno."
-
-msgid "manager.setup.itemsPerPage.description"
-msgstr ""
-"Limita il numero di elementi (per es., proposte, utenti o incarichi di "
-"redazione) da mostrare in un elenco prima di mostrare gli elementi "
-"successivi in un'altra pagina."
-
-msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
-msgstr ""
-"Nn sono stati definiti contatti principali per questa Casa Editrice. Puoi "
-"inserire un contatto principale in <a href=\"{$url}\">Impostazioni della "
-"Casa Editrice</a>."
-
-msgid "manager.tools.importExport"
-msgstr ""
-"Tutti gli strumenti specifici per l'importazione e l'esportazione dei dati ("
-"Case Editrici, monografie, utenti)"
-
-msgid "manager.setup.availableRoles"
-msgstr "Ruoli disponibili"
-
-msgid "manager.series.book"
-msgstr "Collane"
-
-msgid "manager.setup.submissionGuidelines"
-msgstr "Linee guida per l'invio di proposte"
-
-msgid "grid.series.urlWillBe"
-msgstr "L'URL della Collana sarà: {$sampleUrl}"
-
-msgid "manager.setup.pressSetup"
-msgstr "Impostazioni della Casa Editrice"
-
-msgid "doi.manager.settings.doiSuffixPattern.files"
-msgstr "per i file"
-
-msgid "manager.setup.copyrightNotice"
-msgstr "Avviso sul copyright"
-
-msgid "manager.setup.categories.description"
-msgstr ""
-"È possibile creare un elenco di categorie per organizzare le pubblicazioni. "
-"Le categorie sono raggruppamenti di libri in base all'argomento, ad esempio: "
-"Economia, Letteratura, Poesia e così via. Le categorie possono essere "
-"annidate all'interno di categorie \"padre\": ad esempio, una categoria padre "
-"Economia può includere singole categorie Microeconomia e Macroeconomia. I "
-"visitatori potranno cercare e navigare nella Casa Editrice per categoria."
-
-msgid "manager.setup.proofingInstructionsDescription"
-msgstr ""
-"Le istruzioni per la correzione delle bozze saranno rese disponibili ai "
-"correttori di bozze, agli autori, agli Editori di layout e agli Editori di "
-"sezione nella fase di modifica dell'invio. Di seguito sono riportate le "
-"istruzioni predefinite in HTML, che possono essere modificate o sostituite "
-"dal Manager della Casa Editrice in qualsiasi momento (in HTML o in testo "
-"normale)."
-
-msgid "manager.setup.issnDescription"
-msgstr ""
-"L'ISSN (International Standard Serial Number) è un numero di otto cifre che "
-"identifica le pubblicazioni periodiche, compresi i seriali elettronici. Il "
-"numero può essere ottenuto dal <a href=\"http://www.issn.org\" target="
-"\"_blank\">Centro Internazionale ISSN</a>."
-
-msgid "manager.setup.disableUserRegistration"
-msgstr ""
-"L'amministratore della Casa Editrice registrerà tutti gli account degli "
-"utenti. Gli Editori o gli Editori di sezione possono registrare gli account "
-"utente per i revisori."
-
-msgid "manager.setup.displayFeaturedBooks"
-msgstr "Mostra i libri in primo piano nella home page"
-
-msgid "manager.setup.securitySettings.note"
-msgstr ""
-"Altre opzioni relative alla sicurezza e all'accesso possono essere "
-"configurate nella pagina <a href=\"{$accessAndSecurityUrl}\" target=\"_blank"
-"\" class=\"action\">Accesso e sicurezza</a>."
-
-msgid "manager.series.assigned"
-msgstr "Editori per questa Collana"
-
-msgid "emailTemplate.variable.site.siteTitle"
-msgstr "Nome del sito web quando è ospitata più di una Casa Editrice"
-
-msgid "manager.setup.publicationFormat.nameRequired"
-msgstr "È necessario assegnare un nome a questo formato."
-
-msgid "manager.settings.pressSettings"
-msgstr "Impostazioni Casa Editrice"
-
-msgid "manager.setup.copyeditInstructions"
-msgstr "Istruzioni redazionali"
-
-msgid "manager.setup.pressArchiving"
-msgstr "Archivio della Casa Editrice"
-
-msgid "manager.publication.library"
-msgstr "Archivio della Casa Editrice"
-
-msgid "manager.people.allPresses"
-msgstr "Tutte le Case Editrici"
-
-msgid "manager.series.seriesEditorInstructions"
-msgstr ""
-"Aggiungi un Editore di Collana a questa Collana prendendolo dagli Editori di "
-"Collana disponibili. Una volta aggiunto, designa l'editor di Collana che "
-"supervisionerà la REVISIONE (revisione tra pari) e/o l'EDITING (ritocco del "
-"testo, layout e correzione di bozze) delle proposte fatte a questa Collana. "
-"Gli Editori vengono creati facendo clic su <a href=\"{$seriesEditorsUrl}\""
-">Editori di Collana</a> in Ruoli in Gestione Casa Editrice."
-
-msgid "manager.series.hideAbout"
-msgstr "Ometti questa Collana da Informazioni sulla Casa Editrice."
-
-msgid "manager.series.seriesTitle"
-msgstr "Titolo della Collana"
-
-msgid "manager.settings.publisher.identity"
-msgstr "Identificativi della Casa Editrice"
-
-msgid "manager.statistics.reports.defaultReport.monographDownloads"
-msgstr "Download delle monografie"
-
-msgid "manager.users.selectRole"
-msgstr "Seleziona ruolo"
-
-msgid "manager.setup"
-msgstr "Installazione"
-
-msgid "manager.setup.addChecklistItem"
-msgstr "Aggiungi voci all'elenco di controllo"
-
-msgid "manager.setup.appearInAboutPress"
-msgstr "(Per apparire in Informazioni sulla Casa Editrice) "
-
-msgid "manager.setup.disciplineExamples"
-msgstr ""
-"(Ad es.: Storia; Educazione; Sociologia; Psicologia; Studi culturali; "
-"Giurisprudenza)"
-
-msgid "manager.setup.enablePublicMonographId"
-msgstr ""
-"Gli identificatori personalizzati verranno utilizzati per identificare gli "
-"elementi pubblicati."
-
-msgid "manager.setup.focusAndScope"
-msgstr "Interessi e ambito della Casa Editrice"
-
-msgid "manager.setup.focusAndScope.description"
-msgstr ""
-"Descrivi ad autori, lettori e bibliotecari la tipologia di monografie e "
-"altri prodotti pubblicati dalla Casa Editrice."
-
-msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
-msgstr ""
-"OMP aderisce al <a href=\"http://www.openarchives.org/\" target=\"_blank\\\""
-">Protocollo per la raccolta dei metadati di Open Archives Initiative</a>, "
-"che è lo standard emergente per fornire un accesso ben indicizzato alle "
-"risorse elettroniche di ricerca su scala globale. Gli autori utilizzeranno "
-"un modello simile per fornire i metadati per la loro proposta. Il "
-"responsabile della Casa Editrice deve selezionare le categorie per "
-"l'indicizzazione e presentare agli autori esempi pertinenti per aiutarli a "
-"indicizzare il loro lavoro, separando i termini con un punto e virgola (ad "
-"esempio, termine1; termine2). Le voci devono essere introdotte come esempi "
-"usando \"Per esempio,\" o \"Per es.,\"."
-
-msgid "manager.setup.gettingDownTheDetails"
-msgstr "Passo 1. Scendere nei dettagli"
-
-msgid "manager.setup.appearanceDescription"
-msgstr ""
-"Da questa pagina è possibile configurare vari componenti dell'aspetto della "
-"Casa Editrice, tra cui gli elementi dell'intestazione e del piè di pagina, "
-"lo stile e il tema della Casa Editrice e il modo in cui le informazioni "
-"vengono presentate agli utenti."
-
-msgid "manager.setup.pressDescription"
-msgstr "Sommario della Casa Editrice"
-
-msgid "manager.setup.pressPolicies"
-msgstr "Passo 2. Politiche editoriali della Casa Editrice"
-
-msgid "manager.setup.reviewGuidelines"
-msgstr "Linee guida per la revisione esterna"
-
-msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
-msgstr "Limitazioni di accesso ai file"
-
-msgid "manager.setup.reviewOptions.reviewerReminders"
-msgstr "Promemoria revisori"
-
-msgid "manager.setup.selectSectionDescription"
-msgstr ""
-"La sezione della Casa Editrice per la quale la proposta sarà presa in "
-"considerazione."
-
-msgid "manager.setup.submissions.description"
-msgstr ""
-"Linee guida per l'autore, copyright e indicizzazione (inclusa la "
-"registrazione)."
-
-msgid "manager.setup.publicationFormat.code"
-msgstr "Formato"
-
-msgid "manager.setup.submitToCategories"
-msgstr "Consenti proposte di categorie"
-
-msgid "manager.setup.submitToSeries"
-msgstr "Consenti la proposta di Collane"
+"Passaggi da compiere: Coda di invio &gt; Revisione dell'invio &gt; Modifica "
+"dell'invio &gt; Sommario.<br /><br />\n"
+"Selezionare un modello per la gestione di questi aspetti del processo "
+"editoriale. (Per designare un Editore e gli Editori di Collana, andare a "
+"Editori in Gestione della Casa Editrice)"
 
 msgid "manager.setup.referenceLinkingDescription"
 msgstr ""
@@ -1461,11 +1320,189 @@ msgstr ""
 "possono essere modificate). </p></li>\n"
 "</ol>"
 
+msgid "manager.publication.library"
+msgstr "Archivio della Casa Editrice"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Ripristina permessi monografia"
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr ""
+"Sei sicuro di voler azzerare i dati dei permessi già allegati alle "
+"monografie?"
+
+msgid "manager.setup.resetPermissions.description"
+msgstr ""
+"Le informazioni sui diritti d'autore e sulle licenze vengono allegate in "
+"modo permanente ai contenuti pubblicati, garantendo che questi dati non "
+"cambino nel caso in cui una Casa Editrice modifichi le politiche per le "
+"nuove proposte. Per ripristinare le informazioni sui permessi memorizzate "
+"già allegate ai contenuti pubblicati, utilizzare il pulsante sottostante."
+
 msgid "manager.setup.resetPermissions.success"
 msgstr "I permessi della monografia sono stati azzerati con successo."
 
+msgid "grid.genres.title.short"
+msgstr "Componenti"
+
+msgid "grid.genres.title"
+msgstr "Componenti monografia"
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr ""
+"Invia una copia al contatto primario, identificato nelle Impostazioni della "
+"Casa Editrice."
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr ""
+"Il percorso della Collana deve essere composto solo da lettere e numeri."
+
 msgid "grid.series.pathExists"
 msgstr "Il percorso della Collana esiste già. Inserire un percorso univoco."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Seleziona Collana"
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr ""
+"Selezionare la Collana a cui si desidera collegare questa voce di menu."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Selezionare la categoria"
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr ""
+"Selezionare la categoria a cui si desidera collegare questa voce di menu."
+
+msgid "grid.series.urlWillBe"
+msgstr "L'URL della Collana sarà: {$sampleUrl}"
+
+msgid "stats.contextStats"
+msgstr "Statistiche per la casa editrice"
+
+msgid "stats.context.tooltip.text"
+msgstr ""
+"Numero di visitatori che visualizzano la pagina indice della casa editrice e "
+"del catalogo."
+
+msgid "stats.context.tooltip.label"
+msgstr "Sulle statistiche della casa editrice"
+
+msgid "stats.context.downloadReport.description"
+msgstr ""
+"Scaricate un foglio di calcolo CSV/Excel con le statistiche di utilizzo di "
+"questa casa editrice in base ai seguenti parametri."
+
+msgid "stats.context.downloadReport.downloadContext.description"
+msgstr ""
+"Numero di visualizzazioni delle pagine dell'indice della casa editrice e del "
+"catalogo."
+
+msgid "stats.context.downloadReport.downloadContext"
+msgstr "Scarica Casa editrice"
+
+msgid "stats.publications.downloadReport.description"
+msgstr ""
+"Scarica un foglio di calcolo CSV/Excel con le statistiche di utilizzo delle "
+"monografie corrispondenti ai seguenti parametri."
+
+msgid "stats.publications.downloadReport.downloadSubmissions"
+msgstr "Scarica Monografie"
+
+msgid "stats.publications.downloadReport.downloadSubmissions.description"
+msgstr ""
+"Numero di visualizzazioni di abstract e di download di file per ogni "
+"monografia."
+
+msgid "stats.publicationStats"
+msgstr "Statistiche della monografia"
+
+msgid "stats.publications.details"
+msgstr "Dettagli della monografia"
+
+msgid "stats.publications.none"
+msgstr ""
+"Non sono state trovate monografie con statistiche d'uso corrispondenti a "
+"questi parametri."
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Visualizzazioni totali del catalogo per data"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Totale visualizzazioni per data"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$count} di {$total} monografie"
+
+msgid "stats.publications.abstracts"
+msgstr "Voci di catalogo"
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Nessun oggetto selezionato."
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Impossibile convertire gli oggetti selezionati."
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "XML non valido:"
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Esportazione proposte"
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Invia una copia dell'email di conferma dell'invio al contatto principale di "
+"questa Casa Editrice."
+
+msgid ""
+"manager.setup.notifications.copySubmissionAckPrimaryContact.disabled."
+"description"
+msgstr ""
+"Nn sono stati definiti contatti principali per questa Casa Editrice. Puoi "
+"inserire un contatto principale in <a href=\"{$url}\">Impostazioni della "
+"Casa Editrice</a>."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Non è stato possibile trovare gli oggetti specificati."
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "L'utente specificato, \"{$userName}\", non esiste."
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "Il processo non è riuscito ad analizzare i formati di pubblicazione"
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "Il processo non è riuscito ad analizzare i capitoli"
+
+msgid "emailTemplate.variable.context.contextName"
+msgstr "Il nome della Casa Editrice"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "L'URL della homepage della Casa Editrice"
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "Il nome del contatto principale della Casa Editrice"
+
+msgid "emailTemplate.variable.context.contextSignature"
+msgstr "La firma email della Casa Editrice per le email automatiche"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "L'indirizzo email del contatto principale della Casa Editrice"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "Nome del tipo di pagamento"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "Ammontare del pagamento"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "La valuta dell'importo del pagamento, ad esempio USD o EUR"
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr "Nome del sito web quando è ospitata più di una Casa Editrice"
+
+msgid "mailable.validateEmailContext.name"
+msgstr "Convalida dell'email (Registrazione alla stampa)"
 
 msgid "mailable.validateEmailContext.description"
 msgstr ""
@@ -1473,8 +1510,46 @@ msgstr ""
 "registra presso la Casa Editrice, se le impostazioni richiedono la convalida "
 "dell'indirizzo email."
 
+msgid "doi.displayName"
+msgstr "DOI"
+
+msgid "doi.manager.displayName"
+msgstr "DOI"
+
+msgid "doi.description"
+msgstr ""
+"Questo plugin consente di assegnare i DOI (Digital Object Identifier) a "
+"monografie, capitoli, formati di pubblicazione e file in OMP."
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "doi.manager.settings.description"
+msgstr ""
+"Configurare il plug-in DOI per poter gestire e utilizzare i DOI in OMP:"
+
+msgid "doi.manager.settings.explainDois"
+msgstr ""
+"Selezionare gli oggetti editoriali a cui verranno assegnati i Digital Object "
+"Identifier (DOI):"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Monografie"
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Capitoli"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Formati di pubblicazione"
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "File"
+
 msgid "doi.manager.settings.doiPrefix"
 msgstr "Prefisso DOI"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "Il prefisso DOI è obbligatorio e deve avere la forma 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""
@@ -1489,166 +1564,36 @@ msgstr ""
 "suffisso personalizzato, verificare attentamente che gli editori possano "
 "generare DOI e depositarli presso un'agenzia di registrazione come Crossref. "
 
-msgid "doi.editor.doiObjectTypeSubmission"
-msgstr "monografia"
-
-msgid "doi.editor.patternNotResolved"
-msgstr "Il DOI non può essere assegnato perché contiene un modello non risolto."
-
-msgid "manager.institutions.noContext"
-msgstr "Non è stato possibile trovare la Casa Editrice di questa istituzione."
-
-msgid "manager.setup.details"
-msgstr "Dettagli"
-
-msgid "manager.series.form.reviewFormId"
-msgstr "Assicurati di aver scelto un modulo di revisione valido."
-
-msgid "manager.tools"
-msgstr "Strumenti"
-
-msgid "manager.pressManagement"
-msgstr "Amministrazione Casa Editrice"
-
-msgid "manager.setup.contextAbout.description"
+msgid "doi.manager.settings.doiSuffixPattern.example"
 msgstr ""
-"Includi tutte le informazioni sulla tua Casa Editrice che potrebbero essere "
-"di interesse per lettori, autori o revisori. Ciò potrebbe includere la tua "
-"politica di accesso aperto, l'obiettivo e gli scopi della Casa Editrice, le "
-"sponsorizzazioni e la storia della Casa Editrice."
+"Per esempio, press%ppub%r può creare un DOI come 10.1234/pressESPpub100"
 
-msgid "manager.setup.customTagsDescription"
-msgstr ""
-"Tag di intestazione HTML personalizzati da inserire nell'intestazione di "
-"ogni pagina (ad es. tag META)."
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "per le monografie"
 
-msgid "manager.setup.disciplineDescription"
-msgstr ""
-"Utile quando la Casa Editrice oltrepassa i confini disciplinari e/o gli "
-"autori inviano articoli multidisciplinari."
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "per i capitoli"
 
-msgid "manager.setup.focusScope"
-msgstr "Interessi e ambito"
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "per i formati di pubblicazione"
 
-msgid "manager.setup.forAuthorsToIndexTheirWork"
-msgstr "Affinché gli autori possano indicizzare il loro lavoro"
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "per i file"
 
-msgid "manager.setup.information.forLibrarians"
-msgstr "Per i bibliotecari"
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Inserire il suffisso DOI per le monografie."
 
-msgid "manager.setup.information.success"
-msgstr "Le informazioni su questa Casa Editrice sono state aggiornate."
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Inserire il suffisso DOI per i capitoli."
 
-msgid "manager.setup.institution"
-msgstr "Istituzione"
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Inserire il suffisso DOI per i formati di pubblicazione."
 
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Fornisci una breve descrizione della Casa Editrice e identifica i redattori, "
-"gli amministratori e gli altri membri del team editoriale."
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Inserire il suffisso DOI per i file."
 
-msgid "manager.setup.layoutInstructionsDescription"
-msgstr ""
-"Le istruzioni di layout possono essere preparate per la formattazione degli "
-"articoli che saranno pubblicati dalla Casa Editrice ed essere inserite di "
-"seguito in una pagina HTML o in testo normale. Saranno messe a disposizione "
-"dell'Editore di Layout e dell'Editore di Sezione nella pagina di modifica di "
-"ogni pubblicazione. (Ogni Casa Editrice può utilizzare propri formati, "
-"standard bibliografici, fogli di stile, norme redazionali ecc.)"
-
-msgid "manager.setup.onlineIssn"
-msgstr "ISSN online"
-
-msgid "manager.setup.pressDescription.description"
-msgstr "Breve descrizione della Casa Editrice."
-
-msgid "manager.setup.aboutPress.description"
-msgstr ""
-"Includi tutte le informazioni sulla Casa Editrice che possono essere di "
-"interesse per i lettori, gli autori o i recensori. Tra queste, la politica "
-"di accesso aperto, l'obiettivo e gli interessi della Casa Editrice, le "
-"informazioni sul copyright, le informazioni sulle sponsorizzazioni, la "
-"storia della Casa Editrice e l'informativa sulla privacy."
-
-msgid "manager.setup.homepageContent"
-msgstr "Contenuto della Homepage della Casa Editrice"
-
-msgid "manager.setup.proofreading"
-msgstr "Correttori di bozze"
-
-msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
-msgstr ""
-"Per attivare queste opzioni, l'amministratore del sito deve abilitare "
-"l'opzione <tt> scheduled_tasks</tt> nel file di configurazione di OMP. Per "
-"supportare questa funzionalità potrebbe essere necessaria una configurazione "
-"aggiuntiva del server (che potrebbe non essere disponibile in tutti i server)"
-", come indicato nella documentazione di OMP."
-
-msgid "manager.setup.useLayoutEditors"
-msgstr ""
-"Verrà assegnato un Editore di layout per preparare i file HTML, PDF ecc. per "
-"la pubblicazione elettronica."
-
-msgid "manager.setup.genresDescription"
-msgstr ""
-"Questi generi sono utilizzati per la denominazione dei file e sono "
-"presentati in un menu a tendina durante il caricamento dei file. I generi "
-"designati ## consentono all'utente di associare il file all'intero libro 99Z "
-"o a un particolare capitolo per numero (ad esempio, 02)."
-
-msgid "manager.setup.genres"
-msgstr "Generi"
-
-msgid "manager.setup.prospectusDescription"
-msgstr ""
-"La guida al prospetto informativo è un documento preparato dalla Casa "
-"Editrice che aiuta l'autore a descrivere il materiale presentato in modo da "
-"consentire alla Casa Editrice di determinare il valore della proposta. Un "
-"prospetto informativo può includere molti elementi, dal potenziale di "
-"marketing alla valenza teorica; in ogni caso, una Casa Editrice dovrebbe "
-"creare una guida al prospetto informativo a integrazione della sua agenda "
-"editoriale."
-
-msgid "manager.setup.currentFormats"
-msgstr "Formati attuali"
-
-msgid "manager.setup.categoriesAndSeries"
-msgstr "Categorie e Collane"
-
-msgid "manager.setup.internalReviewRoles"
-msgstr "Ruoli di revisione interna"
-
-msgid "manager.setup.resetPermissions"
-msgstr "Ripristina permessi monografia"
-
-msgid "manager.setup.basicEditorialStepsDescription"
-msgstr ""
-"Passaggi da compiere: Coda di invio &gt; Revisione dell'invio &gt; Modifica "
-"dell'invio &gt; Sommario.<br /><br />\n"
-"Selezionare un modello per la gestione di questi aspetti del processo "
-"editoriale. (Per designare un Editore e gli Editori di Collana, andare a "
-"Editori in Gestione della Casa Editrice)"
-
-msgid "stats.publications.totalGalleyViews.timelineInterval"
-msgstr "Totale visualizzazioni per data"
-
-msgid "stats.publications.abstracts"
-msgstr "Voci di catalogo"
-
-msgid "doi.manager.displayName"
-msgstr "DOI"
-
-msgid "plugins.importexport.native.exportSubmissions"
-msgstr "Esportazione proposte"
-
-msgid "plugins.importexport.common.error.unknownObjects"
-msgstr "Non è stato possibile trovare gli oggetti specificati."
-
-msgid "emailTemplate.variable.context.contactEmail"
-msgstr "L'indirizzo email del contatto principale della Casa Editrice"
-
-msgid "doi.manager.settings.doiCreationTime.copyedit"
-msgstr "Una volta raggiunta la fase di copyediting"
+msgid "doi.manager.settings.doiReassign"
+msgstr "Riassegna DOI"
 
 msgid "doi.manager.settings.doiReassign.description"
 msgstr ""
@@ -1657,47 +1602,135 @@ msgstr ""
 "pulsante per cancellare tutti i DOI esistenti, in modo che le nuove "
 "impostazioni abbiano effetto su tutti gli oggetti esistenti."
 
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Siete sicuri di voler cancellare tutti i DOI esistenti?"
+
+msgid "doi.editor.doi"
+msgstr "DOI"
+
+msgid "doi.editor.doi.description"
+msgstr "Il DOI deve iniziare con {$prefix}."
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Assegna"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "monografia"
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "capitolo"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "formato di pubblicazione"
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "file"
+
+msgid "doi.editor.customSuffixMissing"
+msgstr ""
+"Il DOI non può essere assegnato perché manca il suffisso personalizzato."
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"Non è possibile generare un DOI perché in una o più parti del modello DOI "
+"mancano dati."
+
+msgid "doi.editor.patternNotResolved"
+msgstr ""
+"Il DOI non può essere assegnato perché contiene un modello non risolto."
+
 msgid "doi.editor.canBeAssigned"
 msgstr ""
 "Viene visualizzata un'anteprima del DOI. Selezionare la casella di controllo "
 "e salvare il modulo per assegnare il DOI."
 
+msgid "doi.editor.assigned"
+msgstr "Il DOI è assegnato a questo {$pubObjectType}."
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Il suffisso DOI indicato è già in uso per un'altra pubblicazione. Si prega "
+"di inserire un suffisso DOI specifico per ogni articolo."
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Cancella"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Sei sicuro di voler eliminare il DOI esistente?"
+
+msgid "doi.editor.assignDoi"
+msgstr "Assegna il DOI {$pubId} a questo {$pubObjectType}"
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr ""
+"Il DOI non può essere assegnato perché manca il suffisso personalizzato."
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr ""
+"Il DOI {$pubId} non può essere assegnato perché contiene un modello non "
+"risolto."
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "Il DOI {$pubId} è stato assegnato."
+
+msgid "doi.editor.missingPrefix"
+msgstr "Il DOI deve iniziare con {$doiPrefix}."
+
+msgid "doi.editor.preview.publication"
+msgstr "Il DOI di questa pubblicazione sarà {$doi}."
+
+msgid "doi.editor.preview.publication.none"
+msgstr "A questa pubblicazione non è stato assegnato un DOI."
+
+msgid "doi.editor.preview.chapters"
+msgstr "Capitolo: {$title}"
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Formato di pubblicazione: {$title}"
+
+msgid "doi.editor.preview.files"
+msgstr "File: {$title}"
+
+msgid "doi.editor.preview.objects"
+msgstr "Oggetto"
+
 msgid "doi.manager.submissionDois"
 msgstr "DOI della monografia"
 
-msgid "stats.contextStats"
-msgstr "Statistiche per la casa editrice"
-
-msgid "stats.context.tooltip.text"
+msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
 msgstr ""
-"Numero di visitatori che visualizzano la pagina indice della casa editrice e "
-"del catalogo."
+"Questa email notifica all'autore che il suo lavoro è stato inviato alla fase "
+"di revisione interna."
 
-msgid "stats.context.tooltip.label"
-msgstr "Sulle statistiche della casa editrice"
-
-msgid "stats.context.downloadReport.downloadContext.description"
+msgid "mailable.decision.initialDecline.notifyAuthor.description"
 msgstr ""
-"Numero di visualizzazioni delle pagine dell'indice della casa editrice e del "
-"catalogo."
+"Questa email informa l'autore che la sua proposta è stata rifiutata prima di "
+"essere inviata alla revisione, perché non soddisfa i requisiti per la "
+"pubblicazione con la Casa editrice."
 
-msgid "stats.context.downloadReport.downloadContext"
-msgstr "Scarica Casa editrice"
+msgid "manager.institutions.noContext"
+msgstr "Non è stato possibile trovare la Casa Editrice di questa istituzione."
 
-msgid "stats.context.downloadReport.description"
+msgid "manager.manageEmails.description"
 msgstr ""
-"Scaricate un foglio di calcolo CSV/Excel con le statistiche di utilizzo di "
-"questa casa editrice in base ai seguenti parametri."
 
-msgid "stats.publications.downloadReport.description"
+msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
+msgstr "Inviato alla revisione interna"
+
+msgid "mailable.indexRequest.name"
 msgstr ""
-"Scarica un foglio di calcolo CSV/Excel con le statistiche di utilizzo delle "
-"monografie corrispondenti ai seguenti parametri."
 
-msgid "stats.publications.downloadReport.downloadSubmissions"
-msgstr "Scarica Monografie"
-
-msgid "stats.publications.downloadReport.downloadSubmissions.description"
+msgid "mailable.indexComplete.name"
 msgstr ""
-"Numero di visualizzazioni di abstract e di download di file per ogni "
-"monografia."
+
+msgid "mailable.publicationVersionNotify.name"
+msgstr ""
+
+msgid "mailable.publicationVersionNotify.description"
+msgstr ""
+
+msgid "mailable.submissionNeedsEditor.description"
+msgstr ""
+
+#~ msgid "manager.setup.submissionPreparationChecklist"
+#~ msgstr "Lista di controllo per la preparazione della proposta"

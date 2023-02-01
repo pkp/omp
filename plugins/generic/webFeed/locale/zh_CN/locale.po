@@ -21,6 +21,9 @@ msgstr "网络Feed插件"
 msgid "plugins.generic.webfeed.description"
 msgstr "这个插件为当前的刊期生成的RSS / Atom的网络联合供稿。"
 
+msgid "plugins.generic.webfeed.newcontent"
+msgstr "新内容"
+
 msgid "plugins.generic.webfeed.settings"
 msgstr "设置"
 
@@ -29,6 +32,9 @@ msgstr "只在首页和刊期页面显示Feed链接。"
 
 msgid "plugins.generic.webfeed.settings.all"
 msgstr "在所有页面显示feed链接。"
+
+msgid "plugins.generic.webfeed.settings.recentBooks"
+msgstr "显示的条目数量"
 
 msgid "plugins.generic.webfeed.settings.recentItemsRequired"
 msgstr "请为最近出版的项目制定一个整数。"
@@ -41,9 +47,3 @@ msgstr "RSS1 logo"
 
 msgid "plugins.generic.webfeed.rss2.altText"
 msgstr "RSS2 logo"
-
-msgid "plugins.generic.webfeed.settings.recentBooks"
-msgstr "显示的条目数量"
-
-msgid "plugins.generic.webfeed.newcontent"
-msgstr "新内容"

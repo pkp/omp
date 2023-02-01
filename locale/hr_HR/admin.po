@@ -14,19 +14,48 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.13.1\n"
 
+msgid "admin.hostedContexts"
+msgstr "Hosted Presses"
+
+msgid "admin.settings.appearance.success"
+msgstr "Postavke izgleda stranice uspješno su ažurirane."
+
 msgid "admin.settings.config.success"
 msgstr "Konfiguracijske  postavke mrežnog mjesta su uspješno ažurirane."
+
+msgid "admin.settings.info.success"
+msgstr "Informacije o web mjestu uspješno su ažurirane."
+
+msgid "admin.settings.redirect"
+msgstr "Preusmjeravanje"
 
 msgid "admin.settings.redirectInstructions"
 msgstr ""
 "Zahtjevi za glavnu stranicu biti će preusmjereni ovdje. To može biti korisno "
 "ako je glavno računalo pokriva samo jedan press, na primjer."
 
-#, fuzzy
-msgid "admin.languages.confirmDisable"
+msgid "admin.settings.noPressRedirect"
+msgstr "Nemoj preusmjeravati"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "Ovo će biti zadani jezik za web-mjesto i sve objavljene publikacije."
+
+msgid "admin.languages.supportedLocalesInstructions"
 msgstr ""
-"Are you sure you want to disable this locale? This may affect any hosted "
-"presses currently using the locale."
+"Odaberite sve lokacije za potporu na stranici. Odabrane lokacije bit će "
+"dostupne za korištenje svim pressovima na stranici te se također pojavljuju "
+"u jezičnom izborniku koji će se nalaziti na svakoj stranici web stranice "
+"(koja se može poništiti na stranicama za press). Ako se ne odabere više "
+"lokacija, neće se pojaviti izbornik za jezik i dodatne postavke za jezik "
+"neće biti dostupne."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Označena mjesta mogu biti nepotpuna."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"Jeste li sigurni da želite deinstalirati ovo mjesto? To može utjecati bilo "
+"koji press koji koristi to mjesto."
 
 #, fuzzy
 msgid "admin.languages.installNewLocalesInstructions"
@@ -35,44 +64,68 @@ msgstr ""
 "must be installed before they can be used by hosted presses. See the OMP "
 "documentation for information on adding support for new languages."
 
-msgid "admin.languages.confirmUninstall"
+#, fuzzy
+msgid "admin.languages.confirmDisable"
 msgstr ""
-"Jeste li sigurni da želite deinstalirati ovo mjesto? To može utjecati bilo "
-"koji press koji koristi to mjesto."
+"Are you sure you want to disable this locale? This may affect any hosted "
+"presses currently using the locale."
 
-msgid "admin.locale.maybeIncomplete"
-msgstr "* Označena mjesta mogu biti nepotpuna."
+msgid "admin.systemVersion"
+msgstr "OMP verzija"
 
-msgid "admin.languages.supportedLocalesInstructions"
-msgstr ""
-"Odaberite sve lokacije za potporu na stranici. Odabrane lokacije bit će "
-"dostupne za korištenje svim pressovima na stranici te se također pojavljuju "
-"u jezičnom izborniku koji će se nalaziti na svakoj stranici web stranice ("
-"koja se može poništiti na stranicama za press). Ako se ne odabere više "
-"lokacija, neće se pojaviti izbornik za jezik i dodatne postavke za jezik "
-"neće biti dostupne."
+msgid "admin.systemConfiguration"
+msgstr "OMP konfiguracija"
 
-msgid "admin.languages.primaryLocaleInstructions"
-msgstr "Ovo će biti zadani jezik za web-mjesto i sve objavljene publikacije."
+msgid "admin.presses.pressSettings"
+msgstr "Press postavke"
 
-msgid "admin.settings.noPressRedirect"
-msgstr "Nemoj preusmjeravati"
+msgid "admin.presses.noneCreated"
+msgstr "Publikacija nije stvorena"
+
+msgid "admin.contexts.create"
+msgstr "Stvori Press"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Naslov je obavezan."
 
 #, fuzzy
-msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
-msgstr ""
-"The bulk email feature has been disabled for this press. Enable this feature "
-"in <a href=\"{$siteSettingsUrl}\">Admin > Site Settings</a>."
+msgid "admin.contexts.form.pathRequired"
+msgstr "A path is required."
 
 #, fuzzy
-msgid "admin.settings.disableBulkEmailRoles.description"
+msgid "admin.contexts.form.pathAlphaNumeric"
 msgstr ""
-"A press manager will be unable to send bulk emails to any of the roles "
-"selected below. Use this setting to limit abuse of the email notification "
-"feature. For example, it may be safer to disable bulk emails to readers, "
-"authors, or other large user groups that have not consented to receive such "
-"emails.<br><br>The bulk email feature can be disabled completely for this "
-"press in <a href=\"{$siteSettingsUrl}\">Admin > Site Settings</a>."
+"The path can only include letters, numbers and the characters _ and -. It "
+"must begin and end with a letter or number."
+
+#, fuzzy
+msgid "admin.contexts.form.pathExists"
+msgstr "The selected path is already in use by another press."
+
+#, fuzzy
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr "The primary locale must be one of the press's supported locales."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} je uspješno stvoren."
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} je uspješno uređeno."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Opis publikacije"
+
+msgid "admin.presses.addPress"
+msgstr "Dodaj publikaciju"
+
+#, fuzzy
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>NOTE!</div>\n"
+"<p>The system could not automatically overwrite the configuration file. To "
+"apply your configuration changes you must open <tt>config.inc.php</tt> in a "
+"suitable text editor and replace its contents with the contents of the text "
+"field below.</p>"
 
 #, fuzzy
 msgid "admin.settings.enableBulkEmails.description"
@@ -88,70 +141,35 @@ msgstr ""
 "<a href=\"{$hostedContextsUrl}\">Hosted Presses</a>."
 
 #, fuzzy
-msgid "admin.overwriteConfigFileInstructions"
+msgid "admin.settings.disableBulkEmailRoles.description"
 msgstr ""
-"<h4>NOTE!</div>\n"
-"<p>The system could not automatically overwrite the configuration file. To "
-"apply your configuration changes you must open <tt>config.inc.php</tt> in a "
-"suitable text editor and replace its contents with the contents of the text "
-"field below.</p>"
-
-msgid "admin.contexts.contextDescription"
-msgstr "Opis publikacije"
-
-msgid "admin.presses.addPress"
-msgstr "Dodaj publikaciju"
-
-msgid "admin.contexts.form.edit.success"
-msgstr "{$name} je uspješno uređeno."
-
-msgid "admin.contexts.form.create.success"
-msgstr "{$name} je uspješno stvoren."
+"A press manager will be unable to send bulk emails to any of the roles "
+"selected below. Use this setting to limit abuse of the email notification "
+"feature. For example, it may be safer to disable bulk emails to readers, "
+"authors, or other large user groups that have not consented to receive such "
+"emails.<br><br>The bulk email feature can be disabled completely for this "
+"press in <a href=\"{$siteSettingsUrl}\">Admin > Site Settings</a>."
 
 #, fuzzy
-msgid "admin.contexts.form.primaryLocaleNotSupported"
-msgstr "The primary locale must be one of the press's supported locales."
-
-#, fuzzy
-msgid "admin.contexts.form.pathExists"
-msgstr "The selected path is already in use by another press."
-
-#, fuzzy
-msgid "admin.contexts.form.pathRequired"
-msgstr "A path is required."
-
-#, fuzzy
-msgid "admin.contexts.form.pathAlphaNumeric"
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
 msgstr ""
-"The path can only include letters, numbers and the characters _ and -. It "
-"must begin and end with a letter or number."
+"The bulk email feature has been disabled for this press. Enable this feature "
+"in <a href=\"{$siteSettingsUrl}\">Admin > Site Settings</a>."
 
-msgid "admin.contexts.form.titleRequired"
-msgstr "Naslov je obavezan."
+msgid "admin.siteManagement.description"
+msgstr ""
 
-msgid "admin.contexts.create"
-msgstr "Stvori Press"
+msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgstr ""
 
-msgid "admin.presses.noneCreated"
-msgstr "Publikacija nije stvorena"
+msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgstr ""
 
-msgid "admin.presses.pressSettings"
-msgstr "Press postavke"
+msgid "admin.settings.statistics.geo.description"
+msgstr ""
 
-msgid "admin.systemConfiguration"
-msgstr "OMP konfiguracija"
+msgid "admin.settings.statistics.institutions.description"
+msgstr ""
 
-msgid "admin.systemVersion"
-msgstr "OMP verzija"
-
-msgid "admin.settings.redirect"
-msgstr "Preusmjeravanje"
-
-msgid "admin.settings.info.success"
-msgstr "Informacije o web mjestu uspješno su ažurirane."
-
-msgid "admin.settings.appearance.success"
-msgstr "Postavke izgleda stranice uspješno su ažurirane."
-
-msgid "admin.hostedContexts"
-msgstr "Hosted Presses"
+msgid "admin.settings.statistics.sushi.public.description"
+msgstr ""

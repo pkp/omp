@@ -67,7 +67,9 @@ msgid "plugins.importexport.users.import.dataFile"
 msgstr "Fichero de datos de usuario"
 
 msgid "plugins.importexport.users.import.sendNotify"
-msgstr "Enviar un correo electrónico de notificación a cada usuarios importados con su nombre de usuario y contraseña."
+msgstr ""
+"Enviar un correo electrónico de notificación a cada usuarios importados con "
+"su nombre de usuario y contraseña."
 
 msgid "plugins.importexport.users.import.continueOnError"
 msgstr "Continuar importando el resto de usuarios si se produce un error."
@@ -80,6 +82,15 @@ msgstr "Se han producido errores durante la importación"
 
 msgid "plugins.importexport.users.import.confirmUsers"
 msgstr "Confirme que estos son los usuarios que desea importar en el sistema"
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "Aviso"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr ""
+"No es posible usar contraseñas codificadas con {$importHash}; OMP está "
+"configurado para utilizar {$ompHash}. Si decide continuar, necesitará "
+"restablecer las contraseñas de los usuarios importados."
 
 msgid "plugins.importexport.users.unknownPress"
 msgstr "Se ha especificado una ruta desconocida \"{$contextPath}\"."
@@ -96,20 +107,14 @@ msgstr "Exportar todo"
 msgid "plugins.importexport.users.export.errorsOccurred"
 msgstr "Se han producido errores durante la exportación"
 
-msgid "plugins.importexport.users.import.warning"
-msgstr "Aviso"
-
-msgid "plugins.importexport.users.import.encryptionMismatch"
-msgstr "No es posible usar contraseñas codificadas con {$importHash}; OMP está configurado para utilizar {$ompHash}. Si decide continuar, necesitará restablecer las contraseñas de los usuarios importados."
-
-msgid "plugins.importexport.users.uploadFile"
-msgstr "Cargue un archivo en \"Importar\" para continuar."
-
-msgid "plugins.importexport.users.results"
-msgstr "Resultados"
-
 msgid "plugins.importexport.users.importComplete"
 msgstr ""
 "La importación se completó con éxito. Los usuarios con nombres de usuario y "
 "direcciones de correo electrónico que aún no están en uso se han importado, "
 "junto con los consiguientes grupos de usuarios."
+
+msgid "plugins.importexport.users.results"
+msgstr "Resultados"
+
+msgid "plugins.importexport.users.uploadFile"
+msgstr "Cargue un archivo en \"Importar\" para continuar."

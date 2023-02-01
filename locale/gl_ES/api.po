@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2021-02-16 19:22+0000\n"
 "Last-Translator: Real Academia Galega <reacagal@gmail.com>\n"
-"Language-Team: Galician <http://translate.pkp.sfu.ca/projects/omp/api/gl_ES/>"
-"\n"
+"Language-Team: Galician <http://translate.pkp.sfu.ca/projects/omp/api/gl_ES/"
+">\n"
 "Language: gl_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11,29 +11,35 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "api.submissions.403.cantChangeContext"
-msgstr "Non podes cambiar a editorial dun envío."
-
-msgid "api.publications.403.submissionsDidNotMatch"
-msgstr "A publicación que solicitaches non forma parte deste envío."
-
-msgid "api.publications.403.contextsDidNotMatch"
-msgstr "A publicación que solicitaches non forma parte desta editorial."
-
-msgid "api.emailTemplates.403.notAllowedChangeContext"
+msgid "api.submissions.400.submissionIdsRequired"
 msgstr ""
-"Non tes permiso para mover este modelo de correo electrónico a outra "
-"editorial."
+"Debes proporcionar un ou máis identificadores de envío para engadilos ao "
+"catálogo."
+
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "Non se puido atopar un ou máis dos envíos que especificaches."
+
+msgid "api.submissions.400.wrongContext"
+msgstr ""
 
 msgid "api.emails.403.disabled"
 msgstr ""
 "A notificación por correo electrónico non está habilitada para esta "
 "editorial."
 
-msgid "api.submissions.400.submissionsNotFound"
-msgstr "Non se puido atopar un ou máis dos envíos que especificaches."
-
-msgid "api.submissions.400.submissionIdsRequired"
+msgid "api.emailTemplates.403.notAllowedChangeContext"
 msgstr ""
-"Debes proporcionar un ou máis identificadores de envío para engadilos ao "
-"catálogo."
+"Non tes permiso para mover este modelo de correo electrónico a outra "
+"editorial."
+
+msgid "api.publications.403.contextsDidNotMatch"
+msgstr "A publicación que solicitaches non forma parte desta editorial."
+
+msgid "api.publications.403.submissionsDidNotMatch"
+msgstr "A publicación que solicitaches non forma parte deste envío."
+
+msgid "api.submissions.403.cantChangeContext"
+msgstr "Non podes cambiar a editorial dun envío."
+
+msgid "api.submission.400.inactiveSection"
+msgstr ""

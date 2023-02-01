@@ -1,0 +1,261 @@
+# Tadej Grlić <tadejgrlic@gmail.com>, 2023.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-01-28 18:48+0000\n"
+"Last-Translator: Tadej Grlić <tadejgrlic@gmail.com>\n"
+"Language-Team: German <http://translate.pkp.sfu.ca/projects/omp/pubIds-urn/"
+"de/>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "plugins.pubIds.urn.displayName"
+msgstr "URN"
+
+msgid "plugins.pubIds.urn.description"
+msgstr ""
+"Dieses Plugin ermöglicht die Zuordnung der Uniform Resource Names zu "
+"Monographien, Kapiteln, Publikationsformaten und Dateien in OMP."
+
+msgid "plugins.pubIds.urn.manager.settings.description"
+msgstr ""
+"Bitte konfigurieren Sie das URN-Plug-in, um URNs in OMP verwalten und "
+"verwenden zu können:"
+
+msgid "plugins.pubIds.urn.manager.settings.urnObjects"
+msgstr "Drücken Sie auf Inhalt"
+
+msgid "plugins.pubIds.urn.manager.settings.urnObjectsRequired"
+msgstr "Bitte wählen Sie die Objekte aus, denen URNs zugeordnet werden sollen."
+
+msgid "plugins.pubIds.urn.manager.settings.explainURNs"
+msgstr ""
+"Bitte wählen Sie die Publishing-Objekte aus, denen Uniform Resource Names "
+"(URN) zugewiesen werden:"
+
+msgid "plugins.pubIds.urn.manager.settings.enablePublicationURN"
+msgstr "Monographien"
+
+msgid "plugins.pubIds.urn.manager.settings.enableChapterURN"
+msgstr "Kapitel"
+
+msgid "plugins.pubIds.urn.manager.settings.enableRepresentationURN"
+msgstr "Veröffentlichungsformate"
+
+msgid "plugins.pubIds.urn.manager.settings.enableSubmissionFileURN"
+msgstr "Dateien"
+
+msgid "plugins.pubIds.urn.manager.settings.urnPrefix"
+msgstr "URN-Präfix"
+
+msgid "plugins.pubIds.urn.manager.settings.urnPrefix.description"
+msgstr ""
+"Das URN-Präfix ist der feste, sich nie ändernde Teil der URN (z. B. \"urn:"
+"nbn:de:0000-\")."
+
+msgid "plugins.pubIds.urn.manager.settings.form.urnPrefixPattern"
+msgstr ""
+"Das URN-Präfixmuster muss das Format \"urn:\"&lt;NID&gt;\":\"&lt;NSS&gt; "
+"haben."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffix"
+msgstr "URN-Suffix"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffix.description"
+msgstr ""
+"Ein URN-Suffix kann jede Form annehmen, muss jedoch unter allen "
+"Veröffentlichungsobjekten mit demselben zugewiesenen URN-Präfix eindeutig "
+"sein:"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern"
+msgstr ""
+"Verwenden Sie das unten eingegebene Muster, um URN-Suffixe zu generieren. "
+"Verwenden Sie %p für Presseinitialen, %m für die Monographie-ID, %c für die "
+"Kapitel-ID, %f für die Veröffentlichungsformat-ID, %s für die Datei-ID und "
+"%x für \"Custom Identifier\"."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.example"
+msgstr ""
+"Beispielsweise würde press%ppub%r das URN-Suffix „pressESPpub100“ erstellen."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.submissions"
+msgstr "für Monographien"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.chapters"
+msgstr "für Kapitel"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.representations"
+msgstr "für Publikationsformate"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.files"
+msgstr "für Dateien"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixDefault"
+msgstr "Verwenden Sie Standardmuster."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixDefault.description"
+msgstr ""
+"%p.%m für Monographien<br />%p.%m.c%c für Kapitel<br />%p.%m.%f für "
+"Publikationsformate<br />%p.%m.%f.%s für Dateien."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixCustomIdentifier"
+msgstr ""
+"Geben Sie für jedes veröffentlichte Element ein individuelles URN-Suffix "
+"ein. Auf der Metadatenseite jedes Artikels finden Sie ein zusätzliches URN-"
+"Eingabefeld."
+
+msgid "plugins.pubIds.urn.manager.settings.urnPublicationSuffixPatternRequired"
+msgstr "Bitte geben Sie das URN-Suffix-Muster für Monographien ein."
+
+msgid "plugins.pubIds.urn.manager.settings.urnChapterSuffixPatternRequired"
+msgstr "Bitte geben Sie das URN-Suffixmuster für Kapitel ein."
+
+msgid ""
+"plugins.pubIds.urn.manager.settings.urnRepresentationSuffixPatternRequired"
+msgstr ""
+"Bitte geben Sie das URN-Suffix-Muster für Veröffentlichungsformate ein."
+
+msgid ""
+"plugins.pubIds.urn.manager.settings.urnSubmissionFileSuffixPatternRequired"
+msgstr "Bitte geben Sie das URN-Suffixmuster für Dateien ein."
+
+msgid "plugins.pubIds.urn.manager.settings.checkNo"
+msgstr "Überprüfe Nummer"
+
+msgid "plugins.pubIds.urn.manager.settings.checkNo.label"
+msgstr ""
+"Die Prüfnummer wird automatisch berechnet und am Ende als letzte Ziffer "
+"einer URN hinzugefügt."
+
+msgid "plugins.pubIds.urn.manager.settings.namespace"
+msgstr "Namensraum"
+
+msgid "plugins.pubIds.urn.manager.settings.namespace.choose"
+msgstr "Wählen"
+
+msgid "plugins.pubIds.urn.manager.settings.namespace.description"
+msgstr ""
+"Der Namensraum des persistenten Bezeichners, der normalerweise für die "
+"Registrierung benötigt wird (z. B. bei der Deutschen Nationalbibliothek)."
+
+msgid "plugins.pubIds.urn.manager.settings.urnResolver"
+msgstr "Resolver-URL"
+
+msgid "plugins.pubIds.urn.manager.settings.urnResolver.description"
+msgstr "(z.B. https://nbn-resolving.de)"
+
+msgid "plugins.pubIds.urn.manager.settings.form.urnResolverRequired"
+msgstr "Bitte geben Sie die Resolver-URL ein."
+
+msgid "plugins.pubIds.urn.manager.settings.urnReassign"
+msgstr "URNs neu zuweisen"
+
+msgid "plugins.pubIds.urn.manager.settings.urnReassign.description"
+msgstr ""
+"Wenn Sie Ihre URN-Konfiguration ändern, sind bereits vergebene URNs nicht "
+"betroffen. Verwenden Sie nach dem Speichern der URN-Konfiguration diese "
+"Schaltfläche, um alle vorhandenen URNs zu löschen, damit die neuen "
+"Einstellungen für alle vorhandenen Objekte wirksam werden."
+
+msgid "plugins.pubIds.urn.manager.settings.urnReassign.confirm"
+msgstr "Möchten Sie wirklich alle vorhandenen URNs löschen?"
+
+msgid "plugins.pubIds.urn.editor.urn"
+msgstr "URN"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeSubmission"
+msgstr "Monographie"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeChapter"
+msgstr "Kapitel"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeRepresentation"
+msgstr "Veröffentlichungsformat"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeSubmissionFile"
+msgstr "Datei"
+
+msgid "plugins.pubIds.urn.editor.customSuffixMissing"
+msgstr ""
+"Die URN kann nicht zugeordnet werden, da das benutzerdefinierte Suffix fehlt."
+
+msgid "plugins.pubIds.urn.editor.patternNotResolved"
+msgstr ""
+"Die URN kann nicht zugeordnet werden, da sie ein nicht aufgelöstes Muster "
+"enthält."
+
+msgid "plugins.pubIds.urn.editor.canBeAssigned"
+msgstr ""
+"Was Sie sehen, ist eine Vorschau des URN. Aktivieren Sie das "
+"Kontrollkästchen und speichern Sie das Formular, um die URN zuzuweisen."
+
+msgid "plugins.pubIds.urn.editor.assigned"
+msgstr "Die URN wird diesem {$pubObjectType} zugewiesen."
+
+msgid "plugins.pubIds.urn.editor.urnSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Das angegebene URN-Suffix wird bereits für ein anderes veröffentlichtes "
+"Element verwendet. Bitte geben Sie für jedes Element ein eindeutiges URN-"
+"Suffix ein."
+
+msgid "plugins.pubIds.urn.editor.clearObjectsURN"
+msgstr "Eindeutig"
+
+msgid "plugins.pubIds.urn.editor.clearObjectsURN.confirm"
+msgstr "Möchten Sie die vorhandene URN wirklich löschen?"
+
+msgid "plugins.pubIds.urn.editor.addCheckNo"
+msgstr "Kontrollnummer hinzufügen"
+
+msgid "plugins.pubIds.urn.editor.assignURN"
+msgstr "Weisen Sie diesem {$pubObjectType} die URN {$pubId} zu"
+
+msgid "plugins.pubIds.urn.editor.assignURN.emptySuffix"
+msgstr ""
+"Die URN kann nicht zugeordnet werden, da das benutzerdefinierte Suffix fehlt."
+
+msgid "plugins.pubIds.urn.editor.assignURN.pattern"
+msgstr ""
+"Die URN {$pubId} kann nicht zugewiesen werden, da sie ein nicht aufgelöstes "
+"Muster enthält."
+
+msgid "plugins.pubIds.urn.editor.assignURN.assigned"
+msgstr "Die URN {$pubId} wurde vergeben."
+
+msgid "plugins.pubIds.urn.form.checkNoRequired"
+msgstr "Die Kontrollnummer fehlt."
+
+msgid "plugins.pubIds.urn.editor.urn.description"
+msgstr "Die URN muss mit {$prefix} beginnen."
+
+msgid "plugins.pubIds.urn.editor.urn.assignUrn"
+msgstr "Zuordnen"
+
+msgid "plugins.pubIds.urn.editor.missingIssue"
+msgstr ""
+"Eine URN kann erst generiert werden, wenn diese Publikation einer Ausgabe "
+"zugeordnet wurde."
+
+msgid "plugins.pubIds.urn.editor.missingParts"
+msgstr ""
+"Sie können keinen URN generieren, da in einem oder mehreren Teilen des URN-"
+"Musters Daten fehlen. Möglicherweise müssen Sie die Publikation einer "
+"Ausgabe zuordnen, eine Verlags-ID festlegen oder Seitenzahlen eingeben."
+
+msgid "plugins.pubIds.urn.editor.missingPrefix"
+msgstr "Der URN muss mit {$urnPrefix} beginnen."
+
+msgid "plugins.pubIds.urn.editor.preview.publication"
+msgstr "Der URN für diese Veröffentlichung lautet {$urn}."
+
+msgid "plugins.pubIds.urn.editor.preview.publication.none"
+msgstr "Dieser Publikation wurde keine URN zugeordnet."
+
+msgid "plugins.pubIds.urn.editor.preview.galleys"
+msgstr "Galley-Kopie: {$galleyLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.objects"
+msgstr "Artikel"

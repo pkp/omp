@@ -1,0 +1,59 @@
+# Karla Zapalac <karlazapalac98@gmail.com>, 2023.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-01-24 04:31+0000\n"
+"Last-Translator: Karla Zapalac <karlazapalac98@gmail.com>\n"
+"Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-native/hr/>\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "plugins.importexport.native.displayName"
+msgstr "Izvorni XML dodatak"
+
+msgid "plugins.importexport.native.description"
+msgstr "Uvoz i izvoz knjiga (OMP-ov izvorni XML format)."
+
+msgid "plugins.importexport.native.import"
+msgstr "Uvoz"
+
+msgid "plugins.importexport.native.import.instructions"
+msgstr "Učitajte XML datoteku za uvoz"
+
+msgid "plugins.importexport.native.export"
+msgstr "Izvoz"
+
+msgid "plugins.importexport.native.exportSubmissionsSelect"
+msgstr "Odaberite monografije za izvoz"
+
+msgid "plugins.importexport.native.results"
+msgstr "Rezultati"
+
+msgid "plugins.inportexport.native.uploadFile"
+msgstr "Učitajte datoteku pod \"Uvoz\" kako biste nastavili."
+
+msgid "plugins.importexport.native.importComplete"
+msgstr "Uvoz je uspješno dovršen. Uvezeni su sljedeći elementi:"
+
+msgid "plugins.importexport.native.onix30.pressMissingFields"
+msgstr ""
+"Ovom izdavaču nedostaju potrebne informacije za ONIX metapodatke koji se "
+"koriste u ovom izvozu. Dodajte podatke koji nedostaju u <a href="
+"\"{$url}\">postavkama izdavača</a>."
+
+msgid "plugins.importexport.native.error.unknownSeries"
+msgstr "Nepoznato {$param}"
+
+msgid "plugins.importexport.native.cliUsage"
+msgstr ""
+"Korištenje: {$scriptName} {$pluginName} [command] ...\n"
+"Naredbe:\n"
+"\timport [xmlFileName] [press_path] [user_name] ...\n"
+"\texport [xmlFileName] [press_path] monographs [monographId1] "
+"[monographId2] ...\n"
+"\texport [xmlFileName] [press_path] monograph [monographId]\n"

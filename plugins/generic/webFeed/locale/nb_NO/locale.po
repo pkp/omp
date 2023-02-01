@@ -22,6 +22,9 @@ msgstr ""
 "Dette programtillegget oppretter en RSS/Atom-strøm for siste utgave av "
 "tidsskriftet."
 
+msgid "plugins.generic.webfeed.newcontent"
+msgstr "Nytt innhold"
+
 msgid "plugins.generic.webfeed.settings"
 msgstr "Innstillinger"
 
@@ -30,6 +33,9 @@ msgstr "Vis webstrømlenker bare på hjemmesiden."
 
 msgid "plugins.generic.webfeed.settings.all"
 msgstr "Vis webstrømlenker på alle sider."
+
+msgid "plugins.generic.webfeed.settings.recentBooks"
+msgstr "Antall elementer som skal vises"
 
 msgid "plugins.generic.webfeed.settings.recentItemsRequired"
 msgstr "Sett inn et positivt heltall for nylig publiserte elementer."
@@ -42,9 +48,3 @@ msgstr "RSS1-logo"
 
 msgid "plugins.generic.webfeed.rss2.altText"
 msgstr "RSS2-logo"
-
-msgid "plugins.generic.webfeed.settings.recentBooks"
-msgstr "Antall elementer som skal vises"
-
-msgid "plugins.generic.webfeed.newcontent"
-msgstr "Nytt innhold"

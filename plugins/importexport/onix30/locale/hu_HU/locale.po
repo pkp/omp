@@ -12,69 +12,69 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.importexport.onix30.form.addresseeField.tip"
-msgstr ""
-"Ezt a mezőt üresen is hagyhatja és létrehozhat egy általános exportot.  Ez "
-"azt eredményezi, hogy az ONIX-export nem tartalmaz majd &lt;Addressee&gt; "
-"összetevőt. "
+msgid "plugins.importexport.onix30.displayName"
+msgstr "ONIX 3.0 kiadvány exportáló bővítmény"
 
-msgid "plugins.importexport.onix30.form.addresseeField"
-msgstr "Az export címzettje (címzett)"
-
-msgid "plugins.importexport.onix30.pressMissingFields"
-msgstr ""
-"Hiányzik néhány szükséges információ.  Kérjük, menjen a <a href=\"{$url}\">"
-"Kiadó beállítások</a> oldalra, és töltse ki a hiányzó adatokat."
-
-msgid "plugins.importexport.onix30.formatInvalid"
-msgstr "Érvénytelen"
-
-msgid "plugins.importexport.onix30.formatValid"
-msgstr "Érvényes"
-
-msgid "plugins.importexport.onix30.validityStatus"
-msgstr "ONIX státusz"
-
-msgid "plugins.importexport.onix30.unavailable"
-msgstr "Nem elérhető"
-
-msgid "plugins.importexport.onix30.exportFormats"
-msgstr "Elérhető formátumok"
-
-msgid "plugins.importexport.onix30.exportButton"
-msgstr "Exportálás"
-
-msgid "plugins.importexport.onix30.selectMonograph"
-msgstr "Válassza ki az exportálandó kiadványt:"
-
-msgid "plugins.importexport.onix30.exportSubmissionsSelect"
-msgstr "Exportálandó kiadványok kiválasztása"
-
-msgid "plugins.importexport.onix30.noFormats"
-msgstr ""
-"Azok a kiadványok, amelyeknek nincs kiadványformátumuk nem jelennek meg."
-
-msgid "plugins.importexport.onix30.export.error.monographNotFound"
-msgstr ""
-"A megadott kiadványazonosítónak ( \"{$monographId}\" ) nem felel meg "
-"egyetlen kiadvány sem."
-
-msgid "plugins.importexport.onix30.export.error.couldNotWrite"
-msgstr "Nem sikerült írni a(z) \"{$fileName}\" fájlba."
-
-msgid "plugins.importexport.onix30.error.unknownPress"
-msgstr "A megadott útvonal \"{$contextPath},\" nem létezik."
-
-msgid "plugins.importexport.onix30.cliError"
-msgstr "HIBA:"
+msgid "plugins.importexport.onix30.description"
+msgstr "Kiadvány metaadatainak exportálása ONIX 3.0 formátumban"
 
 msgid "plugins.importexport.onix30.cliUsage"
 msgstr ""
 "Használat: {$scriptName} {$pluginName} [xmlFileName] [pressPath] "
 "[monographId] "
 
-msgid "plugins.importexport.onix30.description"
-msgstr "Kiadvány metaadatainak exportálása ONIX 3.0 formátumban"
+msgid "plugins.importexport.onix30.cliError"
+msgstr "HIBA:"
 
-msgid "plugins.importexport.onix30.displayName"
-msgstr "ONIX 3.0 kiadvány exportáló bővítmény"
+msgid "plugins.importexport.onix30.error.unknownPress"
+msgstr "A megadott útvonal \"{$contextPath},\" nem létezik."
+
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr "Nem sikerült írni a(z) \"{$fileName}\" fájlba."
+
+msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgstr ""
+"A megadott kiadványazonosítónak ( \"{$monographId}\" ) nem felel meg "
+"egyetlen kiadvány sem."
+
+msgid "plugins.importexport.onix30.noFormats"
+msgstr ""
+"Azok a kiadványok, amelyeknek nincs kiadványformátumuk nem jelennek meg."
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Exportálandó kiadványok kiválasztása"
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr "Válassza ki az exportálandó kiadványt:"
+
+msgid "plugins.importexport.onix30.exportButton"
+msgstr "Exportálás"
+
+msgid "plugins.importexport.onix30.exportFormats"
+msgstr "Elérhető formátumok"
+
+msgid "plugins.importexport.onix30.unavailable"
+msgstr "Nem elérhető"
+
+msgid "plugins.importexport.onix30.validityStatus"
+msgstr "ONIX státusz"
+
+msgid "plugins.importexport.onix30.formatValid"
+msgstr "Érvényes"
+
+msgid "plugins.importexport.onix30.formatInvalid"
+msgstr "Érvénytelen"
+
+msgid "plugins.importexport.onix30.pressMissingFields"
+msgstr ""
+"Hiányzik néhány szükséges információ.  Kérjük, menjen a <a href="
+"\"{$url}\">Kiadó beállítások</a> oldalra, és töltse ki a hiányzó adatokat."
+
+msgid "plugins.importexport.onix30.form.addresseeField"
+msgstr "Az export címzettje (címzett)"
+
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
+msgstr ""
+"Ezt a mezőt üresen is hagyhatja és létrehozhat egy általános exportot.  Ez "
+"azt eredményezi, hogy az ONIX-export nem tartalmaz majd &lt;Addressee&gt; "
+"összetevőt. "

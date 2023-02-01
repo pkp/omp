@@ -1,9 +1,9 @@
-# Carla Marques <carla.marques@usdb.uminho.pt>, 2022.
+# Carla Marques <carla.marques@usdb.uminho.pt>, 2022, 2023.
 # José Carvalho <jcarvalho@keep.pt>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-11-07 20:02+0000\n"
-"Last-Translator: José Carvalho <jcarvalho@keep.pt>\n"
+"PO-Revision-Date: 2023-01-18 11:31+0000\n"
+"Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/default/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -13,51 +13,129 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "default.groups.abbrev.externalReviewer"
-msgstr "RE"
+msgid "default.genres.appendix"
+msgstr "Apêndice"
 
-msgid "default.groups.plural.externalReviewer"
-msgstr "Revisores Externos"
+msgid "default.genres.bibliography"
+msgstr "Bibliografia"
 
-msgid "default.groups.name.externalReviewer"
-msgstr "Revisor Externo"
+msgid "default.genres.manuscript"
+msgstr "Manuscrito do livro"
 
-msgid "default.contextSettings.forLibrarians"
+msgid "default.genres.chapter"
+msgstr "Manuscrito do Capítulo"
+
+msgid "default.genres.glossary"
+msgstr "Glossário"
+
+msgid "default.genres.index"
+msgstr "Sumário"
+
+msgid "default.genres.preface"
+msgstr "Prefácio"
+
+msgid "default.genres.prospectus"
+msgstr "Prospecto"
+
+msgid "default.genres.table"
+msgstr "Tabela"
+
+msgid "default.genres.figure"
+msgstr "Figura"
+
+msgid "default.genres.photo"
+msgstr "Fotografia"
+
+msgid "default.genres.illustration"
+msgstr "Ilustração"
+
+msgid "default.genres.other"
+msgstr "Outro"
+
+msgid "default.groups.name.manager"
+msgstr "Editor-gestor"
+
+msgid "default.groups.plural.manager"
+msgstr "Editores-gestores"
+
+msgid "default.groups.abbrev.manager"
+msgstr "EG"
+
+msgid "default.groups.name.editor"
+msgstr "Editor"
+
+msgid "default.groups.plural.editor"
+msgstr "Editores"
+
+msgid "default.groups.abbrev.editor"
+msgstr "Ed"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Editor de série"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Editores de série"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "EdS"
+
+msgid "default.groups.name.subscriptionManager"
+msgstr "Gestor de Subscrições"
+
+msgid "default.groups.plural.subscriptionManager"
+msgstr "Gestores de Subscrições"
+
+msgid "default.groups.abbrev.subscriptionManager"
+msgstr "GSub"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Autor de Capítulo"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Autores de Capítulo"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "AC"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Editor de volume"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Editores de volume"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "EV"
+
+msgid "default.contextSettings.authorGuidelines"
 msgstr ""
-"Encorajamos as bibliotecas a listar esta editora nos seus catálogos de "
-"recursos eletrónicos. Este sistema de publicação é um software de código "
-"aberto também é adequado para bibliotecas que queiram alojar editoras para "
-"os seus membros que estejam envolvidos em processos de edição e publicação ("
-"veja <a href=\"https://pkp.sfu.ca/omp\">Open Monograph Press</a>)."
+"<p>Os autores são convidados a fazer uma submissão a esta editora. As "
+"submissões consideradas adequadas serão enviadas para revisão por pares "
+"antes de determinar se serão aceitas ou rejeitadas.</p><p>Antes de fazer uma "
+"submissão, os autores são responsáveis por obter permissão para publicar "
+"qualquer material incluído na submissão , como fotografias, documentos e "
+"conjuntos de dados. Todos os autores identificados na submissão devem "
+"consentir em ser identificados como autores. Onde apropriado, a investigação "
+"deve ser aprovada por um comité de ética apropriado de acordo com os "
+"requisitos legais do país do estudo.</p><p>Um editor pode rejeitar uma "
+"submissão se ela não responder aos padrões mínimos de qualidade. Antes de "
+"submeter, certifique-se de que o âmbito e o esboço do livro estão "
+"estruturados e articulados adequadamente. O título deve ser conciso e o "
+"resumo deve ser autossuficiente. Isso aumentará a probabilidade de os "
+"revisores concordarem em rever o livro. Quando estiver satisfeito de que a "
+"sua submissão responde a esse padrão, siga a lista de verificação abaixo "
+"para preparar a sua submissão.</p>"
 
-msgid "default.contextSettings.forAuthors"
+msgid "default.contextSettings.checklist"
 msgstr ""
-"Interessado em submeter o seu manuscrito a esta editora? Leia <a href=\""
-"{$indexUrl}/{$contextPath}/about\">Sobre a Editora</a> para saber mais sobre "
-"as políticas da editora e as <a href=\"{$indexUrl}/{$contextPath}/about/"
-"submissions#authorGuidelines\">Instruções aos Autores</a>. Os autores têm "
-"primeiro que se <a href=\"{$indexUrl}/{$contextPath}/user/register\""
-">registar</a> na editora antes de enviar a submissão, ou se já estiver "
-"registado pode simplesmente <a href=\"{$indexUrl}/index/login\">entrar no "
-"sistema</a> e iniciar o processo de submissão em 5 passos."
-
-msgid "default.contextSettings.forReaders"
-msgstr ""
-"Encorajamos os leitores a registar-se para receber notificações da editora. "
-"Aceda através do botão de <a href=\"{$indexUrl}/{$contextPath}/user/"
-"register\">Registo</a> no canto superior direito da página de início da "
-"editora. Com este registo, o leitor irá receber por e-mail o Sumário de cada "
-"nova monografia publicada pela editora. Esta lista também permite que a "
-"editora anuncie um certo nível de apoio ou de quantidade de leitores. Saiba "
-"mais sobre a <a href=\"{$indexUrl}/{$contextPath}/about/submissions#"
-"privacyStatement\">Declaração de Privacidade</a> da editora que assegura aos "
-"leitores que o seu nome e e-mail não serão utilizados para outros propósitos."
-
-msgid "default.contextSettings.openAccessPolicy"
-msgstr ""
-"Esta editora fornece acesso aberto imediato aos seus conteúdos seguindo o "
-"princípio de que a disponibilização gratuita da investigação apoia uma maior "
-"troca global de conhecimento."
+"<p>Todas as submissões devem seguir os seguintes requisitos.</p><ul><li>Esta "
+"submissão segue os requisitos descritos nas <a href="
+"\"{$submissionGuidelinesUrl}\">Instruções aos Autores</a>.</li ><li>Esta "
+"submissão não foi publicada anteriormente, nem foi submetida a outra editora "
+"para consideração.</li><li>Todas as referências foram verificadas quanto à "
+"exatidão e integridade.</li><li>Todas as tabelas e as figuras foram "
+"numeradas e rotuladas.</li><li>Foi obtida permissão para publicar todas as "
+"fotografias, conjuntos de dados e outros materiais enviados nesta submissão."
+"</li></ul>"
 
 msgid "default.contextSettings.privacyStatement"
 msgstr ""
@@ -65,121 +143,77 @@ msgstr ""
 "exclusivamente para os propósitos da editora e não serão tornados públicos "
 "para qualquer outro propósito ou disponibilizados a terceiros.</p>"
 
-msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgid "default.contextSettings.openAccessPolicy"
 msgstr ""
-"O texto cumpre as normas estilísticas e bibliográficas referidas nas <a href="
-"\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" target=\""
-"_blank\">Instruções aos Autores</a>, que podem ser lidas em Sobre a Editora."
+"Esta editora fornece acesso aberto imediato aos seus conteúdos seguindo o "
+"princípio de que a disponibilização gratuita da investigação apoia uma maior "
+"troca global de conhecimento."
 
-msgid "default.contextSettings.checklist.submissionAppearance"
+msgid "default.contextSettings.forReaders"
 msgstr ""
-"O texto foi formatado em espaço simples; com fonte a 12 pontos; adota "
-"itálicos, em vez de sublinhados (exceto para endereços URL); e todas as "
-"ilustrações, figuras, e tabelas encontram-se no correto local no texto, e "
-"não todas no final."
+"Encorajamos os leitores a registar-se para receber notificações da editora. "
+"Aceda através do botão de <a href=\"{$indexUrl}/{$contextPath}/user/register"
+"\">Registo</a> no canto superior direito da página de início da editora. Com "
+"este registo, o leitor irá receber por e-mail o Sumário de cada nova "
+"monografia publicada pela editora. Esta lista também permite que a editora "
+"anuncie um certo nível de apoio ou de quantidade de leitores. Saiba mais "
+"sobre a <a href=\"{$indexUrl}/{$contextPath}/about/"
+"submissions#privacyStatement\">Declaração de Privacidade</a> da editora que "
+"assegura aos leitores que o seu nome e e-mail não serão utilizados para "
+"outros propósitos."
 
-msgid "default.contextSettings.checklist.addressesLinked"
-msgstr "Foram inseridos os URLs das referências, quando disponíveis."
-
-msgid "default.contextSettings.checklist.fileFormat"
+msgid "default.contextSettings.forAuthors"
 msgstr ""
-"O ficheiro da submissão encontra-se em formato Microsoft Word, RTF, ou "
-"OpenDocument."
+"Interessado em submeter o seu manuscrito a esta editora? Leia <a href="
+"\"{$indexUrl}/{$contextPath}/about\">Sobre a Editora</a> para saber mais "
+"sobre as políticas da editora e as <a href=\"{$indexUrl}/{$contextPath}/"
+"about/submissions#authorGuidelines\">Instruções aos Autores</a>. Os autores "
+"têm primeiro que se <a href=\"{$indexUrl}/{$contextPath}/user/register"
+"\">registar</a> na editora antes de enviar a submissão, ou se já estiver "
+"registado pode simplesmente <a href=\"{$indexUrl}/index/login\">entrar no "
+"sistema</a> e iniciar o processo de submissão em 5 passos."
 
-msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgid "default.contextSettings.forLibrarians"
 msgstr ""
-"A submissão não foi previamente publicada, nem se encontra em consideração "
-"em outra editora (ou foi inserida uma explicação nos Comentários ao Editor)."
+"Encorajamos as bibliotecas a listar esta editora nos seus catálogos de "
+"recursos eletrónicos. Este sistema de publicação é um software de código "
+"aberto também é adequado para bibliotecas que queiram alojar editoras para "
+"os seus membros que estejam envolvidos em processos de edição e publicação "
+"(veja <a href=\"https://pkp.sfu.ca/omp\">Open Monograph Press</a>)."
 
-msgid "default.groups.abbrev.volumeEditor"
-msgstr "EV"
+msgid "default.groups.name.externalReviewer"
+msgstr "Revisor Externo"
 
-msgid "default.groups.plural.volumeEditor"
-msgstr "Editores de volume"
+msgid "default.groups.plural.externalReviewer"
+msgstr "Revisores Externos"
 
-msgid "default.groups.name.volumeEditor"
-msgstr "Editor de volume"
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "RE"
 
-msgid "default.groups.abbrev.chapterAuthor"
-msgstr "AC"
+#~ msgid "default.contextSettings.checklist.bibliographicRequirements"
+#~ msgstr ""
+#~ "O texto cumpre as normas estilísticas e bibliográficas referidas nas <a "
+#~ "href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" "
+#~ "target=\"_blank\">Instruções aos Autores</a>, que podem ser lidas em "
+#~ "Sobre a Editora."
 
-msgid "default.groups.plural.chapterAuthor"
-msgstr "Autores de Capítulo"
+#~ msgid "default.contextSettings.checklist.submissionAppearance"
+#~ msgstr ""
+#~ "O texto foi formatado em espaço simples; com fonte a 12 pontos; adota "
+#~ "itálicos, em vez de sublinhados (exceto para endereços URL); e todas as "
+#~ "ilustrações, figuras, e tabelas encontram-se no correto local no texto, e "
+#~ "não todas no final."
 
-msgid "default.groups.name.chapterAuthor"
-msgstr "Autor de Capítulo"
+#~ msgid "default.contextSettings.checklist.addressesLinked"
+#~ msgstr "Foram inseridos os URLs das referências, quando disponíveis."
 
-msgid "default.groups.abbrev.sectionEditor"
-msgstr "EdS"
+#~ msgid "default.contextSettings.checklist.fileFormat"
+#~ msgstr ""
+#~ "O ficheiro da submissão encontra-se em formato Microsoft Word, RTF, ou "
+#~ "OpenDocument."
 
-msgid "default.groups.plural.sectionEditor"
-msgstr "Editores de série"
-
-msgid "default.groups.name.sectionEditor"
-msgstr "Editor de série"
-
-msgid "default.groups.abbrev.editor"
-msgstr "Ed"
-
-msgid "default.groups.plural.editor"
-msgstr "Editores"
-
-msgid "default.groups.name.editor"
-msgstr "Editor"
-
-msgid "default.groups.abbrev.manager"
-msgstr "EG"
-
-msgid "default.groups.plural.manager"
-msgstr "Editores-gestores"
-
-msgid "default.groups.name.manager"
-msgstr "Editor-gestor"
-
-msgid "default.genres.other"
-msgstr "Outro"
-
-msgid "default.genres.illustration"
-msgstr "Ilustração"
-
-msgid "default.genres.photo"
-msgstr "Fotografia"
-
-msgid "default.genres.figure"
-msgstr "Figura"
-
-msgid "default.genres.table"
-msgstr "Tabela"
-
-msgid "default.genres.prospectus"
-msgstr "Prospecto"
-
-msgid "default.genres.preface"
-msgstr "Prefácio"
-
-msgid "default.genres.index"
-msgstr "Sumário"
-
-msgid "default.genres.glossary"
-msgstr "Glossário"
-
-msgid "default.genres.chapter"
-msgstr "Manuscrito do Capítulo"
-
-msgid "default.genres.manuscript"
-msgstr "Manuscrito do livro"
-
-msgid "default.genres.bibliography"
-msgstr "Bibliografia"
-
-msgid "default.genres.appendix"
-msgstr "Apêndice"
-
-msgid "default.groups.abbrev.subscriptionManager"
-msgstr "GSub"
-
-msgid "default.groups.plural.subscriptionManager"
-msgstr "Gestores de Subscrições"
-
-msgid "default.groups.name.subscriptionManager"
-msgstr "Gestor de Subscrições"
+#~ msgid "default.contextSettings.checklist.notPreviouslyPublished"
+#~ msgstr ""
+#~ "A submissão não foi previamente publicada, nem se encontra em "
+#~ "consideração em outra editora (ou foi inserida uma explicação nos "
+#~ "Comentários ao Editor)."

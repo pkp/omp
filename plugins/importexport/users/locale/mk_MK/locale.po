@@ -11,72 +11,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.importexport.users.uploadFile"
-msgstr "Ве молиме поставете датотека под „Увоз“ за да продолжите."
+msgid "plugins.importexport.users.displayName"
+msgstr "Приклучок за корисници на XML"
 
-msgid "plugins.importexport.users.results"
-msgstr "Резултати"
-
-msgid "plugins.importexport.users.importComplete"
-msgstr ""
-"Увозот заврши успешно. Увезени се корисници со кориснички имиња и адреси на "
-"е-пошта што веќе не се користат, заедно со придружните групи на корисници."
-
-msgid "plugins.importexport.users.export.errorsOccurred"
-msgstr "Се појавија грешки при извозот"
-
-msgid "plugins.importexport.users.export.exportAllUsers"
-msgstr "Извоз на сите"
-
-msgid "plugins.importexport.users.export.exportByRole"
-msgstr "Извоз по улога"
-
-msgid "plugins.importexport.users.export.exportUsers"
-msgstr "Извоз на корисници"
-
-msgid "plugins.importexport.users.unknownPress"
-msgstr "Беше наведена непозната патека за изданието\"{$contextPath}\"."
-
-msgid "plugins.importexport.users.import.encryptionMismatch"
-msgstr ""
-"Не може да се користат заштитени лозинки со {$importHash}; OMP е "
-"конфигуриран да користи {$ompHash}. Ако продолжите, ќе треба да ги "
-"ресетирате лозинките на увезените корисници."
-
-msgid "plugins.importexport.users.import.warning"
-msgstr "Предупредување"
-
-msgid "plugins.importexport.users.import.confirmUsers"
-msgstr "Потврдете дека ова се корисниците што сакате да ги внесете во системот"
-
-msgid "plugins.importexport.users.import.errorsOccurred"
-msgstr "Се појавија грешки при увозот"
-
-msgid "plugins.importexport.users.import.usersWereImported"
-msgstr "Следните корисници беа успешно увезени во системот"
-
-msgid "plugins.importexport.users.import.continueOnError"
-msgstr "Продолжете да увезувате други корисници доколку се појави дефект."
-
-msgid "plugins.importexport.users.import.sendNotify"
-msgstr ""
-"Испратете е-пошта за известување до секој увезен корисник што ги содржи "
-"корисничкото име и лозинката на корисникот."
-
-msgid "plugins.importexport.users.import.dataFile"
-msgstr "Датотека со кориснички податоци"
-
-msgid "plugins.importexport.users.import.instructions"
-msgstr ""
-"Изберете XML-датотека со податоци што содржи кориснички информации за увоз "
-"во ова издание. Погледнете ја помошта за изданието за детали за форматот на "
-"оваа датотека. <br /> <br /> Забележете дека ако увезената датотека содржи "
-"кориснички имиња или адреси за е-пошта што веќе постојат во системот, "
-"корисничките податоци за тие корисници нема да бидат увезени и сите нови "
-"улоги што треба да се креираат ќе бидат доделени на постојните корисници."
-
-msgid "plugins.importexport.users.import.importUsers"
-msgstr "Увези корисници"
+msgid "plugins.importexport.users.description"
+msgstr "Увоз и извоз на корисници"
 
 msgid "plugins.importexport.users.cliUsage"
 msgstr ""
@@ -105,8 +44,69 @@ msgstr ""
 "улоги само на рецензенти:\n"
 "{$scriptName} {$pluginName} извезува myExportFile.xml преглед на myPress\n"
 
-msgid "plugins.importexport.users.description"
-msgstr "Увоз и извоз на корисници"
+msgid "plugins.importexport.users.import.importUsers"
+msgstr "Увези корисници"
 
-msgid "plugins.importexport.users.displayName"
-msgstr "Приклучок за корисници на XML"
+msgid "plugins.importexport.users.import.instructions"
+msgstr ""
+"Изберете XML-датотека со податоци што содржи кориснички информации за увоз "
+"во ова издание. Погледнете ја помошта за изданието за детали за форматот на "
+"оваа датотека. <br /> <br /> Забележете дека ако увезената датотека содржи "
+"кориснички имиња или адреси за е-пошта што веќе постојат во системот, "
+"корисничките податоци за тие корисници нема да бидат увезени и сите нови "
+"улоги што треба да се креираат ќе бидат доделени на постојните корисници."
+
+msgid "plugins.importexport.users.import.dataFile"
+msgstr "Датотека со кориснички податоци"
+
+msgid "plugins.importexport.users.import.sendNotify"
+msgstr ""
+"Испратете е-пошта за известување до секој увезен корисник што ги содржи "
+"корисничкото име и лозинката на корисникот."
+
+msgid "plugins.importexport.users.import.continueOnError"
+msgstr "Продолжете да увезувате други корисници доколку се појави дефект."
+
+msgid "plugins.importexport.users.import.usersWereImported"
+msgstr "Следните корисници беа успешно увезени во системот"
+
+msgid "plugins.importexport.users.import.errorsOccurred"
+msgstr "Се појавија грешки при увозот"
+
+msgid "plugins.importexport.users.import.confirmUsers"
+msgstr "Потврдете дека ова се корисниците што сакате да ги внесете во системот"
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "Предупредување"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr ""
+"Не може да се користат заштитени лозинки со {$importHash}; OMP е "
+"конфигуриран да користи {$ompHash}. Ако продолжите, ќе треба да ги "
+"ресетирате лозинките на увезените корисници."
+
+msgid "plugins.importexport.users.unknownPress"
+msgstr "Беше наведена непозната патека за изданието\"{$contextPath}\"."
+
+msgid "plugins.importexport.users.export.exportUsers"
+msgstr "Извоз на корисници"
+
+msgid "plugins.importexport.users.export.exportByRole"
+msgstr "Извоз по улога"
+
+msgid "plugins.importexport.users.export.exportAllUsers"
+msgstr "Извоз на сите"
+
+msgid "plugins.importexport.users.export.errorsOccurred"
+msgstr "Се појавија грешки при извозот"
+
+msgid "plugins.importexport.users.importComplete"
+msgstr ""
+"Увозот заврши успешно. Увезени се корисници со кориснички имиња и адреси на "
+"е-пошта што веќе не се користат, заедно со придружните групи на корисници."
+
+msgid "plugins.importexport.users.results"
+msgstr "Резултати"
+
+msgid "plugins.importexport.users.uploadFile"
+msgstr "Ве молиме поставете датотека под „Увоз“ за да продолжите."

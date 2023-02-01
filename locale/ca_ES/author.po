@@ -13,3 +13,6 @@ msgstr ""
 
 msgid "author.submit.notAccepting"
 msgstr "Aquesta editorial no accepta trameses en aquest moment."
+
+msgid "author.submit"
+msgstr ""

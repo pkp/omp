@@ -11,22 +11,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.importexport.onix30.cliUsage"
-msgstr ""
-"Kullanım: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId]"
-" "
-
-msgid "plugins.importexport.onix30.form.addresseeField.tip"
-msgstr ""
-"Bu alanı boş bırakabilir ve genel bir dışa aktarma oluşturabilirsiniz. Bu, "
-"ONIX dışa aktarımının hiçbir birleşik &lt;alıcı&gt; olmamasına neden "
-"olacaktır. "
-
 msgid "plugins.importexport.onix30.displayName"
 msgstr "ONIX 3.0 Risale Dışa Aktarma Eklentisi"
 
 msgid "plugins.importexport.onix30.description"
 msgstr "Risale üst verilerini ONIX 3.0 biçiminde dışa aktarın"
+
+msgid "plugins.importexport.onix30.cliUsage"
+msgstr ""
+"Kullanım: {$scriptName} {$pluginName} [xmlFileName] [pressPath] "
+"[monographId] "
 
 msgid "plugins.importexport.onix30.cliError"
 msgstr "HATA:"
@@ -69,8 +63,14 @@ msgstr "Geçersiz"
 
 msgid "plugins.importexport.onix30.pressMissingFields"
 msgstr ""
-"Bu yayınevinde bazı gerekli bilgiler eksik. Lütfen <a href=\"{$url}\">"
-"Yayınevi Ayarları'na</a> gidin ve eksik ayrıntıları doldurun."
+"Bu yayınevinde bazı gerekli bilgiler eksik. Lütfen <a href="
+"\"{$url}\">Yayınevi Ayarları'na</a> gidin ve eksik ayrıntıları doldurun."
 
 msgid "plugins.importexport.onix30.form.addresseeField"
 msgstr "Bu dışa aktarım için muhataplar (alıcı)"
+
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
+msgstr ""
+"Bu alanı boş bırakabilir ve genel bir dışa aktarma oluşturabilirsiniz. Bu, "
+"ONIX dışa aktarımının hiçbir birleşik &lt;alıcı&gt; olmamasına neden "
+"olacaktır. "

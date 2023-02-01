@@ -1,8 +1,212 @@
 # paola <pjukic@yahoo.com>, 2022.
+# Melita Aleksa Varga <melita.aleksa@gmail.com>, 2023.
+# Maja Jurić <maja-juric@windowslive.com>, 2023.
+# Karla Zapalac <karlazapalac98@gmail.com>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-01-24 04:31+0000\n"
+"Last-Translator: Karla Zapalac <karlazapalac98@gmail.com>\n"
+"Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/editor/"
+"hr_HR/>\n"
 "Language: hr_HR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "editor.submissionArchive"
+msgstr "Arhiva rukopisa"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Odbaci upit"
+
+msgid "editor.monograph.clearReview"
+msgstr "Obriši recenzenta/icu"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Unesi prijedlog"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Unesi prijedlog recenzenta/ice"
+
+msgid "editor.monograph.recommendation"
+msgstr "Prijedlog"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr ""
+"Odaberi recenzenta/icu iznad i pritisni gumb 'Odaberi recenzenta/icu' za "
+"nastavak."
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Zamijeni recenzenta/icu"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Urednici/e unosi/e prijedloge/komentare za recenzenta/icu"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Učitaj recenziju"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Opcije stručnog mišljenja"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Datoteke za lekturu"
+
+msgid "editor.monograph.internalReview"
+msgstr "Pokreni interni pregled"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr ""
+"Započinjete postupak internog pregleda. Odaberi datoteke, koje su dio "
+"predanog rukopisa, u nastavku da biste ih poslali u fazu pregleda."
+
+msgid "editor.monograph.externalReview"
+msgstr "Započni vanjski pregled"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Odaberi konačne verzije"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Trenutne konačne verzije"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Trenutne datoteke"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Poruka korisniku/ci"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Radnje za podnošenje"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Za vrijeme podnošenja moguće radnje i opcije"
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Radnje odlomka"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr ""
+"Za specifične opcije određenog odjeljka , npr. učitavanje datoteka ili "
+"dodavanje korisnika/ca."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Radnje vezane uz naziv"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Specifične radnje i opcije za individualnu datoteku."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr ""
+"Pogledaj i upravljaj kataloškim unosom (uključujući metapodatke i formate)"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr ""
+"Pogledaj i upravljaj metapodacima, bilješkama, obavijestima i povijesti za "
+"unos"
+
+msgid "editor.monograph.legend.participants"
+msgstr ""
+"Pogledaj i upravljaj onima koji su uključeni u uređivanje rukopisa, kao npr. "
+"autori/ce, urednici/e, dizajneri/ce"
+
+msgid "editor.monograph.legend.add"
+msgstr "Učitaj datoteku u ovom odjeljku"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Dodaj korisnika ovom odjeljku"
+
+msgid "editor.monograph.legend.settings"
+msgstr ""
+"Pogledaj i pristupi postavkama kao što su postavke informacije i brisanja"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Više informacija: bilješke o datotekama, opcije obavijesti i povijest"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr ""
+"Podaci o datoteci: bilješke, opcije obavijesti i povijest (još nisu dodane "
+"nikakve bilješke)"
+
+msgid "editor.monograph.legend.notes"
+msgstr ""
+"Informacije o datoteci: bilješke, opcije obavijesti i povijest (bilješke "
+"postoje)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr ""
+"Podaci o datoteci: bilješke, opcije obavijesti i povijest (komentari su "
+"dodani od posljednjeg posjeta)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Uredi stavku"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Izbriši stavku"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Radnja se još provodi ili još nije dovršena"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Radnja je izvršena"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Datoteku je učitala funkcija navedena u naslovu stupca"
+
+msgid "editor.submission.introduction"
+msgstr ""
+"U fazi predaje, odgovorni/a izdavač/ica nakon pregleda predanih rukopisa (o "
+"čemu je autor/ica uvijek obaviješten/a) određuje odgovarajuću radnju: "
+"poslati na interni pregled (tada je potrebno odabrati datoteke namijenjene "
+"internom pregledu); poslati na vanjski pregled (tada je potrebno odabrati "
+"datoteke namijenjene vanjskom pregledu); prihvatiti unos (tada je potrebno "
+"odabrati datoteke za uređivanje) ili odbiti unos (unos će biti arhiviran)."
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Odobrena je verzija rukopisa spremna"
+
+msgid "editor.monograph.proofs"
+msgstr "Ispis namjenjen lekturi"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Odobrenje i publikacija"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr ""
+"Različiti formati kao što su tvrdi uvez, meki uvez i digitalni formati mogu "
+"se učitati pod 'Formati' u nastavku. Tablicu formata možete koristiti kao "
+"popis za provjeru što još treba učiniti za objavljivanje u odabranom formatu."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr ""
+"Dodajte formate (npr. digitalni, meki uvez) za koje urednik treba napraviti "
+"ispis za lekturu. <em>Datoteke za provjeru</em> moraju biti označene kao "
+"\"prihvaćene\", a metapodaci uključeni u <em>katalog</em> i odobreni za "
+"objavljivanje kako bi se knjiga prikazala kao <em>dostupna</em > (to znači "
+"'objavljeno')."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Uvjeti preuzimanja"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Postavi uvjete"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Dodaj odgovor"
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr ""
+"Sve datoteke koje su već učitane u bilo kojoj fazi podnošenja mogu se dodati "
+"na popis za ispis u svrhu lekture označavanjem potvrdnog kvadratića za "
+"uključivanje u nastavku, a zatim klikom na pretraživanje: prikazat će se sve "
+"dostupne datoteke i moći će se odabrati da ih se uključi u popis."
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr ""
+"Public identifier '{$publicIdentifier}' već postoji za drugi objekt iste "
+"vrste. Odaberite jedinstvene identifikatore za objekte iste vrste unutar "
+"svoje izdavačke kuće."
+
+msgid "editor.submissions.assignedTo"
+msgstr "Dodijeljeno uredniku/ci"

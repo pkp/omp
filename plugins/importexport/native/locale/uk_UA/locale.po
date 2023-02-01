@@ -13,36 +13,42 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "plugins.importexport.native.error.unknownSeries"
-msgstr "Невідома серія {$param}"
+msgid "plugins.importexport.native.displayName"
+msgstr "Плагін власного XML"
 
-msgid "plugins.importexport.native.results"
-msgstr "Результати"
+msgid "plugins.importexport.native.description"
+msgstr "Імпортує та експортує книги у власний XML-формат OMP."
 
-msgid "plugins.importexport.native.exportSubmissionsSelect"
-msgstr "Оберіть монографії для експорту"
-
-msgid "plugins.importexport.native.export"
-msgstr "Експортувати"
+msgid "plugins.importexport.native.import"
+msgstr "Імпортувати"
 
 msgid "plugins.importexport.native.import.instructions"
 msgstr "Завантажте XML файл для імпорту"
 
-msgid "plugins.importexport.native.import"
-msgstr "Імпортувати"
+msgid "plugins.importexport.native.export"
+msgstr "Експортувати"
+
+msgid "plugins.importexport.native.exportSubmissionsSelect"
+msgstr "Оберіть монографії для експорту"
+
+msgid "plugins.importexport.native.results"
+msgstr "Результати"
+
+msgid "plugins.inportexport.native.uploadFile"
+msgstr "Будь ласка, завантажте файл у розділ «Імпортувати», щоб продовжити."
 
 msgid "plugins.importexport.native.importComplete"
 msgstr ""
 "Імпортування успішно завершено. Нижченаведені елементи були імпортовані:"
 
-msgid "plugins.inportexport.native.uploadFile"
-msgstr "Будь ласка, завантажте файл у розділ «Імпортувати», щоб продовжити."
+msgid "plugins.importexport.native.onix30.pressMissingFields"
+msgstr ""
+"Цьому е-видавництву не вистачає деякої необхідної інформції для метаданих "
+"ONIX, що використовуються в цьому експорті. Будь ласка, перейдіть до <a href="
+"\"{$url}\">Налаштування е-видавництва</a> й заповніть дані, яких не вистачає."
 
-msgid "plugins.importexport.native.description"
-msgstr "Імпортує та експортує книги у власний XML-формат OMP."
-
-msgid "plugins.importexport.native.displayName"
-msgstr "Плагін власного XML"
+msgid "plugins.importexport.native.error.unknownSeries"
+msgstr "Невідома серія {$param}"
 
 msgid "plugins.importexport.native.cliUsage"
 msgstr ""
@@ -52,9 +58,3 @@ msgstr ""
 "\texport [xmlFileName] [press_path] monographs [monographId1] [monographId2] "
 "…\n"
 "\texport [xmlFileName] [press_path] monograph [monographId]\n"
-
-msgid "plugins.importexport.native.onix30.pressMissingFields"
-msgstr ""
-"Цьому е-видавництву не вистачає деякої необхідної інформції для метаданих "
-"ONIX, що використовуються в цьому експорті. Будь ласка, перейдіть до <a href="
-"\"{$url}\">Налаштування е-видавництва</a> й заповніть дані, яких не вистачає."

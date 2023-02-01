@@ -13,3 +13,6 @@ msgstr ""
 
 msgid "author.submit.notAccepting"
 msgstr "Denne utgiveren tar for øyeblikket ikke imot innleveringer."
+
+msgid "author.submit"
+msgstr ""

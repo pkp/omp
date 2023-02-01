@@ -11,11 +11,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.block.information.link"
-msgstr "Informações"
+msgid "plugins.block.information.displayName"
+msgstr "Bloco de Informações"
 
 msgid "plugins.block.information.description"
 msgstr "Este plugin fornece um link com informações na barra lateral."
 
-msgid "plugins.block.information.displayName"
-msgstr "Bloco de Informações"
+msgid "plugins.block.information.link"
+msgstr "Informações"

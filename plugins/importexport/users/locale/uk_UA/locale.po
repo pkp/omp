@@ -13,76 +13,11 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "plugins.importexport.users.results"
-msgstr "Результат"
-
-msgid "plugins.importexport.users.export.exportAllUsers"
-msgstr "Експортувати Усіх"
-
-msgid "plugins.importexport.users.export.exportByRole"
-msgstr "Експортувати за Роллю"
-
-msgid "plugins.importexport.users.export.exportUsers"
-msgstr "Експортувати користувачів"
-
-msgid "plugins.importexport.users.import.warning"
-msgstr "Попередження"
-
-msgid "plugins.importexport.users.import.errorsOccurred"
-msgstr "З'явились помилки під час імпортування"
-
-msgid "plugins.importexport.users.import.dataFile"
-msgstr "Файл данних з користувачами"
-
-msgid "plugins.importexport.users.import.importUsers"
-msgstr "Імпортувати користувачів"
+msgid "plugins.importexport.users.displayName"
+msgstr "Плагін користувачів в XML"
 
 msgid "plugins.importexport.users.description"
 msgstr "Імпорт і експорт користувачів"
-
-msgid "plugins.importexport.users.uploadFile"
-msgstr "Будь ласка, завантажте файл у розділ \"Імпорт\", аби продовжити."
-
-msgid "plugins.importexport.users.importComplete"
-msgstr ""
-"Імпортування виконано успішно. Користувачі з їхніми іменами й адресами "
-"електронної пошти, які ще не використовувались, були імпортовані разом з "
-"відповідними групами користувачів."
-
-msgid "plugins.importexport.users.export.errorsOccurred"
-msgstr "Під час експортування виникли помилки"
-
-msgid "plugins.importexport.users.unknownPress"
-msgstr "Було вказано невідомий шлях видання \"{$contextPath}\"."
-
-msgid "plugins.importexport.users.import.encryptionMismatch"
-msgstr ""
-"Не можна використовувати паролі, хешировані алгоритмом {$importHash}; OMP "
-"зараз налаштовано на використання {$ojsHash}. Якщо Ви продовжите, то Вам "
-"знадобиться скинути паролі імпортованих користувачів."
-
-msgid "plugins.importexport.users.import.confirmUsers"
-msgstr "Підтвердіть, що цих користувачів Ви хотіли б імпортувати в систему"
-
-msgid "plugins.importexport.users.import.usersWereImported"
-msgstr "Ці користувачі були успішно імпортовані в систему"
-
-msgid "plugins.importexport.users.import.continueOnError"
-msgstr "Продовжити імпорт решти користувачів у випадку виникнення посилки."
-
-msgid "plugins.importexport.users.import.sendNotify"
-msgstr ""
-"Направити кожному імпортованому користувачу повідомлення електронною поштою, "
-"в якому міститиметься ім'я користувача й пароль."
-
-msgid "plugins.importexport.users.import.instructions"
-msgstr ""
-"Виберіть файл даних XML, який мість інформацію про користувачів, для імпорту "
-"в це е-видавництво. Детальніше про формат цього файлу дивіться в помічнику "
-"для е-видавництва.<br /><br />Зауважте, що якщо імпортований файл містить "
-"імена користувачів або адреси електронної пошти, які вже існують у системі, "
-"то дані для цих користувачів не будуть імпортовані, а всі нові ролі, які б "
-"мали бути створені, будуть призначені клористувачам, які існують."
 
 msgid "plugins.importexport.users.cliUsage"
 msgstr ""
@@ -113,5 +48,70 @@ msgstr ""
 "роллю рецензентів:\n"
 "\t{$scriptName} {$pluginName} export myExportFile.xml myPress reviewer\n"
 
-msgid "plugins.importexport.users.displayName"
-msgstr "Плагін користувачів в XML"
+msgid "plugins.importexport.users.import.importUsers"
+msgstr "Імпортувати користувачів"
+
+msgid "plugins.importexport.users.import.instructions"
+msgstr ""
+"Виберіть файл даних XML, який мість інформацію про користувачів, для імпорту "
+"в це е-видавництво. Детальніше про формат цього файлу дивіться в помічнику "
+"для е-видавництва.<br /><br />Зауважте, що якщо імпортований файл містить "
+"імена користувачів або адреси електронної пошти, які вже існують у системі, "
+"то дані для цих користувачів не будуть імпортовані, а всі нові ролі, які б "
+"мали бути створені, будуть призначені клористувачам, які існують."
+
+msgid "plugins.importexport.users.import.dataFile"
+msgstr "Файл данних з користувачами"
+
+msgid "plugins.importexport.users.import.sendNotify"
+msgstr ""
+"Направити кожному імпортованому користувачу повідомлення електронною поштою, "
+"в якому міститиметься ім'я користувача й пароль."
+
+msgid "plugins.importexport.users.import.continueOnError"
+msgstr "Продовжити імпорт решти користувачів у випадку виникнення посилки."
+
+msgid "plugins.importexport.users.import.usersWereImported"
+msgstr "Ці користувачі були успішно імпортовані в систему"
+
+msgid "plugins.importexport.users.import.errorsOccurred"
+msgstr "З'явились помилки під час імпортування"
+
+msgid "plugins.importexport.users.import.confirmUsers"
+msgstr "Підтвердіть, що цих користувачів Ви хотіли б імпортувати в систему"
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "Попередження"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr ""
+"Не можна використовувати паролі, хешировані алгоритмом {$importHash}; OMP "
+"зараз налаштовано на використання {$ojsHash}. Якщо Ви продовжите, то Вам "
+"знадобиться скинути паролі імпортованих користувачів."
+
+msgid "plugins.importexport.users.unknownPress"
+msgstr "Було вказано невідомий шлях видання \"{$contextPath}\"."
+
+msgid "plugins.importexport.users.export.exportUsers"
+msgstr "Експортувати користувачів"
+
+msgid "plugins.importexport.users.export.exportByRole"
+msgstr "Експортувати за Роллю"
+
+msgid "plugins.importexport.users.export.exportAllUsers"
+msgstr "Експортувати Усіх"
+
+msgid "plugins.importexport.users.export.errorsOccurred"
+msgstr "Під час експортування виникли помилки"
+
+msgid "plugins.importexport.users.importComplete"
+msgstr ""
+"Імпортування виконано успішно. Користувачі з їхніми іменами й адресами "
+"електронної пошти, які ще не використовувались, були імпортовані разом з "
+"відповідними групами користувачів."
+
+msgid "plugins.importexport.users.results"
+msgstr "Результат"
+
+msgid "plugins.importexport.users.uploadFile"
+msgstr "Будь ласка, завантажте файл у розділ \"Імпорт\", аби продовжити."

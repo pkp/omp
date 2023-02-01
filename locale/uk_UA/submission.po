@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-09-22 07:38+0000\n"
+"PO-Revision-Date: 2022-12-16 13:19+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/uk_UA/>\n"
@@ -13,312 +13,170 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "submission.chapters"
-msgstr "Глави"
-
-msgid "submission.chapter"
-msgstr "Глава"
-
-msgid "submission.artwork.permissions"
-msgstr "Дозволи"
-
-msgid "submission.authorListSeparator"
-msgstr "; "
-
-msgid "submission.fairCopy"
-msgstr "Чистовик"
-
-msgid "submission.published"
-msgstr "Готово до друку"
-
-msgid "submission.monograph"
-msgstr "Монографія"
-
-msgid "submission.editorName"
-msgstr "{$editorName} (ред.)"
-
-msgid "submission.workflowType.change"
-msgstr "Змінити"
-
-msgid "submission.workflowType.editedVolume"
-msgstr "Редагований том: автори пов'язані з їхніми главами."
-
-msgid "submission.workflowType.editedVolume.label"
-msgstr "Редагований том"
-
-msgid "submission.workflowType.description"
-msgstr ""
-"Монографія - це видання за цілковитим авторством одного або декількох "
-"авторів. Відредагований том має різних авторів для кожної глави (з деталям "
-"глав, введеними пізніше в цьому процесі.)"
-
-msgid "submission.workflowType"
-msgstr "Тип подання"
-
-msgid "submission.synopsis"
-msgstr "Короткий опис"
-
-msgid "submission.select"
-msgstr "Обрати подання"
+msgid "submission.upload.selectComponent"
+msgstr "Обрати компонент"
 
 msgid "submission.title"
 msgstr "Назва книги"
 
-msgid "submission.upload.selectComponent"
-msgstr "Обрати компонент"
+msgid "submission.select"
+msgstr "Обрати подання"
 
-msgid "publication.scheduledIn"
-msgstr "Заплановано до публікації в <a href=\"{$issueUrl}\">{$issueName}</a>."
+msgid "submission.synopsis"
+msgstr "Короткий опис"
 
-msgid "publication.publishedIn"
-msgstr "Опубліковано в <a href=\"{$issueUrl}\">{$issueName}</a>."
+msgid "submission.workflowType"
+msgstr "Тип подання"
 
-msgid "publication.required.issue"
+msgid "submission.workflowType.description"
 msgstr ""
-"Публікація має бути пов'язана з конкретним випуском перед опублікуванням."
-
-msgid "publication.invalidSeries"
-msgstr "Серія для цієї публікації не знайдена."
-
-msgid "publication.catalogEntry"
-msgstr "Запис каталогу"
-
-msgid "catalog.browseTitles"
-msgstr "{$numTitles} назв"
-
-msgid "submission.list.itemsOfTotalMonographs"
-msgstr "{$count} з {$total} монографій"
-
-msgid "submission.list.countMonographs"
-msgstr "{$count} монографій"
-
-msgid "submission.list.monographs"
-msgstr "Монографії"
-
-msgid "section.any"
-msgstr "Будь-яка серія"
-
-msgid "submission.dependentFiles"
-msgstr "Залежні файли"
-
-msgid "workflow.review.externalReview"
-msgstr "Зовнішнє рецензування"
-
-msgid "editor.submission.decision.sendExternalReview"
-msgstr "Надіслати на зовнішнє рецензування"
-
-msgid "submission.event.publicationFormatRemoved"
-msgstr "Формат публікації \"{$formatName}\" видалено."
-
-msgid "submission.event.publicationFormatCreated"
-msgstr "Формат публікації \"{$formatName}\" створено."
-
-msgid "submission.event.catalogMetadataUpdated"
-msgstr "Метадані каталогу оновлено."
-
-msgid "submission.event.publicationFormatUnpublished"
-msgstr "Формат публікації \"{$publicationFormatName}\" більше не публікується."
-
-msgid "submission.event.publicationFormatPublished"
-msgstr ""
-"Формат публікації \"{$publicationFormatName}\" затверджено до опублікування."
-
-msgid "submission.event.publicationFormatMadeUnavailable"
-msgstr "Формат публікації \"{$publicationFormatName}\" більше не є доступним."
-
-msgid "submission.event.publicationFormatMadeAvailable"
-msgstr "Формат публікації \"{$publicationFormatName}\" тепер доступний."
-
-msgid "submission.event.metadataPublished"
-msgstr "Метадані монографії затверджено для опублікування."
-
-msgid "submission.catalogEntry.publicationMetadata"
-msgstr "Формат публікації"
-
-msgid "submission.catalogEntry.catalogMetadata"
-msgstr "Каталог"
-
-msgid "submission.catalogEntry.monographMetadata"
-msgstr "Монографія"
-
-msgid "submission.catalogEntry.enableChapterPublicationDates"
-msgstr "Кожна глава може мати свою дату публікації."
-
-msgid "submission.catalogEntry.disableChapterPublicationDates"
-msgstr "Усі глави отримають дату публікації монографії."
-
-msgid "submission.catalogEntry.chapterPublicationDates"
-msgstr "Дати публікації"
-
-msgid "submission.catalogEntry.viewSubmission"
-msgstr "Переглянути подання"
-
-msgid "submission.catalogEntry.isAvailable"
-msgstr "Ця монографія готова до включення в публічний каталог."
-
-msgid "submission.catalogEntry.confirm.required"
-msgstr "Будь ласка, підтвердіть, що подання готове до розміщення в каталозі."
-
-msgid "submission.catalogEntry.confirm"
-msgstr "Додати цю книгу до публічного каталогу"
-
-msgid "submission.catalogEntry.selectionMissing"
-msgstr "Ви маєте обрати принаймі одну монографію, щоб додати до каталогу."
-
-msgid "submission.catalogEntry.select"
-msgstr "Обрати монографії для додання в каталог"
-
-msgid "submission.catalogEntry.add"
-msgstr "Додати обрані елементи до каталогу"
-
-msgid "submission.catalogEntry.new"
-msgstr "Додати запис"
-
-msgid "submission.editCatalogEntry"
-msgstr "Запис"
-
-msgid "submission.incomplete"
-msgstr "Очікує підтвердження"
-
-msgid "submission.complete"
-msgstr "Підтверджено"
-
-msgid "grid.copyediting.deleteCopyeditorResponse"
-msgstr "Видалити файли літературного редактора"
-
-msgid "grid.chapters.title"
-msgstr "Глави"
-
-msgid "submission.submit.noContext"
-msgstr "Е-видавництво для цього подання не знайдено."
-
-msgid "submission.submit.userGroup"
-msgstr "Подати від мене в ролі…"
-
-msgid "submission.submit.placement"
-msgstr "Розміщення подання"
-
-msgid "submission.submit.generalInformation"
-msgstr "Загальна інформація"
-
-msgid "submission.submit.coverNote"
-msgstr "Супровідний лист для редактора"
-
-msgid "submission.submit.nextSteps"
-msgstr "Наступні кроки"
-
-msgid "submission.submit.confirmation"
-msgstr "Підтвердження"
-
-msgid "submission.submit.finishingUp"
-msgstr "Завершити"
-
-msgid "submission.submit.metadata"
-msgstr "Метадані"
-
-msgid "submission.submit.catalog"
-msgstr "Каталог"
-
-msgid "submission.submit.prepare"
-msgstr "Підготовка"
-
-msgid "submission.submit.submissionFile"
-msgstr "Файл подання"
-
-msgid "submission.submit.contributorRole"
-msgstr "Роль користувача"
-
-msgid "submission.submit.privacyStatement"
-msgstr "Заява про конфіденційність"
-
-msgid "submission.submit.seriesPosition.description"
-msgstr "Приклади: Книга 2, Том 2"
-
-msgid "submission.submit.seriesPosition"
-msgstr "Позиція серії"
-
-msgid "author.isVolumeEditor"
-msgstr "Позначити цього автора як редактора цього тому."
-
-msgid "submission.submit.upload"
-msgstr "Вивантажити подання"
-
-msgid "submission.submit.newSubmissionSingle"
-msgstr "Нове подання"
-
-msgid "submission.submit.newSubmissionMultiple"
-msgstr "Почати нове подання в"
-
-msgid "submission.submit"
-msgstr "Почати подання нової книги"
-
-msgid "grid.action.deleteChapter"
-msgstr "Видалити цю главу"
-
-msgid "grid.action.editChapter"
-msgstr "Редагувати цю главу"
-
-msgid "grid.action.addChapter"
-msgstr "Створити нову главу"
-
-msgid "submission.metadata"
-msgstr "Метадані"
-
-msgid "manuscript.submissions"
-msgstr "Подання рукописів"
-
-msgid "submissions.queuedReview"
-msgstr "На рецензуванні"
-
-msgid "submission.round"
-msgstr "Раунд&nbsp;{$round}"
-
-msgid "manuscript.submission"
-msgstr "Подання рукопису"
-
-msgid "submission.sharing"
-msgstr "Поділитися цим"
-
-msgid "submission.download"
-msgstr "Завантажити"
-
-msgid "submission.publicationFormats"
-msgstr "Формати публікацій"
-
-msgid "submission.copyedit"
-msgstr "Літературне редагування"
-
-msgid "submission.chapter.pages"
-msgstr "Сторінки"
-
-msgid "submission.chapter.editChapter"
-msgstr "Редагувати главу"
-
-msgid "submission.chapter.addChapter"
-msgstr "Додати главу"
+"Монографія - це видання за цілковитим авторством одного або декількох "
+"авторів. Том за редакцією має різних авторів для кожної глави (з деталям "
+"глав, введеними пізніше в цьому процесі)"
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Том за редакцією"
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Том за редакцією: автори пов'язані з їхніми главами."
 
 msgid "submission.workflowType.authoredWork"
 msgstr "Монографія: автори, що пов'язані з цією книгою в цілому."
 
-msgid "publication.catalogEntry.success"
-msgstr "Деталі запису каталогу було оновлено."
+msgid "submission.workflowType.change"
+msgstr "Змінити"
 
-msgid "submission.upload.fileContents"
-msgstr "Компонент подання"
+msgid "submission.editorName"
+msgstr "{$editorName} (ред.)"
 
-msgid "submission.list.saveFeatureOrder"
-msgstr "Зберегти порядок сортування"
+msgid "submission.monograph"
+msgstr "Монографія"
 
-msgid "submission.metadataDescription"
-msgstr ""
-"Ці специфікації базуються на наборі метаданих Dublin Core - міжнародному "
-"стандарті, що використовується для опису контенту е-видавництва."
+msgid "submission.published"
+msgstr "Готово до друку"
 
-msgid "submission.event.publicationMetadataUpdated"
-msgstr "Метадані для формату публікації \"{$formatName}\" було оновлено."
+msgid "submission.fairCopy"
+msgstr "Чистовик"
 
-msgid "submission.event.metadataUnpublished"
-msgstr "Метадані монографії більше не публікуються."
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.artwork.permissions"
+msgstr "Дозволи"
+
+msgid "submission.chapter"
+msgstr "Глава"
+
+msgid "submission.chapters"
+msgstr "Глави"
+
+msgid "submission.chapter.addChapter"
+msgstr "Додати главу"
+
+msgid "submission.chapter.editChapter"
+msgstr "Редагувати главу"
+
+msgid "submission.chapter.pages"
+msgstr "Сторінки"
+
+msgid "submission.copyedit"
+msgstr "Літературне редагування"
+
+msgid "submission.publicationFormats"
+msgstr "Формати публікацій"
+
+msgid "submission.proofs"
+msgstr "Гранки"
+
+msgid "submission.download"
+msgstr "Завантажити"
+
+msgid "submission.sharing"
+msgstr "Поділитися цим"
+
+msgid "manuscript.submission"
+msgstr "Подання рукопису"
+
+msgid "submission.round"
+msgstr "Раунд&nbsp;{$round}"
+
+msgid "submissions.queuedReview"
+msgstr "На рецензуванні"
+
+msgid "manuscript.submissions"
+msgstr "Подання рукописів"
+
+msgid "submission.metadata"
+msgstr "Метадані"
+
+msgid "submission.supportingAgencies"
+msgstr "Спонсори"
+
+msgid "grid.action.addChapter"
+msgstr "Створити нову главу"
+
+msgid "grid.action.editChapter"
+msgstr "Редагувати цю главу"
+
+msgid "grid.action.deleteChapter"
+msgstr "Видалити цю главу"
+
+msgid "submission.submit"
+msgstr "Почати подання нової книги"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Почати нове подання в"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Нове подання"
+
+msgid "submission.submit.upload"
+msgstr "Вивантажити подання"
+
+msgid "author.volumeEditor"
+msgstr "Редактор тому"
+
+msgid "author.isVolumeEditor"
+msgstr "Позначити цього автора як редактора цього тому."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Позиція серії"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Приклади: Книга 2, Том 2"
+
+msgid "submission.submit.privacyStatement"
+msgstr "Заява про конфіденційність"
+
+msgid "submission.submit.contributorRole"
+msgstr "Роль користувача"
+
+msgid "submission.submit.submissionFile"
+msgstr "Файл подання"
+
+msgid "submission.submit.prepare"
+msgstr "Підготовка"
+
+msgid "submission.submit.catalog"
+msgstr "Каталог"
+
+msgid "submission.submit.metadata"
+msgstr "Метадані"
+
+msgid "submission.submit.finishingUp"
+msgstr "Завершити"
+
+msgid "submission.submit.confirmation"
+msgstr "Підтвердження"
+
+msgid "submission.submit.nextSteps"
+msgstr "Наступні кроки"
+
+msgid "submission.submit.coverNote"
+msgstr "Супровідний лист для редактора"
+
+msgid "submission.submit.generalInformation"
+msgstr "Загальна інформація"
 
 msgid "submission.submit.whatNext.description"
 msgstr ""
@@ -326,8 +184,185 @@ msgstr ""
 "підтвердженням було направлено на Вашу електронну пошту. Щойно редактори "
 "переглянуть Ваш матеріал, ми зв'яжемося з Вами."
 
-msgid "submission.supportingAgencies"
-msgstr "Спонсори"
+msgid "submission.submit.checklistErrors"
+msgstr ""
+"Будь ласка, прочитайте й відмітьте пункти у списку подання. Кількість "
+"невідмічених позицій - {$itemsRemaining} ."
+
+msgid "submission.submit.placement"
+msgstr "Розміщення подання"
+
+msgid "submission.submit.userGroup"
+msgstr "Подати від мене в ролі…"
+
+msgid "submission.submit.noContext"
+msgstr "Е-видавництво для цього подання не знайдено."
+
+msgid "grid.chapters.title"
+msgstr "Глави"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Видалити файли літературного редактора"
+
+msgid "submission.complete"
+msgstr "Підтверджено"
+
+msgid "submission.incomplete"
+msgstr "Очікує підтвердження"
+
+msgid "submission.editCatalogEntry"
+msgstr "Запис"
+
+msgid "submission.catalogEntry.new"
+msgstr "Додати запис"
+
+msgid "submission.catalogEntry.add"
+msgstr "Додати обрані елементи до каталогу"
+
+msgid "submission.catalogEntry.select"
+msgstr "Обрати монографії для додання в каталог"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr "Ви маєте обрати принаймі одну монографію, щоб додати до каталогу."
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Додати цю книгу до публічного каталогу"
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Будь ласка, підтвердіть, що подання готове до розміщення в каталозі."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Ця монографія готова до включення в публічний каталог."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Переглянути подання"
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Дати публікації"
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Усі глави отримають дату публікації монографії."
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Кожна глава може мати свою дату публікації."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Монографія"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Каталог"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Формат публікації"
+
+msgid "submission.event.metadataPublished"
+msgstr "Метадані монографії затверджено для опублікування."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Метадані монографії більше не публікуються."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "Формат публікації \"{$publicationFormatName}\" тепер доступний."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "Формат публікації \"{$publicationFormatName}\" більше не є доступним."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr ""
+"Формат публікації \"{$publicationFormatName}\" затверджено до опублікування."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "Формат публікації \"{$publicationFormatName}\" більше не публікується."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Метадані каталогу оновлено."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "Метадані для формату публікації \"{$formatName}\" було оновлено."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Формат публікації \"{$formatName}\" створено."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Формат публікації \"{$formatName}\" видалено."
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Надіслати на зовнішнє рецензування"
+
+msgid "workflow.review.externalReview"
+msgstr "Зовнішнє рецензування"
+
+msgid "submission.upload.fileContents"
+msgstr "Компонент подання"
+
+msgid "submission.dependentFiles"
+msgstr "Залежні файли"
+
+msgid "submission.metadataDescription"
+msgstr ""
+"Ці специфікації базуються на наборі метаданих Dublin Core - міжнародному "
+"стандарті, що використовується для опису контенту е-видавництва."
+
+msgid "section.any"
+msgstr "Будь-яка серія"
+
+msgid "submission.list.monographs"
+msgstr "Монографії"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} монографій"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} з {$total} монографій"
+
+msgid "submission.list.orderFeatures"
+msgstr "Упорядкувати ознаки"
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Перемістіть або використайте стрілки вверх і вниз для зміни порядку об'єктів "
+"на домашній сторінці."
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"Перемістіть або використайте стрілки вверх і вниз для зміни порядку об'єктів "
+"у {$title}."
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Зберегти порядок сортування"
+
+msgid "submission.list.viewEntry"
+msgstr "Переглянути запис"
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} назв"
+
+msgid "publication.catalogEntry"
+msgstr "Запис каталогу"
+
+msgid "publication.catalogEntry.success"
+msgstr "Деталі запису каталогу було оновлено."
+
+msgid "publication.invalidSeries"
+msgstr "Серія для цієї публікації не знайдена."
+
+msgid "publication.inactiveSeries"
+msgstr "{$series} (неактивно)"
+
+msgid "publication.required.issue"
+msgstr ""
+"Публікація має бути пов'язана з конкретним випуском перед опублікуванням."
+
+msgid "publication.publishedIn"
+msgstr "Опубліковано в <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Усі вимоги до публікації виконано. Чи впевнені Ви, що хочете зробити цей "
+"запис каталогу публічним?"
+
+msgid "publication.scheduledIn"
+msgstr "Заплановано до публікації в <a href=\"{$issueUrl}\">{$issueName}</a>."
 
 msgid "submission.publication"
 msgstr "Публікація"
@@ -423,78 +458,46 @@ msgstr "Деталі публікації для версії {$version}"
 msgid "submission.queries.production"
 msgstr "Обговорення подання"
 
-msgid "submission.list.orderFeatures"
-msgstr "Упорядкувати ознаки"
+msgid "publication.chapter.landingPage"
+msgstr "Сторінка глави"
 
-msgid "submission.submit.checklistErrors"
+msgid "publication.chapter.hasLandingPage"
 msgstr ""
-"Будь ласка, прочитайте й відмітьте пункти у списку подання. Кількість "
-"невідмічених позицій - {$itemsRemaining} ."
+"Показати цю главу на власній сторінці та покликання на ту сторінку зі змісту "
+"книги."
 
-msgid "submission.proofs"
-msgstr "Гранки"
+msgid "publication.publish.success"
+msgstr "Статус публікації успішно змінено."
 
-msgid "editor.submission.recommend.sendExternalReview.log"
+msgid "chapter.volume"
+msgstr "Том"
+
+msgid "submission.withoutChapter"
+msgstr "{$name} — Без цієї глави"
+
+msgid "submission.chapterCreated"
+msgstr " — Главу створено"
+
+msgid "chapter.pages"
+msgstr "Сторінки"
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr "Надіслати на внутрішнє рецензування"
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr "Це подання є готовим до надсилання для внутрішнього рецензування."
+
+msgid "editor.submission.decision.sendInternalReview.log"
 msgstr ""
-"{$editorName} рекомендував(ла), щоби це подання було направлено на стадію "
-"зовнішнього рецензування."
+"{$editorName} направив(ла) це подання на стадію внутрішнього рецензування."
 
-msgid "editor.submission.recommend.sendExternalReview.description"
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr "Направлено для внутрішнього рецензування"
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr ""
-"Рекомендувати, щоби це подання було направлено на стадію зовнішнього "
-"рецензування."
-
-msgid "editor.submission.recommend.sendExternalReview"
-msgstr "Рекомендувати направити на зовнішнє рецензування"
-
-msgid "editor.submission.decision.promoteFiles.externalReview"
-msgstr "Виберіть файли, які мають бути надіслані на стадію рецензування."
-
-msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
-msgstr ""
-"Надішліть авторам електронного листа, щоби повідомити їх, що це подання буде "
-"направлено для експертного оцінювання. Якщо можливо, зорієнтуйте авторів, як "
-"довго може тривати процес експертного оцінювання і коли їм слід знов "
-"очікувати новин від редакторів."
-
-msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
-msgstr ""
-"Надішліть авторам електронного листа, щоби повідомити їх, що їхнє подання "
-"знову направляється на стадію рецензування. Поясніть, чому було прийнято це "
-"рішення, та поінформуйте авторів, яке рецензування буде здійснено."
-
-msgid "editor.submission.decision.backToReview.completed.description"
-msgstr "Подання, {$title}, було знову направлено на стадію рецензування."
-
-msgid "editor.submission.decision.backToReview.completed"
-msgstr "Знову направлено на рецензування"
-
-msgid "editor.submission.decision.backToReview.log"
-msgstr ""
-"{$editorName} скасував(ла) рішення про прийняття цього подання і "
-"направив(ла) його знову на стадію рецензування."
-
-msgid "editor.submission.decision.backToReview.description"
-msgstr ""
-"Скасувати рішення про прийняття цього подання і направити його знову на "
-"стадію рецензування."
-
-msgid "editor.submission.decision.backToReview"
-msgstr "Повернутися до рецензування"
-
-msgid "editor.submission.decision.sendExternalReview.completed.description"
-msgstr "Подання, {$title}, було направлено на стадію зовнішнього рецензування."
-
-msgid "editor.submission.decision.sendExternalReview.completed"
-msgstr "Направлено для зовнішнього рецензування"
-
-msgid "editor.submission.decision.sendExternalReview.log"
-msgstr ""
-"{$editorName} направив(ла) це подання на стадію зовнішнього рецензування."
-
-msgid "editor.submission.decision.promoteFiles.internalReview"
-msgstr ""
-"Виберіть файли, які мають бути надіслані на стадію внутрішнього рецензування."
+"Подання, {$title}, було направлено на стадію внутрішнього рецензування. "
+"Автора було повідомлено, якщо ви не вирішили пропустити цей електронний лист."
 
 msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
 msgstr ""
@@ -503,67 +506,72 @@ msgstr ""
 "як довго може тривати процедура внутрішнього рецензування і коли їм слід "
 "знов очікувати новин від редакторів."
 
-msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgid "editor.submission.decision.promoteFiles.internalReview"
 msgstr ""
-"Подання, {$title}, було направлено на стадію внутрішнього рецензування. "
-"Автора було повідомлено, якщо ви не вирішили пропустити цей електронний лист."
+"Виберіть файли, які мають бути надіслані на стадію внутрішнього рецензування."
 
-msgid "editor.submission.decision.sendInternalReview.completed"
-msgstr "Направлено для внутрішнього рецензування"
-
-msgid "editor.submission.decision.sendInternalReview.log"
+msgid "editor.submission.decision.sendExternalReview.log"
 msgstr ""
-"{$editorName} направив(ла) це подання на стадію внутрішнього рецензування."
+"{$editorName} направив(ла) це подання на стадію зовнішнього рецензування."
 
-msgid "editor.submission.decision.sendInternalReview.description"
-msgstr "Це подання є готовим до надсилання для внутрішнього рецензування."
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr "Направлено для зовнішнього рецензування"
 
-msgid "editor.submission.decision.sendInternalReview"
-msgstr "Надіслати на внутрішнє рецензування"
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr "Подання, {$title}, було направлено на стадію зовнішнього рецензування."
 
-msgid "chapter.pages"
-msgstr "Сторінки"
+msgid "editor.submission.decision.backToReview"
+msgstr "Повернутися до рецензування"
 
-msgid "submission.chapterCreated"
-msgstr " — Главу створено"
-
-msgid "submission.withoutChapter"
-msgstr "{$name} — Без цієї глави"
-
-msgid "chapter.volume"
-msgstr "Том"
-
-msgid "publication.publish.success"
-msgstr "Статус публікації успішно змінено."
-
-msgid "publication.chapter.hasLandingPage"
+msgid "editor.submission.decision.backToReview.description"
 msgstr ""
-"Показати цю главу на власній сторінці та покликання на ту сторінку зі змісту "
-"книги."
+"Скасувати рішення про прийняття цього подання і направити його знову на "
+"стадію рецензування."
 
-msgid "publication.chapter.landingPage"
-msgstr "Сторінка глави"
-
-msgid "publication.publish.confirmation"
+msgid "editor.submission.decision.backToReview.log"
 msgstr ""
-"Усі вимоги до публікації виконано. Чи впевнені Ви, що хочете зробити цей "
-"запис каталогу публічним?"
+"{$editorName} скасував(ла) рішення про прийняття цього подання і "
+"направив(ла) його знову на стадію рецензування."
 
-msgid "publication.inactiveSeries"
-msgstr "{$series} (неактивно)"
+msgid "editor.submission.decision.backToReview.completed"
+msgstr "Знову направлено на рецензування"
 
-msgid "submission.list.viewEntry"
-msgstr "Переглянути запис"
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr "Подання, {$title}, було знову направлено на стадію рецензування."
 
-msgid "submission.list.orderingFeaturesSection"
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
 msgstr ""
-"Перемістіть або використайте стрілки вверх і вниз для зміни порядку об'єктів "
-"у {$title}."
+"Надішліть авторам електронного листа, щоби повідомити їх, що їхнє подання "
+"знову направляється на стадію рецензування. Поясніть, чому було прийнято це "
+"рішення, та поінформуйте авторів, яке рецензування буде здійснено."
 
-msgid "submission.list.orderingFeatures"
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
 msgstr ""
-"Перемістіть або використайте стрілки вверх і вниз для зміни порядку об'єктів "
-"на домашній сторінці."
+"Надішліть авторам електронного листа, щоби повідомити їх, що це подання буде "
+"направлено для експертного оцінювання. Якщо можливо, зорієнтуйте авторів, як "
+"довго може тривати процес експертного оцінювання і коли їм слід знов "
+"очікувати новин від редакторів."
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr "Виберіть файли, які мають бути надіслані на стадію рецензування."
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr "Рекомендувати направити на зовнішнє рецензування"
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr ""
+"Рекомендувати, щоби це подання було направлено на стадію зовнішнього "
+"рецензування."
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+"{$editorName} рекомендував(ла), щоби це подання було направлено на стадію "
+"зовнішнього рецензування."
+
+msgid "doi.submission.incorrectContext"
+msgstr ""
+"Не вдалося створити DOI для такого подання: {$pubObjectTitle}. Його не існує "
+"в рамках поточного е-видавництва."
 
 msgid "publication.chapter.licenseUrl"
 msgstr "URL-адреса ліцензії"
@@ -571,55 +579,97 @@ msgstr "URL-адреса ліцензії"
 msgid "publication.chapterDefaultLicenseURL"
 msgstr "Типова URL-адреса ліцензії глави"
 
-msgid "doi.submission.incorrectContext"
+msgid "submission.copyright.description"
 msgstr ""
-"Не вдалося створити DOI для такого подання: {$pubObjectTitle}. Його не існує "
-"в рамках поточного е-видавництва."
+"Будь ласка, прочитайте та зрозумійте умови щодо авторського права стосовно "
+"подання до цього е-видавництва."
 
-msgid "submission.submit.title"
-msgstr "Подати монографію"
-
-msgid "submission.submit.titleAndSummary"
-msgstr "Назва і резюме"
-
-msgid "submission.submit.form.contributorRoleRequired"
-msgstr "Будь ласка, оберіть роль користувача."
-
-msgid "submission.submit.form.abstractRequired"
-msgstr "Будь ласка, введіть коротку анотацію Вашої монографії."
-
-msgid "submission.submit.form.titleRequired"
-msgstr "Будь ласка, введіть назву Вашої монографії."
-
-msgid "submission.submit.form.authorRequiredFields"
+msgid "submission.wizard.notAllowed.description"
 msgstr ""
-"Необхідно ввести ім'я, прізвище й адресу електронної пошти кожного автора."
+"Ви не маєте права зробити подання до цього е-видавництва, оскільки автори "
+"повинні бути зареєстровані редакцією. Якщо ви вважаєте, що це помилка, "
+"зверніться до <a href='mailto:{$email}'>{$name}</a>."
 
-msgid "submission.submit.form.authorRequired"
-msgstr "Необхідно обрати хоча б одного автора."
-
-msgid "submission.submit.form.localeRequired"
-msgstr "Будь ласка, оберіть мову подання."
-
-msgid "author.submit.seriesRequired"
-msgstr "Необхідно ввести дійсну серію."
-
-msgid "submission.submit.selectSeries"
-msgstr "Оберіть серію (за бажанням)"
-
-msgid "submission.confirmSubmit"
-msgstr "Ви впевнені, що хочете надіслати цей рукопис до е-видавництва?"
-
-msgid "submission.chaptersDescription"
+msgid "submission.wizard.noSectionAllowed.description"
 msgstr ""
-"Ви можете тут перерахувати глави і призначити авторів зі списку вище. Ці "
-"автори матимуть доступ до глав під час різних стадій видавничого процесу."
+"Вам не дозволено робити подання до цього е-видавництва, оскільки подання до "
+"всіх розділів до цього е-видавництва було деактивовано або обмежено. Якщо ви "
+"вважаєте, що це помилка, зверніться до <a href='mailto:{$email}'>{$name}</a>."
 
-msgid "submission.submit.userGroupDescription"
+msgid "submission.wizard.sectionClosed.message"
 msgstr ""
-"Якщо ви надсилаєте відредагований том, ви маєте обрати роль редактора тому."
 
-msgid "submission.submit.cancelSubmission"
+msgid "submission.sectionNotFound"
+msgstr "Серію для цього подання не знайдено."
+
+msgid "submission.sectionRestrictedToEditors"
+msgstr "До цієї серії дозволяється подаватися лише редакції."
+
+msgid "submission.wizard.submitting.monograph"
+msgstr "Подання <strong>монографії</strong>."
+
+msgid "submission.wizard.submitting.monographInLanguage"
 msgstr ""
-"Ви можете завершити це подання пізніше, вибравши його у списку активних "
-"подань на своїй персональній сторінці."
+"Подання <strong>монографії</strong> мовою <strong>{$language}</strong>."
+
+msgid "submission.wizard.submitting.editedVolume"
+msgstr "Подання <strong>тому за редакцією</strong>."
+
+msgid "submission.wizard.submitting.editedVolumeInLanguage"
+msgstr ""
+"Подання <strong>тому за редакцією</strong> мовою <strong>{$language}</"
+"strong>."
+
+msgid "submission.wizard.chapters.description"
+msgstr ""
+"Будь ласка, надайте всі глави цього подання. Якщо ви подаєте том за "
+"редакцією, переконайтеся, що в кожній главі вказано авторів цієї глави."
+
+#~ msgid "submission.submit.title"
+#~ msgstr "Подати монографію"
+
+#~ msgid "submission.submit.titleAndSummary"
+#~ msgstr "Назва і резюме"
+
+#~ msgid "submission.submit.form.contributorRoleRequired"
+#~ msgstr "Будь ласка, оберіть роль користувача."
+
+#~ msgid "submission.submit.form.abstractRequired"
+#~ msgstr "Будь ласка, введіть коротку анотацію Вашої монографії."
+
+#~ msgid "submission.submit.form.titleRequired"
+#~ msgstr "Будь ласка, введіть назву Вашої монографії."
+
+#~ msgid "submission.submit.form.authorRequiredFields"
+#~ msgstr ""
+#~ "Необхідно ввести ім'я, прізвище й адресу електронної пошти кожного автора."
+
+#~ msgid "submission.submit.form.authorRequired"
+#~ msgstr "Необхідно обрати хоча б одного автора."
+
+#~ msgid "submission.submit.form.localeRequired"
+#~ msgstr "Будь ласка, оберіть мову подання."
+
+#~ msgid "author.submit.seriesRequired"
+#~ msgstr "Необхідно ввести дійсну серію."
+
+#~ msgid "submission.submit.selectSeries"
+#~ msgstr "Оберіть серію (за бажанням)"
+
+#~ msgid "submission.confirmSubmit"
+#~ msgstr "Ви впевнені, що хочете надіслати цей рукопис до е-видавництва?"
+
+#~ msgid "submission.chaptersDescription"
+#~ msgstr ""
+#~ "Ви можете тут перерахувати глави і призначити авторів зі списку вище. Ці "
+#~ "автори матимуть доступ до глав під час різних стадій видавничого процесу."
+
+#~ msgid "submission.submit.userGroupDescription"
+#~ msgstr ""
+#~ "Якщо ви надсилаєте відредагований том, ви маєте обрати роль редактора "
+#~ "тому."
+
+#~ msgid "submission.submit.cancelSubmission"
+#~ msgstr ""
+#~ "Ви можете завершити це подання пізніше, вибравши його у списку активних "
+#~ "подань на своїй персональній сторінці."

@@ -11,26 +11,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.block.browse.newReleases"
-msgstr "Nye utgivelser"
-
-msgid "plugins.block.browse.series"
-msgstr "Serier"
-
-msgid "plugins.block.browse.category"
-msgstr "Kategorier"
-
-msgid "plugins.block.browse.settings.title"
-msgstr "Bla gjennom-muligheter"
-
-msgid "plugins.block.browse.settings"
-msgstr "Innstillinger"
-
-msgid "plugins.block.browse.description"
-msgstr "Dette programtillegget setter inn \"bla gjennom-verktøy\" i sidemenyen."
+msgid "plugins.block.browse"
+msgstr "Bla gjennom"
 
 msgid "plugins.block.browse.displayName"
 msgstr "Bla gjennom-blokk"
 
-msgid "plugins.block.browse"
-msgstr "Bla gjennom"
+msgid "plugins.block.browse.description"
+msgstr ""
+"Dette programtillegget setter inn \"bla gjennom-verktøy\" i sidemenyen."
+
+msgid "plugins.block.browse.settings"
+msgstr "Innstillinger"
+
+msgid "plugins.block.browse.settings.title"
+msgstr "Bla gjennom-muligheter"
+
+msgid "plugins.block.browse.category"
+msgstr "Kategorier"
+
+msgid "plugins.block.browse.series"
+msgstr "Serier"
+
+msgid "plugins.block.browse.newReleases"
+msgstr "Nye utgivelser"

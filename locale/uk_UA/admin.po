@@ -13,8 +13,33 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "admin.locale.maybeIncomplete"
-msgstr "* Підтримка зазначених мов може бути неповною."
+msgid "admin.hostedContexts"
+msgstr "Е-видавництва на сервері"
+
+msgid "admin.settings.appearance.success"
+msgstr "Налаштування оформлення сайту були успішно збережені."
+
+msgid "admin.settings.config.success"
+msgstr "Налаштування конфігурації сайту були успішно оновлені."
+
+msgid "admin.settings.info.success"
+msgstr "Інформація на сайті була успішно оновлена."
+
+msgid "admin.settings.redirect"
+msgstr "Перенаправлення е-видавництва"
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Запити до головної сторінки буде перенаправлено на це е-видавництво. Це може "
+"бути корисним, наприклад, якщо сайт уміщує лише одне е-видавництво."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Не перенаправляти"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr ""
+"Ця мова буде встановлена за замовчуванням для сайту й розміщених на ньому е-"
+"видавництв."
 
 msgid "admin.languages.supportedLocalesInstructions"
 msgstr ""
@@ -22,36 +47,16 @@ msgstr ""
 "всіх е-видавництв, розміщених на цьому сайті, а також з'являться в меню "
 "вибору мови на кожній сторінці сайту (це налаштування може бути змінено на "
 "сторінках окремих е-видавництв). Якщо не вибрано декілька мов, меню вибору "
-"мов не з'явиться і розширені мовні налаштування будуть недоступні для "
-"е-видавництв."
+"мов не з'явиться і розширені мовні налаштування будуть недоступні для е-"
+"видавництв."
 
-msgid "admin.languages.primaryLocaleInstructions"
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Підтримка зазначених мов може бути неповною."
+
+msgid "admin.languages.confirmUninstall"
 msgstr ""
-"Ця мова буде встановлена за замовчуванням для сайту й розміщених на ньому "
-"е-видавництв."
-
-msgid "admin.settings.noPressRedirect"
-msgstr "Не перенаправляти"
-
-msgid "admin.settings.redirectInstructions"
-msgstr ""
-"Запити до головної сторінки буде перенаправлено на це е-видавництво. Це може "
-"бути корисним, наприклад, якщо сайт уміщує лише одне е-видавництво."
-
-msgid "admin.settings.redirect"
-msgstr "Перенаправлення е-видавництва"
-
-msgid "admin.settings.info.success"
-msgstr "Інформація на сайті була успішно оновлена."
-
-msgid "admin.settings.config.success"
-msgstr "Налаштування конфігурації сайту були успішно оновлені."
-
-msgid "admin.settings.appearance.success"
-msgstr "Налаштування оформлення сайту були успішно збережені."
-
-msgid "admin.hostedContexts"
-msgstr "Е-видавництва на сервері"
+"Ви впевнені, що хочете вимкнути цю мову? Це може вплинути на всі е-"
+"видавництва на сервері, які використовують цю мову."
 
 msgid "admin.languages.installNewLocalesInstructions"
 msgstr ""
@@ -60,51 +65,54 @@ msgstr ""
 "розміщені на сервері е-видавництва. Детальніше дивіться документацію OMP , "
 "як додати підтримку нових мов."
 
-msgid "admin.languages.confirmUninstall"
-msgstr ""
-"Ви впевнені, що хочете вимкнути цю мову? Це може вплинути на всі е-"
-"видавництва на сервері, які використовують цю мову."
-
-msgid "admin.presses.addPress"
-msgstr "Додати е-видавництво"
-
-msgid "admin.contexts.contextDescription"
-msgstr "Опис е-видавництва"
-
-msgid "admin.contexts.form.edit.success"
-msgstr "{$name} успішно відредаговано."
-
-msgid "admin.contexts.form.create.success"
-msgstr "{$name} успішно створено."
-
-msgid "admin.contexts.form.pathExists"
-msgstr "Указаний Вами шлях уже використовується іншим е-видавництвом."
-
-msgid "admin.contexts.form.pathRequired"
-msgstr "Необхідно вказати шлях."
-
-msgid "admin.contexts.form.titleRequired"
-msgstr "Необхідно ввести назву."
-
-msgid "admin.contexts.create"
-msgstr "Створити е-видавництво"
-
-msgid "admin.presses.noneCreated"
-msgstr "Не створено жодного е-видавництва."
-
-msgid "admin.presses.pressSettings"
-msgstr "Налаштування е-видавництва"
-
-msgid "admin.systemConfiguration"
-msgstr "Конфігурація OMP"
-
-msgid "admin.systemVersion"
-msgstr "Версія OMP"
-
 msgid "admin.languages.confirmDisable"
 msgstr ""
 "Ви впевнені, що хочете вимкнути цю мову? це може вплинути на всі е-"
 "видавництва, які використовують зараз цю мову."
+
+msgid "admin.systemVersion"
+msgstr "Версія OMP"
+
+msgid "admin.systemConfiguration"
+msgstr "Конфігурація OMP"
+
+msgid "admin.presses.pressSettings"
+msgstr "Налаштування е-видавництва"
+
+msgid "admin.presses.noneCreated"
+msgstr "Не створено жодного е-видавництва."
+
+msgid "admin.contexts.create"
+msgstr "Створити е-видавництво"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Необхідно ввести назву."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Необхідно вказати шлях."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"Шлях може складатися тільки літери, цифри і символи \"_\", \"-\". Шлях має "
+"починатися та завершуватися літерою чи числом."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Указаний Вами шлях уже використовується іншим е-видавництвом."
+
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr "Гловна мова має бути однією з мов, що підтримуються е-видавництвом."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} успішно створено."
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} успішно відредаговано."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Опис е-видавництва"
+
+msgid "admin.presses.addPress"
+msgstr "Додати е-видавництво"
 
 msgid "admin.overwriteConfigFileInstructions"
 msgstr ""
@@ -113,33 +121,19 @@ msgstr ""
 "змін у налаштуваннях вам необхідно відкрити <tt>config.inc.php</tt> в "
 "текстовому редакторі і замінити його вміст текстом, наведеним нижче.</p>"
 
-msgid "admin.contexts.form.pathAlphaNumeric"
-msgstr ""
-"Шлях може складатися тільки літери, цифри і символи \"_\", \"-\". Шлях має "
-"починатися та завершуватися літерою чи числом."
-
-msgid "admin.contexts.form.primaryLocaleNotSupported"
-msgstr "Гловна мова має бути однією з мов, що підтримуються е-видавництвом."
-
 msgid "admin.settings.enableBulkEmails.description"
 msgstr ""
 "Виберіть е-видавництва на сервері, яким слід дозволити масове розсилання "
 "електронної пошти. Коли цю функцію включено, менеджер е-видавництва зможе "
-"відправляти електронні листи всім користувачам, зареєстрованным у "
-"е-видавництві.<br><br>Використання цієї функції для розсилання небажаної "
-"пошти в деяких країнах може підпадати під порушення законів про боротьбу зі "
+"відправляти електронні листи всім користувачам, зареєстрованным у е-"
+"видавництві.<br><br>Використання цієї функції для розсилання небажаної пошти "
+"в деяких країнах може підпадати під порушення законів про боротьбу зі "
 "спамом, і листи Вашого сервера можуть бути заблоковані як спам. Перед "
 "включенням цієї функції проконсультуйтесь із редакторами е-видавництв, аби "
 "впевнитися, що вона використовується належним чином.<br><br>Інші обмеження "
 "цієї функції можуть бути включені для кожного е-видавництва за домомогою "
 "майстера налаштувань у списку <a href=\"{$hostedContextsUrl}\">\"Видавництва "
 "на сайті\"</a>."
-
-msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
-msgstr ""
-"Для цього е-видавництва функцію масового розсилання електронної пошти "
-"відключено. Включіть цю можливість у розділі <a href=\"{$siteSettingsUrl}\">"
-"Адмін > Налаштування сайту</a>."
 
 msgid "admin.settings.disableBulkEmailRoles.description"
 msgstr ""
@@ -149,27 +143,25 @@ msgstr ""
 "може бути безпечніше відключити масове розсилання листів читачам, авторам "
 "або іншим великим групам користувачів, які не давали згоди на отримання "
 "таких листів.<br><br>Функція масового розсилання листів може бути повністю "
-"відключена для цього е-видавництва в розділі <a href=\"{$siteSettingsUrl}\">"
-"Адмін > Налаштування сайту</a>."
+"відключена для цього е-видавництва в розділі <a href="
+"\"{$siteSettingsUrl}\">Адмін > Налаштування сайту</a>."
+
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgstr ""
+"Для цього е-видавництва функцію масового розсилання електронної пошти "
+"відключено. Включіть цю можливість у розділі <a href="
+"\"{$siteSettingsUrl}\">Адмін > Налаштування сайту</a>."
 
 msgid "admin.siteManagement.description"
 msgstr ""
 "Додати, редагувати або видалити е-видавництва із цього сайту й керувати "
 "налаштуваннями всього сайту."
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
-msgstr "ID серії не є цілим числом"
-
 msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
 msgstr "ID глави не є цілим числом"
 
-msgid "admin.settings.statistics.sushi.public.description"
-msgstr ""
-"Чи робити кінцеві точки API SUSHI загальнодоступними для всіх е-видавництв "
-"на цьому сайті. Якщо ви ввімкнете загальнодоступний API, кожне натискання "
-"може замінити це налаштування, щоб статистику зробити конфіденційною. Однак, "
-"якщо ви вимкнете загальнодоступний API, е-видавництва не зможуть зробити "
-"свій власний API загальнодоступним."
+msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgstr "ID серії не є цілим числом"
 
 msgid "admin.settings.statistics.geo.description"
 msgstr ""
@@ -189,3 +181,11 @@ msgstr ""
 "скористатися цією функцією, е-видавництвам потрібно буде додати установу та "
 "діапазони її IP-адрес. Увімкнення інституційної статистики може значно "
 "збільшити розмір бази даних."
+
+msgid "admin.settings.statistics.sushi.public.description"
+msgstr ""
+"Чи робити кінцеві точки API SUSHI загальнодоступними для всіх е-видавництв "
+"на цьому сайті. Якщо ви ввімкнете загальнодоступний API, кожне натискання "
+"може замінити це налаштування, щоб статистику зробити конфіденційною. Однак, "
+"якщо ви вимкнете загальнодоступний API, е-видавництва не зможуть зробити "
+"свій власний API загальнодоступним."

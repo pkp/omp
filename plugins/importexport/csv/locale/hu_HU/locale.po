@@ -13,46 +13,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.importexport.csv.import.success.description"
-msgstr ""
-"Az importálás sikeres volt. A sikeresen importált tételek az alábbiakban "
-"kerülnek felsorolásra."
+msgid "plugins.importexport.csv.displayName"
+msgstr "Tab Delimited Content Import bővítmény"
 
-msgid "plugins.importexport.csv.import.submission"
-msgstr "Beküldött anyag: '{$title}' sikeresen importálva."
-
-msgid "plugins.importexport.csv.noSeries"
-msgstr ""
-"A sorozat elérési útvonala {$seriesPath} nem létezik.  Nem lehet hozzáadni "
-"ehhez a beküldéshez."
-
-msgid "plugins.importexport.csv.noAuthorGroup"
-msgstr ""
-"Nincs alapértelmezett szerzői csoport a kiadónál {$press}.  Beküldés "
-"kihagyása."
-
-msgid "plugins.importexport.csv.noGenre"
-msgstr "Nincs kézirat típus.  Kilépés."
-
-msgid "plugins.importexport.csv.unknownPress"
-msgstr "Ismeretlen kiadó: \"{$contextPath}\".  Kihagyás."
-
-msgid "plugins.importexport.csv.unknownLocale"
-msgstr "Ismeretlen nyelv: \"{$locale}\".  Kihagyás."
-
-msgid "plugins.importexport.csv.unknownUser"
-msgstr "Ismeretlen felhasználó: \"{$felhasználónév}\".  Kilépés."
-
-msgid "plugins.importexport.csv.fileDoesNotExist"
-msgstr "A \"{$filename}\" fájl nem létezik.  Kilépés."
-
-msgid "plugins.importexport.csv.cliUsage"
-msgstr ""
-"Parancssori eszköz a CSV-adatok OMP-be történő importálásához\n"
-"Használat:\n"
-"{$scriptName} [--dry-run] fileName.csv username\n"
-"The --dry-run option can be used to test without making changes.\n"
-"Specify the username you wish to assign the submissions to.\n"
+msgid "plugins.importexport.csv.description"
+msgstr "A beküldések importálása tabulátorral elválasztott adatokból."
 
 msgid "plugins.importexport.csv.cliOnly"
 msgstr ""
@@ -63,8 +28,43 @@ msgstr ""
 "...további információk.</p>\n"
 "\t"
 
-msgid "plugins.importexport.csv.description"
-msgstr "A beküldések importálása tabulátorral elválasztott adatokból."
+msgid "plugins.importexport.csv.cliUsage"
+msgstr ""
+"Parancssori eszköz a CSV-adatok OMP-be történő importálásához\n"
+"Használat:\n"
+"{$scriptName} [--dry-run] fileName.csv username\n"
+"The --dry-run option can be used to test without making changes.\n"
+"Specify the username you wish to assign the submissions to.\n"
 
-msgid "plugins.importexport.csv.displayName"
-msgstr "Tab Delimited Content Import bővítmény"
+msgid "plugins.importexport.csv.fileDoesNotExist"
+msgstr "A \"{$filename}\" fájl nem létezik.  Kilépés."
+
+msgid "plugins.importexport.csv.unknownUser"
+msgstr "Ismeretlen felhasználó: \"{$felhasználónév}\".  Kilépés."
+
+msgid "plugins.importexport.csv.unknownLocale"
+msgstr "Ismeretlen nyelv: \"{$locale}\".  Kihagyás."
+
+msgid "plugins.importexport.csv.unknownPress"
+msgstr "Ismeretlen kiadó: \"{$contextPath}\".  Kihagyás."
+
+msgid "plugins.importexport.csv.noGenre"
+msgstr "Nincs kézirat típus.  Kilépés."
+
+msgid "plugins.importexport.csv.noAuthorGroup"
+msgstr ""
+"Nincs alapértelmezett szerzői csoport a kiadónál {$press}.  Beküldés "
+"kihagyása."
+
+msgid "plugins.importexport.csv.noSeries"
+msgstr ""
+"A sorozat elérési útvonala {$seriesPath} nem létezik.  Nem lehet hozzáadni "
+"ehhez a beküldéshez."
+
+msgid "plugins.importexport.csv.import.submission"
+msgstr "Beküldött anyag: '{$title}' sikeresen importálva."
+
+msgid "plugins.importexport.csv.import.success.description"
+msgstr ""
+"Az importálás sikeres volt. A sikeresen importált tételek az alábbiakban "
+"kerülnek felsorolásra."

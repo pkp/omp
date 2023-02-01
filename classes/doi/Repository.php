@@ -14,22 +14,28 @@
 
 namespace APP\doi;
 
-use Illuminate\Support\Facades\App;
 use APP\core\Application;
 use APP\core\Request;
 use APP\facades\Repo;
 use APP\monograph\Chapter;
+use APP\monograph\ChapterDAO;
 use APP\plugins\PubIdPlugin;
 use APP\press\PressDAO;
 use APP\publication\Publication;
 use APP\publicationFormat\PublicationFormat;
+use APP\publicationFormat\PublicationFormatDAO;
 use APP\submission\Submission;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 use PKP\context\Context;
 use PKP\core\DataObject;
+use PKP\db\DAORegistry;
+use PKP\doi\Collector;
+use PKP\plugins\Hook;
 use PKP\services\PKPSchemaService;
 use PKP\submission\Representation;
 use PKP\submissionFile\SubmissionFile;
-use PKP\doi\Collector;
 
 class Repository extends \PKP\doi\Repository
 {
@@ -107,7 +113,7 @@ class Repository extends \PKP\doi\Repository
 
     public function getDoisForSubmission(int $submissionId): array
     {
-        $doiIds = [];
+        $doiIds = Collection::make();
 
         $submission = Repo::submission()->get($submissionId);
         /** @var Publication[] $publications */
@@ -120,7 +126,7 @@ class Repository extends \PKP\doi\Repository
         foreach ($publications as $publication) {
             $publicationDoiId = $publication->getData('doiId');
             if (!empty($publicationDoiId) && $context->isDoiTypeEnabled(self::TYPE_PUBLICATION)) {
-                $doiIds[] = $publicationDoiId;
+                $doiIds->add($publicationDoiId);
             }
 
             // Chapters
@@ -128,7 +134,7 @@ class Repository extends \PKP\doi\Repository
             foreach ($chapters as $chapter) {
                 $chapterDoiId = $chapter->getData('doiId');
                 if (!empty($chapterDoiId) && $context->isDoiTypeEnabled(self::TYPE_CHAPTER)) {
-                    $doiIds[] = $chapterDoiId;
+                    $doiIds->add($chapterDoiId);
                 }
             }
 
@@ -138,7 +144,7 @@ class Repository extends \PKP\doi\Repository
                 $publicationFormatDoiId
                     = $publicationFormat->getData('doiId');
                 if (!empty($publicationFormatDoiId) && $context->isDoiTypeEnabled(self::TYPE_REPRESENTATION)) {
-                    $doiIds[] = $publicationFormatDoiId;
+                    $doiIds->add($publicationFormatDoiId);
                 }
             }
 
@@ -154,13 +160,13 @@ class Repository extends \PKP\doi\Repository
                 foreach ($submissionFiles as $submissionFile) {
                     $submissionFileDoiId = $submissionFile->getData('doiId');
                     if (!empty($submissionFileDoiId)) {
-                        $doiIds[] = $submissionFileDoiId;
+                        $doiIds->add($submissionFileDoiId);
                     }
                 }
             }
         }
 
-        return $doiIds;
+        return $doiIds->unique()->toArray();
     }
 
     /**
@@ -220,5 +226,51 @@ class Repository extends \PKP\doi\Repository
             self::TYPE_REPRESENTATION,
             self::TYPE_SUBMISSION_FILE
         ];
+    }
+
+    /**
+     * Checks whether a DOI object is referenced by ID on any pub objects for a given pub object type.
+     *
+     * @param string $pubObjectType One of Repo::doi()::TYPE_* constants
+     */
+    public function isAssigned(int $doiId, string $pubObjectType): bool
+    {
+        $getChapterCount = function () use ($doiId) {
+            /** @var ChapterDAO $chapterDao */
+            $chapterDao = DAORegistry::getDAO('ChapterDAO');
+            return count($chapterDao->getByDoiId($doiId)->toArray());
+        };
+
+        $getPublicationFormatCount = function () use ($doiId) {
+            /** @var PublicationFormatDAO $publicationFormatDao */
+            $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+            return count($publicationFormatDao->getByDoiId($doiId)->toArray());
+        };
+
+        $getSubmissionFilesCount = function () use ($doiId) {
+            Hook::add('SubmissionFile::Collector::getQueryBuilder', function ($hookName, $args) use ($doiId) {
+                /** @var Builder $qb */
+                $qb = & $args[0];
+                $qb->when($doiId !== null, function (Builder $qb) use ($doiId) {
+                    $qb->where('sf.doi_id', '=', $doiId);
+                });
+            });
+
+            return Repo::submissionFile()
+                ->getCollector()
+                ->getIds()
+                ->count();
+        };
+
+        $isAssigned = match ($pubObjectType) {
+            Repo::doi()::TYPE_CHAPTER => $getChapterCount(),
+            Repo::doi()::TYPE_REPRESENTATION => $getPublicationFormatCount(),
+            Repo::doi()::TYPE_SUBMISSION_FILE => $getSubmissionFilesCount(),
+            default => false,
+        };
+
+
+
+        return $isAssigned || parent::isAssigned($doiId, $pubObjectType);
     }
 }

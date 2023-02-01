@@ -12,57 +12,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "manager.setup.copyrightNotice.sample"
-msgstr ""
-"<h3>Önerilen Creative Commons Telif Hakkı Bildirimleri</h3>\n"
-"<h4>Açık Erişim Sağlayan Yayınevleri İçin Önerilen Politika</h4>\n"
-"Bu yayınevi ile yayın yapan yazarlar aşağıdaki şartları kabul eder:\n"
-"<ol type=\"a\">\n"
-"\t<li>Yazarlar telif haklarını korurlar ve aynı anda yazara atıfta "
-"bulunulmak ve ilk kez yayınevimizde yayınlandığı belirtilmek kaydı ile "
-"çalışmanın özgürce paylaşılmasına imkan tanıyan <a target=\"_blank\" href=\""
-"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Atıf "
-"Ruhsatı</a> ile ruhsatlandırılması ve çalışmayı ilk kez yayınlama hakkını "
-"verirler.</li>\n"
-"\t<li>Yazarlar, çalışmanın ilk kez yayınevimizde yayınlandığı belirtilmek "
-"kaydı ile, yayınevimizde yayınlanan sürümünün münhasır olmayan şekilde "
-"dağıtılması (Ör., kurumsal bir bilgi havuzuna eklenmesi veya bir kitapta "
-"yayınlanması) için ayrı, ek sözleşmeler yapabilirler.</li>\n"
-"\t<li>Yazarlar, üretken değişimlere yol açabileceğinden ve yayınlanmış "
-"çalışmaların daha erken ve daha fazla alıntılanmasına yol açabileceğinden, "
-"çalışmalarını çevrimiçi olarak (örneğin, kurumsal arşivlerde veya web "
-"sitelerinde) gönderme süreci öncesinde ve sırasında yayınlamalarına izin "
-"verilir ve teşvik edilirler (Bkz <a target=\"_blank\" href=\""
-"http://opcit.eprints.org/oacitation-biblio.html\">Açık Erişimin "
-"Etkisi</a>).</li>\n"
-"</ol>\n"
-"\n"
-"<h4>Gecikmeli Açık Erişim Sunan Yayınevleri için Önerilen Politika</h4>\n"
-"Bu yayınevi ile yayın yapan yazarlar aşağıdaki şartları kabul eder:\n"
-"<ol type=\"a\">\n"
-"\t<li>Yazarlar telif haklarını korurlar ve eserin ilk olarak yayınevi "
-"tarafından yayınlanmasına, ve yayınlandıktan [BEKLEME SÜRESİNİ BELİRTİN, Ör. "
-"2 yıl] sonra eşzamanlı olarak aynı anda yazara atıfta bulunulmak ve ilk kez "
-"yayınevimizde yayınlandığı belirtilmek kaydı ile çalışmanın özgürce "
-"paylaşılmasına imkan tanıyan <a target=\"_blank\" href=\""
-"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Atıf "
-"Ruhsatı</a> ile ruhsatlandırılmasına izin verirler.</li>\n"
-"\t <li>Yazarlar, çalışmanın ilk kez yayınevimizde yayınlandığı belirtilmek "
-"kaydı ile, yayınevimizde yayınlanan sürümünün münhasır olmayan şekilde "
-"dağıtılması (Ör., kurumsal bir bilgi havuzuna eklenmesi veya bir kitapta "
-"yayınlanması) için ayrı, ek sözleşmeler yapabilirler.</li>\n"
-"\t <li>Yazarlar, üretken değişimlere yol açabileceğinden ve yayınlanmış "
-"çalışmaların daha erken ve daha fazla alıntılanmasına yol açabileceğinden, "
-"çalışmalarını çevrimiçi olarak (örneğin, kurumsal arşivlerde veya web "
-"sitelerinde) gönderme süreci öncesinde ve sırasında yayınlamalarına izin "
-"verilir ve teşvik edilirler (Bkz <a target=\"_blank\" href=\""
-"http://opcit.eprints.org/oacitation-biblio.html\"> Açık Erişimin "
-"Etkisi</a>).</li>\n"
-"</ol>"
-
-msgid "manager.series.open"
-msgstr "Açık Gönderimler"
-
 msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr ""
 "Bu işlem, bu bölgesel ayar için yaptığınız bölgesel ayara özgü tüm yayınevi "
@@ -88,10 +37,17 @@ msgid "manager.series.submissionIndexing"
 msgstr "Yayınevinin dizinlenmesinde dahil edilmeyecek"
 
 msgid "manager.series.editorRestriction"
-msgstr "Öğeler yalnızca Editörler ve Dizi Editörleri tarafından gönderilebilir."
+msgstr ""
+"Öğeler yalnızca Editörler ve Dizi Editörleri tarafından gönderilebilir."
 
 msgid "manager.series.confirmDelete"
 msgstr "Bu diziyi kalıcı olarak silmek istediğinizden emin misiniz?"
+
+msgid "manager.series.indexed"
+msgstr "Dizinlenmiş"
+
+msgid "manager.series.open"
+msgstr "Açık Gönderimler"
 
 msgid "manager.series.readingTools"
 msgstr "Okuma Araçları"
@@ -123,11 +79,11 @@ msgstr "Bu Dizinin Editörleri"
 msgid "manager.series.seriesEditorInstructions"
 msgstr ""
 "Mevcut Dizi Editörlerinden bu diziye bir Dizi Editörü ekleyin. Eklendikten "
-"sonra, Dizi Editörü'nün bu diziye yapılan gönderimlerin DEĞERLEDİRMESİNİ ("
-"danışman değerlendirmesi) ve/veya DÜZENLENMESİNİ (sayfa düzenleme, mizanpaj "
+"sonra, Dizi Editörü'nün bu diziye yapılan gönderimlerin DEĞERLEDİRMESİNİ "
+"(danışman değerlendirmesi) ve/veya DÜZENLENMESİNİ (sayfa düzenleme, mizanpaj "
 "ve prova dizgi okuma) denetleyip denetlemeyeceğini belirleyin. Dizi "
-"Editörleri, Yayınevi Yönetimindeki Görevler altındaki <a href=\""
-"{$seriesEditorsUrl}\">Dizi Editörleri</a> tıklanarak oluşturulur."
+"Editörleri, Yayınevi Yönetimindeki Görevler altındaki <a href="
+"\"{$seriesEditorsUrl}\">Dizi Editörleri</a> tıklanarak oluşturulur."
 
 msgid "manager.series.hideAbout"
 msgstr "Bu diziyi Yayınevi Hakkında bölümünden çıkarın."
@@ -183,8 +139,8 @@ msgstr "Yayıncı Kimliği"
 
 msgid "manager.settings.publisher.identity.description"
 msgstr ""
-"Bu alanlar, geçerli <a href=\"https://en.wikipedia.org/wiki/ONIX_for_Books\">"
-"ONIX üst verilerini</a> yayınlamak için gereklidir."
+"Bu alanlar, geçerli <a href=\"https://en.wikipedia.org/wiki/ONIX_for_Books"
+"\">ONIX üst verilerini</a> yayınlamak için gereklidir."
 
 msgid "manager.settings.publisher"
 msgstr "Basın Yayın Kuruluşu Adı"
@@ -200,326 +156,6 @@ msgstr "Yayıncı Kodu Türü"
 
 msgid "manager.settings.publisherCodeType.invalid"
 msgstr "Bu geçerli bir Yayıncı Kodu Türü değil."
-
-msgid "manager.setup.subjectProvideExamples"
-msgstr ""
-"Yazarlar için bir kılavuz olarak anahtar kelime veya konu örnekleri sağlayın"
-
-msgid "manager.setup.submissionGuidelines"
-msgstr "Gönderim yönergeleri"
-
-msgid "maganer.setup.submissionChecklistItemRequired"
-msgstr "Kontrol listesi öğesi gerekli."
-
-msgid "manager.setup.workflow"
-msgstr "İş Akışı"
-
-msgid "manager.setup.submissions.description"
-msgstr "Yazar yönergeleri, telif hakkı ve dizinleme (kayıt dahil)."
-
-msgid "manager.setup.typeExamples"
-msgstr "(Örn., Tarihsel Araştırma; Yarı Deneysel; Edebi Tahlil; Anket/Görüşme)"
-
-msgid "manager.setup.typeMethodApproach"
-msgstr "Tür (Yöntem/Yaklaşım)"
-
-msgid "manager.setup.typeProvideExamples"
-msgstr ""
-"Bu alan için ilgili araştırma türleri, yöntemleri ve yaklaşımlarına yönelik "
-"örnekler sağlayın"
-
-msgid "manager.setup.useCopyeditors"
-msgstr "Her gönderi ile çalışmak üzere bir Sayfa Düzeni Editörü atanacaktır."
-
-msgid "manager.setup.useEditorialReviewBoard"
-msgstr "Yayınevi tarafından bir yayın/danışma kurulu kullanılacaktır."
-
-msgid "manager.setup.useImageTitle"
-msgstr "Başlık Resmi"
-
-msgid "manager.setup.useStyleSheet"
-msgstr "Yayınevi stil sayfası"
-
-msgid "manager.setup.useLayoutEditors"
-msgstr ""
-"HTML, PDF vb. dosyaları elektronik yayına hazırlamak için bir Mizanpaj "
-"Editörü atanacaktır."
-
-msgid "manager.setup.useProofreaders"
-msgstr ""
-"Yayınlanmadan önce dizgileri (yazarlar ile birlikte) kontrol etmesi için bir "
-"Prova Dizgi Okuyucusu görevlendirilecektir."
-
-msgid "manager.setup.userRegistration"
-msgstr "Kullanıcı Kaydı"
-
-msgid "manager.setup.useTextTitle"
-msgstr "Başlık Metni"
-
-msgid "manager.setup.volumePerYear"
-msgstr "Yıllık Cilt Sayısı"
-
-msgid "manager.setup.publicationFormat.code"
-msgstr "Biçim"
-
-msgid "manager.setup.publicationFormat.codeRequired"
-msgstr "Bir yayın biçimi seçilmelidir."
-
-msgid "manager.setup.publicationFormat.nameRequired"
-msgstr "Bu biçime bir ad vermelisiniz."
-
-msgid "manager.setup.publicationFormat.physicalFormat"
-msgstr "Bu fiziksel (dijital olmayan) bir biçim mi?"
-
-msgid "manager.setup.publicationFormat.inUse"
-msgstr ""
-"Bu yayın biçimi şu anda yayınevinizdeki bir risale tarafından "
-"kullanıldığından silinemez."
-
-msgid "manager.setup.newPublicationFormat"
-msgstr "Yeni Yayın Biçimi"
-
-msgid "manager.setup.newPublicationFormatDescription"
-msgstr ""
-"Yeni bir yayın biçimi oluşturmak için aşağıdaki formu doldurun ve 'Oluştur' "
-"butonuna tıklayın."
-
-msgid "manager.setup.genresDescription"
-msgstr ""
-"Bu türler, dosya adlandırma amacıyla kullanılır ve dosyaların yüklenmesiyle "
-"ilgili bir açılır menüde sunulur. ## olarak belirtilen türler, kullanıcının "
-"dosyayı 99Z kitabının tamamıyla veya numarasına göre belirli bir bölümle ("
-"ör. 02) ilişkilendirmesine izin verir."
-
-msgid "manager.setup.disableSubmissions.notAccepting"
-msgstr ""
-"Bu yayınevi şu anda başvuruları kabul etmiyor. Gönderimlere izin vermek için "
-"iş akışı ayarlarını ziyaret edin."
-
-msgid "manager.setup.disableSubmissions.description"
-msgstr ""
-"Kullanıcıların yayınevine yeni makaleler göndermesini önleyin. Münferit "
-"yayın dizileri için gönderimler, <a href=\"{$url}\">yayın dizisi</a> "
-"ayarları sayfasından devre dışı bırakılabilir."
-
-msgid "manager.setup.genres"
-msgstr "Türler"
-
-msgid "manager.setup.newGenre"
-msgstr "Yeni Risale Türü"
-
-msgid "manager.setup.newGenreDescription"
-msgstr ""
-"Yeni bir tür oluşturmak için aşağıdaki formu doldurun ve 'Oluştur' düğmesini "
-"tıklayın."
-
-msgid "manager.setup.deleteSelected"
-msgstr "Seçilenleri Sil"
-
-msgid "manager.setup.restoreDefaults"
-msgstr "Ayarları varsayılan duruma getir"
-
-msgid "manager.setup.prospectus"
-msgstr "Tanıtım Rehberi"
-
-msgid "manager.setup.prospectusDescription"
-msgstr ""
-"Tanıtım kılavuzu, yazarın gönderilen materyalleri, bir yayınevinin "
-"gönderinin değerini belirlemesine izin verecek şekilde açıklamasına yardımcı "
-"olan, yayınevince hazırlanmış bir belgedir. Bir tanıtım kitapçığı, pazarlama "
-"potansiyelinden teorik değere kadar pek çok öğe içerebilir; her halükarda, "
-"bir yayınevi yayın gündemini tamamlayan bir tanıtım kılavuzu oluşturmalıdır."
-
-msgid "manager.setup.submitToCategories"
-msgstr "Bölüm gönderimlerine izin ver"
-
-msgid "manager.setup.submitToSeries"
-msgstr "Dizi gönderimlerine izin ver"
-
-msgid "manager.setup.issnDescription"
-msgstr ""
-"ISSN (Uluslararası Standart Sıra Numarası), elektronik diziler de dahil "
-"olmak üzere süreli yayınları tanımlayan sekiz basamaklı bir sayıdır. <a href="
-"\"http://www.issn.org\" target=\"_blank\">Uluslararası ISSN Merkezinden</a> "
-"bir numara alınabilir."
-
-msgid "manager.setup.currentFormats"
-msgstr "Mevcut Biçimler"
-
-msgid "manager.setup.categoriesAndSeries"
-msgstr "Bölümler ve Diziler"
-
-msgid "manager.setup.categories.description"
-msgstr ""
-"Yayınlarınızı düzenlemenize yardımcı olması için bir bölüm listesi "
-"oluşturabilirsiniz. Bölümler, konularına göre kitapların "
-"kümelendirilmesidir, örneğin Ekonomi; Edebiyat; Şiir; ve bunun gibi. "
-"Bölümler, \"ana\" bölümler içinde yuvalanabilir: örneğin, bir Ekonomi ana "
-"bölümü, ayrı ayrı Mikroekonomi ve Makroekonomi bölümlerini içerebilir. "
-"Ziyaretçiler, yayınevini bölümlere göre arayabilecek ve göz atabilecektir."
-
-msgid "manager.setup.series.description"
-msgstr ""
-"Yayınlarınızı düzenlemenize yardımcı olması için istediğiniz sayıda dizi "
-"oluşturabilirsiniz. Bir dizi, genellikle bir veya iki öğretim üyesi olmak "
-"üzere birinin önerdiği ve ardından denetlediği bir konuya veya başlıklara "
-"ayrılmış özel bir kitap kümesini temsil eder. Ziyaretçiler, yayınevini "
-"dizilere göre arayabilecek ve göz atabilecektir."
-
-msgid "manager.setup.reviewForms"
-msgstr "Değerlendirme Formları"
-
-msgid "manager.setup.roleType"
-msgstr "Rol Türü"
-
-msgid "manager.setup.authorRoles"
-msgstr "Yazar Görevleri"
-
-msgid "manager.setup.managerialRoles"
-msgstr "Yönetim Görevleri"
-
-msgid "manager.setup.availableRoles"
-msgstr "Geçerli Görevler"
-
-msgid "manager.setup.currentRoles"
-msgstr "Mevcut Görevler"
-
-msgid "manager.setup.internalReviewRoles"
-msgstr "Dahili Değerlendirme Görevleri"
-
-msgid "manager.setup.masthead"
-msgstr "Künyesi"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Yayın Kurulu"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Editörlerin, yazı işleri müdürleri ve basınla ilişkili diğer kişilerin "
-"listesi."
-
-msgid "manager.setup.files"
-msgstr "Dosyalar"
-
-msgid "manager.setup.productionTemplates"
-msgstr "Üretim Şablonları"
-
-msgid "manager.files.note"
-msgstr ""
-"Not: Dosya Tarayıcısı, bir yayıneviyle ilişkili dosya ve dizinlerin doğrudan "
-"görüntülenmesine ve değiştirilmesine olanak tanıyan gelişmiş bir özelliktir."
-
-msgid "manager.setup.basicEditorialStepsDescription"
-msgstr ""
-"Adımlar: Gönderi Kuyruğu&gt; Gönderi Değerlendirmesi&gt; Gönderi "
-"Düzenleme&gt; İçindekiler.<br /><br />\n"
-"Editoryal sürecin bu yönlerini ele almak için bir model seçin. (Bir Yazı "
-"İşleri Müdürü ve Dizi Editörleri belirlemek için, Yayınevi Yönetiminde "
-"Editörlere gidin.)"
-
-msgid "manager.setup.referenceLinkingDescription"
-msgstr ""
-"<p>Okuyucuların bir yazar tarafından alıntılanan çalışmanın çevrimiçi "
-"sürümlerini bulmasını sağlamak için aşağıdaki seçenekler mevcuttur.</p>\n"
-"\n"
-"<ol>\n"
-"\t<li><strong>Okuma Aracı Ekleme</strong><p> Yayınevi Yöneticisi, yayınlanan "
-"öğelere eşlik eden Okuma Araçlarına \"Kaynak Bul\" ekleyebilir ki bu, "
-"okuyucuların bir kaynağın başlığını yapıştırmasına ve ardından alıntı "
-"yapılan çalışma için önceden seçilmiş bilimsel veritabanlarında arama "
-"yapmasına imkan tanır.</p></li>\n"
-"\t<li> <strong>Kaynaklara Bağlantıları Göm</strong><p> Mizanpaj Editörü, "
-"aşağıdaki talimatlar (düzenlenebilir) kullanılarak çevrimiçi bulunabilen "
-"referanslara bir bağlantı ekleyebilir.</p></li>\n"
-"</ol>"
-
-msgid "manager.publication.library"
-msgstr "Yayınevi Kitaplığı"
-
-msgid "manager.setup.resetPermissions"
-msgstr "Risale İzinlerini Sıfırla"
-
-msgid "manager.setup.resetPermissions.confirm"
-msgstr ""
-"Risalelere önceden eklenmiş olan izin verilerini sıfırlamak istediğinizden "
-"emin misiniz?"
-
-msgid "manager.setup.resetPermissions.description"
-msgstr ""
-"Telif hakkı beyanı ve ruhsat bilgileri, yayınlanan içeriğe kalıcı olarak "
-"eklenecek ve yeni gönderimler için politikalarını değiştiren bir yayınevi "
-"olması durumunda bu verilerin değişmemesini sağlayacak. Yayınlanmış içeriğe "
-"önceden eklenmiş olan saklı izin bilgilerini sıfırlamak için aşağıdaki "
-"düğmeyi kullanın."
-
-msgid "manager.setup.resetPermissions.success"
-msgstr "Risale izinleri başarıyla sıfırlandı."
-
-msgid "grid.genres.title.short"
-msgstr "Bileşenler"
-
-msgid "grid.genres.title"
-msgstr "Risale Bileşenleri"
-
-msgid "manager.setup.notifications.copyPrimaryContact"
-msgstr ""
-"Yayınevi Ayarları'nda belirtilen temel iletişim yetkilisine bir kopya "
-"gönderin."
-
-msgid "grid.series.pathAlphaNumeric"
-msgstr "Dizi yolu yalnızca harflerden ve sayılardan oluşmalıdır."
-
-msgid "grid.series.pathExists"
-msgstr "Dizi yolu zaten kullanımda. Lütfen benzersiz bir yol girin."
-
-msgid "manager.navigationMenus.form.navigationMenuItem.series"
-msgstr "Dizi Seçin"
-
-msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
-msgstr "Lütfen bu menü öğesinin bağlanmasını istediğiniz diziyi seçin."
-
-msgid "manager.navigationMenus.form.navigationMenuItem.category"
-msgstr "Bölüm seç"
-
-msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
-msgstr "Lütfen bu menü öğesinin bağlanmasını istediğiniz bölümü seçin."
-
-msgid "grid.series.urlWillBe"
-msgstr "Dizinin URL'si şu şekilde olacaktır: {$sampleUrl}"
-
-msgid "stats.publicationStats"
-msgstr "Yazı İstatistikleri"
-
-msgid "stats.publications.details"
-msgstr "Yazı Ayrıntıları"
-
-msgid "stats.publications.none"
-msgstr ""
-"Bu parametrelerle eşleşen kullanım istatistiklerine sahip yazı bulunamadı."
-
-msgid "stats.publications.totalAbstractViews.timelineInterval"
-msgstr "Tarihe göre toplam fihrist görüntüleme sayısı"
-
-msgid "stats.publications.totalGalleyViews.timelineInterval"
-msgstr "Tarihe göre toplam dosya görüntüleme sayısı"
-
-msgid "stats.publications.countOfTotal"
-msgstr "{$total} yazıdan {$count} adedi"
-
-msgid "stats.publications.abstracts"
-msgstr "Fihrist Kayıtları"
-
-msgid "plugins.importexport.common.error.noObjectsSelected"
-msgstr "Hiçbir nesne seçilmedi."
-
-msgid "plugins.importexport.common.error.validation"
-msgstr "Seçili nesneler dönüştürülemedi."
-
-msgid "plugins.importexport.common.invalidXML"
-msgstr "Geçersiz XML:"
-
-msgid "plugins.importexport.native.exportSubmissions"
-msgstr "Başvuruları Gönder"
 
 msgid "manager.settings.distributionDescription"
 msgstr ""
@@ -551,8 +187,8 @@ msgstr ""
 
 msgid "manager.tools.statistics"
 msgstr ""
-"Kullanım istatistikleriyle ilgili raporlar oluşturmaya yönelik araçlar ("
-"fihrist dizini sayfa görünümü, yazı özet sayfa görünümleri, yazı dosyası "
+"Kullanım istatistikleriyle ilgili raporlar oluşturmaya yönelik araçlar "
+"(fihrist dizini sayfa görünümü, yazı özet sayfa görünümleri, yazı dosyası "
 "indirmeleri)"
 
 msgid "manager.users.availableRoles"
@@ -589,8 +225,8 @@ msgstr "Yayınevi ile"
 
 msgid "manager.people.mergeUsers.from.description"
 msgstr ""
-"Başka bir kullanıcı hesabıyla birleştirmek için bir kullanıcı seçin ("
-"örneğin, birinin iki kullanıcı hesabı olduğunda). İlk seçilen hesap "
+"Başka bir kullanıcı hesabıyla birleştirmek için bir kullanıcı seçin "
+"(örneğin, birinin iki kullanıcı hesabı olduğunda). İlk seçilen hesap "
 "silinecek ve gönderimleri, atamaları vb. ikinci hesaba aktarılacaktır."
 
 msgid "manager.people.mergeUsers.into.description"
@@ -796,14 +432,21 @@ msgstr "Ana sayfada yeni yayınları görüntüleyin"
 msgid "manager.setup.displayNewReleases.label"
 msgstr "Yeni Eklenenler"
 
-msgid "manager.setup.doiPrefix"
-msgstr "DOI Ön eki"
-
-msgid "manager.setup.doiPrefixDescription"
+msgid "manager.setup.enableDois.description"
 msgstr ""
-"DOI (Dijital Nesne Tanımlayıcı) Öneki <a href=\"http://www.crossref.org\" "
-"target=\"_blank\">CrossRef</a> tarafından atanır ve 10.xxxx biçimindedir ("
-"örn. 10.1234)."
+
+#, fuzzy
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr "Lütfen DOI'lerin atanacağı nesneleri seçin."
+
+msgid "doi.manager.settings.doiSuffixLegacy"
+msgstr ""
+
+msgid "doi.manager.settings.doiCreationTime.copyedit"
+msgstr ""
+
+msgid "manager.dois.formatIdentifier.file"
+msgstr ""
 
 msgid "manager.setup.editorDecision"
 msgstr "Editör Kararı"
@@ -819,8 +462,8 @@ msgstr ""
 msgid "manager.setup.emailBounceAddress.disabled"
 msgstr ""
 "Teslim edilemeyen e-postaları bir iade adresine göndermek için, site "
-"yöneticisinin site yapılandırma dosyasında <code>allow_envelope_sender</code>"
-" seçeneğini etkinleştirmesi gerekir. OMP belgelerinde belirtildiği gibi "
+"yöneticisinin site yapılandırma dosyasında <code>allow_envelope_sender</"
+"code> seçeneğini etkinleştirmesi gerekir. OMP belgelerinde belirtildiği gibi "
 "sunucu yapılandırması gerekebilir."
 
 msgid "manager.setup.emails"
@@ -855,7 +498,8 @@ msgid "manager.setup.enablePressInstructions"
 msgstr "Bu yayınevinin sitede herkese açık olarak görünmesini etkinleştirin"
 
 msgid "manager.setup.enablePublicMonographId"
-msgstr "Yayınlanan öğeleri tanımlamak için özel tanımlayıcılar kullanılacaktır."
+msgstr ""
+"Yayınlanan öğeleri tanımlamak için özel tanımlayıcılar kullanılacaktır."
 
 msgid "manager.setup.enablePublicGalleyId"
 msgstr ""
@@ -887,13 +531,13 @@ msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
 msgstr ""
 "OMP, küresel ölçekte elektronik araştırma kaynaklarına iyi dizinlenmiş "
 "erişim sağlamak için ortaya çıkan standart olan Üst Veri Toplama için <a "
-"href=\"http://www.openarchives.org/\" target=\"_blank\">Açık Arşiv "
-"Girişimi</a> Protokolüne bağlıdır. Yazarlar, gönderilerine üst veriler "
-"sağlamak için benzer bir şablon kullanacaklardır. Yayınevi Müdürü, "
-"indeksleme için bölümleri seçmeli ve yazarlara, terimleri noktalı virgülle "
-"ayırmak (örneğin, terim1; terim2) ve çalışmalarını indekslemelerine yardımcı "
-"olmak için ilgili örnekler sunmalıdır. Girişler örnek olarak \"Örn.\" veya \""
-"Örneğin\" kullanılarak tanıtılmalıdır."
+"href=\"http://www.openarchives.org/\" target=\"_blank\">Açık Arşiv Girişimi</"
+"a> Protokolüne bağlıdır. Yazarlar, gönderilerine üst veriler sağlamak için "
+"benzer bir şablon kullanacaklardır. Yayınevi Müdürü, indeksleme için "
+"bölümleri seçmeli ve yazarlara, terimleri noktalı virgülle ayırmak (örneğin, "
+"terim1; terim2) ve çalışmalarını indekslemelerine yardımcı olmak için ilgili "
+"örnekler sunmalıdır. Girişler örnek olarak \"Örn.\" veya \"Örneğin\" "
+"kullanılarak tanıtılmalıdır."
 
 msgid "manager.setup.form.contactEmailRequired"
 msgstr "Temel iletişim e-postası gereklidir."
@@ -1137,11 +781,19 @@ msgstr ""
 msgid "manager.setup.contextInitials"
 msgstr "Yayınevinin Baş Harfleri"
 
+msgid "manager.setup.selectCountry"
+msgstr ""
+"Bu yayıncının bulunduğu ülkeyi veya yayıncının posta adresinin bulunduğu "
+"ülkeyi seçin."
+
 msgid "manager.setup.layout"
 msgstr "Yayınevi Sayfa Düzeni"
 
 msgid "manager.setup.pageHeader"
 msgstr "Yayınevi Sayfa Başlığı"
+
+msgid "manager.setup.pageHeaderDescription"
+msgstr "Sayfa Başlığı Tanımı"
 
 msgid "manager.setup.pressPolicies"
 msgstr "Adım 2. Yayınevi Politikaları"
@@ -1273,7 +925,8 @@ msgstr ""
 "oturum açmalarını gerektirir."
 
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
-msgstr "E-posta davetiyesine danışmanlara yönelik güvenli bir bağlantı ekleyin."
+msgstr ""
+"E-posta davetiyesine danışmanlara yönelik güvenli bir bağlantı ekleyin."
 
 msgid "manager.setup.reviewOptions.reviewerRatings"
 msgstr "Danışman Puanları"
@@ -1296,8 +949,8 @@ msgstr "Fihristte Ara"
 msgid "manager.setup.searchEngineIndexing.description"
 msgstr ""
 "Google gibi arama motorlarının sitenizi keşfetmesine ve görüntülemesine "
-"yardımcı olun. <a href=\"{$sitemapUrl}\" target=\"_blank\">Site "
-"haritanızı</a> göndermeniz tavsiye edilir."
+"yardımcı olun. <a href=\"{$sitemapUrl}\" target=\"_blank\">Site haritanızı</"
+"a> göndermeniz tavsiye edilir."
 
 msgid "manager.setup.searchEngineIndexing.success"
 msgstr "Arama motoru dizin ayarları güncellendi."
@@ -1309,17 +962,26 @@ msgid "manager.setup.sectionsDefaultSectionDescription"
 msgstr ""
 "(Bölümler eklenmemişse öğeler varsayılan olarak Yazılar bölümüne gönderilir.)"
 
+msgid "manager.setup.sectionsDescription"
+msgstr ""
+"Yayınevi için bölümler (örn. Yazılar, Kitap İncelemeleri, vb.) oluşturmak "
+"veya değiştirmek için Bölüm Yönetimi'ne gidin.<br /><br /> Öğeleri "
+"yayınevine gönderen yazarlar belirleyecek…"
+
 msgid "manager.setup.securitySettings"
 msgstr "Erişim ve Güvenlik Ayarları"
 
 msgid "manager.setup.securitySettings.note"
 msgstr ""
-"Güvenlikle ve erişimle ilgili diğer seçenekler <a href=\""
-"{$accessAndSecurityUrl}\" target=\"_blank\" class=\"action\">Erişim ve "
+"Güvenlikle ve erişimle ilgili diğer seçenekler <a href="
+"\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\"action\">Erişim ve "
 "Güvenlik</a> sayfasından yapılandırılabilir."
 
 msgid "manager.setup.selectEditorDescription"
 msgstr "Editöryal süreç boyunca görecek yayınevi editörü."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr "Öğenin değerlendirileceği yayınevi bölümü."
 
 msgid "manager.setup.showGalleyLinksDescription"
 msgstr "Her zaman dizgi bağlantılarını gösterin ve sınırlı erişimi belirtin."
@@ -1341,74 +1003,449 @@ msgstr ""
 msgid "manager.setup.subjectKeywordTopic"
 msgstr "Anahtar Kelimeler"
 
-msgid "manager.series.indexed"
-msgstr "Dizinlenmiş"
-
-msgid "manager.setup.pageHeaderDescription"
-msgstr "Sayfa Başlığı Tanımı"
-
-msgid "manager.setup.sectionsDescription"
+msgid "manager.setup.subjectProvideExamples"
 msgstr ""
-"Yayınevi için bölümler (örn. Yazılar, Kitap İncelemeleri, vb.) oluşturmak "
-"veya değiştirmek için Bölüm Yönetimi'ne gidin.<br /><br /> Öğeleri "
-"yayınevine gönderen yazarlar belirleyecek…"
+"Yazarlar için bir kılavuz olarak anahtar kelime veya konu örnekleri sağlayın"
 
-msgid "manager.setup.selectSectionDescription"
-msgstr "Öğenin değerlendirileceği yayınevi bölümü."
+msgid "manager.setup.submissionGuidelines"
+msgstr "Gönderim yönergeleri"
 
-msgid "plugins.importexport.chapter.exportFailed"
-msgstr "Bölümler çözümlenemedi"
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "Kontrol listesi öğesi gerekli."
 
-msgid "plugins.importexport.publicationformat.exportFailed"
-msgstr "Yayın biçimleri çözümlenemedi"
+msgid "manager.setup.workflow"
+msgstr "İş Akışı"
 
-msgid "plugins.importexport.native.error.unknownUser"
-msgstr "Belirtilen kullanıcı \"{$userName}\" mevcut değil."
+msgid "manager.setup.submissions.description"
+msgstr "Yazar yönergeleri, telif hakkı ve dizinleme (kayıt dahil)."
 
-msgid "plugins.importexport.common.error.unknownObjects"
-msgstr "Belirtilen nesneler bulunamadı."
+msgid "manager.setup.typeExamples"
+msgstr "(Örn., Tarihsel Araştırma; Yarı Deneysel; Edebi Tahlil; Anket/Görüşme)"
 
-msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgid "manager.setup.typeMethodApproach"
+msgstr "Tür (Yöntem/Yaklaşım)"
+
+msgid "manager.setup.typeProvideExamples"
 msgstr ""
-"Birincil kişi tanımlanmadı. <a href=\"{$url}\">Yayın ayarlarında</a> bir "
-"birincil kişi girebilirsiniz."
+"Bu alan için ilgili araştırma türleri, yöntemleri ve yaklaşımlarına yönelik "
+"örnekler sağlayın"
+
+msgid "manager.setup.useCopyeditors"
+msgstr "Her gönderi ile çalışmak üzere bir Sayfa Düzeni Editörü atanacaktır."
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "Yayınevi tarafından bir yayın/danışma kurulu kullanılacaktır."
+
+msgid "manager.setup.useImageTitle"
+msgstr "Başlık Resmi"
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Yayınevi stil sayfası"
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+"HTML, PDF vb. dosyaları elektronik yayına hazırlamak için bir Mizanpaj "
+"Editörü atanacaktır."
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+"Yayınlanmadan önce dizgileri (yazarlar ile birlikte) kontrol etmesi için bir "
+"Prova Dizgi Okuyucusu görevlendirilecektir."
+
+msgid "manager.setup.userRegistration"
+msgstr "Kullanıcı Kaydı"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Başlık Metni"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Yıllık Cilt Sayısı"
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Biçim"
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Bir yayın biçimi seçilmelidir."
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Bu biçime bir ad vermelisiniz."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Bu fiziksel (dijital olmayan) bir biçim mi?"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+"Bu yayın biçimi şu anda yayınevinizdeki bir risale tarafından "
+"kullanıldığından silinemez."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Yeni Yayın Biçimi"
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+"Yeni bir yayın biçimi oluşturmak için aşağıdaki formu doldurun ve 'Oluştur' "
+"butonuna tıklayın."
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Bu türler, dosya adlandırma amacıyla kullanılır ve dosyaların yüklenmesiyle "
+"ilgili bir açılır menüde sunulur. ## olarak belirtilen türler, kullanıcının "
+"dosyayı 99Z kitabının tamamıyla veya numarasına göre belirli bir bölümle "
+"(ör. 02) ilişkilendirmesine izin verir."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Bu yayınevi şu anda başvuruları kabul etmiyor. Gönderimlere izin vermek için "
+"iş akışı ayarlarını ziyaret edin."
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Kullanıcıların yayınevine yeni makaleler göndermesini önleyin. Münferit "
+"yayın dizileri için gönderimler, <a href=\"{$url}\">yayın dizisi</a> "
+"ayarları sayfasından devre dışı bırakılabilir."
+
+msgid "manager.setup.genres"
+msgstr "Türler"
+
+msgid "manager.setup.newGenre"
+msgstr "Yeni Risale Türü"
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"Yeni bir tür oluşturmak için aşağıdaki formu doldurun ve 'Oluştur' düğmesini "
+"tıklayın."
+
+msgid "manager.setup.deleteSelected"
+msgstr "Seçilenleri Sil"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Ayarları varsayılan duruma getir"
+
+msgid "manager.setup.prospectus"
+msgstr "Tanıtım Rehberi"
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"Tanıtım kılavuzu, yazarın gönderilen materyalleri, bir yayınevinin "
+"gönderinin değerini belirlemesine izin verecek şekilde açıklamasına yardımcı "
+"olan, yayınevince hazırlanmış bir belgedir. Bir tanıtım kitapçığı, pazarlama "
+"potansiyelinden teorik değere kadar pek çok öğe içerebilir; her halükarda, "
+"bir yayınevi yayın gündemini tamamlayan bir tanıtım kılavuzu oluşturmalıdır."
+
+msgid "manager.setup.submitToCategories"
+msgstr "Bölüm gönderimlerine izin ver"
+
+msgid "manager.setup.submitToSeries"
+msgstr "Dizi gönderimlerine izin ver"
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"ISSN (Uluslararası Standart Sıra Numarası), elektronik diziler de dahil "
+"olmak üzere süreli yayınları tanımlayan sekiz basamaklı bir sayıdır. <a href="
+"\"http://www.issn.org\" target=\"_blank\">Uluslararası ISSN Merkezinden</a> "
+"bir numara alınabilir."
+
+msgid "manager.setup.currentFormats"
+msgstr "Mevcut Biçimler"
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Bölümler ve Diziler"
+
+msgid "manager.setup.categories.description"
+msgstr ""
+"Yayınlarınızı düzenlemenize yardımcı olması için bir bölüm listesi "
+"oluşturabilirsiniz. Bölümler, konularına göre kitapların "
+"kümelendirilmesidir, örneğin Ekonomi; Edebiyat; Şiir; ve bunun gibi. "
+"Bölümler, \"ana\" bölümler içinde yuvalanabilir: örneğin, bir Ekonomi ana "
+"bölümü, ayrı ayrı Mikroekonomi ve Makroekonomi bölümlerini içerebilir. "
+"Ziyaretçiler, yayınevini bölümlere göre arayabilecek ve göz atabilecektir."
+
+msgid "manager.setup.series.description"
+msgstr ""
+"Yayınlarınızı düzenlemenize yardımcı olması için istediğiniz sayıda dizi "
+"oluşturabilirsiniz. Bir dizi, genellikle bir veya iki öğretim üyesi olmak "
+"üzere birinin önerdiği ve ardından denetlediği bir konuya veya başlıklara "
+"ayrılmış özel bir kitap kümesini temsil eder. Ziyaretçiler, yayınevini "
+"dizilere göre arayabilecek ve göz atabilecektir."
+
+msgid "manager.setup.reviewForms"
+msgstr "Değerlendirme Formları"
+
+msgid "manager.setup.roleType"
+msgstr "Rol Türü"
+
+msgid "manager.setup.authorRoles"
+msgstr "Yazar Görevleri"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Yönetim Görevleri"
+
+msgid "manager.setup.availableRoles"
+msgstr "Geçerli Görevler"
+
+msgid "manager.setup.currentRoles"
+msgstr "Mevcut Görevler"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Dahili Değerlendirme Görevleri"
+
+msgid "manager.setup.masthead"
+msgstr "Künyesi"
+
+msgid "manager.setup.editorialTeam"
+msgstr "Yayın Kurulu"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr ""
+"Editörlerin, yazı işleri müdürleri ve basınla ilişkili diğer kişilerin "
+"listesi."
+
+msgid "manager.setup.files"
+msgstr "Dosyalar"
+
+msgid "manager.setup.productionTemplates"
+msgstr "Üretim Şablonları"
+
+msgid "manager.files.note"
+msgstr ""
+"Not: Dosya Tarayıcısı, bir yayıneviyle ilişkili dosya ve dizinlerin doğrudan "
+"görüntülenmesine ve değiştirilmesine olanak tanıyan gelişmiş bir özelliktir."
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+"<h3>Önerilen Creative Commons Telif Hakkı Bildirimleri</h3>\n"
+"<h4>Açık Erişim Sağlayan Yayınevleri İçin Önerilen Politika</h4>\n"
+"Bu yayınevi ile yayın yapan yazarlar aşağıdaki şartları kabul eder:\n"
+"<ol type=\"a\">\n"
+"\t<li>Yazarlar telif haklarını korurlar ve aynı anda yazara atıfta "
+"bulunulmak ve ilk kez yayınevimizde yayınlandığı belirtilmek kaydı ile "
+"çalışmanın özgürce paylaşılmasına imkan tanıyan <a target=\"_blank\" href="
+"\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Atıf "
+"Ruhsatı</a> ile ruhsatlandırılması ve çalışmayı ilk kez yayınlama hakkını "
+"verirler.</li>\n"
+"\t<li>Yazarlar, çalışmanın ilk kez yayınevimizde yayınlandığı belirtilmek "
+"kaydı ile, yayınevimizde yayınlanan sürümünün münhasır olmayan şekilde "
+"dağıtılması (Ör., kurumsal bir bilgi havuzuna eklenmesi veya bir kitapta "
+"yayınlanması) için ayrı, ek sözleşmeler yapabilirler.</li>\n"
+"\t<li>Yazarlar, üretken değişimlere yol açabileceğinden ve yayınlanmış "
+"çalışmaların daha erken ve daha fazla alıntılanmasına yol açabileceğinden, "
+"çalışmalarını çevrimiçi olarak (örneğin, kurumsal arşivlerde veya web "
+"sitelerinde) gönderme süreci öncesinde ve sırasında yayınlamalarına izin "
+"verilir ve teşvik edilirler (Bkz <a target=\"_blank\" href=\"http://opcit."
+"eprints.org/oacitation-biblio.html\">Açık Erişimin Etkisi</a>).</li>\n"
+"</ol>\n"
+"\n"
+"<h4>Gecikmeli Açık Erişim Sunan Yayınevleri için Önerilen Politika</h4>\n"
+"Bu yayınevi ile yayın yapan yazarlar aşağıdaki şartları kabul eder:\n"
+"<ol type=\"a\">\n"
+"\t<li>Yazarlar telif haklarını korurlar ve eserin ilk olarak yayınevi "
+"tarafından yayınlanmasına, ve yayınlandıktan [BEKLEME SÜRESİNİ BELİRTİN, Ör. "
+"2 yıl] sonra eşzamanlı olarak aynı anda yazara atıfta bulunulmak ve ilk kez "
+"yayınevimizde yayınlandığı belirtilmek kaydı ile çalışmanın özgürce "
+"paylaşılmasına imkan tanıyan <a target=\"_blank\" href=\"http://"
+"creativecommons.org/licenses/by/3.0/\">Creative Commons Atıf Ruhsatı</a> ile "
+"ruhsatlandırılmasına izin verirler.</li>\n"
+"\t <li>Yazarlar, çalışmanın ilk kez yayınevimizde yayınlandığı belirtilmek "
+"kaydı ile, yayınevimizde yayınlanan sürümünün münhasır olmayan şekilde "
+"dağıtılması (Ör., kurumsal bir bilgi havuzuna eklenmesi veya bir kitapta "
+"yayınlanması) için ayrı, ek sözleşmeler yapabilirler.</li>\n"
+"\t <li>Yazarlar, üretken değişimlere yol açabileceğinden ve yayınlanmış "
+"çalışmaların daha erken ve daha fazla alıntılanmasına yol açabileceğinden, "
+"çalışmalarını çevrimiçi olarak (örneğin, kurumsal arşivlerde veya web "
+"sitelerinde) gönderme süreci öncesinde ve sırasında yayınlamalarına izin "
+"verilir ve teşvik edilirler (Bkz <a target=\"_blank\" href=\"http://opcit."
+"eprints.org/oacitation-biblio.html\"> Açık Erişimin Etkisi</a>).</li>\n"
+"</ol>"
+
+msgid "manager.setup.basicEditorialStepsDescription"
+msgstr ""
+"Adımlar: Gönderi Kuyruğu&gt; Gönderi Değerlendirmesi&gt; Gönderi "
+"Düzenleme&gt; İçindekiler.<br /><br />\n"
+"Editoryal sürecin bu yönlerini ele almak için bir model seçin. (Bir Yazı "
+"İşleri Müdürü ve Dizi Editörleri belirlemek için, Yayınevi Yönetiminde "
+"Editörlere gidin.)"
+
+msgid "manager.setup.referenceLinkingDescription"
+msgstr ""
+"<p>Okuyucuların bir yazar tarafından alıntılanan çalışmanın çevrimiçi "
+"sürümlerini bulmasını sağlamak için aşağıdaki seçenekler mevcuttur.</p>\n"
+"\n"
+"<ol>\n"
+"\t<li><strong>Okuma Aracı Ekleme</strong><p> Yayınevi Yöneticisi, yayınlanan "
+"öğelere eşlik eden Okuma Araçlarına \"Kaynak Bul\" ekleyebilir ki bu, "
+"okuyucuların bir kaynağın başlığını yapıştırmasına ve ardından alıntı "
+"yapılan çalışma için önceden seçilmiş bilimsel veritabanlarında arama "
+"yapmasına imkan tanır.</p></li>\n"
+"\t<li> <strong>Kaynaklara Bağlantıları Göm</strong><p> Mizanpaj Editörü, "
+"aşağıdaki talimatlar (düzenlenebilir) kullanılarak çevrimiçi bulunabilen "
+"referanslara bir bağlantı ekleyebilir.</p></li>\n"
+"</ol>"
+
+msgid "manager.publication.library"
+msgstr "Yayınevi Kitaplığı"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Risale İzinlerini Sıfırla"
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr ""
+"Risalelere önceden eklenmiş olan izin verilerini sıfırlamak istediğinizden "
+"emin misiniz?"
+
+msgid "manager.setup.resetPermissions.description"
+msgstr ""
+"Telif hakkı beyanı ve ruhsat bilgileri, yayınlanan içeriğe kalıcı olarak "
+"eklenecek ve yeni gönderimler için politikalarını değiştiren bir yayınevi "
+"olması durumunda bu verilerin değişmemesini sağlayacak. Yayınlanmış içeriğe "
+"önceden eklenmiş olan saklı izin bilgilerini sıfırlamak için aşağıdaki "
+"düğmeyi kullanın."
+
+msgid "manager.setup.resetPermissions.success"
+msgstr "Risale izinleri başarıyla sıfırlandı."
+
+msgid "grid.genres.title.short"
+msgstr "Bileşenler"
+
+msgid "grid.genres.title"
+msgstr "Risale Bileşenleri"
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr ""
+"Yayınevi Ayarları'nda belirtilen temel iletişim yetkilisine bir kopya "
+"gönderin."
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr "Dizi yolu yalnızca harflerden ve sayılardan oluşmalıdır."
+
+msgid "grid.series.pathExists"
+msgstr "Dizi yolu zaten kullanımda. Lütfen benzersiz bir yol girin."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Dizi Seçin"
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr "Lütfen bu menü öğesinin bağlanmasını istediğiniz diziyi seçin."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Bölüm seç"
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr "Lütfen bu menü öğesinin bağlanmasını istediğiniz bölümü seçin."
+
+msgid "grid.series.urlWillBe"
+msgstr "Dizinin URL'si şu şekilde olacaktır: {$sampleUrl}"
+
+msgid "stats.contextStats"
+msgstr ""
+
+msgid "stats.context.tooltip.text"
+msgstr ""
+
+msgid "stats.context.tooltip.label"
+msgstr ""
+
+msgid "stats.context.downloadReport.description"
+msgstr ""
+
+msgid "stats.context.downloadReport.downloadContext.description"
+msgstr ""
+
+msgid "stats.context.downloadReport.downloadContext"
+msgstr ""
+
+msgid "stats.publications.downloadReport.description"
+msgstr ""
+
+msgid "stats.publications.downloadReport.downloadSubmissions"
+msgstr ""
+
+msgid "stats.publications.downloadReport.downloadSubmissions.description"
+msgstr ""
+
+msgid "stats.publicationStats"
+msgstr "Yazı İstatistikleri"
+
+msgid "stats.publications.details"
+msgstr "Yazı Ayrıntıları"
+
+msgid "stats.publications.none"
+msgstr ""
+"Bu parametrelerle eşleşen kullanım istatistiklerine sahip yazı bulunamadı."
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Tarihe göre toplam fihrist görüntüleme sayısı"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Tarihe göre toplam dosya görüntüleme sayısı"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$total} yazıdan {$count} adedi"
+
+msgid "stats.publications.abstracts"
+msgstr "Fihrist Kayıtları"
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Hiçbir nesne seçilmedi."
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Seçili nesneler dönüştürülemedi."
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "Geçersiz XML:"
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Başvuruları Gönder"
 
 msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
 msgstr ""
 "Birincil irtibat kişisine gönderim teşekkür e-postasının bir kopyasını "
 "gönderin."
 
-msgid "manager.setup.selectCountry"
+msgid ""
+"manager.setup.notifications.copySubmissionAckPrimaryContact.disabled."
+"description"
 msgstr ""
-"Bu yayıncının bulunduğu ülkeyi veya yayıncının posta adresinin bulunduğu "
-"ülkeyi seçin."
+"Birincil kişi tanımlanmadı. <a href=\"{$url}\">Yayın ayarlarında</a> bir "
+"birincil kişi girebilirsiniz."
 
-msgid "emailTemplate.variable.site.siteTitle"
-msgstr "Birden fazla yayının barındırıldığı web sitesinin adı"
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Belirtilen nesneler bulunamadı."
 
-msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
-msgstr "Ödeme tutarının para birimi, örn; USD gibi"
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "Belirtilen kullanıcı \"{$userName}\" mevcut değil."
 
-msgid "emailTemplate.variable.queuedPayment.itemCost"
-msgstr "Ödeme tutarı"
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "Yayın biçimleri çözümlenemedi"
 
-msgid "emailTemplate.variable.queuedPayment.itemName"
-msgstr "Ödeme türünün adı"
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "Bölümler çözümlenemedi"
 
-msgid "emailTemplate.variable.context.contactEmail"
-msgstr "Yayının birincil irtibat kişisinin e-posta adresi"
-
-msgid "emailTemplate.variable.context.contextSignature"
-msgstr "Otomatik e-postalar için yayının e-posta imzası"
-
-msgid "emailTemplate.variable.context.contactName"
-msgstr "Yayının birincil irtibat kişisinin adı"
+msgid "emailTemplate.variable.context.contextName"
+msgstr "Yayının adı"
 
 msgid "emailTemplate.variable.context.contextUrl"
 msgstr "Yayının ana sayfasının URL'si"
 
-msgid "emailTemplate.variable.context.contextName"
-msgstr "Yayının adı"
+msgid "emailTemplate.variable.context.contactName"
+msgstr "Yayının birincil irtibat kişisinin adı"
+
+msgid "emailTemplate.variable.context.contextSignature"
+msgstr "Otomatik e-postalar için yayının e-posta imzası"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "Yayının birincil irtibat kişisinin e-posta adresi"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "Ödeme türünün adı"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "Ödeme tutarı"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "Ödeme tutarının para birimi, örn; USD gibi"
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr "Birden fazla yayının barındırıldığı web sitesinin adı"
 
 msgid "mailable.validateEmailContext.name"
 msgstr "E-postayı Doğrula (Basın Kaydı)"
@@ -1420,6 +1457,9 @@ msgstr ""
 
 msgid "doi.displayName"
 msgstr "DOI"
+
+msgid "doi.manager.displayName"
+msgstr ""
 
 msgid "doi.description"
 msgstr ""
@@ -1433,10 +1473,6 @@ msgid "doi.manager.settings.description"
 msgstr ""
 "OMP'de DOI'leri yönetebilmek ve kullanabilmek için lütfen DOI eklentisini "
 "yapılandırın:"
-
-#, fuzzy
-msgid "doi.manager.settings.doiObjectsRequired"
-msgstr "Lütfen DOI'lerin atanacağı nesneleri seçin."
 
 msgid "doi.manager.settings.explainDois"
 msgstr ""
@@ -1465,8 +1501,8 @@ msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""
 "DOI son eklerini oluşturmak için aşağıda girilen modeli kullanın. Yayınevi "
 "baş harfleri için %p, yazı kimliği için% m, bölüm kimliği için %c, yayın "
-"biçimi kimliği için %f, dosya kimliği için %s ve \"Özel Tanımlayıcı\" için %"
-"x kullanın."
+"biçimi kimliği için %f, dosya kimliği için %s ve \"Özel Tanımlayıcı\" için "
+"%x kullanın."
 
 msgid "doi.manager.settings.doiSuffixPattern.example"
 msgstr ""
@@ -1593,3 +1629,45 @@ msgstr "Dosya: {$title}"
 
 msgid "doi.editor.preview.objects"
 msgstr "Öğe"
+
+msgid "doi.manager.submissionDois"
+msgstr ""
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
+msgstr ""
+
+msgid "mailable.decision.initialDecline.notifyAuthor.description"
+msgstr ""
+
+msgid "manager.institutions.noContext"
+msgstr ""
+
+msgid "manager.manageEmails.description"
+msgstr ""
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
+msgstr ""
+
+msgid "mailable.indexRequest.name"
+msgstr ""
+
+msgid "mailable.indexComplete.name"
+msgstr ""
+
+msgid "mailable.publicationVersionNotify.name"
+msgstr ""
+
+msgid "mailable.publicationVersionNotify.description"
+msgstr ""
+
+msgid "mailable.submissionNeedsEditor.description"
+msgstr ""
+
+#~ msgid "manager.setup.doiPrefix"
+#~ msgstr "DOI Ön eki"
+
+#~ msgid "manager.setup.doiPrefixDescription"
+#~ msgstr ""
+#~ "DOI (Dijital Nesne Tanımlayıcı) Öneki <a href=\"http://www.crossref.org\" "
+#~ "target=\"_blank\">CrossRef</a> tarafından atanır ve 10.xxxx biçimindedir "
+#~ "(örn. 10.1234)."

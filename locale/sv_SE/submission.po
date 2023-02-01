@@ -12,348 +12,357 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "submission.submit.privacyStatement"
-msgstr "Integritetspolicy"
-
-msgid "submission.submit.seriesPosition.description"
-msgstr "Exempel: Bok 2, Volym 2"
-
-msgid "submission.submit.seriesPosition"
-msgstr "Position i serien"
-
-msgid "author.isVolumeEditor"
-msgstr "Markera denna person som redaktör för volymen."
-
-msgid "submission.submit.upload"
-msgstr "Ladda upp bidrag"
-
-msgid "submission.submit.newSubmissionSingle"
-msgstr "Nytt bidrag"
-
-msgid "submission.submit.newSubmissionMultiple"
-msgstr "Påbörja ett nytt bidrag i"
-
-msgid "submission.submit"
-msgstr "Påbörja ett nytt bidrag"
-
-msgid "grid.action.deleteChapter"
-msgstr "Ta bort detta kapitel"
-
-msgid "grid.action.editChapter"
-msgstr "Redigera detta kapitel"
-
-msgid "grid.action.addChapter"
-msgstr "Skapa ett nytt kapitel"
-
-msgid "submission.metadata"
-msgstr "Metadata"
-
-msgid "manuscript.submissions"
-msgstr "Inskickade bidrag"
-
-msgid "submissions.queuedReview"
-msgstr "Under ganskning"
-
-msgid "submission.round"
-msgstr "Omgång&nbsp;{$round}"
-
-msgid "manuscript.submission"
-msgstr "Skicka in manuskript"
-
-msgid "submission.sharing"
-msgstr "Dela"
-
-msgid "submission.download"
-msgstr "Ladda ned"
-
-msgid "submission.proofs"
-msgstr "Korrekturer"
-
-msgid "submission.publicationFormats"
-msgstr "Publikationsformat"
-
-msgid "submission.chapter.pages"
-msgstr "Sidor"
-
-msgid "submission.chapter.editChapter"
-msgstr "Redigera kapitel"
-
-msgid "submission.chapter.addChapter"
-msgstr "Lägg till kapitel"
-
-msgid "submission.chapters"
-msgstr "Kapitel"
-
-msgid "submission.chapter"
-msgstr "Kapitel"
-
-msgid "submission.artwork.permissions"
-msgstr "Tillstånd"
-
-msgid "submission.authorListSeparator"
-msgstr "; "
-
-msgid "submission.fairCopy"
-msgstr "Renskrift"
-
-msgid "submission.published"
-msgstr "Klar för produktion"
-
-msgid "submission.monograph"
-msgstr "Monografi"
-
-msgid "submission.editorName"
-msgstr "{$editorName} (red.)"
-
-msgid "submission.workflowType.change"
-msgstr "Ändra"
-
-msgid "submission.workflowType.authoredWork"
-msgstr "Monografi: Författare är knutna till boken som helhet."
-
-msgid "submission.workflowType.editedVolume"
-msgstr "Antologi: Författare är knutna till sina respektive kapitel."
-
-msgid "submission.workflowType.editedVolume.label"
-msgstr "Antologi"
-
-msgid "submission.workflowType.description"
-msgstr ""
-"En monografi är ett verk författat i sin helhet av en eller flera "
-"författare. En antologi har flera olika författare för varje kapitel ("
-"detaljer om varje kapitel läggs till senare i processen)."
-
-msgid "submission.workflowType"
-msgstr "Typ av bidrag"
-
-msgid "submission.synopsis"
-msgstr "Synopsis"
-
-msgid "submission.select"
-msgstr "Välj bidrag"
+msgid "submission.upload.selectComponent"
+msgstr "Välj komponent"
 
 msgid "submission.title"
 msgstr "Boktitel"
 
-msgid "submission.upload.selectComponent"
-msgstr "Välj komponent"
+msgid "submission.select"
+msgstr "Välj bidrag"
 
-msgid "submission.incomplete"
-msgstr "Inväntar godkännande"
+msgid "submission.synopsis"
+msgstr "Synopsis"
 
-msgid "submission.complete"
-msgstr "Godkänd"
+msgid "submission.workflowType"
+msgstr "Typ av bidrag"
 
-msgid "grid.copyediting.deleteCopyeditorResponse"
-msgstr "Radera manusredaktörens dokument"
+msgid "submission.workflowType.description"
+msgstr ""
+"En monografi är ett verk författat i sin helhet av en eller flera "
+"författare. En antologi har flera olika författare för varje kapitel "
+"(detaljer om varje kapitel läggs till senare i processen)."
 
-msgid "grid.chapters.title"
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Antologi"
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Antologi: Författare är knutna till sina respektive kapitel."
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monografi: Författare är knutna till boken som helhet."
+
+msgid "submission.workflowType.change"
+msgstr "Ändra"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (red.)"
+
+msgid "submission.monograph"
+msgstr "Monografi"
+
+msgid "submission.published"
+msgstr "Klar för produktion"
+
+msgid "submission.fairCopy"
+msgstr "Renskrift"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.artwork.permissions"
+msgstr "Tillstånd"
+
+msgid "submission.chapter"
 msgstr "Kapitel"
 
-msgid "submission.submit.noContext"
-msgstr "Bidragets press kunde inte hittas."
+msgid "submission.chapters"
+msgstr "Kapitel"
 
-msgid "submission.submit.userGroup"
-msgstr "Skicka in bidraget i min roll som..."
+msgid "submission.chapter.addChapter"
+msgstr "Lägg till kapitel"
 
-msgid "submission.submit.placement"
-msgstr "Bidragets placering"
+msgid "submission.chapter.editChapter"
+msgstr "Redigera kapitel"
 
-msgid "submission.submit.checklistErrors"
+msgid "submission.chapter.pages"
+msgstr "Sidor"
+
+msgid "submission.copyedit"
+msgstr "Manusredigering"
+
+msgid "submission.publicationFormats"
+msgstr "Publikationsformat"
+
+msgid "submission.proofs"
+msgstr "Korrekturer"
+
+msgid "submission.download"
+msgstr "Ladda ned"
+
+msgid "submission.sharing"
+msgstr "Dela"
+
+msgid "manuscript.submission"
+msgstr "Skicka in manuskript"
+
+msgid "submission.round"
+msgstr "Omgång&nbsp;{$round}"
+
+msgid "submissions.queuedReview"
+msgstr "Under ganskning"
+
+msgid "manuscript.submissions"
+msgstr "Inskickade bidrag"
+
+msgid "submission.metadata"
+msgstr "Metadata"
+
+msgid "submission.supportingAgencies"
+msgstr "Finansierande organisation"
+
+msgid "grid.action.addChapter"
+msgstr "Skapa ett nytt kapitel"
+
+msgid "grid.action.editChapter"
+msgstr "Redigera detta kapitel"
+
+msgid "grid.action.deleteChapter"
+msgstr "Ta bort detta kapitel"
+
+msgid "submission.submit"
+msgstr "Påbörja ett nytt bidrag"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Påbörja ett nytt bidrag i"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Nytt bidrag"
+
+msgid "submission.submit.upload"
+msgstr "Ladda upp bidrag"
+
+msgid "author.volumeEditor"
 msgstr ""
-"Läs och fyll i checklistan . Det finns {$itemsRemaining} rutor som inte "
-"kryssats i än."
+
+msgid "author.isVolumeEditor"
+msgstr "Markera denna person som redaktör för volymen."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Position i serien"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Exempel: Bok 2, Volym 2"
+
+msgid "submission.submit.privacyStatement"
+msgstr "Integritetspolicy"
+
+msgid "submission.submit.contributorRole"
+msgstr "Medarbetarens roll"
+
+msgid "submission.submit.submissionFile"
+msgstr "Fil"
+
+msgid "submission.submit.prepare"
+msgstr "Förbered"
+
+msgid "submission.submit.catalog"
+msgstr "Katalog"
+
+msgid "submission.submit.metadata"
+msgstr "Metadata"
+
+msgid "submission.submit.finishingUp"
+msgstr "Färdigställande"
+
+msgid "submission.submit.confirmation"
+msgstr "Bekräftelse"
+
+msgid "submission.submit.nextSteps"
+msgstr "Nästa steg"
+
+msgid "submission.submit.coverNote"
+msgstr "Ansökningsbrev till redaktören"
+
+msgid "submission.submit.generalInformation"
+msgstr "Allmän information"
 
 msgid "submission.submit.whatNext.description"
 msgstr ""
 "Pressen har meddelats om ditt bidrag, och du har fått en bekräftelse via e-"
 "post. Du kommer kontaktas när redaktören har gått igenom ditt bidrag."
 
-msgid "submission.submit.generalInformation"
-msgstr "Allmän information"
+msgid "submission.submit.checklistErrors"
+msgstr ""
+"Läs och fyll i checklistan . Det finns {$itemsRemaining} rutor som inte "
+"kryssats i än."
 
-msgid "submission.submit.coverNote"
-msgstr "Ansökningsbrev till redaktören"
+msgid "submission.submit.placement"
+msgstr "Bidragets placering"
 
-msgid "submission.submit.nextSteps"
-msgstr "Nästa steg"
+msgid "submission.submit.userGroup"
+msgstr "Skicka in bidraget i min roll som..."
 
-msgid "submission.submit.confirmation"
-msgstr "Bekräftelse"
+msgid "submission.submit.noContext"
+msgstr "Bidragets press kunde inte hittas."
 
-msgid "submission.submit.finishingUp"
-msgstr "Färdigställande"
+msgid "grid.chapters.title"
+msgstr "Kapitel"
 
-msgid "submission.submit.metadata"
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Radera manusredaktörens dokument"
+
+msgid "submission.complete"
+msgstr "Godkänd"
+
+msgid "submission.incomplete"
+msgstr "Inväntar godkännande"
+
+msgid "submission.editCatalogEntry"
 msgstr "Metadata"
 
-msgid "submission.submit.catalog"
+msgid "submission.catalogEntry.new"
+msgstr "Lägg till i katalogen"
+
+msgid "submission.catalogEntry.add"
+msgstr "Lägg till valda bidrag i katalogen"
+
+msgid "submission.catalogEntry.select"
+msgstr "Välj böcker att lägga till i katalogen"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr "Du måste välja minst en bok att lägga till i katalogen."
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Lägg till den här boken i den publika katalogen"
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Bekräfta att bidraget är klart att läggas till i katalogen."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Denna bok är färdig att lägga till i den publika katalogen."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Visa bidrag"
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Publiceringsdatum"
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Alla kapitel kommer använda det färdiga verkets publiceringsdatum."
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Varje kapitel kan ges egna publiceringsdatum."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Monografi"
+
+msgid "submission.catalogEntry.catalogMetadata"
 msgstr "Katalog"
 
-msgid "submission.submit.prepare"
-msgstr "Förbered"
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Publiceringsformat"
 
-msgid "submission.submit.submissionFile"
-msgstr "Fil"
+msgid "submission.event.metadataPublished"
+msgstr "Bokens metadata är godkänd för publicering."
 
-msgid "submission.submit.contributorRole"
-msgstr "Medarbetarens roll"
+msgid "submission.event.metadataUnpublished"
+msgstr "Bokens metadata är inte längre publicerad."
 
-msgid "submission.supportingAgencies"
-msgstr "Finansierande organisation"
-
-msgid "submission.copyedit"
-msgstr "Manusredigering"
-
-msgid "publication.scheduledIn"
-msgstr "Ska publiceras i <a href=\"{$issueUrl}\">{$issueName}</a>."
-
-msgid "publication.publish.confirmation"
+msgid "submission.event.publicationFormatMadeAvailable"
 msgstr ""
-"Alla publiceringskrav är uppfyllda. Är du säker på att du vill offentliggöra "
-"boken?"
-
-msgid "publication.publishedIn"
-msgstr "Publicerad i <a href=\"{$issueUrl}\">{$issueName}</a>."
-
-msgid "publication.required.issue"
-msgstr "Publikationen måste ingå i ett nummer innan den kan publiceras."
-
-msgid "publication.invalidSeries"
-msgstr "Serien kunde inte hittas."
-
-msgid "publication.catalogEntry.success"
-msgstr "Metadatan har uppdaterats."
-
-msgid "publication.catalogEntry"
-msgstr "Metadata"
-
-msgid "catalog.browseTitles"
-msgstr "{$numTitles} titlar"
-
-msgid "submission.list.saveFeatureOrder"
-msgstr "Spara sortering"
-
-msgid "submission.list.orderingFeaturesSection"
-msgstr ""
-"Dra och släpp eller använd upp- och nedknapparna för att ändra funktionernas "
-"ordning i {$title}."
-
-msgid "submission.list.orderingFeatures"
-msgstr ""
-"Dra och släpp eller använd upp- och nedknapparna för att ändra funktionernas "
-"ordning på hemsidan."
-
-msgid "submission.list.orderFeatures"
-msgstr "Sortera funktioner"
-
-msgid "submission.list.itemsOfTotalMonographs"
-msgstr "{$count} av {$total} böcker"
-
-msgid "submission.list.countMonographs"
-msgstr "{$count} böcker"
-
-msgid "submission.list.monographs"
-msgstr "Böcker"
-
-msgid "section.any"
-msgstr "Alla serier"
-
-msgid "submission.metadataDescription"
-msgstr ""
-"Dessa specifikationer baseras på Dublin Core-metadata, en internationell "
-"standard för att beskriva informationsresurser."
-
-msgid "submission.dependentFiles"
-msgstr "Filer"
-
-msgid "submission.upload.fileContents"
-msgstr "Bidragets komponent"
-
-msgid "workflow.review.externalReview"
-msgstr "Extern granskning"
-
-msgid "editor.submission.decision.sendExternalReview"
-msgstr "Skicka till extern granskning"
-
-msgid "submission.event.publicationFormatRemoved"
-msgstr "Publiceringsformatet \"{$formatName}\" har raderats."
-
-msgid "submission.event.publicationFormatCreated"
-msgstr "Publiceringsformatet \"{$formatName}\" har skapats."
-
-msgid "submission.event.publicationMetadataUpdated"
-msgstr "Metadatan om publiceringsformatet \"{$formatName}\" har uppdaterats."
-
-msgid "submission.event.catalogMetadataUpdated"
-msgstr "Metadatan har uppdaterats."
-
-msgid "submission.event.publicationFormatUnpublished"
-msgstr "Publiceringsformatet \"{$publicationFormatName}\" är avpublicerat."
-
-msgid "submission.event.publicationFormatPublished"
-msgstr ""
-"Publiceringsformatet \"{$publicationFormatName}\" är godkänt för publicering."
+"Publiceringsformatet \"{$publicationFormatName}\" har tillgängliggjorts."
 
 msgid "submission.event.publicationFormatMadeUnavailable"
 msgstr ""
 "Publiceringsformatet \"{$publicationFormatName}\" är inte längre "
 "tillgängligt."
 
-msgid "submission.event.publicationFormatMadeAvailable"
+msgid "submission.event.publicationFormatPublished"
 msgstr ""
-"Publiceringsformatet \"{$publicationFormatName}\" har tillgängliggjorts."
+"Publiceringsformatet \"{$publicationFormatName}\" är godkänt för publicering."
 
-msgid "submission.event.metadataUnpublished"
-msgstr "Bokens metadata är inte längre publicerad."
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "Publiceringsformatet \"{$publicationFormatName}\" är avpublicerat."
 
-msgid "submission.event.metadataPublished"
-msgstr "Bokens metadata är godkänd för publicering."
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Metadatan har uppdaterats."
 
-msgid "submission.catalogEntry.publicationMetadata"
-msgstr "Publiceringsformat"
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "Metadatan om publiceringsformatet \"{$formatName}\" har uppdaterats."
 
-msgid "submission.catalogEntry.catalogMetadata"
-msgstr "Katalog"
+msgid "submission.event.publicationFormatCreated"
+msgstr "Publiceringsformatet \"{$formatName}\" har skapats."
 
-msgid "submission.catalogEntry.monographMetadata"
-msgstr "Monografi"
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Publiceringsformatet \"{$formatName}\" har raderats."
 
-msgid "submission.catalogEntry.enableChapterPublicationDates"
-msgstr "Varje kapitel kan ges egna publiceringsdatum."
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Skicka till extern granskning"
 
-msgid "submission.catalogEntry.disableChapterPublicationDates"
-msgstr "Alla kapitel kommer använda det färdiga verkets publiceringsdatum."
+msgid "workflow.review.externalReview"
+msgstr "Extern granskning"
 
-msgid "submission.catalogEntry.chapterPublicationDates"
-msgstr "Publiceringsdatum"
+msgid "submission.upload.fileContents"
+msgstr "Bidragets komponent"
 
-msgid "submission.catalogEntry.viewSubmission"
-msgstr "Visa bidrag"
+msgid "submission.dependentFiles"
+msgstr "Filer"
 
-msgid "submission.catalogEntry.isAvailable"
-msgstr "Denna bok är färdig att lägga till i den publika katalogen."
+msgid "submission.metadataDescription"
+msgstr ""
+"Dessa specifikationer baseras på Dublin Core-metadata, en internationell "
+"standard för att beskriva informationsresurser."
 
-msgid "submission.catalogEntry.confirm.required"
-msgstr "Bekräfta att bidraget är klart att läggas till i katalogen."
+msgid "section.any"
+msgstr "Alla serier"
 
-msgid "submission.catalogEntry.confirm"
-msgstr "Lägg till den här boken i den publika katalogen"
+msgid "submission.list.monographs"
+msgstr "Böcker"
 
-msgid "submission.catalogEntry.selectionMissing"
-msgstr "Du måste välja minst en bok att lägga till i katalogen."
+msgid "submission.list.countMonographs"
+msgstr "{$count} böcker"
 
-msgid "submission.catalogEntry.select"
-msgstr "Välj böcker att lägga till i katalogen"
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} av {$total} böcker"
 
-msgid "submission.catalogEntry.add"
-msgstr "Lägg till valda bidrag i katalogen"
+msgid "submission.list.orderFeatures"
+msgstr "Sortera funktioner"
 
-msgid "submission.catalogEntry.new"
-msgstr "Lägg till i katalogen"
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Dra och släpp eller använd upp- och nedknapparna för att ändra funktionernas "
+"ordning på hemsidan."
 
-msgid "submission.editCatalogEntry"
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"Dra och släpp eller använd upp- och nedknapparna för att ändra funktionernas "
+"ordning i {$title}."
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Spara sortering"
+
+msgid "submission.list.viewEntry"
+msgstr "Visa post"
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} titlar"
+
+msgid "publication.catalogEntry"
 msgstr "Metadata"
+
+msgid "publication.catalogEntry.success"
+msgstr "Metadatan har uppdaterats."
+
+msgid "publication.invalidSeries"
+msgstr "Serien kunde inte hittas."
+
+msgid "publication.inactiveSeries"
+msgstr "{$series} (inaktiv)"
+
+msgid "publication.required.issue"
+msgstr "Publikationen måste ingå i ett nummer innan den kan publiceras."
+
+msgid "publication.publishedIn"
+msgstr "Publicerad i <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Alla publiceringskrav är uppfyllda. Är du säker på att du vill offentliggöra "
+"boken?"
+
+msgid "publication.scheduledIn"
+msgstr "Ska publiceras i <a href=\"{$issueUrl}\">{$issueName}</a>."
 
 msgid "submission.publication"
 msgstr "Publikation"
@@ -429,6 +438,9 @@ msgid "submission.copyrightHolder.description"
 msgstr ""
 "Upphovsrätt tilldelas automatiskt till {$copyright} när den är publicerad."
 
+msgid "submission.copyrightOther.description"
+msgstr "Tilldela upphovsrätt för publicerade verk till följande."
+
 msgid "publication.unpublish"
 msgstr "Avpublicera"
 
@@ -444,34 +456,130 @@ msgstr "Publiceringsdetaljer för version {$version}"
 msgid "submission.queries.production"
 msgstr "Produktionsdiskussioner"
 
-msgid "submission.copyrightOther.description"
-msgstr "Tilldela upphovsrätt för publicerade verk till följande."
-
-msgid "publication.inactiveSeries"
-msgstr "{$series} (inaktiv)"
-
-msgid "submission.list.viewEntry"
-msgstr "Visa post"
-
-msgid "chapter.pages"
-msgstr "Sidor"
-
-msgid "submission.chapterCreated"
-msgstr " — Kapitel skapat"
-
-msgid "submission.withoutChapter"
-msgstr "{$name} —Utan detta kapitel"
-
-msgid "chapter.volume"
-msgstr "Volym"
-
-msgid "publication.publish.success"
-msgstr "Publiceringsstatus har ändrats."
+msgid "publication.chapter.landingPage"
+msgstr "Kapitelsida"
 
 msgid "publication.chapter.hasLandingPage"
 msgstr ""
 "Visa kapitlet på en separat sida och länka till denna från bokens "
 "innehållsförteckning."
 
-msgid "publication.chapter.landingPage"
-msgstr "Kapitelsida"
+msgid "publication.publish.success"
+msgstr "Publiceringsstatus har ändrats."
+
+msgid "chapter.volume"
+msgstr "Volym"
+
+msgid "submission.withoutChapter"
+msgstr "{$name} —Utan detta kapitel"
+
+msgid "submission.chapterCreated"
+msgstr " — Kapitel skapat"
+
+msgid "chapter.pages"
+msgstr "Sidor"
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
+msgstr ""
+
+msgid "editor.submission.decision.promoteFiles.internalReview"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.completed"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr ""
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr ""
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr ""
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+
+msgid "doi.submission.incorrectContext"
+msgstr ""
+
+msgid "publication.chapter.licenseUrl"
+msgstr ""
+
+msgid "publication.chapterDefaultLicenseURL"
+msgstr ""
+
+msgid "submission.copyright.description"
+msgstr ""
+
+msgid "submission.wizard.notAllowed.description"
+msgstr ""
+
+msgid "submission.wizard.noSectionAllowed.description"
+msgstr ""
+
+msgid "submission.wizard.sectionClosed.message"
+msgstr ""
+
+msgid "submission.sectionNotFound"
+msgstr ""
+
+msgid "submission.sectionRestrictedToEditors"
+msgstr ""
+
+msgid "submission.wizard.submitting.monograph"
+msgstr ""
+
+msgid "submission.wizard.submitting.monographInLanguage"
+msgstr ""
+
+msgid "submission.wizard.submitting.editedVolume"
+msgstr ""
+
+msgid "submission.wizard.submitting.editedVolumeInLanguage"
+msgstr ""
+
+msgid "submission.wizard.chapters.description"
+msgstr ""

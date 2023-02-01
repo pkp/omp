@@ -13,147 +13,35 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "manager.setup.copyeditInstructions"
-msgstr "Інструкції з літературного редагування"
-
-msgid "manager.setup.copyediting"
-msgstr "Літературні редактори"
-
-msgid "manager.setup.contextAbout"
-msgstr "Про е-видавництво"
-
-msgid "manager.setup.appearInAboutPress"
-msgstr "(Для появи в розділі \"Про е-видавництво\") "
-
-msgid "manager.setup.announcementsIntroduction"
-msgstr "Додаткова інформація"
-
-msgid "manager.setup.announcements.success"
-msgstr "Налаштування оголошень оновлено."
-
-msgid "manager.setup.announcements"
-msgstr "Оголошення"
-
-msgid "manager.setup.addSponsor"
-msgstr "Додати організацію-спонсора"
-
-msgid "manager.setup.addNavItem"
-msgstr "Додати матеріал"
-
-msgid "manager.setup.addItemtoAboutPress"
-msgstr "Додати матеріал, що з'явиться на сторіці \"Про е-видавництво\""
-
-msgid "manager.setup.addItem"
-msgstr "Додати матеріал"
-
-msgid "manager.setup.addAboutItem"
-msgstr "Додати інформацію про"
-
-msgid "manager.setup.aboutItemContent"
-msgstr "Контент"
-
-msgid "manager.setup"
-msgstr "Інсталяція"
-
-msgid "manager.pressManagement"
-msgstr "Керування е-видавництвом"
-
-msgid "user.authorization.pluginLevel"
-msgstr "У вас недостатньо прав для керування цим плагіном."
-
-msgid "manager.system.payments"
-msgstr "Платежі"
-
-msgid "manager.system.archiving"
-msgstr "Архівування"
-
-msgid "manager.system"
-msgstr "Налаштування системи"
-
-msgid "manager.people.confirmDisable"
+msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr ""
-"Деактивувати цього користувача? Це зробить неможливим вхід користовуча до "
-"системи.\n"
-"\n"
-"Ви можете вказати користувачу причину деактивування облікового запису."
+"Ця дія скасує всі налаштування е-видавництва, повязані з цією локалізацією"
 
-msgid "manager.people.allPresses"
-msgstr "Усі е-видавництва"
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Вибачте, відсутні додаткові мовні пакети. Напишіть адміністратору вашого "
+"сайту, якщо хочете мати додаткові мови для Вашого е-видавництва."
 
-msgid "manager.users.selectRole"
-msgstr "Обрати Роль"
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr ""
+"Цю мову буде встановлено за замовчуванням для сайту цього е-видавництва."
 
-msgid "manager.users.availableRoles"
-msgstr "Доступні Ролі"
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Будь ласка, переконайтеся, що обрано принаймні по одному прапорцю для "
+"кожного призначення редактора серії."
 
-msgid "manager.tools"
-msgstr "Інструменти"
+msgid "manager.series.form.reviewFormId"
+msgstr "Будь ласка, переконайтеся, що Ви коректно обрали форму рецензування."
 
-msgid "manager.statistics.reports.defaultReport.monographAbstract"
-msgstr "Перегляди анотації монографії"
+msgid "manager.series.submissionIndexing"
+msgstr "Не буде включено в індексування е-видавництва"
 
-msgid "manager.statistics.reports.defaultReport.monographDownloads"
-msgstr "Завантаження файлів монографії"
+msgid "manager.series.editorRestriction"
+msgstr "Об'єкти можуть надсилатись лише редакторами та редакторами серії."
 
-msgid "manager.settings.publisherCode"
-msgstr "Код видавця"
-
-msgid "manager.settings.location"
-msgstr "Географічне місцезнаходження"
-
-msgid "manager.settings.publisher"
-msgstr "Ім'я видавця е-видавництва"
-
-msgid "manager.settings.publisher.identity"
-msgstr "Свідоцтво видавця"
-
-msgid "manager.settings.press"
-msgstr "Е-видавництво"
-
-msgid "manager.settings.pressSettings"
-msgstr "Налаштування е-видавництва"
-
-msgid "manager.settings"
-msgstr "Налаштування"
-
-msgid "manager.payment.success"
-msgstr "Налаштування оплати оновлено."
-
-msgid "manager.payment.generalOptions"
-msgstr "Загальні параметри"
-
-msgid "manager.series.seriesTitle"
-msgstr "Назва серії"
-
-msgid "manager.series.existingUsers"
-msgstr "Існуючі користувачі"
-
-msgid "manager.series.noneCreated"
-msgstr "Жодної серії не створено."
-
-msgid "manager.series.form.titleRequired"
-msgstr "Необхідно ввести назву для серії."
-
-msgid "manager.series.unassigned"
-msgstr "Доступні редактори серії"
-
-msgid "manager.series.assigned"
-msgstr "Редактори для серії"
-
-msgid "manager.series.policy"
-msgstr "Опис серії"
-
-msgid "manager.series.create"
-msgstr "Створити серію"
-
-msgid "manager.series.book"
-msgstr "Серія книг"
-
-msgid "manager.series.disableComments"
-msgstr "Заблокувати можливість коментування для цієї серії."
-
-msgid "manager.series.abstractsNotRequired"
-msgstr "Не вимагати анотації"
+msgid "manager.series.confirmDelete"
+msgstr "Ви впевнені, що хочете назавжди видалити цю серію?"
 
 msgid "manager.series.indexed"
 msgstr "Індексовано"
@@ -161,70 +49,206 @@ msgstr "Індексовано"
 msgid "manager.series.open"
 msgstr "Відкрити подання"
 
-msgid "manager.setup.emailSignature"
-msgstr "Підпис"
-
-msgid "manager.setup.emails"
-msgstr "Ідентифікація за адресою електронної пошти"
-
-msgid "manager.setup.editorDecision"
-msgstr "Рішення Редактора"
-
-msgid "manager.setup.doiPrefix"
-msgstr "Префікс DOI"
-
-msgid "manager.setup.displayNewReleases.label"
-msgstr "Нові релізи"
-
-msgid "manager.setup.details"
-msgstr "Детальніше"
-
-msgid "manager.setup.customTags"
-msgstr "Користувацькі Теги"
-
-msgid "manager.setup.coverThumbnailsMaxWidth"
-msgstr "Максимальна ширина зображення обкладинки"
-
-msgid "manager.setup.coverThumbnailsMaxHeight"
-msgstr "Максимальна довжина зображення обкладинки"
-
-msgid "manager.series.form.mustAllowPermission"
-msgstr ""
-"Будь ласка, переконайтеся, що обрано принаймні по одному прапорцю для "
-"кожного призначення редактора серії."
-
-msgid "manager.languages.primaryLocaleInstructions"
-msgstr ""
-"Цю мову буде встановлено за замовчуванням для сайту цього е-видавництва."
-
-msgid "manager.languages.noneAvailable"
-msgstr ""
-"Вибачте, відсутні додаткові мовні пакети. Напишіть адміністратору вашого "
-"сайту, якщо хочете мати додаткові мови для Вашого е-видавництва."
-
-msgid "manager.setup.generalInformation"
-msgstr "Загальна інформація"
-
-msgid "manager.setup.contextAbout.description"
-msgstr ""
-"Укажіть основні відомості про Ваше е-видавництво, що зацікавлять читачів, "
-"авторів або рецензентів. Це можуть бути положення про відкритий доступ, "
-"фокус і сфера е-видавництва, умови передачі авторських прав, інформація про "
-"спонсорів, історія е-видавництва."
-
-msgid "manager.setup.announcementsDescription"
-msgstr ""
-"Для інформування читачів про новини та події е-видавництва можна публікувати "
-"оголошення. Оприлюднені оголошення з'являться на сторінці \"Оголошення\"."
-
-msgid "manager.setup.addChecklistItem"
-msgstr "Додати пункт вимог"
-
-msgid "manager.system.readingTools"
+msgid "manager.series.readingTools"
 msgstr "Інструменти для читання"
 
-msgid "manager.system.reviewForms"
-msgstr "Форми рецензування"
+msgid "manager.series.submissionReview"
+msgstr "Не буде проходити експертне оцінювання"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Подання, зроблені до цієї серії"
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Не вимагати анотації"
+
+msgid "manager.series.disableComments"
+msgstr "Заблокувати можливість коментування для цієї серії."
+
+msgid "manager.series.book"
+msgstr "Серія книг"
+
+msgid "manager.series.create"
+msgstr "Створити серію"
+
+msgid "manager.series.policy"
+msgstr "Опис серії"
+
+msgid "manager.series.assigned"
+msgstr "Редактори для серії"
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Додайте редактора серії з доступних редакторів серії. Після додавання "
+"вкажіть, чи буде редактор серії переглядати РЕЦЕНЗІЇ (експертне оцінювання) "
+"та/або РЕДАГУВАННЯ (лІтературне, наукове, верстку й коректуру) подань у цій "
+"серії. Редактори серії створюються натисканням кнопки <a href="
+"\"{$seriesEditorsUrl}\">Редактори серії</a> в розділі \"Ролі\" в \"Керуванні "
+"е-видавництвом\"."
+
+msgid "manager.series.hideAbout"
+msgstr "Пропустіть цю серію в розділі \"Про е-видавництво\"."
+
+msgid "manager.series.unassigned"
+msgstr "Доступні редактори серії"
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "Необхідно вказати абревіатуру для серії."
+
+msgid "manager.series.form.titleRequired"
+msgstr "Необхідно ввести назву для серії."
+
+msgid "manager.series.noneCreated"
+msgstr "Жодної серії не створено."
+
+msgid "manager.series.existingUsers"
+msgstr "Існуючі користувачі"
+
+msgid "manager.series.seriesTitle"
+msgstr "Назва серії"
+
+msgid "manager.series.restricted"
+msgstr "Не дозволяйте авторам подавати матеріали напряму до цієї серії."
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"Як мінімум одна серія має бути активною. Відвідайте налаштування робочого "
+"процесу, щоб відключити всі подання в це видавництво."
+
+msgid "manager.payment.generalOptions"
+msgstr "Загальні параметри"
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Платежі будуть включені для цього е-видавництва. Зауважте, що користувачі "
+"повинні увійти до системи, щоб здійснити платіж."
+
+msgid "manager.payment.success"
+msgstr "Налаштування оплати оновлено."
+
+msgid "manager.settings"
+msgstr "Налаштування"
+
+msgid "manager.settings.pressSettings"
+msgstr "Налаштування е-видавництва"
+
+msgid "manager.settings.press"
+msgstr "Е-видавництво"
+
+msgid "manager.settings.publisher.identity"
+msgstr "Свідоцтво видавця"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Ці поля необхідні, щоб опублікувати дійсні <a href=\"https://en.wikipedia."
+"org/wiki/ONIX_for_Books\">метадані ONIX</a>."
+
+msgid "manager.settings.publisher"
+msgstr "Ім'я видавця е-видавництва"
+
+msgid "manager.settings.location"
+msgstr "Географічне місцезнаходження"
+
+msgid "manager.settings.publisherCode"
+msgstr "Код видавця"
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Тип коду видавця"
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Цей тип коду видавця не є дійсним."
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Усі налаштування для процесу розповсюдження (повідомлення, индексація, "
+"архівування, оплата, інструмени для читання)."
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Завантаження файлів монографії"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Перегляди анотації монографії"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Анотація монографії та скачування"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Перегляди головної сторінки серії"
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Перегляди головної сторінки е-видавництва"
+
+msgid "manager.tools"
+msgstr "Інструменти"
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Усі налаштування для імпорту й експорту даних (видання, монографії, "
+"користувачі)"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Інструменти для генерування звітів, пов'язаних зі статистикою використання "
+"(перегляд сторінки индексу каталогу, перегляди сторінки анотації монографії, "
+"завантаження файлів монографії)"
+
+msgid "manager.users.availableRoles"
+msgstr "Доступні Ролі"
+
+msgid "manager.users.currentRoles"
+msgstr "Поточні ролі"
+
+msgid "manager.users.selectRole"
+msgstr "Обрати Роль"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Користувачі, які мають ролі в цьому е-видавництві"
+
+msgid "manager.people.allPresses"
+msgstr "Усі е-видавництва"
+
+msgid "manager.people.allSiteUsers"
+msgstr ""
+"Надати роль у цьому е-видавництві користувачу, зареєстрованому на цьому сайті"
+
+msgid "manager.people.allUsers"
+msgstr "Усі користувачі, які мають ролі"
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Видалити цього користувача з цього е-видавництва? Ця дія скасує всі "
+"призначення користувача в межах цього е-видавництва."
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Надати нову роль існуючому користувачу"
+
+msgid "manager.people.enrollSyncPress"
+msgstr "З е-видавництвом"
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Оберіть користувача, якого потрібно включити до облікового запису іншого "
+"користувача (наприклад, якщо одна особа має два облікові записи). Перший "
+"обраний обліковий запис буде видалений, а його подання, редакційні "
+"призначення тощо будуть асоційовані з другим обраним обліковим записом."
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Оберіть користувача, якому слід передати права попереднього користувача "
+"(авторство, редакційні призначення тощо)."
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"Синхронізація реєстрацій дозволяє зареєструвати усіх користувачів, які "
+"виконують певну роль у певному е-видавництві, у тих же ролях у цьому е-"
+"видавництві. Дана функція дозволяє синхронізувати між е-видавництвами певні "
+"групи користувачів, наприклад рецензентів."
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Деактивувати цього користувача? Це зробить неможливим вхід користовуча до "
+"системи.\n"
+"\n"
+"Ви можете вказати користувачу причину деактивування облікового запису."
 
 msgid "manager.people.noAdministrativeRights"
 msgstr ""
@@ -237,298 +261,91 @@ msgstr ""
 "\tЦе завдання може виконати адміністратор сайту.\n"
 "\t"
 
-msgid "manager.people.syncUserDescription"
-msgstr ""
-"Синхронізація реєстрацій дозволяє зареєструвати усіх користувачів, які "
-"виконують певну роль у певному е-видавництві, у тих же ролях у цьому е-"
-"видавництві. Дана функція дозволяє синхронізувати між е-видавництвами певні "
-"групи користувачів, наприклад рецензентів."
+msgid "manager.system"
+msgstr "Налаштування системи"
 
-msgid "manager.people.mergeUsers.into.description"
-msgstr ""
-"Оберіть користувача, якому слід передати права попереднього користувача ("
-"авторство, редакційні призначення тощо)."
+msgid "manager.system.archiving"
+msgstr "Архівування"
 
-msgid "manager.people.mergeUsers.from.description"
-msgstr ""
-"Оберіть користувача, якого потрібно включити до облікового запису іншого "
-"користувача (наприклад, якщо одна особа має два облікові записи). Перший "
-"обраний обліковий запис буде видалений, а його подання, редакційні "
-"призначення тощо будуть асоційовані з другим обраним обліковим записом."
+msgid "manager.system.reviewForms"
+msgstr "Форми рецензування"
 
-msgid "manager.people.enrollSyncPress"
-msgstr "З е-видавництвом"
-
-msgid "manager.people.enrollExistingUser"
-msgstr "Надати нову роль існуючому користувачу"
-
-msgid "manager.people.confirmRemove"
-msgstr ""
-"Видалити цього користувача з цього е-видавництва? Ця дія скасує всі "
-"призначення користувача в межах цього е-видавництва."
-
-msgid "manager.people.allUsers"
-msgstr "Усі користувачі, які мають ролі"
-
-msgid "manager.people.allSiteUsers"
-msgstr ""
-"Надати роль у цьому е-видавництві користувачу, зареєстрованому на цьому сайті"
-
-msgid "manager.people.allEnrolledUsers"
-msgstr "Користувачі, які мають ролі в цьому е-видавництві"
-
-msgid "manager.users.currentRoles"
-msgstr "Поточні ролі"
-
-msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
-msgstr "Перегляди головної сторінки е-видавництва"
-
-msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
-msgstr "Перегляди головної сторінки серії"
-
-msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
-msgstr "Анотація монографії та скачування"
-
-msgid "manager.settings.publisherCodeType"
-msgstr "Тип коду видавця"
-
-msgid "manager.payment.options.enablePayments"
-msgstr ""
-"Платежі будуть включені для цього е-видавництва. Зауважте, що користувачі "
-"повинні увійти до системи, щоб здійснити платіж."
-
-msgid "manager.series.form.abbrevRequired"
-msgstr "Необхідно вказати абревіатуру для серії."
-
-msgid "manager.series.submissionsToThisSection"
-msgstr "Подання, зроблені до цієї серії"
-
-msgid "manager.series.submissionReview"
-msgstr "Не буде проходити експертне оцінювання"
-
-msgid "manager.series.readingTools"
+msgid "manager.system.readingTools"
 msgstr "Інструменти для читання"
 
-msgid "manager.series.confirmDelete"
-msgstr "Ви впевнені, що хочете назавжди видалити цю серію?"
+msgid "manager.system.payments"
+msgstr "Платежі"
 
-msgid "manager.series.editorRestriction"
-msgstr "Об'єкти можуть надсилатись лише редакторами та редакторами серії."
+msgid "user.authorization.pluginLevel"
+msgstr "У вас недостатньо прав для керування цим плагіном."
 
-msgid "manager.series.submissionIndexing"
-msgstr "Не буде включено в індексування е-видавництва"
+msgid "manager.pressManagement"
+msgstr "Керування е-видавництвом"
 
-msgid "manager.series.form.reviewFormId"
-msgstr "Будь ласка, переконайтеся, що Ви коректно обрали форму рецензування."
+msgid "manager.setup"
+msgstr "Інсталяція"
 
-msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgid "manager.setup.aboutItemContent"
+msgstr "Контент"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Додати інформацію про"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Додати пункт вимог"
+
+msgid "manager.setup.addItem"
+msgstr "Додати матеріал"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Додати матеріал, що з'явиться на сторіці \"Про е-видавництво\""
+
+msgid "manager.setup.addNavItem"
+msgstr "Додати матеріал"
+
+msgid "manager.setup.addSponsor"
+msgstr "Додати організацію-спонсора"
+
+msgid "manager.setup.announcements"
+msgstr "Оголошення"
+
+msgid "manager.setup.announcements.success"
+msgstr "Налаштування оголошень оновлено."
+
+msgid "manager.setup.announcementsDescription"
 msgstr ""
-"Ця дія скасує всі налаштування е-видавництва, повязані з цією локалізацією"
+"Для інформування читачів про новини та події е-видавництва можна публікувати "
+"оголошення. Оприлюднені оголошення з'являться на сторінці \"Оголошення\"."
 
-msgid "doi.readerDisplayName"
-msgstr "DOI:"
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Додаткова інформація"
 
-msgid "doi.description"
+msgid "manager.setup.announcementsIntroduction.description"
 msgstr ""
-"Цей плагін активує призначення Digital Object Identifiers для монографій, "
-"глав, форматів публікацій і файлів в OMP."
+"Введіть будь-яку додаткову інформацію, яка має бути показана читачам на "
+"сторінці \"Оголошення\"."
 
-msgid "doi.displayName"
-msgstr "DOI"
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Для появи в розділі \"Про е-видавництво\") "
 
-msgid "doi.editor.preview.objects"
-msgstr "Елемент"
+msgid "manager.setup.contextAbout"
+msgstr "Про е-видавництво"
 
-msgid "doi.editor.preview.files"
-msgstr "Файл: {$title}"
-
-msgid "doi.editor.preview.publicationFormats"
-msgstr "Формат публікації: {$title}"
-
-msgid "doi.editor.preview.chapters"
-msgstr "Глава: {$title}"
-
-msgid "doi.editor.preview.publication.none"
-msgstr "DOI призначено цій публікації."
-
-msgid "doi.editor.preview.publication"
-msgstr "DOI для цієї публікації виглядатиме так: {$doi}."
-
-msgid "doi.editor.missingPrefix"
-msgstr "DOI має починатися з {$doiPrefix}."
-
-msgid "doi.editor.assignDoi.assigned"
-msgstr "DOI {$pubId} призначено."
-
-msgid "doi.editor.assignDoi.emptySuffix"
-msgstr "DOI не може бути призначено, через відсутність користувацького суфікса."
-
-msgid "doi.editor.assignDoi"
-msgstr "Призначити DOI {$pubId} для {$pubObjectType}"
-
-msgid "doi.editor.clearObjectsDoi.confirm"
-msgstr "Ви впевнені що хочете видалити існуючі DOI?"
-
-msgid "doi.editor.clearObjectsDoi"
-msgstr "Очистити"
-
-msgid "doi.editor.assigned"
-msgstr "DOI призначено цьому/цій {$pubObjectType}."
-
-msgid "doi.editor.customSuffixMissing"
-msgstr "DOI не може бути призначено, через відсутність користувацького суфікса."
-
-msgid "doi.editor.doiObjectTypeSubmissionFile"
-msgstr "файл"
-
-msgid "doi.editor.doiObjectTypeRepresentation"
-msgstr "вид видання"
-
-msgid "doi.editor.doiObjectTypeChapter"
-msgstr "глава"
-
-msgid "doi.editor.doiObjectTypeSubmission"
-msgstr "монографія"
-
-msgid "doi.editor.doi.assignDoi"
-msgstr "Призначити"
-
-msgid "doi.editor.doi.description"
-msgstr "DOI має починатися з {$prefix}."
-
-msgid "doi.editor.doi"
-msgstr "DOI"
-
-msgid "doi.manager.settings.doiReassign.confirm"
-msgstr "Чи ви впевнені що хочете видалити усі призначені DOI?"
-
-msgid "doi.manager.settings.doiReassign"
-msgstr "Перепризначити DOI"
-
-msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
-msgstr "Введіть шаблон суфікса DOI для файлів."
-
-msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
-msgstr "Введіть шаблон суфікса DOI для форматів публікацій."
-
-msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
-msgstr "Введіть шаблон суфікса DOI для глав."
-
-msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
-msgstr "Введіть шаблон суфікса DOI для монографій."
-
-msgid "doi.manager.settings.doiSuffixPattern.files"
-msgstr "для файлів"
-
-msgid "doi.manager.settings.doiSuffixPattern.representations"
-msgstr "для форматів публікацій"
-
-msgid "doi.manager.settings.doiSuffixPattern.chapters"
-msgstr "для глав"
-
-msgid "doi.manager.settings.doiSuffixPattern.submissions"
-msgstr "для монографій"
-
-msgid "doi.manager.settings.doiSuffixPattern.example"
+msgid "manager.setup.contextAbout.description"
 msgstr ""
-"Наприклад, press%ppub%r створить DOI з значенням - 10.1234/pressESPpub100"
+"Укажіть основні відомості про Ваше е-видавництво, що зацікавлять читачів, "
+"авторів або рецензентів. Це можуть бути положення про відкритий доступ, "
+"фокус і сфера е-видавництва, умови передачі авторських прав, інформація про "
+"спонсорів, історія е-видавництва."
 
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "Префікс DOI є обов'язковим і має мати значення у форматі 10.xxxx."
+msgid "manager.setup.contextSummary"
+msgstr "Загальна інформація про е-видавництво"
 
-msgid "doi.manager.settings.doiPrefix"
-msgstr "Префікс DOI"
+msgid "manager.setup.copyediting"
+msgstr "Літературні редактори"
 
-msgid "doi.manager.settings.enableSubmissionFileDoi"
-msgstr "Файли"
-
-msgid "doi.manager.settings.enableRepresentationDoi"
-msgstr "Формати публікацій"
-
-msgid "doi.manager.settings.enableChapterDoi"
-msgstr "Глави"
-
-msgid "doi.manager.settings.enablePublicationDoi"
-msgstr "Монографії"
-
-msgid "doi.manager.settings.explainDois"
-msgstr "Оберіть видавничі об'єкти, які мають отримати DOI:"
-
-msgid "doi.manager.settings.doiObjectsRequired"
-msgstr ""
-"Оберіть типи творів, що публікуються цим е-видавництвом, яким необхідно "
-"надавати DOI. Більність е-видавництв пов'язують DOI з монографіями / "
-"главами, але можна за бажанням надати DOI усім публікованим матеріалам."
-
-msgid "doi.manager.settings.description"
-msgstr "Налаштуйте плагін DOI, щоб мати можливість користуватись DOI в OMP:"
-
-msgid "doi.editor.assignDoi.pattern"
-msgstr ""
-"Не можна призначити DOI {$pubId}, оскільки він містить не замінений шаблон."
-
-msgid "doi.editor.missingParts"
-msgstr ""
-"Неможливо згенерувати DOI, оскільки одна або більше частин шаблону DOI "
-"відсутні."
-
-msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
-msgstr ""
-"Обраний суфікс DOI вже використовується для іншого опублікованого елементу. "
-"Будь ласка, оберіть для кожного елемента унікальний суфікс DOI."
-
-msgid "doi.editor.canBeAssigned"
-msgstr ""
-"Те, що ви бачите - це попередній перегляд DOI. Установіть прапорець і "
-"збережіть форму для призначення DOI."
-
-msgid "doi.editor.patternNotResolved"
-msgstr "Не можна призначити DOI, оскільки він містить не замінений шаблон."
-
-msgid "doi.manager.settings.doiReassign.description"
-msgstr ""
-"Якщо ви зміните свою DOI-конфігурацію, то вона не стосуватиметься DOI які "
-"вже були призначені. Після збереження конфігурації DOI використовуйте цю "
-"кнопку, щоб видалити усі існуючі DOI для того, щоб нові налаштування "
-"вплинули на існуючі об'єкти."
-
-msgid "doi.manager.settings.doiSuffixPattern"
-msgstr ""
-"Введіть користувацький шаблон суфікса для кожного типу публікації. "
-"Користувацький шаблон суфікса може використовувати такі символи для "
-"утворення суфікса:<br><br> <code>%p</code> Абревіатура е-видавництва<br> "
-"<code>%m</code> ID монографії<br> <code>%c</code> ID глави<br> "
-"<code>%f</code> ID формату публікації<br> <code>%s</code> ID файлу<br> "
-"<code>%x</code> Користувацький ідентифікатор<br><br> Майте на увазі, що "
-"користувацькі шаблони суфіксів часто призводять до проблем зі створенням і "
-"розміщенням DOI. Використовуючи користувацький шаблон суфіксів, ретельно "
-"перевірте, чи можуть редактори генерувати DOI, і передайте їх до "
-"реєстраційного агентства, такого як Crossref. "
-
-msgid "doi.manager.displayName"
-msgstr "Кілька DOI"
-
-msgid "manager.setup.details.description"
-msgstr "Назва е-видавництва, контакти, спонсори й пошукові системи."
-
-msgid "manager.setup.customTagsDescription"
-msgstr ""
-"Корстувацькі HTML-теги заголовків, які вставляються в заголовок кожної "
-"сторінки (наприклад, теги META)."
-
-msgid "manager.setup.customizingTheLook"
-msgstr "Крок 5. Налаштування вигляду й стилю"
-
-msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
-msgstr ""
-"Зображення будуть зменшені, якщо вони є більшими за цей розмір, але ніколи "
-"не будуть збільшені чи розтягнуті для підгонки згідно з цими розмірами."
-
-msgid "manager.setup.coverage"
-msgstr "Охоплення"
-
-msgid "manager.setup.copyrightNotice"
-msgstr "Інформація про авторське право"
+msgid "manager.setup.copyeditInstructions"
+msgstr "Інструкції з літературного редагування"
 
 msgid "manager.setup.copyeditInstructionsDescription"
 msgstr ""
@@ -538,136 +355,537 @@ msgstr ""
 "бути в будь-який момент змінений чи замінений менеджером е-видавництва (у "
 "форматі HTML або звичайного тексту)."
 
-msgid "manager.setup.contextSummary"
+msgid "manager.setup.copyrightNotice"
+msgstr "Інформація про авторське право"
+
+msgid "manager.setup.coverage"
+msgstr "Охоплення"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Максимальна довжина зображення обкладинки"
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Максимальна ширина зображення обкладинки"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Зображення будуть зменшені, якщо вони є більшими за цей розмір, але ніколи "
+"не будуть збільшені чи розтягнуті для підгонки згідно з цими розмірами."
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Крок 5. Налаштування вигляду й стилю"
+
+msgid "manager.setup.customTags"
+msgstr "Користувацькі Теги"
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Корстувацькі HTML-теги заголовків, які вставляються в заголовок кожної "
+"сторінки (наприклад, теги META)."
+
+msgid "manager.setup.details"
+msgstr "Детальніше"
+
+msgid "manager.setup.details.description"
+msgstr "Назва е-видавництва, контакти, спонсори й пошукові системи."
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+"Менеджер е-видавництва реєструватиме всіх користувачів. Редактори чи "
+"редактори розділів можуть реєструвати облікові записи користувачів для "
+"рецензентів."
+
+msgid "manager.setup.discipline"
+msgstr "Академічна дисципліна й розділи дисципліни"
+
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Корисно, коли е-видавництво виходить за рамки однієї дисципліни та/або "
+"автори подають міждисциплінарні матеріали."
+
+msgid "manager.setup.disciplineExamples"
+msgstr ""
+"(Наприклад, Історія; Освіта; Соціологія; Психологія; Культурологія; Право)"
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr ""
+"Наведіть приклади відповідних академічних дисциплін для цього е-видавництва"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Додати зміст для поточної монографії (якщо це доступно)."
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Контент домашньої сторінки"
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Показати рекомендовані книги на домашній сторінці"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Рекомендовані книги"
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Показати книги в фокусі уваги на домашній сторінці"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Фокус уваги"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Показати нові релізи на домашній сторінці"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Нові релізи"
+
+msgid "manager.setup.enableDois.description"
+msgstr ""
+"Дозволити,щоб Digital Object Identifiers (DOIs) були пов'язані з твором, "
+"опублікованим у цьому е-видавництві."
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr ""
+"Оберіть типи творів, що публікуються цим е-видавництвом, яким необхідно "
+"надавати DOI. Більність е-видавництв пов'язують DOI з монографіями / "
+"главами, але можна за бажанням надати DOI усім публікованим матеріалам."
+
+msgid "doi.manager.settings.doiSuffixLegacy"
+msgstr ""
+"Використати шаблони за замовчуванням.<br />%p.%m для монографій<br />%p.%m.c"
+"%c для глав<br />%p.%m.%f для форматів публікацій<br />%p.%m.%f.%s для "
+"файлів."
+
+msgid "doi.manager.settings.doiCreationTime.copyedit"
+msgstr "Коли досягнуто стадію літературного редагування"
+
+msgid "manager.dois.formatIdentifier.file"
+msgstr "Формат / {$format}"
+
+msgid "manager.setup.editorDecision"
+msgstr "Рішення Редактора"
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Адреса для помилок"
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"У випадку проблем із доставкою листа електронною поштою повідомлення про "
+"помилку буде направлено на цю адресу."
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Щоб відправляти листи, недоставлювані листи на адресу для помилок, "
+"адміністратор сайту повинен включити параметр <code>allow_envelope_sender</"
+"code> у файлі конфігурації сайту. Може знадобитися конфігурування сервера, "
+"як описано в документації OMP."
+
+msgid "manager.setup.emails"
+msgstr "Ідентифікація за адресою електронної пошти"
+
+msgid "manager.setup.emailSignature"
+msgstr "Підпис"
+
+#, fuzzy
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"Підготовлені листи, що відправляються системою від імени видавництва, "
+"міститимуть наступний підпис, добавлений у кінці листа."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Включити оголошення"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Оголошення можна публікувати, щоб інформувати читачів про новини й події. "
+"Опубліковані оголошення з'являтимуться на сторінці \"Оголошення\"."
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Показувати на домашній сторінці"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Як багато оголошень показувати на домашній сторінці. Залиште це поле пустим, "
+"щоб не показувати жодного."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Включити показ політики цього е-видавництва на сайті"
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr ""
+"Для ідентифікації опублікованих матеріалів будуть використовуватися "
+"користувацькі ідентифікатори."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+"Для ідентифікації гранок (наприклад, файлів HTML або PDF) опублікованих "
+"матеріалів будуть використовуватися користувацькі ідентифікатори."
+
+msgid "manager.setup.enableUserRegistration"
+msgstr ""
+"Відвідувачі можуть зареєструвати обліковий запис користувача в е-видавництві."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Фокус і сфера е-видавництва"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr ""
+"Опишіть для авторів, читачів і бібліотек проблематику монографій та інших "
+"матеріалів, які буде публікувати е-видавництво."
+
+msgid "manager.setup.focusScope"
+msgstr "Фокус і сфера"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>ПРИКЛАД даних HTML</strong>"
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Для авторів щодо індексації їхнього твору"
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"OMP підтримує протокол збору метаданих <a href=\"http://www.openarchives.org/"
+"\" target=\"_blank\">Open Archives Initiative</a>, який стає стандартом для "
+"забезпечення добре індексовуваного доступу до електронних дослідницьких "
+"ресурсів у світовому масштабі. Автори будуть використовувати аналогічний "
+"шаблон для надання метаданих про своє подання. Менеджер е-видавництва має "
+"вибрати категорії для індексування і надати авторам відповідні приклади, аби "
+"допомогти в індексуванні їхніх творів, розділяючи їх крапкою з комою "
+"(наприклад, термін1; термін2). Записи мають бути представлені як приклади, "
+"використовуючи \"Напр.,\" або \"Наприклад,\"."
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "Вимагається адреса електронної пошти головної контактної особи."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Вимагається ім'я головної контактної особи."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Вимагається вказати кількість рецензентів для кожного подання."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "Вимагається вказати електронну пошту підтримки."
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Вимагається вказати ім'я особи з підтримки."
+
+msgid "manager.setup.generalInformation"
+msgstr "Загальна інформація"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Крок 1. До дрібніших деталей"
+
+msgid "manager.setup.guidelines"
+msgstr "Настанови"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Крок 3. Підготовка робочого процесу"
+
+msgid "manager.setup.identity"
+msgstr "Свідоцтво е-видавництва"
+
+msgid "manager.setup.information"
+msgstr "Інформація"
+
+msgid "manager.setup.information.description"
+msgstr ""
+"Стислі описи е-видавництва для бібліотекарів, потенційних авторів і читачів. "
+"Вони будуть доступними в бічній панелі сайту, коли буде додано блок "
+"\"Інформація\"."
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Для авторів"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Для бібліотекарів"
+
+msgid "manager.setup.information.forReaders"
+msgstr "Для читачів"
+
+msgid "manager.setup.information.success"
+msgstr "Інформацію для цього е-видавництва було оновлено."
+
+msgid "manager.setup.institution"
+msgstr "Організація"
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Елементів на сторінці"
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Обмежте кількість елементів (наприклад, подань, користувачів або завдань на "
+"редагування) для показу в списку перед показом наступних елементів на іншій "
+"сторінці."
+
+msgid "manager.setup.keyInfo"
+msgstr "Ключова інформація"
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Додайте стислий опис Вашого е-видавництва і вкажіть редакторів, керуючих "
+"директорів та інших членів Вашої редакції."
+
+msgid "manager.setup.labelName"
+msgstr "Назва мітки"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Верстальники"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Інструкції з верстання"
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"Інструкції з верстання можуть бути підготовлені для форматування елементів "
+"публікації в е-видавництві і введені нижче в HTML чи звичайним текстом. Вони "
+"будуть доступні верстальнику й редактору розділів на сторінці редагування "
+"кожного подання. (Оскільки кожне е-видавництво може використовувати власні "
+"формати файлів, бібліографічні стандарти, таблиці стилів тощо, набір "
+"інструкцій за замовчуванням не надається.)"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Шаблони верстки"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"Шаблони можуть бути завантажені в розділ \"Верстка\" для кожного зі "
+"стандартних форматів, що публікуються в е-видавництві (наприклад, "
+"монографії, книжкового огляду тощо), з використанням будь-якого формату "
+"файлу (наприклад, pdf, doc тощо), з додаванням анотацій і вказівкою шрифта, "
+"розміру, полів тощо, щоб слугувати керівництвом для верстальників і "
+"коректорів."
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Файл шаблону"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Назва"
+
+msgid "manager.setup.lists"
+msgstr "Списки"
+
+msgid "manager.setup.lists.success"
+msgstr "Налаштування списку було оновлено."
+
+msgid "manager.setup.look"
+msgstr "Вигляд і стиль"
+
+msgid "manager.setup.look.description"
+msgstr ""
+"Заголовок домашньої сторінки, контент, заголовок е-видавництва, панель "
+"навігації та таблиця стилів."
+
+msgid "manager.setup.settings"
+msgstr "Налаштування"
+
+msgid "manager.setup.management.description"
+msgstr ""
+"Доступ і безпека, планування, оголошення, літературне редагування, верстка й "
+"коректура."
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Управління основними редакційними кроками"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Налаштування процесів управління та опублікування"
+
+msgid "manager.setup.managingThePress"
+msgstr "Крок 4. Керування налаштуваннями"
+
+msgid "manager.setup.masthead.success"
+msgstr "Вихідні дані цього е-видавницва було оновлено."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Файл зображення не завантажено."
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Листок стилів не завантажено."
+
+msgid "manager.setup.note"
+msgstr "Примітка"
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+"Під час використання електронної пошти для повідомлень включіть адреси всіх "
+"співавторів багатоавторського подання, а не тільки користувача, який робить "
+"подання."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr ""
+"Коректура буде виконана редактором або редактором розділу, призначеним для "
+"цього подання."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+"Редактор або редактор розділу, пов'язаний із цим поданням, підготує HTML, "
+"PDF або інші файли."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr ""
+"Редактор або редактор розділу, пов'язаний із цим поданням, перевірить гранки."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Покликання на сторінку"
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Обмежте кількість покликань для показу на наступних сторінках у списку."
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Доступ до контенту е-видавництва"
+
+msgid "manager.setup.onlineIssn"
+msgstr "ISSN (online)"
+
+msgid "manager.setup.policies"
+msgstr "Політика"
+
+msgid "manager.setup.policies.description"
+msgstr ""
+"Фокус, експертне оцінювання, розділи, конфіденційність, безпека й додаткова "
+"інформація про елементи."
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "Заяву про конфіденційність було оновлено."
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+"Із цієї сторінки можна сконфігурувати різні компоненти зовнішнього вигляду е-"
+"видавництва, включно з елементами заголовка й нижнього підвалу, стилем і "
+"темою, а також те, як користувачам представляються списки інформації."
+
+msgid "manager.setup.pressDescription"
 msgstr "Загальна інформація про е-видавництво"
 
-msgid "manager.setup.announcementsIntroduction.description"
+msgid "manager.setup.pressDescription.description"
+msgstr "Стислий опис Вашого е-видавництва."
+
+msgid "manager.setup.aboutPress"
+msgstr "Про е-видавництво"
+
+msgid "manager.setup.aboutPress.description"
 msgstr ""
-"Введіть будь-яку додаткову інформацію, яка має бути показана читачам на "
-"сторінці \"Оголошення\"."
+"Включіть будь-яку інформацію про Ваше е-видавництво, яка може бути цікавою "
+"читатчам, авторам або рецензентам. Сюди може входити Ваша політика "
+"відкритого доступу, фокус і сфера е-видавництва, інформація про авторське "
+"право, розкриття інформації про спонсорство, історія е-видавництва і заява "
+"про конфіденційність."
 
-msgid "manager.tools.statistics"
+msgid "manager.setup.pressArchiving"
+msgstr "Архівування е-видавництва"
+
+msgid "manager.setup.homepageContent"
+msgstr "Контент домашньої сторінки е-видавництва"
+
+msgid "manager.setup.homepageContentDescription"
 msgstr ""
-"Інструменти для генерування звітів, пов'язаних зі статистикою використання ("
-"перегляд сторінки индексу каталогу, перегляди сторінки анотації монографії, "
-"завантаження файлів монографії)"
+"Домашня сторінка е-видавництва складається з навігаційних покликань за "
+"замовчуванням. Контент додаткової домашньої сторінки може бути доповнено за "
+"допомогою однієї чи всіх таких опцій, які з'являться на сторінці в "
+"показаному порядку."
 
-msgid "manager.tools.importExport"
+msgid "manager.setup.pressHomepageContent"
+msgstr "Контент домашньої сторінки е-видавництва"
+
+msgid "manager.setup.pressHomepageContentDescription"
 msgstr ""
-"Усі налаштування для імпорту й експорту даних (видання, монографії, "
-"користувачі)"
+"Домашня сторінка е-видавництва складається з навігаційних покликань за "
+"замовчуванням. Контент додаткової домашньої сторінки може бути доповнено за "
+"допомогою однієї чи всіх таких опцій, які з'являться на сторінці в "
+"показаному порядку."
 
-msgid "manager.settings.distributionDescription"
+msgid "manager.setup.contextInitials"
+msgstr "Абревіатура назви е-видавництва"
+
+msgid "manager.setup.selectCountry"
 msgstr ""
-"Усі налаштування для процесу розповсюдження (повідомлення, индексація, "
-"архівування, оплата, інструмени для читання)."
+"Виберіть країну, де розташоване це е-видавництво, або країну адреси для "
+"листування е-видавництва чи видавця."
 
-msgid "manager.settings.publisherCodeType.invalid"
-msgstr "Цей тип коду видавця не є дійсним."
+msgid "manager.setup.layout"
+msgstr "Макет е-видавництва"
 
-msgid "manager.settings.publisher.identity.description"
+msgid "manager.setup.pageHeader"
+msgstr "Заголовок сторінки е-видавництва"
+
+msgid "manager.setup.pageHeaderDescription"
+msgstr "Опис заголовка сторінки"
+
+msgid "manager.setup.pressPolicies"
+msgstr "Крок 2. Політика е-видавництва"
+
+msgid "manager.setup.pressSetup"
+msgstr "Налаштування е-видавництва"
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Налаштування Вашого е-видавництва оновлено."
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Неправильний формат листка стилів. Прийнятним форматом є .css."
+
+msgid "manager.setup.pressTheme"
+msgstr "Тема оформлення е-видавництва"
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Мініатюра е-видавництва"
+
+msgid "manager.setup.pressThumbnail.description"
 msgstr ""
-"Ці поля необхідні, щоб опублікувати дійсні <a href=\"https://en.wikipedia."
-"org/wiki/ONIX_for_Books\">метадані ONIX</a>."
+"Маленький логотип або репрезентація е-видавництва, які можуть бути "
+"використані у списку е-видавництв."
 
-msgid "manager.series.confirmDeactivateSeries.error"
+msgid "manager.setup.contextTitle"
+msgstr "Назва е-видавництва"
+
+msgid "manager.setup.printIssn"
+msgstr "ISSN (print )"
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Інструкції з коректури"
+
+msgid "manager.setup.proofingInstructionsDescription"
 msgstr ""
-"Як мінімум одна серія має бути активною. Відвідайте налаштування робочого "
-"процесу, щоб відключити всі подання в це видавництво."
+"Інструкції з коректури будуть доступними коректорам, авторам, верстальникам "
+"і редакторам розділів на стадії редагування поданих матеріалів. Нижче "
+"наведено набір інструкцій за замовчуванням у форматі HTML, який може бути в "
+"будь-який момент змінений або заменений менеджером е-видавництва (у форматі "
+"HTML або звичайного тексту)."
 
-msgid "manager.series.restricted"
-msgstr "Не дозволяйте авторам подавати матеріали напряму до цієї серії."
+msgid "manager.setup.proofreading"
+msgstr "Коректори"
 
-msgid "manager.series.hideAbout"
-msgstr "Пропустіть цю серію в розділі \"Про е-видавництво\"."
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Надати інструкції верстальникам."
 
-msgid "manager.series.seriesEditorInstructions"
+msgid "manager.setup.publicationScheduleDescription"
 msgstr ""
-"Додайте редактора серії з доступних редакторів серії. Після додавання "
-"вкажіть, чи буде редактор серії переглядати РЕЦЕНЗІЇ (експертне оцінювання) "
-"та/або РЕДАГУВАННЯ (лІтературне, наукове, верстку й коректуру) подань у цій "
-"серії. Редактори серії створюються натисканням кнопки <a href=\""
-"{$seriesEditorsUrl}\">Редактори серії</a> в розділі \"Ролі\" в \"Керуванні е-"
-"видавництвом\"."
+"Елементи е-видавництва можуть публікуватися разом, як частина монографії зі "
+"своїм змістом. Як альтернатива, окремі матеріали можуть публікуватися в міру "
+"готовності, додаючись у зміст \"поточного\" тому. Опишіть читачам (на "
+"сторінці \"Про е-видавництво\") систему публікації, яку використовує це е-"
+"видавництво, і очікувану періодичність публікації."
 
-msgid "manager.setup.workflow"
-msgstr "Робочий процес"
+msgid "manager.setup.publisher"
+msgstr "Видавець"
 
-msgid "maganer.setup.submissionChecklistItemRequired"
-msgstr "Вимагається елемент контрольного списку."
-
-msgid "manager.setup.submissionGuidelines"
-msgstr "Настанови з подання"
-
-msgid "manager.setup.subjectProvideExamples"
+msgid "manager.setup.publisherDescription"
 msgstr ""
-"Надайте приклади ключових слів або тем, на які можуть орієнтуватися автори"
+"Назва видавничої організації з'явиться в розділі \"Про е-видавництво\"."
 
-msgid "manager.setup.subjectKeywordTopic"
-msgstr "Ключові слова"
+msgid "manager.setup.referenceLinking"
+msgstr "Покликання в посиланнях"
 
-msgid "manager.setup.subjectExamples"
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Інструкції з верстки для покликань у посиланнях"
+
+msgid "manager.setup.restrictMonographAccess"
 msgstr ""
-"(Наприклад, Фотосинтез; Чорні дири; Проблема чотирьох фарб; Баєсівська "
-"теорія)"
+"Користувачі мають бути зареєстрованими та увійти, щоб переглядати контент "
+"відкритого доступу."
 
-msgid "manager.setup.stepsToPressSite"
-msgstr "П'ять кроків до вебсайту е-видавництва"
-
-msgid "manager.setup.siteAccess.viewContent"
-msgstr "Показати контент розділу \"Монографії\""
-
-msgid "manager.setup.siteAccess.view"
-msgstr "Доступ до сайту"
-
-msgid "manager.setup.showGalleyLinksDescription"
+msgid "manager.setup.restrictSiteAccess"
 msgstr ""
-"Завжди показувати посилання на гранки й повідомляти про обмежений доступ."
+"Користувачі мають бути зареєстрованими та увійти, щоб переглядати сайт е-"
+"видавництва."
 
-msgid "manager.setup.selectSectionDescription"
-msgstr "Розділ е-видавництва, у якому буде розглядатися цей матеріал."
-
-msgid "manager.setup.selectEditorDescription"
-msgstr ""
-"Редактор е-видавництва, який буде наглядати за матеріалом у редакційному "
-"процесі."
-
-msgid "manager.setup.securitySettings.note"
-msgstr ""
-"Інші параметри, пов'язані з безпекою та доступом, можуть бути налаштовані зі "
-"сторінки <a href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\""
-"action\">.\"Доступ і безпека\"</a>."
-
-msgid "manager.setup.securitySettings"
-msgstr "Налаштування доступу й безпеки"
-
-msgid "manager.setup.sectionsDescription"
-msgstr ""
-"Для створення чи змінення розділів t-видавництва (наприклад, \"Монографії\", "
-"\"Огляди книг\" тощо) перейдіть до \"Керування розділами\".<br /><br />"
-"Автори під час відправки матеріалів зможуть вибрати…"
-
-msgid "manager.setup.sectionsDefaultSectionDescription"
-msgstr ""
-"(Якщо розділи не додано, то всі матеріали за замовчуванням направляються в "
-"розділ \"Монографії\".)"
-
-msgid "manager.setup.searchEngineIndexing.success"
-msgstr "Налаштування індексації для пошукових систем було оновлено."
-
-msgid "manager.setup.searchEngineIndexing.description"
-msgstr ""
-"Допоможіть пошуковим системам на зразок Google знаходити й показувати Ваш "
-"сайт. Рекомендується відтправити <a href=\"{$sitemapUrl}\" target=\"_blank\">"
-"карту Вашого сайту</a>."
-
-msgid "manager.setup.searchEngineIndexing"
-msgstr "Індексація для пошуку"
-
-msgid "manager.setup.searchDescription.description"
-msgstr ""
-"Введіть стислий (50-300 знаків) опис е-видавництва, який відображатимуть "
-"пошукові системи при показі е-видавництва в результатах пошуку."
+msgid "manager.setup.reviewGuidelines"
+msgstr "Настанови із зовнішнього рецензування"
 
 msgid "manager.setup.reviewGuidelinesDescription"
 msgstr ""
@@ -676,6 +894,41 @@ msgstr ""
 "подготовки ефективної і корисної рецензії. Рецензенти матимуть можливість "
 "надавати коментарі, призначені для автора й редактора, а також окремі "
 "коментарі тільки для редактора."
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Настанови із внутрішнього рецензування"
+
+msgid "manager.setup.reviewOptions"
+msgstr "Параметри рецензування"
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Автоматичні нагадувачі електронною поштою"
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr ""
+"Аби активувати ці параметри, адміністратор сайту повинен включити в "
+"конфігураційному файлі OMP опцію <tt>scheduled_tasks</tt>. Для підтримкки "
+"цієї функціональності може знадобитися додаткове конфігурування сервера (що "
+"может бути неможливим на всіх серверах), як указано в документації OMP."
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr ""
+"Редактори будуть оцінювати рецензентів за п'ятибальною шкалою якості після "
+"кожної рецензії."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Обмежити доступ до файлу"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr ""
+"Рецензенти матимуть доступ до файлу подання лише після того, як погодяться "
+"на його рецензування."
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Доступ рецензента"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Прямий доступ для рецензента"
 
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
 msgstr ""
@@ -689,553 +942,205 @@ msgstr "Додати безпекове покликання у лист-зап�
 msgid "manager.setup.reviewOptions.reviewerRatings"
 msgstr "Рейтинги рецензента"
 
-msgid "manager.setup.reviewPolicy"
-msgstr "Політика рецензування"
-
 msgid "manager.setup.reviewOptions.reviewerReminders"
 msgstr "Нагадувачі для рецензента"
 
-msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
-msgstr "Прямий доступ для рецензента"
+msgid "manager.setup.reviewPolicy"
+msgstr "Політика рецензування"
 
-msgid "manager.setup.reviewOptions.reviewerAccess"
-msgstr "Доступ рецензента"
-
-msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgid "manager.setup.searchDescription.description"
 msgstr ""
-"Рецензенти матимуть доступ до файлу подання лише після того, як погодяться "
-"на його рецензування."
+"Введіть стислий (50-300 знаків) опис е-видавництва, який відображатимуть "
+"пошукові системи при показі е-видавництва в результатах пошуку."
 
-msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
-msgstr "Обмежити доступ до файлу"
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Індексація для пошуку"
 
-msgid "manager.setup.reviewOptions.onQuality"
+msgid "manager.setup.searchEngineIndexing.description"
 msgstr ""
-"Редактори будуть оцінювати рецензентів за п'ятибальною шкалою якості після "
-"кожної рецензії."
-
-msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
-msgstr ""
-"Аби активувати ці параметри, адміністратор сайту повинен включити в "
-"конфігураційному файлі OMP опцію <tt>scheduled_tasks</tt>. Для підтримкки "
-"цієї функціональності може знадобитися додаткове конфігурування сервера (що "
-"может бути неможливим на всіх серверах), як указано в документації OMP."
-
-msgid "manager.setup.reviewOptions.automatedReminders"
-msgstr "Автоматичні нагадувачі електронною поштою"
-
-msgid "manager.setup.reviewOptions"
-msgstr "Параметри рецензування"
-
-msgid "manager.setup.internalReviewGuidelines"
-msgstr "Настанови із внутрішнього рецензування"
-
-msgid "manager.setup.reviewGuidelines"
-msgstr "Настанови із зовнішнього рецензування"
-
-msgid "manager.setup.restrictSiteAccess"
-msgstr ""
-"Користувачі мають бути зареєстрованими та увійти, щоб переглядати сайт "
-"е-видавництва."
-
-msgid "manager.setup.restrictMonographAccess"
-msgstr ""
-"Користувачі мають бути зареєстрованими та увійти, щоб переглядати контент "
-"відкритого доступу."
-
-msgid "manager.setup.refLinkInstructions.description"
-msgstr "Інструкції з верстки для покликань у посиланнях"
-
-msgid "manager.setup.referenceLinking"
-msgstr "Покликання в посиланнях"
-
-msgid "manager.setup.publisherDescription"
-msgstr "Назва видавничої організації з'явиться в розділі \"Про е-видавництво\"."
-
-msgid "manager.setup.publisher"
-msgstr "Видавець"
-
-msgid "manager.setup.publicationScheduleDescription"
-msgstr ""
-"Елементи е-видавництва можуть публікуватися разом, як частина монографії зі "
-"своїм змістом. Як альтернатива, окремі матеріали можуть публікуватися в міру "
-"готовності, додаючись у зміст \"поточного\" тому. Опишіть читачам (на "
-"сторінці \"Про е-видавництво\") систему публікації, яку використовує це е-"
-"видавництво, і очікувану періодичність публікації."
-
-msgid "manager.setup.provideRefLinkInstructions"
-msgstr "Надати інструкції верстальникам."
-
-msgid "manager.setup.proofingInstructions"
-msgstr "Інструкції з коректури"
-
-msgid "manager.setup.printIssn"
-msgstr "ISSN (print )"
-
-msgid "manager.setup.contextTitle"
-msgstr "Назва е-видавництва"
-
-msgid "manager.setup.pressThumbnail.description"
-msgstr ""
-"Маленький логотип або репрезентація е-видавництва, які можуть бути "
-"використані у списку е-видавництв."
-
-msgid "manager.setup.pressThumbnail"
-msgstr "Мініатюра е-видавництва"
-
-msgid "manager.setup.pressTheme"
-msgstr "Тема оформлення е-видавництва"
-
-msgid "manager.setup.styleSheetInvalid"
-msgstr "Неправильний формат листка стилів. Прийнятним форматом є .css."
-
-msgid "manager.setup.pageHeaderDescription"
-msgstr "Опис заголовка сторінки"
-
-msgid "manager.setup.layout"
-msgstr "Макет е-видавництва"
-
-msgid "manager.setup.selectCountry"
-msgstr ""
-"Виберіть країну, де розташоване це е-видавництво, або країну адреси для "
-"листування е-видавництва чи видавця."
-
-msgid "manager.setup.contextInitials"
-msgstr "Абревіатура назви е-видавництва"
-
-msgid "manager.setup.pressHomepageContentDescription"
-msgstr ""
-"Домашня сторінка е-видавництва складається з навігаційних покликань за "
-"замовчуванням. Контент додаткової домашньої сторінки може бути доповнено за "
-"допомогою однієї чи всіх таких опцій, які з'являться на сторінці в "
-"показаному порядку."
-
-msgid "manager.setup.pressHomepageContent"
-msgstr "Контент домашньої сторінки е-видавництва"
-
-msgid "manager.setup.homepageContentDescription"
-msgstr ""
-"Домашня сторінка е-видавництва складається з навігаційних покликань за "
-"замовчуванням. Контент додаткової домашньої сторінки може бути доповнено за "
-"допомогою однієї чи всіх таких опцій, які з'являться на сторінці в "
-"показаному порядку."
-
-msgid "manager.setup.homepageContent"
-msgstr "Контент домашньої сторінки е-видавництва"
-
-msgid "manager.setup.pressArchiving"
-msgstr "Архівування е-видавництва"
-
-msgid "manager.setup.aboutPress.description"
-msgstr ""
-"Включіть будь-яку інформацію про Ваше е-видавництво, яка може бути цікавою "
-"читатчам, авторам або рецензентам. Сюди може входити Ваша політика "
-"відкритого доступу, фокус і сфера е-видавництва, інформація про авторське "
-"право, розкриття інформації про спонсорство, історія е-видавництва і заява "
-"про конфіденційність."
-
-msgid "manager.setup.aboutPress"
-msgstr "Про е-видавництво"
-
-msgid "manager.setup.pressDescription.description"
-msgstr "Стислий опис Вашого е-видавництва."
-
-msgid "manager.setup.pressDescription"
-msgstr "Загальна інформація про е-видавництво"
-
-msgid "manager.setup.appearanceDescription"
-msgstr ""
-"Із цієї сторінки можна сконфігурувати різні компоненти зовнішнього вигляду е-"
-"видавництва, включно з елементами заголовка й нижнього підвалу, стилем і "
-"темою, а також те, як користувачам представляються списки інформації."
-
-msgid "manager.setup.privacyStatement.success"
-msgstr "Заяву про конфіденційність було оновлено."
-
-msgid "manager.setup.policies.description"
-msgstr ""
-"Фокус, експертне оцінювання, розділи, конфіденційність, безпека й додаткова "
-"інформація про елементи."
-
-msgid "manager.setup.policies"
-msgstr "Політика"
-
-msgid "manager.setup.onlineIssn"
-msgstr "ISSN (online)"
-
-msgid "manager.setup.onlineAccessManagement"
-msgstr "Доступ до контенту е-видавництва"
-
-msgid "manager.setup.numPageLinks.description"
-msgstr "Обмежте кількість покликань для показу на наступних сторінках у списку."
-
-msgid "manager.setup.notifyAllAuthorsOnDecision"
-msgstr ""
-"Під час використання електронної пошти для повідомлень включіть адреси всіх "
-"співавторів багатоавторського подання, а не тільки користувача, який робить "
-"подання."
-
-msgid "manager.setup.note"
-msgstr "Примітка"
-
-msgid "manager.setup.noStyleSheetUploaded"
-msgstr "Листок стилів не завантажено."
-
-msgid "manager.setup.noImageFileUploaded"
-msgstr "Файл зображення не завантажено."
-
-msgid "manager.setup.masthead.success"
-msgstr "Вихідні дані цього е-видавницва було оновлено."
-
-msgid "manager.setup.managingThePress"
-msgstr "Крок 4. Керування налаштуваннями"
-
-msgid "manager.setup.managingPublishingSetup"
-msgstr "Налаштування процесів управління та опублікування"
-
-msgid "manager.setup.managementOfBasicEditorialSteps"
-msgstr "Управління основними редакційними кроками"
-
-msgid "manager.setup.management.description"
-msgstr ""
-"Доступ і безпека, планування, оголошення, літературне редагування, верстка й "
-"коректура."
-
-msgid "manager.setup.look"
-msgstr "Вигляд і стиль"
-
-msgid "manager.setup.lists.success"
-msgstr "Налаштування списку було оновлено."
-
-msgid "manager.setup.pressSetupUpdated"
-msgstr "Налаштування Вашого е-видавництва оновлено."
-
-msgid "manager.setup.pressSetup"
-msgstr "Налаштування е-видавництва"
-
-msgid "manager.setup.pressPolicies"
-msgstr "Крок 2. Політика е-видавництва"
-
-msgid "manager.setup.pageHeader"
-msgstr "Заголовок сторінки е-видавництва"
-
-msgid "manager.setup.settings"
-msgstr "Налаштування"
-
-msgid "manager.setup.look.description"
-msgstr ""
-"Заголовок домашньої сторінки, контент, заголовок е-видавництва, панель "
-"навігації та таблиця стилів."
-
-msgid "manager.setup.lists"
-msgstr "Списки"
-
-msgid "manager.setup.layoutTemplates.title"
-msgstr "Назва"
-
-msgid "manager.setup.layoutTemplates.file"
-msgstr "Файл шаблону"
-
-msgid "manager.setup.layoutTemplatesDescription"
-msgstr ""
-"Шаблони можуть бути завантажені в розділ \"Верстка\" для кожного зі "
-"стандартних форматів, що публікуються в е-видавництві (наприклад, "
-"монографії, книжкового огляду тощо), з використанням будь-якого формату "
-"файлу (наприклад, pdf, doc тощо), з додаванням анотацій і вказівкою шрифта, "
-"розміру, полів тощо, щоб слугувати керівництвом для верстальників і "
-"коректорів."
-
-msgid "manager.setup.layoutTemplates"
-msgstr "Шаблони верстки"
-
-msgid "manager.setup.proofreading"
-msgstr "Коректори"
-
-msgid "manager.setup.proofingInstructionsDescription"
-msgstr ""
-"Інструкції з коректури будуть доступними коректорам, авторам, верстальникам "
-"і редакторам розділів на стадії редагування поданих матеріалів. Нижче "
-"наведено набір інструкцій за замовчуванням у форматі HTML, який може бути в "
-"будь-який момент змінений або заменений менеджером е-видавництва (у форматі "
-"HTML або звичайного тексту)."
-
-msgid "manager.setup.numPageLinks"
-msgstr "Покликання на сторінку"
-
-msgid "manager.setup.noUseProofreaders"
-msgstr ""
-"Редактор або редактор розділу, пов'язаний із цим поданням, перевірить гранки."
-
-msgid "manager.setup.noUseLayoutEditors"
-msgstr ""
-"Редактор або редактор розділу, пов'язаний із цим поданням, підготує HTML, "
-"PDF або інші файли."
-
-msgid "manager.setup.noUseCopyeditors"
-msgstr ""
-"Коректура буде виконана редактором або редактором розділу, призначеним для "
-"цього подання."
+"Допоможіть пошуковим системам на зразок Google знаходити й показувати Ваш "
+"сайт. Рекомендується відтправити <a href=\"{$sitemapUrl}\" target=\"_blank"
+"\">карту Вашого сайту</a>."
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr "Налаштування індексації для пошукових систем було оновлено."
 
 msgid "manager.setup.sectionsAndSectionEditors"
 msgstr "Розділи і редактори розділів"
 
-msgid "manager.setup.disableUserRegistration"
+msgid "manager.setup.sectionsDefaultSectionDescription"
 msgstr ""
-"Менеджер е-видавництва реєструватиме всіх користувачів. Редактори чи "
-"редактори розділів можуть реєструвати облікові записи користувачів для "
-"рецензентів."
+"(Якщо розділи не додано, то всі матеріали за замовчуванням направляються в "
+"розділ \"Монографії\".)"
 
-msgid "manager.setup.layoutInstructionsDescription"
+msgid "manager.setup.sectionsDescription"
 msgstr ""
-"Інструкції з верстання можуть бути підготовлені для форматування елементів "
-"публікації в е-видавництві і введені нижче в HTML чи звичайним текстом. Вони "
-"будуть доступні верстальнику й редактору розділів на сторінці редагування "
-"кожного подання. (Оскільки кожне е-видавництво може використовувати власні "
-"формати файлів, бібліографічні стандарти, таблиці стилів тощо, набір "
-"інструкцій за замовчуванням не надається.)"
+"Для створення чи змінення розділів t-видавництва (наприклад, \"Монографії\", "
+"\"Огляди книг\" тощо) перейдіть до \"Керування розділами\".<br /><br /"
+">Автори під час відправки матеріалів зможуть вибрати…"
 
-msgid "manager.setup.layoutInstructions"
-msgstr "Інструкції з верстання"
+msgid "manager.setup.securitySettings"
+msgstr "Налаштування доступу й безпеки"
 
-msgid "manager.setup.layoutAndGalleys"
-msgstr "Верстальники"
-
-msgid "manager.setup.labelName"
-msgstr "Назва мітки"
-
-msgid "manager.setup.keyInfo.description"
+msgid "manager.setup.securitySettings.note"
 msgstr ""
-"Додайте стислий опис Вашого е-видавництва і вкажіть редакторів, керуючих "
-"директорів та інших членів Вашої редакції."
+"Інші параметри, пов'язані з безпекою та доступом, можуть бути налаштовані зі "
+"сторінки <a href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\"action"
+"\">.\"Доступ і безпека\"</a>."
 
-msgid "manager.setup.keyInfo"
-msgstr "Ключова інформація"
-
-msgid "manager.setup.itemsPerPage.description"
+msgid "manager.setup.selectEditorDescription"
 msgstr ""
-"Обмежте кількість елементів (наприклад, подань, користувачів або завдань на "
-"редагування) для показу в списку перед показом наступних елементів на іншій "
-"сторінці."
+"Редактор е-видавництва, який буде наглядати за матеріалом у редакційному "
+"процесі."
 
-msgid "manager.setup.itemsPerPage"
-msgstr "Елементів на сторінці"
+msgid "manager.setup.selectSectionDescription"
+msgstr "Розділ е-видавництва, у якому буде розглядатися цей матеріал."
 
-msgid "manager.setup.institution"
-msgstr "Організація"
-
-msgid "manager.setup.information.success"
-msgstr "Інформацію для цього е-видавництва було оновлено."
-
-msgid "manager.setup.information.forReaders"
-msgstr "Для читачів"
-
-msgid "manager.setup.information.forLibrarians"
-msgstr "Для бібліотекарів"
-
-msgid "manager.setup.information.forAuthors"
-msgstr "Для авторів"
-
-msgid "manager.setup.information.description"
+msgid "manager.setup.showGalleyLinksDescription"
 msgstr ""
-"Стислі описи е-видавництва для бібліотекарів, потенційних авторів і читачів. "
-"Вони будуть доступними в бічній панелі сайту, коли буде додано блок \""
-"Інформація\"."
+"Завжди показувати посилання на гранки й повідомляти про обмежений доступ."
 
-msgid "manager.setup.information"
-msgstr "Інформація"
+msgid "manager.setup.siteAccess.view"
+msgstr "Доступ до сайту"
 
-msgid "manager.setup.identity"
-msgstr "Свідоцтво е-видавництва"
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Показати контент розділу \"Монографії\""
 
-msgid "manager.setup.preparingWorkflow"
-msgstr "Крок 3. Підготовка робочого процесу"
+msgid "manager.setup.stepsToPressSite"
+msgstr "П'ять кроків до вебсайту е-видавництва"
 
-msgid "manager.setup.guidelines"
-msgstr "Настанови"
-
-msgid "manager.setup.gettingDownTheDetails"
-msgstr "Крок 1. До дрібніших деталей"
-
-msgid "manager.setup.form.supportNameRequired"
-msgstr "Вимагається вказати ім'я особи з підтримки."
-
-msgid "manager.setup.form.supportEmailRequired"
-msgstr "Вимагається вказати електронну пошту підтримки."
-
-msgid "manager.setup.form.numReviewersPerSubmission"
-msgstr "Вимагається вказати кількість рецензентів для кожного подання."
-
-msgid "manager.setup.form.contactNameRequired"
-msgstr "Вимагається ім'я головної контактної особи."
-
-msgid "manager.setup.form.contactEmailRequired"
-msgstr "Вимагається адреса електронної пошти головної контактної особи."
-
-msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgid "manager.setup.subjectExamples"
 msgstr ""
-"OMP підтримує протокол збору метаданих <a href=\"http://www.openarchives.org/"
-"\" target=\"_blank\">Open Archives Initiative</a>, який стає стандартом для "
-"забезпечення добре індексовуваного доступу до електронних дослідницьких "
-"ресурсів у світовому масштабі. Автори будуть використовувати аналогічний "
-"шаблон для надання метаданих про своє подання. Менеджер е-видавництва має "
-"вибрати категорії для індексування і надати авторам відповідні приклади, аби "
-"допомогти в індексуванні їхніх творів, розділяючи їх крапкою з комою ("
-"наприклад, термін1; термін2). Записи мають бути представлені як приклади, "
-"використовуючи \"Напр.,\" або \"Наприклад,\"."
+"(Наприклад, Фотосинтез; Чорні дири; Проблема чотирьох фарб; Баєсівська "
+"теорія)"
 
-msgid "manager.setup.forAuthorsToIndexTheirWork"
-msgstr "Для авторів щодо індексації їхнього твору"
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Ключові слова"
 
-msgid "manager.setup.focusScopeDescription"
-msgstr "<strong>ПРИКЛАД даних HTML</strong>"
-
-msgid "manager.setup.focusScope"
-msgstr "Фокус і сфера"
-
-msgid "manager.setup.focusAndScope.description"
+msgid "manager.setup.subjectProvideExamples"
 msgstr ""
-"Опишіть для авторів, читачів і бібліотек проблематику монографій та інших "
-"матеріалів, які буде публікувати е-видавництво."
+"Надайте приклади ключових слів або тем, на які можуть орієнтуватися автори"
 
-msgid "manager.setup.focusAndScope"
-msgstr "Фокус і сфера е-видавництва"
+msgid "manager.setup.submissionGuidelines"
+msgstr "Настанови з подання"
 
-msgid "manager.setup.enableUserRegistration"
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "Вимагається елемент контрольного списку."
+
+msgid "manager.setup.workflow"
+msgstr "Робочий процес"
+
+msgid "manager.setup.submissions.description"
 msgstr ""
-"Відвідувачі можуть зареєструвати обліковий запис користувача в е-видавництві."
+"Настанови для авторів, авторське право та індексація (включно з реєстрацією)."
 
-msgid "manager.setup.enablePublicGalleyId"
+msgid "manager.setup.typeExamples"
 msgstr ""
-"Для ідентифікації гранок (наприклад, файлів HTML або PDF) опублікованих "
-"матеріалів будуть використовуватися користувацькі ідентифікатори."
+"(Наприклад, Історичне дослідження; Квазіекспериментальний; Літературний "
+"аналіз; Опитування/Інтерв'ю)"
 
-msgid "manager.setup.enablePublicMonographId"
+msgid "manager.setup.typeMethodApproach"
+msgstr "Тип (метод / підхід)"
+
+msgid "manager.setup.typeProvideExamples"
 msgstr ""
-"Для ідентифікації опублікованих матеріалів будуть використовуватися "
-"користувацькі ідентифікатори."
+"Наведіть приклади відповідних типів досліджень, методів і підходів для цього "
+"поля"
 
-msgid "manager.setup.enablePressInstructions"
-msgstr "Включити показ політики цього е-видавництва на сайті"
+msgid "manager.setup.useCopyeditors"
+msgstr "Для роботи з кожним поданням буде призначено літературного редактора."
 
-msgid "manager.setup.numAnnouncementsHomepage.description"
+msgid "manager.setup.useEditorialReviewBoard"
 msgstr ""
-"Як багато оголошень показувати на домашній сторінці. Залиште це поле пустим, "
-"щоб не показувати жодного."
+"Е-видавництвом буде залучена редакційна колегія чи колегія рецензентів."
 
-msgid "manager.setup.numAnnouncementsHomepage"
-msgstr "Показувати на домашній сторінці"
+msgid "manager.setup.useImageTitle"
+msgstr "Зображення назви"
 
-msgid "manager.setup.enableAnnouncements.description"
+msgid "manager.setup.useStyleSheet"
+msgstr "Таблиця стилів е-видавництва"
+
+msgid "manager.setup.useLayoutEditors"
 msgstr ""
-"Оголошення можна публікувати, щоб інформувати читачів про новини й події. "
-"Опубліковані оголошення з'являтимуться на сторінці \"Оголошення\"."
+"Для підготовки HTML, PDF та ін. файлів електронної публікації буде "
+"призначений верстальник."
 
-msgid "manager.setup.enableAnnouncements.enable"
-msgstr "Включити оголошення"
-
-#, fuzzy
-msgid "manager.setup.emailSignature.description"
+msgid "manager.setup.useProofreaders"
 msgstr ""
-"Підготовлені листи, що відправляються системою від імени видавництва, "
-"міститимуть наступний підпис, добавлений у кінці листа."
+"Для перевірки (спільно з авторами) гранок перед опублікуванням буде "
+"призначений коректор."
 
-msgid "manager.setup.emailBounceAddress.disabled"
+msgid "manager.setup.userRegistration"
+msgstr "Реєстрація користувача"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Текст назви"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Томів на рік"
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Формат"
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Має бути обрано формат."
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Ви маєте надати ім'я цьому формату."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Це фізичний (нецифровий) формат?"
+
+msgid "manager.setup.publicationFormat.inUse"
 msgstr ""
-"Щоб відправляти листи, недоставлювані листи на адресу для помилок, "
-"адміністратор сайту повинен включити параметр "
-"<code>allow_envelope_sender</code> у файлі конфігурації сайту. Може "
-"знадобитися конфігурування сервера, як описано в документації OMP."
+"Оскільки цей формат публікації зараз використовується монографією у Вашому "
+"видавництві, його не можна видалити."
 
-msgid "manager.setup.emailBounceAddress.description"
+msgid "manager.setup.newPublicationFormat"
+msgstr "Новий формат публікації"
+
+msgid "manager.setup.newPublicationFormatDescription"
 msgstr ""
-"У випадку проблем із доставкою листа електронною поштою повідомлення про "
-"помилку буде направлено на цю адресу."
+"Аби створити новий формат публікації, заповніть форму нижче й натисніть "
+"кнопку \"Створити\"."
 
-msgid "manager.setup.emailBounceAddress"
-msgstr "Адреса для помилок"
-
-msgid "manager.dois.formatIdentifier.file"
-msgstr "Формат / {$format}"
-
-msgid "doi.manager.settings.doiCreationTime.copyedit"
-msgstr "Коли досягнуто стадію літературного редагування"
-
-msgid "doi.manager.settings.doiSuffixLegacy"
+msgid "manager.setup.genresDescription"
 msgstr ""
-"Використати шаблони за замовчуванням.<br />%p.%m для монографій<br />%p.%m.c%"
-"c для глав<br />%p.%m.%f для форматів публікацій<br />%p.%m.%f.%s для файлів."
+"Ці жанри використовуются для йменування файлів і представлені в випадаючому "
+"меню при завантаженні файлів. Жанри, позначені ##, дозволяють користувачу "
+"пов'язати файл або з усією книгою 99Z, або з окремою главою за номером "
+"(наприклад, 02)."
 
-msgid "manager.setup.enableDois.description"
+msgid "manager.setup.disableSubmissions.notAccepting"
 msgstr ""
-"Дозволити,щоб Digital Object Identifiers (DOIs) були пов'язані з твором, "
-"опублікованим у цьому е-видавництві."
+"Це е-видавництво в цей час не приймає подання. Зайдіть у налаштування "
+"робочого процесу, щоб дозволити відправку матеріалів."
 
-msgid "manager.setup.displayNewReleases"
-msgstr "Показати нові релізи на домашній сторінці"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Фокус уваги"
-
-msgid "manager.setup.displayInSpotlight"
-msgstr "Показати книги в фокусі уваги на домашній сторінці"
-
-msgid "manager.setup.displayFeaturedBooks.label"
-msgstr "Рекомендовані книги"
-
-msgid "manager.setup.displayFeaturedBooks"
-msgstr "Показати рекомендовані книги на домашній сторінці"
-
-msgid "manager.setup.displayOnHomepage"
-msgstr "Контент домашньої сторінки"
-
-msgid "manager.setup.displayCurrentMonograph"
-msgstr "Додати зміст для поточної монографії (якщо це доступно)."
-
-msgid "manager.setup.disciplineProvideExamples"
+msgid "manager.setup.disableSubmissions.description"
 msgstr ""
-"Наведіть приклади відповідних академічних дисциплін для цього е-видавництва"
+"Заборонити користувачам відправляти нові подання в е-видавництво. Відправка "
+"матеріалів може бути відключена для окремих серій е-видавництва на сторінці "
+"налаштувань <a href=\"{$url}\">серій е-видавництва</a>."
 
-msgid "manager.setup.disciplineExamples"
+msgid "manager.setup.genres"
+msgstr "Жанри"
+
+msgid "manager.setup.newGenre"
+msgstr "Новий жанр монографій"
+
+msgid "manager.setup.newGenreDescription"
 msgstr ""
-"(Наприклад, Історія; Освіта; Соціологія; Психологія; Культурологія; Право)"
+"Аби створити новий жанр, заповніть форму нижче й натисніть кнопку \"Створити"
+"\"."
 
-msgid "manager.setup.disciplineDescription"
-msgstr ""
-"Корисно, коли е-видавництво виходить за рамки однієї дисципліни та/або "
-"автори подають міждисциплінарні матеріали."
+msgid "manager.setup.deleteSelected"
+msgstr "Видалити вибране"
 
-msgid "manager.setup.discipline"
-msgstr "Академічна дисципліна й розділи дисципліни"
+msgid "manager.setup.restoreDefaults"
+msgstr "Відновити налаштування за замовчуванням"
 
-msgid "manager.setup.categories.description"
-msgstr ""
-"Ви можете створити список категорій, які допоможуть організувати Ваші "
-"публікації. Категорії являють собою групування книг за тематикою, наприклад, "
-"\"Економіка\", \"Література\", \"Поезія\" і так далі. Категорії можуть бути "
-"вкладені в \"материнські\" категорії: наприклад, материнська категорія \""
-"Економіка\" може охоплювати окремі категорії \"Мікроекономіка\" й \""
-"Макроекономіка\". Відвідувачі зможуть здійснювати пошук в е-видавництві за "
-"категоріями."
-
-msgid "manager.setup.categoriesAndSeries"
-msgstr "Категорії та серії"
-
-msgid "manager.setup.currentFormats"
-msgstr "Поточні формати"
-
-msgid "manager.setup.issnDescription"
-msgstr ""
-"ISSN (International Standard Serial Number - міжнародний стандартний "
-"серійний номер) - це восьмизначний номер, який ідентифікує періодичні "
-"публікації включно з електронними серійними виданнями. Номер можна отримати "
-"в <a href=\"http://www.issn.org\" target=\"_blank\">Міжнародному центрі "
-"ISSN</a>."
-
-msgid "manager.setup.submitToSeries"
-msgstr "Дозволити подання в серії"
-
-msgid "manager.setup.submitToCategories"
-msgstr "Дозволити подання в категорії"
+msgid "manager.setup.prospectus"
+msgstr "Керівництво з проспекту (брошури)"
 
 msgid "manager.setup.prospectusDescription"
 msgstr ""
@@ -1246,285 +1151,163 @@ msgstr ""
 "разі е-видавництво має створити керівництво з проспекту, яке доповнить його "
 "видавничу програму."
 
-msgid "manager.setup.prospectus"
-msgstr "Керівництво з проспекту (брошури)"
+msgid "manager.setup.submitToCategories"
+msgstr "Дозволити подання в категорії"
 
-msgid "manager.setup.restoreDefaults"
-msgstr "Відновити налаштування за замовчуванням"
+msgid "manager.setup.submitToSeries"
+msgstr "Дозволити подання в серії"
 
-msgid "manager.setup.deleteSelected"
-msgstr "Видалити вибране"
-
-msgid "manager.setup.newGenreDescription"
+msgid "manager.setup.issnDescription"
 msgstr ""
-"Аби створити новий жанр, заповніть форму нижче й натисніть кнопку \""
-"Створити\"."
+"ISSN (International Standard Serial Number - міжнародний стандартний "
+"серійний номер) - це восьмизначний номер, який ідентифікує періодичні "
+"публікації включно з електронними серійними виданнями. Номер можна отримати "
+"в <a href=\"http://www.issn.org\" target=\"_blank\">Міжнародному центрі "
+"ISSN</a>."
 
-msgid "manager.setup.newGenre"
-msgstr "Новий жанр монографій"
+msgid "manager.setup.currentFormats"
+msgstr "Поточні формати"
 
-msgid "manager.setup.genres"
-msgstr "Жанри"
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Категорії та серії"
 
-msgid "manager.setup.disableSubmissions.description"
+msgid "manager.setup.categories.description"
 msgstr ""
-"Заборонити користувачам відправляти нові подання в е-видавництво. Відправка "
-"матеріалів може бути відключена для окремих серій е-видавництва на сторінці "
-"налаштувань <a href=\"{$url}\">серій е-видавництва</a>."
+"Ви можете створити список категорій, які допоможуть організувати Ваші "
+"публікації. Категорії являють собою групування книг за тематикою, наприклад, "
+"\"Економіка\", \"Література\", \"Поезія\" і так далі. Категорії можуть бути "
+"вкладені в \"материнські\" категорії: наприклад, материнська категорія "
+"\"Економіка\" може охоплювати окремі категорії \"Мікроекономіка\" й "
+"\"Макроекономіка\". Відвідувачі зможуть здійснювати пошук в е-видавництві за "
+"категоріями."
 
-msgid "manager.setup.disableSubmissions.notAccepting"
+msgid "manager.setup.series.description"
 msgstr ""
-"Це е-видавництво в цей час не приймає подання. Зайдіть у налаштування "
-"робочого процесу, щоб дозволити відправку матеріалів."
+"Ви можете створити будь-яку кількість серій, аби допомогти в організації "
+"Ваших публікацій. Серія являє собою спеціальний набір книг, що стосуються "
+"тематики або тем, які хтось запропонував, зазвичай один або два викладачі, а "
+"потім курирує. Відвідувачі зможуть шукати й переглядати е-видавництво за "
+"серіями."
 
-msgid "manager.setup.genresDescription"
+msgid "manager.setup.reviewForms"
+msgstr "Форми рецензій"
+
+msgid "manager.setup.roleType"
+msgstr "Тип ролі"
+
+msgid "manager.setup.authorRoles"
+msgstr "Ролі автора"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Ролі управлінців"
+
+msgid "manager.setup.availableRoles"
+msgstr "Доступні ролі"
+
+msgid "manager.setup.currentRoles"
+msgstr "Поточні ролі"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Ролі для внутрішнього рецензування"
+
+msgid "manager.setup.masthead"
+msgstr "Вихідні дані"
+
+msgid "manager.setup.editorialTeam"
+msgstr "Редакція"
+
+msgid "manager.setup.editorialTeam.description"
 msgstr ""
-"Ці жанри використовуются для йменування файлів і представлені в випадаючому "
-"меню при завантаженні файлів. Жанри, позначені ##, дозволяють користувачу "
-"пов'язати файл або з усією книгою 99Z, або з окремою главою за номером ("
-"наприклад, 02)."
+"Список редакторів, керуючих директорів та інших осіб, пов'язаних з е-"
+"видавництвом."
 
-msgid "manager.setup.newPublicationFormatDescription"
+msgid "manager.setup.files"
+msgstr "Файли"
+
+msgid "manager.setup.productionTemplates"
+msgstr "Виробничі шаблони"
+
+msgid "manager.files.note"
 msgstr ""
-"Аби створити новий формат публікації, заповніть форму нижче й натисніть "
-"кнопку \"Створити\"."
+"Примітка: файловий менеджер - це додаткова функція, яка дає змогу напряму "
+"переглядати й оперувати файлами та каталогами, пов'язаними із цим е-"
+"видавництвом."
 
-msgid "manager.setup.newPublicationFormat"
-msgstr "Новий формат публікації"
-
-msgid "manager.setup.publicationFormat.inUse"
+msgid "manager.setup.copyrightNotice.sample"
 msgstr ""
-"Оскільки цей формат публікації зараз використовується монографією у Вашому "
-"видавництві, його не можна видалити."
+"<h3>Пропоновані Creative Commons повідомлення про авторські права</h3>\n"
+"<h4>Пропонована політика для видавництв, що провадять відкритий доступ</"
+"h4>.\n"
+"Автори, які публікуються в цьому е-видавництві, погоджуються з такими "
+"умовами:\n"
+"<ol type=\"a\">\n"
+"\t<li>Автори зберігають авторські права й надають право першої публікації "
+"твору з одночасною ліцензією на <a target=\"_blank\" href=\"https://"
+"creativecommons.org/licenses/by/4.0/deed.uk\">Ліцензія Creative Commons "
+"\"Зазначення авторства міжнародна\"</a>, яка дозволяє іншим після початкової "
+"публікації в цьому е-видавництві: •\tпоширювати — копіювати і "
+"розповсюджувати матеріал у будь-якому вигляді чи форматі; •\tзмінювати — "
+"реміксувати, трансформувати і брати матеріал за основу для будь-яких цілей, "
+"навіть комерційних, — на таких умовах: •\tзазначення авторства — Ви маєте "
+"вказати автора, розмістити посилання на ліцензію та вказати чи було внесено "
+"зміни до твору. Ви можете зробити це у будь-який розумний спосіб, але так, "
+"щоб не створювати враження стосовно того, що ліцензіар підтримує чи схвалює "
+"вас або ваше використання твору; •\tбез додаткових обмежень — Ви не можете "
+"висувати додаткові умови або застосовувати технологічні засоби захисту, що "
+"обмежують права інших на дії дозволені ліцензією.</li>.\n"
+"\t<li>Автори мають можливість укладати окремі дододаткові серії договорів "
+"для неексклюзивного розповсюдження версії твору, опублікованої в е-"
+"видавництві (наприклад, розміщати його в інституційному репозитарії чи "
+"публікувати в книзі), з підтвердженням його первинної публікації в цьому е-"
+"видавництві.</li>.\n"
+"\t<li>Авторам дозволяється і рекомендується розміщати свій твір в інтернеті "
+"(наприклад, в інституційних репозитаріях або на їхньому вебсайті) до і під "
+"час процесу подання, оскільки це може викликати продуктивний обмін, а також "
+"більш раннє і широке цитування опублікованих творів (див. <a target=\"_blank"
+"\" href=\"https://web-archive.southampton.ac.uk/opcit.eprints.org/oacitation-"
+"biblio.html\">The Effect of Open Access…</a>).</li>.\n"
+"</ol>\n"
+"\n"
+"<h4>Запропонована політика для видавництв, що провадять відкладений "
+"відкритий доступ</h4>.\n"
+"Автори, які публікуються в цьому е-видавництві, погоджуються з такими "
+"умовами:\n"
+"<ol type=\"a\">\n"
+"\t<li>Автори зберігають авторські права й надають е-видавництву право першої "
+"публікації, при цьому твір протягом [SPECIFY PERIOD OF TIME] після "
+"опублікування водночас ліцензується за <a target=\"_blank\" href=\"https://"
+"creativecommons.org/licenses/by/4.0/deed.uk\">Ліцензія Creative Commons "
+"\"Зазначення авторства міжнародна\"</a>, яка дозволяє іншим після початкової "
+"публікації в цьому е-видавництві: •\tпоширювати — копіювати і "
+"розповсюджувати матеріал у будь-якому вигляді чи форматі; •\tзмінювати — "
+"реміксувати, трансформувати і брати матеріал за основу для будь-яких цілей, "
+"навіть комерційних, — на таких умовах: •\tзазначення авторства — Ви маєте "
+"вказати автора, розмістити посилання на ліцензію та вказати чи було внесено "
+"зміни до твору. Ви можете зробити це у будь-який розумний спосіб, але так, "
+"щоб не створювати враження стосовно того, що ліцензіар підтримує чи схвалює "
+"вас або ваше використання твору; •\tбез додаткових обмежень — Ви не можете "
+"висувати додаткові умови або застосовувати технологічні засоби захисту, що "
+"обмежують права інших на дії дозволені ліцензією.</li>.\n"
+"\t <li>Автори мають можливість укладати окремі дододаткові серії договорів "
+"для неексклюзивного розповсюдження версії твору, опублікованої в е-"
+"видавництві (наприклад, розміщати її в інституційному репозитарії чи "
+"публікувати в книзі), з підтвердженням його первинної публікації в цьому е-"
+"видавництві.</li>.\n"
+"\t <li>Авторам дозволяється і рекомендується розміщати свій твір в інтернеті "
+"(наприклад, в інституційних репозитаріях або на їхньому вебсайті) до і під "
+"час процесу подання, оскільки це може викликати продуктивний обмін, а також "
+"більш раннє і широке цитування опублікованих творів (див. <a target=\"_blank"
+"\" href=\"https://web-archive.southampton.ac.uk/opcit.eprints.org/oacitation-"
+"biblio.html\">The Effect of Open Access…</a>).</li>.\n"
+"</ol>"
 
-msgid "manager.setup.publicationFormat.physicalFormat"
-msgstr "Це фізичний (нецифровий) формат?"
-
-msgid "manager.setup.publicationFormat.nameRequired"
-msgstr "Ви маєте надати ім'я цьому формату."
-
-msgid "manager.setup.publicationFormat.codeRequired"
-msgstr "Має бути обрано формат."
-
-msgid "manager.setup.publicationFormat.code"
-msgstr "Формат"
-
-msgid "manager.setup.volumePerYear"
-msgstr "Томів на рік"
-
-msgid "manager.setup.useTextTitle"
-msgstr "Текст назви"
-
-msgid "manager.setup.userRegistration"
-msgstr "Реєстрація користувача"
-
-msgid "manager.setup.useProofreaders"
+msgid "manager.setup.basicEditorialStepsDescription"
 msgstr ""
-"Для перевірки (спільно з авторами) гранок перед опублікуванням буде "
-"призначений коректор."
-
-msgid "manager.setup.useLayoutEditors"
-msgstr ""
-"Для підготовки HTML, PDF та ін. файлів електронної публікації буде "
-"призначений верстальник."
-
-msgid "manager.setup.useStyleSheet"
-msgstr "Таблиця стилів е-видавництва"
-
-msgid "manager.setup.useImageTitle"
-msgstr "Зображення назви"
-
-msgid "manager.setup.useEditorialReviewBoard"
-msgstr "Е-видавництвом буде залучена редакційна колегія чи колегія рецензентів."
-
-msgid "manager.setup.useCopyeditors"
-msgstr "Для роботи з кожним поданням буде призначено літературного редактора."
-
-msgid "manager.setup.typeProvideExamples"
-msgstr ""
-"Наведіть приклади відповідних типів досліджень, методів і підходів для цього "
-"поля"
-
-msgid "manager.setup.typeMethodApproach"
-msgstr "Тип (метод / підхід)"
-
-msgid "manager.setup.typeExamples"
-msgstr ""
-"(Наприклад, Історичне дослідження; Квазіекспериментальний; Літературний "
-"аналіз; Опитування/Інтерв'ю)"
-
-msgid "manager.setup.submissions.description"
-msgstr ""
-"Настанови для авторів, авторське право та індексація (включно з реєстрацією)."
-
-msgid "mailable.decision.initialDecline.notifyAuthor.description"
-msgstr ""
-"Цей електронний лист сповіщає автора про те, що їхнє подання відхиляється ще "
-"перед відправкою на рецензування, оскільки подання не відповідає вимогам до "
-"публікації в е-видавництві."
-
-msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
-msgstr ""
-"Цей електронний лист сповіщає автора про те, що їхнє подання надсилається на "
-"стадію внутрішнього рецензування."
-
-msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
-msgstr "Надіслано на внутрішнє рецензування"
-
-msgid "doi.manager.submissionDois"
-msgstr "Кілька DOI монографії"
-
-msgid "mailable.validateEmailContext.description"
-msgstr ""
-"Цей електронний лист автоматично надсилається новому користувачу, коли вони "
-"реєструються у е-видавництві, якщо налаштування вимагають перевірки адреси "
-"електронної пошти."
-
-msgid "mailable.validateEmailContext.name"
-msgstr "Підтвердити електронну пошту (реєстрація е-видавництва)"
-
-msgid "emailTemplate.variable.site.siteTitle"
-msgstr "Назва вебсайту, де розміщено кілька е-видавництв"
-
-msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
-msgstr "Валюта суми платежу, наприклад долар США"
-
-msgid "emailTemplate.variable.queuedPayment.itemCost"
-msgstr "Сума платежу"
-
-msgid "emailTemplate.variable.queuedPayment.itemName"
-msgstr "Назва виду платежу"
-
-msgid "emailTemplate.variable.context.principalContactSignature"
-msgstr ""
-"Підпис електронної пошти е-видавництва для автоматизованих електронних листів"
-
-msgid "plugins.importexport.native.exportSubmissions"
-msgstr "Експортувати подання"
-
-msgid "plugins.importexport.common.invalidXML"
-msgstr "Неправильний XML:"
-
-msgid "plugins.importexport.common.error.validation"
-msgstr "Не вдалося перетворити виділені об'єкти."
-
-msgid "plugins.importexport.common.error.noObjectsSelected"
-msgstr "Немає вибраних об'єктів."
-
-msgid "stats.publications.abstracts"
-msgstr "Записи каталогу"
-
-msgid "stats.publications.countOfTotal"
-msgstr "{$count} з {$total} монографій"
-
-msgid "stats.publications.totalGalleyViews.timelineInterval"
-msgstr "Загальна кількість переглядів файлу за датою"
-
-msgid "stats.publications.totalAbstractViews.timelineInterval"
-msgstr "Загальна кількість переглядів каталогу за датою"
-
-msgid "stats.publications.none"
-msgstr ""
-"Не знайдено монографій зі статистикою використання, що відповідають цим "
-"параметрам."
-
-msgid "stats.publications.details"
-msgstr "Деталі монографії"
-
-msgid "stats.publicationStats"
-msgstr "Статистика монографії"
-
-msgid "grid.series.urlWillBe"
-msgstr "Адресою URL серії буде: {$sampleUrl}"
-
-msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
-msgstr ""
-"Будь ласка, виберіть категорію, на яку ви хочете послатися в цьому пункті "
-"меню."
-
-msgid "manager.navigationMenus.form.navigationMenuItem.category"
-msgstr "Виберіть категорію"
-
-msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
-msgstr ""
-"Будь ласка, виберіть серію, на яку ви хочете послатися в цьому пункті меню."
-
-msgid "manager.navigationMenus.form.navigationMenuItem.series"
-msgstr "Вибрати серію"
-
-msgid "grid.series.pathExists"
-msgstr "Шлях до серії вже існує. Будь ласка, введіть унікальний шлях."
-
-msgid "grid.series.pathAlphaNumeric"
-msgstr "Шлях до серії повинен складатися тільки з букв і цифр."
-
-msgid "emailTemplate.variable.context.contextUrl"
-msgstr "Адреса URL домашньої сторінки е-видавництва"
-
-msgid "emailTemplate.variable.context.contextName"
-msgstr "Назва е-видавництва"
-
-msgid "plugins.importexport.chapter.exportFailed"
-msgstr "Не вдалося проаналізувати глави"
-
-msgid "plugins.importexport.publicationformat.exportFailed"
-msgstr "Не вдалося проаналізувати формати публікацій"
-
-msgid "plugins.importexport.native.error.unknownUser"
-msgstr "Указаний користувач, \"{$userName}\", не існує."
-
-msgid "plugins.importexport.common.error.unknownObjects"
-msgstr "Не вдалося знайти вказані об'єкти."
-
-msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
-msgstr ""
-"Для цього е-видавництва не визначено жодної головної контактної особи. Можна "
-"ввести головну контактну особу в <a href=\"{$url}\">налаштуваннях "
-"е-видавництва</a>."
-
-msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
-msgstr ""
-"Надіслати головній контактній особі цього е-видавництва копію електронного "
-"листа з підтвердженням подання."
-
-msgid "emailTemplate.variable.context.contactName"
-msgstr "Ім'я головної контактної особи е-видавництва"
-
-msgid "emailTemplate.variable.context.contactEmail"
-msgstr "Адреса електронної пошти головної контактної особи е-видавництва"
-
-msgid "manager.setup.notifications.copyPrimaryContact"
-msgstr ""
-"Надіслати копію головній контактній особі, вказаній у налаштуваннях "
-"е-видавництва."
-
-msgid "grid.genres.title"
-msgstr "Компоненти монографії"
-
-msgid "grid.genres.title.short"
-msgstr "Компоненти"
-
-msgid "manager.setup.resetPermissions.success"
-msgstr "Дозволи для монографії було успішно скинуто."
-
-msgid "manager.setup.resetPermissions.description"
-msgstr ""
-"Заява про авторське право й інформація про ліцензію будуть постійно доданими "
-"до публікованого контенту з гарантією, що ці дані не зміняться в разі зміни "
-"політики е-видавництва стосовно нових матеріалів. Для скидання збереженої "
-"інформації про дозволи, уже прикріпленої до опублікованого контенту, "
-"скористайтеся кнопкою, розташованою нижче."
-
-msgid "manager.setup.resetPermissions.confirm"
-msgstr ""
-"Чи впевнені Ви, що бажаєте скинути дані дозволів, уже прикріплених до "
-"монографій?"
-
-msgid "manager.setup.resetPermissions"
-msgstr "Скинути дозволи для монографії"
-
-msgid "manager.publication.library"
-msgstr "Бібліотека е-видавництва"
+"Кроки: Черга подань &gt; Реценування подання &gt; Редагування подання &gt; "
+"Зміст.<br /><br />\n"
+"Виберіть модель для керування цими аспектами редакційного процесу. (Для "
+"визначення керуючого редактора й редакторів серій перейдіть у підрозділ "
+"\"Редактори\" розділу \"Керування е-видавництвом\".)"
 
 msgid "manager.setup.referenceLinkingDescription"
 msgstr ""
@@ -1542,139 +1325,84 @@ msgstr ""
 "наступні інструкції (які можна редагувати).</p></li>.\n"
 "</ol>"
 
-msgid "manager.setup.basicEditorialStepsDescription"
+msgid "manager.publication.library"
+msgstr "Бібліотека е-видавництва"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Скинути дозволи для монографії"
+
+msgid "manager.setup.resetPermissions.confirm"
 msgstr ""
-"Кроки: Черга подань &gt; Реценування подання &gt; Редагування подання &gt; "
-"Зміст.<br /><br />\n"
-"Виберіть модель для керування цими аспектами редакційного процесу. (Для "
-"визначення керуючого редактора й редакторів серій перейдіть у підрозділ \""
-"Редактори\" розділу \"Керування е-видавництвом\".)"
+"Чи впевнені Ви, що бажаєте скинути дані дозволів, уже прикріплених до "
+"монографій?"
 
-msgid "manager.setup.copyrightNotice.sample"
+msgid "manager.setup.resetPermissions.description"
 msgstr ""
-"<h3>Пропоновані Creative Commons повідомлення про авторські права</h3>\n"
-"<h4>Пропонована політика для видавництв, що провадять відкритий доступ</h4>."
-"\n"
-"Автори, які публікуються в цьому е-видавництві, погоджуються з такими "
-"умовами:\n"
-"<ol type=\"a\">\n"
-"\t<li>Автори зберігають авторські права й надають право першої публікації "
-"твору з одночасною ліцензією на <a target=\"_blank\" href=\"https"
-"://creativecommons.org/licenses/by/4.0/deed.uk\">Ліцензія Creative Commons "
-"\"Зазначення авторства міжнародна\"</a>, яка дозволяє іншим після початкової "
-"публікації в цьому е-видавництві: •\tпоширювати — копіювати і "
-"розповсюджувати матеріал у будь-якому вигляді чи форматі; •\tзмінювати — "
-"реміксувати, трансформувати і брати матеріал за основу для будь-яких цілей, "
-"навіть комерційних, — на таких умовах: •\tзазначення авторства — Ви маєте "
-"вказати автора, розмістити посилання на ліцензію та вказати чи було внесено "
-"зміни до твору. Ви можете зробити це у будь-який розумний спосіб, але так, "
-"щоб не створювати враження стосовно того, що ліцензіар підтримує чи схвалює "
-"вас або ваше використання твору; •\tбез додаткових обмежень — Ви не можете "
-"висувати додаткові умови або застосовувати технологічні засоби захисту, що "
-"обмежують права інших на дії дозволені ліцензією.</li>.\n"
-"\t<li>Автори мають можливість укладати окремі дододаткові серії договорів "
-"для неексклюзивного розповсюдження версії твору, опублікованої в е-"
-"видавництві (наприклад, розміщати його в інституційному репозитарії чи "
-"публікувати в книзі), з підтвердженням його первинної публікації в цьому "
-"е-видавництві.</li>.\n"
-"\t<li>Авторам дозволяється і рекомендується розміщати свій твір в інтернеті ("
-"наприклад, в інституційних репозитаріях або на їхньому вебсайті) до і під "
-"час процесу подання, оскільки це може викликати продуктивний обмін, а також "
-"більш раннє і широке цитування опублікованих творів (див. <a target=\"_blank"
-"\" href=\"https://web-archive.southampton.ac.uk/opcit.eprints.org/oacitation-"
-"biblio.html\">The Effect of Open Access…</a>).</li>.\n"
-"</ol>\n"
-"\n"
-"<h4>Запропонована політика для видавництв, що провадять відкладений "
-"відкритий доступ</h4>.\n"
-"Автори, які публікуються в цьому е-видавництві, погоджуються з такими "
-"умовами:\n"
-"<ol type=\"a\">\n"
-"\t<li>Автори зберігають авторські права й надають е-видавництву право першої "
-"публікації, при цьому твір протягом [SPECIFY PERIOD OF TIME] після "
-"опублікування водночас ліцензується за <a target=\"_blank\" href=\"https"
-"://creativecommons.org/licenses/by/4.0/deed.uk\">Ліцензія Creative Commons "
-"\"Зазначення авторства міжнародна\"</a>, яка дозволяє іншим після початкової "
-"публікації в цьому е-видавництві: •\tпоширювати — копіювати і "
-"розповсюджувати матеріал у будь-якому вигляді чи форматі; •\tзмінювати — "
-"реміксувати, трансформувати і брати матеріал за основу для будь-яких цілей, "
-"навіть комерційних, — на таких умовах: •\tзазначення авторства — Ви маєте "
-"вказати автора, розмістити посилання на ліцензію та вказати чи було внесено "
-"зміни до твору. Ви можете зробити це у будь-який розумний спосіб, але так, "
-"щоб не створювати враження стосовно того, що ліцензіар підтримує чи схвалює "
-"вас або ваше використання твору; •\tбез додаткових обмежень — Ви не можете "
-"висувати додаткові умови або застосовувати технологічні засоби захисту, що "
-"обмежують права інших на дії дозволені ліцензією.</li>.\n"
-"\t <li>Автори мають можливість укладати окремі дододаткові серії договорів "
-"для неексклюзивного розповсюдження версії твору, опублікованої в е-"
-"видавництві (наприклад, розміщати її в інституційному репозитарії чи "
-"публікувати в книзі), з підтвердженням його первинної публікації в цьому "
-"е-видавництві.</li>.\n"
-"\t <li>Авторам дозволяється і рекомендується розміщати свій твір в інтернеті "
-"(наприклад, в інституційних репозитаріях або на їхньому вебсайті) до і під "
-"час процесу подання, оскільки це може викликати продуктивний обмін, а також "
-"більш раннє і широке цитування опублікованих творів (див. <a target=\"_blank"
-"\" href=\"https://web-archive.southampton.ac.uk/opcit.eprints.org/oacitation-"
-"biblio.html\">The Effect of Open Access…</a>).</li>.\n"
-"</ol>"
+"Заява про авторське право й інформація про ліцензію будуть постійно доданими "
+"до публікованого контенту з гарантією, що ці дані не зміняться в разі зміни "
+"політики е-видавництва стосовно нових матеріалів. Для скидання збереженої "
+"інформації про дозволи, уже прикріпленої до опублікованого контенту, "
+"скористайтеся кнопкою, розташованою нижче."
 
-msgid "manager.files.note"
+msgid "manager.setup.resetPermissions.success"
+msgstr "Дозволи для монографії було успішно скинуто."
+
+msgid "grid.genres.title.short"
+msgstr "Компоненти"
+
+msgid "grid.genres.title"
+msgstr "Компоненти монографії"
+
+msgid "manager.setup.notifications.copyPrimaryContact"
 msgstr ""
-"Примітка: файловий менеджер - це додаткова функція, яка дає змогу напряму "
-"переглядати й оперувати файлами та каталогами, пов'язаними із цим "
-"е-видавництвом."
+"Надіслати копію головній контактній особі, вказаній у налаштуваннях е-"
+"видавництва."
 
-msgid "manager.setup.productionTemplates"
-msgstr "Виробничі шаблони"
+msgid "grid.series.pathAlphaNumeric"
+msgstr "Шлях до серії повинен складатися тільки з букв і цифр."
 
-msgid "manager.setup.files"
-msgstr "Файли"
+msgid "grid.series.pathExists"
+msgstr "Шлях до серії вже існує. Будь ласка, введіть унікальний шлях."
 
-msgid "manager.setup.editorialTeam.description"
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Вибрати серію"
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
 msgstr ""
-"Список редакторів, керуючих директорів та інших осіб, пов'язаних з "
-"е-видавництвом."
+"Будь ласка, виберіть серію, на яку ви хочете послатися в цьому пункті меню."
 
-msgid "manager.setup.editorialTeam"
-msgstr "Редакція"
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Виберіть категорію"
 
-msgid "manager.setup.masthead"
-msgstr "Вихідні дані"
-
-msgid "manager.setup.internalReviewRoles"
-msgstr "Ролі для внутрішнього рецензування"
-
-msgid "manager.setup.currentRoles"
-msgstr "Поточні ролі"
-
-msgid "manager.setup.availableRoles"
-msgstr "Доступні ролі"
-
-msgid "manager.setup.managerialRoles"
-msgstr "Ролі управлінців"
-
-msgid "manager.setup.authorRoles"
-msgstr "Ролі автора"
-
-msgid "manager.setup.roleType"
-msgstr "Тип ролі"
-
-msgid "manager.setup.reviewForms"
-msgstr "Форми рецензій"
-
-msgid "manager.setup.series.description"
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
 msgstr ""
-"Ви можете створити будь-яку кількість серій, аби допомогти в організації "
-"Ваших публікацій. Серія являє собою спеціальний набір книг, що стосуються "
-"тематики або тем, які хтось запропонував, зазвичай один або два викладачі, а "
-"потім курирує. Відвідувачі зможуть шукати й переглядати е-видавництво за "
-"серіями."
+"Будь ласка, виберіть категорію, на яку ви хочете послатися в цьому пункті "
+"меню."
 
-msgid "emailTemplate.variable.context.contextSignature"
-msgstr "Підпис електронних листів е-видавництва для автоматизованих листів"
+msgid "grid.series.urlWillBe"
+msgstr "Адресою URL серії буде: {$sampleUrl}"
 
-msgid "manager.institutions.noContext"
-msgstr "Е-видавництво цієї інституції не було знайдено."
+msgid "stats.contextStats"
+msgstr "Статистика е-видавництва"
+
+msgid "stats.context.tooltip.text"
+msgstr ""
+"Кількість відвідувачів, які переглядають головну сторінку е-видавництва й "
+"каталогу."
+
+msgid "stats.context.tooltip.label"
+msgstr "Про статистику е-видавництва"
+
+msgid "stats.context.downloadReport.description"
+msgstr ""
+"Завантажити електронну таблицю CSV/Excel зі статистикою використання для "
+"цього е-видавництва, яка відповідає таким параметрам."
+
+msgid "stats.context.downloadReport.downloadContext.description"
+msgstr "Кількість переглядів головної сторінки е-видавництва й каталогу."
+
+msgid "stats.context.downloadReport.downloadContext"
+msgstr "Завантажити Е-видавництво"
 
 msgid "stats.publications.downloadReport.description"
 msgstr ""
@@ -1688,24 +1416,323 @@ msgid "stats.publications.downloadReport.downloadSubmissions.description"
 msgstr ""
 "Кількість переглядів анотацій і завантажень файлів для кожної монографії."
 
-msgid "stats.context.tooltip.label"
-msgstr "Про статистику е-видавництва"
+msgid "stats.publicationStats"
+msgstr "Статистика монографії"
 
-msgid "stats.context.downloadReport.downloadContext.description"
-msgstr "Кількість переглядів головної сторінки е-видавництва й каталогу."
+msgid "stats.publications.details"
+msgstr "Деталі монографії"
 
-msgid "stats.context.downloadReport.downloadContext"
-msgstr "Завантажити Е-видавництво"
-
-msgid "stats.contextStats"
-msgstr "Статистика е-видавництва"
-
-msgid "stats.context.tooltip.text"
+msgid "stats.publications.none"
 msgstr ""
-"Кількість відвідувачів, які переглядають головну сторінку е-видавництва й "
-"каталогу."
+"Не знайдено монографій зі статистикою використання, що відповідають цим "
+"параметрам."
 
-msgid "stats.context.downloadReport.description"
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Загальна кількість переглядів каталогу за датою"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Загальна кількість переглядів файлу за датою"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$count} з {$total} монографій"
+
+msgid "stats.publications.abstracts"
+msgstr "Записи каталогу"
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Немає вибраних об'єктів."
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Не вдалося перетворити виділені об'єкти."
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "Неправильний XML:"
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Експортувати подання"
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
 msgstr ""
-"Завантажити електронну таблицю CSV/Excel зі статистикою використання для "
-"цього е-видавництва, яка відповідає таким параметрам."
+"Надіслати головній контактній особі цього е-видавництва копію електронного "
+"листа з підтвердженням подання."
+
+msgid ""
+"manager.setup.notifications.copySubmissionAckPrimaryContact.disabled."
+"description"
+msgstr ""
+"Для цього е-видавництва не визначено жодної головної контактної особи. Можна "
+"ввести головну контактну особу в <a href=\"{$url}\">налаштуваннях е-"
+"видавництва</a>."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Не вдалося знайти вказані об'єкти."
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "Указаний користувач, \"{$userName}\", не існує."
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "Не вдалося проаналізувати формати публікацій"
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "Не вдалося проаналізувати глави"
+
+msgid "emailTemplate.variable.context.contextName"
+msgstr "Назва е-видавництва"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "Адреса URL домашньої сторінки е-видавництва"
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "Ім'я головної контактної особи е-видавництва"
+
+msgid "emailTemplate.variable.context.contextSignature"
+msgstr "Підпис електронних листів е-видавництва для автоматизованих листів"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "Адреса електронної пошти головної контактної особи е-видавництва"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "Назва виду платежу"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "Сума платежу"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "Валюта суми платежу, наприклад долар США"
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr "Назва вебсайту, де розміщено кілька е-видавництв"
+
+msgid "mailable.validateEmailContext.name"
+msgstr "Підтвердити електронну пошту (реєстрація е-видавництва)"
+
+msgid "mailable.validateEmailContext.description"
+msgstr ""
+"Цей електронний лист автоматично надсилається новому користувачу, коли вони "
+"реєструються у е-видавництві, якщо налаштування вимагають перевірки адреси "
+"електронної пошти."
+
+msgid "doi.displayName"
+msgstr "DOI"
+
+msgid "doi.manager.displayName"
+msgstr "Кілька DOI"
+
+msgid "doi.description"
+msgstr ""
+"Цей плагін активує призначення Digital Object Identifiers для монографій, "
+"глав, форматів публікацій і файлів в OMP."
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "doi.manager.settings.description"
+msgstr "Налаштуйте плагін DOI, щоб мати можливість користуватись DOI в OMP:"
+
+msgid "doi.manager.settings.explainDois"
+msgstr "Оберіть видавничі об'єкти, які мають отримати DOI:"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Монографії"
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Глави"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Формати публікацій"
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Файли"
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "Префікс DOI"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "Префікс DOI є обов'язковим і має мати значення у форматі 10.xxxx."
+
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Введіть користувацький шаблон суфікса для кожного типу публікації. "
+"Користувацький шаблон суфікса може використовувати такі символи для "
+"утворення суфікса:<br><br> <code>%p</code> Абревіатура е-видавництва<br> "
+"<code>%m</code> ID монографії<br> <code>%c</code> ID глави<br> <code>%f</"
+"code> ID формату публікації<br> <code>%s</code> ID файлу<br> <code>%x</code> "
+"Користувацький ідентифікатор<br><br> Майте на увазі, що користувацькі "
+"шаблони суфіксів часто призводять до проблем зі створенням і розміщенням "
+"DOI. Використовуючи користувацький шаблон суфіксів, ретельно перевірте, чи "
+"можуть редактори генерувати DOI, і передайте їх до реєстраційного агентства, "
+"такого як Crossref. "
+
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr ""
+"Наприклад, press%ppub%r створить DOI з значенням - 10.1234/pressESPpub100"
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "для монографій"
+
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "для глав"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "для форматів публікацій"
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "для файлів"
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Введіть шаблон суфікса DOI для монографій."
+
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Введіть шаблон суфікса DOI для глав."
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Введіть шаблон суфікса DOI для форматів публікацій."
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Введіть шаблон суфікса DOI для файлів."
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "Перепризначити DOI"
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr ""
+"Якщо ви зміните свою DOI-конфігурацію, то вона не стосуватиметься DOI які "
+"вже були призначені. Після збереження конфігурації DOI використовуйте цю "
+"кнопку, щоб видалити усі існуючі DOI для того, щоб нові налаштування "
+"вплинули на існуючі об'єкти."
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Чи ви впевнені що хочете видалити усі призначені DOI?"
+
+msgid "doi.editor.doi"
+msgstr "DOI"
+
+msgid "doi.editor.doi.description"
+msgstr "DOI має починатися з {$prefix}."
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Призначити"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "монографія"
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "глава"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "вид видання"
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "файл"
+
+msgid "doi.editor.customSuffixMissing"
+msgstr ""
+"DOI не може бути призначено, через відсутність користувацького суфікса."
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"Неможливо згенерувати DOI, оскільки одна або більше частин шаблону DOI "
+"відсутні."
+
+msgid "doi.editor.patternNotResolved"
+msgstr "Не можна призначити DOI, оскільки він містить не замінений шаблон."
+
+msgid "doi.editor.canBeAssigned"
+msgstr ""
+"Те, що ви бачите - це попередній перегляд DOI. Установіть прапорець і "
+"збережіть форму для призначення DOI."
+
+msgid "doi.editor.assigned"
+msgstr "DOI призначено цьому/цій {$pubObjectType}."
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Обраний суфікс DOI вже використовується для іншого опублікованого елементу. "
+"Будь ласка, оберіть для кожного елемента унікальний суфікс DOI."
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Очистити"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Ви впевнені що хочете видалити існуючі DOI?"
+
+msgid "doi.editor.assignDoi"
+msgstr "Призначити DOI {$pubId} для {$pubObjectType}"
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr ""
+"DOI не може бути призначено, через відсутність користувацького суфікса."
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr ""
+"Не можна призначити DOI {$pubId}, оскільки він містить не замінений шаблон."
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "DOI {$pubId} призначено."
+
+msgid "doi.editor.missingPrefix"
+msgstr "DOI має починатися з {$doiPrefix}."
+
+msgid "doi.editor.preview.publication"
+msgstr "DOI для цієї публікації виглядатиме так: {$doi}."
+
+msgid "doi.editor.preview.publication.none"
+msgstr "DOI призначено цій публікації."
+
+msgid "doi.editor.preview.chapters"
+msgstr "Глава: {$title}"
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Формат публікації: {$title}"
+
+msgid "doi.editor.preview.files"
+msgstr "Файл: {$title}"
+
+msgid "doi.editor.preview.objects"
+msgstr "Елемент"
+
+msgid "doi.manager.submissionDois"
+msgstr "Кілька DOI монографії"
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
+msgstr ""
+"Цей електронний лист сповіщає автора про те, що їхнє подання надсилається на "
+"стадію внутрішнього рецензування."
+
+msgid "mailable.decision.initialDecline.notifyAuthor.description"
+msgstr ""
+"Цей електронний лист сповіщає автора про те, що їхнє подання відхиляється ще "
+"перед відправкою на рецензування, оскільки подання не відповідає вимогам до "
+"публікації в е-видавництві."
+
+msgid "manager.institutions.noContext"
+msgstr "Е-видавництво цієї інституції не було знайдено."
+
+msgid "manager.manageEmails.description"
+msgstr ""
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
+msgstr "Надіслано на внутрішнє рецензування"
+
+msgid "mailable.indexRequest.name"
+msgstr ""
+
+msgid "mailable.indexComplete.name"
+msgstr ""
+
+msgid "mailable.publicationVersionNotify.name"
+msgstr ""
+
+msgid "mailable.publicationVersionNotify.description"
+msgstr ""
+
+msgid "mailable.submissionNeedsEditor.description"
+msgstr ""
+
+#~ msgid "manager.setup.doiPrefix"
+#~ msgstr "Префікс DOI"
+
+#~ msgid "emailTemplate.variable.context.principalContactSignature"
+#~ msgstr ""
+#~ "Підпис електронної пошти е-видавництва для автоматизованих електронних "
+#~ "листів"

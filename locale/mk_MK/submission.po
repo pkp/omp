@@ -11,428 +11,20 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "submission.round"
-msgstr "Round&nbsp;{$round}"
+msgid "submission.upload.selectComponent"
+msgstr "Одберете компонента"
 
-msgid "submission.queries.production"
-msgstr "Продукциска дискусија"
+msgid "submission.title"
+msgstr "Наслов на книгата"
 
-msgid "publication.version.details"
-msgstr "Детали за издание за верзија {$version}"
+msgid "submission.select"
+msgstr "Одберете поднесок"
 
-msgid "publication.unschedule.confirm"
-msgstr "Дали сте сигурни дека не сакате да закажете објавување?"
+msgid "submission.synopsis"
+msgstr "Краток преглед"
 
-msgid "publication.unpublish.confirm"
-msgstr "Дали сте сигурни дека не сакате ова да биде објавено?"
-
-msgid "publication.unpublish"
-msgstr "Повлечи објава"
-
-msgid "submission.copyrightOther.description"
-msgstr "Додели авторски права за поднесок на следната странка."
-
-msgid "submission.copyrightHolder.description"
-msgstr ""
-"Авторските права ќе бидат автоматски доделени на {$copyright} кога текстот "
-"ќе биде објавен."
-
-msgid "submission.license.description"
-msgstr ""
-"Лиценцата ќе биде автоматски поставена на <a href='{$licenseUrl}' "
-"target='_blank'>{$licenseName}</a> кога текстот ќе биде објавен."
-
-msgid "publication.required.reviewStage"
-msgstr ""
-"Поднесокот мора да ги помине фазите на измена на копија или продукција пред "
-"да биде објавен."
-
-msgid "publication.required.declined"
-msgstr "Одбиениот поднесок не може да биде објавен."
-
-msgid "publication.publish.requirements"
-msgstr "Следните услови мораат да бидат исполнети пред текстот да биде објавен."
-
-msgid "publication.publish"
-msgstr "Објави"
-
-msgid "publication.invalidSubmission"
-msgstr "Поднесокот за ова издание не е пронајден."
-
-msgid "publication.event.versionUnpublished"
-msgstr "Верзијата е повлечена."
-
-msgid "publication.event.versionScheduled"
-msgstr "Нова верзија е закажана за објавување."
-
-msgid "publication.event.versionPublished"
-msgstr "Објавена е нова верзија."
-
-msgid "publication.event.unpublished"
-msgstr "Поднесокот беше повлечен."
-
-msgid "publication.event.scheduled"
-msgstr "Поднесокот е закажан за објавување."
-
-msgid "publication.event.published"
-msgstr "Поднесокот беше објавен."
-
-msgid "publication.editDisabled"
-msgstr "Оваа верзија ќе биде издадена и не може да биде изменета."
-
-msgid "publication.datePublished"
-msgstr "Датум на издавање"
-
-msgid "publication.copyrightYearBasis.submissionDescription"
-msgstr ""
-"Авторската година ќе биде поставена автоматски врз основа на датумот на "
-"објавување."
-
-msgid "publication.copyrightYearBasis.issueDescription"
-msgstr ""
-"Авторската година ќе се постави автоматски кога текстот ќе биде објавен во "
-"издание."
-
-msgid "submission.publications"
-msgstr "Изданија"
-
-msgid "publication.status.unscheduled"
-msgstr "Незакажано"
-
-msgid "submission.status.scheduled"
-msgstr "Закажано"
-
-msgid "publication.status.published"
-msgstr "Издадено"
-
-msgid "submission.publication"
-msgstr "Издание"
-
-msgid "publication.scheduledIn"
-msgstr "Закажано за издавање во  <a href=\"{$issueUrl}\">{$issueName}</a>."
-
-msgid "publication.publish.confirmation"
-msgstr ""
-"Сите барања за објавување се исполнети. Дали сакате да го објавите овој внес "
-"во каталогот?"
-
-msgid "publication.publishedIn"
-msgstr "Издадено во <a href=\"{$issueUrl}\">{$issueName}</a>."
-
-msgid "publication.required.issue"
-msgstr ""
-"Публикацијата мора да биде доделена на издание пред да може да се објави."
-
-msgid "publication.inactiveSeries"
-msgstr "{$series} (Неактивна)"
-
-msgid "publication.invalidSeries"
-msgstr "Серијалот за ова издание не е пронајден."
-
-msgid "publication.catalogEntry.success"
-msgstr "Деталите за овој внес во каталогот беа ажурирани."
-
-msgid "publication.catalogEntry"
-msgstr "Внес во каталог"
-
-msgid "catalog.browseTitles"
-msgstr "{$numTitles} Наслови"
-
-msgid "submission.list.viewEntry"
-msgstr "Разгледај внес"
-
-msgid "submission.list.saveFeatureOrder"
-msgstr "Зачувај нарачка"
-
-msgid "submission.list.orderingFeaturesSection"
-msgstr ""
-"Со помош на влечење или притискање на копчињата можете да го промените "
-"редоследот на карактеристики на  {$title}."
-
-msgid "submission.list.orderingFeatures"
-msgstr ""
-"Со помош на влечење или притискање на копчињата можете да го промените "
-"редоследот на карактеристики на почетната страница."
-
-msgid "submission.list.orderFeatures"
-msgstr "Карактеристики на нарачката"
-
-msgid "submission.list.itemsOfTotalMonographs"
-msgstr "{$count} од {$total} монографи"
-
-msgid "submission.list.countMonographs"
-msgstr "{$count} монографи"
-
-msgid "submission.list.monographs"
-msgstr "Монографи"
-
-msgid "section.any"
-msgstr "Било кој серијал"
-
-msgid "submission.metadataDescription"
-msgstr ""
-"Овие спецификации се засноваат на Dublin Core сетот од метаподатоци, "
-"интернационален стандард за опис на содржина на издаваштво."
-
-msgid "submission.dependentFiles"
-msgstr "Зависни датотеки"
-
-msgid "submission.upload.fileContents"
-msgstr "Компонента на поднесок"
-
-msgid "workflow.review.externalReview"
-msgstr "Надворешна контрола"
-
-msgid "editor.submission.decision.sendExternalReview"
-msgstr "Испрати на надворешна контрола"
-
-msgid "submission.event.publicationFormatRemoved"
-msgstr "Форматот на издавање \"{$formatName}\" беше отстранет."
-
-msgid "submission.event.publicationFormatCreated"
-msgstr "Форматот на издавање со име \"{$formatName}\" беше креиран."
-
-msgid "submission.event.publicationMetadataUpdated"
-msgstr ""
-"Метаподатоците за форматот на издавање \"{$publicationFormatName}\" беа "
-"ажурирани."
-
-msgid "submission.event.catalogMetadataUpdated"
-msgstr "Метаподатоците за каталогот беа ажурирани."
-
-msgid "submission.event.publicationFormatUnpublished"
-msgstr "Форматот \"{$publicationFormatName}\" повеќе не е објавен."
-
-msgid "submission.event.publicationFormatPublished"
-msgstr "Форматот \"{$publicationFormatName}\" е одобрен за издавање."
-
-msgid "submission.event.publicationFormatMadeUnavailable"
-msgstr "Форматот на издавање  \"{$publicationFormatName}\" е недостапен."
-
-msgid "submission.event.publicationFormatMadeAvailable"
-msgstr "Форматот на издавање  \"{$publicationFormatName}\" е достапен."
-
-msgid "submission.event.metadataUnpublished"
-msgstr "Метаподатоците на монографот повеќе не се објавени."
-
-msgid "submission.event.metadataPublished"
-msgstr "Метаподатоците на монографот се одобрени за издавање."
-
-msgid "submission.catalogEntry.publicationMetadata"
-msgstr "Формат на издавање"
-
-msgid "submission.catalogEntry.catalogMetadata"
-msgstr "Каталог"
-
-msgid "submission.catalogEntry.monographMetadata"
-msgstr "Монограф"
-
-msgid "submission.catalogEntry.enableChapterPublicationDates"
-msgstr "Секое поглавје може да има свој датум на издавање."
-
-msgid "submission.catalogEntry.disableChapterPublicationDates"
-msgstr ""
-"Датумот на издавање на монографот истовремено е датум на издавање на сите "
-"поглавја."
-
-msgid "submission.catalogEntry.chapterPublicationDates"
-msgstr "Датуми на издавање"
-
-msgid "submission.catalogEntry.viewSubmission"
-msgstr "Разгледај го поднесокот"
-
-msgid "submission.catalogEntry.isAvailable"
-msgstr "Овој монограф е спремен за внес во јавниот каталог."
-
-msgid "submission.catalogEntry.confirm.required"
-msgstr "Потврдете дека поднесокот може да биде внесен во каталогот."
-
-msgid "submission.catalogEntry.confirm"
-msgstr "Додај ја оваа книга во јавниот каталог"
-
-msgid "submission.catalogEntry.selectionMissing"
-msgstr "Одберете барем еден монограф кој ќе биде додаден во каталогот."
-
-msgid "submission.catalogEntry.select"
-msgstr "Одбери монографи и додади ги во каталогот"
-
-msgid "submission.catalogEntry.add"
-msgstr "Додај го изборот во каталогот"
-
-msgid "submission.catalogEntry.new"
-msgstr "Додади внес"
-
-msgid "submission.editCatalogEntry"
-msgstr "Внес"
-
-msgid "submission.incomplete"
-msgstr "Чека одобрување"
-
-msgid "submission.complete"
-msgstr "Одобрено"
-
-msgid "grid.copyediting.deleteCopyeditorResponse"
-msgstr "Избриши го изменетиот прилог"
-
-msgid "grid.chapters.title"
-msgstr "Поглавја"
-
-msgid "submission.submit.noContext"
-msgstr "Изданието на поднесокот не беше пронајдено."
-
-msgid "submission.submit.userGroup"
-msgstr "Поднеси ја мојата улога..."
-
-msgid "submission.submit.placement"
-msgstr "Позиција на поднесокот"
-
-msgid "submission.submit.checklistErrors"
-msgstr ""
-"Прочитајте и проверете ги ставките во списокот. Останаа {$ itemsRemain} "
-"предмети кои не се избрани."
-
-msgid "submission.submit.whatNext.description"
-msgstr ""
-"Печатот е известен за вашиот поднесок, и ви е испратен email за потврда. "
-"Уредникот ќе ве контактира откако ќе го разгледа поднесокот."
-
-msgid "submission.submit.generalInformation"
-msgstr "Главни информации"
-
-msgid "submission.submit.coverNote"
-msgstr "Насловна белешка до уредникот"
-
-msgid "submission.submit.nextSteps"
-msgstr "Следен чекор"
-
-msgid "submission.submit.confirmation"
-msgstr "Потврда"
-
-msgid "submission.submit.finishingUp"
-msgstr "Завршница"
-
-msgid "submission.submit.metadata"
-msgstr "Метаподатоци"
-
-msgid "submission.submit.catalog"
-msgstr "Каталог"
-
-msgid "submission.submit.prepare"
-msgstr "Подготовка"
-
-msgid "submission.submit.submissionFile"
-msgstr "Поднесок"
-
-msgid "submission.submit.contributorRole"
-msgstr "Улога на соработник"
-
-msgid "submission.submit.privacyStatement"
-msgstr "Изјава за приватност"
-
-msgid "submission.submit.seriesPosition.description"
-msgstr "Примери: Книга 2, Том 2"
-
-msgid "submission.submit.seriesPosition"
-msgstr "Позиција на серијалот"
-
-msgid "author.isVolumeEditor"
-msgstr "Идентификувајте го овој соработник како уредник на овој том."
-
-msgid "submission.submit.upload"
-msgstr "Прикачи поднесок"
-
-msgid "submission.submit.newSubmissionSingle"
-msgstr "Нов поднесок"
-
-msgid "submission.submit.newSubmissionMultiple"
-msgstr "Започни нов поднесок"
-
-msgid "submission.submit"
-msgstr "Започни нова книга"
-
-msgid "grid.action.deleteChapter"
-msgstr "Избриши го ова поглавје"
-
-msgid "grid.action.editChapter"
-msgstr "Измени го ова поглавје"
-
-msgid "grid.action.addChapter"
-msgstr "Креирај ново поглавје"
-
-msgid "submission.supportingAgencies"
-msgstr "Споредни агенции"
-
-msgid "submission.metadata"
-msgstr "Метаподатоци"
-
-msgid "manuscript.submissions"
-msgstr "Поднесоци на ракописен текст"
-
-msgid "submissions.queuedReview"
-msgstr "На преглед"
-
-msgid "manuscript.submission"
-msgstr "Поднеси ракописен текст"
-
-msgid "submission.sharing"
-msgstr "Сподели"
-
-msgid "submission.download"
-msgstr "Превземи"
-
-msgid "submission.proofs"
-msgstr "Проверки"
-
-msgid "submission.publicationFormats"
-msgstr "Формати на издавање"
-
-msgid "submission.copyedit"
-msgstr "Измени копија"
-
-msgid "submission.chapter.pages"
-msgstr "Страници"
-
-msgid "submission.chapter.editChapter"
-msgstr "Измени поглавје"
-
-msgid "submission.chapter.addChapter"
-msgstr "Додади поглавје"
-
-msgid "submission.chapters"
-msgstr "Поглавја"
-
-msgid "submission.chapter"
-msgstr "Поглавје"
-
-msgid "submission.artwork.permissions"
-msgstr "Одобренија"
-
-msgid "submission.authorListSeparator"
-msgstr "; "
-
-msgid "submission.fairCopy"
-msgstr "Пречистен текст"
-
-msgid "submission.published"
-msgstr "Подготвено за производство"
-
-msgid "submission.monograph"
-msgstr "Монограф"
-
-msgid "submission.editorName"
-msgstr "{$имеНаУредник} (ed)"
-
-msgid "submission.workflowType.change"
-msgstr "Измена"
-
-msgid "submission.workflowType.authoredWork"
-msgstr "Монограф: Авторите се поврзани со книгата во целост."
-
-msgid "submission.workflowType.editedVolume"
-msgstr "Изменет том: Авторите се поврзани со сопственото поглавје."
-
-msgid "submission.workflowType.editedVolume.label"
-msgstr "Изменет том"
+msgid "submission.workflowType"
+msgstr "Тип на поднесок"
 
 msgid "submission.workflowType.description"
 msgstr ""
@@ -440,17 +32,555 @@ msgstr ""
 "различни автори за секое поглавје. (Деталите за поглавјето се внесуваат "
 "подоцна.)"
 
-msgid "submission.workflowType"
-msgstr "Тип на поднесок"
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Изменет том"
 
-msgid "submission.synopsis"
-msgstr "Краток преглед"
+msgid "submission.workflowType.editedVolume"
+msgstr "Изменет том: Авторите се поврзани со сопственото поглавје."
 
-msgid "submission.select"
-msgstr "Одберете поднесок"
+msgid "submission.workflowType.authoredWork"
+msgstr "Монограф: Авторите се поврзани со книгата во целост."
 
-msgid "submission.title"
-msgstr "Наслов на книгата"
+msgid "submission.workflowType.change"
+msgstr "Измена"
 
-msgid "submission.upload.selectComponent"
-msgstr "Одберете компонента"
+msgid "submission.editorName"
+msgstr "{$имеНаУредник} (ed)"
+
+msgid "submission.monograph"
+msgstr "Монограф"
+
+msgid "submission.published"
+msgstr "Подготвено за производство"
+
+msgid "submission.fairCopy"
+msgstr "Пречистен текст"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.artwork.permissions"
+msgstr "Одобренија"
+
+msgid "submission.chapter"
+msgstr "Поглавје"
+
+msgid "submission.chapters"
+msgstr "Поглавја"
+
+msgid "submission.chapter.addChapter"
+msgstr "Додади поглавје"
+
+msgid "submission.chapter.editChapter"
+msgstr "Измени поглавје"
+
+msgid "submission.chapter.pages"
+msgstr "Страници"
+
+msgid "submission.copyedit"
+msgstr "Измени копија"
+
+msgid "submission.publicationFormats"
+msgstr "Формати на издавање"
+
+msgid "submission.proofs"
+msgstr "Проверки"
+
+msgid "submission.download"
+msgstr "Превземи"
+
+msgid "submission.sharing"
+msgstr "Сподели"
+
+msgid "manuscript.submission"
+msgstr "Поднеси ракописен текст"
+
+msgid "submission.round"
+msgstr "Round&nbsp;{$round}"
+
+msgid "submissions.queuedReview"
+msgstr "На преглед"
+
+msgid "manuscript.submissions"
+msgstr "Поднесоци на ракописен текст"
+
+msgid "submission.metadata"
+msgstr "Метаподатоци"
+
+msgid "submission.supportingAgencies"
+msgstr "Споредни агенции"
+
+msgid "grid.action.addChapter"
+msgstr "Креирај ново поглавје"
+
+msgid "grid.action.editChapter"
+msgstr "Измени го ова поглавје"
+
+msgid "grid.action.deleteChapter"
+msgstr "Избриши го ова поглавје"
+
+msgid "submission.submit"
+msgstr "Започни нова книга"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Започни нов поднесок"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Нов поднесок"
+
+msgid "submission.submit.upload"
+msgstr "Прикачи поднесок"
+
+msgid "author.volumeEditor"
+msgstr ""
+
+msgid "author.isVolumeEditor"
+msgstr "Идентификувајте го овој соработник како уредник на овој том."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Позиција на серијалот"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Примери: Книга 2, Том 2"
+
+msgid "submission.submit.privacyStatement"
+msgstr "Изјава за приватност"
+
+msgid "submission.submit.contributorRole"
+msgstr "Улога на соработник"
+
+msgid "submission.submit.submissionFile"
+msgstr "Поднесок"
+
+msgid "submission.submit.prepare"
+msgstr "Подготовка"
+
+msgid "submission.submit.catalog"
+msgstr "Каталог"
+
+msgid "submission.submit.metadata"
+msgstr "Метаподатоци"
+
+msgid "submission.submit.finishingUp"
+msgstr "Завршница"
+
+msgid "submission.submit.confirmation"
+msgstr "Потврда"
+
+msgid "submission.submit.nextSteps"
+msgstr "Следен чекор"
+
+msgid "submission.submit.coverNote"
+msgstr "Насловна белешка до уредникот"
+
+msgid "submission.submit.generalInformation"
+msgstr "Главни информации"
+
+msgid "submission.submit.whatNext.description"
+msgstr ""
+"Печатот е известен за вашиот поднесок, и ви е испратен email за потврда. "
+"Уредникот ќе ве контактира откако ќе го разгледа поднесокот."
+
+msgid "submission.submit.checklistErrors"
+msgstr ""
+"Прочитајте и проверете ги ставките во списокот. Останаа {$ itemsRemain} "
+"предмети кои не се избрани."
+
+msgid "submission.submit.placement"
+msgstr "Позиција на поднесокот"
+
+msgid "submission.submit.userGroup"
+msgstr "Поднеси ја мојата улога..."
+
+msgid "submission.submit.noContext"
+msgstr "Изданието на поднесокот не беше пронајдено."
+
+msgid "grid.chapters.title"
+msgstr "Поглавја"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Избриши го изменетиот прилог"
+
+msgid "submission.complete"
+msgstr "Одобрено"
+
+msgid "submission.incomplete"
+msgstr "Чека одобрување"
+
+msgid "submission.editCatalogEntry"
+msgstr "Внес"
+
+msgid "submission.catalogEntry.new"
+msgstr "Додади внес"
+
+msgid "submission.catalogEntry.add"
+msgstr "Додај го изборот во каталогот"
+
+msgid "submission.catalogEntry.select"
+msgstr "Одбери монографи и додади ги во каталогот"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr "Одберете барем еден монограф кој ќе биде додаден во каталогот."
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Додај ја оваа книга во јавниот каталог"
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Потврдете дека поднесокот може да биде внесен во каталогот."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Овој монограф е спремен за внес во јавниот каталог."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Разгледај го поднесокот"
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Датуми на издавање"
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr ""
+"Датумот на издавање на монографот истовремено е датум на издавање на сите "
+"поглавја."
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Секое поглавје може да има свој датум на издавање."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Монограф"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Каталог"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Формат на издавање"
+
+msgid "submission.event.metadataPublished"
+msgstr "Метаподатоците на монографот се одобрени за издавање."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Метаподатоците на монографот повеќе не се објавени."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "Форматот на издавање  \"{$publicationFormatName}\" е достапен."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "Форматот на издавање  \"{$publicationFormatName}\" е недостапен."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr "Форматот \"{$publicationFormatName}\" е одобрен за издавање."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "Форматот \"{$publicationFormatName}\" повеќе не е објавен."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Метаподатоците за каталогот беа ажурирани."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr ""
+"Метаподатоците за форматот на издавање \"{$publicationFormatName}\" беа "
+"ажурирани."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Форматот на издавање со име \"{$formatName}\" беше креиран."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Форматот на издавање \"{$formatName}\" беше отстранет."
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Испрати на надворешна контрола"
+
+msgid "workflow.review.externalReview"
+msgstr "Надворешна контрола"
+
+msgid "submission.upload.fileContents"
+msgstr "Компонента на поднесок"
+
+msgid "submission.dependentFiles"
+msgstr "Зависни датотеки"
+
+msgid "submission.metadataDescription"
+msgstr ""
+"Овие спецификации се засноваат на Dublin Core сетот од метаподатоци, "
+"интернационален стандард за опис на содржина на издаваштво."
+
+msgid "section.any"
+msgstr "Било кој серијал"
+
+msgid "submission.list.monographs"
+msgstr "Монографи"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} монографи"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} од {$total} монографи"
+
+msgid "submission.list.orderFeatures"
+msgstr "Карактеристики на нарачката"
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Со помош на влечење или притискање на копчињата можете да го промените "
+"редоследот на карактеристики на почетната страница."
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"Со помош на влечење или притискање на копчињата можете да го промените "
+"редоследот на карактеристики на  {$title}."
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Зачувај нарачка"
+
+msgid "submission.list.viewEntry"
+msgstr "Разгледај внес"
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} Наслови"
+
+msgid "publication.catalogEntry"
+msgstr "Внес во каталог"
+
+msgid "publication.catalogEntry.success"
+msgstr "Деталите за овој внес во каталогот беа ажурирани."
+
+msgid "publication.invalidSeries"
+msgstr "Серијалот за ова издание не е пронајден."
+
+msgid "publication.inactiveSeries"
+msgstr "{$series} (Неактивна)"
+
+msgid "publication.required.issue"
+msgstr ""
+"Публикацијата мора да биде доделена на издание пред да може да се објави."
+
+msgid "publication.publishedIn"
+msgstr "Издадено во <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Сите барања за објавување се исполнети. Дали сакате да го објавите овој внес "
+"во каталогот?"
+
+msgid "publication.scheduledIn"
+msgstr "Закажано за издавање во  <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "submission.publication"
+msgstr "Издание"
+
+msgid "publication.status.published"
+msgstr "Издадено"
+
+msgid "submission.status.scheduled"
+msgstr "Закажано"
+
+msgid "publication.status.unscheduled"
+msgstr "Незакажано"
+
+msgid "submission.publications"
+msgstr "Изданија"
+
+msgid "publication.copyrightYearBasis.issueDescription"
+msgstr ""
+"Авторската година ќе се постави автоматски кога текстот ќе биде објавен во "
+"издание."
+
+msgid "publication.copyrightYearBasis.submissionDescription"
+msgstr ""
+"Авторската година ќе биде поставена автоматски врз основа на датумот на "
+"објавување."
+
+msgid "publication.datePublished"
+msgstr "Датум на издавање"
+
+msgid "publication.editDisabled"
+msgstr "Оваа верзија ќе биде издадена и не може да биде изменета."
+
+msgid "publication.event.published"
+msgstr "Поднесокот беше објавен."
+
+msgid "publication.event.scheduled"
+msgstr "Поднесокот е закажан за објавување."
+
+msgid "publication.event.unpublished"
+msgstr "Поднесокот беше повлечен."
+
+msgid "publication.event.versionPublished"
+msgstr "Објавена е нова верзија."
+
+msgid "publication.event.versionScheduled"
+msgstr "Нова верзија е закажана за објавување."
+
+msgid "publication.event.versionUnpublished"
+msgstr "Верзијата е повлечена."
+
+msgid "publication.invalidSubmission"
+msgstr "Поднесокот за ова издание не е пронајден."
+
+msgid "publication.publish"
+msgstr "Објави"
+
+msgid "publication.publish.requirements"
+msgstr ""
+"Следните услови мораат да бидат исполнети пред текстот да биде објавен."
+
+msgid "publication.required.declined"
+msgstr "Одбиениот поднесок не може да биде објавен."
+
+msgid "publication.required.reviewStage"
+msgstr ""
+"Поднесокот мора да ги помине фазите на измена на копија или продукција пред "
+"да биде објавен."
+
+msgid "submission.license.description"
+msgstr ""
+"Лиценцата ќе биде автоматски поставена на <a href='{$licenseUrl}' "
+"target='_blank'>{$licenseName}</a> кога текстот ќе биде објавен."
+
+msgid "submission.copyrightHolder.description"
+msgstr ""
+"Авторските права ќе бидат автоматски доделени на {$copyright} кога текстот "
+"ќе биде објавен."
+
+msgid "submission.copyrightOther.description"
+msgstr "Додели авторски права за поднесок на следната странка."
+
+msgid "publication.unpublish"
+msgstr "Повлечи објава"
+
+msgid "publication.unpublish.confirm"
+msgstr "Дали сте сигурни дека не сакате ова да биде објавено?"
+
+msgid "publication.unschedule.confirm"
+msgstr "Дали сте сигурни дека не сакате да закажете објавување?"
+
+msgid "publication.version.details"
+msgstr "Детали за издание за верзија {$version}"
+
+msgid "submission.queries.production"
+msgstr "Продукциска дискусија"
+
+msgid "publication.chapter.landingPage"
+msgstr ""
+
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+
+msgid "publication.publish.success"
+msgstr ""
+
+msgid "chapter.volume"
+msgstr ""
+
+msgid "submission.withoutChapter"
+msgstr ""
+
+msgid "submission.chapterCreated"
+msgstr ""
+
+msgid "chapter.pages"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
+msgstr ""
+
+msgid "editor.submission.decision.promoteFiles.internalReview"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.completed"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr ""
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr ""
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr ""
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+
+msgid "doi.submission.incorrectContext"
+msgstr ""
+
+msgid "publication.chapter.licenseUrl"
+msgstr ""
+
+msgid "publication.chapterDefaultLicenseURL"
+msgstr ""
+
+msgid "submission.copyright.description"
+msgstr ""
+
+msgid "submission.wizard.notAllowed.description"
+msgstr ""
+
+msgid "submission.wizard.noSectionAllowed.description"
+msgstr ""
+
+msgid "submission.wizard.sectionClosed.message"
+msgstr ""
+
+msgid "submission.sectionNotFound"
+msgstr ""
+
+msgid "submission.sectionRestrictedToEditors"
+msgstr ""
+
+msgid "submission.wizard.submitting.monograph"
+msgstr ""
+
+msgid "submission.wizard.submitting.monographInLanguage"
+msgstr ""
+
+msgid "submission.wizard.submitting.editedVolume"
+msgstr ""
+
+msgid "submission.wizard.submitting.editedVolumeInLanguage"
+msgstr ""
+
+msgid "submission.wizard.chapters.description"
+msgstr ""

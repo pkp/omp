@@ -12,76 +12,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.importexport.users.uploadFile"
-msgstr "Kérjük, a folytatáshoz töltsön fel egy fájlt az \"Importálás\" alá."
+msgid "plugins.importexport.users.displayName"
+msgstr "Felhasználók XML bővítmény"
 
-msgid "plugins.importexport.users.results"
-msgstr "Eredmények"
-
-msgid "plugins.importexport.users.importComplete"
-msgstr ""
-"Az importálás sikeresen befejeződött.  A még nem használt "
-"felhasználónevekkel és e-mail címekkel rendelkező felhasználók és a hozzájuk "
-"tartozó felhasználói csoportok importálása megtörtént."
-
-msgid "plugins.importexport.users.export.errorsOccurred"
-msgstr "Az exportálás során hiba lépett fel"
-
-msgid "plugins.importexport.users.export.exportAllUsers"
-msgstr "Összes exportálása"
-
-msgid "plugins.importexport.users.export.exportByRole"
-msgstr "Exportálás szerepkör szerint"
-
-msgid "plugins.importexport.users.export.exportUsers"
-msgstr "Felhasználók exportálása"
-
-msgid "plugins.importexport.users.unknownPress"
-msgstr "Ismeretlen kiadó elérési útvonal \"{$contextPath}\"  lett megadva."
-
-msgid "plugins.importexport.users.import.encryptionMismatch"
-msgstr ""
-"Nem lehet a(z) {$importHash} kóddal kivonatolt jelszavakat használni; az OMP "
-"úgy van beállítva, hogy a(z) {$ompHash} kódot használja. Ha folytatja, "
-"vissza kell állítania az importált felhasználók jelszavait."
-
-msgid "plugins.importexport.users.import.warning"
-msgstr "Figyelmeztetés"
-
-msgid "plugins.importexport.users.import.confirmUsers"
-msgstr ""
-"Erősítse meg, hogy ezek azok a felhasználók, akiket be szeretne importálni a "
-"rendszerbe"
-
-msgid "plugins.importexport.users.import.errorsOccurred"
-msgstr "Az importálás során hiba lépett fel"
-
-msgid "plugins.importexport.users.import.usersWereImported"
-msgstr "A következő felhasználókat sikeresen importáltuk a rendszerbe"
-
-msgid "plugins.importexport.users.import.continueOnError"
-msgstr "Hiba esetén folytassa a többi felhasználó importálását."
-
-msgid "plugins.importexport.users.import.sendNotify"
-msgstr ""
-"Értesítő e-mailt küldése minden importált felhasználónak, amely tartalmazza "
-"a felhasználó felhasználónevét és jelszavát."
-
-msgid "plugins.importexport.users.import.dataFile"
-msgstr "Felhasználói adatfájl"
-
-msgid "plugins.importexport.users.import.instructions"
-msgstr ""
-"Válassza ki a felhasználói adatokat tartalmazó XML-adatfájlt, amelyet ebbe a "
-"kiadóba kíván importálni. A fájl formátumával kapcsolatos részletekért lásd "
-"a kiadó súgóját.<br /><br /> Vegye figyelembe, hogy ha az importált fájl "
-"olyan felhasználóneveket vagy e-mail címeket tartalmaz, amelyek már léteznek "
-"a rendszerben, akkor a rendszer nem fogja importálni ezeknek a "
-"felhasználóknak az adatait, és a létrehozandó új szerepköröket a meglévő "
-"felhasználókhoz fogja hozzárendelni."
-
-msgid "plugins.importexport.users.import.importUsers"
-msgstr "Felhasználók importálása"
+msgid "plugins.importexport.users.description"
+msgstr "Felhasználók importálása és exportálása"
 
 msgid "plugins.importexport.users.cliUsage"
 msgstr ""
@@ -110,8 +45,73 @@ msgstr ""
 "only:\n"
 "\t{$scriptName} {$pluginName} export myExportFile.xml myPress reviewer\n"
 
-msgid "plugins.importexport.users.description"
-msgstr "Felhasználók importálása és exportálása"
+msgid "plugins.importexport.users.import.importUsers"
+msgstr "Felhasználók importálása"
 
-msgid "plugins.importexport.users.displayName"
-msgstr "Felhasználók XML bővítmény"
+msgid "plugins.importexport.users.import.instructions"
+msgstr ""
+"Válassza ki a felhasználói adatokat tartalmazó XML-adatfájlt, amelyet ebbe a "
+"kiadóba kíván importálni. A fájl formátumával kapcsolatos részletekért lásd "
+"a kiadó súgóját.<br /><br /> Vegye figyelembe, hogy ha az importált fájl "
+"olyan felhasználóneveket vagy e-mail címeket tartalmaz, amelyek már léteznek "
+"a rendszerben, akkor a rendszer nem fogja importálni ezeknek a "
+"felhasználóknak az adatait, és a létrehozandó új szerepköröket a meglévő "
+"felhasználókhoz fogja hozzárendelni."
+
+msgid "plugins.importexport.users.import.dataFile"
+msgstr "Felhasználói adatfájl"
+
+msgid "plugins.importexport.users.import.sendNotify"
+msgstr ""
+"Értesítő e-mailt küldése minden importált felhasználónak, amely tartalmazza "
+"a felhasználó felhasználónevét és jelszavát."
+
+msgid "plugins.importexport.users.import.continueOnError"
+msgstr "Hiba esetén folytassa a többi felhasználó importálását."
+
+msgid "plugins.importexport.users.import.usersWereImported"
+msgstr "A következő felhasználókat sikeresen importáltuk a rendszerbe"
+
+msgid "plugins.importexport.users.import.errorsOccurred"
+msgstr "Az importálás során hiba lépett fel"
+
+msgid "plugins.importexport.users.import.confirmUsers"
+msgstr ""
+"Erősítse meg, hogy ezek azok a felhasználók, akiket be szeretne importálni a "
+"rendszerbe"
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "Figyelmeztetés"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr ""
+"Nem lehet a(z) {$importHash} kóddal kivonatolt jelszavakat használni; az OMP "
+"úgy van beállítva, hogy a(z) {$ompHash} kódot használja. Ha folytatja, "
+"vissza kell állítania az importált felhasználók jelszavait."
+
+msgid "plugins.importexport.users.unknownPress"
+msgstr "Ismeretlen kiadó elérési útvonal \"{$contextPath}\"  lett megadva."
+
+msgid "plugins.importexport.users.export.exportUsers"
+msgstr "Felhasználók exportálása"
+
+msgid "plugins.importexport.users.export.exportByRole"
+msgstr "Exportálás szerepkör szerint"
+
+msgid "plugins.importexport.users.export.exportAllUsers"
+msgstr "Összes exportálása"
+
+msgid "plugins.importexport.users.export.errorsOccurred"
+msgstr "Az exportálás során hiba lépett fel"
+
+msgid "plugins.importexport.users.importComplete"
+msgstr ""
+"Az importálás sikeresen befejeződött.  A még nem használt "
+"felhasználónevekkel és e-mail címekkel rendelkező felhasználók és a hozzájuk "
+"tartozó felhasználói csoportok importálása megtörtént."
+
+msgid "plugins.importexport.users.results"
+msgstr "Eredmények"
+
+msgid "plugins.importexport.users.uploadFile"
+msgstr "Kérjük, a folytatáshoz töltsön fel egy fájlt az \"Importálás\" alá."

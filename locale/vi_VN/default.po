@@ -1,2 +1,129 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Weblate\n"
+
+msgid "default.genres.appendix"
+msgstr ""
+
+msgid "default.genres.bibliography"
+msgstr ""
+
+msgid "default.genres.manuscript"
+msgstr ""
+
+msgid "default.genres.chapter"
+msgstr ""
+
+msgid "default.genres.glossary"
+msgstr ""
+
+msgid "default.genres.index"
+msgstr ""
+
+msgid "default.genres.preface"
+msgstr ""
+
+msgid "default.genres.prospectus"
+msgstr ""
+
+msgid "default.genres.table"
+msgstr ""
+
+msgid "default.genres.figure"
+msgstr ""
+
+msgid "default.genres.photo"
+msgstr ""
+
+msgid "default.genres.illustration"
+msgstr ""
+
+msgid "default.genres.other"
+msgstr ""
+
+msgid "default.groups.name.manager"
+msgstr ""
+
+msgid "default.groups.plural.manager"
+msgstr ""
+
+msgid "default.groups.abbrev.manager"
+msgstr ""
+
+msgid "default.groups.name.editor"
+msgstr ""
+
+msgid "default.groups.plural.editor"
+msgstr ""
+
+msgid "default.groups.abbrev.editor"
+msgstr ""
+
+msgid "default.groups.name.sectionEditor"
+msgstr ""
+
+msgid "default.groups.plural.sectionEditor"
+msgstr ""
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr ""
+
+msgid "default.groups.name.subscriptionManager"
+msgstr ""
+
+msgid "default.groups.plural.subscriptionManager"
+msgstr ""
+
+msgid "default.groups.abbrev.subscriptionManager"
+msgstr ""
+
+msgid "default.groups.name.chapterAuthor"
+msgstr ""
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr ""
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr ""
+
+msgid "default.groups.name.volumeEditor"
+msgstr ""
+
+msgid "default.groups.plural.volumeEditor"
+msgstr ""
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr ""
+
+msgid "default.contextSettings.authorGuidelines"
+msgstr ""
+
+msgid "default.contextSettings.checklist"
+msgstr ""
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr ""
+
+msgid "default.contextSettings.forReaders"
+msgstr ""
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+
+msgid "default.contextSettings.forLibrarians"
+msgstr ""
+
+msgid "default.groups.name.externalReviewer"
+msgstr ""
+
+msgid "default.groups.plural.externalReviewer"
+msgstr ""
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr ""

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2022-10-01 08:01+0000\n"
 "Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
-"Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/"
-"importexport-csv/da_DK/>\n"
+"Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/importexport-"
+"csv/da_DK/>\n"
 "Language: da_DK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,45 +12,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "plugins.importexport.csv.import.success.description"
-msgstr "Importen var vellykket. Elementer, der er importeret, er vist nedenfor."
+msgid "plugins.importexport.csv.displayName"
+msgstr "Plugin til import af tabulatorsepareret indhold"
 
-msgid "plugins.importexport.csv.import.submission"
-msgstr "Indsendelse: '{$title}' blev importeret."
-
-msgid "plugins.importexport.csv.noSeries"
-msgstr ""
-"Seriestien {$seriesPath} findes ikke. Kan ikke tilføje den til denne "
-"indsendelse."
-
-msgid "plugins.importexport.csv.noAuthorGroup"
-msgstr ""
-"Der er ingen foruddefineret forfattergruppe hos udgiveren {$press}. Springer "
-"over denne indsendelse."
-
-msgid "plugins.importexport.csv.noGenre"
-msgstr "Der er ingen manuskriptgenre. Afslutter."
-
-msgid "plugins.importexport.csv.unknownPress"
-msgstr "Ukendt udgiver: \"{$contextPath}\". Springer over."
-
-msgid "plugins.importexport.csv.unknownLocale"
-msgstr "Ukendt sprog: \"{$locale}\". Springer over."
-
-msgid "plugins.importexport.csv.unknownUser"
-msgstr "Ukendt bruger: \"{$username}\". Afslutter."
-
-msgid "plugins.importexport.csv.fileDoesNotExist"
-msgstr "Filen \"{$filename}\" findes ikke. Afslutter."
-
-msgid "plugins.importexport.csv.cliUsage"
-msgstr ""
-"Kommandolinjeværktøj til import af CSV-data til OMP\n"
-"\t\t\tAnvendelse:\n"
-"\t\t\t{$scriptName} [--prøvekørsel] fileName.csv brugernavn\n"
-"\t\t\tValgmuligheden --prøvekørsel kan bruges til at teste uden at foretage "
-"ændringer.\n"
-"\t\t\tAngiv det brugernavn, du vil knytte til indsendelserne.\n"
+msgid "plugins.importexport.csv.description"
+msgstr "Importér indsendelser til udgiveren fra tabulatorsepareret data."
 
 msgid "plugins.importexport.csv.cliOnly"
 msgstr ""
@@ -61,8 +27,43 @@ msgstr ""
 "\t\t\t...for at få mere information.</p>\n"
 "\t"
 
-msgid "plugins.importexport.csv.description"
-msgstr "Importér indsendelser til udgiveren fra tabulatorsepareret data."
+msgid "plugins.importexport.csv.cliUsage"
+msgstr ""
+"Kommandolinjeværktøj til import af CSV-data til OMP\n"
+"\t\t\tAnvendelse:\n"
+"\t\t\t{$scriptName} [--prøvekørsel] fileName.csv brugernavn\n"
+"\t\t\tValgmuligheden --prøvekørsel kan bruges til at teste uden at foretage "
+"ændringer.\n"
+"\t\t\tAngiv det brugernavn, du vil knytte til indsendelserne.\n"
 
-msgid "plugins.importexport.csv.displayName"
-msgstr "Plugin til import af tabulatorsepareret indhold"
+msgid "plugins.importexport.csv.fileDoesNotExist"
+msgstr "Filen \"{$filename}\" findes ikke. Afslutter."
+
+msgid "plugins.importexport.csv.unknownUser"
+msgstr "Ukendt bruger: \"{$username}\". Afslutter."
+
+msgid "plugins.importexport.csv.unknownLocale"
+msgstr "Ukendt sprog: \"{$locale}\". Springer over."
+
+msgid "plugins.importexport.csv.unknownPress"
+msgstr "Ukendt udgiver: \"{$contextPath}\". Springer over."
+
+msgid "plugins.importexport.csv.noGenre"
+msgstr "Der er ingen manuskriptgenre. Afslutter."
+
+msgid "plugins.importexport.csv.noAuthorGroup"
+msgstr ""
+"Der er ingen foruddefineret forfattergruppe hos udgiveren {$press}. Springer "
+"over denne indsendelse."
+
+msgid "plugins.importexport.csv.noSeries"
+msgstr ""
+"Seriestien {$seriesPath} findes ikke. Kan ikke tilføje den til denne "
+"indsendelse."
+
+msgid "plugins.importexport.csv.import.submission"
+msgstr "Indsendelse: '{$title}' blev importeret."
+
+msgid "plugins.importexport.csv.import.success.description"
+msgstr ""
+"Importen var vellykket. Elementer, der er importeret, er vist nedenfor."

@@ -11,10 +11,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
+msgid "plugins.generic.pdfJsViewer.displayName"
+msgstr "PDF.JS Visualizador de PDF"
+
 msgid "plugins.generic.pdfJsViewer.description"
 msgstr ""
 "Este plugin fornece suporte para renderização de PDFs usando a biblioteca "
 "PDF.js."
-
-msgid "plugins.generic.pdfJsViewer.displayName"
-msgstr "PDF.JS Visualizador de PDF"

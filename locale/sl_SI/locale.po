@@ -11,12 +11,18 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3;\n"
 "X-Generator: Weblate 3.9.1\n"
+
+msgid "common.payments"
+msgstr ""
 
 msgid "monograph.audience"
 msgstr "Ciljna skupina"
+
+msgid "monograph.audience.success"
+msgstr "Podrobnosti ciljnega občinstva so bile posodobljene."
 
 msgid "monograph.coverImage"
 msgstr "Naslovna slika"
@@ -58,7 +64,10 @@ msgid "submission.pageProofs"
 msgstr "Vzorci"
 
 msgid "monograph.proofReadingDescription"
-msgstr "Grafični urednik naloži pripravljene datoteke, ki so bile tu pripravljene na objavo. Uporabite <em>+Assign</em>, da avtorjem in ostalim dodelite korekturo vzorcev, popravljene datoteke morajo biti naložene pred objavo."
+msgstr ""
+"Grafični urednik naloži pripravljene datoteke, ki so bile tu pripravljene na "
+"objavo. Uporabite <em>+Assign</em>, da avtorjem in ostalim dodelite "
+"korekturo vzorcev, popravljene datoteke morajo biti naložene pred objavo."
 
 msgid "monograph.task.addNote"
 msgstr "Dodaj v nalogo"
@@ -148,7 +157,8 @@ msgid "monograph.publicationFormat.taxType"
 msgstr "Tip obdavčitve"
 
 msgid "monograph.publicationFormat.isApproved"
-msgstr "Vključi metapodatke tega formata publikacije v vnos te knjige v katalog."
+msgstr ""
+"Vključi metapodatke tega formata publikacije v vnos te knjige v katalog."
 
 msgid "monograph.publicationFormat.noMarketsAssigned"
 msgstr "Manjkajoča trg in cena."
@@ -161,8 +171,8 @@ msgstr "Manjkajoča polja metapodatkov."
 
 msgid "monograph.publicationFormat.formatDoesNotExist"
 msgstr ""
-"<p>Izbran format publikacije za to monografsko publikacijo ne obstaja "
-"več.</p>"
+"<p>Izbran format publikacije za to monografsko publikacijo ne obstaja več.</"
+"p>"
 
 msgid "monograph.publicationFormat.openTab"
 msgstr "Odpri zavihek formata publikacije."
@@ -188,6 +198,15 @@ msgstr "Ta oblika bo na voljo na ločenem spletišču"
 msgid "grid.catalogEntry.remoteURL"
 msgstr "URL do vsebine na daljavo"
 
+msgid "grid.catalogEntry.isbn"
+msgstr ""
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr ""
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr ""
+
 msgid "grid.catalogEntry.monographRequired"
 msgstr "ID monografske publikacije je obvezen."
 
@@ -209,6 +228,9 @@ msgstr "Korektura"
 msgid "grid.catalogEntry.approvedRepresentation.title"
 msgstr "Odobritev formata"
 
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+
 msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
 msgstr "<p>Označite, da metapodatki za ta format niso bili odobreni.</p>"
 
@@ -216,10 +238,14 @@ msgid "grid.catalogEntry.availableRepresentation.title"
 msgstr "Razpoložljivost formata"
 
 msgid "grid.catalogEntry.availableRepresentation.message"
-msgstr "<p>Ta format <em>omogoči za bralce</em>. Prenosljive datoteke in vse ostale oblike se bodo pojavile v vnosu knjige v katalog.</p>"
+msgstr ""
+"<p>Ta format <em>omogoči za bralce</em>. Prenosljive datoteke in vse ostale "
+"oblike se bodo pojavile v vnosu knjige v katalog.</p>"
 
 msgid "grid.catalogEntry.availableRepresentation.removeMessage"
-msgstr "<p>Ta format <em> bralcem ni na voljo </em>. Prenosljive datoteke in vse ostale oblike se ne bodo pojavile v vnosu knjige v katalog.</p>"
+msgstr ""
+"<p>Ta format <em> bralcem ni na voljo </em>. Prenosljive datoteke in vse "
+"ostale oblike se ne bodo pojavile v vnosu knjige v katalog.</p>"
 
 msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
 msgstr "Vnos v katalog ni odobren."
@@ -270,7 +296,9 @@ msgid "grid.catalogEntry.salesRightsROW"
 msgstr "Tujina?"
 
 msgid "grid.catalogEntry.salesRightsROW.tip"
-msgstr "Obkljukajte to polje, da uporabite ta vnos Prodajne pravice kot privzet za vaš format. V tem primeru vam ni treba izbrati držav in regij."
+msgstr ""
+"Obkljukajte to polje, da uporabite ta vnos Prodajne pravice kot privzet za "
+"vaš format. V tem primeru vam ni treba izbrati držav in regij."
 
 msgid "grid.catalogEntry.oneROWPerFormat"
 msgstr "VRSTICA tip prodajnih pravic je za ta format že opredeljena."
@@ -312,7 +340,8 @@ msgid "grid.catalogEntry.dateFormat"
 msgstr "Oblika datuma"
 
 msgid "grid.catalogEntry.dateRequired"
-msgstr "Datum je obvezen in vrednost datuma se mora ujemati z izbrano obliko datuma."
+msgstr ""
+"Datum je obvezen in vrednost datuma se mora ujemati z izbrano obliko datuma."
 
 msgid "grid.catalogEntry.representatives"
 msgstr "Zastopniki"
@@ -330,7 +359,9 @@ msgid "grid.catalogEntry.agent"
 msgstr "Agent"
 
 msgid "grid.catalogEntry.agentTip"
-msgstr "Na opredeljenem prodajnem področju lahko dodelite agenta, da vas zastopa. Ni obvezno."
+msgstr ""
+"Na opredeljenem prodajnem področju lahko dodelite agenta, da vas zastopa. Ni "
+"obvezno."
 
 msgid "grid.catalogEntry.supplier"
 msgstr "Dobavitelj"
@@ -360,7 +391,8 @@ msgid "grid.catalogEntry.representativeIdType"
 msgstr "Tip ID zastopnika (priporočen je GLN)"
 
 msgid "grid.catalogEntry.representativesDescription"
-msgstr "Ta razdelek lahko pustite prazen, če sami nudite storitve svojim strankam."
+msgstr ""
+"Ta razdelek lahko pustite prazen, če sami nudite storitve svojim strankam."
 
 msgid "grid.action.addRepresentative"
 msgstr "Dodaj zastopnika"
@@ -582,13 +614,22 @@ msgid "catalog.selectCategory"
 msgstr "Izberi kategorijo"
 
 msgid "catalog.manage.homepageDescription"
-msgstr "Naslovnica izbranih knjig se pojavi na vrhu domače strani kot drsni meni. Kliknite ‚Prikaži‘ in nato zvezdico, da dodate knjigo v vrtilni meni; kliknite klicaj, da se prikaže v kategoriji nove izdaje; povlecite in spustite za razvrščanje."
+msgstr ""
+"Naslovnica izbranih knjig se pojavi na vrhu domače strani kot drsni meni. "
+"Kliknite ‚Prikaži‘ in nato zvezdico, da dodate knjigo v vrtilni meni; "
+"kliknite klicaj, da se prikaže v kategoriji nove izdaje; povlecite in "
+"spustite za razvrščanje."
 
 msgid "catalog.manage.categoryDescription"
-msgstr "Kliknite ‚Prikaži‘ in nato zvezdico, da izberete knjigo za to kategorijo; povlecite in spustite za razvrščanje."
+msgstr ""
+"Kliknite ‚Prikaži‘ in nato zvezdico, da izberete knjigo za to kategorijo; "
+"povlecite in spustite za razvrščanje."
 
 msgid "catalog.manage.seriesDescription"
-msgstr "Kliknite ‚Prikaži‘ in nato zvezdico, da izberete knjigo za to zbirko; povlecite in spustite za razvrščanje. Zbirke so označene z imenom urednika (urednikov) in naslovom zbirke znotraj kategorije ali samostojno."
+msgstr ""
+"Kliknite ‚Prikaži‘ in nato zvezdico, da izberete knjigo za to zbirko; "
+"povlecite in spustite za razvrščanje. Zbirke so označene z imenom urednika "
+"(urednikov) in naslovom zbirke znotraj kategorije ali samostojno."
 
 msgid "catalog.manage.placeIntoCarousel"
 msgstr "Vrtilni meni"
@@ -636,10 +677,32 @@ msgid "catalog.manage.feature.seriesNewRelease"
 msgstr "Nova izdaja v zbirki"
 
 msgid "catalog.manage.nonOrderable"
-msgstr "Te monografske publikacije ni mogoče naročiti, dokler ni izpostavljena."
+msgstr ""
+"Te monografske publikacije ni mogoče naročiti, dokler ni izpostavljena."
 
 msgid "catalog.manage.filter.searchByAuthorOrTitle"
 msgstr "Iskanje po naslovu ali avtorju"
+
+msgid "catalog.manage.isFeatured"
+msgstr ""
+
+msgid "catalog.manage.isNotFeatured"
+msgstr ""
+
+msgid "catalog.manage.isNewRelease"
+msgstr ""
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr ""
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr ""
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr ""
+
+msgid "catalog.manage.findSubmissions"
+msgstr ""
 
 msgid "catalog.noTitles"
 msgstr "Zaenkrat še ni objavljenih naslovov."
@@ -663,7 +726,9 @@ msgid "catalog.foundTitleSearch"
 msgstr "Za vašo iskalno zahtevo \"{$searchQuery}\" je bil najden en naslov."
 
 msgid "catalog.foundTitlesSearch"
-msgstr "{$number} število najdenih naslovov se je ujemalo z vašo iskalno zahtevo \"{$searchQuery}\"."
+msgstr ""
+"{$number} število najdenih naslovov se je ujemalo z vašo iskalno zahtevo "
+"\"{$searchQuery}\"."
 
 msgid "catalog.category.heading"
 msgstr "Vse knjige"
@@ -679,6 +744,9 @@ msgstr "Podrobnosti o publikaciji"
 
 msgid "catalog.published"
 msgstr "Izdano"
+
+msgid "catalog.forthcoming"
+msgstr ""
 
 msgid "catalog.categories"
 msgstr "Kategorije"
@@ -722,6 +790,15 @@ msgstr "{$type} poglej datoteko {$title}"
 msgid "catalog.viewableFile.return"
 msgstr "Vrni se na pregled podrobnosti o {$monographTitle}"
 
+msgid "submission.search"
+msgstr ""
+
+msgid "common.publication"
+msgstr ""
+
+msgid "common.publications"
+msgstr ""
+
 msgid "common.prefix"
 msgstr "Predpona"
 
@@ -760,6 +837,9 @@ msgstr "Katalog"
 
 msgid "navigation.competingInterestPolicy"
 msgstr "Politika  konflikta interesov"
+
+msgid "navigation.catalog.allMonographs"
+msgstr ""
 
 msgid "navigation.catalog.manage"
 msgstr "Upravljaj"
@@ -800,6 +880,30 @@ msgstr "Pomočnik"
 msgid "navigation.linksAndMedia"
 msgstr "Povezave in družabna omrežja"
 
+msgid "navigation.navigationMenus.catalog.description"
+msgstr ""
+
+msgid "navigation.skip.spotlights"
+msgstr ""
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr ""
+
+msgid "navigation.navigationMenus.series.description"
+msgstr ""
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr ""
+
+msgid "navigation.navigationMenus.category.description"
+msgstr ""
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr ""
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr ""
+
 msgid "context.contexts"
 msgstr "Založbe"
 
@@ -812,6 +916,9 @@ msgstr "Trenutna založba:"
 msgid "context.select"
 msgstr "Preklopite na drugo založbo:"
 
+msgid "user.authorization.representationNotFound"
+msgstr ""
+
 msgid "user.noRoles.selectUsersWithoutRoles"
 msgstr "V založbo vključi uporabnike brez vloge."
 
@@ -819,19 +926,25 @@ msgid "user.noRoles.submitMonograph"
 msgstr "Oddaj prispevek"
 
 msgid "user.noRoles.submitMonographRegClosed"
-msgstr "Oddaj monografsko publikacijo: Registracija avtorja je trenutno onemogočena."
+msgstr ""
+"Oddaj monografsko publikacijo: Registracija avtorja je trenutno onemogočena."
 
 msgid "user.noRoles.regReviewer"
 msgstr "Registriraj se kot recenzent"
 
 msgid "user.noRoles.regReviewerClosed"
-msgstr "Registriraj se kot recenzent: Registracija recenzenta je trenutno onemogočena."
+msgstr ""
+"Registriraj se kot recenzent: Registracija recenzenta je trenutno "
+"onemogočena."
 
 msgid "user.reviewerPrompt"
 msgstr "Ali bi bili pripravljeni recenzirati prispevke za to založbo?"
 
 msgid "user.reviewerPrompt.userGroup"
 msgstr "Da, zahtevaj vlogo {$userGroup}."
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
 
 msgid "user.register.contextsPrompt"
 msgstr "Pri katerih založbah na spletišču bi se radi registrirali?"
@@ -840,7 +953,9 @@ msgid "user.register.otherContextRoles"
 msgstr "Zahtevaj naslednje vloge."
 
 msgid "user.register.noContextReviewerInterests"
-msgstr "Če ste zahtevali vlogo revizorja pri kateri koli založbi,  vnesite predmetne interese."
+msgstr ""
+"Če ste zahtevali vlogo revizorja pri kateri koli založbi,  vnesite predmetne "
+"interese."
 
 msgid "user.role.manager"
 msgstr "Upravitelj publikacije"
@@ -850,9 +965,6 @@ msgstr "Uredik publikacije"
 
 msgid "user.role.subEditor"
 msgstr "Urednik zbirke"
-
-msgid "user.role.assistant"
-msgstr "Asistent založbe"
 
 msgid "user.role.copyeditor"
 msgstr "Lektor"
@@ -909,10 +1021,17 @@ msgid "user.register.reviewerDescription"
 msgstr "Pripravljen za opravljanje recenzij prispevkov na tem spletišču."
 
 msgid "user.register.reviewerInterests"
-msgstr "Preverite zanimanje za recenzijo (vsebinska področja in raziskovalne metode):"
+msgstr ""
+"Preverite zanimanje za recenzijo (vsebinska področja in raziskovalne metode):"
 
 msgid "user.register.form.userGroupRequired"
 msgstr "Izbrati morate vsaj eno vlogo"
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+
+msgid "site.noPresses"
+msgstr ""
 
 msgid "site.pressView"
 msgstr "Poglej spletišče založbe"
@@ -966,7 +1085,9 @@ msgid "about.submissionPreparationChecklist"
 msgstr "Kontrolni seznam za oddajo prispevka"
 
 msgid "about.submissionPreparationChecklist.description"
-msgstr "Avtorji morajo med procesom oddaje preveriti, če njihovi prispevki ustrezajo spodnjim zahtevam. V primeru, da ne ustrezajo, so prispevki lahko zavrnjeni."
+msgstr ""
+"Avtorji morajo med procesom oddaje preveriti, če njihovi prispevki ustrezajo "
+"spodnjim zahtevam. V primeru, da ne ustrezajo, so prispevki lahko zavrnjeni."
 
 msgid "about.copyrightNotice"
 msgstr "Obvestilo o avtorskih pravicah"
@@ -992,13 +1113,24 @@ msgstr "O postopku objave"
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "Uredniški postopek in postopek objave OMP"
 
+msgid "about.aboutSoftware"
+msgstr ""
+
 #, fuzzy
 msgid "about.aboutOMPPress"
-msgstr "Ta založba uporablja sistem Open Monograph Press {$ompVersion}, ki je odprtokodna programska oprema za založništvo in upravljanje založb, ki jo podpira in distribuira <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> z licenco GNU General Public License."
+msgstr ""
+"Ta založba uporablja sistem Open Monograph Press {$ompVersion}, ki je "
+"odprtokodna programska oprema za založništvo in upravljanje založb, ki jo "
+"podpira in distribuira <a href=\"http://pkp.sfu.ca/\">Public Knowledge "
+"Project</a> z licenco GNU General Public License."
 
 #, fuzzy
 msgid "about.aboutOMPSite"
-msgstr "To spletišče uporablja sistem Open Monograph Press {$ompVersion}, ki je odprtokodna programska oprema za založništvo in upravljanje založb, ki jo podpira in distribuira <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> z licenco GNU General Public License."
+msgstr ""
+"To spletišče uporablja sistem Open Monograph Press {$ompVersion}, ki je "
+"odprtokodna programska oprema za založništvo in upravljanje založb, ki jo "
+"podpira in distribuira <a href=\"http://pkp.sfu.ca/\">Public Knowledge "
+"Project</a> z licenco GNU General Public License."
 
 msgid "help.searchReturnResults"
 msgstr "Nazaj na iskalne rezultate"
@@ -1015,17 +1147,42 @@ msgstr "Nadgradnja OMP"
 msgid "installer.installApplication"
 msgstr "Namestitev Open Monograph Press"
 
+msgid "installer.updatingInstructions"
+msgstr ""
+
 #, fuzzy
 msgid "installer.installationInstructions"
 msgstr ""
 "\n"
-"<p>Hvala za prenos <strong>Open Monograph Press {$version}</strong> v lasti Public Knowledge Project. Preden nadaljujete, preberite datoteko <a href=\"{$baseUrl}/docs/README\">README</a>, ki je priložena tej programski opremi. Za več informacij o platformi Public Knowledge Project in njihovi programski opremi obiščite <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">spletišče PKP</a>. Če imate vprašanja o tehnični podpori ali poročila o napakah v sistemu v zvezi s projektom Open Monograph Press, obiščite <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">podporni forum</a> ali spletni sistem PKP <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">za poročila o napakah</a>. Čeprav je zaželjeno, da nas kontaktirate preko podpornega foruma, lahko ekipo kontaktirate na <a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>. </p> <h4>Upgrade</h4> <p>Če nadgrajujete obstoječo nastavitev OMP, <a href=\"{$upgradeUrl}\">kliknite tukaj</a> za nadaljevanje.</p>"
+"<p>Hvala za prenos <strong>Open Monograph Press {$version}</strong> v lasti "
+"Public Knowledge Project. Preden nadaljujete, preberite datoteko <a href="
+"\"{$baseUrl}/docs/README\">README</a>, ki je priložena tej programski "
+"opremi. Za več informacij o platformi Public Knowledge Project in njihovi "
+"programski opremi obiščite <a href=\"http://pkp.sfu.ca/\" target=\"_blank"
+"\">spletišče PKP</a>. Če imate vprašanja o tehnični podpori ali poročila o "
+"napakah v sistemu v zvezi s projektom Open Monograph Press, obiščite <a href="
+"\"http://forum.pkp.sfu.ca\" target=\"_blank\">podporni forum</a> ali spletni "
+"sistem PKP <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">za "
+"poročila o napakah</a>. Čeprav je zaželjeno, da nas kontaktirate preko "
+"podpornega foruma, lahko ekipo kontaktirate na <a href=\"mailto:pkp."
+"contact@gmail.com\">pkp.contact@gmail.com</a>. </p> <h4>Upgrade</h4> <p>Če "
+"nadgrajujete obstoječo nastavitev OMP, <a href=\"{$upgradeUrl}\">kliknite "
+"tukaj</a> za nadaljevanje.</p>"
 
 msgid "installer.preInstallationInstructionsTitle"
 msgstr "Koraki pred namestitvijo"
 
 msgid "installer.preInstallationInstructions"
-msgstr "<p>1. Naslednje datoteke in direktoriji (in njihova vsebina) morajo biti zapisljivi: </p> <ul> <li><tt>config.inc.php</tt> je zapisljiv (neobvezno): {$writable_config}</li> <li><tt>public/</tt> je zapisljiv: {$writable_public}</li> <li><tt>cache/</tt> je zapisljiv: {$writable_cache}</li> <li><tt>cache/t_cache/</tt> je zapisljiv: {$writable_templates_cache}</li> <li><tt>cache/t_compile/</tt> je zapisljiv: {$writable_templates_compile}</li> <li><tt>cache/_db</tt> je zapisljiv: {$writable_db_cache}</li> </ul> <p>2. Direktorij za shranjevanje naloženih datotek mora biti ustvarjen in zapisljiv (glej \"Nastavitve datotek\" spodaj).</p>"
+msgstr ""
+"<p>1. Naslednje datoteke in direktoriji (in njihova vsebina) morajo biti "
+"zapisljivi: </p> <ul> <li><tt>config.inc.php</tt> je zapisljiv (neobvezno): "
+"{$writable_config}</li> <li><tt>public/</tt> je zapisljiv: {$writable_public}"
+"</li> <li><tt>cache/</tt> je zapisljiv: {$writable_cache}</li> <li><tt>cache/"
+"t_cache/</tt> je zapisljiv: {$writable_templates_cache}</li> <li><tt>cache/"
+"t_compile/</tt> je zapisljiv: {$writable_templates_compile}</li> "
+"<li><tt>cache/_db</tt> je zapisljiv: {$writable_db_cache}</li> </ul> <p>2. "
+"Direktorij za shranjevanje naloženih datotek mora biti ustvarjen in "
+"zapisljiv (glej \"Nastavitve datotek\" spodaj).</p>"
 
 msgid "installer.upgradeInstructions"
 msgstr ""
@@ -1039,67 +1196,123 @@ msgstr ""
 "href=\"http://pkp.sfu.ca/\" target=\"_blank\">spletišče PKP</a>. Če imate "
 "vprašanja o tehnični podpori ali poročila o napakah v sistemu v zvezi s "
 "projektom Open Monograph Press, obiščite <a href=\"http://forum.pkp.sfu.ca\" "
-"target=\"_blank\">podporni forum</a> ali spletni sistem PKP <a href=\""
-"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">za poročila o napakah</a>. "
-"Čeprav je zaželjeno, da nas kontaktirate preko podpornega foruma, lahko "
-"ekipo kontaktirate na <a href=\"mailto:pkp.contact@gmail.com\""
-">pkp.contact@gmail.com</a>.</p>\n"
+"target=\"_blank\">podporni forum</a> ali spletni sistem PKP <a href=\"http://"
+"pkp.sfu.ca/bugzilla/\" target=\"_blank\">za poročila o napakah</a>. Čeprav "
+"je zaželjeno, da nas kontaktirate preko podpornega foruma, lahko ekipo "
+"kontaktirate na <a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail."
+"com</a>.</p>\n"
 "<p><strong>Močno priporočamo</strong>, da naredite varnostno kopijo "
 "podatkovne baze, direktorija map in nastavitvenega direktorija OMP preden "
-"nadaljujete.</p> <p>Če ste v <a href=\"http://www.php.net/features.safe-"
-"mode\" target=\"_blank\">varnem načinu PHP</a>, prosimo zagotovite, da je "
+"nadaljujete.</p> <p>Če ste v <a href=\"http://www.php.net/features.safe-mode"
+"\" target=\"_blank\">varnem načinu PHP</a>, prosimo zagotovite, da je "
 "max_execution_time directive v vaši konfiguracijski datoteki php.ini "
 "nastavljena na visoko vrednost. Če dosežete to ali katero drugo časovno "
 "omejitev (npr. direktiva \"Timeout\" v Apache) in je postopek nadgradnje "
 "prekinjen, bo potrebno ročno posredovanje. </p>"
 
 msgid "installer.localeSettingsInstructions"
-msgstr "Za celotno podporo Unicode (UTF-8) izberite UTF-8 za vse nastavitve znakov. Za to podporo potrebujete MySQL >= 4.1.1 ali strežnik podatkovne baze PostgreSQL >= 9.1.5 . Ne pozabite, da za celotno podporo Unicode potrebujete knjižnico <a href=\"http://www.php.net/mbstring\" target=\"_blank\">mbstring</a> (privzeto omogočena v najnovejših namestitvah PHP). Če vaš strežnik ne ustreza tem zahtevam, bi lahko pri uporabi razširjenega izbora znakov imeli težave. <br /><br /> Vaš strežnik trenutno podpira mbstring: <strong>{$supportsMBString}</strong>"
+msgstr ""
+"Za celotno podporo Unicode (UTF-8) izberite UTF-8 za vse nastavitve znakov. "
+"Za to podporo potrebujete MySQL >= 4.1.1 ali strežnik podatkovne baze "
+"PostgreSQL >= 9.1.5 . Ne pozabite, da za celotno podporo Unicode potrebujete "
+"knjižnico <a href=\"http://www.php.net/mbstring\" target=\"_blank"
+"\">mbstring</a> (privzeto omogočena v najnovejših namestitvah PHP). Če vaš "
+"strežnik ne ustreza tem zahtevam, bi lahko pri uporabi razširjenega izbora "
+"znakov imeli težave. <br /><br /> Vaš strežnik trenutno podpira mbstring: "
+"<strong>{$supportsMBString}</strong>"
 
 msgid "installer.allowFileUploads"
-msgstr "Vaš server trenutno podpira nalaganje datotek: <strong>{$allowFileUploads}</strong>"
+msgstr ""
+"Vaš server trenutno podpira nalaganje datotek: <strong>{$allowFileUploads}</"
+"strong>"
 
 msgid "installer.maxFileUploadSize"
-msgstr "Vaš server trenutno podpira nalaganje datotek največ v velikosti: <strong>{$allowFileUploads}</strong>"
+msgstr ""
+"Vaš server trenutno podpira nalaganje datotek največ v velikosti: "
+"<strong>{$allowFileUploads}</strong>"
 
 msgid "installer.localeInstructions"
-msgstr "Primarni jezik, ki se bo uporabljal na sistemu. Preverite dokumentacijo OMP, če vas zanima podpora jezikov, ki tukaj niso našteti."
+msgstr ""
+"Primarni jezik, ki se bo uporabljal na sistemu. Preverite dokumentacijo OMP, "
+"če vas zanima podpora jezikov, ki tukaj niso našteti."
 
 msgid "installer.additionalLocalesInstructions"
-msgstr "Izberite dodatne jezike, ki naj jih sistem podpira. Ti jeziki bodo na voljo založbam na vašem spletišču. Dodatne jezike lahko kadarkoli namestite v vmesniku administracije spletišča. Jeziki označeni z * so lahko nepopolni."
+msgstr ""
+"Izberite dodatne jezike, ki naj jih sistem podpira. Ti jeziki bodo na voljo "
+"založbam na vašem spletišču. Dodatne jezike lahko kadarkoli namestite v "
+"vmesniku administracije spletišča. Jeziki označeni z * so lahko nepopolni."
 
 msgid "installer.filesDirInstructions"
-msgstr "Vnesite celotno ime poti obstoječega direktorija, kjer naj se hranijo naložene datoteke. Ta direktorij naj ne bo direktno dostopen s spleta. <strong>Poskrbite, da direktorij obstaja in da je zapisljiv pred namestitvijo.</strong> Imena poti v okolju Windows naj uporabljajo poševnice, npr. \"C:/mypress/files\"."
+msgstr ""
+"Vnesite celotno ime poti obstoječega direktorija, kjer naj se hranijo "
+"naložene datoteke. Ta direktorij naj ne bo direktno dostopen s spleta. "
+"<strong>Poskrbite, da direktorij obstaja in da je zapisljiv pred "
+"namestitvijo.</strong> Imena poti v okolju Windows naj uporabljajo "
+"poševnice, npr. \"C:/mypress/files\"."
 
 msgid "installer.databaseSettingsInstructions"
-msgstr "Sistem OMP za shranjevanje podatkov potrebuje dostop do podatkovne zbirke  SQL. Seznam podprtih podatkovnih zbirk lahko vidite zgoraj v zavihku sistemske zahteve. V poljih spodaj napišite nastavitve za povezavo z podatkovno zbirko."
+msgstr ""
+"Sistem OMP za shranjevanje podatkov potrebuje dostop do podatkovne zbirke  "
+"SQL. Seznam podprtih podatkovnih zbirk lahko vidite zgoraj v zavihku "
+"sistemske zahteve. V poljih spodaj napišite nastavitve za povezavo z "
+"podatkovno zbirko."
 
 msgid "installer.upgradeApplication"
 msgstr "Posodobitev Open Monograph Press"
 
 msgid "installer.overwriteConfigFileInstructions"
-msgstr "<h4>OPOZORILO! </h4> <p>Sistem ne more avtomatsko prepisati konfiguracijske datoteke. Pred uporabo sistema odprite <tt>config.inc.php</tt> v primernem urejevalniku besedil in njegovo vsebino zamenjajte z besedilom spodaj.</p>"
+msgstr ""
+"<h4>OPOZORILO! </h4> <p>Sistem ne more avtomatsko prepisati konfiguracijske "
+"datoteke. Pred uporabo sistema odprite <tt>config.inc.php</tt> v primernem "
+"urejevalniku besedil in njegovo vsebino zamenjajte z besedilom spodaj.</p>"
 
 msgid "installer.installationComplete"
-msgstr "<p>Namestitev sistema OMP je uspešno dokončana.</p> <p>Za začetek uporabe sistema se <a href=\"{$loginUrl}\">prijavite</a> z uporabniškim imenom in geslom, ki ste ga vpisali na prejšnji strani.</p> <p>Če želite prejemati novice in posodobitve, se <strong>registrirajte na <a href=\"http://pkp.sfu.ca/omp/register\" target=\"_blank\">http://pkp.sfu.ca/omp/register</a>.</strong> Če imate vprašanja ali komentarje,  obiščite <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">podporni forum</a>.</p>"
+msgstr ""
+"<p>Namestitev sistema OMP je uspešno dokončana.</p> <p>Za začetek uporabe "
+"sistema se <a href=\"{$loginUrl}\">prijavite</a> z uporabniškim imenom in "
+"geslom, ki ste ga vpisali na prejšnji strani.</p> <p>Če želite prejemati "
+"novice in posodobitve, se <strong>registrirajte na <a href=\"http://pkp.sfu."
+"ca/omp/register\" target=\"_blank\">http://pkp.sfu.ca/omp/register</a>.</"
+"strong> Če imate vprašanja ali komentarje,  obiščite <a href=\"http://forum."
+"pkp.sfu.ca\" target=\"_blank\">podporni forum</a>.</p>"
 
 msgid "installer.upgradeComplete"
-msgstr "<p>Nadgradnja sistema OMP na različico {$version} je uspešno dokončana.</p> <p>Ne pozabite nastaviti nastavitve \"installed\" v vaši konfiguracijski datoteki config.inc.php nazaj na <em>On</em>.</p> <p>Če se še niste registrirali in želite prejemati novice in posodobitve, <strong>se registrirajte na <a href=\"http://pkp.sfu.ca/omp/register\" target=\"_blank\">http://pkp.sfu.ca/omp/register</a>.</strong> Če imate vprašanja ali komentarje, prosimo obiščite <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">podporni forum</a>.</p>"
+msgstr ""
+"<p>Nadgradnja sistema OMP na različico {$version} je uspešno dokončana.</p> "
+"<p>Ne pozabite nastaviti nastavitve \"installed\" v vaši konfiguracijski "
+"datoteki config.inc.php nazaj na <em>On</em>.</p> <p>Če se še niste "
+"registrirali in želite prejemati novice in posodobitve, <strong>se "
+"registrirajte na <a href=\"http://pkp.sfu.ca/omp/register\" target=\"_blank"
+"\">http://pkp.sfu.ca/omp/register</a>.</strong> Če imate vprašanja ali "
+"komentarje, prosimo obiščite <a href=\"http://forum.pkp.sfu.ca\" target="
+"\"_blank\">podporni forum</a>.</p>"
 
 msgid "log.review.reviewDueDateSet"
-msgstr "Končni datum za {$round} krog recenzije prispevka {$submissionId} recenzenta {$reviewerName} je bil postavljen na {$dueDate}."
+msgstr ""
+"Končni datum za {$round} krog recenzije prispevka {$submissionId} recenzenta "
+"{$reviewerName} je bil postavljen na {$dueDate}."
 
 msgid "log.review.reviewDeclined"
-msgstr "{$reviewerName} je zavrnil {$round} recenzijo za prispevek {$submissionId}."
+msgstr ""
+"{$reviewerName} je zavrnil {$round} recenzijo za prispevek {$submissionId}."
 
 msgid "log.review.reviewAccepted"
-msgstr "{$reviewerName} je sprejel {$round}. krog recenzije za prispevek {$submissionId}."
+msgstr ""
+"{$reviewerName} je sprejel {$round}. krog recenzije za prispevek "
+"{$submissionId}."
 
 msgid "log.review.reviewUnconsidered"
-msgstr "{$editorName} je označil recenzijo {$round} kroga za prispevek {$submissionId} kot neupoštevan."
+msgstr ""
+"{$editorName} je označil recenzijo {$round} kroga za prispevek "
+"{$submissionId} kot neupoštevan."
 
 msgid "log.editor.decision"
-msgstr "Uredniško odločitev ({$decision}) za monografsko publikacijo {$submissionId} je zabeležil {$editorName}."
+msgstr ""
+"Uredniško odločitev ({$decision}) za monografsko publikacijo {$submissionId} "
+"je zabeležil {$editorName}."
+
+msgid "log.editor.recommendation"
+msgstr ""
 
 msgid "log.editor.archived"
 msgstr "Prispevek {$articleId} je arhiviran."
@@ -1111,10 +1324,13 @@ msgid "log.editor.editorAssigned"
 msgstr "{$editorName} je  dodeljen kot urednik prispevka {$submissionId}."
 
 msgid "log.proofread.assign"
-msgstr "{$assignerName} je določil {$proofreaderName} za korektorja prispevka {$submissionId}."
+msgstr ""
+"{$assignerName} je določil {$proofreaderName} za korektorja prispevka "
+"{$submissionId}."
 
 msgid "log.proofread.complete"
-msgstr "{$proofreaderName} je poslal prispevek {$submissionId} v razpored za objavo."
+msgstr ""
+"{$proofreaderName} je poslal prispevek {$submissionId} v razpored za objavo."
 
 msgid "log.imported"
 msgstr "{$userName} je vnesel monografsko publikacijo {$submissionId}."
@@ -1212,8 +1428,13 @@ msgstr "Dogodki prispevkov"
 msgid "notification.type.userComment"
 msgstr "Bralec je dodal komentar na prispevek \"{$title}\""
 
+msgid "notification.type.public"
+msgstr ""
+
 msgid "notification.type.editorAssignmentTask"
-msgstr "Nova monografska publikacija je bila dodana, ki ji je treba dodeliti urednika."
+msgstr ""
+"Nova monografska publikacija je bila dodana, ki ji je treba dodeliti "
+"urednika."
 
 msgid "notification.type.copyeditorRequest"
 msgstr "Prosili so vas za pregled korektur za \"{$file}\"."
@@ -1228,34 +1449,51 @@ msgid "notification.type.editorDecisionInternalReview"
 msgstr "Postopek notranjega pregleda začet."
 
 msgid "notification.type.approveSubmission"
-msgstr "Ta prispevek trenutno čaka na odobritev v orodju Vnos v katalog, preden se bo pojavil v javnem katalogu."
+msgstr ""
+"Ta prispevek trenutno čaka na odobritev v orodju Vnos v katalog, preden se "
+"bo pojavil v javnem katalogu."
 
 msgid "notification.type.approveSubmissionTitle"
 msgstr "Čaka na odobritev."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
 
 msgid "notification.type.configurePaymentMethod.title"
 msgstr "Ni konfiguriranih načinov plačila."
 
 msgid "notification.type.configurePaymentMethod"
-msgstr "Konfiguriran način plačila je obvezen, preden lahko opredelite nastavitve e-poslovanja."
+msgstr ""
+"Konfiguriran način plačila je obvezen, preden lahko opredelite nastavitve e-"
+"poslovanja."
 
 msgid "notification.type.visitCatalogTitle"
 msgstr "Upravljanje kataloga"
 
+msgid "notification.type.visitCatalog"
+msgstr ""
+
 msgid "user.authorization.invalidReviewAssignment"
-msgstr "Dostop vam je bil preprečen, ker niste veljaven recenzent te monografske publikacije."
+msgstr ""
+"Dostop vam je bil preprečen, ker niste veljaven recenzent te monografske "
+"publikacije."
 
 msgid "user.authorization.monographAuthor"
-msgstr "Dostop vam je bil preprečen, ker niste avtor te monografske publikacije."
+msgstr ""
+"Dostop vam je bil preprečen, ker niste avtor te monografske publikacije."
 
 msgid "user.authorization.monographReviewer"
-msgstr "Dostop vam je bil preprečen, ker niste dodeljen recenzent te monografske publikacije."
+msgstr ""
+"Dostop vam je bil preprečen, ker niste dodeljen recenzent te monografske "
+"publikacije."
 
 msgid "user.authorization.monographFile"
 msgstr "Dostop do določene datoteke monografa vam je bil preprečen."
 
 msgid "user.authorization.invalidMonograph"
-msgstr "Neveljavna monografska publikacija ali zahtevana monografska publikacija ne obstaja!"
+msgstr ""
+"Neveljavna monografska publikacija ali zahtevana monografska publikacija ne "
+"obstaja!"
 
 #, fuzzy
 msgid "user.authorization.noContext"
@@ -1268,7 +1506,9 @@ msgid "user.authorization.workflowStageAssignmentMissing"
 msgstr "Dostop zavrnjen! Niste bili dodani v to fazo dela."
 
 msgid "user.authorization.workflowStageSettingMissing"
-msgstr "Dostop zavrnjen! Uporabniška skupina, v kateri trenutno delujete, ni bila dodeljena v to fazo dela. Preverite nastavitve vaše založbe."
+msgstr ""
+"Dostop zavrnjen! Uporabniška skupina, v kateri trenutno delujete, ni bila "
+"dodeljena v to fazo dela. Preverite nastavitve vaše založbe."
 
 msgid "payment.directSales"
 msgstr "Prenesi s spletišča založbe"
@@ -1307,7 +1547,11 @@ msgid "payment.directSales.openAccess"
 msgstr "Odprt dostop"
 
 msgid "payment.directSales.price.description"
-msgstr "Datotečni format je na voljo za prenos na spletišču založbe na podlagi odprtega dostopa in brez stroškov za bralce ali direktne prodaje (z uporabo spletnega plačilnega servisa, kot nastavljeno v Distribuciji). Natavite podlago dostopa za to datoteko."
+msgstr ""
+"Datotečni format je na voljo za prenos na spletišču založbe na podlagi "
+"odprtega dostopa in brez stroškov za bralce ali direktne prodaje (z uporabo "
+"spletnega plačilnega servisa, kot nastavljeno v Distribuciji). Natavite "
+"podlago dostopa za to datoteko."
 
 msgid "payment.directSales.validPriceRequired"
 msgstr "Veljavna numerična cena je obvezna."
@@ -1322,19 +1566,17 @@ msgid "payment.directSales.monograph.name"
 msgstr "Nakup monografske publikacije ali prenos poglavja"
 
 msgid "payment.directSales.monograph.description"
-msgstr "Prenos sredstev je za nakup direktnega prenosa ene monografske publikacije ali njenega poglavja."
+msgstr ""
+"Prenos sredstev je za nakup direktnega prenosa ene monografske publikacije "
+"ali njenega poglavja."
 
 msgid "debug.notes.helpMappingLoad"
-msgstr "XML datoteka preslikav pomoči {$filename} za iskanje {$id} je bila ponovno naložena."
+msgstr ""
+"XML datoteka preslikav pomoči {$filename} za iskanje {$id} je bila ponovno "
+"naložena."
 
 msgid "rt.metadata.pkp.dctype"
 msgstr "Knjiga"
-
-msgid "plugins.categories.viewableFiles"
-msgstr "Objavljeni vtičniki datotek"
-
-msgid "plugins.categories.viewableFiles.description"
-msgstr "Objavljeni vtičniki datotek podpirajo prikazovanje različnih vrst dokumentov, npr. z vdelavo PDF."
 
 msgid "submission.pdf.download"
 msgstr "Prenesi to datoteko PDF"
@@ -1348,5 +1590,52 @@ msgstr "Skrij ostale založbe"
 msgid "submission.round"
 msgstr "Krog &nbsp;{$round}"
 
-msgid "monograph.audience.success"
-msgstr "Podrobnosti ciljnega občinstva so bile posodobljene."
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr ""
+
+msgid "catalog.coverImageTitle"
+msgstr ""
+
+msgid "grid.catalogEntry.chapters"
+msgstr ""
+
+msgid "search.results.orderBy.article"
+msgstr ""
+
+msgid "search.results.orderBy.author"
+msgstr ""
+
+msgid "search.results.orderBy.date"
+msgstr ""
+
+msgid "search.results.orderBy.monograph"
+msgstr ""
+
+msgid "search.results.orderBy.press"
+msgstr ""
+
+msgid "search.results.orderBy.popularityAll"
+msgstr ""
+
+msgid "search.results.orderBy.popularityMonth"
+msgstr ""
+
+msgid "search.results.orderBy.relevance"
+msgstr ""
+
+msgid "search.results.orderDir.asc"
+msgstr ""
+
+msgid "search.results.orderDir.desc"
+msgstr ""
+
+#~ msgid "user.role.assistant"
+#~ msgstr "Asistent založbe"
+
+#~ msgid "plugins.categories.viewableFiles"
+#~ msgstr "Objavljeni vtičniki datotek"
+
+#~ msgid "plugins.categories.viewableFiles.description"
+#~ msgstr ""
+#~ "Objavljeni vtičniki datotek podpirajo prikazovanje različnih vrst "
+#~ "dokumentov, npr. z vdelavo PDF."
