@@ -8,6 +8,7 @@
  * @brief Display a summary view of a monograph for display in lists
  *
  * @uses $monograph Monograph The monograph to be displayed
+ * @uses $authorUserGroups Traversible The set of author user groups
  * @uses $isFeatured bool Is this a featured monograph?
  *}
 <div class="obj_monograph_summary{if $isFeatured} is_featured{/if}">
