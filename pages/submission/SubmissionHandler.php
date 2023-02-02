@@ -15,7 +15,6 @@
 
 namespace APP\pages\submission;
 
-use APP\components\forms\publication\TitleAbstractForm;
 use APP\components\forms\submission\ForTheEditors;
 use APP\components\forms\submission\ReconfigureSubmission;
 use APP\components\forms\submission\StartSubmission;
@@ -29,6 +28,7 @@ use APP\submission\Submission;
 use APP\template\TemplateManager;
 use Illuminate\Support\LazyCollection;
 use PKP\components\forms\FormComponent;
+use PKP\components\forms\publication\Details;
 use PKP\context\Context;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
@@ -115,9 +115,9 @@ class SubmissionHandler extends PKPSubmissionHandler
     /**
      * Add the chapters grid to the details step
      */
-    protected function getDetailsStep(Request $request, Submission $submission, Publication $publication, array $locales, string $publicationApiUrl, array $sections): array
+    protected function getDetailsStep(Request $request, Submission $submission, Publication $publication, array $locales, string $publicationApiUrl, array $sections, string $controlledVocabUrl): array
     {
-        $step = parent::getDetailsStep($request, $submission, $publication, $locales, $publicationApiUrl, $sections);
+        $step = parent::getDetailsStep($request, $submission, $publication, $locales, $publicationApiUrl, $sections, $controlledVocabUrl);
         $step['sections'][] = [
             'id' => self::CHAPTERS_SECTION_ID,
             'name' => __('submission.chapters'),
@@ -176,13 +176,14 @@ class SubmissionHandler extends PKPSubmissionHandler
         );
     }
 
-    protected function getTitleAbstractForm(string $publicationApiUrl, array $locales, Publication $publication, Context $context, array $sections): TitleAbstractForm
+    protected function getDetailsForm(string $publicationApiUrl, array $locales, Publication $publication, Context $context, array $sections, string $suggestionUrlBase): Details
     {
-        return new TitleAbstractForm(
+        return new Details(
             $publicationApiUrl,
             $locales,
             $publication,
-            true
+            $context,
+            $suggestionUrlBase
         );
     }
 
