@@ -97,6 +97,23 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     }
 
     /**
+     * Retrieve all chapters that include a given DOI ID
+     */
+    public function getByDoiId(int $doiId): DAOResultFactory
+    {
+        return new DAOResultFactory(
+            $this->retrieve(
+                'SELECT spc.*
+                FROM submission_chapters spc
+                WHERE spc.doi_id = ?',
+                [$doiId]
+            ),
+            $this,
+            '_fromRow'
+        );
+    }
+
+    /**
      * Retrieve all chapters by source chapter ID or retrieve a chapter by source chapter ID and publication ID.
      *
      * @param int $sourceChapterId Chapter ID from first version of this chapter
@@ -144,7 +161,12 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
      */
     public function getLocaleFieldNames()
     {
-        return ['title', 'subtitle','abstract'];
+        $localFieldNames = parent::getLocaleFieldNames();
+        $localFieldNames[] = 'title';
+        $localFieldNames[] = 'subtitle';
+        $localFieldNames[] = 'abstract';
+
+        return $localFieldNames;
     }
 
     /**
