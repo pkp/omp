@@ -87,12 +87,13 @@ class GoogleScholarPlugin extends GenericPlugin
         $templateMgr->addHeader('googleScholarLanguage', '<meta name="citation_language" content="' . htmlspecialchars(substr($publicationLocale, 0, 2)) . '"/>');
 
         // Publication date
-        $templateMgr->addHeader('googleScholarDate', '<meta name="citation_publication_date" content="' . date('Y-m-d', strtotime($publication->getData('datePublished'))) . '"/>');
+        if ($datePublished = $publication->getData('datePublished')) {
+            $templateMgr->addHeader('googleScholarDate', '<meta name="citation_publication_date" content="' . date('Y-m-d', strtotime($datePublished)) . '"/>');
+        }
 
         // Authors in order
         $authors = $isChapterRequest ? $templateMgr->getTemplateVars('chapterAuthors') : $publication->getData('authors');
-        $i = 0;
-        foreach ($authors as $author) {
+        foreach ($authors as $i => $author) {
             $templateMgr->addHeader('googleScholarAuthor' . $i++, '<meta name="citation_author" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
             if ($affiliation = htmlspecialchars($author->getLocalizedData('affiliation', $publicationLocale))) {
                 $templateMgr->addHeader('googleScholarAuthor' . $i++ . 'Affiliation', '<meta name="citation_author_institution" content="' . $affiliation . '"/>');
@@ -111,25 +112,19 @@ class GoogleScholarPlugin extends GenericPlugin
         }
 
         // Subjects
-        $i = 0;
-        $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
-        /** @var SubmissionSubjectDAO $submissionSubjectDao */
-        if ($subjects = $submissionSubjectDao->getSubjects($publication->getId(), [$publicationLocale])) {
-            foreach ($subjects as $locale => $subjectLocale) {
-                foreach ($subjectLocale as $gsKeyword) {
-                    $templateMgr->addHeader('googleScholarSubject' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($gsKeyword) . '"/>');
+        if ($subjects = $publication->getData('subjects')) {
+            foreach ($subjects as $locale => $localeSubjects) {
+                foreach ($localeSubjects as $i => $subject) {
+                    $templateMgr->addHeader('googleScholarSubject' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($subject) . '"/>');
                 }
             }
         }
 
         // Keywords
-        $i = 0;
-        $submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
-        /** @var SubmissionKeywordDAO $submissionKeywordDao */
-        if ($keywords = $submissionKeywordDao->getKeywords($publication->getId(), [$publicationLocale])) {
-            foreach ($keywords as $locale => $keywordLocale) {
-                foreach ($keywordLocale as $gsKeyword) {
-                    $templateMgr->addHeader('googleScholarKeyword' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($gsKeyword) . '"/>');
+        if ($keywords = $publication->getData('keywords')) {
+            foreach ($keywords as $locale => $localeKeywords) {
+                foreach ($localeKeywords as $i => $keyword) {
+                    $templateMgr->addHeader('googleScholarKeyword' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($keyword) . '"/>');
                 }
             }
         }
