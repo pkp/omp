@@ -11,26 +11,26 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.block.browse.newReleases"
-msgstr "Nové příspěvky"
-
-msgid "plugins.block.browse.series"
-msgstr "Edice"
-
-msgid "plugins.block.browse.category"
-msgstr "Kategorie"
-
-msgid "plugins.block.browse.settings.title"
-msgstr "Možnosti procházení"
-
-msgid "plugins.block.browse.settings"
-msgstr "Nastavení"
-
-msgid "plugins.block.browse.description"
-msgstr "Tento plugin poskytuje postranní panel pro procházení."
+msgid "plugins.block.browse"
+msgstr "Procházet"
 
 msgid "plugins.block.browse.displayName"
 msgstr "Blok pro procházení"
 
-msgid "plugins.block.browse"
-msgstr "Procházet"
+msgid "plugins.block.browse.description"
+msgstr "Tento plugin poskytuje postranní panel pro procházení."
+
+msgid "plugins.block.browse.settings"
+msgstr "Nastavení"
+
+msgid "plugins.block.browse.settings.title"
+msgstr "Možnosti procházení"
+
+msgid "plugins.block.browse.category"
+msgstr "Kategorie"
+
+msgid "plugins.block.browse.series"
+msgstr "Edice"
+
+msgid "plugins.block.browse.newReleases"
+msgstr "Nové příspěvky"

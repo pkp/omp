@@ -68,9 +68,9 @@ msgstr ""
 msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern"
 msgstr ""
 "URN son eklerini oluşturmak için aşağıda girilen modeli kullanın. "
-"Yayınevinin baş harfleri için %p, yazı kimliği için% m, bölüm kimliği için %"
-"c, yayın biçimi kimliği için %f, dosya kimliği için %s ve \"Özel "
-"Tanımlayıcı\" için %x kullanın."
+"Yayınevinin baş harfleri için %p, yazı kimliği için% m, bölüm kimliği için "
+"%c, yayın biçimi kimliği için %f, dosya kimliği için %s ve \"Özel Tanımlayıcı"
+"\" için %x kullanın."
 
 msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.example"
 msgstr ""
@@ -107,10 +107,12 @@ msgstr "Lütfen kitaplar için URN son ek modelini girin."
 msgid "plugins.pubIds.urn.manager.settings.urnChapterSuffixPatternRequired"
 msgstr "Lütfen bölümler için URN son ek modelini girin."
 
-msgid "plugins.pubIds.urn.manager.settings.urnRepresentationSuffixPatternRequired"
+msgid ""
+"plugins.pubIds.urn.manager.settings.urnRepresentationSuffixPatternRequired"
 msgstr "Lütfen yayın biçimleri için URN son ek modelini girin."
 
-msgid "plugins.pubIds.urn.manager.settings.urnSubmissionFileSuffixPatternRequired"
+msgid ""
+"plugins.pubIds.urn.manager.settings.urnSubmissionFileSuffixPatternRequired"
 msgstr "Lütfen dosyalar için URN son ek modelini girin."
 
 msgid "plugins.pubIds.urn.manager.settings.checkNo"
@@ -218,6 +220,15 @@ msgstr "URN, {$prefix} ile başlamalıdır."
 msgid "plugins.pubIds.urn.editor.urn.assignUrn"
 msgstr "Atama"
 
+msgid "plugins.pubIds.urn.editor.missingIssue"
+msgstr "Bu yayın bir sayıya atanana kadar bir URN oluşturamazsınız."
+
+msgid "plugins.pubIds.urn.editor.missingParts"
+msgstr ""
+"URN modelinin bir veya daha fazla bölümünde veri eksik olduğundan bir URN "
+"oluşturamazsınız. Yayını bir sayıya atamanız, bir yayıncı kimliği "
+"ayarlamanız veya sayfa numaraları girmeniz gerekebilir."
+
 msgid "plugins.pubIds.urn.editor.missingPrefix"
 msgstr "URN, {$urnPrefix} ile başlamalıdır."
 
@@ -227,17 +238,8 @@ msgstr "Bu yayının URN'si {$urn} olacaktır."
 msgid "plugins.pubIds.urn.editor.preview.publication.none"
 msgstr "Bu yayına bir URN atanmamış."
 
-msgid "plugins.pubIds.urn.editor.preview.objects"
-msgstr "Öğe"
-
-msgid "plugins.pubIds.urn.editor.missingParts"
-msgstr ""
-"URN modelinin bir veya daha fazla bölümünde veri eksik olduğundan bir URN "
-"oluşturamazsınız. Yayını bir sayıya atamanız, bir yayıncı kimliği "
-"ayarlamanız veya sayfa numaraları girmeniz gerekebilir."
-
-msgid "plugins.pubIds.urn.editor.missingIssue"
-msgstr "Bu yayın bir sayıya atanana kadar bir URN oluşturamazsınız."
-
 msgid "plugins.pubIds.urn.editor.preview.galleys"
 msgstr "Dizgi: {$galleyLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.objects"
+msgstr "Öğe"

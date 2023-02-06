@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-07-19 15:30+0000\n"
+"PO-Revision-Date: 2022-12-16 13:19+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/default/cs_CZ/"
 ">\n"
@@ -10,15 +10,129 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.13.1\n"
 
-msgid "default.contextSettings.forLibrarians"
+msgid "default.genres.appendix"
+msgstr "Dodatek"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliografie"
+
+msgid "default.genres.manuscript"
+msgstr "Rukopis knihy"
+
+msgid "default.genres.chapter"
+msgstr "Rukopis kapitoly"
+
+msgid "default.genres.glossary"
+msgstr "Glosář"
+
+msgid "default.genres.index"
+msgstr "Rejstřík"
+
+msgid "default.genres.preface"
+msgstr "Předmluva"
+
+msgid "default.genres.prospectus"
+msgstr "Resumé"
+
+msgid "default.genres.table"
+msgstr "Tabulka"
+
+msgid "default.genres.figure"
+msgstr "Obraz"
+
+msgid "default.genres.photo"
+msgstr "Fotografie"
+
+msgid "default.genres.illustration"
+msgstr "Ilustrace"
+
+msgid "default.genres.other"
+msgstr "Ostatní"
+
+msgid "default.groups.name.manager"
+msgstr "Vedoucí nakladatelství"
+
+msgid "default.groups.plural.manager"
+msgstr "Vedoucí nakladatelství"
+
+msgid "default.groups.abbrev.manager"
+msgstr "Ved. nakl."
+
+msgid "default.groups.name.editor"
+msgstr "Editor nakladatelství"
+
+msgid "default.groups.plural.editor"
+msgstr "Editoři nakladatelství"
+
+msgid "default.groups.abbrev.editor"
+msgstr "Ed. nakl."
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Editor edice"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Editoři edice"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "Ed. sek."
+
+msgid "default.groups.name.subscriptionManager"
+msgstr "Správce předplatného"
+
+msgid "default.groups.plural.subscriptionManager"
+msgstr "Správci předplatného"
+
+msgid "default.groups.abbrev.subscriptionManager"
+msgstr "SubM"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Autor kapitoly"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Autoři kapitoly"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "Aut. kap."
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Editor sborníku"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Editoři sborníku"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "Ed. sbor."
+
+msgid "default.contextSettings.authorGuidelines"
 msgstr ""
-"Podporujeme, aby zaměstnanci vědeckých knihoven uváděli toto nakladatelství "
-"v seznamech svých elektronických zdrojů. Tento otevřený publikační systém je "
-"rovněž vhodný pro knihovny, které jej mohou využívat pro vědecké pracovniky "
-"svých institucí a nakladatelství, s nimiž spolupracují.(viz <a href=\"https"
-"://pkp.sfu.ca/omp\">Open Monograph Press</a>)."
+"<p>Vyzýváme autory, aby se přihlásili do tohoto nakladatelství. Příspěvky, "
+"které budou považovány za vhodné, budou zaslány k recenznímu řízení a teprve "
+"poté se rozhodne, zda budou přijaty, nebo zamítnuty.</p><p>Před odesláním "
+"příspěvku jsou autoři zodpovědní za získání povolení ke zveřejnění všech "
+"materiálů, které jsou součástí příspěvku, jako jsou fotografie, dokumenty a "
+"soubory dat. Všichni autoři uvedení v předkládaném materiálu musí souhlasit "
+"s tím, aby byli uvedeni jako autoři. V případě potřeby by měl být výzkum "
+"schválen příslušnou etickou komisí v souladu s právními požadavky země, v "
+"níž se studie provádí.</p><p>.Redaktor může příspěvek odmítnout, pokud "
+"nesplňuje minimální standardy kvality. Před odesláním se ujistěte, že rozsah "
+"a osnova knihy jsou správně strukturovány a formulovány. Název by měl být "
+"stručný a abstrakt by měl být schopen obstát sám o sobě. Tím se zvýší "
+"pravděpodobnost, že recenzenti budou souhlasit s recenzováním knihy. Až se "
+"přesvědčíte, že vaše příspěvky splňují tento standard, postupujte při "
+"přípravě příspěvku podle níže uvedeného kontrolního seznamu.</p>"
+
+msgid "default.contextSettings.checklist"
+msgstr ""
+"<p>Všechny příspěvky musí splňovat následující požadavky.</p><ul><li>Toto "
+"příspěvke splňuje požadavky uvedené v <a href="
+"\"{$submissionGuidelinesUrl}\">Pokynech pro autory</a>.</li><li>Tento "
+"příspěvek nebyl dříve publikován ani není předložen k posouzení v jiném "
+"vydavatelství.</li><li>Všechny odkazy byly zkontrolovány z hlediska "
+"přesnosti a úplnosti.</li><li>Všechny tabulky a obrázky jsou očíslovány a "
+"označeny.</li><li>Bylo získáno povolení ke zveřejnění všech fotografií, "
+"datových sad a dalších materiálů poskytnutých s tímto příspěvkem.</li></ul>"
 
 msgid "default.contextSettings.privacyStatement"
 msgstr ""
@@ -26,28 +140,11 @@ msgstr ""
 "účely tohoto nakladatelství a nebudou poskytnuty za žádným účelem žádné "
 "třetí straně.</p>"
 
-msgid "default.groups.abbrev.sectionEditor"
-msgstr "Ed. sek."
-
-msgid "default.groups.abbrev.externalReviewer"
-msgstr "ER"
-
-msgid "default.groups.plural.externalReviewer"
-msgstr "Externí recenzentí"
-
-msgid "default.groups.name.externalReviewer"
-msgstr "Externí recenzent"
-
-msgid "default.contextSettings.forAuthors"
+msgid "default.contextSettings.openAccessPolicy"
 msgstr ""
-"Máte zájem o předložení rukopisu nakladatelství? Doporučujeme, abyste se "
-"seznámil/a se sekcí <a href=\"{$indexUrl}/{$contextPath}/about\">O "
-"nakladatelství</a>, kde najdete přehled pokynů a <a href=\""
-"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\">Publikační "
-"zásady</a>. Před předložením rukopisu se autoři musí <a href=\""
-"{$indexUrl}/{$contextPath}/user/register\">registrovat</a>. Pokud již máte "
-"uživatelský účet, můžete se jednoduše <a href=\"{$indexUrl}/index/login\""
-">přihlásit</a> a začít s prvním z pěti kroků."
+"Toto nakladatelství poskytuje okamžitý otevřený přístup ke svým materiálům "
+"na základě principu, že volné zpřístupnění výzkumu veřejnosti globálně "
+"podporuje širší výměnu vědomostí."
 
 msgid "default.contextSettings.forReaders"
 msgstr ""
@@ -61,124 +158,59 @@ msgstr ""
 "čtenářům garantuje, že jejich jména a e-mailové adresy nebudou zneužity k "
 "žádným jiným účelům."
 
-msgid "default.contextSettings.openAccessPolicy"
+msgid "default.contextSettings.forAuthors"
 msgstr ""
-"Toto nakladatelství poskytuje okamžitý otevřený přístup ke svým materiálům "
-"na základě principu, že volné zpřístupnění výzkumu veřejnosti globálně "
-"podporuje širší výměnu vědomostí."
+"Máte zájem o předložení rukopisu nakladatelství? Doporučujeme, abyste se "
+"seznámil/a se sekcí <a href=\"{$indexUrl}/{$contextPath}/about\">O "
+"nakladatelství</a>, kde najdete přehled pokynů a <a href=\"{$indexUrl}/"
+"{$contextPath}/about/submissions#authorGuidelines\">Publikační zásady</a>. "
+"Před předložením rukopisu se autoři musí <a href=\"{$indexUrl}/"
+"{$contextPath}/user/register\">registrovat</a>. Pokud již máte uživatelský "
+"účet, můžete se jednoduše <a href=\"{$indexUrl}/index/login\">přihlásit</a> "
+"a začít s prvním z pěti kroků."
 
-msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgid "default.contextSettings.forLibrarians"
 msgstr ""
-"Text dodržuje stylistické a bibliografická pravidla uvedená v <a href=\""
-"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" target=\""
-"_blank\">Publikačních zásadách</a>, které se nacházejí v sekci O "
-"nakladatelství."
+"Podporujeme, aby zaměstnanci vědeckých knihoven uváděli toto nakladatelství "
+"v seznamech svých elektronických zdrojů. Tento otevřený publikační systém je "
+"rovněž vhodný pro knihovny, které jej mohou využívat pro vědecké pracovniky "
+"svých institucí a nakladatelství, s nimiž spolupracují.(viz <a href="
+"\"https://pkp.sfu.ca/omp\">Open Monograph Press</a>)."
 
-msgid "default.contextSettings.checklist.submissionAppearance"
-msgstr ""
-"Text používá jednoduché řádkování, písmo o velikosti 12 bodů, zvýraznění "
-"pomocí kurzívy spíše než podtrhávání (kromě internetových odkazů). Všechny "
-"ilustrace, vyobrazení a tabulky jsou umístěny přímo v textu, ne na konci."
+msgid "default.groups.name.externalReviewer"
+msgstr "Externí recenzent"
 
-msgid "default.contextSettings.checklist.addressesLinked"
-msgstr "Tam, kde je to relevantní, jsou k odkazům připojeny internetové odkazy."
+msgid "default.groups.plural.externalReviewer"
+msgstr "Externí recenzentí"
 
-msgid "default.contextSettings.checklist.fileFormat"
-msgstr ""
-"Příspěvek je ve formátu Microsoft Word, RTF, OpenDocument nebo WordPerfect."
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "ER"
 
-msgid "default.contextSettings.checklist.notPreviouslyPublished"
-msgstr ""
-"Předkládaný text dosud nebyl publikován ani se nenachází v recenzním řízení "
-"u jiného nakladatele (případně byla do komentářů připojeno vysvětlení "
-"adresované editorovi)."
+#~ msgid "default.contextSettings.checklist.bibliographicRequirements"
+#~ msgstr ""
+#~ "Text dodržuje stylistické a bibliografická pravidla uvedená v <a href="
+#~ "\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" target="
+#~ "\"_blank\">Publikačních zásadách</a>, které se nacházejí v sekci O "
+#~ "nakladatelství."
 
-msgid "default.groups.abbrev.volumeEditor"
-msgstr "Ed. sbor."
+#~ msgid "default.contextSettings.checklist.submissionAppearance"
+#~ msgstr ""
+#~ "Text používá jednoduché řádkování, písmo o velikosti 12 bodů, zvýraznění "
+#~ "pomocí kurzívy spíše než podtrhávání (kromě internetových odkazů). "
+#~ "Všechny ilustrace, vyobrazení a tabulky jsou umístěny přímo v textu, ne "
+#~ "na konci."
 
-msgid "default.groups.plural.volumeEditor"
-msgstr "Editoři sborníku"
+#~ msgid "default.contextSettings.checklist.addressesLinked"
+#~ msgstr ""
+#~ "Tam, kde je to relevantní, jsou k odkazům připojeny internetové odkazy."
 
-msgid "default.groups.name.volumeEditor"
-msgstr "Editor sborníku"
+#~ msgid "default.contextSettings.checklist.fileFormat"
+#~ msgstr ""
+#~ "Příspěvek je ve formátu Microsoft Word, RTF, OpenDocument nebo "
+#~ "WordPerfect."
 
-msgid "default.groups.abbrev.chapterAuthor"
-msgstr "Aut. kap."
-
-msgid "default.groups.plural.chapterAuthor"
-msgstr "Autoři kapitoly"
-
-msgid "default.groups.name.chapterAuthor"
-msgstr "Autor kapitoly"
-
-msgid "default.groups.plural.sectionEditor"
-msgstr "Editoři edice"
-
-msgid "default.groups.name.sectionEditor"
-msgstr "Editor edice"
-
-msgid "default.groups.abbrev.editor"
-msgstr "Ed. nakl."
-
-msgid "default.groups.plural.editor"
-msgstr "Editoři nakladatelství"
-
-msgid "default.groups.name.editor"
-msgstr "Editor nakladatelství"
-
-msgid "default.groups.abbrev.manager"
-msgstr "Ved. nakl."
-
-msgid "default.groups.plural.manager"
-msgstr "Vedoucí nakladatelství"
-
-msgid "default.groups.name.manager"
-msgstr "Vedoucí nakladatelství"
-
-msgid "default.genres.other"
-msgstr "Ostatní"
-
-msgid "default.genres.illustration"
-msgstr "Ilustrace"
-
-msgid "default.genres.photo"
-msgstr "Fotografie"
-
-msgid "default.genres.figure"
-msgstr "Obraz"
-
-msgid "default.genres.table"
-msgstr "Tabulka"
-
-msgid "default.genres.prospectus"
-msgstr "Resumé"
-
-msgid "default.genres.preface"
-msgstr "Předmluva"
-
-msgid "default.genres.index"
-msgstr "Rejstřík"
-
-msgid "default.genres.glossary"
-msgstr "Glosář"
-
-msgid "default.genres.chapter"
-msgstr "Rukopis kapitoly"
-
-msgid "default.genres.manuscript"
-msgstr "Rukopis knihy"
-
-msgid "default.genres.bibliography"
-msgstr "Bibliografie"
-
-msgid "default.genres.appendix"
-msgstr "Dodatek"
-
-msgid "default.groups.abbrev.subscriptionManager"
-msgstr "SubM"
-
-msgid "default.groups.plural.subscriptionManager"
-msgstr "Správci předplatného"
-
-msgid "default.groups.name.subscriptionManager"
-msgstr "Správce předplatného"
+#~ msgid "default.contextSettings.checklist.notPreviouslyPublished"
+#~ msgstr ""
+#~ "Předkládaný text dosud nebyl publikován ani se nenachází v recenzním "
+#~ "řízení u jiného nakladatele (případně byla do komentářů připojeno "
+#~ "vysvětlení adresované editorovi)."

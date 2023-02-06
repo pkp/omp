@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T12:00:54-07:00\n"
-"PO-Revision-Date: 2022-09-29 20:48+0000\n"
+"PO-Revision-Date: 2022-12-23 19:02+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/pt_BR/>\n"
@@ -31,13 +31,25 @@ msgid "submission.workflowType"
 msgstr "Tipo de livro"
 
 msgid "submission.workflowType.description"
-msgstr "Uma monografia é um trabalho produzido por um ou mais autores. Um volume editado possui diferentes autores para cada capítulo, sendo que os detalhes de cada capítulo são informados mais tarde durante o processo."
+msgstr ""
+"Uma monografia é um trabalho produzido por um ou mais autores. Um volume "
+"editado possui diferentes autores para cada capítulo, sendo que os detalhes "
+"de cada capítulo são informados mais tarde durante o processo."
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Volume Editado"
 
 msgid "submission.workflowType.editedVolume"
 msgstr "Volume editado: Autores são associados com seu próprio capítulo."
 
 msgid "submission.workflowType.authoredWork"
 msgstr "Monografia: Autores são associados com o livro com um todo."
+
+msgid "submission.workflowType.change"
+msgstr "Mudar"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (ed)"
 
 msgid "submission.monograph"
 msgstr "Monografia"
@@ -47,6 +59,9 @@ msgstr "Pronto para editoração"
 
 msgid "submission.fairCopy"
 msgstr "Cópia limpa"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
 
 msgid "submission.artwork.permissions"
 msgstr "Permissões"
@@ -62,6 +77,9 @@ msgstr "Incluir capítulo"
 
 msgid "submission.chapter.editChapter"
 msgstr "Editar capítulo"
+
+msgid "submission.chapter.pages"
+msgstr "Páginas"
 
 msgid "submission.copyedit"
 msgstr "Editar texto"
@@ -117,14 +135,17 @@ msgstr "Novo envio"
 msgid "submission.submit.upload"
 msgstr "Enviar"
 
+msgid "author.volumeEditor"
+msgstr "Editor de Volume"
+
+msgid "author.isVolumeEditor"
+msgstr "Identifique esse colaborador como o editor deste volume."
+
 msgid "submission.submit.seriesPosition"
 msgstr "Posição na série (ex.: Livro 2, ou Volume 2)"
 
-msgid "submission.submit.placement.seriesDescription"
-msgstr "Caso o livro também deva ser considerado para uma série..."
-
-msgid "submission.submit.placement.seriesPositionDescription"
-msgstr "Livros em séries são normalmente mantidos na ordem inversa em que são publicados, para proporcionar uma visão do desenvolvimento da série, bem como manter as mais recentes à frente."
+msgid "submission.submit.seriesPosition.description"
+msgstr "Exemplos: Livro 2, Volume 2"
 
 msgid "submission.submit.privacyStatement"
 msgstr "Declaração de Privacidade"
@@ -160,10 +181,15 @@ msgid "submission.submit.generalInformation"
 msgstr "Informações gerais"
 
 msgid "submission.submit.whatNext.description"
-msgstr "A editora foi notificada de sua submissão, bem como uma mensagem de confirmação enviada ao seu endereço de e-mail para seus registros. O editor entrará em contato assim que concluir sua avaliação da submissão."
+msgstr ""
+"A editora foi notificada de sua submissão, bem como uma mensagem de "
+"confirmação enviada ao seu endereço de e-mail para seus registros. O editor "
+"entrará em contato assim que concluir sua avaliação da submissão."
 
 msgid "submission.submit.checklistErrors"
-msgstr "Leia atentamente e marque os itens da lista de verificação. Ainda há {$itemsRemaining} itens não marcados."
+msgstr ""
+"Leia atentamente e marque os itens da lista de verificação. Ainda há "
+"{$itemsRemaining} itens não marcados."
 
 msgid "submission.submit.placement"
 msgstr "Colocação da submissão"
@@ -171,20 +197,36 @@ msgstr "Colocação da submissão"
 msgid "submission.submit.userGroup"
 msgstr "Enviar no meu papel como..."
 
+msgid "submission.submit.noContext"
+msgstr "Não foi possível encontrar a editora desta submissão."
+
 msgid "grid.chapters.title"
 msgstr "Capítulos"
 
 msgid "grid.copyediting.deleteCopyeditorResponse"
 msgstr "Excluir arquivo do editor de texto"
 
-msgid "publication.catalogEntry"
-msgstr "Catálogo"
+msgid "submission.complete"
+msgstr "Aprovado"
+
+msgid "submission.incomplete"
+msgstr "Esperando Aprovação"
 
 msgid "submission.editCatalogEntry"
 msgstr "Entrada"
 
 msgid "submission.catalogEntry.new"
 msgstr "Nova entrada no catálogo"
+
+msgid "submission.catalogEntry.add"
+msgstr "Adicionar Seleção ao Catálogo"
+
+msgid "submission.catalogEntry.select"
+msgstr "Selecione monografias para adicionar ao catálogo"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr ""
+"Você deve selecionar ao menos uma monografia para adicionar ao catálogo."
 
 msgid "submission.catalogEntry.confirm"
 msgstr "Adicionar este livro ao catálogo público"
@@ -194,6 +236,18 @@ msgstr "Confirme que a submissão está pronta para entrar no catálogo."
 
 msgid "submission.catalogEntry.isAvailable"
 msgstr "Esta monografia está pronta para entrar no catálogo."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Ver Submissão"
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Datas de publicação"
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Todos os capítulos usarão a data de publicação da monografia."
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Cada capítulo pode ter sua própria data de publicação."
 
 msgid "submission.catalogEntry.monographMetadata"
 msgstr "Monografia"
@@ -214,19 +268,25 @@ msgid "submission.event.publicationFormatMadeAvailable"
 msgstr "O formato de publicação \"{$publicationFormatName}\" está disponível."
 
 msgid "submission.event.publicationFormatMadeUnavailable"
-msgstr "O formato de publicação \"{$publicationFormatName}\" não está mais disponível."
+msgstr ""
+"O formato de publicação \"{$publicationFormatName}\" não está mais "
+"disponível."
 
 msgid "submission.event.publicationFormatPublished"
-msgstr "O formato de publicação \"{$publicationFormatName}\" foi aprovado para publicação."
+msgstr ""
+"O formato de publicação \"{$publicationFormatName}\" foi aprovado para "
+"publicação."
 
 msgid "submission.event.publicationFormatUnpublished"
-msgstr "O formato de publicação \"{$publicationFormatName}\" não está mais publicado."
+msgstr ""
+"O formato de publicação \"{$publicationFormatName}\" não está mais publicado."
 
 msgid "submission.event.catalogMetadataUpdated"
 msgstr "Os metadados do catálogo foram atualizados."
 
 msgid "submission.event.publicationMetadataUpdated"
-msgstr "Os metadados do formato de publicação \"{$formatName}\" foram atualizados."
+msgstr ""
+"Os metadados do formato de publicação \"{$formatName}\" foram atualizados."
 
 msgid "submission.event.publicationFormatCreated"
 msgstr "O formato de publicação \"{$formatName}\" foi criado."
@@ -234,125 +294,83 @@ msgstr "O formato de publicação \"{$formatName}\" foi criado."
 msgid "submission.event.publicationFormatRemoved"
 msgstr "O formato de publicação \"{$formatName}\" foi excluído."
 
-msgid "submission.submit.seriesPosition.description"
-msgstr "Exemplos: Livro 2, Volume 2"
-
-msgid "submission.complete"
-msgstr "Aprovado"
-
-msgid "submission.incomplete"
-msgstr "Esperando Aprovação"
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Enviar ao Avaliador Externo"
 
 msgid "workflow.review.externalReview"
 msgstr "Avaliador Externo"
 
-msgid "editor.submission.decision.sendExternalReview"
-msgstr "Enviar ao Avaliador Externo"
-
 msgid "submission.upload.fileContents"
 msgstr "Componente da Submissão"
 
-msgid "submission.workflowType.editedVolume.label"
-msgstr "Volume Editado"
-
-msgid "publication.scheduledIn"
-msgstr "Programado para publicação em <a href=\"{$issueUrl}\">{$issueName}</a>."
-
-msgid "publication.publish.confirmation"
-msgstr ""
-"Todos os requisitos de publicação foram atendidos. Tem certeza de que deseja "
-"tornar pública essa entrada no catálogo?"
-
-msgid "publication.publishedIn"
-msgstr "Publicado em <a href=\"{$issueUrl}\">{$issueName}</a>."
-
-msgid "publication.required.issue"
-msgstr "A publicação deve ser atribuída a uma edição antes de ser publicada."
-
-msgid "publication.invalidSeries"
-msgstr "Não foi possível encontrar a série desta publicação."
-
-msgid "publication.catalogEntry.success"
-msgstr "Os detalhes da entrada do catálogo foram atualizados."
-
-msgid "catalog.browseTitles"
-msgstr "{$numTitles} Títulos"
-
-msgid "submission.list.saveFeatureOrder"
-msgstr "Salvar pedido"
-
-msgid "submission.list.orderingFeaturesSection"
-msgstr ""
-"Arraste e solte ou toque nos botões para cima e para baixo para alterar a "
-"ordem dos recursos em {$title}."
-
-msgid "submission.list.orderingFeatures"
-msgstr ""
-"Arraste e solte ou toque nos botões para cima e para baixo para alterar a "
-"ordem dos recursos na página inicial."
-
-msgid "submission.list.orderFeatures"
-msgstr "Recursos de pedidos"
-
-msgid "submission.list.itemsOfTotalMonographs"
-msgstr "{$count} de {$total} monografias"
-
-msgid "submission.list.countMonographs"
-msgstr "{$count} monografias"
-
-msgid "submission.list.monographs"
-msgstr "Monografias"
-
-msgid "section.any"
-msgstr "Qualquer Série"
+msgid "submission.dependentFiles"
+msgstr "Arquivos Dependentes"
 
 msgid "submission.metadataDescription"
 msgstr ""
 "Estas especificações estão baseadas no conjunto de metadados Dublin Core, um "
 "padrão internacional utilizado para descrever conteúdo."
 
-msgid "submission.dependentFiles"
-msgstr "Arquivos Dependentes"
+msgid "section.any"
+msgstr "Qualquer Série"
 
-msgid "submission.catalogEntry.enableChapterPublicationDates"
-msgstr "Cada capítulo pode ter sua própria data de publicação."
+msgid "submission.list.monographs"
+msgstr "Monografias"
 
-msgid "submission.catalogEntry.disableChapterPublicationDates"
-msgstr "Todos os capítulos usarão a data de publicação da monografia."
+msgid "submission.list.countMonographs"
+msgstr "{$count} monografias"
 
-msgid "submission.catalogEntry.chapterPublicationDates"
-msgstr "Datas de publicação"
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} de {$total} monografias"
 
-msgid "submission.catalogEntry.viewSubmission"
-msgstr "Ver Submissão"
+msgid "submission.list.orderFeatures"
+msgstr "Recursos de pedidos"
 
-msgid "submission.catalogEntry.selectionMissing"
+msgid "submission.list.orderingFeatures"
 msgstr ""
-"Você deve selecionar ao menos uma monografia para adicionar ao catálogo."
+"Arraste e solte ou toque nos botões para cima e para baixo para alterar a "
+"ordem dos recursos na página inicial."
 
-msgid "submission.catalogEntry.select"
-msgstr "Selecione monografias para adicionar ao catálogo"
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"Arraste e solte ou toque nos botões para cima e para baixo para alterar a "
+"ordem dos recursos em {$title}."
 
-msgid "submission.catalogEntry.add"
-msgstr "Adicionar Seleção ao Catálogo"
+msgid "submission.list.saveFeatureOrder"
+msgstr "Salvar pedido"
 
-msgid "submission.submit.noContext"
-msgstr "Não foi possível encontrar a editora desta submissão."
+msgid "submission.list.viewEntry"
+msgstr "Ver entrada"
 
-msgid "author.isVolumeEditor"
-msgstr "Identifique esse colaborador como o editor deste volume."
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} Títulos"
 
-msgid "submission.chapter.pages"
-msgstr "Páginas"
+msgid "publication.catalogEntry"
+msgstr "Catálogo"
 
-msgid "submission.authorListSeparator"
-msgstr "; "
+msgid "publication.catalogEntry.success"
+msgstr "Os detalhes da entrada do catálogo foram atualizados."
 
-msgid "submission.editorName"
-msgstr "{$editorName} (ed)"
+msgid "publication.invalidSeries"
+msgstr "Não foi possível encontrar a série desta publicação."
 
-msgid "submission.workflowType.change"
-msgstr "Mudar"
+msgid "publication.inactiveSeries"
+msgstr "{$series} (Inativa)"
+
+msgid "publication.required.issue"
+msgstr "A publicação deve ser atribuída a uma edição antes de ser publicada."
+
+msgid "publication.publishedIn"
+msgstr "Publicado em <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Todos os requisitos de publicação foram atendidos. Tem certeza de que deseja "
+"tornar pública essa entrada no catálogo?"
+
+msgid "publication.scheduledIn"
+msgstr ""
+"Programado para publicação em <a href=\"{$issueUrl}\">{$issueName}</a>."
 
 msgid "submission.publication"
 msgstr "Publicação"
@@ -450,96 +468,45 @@ msgstr "Detalhes da publicação da versão {$version}"
 msgid "submission.queries.production"
 msgstr "Discussão da Editoração"
 
-msgid "publication.inactiveSeries"
-msgstr "{$series} (Inativa)"
-
-msgid "submission.list.viewEntry"
-msgstr "Ver entrada"
-
-msgid "chapter.pages"
-msgstr "Páginas"
-
-msgid "submission.chapterCreated"
-msgstr " —  Capítulo criado"
-
-msgid "submission.withoutChapter"
-msgstr "{$name} — Sem este capítulo"
-
-msgid "chapter.volume"
-msgstr "Volume"
+msgid "publication.chapter.landingPage"
+msgstr "Página do capítulo"
 
 msgid "publication.chapter.hasLandingPage"
 msgstr ""
 "Mostre este capítulo em sua própria página e crie um link para essa página "
 "no índice do livro."
 
-msgid "publication.chapter.landingPage"
-msgstr "Página do capítulo"
-
 msgid "publication.publish.success"
 msgstr "O status da publicação foi alterado com sucesso."
 
-msgid "editor.submission.recommend.sendExternalReview.log"
+msgid "chapter.volume"
+msgstr "Volume"
+
+msgid "submission.withoutChapter"
+msgstr "{$name} — Sem este capítulo"
+
+msgid "submission.chapterCreated"
+msgstr " —  Capítulo criado"
+
+msgid "chapter.pages"
+msgstr "Páginas"
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr "Enviar para avaliação interna"
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr "Esta submissão está pronta para ser enviada para avaliação interna."
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr "{$editorName} enviou esta submissão para a fase de avaliação interna."
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr "Enviado para Avaliação Interna"
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr ""
-"{$editorName} recomendou que esta submissão seja enviada para a fase de "
-"avaliação externa."
-
-msgid "editor.submission.recommend.sendExternalReview.description"
-msgstr ""
-"Recomendar que esta submissão seja enviada para a fase de avaliação externa."
-
-msgid "editor.submission.recommend.sendExternalReview"
-msgstr "Recomendar Enviar para Avaliação Externa"
-
-msgid "editor.submission.decision.promoteFiles.externalReview"
-msgstr "Selecione os arquivos que devem ser enviados para a etapa de avaliação."
-
-msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
-msgstr ""
-"Envie um e-mail para os autores para que eles saibam que esta submissão será "
-"enviada para avaliação por pares. Se possível, dê aos autores alguma "
-"indicação de quanto tempo o processo de avaliação por pares pode levar e "
-"quando eles devem esperar para terem noticias dos editores novamente."
-
-msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
-msgstr ""
-"Envie um e-mail para os autores para que eles saibam que sua submissão está "
-"sendo enviada de volta para a fase de avaliação. Explique por que essa "
-"decisão foi tomada e informe o autor sobre qual avaliação adicional será "
-"realizada."
-
-msgid "editor.submission.decision.backToReview.completed.description"
-msgstr "A submissão, {$title}, foi enviada de volta à fase de avaliação."
-
-msgid "editor.submission.decision.backToReview.completed"
-msgstr "Enviado de volta para avaliação"
-
-msgid "editor.submission.decision.backToReview.log"
-msgstr ""
-"{$editorName} reverteu a decisão de aceitar esta submissão e o enviou de "
-"volta à fase de avaliação."
-
-msgid "editor.submission.decision.backToReview.description"
-msgstr ""
-"Reverta a decisão de aceitar esta submissão e envie-o de volta para a fase "
-"de avaliação."
-
-msgid "editor.submission.decision.backToReview"
-msgstr "Voltar para avaliação"
-
-msgid "editor.submission.decision.sendExternalReview.completed.description"
-msgstr "A submissão, {$title}, foi enviada para a fase de avaliação externa."
-
-msgid "editor.submission.decision.sendExternalReview.completed"
-msgstr "Enviado para Avaliação Externa"
-
-msgid "editor.submission.decision.sendExternalReview.log"
-msgstr "{$editorName} enviou esta submissão para a fase de avaliação externa."
-
-msgid "editor.submission.decision.promoteFiles.internalReview"
-msgstr ""
-"Selecione os arquivos que devem ser enviados para a etapa de avaliação "
-"interna."
+"A submissão, {$title}, foi enviada para a fase de avaliação interna. O autor "
+"foi notificado, a menos que você opte por ignorar esse e-mail."
 
 msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
 msgstr ""
@@ -548,21 +515,68 @@ msgstr ""
 "de quanto tempo o processo de avaliação interna pode levar e quando eles "
 "devem esperar para terem notícias dos editores novamente."
 
-#, fuzzy
-msgid "editor.submission.decision.sendInternalReview.completed.description"
-msgstr "A submissão, {$title}, foi enviada para a fase de avaliação interna."
+msgid "editor.submission.decision.promoteFiles.internalReview"
+msgstr ""
+"Selecione os arquivos que devem ser enviados para a etapa de avaliação "
+"interna."
 
-msgid "editor.submission.decision.sendInternalReview.completed"
-msgstr "Enviado para Avaliação Interna"
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr "{$editorName} enviou esta submissão para a fase de avaliação externa."
 
-msgid "editor.submission.decision.sendInternalReview.log"
-msgstr "{$editorName} enviou esta submissão para a fase de avaliação interna."
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr "Enviado para Avaliação Externa"
 
-msgid "editor.submission.decision.sendInternalReview.description"
-msgstr "Esta submissão está pronta para ser enviada para avaliação interna."
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr "A submissão, {$title}, foi enviada para a fase de avaliação externa."
 
-msgid "editor.submission.decision.sendInternalReview"
-msgstr "Enviar para avaliação interna"
+msgid "editor.submission.decision.backToReview"
+msgstr "Voltar para avaliação"
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr ""
+"Reverta a decisão de aceitar esta submissão e envie-o de volta para a fase "
+"de avaliação."
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+"{$editorName} reverteu a decisão de aceitar esta submissão e o enviou de "
+"volta à fase de avaliação."
+
+msgid "editor.submission.decision.backToReview.completed"
+msgstr "Enviado de volta para avaliação"
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr "A submissão, {$title}, foi enviada de volta à fase de avaliação."
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+"Envie um e-mail para os autores para que eles saibam que sua submissão está "
+"sendo enviada de volta para a fase de avaliação. Explique por que essa "
+"decisão foi tomada e informe o autor sobre qual avaliação adicional será "
+"realizada."
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+"Envie um e-mail para os autores para que eles saibam que esta submissão será "
+"enviada para avaliação por pares. Se possível, dê aos autores alguma "
+"indicação de quanto tempo o processo de avaliação por pares pode levar e "
+"quando eles devem esperar para terem noticias dos editores novamente."
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr ""
+"Selecione os arquivos que devem ser enviados para a etapa de avaliação."
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr "Recomendar Enviar para Avaliação Externa"
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr ""
+"Recomendar que esta submissão seja enviada para a fase de avaliação externa."
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+"{$editorName} recomendou que esta submissão seja enviada para a fase de "
+"avaliação externa."
 
 msgid "doi.submission.incorrectContext"
 msgstr ""
@@ -574,3 +588,64 @@ msgstr "URL de licença"
 
 msgid "publication.chapterDefaultLicenseURL"
 msgstr "URL de licença de capítulo padrão"
+
+msgid "submission.copyright.description"
+msgstr ""
+"Por favor, leia e entenda os termos de direitos autorais para submissões a "
+"esta editora."
+
+msgid "submission.wizard.notAllowed.description"
+msgstr ""
+"Sem permissão para submeter a esta editora porque os autores devem ser "
+"registrados pela equipe editorial. Se você acredita que isso é um erro, "
+"entre em contato com <a href='mailto:{$email}'>{$name}</a>."
+
+msgid "submission.wizard.noSectionAllowed.description"
+msgstr ""
+"Sem permissão para submeter para esta editora porque as submissões para "
+"todas as seções desta editora foram desativadas ou restritas. Se você "
+"acredita que isso é um erro, entre em contato com <a href='mailto:"
+"{$email}'>{$name}</a>."
+
+msgid "submission.wizard.sectionClosed.message"
+msgstr ""
+"{$contextName} não está aceitando envios para a série {$section}. Se "
+"precisar de ajuda para recuperar sua submissão, entre em contato com <a "
+"href='mailto:{$email}'>{$name}</a>."
+
+msgid "submission.sectionNotFound"
+msgstr "Não foi possível encontrar a série para esta submissão."
+
+msgid "submission.sectionRestrictedToEditors"
+msgstr ""
+"Somente a equipe editorial está autorizada a enviar artigos para esta série."
+
+msgid "submission.wizard.submitting.monograph"
+msgstr "Submetendo uma <strong>Monografia</strong>."
+
+msgid "submission.wizard.submitting.monographInLanguage"
+msgstr ""
+"Submetendo uma <strong>Monografia</strong> em <strong>{$language}</strong>."
+
+msgid "submission.wizard.submitting.editedVolume"
+msgstr "Submetendo um <strong>Volume Editado</strong>."
+
+msgid "submission.wizard.submitting.editedVolumeInLanguage"
+msgstr ""
+"Submetendo um <strong>Volume Editado</strong> em <strong>{$language}</"
+"strong>."
+
+msgid "submission.wizard.chapters.description"
+msgstr ""
+"Forneça todos os capítulos desta submissão. Se você estiver submetendo um "
+"volume editado, certifique-se de que cada capítulo indique os colaboradores "
+"desse capítulo."
+
+#~ msgid "submission.submit.placement.seriesDescription"
+#~ msgstr "Caso o livro também deva ser considerado para uma série..."
+
+#~ msgid "submission.submit.placement.seriesPositionDescription"
+#~ msgstr ""
+#~ "Livros em séries são normalmente mantidos na ordem inversa em que são "
+#~ "publicados, para proporcionar uma visão do desenvolvimento da série, bem "
+#~ "como manter as mais recentes à frente."

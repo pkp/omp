@@ -9,53 +9,60 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
 msgid "plugins.importexport.onix30.displayName"
 msgstr "Плагін експорту монографій ONIX 3.0"
 
-msgid "plugins.importexport.onix30.formatInvalid"
-msgstr "Недійсно"
+msgid "plugins.importexport.onix30.description"
+msgstr "Експортувати метадані монографії у формат ONIX 3.0"
 
-msgid "plugins.importexport.onix30.formatValid"
-msgstr "Дійсно"
-
-msgid "plugins.importexport.onix30.validityStatus"
-msgstr "Статус ONIX"
-
-msgid "plugins.importexport.onix30.unavailable"
-msgstr "Недоступно"
-
-msgid "plugins.importexport.onix30.exportFormats"
-msgstr "Доступні Формати"
-
-msgid "plugins.importexport.onix30.exportButton"
-msgstr "Експортувати"
-
-msgid "plugins.importexport.onix30.selectMonograph"
-msgstr "Оберіть монографію для експорту:"
-
-msgid "plugins.importexport.onix30.exportSubmissionsSelect"
-msgstr "Оберіть Монографії для експорту"
+msgid "plugins.importexport.onix30.cliUsage"
+msgstr ""
+"Використання: {$scriptName} {$pluginName} [xmlFileName] [pressPath] "
+"[monographId] "
 
 msgid "plugins.importexport.onix30.cliError"
 msgstr "ПОМИЛКА:"
 
-msgid "plugins.importexport.onix30.export.error.couldNotWrite"
-msgstr "Не вдалося записати у файл \"{$fileName}\"."
-
 msgid "plugins.importexport.onix30.error.unknownPress"
 msgstr "Указаний шлях е-видавництва \"{$contextPath}\" не існує."
 
-msgid "plugins.importexport.onix30.form.addresseeField.tip"
-msgstr ""
-"Ви можете залишити це поле пустим і створити загальний експорт. Це призведе "
-"до того, що експорт в ONIX не матиме складової &lt;Addressee&gt;. "
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr "Не вдалося записати у файл \"{$fileName}\"."
 
-msgid "plugins.importexport.onix30.form.addresseeField"
-msgstr "Адресат (отримувач) для цього експорту"
+msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgstr ""
+"Відсутні монографії, позначені вказаним ID монографії \"{$monographId}\"."
+
+msgid "plugins.importexport.onix30.noFormats"
+msgstr "Монографії без форматів публікації не показано."
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Оберіть Монографії для експорту"
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr "Оберіть монографію для експорту:"
+
+msgid "plugins.importexport.onix30.exportButton"
+msgstr "Експортувати"
+
+msgid "plugins.importexport.onix30.exportFormats"
+msgstr "Доступні Формати"
+
+msgid "plugins.importexport.onix30.unavailable"
+msgstr "Недоступно"
+
+msgid "plugins.importexport.onix30.validityStatus"
+msgstr "Статус ONIX"
+
+msgid "plugins.importexport.onix30.formatValid"
+msgstr "Дійсно"
+
+msgid "plugins.importexport.onix30.formatInvalid"
+msgstr "Недійсно"
 
 msgid "plugins.importexport.onix30.pressMissingFields"
 msgstr ""
@@ -63,17 +70,10 @@ msgstr ""
 "перейдіть до <a href=\"{$url}\">Налаштування е-видавництва</a> й заповніть "
 "деталі, яких не вистачає."
 
-msgid "plugins.importexport.onix30.noFormats"
-msgstr "Монографії без форматів публікації не показано."
+msgid "plugins.importexport.onix30.form.addresseeField"
+msgstr "Адресат (отримувач) для цього експорту"
 
-msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
 msgstr ""
-"Відсутні монографії, позначені вказаним ID монографії \"{$monographId}\"."
-
-msgid "plugins.importexport.onix30.cliUsage"
-msgstr ""
-"Використання: {$scriptName} {$pluginName} [xmlFileName] [pressPath] "
-"[monographId] "
-
-msgid "plugins.importexport.onix30.description"
-msgstr "Експортувати метадані монографії у формат ONIX 3.0"
+"Ви можете залишити це поле пустим і створити загальний експорт. Це призведе "
+"до того, що експорт в ONIX не матиме складової &lt;Addressee&gt;. "

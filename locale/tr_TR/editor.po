@@ -11,6 +11,167 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
+msgid "editor.submissionArchive"
+msgstr "Gönderi Arşivi"
+
+msgid "editor.monograph.cancelReview"
+msgstr "İsteği İptal Et"
+
+msgid "editor.monograph.clearReview"
+msgstr "Danışmanı Temizle"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Öneriyi Girin"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Danışman Önerisini Girin"
+
+msgid "editor.monograph.recommendation"
+msgstr "Tavsiye"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr ""
+"Yukarıdan bir danışman seçin ve devam etmek için ‘Danışmanı Seç' düğmesine "
+"basın."
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Danışmanı Değiştir"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Danışmanın öneri/yorum girmesi için metin düzenleyici"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Değerlendirme yükle"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Danışman Değerlendirmesi Seçenekleri"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Prova Düzeltme Dosyaları"
+
+msgid "editor.monograph.internalReview"
+msgstr "Dahili Değerlendirme Başlatın"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr ""
+"Dahili değerlendirme aşamasına göndermek için aşağıdan dosyaları seçin."
+
+msgid "editor.monograph.externalReview"
+msgstr "Dış Değerlendirmeyi Başlatın"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Son Taslak Dosyaları Seçin"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Mevcut Nihai Taslak Dosyaları"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Mevcut Dosyalar"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Kullanıcıya mesaj"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Gönderim İşlemleri"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Genel gönderim eylemleri ve seçenekleri."
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Bölüm İşlemleri"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr ""
+"Belirli bir bölüme özgü seçenekler, örneğin dosya yükleme veya kullanıcı "
+"ekleme."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Öğe İşlemleri"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Tek bir dosyaya özgü eylemler ve seçenekler."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr ""
+"Üst veriler ve yayınlama biçimleri dahil olmak üzere gönderi fihrist kaydını "
+"görüntüleyin ve yönetin"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr ""
+"Gönderi üst verilerini, notları, bildirimleri ve geçmişi görüntüleyin ve "
+"yönetin"
+
+msgid "editor.monograph.legend.participants"
+msgstr ""
+"Bu gönderinin katılımcılarını görüntüleyin ve yönetin: yazarlar, editörler, "
+"tasarımcılar ve daha fazlası"
+
+msgid "editor.monograph.legend.add"
+msgstr "Bölüme bir dosya yükleyin"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Bölüme bir kullanıcı ekleyin"
+
+msgid "editor.monograph.legend.settings"
+msgstr ""
+"Bilgi ve silme seçenekleri gibi öğe ayarlarını görüntüleyin ve bunlara erişin"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Daha Fazla Bilgi: dosya notları, bildirim seçenekleri ve geçmiş"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr ""
+"Dosya bilgileri: notlar, bildirim seçenekleri ve geçmiş (Henüz not eklenmedi)"
+
+msgid "editor.monograph.legend.notes"
+msgstr ""
+"Dosya bilgileri: notlar, bildirim seçenekleri ve geçmiş (Notlar mevcuttur)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr ""
+"Dosya bilgileri: notlar, bildirim seçenekleri ve geçmiş (Son ziyaretten bu "
+"yana eklenen yeni notlar)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Öğeyi düzenle"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Bu öğeyi sil"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "İşlem devam ediyor veya henüz tamamlanmadı"
+
+msgid "editor.monograph.legend.complete"
+msgstr "İşlem tamamlandı"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Izgara sütun başlığındaki rol tarafından yüklenen dosya"
+
+msgid "editor.submission.introduction"
+msgstr ""
+"Gönderi aşamasında, editör, gönderilen dosyaları değerlendirdikten sonra "
+"uygun eylemi seçer (yazara bildirmeyi içerir): Dahili Değerlendirmeye Gönder "
+"(Dahili Değerlendirme için dosya seçmeyi gerektirir); Dış Değerlendirmeye "
+"Gönder (Dış Değerlendirme için dosya seçmeyi gerektirir); Gönderiyi Kabul Et "
+"(Düzenleme aşaması için dosya seçmeyi gerektirir); veya Gönderiyi Reddet "
+"(gönderiyi arşivle)."
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Temiz Nüsha"
+
+msgid "editor.monograph.proofs"
+msgstr "Provalar"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Onay ve Yayınlama"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr ""
+"Ciltli, ciltsiz ve dijital gibi farklı yayın biçimleri aşağıdaki Yayın "
+"Biçimleri bölümünden yüklenebilir. Aşağıdaki yayın biçimleri tablosunu, bir "
+"yayın biçimini yayınlamak için yapılması gerekenlere dair kontrol listesi "
+"olarak kullanabilirsiniz."
+
 msgid "editor.monograph.production.publicationFormatDescription"
 msgstr ""
 "Mizanpaj editörünün prova okuması için sayfa provaları hazırladığı yayın "
@@ -20,14 +181,14 @@ msgstr ""
 "<em>Fihrist</em> girişinin kitabın fihrist kaydına iletildi olarak "
 "işaretlenmesi gerekir."
 
-msgid "editor.submissions.assignedTo"
-msgstr "Editöre Atandı"
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "İndirme Şartlarını Belirleyin"
 
-msgid "editor.publicIdentificationExistsForTheSameType"
-msgstr ""
-"Genel tanımlayıcı ‘{$publicIdentifier}’ aynı türden başka bir nesne için "
-"zaten mevcut. Lütfen yayınevinizdeki aynı türdeki nesneler için benzersiz "
-"tanımlayıcılar seçin."
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Şartları Belirleyin"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Cevap ekleyin"
 
 msgid "editor.submission.proof.manageProofFilesDescription"
 msgstr ""
@@ -36,171 +197,11 @@ msgstr ""
 "Dosyaları listesine eklenebilir: tüm mevcut dosyalar listelenecek ve dahil "
 "edilmek üzere seçilebilecektir."
 
-msgid "editor.monograph.proof.addNote"
-msgstr "Cevap ekleyin"
-
-msgid "editor.monograph.approvedProofs.edit.linkTitle"
-msgstr "Şartları Belirleyin"
-
-msgid "editor.monograph.approvedProofs.edit"
-msgstr "İndirme Şartlarını Belirleyin"
-
-msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgid "editor.publicIdentificationExistsForTheSameType"
 msgstr ""
-"Ciltli, ciltsiz ve dijital gibi farklı yayın biçimleri aşağıdaki Yayın "
-"Biçimleri bölümünden yüklenebilir. Aşağıdaki yayın biçimleri tablosunu, bir "
-"yayın biçimini yayınlamak için yapılması gerekenlere dair kontrol listesi "
-"olarak kullanabilirsiniz."
+"Genel tanımlayıcı ‘{$publicIdentifier}’ aynı türden başka bir nesne için "
+"zaten mevcut. Lütfen yayınevinizdeki aynı türdeki nesneler için benzersiz "
+"tanımlayıcılar seçin."
 
-msgid "editor.monograph.production.approvalAndPublishing"
-msgstr "Onay ve Yayınlama"
-
-msgid "editor.monograph.proofs"
-msgstr "Provalar"
-
-msgid "editor.monograph.editorial.fairCopy"
-msgstr "Temiz Nüsha"
-
-msgid "editor.submission.introduction"
-msgstr ""
-"Gönderi aşamasında, editör, gönderilen dosyaları değerlendirdikten sonra "
-"uygun eylemi seçer (yazara bildirmeyi içerir): Dahili Değerlendirmeye Gönder "
-"(Dahili Değerlendirme için dosya seçmeyi gerektirir); Dış Değerlendirmeye "
-"Gönder (Dış Değerlendirme için dosya seçmeyi gerektirir); Gönderiyi Kabul Et "
-"(Düzenleme aşaması için dosya seçmeyi gerektirir); veya Gönderiyi Reddet ("
-"gönderiyi arşivle)."
-
-msgid "editor.monograph.legend.uploaded"
-msgstr "Izgara sütun başlığındaki rol tarafından yüklenen dosya"
-
-msgid "editor.monograph.legend.complete"
-msgstr "İşlem tamamlandı"
-
-msgid "editor.monograph.legend.in_progress"
-msgstr "İşlem devam ediyor veya henüz tamamlanmadı"
-
-msgid "editor.monograph.legend.delete"
-msgstr "Bu öğeyi sil"
-
-msgid "editor.monograph.legend.edit"
-msgstr "Öğeyi düzenle"
-
-msgid "editor.monograph.legend.notes_new"
-msgstr ""
-"Dosya bilgileri: notlar, bildirim seçenekleri ve geçmiş (Son ziyaretten bu "
-"yana eklenen yeni notlar)"
-
-msgid "editor.monograph.legend.notes"
-msgstr ""
-"Dosya bilgileri: notlar, bildirim seçenekleri ve geçmiş (Notlar mevcuttur)"
-
-msgid "editor.monograph.legend.notes_none"
-msgstr ""
-"Dosya bilgileri: notlar, bildirim seçenekleri ve geçmiş (Henüz not eklenmedi)"
-
-msgid "editor.monograph.legend.more_info"
-msgstr "Daha Fazla Bilgi: dosya notları, bildirim seçenekleri ve geçmiş"
-
-msgid "editor.monograph.legend.settings"
-msgstr ""
-"Bilgi ve silme seçenekleri gibi öğe ayarlarını görüntüleyin ve bunlara erişin"
-
-msgid "editor.monograph.legend.add_user"
-msgstr "Bölüme bir kullanıcı ekleyin"
-
-msgid "editor.monograph.legend.add"
-msgstr "Bölüme bir dosya yükleyin"
-
-msgid "editor.monograph.legend.participants"
-msgstr ""
-"Bu gönderinin katılımcılarını görüntüleyin ve yönetin: yazarlar, editörler, "
-"tasarımcılar ve daha fazlası"
-
-msgid "editor.monograph.legend.bookInfo"
-msgstr ""
-"Gönderi üst verilerini, notları, bildirimleri ve geçmişi görüntüleyin ve "
-"yönetin"
-
-msgid "editor.monograph.legend.catalogEntry"
-msgstr ""
-"Üst veriler ve yayınlama biçimleri dahil olmak üzere gönderi fihrist kaydını "
-"görüntüleyin ve yönetin"
-
-msgid "editor.monograph.legend.itemActionsDescription"
-msgstr "Tek bir dosyaya özgü eylemler ve seçenekler."
-
-msgid "editor.monograph.legend.itemActions"
-msgstr "Öğe İşlemleri"
-
-msgid "editor.monograph.legend.sectionActionsDescription"
-msgstr ""
-"Belirli bir bölüme özgü seçenekler, örneğin dosya yükleme veya kullanıcı "
-"ekleme."
-
-msgid "editor.monograph.legend.sectionActions"
-msgstr "Bölüm İşlemleri"
-
-msgid "editor.monograph.legend.submissionActionsDescription"
-msgstr "Genel gönderim eylemleri ve seçenekleri."
-
-msgid "editor.monograph.legend.submissionActions"
-msgstr "Gönderim İşlemleri"
-
-msgid "editor.monograph.copyediting.personalMessageToUser"
-msgstr "Kullanıcıya mesaj"
-
-msgid "editor.monograph.copyediting.currentFiles"
-msgstr "Mevcut Dosyalar"
-
-msgid "editor.monograph.final.currentFiles"
-msgstr "Mevcut Nihai Taslak Dosyaları"
-
-msgid "editor.monograph.final.selectFinalDraftFiles"
-msgstr "Son Taslak Dosyaları Seçin"
-
-msgid "editor.monograph.externalReview"
-msgstr "Dış Değerlendirmeyi Başlatın"
-
-msgid "editor.monograph.internalReviewDescription"
-msgstr "Dahili değerlendirme aşamasına göndermek için aşağıdan dosyaları seçin."
-
-msgid "editor.monograph.internalReview"
-msgstr "Dahili Değerlendirme Başlatın"
-
-msgid "editor.monograph.selectProofreadingFiles"
-msgstr "Prova Düzeltme Dosyaları"
-
-msgid "editor.monograph.peerReviewOptions"
-msgstr "Danışman Değerlendirmesi Seçenekleri"
-
-msgid "editor.monograph.uploadReviewForReviewer"
-msgstr "Değerlendirme yükle"
-
-msgid "editor.monograph.editorToEnter"
-msgstr "Danışmanın öneri/yorum girmesi için metin düzenleyici"
-
-msgid "editor.monograph.replaceReviewer"
-msgstr "Danışmanı Değiştir"
-
-msgid "editor.monograph.selectReviewerInstructions"
-msgstr ""
-"Yukarıdan bir danışman seçin ve devam etmek için ‘Danışmanı Seç' düğmesine "
-"basın."
-
-msgid "editor.monograph.recommendation"
-msgstr "Tavsiye"
-
-msgid "editor.monograph.enterReviewerRecommendation"
-msgstr "Danışman Önerisini Girin"
-
-msgid "editor.monograph.enterRecommendation"
-msgstr "Öneriyi Girin"
-
-msgid "editor.monograph.clearReview"
-msgstr "Danışmanı Temizle"
-
-msgid "editor.monograph.cancelReview"
-msgstr "İsteği İptal Et"
-
-msgid "editor.submissionArchive"
-msgstr "Gönderi Arşivi"
+msgid "editor.submissions.assignedTo"
+msgstr "Editöre Atandı"

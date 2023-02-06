@@ -15,7 +15,6 @@
 namespace APP\plugins\generic\dublinCoreMeta;
 
 use APP\core\Application;
-use APP\facades\Repo;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
@@ -89,7 +88,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
         }
 
         $i = 0;
-        $authors = $isChapterRequest ? $templateMgr->getTemplateVars('chapterAuthors') : Repo::author()->getSubmissionAuthors($monograph);
+        $authors = $isChapterRequest ? $templateMgr->getTemplateVars('chapterAuthors') : $publication->getData('authors');
         foreach ($authors as $author) {
             $templateMgr->addHeader('dublinCoreAuthor' . $i++, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
         }
@@ -208,7 +207,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
         }
 
         $i = 0;
-        foreach ($chapter ? $chapter->getAuthors()->toArray() : Repo::author()->getSubmissionAuthors($monograph) as $author) {
+        foreach ($chapter ? $chapter->getAuthors()->toArray() : $publication->getData('authors') as $author) {
             $templateMgr->addHeader('dublinCoreAuthor' . $i++, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
         }
 

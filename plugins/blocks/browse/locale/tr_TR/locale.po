@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2021-02-16 09:32+0000\n"
 "Last-Translator: Uğur Koçak <drugurkocak@icloud.com>\n"
-"Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/omp/"
-"blocks-browse/tr_TR/>\n"
+"Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/omp/blocks-"
+"browse/tr_TR/>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11,26 +11,26 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
+msgid "plugins.block.browse"
+msgstr "Göz At"
+
+msgid "plugins.block.browse.displayName"
+msgstr "Göz Atma Sütunu"
+
+msgid "plugins.block.browse.description"
+msgstr "Bu eklenti, \"göz atma\" kenar çubuğu araçlarını sağlar."
+
+msgid "plugins.block.browse.settings"
+msgstr "Ayarlar"
+
+msgid "plugins.block.browse.settings.title"
+msgstr "Olasılıklara Göz Atın"
+
+msgid "plugins.block.browse.category"
+msgstr "Bölümler"
+
 msgid "plugins.block.browse.series"
 msgstr "Dizi"
 
 msgid "plugins.block.browse.newReleases"
 msgstr "Yeni sürümler"
-
-msgid "plugins.block.browse.category"
-msgstr "Bölümler"
-
-msgid "plugins.block.browse.settings.title"
-msgstr "Olasılıklara Göz Atın"
-
-msgid "plugins.block.browse.settings"
-msgstr "Ayarlar"
-
-msgid "plugins.block.browse.description"
-msgstr "Bu eklenti, \"göz atma\" kenar çubuğu araçlarını sağlar."
-
-msgid "plugins.block.browse.displayName"
-msgstr "Göz Atma Sütunu"
-
-msgid "plugins.block.browse"
-msgstr "Göz At"

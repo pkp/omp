@@ -1,2 +1,63 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Weblate\n"
+
+msgid "plugins.importexport.onix30.displayName"
+msgstr ""
+
+msgid "plugins.importexport.onix30.description"
+msgstr ""
+
+msgid "plugins.importexport.onix30.cliUsage"
+msgstr ""
+
+msgid "plugins.importexport.onix30.cliError"
+msgstr ""
+
+msgid "plugins.importexport.onix30.error.unknownPress"
+msgstr ""
+
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr ""
+
+msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgstr ""
+
+msgid "plugins.importexport.onix30.noFormats"
+msgstr ""
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr ""
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr ""
+
+msgid "plugins.importexport.onix30.exportButton"
+msgstr ""
+
+msgid "plugins.importexport.onix30.exportFormats"
+msgstr ""
+
+msgid "plugins.importexport.onix30.unavailable"
+msgstr ""
+
+msgid "plugins.importexport.onix30.validityStatus"
+msgstr ""
+
+msgid "plugins.importexport.onix30.formatValid"
+msgstr ""
+
+msgid "plugins.importexport.onix30.formatInvalid"
+msgstr ""
+
+msgid "plugins.importexport.onix30.pressMissingFields"
+msgstr ""
+
+msgid "plugins.importexport.onix30.form.addresseeField"
+msgstr ""
+
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
+msgstr ""

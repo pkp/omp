@@ -14,14 +14,139 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "default.groups.abbrev.externalReviewer"
-msgstr "KSZL"
+msgid "default.genres.appendix"
+msgstr "Függelék"
 
-msgid "default.groups.plural.externalReviewer"
-msgstr "Külső szakmai lektorok"
+msgid "default.genres.bibliography"
+msgstr "Irodalomjegyzék"
 
-msgid "default.groups.name.externalReviewer"
-msgstr "Külső szakmai lektor"
+msgid "default.genres.manuscript"
+msgstr "Könyv kézirat"
+
+msgid "default.genres.chapter"
+msgstr "Fejezet kézirat"
+
+msgid "default.genres.glossary"
+msgstr "Szójegyzék"
+
+msgid "default.genres.index"
+msgstr "Index"
+
+msgid "default.genres.preface"
+msgstr "Előszó"
+
+msgid "default.genres.prospectus"
+msgstr "Tájékoztató"
+
+msgid "default.genres.table"
+msgstr "Táblázat"
+
+msgid "default.genres.figure"
+msgstr "Ábra"
+
+msgid "default.genres.photo"
+msgstr "Kép"
+
+msgid "default.genres.illustration"
+msgstr "Illusztráció"
+
+msgid "default.genres.other"
+msgstr "Egyéb"
+
+msgid "default.groups.name.manager"
+msgstr "Kiadó menedzser"
+
+msgid "default.groups.plural.manager"
+msgstr "Kiadó menedzserek"
+
+msgid "default.groups.abbrev.manager"
+msgstr "KM"
+
+msgid "default.groups.name.editor"
+msgstr "Kiadó szerkesztő"
+
+msgid "default.groups.plural.editor"
+msgstr "Kiadó szerkesztők"
+
+msgid "default.groups.abbrev.editor"
+msgstr "KSZ"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Sorozatszerkesztő"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Sorozatszerkesztők"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "SE"
+
+msgid "default.groups.name.subscriptionManager"
+msgstr "Előfizetés menedzser"
+
+msgid "default.groups.plural.subscriptionManager"
+msgstr "Előfizetés menedzserek"
+
+msgid "default.groups.abbrev.subscriptionManager"
+msgstr "ElőfM"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Fejezet szerző"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Fejezet szerzők"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "FSZ"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Kötetszerkesztő"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Kötetszerkesztők"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "KotetSZ"
+
+msgid "default.contextSettings.authorGuidelines"
+msgstr ""
+
+msgid "default.contextSettings.checklist"
+msgstr ""
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+"<p>A kiadónál megadott nevek és email címek kizárólag a kiadó által "
+"megjelölt célokra kerülnek felhasználásra, és azok más célra vagy másik fél "
+"számára nem lesznek rendelkezésre bocsájtva.</p>"
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr ""
+"A kiadó azonnali nyílt hozzáférést biztosít tartalmaihoz, az az elv alapján, "
+"hogy a kutatások szabadon hozzáférhetővé tétele a nyilvánosság számára "
+"elősegíti a tudás nagyobb mértékű globális cseréjét."
+
+msgid "default.contextSettings.forReaders"
+msgstr ""
+"Arra biztatjuk olvasóinkat, hogy iratkozzanak fel a megjelenésről értesítő "
+"szolgáltatásra. Használják a kezdőoldal tetején található  <a href="
+"\"{$indexUrl}/{$contextPath}/user/register\">Regisztráció</a> linket. A "
+"regisztráció eredményeként az olvasó e-mailben megkapja az új monográfiák "
+"tartalomjegyzéket. Ez a lista azt is lehetővé teszi a kiadó számára, hogy "
+"bizonyos szintű támogatást vagy olvasottságot igényeljen. Lásd az <a href="
+"\"{$indexUrl}/{$contextPath}/about/submissions#privacyStatement"
+"\">Adatvédelmi nyilatkozatot</a>, ami biztosítja az olvasókat arról, hogy "
+"nevüket és e-mail címüket nem használják fel más célokra."
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+"Érdeklődik a megjelentetés iránt ennél a kiadónál? Javasoljuk, hogy olvassa "
+"el a <a href=\"{$indexUrl}/{$contextPath}/about\">Kiadóról</a> szóló oldalt, "
+"ahol a kiadó szabályzatát és a <a href=\"{$indexUrl}/{$contextPath}/about/"
+"submissions#authorGuidelines\">Szerzői útmutatót</a> találja. A szerzőknek a "
+"beküldéshez <a href=\"{$indexUrl}/{$contextPath}/user/register"
+"\">regisztrálniuk</a> kell, vagy ha már regisztráltak, egyszerűen <a href="
+"\"{$indexUrl}/index/login\">bejelentkezhetnek</a> és megkezdhetik az 5 "
+"lépéses beküldési folyamatot."
 
 msgid "default.contextSettings.forLibrarians"
 msgstr ""
@@ -32,158 +157,40 @@ msgstr ""
 "munkákat vállalnak (lásd: <a href=\"http://pkp.sfu.ca/omp\">Open Monograph "
 "Press</a>)."
 
-msgid "default.contextSettings.forAuthors"
-msgstr ""
-"Érdeklődik a megjelentetés iránt ennél a kiadónál? Javasoljuk, hogy olvassa "
-"el a <a href=\"{$indexUrl}/{$contextPath}/about\">Kiadóról</a> szóló oldalt, "
-"ahol a kiadó szabályzatát és a <a href=\"{$indexUrl}/{$contextPath}/about/"
-"submissions#authorGuidelines\">Szerzői útmutatót</a> találja. A szerzőknek a "
-"beküldéshez <a href=\"{$indexUrl}/{$contextPath}/user/register\""
-">regisztrálniuk</a> kell, vagy ha már regisztráltak, egyszerűen <a href=\""
-"{$indexUrl}/index/login\">bejelentkezhetnek</a> és megkezdhetik az 5 lépéses "
-"beküldési folyamatot."
+msgid "default.groups.name.externalReviewer"
+msgstr "Külső szakmai lektor"
 
-msgid "default.contextSettings.forReaders"
-msgstr ""
-"Arra biztatjuk olvasóinkat, hogy iratkozzanak fel a megjelenésről értesítő "
-"szolgáltatásra. Használják a kezdőoldal tetején található  <a href=\""
-"{$indexUrl}/{$contextPath}/user/register\">Regisztráció</a> linket. A "
-"regisztráció eredményeként az olvasó e-mailben megkapja az új monográfiák "
-"tartalomjegyzéket. Ez a lista azt is lehetővé teszi a kiadó számára, hogy "
-"bizonyos szintű támogatást vagy olvasottságot igényeljen. Lásd az <a href=\""
-"{$indexUrl}/{$contextPath}/about/submissions#privacyStatement\">Adatvédelmi "
-"nyilatkozatot</a>, ami biztosítja az olvasókat arról, hogy nevüket és e-mail "
-"címüket nem használják fel más célokra."
+msgid "default.groups.plural.externalReviewer"
+msgstr "Külső szakmai lektorok"
 
-msgid "default.contextSettings.openAccessPolicy"
-msgstr ""
-"A kiadó azonnali nyílt hozzáférést biztosít tartalmaihoz, az az elv alapján, "
-"hogy a kutatások szabadon hozzáférhetővé tétele a nyilvánosság számára "
-"elősegíti a tudás nagyobb mértékű globális cseréjét."
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "KSZL"
 
-msgid "default.contextSettings.privacyStatement"
-msgstr ""
-"<p>A kiadónál megadott nevek és email címek kizárólag a kiadó által "
-"megjelölt célokra kerülnek felhasználásra, és azok más célra vagy másik fél "
-"számára nem lesznek rendelkezésre bocsájtva.</p>"
+#~ msgid "default.contextSettings.checklist.bibliographicRequirements"
+#~ msgstr ""
+#~ "A szöveg betartja azokat a stilisztikai és bibliográfiai irányelveket, "
+#~ "amelyek a  <a href=\"{$indexUrl}/{$contextPath}/about/"
+#~ "submissions#authorGuidelines\" target=\"_blank\">Szerzői útmutatóban</a> "
+#~ "kerültek meghatározásra, és amelyek a Kiadóról menüpont alatt találhatóak."
 
-msgid "default.contextSettings.checklist.bibliographicRequirements"
-msgstr ""
-"A szöveg betartja azokat a stilisztikai és bibliográfiai irányelveket, "
-"amelyek a  <a href=\"{$indexUrl}/{$contextPath}/about/submissions#"
-"authorGuidelines\" target=\"_blank\">Szerzői útmutatóban</a> kerültek "
-"meghatározásra, és amelyek a Kiadóról menüpont alatt találhatóak."
+#~ msgid "default.contextSettings.checklist.submissionAppearance"
+#~ msgstr ""
+#~ "A szöveg szimpla sorközzel, 12 pontos betűmérettel és dőlt betűkkel lett "
+#~ "szerkesztve, aláhúzások alkalmazása nélkül (kivéve az URL címek "
+#~ "esetében), és az összes illusztráció, ábra és táblázat a szöveg megfelelő "
+#~ "pontjain került elhelyezésre, nem pedig a szöveg végén található."
 
-msgid "default.contextSettings.checklist.submissionAppearance"
-msgstr ""
-"A szöveg szimpla sorközzel, 12 pontos betűmérettel és dőlt betűkkel lett "
-"szerkesztve, aláhúzások alkalmazása nélkül (kivéve az URL címek esetében), "
-"és az összes illusztráció, ábra és táblázat a szöveg megfelelő pontjain "
-"került elhelyezésre, nem pedig a szöveg végén található."
+#~ msgid "default.contextSettings.checklist.addressesLinked"
+#~ msgstr ""
+#~ "Ahol rendelkezésre áll, ott a hivatkozások URL címe is megadásra került."
 
-msgid "default.contextSettings.checklist.addressesLinked"
-msgstr ""
-"Ahol rendelkezésre áll, ott a hivatkozások URL címe is megadásra került."
+#~ msgid "default.contextSettings.checklist.fileFormat"
+#~ msgstr ""
+#~ "A beküldött fájl Miscrosoft Word, RTF vagy OpenDocument fájl formátumban "
+#~ "van."
 
-msgid "default.contextSettings.checklist.fileFormat"
-msgstr ""
-"A beküldött fájl Miscrosoft Word, RTF vagy OpenDocument fájl formátumban van."
-
-msgid "default.contextSettings.checklist.notPreviouslyPublished"
-msgstr ""
-"A beküldött anyag korábban nem került publikálásra és jelenleg sem áll "
-"elbírálás alatt más kiadónál (vagy ezzel kapcsolatban magyarázatot mellékel "
-"a megjegyzéseknél a szerkesztőnek)."
-
-msgid "default.groups.abbrev.volumeEditor"
-msgstr "KotetSZ"
-
-msgid "default.groups.plural.volumeEditor"
-msgstr "Kötetszerkesztők"
-
-msgid "default.groups.name.volumeEditor"
-msgstr "Kötetszerkesztő"
-
-msgid "default.groups.abbrev.chapterAuthor"
-msgstr "FSZ"
-
-msgid "default.groups.plural.chapterAuthor"
-msgstr "Fejezet szerzők"
-
-msgid "default.groups.name.chapterAuthor"
-msgstr "Fejezet szerző"
-
-msgid "default.groups.abbrev.sectionEditor"
-msgstr "SE"
-
-msgid "default.groups.plural.sectionEditor"
-msgstr "Sorozatszerkesztők"
-
-msgid "default.groups.name.sectionEditor"
-msgstr "Sorozatszerkesztő"
-
-msgid "default.groups.abbrev.editor"
-msgstr "KSZ"
-
-msgid "default.groups.abbrev.manager"
-msgstr "KM"
-
-msgid "default.groups.plural.editor"
-msgstr "Kiadó szerkesztők"
-
-msgid "default.groups.name.editor"
-msgstr "Kiadó szerkesztő"
-
-msgid "default.groups.plural.manager"
-msgstr "Kiadó menedzserek"
-
-msgid "default.groups.name.manager"
-msgstr "Kiadó menedzser"
-
-msgid "default.genres.other"
-msgstr "Egyéb"
-
-msgid "default.genres.illustration"
-msgstr "Illusztráció"
-
-msgid "default.genres.photo"
-msgstr "Kép"
-
-msgid "default.genres.figure"
-msgstr "Ábra"
-
-msgid "default.genres.table"
-msgstr "Táblázat"
-
-msgid "default.genres.prospectus"
-msgstr "Tájékoztató"
-
-msgid "default.genres.preface"
-msgstr "Előszó"
-
-msgid "default.genres.index"
-msgstr "Index"
-
-msgid "default.genres.glossary"
-msgstr "Szójegyzék"
-
-msgid "default.genres.chapter"
-msgstr "Fejezet kézirat"
-
-msgid "default.genres.manuscript"
-msgstr "Könyv kézirat"
-
-msgid "default.genres.bibliography"
-msgstr "Irodalomjegyzék"
-
-msgid "default.genres.appendix"
-msgstr "Függelék"
-
-msgid "default.groups.abbrev.subscriptionManager"
-msgstr "ElőfM"
-
-msgid "default.groups.plural.subscriptionManager"
-msgstr "Előfizetés menedzserek"
-
-msgid "default.groups.name.subscriptionManager"
-msgstr "Előfizetés menedzser"
+#~ msgid "default.contextSettings.checklist.notPreviouslyPublished"
+#~ msgstr ""
+#~ "A beküldött anyag korábban nem került publikálásra és jelenleg sem áll "
+#~ "elbírálás alatt más kiadónál (vagy ezzel kapcsolatban magyarázatot "
+#~ "mellékel a megjegyzéseknél a szerkesztőnek)."

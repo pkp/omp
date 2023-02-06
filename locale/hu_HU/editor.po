@@ -13,53 +13,146 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "editor.monograph.enterRecommendation"
-msgstr "Ajánlás megadása"
-
-msgid "editor.monograph.internalReview"
-msgstr "Belső szakmai lektorálás indítása"
-
-msgid "editor.monograph.selectProofreadingFiles"
-msgstr "Korrektúra fájlok"
-
-msgid "editor.monograph.peerReviewOptions"
-msgstr "Szakmai értékelés lehetőségek"
-
-msgid "editor.monograph.uploadReviewForReviewer"
-msgstr "Szakmai bírálat feltöltése"
-
-msgid "editor.monograph.editorToEnter"
-msgstr "A szerkesztő javaslatot/hozzászólást írhat a bírálónak"
-
-msgid "editor.monograph.replaceReviewer"
-msgstr "Szakmai lektor cseréje"
-
-msgid "editor.monograph.selectReviewerInstructions"
-msgstr ""
-"Válasszon a fenti szakmai lektorok közül, majd a folytatáshoz nyomja meg a \""
-"Szakmai lektor kiválasztása\" gombot."
-
-msgid "editor.monograph.recommendation"
-msgstr "Ajánlás"
+msgid "editor.submissionArchive"
+msgstr "Archivált beküldések"
 
 msgid "editor.monograph.cancelReview"
 msgstr "Felkérés megszakítása"
 
-msgid "editor.submissionArchive"
-msgstr "Archivált beküldések"
+msgid "editor.monograph.clearReview"
+msgstr "Szakmai lektor törlése"
 
-msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgid "editor.monograph.enterRecommendation"
+msgstr "Ajánlás megadása"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Adjon meg szakmai lektori ajánlást"
+
+msgid "editor.monograph.recommendation"
+msgstr "Ajánlás"
+
+msgid "editor.monograph.selectReviewerInstructions"
 msgstr ""
-"Különböző kiadványformátumok, mint például keménytáblás, puhafedeles és "
-"digitális tölthetőek fel az alábbi Kiadványformátumok részben. Az alábbi "
-"kiadványformátumok felületet használhatja ellenőrző listaként ahhoz, hogy "
-"mit kell még tennie a kiadványformátum közzétételéhez."
+"Válasszon a fenti szakmai lektorok közül, majd a folytatáshoz nyomja meg a "
+"\"Szakmai lektor kiválasztása\" gombot."
 
-msgid "editor.monograph.production.approvalAndPublishing"
-msgstr "Jóváhagyás és Közzététel"
+msgid "editor.monograph.replaceReviewer"
+msgstr "Szakmai lektor cseréje"
 
-msgid "editor.monograph.editorial.fairCopy"
-msgstr "Tisztázat"
+msgid "editor.monograph.editorToEnter"
+msgstr "A szerkesztő javaslatot/hozzászólást írhat a bírálónak"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Szakmai bírálat feltöltése"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Szakmai értékelés lehetőségek"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Korrektúra fájlok"
+
+msgid "editor.monograph.internalReview"
+msgstr "Belső szakmai lektorálás indítása"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr ""
+"Válassza ki lentről azokat a fájlokat, amiket a belső szakmai lektorálási "
+"szakaszba továbbküld."
+
+msgid "editor.monograph.externalReview"
+msgstr "Külső szakmai lektorálás indítása"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Végleges kézirat fájlok kiválasztása"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Jelenlegi végleges kézirat fájlok"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Jelenlegi fájlok"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Üzenet a felhasználónak"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Beküldési műveletek"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Általános beküldési műveletek és lehetőségek."
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Szakasz műveletek"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr ""
+"Egy adott szakaszhoz tartozó lehetőségek, például fájlok feltöltése vagy "
+"felhasználók hozzáadása."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Tételműveletek"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Az egyes fájlokkal kapcsolatos műveletek és lehetőségek."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr ""
+"Megtekintheti és kezelheti a beküldés katalógus tételét, beleértve a "
+"metaadatokat és a közzétételi formátumokat"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr ""
+"Megtekintheti és kezelheti a beküldött anyag metaadatait, jegyzeteit, "
+"értesítéseit és előzményeit"
+
+msgid "editor.monograph.legend.participants"
+msgstr ""
+"Megtekintheti és kezelheti a beküldött anyag résztvevőit: szerzőket, "
+"szerkesztőket, tervezőket és egyebeket"
+
+msgid "editor.monograph.legend.add"
+msgstr "Fájl feltöltése a szakaszba"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Felhasználó hozzáadása a szakaszhoz"
+
+msgid "editor.monograph.legend.settings"
+msgstr ""
+"Megtekintheti és elérheti a tételbeállításokat, például az információt és a "
+"törlési lehetőségeket"
+
+msgid "editor.monograph.legend.more_info"
+msgstr ""
+"További információ: fájljegyzetek, értesítési lehetőségek és előzmények"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr ""
+"Fájlinformáció: jegyzetek, értesítési lehetőségek és előzmények (Még "
+"nincsenek jegyzetek hozzáadva)"
+
+msgid "editor.monograph.legend.notes"
+msgstr ""
+"Fájlinformáció: jegyzetek, értesítési lehetőségek és előzmények "
+"(Rendelkezésre állnak jegyzetek)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr ""
+"Fájlinformáció: jegyzetek, értesítési lehetőségek és előzmények (Új "
+"megjegyzések hozzáadva az utolsó látogatás óta)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Tétel szerkesztése"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Tétel törlése"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "A művelet folyamatban van, vagy még nem fejeződött be"
+
+msgid "editor.monograph.legend.complete"
+msgstr "A művelet befejeződött"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Fájl feltöltve a táblázat oszlop címében megjelölt szerep alapján"
 
 msgid "editor.submission.introduction"
 msgstr ""
@@ -72,126 +165,21 @@ msgstr ""
 "kiválasztását a Szerkesztési szakaszhoz); vagy a Beküldött anyag "
 "visszautasítását (archiválás)."
 
-msgid "editor.monograph.legend.complete"
-msgstr "A művelet befejeződött"
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Tisztázat"
 
-msgid "editor.monograph.legend.in_progress"
-msgstr "A művelet folyamatban van, vagy még nem fejeződött be"
+msgid "editor.monograph.proofs"
+msgstr "Kefelenyomatok"
 
-msgid "editor.monograph.legend.delete"
-msgstr "Tétel törlése"
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Jóváhagyás és Közzététel"
 
-msgid "editor.monograph.legend.edit"
-msgstr "Tétel szerkesztése"
-
-msgid "editor.monograph.legend.notes_new"
+msgid "editor.monograph.production.approvalAndPublishingDescription"
 msgstr ""
-"Fájlinformáció: jegyzetek, értesítési lehetőségek és előzmények (Új "
-"megjegyzések hozzáadva az utolsó látogatás óta)"
-
-msgid "editor.monograph.legend.notes"
-msgstr ""
-"Fájlinformáció: jegyzetek, értesítési lehetőségek és előzmények ("
-"Rendelkezésre állnak jegyzetek)"
-
-msgid "editor.monograph.legend.notes_none"
-msgstr ""
-"Fájlinformáció: jegyzetek, értesítési lehetőségek és előzmények (Még "
-"nincsenek jegyzetek hozzáadva)"
-
-msgid "editor.monograph.legend.more_info"
-msgstr "További információ: fájljegyzetek, értesítési lehetőségek és előzmények"
-
-msgid "editor.monograph.legend.settings"
-msgstr ""
-"Megtekintheti és elérheti a tételbeállításokat, például az információt és a "
-"törlési lehetőségeket"
-
-msgid "editor.monograph.legend.add_user"
-msgstr "Felhasználó hozzáadása a szakaszhoz"
-
-msgid "editor.monograph.legend.add"
-msgstr "Fájl feltöltése a szakaszba"
-
-msgid "editor.monograph.legend.participants"
-msgstr ""
-"Megtekintheti és kezelheti a beküldött anyag résztvevőit: szerzőket, "
-"szerkesztőket, tervezőket és egyebeket"
-
-msgid "editor.monograph.legend.catalogEntry"
-msgstr ""
-"Megtekintheti és kezelheti a beküldés katalógus tételét, beleértve a "
-"metaadatokat és a közzétételi formátumokat"
-
-msgid "editor.monograph.legend.bookInfo"
-msgstr ""
-"Megtekintheti és kezelheti a beküldött anyag metaadatait, jegyzeteit, "
-"értesítéseit és előzményeit"
-
-msgid "editor.monograph.legend.itemActionsDescription"
-msgstr "Az egyes fájlokkal kapcsolatos műveletek és lehetőségek."
-
-msgid "editor.monograph.legend.itemActions"
-msgstr "Tételműveletek"
-
-msgid "editor.monograph.legend.sectionActionsDescription"
-msgstr ""
-"Egy adott szakaszhoz tartozó lehetőségek, például fájlok feltöltése vagy "
-"felhasználók hozzáadása."
-
-msgid "editor.monograph.legend.sectionActions"
-msgstr "Szakasz műveletek"
-
-msgid "editor.monograph.legend.submissionActionsDescription"
-msgstr "Általános beküldési műveletek és lehetőségek."
-
-msgid "editor.monograph.legend.submissionActions"
-msgstr "Beküldési műveletek"
-
-msgid "editor.monograph.copyediting.personalMessageToUser"
-msgstr "Üzenet a felhasználónak"
-
-msgid "editor.monograph.copyediting.currentFiles"
-msgstr "Jelenlegi fájlok"
-
-msgid "editor.monograph.final.currentFiles"
-msgstr "Jelenlegi végleges kézirat fájlok"
-
-msgid "editor.monograph.final.selectFinalDraftFiles"
-msgstr "Végleges kézirat fájlok kiválasztása"
-
-msgid "editor.monograph.externalReview"
-msgstr "Külső szakmai lektorálás indítása"
-
-msgid "editor.monograph.internalReviewDescription"
-msgstr ""
-"Válassza ki lentről azokat a fájlokat, amiket a belső szakmai lektorálási "
-"szakaszba továbbküld."
-
-msgid "editor.submissions.assignedTo"
-msgstr "Szerkesztőhöz rendelve"
-
-msgid "editor.publicIdentificationExistsForTheSameType"
-msgstr ""
-"A '{$publicIdentifier}' nyilvános azonosító már létezik egy másik azonos "
-"típusú objektumhoz rendelve. Kérjük, válasszon egyedi azonosítókat az azonos "
-"típusú objektumokhoz."
-
-msgid "editor.submission.proof.manageProofFilesDescription"
-msgstr ""
-"Bármelyik fájlt, amit már feltöltöttek a munkafolyamat valamelyik "
-"szakaszában hozzá lehet adni a Kefelenyomat fájlok listájához, ha bejelöli "
-"az alábbi jelölőnégyzetet, és rákattint a Keresés gombra: az összes "
-"rendelkezésre álló fájl megjelenik és kiválasztható a felvételhez."
-
-msgid "editor.monograph.proof.addNote"
-msgstr "Válasz hozzáadása"
-
-msgid "editor.monograph.approvedProofs.edit.linkTitle"
-msgstr "Feltételek beállítása"
-
-msgid "editor.monograph.approvedProofs.edit"
-msgstr "Letöltési feltételek beállítása"
+"Különböző kiadványformátumok, mint például keménytáblás, puhafedeles és "
+"digitális tölthetőek fel az alábbi Kiadványformátumok részben. Az alábbi "
+"kiadványformátumok felületet használhatja ellenőrző listaként ahhoz, hogy "
+"mit kell még tennie a kiadványformátum közzétételéhez."
 
 msgid "editor.monograph.production.publicationFormatDescription"
 msgstr ""
@@ -202,14 +190,27 @@ msgstr ""
 "kell a könyv katalógus tételében, mielőtt a formátum <em>Elérhetővé</em> "
 "válna (azaz közzétételre kerülne)."
 
-msgid "editor.monograph.proofs"
-msgstr "Kefelenyomatok"
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Letöltési feltételek beállítása"
 
-msgid "editor.monograph.legend.uploaded"
-msgstr "Fájl feltöltve a táblázat oszlop címében megjelölt szerep alapján"
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Feltételek beállítása"
 
-msgid "editor.monograph.enterReviewerRecommendation"
-msgstr "Adjon meg szakmai lektori ajánlást"
+msgid "editor.monograph.proof.addNote"
+msgstr "Válasz hozzáadása"
 
-msgid "editor.monograph.clearReview"
-msgstr "Szakmai lektor törlése"
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr ""
+"Bármelyik fájlt, amit már feltöltöttek a munkafolyamat valamelyik "
+"szakaszában hozzá lehet adni a Kefelenyomat fájlok listájához, ha bejelöli "
+"az alábbi jelölőnégyzetet, és rákattint a Keresés gombra: az összes "
+"rendelkezésre álló fájl megjelenik és kiválasztható a felvételhez."
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr ""
+"A '{$publicIdentifier}' nyilvános azonosító már létezik egy másik azonos "
+"típusú objektumhoz rendelve. Kérjük, válasszon egyedi azonosítókat az azonos "
+"típusú objektumokhoz."
+
+msgid "editor.submissions.assignedTo"
+msgstr "Szerkesztőhöz rendelve"

@@ -42,8 +42,8 @@ describe('DOI tests', function() {
 		cy.get(`#list-item-submission-${submissionId} button.expander`).click();
 		cy.checkDoiAssignment(`${submissionId}-monograph-${publicationId}`);
 		cy.checkDoiAssignment(`${submissionId}-chapter-${chapterId}`);
-		cy.checkDoiAssignment(`${submissionId}-publicationFormat-${publicationFormatId}`);
-		cy.checkDoiAssignment(`${submissionId}-submissionFile-${submissionFileId}`);
+		cy.checkDoiAssignment(`${submissionId}-representation-${publicationFormatId}`);
+		cy.checkDoiAssignment(`${submissionId}-file-${submissionFileId}`);
 
 		cy.log('Check Submission Visibility');
 		// Select a monograph

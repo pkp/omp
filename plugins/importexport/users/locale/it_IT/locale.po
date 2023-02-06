@@ -38,8 +38,8 @@ msgstr ""
 "\t\te le password agli utenti importati\n"
 "\n"
 "Esempi:\n"
-"\tImporta utenti myPress da myImportFile.xml, proseguendo in caso di errore:"
-"\n"
+"\tImporta utenti myPress da myImportFile.xml, proseguendo in caso di "
+"errore:\n"
 "\t{$scriptName} {$pluginName} import myImportFile.xml myPress "
 "continue_on_error\n"
 "\n"
@@ -62,12 +62,6 @@ msgstr ""
 "saranno importati e ogni nuovo ruolo da creare sarà assegnato agli utenti "
 "esisenti."
 
-msgid "plugins.importexport.users.import.failedToImportUser"
-msgstr "Importazione utente fallita"
-
-msgid "plugins.importexport.users.import.failedToImportRole"
-msgstr "Assegnazionee ruolo all'utene fallita"
-
 msgid "plugins.importexport.users.import.dataFile"
 msgstr "File di Dati utente"
 
@@ -79,9 +73,6 @@ msgstr ""
 msgid "plugins.importexport.users.import.continueOnError"
 msgstr "Continua a importare altri utenti se si verifica un errore."
 
-msgid "plugins.importexport.users.import.noFileError"
-msgstr "Nessun file uploaded!"
-
 msgid "plugins.importexport.users.import.usersWereImported"
 msgstr "I seguenti utenti sono stati importati con successo"
 
@@ -91,10 +82,19 @@ msgstr "Si sono verificati errori durante l'importazione"
 msgid "plugins.importexport.users.import.confirmUsers"
 msgstr "Conferma che questi sono gli utenti che vuoi importare nel sistema"
 
+msgid "plugins.importexport.users.import.warning"
+msgstr "Attenzione"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr ""
+"Non si possono usare password criptate con {$importHash}; OMP è configurato "
+"per usare {$ompHash}. Se continui, dovrai resettare le password degli utenti "
+"importati."
+
 msgid "plugins.importexport.users.unknownPress"
 msgstr ""
-"È stato specificato un percorso di una Casa Editrice sconosciuta \""
-"{$contextPath}\"."
+"È stato specificato un percorso di una Casa Editrice sconosciuta "
+"\"{$contextPath}\"."
 
 msgid "plugins.importexport.users.export.exportUsers"
 msgstr "Esporta Utenti"
@@ -108,20 +108,23 @@ msgstr "Esporta tutti"
 msgid "plugins.importexport.users.export.errorsOccurred"
 msgstr "Si sono verificati errori durante l'esportazione"
 
-msgid "plugins.importexport.users.import.warning"
-msgstr "Attenzione"
-
-msgid "plugins.importexport.users.import.encryptionMismatch"
-msgstr "Non si possono usare password criptate con {$importHash}; OMP è configurato per usare {$ompHash}. Se continui, dovrai resettare le password degli utenti importati."
-
-msgid "plugins.importexport.users.uploadFile"
-msgstr "Si prega di caricare un file in \"Importa\" per continuare."
-
-msgid "plugins.importexport.users.results"
-msgstr "Risultati"
-
 msgid "plugins.importexport.users.importComplete"
 msgstr ""
 "L'importazione è stata completata con successo. Gli utenti con nomi e "
 "indirizzi email che non sono già in uso sono stati importati assieme ai loro "
 "gruppi di utenti."
+
+msgid "plugins.importexport.users.results"
+msgstr "Risultati"
+
+msgid "plugins.importexport.users.uploadFile"
+msgstr "Si prega di caricare un file in \"Importa\" per continuare."
+
+#~ msgid "plugins.importexport.users.import.failedToImportUser"
+#~ msgstr "Importazione utente fallita"
+
+#~ msgid "plugins.importexport.users.import.failedToImportRole"
+#~ msgstr "Assegnazionee ruolo all'utene fallita"
+
+#~ msgid "plugins.importexport.users.import.noFileError"
+#~ msgstr "Nessun file uploaded!"

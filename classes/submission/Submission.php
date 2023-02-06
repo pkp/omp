@@ -22,10 +22,9 @@
 namespace APP\submission;
 
 use APP\core\Services;
-use PKP\db\DAORegistry;
 
-use PKP\submission\PKPSubmission;
 use APP\facades\Repo;
+use PKP\submission\PKPSubmission;
 
 class Submission extends PKPSubmission
 {
@@ -221,7 +220,11 @@ class Submission extends PKPSubmission
             case PERMISSIONS_FIELD_COPYRIGHT_HOLDER:
                 switch ($context->getData('copyrightHolderType')) {
                     case 'author':
-                        $fieldValue = [$context->getPrimaryLocale() => $this->getAuthorString()];
+                        if (!$publication) {
+                            $publication = $this->getCurrentPublication();
+                        }
+                        $authorUserGroups = Repo::userGroup()->getCollector()->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])->filterByContextIds([$context->getId()])->getMany();
+                        $fieldValue = [$context->getPrimaryLocale() => $publication->getAuthorString($authorUserGroups)];
                         break;
                     case 'context':
                     case null:

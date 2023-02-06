@@ -11,10 +11,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
+msgid "plugins.generic.htmlMonographFile.displayName"
+msgstr "Arquivo de monografia em HTML"
+
 msgid "plugins.generic.htmlMonographFile.description"
 msgstr ""
 "Este plugin fornece suporte de renderização para arquivos de monografia no "
 "formato HTML."
-
-msgid "plugins.generic.htmlMonographFile.displayName"
-msgstr "Arquivo de monografia em HTML"

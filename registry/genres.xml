@@ -18,7 +18,7 @@
 <genres>
 	<genre key="APPENDIX" category="1" dependent="0" supplementary="1" localeKey="default.genres.appendix" />
 	<genre key="BIBLIOGRAPHY" category="1" dependent="0" supplementary="1" localeKey="default.genres.bibliography" />
-	<genre key="MANUSCRIPT" category="1" dependent="0" supplementary="0" localeKey="default.genres.manuscript" />
+	<genre key="MANUSCRIPT" category="1" dependent="0" supplementary="0" required="1" localeKey="default.genres.manuscript" />
 	<genre key="CHAPTER" category="1" dependent="0" supplementary="0" localeKey="default.genres.chapter" />
 	<genre key="GLOSSARY" category="1" dependent="0" supplementary="1" localeKey="default.genres.glossary" />
 	<genre key="INDEX" category="1" dependent="0" supplementary="1" localeKey="default.genres.index" />

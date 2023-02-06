@@ -65,6 +65,7 @@ Cypress.Commands.add('createSubmissionWithApi', (data, csrfToken) => {
 				return;
 			}
 			cy.visit('/index.php/publicknowledge/submission?id=' + submissionId);
+			cy.get('button:contains("Continue")').click();
 
 			// Must use the UI to upload files until we upgrade Cypress
 			// to 7.4.0 or higher.
@@ -73,10 +74,7 @@ Cypress.Commands.add('createSubmissionWithApi', (data, csrfToken) => {
 
 		})
 		.then(() => {
-			cy.get('.pkpButton--isPrimary').click();
-			cy.get('.pkpSteps__step__label--current span:contains("2")');
-			cy.get('.pkpButton--isPrimary').click();
-			cy.get('.pkpSteps__step__label--current span:contains("3")');
+			cy.get('.pkpSteps__step__label:contains("Details")').click();
 		})
 		.addSubmissionAuthorsWithApi(api, data, csrfToken)
 		.addChapters(data.chapters);

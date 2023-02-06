@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "PO-Revision-Date: 2020-05-30 07:39+0000\n"
 "Last-Translator: rl <biuro@fimagis.pl>\n"
-"Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/"
-"themes-default/pl_PL/>\n"
+"Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/themes-"
+"default/pl_PL/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,11 +12,77 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.themes.default.option.typography.label"
-msgstr "Typografia"
+msgid "plugins.themes.default.name"
+msgstr "Szablon domyślny"
 
 msgid "plugins.themes.default.description"
 msgstr "Szablon jest domyślna kreacją wizualną OMP."
 
-msgid "plugins.themes.default.name"
-msgstr "Szablon domyślny"
+msgid "plugins.themes.default.option.typography.label"
+msgstr "Typografia"
+
+msgid "plugins.themes.default.option.typography.description"
+msgstr ""
+
+msgid "plugins.themes.default.option.typography.notoSans"
+msgstr ""
+
+msgid "plugins.themes.default.option.typography.notoSerif"
+msgstr ""
+
+msgid "plugins.themes.default.option.typography.notoSerif_notoSans"
+msgstr ""
+
+msgid "plugins.themes.default.option.typography.notoSans_notoSerif"
+msgstr ""
+
+msgid "plugins.themes.default.option.typography.lato"
+msgstr ""
+
+msgid "plugins.themes.default.option.typography.lora"
+msgstr ""
+
+msgid "plugins.themes.default.option.typography.lora_openSans"
+msgstr ""
+
+msgid "plugins.themes.default.option.colour.label"
+msgstr ""
+
+msgid "plugins.themes.default.option.colour.description"
+msgstr ""
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
+msgstr ""
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.description"
+msgstr ""
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
+msgstr ""
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
+msgstr ""
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
+msgstr ""
+
+msgid "plugins.themes.default.option.displayStats.label"
+msgstr ""
+
+msgid "plugins.themes.default.option.displayStats.none"
+msgstr ""
+
+msgid "plugins.themes.default.option.displayStats.bar"
+msgstr ""
+
+msgid "plugins.themes.default.option.displayStats.line"
+msgstr ""
+
+msgid "plugins.themes.default.displayStats.monthInitials"
+msgstr ""
+
+msgid "plugins.themes.default.displayStats.downloads"
+msgstr ""
+
+msgid "plugins.themes.default.displayStats.noStats"
+msgstr ""

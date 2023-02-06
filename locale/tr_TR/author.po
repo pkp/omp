@@ -13,3 +13,6 @@ msgstr ""
 
 msgid "author.submit.notAccepting"
 msgstr "Bu yayınevi şu anda gönderi kabul etmiyor."
+
+msgid "author.submit"
+msgstr ""

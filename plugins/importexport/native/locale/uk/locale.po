@@ -34,6 +34,9 @@ msgstr "Оберіть монографії для експорту"
 msgid "plugins.importexport.native.results"
 msgstr "Результати"
 
+msgid "plugins.inportexport.native.uploadFile"
+msgstr "Будь ласка, завантажте файл у розділ «Імпортувати», щоб продовжити."
+
 msgid "plugins.importexport.native.importComplete"
 msgstr ""
 "Імпортування успішно завершено. Нижченаведені елементи були імпортовані:"
@@ -55,6 +58,3 @@ msgstr ""
 "\texport [xmlFileName] [press_path] monographs [monographId1] [monographId2] "
 "…\n"
 "\texport [xmlFileName] [press_path] monograph [monographId]\n"
-
-msgid "plugins.inportexport.native.uploadFile"
-msgstr "Будь ласка, завантажте файл у розділ «Імпортувати», щоб продовжити."

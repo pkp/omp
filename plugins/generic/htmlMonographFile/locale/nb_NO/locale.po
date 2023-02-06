@@ -11,8 +11,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.generic.htmlMonographFile.description"
-msgstr "Dette programtillegget støtter visning av monografifiler i HTML."
-
 msgid "plugins.generic.htmlMonographFile.displayName"
 msgstr "HTML Monografifil"
+
+msgid "plugins.generic.htmlMonographFile.description"
+msgstr "Dette programtillegget støtter visning av monografifiler i HTML."

@@ -11,8 +11,32 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.importexport.native.error.unknownSeries"
-msgstr "Ukjent serie {$param}"
+msgid "plugins.importexport.native.displayName"
+msgstr "Programtillegg for Lokal XML"
+
+msgid "plugins.importexport.native.description"
+msgstr "Importer og eksporter artikler og hefter i OJS lokale XML format."
+
+msgid "plugins.importexport.native.import"
+msgstr "Importer"
+
+msgid "plugins.importexport.native.import.instructions"
+msgstr "Last opp en XML-fil for import"
+
+msgid "plugins.importexport.native.export"
+msgstr "Eksporter"
+
+msgid "plugins.importexport.native.exportSubmissionsSelect"
+msgstr "Velg artikler"
+
+msgid "plugins.importexport.native.results"
+msgstr "Resultater"
+
+msgid "plugins.inportexport.native.uploadFile"
+msgstr "Last opp en fil under «Import» for å fortsette."
+
+msgid "plugins.importexport.native.importComplete"
+msgstr "Importen var vellykket. Disse elementene ble importert:"
 
 msgid "plugins.importexport.native.onix30.pressMissingFields"
 msgstr ""
@@ -20,29 +44,8 @@ msgstr ""
 "til denne eksporten. Gå til  <a href=\"{$url}\">Press Settings</a> og legg "
 "inn den manglende informasjonen."
 
-msgid "plugins.importexport.native.importComplete"
-msgstr "Importen var vellykket. Disse elementene ble importert:"
+msgid "plugins.importexport.native.error.unknownSeries"
+msgstr "Ukjent serie {$param}"
 
-msgid "plugins.inportexport.native.uploadFile"
-msgstr "Last opp en fil under «Import» for å fortsette."
-
-msgid "plugins.importexport.native.results"
-msgstr "Resultater"
-
-msgid "plugins.importexport.native.exportSubmissionsSelect"
-msgstr "Velg artikler"
-
-msgid "plugins.importexport.native.export"
-msgstr "Eksporter"
-
-msgid "plugins.importexport.native.import.instructions"
-msgstr "Last opp en XML-fil for import"
-
-msgid "plugins.importexport.native.import"
-msgstr "Importer"
-
-msgid "plugins.importexport.native.description"
-msgstr "Importer og eksporter artikler og hefter i OJS lokale XML format."
-
-msgid "plugins.importexport.native.displayName"
-msgstr "Programtillegg for Lokal XML"
+msgid "plugins.importexport.native.cliUsage"
+msgstr ""

@@ -19,8 +19,6 @@
 
 namespace APP\plugins\metadata\dc11\filter;
 
-use PKP\plugins\Hook;
-use PKP\plugins\PluginRegistry;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\submission\Submission;
@@ -28,6 +26,8 @@ use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\i18n\LocaleConversion;
 use PKP\metadata\MetadataDataObjectAdapter;
+use PKP\plugins\Hook;
+use PKP\plugins\PluginRegistry;
 
 class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
 {
@@ -87,8 +87,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $this->_addLocalizedElements($dc11Description, 'dc:title', $publication->getFullTitles());
 
         // Creator
-        $authors = Repo::author()->getSubmissionAuthors($monograph);
-        foreach ($authors as $author) {
+        foreach ($publication->getData('authors') as $author) {
             $authorName = $author->getFullName(false, true);
             $affiliation = $author->getLocalizedAffiliation();
             if (!empty($affiliation)) {

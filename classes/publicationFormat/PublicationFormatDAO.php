@@ -7,6 +7,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationFormatDAO
+ *
  * @ingroup publicationFormat
  *
  * @see PublicationFormat
@@ -16,8 +17,8 @@
 
 namespace APP\publicationFormat;
 
-use Illuminate\Support\Facades\DB;
 use APP\facades\Repo;
+use Illuminate\Support\Facades\DB;
 use PKP\db\DAO;
 use PKP\db\DAOResultFactory;
 use PKP\plugins\Hook;
@@ -125,6 +126,23 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
         }
         $publicationFormats = $this->getBySetting('pub-id::' . $pubIdType, $pubId, $publicationId, $pressId);
         return array_shift($publicationFormats);
+    }
+
+    /**
+     * Retrieve all publication formats that include a given DOI ID
+     */
+    public function getByDoiId(int $doiId): DAOResultFactory
+    {
+        return new DAOResultFactory(
+            $this->retrieve(
+                'SELECT pf.*
+                FROM publication_formats pf
+                WHERE pf.doi_id = ?',
+                [$doiId]
+            ),
+            $this,
+            '_fromRow'
+        );
     }
 
     /**
@@ -341,9 +359,9 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
     {
         $this->update(
             'INSERT INTO publication_formats
-				(is_approved, entry_key, physical_format, publication_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, remote_url, url_path, is_available)
+				(is_approved, entry_key, physical_format, publication_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, remote_url, url_path, is_available, doi_id)
 			VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
             [
                 (int) $publicationFormat->getIsApproved(),
                 $publicationFormat->getEntryKey(),
@@ -371,6 +389,7 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
                 $publicationFormat->getRemoteURL(),
                 $publicationFormat->getData('urlPath'),
                 (int) $publicationFormat->getIsAvailable(),
+                $publicationFormat->getData('doiId') === null ? null : (int) $publicationFormat->getData('doiId')
             ]
         );
 

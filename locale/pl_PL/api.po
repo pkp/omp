@@ -12,25 +12,13 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "api.submissions.403.cantChangeContext"
-msgstr "Nie możesz zmienić zlecenia dla tego zgłoszenia."
-
-msgid "api.publications.403.submissionsDidNotMatch"
-msgstr "Publikacja, o którą poprosiłeś nie jest częścią tego zgłoszenia."
-
-msgid "api.publications.403.contextsDidNotMatch"
-msgstr "Publikacja, o którą poprosiłeś, nie należy do tego zlecenia."
-
-msgid "api.emailTemplates.403.notAllowedChangeContext"
-msgstr "Nie masz pozwolenia, aby zastosować ten szablon dla innego wydawnictwa."
-
-msgid "api.submissions.400.submissionsNotFound"
-msgstr "Nie udało się znaleźć wyszczególnionego  zgłoszenia."
-
 msgid "api.submissions.400.submissionIdsRequired"
 msgstr ""
 "Musisz dostarczyć przynajmniej jeden identyfikator zgłoszenia, aby był "
 "dodany w katalogu."
+
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "Nie udało się znaleźć wyszczególnionego  zgłoszenia."
 
 msgid "api.submissions.400.wrongContext"
 msgstr "Zgłoszenie, o które prosiłeś, nie znajduje się w tym wydawnictwie."
@@ -38,3 +26,19 @@ msgstr "Zgłoszenie, o które prosiłeś, nie znajduje się w tym wydawnictwie."
 msgid "api.emails.403.disabled"
 msgstr ""
 "Funkcja powiadamiania e-mailem nie została włączona dla tego wydawnictwa."
+
+msgid "api.emailTemplates.403.notAllowedChangeContext"
+msgstr ""
+"Nie masz pozwolenia, aby zastosować ten szablon dla innego wydawnictwa."
+
+msgid "api.publications.403.contextsDidNotMatch"
+msgstr "Publikacja, o którą poprosiłeś, nie należy do tego zlecenia."
+
+msgid "api.publications.403.submissionsDidNotMatch"
+msgstr "Publikacja, o którą poprosiłeś nie jest częścią tego zgłoszenia."
+
+msgid "api.submissions.403.cantChangeContext"
+msgstr "Nie możesz zmienić zlecenia dla tego zgłoszenia."
+
+msgid "api.submission.400.inactiveSection"
+msgstr ""

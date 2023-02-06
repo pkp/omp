@@ -1,0 +1,187 @@
+# Karla Zapalac <karlazapalac98@gmail.com>, 2023.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-01-28 18:48+0000\n"
+"Last-Translator: Karla Zapalac <karlazapalac98@gmail.com>\n"
+"Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/default/hr/"
+">\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "default.genres.appendix"
+msgstr "Prilog"
+
+msgid "default.genres.bibliography"
+msgstr "Literatura"
+
+msgid "default.genres.manuscript"
+msgstr "Rukopis knjige"
+
+msgid "default.genres.chapter"
+msgstr "Rukopis poglavlja"
+
+msgid "default.genres.glossary"
+msgstr "Glosar"
+
+msgid "default.genres.index"
+msgstr "Registar"
+
+msgid "default.genres.preface"
+msgstr "Predgovor"
+
+msgid "default.genres.prospectus"
+msgstr "Skica"
+
+msgid "default.genres.table"
+msgstr "Tablica"
+
+msgid "default.genres.figure"
+msgstr "Grafička ilustracija"
+
+msgid "default.genres.photo"
+msgstr "Slika"
+
+msgid "default.genres.illustration"
+msgstr "Ilustracija"
+
+msgid "default.genres.other"
+msgstr "Drugo"
+
+msgid "default.groups.name.manager"
+msgstr "Voditelj/ica izdavaštva"
+
+msgid "default.groups.plural.manager"
+msgstr "Voditelji/ce izdavaštva"
+
+msgid "default.groups.abbrev.manager"
+msgstr "VI"
+
+msgid "default.groups.name.editor"
+msgstr "Urednik/ca"
+
+msgid "default.groups.plural.editor"
+msgstr "Urednici/e"
+
+msgid "default.groups.abbrev.editor"
+msgstr "Ur."
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Urednik/ca serije"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Urednici/e serije"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "US"
+
+msgid "default.groups.name.subscriptionManager"
+msgstr "Upravitelj/ica pretplata"
+
+msgid "default.groups.plural.subscriptionManager"
+msgstr "Upravitelji/ce pretplata"
+
+msgid "default.groups.abbrev.subscriptionManager"
+msgstr "UprPret"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Autor/ica poglavlja"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Autori/ce poglavlja"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "AP"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Urednik/ca zbornika"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Urednici/e zbornika"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "UZ"
+
+msgid "default.contextSettings.authorGuidelines"
+msgstr ""
+"<p>Autori su pozvani napraviti podnesak svojih radova za ovaj tisak. Oni "
+"podnesci za koje se smatra da su prikladni bit će poslani na recenziju kod "
+"kolega prije nego što se utvrdi hoće li biti prihvaćeni ili odbijeni.</"
+"p><p>Prije podnošenja podneska, autori su odgovorni za dobivanje dopuštenja "
+"za objavljivanje bilo kojeg materijala uključenog u podnesak, npr. kao što "
+"su fotografije, dokumenti i skupovi podataka. Svi autori navedeni u podnesku "
+"moraju pristati biti identificirani kao autori. Gdje je prikladno, "
+"istraživanje bi trebalo odobriti odgovarajuće etičko povjerenstvo u skladu "
+"sa pravnim zahtjevima zemlje u kojoj se studija provodi.</p><p>Urednik može "
+"odbiti podnesak ako ne zadovoljava minimalne standarde kvalitete. Prije "
+"podnošenja, molimo provjerite jesu li opseg i nacrt knjige pravilno "
+"strukturirani i artikulirani. Naslov bi trebao biti sažet, a sažetak bi "
+"trebao biti samostalan. To će povećati vjerojatnost da recenzenti pristanu "
+"recenzirati knjigu. Kada budete mislili da vaš podnesak zadovoljava ovaj "
+"standard, molimo slijedite kontrolni popis u nastavku da biste pripremili "
+"svoj podnesak.</p>"
+
+msgid "default.contextSettings.checklist"
+msgstr ""
+"<p>Svi podnesci moraju ispunjavati sljedeće zahtjeve.</p><ul><li>Ovaj "
+"podnesak ispunjava zahtjeve navedene u <a href="
+"\"{$submissionGuidelinesUrl}\">Smjernicama za autore</a>.</li ><li>Ovaj "
+"podnesak nije prethodno objavljen, niti je pred drugim tiskom na razmatranju."
+"</li><li>Sve reference su provjerene radi točnosti i potpunosti.</li><li>Sve "
+"tablice i brojevi su numerirani i označeni.</li><li>Dobijeno je dopuštenje "
+"za objavljivanje svih fotografija, skupova podataka i drugih materijala koji "
+"su priloženi u ovom podnesku.</li></ul>"
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+"<p>Imena i adrese e-pošte unesene na ovoj web-stranici koristit će se samo u "
+"navedene svrhe i neće se prosljeđivati trećim stranama.</p>"
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr ""
+"Ovaj izdavač nudi besplatan pristup (Open Access) svom sadržaju, u skladu s "
+"osnovnom pretpostavkom da besplatna javna dostupnost istraživanja koristi "
+"svjetskoj razmjeni znanja."
+
+msgid "default.contextSettings.forReaders"
+msgstr ""
+"Želite li biti u tijeku s novostima naše izdavačke kuće? Kao registrirani/a "
+"čitatelj/ica sadržaj svake novoobjavljene monografije dobit ćete na e-poštu. "
+"Da biste se prijavili za ovu uslugu, slijedite vezu <a href=\"{$indexUrl}/"
+"{$contextPath}/user/register\">Registracija</a> u gornjem desnom kutu "
+"početne stranice. Naravno, uvjeravamo vas da se vaše ime i adresa e-pošte "
+"neće koristiti u druge svrhe (pogledajte <a href=\"{$indexUrl}/"
+"{$contextPath}/about/submissions#privacyStatement\">Pravila o privatnosti</a "
+">."
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+"Zainnteresirani ste uručiti nam rukopis? Onda bismo Vas htjeli uputiti na "
+"stranicu <a href=\"{$indexUrl}/{$contextPath}/about\">O nama</a>. Ondje ćete "
+"pronaći smjernice izdavača. Također pogledajte <a href=\"{$indexUrl}/"
+"{$contextPath}/about/submissions#authorGuidelines\">Smjernice za autore/ice</"
+"a>. Autori/ce se moraju <a href=\"{$indexUrl}/{$contextPath}/user/register"
+"\">registrirati</a> prije slanja knjige ili antologijskog priloga. Ako ste "
+"već registrirani, možete se <a href=\"{$indexUrl}/index/login\">prijaviti</"
+"a> i slijediti pet \"koraka za uručivanje\"."
+
+msgid "default.contextSettings.forLibrarians"
+msgstr ""
+"Potičemo akademske knjižničare/ke da ovog izdavača uključe u digitalni "
+"inventar svoje knjižnice. Knjižnice također mogu koristiti ovaj otvoreni "
+"publikacijski sustav izdavanja za ugošćavanje izdavača u čiji su rad "
+"uključeni njihovi istraživači/ce (pogledajte <a href=\"http://pkp.sfu.ca/omp"
+"\">Open Monograph Press</a >)."
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Vanjski/a recenzent/ica"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Vanjski/e recenzenti/ce"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "VR"

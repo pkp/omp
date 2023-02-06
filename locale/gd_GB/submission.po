@@ -12,18 +12,6 @@ msgstr ""
 "(n > 2 && n < 20) ? 2 : 3;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "submission.round"
-msgstr "Cuairt&nbsp;{$round}"
-
-msgid "submission.catalogEntry.catalogMetadata"
-msgstr "Catalog"
-
-msgid "submission.submit.catalog"
-msgstr "Catalog"
-
-msgid "submission.authorListSeparator"
-msgstr "; "
-
 msgid "submission.upload.selectComponent"
 msgstr "Tagh co-phàirt"
 
@@ -71,6 +59,9 @@ msgstr "Deiseil airson saothrachadh"
 msgid "submission.fairCopy"
 msgstr "Lethbhreac grinn"
 
+msgid "submission.authorListSeparator"
+msgstr "; "
+
 msgid "submission.artwork.permissions"
 msgstr "Ceadan"
 
@@ -107,6 +98,9 @@ msgstr "Co-roinn seo"
 msgid "manuscript.submission"
 msgstr "Tagradh sgrìobhainn"
 
+msgid "submission.round"
+msgstr "Cuairt&nbsp;{$round}"
+
 msgid "submissions.queuedReview"
 msgstr "Fo lèirmheas"
 
@@ -140,6 +134,9 @@ msgstr "Tagradh ùr"
 msgid "submission.submit.upload"
 msgstr "Luchdaich an tagradh suas"
 
+msgid "author.volumeEditor"
+msgstr ""
+
 msgid "author.isVolumeEditor"
 msgstr "Comharraich an com-pàirtiche seo mar dheasaiche an iom-leabhair seo."
 
@@ -160,6 +157,9 @@ msgstr "Faidhle tagraidh"
 
 msgid "submission.submit.prepare"
 msgstr "Ullaich"
+
+msgid "submission.submit.catalog"
+msgstr "Catalog"
 
 msgid "submission.submit.metadata"
 msgstr "Meata-dàta"
@@ -252,6 +252,9 @@ msgstr "Faodaidh ceann-là foillseachaidh fa leth a bhith aig gach caibideil."
 msgid "submission.catalogEntry.monographMetadata"
 msgstr "Monograf"
 
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Catalog"
+
 msgid "submission.catalogEntry.publicationMetadata"
 msgstr "Fòrmat foillseachaidh"
 
@@ -284,7 +287,8 @@ msgid "submission.event.catalogMetadataUpdated"
 msgstr "Chaidh meata-dàta a’ chatalog ùrachadh."
 
 msgid "submission.event.publicationMetadataUpdated"
-msgstr "Chaidh meata-dàta an fhòrmait fhoillseachaidh “{$formatName}” ùrachadh."
+msgstr ""
+"Chaidh meata-dàta an fhòrmait fhoillseachaidh “{$formatName}” ùrachadh."
 
 msgid "submission.event.publicationFormatCreated"
 msgstr "Chaidh am fòrmat foillseachaidh “{$formatName}” a chruthachadh."
@@ -337,6 +341,9 @@ msgstr ""
 msgid "submission.list.saveFeatureOrder"
 msgstr "An t-òrdugh sàbhalaidh"
 
+msgid "submission.list.viewEntry"
+msgstr ""
+
 msgid "catalog.browseTitles"
 msgstr "Tiotalan ({$numTitles})"
 
@@ -349,8 +356,12 @@ msgstr "Chaidh mion-fhiosrachadh an innteirt seo dhen chatalog ùrachadh."
 msgid "publication.invalidSeries"
 msgstr "Cha b’ urrainn dhuinn an sreath dhen fhoillseachadh seo a lorg."
 
+msgid "publication.inactiveSeries"
+msgstr ""
+
 msgid "publication.required.issue"
-msgstr "Feumar am foillseachadh iomruineadh do dh’iris mus gabh fhoillseachadh."
+msgstr ""
+"Feumar am foillseachadh iomruineadh do dh’iris mus gabh fhoillseachadh."
 
 msgid "publication.publishedIn"
 msgstr "Air fhoillseachadh ann an <a href=\"{$issueUrl}\">{$issueName}</a>."
@@ -363,3 +374,213 @@ msgstr ""
 msgid "publication.scheduledIn"
 msgstr ""
 "Gu bhith fhoillseachadh ann an <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "submission.publication"
+msgstr ""
+
+msgid "publication.status.published"
+msgstr ""
+
+msgid "submission.status.scheduled"
+msgstr ""
+
+msgid "publication.status.unscheduled"
+msgstr ""
+
+msgid "submission.publications"
+msgstr ""
+
+msgid "publication.copyrightYearBasis.issueDescription"
+msgstr ""
+
+msgid "publication.copyrightYearBasis.submissionDescription"
+msgstr ""
+
+msgid "publication.datePublished"
+msgstr ""
+
+msgid "publication.editDisabled"
+msgstr ""
+
+msgid "publication.event.published"
+msgstr ""
+
+msgid "publication.event.scheduled"
+msgstr ""
+
+msgid "publication.event.unpublished"
+msgstr ""
+
+msgid "publication.event.versionPublished"
+msgstr ""
+
+msgid "publication.event.versionScheduled"
+msgstr ""
+
+msgid "publication.event.versionUnpublished"
+msgstr ""
+
+msgid "publication.invalidSubmission"
+msgstr ""
+
+msgid "publication.publish"
+msgstr ""
+
+msgid "publication.publish.requirements"
+msgstr ""
+
+msgid "publication.required.declined"
+msgstr ""
+
+msgid "publication.required.reviewStage"
+msgstr ""
+
+msgid "submission.license.description"
+msgstr ""
+
+msgid "submission.copyrightHolder.description"
+msgstr ""
+
+msgid "submission.copyrightOther.description"
+msgstr ""
+
+msgid "publication.unpublish"
+msgstr ""
+
+msgid "publication.unpublish.confirm"
+msgstr ""
+
+msgid "publication.unschedule.confirm"
+msgstr ""
+
+msgid "publication.version.details"
+msgstr ""
+
+msgid "submission.queries.production"
+msgstr ""
+
+msgid "publication.chapter.landingPage"
+msgstr ""
+
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+
+msgid "publication.publish.success"
+msgstr ""
+
+msgid "chapter.volume"
+msgstr ""
+
+msgid "submission.withoutChapter"
+msgstr ""
+
+msgid "submission.chapterCreated"
+msgstr ""
+
+msgid "chapter.pages"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgstr ""
+
+msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
+msgstr ""
+
+msgid "editor.submission.decision.promoteFiles.internalReview"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.completed"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr ""
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr ""
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr ""
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr ""
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+
+msgid "doi.submission.incorrectContext"
+msgstr ""
+
+msgid "publication.chapter.licenseUrl"
+msgstr ""
+
+msgid "publication.chapterDefaultLicenseURL"
+msgstr ""
+
+msgid "submission.copyright.description"
+msgstr ""
+
+msgid "submission.wizard.notAllowed.description"
+msgstr ""
+
+msgid "submission.wizard.noSectionAllowed.description"
+msgstr ""
+
+msgid "submission.wizard.sectionClosed.message"
+msgstr ""
+
+msgid "submission.sectionNotFound"
+msgstr ""
+
+msgid "submission.sectionRestrictedToEditors"
+msgstr ""
+
+msgid "submission.wizard.submitting.monograph"
+msgstr ""
+
+msgid "submission.wizard.submitting.monographInLanguage"
+msgstr ""
+
+msgid "submission.wizard.submitting.editedVolume"
+msgstr ""
+
+msgid "submission.wizard.submitting.editedVolumeInLanguage"
+msgstr ""
+
+msgid "submission.wizard.chapters.description"
+msgstr ""

@@ -4,8 +4,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
 "PO-Revision-Date: 2020-06-05 16:39+0000\n"
-"Last-Translator: Marie-Hélène Vézina [UdeMontréal] <marie-"
-"helene.vezina@umontreal.ca>\n"
+"Last-Translator: Marie-Hélène Vézina [UdeMontréal] <marie-helene."
+"vezina@umontreal.ca>\n"
 "Language-Team: French (Canada) <http://translate.pkp.sfu.ca/projects/omp/"
 "admin/fr_CA/>\n"
 "Language: fr_CA\n"
@@ -18,11 +18,22 @@ msgstr ""
 msgid "admin.hostedContexts"
 msgstr "Presses hébergées"
 
+msgid "admin.settings.appearance.success"
+msgstr "Les paramètres d'apparence du site ont bien été mis à jour."
+
+msgid "admin.settings.config.success"
+msgstr "Les paramètres d'apparence du site ont bien été mis à jour."
+
+msgid "admin.settings.info.success"
+msgstr "Les informations du site ont bien été mises à jour."
+
 msgid "admin.settings.redirect"
 msgstr "Réacheminement de la presse"
 
 msgid "admin.settings.redirectInstructions"
-msgstr "Les requêtes envoyées au site central seront redirigées vers cette presse. Cela pourrait être utile si le site héberge une seule presse, par exemple."
+msgstr ""
+"Les requêtes envoyées au site central seront redirigées vers cette presse. "
+"Cela pourrait être utile si le site héberge une seule presse, par exemple."
 
 msgid "admin.settings.noPressRedirect"
 msgstr "Ne pas rediriger"
@@ -31,7 +42,14 @@ msgid "admin.languages.primaryLocaleInstructions"
 msgstr "Ceci sera la langue par défaut pour le site et les presses hébergées."
 
 msgid "admin.languages.supportedLocalesInstructions"
-msgstr "Choisissez les paramètres qui seront supportés sur le site. Toutes les presses hébergées sur le site pourront utiliser les paramètres sélectionnés. Ces derniers feront partie du menu de sélection de la langue apparaissant sur toutes les pages du site (lesquels peuvent être remplacés sur les pages d'une presse particulière). Si plusieurs paramètres ne sont pas sélectionnés, le bouton à bascule de la langue n'apparaitra pas et les presses n'auront pas accès aux paramètres de langue étendus."
+msgstr ""
+"Choisissez les paramètres qui seront supportés sur le site. Toutes les "
+"presses hébergées sur le site pourront utiliser les paramètres sélectionnés. "
+"Ces derniers feront partie du menu de sélection de la langue apparaissant "
+"sur toutes les pages du site (lesquels peuvent être remplacés sur les pages "
+"d'une presse particulière). Si plusieurs paramètres ne sont pas "
+"sélectionnés, le bouton à bascule de la langue n'apparaitra pas et les "
+"presses n'auront pas accès aux paramètres de langue étendus."
 
 msgid "admin.locale.maybeIncomplete"
 msgstr "*Les paramètres marqués pourraient être incomplets."
@@ -42,7 +60,12 @@ msgstr ""
 "presses hébergées qui l'utilisent actuellement."
 
 msgid "admin.languages.installNewLocalesInstructions"
-msgstr "Choisissez les autres paramètres de support que vous souhaitez installer dans ce système. Les paramètres doivent être installés avant de pouvoir être utilisés par les presses hébergées. Consultez la documentation de l'OMP pour de plus amples renseignements sur l'ajout de support pour les nouvelles langues."
+msgstr ""
+"Choisissez les autres paramètres de support que vous souhaitez installer "
+"dans ce système. Les paramètres doivent être installés avant de pouvoir être "
+"utilisés par les presses hébergées. Consultez la documentation de l'OMP pour "
+"de plus amples renseignements sur l'ajout de support pour les nouvelles "
+"langues."
 
 msgid "admin.languages.confirmDisable"
 msgstr ""
@@ -55,17 +78,11 @@ msgstr "Version OMP"
 msgid "admin.systemConfiguration"
 msgstr "Configuration OMP"
 
-msgid "admin.systemConfigurationDescription"
-msgstr "Paramètres de configuration OMP pour <tt>config.inc.php</tt>."
-
 msgid "admin.presses.pressSettings"
 msgstr "Configuration de la presse"
 
 msgid "admin.presses.noneCreated"
 msgstr "Aucune presse n'a été créée."
-
-msgid "admin.contexts.confirmDelete"
-msgstr "Vous voulez supprimer cette presse et tout son contenu de façon permanente?"
 
 msgid "admin.contexts.create"
 msgstr "Créer une presse"
@@ -77,10 +94,22 @@ msgid "admin.contexts.form.pathRequired"
 msgstr "Vous devez choisir un chemin."
 
 msgid "admin.contexts.form.pathAlphaNumeric"
-msgstr "Le chemin ne peut contenir que des caractères alphanumériques, des traits de soulignement et des traits d'union, et doit commencer et se terminer par un caractère alphanumérique."
+msgstr ""
+"Le chemin ne peut contenir que des caractères alphanumériques, des traits de "
+"soulignement et des traits d'union, et doit commencer et se terminer par un "
+"caractère alphanumérique."
 
 msgid "admin.contexts.form.pathExists"
 msgstr "Le chemin choisi est déjà utilisé par une autre presse."
+
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr ""
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} a bien été créé-e."
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} a bien été modifié-e."
 
 msgid "admin.contexts.contextDescription"
 msgstr "Description de la presse"
@@ -91,19 +120,42 @@ msgstr "Ajouter la presse"
 msgid "admin.overwriteConfigFileInstructions"
 msgstr ""
 "<h4>NOTE!</div>\n"
-"<p>Le système ne peut pas réécrire automatiquement le fichier de configuration. Pour appliquer les modifications de configuration, vous devez ouvrir <tt>config.inc.php</tt> dans un éditeur de texte approprié et remplacer le contenu par le contenu de la zone de texte ci-dessous.</p>"
+"<p>Le système ne peut pas réécrire automatiquement le fichier de "
+"configuration. Pour appliquer les modifications de configuration, vous devez "
+"ouvrir <tt>config.inc.php</tt> dans un éditeur de texte approprié et "
+"remplacer le contenu par le contenu de la zone de texte ci-dessous.</p>"
 
-msgid "admin.contexts.form.edit.success"
-msgstr "{$name} a bien été modifié-e."
+msgid "admin.settings.enableBulkEmails.description"
+msgstr ""
 
-msgid "admin.contexts.form.create.success"
-msgstr "{$name} a bien été créé-e."
+msgid "admin.settings.disableBulkEmailRoles.description"
+msgstr ""
 
-msgid "admin.settings.info.success"
-msgstr "Les informations du site ont bien été mises à jour."
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgstr ""
 
-msgid "admin.settings.config.success"
-msgstr "Les paramètres d'apparence du site ont bien été mis à jour."
+msgid "admin.siteManagement.description"
+msgstr ""
 
-msgid "admin.settings.appearance.success"
-msgstr "Les paramètres d'apparence du site ont bien été mis à jour."
+msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgstr ""
+
+msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgstr ""
+
+msgid "admin.settings.statistics.geo.description"
+msgstr ""
+
+msgid "admin.settings.statistics.institutions.description"
+msgstr ""
+
+msgid "admin.settings.statistics.sushi.public.description"
+msgstr ""
+
+#~ msgid "admin.systemConfigurationDescription"
+#~ msgstr "Paramètres de configuration OMP pour <tt>config.inc.php</tt>."
+
+#~ msgid "admin.contexts.confirmDelete"
+#~ msgstr ""
+#~ "Vous voulez supprimer cette presse et tout son contenu de façon "
+#~ "permanente?"

@@ -11,8 +11,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.block.languageToggle.description"
-msgstr "O plugin fornece a ferramenta de alteração de idioma na barra lateral."
-
 msgid "plugins.block.languageToggle.displayName"
 msgstr "Bloco de Alteração de Idioma"
+
+msgid "plugins.block.languageToggle.description"
+msgstr "O plugin fornece a ferramenta de alteração de idioma na barra lateral."

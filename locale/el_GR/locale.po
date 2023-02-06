@@ -2,23 +2,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-28T15:10:06-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:06-08:00\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-11-28T15:10:06-08:00\n"
-"PO-Revision-Date: 2019-11-28T15:10:06-08:00\n"
-"Language: \n"
+
+msgid "common.payments"
+msgstr ""
 
 msgid "monograph.audience"
 msgstr "Κοινό"
 
+msgid "monograph.audience.success"
+msgstr ""
+
 msgid "monograph.coverImage"
 msgstr "Εικόνα Εξωφύλλου"
-
-msgid "monograph.coverImage.uploadInstructions"
-msgstr "Βεβαιωθείτε ότι το ύψος της εικόνας δεν είναι μεγαλύτερο από το 150% του πλάτους της, διαφορετικά η εικόνα του εξωφύλλου σας δεν θα εμφανίζεται στο carousel των εκδόσεων της συλλογής."
 
 msgid "monograph.audience.rangeQualifier"
 msgstr "Προσδιορισμός Εύρος Κοινού"
@@ -38,6 +41,15 @@ msgstr "Γλώσσες (Αγγλικά, Γαλλικά, Ισπανικά)"
 msgid "monograph.publicationFormats"
 msgstr "Μορφές Δημοσίευσης"
 
+msgid "monograph.publicationFormat"
+msgstr ""
+
+msgid "monograph.publicationFormatDetails"
+msgstr ""
+
+msgid "monograph.miscellaneousDetails"
+msgstr ""
+
 msgid "monograph.carousel.publicationFormats"
 msgstr "Μορφότυπα:"
 
@@ -48,7 +60,12 @@ msgid "submission.pageProofs"
 msgstr "Σελίδα Τυπογραφικών Δοκιμίων"
 
 msgid "monograph.proofReadingDescription"
-msgstr "Ο επιμελητής σελιδοποίησης ανεβάζει τα αρχεία για το στάδιο-παραγωγής που έχουν ετοιμαστεί για δημοσίευση εδώ. Επιλέξτε <em>+Ανάθεση</em> για να ορίσετε συγγραφείς και άλλους να διορθώσουν και να ελέγξουν τα τυπογραφικά δοκίμια ώστε τα διορθωμένα αρχεία να μεταφορτωθούν για έγκριση πριν τη δημοσίευση."
+msgstr ""
+"Ο επιμελητής σελιδοποίησης ανεβάζει τα αρχεία για το στάδιο-παραγωγής που "
+"έχουν ετοιμαστεί για δημοσίευση εδώ. Επιλέξτε <em>+Ανάθεση</em> για να "
+"ορίσετε συγγραφείς και άλλους να διορθώσουν και να ελέγξουν τα τυπογραφικά "
+"δοκίμια ώστε τα διορθωμένα αρχεία να μεταφορτωθούν για έγκριση πριν τη "
+"δημοσίευση."
 
 msgid "monograph.task.addNote"
 msgstr "Προσθήκη Ανάθεσης"
@@ -101,6 +118,9 @@ msgstr "Ψηφιακές Πληροφορίες"
 msgid "monograph.publicationFormat.productDimensions"
 msgstr "Φυσικές Διαστάσεις"
 
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr ""
+
 msgid "monograph.publicationFormat.productFileSize"
 msgstr "Μέγεθος Αρχείου σε Mbytes"
 
@@ -135,7 +155,9 @@ msgid "monograph.publicationFormat.taxType"
 msgstr "Τύπος Φορολογίας"
 
 msgid "monograph.publicationFormat.isApproved"
-msgstr "Συμπεριλάβετε τα μεταδεδομένα του μορφότυπου της έκδοσης στην καταχώρηση του βιβλίου στον κατάλογο."
+msgstr ""
+"Συμπεριλάβετε τα μεταδεδομένα του μορφότυπου της έκδοσης στην καταχώρηση του "
+"βιβλίου στον κατάλογο."
 
 msgid "monograph.publicationFormat.noMarketsAssigned"
 msgstr "Λείπουν αγορές και τιμές"
@@ -147,7 +169,9 @@ msgid "monograph.publicationFormat.missingONIXFields"
 msgstr "Λείπουν ορισμένα πεδία μεταδεδομένων."
 
 msgid "monograph.publicationFormat.formatDoesNotExist"
-msgstr "<p>Ο τύπος αρχείου της έκδοσης που έχετε επιλέξει δεν υπάρχει πλέον για αυτή τη μονογραφία.</p>"
+msgstr ""
+"<p>Ο τύπος αρχείου της έκδοσης που έχετε επιλέξει δεν υπάρχει πλέον για αυτή "
+"τη μονογραφία.</p>"
 
 msgid "monograph.publicationFormat.openTab"
 msgstr "Ετικέτα Μορφότυπου ανοικτής δημοσίευσης."
@@ -167,26 +191,64 @@ msgstr "Λεπτομέρειες Μορφότυπου"
 msgid "grid.catalogEntry.physicalFormat"
 msgstr "Physical format"
 
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr ""
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr ""
+
+msgid "grid.catalogEntry.isbn"
+msgstr ""
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr ""
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr ""
+
 msgid "grid.catalogEntry.monographRequired"
 msgstr "Απαιτείται ένα id της μονογραφίας."
 
 msgid "grid.catalogEntry.publicationFormatRequired"
 msgstr "Ένα μορφότυπο της έκδοσης πρέπει να επιλεγεί."
 
+msgid "grid.catalogEntry.availability"
+msgstr ""
+
 msgid "grid.catalogEntry.isAvailable"
 msgstr "Διαθέσιμο"
 
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr ""
+
 msgid "grid.catalogEntry.proof"
 msgstr "Τυπογραφικό Δοκίμιο"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr ""
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr ""
 
 msgid "grid.catalogEntry.availableRepresentation.title"
 msgstr "Έγκριση Μορφότυπου"
 
 msgid "grid.catalogEntry.availableRepresentation.message"
-msgstr "<p>Αυτό το μορφότυπο θα γίνει τώρα <em>διαθέσιμο</em> στους αναγνώστες, μέσω αρχείων διαθέσιμων για λήψη που θα εμφανίζονται με την καταχώρηση του βιβλίου στον κατάλογο και/ή μέσω περαιτέρω ενεργειών από τις εκδόσεις για τη διανομή του βιβλίου.</p>"
+msgstr ""
+"<p>Αυτό το μορφότυπο θα γίνει τώρα <em>διαθέσιμο</em> στους αναγνώστες, μέσω "
+"αρχείων διαθέσιμων για λήψη που θα εμφανίζονται με την καταχώρηση του "
+"βιβλίου στον κατάλογο και/ή μέσω περαιτέρω ενεργειών από τις εκδόσεις για τη "
+"διανομή του βιβλίου.</p>"
 
 msgid "grid.catalogEntry.availableRepresentation.removeMessage"
-msgstr "<p>Αυτό το μορφότυπο <em>δεν διατίθεται πλεόν</em> στους αναγνώστες, μέσω αρχείων διαθέσιμων για λήψη που προηγούμένως εμφανίζονταν με την καταχώρηση του βιβλίου στον κατάλογο και/ή μέσω περαιτέρω ενεργειών από τις εκδόσεις για τη διανομή του βιβλίου.</p>"
+msgstr ""
+"<p>Αυτό το μορφότυπο <em>δεν διατίθεται πλεόν</em> στους αναγνώστες, μέσω "
+"αρχείων διαθέσιμων για λήψη που προηγούμένως εμφανίζονταν με την καταχώρηση "
+"του βιβλίου στον κατάλογο και/ή μέσω περαιτέρω ενεργειών από τις εκδόσεις "
+"για τη διανομή του βιβλίου.</p>"
 
 msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
 msgstr "Η καταχώρηση στον κατάλογο δεν έγινε αποδεκτή"
@@ -196,6 +258,12 @@ msgstr "Το μορφότυπο δεν είναι καταχωρημένο στ�
 
 msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
 msgstr "Το τυπογραφικό δοκίμιο δεν έγινε αποδεκτό"
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr ""
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr ""
 
 msgid "grid.catalogEntry.fileSizeRequired"
 msgstr "Απαιτείται μέγεθος αρχείου για τα ψηφιακά μορφότυπα."
@@ -231,10 +299,15 @@ msgid "grid.catalogEntry.salesRightsROW"
 msgstr "Υπόλοιπος κόσμος?"
 
 msgid "grid.catalogEntry.salesRightsROW.tip"
-msgstr "Επιλέξτε αυτό το κουτάκι για να καταχωρήσετε τα Δικαιώματα Πώλησης σε όλα τα μορφότυπα σας. Δεν χρειάζεται να επιλεγούν Χώρες και Περιοχές σε αυτή την περίπτωση."
+msgstr ""
+"Επιλέξτε αυτό το κουτάκι για να καταχωρήσετε τα Δικαιώματα Πώλησης σε όλα τα "
+"μορφότυπα σας. Δεν χρειάζεται να επιλεγούν Χώρες και Περιοχές σε αυτή την "
+"περίπτωση."
 
 msgid "grid.catalogEntry.oneROWPerFormat"
-msgstr "Υπάρχει ήδη ένας τύπος πωλήσεων για τον υπόλοιπο κόσμο καθορισμένος για το μορφότυπο της έκδοσης."
+msgstr ""
+"Υπάρχει ήδη ένας τύπος πωλήσεων για τον υπόλοιπο κόσμο καθορισμένος για το "
+"μορφότυπο της έκδοσης."
 
 msgid "grid.catalogEntry.countries"
 msgstr "Χώρες"
@@ -273,7 +346,9 @@ msgid "grid.catalogEntry.dateFormat"
 msgstr "Μορφή Ημερομηνίας"
 
 msgid "grid.catalogEntry.dateRequired"
-msgstr "Απαιτείται ημερομηνία και η τιμή της πρέπει να ταιριάζει με το επιλεγμένο μορφότυπο."
+msgstr ""
+"Απαιτείται ημερομηνία και η τιμή της πρέπει να ταιριάζει με το επιλεγμένο "
+"μορφότυπο."
 
 msgid "grid.catalogEntry.representatives"
 msgstr "Αντιπρόσωποι"
@@ -291,7 +366,9 @@ msgid "grid.catalogEntry.agent"
 msgstr "Πράκτορας"
 
 msgid "grid.catalogEntry.agentTip"
-msgstr "Μπορείτε να αναθέσετε σε έναν πράκτορα να σας αντιπροσωπεύσει σε αυτή την περιοχή. Δεν απαιτείται."
+msgstr ""
+"Μπορείτε να αναθέσετε σε έναν πράκτορα να σας αντιπροσωπεύσει σε αυτή την "
+"περιοχή. Δεν απαιτείται."
 
 msgid "grid.catalogEntry.supplier"
 msgstr "Προμηθευτής"
@@ -321,7 +398,9 @@ msgid "grid.catalogEntry.representativeIdType"
 msgstr "Τύπος αναγνωριστικού Αντιπροσώπου (συστήνεται GLN)"
 
 msgid "grid.catalogEntry.representativesDescription"
-msgstr "Μπορείτε να αφήσετε την επόμενη ενότητα κενή εάν εσείς παρέχετε τις υπηρεσίες στους πελάτες σας."
+msgstr ""
+"Μπορείτε να αφήσετε την επόμενη ενότητα κενή εάν εσείς παρέχετε τις "
+"υπηρεσίες στους πελάτες σας."
 
 msgid "grid.action.addRepresentative"
 msgstr "Προσθήκη Αντοπροσώπου"
@@ -331,6 +410,9 @@ msgstr "Επεξεργασία του Αντιπροσώπου"
 
 msgid "grid.action.deleteRepresentative"
 msgstr "Διαγραφή του Αντιπροσώπου"
+
+msgid "spotlight"
+msgstr ""
 
 msgid "spotlight.spotlights"
 msgstr "Βιτρίνα"
@@ -349,9 +431,6 @@ msgstr "Spotlight Item"
 
 msgid "grid.content.spotlights.category.homepage"
 msgstr "Αρχική σελίδα"
-
-msgid "grid.content.spotlights.category.sidebar"
-msgstr "Πλευρική μπάρα"
 
 msgid "grid.content.spotlights.form.location"
 msgstr "Τοποθεσία Βιτρίνας"
@@ -408,10 +487,13 @@ msgid "grid.action.addFormat"
 msgstr "Προσθήκη μορφότυπου δημοσίευσης"
 
 msgid "grid.action.approveProof"
-msgstr "Έγκριση του τυπογραφικού δοκιμίου για ευρετηρίαση και ένταξη του στον κατάλογο."
+msgstr ""
+"Έγκριση του τυπογραφικού δοκιμίου για ευρετηρίαση και ένταξη του στον "
+"κατάλογο."
 
 msgid "grid.action.pageProofApproved"
-msgstr "Το αρχείο με τις σελίδες τυπογραφικού δοκιμίου είναι έτοιμο για δημοσίευση"
+msgstr ""
+"Το αρχείο με τις σελίδες τυπογραφικού δοκιμίου είναι έτοιμο για δημοσίευση"
 
 msgid "grid.action.newCatalogEntry"
 msgstr "Νέα Καταχώριση στον Κατάλογο"
@@ -470,6 +552,9 @@ msgstr "Επεξεργασία ημερομηνίας"
 msgid "grid.action.deleteDate"
 msgstr "Διαγραφή της ημερομηνία"
 
+msgid "grid.action.createContext"
+msgstr ""
+
 msgid "grid.action.publicationFormatTab"
 msgstr "Προβολή ετικέτας του μορφότυπου δημοσίευσης"
 
@@ -500,23 +585,14 @@ msgstr "Διαθέσιμα Αρχεία"
 msgid "series.series"
 msgstr "Σειρές"
 
-msgid "series.featured"
-msgstr "Featured"
-
 msgid "series.featured.description"
 msgstr "Αυτή η σειρά θα εμφανιστεί στο κύριο μενού πλοήγησής"
 
 msgid "series.path"
 msgstr "Διαδρομή"
 
-msgid "grid.series.urlWillBe"
-msgstr "Το URL της σειράς θα είναι {$sampleUrl}. Η 'διαδρομή' είναι μια σειρά χαρακτήρων μέσω της οποίας αναγνωρίζεται μοναδικά η σειρά."
-
 msgid "catalog.manage"
 msgstr "Διαχείριση Καταλόγου"
-
-msgid "catalog.manage.homepage"
-msgstr "Αρχική σελίδα"
 
 msgid "catalog.manage.newReleases"
 msgstr "Νέες Κυκλοφορίες"
@@ -527,8 +603,20 @@ msgstr "Κατηγορία"
 msgid "catalog.manage.series"
 msgstr "Σειρές"
 
-msgid "catalog.manage.managementIntroduction"
-msgstr "Καλως ήρθατε στη σελίδα διαχείρισης του Καταλόγου. Από αυτή τη σελίδα μπορείτε να δημοσιεύσετε νέες καταχωρήσεις βιβλίων στον Κατάλογο, να αναθεωρήσετε και να ρυθμίσετε τη λίστα με τα Προτεινόμενα Βιβλία, να αναθεωρήσετε και να ρυθμίσετε τη λίστα με τις Νέες Κυκλοφορίες, καθώς και να αναθεωρήσετε και να καταχωρήσετε τα βιβλία σας ανά Κατηγορία και Σειρά"
+msgid "catalog.manage.series.issn"
+msgstr ""
+
+msgid "catalog.manage.series.issn.validation"
+msgstr ""
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr ""
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr ""
+
+msgid "catalog.manage.series.printIssn"
+msgstr ""
 
 msgid "catalog.selectSeries"
 msgstr "Επιλέξτε Σειρά"
@@ -536,20 +624,25 @@ msgstr "Επιλέξτε Σειρά"
 msgid "catalog.selectCategory"
 msgstr "Επιλέξτε Κατηγορία"
 
-msgid "catalog.manage.entryDescription"
-msgstr "Για να εμφανιστεί ένα βιβλίο στον κατάλογο, επιλέξτε την καρτέλα Μονογραφία και συμπληρώστε τις απαραίτητες πληροφορίες. Πληροφορίες για κάθε μορφότυπο του βιβλίου μπορεί να συμπεριληφθούν στην συγκεκριμένη καταχώρηση του καταλόγου,  επιλέγοντας την ετικέτα μορφότυπο (Format). Ο προσδιορισμός των μεταδεδομένων βασίζεται στο  πρότυπο ONIX (για βιβλία), το οποίο αποτελεί ένα διεθνές πρότυπο μεταδεδομένων που χρησιμοποιείται από την βιομηχανία του βιβλίου για τη ψηφιακή ανταλλαγή πληροφοριών των προϊόντων της."
-
-msgid "catalog.manage.spotlightDescription"
-msgstr "Το περιεχόμενο μιας στήλης της Βιτρίνας (πχ., Προτεινόμενα Βιβλία, Προτεινόμρνη Σειρά) εμφανίζεται στην αρχική σελίδα των εκδόσεων, με τον τίτλο, την εικόνα και το κείμενο για κάθε στήλη."
-
 msgid "catalog.manage.homepageDescription"
-msgstr "Οι εικόνες με τα εξώφυλλα των επιλεγμένων βιβλίων εμφανίζεται στο πάνω μέρος της αρχικής σελίδας με τη δυνατότητα περιστροφής των εικόνων (carousel).   Επιλέξτε 'Εμφάνιση', έπειτα επιλέξτε το αστέρι για τη προσθήκη του βιβλίου στο carousel, το εικονίδιο με το θαυμαστικό για την εμφάνιση του στις νέες κυκλοφορίες. Σύρετε και αφήστε την εικόνα για να αλλάξετε τη σειρά."
+msgstr ""
+"Οι εικόνες με τα εξώφυλλα των επιλεγμένων βιβλίων εμφανίζεται στο πάνω μέρος "
+"της αρχικής σελίδας με τη δυνατότητα περιστροφής των εικόνων (carousel).   "
+"Επιλέξτε 'Εμφάνιση', έπειτα επιλέξτε το αστέρι για τη προσθήκη του βιβλίου "
+"στο carousel, το εικονίδιο με το θαυμαστικό για την εμφάνιση του στις νέες "
+"κυκλοφορίες. Σύρετε και αφήστε την εικόνα για να αλλάξετε τη σειρά."
 
 msgid "catalog.manage.categoryDescription"
-msgstr "Επιλέξτε 'Εμφάνιση', έπειτα το αστέρι για την επιλογή εμφάνισης του βιβλίου σε αυτή την κατηγορία. Σύρετε και αφήστε την εικόνα για να αλλάξετε τη σειρά."
+msgstr ""
+"Επιλέξτε 'Εμφάνιση', έπειτα το αστέρι για την επιλογή εμφάνισης του βιβλίου "
+"σε αυτή την κατηγορία. Σύρετε και αφήστε την εικόνα για να αλλάξετε τη σειρά."
 
 msgid "catalog.manage.seriesDescription"
-msgstr "Επιλέξτε 'Εμφάνιση', έπειτα το αστέρι για την επιλογή εμφάνισης του βιβλίου σε αυτή τη Σειρά, σύρετε και αφήστε την εικόνα για να αλλάξετε τη σειρά εμφάνισης. Οι Σειρές αναγνωρίζονται από τον/ους επιμελητή/ες και έναν τίτλο σειράς, μέσα σε μια κατηγορία ή ανεξάρτητα."
+msgstr ""
+"Επιλέξτε 'Εμφάνιση', έπειτα το αστέρι για την επιλογή εμφάνισης του βιβλίου "
+"σε αυτή τη Σειρά, σύρετε και αφήστε την εικόνα για να αλλάξετε τη σειρά "
+"εμφάνισης. Οι Σειρές αναγνωρίζονται από τον/ους επιμελητή/ες και έναν τίτλο "
+"σειράς, μέσα σε μια κατηγορία ή ανεξάρτητα."
 
 msgid "catalog.manage.placeIntoCarousel"
 msgstr "Carousel"
@@ -566,11 +659,92 @@ msgstr "Διαχείριση Κατηγοριών"
 msgid "catalog.manage.noMonographs"
 msgstr "Δεν υπάρχουν ανατιθέμενες μονογραφίες."
 
+msgid "catalog.manage.featured"
+msgstr ""
+
+msgid "catalog.manage.categoryFeatured"
+msgstr ""
+
+msgid "catalog.manage.seriesFeatured"
+msgstr ""
+
+msgid "catalog.manage.featuredSuccess"
+msgstr ""
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr ""
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr ""
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr ""
+
+msgid "catalog.manage.feature.newRelease"
+msgstr ""
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr ""
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr ""
+
+msgid "catalog.manage.nonOrderable"
+msgstr ""
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr ""
+
+msgid "catalog.manage.isFeatured"
+msgstr ""
+
+msgid "catalog.manage.isNotFeatured"
+msgstr ""
+
+msgid "catalog.manage.isNewRelease"
+msgstr ""
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr ""
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr ""
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr ""
+
+msgid "catalog.manage.findSubmissions"
+msgstr ""
+
+msgid "catalog.noTitles"
+msgstr ""
+
+msgid "catalog.noTitlesNew"
+msgstr ""
+
+msgid "catalog.noTitlesSearch"
+msgstr ""
+
 msgid "catalog.feature"
 msgstr "Εμφάνιση"
 
+msgid "catalog.featured"
+msgstr ""
+
 msgid "catalog.featuredBooks"
 msgstr "Προτεινόμενα βιβλία"
+
+msgid "catalog.foundTitleSearch"
+msgstr ""
+
+msgid "catalog.foundTitlesSearch"
+msgstr ""
+
+msgid "catalog.category.heading"
+msgstr ""
+
+msgid "catalog.newReleases"
+msgstr ""
 
 msgid "catalog.dateAdded"
 msgstr "Προστέθηκε"
@@ -578,8 +752,59 @@ msgstr "Προστέθηκε"
 msgid "catalog.publicationInfo"
 msgstr "Πληροφορίες Έκδοσης"
 
-msgid "catalog.relatedCategories"
-msgstr "Σχετιζόμενες κατηγορίες"
+msgid "catalog.published"
+msgstr ""
+
+msgid "catalog.forthcoming"
+msgstr ""
+
+msgid "catalog.categories"
+msgstr ""
+
+msgid "catalog.parentCategory"
+msgstr ""
+
+msgid "catalog.category.subcategories"
+msgstr ""
+
+msgid "catalog.aboutTheAuthor"
+msgstr ""
+
+msgid "catalog.loginRequiredForPayment"
+msgstr ""
+
+msgid "catalog.sortBy"
+msgstr ""
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr ""
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr ""
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr ""
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr ""
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr ""
+
+msgid "catalog.viewableFile.title"
+msgstr ""
+
+msgid "catalog.viewableFile.return"
+msgstr ""
+
+msgid "submission.search"
+msgstr ""
+
+msgid "common.publication"
+msgstr ""
+
+msgid "common.publications"
+msgstr ""
 
 msgid "common.prefix"
 msgstr "Πρόθημα"
@@ -596,9 +821,6 @@ msgstr "Αναζήτηση στον κατάλογο"
 msgid "common.moreInfo"
 msgstr "Περισσότερες Πληροφορίες"
 
-msgid "common.plusMore"
-msgstr "+ Περισσότερα"
-
 msgid "common.listbuilder.completeForm"
 msgstr "Παρακαλούμε συμπληρώστε όλα τα πεδία της φόρμας."
 
@@ -607,12 +829,6 @@ msgstr "Παρακαλούμε κάνετε μια έγκυρη επιλογή �
 
 msgid "common.listbuilder.itemExists"
 msgstr "Δεν μπορείτε να προσθέσετε το ίδιο στοιχείο δύο φορές."
-
-msgid "common.catalogInformation"
-msgstr "Οι πληροφορίες στον καταλόγου δεν είναι αναγκαίο να συμπληρωθούν κατά το αρχικό στάδιο της υποβολής του έργου, εκτός από τον Τίτλο και την Περίληψη."
-
-msgid "common.prefixAndTitle.tip"
-msgstr "Αν ο τίτλος του βιβλίου ξεκινά από \"Ο\", \"Η\", ή \"Το\" (ή κάτι παρόμοιο σε αλφαβητική σειρα) εντάξετε τη λέξη στο Πρόθημα (Prefix)."
 
 msgid "common.software"
 msgstr "Open Monograph Press"
@@ -628,6 +844,9 @@ msgstr "Κατάλογος"
 
 msgid "navigation.competingInterestPolicy"
 msgstr "Πολιτική Συγκουόμενων Συμφερόντων"
+
+msgid "navigation.catalog.allMonographs"
+msgstr ""
 
 msgid "navigation.catalog.manage"
 msgstr "Διαχείριση"
@@ -668,20 +887,81 @@ msgstr "Οδηγός"
 msgid "navigation.linksAndMedia"
 msgstr "Σύνδεσμοι και Κοινωνικά Μέσα"
 
+msgid "navigation.navigationMenus.catalog.description"
+msgstr ""
+
+msgid "navigation.skip.spotlights"
+msgstr ""
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr ""
+
+msgid "navigation.navigationMenus.series.description"
+msgstr ""
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr ""
+
+msgid "navigation.navigationMenus.category.description"
+msgstr ""
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr ""
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr ""
+
 msgid "context.contexts"
 msgstr "Εκδόσεις"
+
+msgid "context.context"
+msgstr ""
+
+msgid "context.current"
+msgstr ""
+
+msgid "context.select"
+msgstr ""
+
+msgid "user.authorization.representationNotFound"
+msgstr ""
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr ""
 
 msgid "user.noRoles.submitMonograph"
 msgstr "Υποβολή μιας πρότασης"
 
 msgid "user.noRoles.submitMonographRegClosed"
-msgstr "Υποβολή μιας Μονογραφίας: η εγγραφή Συγγραφέα είναο προς το παρόν απενεργοποιημένη."
+msgstr ""
+"Υποβολή μιας Μονογραφίας: η εγγραφή Συγγραφέα είναο προς το παρόν "
+"απενεργοποιημένη."
 
 msgid "user.noRoles.regReviewer"
 msgstr "Εγγραφείτε ως Αξιολογητής"
 
 msgid "user.noRoles.regReviewerClosed"
-msgstr "Εγγραφείτε ως Αξιολογητής: Η εγγραφή αξιολογητών είναι προς το παρόν απενεργοποιημένη"
+msgstr ""
+"Εγγραφείτε ως Αξιολογητής: Η εγγραφή αξιολογητών είναι προς το παρόν "
+"απενεργοποιημένη"
+
+msgid "user.reviewerPrompt"
+msgstr ""
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr ""
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+
+msgid "user.register.contextsPrompt"
+msgstr ""
+
+msgid "user.register.otherContextRoles"
+msgstr ""
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
 
 msgid "user.role.manager"
 msgstr "Διαχειριστής Εκδόσεων"
@@ -689,14 +969,11 @@ msgstr "Διαχειριστής Εκδόσεων"
 msgid "user.role.pressEditor"
 msgstr "Επιμελητής Εκδόσεων"
 
-msgid "user.role.copyeditor"
-msgstr "Επιμελητής Κειμένων"
-
 msgid "user.role.subEditor"
 msgstr "Επιμελητής Σειράς"
 
-msgid "user.role.subEditors"
-msgstr "Επιμελητές Σειράς"
+msgid "user.role.copyeditor"
+msgstr "Επιμελητής Κειμένων"
 
 msgid "user.role.proofreader"
 msgstr "Επιμελητής Τυπογραφικών Δοκιμίων"
@@ -706,6 +983,9 @@ msgstr "Επιμελητής Παραγωγής"
 
 msgid "user.role.managers"
 msgstr "Διαχειριστές Εκδόσεων"
+
+msgid "user.role.subEditors"
+msgstr "Επιμελητές Σειράς"
 
 msgid "user.role.editors"
 msgstr "Επιμελητές"
@@ -719,35 +999,28 @@ msgstr "Επιμελητές Τυπογραφικών Δοκιμίων"
 msgid "user.role.productionEditors"
 msgstr "Επιμελητές Παραγωγής"
 
-msgid "user.register.completeForm"
-msgstr "Συμπληρώστε τη φόρμα για να εγγραφείτε στις εκδόσεις."
-
 msgid "user.register.selectContext"
 msgstr "Επιλέξτε μια έκδοση για να εγγραφείτε"
 
 msgid "user.register.noContexts"
-msgstr "Δεν υπάρχουν εκδόσεις στις οποίες μπορείτε να εγγραφείτε στον ιστότοπο αυτό."
+msgstr ""
+"Δεν υπάρχουν εκδόσεις στις οποίες μπορείτε να εγγραφείτε στον ιστότοπο αυτό."
 
 msgid "user.register.privacyStatement"
 msgstr "Πολιτική Προστασίας Προσωπικών Δεδομένων"
-
-msgid "user.register.alreadyRegisteredOtherContext"
-msgstr "<a href=\"{$registerUrl}\">Πατήστε εδώ</a> εάν είστε ήδη εγγεγραμμένος χρήστης σε αυτή ή άλλη έκδοση της συλλογής"
-
-msgid "user.register.notAlreadyRegisteredOtherContext"
-msgstr "<a href=\"{$registerUrl}\">Πατήστε εδώ</a> εάν <strong>δεν</strong> είστε ήδη εγγεγραμμένος σε αυτή ή άλλη έκδοση της συλλογής"
-
-msgid "user.register.loginToRegister"
-msgstr "Εισάγετε το υπάρχον όνομα χρήστη και τον κωδικό πρόσβασής σας για να εγγραφείτε σε αυτή την έκδοση."
 
 msgid "user.register.registrationDisabled"
 msgstr "Οι εκδόσεις αυτές προς το παρόν δεν αποδέχεται εγγραφές χρηστών."
 
 msgid "user.register.form.passwordLengthTooShort"
-msgstr "Ο κωδικός πρόσβασης που εισάγατε περιέχει λιγότερους χαρακτήρες από τον ελάχιστο επιτρεπτό αριθμό χαρακτήρων."
+msgstr ""
+"Ο κωδικός πρόσβασης που εισάγατε περιέχει λιγότερους χαρακτήρες από τον "
+"ελάχιστο επιτρεπτό αριθμό χαρακτήρων."
 
 msgid "user.register.readerDescription"
-msgstr "Θα  ενημερώνεστε με μήνυμα ηλεκτρονικού ταχυδρομείου όταν μια μονογραφία δημοσιεύεται."
+msgstr ""
+"Θα  ενημερώνεστε με μήνυμα ηλεκτρονικού ταχυδρομείου όταν μια μονογραφία "
+"δημοσιεύεται."
 
 msgid "user.register.authorDescription"
 msgstr "Δυνατότητα υποβολής εργασιών στις εκδόσεις."
@@ -759,10 +1032,18 @@ msgid "user.register.reviewerDescription"
 msgstr "Επιθυμία για συμμετοχή στην αξιολόγηση υποβολών στις Εκδόσεις."
 
 msgid "user.register.reviewerInterests"
-msgstr "Προσδιορίστε τα ενδιαφέροντα αξιολόγησης (θεματικές περιοχές και ερευνητικές μέθοδοι)"
+msgstr ""
+"Προσδιορίστε τα ενδιαφέροντα αξιολόγησης (θεματικές περιοχές και ερευνητικές "
+"μέθοδοι)"
 
 msgid "user.register.form.userGroupRequired"
 msgstr "Πρέπει να επιλέξετε τουλάχιστον ένα ρόλο"
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+
+msgid "site.noPresses"
+msgstr ""
 
 msgid "site.pressView"
 msgstr "Προβολή ιστοσελίδας εκδόσεων"
@@ -770,8 +1051,8 @@ msgstr "Προβολή ιστοσελίδας εκδόσεων"
 msgid "about.pressContact"
 msgstr "Επικοινωνία"
 
-msgid "about.aboutThePress"
-msgstr "Σχετικά με τις εκδόσεις"
+msgid "about.aboutContext"
+msgstr ""
 
 msgid "about.editorialTeam"
 msgstr "Συντακτική ομάδα"
@@ -788,29 +1069,28 @@ msgstr "Πολιτικές σειρών και κατηγοριών"
 msgid "about.submissions"
 msgstr "Υποβολές"
 
-msgid "about.sponsors"
-msgstr "Χορηγοί"
-
-msgid "about.contributors"
-msgstr "Πηγές υποστήριξης"
-
 msgid "about.onlineSubmissions"
 msgstr "Online υποβολές"
-
-msgid "about.onlineSubmissions.haveAccount"
-msgstr "Έχετε ήδη όνομα χρήστη/ κωδικό πρόσβασης για τις εκδόσεις {$pressTitle}?"
 
 msgid "about.onlineSubmissions.login"
 msgstr "Συνδεθείτε"
 
-msgid "about.onlineSubmissions.needAccount"
-msgstr "Χρειάζεστε ένα όνομα χρήστη / κωδικό πρόσβασης;"
-
-msgid "about.onlineSubmissions.registration"
-msgstr "Εγγραφή χρήστη"
+msgid "about.onlineSubmissions.register"
+msgstr ""
 
 msgid "about.onlineSubmissions.registrationRequired"
-msgstr "Η εγγραφή και η σύνδεση είναι απαραίτητες για την online υποβολή τεκμηρίων  και για έλεγχο της κατάστασης των υποβολών σας."
+msgstr ""
+"Η εγγραφή και η σύνδεση είναι απαραίτητες για την online υποβολή τεκμηρίων  "
+"και για έλεγχο της κατάστασης των υποβολών σας."
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr ""
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr ""
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr ""
 
 msgid "about.authorGuidelines"
 msgstr "Οδηγίες προς συγγραφείς"
@@ -819,7 +1099,11 @@ msgid "about.submissionPreparationChecklist"
 msgstr "Λίστα ελέγχου προετοιμασίας υποβολής"
 
 msgid "about.submissionPreparationChecklist.description"
-msgstr "Ως μέρος της διαδικασίας υποβολής, είναι απαραίτητο οι συγγραφείας να ελέγχουν τη συμμόρφωση της υποβολής με όλα τα ακόλουθα τεκμήρια, ενώ οι υποβολές που δεν τηρούν τις Οδηγίες για τους συγγραφείς μπορεί να επιστραφούν στους συγγραφείς."
+msgstr ""
+"Ως μέρος της διαδικασίας υποβολής, είναι απαραίτητο οι συγγραφείας να "
+"ελέγχουν τη συμμόρφωση της υποβολής με όλα τα ακόλουθα τεκμήρια, ενώ οι "
+"υποβολές που δεν τηρούν τις Οδηγίες για τους συγγραφείς μπορεί να "
+"επιστραφούν στους συγγραφείς."
 
 msgid "about.copyrightNotice"
 msgstr "Ενημέρωση για τα πνευματικά δικαιώματα"
@@ -845,13 +1129,26 @@ msgstr "Σχετικά με το Open Publishing System"
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "OMP Διαδικασία Επιμέλειας και Δημοσίευσης"
 
+msgid "about.aboutSoftware"
+msgstr ""
+
 #, fuzzy
 msgid "about.aboutOMPPress"
-msgstr "Οι εκδόσεις αυτές χρησιμοποιούν το Open Monograph Press {$ompVersion}, το οποίο είναι ένα λογισμικό διαχείρισης και δημοσίευσης εκδόσεων (βιβλίων) ανοικτού κώδικα, που έχει αναπτυχθεί, υποστηρίζεται και διανέμεται ελεύθερα από το <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> κάτω από την αδειοδότηση GNU General Public License."
+msgstr ""
+"Οι εκδόσεις αυτές χρησιμοποιούν το Open Monograph Press {$ompVersion}, το "
+"οποίο είναι ένα λογισμικό διαχείρισης και δημοσίευσης εκδόσεων (βιβλίων) "
+"ανοικτού κώδικα, που έχει αναπτυχθεί, υποστηρίζεται και διανέμεται ελεύθερα "
+"από το <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> κάτω από "
+"την αδειοδότηση GNU General Public License."
 
 #, fuzzy
 msgid "about.aboutOMPSite"
-msgstr "Ο ιστότοπος αυτός χρησιμοποιεί το Open Monograph Press {$ompVersion}, το οποίο είναι ένα λογισμικό διαχείρισης και δημοσίευσης εκδόσεων (βιβλίων) ανοικτού κώδικα, που έχει αναπτυχθεί, υποστηρίζεται και διανέμεται ελεύθερα από το <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> κάτω από την αδειοδότηση GNU General Public License."
+msgstr ""
+"Ο ιστότοπος αυτός χρησιμοποιεί το Open Monograph Press {$ompVersion}, το "
+"οποίο είναι ένα λογισμικό διαχείρισης και δημοσίευσης εκδόσεων (βιβλίων) "
+"ανοικτού κώδικα, που έχει αναπτυχθεί, υποστηρίζεται και διανέμεται ελεύθερα "
+"από το <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> κάτω από "
+"την αδειοδότηση GNU General Public License."
 
 msgid "help.searchReturnResults"
 msgstr "Επιστροφή στα αποτελέσματα της αναζήτησης"
@@ -868,95 +1165,187 @@ msgstr "OMP Upgrade"
 msgid "installer.installApplication"
 msgstr "Install Open Monograph Press"
 
+msgid "installer.updatingInstructions"
+msgstr ""
+
 #, fuzzy
 msgid "installer.installationInstructions"
 msgstr ""
-"<p>Thank you for downloading the Public Knowledge Project's <strong>Open Monograph Press {$version}</strong>. Before proceeding, please read the <a href=\"{$baseUrl}/docs/README\">README</a> file included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">PKP web site</a>. If you have bug reports or technical support inquiries about Open Monograph Press, see the <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">support forum</a> or visit PKP's online <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>\n"
+"<p>Thank you for downloading the Public Knowledge Project's <strong>Open "
+"Monograph Press {$version}</strong>. Before proceeding, please read the <a "
+"href=\"{$baseUrl}/docs/README\">README</a> file included with this software. "
+"For more information about the Public Knowledge Project and its software "
+"projects, please visit the <a href=\"http://pkp.sfu.ca/\" target=\"_blank"
+"\">PKP web site</a>. If you have bug reports or technical support inquiries "
+"about Open Monograph Press, see the <a href=\"http://forum.pkp.sfu.ca\" "
+"target=\"_blank\">support forum</a> or visit PKP's online <a href=\"http://"
+"pkp.sfu.ca/bugzilla/\" target=\"_blank\">bug reporting system</a>. Although "
+"the support forum is the preferred method of contact, you can also email the "
+"team at <a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</"
+"p>\n"
 "\n"
 "<h4>Upgrade</h4>\n"
 "\n"
-"<p>If you are upgrading an existing installation of OMP, <a href=\"{$upgradeUrl}\">click here</a> to proceed.</p>"
+"<p>If you are upgrading an existing installation of OMP, <a href="
+"\"{$upgradeUrl}\">click here</a> to proceed.</p>"
 
 msgid "installer.preInstallationInstructionsTitle"
 msgstr "Pre-Installation Steps"
 
 msgid "installer.preInstallationInstructions"
 msgstr ""
-"<p>1. The following files and directories (and their contents) must be made writable:</p>\n"
+"<p>1. The following files and directories (and their contents) must be made "
+"writable:</p>\n"
 "<ul>\n"
-"\t<li><tt>config.inc.php</tt> is writable (optional): {$writable_config}</li>\n"
+"\t<li><tt>config.inc.php</tt> is writable (optional): {$writable_config}</"
+"li>\n"
 "\t<li><tt>public/</tt> is writable: {$writable_public}</li>\n"
 "\t<li><tt>cache/</tt> is writable: {$writable_cache}</li>\n"
 "\t<li><tt>cache/t_cache/</tt> is writable: {$writable_templates_cache}</li>\n"
-"\t<li><tt>cache/t_compile/</tt> is writable: {$writable_templates_compile}</li>\n"
+"\t<li><tt>cache/t_compile/</tt> is writable: {$writable_templates_compile}</"
+"li>\n"
 "\t<li><tt>cache/_db</tt> is writable: {$writable_db_cache}</li>\n"
 "</ul>\n"
 "\n"
-"<p>2. A directory to store uploaded files must be created and made writable (see \"File Settings\" below).</p>"
+"<p>2. A directory to store uploaded files must be created and made writable "
+"(see \"File Settings\" below).</p>"
 
 msgid "installer.upgradeInstructions"
 msgstr ""
 "<h4>OMP Version {$version}</h4>\n"
 "\n"
-"<p>Thank you for downloading the Public Knowledge Project's <strong>Open Monograph Press</strong>. Before proceeding, please read the <a href=\"{$baseUrl}/docs/README\">README</a> and <a href=\"{$baseUrl}/docs/UPGRADE\">UPGRADE</a> files included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">PKP web site</a>. If you have bug reports or technical support inquiries about Open Monograph Press, see the <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">support forum</a> or visit PKP's online <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>\n"
-"<p>It is <strong>strongly recommended</strong> that you back up your database, files directory, and OMP installation directory before proceeding.</p>\n"
-"<p>If you are running in <a href=\"http://www.php.net/features.safe-mode\" target=\"_blank\">PHP Safe Mode</a>, please ensure that the max_execution_time directive in your php.ini configuration file is set to a high limit. If this or any other time limit (e.g. Apache's \"Timeout\" directive) is reached and the upgrade process is interrupted, manual intervention will be required.</p>"
+"<p>Thank you for downloading the Public Knowledge Project's <strong>Open "
+"Monograph Press</strong>. Before proceeding, please read the <a href="
+"\"{$baseUrl}/docs/README\">README</a> and <a href=\"{$baseUrl}/docs/UPGRADE"
+"\">UPGRADE</a> files included with this software. For more information about "
+"the Public Knowledge Project and its software projects, please visit the <a "
+"href=\"http://pkp.sfu.ca/\" target=\"_blank\">PKP web site</a>. If you have "
+"bug reports or technical support inquiries about Open Monograph Press, see "
+"the <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">support forum</a> "
+"or visit PKP's online <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank"
+"\">bug reporting system</a>. Although the support forum is the preferred "
+"method of contact, you can also email the team at <a href=\"mailto:pkp."
+"contact@gmail.com\">pkp.contact@gmail.com</a>.</p>\n"
+"<p>It is <strong>strongly recommended</strong> that you back up your "
+"database, files directory, and OMP installation directory before proceeding."
+"</p>\n"
+"<p>If you are running in <a href=\"http://www.php.net/features.safe-mode\" "
+"target=\"_blank\">PHP Safe Mode</a>, please ensure that the "
+"max_execution_time directive in your php.ini configuration file is set to a "
+"high limit. If this or any other time limit (e.g. Apache's \"Timeout\" "
+"directive) is reached and the upgrade process is interrupted, manual "
+"intervention will be required.</p>"
 
 msgid "installer.localeSettingsInstructions"
 msgstr ""
-"For complete Unicode (UTF-8) support, select UTF-8 for all character set settings. Note that this support currently requires a MySQL >= 4.1.1 or PostgreSQL >= 7.1 database server. Please also note that full Unicode support requires the <a href=\"http://www.php.net/mbstring\" target=\"_blank\">mbstring</a> library (enabled by default in most recent PHP installations). You may experience problems using extended character sets if your server does not meet these requirements.\n"
+"For complete Unicode (UTF-8) support, select UTF-8 for all character set "
+"settings. Note that this support currently requires a MySQL >= 4.1.1 or "
+"PostgreSQL >= 7.1 database server. Please also note that full Unicode "
+"support requires the <a href=\"http://www.php.net/mbstring\" target=\"_blank"
+"\">mbstring</a> library (enabled by default in most recent PHP "
+"installations). You may experience problems using extended character sets if "
+"your server does not meet these requirements.\n"
 "<br /><br />\n"
 "Your server currently supports mbstring: <strong>{$supportsMBString}</strong>"
 
 msgid "installer.allowFileUploads"
-msgstr "Your server currently allows file uploads: <strong>{$allowFileUploads}</strong>"
+msgstr ""
+"Your server currently allows file uploads: <strong>{$allowFileUploads}</"
+"strong>"
 
 msgid "installer.maxFileUploadSize"
-msgstr "Your server currently allows a maximum file upload size of: <strong>{$maxFileUploadSize}</strong>"
+msgstr ""
+"Your server currently allows a maximum file upload size of: "
+"<strong>{$maxFileUploadSize}</strong>"
 
 msgid "installer.localeInstructions"
-msgstr "Η κύρια γλώσσα για χρήση από το συγκεκριμένο σύστημα. Ανατρέξτε στα έγγραφα τεκμηρίωσης του OMP, εάν επιθυμείτε να υποστηρίξετε γλώσσες που δεν περιλαμβάνονται εδώ."
+msgstr ""
+"Η κύρια γλώσσα για χρήση από το συγκεκριμένο σύστημα. Ανατρέξτε στα έγγραφα "
+"τεκμηρίωσης του OMP, εάν επιθυμείτε να υποστηρίξετε γλώσσες που δεν "
+"περιλαμβάνονται εδώ."
 
 msgid "installer.additionalLocalesInstructions"
-msgstr "Επιλογή άλλων πρόσθετων γλωσσών για υποστήριξη στο συγκεκριμένο σύστημα. Οι γλώσσες αυτές θα είναι διαθέσιμες για χρήση από εκδόσεις που φιλοξενούνται στον ιστότοπο. Πρόσθετες γλώσσες μπορούν να εγκαταστασθούν ανά πάσα στιγμή από τη διεπαφή διαχείρισης. Γλώσσες που μαρκάρονται με * ίσως να μην είναι ολοκληρωμένες."
+msgstr ""
+"Επιλογή άλλων πρόσθετων γλωσσών για υποστήριξη στο συγκεκριμένο σύστημα. Οι "
+"γλώσσες αυτές θα είναι διαθέσιμες για χρήση από εκδόσεις που φιλοξενούνται "
+"στον ιστότοπο. Πρόσθετες γλώσσες μπορούν να εγκαταστασθούν ανά πάσα στιγμή "
+"από τη διεπαφή διαχείρισης. Γλώσσες που μαρκάρονται με * ίσως να μην είναι "
+"ολοκληρωμένες."
 
 msgid "installer.filesDirInstructions"
-msgstr "Enter full pathname to an existing directory where uploaded files are to be kept. This directory should not be directly web-accessible. <strong>Please ensure that this directory exists and is writable prior to installation.</strong> Windows path names should use forward slashes, e.g. \"C:/mypress/files\"."
+msgstr ""
+"Enter full pathname to an existing directory where uploaded files are to be "
+"kept. This directory should not be directly web-accessible. <strong>Please "
+"ensure that this directory exists and is writable prior to installation.</"
+"strong> Windows path names should use forward slashes, e.g. \"C:/mypress/"
+"files\"."
 
 msgid "installer.databaseSettingsInstructions"
-msgstr "OMP requires access to a SQL database to store its data. See the system requirements above for a list of supported databases. In the fields below, provide the settings to be used to connect to the database."
+msgstr ""
+"OMP requires access to a SQL database to store its data. See the system "
+"requirements above for a list of supported databases. In the fields below, "
+"provide the settings to be used to connect to the database."
+
+msgid "installer.upgradeApplication"
+msgstr ""
 
 msgid "installer.overwriteConfigFileInstructions"
 msgstr ""
 "<h4>IMPORTANT!</h4>\n"
-"<p>The installer could not automatically overwrite the configuration file. Before attempting to use the system, please open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>"
+"<p>The installer could not automatically overwrite the configuration file. "
+"Before attempting to use the system, please open <tt>config.inc.php</tt> in "
+"a suitable text editor and replace its contents with the contents of the "
+"text field below.</p>"
 
 msgid "installer.installationComplete"
 msgstr ""
 "<p>Installation of OMP has completed successfully.</p>\n"
-"<p>To begin using the system, <a href=\"{$loginUrl}\">login</a> with the username and password entered on the previous page.</p>\n"
-"<p>If you wish to receive news and updates, <strong>please register at <a href=\"http://pkp.sfu.ca/omp/register\" target=\"_blank\">http://pkp.sfu.ca/omp/register</a>.</strong> If you have questions or comments, please visit the <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">support forum</a>.</p>"
+"<p>To begin using the system, <a href=\"{$loginUrl}\">login</a> with the "
+"username and password entered on the previous page.</p>\n"
+"<p>If you wish to receive news and updates, <strong>please register at <a "
+"href=\"http://pkp.sfu.ca/omp/register\" target=\"_blank\">http://pkp.sfu.ca/"
+"omp/register</a>.</strong> If you have questions or comments, please visit "
+"the <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">support forum</a>."
+"</p>"
 
 msgid "installer.upgradeComplete"
 msgstr ""
 "<p>Upgrade of OMP to version {$version} has completed successfully.</p>\n"
-"<p>Don't forget to set the \"installed\" setting in your config.inc.php configuration file back to <em>On</em>.</p>\n"
-"<p>If you haven't already registered and wish to receive news and updates, <strong>please register at <a href=\"http://pkp.sfu.ca/omp/register\" target=\"_blank\">http://pkp.sfu.ca/omp/register</a>.</strong> If you have questions or comments, please visit the <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">support forum</a>.</p>"
+"<p>Don't forget to set the \"installed\" setting in your config.inc.php "
+"configuration file back to <em>On</em>.</p>\n"
+"<p>If you haven't already registered and wish to receive news and updates, "
+"<strong>please register at <a href=\"http://pkp.sfu.ca/omp/register\" target="
+"\"_blank\">http://pkp.sfu.ca/omp/register</a>.</strong> If you have "
+"questions or comments, please visit the <a href=\"http://forum.pkp.sfu.ca\" "
+"target=\"_blank\">support forum</a>.</p>"
 
 msgid "log.review.reviewDueDateSet"
-msgstr "Η ημερομηνία προθεσμίας για τον γύρο αξιολόγησης {$round} της υποβολής {$monographId} από τον/ην {$reviewerName} έχει οριστεί η {$dueDate}."
+msgstr ""
+"Η ημερομηνία προθεσμίας για τον γύρο αξιολόγησης {$round} της υποβολής "
+"{$monographId} από τον/ην {$reviewerName} έχει οριστεί η {$dueDate}."
 
 msgid "log.review.reviewDeclined"
-msgstr "Ο/Η {$reviewerName} έχει απορρίψει τον γύρο αξιολόγησης {$round} για την υποβολή {$monographId}."
+msgstr ""
+"Ο/Η {$reviewerName} έχει απορρίψει τον γύρο αξιολόγησης {$round} για την "
+"υποβολή {$monographId}."
 
 msgid "log.review.reviewAccepted"
-msgstr "Ο/Η {$reviewerName} έχει αποδεχτεί τον γύρο αξιολόγησης {$round} για την υποβολή {$monographId}."
+msgstr ""
+"Ο/Η {$reviewerName} έχει αποδεχτεί τον γύρο αξιολόγησης {$round} για την "
+"υποβολή {$monographId}."
 
 msgid "log.review.reviewUnconsidered"
-msgstr "Ο/Η {$editorName} έχει επισημάνει το αίτημα για το γύρο αξιολόγησης {$round} για την υποβολή {$monographId} ως ανεξέταστο."
+msgstr ""
+"Ο/Η {$editorName} έχει επισημάνει το αίτημα για το γύρο αξιολόγησης {$round} "
+"για την υποβολή {$monographId} ως ανεξέταστο."
 
 msgid "log.editor.decision"
-msgstr "Μια απόφαση επιμελητή ({$decision}) για τη μονογραφία {$submissionId} καταγράφηκε από τον/ην {$editorName}."
+msgstr ""
+"Μια απόφαση επιμελητή ({$decision}) για τη μονογραφία {$submissionId} "
+"καταγράφηκε από τον/ην {$editorName}."
+
+msgid "log.editor.recommendation"
+msgstr ""
 
 msgid "log.editor.archived"
 msgstr "Η υποβολή {$monographId} αρχειοθετήθηκε."
@@ -965,13 +1354,13 @@ msgid "log.editor.restored"
 msgstr "Η υποβολή {$monographId} επανατοποθετήθηκε στη σειρά αναμονής."
 
 msgid "log.editor.editorAssigned"
-msgstr "Ο/Η {$editorName} έχει αναλάβει ως επιμελητής της υποβολής {$monographId}."
-
-msgid "log.editor.submissionExpedited"
-msgstr "Ο/Η {$editorName} έχει επιταχύνει τη διαδικασία αξιολόγησης για τη μονογραφία {$monographId}."
+msgstr ""
+"Ο/Η {$editorName} έχει αναλάβει ως επιμελητής της υποβολής {$monographId}."
 
 msgid "log.proofread.assign"
-msgstr "Ο/Η{$assignerName} ανέθεσε στον/ην {$proofreaderName} την επιμέλεια του τυπογραφικού δοκιμίου της υποβολής {$monographId}."
+msgstr ""
+"Ο/Η{$assignerName} ανέθεσε στον/ην {$proofreaderName} την επιμέλεια του "
+"τυπογραφικού δοκιμίου της υποβολής {$monographId}."
 
 msgid "log.proofread.complete"
 msgstr "Ο/Η {$proofreaderName} υπέβαλλε το {$monographId} για προγραμματισμό."
@@ -1060,12 +1449,6 @@ msgstr "Μια νέα μονογραφία, \"{$title},\" έχει υποβλη�
 msgid "notification.type.editing"
 msgstr "Διόρθωση Γεγονότων"
 
-msgid "notification.type.metadataModified"
-msgstr "Τα μεταδεδομένα του \"{$title}\" έχουν μεταβληθεί."
-
-msgid "notification.type.reviewerComment"
-msgstr "Ένας Αξιολογητής έχει σχολιάσει το \"{$title}\"."
-
 msgid "notification.type.reviewing"
 msgstr "Γεγονότα Αξιολόγησης"
 
@@ -1078,14 +1461,20 @@ msgstr "Γεγονότα Υποβολής"
 msgid "notification.type.userComment"
 msgstr "Ένας αναγνώστης έχει κάνει ένα σχόλιο για το \"{$title}\"."
 
+msgid "notification.type.public"
+msgstr ""
+
 msgid "notification.type.editorAssignmentTask"
-msgstr "Μία νέα μονογραφία έχει υποβληθεί και έιναι απαραίτητο να ανατεθεί σε έναν επιμελητή."
+msgstr ""
+"Μία νέα μονογραφία έχει υποβληθεί και έιναι απαραίτητο να ανατεθεί σε έναν "
+"επιμελητή."
 
 msgid "notification.type.copyeditorRequest"
 msgstr "Έχετε κληθεί να θεωρήσετε την επιμέλεια κειμένων για το \"{$file}\"."
 
 msgid "notification.type.layouteditorRequest"
-msgstr "Έχετε κληθεί να θεωρήσετε την επιμέλεια σελιδοποίησης για το \"{$title}\"."
+msgstr ""
+"Έχετε κληθεί να θεωρήσετε την επιμέλεια σελιδοποίησης για το \"{$title}\"."
 
 msgid "notification.type.indexRequest"
 msgstr "Έχετε κληθεί να ευρετηριάσετε το \"{$title}\"."
@@ -1094,43 +1483,70 @@ msgid "notification.type.editorDecisionInternalReview"
 msgstr "Η διαδικασία εσωτερικής αξιολόγησης έχει ξεκινήσει."
 
 msgid "notification.type.approveSubmission"
-msgstr "Αυτή η υποβολή αναμένει πρόσφατα για Καταχώριση στον Κατάλογο πριν αυτή εμφανιστεί δημόσια στον κατάλογο."
+msgstr ""
+"Αυτή η υποβολή αναμένει πρόσφατα για Καταχώριση στον Κατάλογο πριν αυτή "
+"εμφανιστεί δημόσια στον κατάλογο."
 
 msgid "notification.type.approveSubmissionTitle"
 msgstr "Εν αναμονή έγκρισης."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
 
 msgid "notification.type.configurePaymentMethod.title"
 msgstr "Καμία μέθοδος πληρωμής εισφορών δεν έχει ρυθμιστεί."
 
 msgid "notification.type.configurePaymentMethod"
-msgstr "Μία διαμορφωμένη μέθοδος πληρωμής εισφορών απαιτείται πριν είστε σε θέση να καθορίσετε τις ρυθμίσεις για ηλεκτρονικό εμπόριο (e-commerce)."
+msgstr ""
+"Μία διαμορφωμένη μέθοδος πληρωμής εισφορών απαιτείται πριν είστε σε θέση να "
+"καθορίσετε τις ρυθμίσεις για ηλεκτρονικό εμπόριο (e-commerce)."
 
 msgid "notification.type.visitCatalogTitle"
 msgstr "Διαχείριση Καταλόγου"
 
+msgid "notification.type.visitCatalog"
+msgstr ""
+
 msgid "user.authorization.invalidReviewAssignment"
-msgstr "Η πρόσβαση δεν είναι δυνατή επειδή δεν φαίνεται να είστε έγκυρος ως αναθεωρητής για αυτή τη μονογραφία."
+msgstr ""
+"Η πρόσβαση δεν είναι δυνατή επειδή δεν φαίνεται να είστε έγκυρος ως "
+"αναθεωρητής για αυτή τη μονογραφία."
 
 msgid "user.authorization.monographAuthor"
-msgstr "Η πρόσβαση δεν είναι δυνατή επειδή δεν φαίνεται να είστε ο συγγραφέας για αυτή τη μονογραφία."
+msgstr ""
+"Η πρόσβαση δεν είναι δυνατή επειδή δεν φαίνεται να είστε ο συγγραφέας για "
+"αυτή τη μονογραφία."
 
 msgid "user.authorization.monographReviewer"
-msgstr "Η πρόσβαση δεν είναι δυνατή επειδή δεν φαίνεται να σας έχει ανατεθεί η αξιολόγηση για αυτή τη μονογραφία."
+msgstr ""
+"Η πρόσβαση δεν είναι δυνατή επειδή δεν φαίνεται να σας έχει ανατεθεί η "
+"αξιολόγηση για αυτή τη μονογραφία."
 
 msgid "user.authorization.monographFile"
-msgstr "Έχετε απαγορεύσει την πρόσβαση στο συγκεκριμένο αρχείο της μονογραφίας."
+msgstr ""
+"Έχετε απαγορεύσει την πρόσβαση στο συγκεκριμένο αρχείο της μονογραφίας."
 
 msgid "user.authorization.invalidMonograph"
 msgstr "Μη έγκυρη μονογραφία ή δεν έχει ζητηθεί η μονογραφία!"
 
+msgid "user.authorization.noContext"
+msgstr ""
+
 msgid "user.authorization.seriesAssignment"
-msgstr "Προσπαθείτε να αποκτήσετε πρόσβαση σε μια μονογραφία που δεν είναι μέρος της σειράς που επιμελείστε."
+msgstr ""
+"Προσπαθείτε να αποκτήσετε πρόσβαση σε μια μονογραφία που δεν είναι μέρος της "
+"σειράς που επιμελείστε."
 
 msgid "user.authorization.workflowStageAssignmentMissing"
-msgstr "Η πρόσβαση δεν είναι δυνατή! Δεν έχετε ανάθεση σε αυτό το στάδιο της ροής εργασιών."
+msgstr ""
+"Η πρόσβαση δεν είναι δυνατή! Δεν έχετε ανάθεση σε αυτό το στάδιο της ροής "
+"εργασιών."
 
 msgid "user.authorization.workflowStageSettingMissing"
-msgstr "Η πρόσβαση δεν είναι δυνατή! Η ομάδα χρηστών που πρόσφατα ενεργείτε μέσω αυτής δεν έχει ζητηθεί σε αυτό το στάδιο ροής εργασιών. Παρακαλούμε ελέγξτε τις ρυθμίσεις των εκδόσεων."
+msgstr ""
+"Η πρόσβαση δεν είναι δυνατή! Η ομάδα χρηστών που πρόσφατα ενεργείτε μέσω "
+"αυτής δεν έχει ζητηθεί σε αυτό το στάδιο ροής εργασιών. Παρακαλούμε ελέγξτε "
+"τις ρυθμίσεις των εκδόσεων."
 
 msgid "payment.directSales"
 msgstr "Λήψη αρχείου (Download) από τον Ιστότοπο των Εκδόσεων"
@@ -1150,6 +1566,9 @@ msgstr "Έχει εγκριθεί"
 msgid "payment.directSales.priceCurrency"
 msgstr "Τιμή ({$currency})"
 
+msgid "payment.directSales.numericOnly"
+msgstr ""
+
 msgid "payment.directSales.directSales"
 msgstr "Άμεσες Πωλήσεις"
 
@@ -1159,11 +1578,18 @@ msgstr "{$amount} ({$currency})"
 msgid "payment.directSales.notAvailable"
 msgstr "Δεν είναι δυνατή η λήψη του αρχείου"
 
+msgid "payment.directSales.notSet"
+msgstr ""
+
 msgid "payment.directSales.openAccess"
 msgstr "Ανοικτή Πρόσβαση"
 
 msgid "payment.directSales.price.description"
-msgstr "Τα μορφότυπα των αρχείων μπορεί να είναι διαθέσιμα για λήψη από τον ιστότοπο των εκδόσεων μέσω ανοικτής πρόσβασης χωρίς κόστος για τους αναγνώστες ή χωρίς άμεσες πωλήσεις (χρησιμοποιόντας μια online μέθοδο πληρωμής, όπως έχει ρυθμιστεί στη Διανομή). Για το αρχείο αυτό υποδείξτε την αρχή πρόσβασης."
+msgstr ""
+"Τα μορφότυπα των αρχείων μπορεί να είναι διαθέσιμα για λήψη από τον ιστότοπο "
+"των εκδόσεων μέσω ανοικτής πρόσβασης χωρίς κόστος για τους αναγνώστες ή "
+"χωρίς άμεσες πωλήσεις (χρησιμοποιόντας μια online μέθοδο πληρωμής, όπως έχει "
+"ρυθμιστεί στη Διανομή). Για το αρχείο αυτό υποδείξτε την αρχή πρόσβασης."
 
 msgid "payment.directSales.validPriceRequired"
 msgstr "Απαιτείται ένας έγκυρος αριθμός τιμής."
@@ -1178,10 +1604,175 @@ msgid "payment.directSales.monograph.name"
 msgstr "Αγορά Λήψης Αρχείου Μονογραφίας ή  Κεφαλαίου"
 
 msgid "payment.directSales.monograph.description"
-msgstr "Αυτή η συναλλαγή αφορά την αγορά άμεσης λήψης μιας μονογραφίας ή ενός κεφαλαίου μιας μονογραφίας."
+msgstr ""
+"Αυτή η συναλλαγή αφορά την αγορά άμεσης λήψης μιας μονογραφίας ή ενός "
+"κεφαλαίου μιας μονογραφίας."
 
 msgid "debug.notes.helpMappingLoad"
-msgstr "Η επαναφόρτωση XML βοηθάει τη χαρτογράφηση του αρχείου {$filename} για την αναζήτηση {$id}."
+msgstr ""
+"Η επαναφόρτωση XML βοηθάει τη χαρτογράφηση του αρχείου {$filename} για την "
+"αναζήτηση {$id}."
+
+msgid "rt.metadata.pkp.dctype"
+msgstr ""
+
+msgid "submission.pdf.download"
+msgstr ""
+
+msgid "user.profile.form.showOtherContexts"
+msgstr ""
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr ""
 
 msgid "submission.round"
 msgstr "Γύρος&nbsp;{$round}"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr ""
+
+msgid "catalog.coverImageTitle"
+msgstr ""
+
+msgid "grid.catalogEntry.chapters"
+msgstr ""
+
+msgid "search.results.orderBy.article"
+msgstr ""
+
+msgid "search.results.orderBy.author"
+msgstr ""
+
+msgid "search.results.orderBy.date"
+msgstr ""
+
+msgid "search.results.orderBy.monograph"
+msgstr ""
+
+msgid "search.results.orderBy.press"
+msgstr ""
+
+msgid "search.results.orderBy.popularityAll"
+msgstr ""
+
+msgid "search.results.orderBy.popularityMonth"
+msgstr ""
+
+msgid "search.results.orderBy.relevance"
+msgstr ""
+
+msgid "search.results.orderDir.asc"
+msgstr ""
+
+msgid "search.results.orderDir.desc"
+msgstr ""
+
+#~ msgid "monograph.coverImage.uploadInstructions"
+#~ msgstr ""
+#~ "Βεβαιωθείτε ότι το ύψος της εικόνας δεν είναι μεγαλύτερο από το 150% του "
+#~ "πλάτους της, διαφορετικά η εικόνα του εξωφύλλου σας δεν θα εμφανίζεται "
+#~ "στο carousel των εκδόσεων της συλλογής."
+
+#~ msgid "grid.content.spotlights.category.sidebar"
+#~ msgstr "Πλευρική μπάρα"
+
+#~ msgid "series.featured"
+#~ msgstr "Featured"
+
+#~ msgid "grid.series.urlWillBe"
+#~ msgstr ""
+#~ "Το URL της σειράς θα είναι {$sampleUrl}. Η 'διαδρομή' είναι μια σειρά "
+#~ "χαρακτήρων μέσω της οποίας αναγνωρίζεται μοναδικά η σειρά."
+
+#~ msgid "catalog.manage.homepage"
+#~ msgstr "Αρχική σελίδα"
+
+#~ msgid "catalog.manage.managementIntroduction"
+#~ msgstr ""
+#~ "Καλως ήρθατε στη σελίδα διαχείρισης του Καταλόγου. Από αυτή τη σελίδα "
+#~ "μπορείτε να δημοσιεύσετε νέες καταχωρήσεις βιβλίων στον Κατάλογο, να "
+#~ "αναθεωρήσετε και να ρυθμίσετε τη λίστα με τα Προτεινόμενα Βιβλία, να "
+#~ "αναθεωρήσετε και να ρυθμίσετε τη λίστα με τις Νέες Κυκλοφορίες, καθώς και "
+#~ "να αναθεωρήσετε και να καταχωρήσετε τα βιβλία σας ανά Κατηγορία και Σειρά"
+
+#~ msgid "catalog.manage.entryDescription"
+#~ msgstr ""
+#~ "Για να εμφανιστεί ένα βιβλίο στον κατάλογο, επιλέξτε την καρτέλα "
+#~ "Μονογραφία και συμπληρώστε τις απαραίτητες πληροφορίες. Πληροφορίες για "
+#~ "κάθε μορφότυπο του βιβλίου μπορεί να συμπεριληφθούν στην συγκεκριμένη "
+#~ "καταχώρηση του καταλόγου,  επιλέγοντας την ετικέτα μορφότυπο (Format). Ο "
+#~ "προσδιορισμός των μεταδεδομένων βασίζεται στο  πρότυπο ONIX (για βιβλία), "
+#~ "το οποίο αποτελεί ένα διεθνές πρότυπο μεταδεδομένων που χρησιμοποιείται "
+#~ "από την βιομηχανία του βιβλίου για τη ψηφιακή ανταλλαγή πληροφοριών των "
+#~ "προϊόντων της."
+
+#~ msgid "catalog.manage.spotlightDescription"
+#~ msgstr ""
+#~ "Το περιεχόμενο μιας στήλης της Βιτρίνας (πχ., Προτεινόμενα Βιβλία, "
+#~ "Προτεινόμρνη Σειρά) εμφανίζεται στην αρχική σελίδα των εκδόσεων, με τον "
+#~ "τίτλο, την εικόνα και το κείμενο για κάθε στήλη."
+
+#~ msgid "catalog.relatedCategories"
+#~ msgstr "Σχετιζόμενες κατηγορίες"
+
+#~ msgid "common.plusMore"
+#~ msgstr "+ Περισσότερα"
+
+#~ msgid "common.catalogInformation"
+#~ msgstr ""
+#~ "Οι πληροφορίες στον καταλόγου δεν είναι αναγκαίο να συμπληρωθούν κατά το "
+#~ "αρχικό στάδιο της υποβολής του έργου, εκτός από τον Τίτλο και την "
+#~ "Περίληψη."
+
+#~ msgid "common.prefixAndTitle.tip"
+#~ msgstr ""
+#~ "Αν ο τίτλος του βιβλίου ξεκινά από \"Ο\", \"Η\", ή \"Το\" (ή κάτι "
+#~ "παρόμοιο σε αλφαβητική σειρα) εντάξετε τη λέξη στο Πρόθημα (Prefix)."
+
+#~ msgid "user.register.completeForm"
+#~ msgstr "Συμπληρώστε τη φόρμα για να εγγραφείτε στις εκδόσεις."
+
+#~ msgid "user.register.alreadyRegisteredOtherContext"
+#~ msgstr ""
+#~ "<a href=\"{$registerUrl}\">Πατήστε εδώ</a> εάν είστε ήδη εγγεγραμμένος "
+#~ "χρήστης σε αυτή ή άλλη έκδοση της συλλογής"
+
+#~ msgid "user.register.notAlreadyRegisteredOtherContext"
+#~ msgstr ""
+#~ "<a href=\"{$registerUrl}\">Πατήστε εδώ</a> εάν <strong>δεν</strong> είστε "
+#~ "ήδη εγγεγραμμένος σε αυτή ή άλλη έκδοση της συλλογής"
+
+#~ msgid "user.register.loginToRegister"
+#~ msgstr ""
+#~ "Εισάγετε το υπάρχον όνομα χρήστη και τον κωδικό πρόσβασής σας για να "
+#~ "εγγραφείτε σε αυτή την έκδοση."
+
+#~ msgid "about.aboutThePress"
+#~ msgstr "Σχετικά με τις εκδόσεις"
+
+#~ msgid "about.sponsors"
+#~ msgstr "Χορηγοί"
+
+#~ msgid "about.contributors"
+#~ msgstr "Πηγές υποστήριξης"
+
+#~ msgid "about.onlineSubmissions.haveAccount"
+#~ msgstr ""
+#~ "Έχετε ήδη όνομα χρήστη/ κωδικό πρόσβασης για τις εκδόσεις {$pressTitle}?"
+
+#~ msgid "about.onlineSubmissions.needAccount"
+#~ msgstr "Χρειάζεστε ένα όνομα χρήστη / κωδικό πρόσβασης;"
+
+#~ msgid "about.onlineSubmissions.registration"
+#~ msgstr "Εγγραφή χρήστη"
+
+#~ msgid "log.editor.submissionExpedited"
+#~ msgstr ""
+#~ "Ο/Η {$editorName} έχει επιταχύνει τη διαδικασία αξιολόγησης για τη "
+#~ "μονογραφία {$monographId}."
+
+#~ msgid "notification.type.metadataModified"
+#~ msgstr "Τα μεταδεδομένα του \"{$title}\" έχουν μεταβληθεί."
+
+#~ msgid "notification.type.reviewerComment"
+#~ msgstr "Ένας Αξιολογητής έχει σχολιάσει το \"{$title}\"."

@@ -13,41 +13,128 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
+msgid "admin.hostedContexts"
+msgstr "Tárolt kiadók"
+
+msgid "admin.settings.appearance.success"
+msgstr "A webhely megjelenítési beállításai sikeresen frissítve."
+
+msgid "admin.settings.config.success"
+msgstr "A webhely konfigurációs beállításai sikeresen frissítve."
+
+msgid "admin.settings.info.success"
+msgstr "A webhely információi sikeresen frissítve."
+
+msgid "admin.settings.redirect"
+msgstr "Kiadó átirányítás"
+
 msgid "admin.settings.redirectInstructions"
 msgstr ""
 "A főoldalra irányuló kérések át lesznek irányítva ehhez a kiadóhoz. Ez akkor "
 "hasznos például, ha a webhely csak egy kiadót szolgáltat."
 
-msgid "admin.settings.redirect"
-msgstr "Kiadó átirányítás"
-
-msgid "admin.settings.info.success"
-msgstr "A webhely információi sikeresen frissítve."
-
-msgid "admin.settings.config.success"
-msgstr "A webhely konfigurációs beállításai sikeresen frissítve."
-
-msgid "admin.settings.appearance.success"
-msgstr "A webhely megjelenítési beállításai sikeresen frissítve."
-
-msgid "admin.locale.maybeIncomplete"
-msgstr "A *-gal jelölt fordítások befejezetlenek lehetnek."
+msgid "admin.settings.noPressRedirect"
+msgstr "Ne irányítsa át"
 
 msgid "admin.languages.primaryLocaleInstructions"
 msgstr ""
 "Ez lesz az alapértelmezett nyelv a webhely és az összes tárolt kiadó számára."
 
-msgid "admin.settings.noPressRedirect"
-msgstr "Ne irányítsa át"
-
-msgid "admin.hostedContexts"
-msgstr "Tárolt kiadók"
-
-msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgid "admin.languages.supportedLocalesInstructions"
 msgstr ""
-"A tömeges e-mail küldési funkció le lett tiltva ennél a kiadónál. Itt lehet "
-"engedélyezni ezt a funkciót <a href=\"{$siteSettingsUrl}\"> Adminisztráció > "
-"Webhelybeállítások </a>."
+"Válassza ki az összes támogatott nyelvet a webhely számára. A kiválasztott "
+"nyelvek elérhetőek lesznek bármelyik tárolt kiadó számára, és a "
+"nyelvválasztó menüben is megjelennek minden oldalon (ez felülbírálható az "
+"egyes kiadók saját oldalain). Ha több nyelv nem lesz kiválasztva, akkor a "
+"nyelvválasztó menü nem jelenik meg és a kibővített nyelvi beállítások sem "
+"lesznek elérhetőek a kiadók számára."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "A *-gal jelölt fordítások befejezetlenek lehetnek."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"Biztos, hogy eltávolítja ezt a nyelvet? Ez hatással lesz az összes tárolt "
+"kiadóra, ahol használják ezt a nyelvet."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Válasszon ki további nyelveket telepítésre a rendszer számára. A nyelveket "
+"telepíteni kell, mielőtt a kiadók használhatnák őket. Lásd az OMP "
+"dokumentációt arról, hogy hogyan lehet új nyelveket telepíteni."
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Biztosan letiltja ezt a nyelvet? Ez hatással lehet azokra a kiadókra, akik "
+"használják ezt a nyelvet."
+
+msgid "admin.systemVersion"
+msgstr "OMP verzió"
+
+msgid "admin.systemConfiguration"
+msgstr "OMP konfiguráció"
+
+msgid "admin.presses.pressSettings"
+msgstr "Kiadó beállítások"
+
+msgid "admin.presses.noneCreated"
+msgstr "Nem lettek kiadók létrehozva."
+
+msgid "admin.contexts.create"
+msgstr "Kiadó létrehozása"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Egy cím megadása szükséges."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Egy útvonal megadása szükséges."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"Az útvonal csak betűket számokat, valamint _ és - karaktereket tartalmazhat. "
+"Betűvel vagy számmal kell kezdődnie és végződnie."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "A megadott útvonalat már egy másik kiadó használja."
+
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr ""
+"Az elsődleges nyelvet a kiadó által támogatott nyelvek közül kell "
+"kiválasztani."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} sikeresen létrehozva."
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} sikeresen szerkesztve."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Kiadó leírása"
+
+msgid "admin.presses.addPress"
+msgstr "Kiadó hozzáadása"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>MEGJEGYZÉS!</div>\n"
+"<p>A rendszer nem tudta automatikusan felülírni a konfigurációs fájlt. A "
+"konfigurációs módosítások alkalmazásához meg kell nyitnia a <tt>config.inc."
+"php</tt> egy megfelelő szövegszerkesztő programban, és cserélje le ennek "
+"tartalmát az alábbi szövegmező tartalmára.</p>"
+
+msgid "admin.settings.enableBulkEmails.description"
+msgstr ""
+"Válassza ki azokat a kiadókat, amelyeknek engedélyezni kell a tömeges e-"
+"mailek küldését. Ha ez a funkció engedélyezve van, a kiadó menedzser képes "
+"lesz e-mailt küldeni a kiadónál regisztrált összes felhasználónak.<br><br>A "
+"funkció kéretlen e-mailek küldésére való használata egyes joghatóságok "
+"spamellenes törvényeit sértheti, és a szerver e-mailjeit spamként "
+"blokkolhatják. Kérjen műszaki tanácsot, mielőtt engedélyezné ezt a funkciót, "
+"és fontolja meg a kiadó menedzserekkel való konzultációt a funkció megfelelő "
+"használatának biztosítása érdekében.<br><br>A funkció további korlátozásai "
+"minden egyes kiadó számára engedélyezhetők a <a href="
+"\"{$hostedContextsUrl}\">Tárolt kiadók<> listában található "
+"beállításvarázslóval."
 
 msgid "admin.settings.disableBulkEmailRoles.description"
 msgstr ""
@@ -60,99 +147,28 @@ msgstr ""
 "szerkesztőség számára a <a href=\"{$siteSettingsUrl}\"> Adminisztráció > "
 "Webhelybeállítások oldalon </a>."
 
-msgid "admin.settings.enableBulkEmails.description"
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
 msgstr ""
-"Válassza ki azokat a kiadókat, amelyeknek engedélyezni kell a tömeges e-"
-"mailek küldését. Ha ez a funkció engedélyezve van, a kiadó menedzser képes "
-"lesz e-mailt küldeni a kiadónál regisztrált összes felhasználónak.<br><br>A "
-"funkció kéretlen e-mailek küldésére való használata egyes joghatóságok "
-"spamellenes törvényeit sértheti, és a szerver e-mailjeit spamként "
-"blokkolhatják. Kérjen műszaki tanácsot, mielőtt engedélyezné ezt a funkciót, "
-"és fontolja meg a kiadó menedzserekkel való konzultációt a funkció megfelelő "
-"használatának biztosítása érdekében.<br><br>A funkció további korlátozásai "
-"minden egyes kiadó számára engedélyezhetők a <a href=\"{$hostedContextsUrl}\""
-">Tárolt kiadók<> listában található beállításvarázslóval."
-
-msgid "admin.overwriteConfigFileInstructions"
-msgstr ""
-"<h4>MEGJEGYZÉS!</div>\n"
-"<p>A rendszer nem tudta automatikusan felülírni a konfigurációs fájlt. A "
-"konfigurációs módosítások alkalmazásához meg kell nyitnia a "
-"<tt>config.inc.php</tt> egy megfelelő szövegszerkesztő programban, és "
-"cserélje le ennek tartalmát az alábbi szövegmező tartalmára.</p>"
-
-msgid "admin.languages.confirmDisable"
-msgstr ""
-"Biztosan letiltja ezt a nyelvet? Ez hatással lehet azokra a kiadókra, akik "
-"használják ezt a nyelvet."
-
-msgid "admin.languages.installNewLocalesInstructions"
-msgstr ""
-"Válasszon ki további nyelveket telepítésre a rendszer számára. A nyelveket "
-"telepíteni kell, mielőtt a kiadók használhatnák őket. Lásd az OMP "
-"dokumentációt arról, hogy hogyan lehet új nyelveket telepíteni."
-
-msgid "admin.presses.addPress"
-msgstr "Kiadó hozzáadása"
-
-msgid "admin.contexts.contextDescription"
-msgstr "Kiadó leírása"
-
-msgid "admin.contexts.form.edit.success"
-msgstr "{$name} sikeresen szerkesztve."
-
-msgid "admin.contexts.form.create.success"
-msgstr "{$name} sikeresen létrehozva."
-
-msgid "admin.contexts.form.primaryLocaleNotSupported"
-msgstr ""
-"Az elsődleges nyelvet a kiadó által támogatott nyelvek közül kell "
-"kiválasztani."
-
-msgid "admin.contexts.form.pathExists"
-msgstr "A megadott útvonalat már egy másik kiadó használja."
-
-msgid "admin.contexts.form.pathAlphaNumeric"
-msgstr ""
-"Az útvonal csak betűket számokat, valamint _ és - karaktereket tartalmazhat. "
-"Betűvel vagy számmal kell kezdődnie és végződnie."
-
-msgid "admin.contexts.form.pathRequired"
-msgstr "Egy útvonal megadása szükséges."
-
-msgid "admin.contexts.form.titleRequired"
-msgstr "Egy cím megadása szükséges."
-
-msgid "admin.contexts.create"
-msgstr "Kiadó létrehozása"
-
-msgid "admin.presses.noneCreated"
-msgstr "Nem lettek kiadók létrehozva."
-
-msgid "admin.presses.pressSettings"
-msgstr "Kiadó beállítások"
-
-msgid "admin.systemConfiguration"
-msgstr "OMP konfiguráció"
-
-msgid "admin.systemVersion"
-msgstr "OMP verzió"
-
-msgid "admin.languages.confirmUninstall"
-msgstr ""
-"Biztos, hogy eltávolítja ezt a nyelvet? Ez hatással lesz az összes tárolt "
-"kiadóra, ahol használják ezt a nyelvet."
-
-msgid "admin.languages.supportedLocalesInstructions"
-msgstr ""
-"Válassza ki az összes támogatott nyelvet a webhely számára. A kiválasztott "
-"nyelvek elérhetőek lesznek bármelyik tárolt kiadó számára, és a "
-"nyelvválasztó menüben is megjelennek minden oldalon (ez felülbírálható az "
-"egyes kiadók saját oldalain). Ha több nyelv nem lesz kiválasztva, akkor a "
-"nyelvválasztó menü nem jelenik meg és a kibővített nyelvi beállítások sem "
-"lesznek elérhetőek a kiadók számára."
+"A tömeges e-mail küldési funkció le lett tiltva ennél a kiadónál. Itt lehet "
+"engedélyezni ezt a funkciót <a href=\"{$siteSettingsUrl}\"> Adminisztráció > "
+"Webhelybeállítások </a>."
 
 msgid "admin.siteManagement.description"
 msgstr ""
 "Hozzáadhat, szerkeszthet vagy eltávolíthat kiadókat erről az oldalról, és "
 "kezelheti az egész honlapra vonatkozó beállításokat."
+
+msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgstr ""
+
+msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgstr ""
+
+msgid "admin.settings.statistics.geo.description"
+msgstr ""
+
+msgid "admin.settings.statistics.institutions.description"
+msgstr ""
+
+msgid "admin.settings.statistics.sushi.public.description"
+msgstr ""

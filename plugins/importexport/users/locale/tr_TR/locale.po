@@ -60,12 +60,6 @@ msgstr ""
 "kullanıcıların kullanıcı verilerinin içe aktarılmayacağını ve oluşturulacak "
 "tüm yeni rollerin mevcut kullanıcılara da atanacağını unutmayın."
 
-msgid "plugins.importexport.users.import.failedToImportUser"
-msgstr "Kullanıcı verisi alınamadı"
-
-msgid "plugins.importexport.users.import.failedToImportRole"
-msgstr "Kullanıcının rolünü belirlemede hata oluştu"
-
 msgid "plugins.importexport.users.import.dataFile"
 msgstr "Kullanıcı veri dosyası"
 
@@ -77,9 +71,6 @@ msgstr ""
 msgid "plugins.importexport.users.import.continueOnError"
 msgstr "Bir hata oluşsa dahi diğer kullanıcıları yüklemeyi sürdür."
 
-msgid "plugins.importexport.users.import.noFileError"
-msgstr "Sisteme dosya göndermediniz!"
-
 msgid "plugins.importexport.users.import.usersWereImported"
 msgstr "Aşağıdaki kullanıcılar sisteme başarı ile eklendi"
 
@@ -89,6 +80,15 @@ msgstr "Veri içe aktarılırken hata meydana geldi"
 msgid "plugins.importexport.users.import.confirmUsers"
 msgstr ""
 "Bunların sisteme eklenmesini istediğiniz kullanıcılar olduğunu onaylayınız"
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "Uyarı"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr ""
+"{$importHash} ile karıştırma uygulanmış şifreler kullanılamaz; OMP, "
+"{$ompHash} kullanacak şekilde yapılandırılmıştır. Devam ederseniz, içe "
+"aktarılan kullanıcıların şifrelerini sıfırlamanız gerekecektir."
 
 msgid "plugins.importexport.users.unknownPress"
 msgstr ""
@@ -106,24 +106,24 @@ msgstr "Tümünü Dışa Aktar"
 msgid "plugins.importexport.users.export.errorsOccurred"
 msgstr "Veriler dışa aktarılırken hata meydana geldi"
 
-msgid "plugins.importexport.users.uploadFile"
-msgstr ""
-"Devam etmek için lütfen \"İçe Aktar\" düğmesine basarak bir dosya yükleyin."
-
-msgid "plugins.importexport.users.results"
-msgstr "Sonuç"
-
 msgid "plugins.importexport.users.importComplete"
 msgstr ""
 "İçe aktarma başarıyla tamamlandı. Halihazırda kullanılmayan kullanıcı adları "
 "ve e-posta adresleri olan kullanıcılar, beraberindeki kullanıcı gruplarıyla "
 "birlikte içe aktarıldı."
 
-msgid "plugins.importexport.users.import.encryptionMismatch"
-msgstr ""
-"{$importHash} ile karıştırma uygulanmış şifreler kullanılamaz; OMP, "
-"{$ompHash} kullanacak şekilde yapılandırılmıştır. Devam ederseniz, içe "
-"aktarılan kullanıcıların şifrelerini sıfırlamanız gerekecektir."
+msgid "plugins.importexport.users.results"
+msgstr "Sonuç"
 
-msgid "plugins.importexport.users.import.warning"
-msgstr "Uyarı"
+msgid "plugins.importexport.users.uploadFile"
+msgstr ""
+"Devam etmek için lütfen \"İçe Aktar\" düğmesine basarak bir dosya yükleyin."
+
+#~ msgid "plugins.importexport.users.import.failedToImportUser"
+#~ msgstr "Kullanıcı verisi alınamadı"
+
+#~ msgid "plugins.importexport.users.import.failedToImportRole"
+#~ msgstr "Kullanıcının rolünü belirlemede hata oluştu"
+
+#~ msgid "plugins.importexport.users.import.noFileError"
+#~ msgstr "Sisteme dosya göndermediniz!"

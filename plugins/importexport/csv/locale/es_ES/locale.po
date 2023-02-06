@@ -11,46 +11,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.importexport.csv.import.success.description"
+msgid "plugins.importexport.csv.displayName"
+msgstr "Módulo de importación de contenido delimitado por tabuladores"
+
+msgid "plugins.importexport.csv.description"
 msgstr ""
-"La importación se llevó a cabo con éxito. Los elementos importados "
-"correctamente se muestran a continuación."
-
-msgid "plugins.importexport.csv.import.submission"
-msgstr "Envío: '{$title}' importado correctamente."
-
-msgid "plugins.importexport.csv.noSeries"
-msgstr ""
-"La ruta de series {$seriesPath} no existe. Imposible añadirla a este envío."
-
-msgid "plugins.importexport.csv.noAuthorGroup"
-msgstr ""
-"No hay un grupo de autores/as predeterminado en la publicación {$press}. "
-"Omitiendo este envío."
-
-msgid "plugins.importexport.csv.noGenre"
-msgstr "No hay género de manuscrito. Saliendo."
-
-msgid "plugins.importexport.csv.unknownPress"
-msgstr "Editorial desconocida: \"{$contextPath}\". Omitiendo."
-
-msgid "plugins.importexport.csv.unknownLocale"
-msgstr "Configuración regional desconocida: \"{$locale}\". Omitiendo."
-
-msgid "plugins.importexport.csv.unknownUser"
-msgstr "Usuario/a desconocido: \"{$username}\". Saliendo."
-
-msgid "plugins.importexport.csv.fileDoesNotExist"
-msgstr "El archivo \"{$filename}\" no existe. Saliendo."
-
-msgid "plugins.importexport.csv.cliUsage"
-msgstr ""
-"Herramienta de línea de comandos para importar datos CSV a OMP\n"
-"\t\t\tUso:\n"
-"\t\t\t{$scriptName} [--dry-run] fileName.csv username\n"
-"\t\t\tLa opción --dry-run puede utilizarse para hacer pruebas sin realizar "
-"cambios.\n"
-"\t\t\tEspecifique el nombre de usuario/a que quiera asignar a los envíos.\n"
+"Importar envíos en las publicaciones desde datos delimitados por tabuladores."
 
 msgid "plugins.importexport.csv.cliOnly"
 msgstr ""
@@ -61,9 +27,43 @@ msgstr ""
 "\t\t\t... para obtener más información.</p>\n"
 "\t"
 
-msgid "plugins.importexport.csv.description"
+msgid "plugins.importexport.csv.cliUsage"
 msgstr ""
-"Importar envíos en las publicaciones desde datos delimitados por tabuladores."
+"Herramienta de línea de comandos para importar datos CSV a OMP\n"
+"\t\t\tUso:\n"
+"\t\t\t{$scriptName} [--dry-run] fileName.csv username\n"
+"\t\t\tLa opción --dry-run puede utilizarse para hacer pruebas sin realizar "
+"cambios.\n"
+"\t\t\tEspecifique el nombre de usuario/a que quiera asignar a los envíos.\n"
 
-msgid "plugins.importexport.csv.displayName"
-msgstr "Módulo de importación de contenido delimitado por tabuladores"
+msgid "plugins.importexport.csv.fileDoesNotExist"
+msgstr "El archivo \"{$filename}\" no existe. Saliendo."
+
+msgid "plugins.importexport.csv.unknownUser"
+msgstr "Usuario/a desconocido: \"{$username}\". Saliendo."
+
+msgid "plugins.importexport.csv.unknownLocale"
+msgstr "Configuración regional desconocida: \"{$locale}\". Omitiendo."
+
+msgid "plugins.importexport.csv.unknownPress"
+msgstr "Editorial desconocida: \"{$contextPath}\". Omitiendo."
+
+msgid "plugins.importexport.csv.noGenre"
+msgstr "No hay género de manuscrito. Saliendo."
+
+msgid "plugins.importexport.csv.noAuthorGroup"
+msgstr ""
+"No hay un grupo de autores/as predeterminado en la publicación {$press}. "
+"Omitiendo este envío."
+
+msgid "plugins.importexport.csv.noSeries"
+msgstr ""
+"La ruta de series {$seriesPath} no existe. Imposible añadirla a este envío."
+
+msgid "plugins.importexport.csv.import.submission"
+msgstr "Envío: '{$title}' importado correctamente."
+
+msgid "plugins.importexport.csv.import.success.description"
+msgstr ""
+"La importación se llevó a cabo con éxito. Los elementos importados "
+"correctamente se muestran a continuación."

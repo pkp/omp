@@ -11,22 +11,32 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "admin.settings.enableBulkEmails.description"
-msgstr ""
-"Toplu e-posta göndermesine izin verilmesi gereken yayınevlerini seçin. Bu "
-"özellik etkinleştirildiğinde, bir yayınevi yöneticisi, yayınevine kayıtlı "
-"tüm kullanıcılara e-posta gönderebilecektir. <br> <br> Bu özelliğin "
-"istenmeyen e-posta göndermek için kötüye kullanılması, bazı hükümetlerin "
-"istenmeyen posta önleme yasalarını ihlal edebilir ve sunucunuza ait e-"
-"postalarının spam olarak engellenmesi ile sonuçlanabilir. Bu özelliği "
-"etkinleştirmeden önce teknik tavsiye alın ve uygun şekilde kullanıldığından "
-"emin olmak için yayınevi yöneticilerine danışmayı göz önünde bulundurun. <br>"
-" <br> Bu özellikle ilgili diğer kısıtlamalar,  <a href=\"{$hostedContextsUrl}"
-"\">Yayınevleri</a>  listesindeki ayarlar sihirbazını ziyaret ederek her bir "
-"yayınevi için etkinleştirilebilir."
+msgid "admin.hostedContexts"
+msgstr "Yayınevleri"
 
-msgid "admin.contexts.form.titleRequired"
-msgstr "Bir başlık gerekli."
+msgid "admin.settings.appearance.success"
+msgstr "Site görünüm ayarları başarıyla güncellendi."
+
+msgid "admin.settings.config.success"
+msgstr "Site yapılandırma ayarları başarıyla güncellendi."
+
+msgid "admin.settings.info.success"
+msgstr "Site bilgileri başarıyla güncellendi."
+
+msgid "admin.settings.redirect"
+msgstr "Yönlendirilecek yayınevi"
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Ana siteye yapılan istekler bu yayınevine yönlendirilecektir. Bu, örneğin, "
+"site yalnızca tek bir yayınevine ev sahipliği yapıyorsa faydalı olabilir."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Yönlendirme"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr ""
+"Bu, site ve barındırılan tüm yayınevleri için varsayılan dil olacaktır."
 
 msgid "admin.languages.supportedLocalesInstructions"
 msgstr ""
@@ -37,14 +47,93 @@ msgstr ""
 "seçilmediyse, dil geçiş menüsü görünmeyecek ve genişletilmiş dil ayarları "
 "yayınevlerince kullanılamayacaktır."
 
-msgid "admin.hostedContexts"
-msgstr "Yayınevleri"
+msgid "admin.locale.maybeIncomplete"
+msgstr "* İşaretli yerel ayarlar eksik olabilir."
 
-msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgid "admin.languages.confirmUninstall"
 msgstr ""
-"Bu yayınevi için toplu e-posta özelliği devre dışı bırakıldı. Bu özelliği <a "
-"href=\"{$siteSettingsUrl}\">Yönetici > Site Ayarları</a> içinde "
-"etkinleştirin."
+"Bu yerel ayarı kaldırmak istediğinizden emin misiniz? Bu, şu anda yerel "
+"ayarı kullanan herhangi bir barındırılan yayınevini etkileyebilir."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Bu sistemde desteğini yüklemek istediğiniz ek yerel ayarları seçin. Yerel "
+"ayarlar, barındırılan yayınevleri tarafından kullanılmadan önce "
+"kurulmalıdır. Yeni diller için destek ekleme hakkında bilgi için OMP "
+"belgelerine bakın."
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Bu yerel ayarı devre dışı bırakmak istediğinizden emin misiniz? Bu, şu anda "
+"yerel ayarı kullanan herhangi bir barındırılan yayınevini etkileyebilir."
+
+msgid "admin.systemVersion"
+msgstr "OMP Sürümü"
+
+msgid "admin.systemConfiguration"
+msgstr "OMP Yapılandırması"
+
+msgid "admin.presses.pressSettings"
+msgstr "Yayınevi Ayarları"
+
+msgid "admin.presses.noneCreated"
+msgstr "Hiçbir yayınevi oluşturulmadı."
+
+msgid "admin.contexts.create"
+msgstr "Yayınevi Oluştur"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Bir başlık gerekli."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Bir yol gerekli."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"Yol yalnızca harfleri, sayıları ve _ ve - karakterlerini içerebilir. Bir "
+"harf veya rakamla başlamalı ve bitmelidir."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Seçilen yol başka yayınevi tarafından zaten kullanılıyor."
+
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr ""
+"Birincil yerel ayar, yayınevinin desteklediği yerel ayarlardan biri "
+"olmalıdır."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} başarıyla oluşturuldu."
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} başarılı bir şekilde düzenlendi."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Yayınevinin tanımı"
+
+msgid "admin.presses.addPress"
+msgstr "Yayınevi Ekleyin"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4> NOT! </div>\n"
+"<p> Sistem, yapılandırma dosyasındaki değişiklikleri otomatik olarak "
+"kaydedemedi. Yapılandırma değişikliklerinizi uygulamak için <tt> config.inc."
+"php </tt> dosyasını uygun bir metin düzenleyicide açmalı ve içeriğini "
+"aşağıdaki metin alanının içeriğiyle değiştirmelisiniz. </p>"
+
+msgid "admin.settings.enableBulkEmails.description"
+msgstr ""
+"Toplu e-posta göndermesine izin verilmesi gereken yayınevlerini seçin. Bu "
+"özellik etkinleştirildiğinde, bir yayınevi yöneticisi, yayınevine kayıtlı "
+"tüm kullanıcılara e-posta gönderebilecektir. <br> <br> Bu özelliğin "
+"istenmeyen e-posta göndermek için kötüye kullanılması, bazı hükümetlerin "
+"istenmeyen posta önleme yasalarını ihlal edebilir ve sunucunuza ait e-"
+"postalarının spam olarak engellenmesi ile sonuçlanabilir. Bu özelliği "
+"etkinleştirmeden önce teknik tavsiye alın ve uygun şekilde kullanıldığından "
+"emin olmak için yayınevi yöneticilerine danışmayı göz önünde bulundurun. "
+"<br> <br> Bu özellikle ilgili diğer kısıtlamalar,  <a href="
+"\"{$hostedContextsUrl}\">Yayınevleri</a>  listesindeki ayarlar sihirbazını "
+"ziyaret ederek her bir yayınevi için etkinleştirilebilir."
 
 msgid "admin.settings.disableBulkEmailRoles.description"
 msgstr ""
@@ -56,96 +145,26 @@ msgstr ""
 "e-posta özelliği <a href=\"{$siteSettingsUrl}\">Yönetici > Site Ayarları</a> "
 "bölümünden tamamen devre dışı bırakılabilir."
 
-msgid "admin.overwriteConfigFileInstructions"
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
 msgstr ""
-"<h4> NOT! </div>\n"
-"<p> Sistem, yapılandırma dosyasındaki değişiklikleri otomatik olarak "
-"kaydedemedi. Yapılandırma değişikliklerinizi uygulamak için <tt> "
-"config.inc.php </tt> dosyasını uygun bir metin düzenleyicide açmalı ve "
-"içeriğini aşağıdaki metin alanının içeriğiyle değiştirmelisiniz. </p>"
+"Bu yayınevi için toplu e-posta özelliği devre dışı bırakıldı. Bu özelliği <a "
+"href=\"{$siteSettingsUrl}\">Yönetici > Site Ayarları</a> içinde "
+"etkinleştirin."
 
-msgid "admin.presses.addPress"
-msgstr "Yayınevi Ekleyin"
-
-msgid "admin.contexts.contextDescription"
-msgstr "Yayınevinin tanımı"
-
-msgid "admin.contexts.form.edit.success"
-msgstr "{$name} başarılı bir şekilde düzenlendi."
-
-msgid "admin.contexts.form.create.success"
-msgstr "{$name} başarıyla oluşturuldu."
-
-msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgid "admin.siteManagement.description"
 msgstr ""
-"Birincil yerel ayar, yayınevinin desteklediği yerel ayarlardan biri "
-"olmalıdır."
 
-msgid "admin.contexts.form.pathExists"
-msgstr "Seçilen yol başka yayınevi tarafından zaten kullanılıyor."
-
-msgid "admin.contexts.form.pathAlphaNumeric"
+msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
 msgstr ""
-"Yol yalnızca harfleri, sayıları ve _ ve - karakterlerini içerebilir. Bir "
-"harf veya rakamla başlamalı ve bitmelidir."
 
-msgid "admin.contexts.form.pathRequired"
-msgstr "Bir yol gerekli."
-
-msgid "admin.contexts.create"
-msgstr "Yayınevi Oluştur"
-
-msgid "admin.presses.noneCreated"
-msgstr "Hiçbir yayınevi oluşturulmadı."
-
-msgid "admin.presses.pressSettings"
-msgstr "Yayınevi Ayarları"
-
-msgid "admin.systemConfiguration"
-msgstr "OMP Yapılandırması"
-
-msgid "admin.systemVersion"
-msgstr "OMP Sürümü"
-
-msgid "admin.languages.confirmDisable"
+msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
 msgstr ""
-"Bu yerel ayarı devre dışı bırakmak istediğinizden emin misiniz? Bu, şu anda "
-"yerel ayarı kullanan herhangi bir barındırılan yayınevini etkileyebilir."
 
-msgid "admin.languages.installNewLocalesInstructions"
+msgid "admin.settings.statistics.geo.description"
 msgstr ""
-"Bu sistemde desteğini yüklemek istediğiniz ek yerel ayarları seçin. Yerel "
-"ayarlar, barındırılan yayınevleri tarafından kullanılmadan önce "
-"kurulmalıdır. Yeni diller için destek ekleme hakkında bilgi için OMP "
-"belgelerine bakın."
 
-msgid "admin.languages.confirmUninstall"
+msgid "admin.settings.statistics.institutions.description"
 msgstr ""
-"Bu yerel ayarı kaldırmak istediğinizden emin misiniz? Bu, şu anda yerel "
-"ayarı kullanan herhangi bir barındırılan yayınevini etkileyebilir."
 
-msgid "admin.locale.maybeIncomplete"
-msgstr "* İşaretli yerel ayarlar eksik olabilir."
-
-msgid "admin.languages.primaryLocaleInstructions"
-msgstr "Bu, site ve barındırılan tüm yayınevleri için varsayılan dil olacaktır."
-
-msgid "admin.settings.noPressRedirect"
-msgstr "Yönlendirme"
-
-msgid "admin.settings.redirectInstructions"
+msgid "admin.settings.statistics.sushi.public.description"
 msgstr ""
-"Ana siteye yapılan istekler bu yayınevine yönlendirilecektir. Bu, örneğin, "
-"site yalnızca tek bir yayınevine ev sahipliği yapıyorsa faydalı olabilir."
-
-msgid "admin.settings.redirect"
-msgstr "Yönlendirilecek yayınevi"
-
-msgid "admin.settings.info.success"
-msgstr "Site bilgileri başarıyla güncellendi."
-
-msgid "admin.settings.config.success"
-msgstr "Site yapılandırma ayarları başarıyla güncellendi."
-
-msgid "admin.settings.appearance.success"
-msgstr "Site görünüm ayarları başarıyla güncellendi."

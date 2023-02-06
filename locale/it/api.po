@@ -40,3 +40,6 @@ msgstr "La pubblicazione che hai cercato non è in questa proposta."
 
 msgid "api.submissions.403.cantChangeContext"
 msgstr "Non è possibile modificare la Casa Editrice di una proposta."
+
+msgid "api.submission.400.inactiveSection"
+msgstr ""

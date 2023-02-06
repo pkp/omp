@@ -11,8 +11,32 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "plugins.importexport.native.error.unknownSeries"
-msgstr "Непознати серии {$param}"
+msgid "plugins.importexport.native.displayName"
+msgstr "Домашен XML додаток"
+
+msgid "plugins.importexport.native.description"
+msgstr "Увезете и извезувајте книги во мајчин XML формат на ОМП."
+
+msgid "plugins.importexport.native.import"
+msgstr "Увоз"
+
+msgid "plugins.importexport.native.import.instructions"
+msgstr "Поставете XML-датотека за увоз"
+
+msgid "plugins.importexport.native.export"
+msgstr "Извоз"
+
+msgid "plugins.importexport.native.exportSubmissionsSelect"
+msgstr "Изберете монографии за извоз"
+
+msgid "plugins.importexport.native.results"
+msgstr "Резултати"
+
+msgid "plugins.inportexport.native.uploadFile"
+msgstr "Поставете датотека под „Увоз“ за да продолжите."
+
+msgid "plugins.importexport.native.importComplete"
+msgstr "Увозот заврши успешно. Увезени се следниве ставки:"
 
 msgid "plugins.importexport.native.onix30.pressMissingFields"
 msgstr ""
@@ -20,38 +44,14 @@ msgstr ""
 "ONIX што се користат во овој извоз. Одете на <a href=\"{$url}\"> Притиснете "
 "Поставки </a> и пополнете ги деталите што недостасуваат."
 
-msgid "plugins.importexport.native.importComplete"
-msgstr "Увозот заврши успешно. Увезени се следниве ставки:"
-
-msgid "plugins.inportexport.native.uploadFile"
-msgstr "Поставете датотека под „Увоз“ за да продолжите."
-
-msgid "plugins.importexport.native.results"
-msgstr "Резултати"
-
-msgid "plugins.importexport.native.exportSubmissionsSelect"
-msgstr "Изберете монографии за извоз"
-
-msgid "plugins.importexport.native.export"
-msgstr "Извоз"
-
-msgid "plugins.importexport.native.import.instructions"
-msgstr "Поставете XML-датотека за увоз"
-
-msgid "plugins.importexport.native.import"
-msgstr "Увоз"
-
-msgid "plugins.importexport.native.description"
-msgstr "Увезете и извезувајте книги во мајчин XML формат на ОМП."
-
-msgid "plugins.importexport.native.displayName"
-msgstr "Домашен XML додаток"
+msgid "plugins.importexport.native.error.unknownSeries"
+msgstr "Непознати серии {$param}"
 
 msgid "plugins.importexport.native.cliUsage"
 msgstr ""
 "Користење: {$scriptName} {$pluginName} [command] ...\n"
 "Команди:\n"
 "\timport [xmlFileName] [press_path] [user_name] ...\n"
-"\texport [xmlFileName] [press_path] monographs [monographId1] [monographId2] "
-"...\n"
+"\texport [xmlFileName] [press_path] monographs [monographId1] "
+"[monographId2] ...\n"
 "\texport [xmlFileName] [press_path] monograph [monographId]\n"

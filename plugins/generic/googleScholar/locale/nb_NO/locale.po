@@ -11,9 +11,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
+msgid "plugins.generic.googleScholar.name"
+msgstr "Google Scholar-indeksering"
+
 msgid "plugins.generic.googleScholar.description"
 msgstr ""
 "Programtillegget gjør at publisert materiale indekseres i Google Scholar."
-
-msgid "plugins.generic.googleScholar.name"
-msgstr "Google Scholar-indeksering"

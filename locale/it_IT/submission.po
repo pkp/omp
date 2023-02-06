@@ -17,17 +17,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-msgid "submission.authorListSeparator"
-msgstr "; "
-
-msgid "submission.upload.selectBookElement"
-msgstr "Seleziona un elemento del libro"
+msgid "submission.upload.selectComponent"
+msgstr "Seleziona un componente"
 
 msgid "submission.title"
 msgstr "Titolo del libro"
-
-msgid "submission.title.tip"
-msgstr "Puoi scegliere di caricare questi tipi: 'immagine', 'testo' oppure un altro tipo di elemento multimediale scelto tra 'software' o 'interattivo'. Per favore, scegli solo quello che meglio identifica il prodotto da te caricato. Puoi trovare alcuni esempi qui <a target=\"_blank\" href=\"http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type\">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>"
 
 msgid "submission.select"
 msgstr "Seleziona la proposta"
@@ -44,11 +38,23 @@ msgstr ""
 "cura di è costituito da capitoli scritti ciascuno da un diverso autore (i "
 "dettagli di ogni capitolo verranno inseriti più avanti)"
 
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Curatela"
+
 msgid "submission.workflowType.editedVolume"
-msgstr "Volume A cura di: gli Autori vengono associati solo ai contenuti dei propri Capitoli."
+msgstr ""
+"Volume A cura di: gli Autori vengono associati solo ai contenuti dei propri "
+"Capitoli."
 
 msgid "submission.workflowType.authoredWork"
-msgstr "Monografia: gli Autori vengono associati a tutti i contenuti del libro."
+msgstr ""
+"Monografia: gli Autori vengono associati a tutti i contenuti del libro."
+
+msgid "submission.workflowType.change"
+msgstr "Cambiare"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (a cura di)"
 
 msgid "submission.monograph"
 msgstr "Monografia"
@@ -58,6 +64,9 @@ msgstr "Pronto per andare in produzione"
 
 msgid "submission.fairCopy"
 msgstr "Bella copia"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
 
 msgid "submission.artwork.permissions"
 msgstr "Permessi"
@@ -73,6 +82,9 @@ msgstr "Aggiungi un nuovo capitolo"
 
 msgid "submission.chapter.editChapter"
 msgstr "Edita i Capitoli"
+
+msgid "submission.chapter.pages"
+msgstr "Pagine"
 
 msgid "submission.copyedit"
 msgstr "Fai il copyediting"
@@ -128,14 +140,17 @@ msgstr "Nuova proposta"
 msgid "submission.submit.upload"
 msgstr "Carica"
 
-msgid "submission.submit.upload.description"
-msgstr "Carica i file associati a questa immissione, compresi: manoscritto, prospetto, lettera di presentazione, ecc. Per i volumi A cura di, come pure per le Monografie, carica il manoscritto in un unico file, se possibile."
+msgid "author.volumeEditor"
+msgstr ""
 
-msgid "submission.submit.copyrightNoticeAgree"
-msgstr "Accetto i termini stabiliti dalla legge sul copyright."
+msgid "author.isVolumeEditor"
+msgstr "Identifica questo contributore come il curatore del volume."
 
 msgid "submission.submit.seriesPosition"
 msgstr "Posizione occupata nella collana (cio?, Libro 2, o Volume 2)"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Esempi: Libro 2, Volume 2"
 
 msgid "submission.submit.privacyStatement"
 msgstr "Informativa sulla privacy"
@@ -158,6 +173,9 @@ msgstr "Metadati"
 msgid "submission.submit.finishingUp"
 msgstr "Concludi"
 
+msgid "submission.submit.confirmation"
+msgstr "Conferma"
+
 msgid "submission.submit.nextSteps"
 msgstr "Prossimi passi"
 
@@ -168,31 +186,24 @@ msgid "submission.submit.generalInformation"
 msgstr "Informazioni generali"
 
 msgid "submission.submit.whatNext.description"
-msgstr "La Press ? stata informata del tuo caricamento e ti ? stata inviata una email di conferma. Appena l'editor avr? visionato il tuo lavoro, si metter? in contatto con te."
+msgstr ""
+"La Press ? stata informata del tuo caricamento e ti ? stata inviata una "
+"email di conferma. Appena l'editor avr? visionato il tuo lavoro, si metter? "
+"in contatto con te."
 
 msgid "submission.submit.checklistErrors"
-msgstr "Per favore, leggi e spunta le voci della checklist per il caricamento. Ci sono {$itemsRemaining} voci ancora non controllate."
+msgstr ""
+"Per favore, leggi e spunta le voci della checklist per il caricamento. Ci "
+"sono {$itemsRemaining} voci ancora non controllate."
 
 msgid "submission.submit.placement"
 msgstr "Posizione del caricamento"
 
-msgid "submission.submit.placement.seriesDescription"
-msgstr "Nel caso in cui il libro debbe far parte di una collana..."
-
-msgid "submission.submit.placement.seriesPositionDescription"
-msgstr "I titoli presenti in una collana vengono di norma riportati in un ordine inverso rispetto a quello di pubblicazione; ci? serve a dare il senso dello sviluppo della collana e per mantenere in testa i titoli pi? recenti."
-
-msgid "submission.submit.placement.categories"
-msgstr "Categorie"
-
-msgid "submission.submit.placement.categoriesDescription"
-msgstr "Seleziona una delle categorie della Press che vuoi attribuire a questo documento."
-
 msgid "submission.submit.userGroup"
 msgstr "Carico nel mio ruolo di..."
 
-msgid "submission.submit.confirmExpedite"
-msgstr "Conferma i metadati per velocizzare il caricamento"
+msgid "submission.submit.noContext"
+msgstr "La casa editrice di questa proposta non si trova."
 
 msgid "grid.chapters.title"
 msgstr "Capitoli"
@@ -200,20 +211,48 @@ msgstr "Capitoli"
 msgid "grid.copyediting.deleteCopyeditorResponse"
 msgstr "Cancella il caricamento del Copyeditor"
 
+msgid "submission.complete"
+msgstr "Approvato"
+
+msgid "submission.incomplete"
+msgstr "In attesa di approvazione"
+
 msgid "submission.editCatalogEntry"
 msgstr "Accesso"
 
 msgid "submission.catalogEntry.new"
 msgstr "Nuovo accesso al Catalogo"
 
+msgid "submission.catalogEntry.add"
+msgstr "Aggiungere la selezione al catalgogo"
+
+msgid "submission.catalogEntry.select"
+msgstr "Seleziona i libri da aggiungere al catalogo"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr "Devi selezionare almeno un libro da aggiungere al catalogo."
+
 msgid "submission.catalogEntry.confirm"
 msgstr "Aggiungi questo libro al catalogo pubblico"
 
 msgid "submission.catalogEntry.confirm.required"
-msgstr "Per favore, conferma che l'immissione ? pronta per entrare nel Catalogo."
+msgstr ""
+"Per favore, conferma che l'immissione ? pronta per entrare nel Catalogo."
 
 msgid "submission.catalogEntry.isAvailable"
 msgstr "Questa Monografia ? pronta per essere aggiunta al Catalogo pubblico."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Vedi la proposta"
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Date di pubblicazione"
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Tutti i capitoli avranno la data di pubblicazione del libro."
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Ogni capitolo può avere la propria data di pubblicazione."
 
 msgid "submission.catalogEntry.monographMetadata"
 msgstr "Monografia"
@@ -223,12 +262,6 @@ msgstr "Catalogo"
 
 msgid "submission.catalogEntry.publicationMetadata"
 msgstr "Formato di Pubblicazione"
-
-msgid "submission.event.participantAdded"
-msgstr "\"{$name}\" ({$username}) ? stato aggiunto a {$userGroupName}."
-
-msgid "submission.event.participantRemoved"
-msgstr "\"{$name}\" ({$username}) ? stato cancellato da {$userGroupName}."
 
 msgid "submission.event.metadataPublished"
 msgstr "I metadati della Monografia sono stati approvati per la pubblicazione."
@@ -243,7 +276,9 @@ msgid "submission.event.publicationFormatMadeUnavailable"
 msgstr "Il formato \"{$publicationFormatName}\" non ? pi? disponibile."
 
 msgid "submission.event.publicationFormatPublished"
-msgstr "Il formato \"{$publicationFormatName}\" ? stato approvato per la pubblicazione."
+msgstr ""
+"Il formato \"{$publicationFormatName}\" ? stato approvato per la "
+"pubblicazione."
 
 msgid "submission.event.publicationFormatUnpublished"
 msgstr "Il formato \"{$publicationFormatName}\" non ? pi? pubblicato."
@@ -260,8 +295,84 @@ msgstr "Il formato \"{$formatName}\" ? stato creato."
 msgid "submission.event.publicationFormatRemoved"
 msgstr "Il formato \"{$formatName}\" ? stato rimosso."
 
-msgid "metadata.property.displayName.date"
-msgstr "Data di pubblicazione"
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Inviare in revisione esterna"
+
+msgid "workflow.review.externalReview"
+msgstr "Revisione esterna"
+
+msgid "submission.upload.fileContents"
+msgstr "Componente della proposta"
+
+msgid "submission.dependentFiles"
+msgstr "File dipendenti"
+
+msgid "submission.metadataDescription"
+msgstr ""
+"Queste specifiche sono basate sul set di dati Dublin Core, uno standard "
+"internazionale di descrizione di contenuti editoriali."
+
+msgid "section.any"
+msgstr "Qualsiasi collana"
+
+msgid "submission.list.monographs"
+msgstr "Libri"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} libri"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} di {$total} libri"
+
+msgid "submission.list.orderFeatures"
+msgstr "Ordinare gli elementi"
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Trascinare oppure usare i pulsanti sopra e sotto per cambiare l'ordine degli "
+"elementi in home page."
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"Trascinare oppure usare i pulsanti sopra e sotto per cambiare l'ordine degli "
+"elementi in {$title}."
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Salva l'ordine"
+
+msgid "submission.list.viewEntry"
+msgstr "Vedi scheda"
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} Titoli"
+
+msgid "publication.catalogEntry"
+msgstr "Scheda di catalogo"
+
+msgid "publication.catalogEntry.success"
+msgstr "I dettagli della scheda di catalogo sono stati aggiornati."
+
+msgid "publication.invalidSeries"
+msgstr "La collana di questa pubblicazione non si trova."
+
+msgid "publication.inactiveSeries"
+msgstr "{$series} (Inattiva)"
+
+msgid "publication.required.issue"
+msgstr ""
+"la pubblicazione deve essere assegnata a un fascicolo prima di poter essere "
+"pubblicata."
+
+msgid "publication.publishedIn"
+msgstr "Pubblicata in <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Tutti i requisiti per la pubblicazione sono soddisfatti. Sei sicuro di voler "
+"rendere questa scheda di catalogo pubblica?"
+
+msgid "publication.scheduledIn"
+msgstr "Pubblicazione programmata in <a href=\"{$issueUrl}\">{$issueName}</a>."
 
 msgid "submission.publication"
 msgstr "Pubblicazione"
@@ -275,10 +386,18 @@ msgstr "Pianificato"
 msgid "publication.status.unscheduled"
 msgstr "Rimosso dalla pianficazione"
 
+msgid "submission.publications"
+msgstr "Pubblicazioni"
+
 msgid "publication.copyrightYearBasis.issueDescription"
 msgstr ""
 "L'anno di copyright sarà configurato automaticamente quando questo articolo "
 "sarà assegnato ad un'uscita."
+
+msgid "publication.copyrightYearBasis.submissionDescription"
+msgstr ""
+"L'anno di copyright sarà ricavato automaticamente dalla data di "
+"pubblicazione."
 
 msgid "publication.datePublished"
 msgstr "Data di pubblicazione"
@@ -321,6 +440,19 @@ msgstr ""
 "Per essere pubblicato un'articolo deve essere nella fase di copy-editing o "
 "produzione."
 
+msgid "submission.license.description"
+msgstr ""
+"La licenza sarà impostata automaticamente come <a href='{$licenseUrl}' "
+"target='_blank'>{$licenseName}</a> dopo la pubblicazione."
+
+msgid "submission.copyrightHolder.description"
+msgstr ""
+"Come copyright sarà indicato automaticamente {$copyright} dopo la "
+"pubblicazione."
+
+msgid "submission.copyrightOther.description"
+msgstr "Assegna un copyright per proposte pubblicate nella parte seguente."
+
 msgid "publication.unpublish"
 msgstr "Rimuovi dalla pubblicazione"
 
@@ -336,251 +468,44 @@ msgstr "Dettagli di pubblicazione per la versione {$version}"
 msgid "submission.queries.production"
 msgstr "Discussioni durante la produzione"
 
-msgid "submission.copyrightOther.description"
-msgstr "Assegna un copyright per proposte pubblicate nella parte seguente."
-
-msgid "submission.copyrightHolder.description"
-msgstr ""
-"Come copyright sarà indicato automaticamente {$copyright} dopo la "
-"pubblicazione."
-
-msgid "submission.license.description"
-msgstr ""
-"La licenza sarà impostata automaticamente come <a href='{$licenseUrl}' "
-"target='_blank'>{$licenseName}</a> dopo la pubblicazione."
-
-msgid "publication.copyrightYearBasis.submissionDescription"
-msgstr ""
-"L'anno di copyright sarà ricavato automaticamente dalla data di "
-"pubblicazione."
-
-msgid "submission.publications"
-msgstr "Pubblicazioni"
-
-msgid "publication.scheduledIn"
-msgstr "Pubblicazione programmata in <a href=\"{$issueUrl}\">{$issueName}</a>."
-
-msgid "publication.publish.confirmation"
-msgstr ""
-"Tutti i requisiti per la pubblicazione sono soddisfatti. Sei sicuro di voler "
-"rendere questa scheda di catalogo pubblica?"
-
-msgid "publication.publishedIn"
-msgstr "Pubblicata in <a href=\"{$issueUrl}\">{$issueName}</a>."
-
-msgid "publication.required.issue"
-msgstr ""
-"la pubblicazione deve essere assegnata a un fascicolo prima di poter essere "
-"pubblicata."
-
-msgid "publication.inactiveSeries"
-msgstr "{$series} (Inattiva)"
-
-msgid "publication.invalidSeries"
-msgstr "La collana di questa pubblicazione non si trova."
-
-msgid "publication.catalogEntry.success"
-msgstr "I dettagli della scheda di catalogo sono stati aggiornati."
-
-msgid "publication.catalogEntry"
-msgstr "Scheda di catalogo"
-
-msgid "catalog.browseTitles"
-msgstr "{$numTitles} Titoli"
-
-msgid "submission.list.viewEntry"
-msgstr "Vedi scheda"
-
-msgid "submission.list.saveFeatureOrder"
-msgstr "Salva l'ordine"
-
-msgid "submission.list.orderingFeaturesSection"
-msgstr ""
-"Trascinare oppure usare i pulsanti sopra e sotto per cambiare l'ordine degli "
-"elementi in {$title}."
-
-msgid "submission.list.orderingFeatures"
-msgstr ""
-"Trascinare oppure usare i pulsanti sopra e sotto per cambiare l'ordine degli "
-"elementi in home page."
-
-msgid "submission.list.orderFeatures"
-msgstr "Ordinare gli elementi"
-
-msgid "submission.list.itemsOfTotalMonographs"
-msgstr "{$count} di {$total} libri"
-
-msgid "submission.list.countMonographs"
-msgstr "{$count} libri"
-
-msgid "submission.list.monographs"
-msgstr "Libri"
-
-msgid "section.any"
-msgstr "Qualsiasi collana"
-
-msgid "submission.metadataDescription"
-msgstr ""
-"Queste specifiche sono basate sul set di dati Dublin Core, uno standard "
-"internazionale di descrizione di contenuti editoriali."
-
-msgid "submission.dependentFiles"
-msgstr "File dipendenti"
-
-msgid "submission.upload.fileContents"
-msgstr "Componente della proposta"
-
-msgid "workflow.review.externalReview"
-msgstr "Revisione esterna"
-
-msgid "editor.submission.decision.sendExternalReview"
-msgstr "Inviare in revisione esterna"
-
-msgid "submission.catalogEntry.enableChapterPublicationDates"
-msgstr "Ogni capitolo può avere la propria data di pubblicazione."
-
-msgid "submission.catalogEntry.disableChapterPublicationDates"
-msgstr "Tutti i capitoli avranno la data di pubblicazione del libro."
-
-msgid "submission.catalogEntry.chapterPublicationDates"
-msgstr "Date di pubblicazione"
-
-msgid "submission.catalogEntry.viewSubmission"
-msgstr "Vedi la proposta"
-
-msgid "submission.catalogEntry.selectionMissing"
-msgstr "Devi selezionare almeno un libro da aggiungere al catalogo."
-
-msgid "submission.catalogEntry.select"
-msgstr "Seleziona i libri da aggiungere al catalogo"
-
-msgid "submission.catalogEntry.add"
-msgstr "Aggiungere la selezione al catalgogo"
-
-msgid "submission.incomplete"
-msgstr "In attesa di approvazione"
-
-msgid "submission.complete"
-msgstr "Approvato"
-
-msgid "submission.submit.noContext"
-msgstr "La casa editrice di questa proposta non si trova."
-
-msgid "submission.submit.confirmation"
-msgstr "Conferma"
-
-msgid "submission.submit.seriesPosition.description"
-msgstr "Esempi: Libro 2, Volume 2"
-
-msgid "author.isVolumeEditor"
-msgstr "Identifica questo contributore come il curatore del volume."
-
-msgid "submission.chapter.pages"
-msgstr "Pagine"
-
-msgid "submission.editorName"
-msgstr "{$editorName} (a cura di)"
-
-msgid "submission.workflowType.change"
-msgstr "Cambiare"
-
-msgid "submission.workflowType.editedVolume.label"
-msgstr "Curatela"
-
-msgid "submission.upload.selectComponent"
-msgstr "Seleziona un componente"
-
-msgid "editor.submission.decision.sendInternalReview.completed"
-msgstr "Inviata alla revisione interna"
-
-msgid "editor.submission.decision.sendInternalReview.log"
-msgstr "{$editorName} ha inviato questa proposta alla revisione interna."
-
-msgid "editor.submission.decision.sendInternalReview.description"
-msgstr "Questa proposta è pronta per essere inviata alla revisione interna."
-
-msgid "editor.submission.decision.sendInternalReview"
-msgstr "Invia alla revisione interna"
-
-msgid "chapter.pages"
-msgstr "Pagine"
-
-msgid "submission.chapterCreated"
-msgstr " — Capitolo creato"
-
-msgid "submission.withoutChapter"
-msgstr "{$name} — Senza questo capitolo"
-
-msgid "chapter.volume"
-msgstr "Volume"
-
-msgid "publication.publish.success"
-msgstr "Stato della pubblicazione cambiato con successo."
+msgid "publication.chapter.landingPage"
+msgstr "Pagina del capitolo"
 
 msgid "publication.chapter.hasLandingPage"
 msgstr ""
 "Mostra questo capitolo nella sua pagina e imposta un collegamento a quella "
 "pagina dal sommario del volume."
 
-msgid "publication.chapter.landingPage"
-msgstr "Pagina del capitolo"
+msgid "publication.publish.success"
+msgstr "Stato della pubblicazione cambiato con successo."
+
+msgid "chapter.volume"
+msgstr "Volume"
+
+msgid "submission.withoutChapter"
+msgstr "{$name} — Senza questo capitolo"
+
+msgid "submission.chapterCreated"
+msgstr " — Capitolo creato"
+
+msgid "chapter.pages"
+msgstr "Pagine"
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr "Invia alla revisione interna"
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr "Questa proposta è pronta per essere inviata alla revisione interna."
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr "{$editorName} ha inviato questa proposta alla revisione interna."
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr "Inviata alla revisione interna"
 
 #, fuzzy
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr "La proposta, {$title}, è stata inviata alla fase di revisione interna."
-
-msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
-msgstr ""
-"Invia un'email agli autori per informarli che la proposta sarà sottoposta a "
-"peer review. Se possibile, fornisci agli autori qualche indicazione sulla "
-"durata del processo di peer review e su quando si aspettano di avere di "
-"nuovo notizie dalla redazione."
-
-msgid "editor.submission.recommend.sendExternalReview"
-msgstr "Raccomandare l'invio alla revisione esterna"
-
-msgid "editor.submission.decision.sendExternalReview.completed"
-msgstr "Inviato alla fase di revisione esterna"
-
-msgid "editor.submission.decision.promoteFiles.externalReview"
-msgstr "Seleziona i file da inviare alla fase di revisione."
-
-msgid "editor.submission.decision.backToReview.log"
-msgstr ""
-"{$editorName} ha annullato la decisione di accettare questa proposta e l'ha "
-"rimandata alla fase di revisione."
-
-msgid "editor.submission.decision.backToReview"
-msgstr "Torna alla revisione"
-
-msgid "editor.submission.decision.backToReview.completed.description"
-msgstr "La proposta, {$title}, è stata rimandata alla fase di revisione."
-
-msgid "editor.submission.decision.sendExternalReview.completed.description"
-msgstr "La proposta, {$title}, è stata inviata alla fase di revisione esterna."
-
-msgid "editor.submission.decision.sendExternalReview.log"
-msgstr ""
-"{$editorName} ha inviato questa proposta alla fase di revisione esterna."
-
-msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
-msgstr ""
-"Invia un'email agli autori per informarli che il loro lavoro è stato "
-"rimandato alla fase di revisione. Spiega il motivo di questa decisione e "
-"informa l'autore di quali ulteriori revisioni saranno intraprese."
-
-msgid "editor.submission.recommend.sendExternalReview.log"
-msgstr ""
-"{$editorName} ha raccomandato di inviare questa proposta alla fase di "
-"revisione esterna."
-
-msgid "editor.submission.decision.backToReview.description"
-msgstr ""
-"Revoca la decisione di accettare la proposta e rimandala alla fase di "
-"revisione."
-
-msgid "editor.submission.recommend.sendExternalReview.description"
-msgstr "Raccomanda l'invio di questo documento alla fase di revisione esterna."
 
 msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
 msgstr ""
@@ -592,5 +517,153 @@ msgstr ""
 msgid "editor.submission.decision.promoteFiles.internalReview"
 msgstr "Selezionare i file da inviare alla fase di revisione interna."
 
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr ""
+"{$editorName} ha inviato questa proposta alla fase di revisione esterna."
+
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr "Inviato alla fase di revisione esterna"
+
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr "La proposta, {$title}, è stata inviata alla fase di revisione esterna."
+
+msgid "editor.submission.decision.backToReview"
+msgstr "Torna alla revisione"
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr ""
+"Revoca la decisione di accettare la proposta e rimandala alla fase di "
+"revisione."
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+"{$editorName} ha annullato la decisione di accettare questa proposta e l'ha "
+"rimandata alla fase di revisione."
+
 msgid "editor.submission.decision.backToReview.completed"
 msgstr "Rimandato alla revisione"
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr "La proposta, {$title}, è stata rimandata alla fase di revisione."
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+"Invia un'email agli autori per informarli che il loro lavoro è stato "
+"rimandato alla fase di revisione. Spiega il motivo di questa decisione e "
+"informa l'autore di quali ulteriori revisioni saranno intraprese."
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+"Invia un'email agli autori per informarli che la proposta sarà sottoposta a "
+"peer review. Se possibile, fornisci agli autori qualche indicazione sulla "
+"durata del processo di peer review e su quando si aspettano di avere di "
+"nuovo notizie dalla redazione."
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr "Seleziona i file da inviare alla fase di revisione."
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr "Raccomandare l'invio alla revisione esterna"
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr "Raccomanda l'invio di questo documento alla fase di revisione esterna."
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+"{$editorName} ha raccomandato di inviare questa proposta alla fase di "
+"revisione esterna."
+
+msgid "doi.submission.incorrectContext"
+msgstr ""
+
+msgid "publication.chapter.licenseUrl"
+msgstr ""
+
+msgid "publication.chapterDefaultLicenseURL"
+msgstr ""
+
+msgid "submission.copyright.description"
+msgstr ""
+
+msgid "submission.wizard.notAllowed.description"
+msgstr ""
+
+msgid "submission.wizard.noSectionAllowed.description"
+msgstr ""
+
+msgid "submission.wizard.sectionClosed.message"
+msgstr ""
+
+msgid "submission.sectionNotFound"
+msgstr ""
+
+msgid "submission.sectionRestrictedToEditors"
+msgstr ""
+
+msgid "submission.wizard.submitting.monograph"
+msgstr ""
+
+msgid "submission.wizard.submitting.monographInLanguage"
+msgstr ""
+
+msgid "submission.wizard.submitting.editedVolume"
+msgstr ""
+
+msgid "submission.wizard.submitting.editedVolumeInLanguage"
+msgstr ""
+
+msgid "submission.wizard.chapters.description"
+msgstr ""
+
+#~ msgid "submission.upload.selectBookElement"
+#~ msgstr "Seleziona un elemento del libro"
+
+#~ msgid "submission.title.tip"
+#~ msgstr ""
+#~ "Puoi scegliere di caricare questi tipi: 'immagine', 'testo' oppure un "
+#~ "altro tipo di elemento multimediale scelto tra 'software' o "
+#~ "'interattivo'. Per favore, scegli solo quello che meglio identifica il "
+#~ "prodotto da te caricato. Puoi trovare alcuni esempi qui <a target=\"_blank"
+#~ "\" href=\"http://dublincore.org/documents/2001/04/12/usageguide/generic."
+#~ "shtml#type\">http://dublincore.org/documents/2001/04/12/usageguide/"
+#~ "generic.shtml#type</a>"
+
+#~ msgid "submission.submit.upload.description"
+#~ msgstr ""
+#~ "Carica i file associati a questa immissione, compresi: manoscritto, "
+#~ "prospetto, lettera di presentazione, ecc. Per i volumi A cura di, come "
+#~ "pure per le Monografie, carica il manoscritto in un unico file, se "
+#~ "possibile."
+
+#~ msgid "submission.submit.copyrightNoticeAgree"
+#~ msgstr "Accetto i termini stabiliti dalla legge sul copyright."
+
+#~ msgid "submission.submit.placement.seriesDescription"
+#~ msgstr "Nel caso in cui il libro debbe far parte di una collana..."
+
+#~ msgid "submission.submit.placement.seriesPositionDescription"
+#~ msgstr ""
+#~ "I titoli presenti in una collana vengono di norma riportati in un ordine "
+#~ "inverso rispetto a quello di pubblicazione; ci? serve a dare il senso "
+#~ "dello sviluppo della collana e per mantenere in testa i titoli pi? "
+#~ "recenti."
+
+#~ msgid "submission.submit.placement.categories"
+#~ msgstr "Categorie"
+
+#~ msgid "submission.submit.placement.categoriesDescription"
+#~ msgstr ""
+#~ "Seleziona una delle categorie della Press che vuoi attribuire a questo "
+#~ "documento."
+
+#~ msgid "submission.submit.confirmExpedite"
+#~ msgstr "Conferma i metadati per velocizzare il caricamento"
+
+#~ msgid "submission.event.participantAdded"
+#~ msgstr "\"{$name}\" ({$username}) ? stato aggiunto a {$userGroupName}."
+
+#~ msgid "submission.event.participantRemoved"
+#~ msgstr "\"{$name}\" ({$username}) ? stato cancellato da {$userGroupName}."
+
+#~ msgid "metadata.property.displayName.date"
+#~ msgstr "Data di pubblicazione"

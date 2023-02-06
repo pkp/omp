@@ -8,42 +8,45 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
-
-msgid "plugins.importexport.native.error.unknownSeries"
-msgstr "Неизвестные серии {$param}"
-
-msgid "plugins.importexport.native.onix30.pressMissingFields"
-msgstr ""
-"У издательства  отсутствует некоторая необходимая информация для метаданных "
-"ONIX, используемых в данном экспорте. Пожалуйста, перейдите к <a href=\""
-"{$url}\">Настройки издательства</a> и заполните недостающие данные."
-
-msgid "plugins.importexport.native.importComplete"
-msgstr "Импорт успешно завершен. Следующие элементы были импортированы:"
-
-msgid "plugins.inportexport.native.uploadFile"
-msgstr "Пожалуйста загрузите файл в раздел «Импорт», чтобы продолжить."
-
-msgid "plugins.importexport.native.results"
-msgstr "Результаты"
-
-msgid "plugins.importexport.native.exportSubmissionsSelect"
-msgstr "Выберите монографии для экспорта"
-
-msgid "plugins.importexport.native.export"
-msgstr "Экспорт"
-
-msgid "plugins.importexport.native.import.instructions"
-msgstr "Загрузите файл XML для импорта"
-
-msgid "plugins.importexport.native.import"
-msgstr "Импорт"
 
 msgid "plugins.importexport.native.displayName"
 msgstr "Модуль собственный XML"
 
 msgid "plugins.importexport.native.description"
 msgstr "Импортирует и экспортирует книги в собственном XML-формате OMP."
+
+msgid "plugins.importexport.native.import"
+msgstr "Импорт"
+
+msgid "plugins.importexport.native.import.instructions"
+msgstr "Загрузите файл XML для импорта"
+
+msgid "plugins.importexport.native.export"
+msgstr "Экспорт"
+
+msgid "plugins.importexport.native.exportSubmissionsSelect"
+msgstr "Выберите монографии для экспорта"
+
+msgid "plugins.importexport.native.results"
+msgstr "Результаты"
+
+msgid "plugins.inportexport.native.uploadFile"
+msgstr "Пожалуйста загрузите файл в раздел «Импорт», чтобы продолжить."
+
+msgid "plugins.importexport.native.importComplete"
+msgstr "Импорт успешно завершен. Следующие элементы были импортированы:"
+
+msgid "plugins.importexport.native.onix30.pressMissingFields"
+msgstr ""
+"У издательства  отсутствует некоторая необходимая информация для метаданных "
+"ONIX, используемых в данном экспорте. Пожалуйста, перейдите к <a href="
+"\"{$url}\">Настройки издательства</a> и заполните недостающие данные."
+
+msgid "plugins.importexport.native.error.unknownSeries"
+msgstr "Неизвестные серии {$param}"
+
+msgid "plugins.importexport.native.cliUsage"
+msgstr ""
