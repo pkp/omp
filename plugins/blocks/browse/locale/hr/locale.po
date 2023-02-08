@@ -1,32 +1,39 @@
 # Karla Zapalac <karlazapalac98@gmail.com>, 2023.
+# Maja Jurić <maja-juric@windowslive.com>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-02-08 15:40+0000\n"
+"Last-Translator: Maja Jurić <maja-juric@windowslive.com>\n"
+"Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/"
+"blocks-browse/hr/>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.block.browse"
-msgstr ""
+msgstr "Pretraži"
 
 msgid "plugins.block.browse.displayName"
-msgstr ""
+msgstr "Pregledaj blok"
 
 msgid "plugins.block.browse.description"
-msgstr ""
+msgstr "Ovaj dodatak pruža alate za \"pregledavanje\" bočne trake."
 
 msgid "plugins.block.browse.settings"
-msgstr ""
+msgstr "Postavke"
 
 msgid "plugins.block.browse.settings.title"
-msgstr ""
+msgstr "Pregledajte mogućnosti"
 
 msgid "plugins.block.browse.category"
-msgstr ""
+msgstr "Kategorije"
 
 msgid "plugins.block.browse.series"
-msgstr ""
+msgstr "Serije"
 
 msgid "plugins.block.browse.newReleases"
-msgstr ""
+msgstr "Nova izdanja"
