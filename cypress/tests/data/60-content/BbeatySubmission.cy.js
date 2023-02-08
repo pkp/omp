@@ -22,6 +22,7 @@ describe('Data suite tests', function() {
 			subtitle: '',
 			'type': 'editedVolume',
 			'series': 'History',
+			seriesId: 3,
 			'abstract': 'What does Canadian popular culture say about the construction and negotiation of Canadian national identity? This third volume of How Canadians Communicate describes the negotiation of popular culture across terrains where national identity is built by producers and audiences, government and industry, history and geography, ethnicities and citizenships.',
 			'keywords': [
 				'Canadian Studies',

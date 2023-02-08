@@ -23,6 +23,7 @@ describe('Data suite tests', function() {
 			'type': 'editedVolume',
 			'abstract': 'In recent years, the Internet and other network technologies have emerged as a central issue for development in Latin America and the Caribbean. They have shown their potential to increase productivity and economic competitiveness, to create new ways to deliver education and health services, and to be driving forces for the modernization of the provision of public services.',
 			'series': 'Library & Information Studies',
+			seriesId: 1,
 			'keywords': [
 				'Information',
 				'society',

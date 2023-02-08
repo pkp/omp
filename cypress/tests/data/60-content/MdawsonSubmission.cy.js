@@ -23,6 +23,7 @@ describe('Data suite tests', function() {
 			subtitle: '',
 			'type': 'editedVolume',
 			'series': 'Psychology',
+			seriesId: 5,
 			'abstract': 'From Bricks to Brains introduces embodied cognitive science, and illustrates its foundational ideas through the construction and observation of LEGO Mindstorms robots. Discussing the characteristics that distinguish embodied cognitive science from classical cognitive science, From Bricks to Brains places a renewed emphasis on sensing and acting, the importance of embodiment, the exploration of distributed notions of control, and the development of theories by synthesizing simple systems and exploring their behaviour. Numerous examples are used to illustrate a key theme: the importance of an agent’s environment. Even simple agents, such as LEGO robots, are capable of exhibiting complex behaviour when they can sense and affect the world around them.',
 			'keywords': [
 				'Psychology'

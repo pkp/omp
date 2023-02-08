@@ -22,6 +22,7 @@ describe('Data suite tests', function() {
 			subtitle: '',
 			'type': 'editedVolume',
 			'series': 'Education',
+			seriesId: 4,
 			'abstract': 'Accessible Elements informs science educators about current practices in online and distance education: distance-delivered methods for laboratory coursework, the requisite administrative and institutional aspects of online and distance teaching, and the relevant educational theory.',
 			'keywords': [
 				'Education',
