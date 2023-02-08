@@ -1,8 +1,9 @@
 # Dorota Siwecka <dorota.k.siwecka@gmail.com>, 2022.
+# rl <biuro@fimagis.pl>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-08-09 10:00+0000\n"
-"Last-Translator: Dorota Siwecka <dorota.k.siwecka@gmail.com>\n"
+"PO-Revision-Date: 2023-02-08 15:40+0000\n"
+"Last-Translator: rl <biuro@fimagis.pl>\n"
 "Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/locale/pl_PL/"
 ">\n"
 "Language: pl_PL\n"
@@ -1581,7 +1582,7 @@ msgid "payment.directSales.validPriceRequired"
 msgstr "Aktualna cena jest wymagana."
 
 msgid "payment.directSales.purchase"
-msgstr "Zakup{$format} ({$amount} {$currency})"
+msgstr "Zakup {$format} ({$amount} {$currency})"
 
 msgid "payment.directSales.download"
 msgstr "Pobierz {$format}"
