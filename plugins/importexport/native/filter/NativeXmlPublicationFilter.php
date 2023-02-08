@@ -14,6 +14,7 @@
 namespace APP\plugins\importexport\native\filter;
 
 use APP\core\Application;
+use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\plugins\importexport\onix30\Onix30ExportDeployment;
 use PKP\db\DAORegistry;
@@ -79,6 +80,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
      * Get the import filter for a given element.
      *
      * @param string $elementName Name of XML element
+     *
      * @return \APP\filter\Filter
      */
     public function getImportFilter($elementName)
@@ -264,8 +266,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
 
         $context = $deployment->getContext(); /** @var Context $context */
 
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
-        $series = $seriesDao->newDataObject();
+        $series = Repo::section()->newDataObject();
         $seriesPath = null;
         for ($n = $node->firstChild; $n !== null; $n = $n->nextSibling) {
             if ($n instanceof \DOMElement) {
@@ -309,12 +310,12 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
 
         $seriesId = null;
         if ($series->getData('path')) {
-            $existingSeries = $seriesDao->getByPath($seriesPath, $context->getId());
+            $existingSeries = Repo::section()->getByPath($seriesPath, $context->getId());
             if (!$existingSeries) {
                 $deployment->addWarning(ASSOC_TYPE_PUBLICATION, $object->getId(), __('plugins.importexport.native.error.unknownSeries', ['param' => $seriesPath]));
 
                 $series->setData('contextId', $context->getId());
-                $seriesId = $seriesDao->insertObject($series);
+                $seriesId = Repo::section()->add($series);
             } else {
                 $seriesId = $existingSeries->getId();
             }

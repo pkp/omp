@@ -184,8 +184,7 @@ class Spotlight extends DataObject
                 return Repo::submission()->get($this->getAssocId());
                 break;
             case self::SPOTLIGHT_TYPE_SERIES:
-                $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
-                return $seriesDao->getById($this->getAssocId(), $this->getPressId());
+                return Repo::section()->get($this->getAssocId(), $this->getPressId());
                 break;
             default:
                 assert(false);

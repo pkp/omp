@@ -15,10 +15,12 @@
 
 namespace APP\controllers\grid\navigationMenus\form;
 
+use APP\core\Application;
+use APP\facades\Repo;
+use APP\section\Section;
+use APP\template\TemplateManager;
 use PKP\controllers\grid\navigationMenus\form\PKPNavigationMenuItemsForm;
 use PKP\db\DAORegistry;
-use APP\core\Application;
-use APP\template\TemplateManager;
 
 class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm
 {
@@ -35,14 +37,13 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm
         $context = $request->getContext();
         $contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
 
-        $seriesDao = \DAORegistry::getDAO('SeriesDAO');
-        $series = $seriesDao->getByContextId($contextId);
-        $seriesTitlesArray = $series->toAssociativeArray();
-
-        $seriesTitles = [];
-        foreach ($seriesTitlesArray as $series) {
-            $seriesTitles[$series->getId()] = $series->getLocalizedTitle();
-        }
+        $series = Repo::section()
+            ->getCollector()
+            ->filterByContextIds([$contextId])
+            ->getMany();
+        $seriesTitles = $series->map(fn (Section $seriesObj) => [
+            $seriesObj->getId() => $seriesObj->getLocalizedTitle()
+        ]);
 
         $categories = Repo::category()->getCollector()
             ->filterByParentIds([null])

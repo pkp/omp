@@ -20,7 +20,6 @@ use APP\facades\Repo;
 use APP\submission\Collector;
 use APP\template\TemplateManager;
 use PKP\core\PKPApplication;
-use PKP\db\DAORegistry;
 use PKP\submission\PKPSubmission;
 
 class CatalogListPanel extends \PKP\components\listPanels\ListPanel
@@ -45,9 +44,11 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
         $request = Application::get()->getRequest();
         $context = $request->getContext();
 
-        [$catalogSortBy, $catalogSortDir] = explode('-', $context->getData('catalogSortOption'));
-        $catalogSortBy = empty($catalogSortBy) ? Collector::ORDERBY_DATE_PUBLISHED : $catalogSortBy;
-        $catalogSortDir = $catalogSortDir == Collector::ORDER_DIR_ASC ? 'ASC' : 'DESC';
+        $catalogSortBy = Collector::ORDERBY_DATE_PUBLISHED;
+        $catalogSortDir = 'DESC';
+        if ($context->getData('catalogSortOption')) {
+            [$catalogSortBy, $catalogSortDir] = explode('-', $context->getData('catalogSortOption'));
+        }
         $config['catalogSortBy'] = $catalogSortBy;
         $config['catalogSortDir'] = $catalogSortDir;
 
@@ -97,10 +98,11 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
             }
 
             $series = [];
-            $seriesDao = DAORegistry::getDAO('SeriesDAO');
-            $seriesResult = $seriesDao->getByPressId($context->getId());
-            while (!$seriesResult->eof()) {
-                $seriesObj = $seriesResult->next();
+            $seriesResult = Repo::section()
+                ->getCollector()
+                ->filterByContextIds([$context->getId()])
+                ->getMany();
+            foreach ($seriesResult as $seriesObj) {
                 [$seriesSortBy, $seriesSortDir] = explode('-', $seriesObj->getSortOption());
                 $seriesSortDir = empty($seriesSortDir) ? $catalogSortDir : ($seriesSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC');
                 $series[] = [

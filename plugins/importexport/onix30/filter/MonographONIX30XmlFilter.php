@@ -15,10 +15,10 @@
 
 namespace APP\plugins\importexport\onix30\filter;
 
+use APP\core\Application;
+use APP\facades\Repo;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
-use APP\core\Application;
-use PKP\facades\Repo;
 
 class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\NativeExportFilter
 {
@@ -267,9 +267,8 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         $seriesTitleDetailNode->appendChild($titleElementNode);
 
         /* --- Series information, if this monograph is part of one. --- */
-
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
-        $series = $seriesDao->getById($submission->getCurrentPublication()->getData('seriesId'));
+        $seriesId = $submission->getCurrentPublication()->getData('seriesId');
+        $series = $seriesId ? Repo::section()->get($seriesId) : null;
         if ($series != null) {
             if ($submission->getCurrentPublication()->getData('seriesPosition')) {
                 $titleElementNode->appendChild($this->_buildTextNode($doc, 'PartNumber', $submission->getCurrentPublication()->getData('seriesPosition')));

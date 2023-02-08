@@ -91,8 +91,11 @@ class CatalogHandler extends PKPCatalogHandler
 
         $this->_setupPaginationTemplate($request, $submissions->count(), $page, $count, $offset, $total);
 
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
-        $seriesIterator = $seriesDao->getByContextId($context->getId(), null, false, true);
+        $seriesIterator = Repo::section()
+            ->getCollector()
+            ->filterByContextIds([$context->getId()])
+            ->withPublished(true)
+            ->getMany();
 
         $templateMgr->assign([
             'publishedSubmissions' => $submissions->toArray(),
@@ -150,8 +153,7 @@ class CatalogHandler extends PKPCatalogHandler
         $context = $request->getContext();
 
         // Get the series
-        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
-        $series = $seriesDao->getByPath($seriesPath, $context->getId());
+        $series = $seriesPath ? Repo::section()->getByPath($seriesPath, $context->getId()) : null;
 
         if (!$series) {
             $request->redirect(null, 'catalog');
@@ -235,8 +237,7 @@ class CatalogHandler extends PKPCatalogHandler
                 break;
             case 'series':
                 $path = '/series/';
-                $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
-                $series = $seriesDao->getById($id, $press->getId());
+                $series = Repo::section()->get($id, $press->getId());
                 if ($series) {
                     $imageInfo = $series->getImage();
                 }
@@ -273,8 +274,7 @@ class CatalogHandler extends PKPCatalogHandler
                 break;
             case 'series':
                 $path = '/series/';
-                $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
-                $series = $seriesDao->getById($id, $press->getId());
+                $series = Repo::section()->get($id, $press->getId());
                 if ($series) {
                     $imageInfo = $series->getImage();
                 }

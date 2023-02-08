@@ -22,7 +22,7 @@ use APP\components\listPanels\ContributorsListPanel;
 use APP\controllers\grid\users\chapter\ChapterGridHandler;
 use APP\core\Application;
 use APP\core\Request;
-use APP\press\Series;
+use APP\facades\Repo;
 use APP\publication\Publication;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
@@ -192,12 +192,16 @@ class SubmissionHandler extends PKPSubmissionHandler
      */
     protected function getSubmitSeries(Context $context): array
     {
-        $allSeries = Application::getSectionDAO()->getByContextId($context->getId())->toArray();
+        $allSeries = Repo::section()
+            ->getCollector()
+            ->filterByContextIds([$context->getId()])
+            ->excludeInactive(true)
+            ->getMany();
 
         $submitSeries = [];
-        /** @var Series $series */
+        /** @var Section $series */
         foreach ($allSeries as $series) {
-            if ($series->getIsInactive() || ($series->getEditorRestricted() && !$this->isEditor())) {
+            if ($series->getEditorRestricted() && !$this->isEditor()) {
                 continue;
             }
             $submitSeries[] = $series;

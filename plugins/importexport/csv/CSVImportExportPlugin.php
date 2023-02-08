@@ -115,7 +115,6 @@ class CSVImportExportPlugin extends ImportExportPlugin
             }
 
             $pressDao = Application::getContextDAO();
-            $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
             $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
             $submissionFileDao = Repo::submissionFile()->dao;
             $genreDao = DAORegistry::getDAO('GenreDAO'); /** @var GenreDAO $genreDao */
@@ -134,11 +133,11 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $supportedLocales = [$press->getPrimaryLocale()];
                     }
                     $authorGroup = Repo::userGroup()->getCollector()
-                            ->filterByContextIds([$press->getId()])
-                            ->filterByRoleIds([Role::ROLE_ID_AUTHOR])
-                            ->filterByIsDefault(true)
-                            ->getMany()
-                            ->first();
+                        ->filterByContextIds([$press->getId()])
+                        ->filterByRoleIds([Role::ROLE_ID_AUTHOR])
+                        ->filterByIsDefault(true)
+                        ->getMany()
+                        ->first();
 
                     // we need a Genre for the files.  Assume a key of MANUSCRIPT as a default.
                     $genre = $genreDao->getByKey('MANUSCRIPT', $press->getId());
@@ -161,11 +160,12 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $submission->setCopyrightNotice($press->getLocalizedSetting('copyrightNotice'), $locale);
                         $submission->setLocale($locale);
 
-                        $series = $seriesDao->getByPath($seriesPath, $press->getId());
+                        $series = $seriesPath ? Repo::section()->getByPath($seriesPath, $press->getId()) : null;
                         if ($series) {
                             $submission->setSeriesId($series->getId());
                         } else {
-                            echo __('plugins.importexport.csv.noSeries', ['seriesPath' => $seriesPath]) . "\n";
+                            // It is possible to have submission without series
+                            // echo __('plugins.importexport.csv.noSeries', ['seriesPath' => $seriesPath]) . "\n";
                         }
 
                         $submissionId = Repo::submission()->dao->insert($submission);

@@ -1,0 +1,72 @@
+{
+	"title": "Section",
+	"description": "A press series.",
+	"properties": {
+		"description": {
+			"type": "string",
+			"multilingual": true,
+			"validation": [
+				"nullable"
+			]
+		},
+		"featured": {
+			"type": "boolean"
+		},
+		"fullTitle": {
+			"type": "string",
+			"readOnly": true,
+			"apiSummary": true
+		},
+		"image": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"onlineIssn": {
+			"type": "string",
+			"apiSummary": true,
+			"validation": [
+				"nullable"
+			]
+		},
+		"path": {
+			"type": "string",
+			"apiSummary": true
+		},
+		"prefix": {
+			"type": "string",
+			"multilingual": true,
+			"validation": [
+				"nullable"
+			]
+		},
+		"printIssn": {
+			"type": "string",
+			"apiSummary": true,
+			"validation": [
+				"nullable"
+			]
+		},
+		"reviewFormId": {
+			"type": "integer",
+			"apiSummary": true,
+			"validation": [
+				"nullable"
+			]
+		},
+		"sortOption": {
+			"type": "string",
+			"validation": [
+				"nullable"
+			]
+		},
+		"subtitle": {
+			"type": "string",
+			"multilingual": true,
+			"validation": [
+				"nullable"
+			]
+		}
+	}
+}

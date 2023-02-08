@@ -479,12 +479,10 @@ class CatalogBookHandler extends Handler
     public function setupTemplate($request, $submission = null)
     {
         $templateMgr = TemplateManager::getmanager($request);
-        if ($seriesId = $submission->getSeriesId()) {
-            $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
-            $series = $seriesDao->getById($seriesId, $submission->getData('contextId'));
+        if ($seriesId = $submission->getCurrentPublication()->getData('seriesId')) {
+            $series = Repo::section()->get($seriesId, $submission->getData('contextId'));
             $templateMgr->assign('series', $series);
         }
-
         parent::setupTemplate($request);
     }
 

@@ -15,13 +15,12 @@
 
 namespace APP\components\forms\publication;
 
-use DAORegistry;
+use APP\facades\Repo;
 use PKP\components\forms\FieldOptions;
 use PKP\components\forms\FieldSelect;
 use PKP\components\forms\FieldText;
 use PKP\components\forms\FieldUploadImage;
 use PKP\components\forms\FormComponent;
-use APP\facades\Repo;
 
 define('FORM_CATALOG_ENTRY', 'catalogEntry');
 
@@ -51,9 +50,11 @@ class CatalogEntryForm extends FormComponent
 
         // Series options
         $seriesOptions = [['value' => '', 'label' => '']];
-        $result = DAORegistry::getDAO('SeriesDAO')->getByContextId($submission->getData('contextId'));
-        while (!$result->eof()) {
-            $series = $result->next();
+        $result = Repo::section()
+            ->getCollector()
+            ->filterByContextIds([$submission->getData('contextId')])
+            ->getMany();
+        foreach ($result as $series) {
             $seriesOptions[] = [
                 'value' => (int) $series->getId(),
                 'label' => (($series->getIsInactive()) ? __('publication.inactiveSeries', ['series' => $series->getLocalizedTitle()]) : $series->getLocalizedTitle()),

@@ -15,12 +15,11 @@
 
 namespace APP\plugins\blocks\browse;
 
-use PKP\db\DAORegistry;
+use APP\facades\Repo;
 use PKP\core\JSONMessage;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\plugins\BlockPlugin;
-use APP\facades\Repo;
 
 class BrowseBlockPlugin extends BlockPlugin
 {
@@ -116,8 +115,10 @@ class BrowseBlockPlugin extends BlockPlugin
         $seriesDisplay = $this->getSetting($press->getId(), 'browseSeries');
         if ($seriesDisplay) {
             // Provide a list of series to browse
-            $seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var SeriesDAO $seriesDao */
-            $series = $seriesDao->getByPressId($press->getId());
+            $series = Repo::section()
+                ->getCollector()
+                ->filterByContextIds([$press->getId()])
+                ->getMany();
             $templateMgr->assign('browseSeries', $series->toArray());
         }
 

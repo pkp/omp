@@ -21,11 +21,10 @@ use APP\core\Request;
 use APP\decision\Decision;
 use APP\facades\Repo;
 use APP\press\Press;
-use APP\press\Series;
-use APP\press\SeriesDAO;
 use APP\publication\Publication;
 use APP\publicationFormat\IdentificationCode;
 use APP\publicationFormat\PublicationFormat;
+use APP\section\Section;
 use APP\submission\Submission;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -69,7 +68,7 @@ class Report implements IteratorAggregate
     private LazyCollection $categories;
     /** @var LazyCollection<int, bool> Editor user groups keyed by ID for faster access, the value is "true" */
     private Collection $editorUserGroups;
-    /** @var Series[] Series keyed by ID */
+    /** @var Section[] Series keyed by ID */
     private array $series;
     /** @var User[] Users keyed by ID */
     private array $users;
@@ -326,11 +325,13 @@ class Report implements IteratorAggregate
     /**
      * Retrieves the series of the current publication
      */
-    private function getSeries(): ?Series
+    private function getSeries(): ?Section
     {
-        /** @var SeriesDAO */
-        $seriesDao = DAORegistry::getDAO('SeriesDAO');
-        $this->series ??= $seriesDao->getByContextId($this->press->getId())->toAssociativeArray();
+        $this->series ??= Repo::section()
+            ->getCollector()
+            ->filterByContextIds([$this->press->getId()])
+            ->getMany()
+            ->toArray();
         return $this->series[$this->publication->getData('seriesId')] ?? null;
     }
 

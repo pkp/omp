@@ -276,7 +276,6 @@ class OMPMigration extends \PKP\migration\Migration
             $table->string('locale', 14)->default('');
             $table->string('setting_name', 255);
             $table->text('setting_value')->nullable();
-            $table->string('setting_type', 6)->comment('(bool|int|float|string|object)');
 
             $table->unique(['series_id', 'locale', 'setting_name'], 'series_settings_pkey');
         });
@@ -302,7 +301,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->bigInteger('doi_id')->nullable();
             $table->foreign('doi_id')->references('doi_id')->on('dois')->nullOnDelete();
         });
-        Schema::table('submission_chapters', function(Blueprint $table) {
+        Schema::table('submission_chapters', function (Blueprint $table) {
             $table->foreign('source_chapter_id')->references('chapter_id')->on('submission_chapters')->onDelete('set null');
         });
 
