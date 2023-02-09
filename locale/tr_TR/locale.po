@@ -1286,6 +1286,7 @@ msgstr ""
 "uygun bir metin düzenleyicide açın ve içeriğini aşağıdaki metin alanının "
 "içeriğiyle değiştirin.</p>"
 
+#, fuzzy
 msgid "installer.installationComplete"
 msgstr ""
 "<p>OMP'nin kurulumu başarıyla tamamlandı.</p>\n"
@@ -1297,6 +1298,7 @@ msgstr ""
 "varsa, lütfen <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">destek "
 "forumunu</a> ziyaret edin.</p>"
 
+#, fuzzy
 msgid "installer.upgradeComplete"
 msgstr ""
 "<p>OMP'nin {$version} sürümüne yükseltilmesi başarıyla tamamlandı.</p>\n"

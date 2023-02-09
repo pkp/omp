@@ -1316,6 +1316,7 @@ msgstr ""
 "editor/a de textos adecuado y reemplace el contenido con el contenido de los "
 "campos de texto siguientes.</p>"
 
+#, fuzzy
 msgid "installer.installationComplete"
 msgstr ""
 "<p>La instalación de OMP se completó correctamente.</p>\n"
@@ -1327,6 +1328,7 @@ msgstr ""
 "register</a>.</strong> Si tiene dudas o comentarios visite el <a href="
 "\"http://pkp.sfu.ca/support/forum\" target=\"_blank\">foro de ayuda</a>.</p>"
 
+#, fuzzy
 msgid "installer.upgradeComplete"
 msgstr ""
 "<p>La actualización de OMP a versión {$version} se completó con éxito.</p>\n"

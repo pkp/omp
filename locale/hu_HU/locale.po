@@ -1316,6 +1316,7 @@ msgstr ""
 "inc.php</tt> fájlt egy megfelelő szövegszerkesztővel, és cserélje ki a "
 "tartalmát az alábbi szövegmező tartalmára.</p>"
 
+#, fuzzy
 msgid "installer.installationComplete"
 msgstr ""
 "<p>Az OMP telepítése sikeresen befejeződött.</p>\n"
@@ -1328,6 +1329,7 @@ msgstr ""
 "kérjük, látogasson el a <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank"
 "\">támogatási fórumra</a>.</p>"
 
+#, fuzzy
 msgid "installer.upgradeComplete"
 msgstr ""
 "<p>Az OMP frissítése a {$version} verzióra sikeresen befejeződött.</p>\n"

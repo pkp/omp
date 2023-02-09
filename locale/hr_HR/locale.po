@@ -1291,6 +1291,7 @@ msgstr ""
 "tt> u odgovarajućem uređivaču teksta i zamijenite njegov sadržaj sadržajem "
 "tekstualnog polja ispod.</p>"
 
+#, fuzzy
 msgid "installer.installationComplete"
 msgstr ""
 "<p>Instalacija OMP-a je uspješno dovršena.</p>\n"
@@ -1302,6 +1303,7 @@ msgstr ""
 "strong> Ako imate pitanja ili komentara, posjetite <a href=\"https://forum."
 "pkp.sfu.ca\" target=\"_blank\">forum za podršku</ a>.</p>"
 
+#, fuzzy
 msgid "installer.upgradeComplete"
 msgstr ""
 "<p>Nadogradnja OMP-a na verziju {$version} uspješno je dovršena.</p>\n"

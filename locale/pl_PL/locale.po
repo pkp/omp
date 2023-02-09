@@ -1289,6 +1289,7 @@ msgstr ""
 "w odpowiednim edytorze tekstu i zastąp jego zawartość tekstem z poniższego "
 "pola.</p>"
 
+#, fuzzy
 msgid "installer.installationComplete"
 msgstr ""
 "<p>Pomyślnie zakończone instalację OMP.</p>\n"
@@ -1300,6 +1301,7 @@ msgstr ""
 "strong> Jeśli masz pytania lub komentarze, odwiedź <a href=\"https://forum."
 "pkp.sfu.ca\" target=\"_blank\">forum wsparcia</a>.</p>"
 
+#, fuzzy
 msgid "installer.upgradeComplete"
 msgstr ""
 "<p>Aktualizacja wersji {$version} OMP została pomyślnie zakończona. </p>\n"

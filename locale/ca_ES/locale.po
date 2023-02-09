@@ -1315,6 +1315,7 @@ msgstr ""
 "<tt>config.inc.php</tt> en un editor de textos compatible i reemplaceu-ne el "
 "contingut amb el del camp de text a continuació.</p>"
 
+#, fuzzy
 msgid "installer.installationComplete"
 msgstr ""
 "<p>La instal·lació de l'OMP s'ha completat amb èxit.</p>\n"
@@ -1327,6 +1328,7 @@ msgstr ""
 "href=\"http://pkp.sfu.ca/support/forum\" target=\"_blank\">el fòrum d'ajuda</"
 "a>.</p>"
 
+#, fuzzy
 msgid "installer.upgradeComplete"
 msgstr ""
 "<p>L'actualització de l'OMP a la versió {$version} s'ha completat amb èxit.</"

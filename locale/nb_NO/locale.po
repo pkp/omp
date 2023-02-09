@@ -1285,6 +1285,7 @@ msgstr ""
 "egnet tekstbehandlingsprogram og erstatt innholdet i den med innholdet i "
 "tekstfeltet nedenfor.</p>"
 
+#, fuzzy
 msgid "installer.installationComplete"
 msgstr ""
 "<p>OMP ble installert.</p>\n"
@@ -1299,6 +1300,7 @@ msgstr ""
 "\">støtteforumet</a> om du har spørsmål og kommentarer.</li>\n"
 "</ol>"
 
+#, fuzzy
 msgid "installer.upgradeComplete"
 msgstr ""
 "<p>Oppgradering av OMP til versjon {$version} ble gjennomført.</p>\n"

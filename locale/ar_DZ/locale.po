@@ -1138,9 +1138,11 @@ msgstr ""
 msgid "installer.overwriteConfigFileInstructions"
 msgstr ""
 
+#, fuzzy
 msgid "installer.installationComplete"
 msgstr ""
 
+#, fuzzy
 msgid "installer.upgradeComplete"
 msgstr ""
 

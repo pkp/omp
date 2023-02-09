@@ -1277,6 +1277,7 @@ msgstr ""
 "php</tt> ve vhodném textovém editoru a nahraďte jeho obsah textem, který je "
 "uveden v poli níže.</p>"
 
+#, fuzzy
 msgid "installer.installationComplete"
 msgstr ""
 "<p>Instalace programu OMP byla úspěšně dokončena.</p>\n"
@@ -1288,6 +1289,7 @@ msgstr ""
 "Pokud máte dotazy nebo připomínky, navštivte <a href=\"https://forum.pkp.sfu."
 "ca\" target=\"_blank\">fórum podpory</a>.</p>"
 
+#, fuzzy
 msgid "installer.upgradeComplete"
 msgstr ""
 "<p>Upgrade programu OMP na verzi {$version} byl úspěšně dokončen.</p>\n"

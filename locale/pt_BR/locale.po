@@ -1295,6 +1295,7 @@ msgstr ""
 "Antes de usar o sistema, abra o arquivo <tt>config.inc.php</tt> em um editor "
 "de texto apropriado e substitua seu conteúdo pelo do campo a seguir.</p>"
 
+#, fuzzy
 msgid "installer.installationComplete"
 msgstr ""
 "<p>A instalação do OMP foi concluída com sucesso.</p>\n"
@@ -1307,6 +1308,7 @@ msgstr ""
 "target=\"_blank\">fórum de suporte</a href=\"https://forum.pkp.sfu.ca\" "
 "target=\"_blank\"> a>.</p>"
 
+#, fuzzy
 msgid "installer.upgradeComplete"
 msgstr ""
 "<p>A atualização do OMP para a versão {$version} foi concluída com sucesso.</"

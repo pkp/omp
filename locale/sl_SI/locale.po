@@ -1266,6 +1266,7 @@ msgstr ""
 "datoteke. Pred uporabo sistema odprite <tt>config.inc.php</tt> v primernem "
 "urejevalniku besedil in njegovo vsebino zamenjajte z besedilom spodaj.</p>"
 
+#, fuzzy
 msgid "installer.installationComplete"
 msgstr ""
 "<p>Namestitev sistema OMP je uspešno dokončana.</p> <p>Za začetek uporabe "
@@ -1276,6 +1277,7 @@ msgstr ""
 "strong> Če imate vprašanja ali komentarje,  obiščite <a href=\"http://forum."
 "pkp.sfu.ca\" target=\"_blank\">podporni forum</a>.</p>"
 
+#, fuzzy
 msgid "installer.upgradeComplete"
 msgstr ""
 "<p>Nadgradnja sistema OMP na različico {$version} je uspešno dokončana.</p> "

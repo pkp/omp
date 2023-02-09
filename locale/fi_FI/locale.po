@@ -1305,6 +1305,7 @@ msgstr ""
 "tekstieditorissa ja korvaa sen sisältö alla olevan tekstikentän sisällöllä.</"
 "p>"
 
+#, fuzzy
 msgid "installer.installationComplete"
 msgstr ""
 "<p>OMP:n asennus on suoritettu onnistuneesti.</p>\n"
@@ -1317,6 +1318,7 @@ msgstr ""
 "tutustu <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">tukifoorumi-"
 "sivuun</a>.</p>"
 
+#, fuzzy
 msgid "installer.upgradeComplete"
 msgstr ""
 "<p>OMP on päivitetty onnistuneesti versioon {$version}.</p>\n"

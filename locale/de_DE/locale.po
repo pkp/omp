@@ -1340,6 +1340,7 @@ msgstr ""
 "bitte <tt>config.inc.php</tt> in einem geeigneten Texteditor und ersetzen "
 "Sie dessen Inhalte durch die Inhalte der unten stehenden Textbox.</p>"
 
+#, fuzzy
 msgid "installer.installationComplete"
 msgstr ""
 "<p>Die OMP-Installation wurde erfolgreich abgeschlossen.</p>\n"
@@ -1353,6 +1354,7 @@ msgstr ""
 "href=\"http://pkp.sfu.ca/support/forum\" target=\"_blank\">Supportforum</a>."
 "</p>"
 
+#, fuzzy
 msgid "installer.upgradeComplete"
 msgstr ""
 "<p>Der Upgrade von OMP auf Version {$version} wurde erfolgreich "

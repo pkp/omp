@@ -1297,6 +1297,7 @@ msgstr ""
 "a suitable text editor and replace its contents with the contents of the "
 "text field below.</p>"
 
+#, fuzzy
 msgid "installer.installationComplete"
 msgstr ""
 "<p>Installation of OMP has completed successfully.</p>\n"
@@ -1308,6 +1309,7 @@ msgstr ""
 "the <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">support forum</a>."
 "</p>"
 
+#, fuzzy
 msgid "installer.upgradeComplete"
 msgstr ""
 "<p>Upgrade of OMP to version {$version} has completed successfully.</p>\n"

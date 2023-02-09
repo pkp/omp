@@ -1314,6 +1314,7 @@ msgstr ""
 "tt> во соодветен уредувач на текст и заменете ја неговата содржина со "
 "содржината на полето за текст подолу. </p>"
 
+#, fuzzy
 msgid "installer.installationComplete"
 msgstr ""
 "<p> Инсталирањето на OMP е успешно завршено. </p>\n"
@@ -1326,6 +1327,7 @@ msgstr ""
 "коментари, посетете го <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank"
 "\"> форумот за поддршка </a>. </p>"
 
+#, fuzzy
 msgid "installer.upgradeComplete"
 msgstr ""
 "<p> Ажурирањето на OMP во верзија {$version} е успешно завршено. </p>\n"

@@ -1333,6 +1333,7 @@ msgstr ""
 "ann an deasaiche teacsa iomchaidh agus cuir na tha san raon teacsa gu h-"
 "ìosal an àite na susbaint ann.</p>"
 
+#, fuzzy
 msgid "installer.installationComplete"
 msgstr ""
 "<p>Chaidh OMP a stàladh.</p>\n"
@@ -1345,6 +1346,7 @@ msgstr ""
 "agad mu dhèidhinn, tadhail air an <a href=\"http://forum.pkp.sfu.ca\" target="
 "\"_blank\">fhòram taice</a>.</p>"
 
+#, fuzzy
 msgid "installer.upgradeComplete"
 msgstr ""
 "<p>Chaidh tionndadh {$version} de OMP a stàladh.</p>\n"
