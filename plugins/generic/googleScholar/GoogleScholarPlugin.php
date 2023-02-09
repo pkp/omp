@@ -59,6 +59,14 @@ class GoogleScholarPlugin extends GenericPlugin
     {
         $request = $args[0];
         $submission = $args[1];
+
+        // Only add Google Scholar metadata tags to the canonical URL for the latest version
+        // See discussion: https://github.com/pkp/pkp-lib/issues/4870
+        $requestArgs = $request->getRequestedArgs();
+        if (in_array('version', $requestArgs)) {
+            return;
+        }
+
         $templateMgr = TemplateManager::getManager($request);
 
         $publication = $submission->getCurrentPublication();
@@ -68,13 +76,6 @@ class GoogleScholarPlugin extends GenericPlugin
         $isChapterRequest = $templateMgr->getTemplateVars('isChapterRequest');
         $chapter = $templateMgr->getTemplateVars('chapter');
         $publicationLocale = $publication->getData('locale');
-
-        // Only add Google Scholar metadata tags to the canonical URL for the latest version
-        // See discussion: https://github.com/pkp/pkp-lib/issues/4870
-        $requestArgs = $request->getRequestedArgs();
-        if (in_array('version', $requestArgs)) {
-            return;
-        }
 
         // Google scholar metadata  revision
         $templateMgr->addHeader('googleScholarRevision', '<meta name="gs_meta_revision" content="1.1"/>');
@@ -87,12 +88,18 @@ class GoogleScholarPlugin extends GenericPlugin
         $templateMgr->addHeader('googleScholarLanguage', '<meta name="citation_language" content="' . htmlspecialchars(substr($publicationLocale, 0, 2)) . '"/>');
 
         // Publication date
-        $templateMgr->addHeader('googleScholarDate', '<meta name="citation_publication_date" content="' . date('Y-m-d', strtotime($publication->getData('datePublished'))) . '"/>');
+        $datePublished = $isChapterRequest
+            ? ($submission->getEnableChapterPublicationDates() && $chapter->getDatePublished()
+                ? $chapter->getDatePublished()
+                : $publication->getData('datePublished'))
+            : $publication->getData('datePublished');
+        if ($datePublished) {
+            $templateMgr->addHeader('googleScholarDate', '<meta name="citation_publication_date" content="' . date('Y-m-d', strtotime($datePublished)) . '"/>');
+        }
 
         // Authors in order
         $authors = $isChapterRequest ? $templateMgr->getTemplateVars('chapterAuthors') : $publication->getData('authors');
-        $i = 0;
-        foreach ($authors as $author) {
+        foreach ($authors as $i => $author) {
             $templateMgr->addHeader('googleScholarAuthor' . $i++, '<meta name="citation_author" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
             if ($affiliation = htmlspecialchars($author->getLocalizedData('affiliation', $publicationLocale))) {
                 $templateMgr->addHeader('googleScholarAuthor' . $i++ . 'Affiliation', '<meta name="citation_author_institution" content="' . $affiliation . '"/>');
@@ -101,7 +108,7 @@ class GoogleScholarPlugin extends GenericPlugin
 
         // Abstract
         $abstract = $isChapterRequest ? $chapter->getLocalizedData('abstract', $publicationLocale) : $publication->getLocalizedData('abstract', $publicationLocale);
-        if (!empty($abstract)) {
+        if ($abstract != '') {
             $templateMgr->addHeader('googleScholarAbstract', '<meta name="citation_abstract" xml:lang="' . htmlspecialchars(substr($publicationLocale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
         }
 
@@ -111,25 +118,19 @@ class GoogleScholarPlugin extends GenericPlugin
         }
 
         // Subjects
-        $i = 0;
-        $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
-        /** @var SubmissionSubjectDAO $submissionSubjectDao */
-        if ($subjects = $submissionSubjectDao->getSubjects($publication->getId(), [$publicationLocale])) {
-            foreach ($subjects as $locale => $subjectLocale) {
-                foreach ($subjectLocale as $gsKeyword) {
-                    $templateMgr->addHeader('googleScholarSubject' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($gsKeyword) . '"/>');
+        if ($subjects = $publication->getData('subjects')) {
+            foreach ($subjects as $locale => $localeSubjects) {
+                foreach ($localeSubjects as $i => $subject) {
+                    $templateMgr->addHeader('googleScholarSubject' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($subject) . '"/>');
                 }
             }
         }
 
         // Keywords
-        $i = 0;
-        $submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
-        /** @var SubmissionKeywordDAO $submissionKeywordDao */
-        if ($keywords = $submissionKeywordDao->getKeywords($publication->getId(), [$publicationLocale])) {
-            foreach ($keywords as $locale => $keywordLocale) {
-                foreach ($keywordLocale as $gsKeyword) {
-                    $templateMgr->addHeader('googleScholarKeyword' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($gsKeyword) . '"/>');
+        if ($keywords = $publication->getData('keywords')) {
+            foreach ($keywords as $locale => $localeKeywords) {
+                foreach ($localeKeywords as $i => $keyword) {
+                    $templateMgr->addHeader('googleScholarKeyword' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($keyword) . '"/>');
                 }
             }
         }
@@ -175,11 +176,8 @@ class GoogleScholarPlugin extends GenericPlugin
         }
         Hook::call('GoogleScholarPlugin::references', [&$outputReferences, $submission->getId()]);
 
-        if (!empty($outputReferences)) {
-            $i = 0;
-            foreach ($outputReferences as $outputReference) {
-                $templateMgr->addHeader('googleScholarReference' . $i++, '<meta name="citation_reference" content="' . htmlspecialchars($outputReference) . '"/>');
-            }
+        foreach ($outputReferences as $i => $outputReference) {
+            $templateMgr->addHeader('googleScholarReference' . $i++, '<meta name="citation_reference" content="' . htmlspecialchars($outputReference) . '"/>');
         }
 
         return false;
