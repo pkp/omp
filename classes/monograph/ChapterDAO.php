@@ -135,7 +135,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Retrieve a chapter by source chapter ID and publication ID.
      */
-    public function getChapterBySourceChapterId(int $sourceChapterId, int $publicationId): Chapter|null
+    public function getBySourceChapterAndPublication(int $sourceChapterId, int $publicationId): Chapter|null
     {
         $result = $this->retrieve(
             'SELECT * 
@@ -144,7 +144,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
             AND publication_id = ?',
             [$sourceChapterId, $sourceChapterId, $publicationId]
         );
-        
+
         $row = $result->current();
         return $row ? $this->_fromRow((array) $row) : null;
     }
