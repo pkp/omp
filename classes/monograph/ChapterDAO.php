@@ -114,44 +114,39 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     }
 
     /**
-     * Retrieve all chapters by source chapter ID or retrieve a chapter by source chapter ID and publication ID.
-     *
-     * @param int $sourceChapterId Chapter ID from first version of this chapter
-     * @param bool $orderByPublicationId optional, default is true
-     * @param ?int $publicationId optional, changes return value to Chapter or null
-     *
-     * @return DAOResultFactory|Chapter|null Chapter|null only with publication ID
+     * Retrieve all chapters by source chapter id.
      */
-    public function getBySourceChapterId(int $sourceChapterId, bool $orderByPublicationId = true, ?int $publicationId = null): DAOResultFactory|Chapter|null
+    public function getBySourceChapterId(int $sourceChapterId, bool $orderByPublicationId = true): DAOResultFactory
     {
-        $where = 'source_chapter_id = ? OR (source_chapter_id IS NULL AND chapter_id = ?)';
-        $params = [$sourceChapterId, $sourceChapterId];
-
-        if ($publicationId) {
-            $where = '('. $where .') AND publication_id = ?';
-            $params[] = $publicationId;
-        }
-
-        $result = new DAOResultFactory(
+        return new DAOResultFactory(
             $this->retrieve(
-                'SELECT * FROM submission_chapters WHERE ' . $where
+                'SELECT	*
+                FROM submission_chapters
+                WHERE source_chapter_id = ?
+                OR (source_chapter_id IS NULL AND chapter_id = ?)'
                 . ($orderByPublicationId ? ' ORDER BY publication_id ASC' : ''),
-                $params
+                [$sourceChapterId, $sourceChapterId]
             ),
             $this,
             '_fromRow'
         );
+    }
 
-        if ($publicationId) {
-            $chapterArray = $result->toAssociativeArray();
-            $chapter = reset($chapterArray);
-            if( $chapter ) {
-                return $chapter;
-            }
-            return null;
-        }
-
-        return $result;
+    /**
+     * Retrieve a chapter by source chapter ID and publication ID.
+     */
+    public function getChapterBySourceChapterId(int $sourceChapterId, int $publicationId): Chapter|null
+    {
+        $result = $this->retrieve(
+            'SELECT * 
+            FROM submission_chapters 
+            WHERE (source_chapter_id = ? OR (source_chapter_id IS NULL AND chapter_id = ?))  
+            AND publication_id = ?',
+            [$sourceChapterId, $sourceChapterId, $publicationId]
+        );
+        
+        $row = $result->current();
+        return $row ? $this->_fromRow((array) $row) : null;
     }
 
     /**
