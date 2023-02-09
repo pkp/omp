@@ -288,7 +288,7 @@ class CatalogBookHandler extends Handler
         }
 
         // Display
-        if (!Hook::call('CatalogBookHandler::book', [&$request, &$submission])) {
+        if (!Hook::call('CatalogBookHandler::book', [&$request, &$submission, &$this->publication, &$this->chapter])) {
             $templateMgr->display('frontend/pages/book.tpl');
             if ($this->isChapterRequest) {
                 event(new UsageEvent(Application::ASSOC_TYPE_CHAPTER, $request->getContext(), $submission, null, null, $this->chapter));

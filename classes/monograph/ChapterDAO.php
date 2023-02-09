@@ -115,8 +115,6 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
 
     /**
      * Retrieve all chapters by source chapter id.
-     *
-     *
      */
     public function getBySourceChapterId(int $sourceChapterId, bool $orderByPublicationId = true): DAOResultFactory
     {
@@ -135,13 +133,35 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     }
 
     /**
+     * Retrieve a chapter by source chapter ID and publication ID.
+     */
+    public function getChapterBySourceChapterId(int $sourceChapterId, int $publicationId): Chapter|null
+    {
+        $result = $this->retrieve(
+            'SELECT * 
+            FROM submission_chapters 
+            WHERE (source_chapter_id = ? OR (source_chapter_id IS NULL AND chapter_id = ?))  
+            AND publication_id = ?',
+            [$sourceChapterId, $sourceChapterId, $publicationId]
+        );
+        
+        $row = $result->current();
+        return $row ? $this->_fromRow((array) $row) : null;
+    }
+
+    /**
      * Get the list of fields for which locale data is stored.
      *
      * @return array
      */
     public function getLocaleFieldNames()
     {
-        return ['title', 'subtitle','abstract'];
+        $localFieldNames = parent::getLocaleFieldNames();
+        $localFieldNames[] = 'title';
+        $localFieldNames[] = 'subtitle';
+        $localFieldNames[] = 'abstract';
+
+        return $localFieldNames;
     }
 
     /**
