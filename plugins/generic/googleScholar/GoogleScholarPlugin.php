@@ -59,6 +59,14 @@ class GoogleScholarPlugin extends GenericPlugin
     {
         $request = $args[0];
         $submission = $args[1];
+
+        // Only add Google Scholar metadata tags to the canonical URL for the latest version
+        // See discussion: https://github.com/pkp/pkp-lib/issues/4870
+        $requestArgs = $request->getRequestedArgs();
+        if (in_array('version', $requestArgs)) {
+            return;
+        }
+
         $templateMgr = TemplateManager::getManager($request);
 
         $publication = $submission->getCurrentPublication();
@@ -68,13 +76,6 @@ class GoogleScholarPlugin extends GenericPlugin
         $isChapterRequest = $templateMgr->getTemplateVars('isChapterRequest');
         $chapter = $templateMgr->getTemplateVars('chapter');
         $publicationLocale = $publication->getData('locale');
-
-        // Only add Google Scholar metadata tags to the canonical URL for the latest version
-        // See discussion: https://github.com/pkp/pkp-lib/issues/4870
-        $requestArgs = $request->getRequestedArgs();
-        if (in_array('version', $requestArgs)) {
-            return;
-        }
 
         // Google scholar metadata  revision
         $templateMgr->addHeader('googleScholarRevision', '<meta name="gs_meta_revision" content="1.1"/>');
@@ -87,7 +88,12 @@ class GoogleScholarPlugin extends GenericPlugin
         $templateMgr->addHeader('googleScholarLanguage', '<meta name="citation_language" content="' . htmlspecialchars(substr($publicationLocale, 0, 2)) . '"/>');
 
         // Publication date
-        if ($datePublished = $publication->getData('datePublished')) {
+        $datePublished = $isChapterRequest
+            ? ($submission->getEnableChapterPublicationDates() && $chapter->getDatePublished()
+                ? $chapter->getDatePublished()
+                : $publication->getData('datePublished'))
+            : $publication->getData('datePublished');
+        if ($datePublished) {
             $templateMgr->addHeader('googleScholarDate', '<meta name="citation_publication_date" content="' . date('Y-m-d', strtotime($datePublished)) . '"/>');
         }
 
@@ -102,7 +108,7 @@ class GoogleScholarPlugin extends GenericPlugin
 
         // Abstract
         $abstract = $isChapterRequest ? $chapter->getLocalizedData('abstract', $publicationLocale) : $publication->getLocalizedData('abstract', $publicationLocale);
-        if (!empty($abstract)) {
+        if ($abstract != '') {
             $templateMgr->addHeader('googleScholarAbstract', '<meta name="citation_abstract" xml:lang="' . htmlspecialchars(substr($publicationLocale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
         }
 
@@ -170,11 +176,8 @@ class GoogleScholarPlugin extends GenericPlugin
         }
         Hook::call('GoogleScholarPlugin::references', [&$outputReferences, $submission->getId()]);
 
-        if (!empty($outputReferences)) {
-            $i = 0;
-            foreach ($outputReferences as $outputReference) {
-                $templateMgr->addHeader('googleScholarReference' . $i++, '<meta name="citation_reference" content="' . htmlspecialchars($outputReference) . '"/>');
-            }
+        foreach ($outputReferences as $i => $outputReference) {
+            $templateMgr->addHeader('googleScholarReference' . $i++, '<meta name="citation_reference" content="' . htmlspecialchars($outputReference) . '"/>');
         }
 
         return false;
