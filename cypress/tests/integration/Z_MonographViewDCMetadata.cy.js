@@ -418,7 +418,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 		cy.get('#publication-button').click();
 
 		// Open multilanguage inputs and add data to fr_CA inputs
-		cy.get('div#titleAbstract button').contains('French/Français (Canada)').click();
+		cy.get('div#titleAbstract button').contains('French').click();
 
 		cy.get('#titleAbstract input[name=prefix-en_US]').type(submission.prefix, {delay: 0});
 		cy.get('#titleAbstract input[name=subtitle-en_US]').type(submission.subtitle, {delay: 0});
@@ -434,7 +434,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 
 		// Go to metadata
 		cy.get('#metadata-button').click();
-		cy.get('div#metadata button').contains('French/Français (Canada)').click();
+		cy.get('div#metadata button').contains('French').click();
 
 		// Add the metadata to the submission
 		submission.localeMetadata.forEach((locale) => {

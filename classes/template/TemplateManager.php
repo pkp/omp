@@ -20,8 +20,6 @@ namespace APP\template;
 use APP\core\Application;
 use APP\file\PublicFileManager;
 use PKP\context\Context;
-use PKP\facades\Locale;
-use PKP\i18n\LocaleMetadata;
 use PKP\controllers\grid\notifications\TaskNotificationsGridHandler;
 use PKP\db\DAORegistry;
 use PKP\security\Role;
@@ -48,7 +46,6 @@ class TemplateManager extends PKPTemplateManager
 
             $context = $request->getContext(); /** @var Context $context */
             $site = $request->getSite(); /** @var Site $site */
-            $allLocales = Locale::getLocales();
 
             $publicFileManager = new PublicFileManager();
             $siteFilesDir = $request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath();
@@ -74,11 +71,7 @@ class TemplateManager extends PKPTemplateManager
                     'siteTitle' => $context->getLocalizedName(),
                     'publicFilesDir' => $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getId()),
                     'primaryLocale' => $context->getPrimaryLocale(),
-                    'supportedLocales' => Locale::getFormattedDisplayNamesFromOnlySpecifiedLocales(
-                        $context->getSupportedLocales(),
-                        $allLocales,
-                        LocaleMetadata::LANGUAGE_LOCALE_ONLY
-                    ),
+                    'supportedLocales' => $context->getSupportedLocaleNames(),
                     'numPageLinks' => $context->getData('numPageLinks'),
                     'itemsPerPage' => $context->getData('itemsPerPage'),
                     'enableAnnouncements' => $context->getData('enableAnnouncements'),
@@ -112,11 +105,7 @@ class TemplateManager extends PKPTemplateManager
                     'disableUserReg' => empty($contextsForRegistration),
                     'siteTitle' => $site->getLocalizedTitle(),
                     'primaryLocale' => $site->getPrimaryLocale(),
-                    'supportedLocales' => Locale::getFormattedDisplayNamesFromOnlySpecifiedLocales(
-                        $site->getSupportedLocales(),
-                        $allLocales,
-                        LocaleMetadata::LANGUAGE_LOCALE_ONLY
-                    ),
+                    'supportedLocales' => $site->getSupportedLocalenames(),
                     'pageFooter' => $site->getLocalizedData('pageFooter'),
                 ]);
             }
