@@ -26,7 +26,7 @@
 		{/if}
 		<{$heading} class="title">
 			<a {if $press}href="{url press=$press->getPath() page="catalog" op="book" path=$monograph->getBestId()}"{else}href="{url page="catalog" op="book" path=$monograph->getBestId()}"{/if}>
-				{$monograph->getLocalizedFullTitle()|escape}
+				{$monograph->getCurrentPublication()->getLocalizedFullTitle(null, 'html')|strip_unsafe_html}
 			</a>
 		</{$heading}>
 		<div class="author">
