@@ -20,6 +20,8 @@ use PKP\services\queryBuilders\PKPStatsPublicationQueryBuilder;
 
 class StatsPublicationQueryBuilder extends PKPStatsPublicationQueryBuilder
 {
-    /** The name of the section column */
-    public string $sectionColumn = 'series_id';
+    public function getSectionColumn(): string
+    {
+        return 'series_id';
+    }
 }
