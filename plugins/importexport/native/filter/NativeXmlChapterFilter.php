@@ -13,8 +13,8 @@
 
 namespace APP\plugins\importexport\native\filter;
 
-use PKP\db\DAORegistry;
 use APP\facades\Repo;
+use PKP\db\DAORegistry;
 use PKP\plugins\PluginRegistry;
 
 class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\NativeImportFilter
@@ -95,40 +95,40 @@ class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\Nat
         for ($n = $node->firstChild; $n !== null; $n = $n->nextSibling) {
             if ($n instanceof \DOMElement) {
                 switch ($n->tagName) {
-            case 'id':
-                $this->parseIdentifier($n, $chapter);
-                break;
-            case 'title':
-                $locale = $n->getAttribute('locale');
-                if (empty($locale)) {
-                    $locale = $context->getLocale();
+                    case 'id':
+                        $this->parseIdentifier($n, $chapter);
+                        break;
+                    case 'title':
+                        $locale = $n->getAttribute('locale');
+                        if (empty($locale)) {
+                            $locale = $context->getLocale();
+                        }
+                        $chapter->setData('title', $n->textContent, $locale);
+                        break;
+                    case 'abstract':
+                        $locale = $n->getAttribute('locale');
+                        if (empty($locale)) {
+                            $locale = $context->getLocale();
+                        }
+                        $chapter->setData('abstract', $n->textContent, $locale);
+                        break;
+                    case 'subtitle':
+                        $locale = $n->getAttribute('locale');
+                        if (empty($locale)) {
+                            $locale = $context->getLocale();
+                        }
+                        $chapter->setData('subtitle', $n->textContent, $locale);
+                        break;
+                    case 'pages':
+                        $chapter->setData('pages', $n->textContent);
+                        break;
+                    case 'chapterAuthor':
+                        $this->parseAuthor($n, $chapter);
+                        break;
+                    case 'submission_file_ref':
+                        $this->parseSubmissionFileRef($n, $chapter);
+                        break;
                 }
-                $chapter->setData('title', $n->textContent, $locale);
-                break;
-            case 'abstract':
-                $locale = $n->getAttribute('locale');
-                if (empty($locale)) {
-                    $locale = $context->getLocale();
-                }
-                $chapter->setData('abstract', $n->textContent, $locale);
-                break;
-            case 'subtitle':
-                $locale = $n->getAttribute('locale');
-                if (empty($locale)) {
-                    $locale = $context->getLocale();
-                }
-                $chapter->setData('subtitle', $n->textContent, $locale);
-                break;
-            case 'pages':
-                $chapter->setData('pages', $n->textContent);
-                break;
-            case 'chapterAuthor':
-                $this->parseAuthor($n, $chapter);
-                break;
-            case 'submission_file_ref':
-                $this->parseSubmissionFileRef($n, $chapter);
-                break;
-        }
             }
         }
 
@@ -195,7 +195,7 @@ class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\Nat
     public function parseIdentifier($element, $chapter)
     {
         $deployment = $this->getDeployment();
-
+        $context = $deployment->getContext();
         $advice = $element->getAttribute('advice');
         switch ($element->getAttribute('type')) {
             case 'internal':
@@ -207,8 +207,23 @@ class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\Nat
                 break;
             default:
                 if ($advice == 'update') {
-                    PluginRegistry::loadCategory('pubIds', true, $deployment->getContext()->getId());
-                    $chapter->setData('pub-id::' . $element->getAttribute('type'), $element->textContent);
+                    if ($element->getAttribute('type') == 'doi') {
+                        if ($doiObject = $chapter->getData('doiObject')) {
+                            Repo::doi()->edit($doiObject, ['doi' => $element->textContent]);
+                        } else {
+                            $newDoiObject = Repo::doi()->newDataObject(
+                                [
+                                    'doi' => $element->textContent,
+                                    'contextId' => $context->getId()
+                                ]
+                            );
+                            $doiId = Repo::doi()->add($newDoiObject);
+                            $chapter->setData('doiId', $doiId);
+                        }
+                    } else {
+                        PluginRegistry::loadCategory('pubIds', true, $context->getId());
+                        $chapter->setData('pub-id::' . $element->getAttribute('type'), $element->textContent);
+                    }
                 }
         }
     }

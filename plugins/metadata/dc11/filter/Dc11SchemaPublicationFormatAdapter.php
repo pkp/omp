@@ -172,7 +172,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             $contextDao = \APP\core\Application::getContextDAO();
             $context = $contextDao->getById($monograph->getData('contextId'));
         }
-        if ($context->getData(\PKP\context\Context::SETTING_ENABLE_DOIS)) {
+        if ($context->areDoisEnabled()) {
             $doi = $publicationFormat->getDoi();
             if ($doi) {
                 $dc11Description->addStatement('dc:identifier', $doi);
