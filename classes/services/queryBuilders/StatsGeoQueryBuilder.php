@@ -20,6 +20,8 @@ use PKP\services\queryBuilders\PKPStatsGeoQueryBuilder;
 
 class StatsGeoQueryBuilder extends PKPStatsGeoQueryBuilder
 {
-    /** The name of the section column */
-    public string $sectionColumn = 'series_id';
+    public function getSectionColumn(): string
+    {
+        return 'series_id';
+    }
 }
