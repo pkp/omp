@@ -486,6 +486,17 @@ msgstr ""
 msgid "emails.notifyFile.description"
 msgstr "A notification from a user sent from a file information center modal"
 
+msgid "emails.revisedVersionNotify.subject"
+msgstr "Revised Version Uploaded"
+
+msgid "emails.revisedVersionNotify.body"
+msgstr ""
+"<p>Dear {$recipientName},</p>"
+"<p>The author has uploaded revisions for the submission, <b>{$authorsShort} — {$submissionTitle}</b>. "
+"<p>As an assigned editor, we ask that you login and <a href=\"{$submissionUrl}\">view the revisions</a> and make a decision to accept, decline or send the submission for further review.</p>"
+"<br><br>—<br>"
+"This is an automated message from <a href=\"{$contextUrl}\">{$contextName}</a>."
+
 msgid "emails.statisticsReportNotification.subject"
 msgstr "Editorial activity for {$month}, {$year}"
 
