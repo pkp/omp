@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-07 23:38+0000\n"
+"PO-Revision-Date: 2023-02-13 16:57+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/manager/cs_CZ/"
 ">\n"
@@ -1677,3 +1677,14 @@ msgstr ""
 
 #~ msgid "manager.setup.submissionPreparationChecklist"
 #~ msgstr "Kontrolní seznam pro přípravu příspěvků"
+
+msgid "emailTemplate.variable.context.mailingAddress"
+msgstr "Poštovní adresa vydavatelství"
+
+msgid "mailable.statisticsReportNotify.description"
+msgstr ""
+"Tento e-mail je každý měsíc automaticky zasílán redaktorům a manažerům "
+"tisku, aby jim poskytl přehled o stavu systému."
+
+msgid "emailTemplate.variable.statisticsReportNotify.publicationStatsLink"
+msgstr "Odkaz na stránku se statistikami knih"
