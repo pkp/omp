@@ -93,22 +93,6 @@ msgstr ""
 "Gracias,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotAuthor.subject"
-msgstr "Acuse de recibo del envío"
-
-msgid "emails.submissionAckNotAuthor.body"
-msgstr ""
-"Hola:<br />\n"
-"<br />\n"
-"{$submitterName} envió el manuscrito &quot;{$submissionTitle}&quot; a "
-"{$contextName}. <br />\n"
-"<br />\n"
-"Si tiene alguna duda, puede ponerse en contacto conmigo. Gracias por elegir "
-"esta editorial para mostrar su trabajo.<br />\n"
-"<br />\n"
-"{$contextSignature}"
-
-#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Tarea editorial"
 
@@ -127,6 +111,7 @@ msgstr ""
 msgid "emails.reviewRequest.subject"
 msgstr "Solicitud de revisión de manuscrito"
 
+#, fuzzy
 msgid "emails.reviewRequest.body"
 msgstr ""
 "Estimado/a {$recipientName}:<br />\n"
@@ -152,6 +137,7 @@ msgstr ""
 msgid "emails.reviewRequestSubsequent.subject"
 msgstr ""
 
+#, fuzzy
 msgid "emails.reviewRequestSubsequent.body"
 msgstr ""
 
@@ -200,7 +186,8 @@ msgstr ""
 "<br />\n"
 "Si tiene alguna duda, puede ponerse en contacto conmigo."
 
-msgid "emails.reviewReinstate.subject"
+#, fuzzy
+msgid "emails.reviewReinstate.body"
 msgstr "Solicitud de revisión restablecida"
 
 msgid "emails.reviewReinstate.body"
@@ -239,9 +226,11 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
+#, fuzzy
 msgid "emails.reviewRemind.subject"
 msgstr "Recordatorio de revisión del envío"
 
+#, fuzzy
 msgid "emails.reviewRemind.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -265,9 +254,7 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAuto.subject"
-msgstr "Recordatorio automatizado de revisión del envío"
-
+#, fuzzy
 msgid "emails.reviewRemindAuto.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -349,6 +336,7 @@ msgstr ""
 msgid "emails.layoutComplete.subject"
 msgstr "Galeradas de maquetación completadas"
 
+#, fuzzy
 msgid "emails.layoutComplete.body"
 msgstr ""
 "{$recipientName}:<br />\n"

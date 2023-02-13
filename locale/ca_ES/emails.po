@@ -92,22 +92,6 @@ msgstr ""
 "Gràcies,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotAuthor.subject"
-msgstr "Justificant de recepció de la tramesa"
-
-msgid "emails.submissionAckNotAuthor.body"
-msgstr ""
-"Hola,<br />\n"
-"<br />\n"
-"{$submitterName} ha tramès el manuscrit «{$submissionTitle}» a "
-"{$contextName}. <br />\n"
-"<br />\n"
-"Si teniu cap pregunta, contacteu amb mi. Gràcies per tenir en compte aquesta "
-"publicació per desenvolupar la vostra feina.<br />\n"
-"<br />\n"
-"{$contextSignature}"
-
-#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Assignació d'editorials"
 
@@ -126,6 +110,7 @@ msgstr ""
 msgid "emails.reviewRequest.subject"
 msgstr "Sol·licitud de revisió d'un manuscrit"
 
+#, fuzzy
 msgid "emails.reviewRequest.body"
 msgstr ""
 "Benvolgut/uda {$recipientName},<br />\n"
@@ -151,6 +136,7 @@ msgstr ""
 msgid "emails.reviewRequestSubsequent.subject"
 msgstr ""
 
+#, fuzzy
 msgid "emails.reviewRequestSubsequent.body"
 msgstr ""
 
@@ -197,7 +183,8 @@ msgstr ""
 "<br />\n"
 "Si teniu cap pregunta, contacteu amb mi."
 
-msgid "emails.reviewReinstate.subject"
+#, fuzzy
+msgid "emails.reviewReinstate.body"
 msgstr "Sol·licitud de revisió restaurada"
 
 msgid "emails.reviewReinstate.body"
@@ -238,9 +225,11 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
+#, fuzzy
 msgid "emails.reviewRemind.subject"
 msgstr "Recordatori de revisió de tramesa"
 
+#, fuzzy
 msgid "emails.reviewRemind.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -265,9 +254,7 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAuto.subject"
-msgstr "Recordatori automàtic de revisió de la tramesa"
-
+#, fuzzy
 msgid "emails.reviewRemindAuto.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -351,6 +338,7 @@ msgstr ""
 msgid "emails.layoutComplete.subject"
 msgstr "Galerades de maquetació completades"
 
+#, fuzzy
 msgid "emails.layoutComplete.body"
 msgstr ""
 "{$recipientName}:<br />\n"

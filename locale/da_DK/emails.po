@@ -114,21 +114,6 @@ msgstr ""
 "Mange tak. <br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotAuthor.subject"
-msgstr "Indsendelsesbekræftelse"
-
-msgid "emails.submissionAckNotAuthor.body"
-msgstr ""
-"Hej<br />\n"
-"<br />\n"
-"{$submitterName} har indsendt manuskriptet &quot;{$submissionTitle}&quot; "
-"til {$contextName}. <br />\n"
-"<br />\n"
-"Hvis du har spørgsmål, er du velkommen til at kontakte mig. Tak fordi du har "
-"valgt at publicere din artikel i dette tidsskrift.<br />\n"
-"<br />\n"
-"{$contextSignature}"
-
 msgid "emails.editorAssign.subject"
 msgstr "Du er blevet tilknyttet en indsendelse til {$contextName} som redaktør"
 
@@ -147,6 +132,7 @@ msgstr ""
 msgid "emails.reviewRequest.subject"
 msgstr "Forespørgsel om bedømmelse af manuskript"
 
+#, fuzzy
 msgid "emails.reviewRequest.body"
 msgstr ""
 "Kære {$recipientName}<br />\n"
@@ -172,6 +158,7 @@ msgstr ""
 msgid "emails.reviewRequestSubsequent.subject"
 msgstr "Forespørgsel om bedømmelse af en revideret artikel"
 
+#, fuzzy
 msgid "emails.reviewRequestSubsequent.body"
 msgstr ""
 "<p>Kære {$recipientName}</p><p>Tak for din bedømmelse af <a href="
@@ -236,7 +223,8 @@ msgstr ""
 "<br />\n"
 "Hvis du har spørgsmål, er du velkommen til at kontakte mig."
 
-msgid "emails.reviewReinstate.subject"
+#, fuzzy
+msgid "emails.reviewReinstate.body"
 msgstr "Anmodning om bedømmelse genindsat"
 
 msgid "emails.reviewReinstate.body"
@@ -276,9 +264,11 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
+#, fuzzy
 msgid "emails.reviewRemind.subject"
 msgstr "Påmindelse om bedømmelse af manuskript"
 
+#, fuzzy
 msgid "emails.reviewRemind.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -302,9 +292,7 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAuto.subject"
-msgstr "Automatisk påmindelse om bedømmelse af manuskript"
-
+#, fuzzy
 msgid "emails.reviewRemindAuto.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -392,6 +380,7 @@ msgstr ""
 msgid "emails.layoutRequest.subject"
 msgstr "Forespørgsel om publiceringsversion"
 
+#, fuzzy
 msgid "emails.layoutRequest.body"
 msgstr ""
 "<p>Kære {$recipientName}</p><p>En ny indsendelse er klar til "
@@ -410,6 +399,7 @@ msgstr ""
 msgid "emails.layoutComplete.subject"
 msgstr "Publiceringsversion færdiggjort"
 
+#, fuzzy
 msgid "emails.layoutComplete.body"
 msgstr ""
 "<p>Kære {$recipientName},<p><p>Der er nu færdiggjort en publiceringsklar fil "

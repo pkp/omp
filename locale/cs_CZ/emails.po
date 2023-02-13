@@ -109,21 +109,6 @@ msgstr ""
 "Děkuji, <br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotAuthor.subject"
-msgstr "Potvrzení Podání"
-
-msgid "emails.submissionAckNotAuthor.body"
-msgstr ""
-"Dobrý den, <br />\n"
-"<br />\n"
-"{$submissionterName} vložil rukopis, &quot; {$submissionTitle} &quot; do "
-"{$contextName}. <br />\n"
-"<br />\n"
-"Máte-li jakékoli dotazy, kontaktujte mě. Děkujeme, že jste tento tisk "
-"považovali za příležitost pro svou práci. <br />\n"
-"<br />\n"
-"{$contextSignature}"
-
 msgid "emails.editorAssign.subject"
 msgstr "Byl/a jste přidělen/a jako editor k příspěvku pro {$contextName}"
 
@@ -142,6 +127,7 @@ msgstr ""
 msgid "emails.reviewRequest.subject"
 msgstr "Žádost o recenzi rukopisu"
 
+#, fuzzy
 msgid "emails.reviewRequest.body"
 msgstr ""
 "Vážený {$recipientName},<br />\n"
@@ -167,6 +153,7 @@ msgstr ""
 msgid "emails.reviewRequestSubsequent.subject"
 msgstr "Požadavek na recenzi upraveného příspěvku"
 
+#, fuzzy
 msgid "emails.reviewRequestSubsequent.body"
 msgstr ""
 "<p>Vážený/á{$recipientName},</p><p>Děkujeme za vaši recenzi <a href="
@@ -226,7 +213,8 @@ msgstr ""
 "<br />\n"
 "V případě jakýchkoli dotazů mě prosím kontaktujte."
 
-msgid "emails.reviewReinstate.subject"
+#, fuzzy
+msgid "emails.reviewReinstate.body"
 msgstr "Obnovení žádosti o recenzi"
 
 msgid "emails.reviewReinstate.body"
@@ -265,9 +253,11 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
+#, fuzzy
 msgid "emails.reviewRemind.subject"
 msgstr "Připomenutí recenze podání"
 
+#, fuzzy
 msgid "emails.reviewRemind.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -290,9 +280,7 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAuto.subject"
-msgstr "Automatické připomenutí recenze podání"
-
+#, fuzzy
 msgid "emails.reviewRemindAuto.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -378,6 +366,7 @@ msgid "emails.layoutRequest.subject"
 msgstr ""
 "Příspěvek {$submissionId} je připraven k produkci na adrese {$contextAcronym}"
 
+#, fuzzy
 msgid "emails.layoutRequest.body"
 msgstr ""
 "<p>Dobrý den {$jméno příjemce}, </p><p>Nový příspěvek je připraven k úpravě "
@@ -394,6 +383,7 @@ msgstr ""
 msgid "emails.layoutComplete.subject"
 msgstr "Sazebnice jsou hotové"
 
+#, fuzzy
 msgid "emails.layoutComplete.body"
 msgstr ""
 "<p>Vážený/á {$jméno příjemce},<p><p>Sazebnice pro následující příspěvek byly "

@@ -111,21 +111,6 @@ msgstr ""
 "Atenciosamente,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotAuthor.subject"
-msgstr "Agradecimento pela submissão"
-
-msgid "emails.submissionAckNotAuthor.body"
-msgstr ""
-"Olá,<br />\n"
-"<br />\n"
-"{$submitterName} submeteu o manuscrito &quot;{$submissionTitle}&quot; à "
-"editora {$contextName}. <br />\n"
-"<br />\n"
-"Em caso de dúvidas, entre em contato. Agradecemos por considerar nossa "
-"editora como um veículo para seus trabalhos.<br />\n"
-"<br />\n"
-"{$contextSignature}"
-
 msgid "emails.editorAssign.subject"
 msgstr "Você foi designado como editor em uma submissão para {$contextName}"
 
@@ -145,6 +130,7 @@ msgstr ""
 msgid "emails.reviewRequest.subject"
 msgstr "Solicitação de Avaliação"
 
+#, fuzzy
 msgid "emails.reviewRequest.body"
 msgstr ""
 "{$recipientName},<br />\n"
@@ -170,6 +156,7 @@ msgstr ""
 msgid "emails.reviewRequestSubsequent.subject"
 msgstr "Solicitação de avaliação de uma submissão revisada"
 
+#, fuzzy
 msgid "emails.reviewRequestSubsequent.body"
 msgstr ""
 "<p>Prezado {$recipientName},</p><p>Obrigado por sua avaliação de <a href="
@@ -231,7 +218,8 @@ msgstr ""
 "<br />\n"
 "Em caso de dúvidas, entre em contato."
 
-msgid "emails.reviewReinstate.subject"
+#, fuzzy
+msgid "emails.reviewReinstate.body"
 msgstr "Solicitação de avaliação restabelecida"
 
 msgid "emails.reviewReinstate.body"
@@ -272,9 +260,11 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
+#, fuzzy
 msgid "emails.reviewRemind.subject"
 msgstr "Avaliação pendente"
 
+#, fuzzy
 msgid "emails.reviewRemind.body"
 msgstr ""
 "{$recipientName},<br />\n"
@@ -297,9 +287,7 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAuto.subject"
-msgstr "Avaliação pendente - Lembrete automático"
-
+#, fuzzy
 msgid "emails.reviewRemindAuto.body"
 msgstr ""
 "{$recipientName},<br />\n"
@@ -408,6 +396,7 @@ msgstr ""
 msgid "emails.layoutComplete.subject"
 msgstr "Composições Concluídas"
 
+#, fuzzy
 msgid "emails.layoutComplete.body"
 msgstr ""
 "<p>Prezado(a) {$recipientName},<p><p>As provas já foram preparadas para a "

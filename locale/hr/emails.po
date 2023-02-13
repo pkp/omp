@@ -109,21 +109,6 @@ msgstr ""
 "Hvala,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotAuthor.subject"
-msgstr "Podnesak priznanja"
-
-msgid "emails.submissionAckNotAuthor.body"
-msgstr ""
-"Pozdrav,<br />\n"
-"<br />\n"
-"{$submitterName} poslao je rukopis, &quot;{$submissionTitle}&quot; na "
-"{$contextName}. <br />\n"
-"<br />\n"
-"Ako imate pitanja, slobodno me kontaktirajte. Hvala Vam što ovaj medij "
-"smatrate mjestom za svoj rad.<br />\n"
-"<br />\n"
-"{$contextSignature}"
-
 msgid "emails.editorAssign.subject"
 msgstr "Dodijeljeni ste kao urednik na podnesku za {$contextName}"
 
@@ -142,6 +127,7 @@ msgstr ""
 msgid "emails.reviewRequest.subject"
 msgstr "Zahtjev za recenziju rukopisa"
 
+#, fuzzy
 msgid "emails.reviewRequest.body"
 msgstr ""
 "Poštovani {$recipientName},<br />\n"
@@ -167,6 +153,7 @@ msgstr ""
 msgid "emails.reviewRequestSubsequent.subject"
 msgstr "Zahtjev za pregled revidiranog podneska"
 
+#, fuzzy
 msgid "emails.reviewRequestSubsequent.body"
 msgstr ""
 "<p>Dragi {$recipientName},</p><p>Hvala Vam na recenziji <a href="
@@ -226,7 +213,8 @@ msgstr ""
 "<br />\n"
 "Ako imate pitanja, slobodno me kontaktirajte."
 
-msgid "emails.reviewReinstate.subject"
+#, fuzzy
+msgid "emails.reviewReinstate.body"
 msgstr "Zahtjev za pregled ponovno postavljen"
 
 msgid "emails.reviewReinstate.body"
@@ -265,9 +253,11 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
+#, fuzzy
 msgid "emails.reviewRemind.subject"
 msgstr "Podsjetnik za pregled podneska"
 
+#, fuzzy
 msgid "emails.reviewRemind.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -290,9 +280,7 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAuto.subject"
-msgstr "Podsjetnik za automatizirani pregled podneska"
-
+#, fuzzy
 msgid "emails.reviewRemindAuto.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -380,6 +368,7 @@ msgid "emails.layoutRequest.subject"
 msgstr ""
 "Podnesak {$submissionId} spreman je za proizvodnju na {$contextAcronym}"
 
+#, fuzzy
 msgid "emails.layoutRequest.body"
 msgstr ""
 "<p>Poštovani {$recipientName},</p><p>novi podnesak spreman je za uređivanje "
@@ -396,6 +385,7 @@ msgstr ""
 msgid "emails.layoutComplete.subject"
 msgstr "Galije dovršene"
 
+#, fuzzy
 msgid "emails.layoutComplete.body"
 msgstr ""
 "<p>Poštovani {$recipientName},<p><p>Galije su sada pripremljene za sljedeću "

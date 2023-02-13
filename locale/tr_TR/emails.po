@@ -85,23 +85,6 @@ msgstr ""
 "<br />Teşekkür ederim,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotAuthor.subject"
-msgstr "Gönderi Kabulü"
-
-msgid "emails.submissionAckNotAuthor.body"
-msgstr ""
-"Merhaba,<br />\n"
-"<br />\n"
-"{$submitterName}, &quot;{$submissionTitle}&quot; başlıklı yazı taslağını "
-"{$contextName} adresine gönderdi.<br />\n"
-"<br />\n"
-"Herhangi bir sorunuz olursa, lütfen bizimle iletişime geçin. Bu yayınevinin "
-"çalışmanız için bir buluşma yeri olarak gördüğünüz için teşekkür ederiz.<br /"
-">\n"
-"<br />\n"
-"{$contextSignature}"
-
-#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Editoryal Atama"
 
@@ -119,6 +102,7 @@ msgstr ""
 msgid "emails.reviewRequest.subject"
 msgstr "Yazı Taslağı Değerlendirme Talebi"
 
+#, fuzzy
 msgid "emails.reviewRequest.body"
 msgstr ""
 "Sayın {$recipientName}:<br />\n"
@@ -144,6 +128,7 @@ msgstr ""
 msgid "emails.reviewRequestSubsequent.subject"
 msgstr ""
 
+#, fuzzy
 msgid "emails.reviewRequestSubsequent.body"
 msgstr ""
 
@@ -192,7 +177,8 @@ msgstr ""
 "Herhangi bir sorunuz olursa, lütfen bizimle iletişime geçin.\n"
 "Saygılarımızla."
 
-msgid "emails.reviewReinstate.subject"
+#, fuzzy
+msgid "emails.reviewReinstate.body"
 msgstr "Değerlendirme Talebi Yeniden Etkinleştirildi"
 
 msgid "emails.reviewReinstate.body"
@@ -233,9 +219,11 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
+#, fuzzy
 msgid "emails.reviewRemind.subject"
 msgstr "Gönderi Değerlendirme Hatırlatıcısı"
 
+#, fuzzy
 msgid "emails.reviewRemind.body"
 msgstr ""
 "Sayın {$recipientName}:<br />\n"
@@ -259,9 +247,7 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAuto.subject"
-msgstr "Gönderi Değerlendirme Otomatik Hatırlatıcısı"
-
+#, fuzzy
 msgid "emails.reviewRemindAuto.body"
 msgstr ""
 "Sayın {$recipientName}:<br />\n"
@@ -342,6 +328,7 @@ msgstr ""
 msgid "emails.layoutComplete.subject"
 msgstr "Prova Dizgileri Hazırlandı"
 
+#, fuzzy
 msgid "emails.layoutComplete.body"
 msgstr ""
 "Sayın {$recipientName}:<br />\n"
