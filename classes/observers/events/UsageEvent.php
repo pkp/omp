@@ -31,9 +31,9 @@ class UsageEvent extends \PKP\observers\events\UsageEvent
 
     public function __construct(int $assocType, Context $context, Submission $submission = null, Representation $publicationFormat = null, SubmissionFile $submissionFile = null, Chapter $chapter = null, Section $series = null)
     {
-        parent::__construct($assocType, $context, $submission, $publicationFormat, $submissionFile);
         $this->chapter = $chapter;
         $this->series = $series;
+        parent::__construct($assocType, $context, $submission, $publicationFormat, $submissionFile);
     }
 
     /**
