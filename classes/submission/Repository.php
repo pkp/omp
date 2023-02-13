@@ -21,7 +21,7 @@ use APP\press\Press;
 use APP\press\PressDAO;
 use APP\publicationFormat\PublicationFormat;
 use APP\publicationFormat\PublicationFormatDAO;
-use PKP\doi\exceptions\DoiActionException;
+use PKP\doi\exceptions\DoiException;
 use PKP\submissionFile\SubmissionFile;
 
 class Repository extends \PKP\submission\Repository
@@ -63,7 +63,7 @@ class Repository extends \PKP\submission\Repository
             try {
                 $doiId = Repo::doi()->mintPublicationDoi($publication, $submission, $context);
                 Repo::publication()->edit($publication, ['doiId' => $doiId]);
-            } catch (DoiActionException $exception) {
+            } catch (DoiException $exception) {
                 $doiCreationFailures[] = $exception;
             }
         }
@@ -80,7 +80,7 @@ class Repository extends \PKP\submission\Repository
                         $doiId = Repo::doi()->mintChapterDoi($chapter, $submission, $context);
                         $chapter->setData('doiId', $doiId);
                         $chapterDao->updateObject($chapter);
-                    } catch (DoiActionException $exception) {
+                    } catch (DoiException $exception) {
                         $doiCreationFailures[] = $exception;
                     }
                 }
@@ -99,7 +99,7 @@ class Repository extends \PKP\submission\Repository
                         $doiId = Repo::doi()->mintPublicationFormatDoi($publicationFormat, $submission, $context);
                         $publicationFormat->setData('doiId', $doiId);
                         $publicationFormatDao->updateObject($publicationFormat);
-                    } catch (DoiActionException $exception) {
+                    } catch (DoiException $exception) {
                         $doiCreationFailures[] = $exception;
                     }
                 }
@@ -121,7 +121,7 @@ class Repository extends \PKP\submission\Repository
                     try {
                         $doiId = Repo::doi()->mintSubmissionFileDoi($submissionFile, $submission, $context);
                         Repo::submissionFile()->edit($submissionFile, ['doiId' => $doiId]);
-                    } catch (DoiActionException $exception) {
+                    } catch (DoiException $exception) {
                         $doiCreationFailures[] = $exception;
                     }
                 }
