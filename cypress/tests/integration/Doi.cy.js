@@ -26,7 +26,11 @@ describe('DOI tests', function() {
 	};
 
 	const clearFilter = () => {
-		cy.get('#submission-doi-management button:contains("Clear filter")').click();
+		cy.get('#submission-doi-management button:contains("Clear filter")').each(
+			($el, index, $list) => {
+				cy.wrap($el).click();
+			}
+		);
 	};
 
 	it('Check DOI Configuration', function() {
@@ -70,7 +74,11 @@ describe('DOI tests', function() {
 		cy.log('Check Submission Filter Behaviour (pre-deposit)');
 		loginAndGoToDoiPage();
 		cy.checkDoiFilterResults('Needs DOI', 'Allan — Bomb Canada and Other Unkind Remarks in the American Media', 2);
+		cy.checkDoiFilterResults('Unpublished', 'Beaty et al. — How Canadians Communicate: Contexts of Canadian Popular Culture', 1);
+		clearFilter();
+		cy.checkDoiFilterResults('DOI Assigned', 'Dawson et al. — From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots', 1);
 		cy.checkDoiFilterResults('Unpublished', 'No items found.', 0);
+		clearFilter();
 		cy.checkDoiFilterResults('Unregistered', 'Dawson et al. — From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots', 1);
 		clearFilter();
 
