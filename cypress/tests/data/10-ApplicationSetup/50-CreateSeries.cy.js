@@ -19,7 +19,7 @@ describe('Data suite tests', function() {
 		cy.get('a[id^=component-grid-settings-series-seriesgrid-addSeries-button-]').click();
 		cy.wait(500); // Avoid occasional failure due to form init taking time
 		cy.get('input[id^="title-en-"]').type('Library & Information Studies');
-		cy.get('input[id^="path"]').type('lis');
+		cy.get('input[id^="urlPath"]').type('lis');
 		cy.get('label').contains('David Buskins').click();
 		cy.get('form[id=seriesForm]').contains('Save').click();
 
@@ -27,7 +27,7 @@ describe('Data suite tests', function() {
 		cy.get('a[id^=component-grid-settings-series-seriesgrid-addSeries-button-]').click();
 		cy.wait(1000); // Avoid occasional failure due to form init taking time
 		cy.get('input[id^="title-en-"]').type('Political Economy');
-		cy.get('input[id^="path"]').type('pe');
+		cy.get('input[id^="urlPath"]').type('pe');
 		cy.get('label').contains('Stephanie Berardo').click();
 		cy.get('form[id=seriesForm]').contains('Save').click();
 
@@ -36,7 +36,7 @@ describe('Data suite tests', function() {
 		cy.wait(1000); // Avoid occasional failure due to form init taking time
 		cy.get('input[id^="title-en-"]').type('History');
 		cy.get('label').contains('Daniel Barnes').click();
-		cy.get('input[id^="path"]').type('his');
+		cy.get('input[id^="urlPath"]').type('his');
 		cy.get('form[id=seriesForm]').contains('Save').click();
 
 		// Create a new "Education" series
@@ -44,7 +44,7 @@ describe('Data suite tests', function() {
 		cy.wait(1000); // Avoid occasional failure due to form init taking time
 		cy.get('input[id^="title-en-"]').type('Education');
 		cy.get('label').contains('Daniel Barnes').click();
-		cy.get('input[id^="path"]').type('ed');
+		cy.get('input[id^="urlPath"]').type('ed');
 		cy.get('form[id=seriesForm]').contains('Save').click();
 
 		// Create a new "Psychology" series
@@ -52,7 +52,7 @@ describe('Data suite tests', function() {
 		cy.wait(1000); // Avoid occasional failure due to form init taking time
 		cy.get('input[id^="title-en-"]').type('Psychology');
 		cy.get('label').contains('Daniel Barnes').click();
-		cy.get('input[id^="path"]').type('psy');
+		cy.get('input[id^="urlPath"]').type('psy');
 		cy.get('form[id=seriesForm]').contains('Save').click();
 	});
 })

@@ -19,13 +19,15 @@
 switch ($op) {
     case 'index':
     case 'page':
-    case 'category':
     case 'fullSize':
     case 'newReleases':
     case 'series':
     case 'thumbnail':
     case 'results':
         define('HANDLER_CLASS', 'APP\pages\catalog\CatalogHandler');
+        break;
+    case 'category':
+        define('HANDLER_CLASS', 'PKP\pages\publication\PKPCategoryHandler');
         break;
     case 'book':
     case 'download':

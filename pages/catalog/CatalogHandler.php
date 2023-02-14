@@ -18,6 +18,7 @@ namespace APP\pages\catalog;
 
 use APP\core\Application;
 use APP\facades\Repo;
+use APP\handler\Handler;
 use APP\observers\events\UsageEvent;
 use APP\submission\Collector;
 use APP\submission\Submission;
@@ -25,9 +26,8 @@ use APP\template\TemplateManager;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
 use PKP\file\ContextFileManager;
-use PKP\pages\catalog\PKPCatalogHandler;
 
-class CatalogHandler extends PKPCatalogHandler
+class CatalogHandler extends Handler
 {
     //
     // Public handler methods
@@ -152,11 +152,15 @@ class CatalogHandler extends PKPCatalogHandler
         $templateMgr = TemplateManager::getManager($request);
         $context = $request->getContext();
 
-        // Get the series
-        $series = $seriesPath ? Repo::section()->getByPath($seriesPath, $context->getId()) : null;
+        $series = Repo::section()->getCollector()
+            ->filterByUrlPaths([$seriesPath])
+            ->filterByContextIds([$context->getId()])
+            ->getMany()
+            ->first();
 
         if (!$series) {
-            $request->redirect(null, 'catalog');
+            $request->getDispatcher()->handle404();
+            exit;
         }
 
         $this->setupTemplate($request);
