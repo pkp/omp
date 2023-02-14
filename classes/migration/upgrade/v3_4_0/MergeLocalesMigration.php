@@ -22,7 +22,7 @@ class MergeLocalesMigration extends \PKP\migration\upgrade\v3_4_0\MergeLocalesMi
     protected string $CONTEXT_SETTINGS_TABLE = 'press_settings';
     protected string $CONTEXT_COLUMN = 'press_id';
 
-    protected function getSettingsTables(): Collection
+    public static function getSettingsTables(): Collection
     {
         return collect([
             'press_settings' => 'press_id',
