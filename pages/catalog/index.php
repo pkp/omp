@@ -20,13 +20,14 @@
 switch ($op) {
     case 'index':
     case 'page':
-    case 'category':
     case 'fullSize':
     case 'newReleases':
     case 'series':
     case 'thumbnail':
     case 'results':
         return new APP\pages\catalog\CatalogHandler();
+    case 'category':
+        return new PKP\pages\publication\PKPCategoryHandler;
     case 'book':
     case 'download':
     case 'view':

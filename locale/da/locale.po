@@ -695,7 +695,7 @@ msgstr ""
 "{$number} titler blev fundet, der matchede din søgning efter "
 "\"{$searchQuery}\"."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Alle bøger"
 
 msgid "catalog.newReleases"

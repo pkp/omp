@@ -694,7 +694,7 @@ msgstr ""
 "{$number} publicações foram encontradas que atendem a busca por "
 "\"{$searchQuery}\"."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Todos os livros"
 
 msgid "catalog.newReleases"

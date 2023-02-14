@@ -688,7 +688,7 @@ msgstr ""
 "Найдено {$number} наименований, которые соответствовали вашему поиску  "
 "\"{$searchQuery}\"."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Все книги"
 
 msgid "catalog.newReleases"

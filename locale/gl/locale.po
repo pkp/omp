@@ -687,7 +687,7 @@ msgstr ""
 "Atopáronse {$number} títulos que coinciden coa túa procura "
 "\"{$searchQuery}\"."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Todos os libros"
 
 msgid "catalog.newReleases"
