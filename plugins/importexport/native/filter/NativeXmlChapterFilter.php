@@ -208,8 +208,9 @@ class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\Nat
             default:
                 if ($advice == 'update') {
                     if ($element->getAttribute('type') == 'doi') {
-                        if ($doiObject = $chapter->getData('doiObject')) {
-                            Repo::doi()->edit($doiObject, ['doi' => $element->textContent]);
+                        $doiFound = Repo::doi()->getCollector()->filterByIdentifier($element->textContent)->getMany()->first();
+                        if ($doiFound) {
+                            $chapter->setData('doiId', $doiFound->getId());
                         } else {
                             $newDoiObject = Repo::doi()->newDataObject(
                                 [

@@ -184,7 +184,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         if ($context->areDoisEnabled() && $publicationFormat->getDoi()) {
             $productIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'ProductIdentifier');
             $productIdentifierNode->appendChild($this->_buildTextNode($doc, 'ProductIDType', '06')); // DOI
-            $productIdentifierNode->appendChild($this->_buildTextNode($doc, 'IDValue', $publicationFormat->getDoi)); // GTIN-13 (ISBN-13 as GTIN)
+            $productIdentifierNode->appendChild($this->_buildTextNode($doc, 'IDValue', $publicationFormat->getDoi())); // GTIN-13 (ISBN-13 as GTIN)
             $productNode->appendChild($productIdentifierNode);
 
             unset($productIdentifierNode);
