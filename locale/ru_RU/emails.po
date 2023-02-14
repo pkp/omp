@@ -89,22 +89,6 @@ msgstr ""
 "С уважением,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotAuthor.subject"
-msgstr "Благодарность за подачу рукописи"
-
-msgid "emails.submissionAckNotAuthor.body"
-msgstr ""
-"Здравствуйте!<br />\n"
-"<br />\n"
-"Пользователь {$submitterName} отправил рукопись «{$submissionTitle}» в  "
-"«{$contextName}». <br />\n"
-"<br />\n"
-"Если у Вас возникнут какие-то вопросы, пожалуйста, свяжитесь со мной. "
-"Спасибо за выбор нашего Издательства для публикации Вашей работы.<br />\n"
-"<br />\n"
-"{$contextSignature}"
-
-#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Назначение редактором"
 
@@ -124,6 +108,7 @@ msgstr ""
 msgid "emails.reviewRequest.subject"
 msgstr "Запрос на рецензирование рукописи"
 
+#, fuzzy
 msgid "emails.reviewRequest.body"
 msgstr ""
 "Здравствуйте, {$recipientName}!<br />\n"
@@ -150,6 +135,7 @@ msgstr ""
 msgid "emails.reviewRequestSubsequent.subject"
 msgstr ""
 
+#, fuzzy
 msgid "emails.reviewRequestSubsequent.body"
 msgstr ""
 
@@ -197,7 +183,8 @@ msgstr ""
 "<br />\n"
 "Если у Вас есть вопросы, пожалуйста, свяжитесь со мной."
 
-msgid "emails.reviewReinstate.subject"
+#, fuzzy
+msgid "emails.reviewReinstate.body"
 msgstr "Запрос на возобновление рецензирования"
 
 msgid "emails.reviewReinstate.body"
@@ -237,9 +224,11 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
+#, fuzzy
 msgid "emails.reviewRemind.subject"
 msgstr "Напоминание о рецензии на рукопись"
 
+#, fuzzy
 msgid "emails.reviewRemind.body"
 msgstr ""
 "Здравствуйте, {$recipientName}:<br />\n"
@@ -263,9 +252,7 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAuto.subject"
-msgstr "Автоматическое напоминание о рецензии на материал"
-
+#, fuzzy
 msgid "emails.reviewRemindAuto.body"
 msgstr ""
 "Здравствуйте, {$recipientName}!<br />\n"
@@ -344,6 +331,7 @@ msgstr ""
 msgid "emails.layoutComplete.subject"
 msgstr "Гранки сделаны"
 
+#, fuzzy
 msgid "emails.layoutComplete.body"
 msgstr ""
 "Здравствуйте, {$recipientName}!<br />\n"

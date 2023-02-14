@@ -90,22 +90,6 @@ msgstr ""
 "Ystävällisin terveisin,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotAuthor.subject"
-msgstr "Käsikirjoitus vastaanotettu"
-
-msgid "emails.submissionAckNotAuthor.body"
-msgstr ""
-"Hei,<br />\n"
-"<br />\n"
-"{$submitterName} on lähettänyt käsikirjoituksen &quot;{$submissionTitle}"
-"&quot; julkaisijalle {$contextName}. <br />\n"
-"<br />\n"
-"Jos teillä on kysyttävää, otattehan yhteyttä minuun. Kiitos, että valitsitte "
-"tämän julkaisijan työllenne.<br />\n"
-"<br />\n"
-"{$contextSignature}"
-
-#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Toimituksellinen toimeksianto"
 
@@ -125,6 +109,7 @@ msgstr ""
 msgid "emails.reviewRequest.subject"
 msgstr "Käsikirjoituksen arviointipyyntö"
 
+#, fuzzy
 msgid "emails.reviewRequest.body"
 msgstr ""
 "Hyvä {$recipientName},<br />\n"
@@ -151,6 +136,7 @@ msgstr ""
 msgid "emails.reviewRequestSubsequent.subject"
 msgstr ""
 
+#, fuzzy
 msgid "emails.reviewRequestSubsequent.body"
 msgstr ""
 
@@ -200,7 +186,8 @@ msgstr ""
 "<br />\n"
 "Mikäli teillä on kysyttävää, otattehan yhteyttä minuun."
 
-msgid "emails.reviewReinstate.subject"
+#, fuzzy
+msgid "emails.reviewReinstate.body"
 msgstr "Arviointipyyntö uusittu"
 
 msgid "emails.reviewReinstate.body"
@@ -240,9 +227,11 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
+#, fuzzy
 msgid "emails.reviewRemind.subject"
 msgstr "Muistutus käsikirjoituksen arvioinnista"
 
+#, fuzzy
 msgid "emails.reviewRemind.body"
 msgstr ""
 "Hyvä {$recipientName},<br />\n"
@@ -265,9 +254,7 @@ msgstr ""
 "Yhteydenottoanne odottaen,<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAuto.subject"
-msgstr "Automaattinen muistutus käsikirjoituksen arvioinnista"
-
+#, fuzzy
 msgid "emails.reviewRemindAuto.body"
 msgstr ""
 "Hyvä {$recipientName},<br />\n"
@@ -350,6 +337,7 @@ msgstr ""
 msgid "emails.layoutComplete.subject"
 msgstr "Taiton julkaistavat tiedostot valmiita"
 
+#, fuzzy
 msgid "emails.layoutComplete.body"
 msgstr ""
 "Hyvä {$recipientName},<br />\n"

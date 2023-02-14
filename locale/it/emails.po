@@ -110,22 +110,6 @@ msgstr ""
 "Grazie,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotAuthor.subject"
-msgstr "Conferma della proposta"
-
-msgid "emails.submissionAckNotAuthor.body"
-msgstr ""
-"Buongiorno,<br />\n"
-"<br />\n"
-"{$submitterName} ha proposto il manoscritto, &quot;{$submissionTitle}&quot; "
-"a {$contextName}. <br />\n"
-"<br />\n"
-"Se ha domande, mi contatti. Grazie per aver preso in considerazione questa "
-"Casa Editrice come sede per il suo lavoro.<br />\n"
-"<br />\n"
-"{$signature}"
-
-#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Incarico redazionale"
 
@@ -145,6 +129,7 @@ msgstr ""
 msgid "emails.reviewRequest.subject"
 msgstr "Richiesta di revisione di un manoscritto"
 
+#, fuzzy
 msgid "emails.reviewRequest.body"
 msgstr ""
 "Gentile {$recipientName},<br />\n"
@@ -171,6 +156,7 @@ msgstr ""
 msgid "emails.reviewRequestSubsequent.subject"
 msgstr ""
 
+#, fuzzy
 msgid "emails.reviewRequestSubsequent.body"
 msgstr ""
 
@@ -217,7 +203,8 @@ msgstr ""
 "<br />\n"
 "Per qualsiasi domanda, ci contatti."
 
-msgid "emails.reviewReinstate.subject"
+#, fuzzy
+msgid "emails.reviewReinstate.body"
 msgstr "Richiesta di revisione ripristinata"
 
 msgid "emails.reviewReinstate.body"
@@ -257,9 +244,11 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
+#, fuzzy
 msgid "emails.reviewRemind.subject"
 msgstr "Promemoria per la revisione della proposta"
 
+#, fuzzy
 msgid "emails.reviewRemind.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -282,9 +271,7 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAuto.subject"
-msgstr "Promemoria automatico per la revisione della proposta"
-
+#, fuzzy
 msgid "emails.reviewRemindAuto.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -374,6 +361,7 @@ msgstr ""
 "La proposta {$submissionId} è pronta per la produzione presso "
 "{$contextAcronym}"
 
+#, fuzzy
 msgid "emails.layoutRequest.body"
 msgstr ""
 "<p>Gentile {$recipientName},</p><p>una nuova proposta è pronta per la "
@@ -390,6 +378,7 @@ msgstr ""
 msgid "emails.layoutComplete.subject"
 msgstr "Materiale completato"
 
+#, fuzzy
 msgid "emails.layoutComplete.body"
 msgstr ""
 "<p>Gentile {$recipientName},<p><p>il materiale è stato predisposto ed è "

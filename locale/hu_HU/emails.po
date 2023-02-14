@@ -110,22 +110,6 @@ msgstr ""
 "Köszönettel,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotAuthor.subject"
-msgstr "Beküldés visszaigazolása"
-
-msgid "emails.submissionAckNotAuthor.body"
-msgstr ""
-"Üdvözlet,<br />\n"
-"<br />\n"
-"{$submitterName} benyújtotta ezt a kéziratot: &quot;{$submissionTitle}&quot; "
-"a(z) {$contextName} oldalhoz.<br />\n"
-"<br />\n"
-"Ha bármilyen kérdése van, kérem, keressen meg. Köszönjük, hogy munkájának "
-"megjelentetéséhez ezt a kiadót választotta.<br />\n"
-"<br />\n"
-"Köszönettel, {$contextSignature}"
-
-#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Szerkesztői hozzárendelés"
 
@@ -145,6 +129,7 @@ msgstr ""
 msgid "emails.reviewRequest.subject"
 msgstr "Kézirat szakmai lektorálásnak kérése"
 
+#, fuzzy
 msgid "emails.reviewRequest.body"
 msgstr ""
 "Tisztelt {$recipientName}!<br />\n"
@@ -171,6 +156,7 @@ msgstr ""
 msgid "emails.reviewRequestSubsequent.subject"
 msgstr ""
 
+#, fuzzy
 msgid "emails.reviewRequestSubsequent.body"
 msgstr ""
 
@@ -219,7 +205,8 @@ msgstr ""
 "<br />\n"
 "Ha bármilyen kérdése van, nyugodtan keressen meg."
 
-msgid "emails.reviewReinstate.subject"
+#, fuzzy
+msgid "emails.reviewReinstate.body"
 msgstr "Szakmai lektorálási felkérés újraindítása"
 
 msgid "emails.reviewReinstate.body"
@@ -260,9 +247,11 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
+#, fuzzy
 msgid "emails.reviewRemind.subject"
 msgstr "Szakmai lektorálási emlékeztető"
 
+#, fuzzy
 msgid "emails.reviewRemind.body"
 msgstr ""
 "Tisztelt {$recipientName}!<br />\n"
@@ -285,9 +274,7 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAuto.subject"
-msgstr "Automatikus szakmai lektorálási emlékeztető"
-
+#, fuzzy
 msgid "emails.reviewRemindAuto.body"
 msgstr ""
 "Tisztelt {$recipientName}!<br />\n"
@@ -398,6 +385,7 @@ msgstr ""
 msgid "emails.layoutComplete.subject"
 msgstr "Kefelenyomatok elkészültek"
 
+#, fuzzy
 msgid "emails.layoutComplete.body"
 msgstr ""
 "<p>Tisztelt {$recipientName}!<p><p>A kefelenyomatok elkészültek a következő "

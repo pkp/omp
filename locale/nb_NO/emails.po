@@ -86,22 +86,6 @@ msgstr ""
 "Takk skal du ha. <br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotAuthor.subject"
-msgstr "Innleveringsbekreftelse"
-
-msgid "emails.submissionAckNotAuthor.body"
-msgstr ""
-"Hei<br />\n"
-"<br />\n"
-"{$submitterName} har sendt inn innleveringen &quot;{$submissionTitle}&quot; "
-"til {$contextName}. <br />\n"
-"<br />\n"
-"Hvis du har spørsmål, er du velkommen til å kontakte meg. Takk for at du har "
-"valgt at publisere hos oss.<br />\n"
-"<br />\n"
-"{$contextSignature}"
-
-#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Redaksjonelt oppdrag"
 
@@ -121,6 +105,7 @@ msgstr ""
 msgid "emails.reviewRequest.subject"
 msgstr "Forespørsel om fagfellevurdering"
 
+#, fuzzy
 msgid "emails.reviewRequest.body"
 msgstr ""
 "Kjære {$recipientName}, <br />\n"
@@ -146,6 +131,7 @@ msgstr ""
 msgid "emails.reviewRequestSubsequent.subject"
 msgstr ""
 
+#, fuzzy
 msgid "emails.reviewRequestSubsequent.body"
 msgstr ""
 
@@ -194,7 +180,8 @@ msgstr ""
 "<br />\n"
 "Hvis du har spørgsmål, ta gjerne kontakt."
 
-msgid "emails.reviewReinstate.subject"
+#, fuzzy
+msgid "emails.reviewReinstate.body"
 msgstr "Forespørsel om fagfellevurdering gjenopptatt"
 
 msgid "emails.reviewReinstate.body"
@@ -235,9 +222,11 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
+#, fuzzy
 msgid "emails.reviewRemind.subject"
 msgstr "Påminnelse om fagfellevurdering"
 
+#, fuzzy
 msgid "emails.reviewRemind.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -260,9 +249,7 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAuto.subject"
-msgstr "Automatisk påminnelse om fagfellevurdering"
-
+#, fuzzy
 msgid "emails.reviewRemindAuto.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -333,6 +320,7 @@ msgstr ""
 msgid "emails.layoutComplete.subject"
 msgstr "Sideoppsett ferdiggjort"
 
+#, fuzzy
 msgid "emails.layoutComplete.body"
 msgstr ""
 "{$recipientName}:<br />\n"

@@ -88,22 +88,6 @@ msgstr ""
 "Ви благодариме, <br />\n"
 "{$ principalContactSignature}"
 
-msgid "emails.submissionAckNotAuthor.subject"
-msgstr "Признание за поднесување"
-
-msgid "emails.submissionAckNotAuthor.body"
-msgstr ""
-"Здраво, <br />\n"
-"<br />\n"
-"{$submitterName} го достави ракописот, &quot; {$submitTitle}&quot; до "
-"{$textName}. <br />\n"
-"<br />\n"
-"Ако имате какви било прашања, контактирајте ме. Ви благодариме што го "
-"разгледавте овој печат како место за вашата работа. <br />\n"
-"<br />\n"
-"{$contextSignature}"
-
-#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Уредувачка задача"
 
@@ -122,6 +106,7 @@ msgstr ""
 msgid "emails.reviewRequest.subject"
 msgstr "Барање за преглед на ракописи"
 
+#, fuzzy
 msgid "emails.reviewRequest.body"
 msgstr ""
 "Почитуван {$recipientName}, <br />\n"
@@ -147,6 +132,7 @@ msgstr ""
 msgid "emails.reviewRequestSubsequent.subject"
 msgstr ""
 
+#, fuzzy
 msgid "emails.reviewRequestSubsequent.body"
 msgstr ""
 
@@ -193,7 +179,8 @@ msgstr ""
 "<br />\n"
 "Ако имате какви било прашања, контактирајте ме."
 
-msgid "emails.reviewReinstate.subject"
+#, fuzzy
+msgid "emails.reviewReinstate.body"
 msgstr "Повторно е вратено барањето за преглед"
 
 msgid "emails.reviewReinstate.body"
@@ -233,9 +220,11 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
+#, fuzzy
 msgid "emails.reviewRemind.subject"
 msgstr "Потсетник за преглед на поднесување"
 
+#, fuzzy
 msgid "emails.reviewRemind.body"
 msgstr ""
 "{$recipientName}: <br />\n"
@@ -260,9 +249,7 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAuto.subject"
-msgstr "Автоматски потсетник за преглед на поднесок"
-
+#, fuzzy
 msgid "emails.reviewRemindAuto.body"
 msgstr ""
 "{$recipientName}: <br />\n"
@@ -343,6 +330,7 @@ msgstr ""
 msgid "emails.layoutComplete.subject"
 msgstr "Комплетиран распоред на отисоците на труд"
 
+#, fuzzy
 msgid "emails.layoutComplete.body"
 msgstr ""
 "{$recipientName}: <br />\n"

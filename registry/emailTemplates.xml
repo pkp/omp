@@ -28,7 +28,7 @@
 	<email key="REVIEW_DECLINE" name="mailable.reviewDecline.name" subject="emails.reviewDecline.subject" body="emails.reviewDecline.body"/>
 	<email key="REVIEW_ACK" name="mailable.decision.reviewAck.name" subject="emails.reviewAck.subject" body="emails.reviewAck.body"/>
 	<email key="REVIEW_REMIND" name="mailable.reviewRemind.name" subject="emails.reviewRemind.subject" body="emails.reviewRemind.body"/>
-	<email key="REVIEW_REMIND_AUTO" name="mailable.reviewRemindAuto.name" subject="emails.reviewRemindAuto.subject" body="emails.reviewRemindAuto.body"/>
+	<email key="REVIEW_REMIND_AUTO" name="mailable.reviewRemindAuto.name" subject="emails.reviewRemind.subject" body="emails.reviewRemindAuto.body"/>
 	<email key="REVIEW_COMPLETE" name="mailable.reviewComplete.name" subject="emails.reviewComplete.subject" body="emails.reviewComplete.body"/>
 	<email key="REVIEW_EDIT" name="mailable.reviewEdit.name" subject="emails.reviewEdit.subject" body="emails.reviewEdit.body"/>
 	<email key="EDITOR_DECISION_ACCEPT" name="mailable.decision.accept.notifyAuthor.name" subject="emails.editorDecisionAccept.subject" body="emails.editorDecisionAccept.body"/>

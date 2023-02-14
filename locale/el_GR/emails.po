@@ -91,23 +91,6 @@ msgstr ""
 "Σας ευχαριστούμε,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotAuthor.subject"
-msgstr "Επιβεβαίωση υποβολής"
-
-msgid "emails.submissionAckNotAuthor.body"
-msgstr ""
-"Αγαπητέ κύριε/α,<br />\n"
-"<br />\n"
-"{$submitterName} έχετε υποβάλει την εργασία, &quot;{$submissionTitle}&quot; "
-"στις εκδόσεις {$contextName}. <br />\n"
-"<br />\n"
-"Για περισσότερες πληροφορίες παρακαλούμε επικοινωνήστε μαζί μας. "
-"Ευχαριστούμε που θεωρείτε τις εκδόσεις μας ως τον κατάλληλο χώρο για να "
-"δημοσιεύετε την εργασία σας. <br />\n"
-"<br />\n"
-"{$contextSignature}"
-
-#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Ανάθεση ομάδας εργασίας"
 
@@ -127,6 +110,7 @@ msgstr ""
 msgid "emails.reviewRequest.subject"
 msgstr "Αίτημα αξιολόγησης εργασίας"
 
+#, fuzzy
 msgid "emails.reviewRequest.body"
 msgstr ""
 "Κύριε/α {$recipientName},<br />\n"
@@ -154,6 +138,7 @@ msgstr ""
 msgid "emails.reviewRequestSubsequent.subject"
 msgstr ""
 
+#, fuzzy
 msgid "emails.reviewRequestSubsequent.body"
 msgstr ""
 
@@ -178,7 +163,8 @@ msgstr ""
 "<br />\n"
 "Για οποιαδήποτε διευκρίνιση, παρακαλώ επικοινωνήστε μαζί μας"
 
-msgid "emails.reviewReinstate.subject"
+#, fuzzy
+msgid "emails.reviewReinstate.body"
 msgstr ""
 
 msgid "emails.reviewReinstate.body"
@@ -214,9 +200,11 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
+#, fuzzy
 msgid "emails.reviewRemind.subject"
 msgstr "Υπενθύμιση αξιολόγησης υποβολής"
 
+#, fuzzy
 msgid "emails.reviewRemind.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -242,9 +230,7 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAuto.subject"
-msgstr "Αυτοματοποιημένη υπενθύμιση αξιολόγησης υποβολής"
-
+#, fuzzy
 msgid "emails.reviewRemindAuto.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -330,6 +316,7 @@ msgstr ""
 msgid "emails.layoutComplete.subject"
 msgstr "Ολοκλήρωση δημιουργίας σελιδοποιημένων δοκιμίων"
 
+#, fuzzy
 msgid "emails.layoutComplete.body"
 msgstr ""
 "{$recipientName}:<br />\n"

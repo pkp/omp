@@ -109,22 +109,6 @@ msgstr ""
 "Atenciosamente,<br />\n"
 "{$signature}"
 
-msgid "emails.submissionAckNotAuthor.subject"
-msgstr "Agradecimento pela submissão"
-
-msgid "emails.submissionAckNotAuthor.body"
-msgstr ""
-"Olá,<br />\n"
-"<br />\n"
-"{$submitterName} submeteu o manuscrito, &quot;{$submissionTitle}&quot; a "
-"{$contextName}. <br />\n"
-"<br />\n"
-"Em caso de dúvidas, entre em contacto. Agradecemos por considerar a nossa "
-"editora como veículo para os seus trabalhos.<br />\n"
-"<br />\n"
-"{$contextSignature}"
-
-#, fuzzy
 msgid "emails.editorAssign.subject"
 msgstr "Tarefa editorial"
 
@@ -144,6 +128,7 @@ msgstr ""
 msgid "emails.reviewRequest.subject"
 msgstr "Pedido de revisão"
 
+#, fuzzy
 msgid "emails.reviewRequest.body"
 msgstr ""
 "Caro(a) {$recipientName},<br />\n"
@@ -169,6 +154,7 @@ msgstr ""
 msgid "emails.reviewRequestSubsequent.subject"
 msgstr "Solicitação de revisão de uma submissão já revista"
 
+#, fuzzy
 msgid "emails.reviewRequestSubsequent.body"
 msgstr ""
 "<p>Caro(a) {$recipientName},</p><p>Obrigado pela revisão de <a href="
@@ -228,7 +214,8 @@ msgstr ""
 "<br />\n"
 "Se tiver alguma questão, não hesite em contactar-nos."
 
-msgid "emails.reviewReinstate.subject"
+#, fuzzy
+msgid "emails.reviewReinstate.body"
 msgstr "Pedido de Revisão Restabelecido"
 
 msgid "emails.reviewReinstate.body"
@@ -270,9 +257,11 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
+#, fuzzy
 msgid "emails.reviewRemind.subject"
 msgstr "Lembrete de Revisão da Submissão"
 
+#, fuzzy
 msgid "emails.reviewRemind.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -295,9 +284,7 @@ msgstr ""
 "<br />\n"
 "{$signature}"
 
-msgid "emails.reviewRemindAuto.subject"
-msgstr "Lembrete automático de Revisão da Submissão"
-
+#, fuzzy
 msgid "emails.reviewRemindAuto.body"
 msgstr ""
 "{$recipientName}:<br />\n"
@@ -383,6 +370,7 @@ msgid "emails.layoutRequest.subject"
 msgstr ""
 "A submissão {$submissionId} está pronta para Produção em {$contextAcronym}"
 
+#, fuzzy
 msgid "emails.layoutRequest.body"
 msgstr ""
 "<p>Caro(a){$recipientName},</p><p>Está disponível para edição de layout um "
@@ -400,6 +388,7 @@ msgstr ""
 msgid "emails.layoutComplete.subject"
 msgstr "Composições concluídas"
 
+#, fuzzy
 msgid "emails.layoutComplete.body"
 msgstr ""
 "<p>{$recipientName}:</p><p>As composições finais já se encontram preparadas "
