@@ -58,7 +58,7 @@ describe('Data suite tests', function() {
 		cy.get('.app__nav a').contains('Workflow').click();
 		cy.get('button[id="review-button"]').click();
 		cy.get('button[id="reviewerGuidance-button"]').click();
-		cy.setTinyMceContent('reviewerGuidance-competingInterests-control-en_US', 'Reviewer competing interests disclosure');
+		cy.setTinyMceContent('reviewerGuidance-competingInterests-control-en', 'Reviewer competing interests disclosure');
 		cy.get('div[id="reviewerGuidance"] button:contains("Save")').click();
 		cy.get('#reviewerGuidance [role="status"]').contains('Saved');
 		cy.logout();
@@ -107,7 +107,7 @@ describe('Data suite tests', function() {
 		cy.get('.app__nav a').contains('Workflow').click();
 		cy.get('button[id="review-button"]').click();
 		cy.get('button[id="reviewerGuidance-button"]').click();
-		cy.setTinyMceContent('reviewerGuidance-competingInterests-control-en_US', '');
+		cy.setTinyMceContent('reviewerGuidance-competingInterests-control-en', '');
 		cy.get('div[id="reviewerGuidance"] button:contains("Save")').click();
 		cy.get('#reviewerGuidance [role="status"]').contains('Saved');
 		cy.logout();

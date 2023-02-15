@@ -31,26 +31,26 @@ describe('Data suite tests', function() {
 			'submitterRole': 'Volume editor',
 			'additionalAuthors': [
 				{
-					'givenName': {en_US: 'Toby'},
-					'familyName': {en_US: 'Miller'},
+					'givenName': {en: 'Toby'},
+					'familyName': {en: 'Miller'},
 					'country': 'CA',
-					'affiliation': {en_US: 'University of Alberta'},
+					'affiliation': {en: 'University of Alberta'},
 					'email': 'tmiller@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
 				{
-					'givenName': {en_US: 'Ira'},
-					'familyName': {en_US: 'Wagman'},
+					'givenName': {en: 'Ira'},
+					'familyName': {en: 'Wagman'},
 					'country': 'CA',
-					'affiliation': {en_US: 'Athabasca University'},
+					'affiliation': {en: 'Athabasca University'},
 					'email': 'awagman@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
 				{
-					'givenName': {en_US: 'Will'},
-					'familyName': {en_US: 'Straw'},
+					'givenName': {en: 'Will'},
+					'familyName': {en: 'Straw'},
 					'country': 'CA',
-					'affiliation': {en_US: 'University of Calgary'},
+					'affiliation': {en: 'University of Calgary'},
 					'email': 'wstraw@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
@@ -148,7 +148,7 @@ describe('Data suite tests', function() {
 		cy.get('button[id="publicationFormats-button"]').click();
 		cy.get('*[id^="component-grid-catalogentry-publicationformatgrid-addFormat-button-"]').click();
 		cy.wait(1000); // Avoid occasional failure due to form init taking time
-		cy.get('input[id^="name-en_US-"]').type('PDF', {delay: 0});
+		cy.get('input[id^="name-en-"]').type('PDF', {delay: 0});
 		cy.get('input[id^="remotelyHostedContent"]').click();
 		cy.get('input[id^="remoteURL-"]').type('https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf', {delay: 0});
 		cy.get('input[id^="isbn13-"]').type('978-951-98548-9-2', {delay: 0});

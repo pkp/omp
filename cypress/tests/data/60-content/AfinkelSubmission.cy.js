@@ -175,8 +175,8 @@ describe('Data suite tests', function() {
 		// Enter details
 		cy.get('.pkpSteps__step__label--current').contains('Details');
 		cy.get('h2').contains('Submission Details');
-		cy.setTinyMceContent('titleAbstract-abstract-control-en_US', submission.abstract);
-		cy.get('#titleAbstract-title-control-en_US').click(); // Ensure blur event is fired
+		cy.setTinyMceContent('titleAbstract-abstract-control-en', submission.abstract);
+		cy.get('#titleAbstract-title-control-en').click(); // Ensure blur event is fired
 
 		cy.get('.submissionWizard__footer button').contains('Continue').click();
 
@@ -206,11 +206,11 @@ describe('Data suite tests', function() {
 		cy.get('.listPanel__item:contains("Alvin Finkel")');
 		cy.get('button').contains('Add Contributor').click();
 		cy.get('.modal__panel:contains("Add Contributor")').find('button').contains('Save').click();
-		cy.get('#contributor-givenName-error-en_US').contains('This field is required.');
+		cy.get('#contributor-givenName-error-en').contains('This field is required.');
 		cy.get('#contributor-email-error').contains('This field is required.');
 		cy.get('#contributor-country-error').contains('This field is required.');
-		cy.get('.pkpFormField:contains("Given Name")').find('input[name*="en_US"]').type(submission.authors[0].givenName);
-		cy.get('.pkpFormField:contains("Family Name")').find('input[name*="en_US"]').type(submission.authors[0].familyName);
+		cy.get('.pkpFormField:contains("Given Name")').find('input[name*="en"]').type(submission.authors[0].givenName);
+		cy.get('.pkpFormField:contains("Family Name")').find('input[name*="en"]').type(submission.authors[0].familyName);
 		cy.get('label').contains(submission.authors[0].role).parent().find('input').click();
 		cy.get('.pkpFormField:contains("Country")').find('select').select(submission.authors[0].country)
 		cy.get('.pkpFormField:contains("Email")').find('input').type('notanemail');
@@ -238,8 +238,8 @@ describe('Data suite tests', function() {
 		submission.authors.slice(1).forEach((author) => {
 			cy.get('button').contains('Add Contributor').click();
 			cy.get('.modal__panel:contains("Add Contributor")').find('button').contains('Save').click();
-			cy.get('.pkpFormField:contains("Given Name")').find('input[name*="en_US"]').type(author.givenName);
-			cy.get('.pkpFormField:contains("Family Name")').find('input[name*="en_US"]').type(author.familyName);
+			cy.get('.pkpFormField:contains("Given Name")').find('input[name*="en"]').type(author.givenName);
+			cy.get('.pkpFormField:contains("Family Name")').find('input[name*="en"]').type(author.familyName);
 			cy.get('label').contains(author.role).parent().find('input').click();
 			cy.get('.pkpFormField:contains("Country")').find('select').select(author.country)
 			cy.get('.pkpFormField:contains("Email")').find('input').type(author.email);
@@ -248,7 +248,7 @@ describe('Data suite tests', function() {
 
 		// Delete a contributor
 		cy.get('.listPanel:contains("Contributors")').find('button').contains('Add Contributor').click();
-		cy.get('.pkpFormField:contains("Given Name")').find('input[name*="en_US"]').type('Fake Author Name');
+		cy.get('.pkpFormField:contains("Given Name")').find('input[name*="en"]').type('Fake Author Name');
 		cy.get('.pkpFormField:contains("Email")').find('input').type('delete@mailinator.com');
 		cy.get('.pkpFormField:contains("Country")').find('select').select('Barbados');
 		cy.get('.modal__panel:contains("Add Contributor")').find('button').contains('Save').click();
@@ -321,7 +321,7 @@ describe('Data suite tests', function() {
 		// Submit
 		cy.contains('Make a Submission: Review');
 		cy.get('button:contains("Submit")').click();
-		const message = 'The submission, ' + submission.title + ', will be submitted to ' + Cypress.env('contextTitles').en_US + ' for editorial review';
+		const message = 'The submission, ' + submission.title + ', will be submitted to ' + Cypress.env('contextTitles').en + ' for editorial review';
 		cy.get('.modal__panel:contains("' + message + '")').find('button').contains('Submit').click();
 		cy.contains('Submission complete');
 		cy.get('a').contains('Create a new submission');

@@ -29,56 +29,56 @@ describe('Data suite tests', function() {
 			'submitterRole': 'Volume editor',
 			'additionalAuthors': [
 				{
-					'givenName': {en_US: 'Heloise'},
-					'familyName': {en_US: 'Emdon'},
+					'givenName': {en: 'Heloise'},
+					'familyName': {en: 'Emdon'},
 					'country': 'CA',
 					// 'affiliation': '',
 					'email': 'lelder@mailinator.com',
 					userGroupId: Cypress.env('volumeEditorUserGroupId')
 				},
 				{
-					'givenName': {en_US: 'Frank'},
-					'familyName': {en_US: 'Tulus'},
+					'givenName': {en: 'Frank'},
+					'familyName': {en: 'Tulus'},
 					'country': 'CA',
 					// 'affiliation': '',
 					'email': 'ftulus@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
 				{
-					'givenName': {en_US: 'Raymond'},
-					'familyName': {en_US: 'Hyma'},
+					'givenName': {en: 'Raymond'},
+					'familyName': {en: 'Hyma'},
 					'country': 'AR',
 					// 'affiliation': '',
 					'email': 'rhyma@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
 				{
-					'givenName': {en_US: 'John'},
-					'familyName': {en_US: 'Valk'},
+					'givenName': {en: 'John'},
+					'familyName': {en: 'Valk'},
 					'country': 'CA',
 					// 'affiliation': '',
 					'email': 'jvalk@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
 				{
-					'givenName': {en_US: 'Khaled'},
-					'familyName': {en_US: 'Fourati'},
+					'givenName': {en: 'Khaled'},
+					'familyName': {en: 'Fourati'},
 					'country': 'CA',
 					// 'affiliation': '',
 					'email': 'fkourati@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
 				{
-					'givenName': {en_US: 'Jeremy'},
-					'familyName': {en_US: 'de Beer'},
+					'givenName': {en: 'Jeremy'},
+					'familyName': {en: 'de Beer'},
 					'country': 'CA',
 					// 'affiliation': '',
 					'email': 'jdebeer@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
 				{
-					'givenName': {en_US: 'Sara'},
-					'familyName': {en_US: 'Bannerman'},
+					'givenName': {en: 'Sara'},
+					'familyName': {en: 'Bannerman'},
 					'country': 'CA',
 					// 'affiliation': '',
 					'email': 'sbannerman@mailinator.com',

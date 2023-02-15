@@ -31,18 +31,18 @@ describe('Data suite tests', function() {
 			'submitterRole': 'Volume editor',
 			'additionalAuthors': [
 				{
-					'givenName': {en_US: 'Brian'},
-					'familyName': {en_US: 'Dupuis'},
+					'givenName': {en: 'Brian'},
+					'familyName': {en: 'Dupuis'},
 					'country': 'CA',
-					'affiliation': {en_US: 'Athabasca University'},
+					'affiliation': {en: 'Athabasca University'},
 					'email': 'bdupuis@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
 				{
-					'givenName': {en_US: 'Michael'},
-					'familyName': {en_US: 'Wilson'},
+					'givenName': {en: 'Michael'},
+					'familyName': {en: 'Wilson'},
 					'country': 'CA',
-					'affiliation': {en_US: 'University of Calgary'},
+					'affiliation': {en: 'University of Calgary'},
 					'email': 'mwilson@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				}
@@ -78,8 +78,8 @@ describe('Data suite tests', function() {
 					'file': 'dummy.pdf',
 					'genre': 'Other',
 					'metadata': {
-						'creator-en_US': 'Baris Kanber',
-						'description-en_US': 'A presentation entitled "Segmentation of Vascular Ultrasound Image Sequences".',
+						'creator-en': 'Baris Kanber',
+						'description-en': 'A presentation entitled "Segmentation of Vascular Ultrasound Image Sequences".',
 						'language': 'en'
 					}
 				},
@@ -89,11 +89,11 @@ describe('Data suite tests', function() {
 					'file': 'dummy.pdf',
 					'genre': 'Table',
 					'metadata': {
-						'creator-en_US': 'Health Canada',
-						'publisher-en_US': 'Health Canada',
-						'description-en_US': 'Published by Health Canada, the Nutrient Value of Some Common Foods (NVSCF) provides Canadians with a resource that lists 19 nutrients for 1000 of the most commonly consumed foods in Canada. Use this quick and easy reference to help make informed food choices through an understanding of the nutrient content of the foods you eat. For further information, a booklet is available on this site in a downloadable or printable pdf format.',
-						'source-en_US': 'http://open.canada.ca/data/en/dataset/a289fd54-060c-4a96-9fcf-b1c6e706426f',
-						'subject-en_US': 'Health and Safety',
+						'creator-en': 'Health Canada',
+						'publisher-en': 'Health Canada',
+						'description-en': 'Published by Health Canada, the Nutrient Value of Some Common Foods (NVSCF) provides Canadians with a resource that lists 19 nutrients for 1000 of the most commonly consumed foods in Canada. Use this quick and easy reference to help make informed food choices through an understanding of the nutrient content of the foods you eat. For further information, a booklet is available on this site in a downloadable or printable pdf format.',
+						'source-en': 'http://open.canada.ca/data/en/dataset/a289fd54-060c-4a96-9fcf-b1c6e706426f',
+						'subject-en': 'Health and Safety',
 						'dateCreated': '2013-05-23',
 						'language': 'en'
 					}
@@ -167,7 +167,7 @@ describe('Data suite tests', function() {
 		cy.get('button[id="publicationFormats-button"]').click();
 		cy.get('*[id^="component-grid-catalogentry-publicationformatgrid-addFormat-button-"]').click();
 		cy.wait(1000); // Avoid occasional failure due to form init taking time
-		cy.get('input[id^="name-en_US-"]').type('PDF', {delay: 0});
+		cy.get('input[id^="name-en-"]').type('PDF', {delay: 0});
 		cy.get('div.pkp_modal_panel div.header:contains("Add publication format")').click(); // FIXME: Focus problem with multilingual input
 		cy.get('button:contains("OK")').click();
 
