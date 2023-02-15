@@ -23,10 +23,10 @@ describe('Monograph report plugin tests', () => {
 			const publication = firstMonograph.publications.pop();
 			expect(reportResponse.headers['content-type']).to.contain('text/comma-separated-values');
 			expect(reportResponse.body.match(/\/publicknowledge\/workflow\/access\/\d+/g).length).to.equal(submissionCount);
-			expect(reportResponse.body).contains(publication.title.en_US);
+			expect(reportResponse.body).contains(publication.title.en);
 			for (const author of publication.chapters.flatMap(chapter => Object.values(chapter.authors))) {
-				expect(reportResponse.body).contains(author.givenName.en_US);
-				expect(reportResponse.body).contains(author.familyName.en_US);
+				expect(reportResponse.body).contains(author.givenName.en);
+				expect(reportResponse.body).contains(author.familyName.en);
 			}
 		});
 	}

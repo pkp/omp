@@ -32,26 +32,26 @@ describe('Data suite tests', function() {
 			'submitterRole': 'Volume editor',
 			'additionalAuthors': [
 				{
-					'givenName': {en_US: 'Greg'},
-					'familyName': {en_US: 'Bobish'},
+					'givenName': {en: 'Greg'},
+					'familyName': {en: 'Bobish'},
 					'country': 'US',
-					'affiliation': {en_US: 'SUNY'},
+					'affiliation': {en: 'SUNY'},
 					'email': 'gbobish@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
 				{
-					'givenName': {en_US: 'Daryl'},
-					'familyName': {en_US: 'Bullis'},
+					'givenName': {en: 'Daryl'},
+					'familyName': {en: 'Bullis'},
 					'country': 'US',
-					'affiliation': {en_US: 'SUNY'},
+					'affiliation': {en: 'SUNY'},
 					'email': 'dbullis@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
 				{
-					'givenName': {en_US: 'Jenna'},
-					'familyName': {en_US: 'Hecker'},
+					'givenName': {en: 'Jenna'},
+					'familyName': {en: 'Hecker'},
 					'country': 'US',
-					'affiliation': {en_US: 'SUNY'},
+					'affiliation': {en: 'SUNY'},
 					'email': 'jhecker@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},

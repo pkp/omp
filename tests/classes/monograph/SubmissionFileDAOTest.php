@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SubmissionFileDAOTest
+ *
  * @ingroup tests_classes_monograph
  *
  * @see SubmissionFileDAO
@@ -61,7 +62,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
 
         // Mock a press
         $press = new Press();
-        $press->setPrimaryLocale('en_US');
+        $press->setPrimaryLocale('en');
         $press->setPath('press-path');
         $press->setId(static::SUBMISSION_FILE_DAO_TEST_PRESS_ID);
 
@@ -82,7 +83,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $monograph = new Submission();
         $monograph->setId(static::SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
         $monograph->setPressId(static::SUBMISSION_FILE_DAO_TEST_PRESS_ID);
-        $monograph->setLocale('en_US');
+        $monograph->setLocale('en');
         $submissionDao->expects($this->any())
             ->method('get')
             ->will($this->returnValue($monograph));
@@ -126,7 +127,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $submissionDao = Repo::submission()->dao;
         $submission = Repo::submission()->newDataObject();
         $submission->setPressId(static::SUBMISSION_FILE_DAO_TEST_PRESS_ID);
-        $submission->setLocale('en_US');
+        $submission->setLocale('en');
         $submissionId = Repo::submission()->dao->insert($submission);
 
         $publication = Repo::publication()->newDataObject(['submissionId' => $submissionId]);
@@ -143,7 +144,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $monograph = new Submission();
         $monograph->setId($submissionId);
         $monograph->setPressId(static::SUBMISSION_FILE_DAO_TEST_PRESS_ID);
-        $monograph->setLocale('en_US');
+        $monograph->setLocale('en');
         $submissionDao->expects($this->any())
             ->method('get')
             ->will($this->returnValue($monograph));

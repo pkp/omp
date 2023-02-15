@@ -68,18 +68,18 @@ describe('Monograph View Metadata - DC Plugin', function() {
 			submitterRole: 'Press manager',
 			additionalAuthors: [
 				{
-					givenName: {en_US: 'Name 1'},
-					familyName: {en_US: 'Author 1'},
+					givenName: {en: 'Name 1'},
+					familyName: {en: 'Author 1'},
 					country: 'US',
-					affiliation: {en_US: 'Stanford University'},
+					affiliation: {en: 'Stanford University'},
 					email: 'nameauthor1Test@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
 				{
-					givenName: {en_US: 'Name 2'},
-					familyName: {en_US: 'Author 2'},
+					givenName: {en: 'Name 2'},
+					familyName: {en: 'Author 2'},
 					country: 'US',
-					affiliation: {en_US: 'Stanford University'},
+					affiliation: {en: 'Stanford University'},
 					email: 'nameauthor2Test@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				}
@@ -123,7 +123,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 					],
 				},
 				{
-					locale: 'en_US',
+					locale: 'en',
 					manyValues: [
 						{
 							metadata: 'keywords',
@@ -184,7 +184,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 							locale: 'en',
 							contents: [ 
 								submission.localeMetadata
-									.find(element => element.locale == 'en_US')
+									.find(element => element.locale == 'en')
 									.oneValue
 									.find(element => element.metadata == 'coverage')
 									.value
@@ -238,7 +238,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 							locale: 'en',
 							contents: [
 								submission.localeMetadata
-									.find(element => element.locale == 'en_US')
+									.find(element => element.locale == 'en')
 									.oneValue
 									.find(element => element.metadata == 'type')
 									.value
@@ -263,13 +263,13 @@ describe('Monograph View Metadata - DC Plugin', function() {
 						{
 							locale: 'en',
 							contents: submission.localeMetadata
-								.find(element => element.locale == 'en_US')
+								.find(element => element.locale == 'en')
 								.manyValues
 								.find(element => element.metadata == 'keywords')
 								.values
 								.concat(
 									submission.localeMetadata
-										.find(element => element.locale == 'en_US')
+										.find(element => element.locale == 'en')
 										.manyValues
 										.find(element => element.metadata == 'subjects')
 										.values
@@ -420,8 +420,8 @@ describe('Monograph View Metadata - DC Plugin', function() {
 		// Open multilanguage inputs and add data to fr_CA inputs
 		cy.get('div#titleAbstract button').contains('French').click();
 
-		cy.get('#titleAbstract input[name=prefix-en_US]').type(submission.prefix, {delay: 0});
-		cy.get('#titleAbstract input[name=subtitle-en_US]').type(submission.subtitle, {delay: 0});
+		cy.get('#titleAbstract input[name=prefix-en]').type(submission.prefix, {delay: 0});
+		cy.get('#titleAbstract input[name=subtitle-en]').type(submission.subtitle, {delay: 0});
 
 		cy.get('#titleAbstract input[name=title-fr_CA]').type(submission.localeTitles.fr_CA.title, {delay: 0});
 		cy.get('#titleAbstract input[name=prefix-fr_CA]').type(submission.localeTitles.fr_CA.prefix, {delay: 0});
@@ -471,7 +471,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 			cy.wait(1500); // Wait for the form to settle
 			cy.get('div#representations-grid a').contains('Add publication format').click();
 			cy.wait(1500); // Wait for the form to settle
-			cy.get('input[id^="name-en_US-"]').type(publicationFormat.name, {delay: 0});
+			cy.get('input[id^="name-en-"]').type(publicationFormat.name, {delay: 0});
 			cy.get('div.pkp_modal_panel div.header:contains("Add publication format")').click();
 			cy.get('button:contains("OK")').click();
 
