@@ -1,7 +1,7 @@
 # Upgrading an OMP Installation
 
 Note: Before upgrading your installation, perform a complete backup of your
-data files and database. If the upgrade process fails, you will need to recover
+data files and database. If the upgrade process fails, you may need to recover
 from backup before continuing.
 
 If you are using PHP Safe Mode, please ensure that the max_execution_time
@@ -14,8 +14,8 @@ Upgrading to the latest version of OMP involves two steps:
 - [Obtaining the latest OMP code](#obtaining-the-latest-omp-code)
 - [Upgrading the OMP database](#upgrading-the-omp-database)
 
-It is highly recommended that you also review the release notes ([docs/RELEASE](RELEASE))
-and other documentation in the docs directory before performing an upgrade.
+It is highly recommended that you also review the release notes ([RELEASE](RELEASE))
+and [How to Upgrade](https://docs.pkp.sfu.ca/dev/upgrade-guide/en/) before performing an upgrade.
 
 
 ### Obtaining the latest OMP code
@@ -29,30 +29,24 @@ If you have not made local code modifications to the system, upgrade by
 downloading the complete package for the latest release of OMP:
 
 - Download and decompress the package from the OMP web site into an empty
-  directory (NOT over top of your current OMP installation)
+	directory (NOT over top of your current OMP installation)
 - Move or copy the following files and directories from your current OMP
-  installation:
+	installation:
       
-    - config.inc.php
-    - public/
-    - Your uploaded files directory ("files_dir" in config.inc.php), if it
-      resides within your OMP directory
-          
-- Synchronize new changes from config.TEMPLATE.inc.php to config.inc.php
-- Replace the current OMP directory with the new OMP directory, moving the
-  old one to a safe location as a backup
-- Be sure to review the Configuration Changes section of the release notes
-  in docs/release-notes/README-(version) for all versions between your
-  original version and the new version. You may need to manually add
-  new items to your config.inc.php file.
+		- config.inc.php
+		- public 
 
-Updating from github is the recommended approach if you have made local
-modifications to the system.
+- Move the old OJS installation directory to a safe location and move the new one into
+	its place
+- Be sure to review the Configuration Changes section of the release notes
+	in docs/release-notes/README-(version) for all versions between your
+	original version and the new version. You may need to manually add
+	new items to your config.inc.php file.
 
 #### 2. git
 
-If your instance of OMP was checked out from github (see docs/README-GIT),
-you can update the OMP code using a git client.
+Updating from github is the recommended approach if you have made local
+modifications to the system.
 
 ##### Updating the application code
 
