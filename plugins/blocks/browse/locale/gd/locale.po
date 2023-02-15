@@ -1,0 +1,38 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-11-16 20:31+0000\n"
+"Last-Translator: Michael Bauer <fios@igaidhlig.net>\n"
+"Language-Team: Gaelic <http://translate.pkp.sfu.ca/projects/omp/"
+"blocks-browse/gd_GB/>\n"
+"Language: gd_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
+"(n > 2 && n < 20) ? 2 : 3;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.block.browse"
+msgstr "Rùraich"
+
+msgid "plugins.block.browse.displayName"
+msgstr "Am bloca rùrachaidh"
+
+msgid "plugins.block.browse.description"
+msgstr ""
+"Tha am plugan seo a’ cur nan innealan “Rùraich” ri làimh air a’ bhàr-taobh."
+
+msgid "plugins.block.browse.settings"
+msgstr "Roghainnean"
+
+msgid "plugins.block.browse.settings.title"
+msgstr "Rùraich na cothroman"
+
+msgid "plugins.block.browse.category"
+msgstr "Roinnean-seòrsa"
+
+msgid "plugins.block.browse.series"
+msgstr "Sreath"
+
+msgid "plugins.block.browse.newReleases"
+msgstr "Sgaoilidhean ùra"

@@ -1,0 +1,57 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-04-21 13:43+0000\n"
+"Last-Translator: Hüseyin Körpeoğlu <yoruyenturk@hotmail.com>\n"
+"Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-native/tr_TR/>\n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.importexport.native.displayName"
+msgstr "Doğal XML Eklentisi"
+
+msgid "plugins.importexport.native.description"
+msgstr "Kitapları OMP'nin doğal XML biçiminde içe ve dışa aktarın."
+
+msgid "plugins.importexport.native.import"
+msgstr "İçe Aktar"
+
+msgid "plugins.importexport.native.import.instructions"
+msgstr "İçe aktarmak için XML dosyası yükleyin"
+
+msgid "plugins.importexport.native.export"
+msgstr "Dışa Aktar"
+
+msgid "plugins.importexport.native.exportSubmissionsSelect"
+msgstr "Dışa aktarılacak risaleleri seçin"
+
+msgid "plugins.importexport.native.results"
+msgstr "Sonuçlar"
+
+msgid "plugins.inportexport.native.uploadFile"
+msgstr "Devam etmek için lütfen \"İçe Aktar\" altında bir dosya yükleyin."
+
+msgid "plugins.importexport.native.importComplete"
+msgstr "İçe aktarma başarıyla tamamlandı. Aşağıdaki öğeler içe aktarıldı:"
+
+msgid "plugins.importexport.native.onix30.pressMissingFields"
+msgstr ""
+"Bu yayınevinde, bu dışa aktarmada kullanılan ONIX üst verileri için bazı "
+"gerekli bilgiler eksik. Lütfen <a href=\"{$url}\">Yayınevi Ayarları'na</a> "
+"gidin ve eksik ayrıntıları doldurun."
+
+msgid "plugins.importexport.native.error.unknownSeries"
+msgstr "Bilinmeyen dizi {$param}"
+
+msgid "plugins.importexport.native.cliUsage"
+msgstr ""
+"Kullanım: {$scriptName} {$pluginName} [command] ...\n"
+"Komutlar:\n"
+"\timport [xmlFileName] [press_path] [user_name] ...\n"
+"\texport [xmlFileName] [press_path] monographs [monographId1] [monographId2] "
+"...\n"
+"\texport [xmlFileName] [press_path] monograph [monographId]\n"
