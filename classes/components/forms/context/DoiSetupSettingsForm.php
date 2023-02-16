@@ -19,12 +19,44 @@ use PKP\components\forms\context\PKPDoiSetupSettingsForm;
 use PKP\components\forms\FieldOptions;
 use PKP\components\forms\FieldText;
 use PKP\context\Context;
+use PKP\plugins\Hook;
 
 class DoiSetupSettingsForm extends PKPDoiSetupSettingsForm
 {
     public function __construct(string $action, array $locales, Context $context)
     {
         parent::__construct($action, $locales, $context);
+
+        $this->objectTypeOptions = [
+            [
+                'value' => Repo::doi()::TYPE_PUBLICATION,
+                'label' => __('common.publications'),
+                'allowedBy' => [],
+            ],
+            [
+                'value' => Repo::doi()::TYPE_CHAPTER,
+                'label' => __('submission.chapters'),
+                'allowedBy' => [],
+            ],
+            [
+                'value' => Repo::doi()::TYPE_REPRESENTATION,
+                'label' => __('monograph.publicationFormats'),
+                'allowedBy' => [],
+            ],
+            [
+                'value' => Repo::doi()::TYPE_SUBMISSION_FILE,
+                'label' => __('doi.manager.settings.enableSubmissionFileDoi'),
+                'allowedBy' => [],
+            ],
+        ];
+        Hook::call('DoiSetupSettingsForm::getObjectTypes', [&$this->objectTypeOptions]);
+        if ($this->enabledRegistrationAgency === null) {
+            $filteredOptions = $this->objectTypeOptions;
+        } else {
+            $filteredOptions = array_filter($this->objectTypeOptions, function ($option) {
+                return in_array($this->enabledRegistrationAgency, $option['allowedBy']);
+            });
+        }
 
         // Added in PKPDoiSetupSettingsForm, but not currently applicable to OMP
         $this->removeField(Context::SETTING_DOI_AUTOMATIC_DEPOSIT);
@@ -33,24 +65,7 @@ class DoiSetupSettingsForm extends PKPDoiSetupSettingsForm
             'label' => __('doi.manager.settings.doiObjects'),
             'description' => __('doi.manager.settings.doiObjectsRequired'),
             'groupId' => self::DOI_SETTINGS_GROUP,
-            'options' => [
-                [
-                    'value' => Repo::doi()::TYPE_PUBLICATION,
-                    'label' => __('common.publications'),
-                ],
-                [
-                    'value' => Repo::doi()::TYPE_CHAPTER,
-                    'label' => __('submission.chapters'),
-                ],
-                [
-                    'value' => Repo::doi()::TYPE_REPRESENTATION,
-                    'label' => __('monograph.publicationFormats'),
-                ],
-                [
-                    'value' => Repo::doi()::TYPE_SUBMISSION_FILE,
-                    'label' => __('doi.manager.settings.enableSubmissionFileDoi'),
-                ],
-            ],
+            'options' => $filteredOptions,
             'value' => $context->getData(Context::SETTING_ENABLED_DOI_TYPES) ? $context->getData(Context::SETTING_ENABLED_DOI_TYPES) : [],
         ]), [FIELD_POSITION_BEFORE, Context::SETTING_DOI_PREFIX])
             ->addField(new FieldText(Repo::doi()::CUSTOM_CHAPTER_PATTERN, [
