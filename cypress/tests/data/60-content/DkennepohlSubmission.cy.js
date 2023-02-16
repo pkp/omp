@@ -30,34 +30,34 @@ describe('Data suite tests', function() {
 			'submitterRole': 'Volume editor',
 			'additionalAuthors': [
 				{
-					'givenName': {en_US: 'Terry'},
-					'familyName': {en_US: 'Anderson'},
+					'givenName': {en: 'Terry'},
+					'familyName': {en: 'Anderson'},
 					'country': 'CA',
-					'affiliation': {en_US: 'University of Calgary'},
+					'affiliation': {en: 'University of Calgary'},
 					'email': 'tanderson@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
 				{
-					'givenName': {en_US: 'Paul'},
-					'familyName': {en_US: 'Gorsky'},
+					'givenName': {en: 'Paul'},
+					'familyName': {en: 'Gorsky'},
 					'country': 'CA',
-					'affiliation': {en_US: 'University of Alberta'},
+					'affiliation': {en: 'University of Alberta'},
 					'email': 'pgorsky@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
 				{
-					'givenName': {en_US: 'Gale'},
-					'familyName': {en_US: 'Parchoma'},
+					'givenName': {en: 'Gale'},
+					'familyName': {en: 'Parchoma'},
 					'country': 'CA',
-					'affiliation': {en_US: 'Athabasca University'},
+					'affiliation': {en: 'Athabasca University'},
 					'email': 'gparchoma@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
 				{
-					'givenName': {en_US: 'Stuart'},
-					'familyName': {en_US: 'Palmer'},
+					'givenName': {en: 'Stuart'},
+					'familyName': {en: 'Palmer'},
 					'country': 'CA',
-					'affiliation': {en_US: 'University of Alberta'},
+					'affiliation': {en: 'University of Alberta'},
 					'email': 'spalmer@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
