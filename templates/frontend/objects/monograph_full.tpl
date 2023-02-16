@@ -94,7 +94,7 @@
 	{/if}
 
 	<h1 class="title">
-		{$publication->getLocalizedFullTitle()|escape}
+		{$publication->getLocalizedFullTitle(null, 'html')|strip_unsafe_html}
 	</h1>
 
 	<div class="row">

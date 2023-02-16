@@ -148,7 +148,8 @@ describe('Data suite tests', function() {
 		cy.get('#startSubmission-locale-error').contains('This field is required.');
 		cy.get('#startSubmission-submissionRequirements-error').contains('This field is required.');
 		cy.get('#startSubmission-privacyConsent-error').contains('This field is required.');
-		cy.get('input[name="title"]').type(submission.title, {delay: 0});
+		// cy.get('input[name="title"]').type(submission.title, {delay: 0});
+		cy.setTinyMceContent('startSubmission-title-control', submission.title);
 		cy.get('span:contains("Edited Volume: Authors are associated with their own chapter.")').click();
 		cy.get('label:contains("English")').click();
 		cy.get('input[name="submissionRequirements"]').check();
@@ -176,7 +177,7 @@ describe('Data suite tests', function() {
 		cy.get('.pkpSteps__step__label--current').contains('Details');
 		cy.get('h2').contains('Submission Details');
 		cy.setTinyMceContent('titleAbstract-abstract-control-en_US', submission.abstract);
-		cy.get('#titleAbstract-title-control-en_US').click(); // Ensure blur event is fired
+		cy.get('#titleAbstract-title-control-en_US').click({force: true}); // Ensure blur event is fired
 
 		cy.get('.submissionWizard__footer button').contains('Continue').click();
 

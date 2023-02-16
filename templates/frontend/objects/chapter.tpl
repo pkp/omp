@@ -167,7 +167,7 @@
 						{else}
 							<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"version":$publication->getId()}">
 						{/if}
-								{$publication->getLocalizedFullTitle()|escape}
+								{$publication->getLocalizedFullTitle(null, 'html')|strip_unsafe_html}
 							</a>
 					</div>
 				</div>
