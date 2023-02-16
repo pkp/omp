@@ -146,7 +146,7 @@ describe('Data suite tests', function() {
 		cy.get('button[id="publicationFormats-button"]').click();
 		cy.get('*[id^="component-grid-catalogentry-publicationformatgrid-addFormat-button-"]').click();
 		cy.wait(1000); // Avoid occasional failure due to form init taking time
-		cy.get('input[id^="name-en_US-"]').type('PDF', {delay: 0});
+		cy.get('input[id^="name-en-"]').type('PDF', {delay: 0});
 		cy.get('div.pkp_modal_panel div.header:contains("Add publication format")').click(); // FIXME: Focus problem with multilingual input
 		cy.get('button:contains("OK")').click();
 
