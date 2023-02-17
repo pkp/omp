@@ -7,6 +7,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ChapterTest
+ *
  * @ingroup tests_classes_monograph
  *
  * @see Chapter
@@ -44,13 +45,13 @@ class ChapterTest extends PKPTestCase
     public function testGetFullTitles()
     {
         $expected = [
-            'en_US' => 'The chapter title: and its subtitle',
-            'es_ES' => 'El título del capítulo: y su subtítulo'
+            'en' => 'The chapter title: and its subtitle',
+            'es' => 'El título del capítulo: y su subtítulo'
         ];
-        $this->chapter->setData('title', 'The chapter title', 'en_US');
-        $this->chapter->setData('subtitle', 'and its subtitle', 'en_US');
-        $this->chapter->setData('title', 'El título del capítulo', 'es_ES');
-        $this->chapter->setData('subtitle', 'y su subtítulo', 'es_ES');
+        $this->chapter->setData('title', 'The chapter title', 'en');
+        $this->chapter->setData('subtitle', 'and its subtitle', 'en');
+        $this->chapter->setData('title', 'El título del capítulo', 'es');
+        $this->chapter->setData('subtitle', 'y su subtítulo', 'es');
         $fullTitles = $this->chapter->getFullTitles();
         $this->assertSame($expected, $fullTitles);
     }
@@ -61,23 +62,23 @@ class ChapterTest extends PKPTestCase
     public function testGetLocalizedFullTitle()
     {
         // no preferred locale specified
-        $this->chapter->setData('title', 'The chapter title', 'en_US');
-        $this->chapter->setData('subtitle', 'and its subtitle', 'en_US');
+        $this->chapter->setData('title', 'The chapter title', 'en');
+        $this->chapter->setData('subtitle', 'and its subtitle', 'en');
         $expected = 'The chapter title: and its subtitle';
         $fullTitle = $this->chapter->getLocalizedFullTitle();
         $this->assertSame($expected, $fullTitle);
 
         // specifying a locale thats not the app locale
-        $this->chapter->setData('title', 'The chapter title', 'en_US');
-        $this->chapter->setData('subtitle', 'and its subtitle', 'en_US');
-        $this->chapter->setData('title', 'El título del capítulo', 'es_ES');
-        $this->chapter->setData('subtitle', 'y su subtítulo', 'es_ES');
-        if (Locale::getLocale() == 'en_US') {
+        $this->chapter->setData('title', 'The chapter title', 'en');
+        $this->chapter->setData('subtitle', 'and its subtitle', 'en');
+        $this->chapter->setData('title', 'El título del capítulo', 'es');
+        $this->chapter->setData('subtitle', 'y su subtítulo', 'es');
+        if (Locale::getLocale() == 'en') {
             $expected = 'El título del capítulo: y su subtítulo';
-            $preferredLocale = 'es_ES';
+            $preferredLocale = 'es';
         } else {
             $expected = 'The chapter title: and its subtitle';
-            $preferredLocale = 'en_US';
+            $preferredLocale = 'en';
         }
         $fullTitle = $this->chapter->getLocalizedFullTitle($preferredLocale);
         $this->assertSame($expected, $fullTitle);

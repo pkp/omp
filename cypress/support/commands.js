@@ -28,9 +28,9 @@ Cypress.Commands.add('addChapters', (chapters) => {
 		});
 
 		// Title/subtitle
-		cy.get('form[id="editChapterForm"] input[id^="title-en_US-"]').type(chapter.title, {delay: 0});
+		cy.get('form[id="editChapterForm"] input[id^="title-en-"]').type(chapter.title, {delay: 0});
 		if ('subtitle' in chapter) {
-			cy.get('form[id="editChapterForm"] input[id^="subtitle-en_US-"]').type(chapter.subtitle, {delay: 0});
+			cy.get('form[id="editChapterForm"] input[id^="subtitle-en-"]').type(chapter.subtitle, {delay: 0});
 		}
 		cy.get('div.pkp_modal_panel div:contains("Add Chapter")').click(); // FIXME: Resolve focus problem on title field
 

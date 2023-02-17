@@ -3,17 +3,17 @@ const { defineConfig } = require('cypress')
 module.exports = defineConfig({
   env: {
     contextTitles: {
-      en_US: 'Public Knowledge Press',
+      en: 'Public Knowledge Press',
       fr_CA: 'Press de la connaissance du public',
     },
     contextDescriptions: {
-      en_US:
+      en:
         'Public Knowledge Press is a publisher dedicated to the subject of public access to science.',
       fr_CA:
         "Le Press de Public Knowledge est une presse sur le thème de l'accès du public à la science.",
     },
     contextAcronyms: {
-      en_US: 'PKP',
+      en: 'PKP',
     },
     defaultGenre: 'Book Manuscript',
     authorUserGroupId: 13,
