@@ -30,9 +30,12 @@
 				"nullable"
 			]
 		},
-		"path": {
+		"urlPath": {
 			"type": "string",
-			"apiSummary": true
+			"apiSummary": true,
+			"validation": [
+				"regex:/^[a-zA-Z0-9]+([\\.\\-_][a-zA-Z0-9]+)*$/"
+			]
 		},
 		"prefix": {
 			"type": "string",
