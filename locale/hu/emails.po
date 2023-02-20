@@ -220,20 +220,6 @@ msgstr ""
 "<br />\n"
 "Ha bármilyen kérdése van nyugodtan forduljon hozzánk."
 
-msgid "emails.reviewConfirm.subject"
-msgstr "Szakmai lektorálási feladat elvállalása"
-
-msgid "emails.reviewConfirm.body"
-msgstr ""
-"Szerkesztő(k)nek:<br />\n"
-"<br />\n"
-"El tudom vállalni a beküldött &quot;{$submissionTitle},&quot; című anyag "
-"szakmai lektorálási feladatát a(z) {$contextName} oldalnál. Köszönöm, hogy "
-"gondoltak rám, igyekszem a megadott határidőig, {$reviewDueDate}, ha nem "
-"előbb a feladatot elvégezni.<br />\n"
-"<br />\n"
-"{$senderName}"
-
 msgid "emails.reviewDecline.subject"
 msgstr "Szakmai lektorálási feladat elutasítása"
 

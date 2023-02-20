@@ -232,20 +232,6 @@ msgstr ""
 "<br />\n"
 "Se você tiver alguma dúvida, entre em contato comigo."
 
-msgid "emails.reviewConfirm.subject"
-msgstr "Disponível para avaliação"
-
-msgid "emails.reviewConfirm.body"
-msgstr ""
-"Editores,<br />\n"
-"<br />\n"
-"Estou disponível e aceito realizar a avaliação da submissão &quot;"
-"{$submissionTitle}&quot;, enviado à editora {$contextName}. Agradeço por "
-"considerar meu perfil para avaliação, e planejo concluir a avaliação até "
-"{$reviewDueDate}, se não antes.<br />\n"
-"<br />\n"
-"{$senderName}"
-
 msgid "emails.reviewDecline.subject"
 msgstr "Indisponível para avaliação"
 

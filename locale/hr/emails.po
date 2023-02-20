@@ -227,19 +227,6 @@ msgstr ""
 "<br />\n"
 "Ako imate pitanja, slobodno me kontaktirajte."
 
-msgid "emails.reviewConfirm.subject"
-msgstr "Mogućnost pregleda"
-
-msgid "emails.reviewConfirm.body"
-msgstr ""
-"Urednik(i):<br />\n"
-"<br />\n"
-"Mogu i voljan sam pregledati podnesak, &quot;{$submissionTitle},&quot; za "
-"{$contextName}. Hvala vam što ste mislili na mene. Planiram dovršiti pregled "
-"do krajnjeg roka, {$reviewDueDate}, ako ne i prije.<br />\n"
-"<br />\n"
-"{$senderName}"
-
 msgid "emails.reviewDecline.subject"
 msgstr "Nemogućnost pregleda"
 

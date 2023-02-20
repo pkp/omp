@@ -193,20 +193,6 @@ msgstr ""
 "<br />\n"
 "Ако имате какви било прашања, контактирајте ме."
 
-msgid "emails.reviewConfirm.subject"
-msgstr "Способен за преглед"
-
-msgid "emails.reviewConfirm.body"
-msgstr ""
-"Уредник (ци): <br />\n"
-"<br />\n"
-"Јас сум спремен и сум подготвен да го разгледам поднесокот, &quot;"
-"{$submissionTitle},&quot; за {$contextName}. Ви благодарам што помисливте за "
-"мене и планирам прегледот да заврши до датумот на достасување, "
-"{$reviewDueDate}, ако не и порано. <br />\n"
-"<br />\n"
-"{$senderName}"
-
 msgid "emails.reviewDecline.subject"
 msgstr "Не може да се прегледа"
 

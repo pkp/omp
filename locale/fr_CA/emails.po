@@ -169,20 +169,6 @@ msgstr ""
 msgid "emails.reviewReinstate.body"
 msgstr ""
 
-msgid "emails.reviewConfirm.subject"
-msgstr "En mesure d'évaluer"
-
-msgid "emails.reviewConfirm.body"
-msgstr ""
-"Éditeurs:<br />\n"
-"<br />\n"
-"Je peux et je souhaite évaluer la soumission &quot;{$submissionTitle}&quot; "
-"pour la presse {$contextName}. Merci de m'avoir invité à évaluer cet "
-"article. Je prévois terminer mon évaluation d'ici le {$reviewDueDate}.<br /"
-">\n"
-"<br />\n"
-"{$senderName}"
-
 msgid "emails.reviewDecline.subject"
 msgstr "Ne peux pas évaluer"
 

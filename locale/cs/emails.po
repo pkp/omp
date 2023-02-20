@@ -227,19 +227,6 @@ msgstr ""
 "<br />\n"
 "V případě jakýchkoli dotazů mě prosím kontaktujte."
 
-msgid "emails.reviewConfirm.subject"
-msgstr "Schopný recenzovat"
-
-msgid "emails.reviewConfirm.body"
-msgstr ""
-"Redakce:<br />\n"
-"<br />\n"
-"Jsem schopen a ochoten recenzovat podání, &quot;{$submissionTitle},&quot; "
-"pro {$contextName}. Děkuji, že na mě myslíte, a plánuji, že recenzi dokončím "
-"do data jejího odevzdání, {$reviewDueDate}, pokud ne dříve.<br />\n"
-"<br />\n"
-"{$senderName}"
-
 msgid "emails.reviewDecline.subject"
 msgstr "Nejsem schopný recenzovat"
 

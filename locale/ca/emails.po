@@ -197,20 +197,6 @@ msgstr ""
 "<br />\n"
 "Si teniu qualsevol pregunta no dubteu a contactar-me."
 
-msgid "emails.reviewConfirm.subject"
-msgstr "Disponible per revisar"
-
-msgid "emails.reviewConfirm.body"
-msgstr ""
-"{$recipientName}:<br />\n"
-"<br />\n"
-"Estic disponible per realitzar la revisió de la tramesa "
-"«{$submissionTitle},» per {$contextName}. Gràcies per pensar en mi per "
-"aquesta tasca; tindré la revisió completada per la data de venciment "
-"{$reviewDueDate}, sinó abans.<br />\n"
-"<br />\n"
-"{$senderName}"
-
 msgid "emails.reviewDecline.subject"
 msgstr "No disponible per revisar"
 

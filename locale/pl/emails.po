@@ -214,20 +214,6 @@ msgstr ""
 "<br />\n"
 "W razie pytań, proszę, kontaktuj się ze mną."
 
-msgid "emails.reviewConfirm.subject"
-msgstr "Zdolny do recenzji"
-
-msgid "emails.reviewConfirm.body"
-msgstr ""
-"Redaktor (redaktorzy)::<br />\n"
-"<br />\n"
-"Jestem zainteresowany recenzją zgłoszonego tekstu, , &quot;"
-"{$submissionTitle},&quot; dla {$contextName}. Dziękuję za wzięcie mnie pod "
-"uwagę, planuję oddać recenzję w terminie, {$reviewDueDate}, lub szybciej. "
-"<br />\n"
-"<br />\n"
-"{$senderName}"
-
 msgid "emails.reviewDecline.subject"
 msgstr "Niezdolny do recenzji"
 
