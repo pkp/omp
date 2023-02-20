@@ -1,9 +1,10 @@
-# Carla Marques <carla.marques@usdb.uminho.pt>, 2022.
-# José Carvalho <jcarvalho@keep.pt>, 2022.
+# Carla Marques <carla.marques@usdb.uminho.pt>, 2022, 2023.
+# José Carvalho <jcarvalho@keep.pt>, 2022, 2023.
+# Carlos Costa <carlos.costa@uc.pt>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-11-07 20:02+0000\n"
-"Last-Translator: José Carvalho <jcarvalho@keep.pt>\n"
+"PO-Revision-Date: 2023-02-17 03:04+0000\n"
+"Last-Translator: Carlos Costa <carlos.costa@uc.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/admin/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -128,10 +129,10 @@ msgstr ""
 "ao enviar e-mails não solicitados poderá violar as leis anti-spam em alguns "
 "locais e pode levar a que o seu servidor de e-mail seja bloqueado como spam. "
 "Procure apoio técnico antes de ativar este recurso e considere consultar os "
-"editores-gestores para se assegurar que é usado de forma apropriada."
-"<br><br>Restrições adicionais a este recursos podem ser ativados para cada "
-"editora ao visitar o assistente de configuração na lista de <a href="
-"\"{$hostedContextsUrl}\">Revistas Alojadas</a>."
+"editores-gestores para se assegurar que é usado de forma "
+"apropriada.<br><br>Restrições adicionais a este recursos podem ser ativados "
+"para cada editora ao visitar o assistente de configuração na lista de <a "
+"href=\"{$hostedContextsUrl}\">Revistas Alojadas</a>."
 
 msgid "admin.settings.disableBulkEmailRoles.description"
 msgstr ""
