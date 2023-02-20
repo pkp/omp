@@ -200,19 +200,6 @@ msgstr ""
 "<br />\n"
 "Mikäli teillä on kysymyksiä, olkaa yhteydessä."
 
-msgid "emails.reviewConfirm.subject"
-msgstr "Arviointipyynnön hyväksyminen"
-
-msgid "emails.reviewConfirm.body"
-msgstr ""
-"Hyvä(t) toimittaja(t),<br />\n"
-"<br />\n"
-"Olen halukas arvioimaan käsikirjoituksen &quot;{$submissionTitle}&quot;. "
-"Kiitos, että pyysitte minua tähän tehtävään. Suoritan arvioinnin viimeistään "
-"sen määräaikaan {$reviewDueDate} mennessä.<br />\n"
-"<br />\n"
-"{$senderName}"
-
 msgid "emails.reviewDecline.subject"
 msgstr "Arviointipyynnön hylkääminen"
 

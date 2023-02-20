@@ -197,20 +197,6 @@ msgstr ""
 "<br />\n"
 "Если у Вас есть вопросы, пожалуйста, свяжитесь со мной."
 
-msgid "emails.reviewConfirm.subject"
-msgstr "Согласен дать рецензию"
-
-msgid "emails.reviewConfirm.body"
-msgstr ""
-"Уважаемые редакторы!<br />\n"
-"<br />\n"
-"Я готов дать рецензию на рукопись «{$submissionTitle}» для  "
-"«{$contextName}». Благодарю Вас, что обратились ко мне; я планирую завершить "
-"рецензирование к указанному сроку, {$reviewDueDate}, а возможно и раньше."
-"<br />\n"
-"<br />\n"
-"{$senderName}"
-
 msgid "emails.reviewDecline.subject"
 msgstr "Не могу дать рецензию"
 

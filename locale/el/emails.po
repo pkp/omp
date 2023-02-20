@@ -170,21 +170,6 @@ msgstr ""
 msgid "emails.reviewReinstate.body"
 msgstr ""
 
-msgid "emails.reviewConfirm.subject"
-msgstr "Δυνατότητα πραγματοποίησης αξιολόγησης"
-
-msgid "emails.reviewConfirm.body"
-msgstr ""
-"Επιμελητές:<br />\n"
-"<br />\n"
-"Θα ήθελα να σας ενημερώσω ότι είμαι διαθέσιμος και πρόθυμος να αναλάβω την "
-"αξιολόγηση της εργασίας, &quot;{$submissionTitle},&quot; για τις εκδόσεις "
-"{$contextName}. Ευχαριστώ για την εμπιστοσύνη σας και σκοπεύω να έχω την "
-"υποβολή έτοιμη μέχρι την προθεσμία, {$reviewDueDate}, αν όχι νωρίτερα.<br /"
-">\n"
-"<br />\n"
-"{$senderName}"
-
 msgid "emails.reviewDecline.subject"
 msgstr "Μη δυνατότητα πραγματοποίησης αξιολόγησης"
 

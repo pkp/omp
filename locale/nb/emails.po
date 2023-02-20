@@ -195,20 +195,6 @@ msgstr ""
 "<br />\n"
 "Du bes ta kontakt med meg hvis du har spørsmål."
 
-msgid "emails.reviewConfirm.subject"
-msgstr "Kan foreta fagfellevurdering"
-
-msgid "emails.reviewConfirm.body"
-msgstr ""
-"Redaktører:<br />\n"
-"<br />\n"
-"Jeg kan og er villig til å bedømme innleveringen &quot;{$submissionTitle}"
-"&quot; til {$contextName}. Takk, fordi du tenkte på meg, og jeg planlegger å "
-"være ferdig med fagfellevurderingen senest på forfaldsdatoen, "
-"{$reviewDueDate}, hvis ikke før.<br />\n"
-"<br />\n"
-"{$senderName}"
-
 msgid "emails.reviewDecline.subject"
 msgstr "Kan ikke foreta fagfellevurdering"
 

@@ -138,16 +138,6 @@ msgstr ""
 msgid "emails.reviewReinstate.body"
 msgstr ""
 
-msgid "emails.reviewConfirm.subject"
-msgstr "Potrditev recenzije"
-
-msgid "emails.reviewConfirm.body"
-msgstr ""
-"Urednik(i):<br /> <br />Pripravljen_a sem opraviti recenzijo prispevka &quot;"
-"{$submissionTitle},&quot; za {$contextName}. Hvala za povabilo. Sporočam "
-"vam, da nameravam recenzijo dokončati do predvidenega datuma "
-"{$reviewDueDate}, če ne prej.<br /> <br /> {$senderName}"
-
 msgid "emails.reviewDecline.subject"
 msgstr "Ne morem opraviti recenzije"
 

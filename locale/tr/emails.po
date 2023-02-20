@@ -192,20 +192,6 @@ msgstr ""
 "Herhangi bir sorunuz olursa, lütfen bizimle iletişime geçin.\n"
 "Saygılarımızla."
 
-msgid "emails.reviewConfirm.subject"
-msgstr "Değerlendirmeyi Yapabiliyor"
-
-msgid "emails.reviewConfirm.body"
-msgstr ""
-"Sayın Editör(ler):<br />\n"
-"<br />{$contextName} için &quot;{$submissionTitle},&quot; başlıklı gönderiyi "
-"değerlendirmeye hazırım. Beni düşündüğünüz için teşekkür ederim ve daha önce "
-"olmasa bile en geç {$reviewDueDate} tarihine kadar tamamlamayı planlıyorum."
-"<br />\n"
-"<br />\n"
-"Saygılarımla.\n"
-"{$senderName}"
-
 msgid "emails.reviewDecline.subject"
 msgstr "Değerlendirmeyi Yapamıyor"
 

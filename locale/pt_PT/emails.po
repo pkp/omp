@@ -242,20 +242,6 @@ msgstr ""
 "<br />\n"
 "Se tiver alguma questão, não hesite em contactar-nos."
 
-msgid "emails.reviewConfirm.subject"
-msgstr "Disponível para Revisão"
-
-msgid "emails.reviewConfirm.body"
-msgstr ""
-"Editor(es):<br />\n"
-"<br />\n"
-"Estou disponível e é com todo o gosto que irei realizar a revisão da "
-"submissão &quot;{$submissionTitle},&quot; a {$contextName}. Agradeço terem "
-"se lembrado de mim, e planeio ter a revisão concluída até ao prazo de envio, "
-"{$reviewDueDate}, se não antes.<br />\n"
-"<br />\n"
-"{$senderName}"
-
 msgid "emails.reviewDecline.subject"
 msgstr "Indisponível para Revisão"
 
