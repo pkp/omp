@@ -74,10 +74,7 @@ describe('DOI tests', function() {
 		cy.log('Check Submission Filter Behaviour (pre-deposit)');
 		loginAndGoToDoiPage();
 		cy.checkDoiFilterResults('Needs DOI', 'Allan — Bomb Canada and Other Unkind Remarks in the American Media', 2);
-		cy.checkDoiFilterResults('Unpublished', 'Beaty et al. — How Canadians Communicate: Contexts of Canadian Popular Culture', 1);
-		clearFilter();
 		cy.checkDoiFilterResults('DOI Assigned', 'Dawson et al. — From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots', 1);
-		cy.checkDoiFilterResults('Unpublished', 'No items found.', 0);
 		clearFilter();
 		cy.checkDoiFilterResults('Unregistered', 'Dawson et al. — From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots', 1);
 		clearFilter();
@@ -96,13 +93,13 @@ describe('DOI tests', function() {
 		cy.log('Check unpublished Submission Marked Registered displays error');
 		cy.checkDoiMarkedStatus('Registered', unpublishedSubmissionId, false, 'Unpublished');
 
-		cy.log('Check Submission Marked Stale');
-		cy.checkDoiMarkedStatus('Stale', submissionId, true, 'Stale');
+		cy.log('Check Submission Marked Needs Sync');
+		cy.checkDoiMarkedStatus('Needs Sync', submissionId, true, 'Needs Sync');
 
 		cy.log('Check Submission Marked Unregistered');
 		cy.checkDoiMarkedStatus('Unregistered', submissionId, true, 'Unregistered');
 
-		cy.log('Check invalid Submission Marked Stale displays error');
-		cy.checkDoiMarkedStatus('Stale', submissionId, false, 'Unregistered');
+		cy.log('Check invalid Submission Marked Needs Sync displays error');
+		cy.checkDoiMarkedStatus('Needs Sync', submissionId, false, 'Unregistered');
 	});
 });
