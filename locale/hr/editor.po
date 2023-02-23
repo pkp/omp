@@ -2,13 +2,14 @@
 # Melita Aleksa Varga <melita.aleksa@gmail.com>, 2023.
 # Maja Jurić <maja-juric@windowslive.com>, 2023.
 # Karla Zapalac <karlazapalac98@gmail.com>, 2023.
+# Boris Badurina <boris.badurina@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-24 04:31+0000\n"
-"Last-Translator: Karla Zapalac <karlazapalac98@gmail.com>\n"
-"Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/editor/"
-"hr_HR/>\n"
-"Language: hr_HR\n"
+"PO-Revision-Date: 2023-02-23 08:15+0000\n"
+"Last-Translator: Boris Badurina <boris.badurina@gmail.com>\n"
+"Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/editor/hr/>"
+"\n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -81,7 +82,7 @@ msgid "editor.monograph.legend.submissionActions"
 msgstr "Radnje za podnošenje"
 
 msgid "editor.monograph.legend.submissionActionsDescription"
-msgstr "Za vrijeme podnošenja moguće radnje i opcije"
+msgstr "Za vrijeme podnošenja moguće radnje i opcije."
 
 msgid "editor.monograph.legend.sectionActions"
 msgstr "Radnje odlomka"
@@ -161,7 +162,7 @@ msgstr ""
 "poslati na interni pregled (tada je potrebno odabrati datoteke namijenjene "
 "internom pregledu); poslati na vanjski pregled (tada je potrebno odabrati "
 "datoteke namijenjene vanjskom pregledu); prihvatiti unos (tada je potrebno "
-"odabrati datoteke za uređivanje) ili odbiti unos (unos će biti arhiviran)."
+"odabrati datoteke za uređivanje) ili odbiti unos (bit će arhiviran)."
 
 msgid "editor.monograph.editorial.fairCopy"
 msgstr "Odobrena je verzija rukopisa spremna"
