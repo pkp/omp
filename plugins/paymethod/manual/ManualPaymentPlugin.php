@@ -17,9 +17,11 @@ use APP\core\Application;
 use APP\facades\Repo;
 use APP\plugins\paymethod\manual\mailables\ManualPaymentNotify;
 use APP\template\TemplateManager;
+use Exception;
 use Illuminate\Support\Facades\Mail;
 use PKP\db\DAORegistry;
 use PKP\form\Form;
+use PKP\install\Installer;
 use PKP\payment\QueuedPaymentDAO;
 use PKP\plugins\Hook;
 use PKP\plugins\PaymethodPlugin;
@@ -61,6 +63,7 @@ class ManualPaymentPlugin extends PaymethodPlugin
             $this->addLocaleData();
             Hook::add('Form::config::before', [$this, 'addSettings']);
             Hook::add('Mailer::Mailables', [$this, 'addMailable']);
+            Hook::add('Installer::postInstall', [$this, 'updateSchema']);
             return true;
         }
         return false;
@@ -204,7 +207,25 @@ class ManualPaymentPlugin extends PaymethodPlugin
      */
     public function addMailable(string $hookName, array &$args): void
     {
-        $args[0][] = ManualPaymentNotify::class;
+        $args[0]->push(ManualPaymentNotify::class);
+    }
+
+    /**
+     * @copydoc Plugin::updateSchema()
+     */
+    public function updateSchema($hookName, $args)
+    {
+        $installer = $args[0];
+        $result = & $args[1];
+        $migration = new ManualPaymentEmailDataMigration($installer, $this);
+        try {
+            $migration->up();
+        } catch (Exception $e) {
+            $installer->setError(Installer::INSTALLER_ERROR_DB, __('installer.installMigrationError', ['class' => get_class($migration), 'message' => $e->getMessage()]));
+            $result = false;
+        }
+
+        return false;
     }
 }
 

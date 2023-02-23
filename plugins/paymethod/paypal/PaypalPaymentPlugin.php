@@ -15,10 +15,12 @@
 
 namespace APP\plugins\paymethod\paypal;
 
-use APP\template\TemplateManager;
-use PKP\plugins\PaymethodPlugin;
-use PKP\plugins\Hook;
 use APP\core\Application;
+use APP\template\TemplateManager;
+use Omnipay\Omnipay;
+use PKP\db\DAORegistry;
+use PKP\plugins\Hook;
+use PKP\plugins\PaymethodPlugin;
 
 require_once(dirname(__FILE__) . '/vendor/autoload.php');
 
@@ -173,7 +175,7 @@ class PaypalPaymentPlugin extends PaymethodPlugin
                 throw new \Exception("Invalid queued payment ID ${queuedPaymentId}!");
             }
 
-            $gateway = Omnipay\Omnipay::create('PayPal_Rest');
+            $gateway = Omnipay::create('PayPal_Rest');
             $gateway->initialize([
                 'clientId' => $this->getSetting($context->getId(), 'clientId'),
                 'secret' => $this->getSetting($context->getId(), 'secret'),
@@ -209,14 +211,6 @@ class PaypalPaymentPlugin extends PaymethodPlugin
             $templateMgr->assign('message', 'plugins.paymethod.paypal.error');
             $templateMgr->display('frontend/pages/message.tpl');
         }
-    }
-
-    /**
-     * @see Plugin::getInstallEmailTemplatesFile
-     */
-    public function getInstallEmailTemplatesFile()
-    {
-        return "{$this->getPluginPath()}/emailTemplates.xml";
     }
 
     /**
