@@ -1,8 +1,618 @@
 # Boris Badurina <boris.badurina@gmail.com>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-02-23 08:15+0000\n"
+"Last-Translator: Boris Badurina <boris.badurina@gmail.com>\n"
+"Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/submission/"
+"hr/>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "submission.upload.selectComponent"
+msgstr "Odaberi komponentu"
+
+msgid "submission.select"
+msgstr "Odaberi prijavu"
+
+msgid "submission.title"
+msgstr "Naslov knjige"
+
+msgid "submission.synopsis"
+msgstr "Sažetak"
+
+msgid "submission.workflowType"
+msgstr "Vrsta prijave"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (ur)"
+
+msgid "submission.monograph"
+msgstr "Monografija"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.chapter"
+msgstr "Poglavlje"
+
+msgid "submission.chapters"
+msgstr "Poglavlja"
+
+msgid "submission.chapter.pages"
+msgstr "Stranice"
+
+msgid "manuscript.submission"
+msgstr "Prijava rukopisa"
+
+msgid "manuscript.submissions"
+msgstr "Prijave rukopisa"
+
+msgid "submission.metadata"
+msgstr "Metapodaci"
+
+msgid "submission.chapter.editChapter"
+msgstr "Uredi ovo poglavlje"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Započni novu prijavu u"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Nova prijava"
+
+msgid "submission.supportingAgencies"
+msgstr "Tijela koja podupiru izdanje"
+
+msgid "grid.action.addChapter"
+msgstr "Stvori novo poglavlje"
+
+msgid "grid.action.editChapter"
+msgstr "Uredi ovo poglavlje"
+
+msgid "grid.action.deleteChapter"
+msgstr "Obriši ovo poglavlje"
+
+msgid "submission.submit"
+msgstr "Započni novu prijavu knjige"
+
+msgid "submission.submit.catalog"
+msgstr "Katalog"
+
+msgid "submission.submit.metadata"
+msgstr "Metapodaci"
+
+msgid "submission.submit.confirmation"
+msgstr "Potvrda"
+
+msgid "submission.submit.nextSteps"
+msgstr "Sljedeći koraci"
+
+msgid "submission.submit.generalInformation"
+msgstr "Opće informacije"
+
+msgid "submission.submit.contributorRole"
+msgstr "Uloga suradnika"
+
+msgid "submission.submit.submissionFile"
+msgstr "Datoteka za podnošenje"
+
+msgid "submission.submit.prepare"
+msgstr "Pripremiti"
+
+msgid "submission.submit.finishingUp"
+msgstr "Dovršavanje"
+
+msgid "submission.submit.coverNote"
+msgstr "Napomena uredniku na naslovnici"
+
+msgid "submission.submit.whatNext.description"
+msgstr ""
+"Tisak je obaviješten o vašem podnesku i e-poštom vam je poslana potvrda za "
+"vašu evidenciju. Nakon što urednik pregleda podnesak, kontaktirat će vas."
+
+msgid "submission.submit.checklistErrors"
+msgstr ""
+"Pročitajte i označite stavke na kontrolnom popisu za predaju. Ima "
+"{$itemsRemaining} stavki koje su ostale neoznačene."
+
+msgid "grid.chapters.title"
+msgstr "Poglavlja"
+
+msgid "submission.complete"
+msgstr "Odobreno"
+
+msgid "submission.editCatalogEntry"
+msgstr "Unos"
+
+msgid "submission.catalogEntry.new"
+msgstr "Dodaj unos"
+
+msgid "submission.submit.placement"
+msgstr "Podnošenje plasmana"
+
+msgid "submission.incomplete"
+msgstr "Čeka odobrenje"
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Monografija"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Katalog"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Format publikacije"
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Datumi objavljivanja"
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "Format publikacije \"{$publicationFormatName}\" je dostupan."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "Format publikacije \"{$publicationFormatName}\" više nije dostupan."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr "Format objave \"{$publicationFormatName}\" odobren je za objavljivanje."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "Format publikacije \"{$publicationFormatName}\" više nije objavljen."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Metapodaci kataloga su ažurirani."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Format publikacije \"{$formatName}\" je uklonjen."
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} monografija"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} od {$total} monografija"
+
+msgid "section.any"
+msgstr "Bilo koja serija"
+
+msgid "publication.status.published"
+msgstr "Objavljeno"
+
+msgid "publication.datePublished"
+msgstr "Datum objave"
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Spremi narudžbu"
+
+msgid "submission.list.viewEntry"
+msgstr "Pregledajte unos"
+
+msgid "publication.event.unpublished"
+msgstr "Podnesak nije objavljen."
+
+msgid "publication.unpublish"
+msgstr "Poništi objavu"
+
+msgid "chapter.volume"
+msgstr "Svezak"
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr "Odaberite datoteke koje treba poslati u fazu pregleda."
+
+msgid "publication.chapter.licenseUrl"
+msgstr "URL licence"
+
+msgid "submission.wizard.submitting.editedVolumeInLanguage"
+msgstr ""
+"Slanje <strong>uređenog sveska</strong> na <strong>{$language}</strong>."
+
+msgid "submission.workflowType.change"
+msgstr "Promjeni"
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Zbornik"
+
+msgid "submission.chapter.addChapter"
+msgstr "Stvori novo poglavlje"
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Svako poglavlje može imati svoj datum objavljivanja."
+
+msgid "workflow.review.externalReview"
+msgstr "Vanjski pregled"
+
+msgid "submission.list.monographs"
+msgstr "Monografije"
+
+msgid "publication.publishedIn"
+msgstr "Objavljeno u <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.publish"
+msgstr "Objaviti"
+
+msgid "submission.workflowType.description"
+msgstr ""
+"Monografija je djelo koje je u cijelosti napisao jedan ili više autora. U "
+"zborniku svako poglavlje ima različite autore (podaci o poglavljima unose se "
+"kasnije tijekom postupka)"
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Zbornik: autori su povezani sa svojim zasebnim poglavljima."
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monografija: autori su povezani s knjigom kao cjelinom."
+
+msgid "submission.published"
+msgstr "Spremno za objavu"
+
+msgid "submission.fairCopy"
+msgstr "Finalna kopija"
+
+msgid "submission.artwork.permissions"
+msgstr "Dopuštenja"
+
+msgid "submission.copyedit"
+msgstr "Uređivanje"
+
+msgid "submission.publicationFormats"
+msgstr "Formati izdanja"
+
+msgid "submission.proofs"
+msgstr "Inačice"
+
+msgid "submission.download"
+msgstr "Preuzmi"
+
+msgid "submission.sharing"
+msgstr "Podijeli"
+
+msgid "submissions.queuedReview"
+msgstr "U postupku recenzije"
+
+msgid "submission.submit.upload"
+msgstr "Učitaj prijavu"
+
+msgid "author.volumeEditor"
+msgstr "Urednik sveska"
+
+msgid "author.isVolumeEditor"
+msgstr "Označi ovog autora kao urednika sveska."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Položaj serije"
+
+msgid "submission.round"
+msgstr "Krug&nbsp;{$round}"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Primjeri: 2. knjiga, 2. svezak"
+
+msgid "submission.submit.privacyStatement"
+msgstr "Izjava o privatnosti"
+
+msgid "submission.submit.userGroup"
+msgstr "Podnesi u moju svrhu kao..."
+
+msgid "submission.submit.noContext"
+msgstr "Tisak ovog podneska nije pronađen."
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Izbriši prenesene podatke s Copyeditora"
+
+msgid "submission.catalogEntry.add"
+msgstr "Dodaj odabrano u katalog"
+
+msgid "submission.catalogEntry.select"
+msgstr "Odaberite monografije koje želite dodati u katalog"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr "Morate odabrati barem jednu monografiju koju želite dodati u katalog."
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Dodajte ovu knjigu u javni katalog"
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Molimo potvrdite da je podnesak spreman za stavljanje u katalog."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Ova je monografija spremna za uvrštavanje u javni katalog."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Pregledaj podnesak"
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Sva će poglavlja koristiti datum izdanja monografije."
+
+msgid "submission.event.metadataPublished"
+msgstr "Metapodaci monografije odobreni su za tisak."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Metapodaci monografije više se ne objavljuju."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "Ažurirani su metapodaci formata publikacije za \"{$formatName}\"."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Izrađen je format publikacije \"{$formatName}\"."
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Pošaljite na vanjski pregled"
+
+msgid "submission.upload.fileContents"
+msgstr "Komponenta podnošenja"
+
+msgid "submission.dependentFiles"
+msgstr "Zavisne datoteke"
+
+msgid "submission.metadataDescription"
+msgstr ""
+"Ove se specifikacije temelje na skupu metapodataka Dublin Core, međunarodnom "
+"standardu koji se koristi za opisivanje sadržaja medija."
+
+msgid "submission.list.orderFeatures"
+msgstr "Značajke narudžbe"
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Povucite i ispustite ili dodirnite gumbe gore i dolje za promjenu "
+"redoslijeda značajki na početnoj stranici."
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"Povucite i ispustite ili dodirnite gumbe gore i dolje da biste promijenili "
+"redoslijed značajki u {$title}."
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} Naslova"
+
+msgid "publication.catalogEntry"
+msgstr "Unos u katalog"
+
+msgid "publication.catalogEntry.success"
+msgstr "Podaci o unosu u katalog su ažurirani."
+
+msgid "publication.invalidSeries"
+msgstr "Niz za ovu publikaciju nije moguće pronaći."
+
+msgid "publication.inactiveSeries"
+msgstr "{$series} (neaktivno)"
+
+msgid "publication.required.issue"
+msgstr ""
+"Publikacija mora biti dodijeljena broju prije nego što se može objaviti."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Svi uvjeti za objavu su ispunjeni. Jeste li sigurni da ovaj unos u katalogu "
+"želite učiniti javnim?"
+
+msgid "publication.scheduledIn"
+msgstr "Zakazano za objavljivanje u <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "submission.publication"
+msgstr "Objavljivanje"
+
+msgid "submission.status.scheduled"
+msgstr "Zakazano"
+
+msgid "publication.status.unscheduled"
+msgstr "Neplanirano"
+
+msgid "submission.publications"
+msgstr "Publikacije"
+
+msgid "publication.copyrightYearBasis.issueDescription"
+msgstr ""
+"Godina autorskih prava bit će postavljena automatski kada se ovo objavi u "
+"izdanju."
+
+msgid "publication.copyrightYearBasis.submissionDescription"
+msgstr ""
+"Godina autorskih prava bit će postavljena automatski na temelju datuma "
+"objavljivanja."
+
+msgid "publication.editDisabled"
+msgstr "Ova verzija je objavljena i ne može se uređivati."
+
+msgid "publication.event.published"
+msgstr "Podnesak je objavljen."
+
+msgid "publication.event.scheduled"
+msgstr "Podnesak je bio zakazan za objavu."
+
+msgid "publication.event.versionPublished"
+msgstr "Objavljena je nova verzija."
+
+msgid "publication.event.versionScheduled"
+msgstr "Zakazano je objavljivanje nove verzije."
+
+msgid "publication.event.versionUnpublished"
+msgstr "Verzija je uklonjena iz objave."
+
+msgid "publication.invalidSubmission"
+msgstr "Podnesak za ovu publikaciju nije moguće pronaći."
+
+msgid "publication.publish.requirements"
+msgstr ""
+"Sljedeći zahtjevi moraju biti ispunjeni prije nego što se ovo može objaviti."
+
+msgid "publication.required.declined"
+msgstr "Odbijeni podnesak ne može se objaviti."
+
+msgid "publication.required.reviewStage"
+msgstr ""
+"Podnesak mora biti u fazi uređivanja ili produkcije prije nego što se može "
+"objaviti."
+
+msgid "submission.license.description"
+msgstr ""
+"Licenca će se automatski postaviti na <a href='{$licenseUrl}' "
+"target='_blank'>{$licenseName}</a> kada ovo bude objavljeno."
+
+msgid "submission.copyrightHolder.description"
+msgstr ""
+"Autorska prava bit će automatski dodijeljena {$copyright} kada se ovo objavi."
+
+msgid "submission.copyrightOther.description"
+msgstr "Dodijelite autorska prava za objavljene podneske sljedećoj strani."
+
+msgid "publication.unpublish.confirm"
+msgstr "Jeste li sigurni da ne želite ovo objaviti?"
+
+msgid "publication.unschedule.confirm"
+msgstr "Jeste li sigurni da ne želite ovo zakazati za objavu?"
+
+msgid "publication.version.details"
+msgstr "Pojedinosti o publikaciji za verziju {$version}"
+
+msgid "submission.queries.production"
+msgstr "Rasprave o proizvodnji"
+
+msgid "publication.chapter.landingPage"
+msgstr "Stranica poglavlja"
+
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+"Pokažite ovo poglavlje na vlastitoj stranici i povežite se na tu stranicu iz "
+"sadržaja knjige."
+
+msgid "publication.publish.success"
+msgstr "Status publikacije uspješno je promijenjen."
+
+msgid "submission.withoutChapter"
+msgstr "{$name} — Bez ovog poglavlja"
+
+msgid "submission.chapterCreated"
+msgstr " — Poglavlje stvoreno"
+
+msgid "chapter.pages"
+msgstr "Stranice"
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr "Pošaljite na interni pregled"
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr "Ovaj je podnesak spreman za slanje na interni pregled."
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr "{$editorName} je poslao ovaj podnesak u fazu internog pregleda."
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr "Poslano na interni pregled"
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgstr ""
+"Podnesak, {$title}, poslan je u fazu internog pregleda. Autor je "
+"obaviješten, osim ako niste odlučili preskočiti taj e-mail."
+
+msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
+msgstr ""
+"Pošaljite e-mail autorima kako biste ih obavijestili da će ovaj podnesak "
+"biti poslan na interni pregled. Ako je moguće, dajte autorima neke naznake o "
+"tome koliko bi dugo mogao trajati proces internog pregleda i kada bi trebali "
+"očekivati da će se ponovno čuti s urednicima."
+
+msgid "editor.submission.decision.promoteFiles.internalReview"
+msgstr "Odaberite datoteke koje treba poslati u fazu internog pregleda."
+
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr "{$editorName} je poslao ovaj podnesak u fazu vanjskog pregleda."
+
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr "Poslano na vanjski pregled"
+
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr "Podnesak, {$title}, poslan je u fazu vanjskog pregleda."
+
+msgid "editor.submission.decision.backToReview"
+msgstr "Natrag na pregled"
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr ""
+"Vratite odluku o prihvaćanju ovog podneska i pošaljite ga natrag u fazu "
+"pregleda."
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+"{$editorName} poništio je odluku o prihvaćanju ovog podneska i vratio ga u "
+"fazu pregleda."
+
+msgid "editor.submission.decision.backToReview.completed"
+msgstr "Poslano natrag na pregled"
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr "Podnesak, {$title}, poslan je natrag u fazu pregleda."
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+"Pošaljite e-mail autorima da ih obavijestite da se njihov podnesak vraća u "
+"fazu pregleda. Objasnite zašto je donesena ovakva odluka i obavijestite "
+"autora o tome koja će se daljnja revizija poduzeti."
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+"Pošaljite e-mail autorima kako biste ih obavijestili da će ovaj podnesak "
+"biti poslan na recenziju. Ako je moguće, dajte autorima neke naznake o tome "
+"koliko bi proces recenzije mogao trajati i kada bi trebali očekivati da će "
+"se ponovno čuti s urednicima."
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr "Preporuka Pošalji na vanjski pregled"
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr "Preporučamo da se ovaj podnesak pošalje u fazu vanjskog pregleda."
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+"{$editorName} je preporučio da se ovaj podnesak pošalje u fazu vanjske "
+"recenzije."
+
+msgid "doi.submission.incorrectContext"
+msgstr ""
+"Nije moguće izraditi DOI za sljedeći podnesak: {$pubObjectTitle}. Ne postoji "
+"u trenutnom kontekstu tiska."
+
+msgid "publication.chapterDefaultLicenseURL"
+msgstr "URL licence zadanih poglavlja"
+
+msgid "submission.copyright.description"
+msgstr "Molimo pročitajte uvjete autorskih prava za prijave za ovaj tisak."
+
+msgid "submission.wizard.notAllowed.description"
+msgstr ""
+"Ne smijete se prijaviti za ovaj tisak jer autori moraju biti prijavljeni od "
+"strane uredništva. Ako mislite da je ovo pogreška, kontaktirajte <a "
+"href='mailto:{$email}'>{$name}</a>."
+
+msgid "submission.wizard.noSectionAllowed.description"
+msgstr ""
+"Nije vam dopušteno slanje za ovaj tisak jer je slanje za sve odjeljke ovog "
+"tiska deaktivirano ili ograničeno. Ako mislite da je ovo pogreška, "
+"kontaktirajte <a href='mailto:{$email}'>{$name}</a>."
+
+msgid "submission.wizard.sectionClosed.message"
+msgstr ""
+"{$contextName} ne prihvaća prijave za seriju {$section}. Ako vam je potrebna "
+"pomoć pri obnavljanju vašeg podneska, kontaktirajte <a "
+"href='mailto:{$email}'>{$name}</a>."
+
+msgid "submission.sectionNotFound"
+msgstr "Serije za ovaj podnesak nije bilo moguće pronaći."
+
+msgid "submission.sectionRestrictedToEditors"
+msgstr "Samo uredništvo može prijaviti ovu seriju."
+
+msgid "submission.wizard.submitting.monograph"
+msgstr "Slanje <strong>monografije</strong>."
+
+msgid "submission.wizard.submitting.monographInLanguage"
+msgstr "Slanje <strong>monografije</strong> na <strong>{$language}</strong>."
+
+msgid "submission.wizard.submitting.editedVolume"
+msgstr "Slanje <strong>uređenog sveska</strong>."
+
+msgid "submission.wizard.chapters.description"
+msgstr ""
+"Navedite sva poglavlja ovog podneska. Ako šaljete uređeni svezak, provjerite "
+"jesu li u svakom poglavlju navedeni suradnici za to poglavlje."
