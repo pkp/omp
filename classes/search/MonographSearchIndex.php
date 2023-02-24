@@ -218,12 +218,11 @@ class MonographSearchIndex extends SubmissionSearchIndex
             }
 
             $monographs = Repo::submission()
-                    ->getCollector()
-                    ->filterByContextIds([$press->getId()])
-                    ->getMany();
+                ->getCollector()
+                ->filterByContextIds([$press->getId()])
+                ->getMany();
 
-            while (!$monographs->eof()) {
-                $monograph = $monographs->next();
+            foreach ($monographs as $monograph) {
                 if ($monograph->getDatePublished()) {
                     $this->submissionMetadataChanged($monograph);
                     $this->submissionFilesChanged($monograph);
