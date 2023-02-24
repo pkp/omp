@@ -1,7 +1,7 @@
 # Carla Marques <carla.marques@usdb.uminho.pt>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-02-23 18:35+0000\n"
+"PO-Revision-Date: 2023-02-25 17:48+0000\n"
 "Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "pt/>\n"
@@ -1311,3 +1311,147 @@ msgstr "Nome da Editora"
 
 msgid "manager.setup.printIssn"
 msgstr "ISSN impresso"
+
+msgid "stats.publications.downloadReport.downloadSubmissions"
+msgstr "Descarregar Livros"
+
+msgid "stats.publications.downloadReport.downloadSubmissions.description"
+msgstr ""
+"O número de visualizações do resumo e downloads do ficheiro para cada livro."
+
+msgid "stats.publicationStats"
+msgstr "Estatísticas do Livro"
+
+msgid "stats.publications.details"
+msgstr "Detalhes do Livro"
+
+msgid "stats.publications.none"
+msgstr ""
+"Não foram encontrados livros com estatísticas de uso correspondentes a estes "
+"parâmetros."
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Total de visualizações do catálogo por data"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Total de visualizações de ficheiro por data"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$count} de {$total} livros"
+
+msgid "stats.publications.abstracts"
+msgstr "Entradas no Catálogo"
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Não foi possível converter os objetos selecionados."
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "XML inválido:"
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Exportar submissões"
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "O processo falhou ao analisar os capítulos"
+
+msgid "emailTemplate.variable.context.contextName"
+msgstr "O nome da editora"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "O URL da página de início da editora"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "O endereço de e-mail do contacto principal da editora"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "O nome do tipo de pagamento"
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr "Nome do site quando existe mais do de uma editora alojada"
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+"<h3>Proposta de aviso de direito de autor Creative Commons</h3>\n"
+"<h4>Proposta de política de acesso aberto</h4>\n"
+"Autores que publicam nesta editora concordam com os seguintes termos:\n"
+"<ol type=\"a\">\n"
+"\t<li>Autores mantém os direitos de autor e transferem para a editora o "
+"direito de primeira publicação do trabalho, licenciada simultaneamente sob "
+"uma <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by/3.0\""
+">licença de atribuição Creative Commons</a>, que permite a outros "
+"compartilhar o trabalho com o reconhecimento de autoria e publicação inicial "
+"nesta editora.</li>\n"
+"\t<li>Os autores podem assumir outros contratos adicionais em separado, para "
+"a distribuição não exclusiva da versão publicada pela editora (ex.: "
+"publicação em repositório institucional ou em um livro), com reconhecimento "
+"de publicação inicial nesta editora.</li>\n"
+"\t<li>Os autores podem e são incentivados a publicar o seu trabalho online "
+"(ex.: em repositórios institucionais ou no seu próprio site) antes e durante "
+"o processo de submissão, pois podem levar a trocas produtivas de informação, "
+"bem como mais citação e mais rápida do trabalho publicado (veja <a target="
+"\"_blank\" href=\"https://web-archive.southampton.ac.uk/opcit.eprints.org/"
+"oacitation-biblio.html\">O efeito do acesso aberto</a>).</li>\n"
+"</ol>\n"
+"\n"
+"<h4>Proposta de política para acesso aberto embargado</h4>\n"
+"Autores que publicam nesta editora concordam com os seguintes termos:\n"
+"<ol type=\"a\">\n"
+"\t<li>Autores mantém os direitos de autor e transferem para a editora o "
+"direito de primeira publicação do trabalho [ESPECIFICAR PERÍODO DE TEMPO] "
+"após a publicação, licenciada simultaneamente sob uma <a target=\"_blank\" "
+"href=\"https://creativecommons.org/licenses/by/3.0\">licença de atribuição "
+"Creative Commons</a>, que permite a outros compartilhar o trabalho com o "
+"reconhecimento de autoria e publicação inicial nesta editora.</li>\n"
+"\t<li>Os autores podem assumir outros contratos adicionais em separado, para "
+"a distribuição não exclusiva da versão publicada pela editora (ex.: "
+"publicação em repositório institucional ou em um livro), com reconhecimento "
+"de publicação inicial nesta editora.</li>\n"
+"\t<li>>Os autores podem e são incentivados a publicar o seu trabalho online "
+"(ex.: em repositórios institucionais ou no seu próprio site) antes e durante "
+"o processo de submissão, pois podem levar a trocas produtivas de informação, "
+"bem como mais citação e mais rápida do trabalho publicado (veja <a target="
+"\"_blank\" href=\"https://web-archive.southampton.ac.uk/opcit.eprints.org/"
+"oacitation-biblio.html\">O efeito do acesso aberto</a>)</li>\n"
+"</ol>"
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Nenhum objeto selecionado."
+
+msgid "stats.publications.downloadReport.description"
+msgstr ""
+"Download de um ficheiro CSV/Excel com estatísticas de uso para livros que "
+"cumpram com os seguintes parâmetros."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Envie uma cópia do e-mail de confirmação da submissão para o contacto "
+"principal desta editora."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"Não foi definido qualquer contacto principal para esta editora. Pode inserir "
+"o contacto principal nas <a href=\"{$url}\">configurações da editora</a>."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Os objetos especificados não foram encontrados."
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "O utilizador especificado, \"{$userName}\", não existe."
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "O processo falhou ao analisar os formatos de publicação"
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "O nome do contacto principal da editora"
+
+msgid "emailTemplate.variable.context.contextSignature"
+msgstr "A assinatura de e-mail da editora para e-mails automáticos"
+
+msgid "emailTemplate.variable.context.mailingAddress"
+msgstr "O endereço de correspondência da editora"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "O valor do pagamento"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "A moeda do valor do pagamento, como por exemplo EUR"
