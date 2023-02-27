@@ -1,8 +1,76 @@
 # Carla Marques <carla.marques@usdb.uminho.pt>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-02-27 16:10+0000\n"
+"Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
+"Language-Team: Portuguese <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-onix30/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "plugins.importexport.onix30.displayName"
+msgstr "Plugin Exportação de Monografias ONIX 3.0"
+
+msgid "plugins.importexport.onix30.description"
+msgstr "Exportar metadados do livro em formato ONIX 3.0"
+
+msgid "plugins.importexport.onix30.cliUsage"
+msgstr ""
+"Uso: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId] "
+
+msgid "plugins.importexport.onix30.cliError"
+msgstr "ERRO:"
+
+msgid "plugins.importexport.onix30.error.unknownPress"
+msgstr "O caminho da editora especificado, \"{$contextPath},\" não existe."
+
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr "Não foi possível gravar no ficheiro \"{$fileName}\"."
+
+msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgstr ""
+"Nenhum livro corresponde ao ID de livro especificado \"{$monographId}\"."
+
+msgid "plugins.importexport.onix30.noFormats"
+msgstr "Livros sem formatos de publicação não são mostrados."
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Selecionar livros para exportar"
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr "Selecione um livro para exportar:"
+
+msgid "plugins.importexport.onix30.exportButton"
+msgstr "Exportar"
+
+msgid "plugins.importexport.onix30.unavailable"
+msgstr "Indisponível"
+
+msgid "plugins.importexport.onix30.validityStatus"
+msgstr "Estado ONIX"
+
+msgid "plugins.importexport.onix30.formatValid"
+msgstr "Válido"
+
+msgid "plugins.importexport.onix30.formatInvalid"
+msgstr "Inválido"
+
+msgid "plugins.importexport.onix30.form.addresseeField"
+msgstr "Destinatário (recetor) para esta exportação"
+
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
+msgstr ""
+"Pode deixar este campo em branco e criar uma exportação geral. Isto "
+"resultará numa exportação ONIX sem composição de &lt;Destinatário&gt;. "
+
+msgid "plugins.importexport.onix30.exportFormats"
+msgstr "Formatos Disponíveis"
+
+msgid "plugins.importexport.onix30.pressMissingFields"
+msgstr ""
+"Falta alguma informação obrigatória a esta editora. Vá a <a href=\"{$url}\""
+">Configurações da Editora</a> e preencha os detalhes em falta."
