@@ -1,7 +1,7 @@
 # Carla Marques <carla.marques@usdb.uminho.pt>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-02-25 17:48+0000\n"
+"PO-Revision-Date: 2023-02-27 11:22+0000\n"
 "Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "pt/>\n"
@@ -656,7 +656,9 @@ msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
 msgstr ""
 "Para ativar estas opções, o administrador do site deve ativar a opção "
 "<tt>scheduled_tasks</tt> no ficheiro de configuração do OMP. Confiruações do "
-"servidor adicionais"
+"servidor adicionais podem ser necessárias para suportar esta funcionalidade ("
+"que pode não ser possível em todos os servidores), tal como indicado na "
+"documentação do OMP."
 
 msgid "manager.series.open"
 msgstr "Submissões abertas"
@@ -887,7 +889,7 @@ msgid "manager.people.noAdministrativeRights"
 msgstr ""
 "Não tem permissões de administração sobre este utilizador. As razões podem "
 "ser:\n"
-"  <ul>\n"
+" <ul>\n"
 "   <li>O utilizador é um administrador do site</li>\n"
 "   <li>O utilizador tem conta ativa em outras editoras que não tem "
 "permissões</li>\n"
@@ -1455,3 +1457,242 @@ msgstr "O valor do pagamento"
 
 msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
 msgstr "A moeda do valor do pagamento, como por exemplo EUR"
+
+msgid "emailTemplate.variable.statisticsReportNotify.publicationStatsLink"
+msgstr "O link para a página de estatísticas dos livros"
+
+msgid "mailable.statisticsReportNotify.description"
+msgstr ""
+"Este e-mail é enviado automaticamente todos os meses para os editores e "
+"editores-gestores para fornecer uma visão da integridade do sistema."
+
+msgid "mailable.validateEmailContext.name"
+msgstr "Validar e-mail (registo de editora)"
+
+msgid "doi.displayName"
+msgstr "DOI"
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Ficheiros"
+
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr ""
+"Por exemplo, editora%ppub%r poderia criar um DOI como 10.1234/"
+"editoraESPpub100"
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "para livros"
+
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "para capítulos"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "para formatos de publicação"
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "para ficheiros"
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Insira um padrão de sufixo DOI para livros."
+
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Insira um padrão de sufixo DOI para capítulos."
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Insira um padrão de sufixo DOI para formatos de publicação."
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Insira um padrão de sufixo DOI para ficheiros."
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "Reatribuir DOIs"
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr ""
+"Se alterar a sua configuração do DOI, os DOIs já atribuídos não serão "
+"afetados. Quando gravar as configurações, use este botão para eliminar todos "
+"os DOIs já existentes e para que as novas configurações surtam efeitos em "
+"todos os objetos existentes."
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Deseja eliminar todos os DOIs existentes?"
+
+msgid "doi.editor.doi"
+msgstr "DOI"
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Atribuir"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "monografia"
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "capítulo"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "formato de publicação"
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "ficheiro"
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"Não foi possível gerar o DOI porque faltam dados a um ou mais partes do "
+"padrão DOI."
+
+msgid "doi.editor.patternNotResolved"
+msgstr "O DOI não pode ser atribuído porque contem um padrão não resolvido."
+
+msgid "doi.editor.assigned"
+msgstr "O DOI é atribuído a este {$pubObjectType}."
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"O sufixo DOI já se encontra atribuído a outro item publicado. Insira um "
+"sufixo DOI exclusivo para cada item."
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Limpar"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Deseja realmente eliminar o DOI existente?"
+
+msgid "doi.editor.assignDoi"
+msgstr "Atribua o DOI {$pubId} a este {$pubObjectType}"
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr ""
+"O DOI {$pubId} não pode ser atribuído porque contem um padrão não resolvido."
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "O DOI {$pubId} foi atribuído."
+
+msgid "doi.editor.missingPrefix"
+msgstr "O DOI deve começar com {$doiPrefix}."
+
+msgid "doi.editor.preview.publication"
+msgstr "O DOI para esta publicação será {$doi}."
+
+msgid "doi.editor.preview.publication.none"
+msgstr "Não foi atribuído qualquer DOI a esta publicação."
+
+msgid "doi.editor.preview.chapters"
+msgstr "Capítulo: {$title}"
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Formato de publicação: {$title}"
+
+msgid "doi.editor.preview.files"
+msgstr "Ficheiro: {$title}"
+
+msgid "doi.editor.preview.objects"
+msgstr "Item"
+
+msgid "doi.manager.submissionDois"
+msgstr "DOIs de Monografias"
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
+msgstr ""
+"Este e-mail notifica o autor de que a sua submissão vai ser enviada para a "
+"etapa de revisão interna."
+
+msgid "mailable.decision.initialDecline.notifyAuthor.description"
+msgstr ""
+"Este e-mail notifica o autor que a sua submissão foi rejeitada, antes de ser "
+"enviada para revisão, porque a submissão não cumpre os critérios de "
+"publicação da editora."
+
+msgid "manager.institutions.noContext"
+msgstr "A instituição da editora não foi encontrada."
+
+msgid "manager.manageEmails.description"
+msgstr "Edite as mensagens enviadas em e-mails desta editora."
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
+msgstr "Enviado para Revisão Interna"
+
+msgid "mailable.indexRequest.name"
+msgstr "Índice Solicitado"
+
+msgid "mailable.indexComplete.name"
+msgstr "Índice Concluído"
+
+msgid "mailable.publicationVersionNotify.name"
+msgstr "Nova Versão Criada"
+
+msgid "mailable.publicationVersionNotify.description"
+msgstr ""
+"Este e-mail automaticamente notifica os editores designados quando uma nova "
+"versão da submissão foi criada."
+
+msgid "mailable.submissionNeedsEditor.description"
+msgstr ""
+"Este e-mail é enviado para os editores-gestores quando uma nova submissão é "
+"enviada e nenhum editor foi designado."
+
+msgid "mailable.validateEmailContext.description"
+msgstr ""
+"Este e-mail é enviado automaticamente quando um novo utilizador se regista "
+"na editora e as configurações exigem a validação do endereço de e-mail."
+
+msgid "doi.manager.displayName"
+msgstr "DOIs"
+
+msgid "doi.description"
+msgstr ""
+"Este plugin permite a atribuição de Identificadores de Objetos Digitais "
+"(DOIs) a livros, capítulos, formatos de publicação e ficheiros no OMP."
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "doi.manager.settings.description"
+msgstr "Configure o plugin DOI para poder gerir e usar DOIs no OMP:"
+
+msgid "doi.manager.settings.explainDois"
+msgstr ""
+"Selecione os objetos publicados que terão Digital Object Identifiers (DOI) "
+"atribuídos:"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Monografias"
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Capítulos"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Formatos de publicação"
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "Prefixo DOI"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "O prefixo DOI é obrigatório e deve estar no formato 10.xxxx."
+
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Insira um padrão de sufixo personalizado para cada tipo de publicação. O "
+"padrão de sufixo personalizado pode usar os seguintes símbolos para gerar o "
+"sufixo:<br><br> <code>%p</code>Iniciais da Editora<br> <code>%m</code> ID da "
+"monografia<br> <code >%c</code> ID do capítulo<br> <code>%f</code> ID do "
+"formato de publicação<br> <code>%s</code> ID do ficheiro<br> <code>%x</code> "
+"Identificador personalizado<br><br> Cuidado que os padrões de sufixo "
+"personalizados geralmente levam a problemas ao gerar e depositar os DOIs. Ao "
+"usar um padrão de sufixo personalizado, teste cuidadosamente se os editores "
+"podem gerar DOIs e depositá-los numa agência de registro como a Crossref. "
+
+msgid "doi.editor.doi.description"
+msgstr "O DOI deve começar com {$prefix}."
+
+msgid "doi.editor.customSuffixMissing"
+msgstr ""
+"O DOI não pode ser atribuído porque um sufixo personalizado encontra-se em "
+"falta."
+
+msgid "doi.editor.canBeAssigned"
+msgstr ""
+"O que vê é uma pré-visualização do DOI. Selecionar a caixa de verificação e "
+"guarde o formulário para atribuir o DOI."
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr "O DOI não pode ser atribuído porque falta o sufixo personalizado."
