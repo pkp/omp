@@ -1,18 +1,19 @@
+# Antti-Jussi Nygård <ajnyga@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
-"PO-Revision-Date: 2021-06-12 13:02+0000\n"
+"PO-Revision-Date: 2023-03-01 21:48+0000\n"
 "Last-Translator: Antti-Jussi Nygård <ajnyga@gmail.com>\n"
-"Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/locale/"
-"fi_FI/>\n"
-"Language: fi_FI\n"
+"Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/locale/fi/>"
+"\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "common.payments"
 msgstr "Maksut"
@@ -1642,37 +1643,37 @@ msgid "catalog.coverImageTitle"
 msgstr "Kirjan {$monographTitle} kansi"
 
 msgid "grid.catalogEntry.chapters"
-msgstr ""
+msgstr "Luvut"
 
 msgid "search.results.orderBy.article"
-msgstr ""
+msgstr "Artikkelin otsikko"
 
 msgid "search.results.orderBy.author"
-msgstr ""
+msgstr "Kirjoittaja"
 
 msgid "search.results.orderBy.date"
-msgstr ""
+msgstr "Julkaisupäivä"
 
 msgid "search.results.orderBy.monograph"
-msgstr ""
+msgstr "Teoksen otsikko"
 
 msgid "search.results.orderBy.press"
-msgstr ""
+msgstr "Julkaisijan nimi"
 
 msgid "search.results.orderBy.popularityAll"
-msgstr ""
+msgstr "Suosio (kaikkien aikojen)"
 
 msgid "search.results.orderBy.popularityMonth"
-msgstr ""
+msgstr "Suosio (viime kuukausi)"
 
 msgid "search.results.orderBy.relevance"
-msgstr ""
+msgstr "Relevanssi"
 
 msgid "search.results.orderDir.asc"
-msgstr ""
+msgstr "Nouseva"
 
 msgid "search.results.orderDir.desc"
-msgstr ""
+msgstr "Laskeva"
 
 #~ msgid "monograph.currentCoverImage"
 #~ msgstr "Nykyinen kuva"
