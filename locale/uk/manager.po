@@ -1,11 +1,11 @@
-# Petro Bilous <petrobilous@ukr.net>, 2022.
+# Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-11-06 17:48+0000\n"
+"PO-Revision-Date: 2023-02-28 16:58+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
-"uk_UA/>\n"
-"Language: uk_UA\n"
+"uk/>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1710,24 +1710,30 @@ msgstr "Е-видавництво цієї інституції не було з
 
 msgid "manager.manageEmails.description"
 msgstr ""
+"Редагувати повідомлення, надіслані в електронних листах від цього "
+"е-видавництва."
 
 msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
 msgstr "Надіслано на внутрішнє рецензування"
 
 msgid "mailable.indexRequest.name"
-msgstr ""
+msgstr "Запитаний Індекс"
 
 msgid "mailable.indexComplete.name"
-msgstr ""
+msgstr "Індекс завершено"
 
 msgid "mailable.publicationVersionNotify.name"
-msgstr ""
+msgstr "Створена нова версія"
 
 msgid "mailable.publicationVersionNotify.description"
 msgstr ""
+"Цей електронний лист автоматично сповіщає призначених редакторів про "
+"створення нової версії подання."
 
 msgid "mailable.submissionNeedsEditor.description"
 msgstr ""
+"Цей електронний лист надсилається менеджерам е-видавництва, коли виконано "
+"нове подання і редактори не призначені."
 
 #~ msgid "manager.setup.doiPrefix"
 #~ msgstr "Префікс DOI"
@@ -1736,3 +1742,14 @@ msgstr ""
 #~ msgstr ""
 #~ "Підпис електронної пошти е-видавництва для автоматизованих електронних "
 #~ "листів"
+
+msgid "emailTemplate.variable.context.mailingAddress"
+msgstr "Поштова адреса е-видавництва"
+
+msgid "emailTemplate.variable.statisticsReportNotify.publicationStatsLink"
+msgstr "Покликання на сторінку статистики книг"
+
+msgid "mailable.statisticsReportNotify.description"
+msgstr ""
+"Цей електронний лист автоматично надсилається щомісяця редакторам і "
+"менеджерам е-видавництва, щоб надати їм огляд стану системи."
