@@ -1,11 +1,11 @@
-# Petro Bilous <petrobilous@ukr.net>, 2022.
+# Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-12-16 13:19+0000\n"
+"PO-Revision-Date: 2023-02-28 16:58+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
-"submission/uk_UA/>\n"
-"Language: uk_UA\n"
+"submission/uk/>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -598,6 +598,9 @@ msgstr ""
 
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
+"«{$contextName}» не приймає подання до серії {$section}. Якщо Вам потрібна "
+"допомога у відновленні Вашого подання, зв’яжіться з нами <a "
+"href='mailto:{$email}'>{$name}</a>."
 
 msgid "submission.sectionNotFound"
 msgstr "Серію для цього подання не знайдено."
