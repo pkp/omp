@@ -502,8 +502,7 @@ class CatalogBookHandler extends Handler
                 /** @var Chapter $chapter */
                 foreach ($chapters as $chapter) {
                     $publicationId = (int) $chapter->getData('publicationId');
-                    if ($publicationId === $this->publication->getId()
-                        && $this->publication->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
+                    if ($publicationId === $this->publication->getId()) {
                         $this->chapter = $chapter;
                         $this->setChapterPublicationIds();
                         break;
@@ -547,12 +546,12 @@ class CatalogBookHandler extends Handler
         $chapterDao = DAORegistry::getDAO('ChapterDAO');
         $chapters = $chapterDao->getBySourceChapterId($this->chapter->getSourceChapterId());
         $chapters = $chapters->toAssociativeArray();
-        $publishedPublications = $submission->getPublishedPublications();
+        $publications = Repo::publication()->getCollector()->filterBySubmissionIds([$submission->getId()])->getMany();
 
         /** @var Chapter $chapter */
         foreach ($chapters as $chapter) {
             /** @var Publication $publication */
-            foreach ($publishedPublications as $publication) {
+            foreach ($publications as $publication) {
                 if ($publication->getId() === (int) $chapter->getData('publicationId')) {
                     return $chapter;
                 }
