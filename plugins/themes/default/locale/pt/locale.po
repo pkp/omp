@@ -1,7 +1,7 @@
 # Carla Marques <carla.marques@usdb.uminho.pt>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-02-28 16:58+0000\n"
+"PO-Revision-Date: 2023-03-01 21:48+0000\n"
 "Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/pt/>\n"
@@ -14,3 +14,12 @@ msgstr ""
 
 msgid "plugins.themes.default.name"
 msgstr "Tema Padrão"
+
+msgid "plugins.themes.default.description"
+msgstr "Este tema implementa o tema padrão."
+
+msgid "plugins.themes.default.option.typography.label"
+msgstr "Tipografia"
+
+msgid "plugins.themes.default.option.typography.description"
+msgstr "Escolha uma combinação de fontes adequada a esta editora."
