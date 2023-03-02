@@ -19,6 +19,7 @@ Install or update dependencies via Composer (https://getcomposer.org/):
 
     composer --working-dir=lib/pkp install
     composer --working-dir=plugins/paymethod/paypal install
+    composer --working-dir=plugins/generic/citationStyleLanguage install
 
 Install or update dependencies via [NPM](https://www.npmjs.com/):
 
