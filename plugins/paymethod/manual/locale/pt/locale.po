@@ -1,8 +1,42 @@
 # Carla Marques <carla.marques@usdb.uminho.pt>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-03-03 14:57+0000\n"
+"Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
+"Language-Team: Portuguese <http://translate.pkp.sfu.ca/projects/omp/"
+"paymethod-manual/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "plugins.paymethod.manual.displayName"
+msgstr "Pagamento de Taxas Manual"
+
+msgid "plugins.paymethod.manual.description"
+msgstr ""
+"O gestor irá registar manualmente a receção de um pagamento de um utilizador "
+"(fora deste software)."
+
+msgid "plugins.paymethod.manual"
+msgstr "Pagamento de Taxa Manual"
+
+msgid "plugins.paymethod.manual.settings"
+msgstr "Instruções para Pagamento Manual"
+
+msgid "plugins.paymethod.manual.sendNotificationOfPayment"
+msgstr "Enviar notificação de pagamento"
+
+msgid "plugins.paymethod.manual.paymentNotification"
+msgstr "Notificação de Pagamento"
+
+msgid "plugins.paymethod.manual.notificationSent"
+msgstr "Notificação de pagamento enviada"
+
+msgid "plugins.paymethod.manual.purchase.title"
+msgstr "Título"
+
+msgid "plugins.paymethod.manual.purchase.fee"
+msgstr "Taxa"
