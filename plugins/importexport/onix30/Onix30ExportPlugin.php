@@ -149,7 +149,7 @@ class Onix30ExportPlugin extends \PKP\plugins\ImportExportPlugin
                 if (!$downloadSuccess) {
                     $dispatcher = $request->getDispatcher();
                     $dispatcher->handle404();
-                } 
+                }
 
                 break;
             default:
@@ -163,7 +163,7 @@ class Onix30ExportPlugin extends \PKP\plugins\ImportExportPlugin
      */
     public function executeCLI($scriptName, &$args)
     {
-        throw new BadMethodCallException();
+        throw new \BadMethodCallException();
     }
 
     /**
@@ -171,7 +171,7 @@ class Onix30ExportPlugin extends \PKP\plugins\ImportExportPlugin
      */
     public function usage($scriptName)
     {
-        throw new BadMethodCallException();
+        throw new \BadMethodCallException();
     }
 
     /**
