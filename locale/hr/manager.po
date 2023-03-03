@@ -1,7 +1,7 @@
 # Boris Badurina <boris.badurina@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-02-23 08:15+0000\n"
+"PO-Revision-Date: 2023-03-03 16:22+0000\n"
 "Last-Translator: Boris Badurina <boris.badurina@gmail.com>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/manager/hr/"
 ">\n"
@@ -1675,3 +1675,13 @@ msgid "mailable.submissionNeedsEditor.description"
 msgstr ""
 "Ova e-poruka šalje se voditeljima izdavača kada se podnese nova prijava i "
 "nisu dodijeljeni urednici."
+
+msgid "mailable.statisticsReportNotify.description"
+msgstr ""
+"Ova pošta se automatski šalje jednom mjesečno urednicima i menadžerima "
+"naklada s pregledom sistemskih podataka."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
+msgstr ""
+"Recenzentima se e-poštom može poslati sigurni link kojim će se prijaviti u "
+"sustav."
