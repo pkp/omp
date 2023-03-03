@@ -17,8 +17,10 @@ namespace APP\plugins\importexport\onix30\filter;
 
 use APP\core\Application;
 use APP\facades\Repo;
+use APP\publication\Publication;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
+use PKP\submission\SubmissionSubjectDAO;
 
 class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\NativeExportFilter
 {
@@ -300,18 +302,18 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
 
         $productTitleDetailNode->appendChild($titleElementNode);
 
-        $publication = $submission->getCurrentPublication();
+        $publication = $submission->getCurrentPublication(); /** @var Publication $publication */
         if (!$publication->getLocalizedData('prefix') || !$publication->getLocalizedData('title')) {
             $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim($publication->getLocalizedData('prefix') ?? $publication->getLocalizedTitle())));
         } else {
             if ($publication->getLocalizedData('prefix')) {
                 $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $publication->getLocalizedData('prefix')));
             }
-            $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $publication->getLocalizedTitle()));
+            $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', strip_tags($publication->getLocalizedData('title'))));
         }
 
-        if ($publication->getData('subtitle', $publication->getData('locale'))) {
-            $titleElementNode->appendChild($this->_buildTextNode($doc, 'Subtitle', $publication->getData('subtitle', $publication->getData('locale'))));
+        if ($subTitle = $publication->getLocalizedSubTitle($publication->getData('locale'))) {
+            $titleElementNode->appendChild($this->_buildTextNode($doc, 'Subtitle', $subTitle));
         }
 
         /* --- Contributor information --- */
@@ -415,7 +417,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeIdentifier', '12')); // 12 is BIC subject category code list.
         $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeVersion', '2')); // Version 2 of ^^
 
-        $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
+        $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO'); /** @var SubmissionSubjectDAO $submissionSubjectDao */
         $allSubjects = $submissionSubjectDao->getSubjects($publication->getId(), array_keys(Locale::getSupportedFormLocales()));
         $uniqueSubjects = [];
         foreach ($allSubjects as $locale => $subjects) {
