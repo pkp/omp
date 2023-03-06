@@ -19,12 +19,12 @@
 namespace APP\tests\classes\monograph;
 
 use APP\core\Application;
+use APP\core\PageRouter;
 use APP\core\Request;
 use APP\core\Services;
 use APP\facades\Repo;
 use APP\press\Press;
 use APP\submission\Submission;
-use PKP\core\PKPRouter;
 use PKP\core\Registry;
 use PKP\db\DAORegistry;
 use PKP\submission\GenreDAO;
@@ -102,7 +102,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
 
         $request = Application::get()->getRequest();
         if (is_null($request->getRouter())) {
-            $router = new PKPRouter();
+            $router = new PageRouter();
             $request->setRouter($router);
         }
     }
