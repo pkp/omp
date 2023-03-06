@@ -240,7 +240,7 @@ class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
             switch (strtolower_codesafe($urlParts[0])) {
                 case 'press':
                     $url = $request->url(
-                        $urlParts[1] ?? $request->getRequestedPressPath(),
+                        $urlParts[1] ?? $request->getRequestedContextPath($request),
                         null,
                         null,
                         null,

@@ -63,16 +63,6 @@ class PressOAI extends OAI
     }
 
     /**
-     * Return a list of ignorable GET parameters.
-     *
-     * @return array
-     */
-    public function getNonPathInfoParams()
-    {
-        return ['press', 'page'];
-    }
-
-    /**
      * Convert monograph ID to OAI identifier.
      *
      * @param int $publicationFormatId
