@@ -32,7 +32,7 @@ class PublicIdentifiersForm extends PKPPublicIdentifiersForm {
 	 */
 	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
-		$enablePublisherId = $request->getContext()->getData('enablePublisherId');
+		$enablePublisherId = (array) $request->getContext()->getData('enablePublisherId');
 		$templateMgr->assign([
 			'enablePublisherId' => (is_a($this->getPubObject(), 'Chapter') && in_array('chapter', $enablePublisherId)) ||
 					(is_a($this->getPubObject(), 'Representation') && in_array('representation', $enablePublisherId)) ||
