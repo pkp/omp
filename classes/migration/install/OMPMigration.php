@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class OMPMigration
+ *
  * @brief Describe database table structures.
  */
 
@@ -25,6 +26,7 @@ class OMPMigration extends \PKP\migration\Migration
     {
         // Publications
         Schema::create('publications', function (Blueprint $table) {
+            $table->comment('Each publication is one version of a submission.');
             $table->bigInteger('publication_id')->autoIncrement();
             $table->date('date_published')->nullable();
             $table->datetime('last_modified')->nullable();
