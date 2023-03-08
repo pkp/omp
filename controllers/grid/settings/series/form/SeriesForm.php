@@ -219,8 +219,6 @@ class SeriesForm extends PKPSectionForm
      */
     public function execute(...$functionParams)
     {
-        parent::execute(...$functionParams);
-
         $request = Application::get()->getRequest();
         $press = $request->getPress();
 
@@ -349,6 +347,9 @@ class SeriesForm extends PKPSectionForm
                 Repo::section()->addToCategory($this->getSeriesId(), $categoryId);
             }
         }
+
+        // The parent class depends on an existing seriesId/sectionId
+        parent::execute(...$functionParams);
 
         return true;
     }
