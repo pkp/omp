@@ -236,13 +236,12 @@ class Repository extends \PKP\publication\Repository
     }
 
     /** @copydoc \PKP\publication\Repository::edit() */
-    public function edit(Publication $publication, array $params)
+    public function edit(Publication $publication, array $params): Publication
     {
         $oldCoverImage = $publication->getData('coverImage');
 
-        parent::edit($publication, $params);
+        $updatedPublication = parent::edit($publication, $params);
 
-        $updatedPublication = $this->get($publication->getId());
         $coverImages = $updatedPublication->getData('coverImage');
 
         // Create or delete the thumbnail of a cover image
@@ -277,6 +276,7 @@ class Repository extends \PKP\publication\Repository
                 }
             }
         }
+        return $updatedPublication;
     }
 
     /** @copydoc \PKP\publication\Repository::publish() */
