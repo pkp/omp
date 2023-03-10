@@ -72,6 +72,7 @@ class OMPMigration extends \PKP\migration\Migration
 
         // Publication formats assigned to published submissions
         Schema::create('publication_formats', function (Blueprint $table) {
+            $table->comment('Publication formats are representations of a publication in a particular format, e.g. PDF, hardcover, etc. Each publication format may contain many chapters.');
             $table->bigInteger('publication_format_id')->autoIncrement();
 
             $table->bigInteger('publication_id');
@@ -115,6 +116,7 @@ class OMPMigration extends \PKP\migration\Migration
 
         // Publication Format metadata.
         Schema::create('publication_format_settings', function (Blueprint $table) {
+            $table->comment('More data about publication formats, including localized properties.');
             $table->bigInteger('publication_format_id');
             $table->foreign('publication_format_id', 'publication_format_settings_publication_format_id')->references('publication_format_id')->on('publication_formats')->onDelete('cascade');
             $table->index(['publication_format_id'], 'publication_format_id_key');
@@ -127,6 +129,7 @@ class OMPMigration extends \PKP\migration\Migration
         });
 
         Schema::create('identification_codes', function (Blueprint $table) {
+            $table->comment('ONIX identification codes for publication formats.');
             $table->bigInteger('identification_code_id')->autoIncrement();
 
             $table->bigInteger('publication_format_id');
@@ -140,6 +143,7 @@ class OMPMigration extends \PKP\migration\Migration
         });
 
         Schema::create('publication_dates', function (Blueprint $table) {
+            $table->comment('ONIX publication dates for publication formats.');
             $table->bigInteger('publication_date_id')->autoIncrement();
 
             $table->bigInteger('publication_format_id');
@@ -154,6 +158,7 @@ class OMPMigration extends \PKP\migration\Migration
         });
 
         Schema::create('sales_rights', function (Blueprint $table) {
+            $table->comment('ONIX sales rights for publication formats.');
             $table->bigInteger('sales_rights_id')->autoIncrement();
 
             $table->bigInteger('publication_format_id');
@@ -172,6 +177,7 @@ class OMPMigration extends \PKP\migration\Migration
         });
 
         Schema::create('markets', function (Blueprint $table) {
+            $table->comment('ONIX market information for publication formats.');
             $table->bigInteger('market_id')->autoIncrement();
 
             $table->bigInteger('publication_format_id');
@@ -200,6 +206,7 @@ class OMPMigration extends \PKP\migration\Migration
         });
 
         Schema::create('representatives', function (Blueprint $table) {
+            $table->comment('ONIX representatives for publication formats.');
             $table->bigInteger('representative_id')->autoIncrement();
 
             $table->bigInteger('submission_id');
@@ -219,6 +226,7 @@ class OMPMigration extends \PKP\migration\Migration
         });
 
         Schema::create('features', function (Blueprint $table) {
+            $table->comment('Information about which submissions are featured in the press.');
             $table->bigInteger('submission_id');
             $table->foreign('submission_id')->references('submission_id')->on('submissions')->onDelete('cascade');
             $table->index(['submission_id'], 'features_submission_id');
@@ -232,6 +240,7 @@ class OMPMigration extends \PKP\migration\Migration
         });
 
         Schema::create('new_releases', function (Blueprint $table) {
+            $table->comment('Information about which submissions in the press are considered new releases.');
             $table->bigInteger('submission_id');
             $table->foreign('submission_id', 'new_releases_submission_id')->references('submission_id')->on('submissions')->onDelete('cascade');
             $table->index(['submission_id'], 'new_releases_submission_id');
@@ -244,6 +253,7 @@ class OMPMigration extends \PKP\migration\Migration
 
         // Press series.
         Schema::create('series', function (Blueprint $table) {
+            $table->comment('A list of press series, into which submissions can be organized.');
             $table->bigInteger('series_id')->autoIncrement();
 
             $table->bigInteger('press_id');
@@ -271,6 +281,7 @@ class OMPMigration extends \PKP\migration\Migration
 
         // Series-specific settings
         Schema::create('series_settings', function (Blueprint $table) {
+            $table->comment('More data about series, including localized properties such as series titles.');
             $table->bigInteger('series_id');
             $table->foreign('series_id', 'series_settings_series_id')->references('series_id')->on('series')->onDelete('cascade');
             $table->index(['series_id'], 'series_settings_series_id');
@@ -283,6 +294,7 @@ class OMPMigration extends \PKP\migration\Migration
         });
 
         Schema::create('submission_chapters', function (Blueprint $table) {
+            $table->comment('A list of chapters for each submission (when submissions are divided into chapters).');
             $table->bigInteger('chapter_id')->autoIncrement();
             $table->index(['chapter_id'], 'chapters_chapter_id');
 
@@ -309,6 +321,7 @@ class OMPMigration extends \PKP\migration\Migration
 
         // Language dependent monograph chapter metadata.
         Schema::create('submission_chapter_settings', function (Blueprint $table) {
+            $table->comment('More information about submission chapters, including localized properties such as chapter titles.');
             $table->bigInteger('chapter_id');
             $table->foreign('chapter_id')->references('chapter_id')->on('submission_chapters')->onDelete('cascade');
             $table->index(['chapter_id'], 'submission_chapter_settings_chapter_id');
@@ -322,6 +335,7 @@ class OMPMigration extends \PKP\migration\Migration
         });
 
         Schema::create('submission_chapter_authors', function (Blueprint $table) {
+            $table->comment('The list of authors associated with each submission chapter.');
             $table->bigInteger('author_id');
             $table->foreign('author_id')->references('author_id')->on('authors')->onDelete('cascade');
             $table->index(['author_id'], 'submission_chapter_authors_author_id');
@@ -346,6 +360,7 @@ class OMPMigration extends \PKP\migration\Migration
 
         // Spotlights
         Schema::create('spotlights', function (Blueprint $table) {
+            $table->comment('Information about which submissions to the press are spotlighted.');
             $table->bigInteger('spotlight_id')->autoIncrement();
 
             $table->smallInteger('assoc_type');
@@ -360,6 +375,7 @@ class OMPMigration extends \PKP\migration\Migration
 
         // Spotlight metadata.
         Schema::create('spotlight_settings', function (Blueprint $table) {
+            $table->comment('More data about spotlights, including localized properties.');
             $table->bigInteger('spotlight_id');
             $table->foreign('spotlight_id')->references('spotlight_id')->on('spotlights')->onCascade('delete');
             $table->index(['spotlight_id'], 'spotlight_settings_id');
@@ -374,6 +390,7 @@ class OMPMigration extends \PKP\migration\Migration
 
         // Logs queued (unfulfilled) payments.
         Schema::create('queued_payments', function (Blueprint $table) {
+            $table->comment('A list of queued (unfilfilled) payments, i.e. payments that have not yet been completed via an online payment system.');
             $table->bigInteger('queued_payment_id')->autoIncrement();
             $table->datetime('date_created');
             $table->datetime('date_modified');
@@ -383,6 +400,7 @@ class OMPMigration extends \PKP\migration\Migration
 
         // Logs completed (fulfilled) payments.
         Schema::create('completed_payments', function (Blueprint $table) {
+            $table->comment('A list of completed (fulfilled) payments, with information about the type of payment and the entity it relates to.');
             $table->bigInteger('completed_payment_id')->autoIncrement();
             $table->datetime('timestamp');
             $table->bigInteger('payment_type');

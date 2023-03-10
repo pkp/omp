@@ -25,6 +25,7 @@ class PressMigration extends \PKP\migration\Migration
     {
         // Presses and basic press settings.
         Schema::create('presses', function (Blueprint $table) {
+            $table->comment('A list of presses managed by the system.');
             $table->bigInteger('press_id')->autoIncrement();
             $table->string('path', 32);
             $table->float('seq', 8, 2)->default(0);
@@ -35,6 +36,7 @@ class PressMigration extends \PKP\migration\Migration
 
         // Press settings.
         Schema::create('press_settings', function (Blueprint $table) {
+            $table->comment('More data about presses, including localized properties such as policies.');
             $table->bigInteger('press_id');
             $table->foreign('press_id')->references('press_id')->on('presses')->onDelete('cascade');
             $table->index(['press_id'], 'press_settings_press_id');

@@ -23,8 +23,8 @@ class SeriesCategoriesMigration extends \PKP\migration\Migration
      */
     public function up(): void
     {
-        // Associations for categories within a series.
         Schema::create('series_categories', function (Blueprint $table) {
+            $table->comment('A list of relationships between series and category information.');
             $table->bigInteger('series_id');
             $table->foreign('series_id', 'series_categories_series_id')->references('series_id')->on('series')->onDelete('cascade');
             $table->index(['series_id'], 'series_categories_series_id');

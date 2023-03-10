@@ -394,6 +394,7 @@ class MetricsMigration extends \PKP\migration\Migration
         // Usage stats unique title requests temporary records
         // No need to consider series_id here because requests are only relevant/calculated on submission level.
         Schema::create('usage_stats_unique_title_requests_temporary_records', function (Blueprint $table) {
+            $table->comment('Temporary stats for unique title requests. Data in this table is provisional. See the metrics_* tables for compiled stats.');
             $table->dateTime('date', $precision = 0);
             $table->string('ip', 255);
             $table->string('user_agent', 255);
@@ -428,6 +429,7 @@ class MetricsMigration extends \PKP\migration\Migration
         });
         // Usage stats institution temporary records
         Schema::create('usage_stats_institution_temporary_records', function (Blueprint $table) {
+            $table->comment('Temporary stats by institution. Data in this table is provisional. See the metrics_* tables for compiled stats.');
             $table->string('load_id', 255);
             $table->bigInteger('line_number');
 
