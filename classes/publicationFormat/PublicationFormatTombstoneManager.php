@@ -18,6 +18,7 @@ namespace APP\publicationFormat;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\oai\omp\OAIDAO;
+use APP\press\Press;
 use APP\submission\Submission;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
@@ -59,7 +60,7 @@ class PublicationFormatTombstoneManager
         }
         $oaiIdentifier = 'oai:' . Config::getVar('oai', 'repository_id') . ':' . 'publicationFormat/' . $publicationFormat->getId();
         $OAISetObjectsIds = [
-            Application::ASSOC_TYPE_PRESS => $monograph->getPressId(),
+            Application::ASSOC_TYPE_PRESS => $monograph->getData('contextId'),
             Application::ASSOC_TYPE_SERIES => $publication->getData('seriesId')
         ];
 
@@ -94,7 +95,7 @@ class PublicationFormatTombstoneManager
      * Insert tombstone for every publication format of the
      * published submissions inside the passed press.
      *
-     * @param string $press
+     * @param Press $press
      */
     public function insertTombstonesByPress($press)
     {
@@ -107,7 +108,7 @@ class PublicationFormatTombstoneManager
         foreach ($submissions as $submission) {
             foreach ($submission->getData('publications') as $publication) {
                 if ($publication->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
-                    $this->insertTombstonesByPublicationId($publication->getId());
+                    $this->insertTombstonesByPublicationId($publication->getId(), $press);
                 }
             }
         }
@@ -135,7 +136,7 @@ class PublicationFormatTombstoneManager
     {
         $submissions = Repo::submission()
             ->getCollector()
-            ->filterByContextIds([$press->getId()])
+            ->filterByContextIds([$pressId])
             ->filterByStatus([Submission::STATUS_PUBLISHED])
             ->getMany();
 
@@ -152,7 +153,9 @@ class PublicationFormatTombstoneManager
      */
     public function deleteTombstonesByPublicationId(int $publicationId)
     {
-        $publicationFormats = DAORegistry::getDAO('PublicationFormatDAO')
+        /** @var PublicationFormatDAO */
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+        $publicationFormats = $publicationFormatDao
             ->getByPublicationId($publicationId);
         $this->deleteTombstonesByPublicationFormats($publicationFormats);
     }
@@ -168,7 +171,9 @@ class PublicationFormatTombstoneManager
     public function insertTombstonesByPublicationId(int $publicationId, $context)
     {
         $this->deleteTombstonesByPublicationId($publicationId);
-        $publicationFormats = DAORegistry::getDAO('PublicationFormatDAO')
+        /** @var PublicationFormatDAO */
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+        $publicationFormats = $publicationFormatDao
             ->getByPublicationId($publicationId);
         foreach ($publicationFormats as $publicationFormat) {
             if ($publicationFormat->getIsAvailable()) {
