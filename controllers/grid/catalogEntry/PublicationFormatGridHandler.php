@@ -24,6 +24,7 @@ use APP\core\Request;
 use APP\core\Services;
 use APP\facades\Repo;
 use APP\log\SubmissionEventLogEntry;
+use APP\notification\Notification;
 use APP\notification\NotificationManager;
 use APP\publicationFormat\PublicationFormat;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
@@ -342,7 +343,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
 
         $currentUser = $request->getUser();
         $notificationMgr = new NotificationManager();
-        $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedPublicationFormat')]);
+        $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedPublicationFormat')]);
 
         return DAO::getDataChangedEvent();
     }

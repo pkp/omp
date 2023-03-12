@@ -17,6 +17,7 @@ namespace APP\controllers\grid\catalogEntry;
 
 use APP\controllers\grid\catalogEntry\form\RepresentativeForm;
 use APP\core\Application;
+use APP\notification\Notification;
 use APP\notification\NotificationManager;
 use PKP\controllers\grid\CategoryGridHandler;
 use PKP\controllers\grid\GridColumn;
@@ -296,7 +297,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
             // Create trivial notification.
             $currentUser = $request->getUser();
             $notificationMgr = new NotificationManager();
-            $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => $notificationContent]);
+            $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => $notificationContent]);
 
             // Prepare the grid row data
             $row = $this->getRowInstance();
@@ -351,7 +352,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
         if ($result) {
             $currentUser = $request->getUser();
             $notificationMgr = new NotificationManager();
-            $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedRepresentative')]);
+            $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedRepresentative')]);
             return DAO::getDataChangedEvent($representative->getId(), (int) $representative->getIsSupplier());
         } else {
             return new JSONMessage(false, __('manager.setup.errorDeletingItem'));

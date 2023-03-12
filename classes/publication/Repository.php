@@ -18,6 +18,7 @@ use APP\core\Services;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\monograph\ChapterDAO;
+use APP\notification\Notification;
 use APP\notification\NotificationManager;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\submission\Submission;
@@ -313,7 +314,7 @@ class Repository extends \PKP\publication\Repository
         $notificationMgr = new NotificationManager();
         $notificationMgr->updateNotification(
             $this->request,
-            [NOTIFICATION_TYPE_APPROVE_SUBMISSION],
+            [Notification::NOTIFICATION_TYPE_APPROVE_SUBMISSION],
             null,
             Application::ASSOC_TYPE_MONOGRAPH,
             $publication->getData('submissionId')
@@ -366,7 +367,7 @@ class Repository extends \PKP\publication\Repository
         $notificationMgr = new NotificationManager();
         $notificationMgr->updateNotification(
             $this->request,
-            [NOTIFICATION_TYPE_APPROVE_SUBMISSION],
+            [Notification::NOTIFICATION_TYPE_APPROVE_SUBMISSION],
             null,
             Application::ASSOC_TYPE_MONOGRAPH,
             $publication->getData('submissionId')

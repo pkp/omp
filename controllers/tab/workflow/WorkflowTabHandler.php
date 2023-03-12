@@ -17,6 +17,7 @@ namespace APP\controllers\tab\workflow;
 
 use APP\core\Application;
 use APP\decision\types\NewInternalReviewRound;
+use APP\notification\Notification;
 use PKP\controllers\tab\workflow\PKPWorkflowTabHandler;
 use PKP\decision\DecisionType;
 use PKP\decision\types\NewExternalReviewRound;
@@ -33,11 +34,11 @@ class WorkflowTabHandler extends PKPWorkflowTabHandler
     protected function getProductionNotificationOptions($submissionId)
     {
         return [
-            NOTIFICATION_LEVEL_NORMAL => [
-                NOTIFICATION_TYPE_VISIT_CATALOG => [Application::ASSOC_TYPE_SUBMISSION, $submissionId],
-                NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION => [Application::ASSOC_TYPE_MONOGRAPH, $submissionId],
+            Notification::NOTIFICATION_LEVEL_NORMAL => [
+                Notification::NOTIFICATION_TYPE_VISIT_CATALOG => [Application::ASSOC_TYPE_SUBMISSION, $submissionId],
+                Notification::NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION => [Application::ASSOC_TYPE_MONOGRAPH, $submissionId],
             ],
-            NOTIFICATION_LEVEL_TRIVIAL => []
+            Notification::NOTIFICATION_LEVEL_TRIVIAL => []
         ];
     }
 

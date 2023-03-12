@@ -17,7 +17,7 @@
 namespace APP\notification\managerDelegate;
 
 use APP\core\Application;
-
+use APP\notification\Notification;
 use PKP\notification\managerDelegate\PKPApproveSubmissionNotificationManager;
 
 class ApproveSubmissionNotificationManager extends PKPApproveSubmissionNotificationManager
@@ -33,7 +33,7 @@ class ApproveSubmissionNotificationManager extends PKPApproveSubmissionNotificat
         $context = $contextDao->getById($notification->getContextId());
 
         switch ($notification->getType()) {
-            case NOTIFICATION_TYPE_VISIT_CATALOG:
+            case Notification::NOTIFICATION_TYPE_VISIT_CATALOG:
                 return $dispatcher->url($request, Application::ROUTE_PAGE, $context->getPath(), 'manageCatalog');
         }
 
@@ -46,10 +46,10 @@ class ApproveSubmissionNotificationManager extends PKPApproveSubmissionNotificat
     public function getNotificationTitle($notification)
     {
         switch ($notification->getType()) {
-            case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
-            case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
+            case Notification::NOTIFICATION_TYPE_APPROVE_SUBMISSION:
+            case Notification::NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
                 return __('notification.type.approveSubmissionTitle');
-            case NOTIFICATION_TYPE_VISIT_CATALOG:
+            case Notification::NOTIFICATION_TYPE_VISIT_CATALOG:
                 return __('notification.type.visitCatalogTitle');
         }
     }
@@ -60,11 +60,11 @@ class ApproveSubmissionNotificationManager extends PKPApproveSubmissionNotificat
     public function getNotificationMessage($request, $notification)
     {
         switch ($notification->getType()) {
-            case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
+            case Notification::NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
                 return __('notification.type.formatNeedsApprovedSubmission');
-            case NOTIFICATION_TYPE_VISIT_CATALOG:
+            case Notification::NOTIFICATION_TYPE_VISIT_CATALOG:
                 return __('notification.type.visitCatalog');
-            case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
+            case Notification::NOTIFICATION_TYPE_APPROVE_SUBMISSION:
                 return __('notification.type.approveSubmission');
         }
 

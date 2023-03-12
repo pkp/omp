@@ -17,6 +17,7 @@ namespace APP\controllers\grid\content\spotlights;
 
 use APP\controllers\grid\content\spotlights\form\SpotlightForm;
 use APP\facades\Repo;
+use APP\notification\Notification;
 use APP\notification\NotificationManager;
 use APP\spotlight\Spotlight;
 use APP\submission\Submission;
@@ -276,7 +277,7 @@ class ManageSpotlightsGridHandler extends GridHandler
             // Create trivial notification.
             $currentUser = $request->getUser();
             $notificationMgr = new NotificationManager();
-            $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => $notificationContent]);
+            $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => $notificationContent]);
 
             // Prepare the grid row data
             $row = $this->getRowInstance();
@@ -316,7 +317,7 @@ class ManageSpotlightsGridHandler extends GridHandler
             if ($result) {
                 $currentUser = $request->getUser();
                 $notificationMgr = new NotificationManager();
-                $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedSpotlight')]);
+                $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedSpotlight')]);
                 return DAO::getDataChangedEvent();
             } else {
                 return new JSONMessage(false, __('manager.setup.errorDeletingItem'));

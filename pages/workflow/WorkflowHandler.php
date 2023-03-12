@@ -32,6 +32,7 @@ use APP\decision\types\SendInternalReview;
 use APP\decision\types\SkipInternalReview;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
+use APP\notification\Notification;
 use APP\publication\Publication;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
@@ -188,15 +189,15 @@ class WorkflowHandler extends PKPWorkflowHandler
     {
         switch ($stageId) {
             case WORKFLOW_STAGE_ID_SUBMISSION:
-                return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION;
+                return Notification::NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION;
             case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
-                return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW;
+                return Notification::NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW;
             case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
-                return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW;
+                return Notification::NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW;
             case WORKFLOW_STAGE_ID_EDITING:
-                return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING;
+                return Notification::NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING;
             case WORKFLOW_STAGE_ID_PRODUCTION:
-                return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION;
+                return Notification::NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION;
         }
         return null;
     }

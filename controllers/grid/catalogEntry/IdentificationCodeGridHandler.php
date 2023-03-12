@@ -17,6 +17,7 @@ namespace APP\controllers\grid\catalogEntry;
 
 use APP\controllers\grid\catalogEntry\form\IdentificationCodeForm;
 use APP\core\Application;
+use APP\notification\Notification;
 use APP\notification\NotificationManager;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
@@ -330,7 +331,7 @@ class IdentificationCodeGridHandler extends GridHandler
             // Create trivial notification.
             $currentUser = $request->getUser();
             $notificationMgr = new NotificationManager();
-            $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => $notificationContent]);
+            $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => $notificationContent]);
 
             // Prepare the grid row data
             $row = $this->getRowInstance();
@@ -369,7 +370,7 @@ class IdentificationCodeGridHandler extends GridHandler
             if ($result) {
                 $currentUser = $request->getUser();
                 $notificationMgr = new NotificationManager();
-                $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedIdentificationCode')]);
+                $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedIdentificationCode')]);
                 return DAO::getDataChangedEvent();
             } else {
                 return new JSONMessage(false, __('manager.setup.errorDeletingItem'));

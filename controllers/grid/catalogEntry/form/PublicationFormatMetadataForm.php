@@ -16,6 +16,7 @@
 namespace APP\controllers\grid\catalogEntry\form;
 
 use APP\core\Application;
+use APP\notification\Notification;
 use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
 use PKP\form\Form;
@@ -138,10 +139,10 @@ class PublicationFormatMetadataForm extends Form
         $templateMgr->assign('pubObject', $publicationFormat);
 
         $templateMgr->assign('notificationRequestOptions', [
-            NOTIFICATION_LEVEL_NORMAL => [
-                NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD => [Application::ASSOC_TYPE_PRESS, $context->getId()],
+            Notification::NOTIFICATION_LEVEL_NORMAL => [
+                Notification::NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD => [Application::ASSOC_TYPE_PRESS, $context->getId()],
             ],
-            NOTIFICATION_LEVEL_TRIVIAL => []
+            Notification::NOTIFICATION_LEVEL_TRIVIAL => []
         ]);
 
         return parent::fetch($request, $template, $display);

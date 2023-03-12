@@ -17,6 +17,7 @@ namespace APP\controllers\api\file;
 
 use APP\controllers\tab\pubIds\form\PublicIdentifiersForm;
 use APP\core\Application;
+use APP\notification\Notification;
 use APP\template\TemplateManager;
 use PKP\controllers\api\file\PKPManageFileApiHandler;
 use PKP\controllers\tab\pubIds\form\PKPPublicIdentifiersForm;
@@ -131,7 +132,7 @@ class ManageFileApiHandler extends PKPManageFileApiHandler
     protected function getUpdateNotifications()
     {
         $updateNotifications = parent::getUpdateNotifications();
-        $updateNotifications[] = NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS;
+        $updateNotifications[] = Notification::NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS;
         return $updateNotifications;
     }
 }

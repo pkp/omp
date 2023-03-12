@@ -18,6 +18,7 @@ namespace APP\controllers\grid\settings\series;
 use APP\controllers\grid\settings\series\form\SeriesForm;
 use APP\core\Application;
 use APP\facades\Repo;
+use APP\notification\Notification;
 use APP\notification\NotificationManager;
 use PKP\context\SubEditorsDAO;
 use PKP\controllers\grid\feature\OrderGridItemsFeature;
@@ -332,7 +333,7 @@ class SeriesGridHandler extends SetupGridHandler
             // Create the notification.
             $notificationMgr = new NotificationManager();
             $user = $request->getUser();
-            $notificationMgr->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_ERROR, ['contents' => __('manager.series.confirmDeactivateSeries.error')]);
+            $notificationMgr->createTrivialNotification($user->getId(), Notification::NOTIFICATION_TYPE_ERROR, ['contents' => __('manager.series.confirmDeactivateSeries.error')]);
             return DAO::getDataChangedEvent($seriesId);
         }
 
