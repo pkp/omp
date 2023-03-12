@@ -21,6 +21,7 @@ use APP\monograph\ChapterDAO;
 use APP\notification\NotificationManager;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\submission\Submission;
+use Exception;
 use HookRegistry;
 use Illuminate\Support\Facades\App;
 use PKP\context\Context;
@@ -436,7 +437,7 @@ class Repository extends \PKP\publication\Repository
                 break;
         }
         if (!isset($cover)) {
-            throw new \Exception('Can not build thumbnail because the file was not found or the file extension was not recognized.');
+            throw new Exception('Can not build thumbnail because the file was not found or the file extension was not recognized.');
         }
 
         if ($pathParts['extension'] != 'svg') {

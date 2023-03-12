@@ -17,8 +17,10 @@ namespace APP\plugins\importexport\onix30;
 
 use APP\core\Application;
 use APP\template\TemplateManager;
+use BadMethodCallException;
 use PKP\core\PKPApplication;
 use PKP\plugins\ImportExportPlugin;
+use stdClass;
 
 class Onix30ExportPlugin extends \PKP\plugins\ImportExportPlugin
 {
@@ -107,7 +109,7 @@ class Onix30ExportPlugin extends \PKP\plugins\ImportExportPlugin
                     [
                         'apiUrl' => $apiUrl,
                         'count' => 100,
-                        'getParams' => new \stdClass(),
+                        'getParams' => new stdClass(),
                         'lazyLoad' => true,
                     ]
                 );
@@ -163,7 +165,7 @@ class Onix30ExportPlugin extends \PKP\plugins\ImportExportPlugin
      */
     public function executeCLI($scriptName, &$args)
     {
-        throw new \BadMethodCallException();
+        throw new BadMethodCallException();
     }
 
     /**
@@ -171,7 +173,7 @@ class Onix30ExportPlugin extends \PKP\plugins\ImportExportPlugin
      */
     public function usage($scriptName)
     {
-        throw new \BadMethodCallException();
+        throw new BadMethodCallException();
     }
 
     /**

@@ -17,6 +17,7 @@ namespace APP\plugins\paymethod\paypal;
 
 use APP\core\Application;
 use APP\template\TemplateManager;
+use Exception;
 use Omnipay\Omnipay;
 use PKP\db\DAORegistry;
 use PKP\plugins\Hook;
@@ -172,7 +173,7 @@ class PaypalPaymentPlugin extends PaymethodPlugin
         try {
             $queuedPayment = $queuedPaymentDao->getById($queuedPaymentId = $request->getUserVar('queuedPaymentId'));
             if (!$queuedPayment) {
-                throw new \Exception("Invalid queued payment ID ${queuedPaymentId}!");
+                throw new Exception("Invalid queued payment ID ${queuedPaymentId}!");
             }
 
             $gateway = Omnipay::create('PayPal_Rest');
@@ -187,25 +188,25 @@ class PaypalPaymentPlugin extends PaymethodPlugin
             ]);
             $response = $transaction->send();
             if (!$response->isSuccessful()) {
-                throw new \Exception($response->getMessage());
+                throw new Exception($response->getMessage());
             }
 
             $data = $response->getData();
             if ($data['state'] != 'approved') {
-                throw new \Exception('State ' . $data['state'] . ' is not approved!');
+                throw new Exception('State ' . $data['state'] . ' is not approved!');
             }
             if (count($data['transactions']) != 1) {
-                throw new \Exception('Unexpected transaction count!');
+                throw new Exception('Unexpected transaction count!');
             }
             $transaction = $data['transactions'][0];
             if ((float) $transaction['amount']['total'] != (float) $queuedPayment->getAmount() || $transaction['amount']['currency'] != $queuedPayment->getCurrencyCode()) {
-                throw new \Exception('Amounts (' . $transaction['amount']['total'] . ' ' . $transaction['amount']['currency'] . ' vs ' . $queuedPayment->getAmount() . ' ' . $queuedPayment->getCurrencyCode() . ') don\'t match!');
+                throw new Exception('Amounts (' . $transaction['amount']['total'] . ' ' . $transaction['amount']['currency'] . ' vs ' . $queuedPayment->getAmount() . ' ' . $queuedPayment->getCurrencyCode() . ') don\'t match!');
             }
 
             $paymentManager = Application::getPaymentManager($context);
             $paymentManager->fulfillQueuedPayment($request, $queuedPayment, $this->getName());
             $request->redirectUrl($queuedPayment->getRequestUrl());
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             error_log('PayPal transaction exception: ' . $e->getMessage());
             $templateMgr = TemplateManager::getManager($request);
             $templateMgr->assign('message', 'plugins.paymethod.paypal.error');

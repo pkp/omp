@@ -14,6 +14,7 @@
 namespace APP\plugins\importexport\native\filter;
 
 use APP\facades\Repo;
+use DOMDocument;
 use PKP\plugins\PluginRegistry;
 
 class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\NativeExportFilter
@@ -55,7 +56,7 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
     public function &process(&$chapters)
     {
         // Create the XML document
-        $doc = new \DOMDocument('1.0');
+        $doc = new DOMDocument('1.0');
         $doc->preserveWhiteSpace = false;
         $doc->formatOutput = true;
         $deployment = $this->getDeployment();
@@ -156,7 +157,6 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
      * @param \DOMDocument $doc
      * @param \DOMElement $entityNode
      * @param \APP\monograph\Chapter $entity
-     * @param \APP\plugins\PubIdPlugin $pubIdPlugin
      *
      * @return \DOMElement|null
      */

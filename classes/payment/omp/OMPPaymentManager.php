@@ -113,13 +113,13 @@ class OMPPaymentManager extends PaymentManager
         $returner = false;
         if ($queuedPayment) {
             switch ($queuedPayment->getType()) {
-            case self::PAYMENT_TYPE_PURCHASE_FILE:
-                $returner = true;
-                break;
-            default:
-                // Invalid payment type
-                assert(false);
-        }
+                case self::PAYMENT_TYPE_PURCHASE_FILE:
+                    $returner = true;
+                    break;
+                default:
+                    // Invalid payment type
+                    assert(false);
+            }
         }
 
         $ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /** @var OMPCompletedPaymentDAO $ompCompletedPaymentDao */
@@ -178,5 +178,5 @@ class OMPPaymentManager extends PaymentManager
 
 if (!PKP_STRICT_MODE) {
     class_alias('\APP\payment\omp\OMPPaymentManager', '\OMPPaymentManager');
-    define('PAYMENT_TYPE_PURCHASE_FILE', \OMPPaymentManager::PAYMENT_TYPE_PURCHASE_FILE);
+    define('PAYMENT_TYPE_PURCHASE_FILE', OMPPaymentManager::PAYMENT_TYPE_PURCHASE_FILE);
 }

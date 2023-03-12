@@ -18,6 +18,7 @@ namespace APP\plugins\importexport\onix30\filter;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\publication\Publication;
+use DOMDocument;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\submission\SubmissionSubjectDAO;
@@ -63,7 +64,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
     public function &process(&$submissions)
     {
         // Create the XML document
-        $doc = new \DOMDocument('1.0');
+        $doc = new DOMDocument('1.0');
         $doc->preserveWhiteSpace = false;
         $doc->formatOutput = true;
         $this->_doc = $doc;

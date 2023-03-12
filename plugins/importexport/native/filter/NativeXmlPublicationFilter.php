@@ -17,6 +17,7 @@ use APP\core\Application;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\plugins\importexport\onix30\Onix30ExportDeployment;
+use DOMDocument;
 use PKP\db\DAORegistry;
 use PKP\plugins\importexport\native\filter\PKPNativeFilterHelper;
 
@@ -126,7 +127,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
         $onixDeployment->setFileDBIds($existingDeployment->getFileDBIds());
         $onixDeployment->setAuthorDBIds($existingDeployment->getAuthorDBIds());
         $importFilter->setDeployment($existingDeployment);
-        $formatDoc = new \DOMDocument();
+        $formatDoc = new DOMDocument();
         $formatDoc->appendChild($formatDoc->importNode($n, true));
         return $importFilter->execute($formatDoc);
     }
@@ -173,7 +174,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
         $request = Application::get()->getRequest();
 
         $importFilter->setDeployment($existingDeployment);
-        $chapterDoc = new \DOMDocument();
+        $chapterDoc = new DOMDocument();
         $chapterDoc->appendChild($chapterDoc->importNode($n, true));
         return $importFilter->execute($chapterDoc);
     }

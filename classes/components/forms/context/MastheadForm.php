@@ -17,6 +17,7 @@ namespace APP\components\forms\context;
 use PKP\components\forms\context\PKPMastheadForm;
 use PKP\components\forms\FieldSelect;
 use PKP\components\forms\FieldText;
+use PKP\db\DAORegistry;
 
 class MastheadForm extends PKPMastheadForm
 {
@@ -27,7 +28,7 @@ class MastheadForm extends PKPMastheadForm
     {
         parent::__construct($action, $locales, $context, $imageUploadUrl);
 
-        $codeTypes = \DAORegistry::getDAO('ONIXCodelistItemDAO')->getCodes('List44');
+        $codeTypes = DAORegistry::getDAO('ONIXCodelistItemDAO')->getCodes('List44');
         $codeTypeOptions = array_map(function ($code, $name) {
             return ['value' => $code, 'label' => $name];
         }, array_keys($codeTypes), $codeTypes);

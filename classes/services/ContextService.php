@@ -19,6 +19,7 @@ use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\submission\Submission;
+use PKP\config\Config;
 use PKP\db\DAORegistry;
 use PKP\file\ContextFileManager;
 use PKP\file\FileManager;
@@ -35,9 +36,9 @@ class ContextService extends \PKP\services\PKPContextService
     public function __construct()
     {
         $this->installFileDirs = [
-            \Config::getVar('files', 'files_dir') . '/%s/%d',
-            \Config::getVar('files', 'files_dir') . '/%s/%d/monographs',
-            \Config::getVar('files', 'public_files_dir') . '/%s/%d',
+            Config::getVar('files', 'files_dir') . '/%s/%d',
+            Config::getVar('files', 'files_dir') . '/%s/%d/monographs',
+            Config::getVar('files', 'public_files_dir') . '/%s/%d',
         ];
 
         Hook::add('Context::edit', [$this, 'afterEditContext']);

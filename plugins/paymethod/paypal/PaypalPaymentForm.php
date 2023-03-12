@@ -15,9 +15,10 @@
 
 namespace APP\plugins\paymethod\paypal;
 
-use APP\template\TemplateManager;
-use PKP\form\Form;
 use APP\core\Application;
+use APP\template\TemplateManager;
+use Exception;
+use PKP\form\Form;
 
 class PaypalPaymentForm extends Form
 {
@@ -67,10 +68,10 @@ class PaypalPaymentForm extends Form
                 $request->redirectUrl($response->getRedirectUrl());
             }
             if (!$response->isSuccessful()) {
-                throw new \Exception($response->getMessage());
+                throw new Exception($response->getMessage());
             }
-            throw new \Exception('PayPal response was not redirect!');
-        } catch (\Exception $e) {
+            throw new Exception('PayPal response was not redirect!');
+        } catch (Exception $e) {
             error_log('PayPal transaction exception: ' . $e->getMessage());
             $templateMgr = TemplateManager::getManager($request);
             $templateMgr->assign('message', 'plugins.paymethod.paypal.error');

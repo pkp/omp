@@ -132,7 +132,7 @@ class ChapterForm extends Form
         //Create chapter license URL description
         $chapterLicenseUrlDescription = '';
         if ($this->getMonograph()->getData('workType') === \APP\submission\Submission::WORK_TYPE_EDITED_VOLUME) {
-            $licenseOptions = \Application::getCCLicenseOptions();
+            $licenseOptions = Application::getCCLicenseOptions();
             $context = Application::get()->getRequest()->getContext();
             if ($this->getPublication()->getData('chapterLicenseUrl')) {
                 if (array_key_exists(

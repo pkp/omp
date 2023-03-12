@@ -14,6 +14,7 @@
 
 namespace APP\components\forms\publication;
 
+use APP\core\Application;
 use APP\facades\Repo;
 use APP\submission\Submission;
 use PKP\components\forms\FieldText;
@@ -38,7 +39,7 @@ class PublicationLicenseForm extends PKPPublicationLicenseForm
         if ($submission->getData('workType') === Submission::WORK_TYPE_EDITED_VOLUME) {
             // Get the name of the context's license setting
             $chapterLicenseUrlDescription = '';
-            $licenseOptions = \Application::getCCLicenseOptions();
+            $licenseOptions = Application::getCCLicenseOptions();
             if ($publication->getData('licenseUrl')) {
                 if (array_key_exists($publication->getData('licenseUrl'), $licenseOptions)) {
                     $licenseName = __($licenseOptions[$publication->getData('licenseUrl')]);
