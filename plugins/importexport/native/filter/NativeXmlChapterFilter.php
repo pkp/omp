@@ -13,6 +13,7 @@
 
 namespace APP\plugins\importexport\native\filter;
 
+use APP\core\Application;
 use APP\facades\Repo;
 use PKP\db\DAORegistry;
 use PKP\plugins\PluginRegistry;
@@ -149,7 +150,7 @@ class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\Nat
 
         $authorId = $deployment->getAuthorDBId($n->getAttribute('author_id'));
         if (!$authorId) {
-            $deployment->addError(ASSOC_TYPE_CHAPTER, $chapter->getId(), 'Author with ID "' . $n->getAttribute('author_id') . '" was not found');
+            $deployment->addError(Application::ASSOC_TYPE_CHAPTER, $chapter->getId(), 'Author with ID "' . $n->getAttribute('author_id') . '" was not found');
         }
         $seq = $n->getAttribute('seq');
 

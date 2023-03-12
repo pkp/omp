@@ -206,7 +206,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $pubFormatFiles = Repo::submissionFile()
             ->getCollector()
             ->filterBySubmissionIds([$monograph->getId()])
-            ->filterByAssoc(ASSOC_TYPE_PUBLICATION_FORMAT)
+            ->filterByAssoc(Application::ASSOC_TYPE_PUBLICATION_FORMAT)
             ->getMany();
 
         // Relation (Add publication file format to monograph / edited volume)

@@ -16,11 +16,11 @@
 namespace APP\controllers\grid\catalogEntry\form;
 
 use APP\core\Application;
-use PKP\plugins\PluginRegistry;
-use PKP\db\DAORegistry;
 use APP\template\TemplateManager;
+use PKP\db\DAORegistry;
 use PKP\form\Form;
 use PKP\plugins\PKPPubIdPluginHelper;
+use PKP\plugins\PluginRegistry;
 
 class PublicationFormatMetadataForm extends Form
 {
@@ -139,7 +139,7 @@ class PublicationFormatMetadataForm extends Form
 
         $templateMgr->assign('notificationRequestOptions', [
             NOTIFICATION_LEVEL_NORMAL => [
-                NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD => [ASSOC_TYPE_PRESS, $context->getId()],
+                NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD => [Application::ASSOC_TYPE_PRESS, $context->getId()],
             ],
             NOTIFICATION_LEVEL_TRIVIAL => []
         ]);

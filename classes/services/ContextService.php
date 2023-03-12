@@ -15,6 +15,7 @@
 
 namespace APP\services;
 
+use APP\core\Application;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
@@ -149,10 +150,10 @@ class ContextService extends \PKP\services\PKPContextService
         Repo::submission()->deleteByContextId($context->getId());
 
         $featureDao = DAORegistry::getDAO('FeatureDAO');
-        $featureDao->deleteByAssoc(ASSOC_TYPE_PRESS, $context->getId());
+        $featureDao->deleteByAssoc(Application::ASSOC_TYPE_PRESS, $context->getId());
 
         $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
-        $newReleaseDao->deleteByAssoc(ASSOC_TYPE_PRESS, $context->getId());
+        $newReleaseDao->deleteByAssoc(Application::ASSOC_TYPE_PRESS, $context->getId());
 
         $publicFileManager = new PublicFileManager();
         $publicFileManager->rmtree($publicFileManager->getContextFilesPath($context->getId()));

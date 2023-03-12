@@ -315,7 +315,7 @@ class Repository extends \PKP\publication\Repository
             $this->request,
             [NOTIFICATION_TYPE_APPROVE_SUBMISSION],
             null,
-            ASSOC_TYPE_MONOGRAPH,
+            Application::ASSOC_TYPE_MONOGRAPH,
             $publication->getData('submissionId')
         );
     }
@@ -368,7 +368,7 @@ class Repository extends \PKP\publication\Repository
             $this->request,
             [NOTIFICATION_TYPE_APPROVE_SUBMISSION],
             null,
-            ASSOC_TYPE_MONOGRAPH,
+            Application::ASSOC_TYPE_MONOGRAPH,
             $publication->getData('submissionId')
         );
     }

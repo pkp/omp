@@ -16,17 +16,16 @@
 namespace APP\controllers\grid\catalogEntry;
 
 use APP\controllers\grid\catalogEntry\form\MarketForm;
-use PKP\db\DAO;
-use APP\controllers\grid\catalogEntry\MarketsGridCellProvider;
-use APP\controllers\grid\catalogEntry\MarketsGridRow;
+use APP\core\Application;
 use APP\notification\NotificationManager;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
+use PKP\db\DAO;
+use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\security\authorization\PublicationAccessPolicy;
-use PKP\db\DAORegistry;
 use PKP\security\Role;
 
 class MarketsGridHandler extends GridHandler
@@ -143,8 +142,8 @@ class MarketsGridHandler extends GridHandler
         parent::initialize($request, $args);
 
         // Retrieve the authorized submission.
-        $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
-        $this->setPublication($this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION));
+        $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
+        $this->setPublication($this->getAuthorizedContextObject(Application::ASSOC_TYPE_PUBLICATION));
         $this->setSubmission($submission);
         $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
         $representationId = null;

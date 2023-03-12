@@ -13,6 +13,7 @@
 
 namespace APP\plugins\importexport\native\filter;
 
+use APP\core\Application;
 use PKP\plugins\importexport\PKPImportExportFilter;
 
 class NativeXmlMonographFilter extends \PKP\plugins\importexport\native\filter\NativeXmlSubmissionFilter
@@ -64,7 +65,7 @@ class NativeXmlMonographFilter extends \PKP\plugins\importexport\native\filter\N
                 $importClass = 'Publication';
                 break;
             default:
-                $deployment->addError(ASSOC_TYPE_SUBMISSION, $submission->getId(), __('plugins.importexport.common.error.unknownElement', ['param' => $elementName]));
+                $deployment->addError(Application::ASSOC_TYPE_SUBMISSION, $submission->getId(), __('plugins.importexport.common.error.unknownElement', ['param' => $elementName]));
         }
         // Caps on class name for consistency with imports, whose filter
         // group names are generated implicitly.

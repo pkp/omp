@@ -36,7 +36,7 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm
 
         $request = Application::get()->getRequest();
         $context = $request->getContext();
-        $contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
+        $contextId = $context ? $context->getId() : Application::CONTEXT_ID_NONE;
 
         $series = Repo::section()
             ->getCollector()

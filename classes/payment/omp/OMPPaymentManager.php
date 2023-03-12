@@ -164,7 +164,7 @@ class OMPPaymentManager extends PaymentManager
         switch ($payment->getType()) {
             case self::PAYMENT_TYPE_PURCHASE_FILE:
                 $submissionFile = Repo::submissionFile()->get($payment->getAssocId());
-                if (!$submissionFile || $submissionFile->getData('assocType') !== ASSOC_TYPE_PUBLICATION_FORMAT) {
+                if (!$submissionFile || $submissionFile->getData('assocType') !== Application::ASSOC_TYPE_PUBLICATION_FORMAT) {
                     return false;
                 }
 

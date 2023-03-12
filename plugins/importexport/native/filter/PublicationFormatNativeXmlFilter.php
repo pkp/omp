@@ -41,6 +41,7 @@ class PublicationFormatNativeXmlFilter extends \PKP\plugins\importexport\native\
      *
      * @param \DOMDocument $doc
      * @param \APP\publicationFormat\PublicationFormat $representation
+     *
      * @return \DOMElement
      */
     public function createRepresentationNode($doc, $representation)
@@ -93,6 +94,7 @@ class PublicationFormatNativeXmlFilter extends \PKP\plugins\importexport\native\
      * Get the available submission files for a representation
      *
      * @param \PKP\submissio\Representation $representation
+     *
      * @return \Iterator
      */
     public function getFiles($representation)
@@ -103,7 +105,7 @@ class PublicationFormatNativeXmlFilter extends \PKP\plugins\importexport\native\
             ->getCollector()
             ->filterBySubmissionIds([$submission->getId()])
             ->filterByAssoc(
-                ASSOC_TYPE_PUBLICATION_FORMAT,
+                Application::ASSOC_TYPE_PUBLICATION_FORMAT,
                 [$representation->getId()]
             )
             ->getMany();

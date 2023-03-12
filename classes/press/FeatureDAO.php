@@ -22,7 +22,7 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Get monograph IDs by association.
      *
-     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocType Application::ASSOC_TYPE_...
      * @param int $assocId
      *
      * @return array Associative array seq => monograph ID
@@ -44,7 +44,7 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Get feature sequences by association.
      *
-     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocType Application::ASSOC_TYPE_...
      * @param int $assocId
      *
      * @return array Associative array monograph ID => seq
@@ -58,7 +58,7 @@ class FeatureDAO extends \PKP\db\DAO
      * Insert a new feature.
      *
      * @param int $monographId
-     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocType Application::ASSOC_TYPE_...
      * @param int $assocId
      * @param int $seq
      */
@@ -92,7 +92,7 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Delete a feature by association.
      *
-     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocType Application::ASSOC_TYPE_...
      * @param int $assocId
      */
     public function deleteByAssoc($assocType, $assocId)
@@ -107,7 +107,7 @@ class FeatureDAO extends \PKP\db\DAO
      * Delete a feature.
      *
      * @param int $monographId
-     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocType Application::ASSOC_TYPE_...
      * @param int $assocId
      */
     public function deleteFeature($monographId, $assocType, $assocId)
@@ -202,7 +202,7 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Resequence features by association.
      *
-     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocType Application::ASSOC_TYPE_...
      * @param int $assocId per $assocType
      *
      * @return array Associative array of id => seq for resequenced set

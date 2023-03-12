@@ -14,6 +14,7 @@
 
 namespace APP\security\authorization;
 
+use APP\core\Application;
 use APP\facades\Repo;
 use PKP\security\authorization\DataObjectRequiredPolicy;
 
@@ -60,7 +61,7 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy
         }
 
         // Save the published submission to the authorization context.
-        $this->addAuthorizedContextObject(ASSOC_TYPE_SUBMISSION, $submission);
+        $this->addAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION, $submission);
         return AUTHORIZATION_PERMIT;
     }
 

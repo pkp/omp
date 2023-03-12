@@ -15,8 +15,9 @@
 
 namespace APP\controllers\tab\pubIds\form;
 
-use PKP\controllers\tab\pubIds\form\PKPPublicIdentifiersForm;
+use APP\core\Application;
 use APP\template\TemplateManager;
+use PKP\controllers\tab\pubIds\form\PKPPublicIdentifiersForm;
 use PKP\db\DAORegistry;
 
 class PublicIdentifiersForm extends PKPPublicIdentifiersForm
@@ -58,7 +59,7 @@ class PublicIdentifiersForm extends PKPPublicIdentifiersForm
     public function getAssocType($pubObject)
     {
         if (is_a($pubObject, 'Chapter')) {
-            return ASSOC_TYPE_CHAPTER;
+            return Application::ASSOC_TYPE_CHAPTER;
         }
         return parent::getAssocType($pubObject);
     }

@@ -15,20 +15,13 @@
 
 namespace APP\controllers\grid\catalogEntry;
 
-use PKP\log\SubmissionFileLog;
-use PKP\controllers\grid\files\proof\form\ManageProofFilesForm;
-use PKP\controllers\grid\pubIds\form\PKPAssignPublicIdentifiersForm;
-use APP\controllers\grid\files\proof\form\ApprovedProofForm;
-use APP\controllers\grid\catalogEntry\form\PublicationFormatMetadataForm;
-use APP\controllers\tab\pubIds\form\PublicIdentifiersForm;
-use APP\controllers\grid\catalogEntry\PublicationFormatGridCellProvider;
 use APP\controllers\grid\catalogEntry\form\PublicationFormatForm;
-use PKP\plugins\PluginRegistry;
-use PKP\db\DAO;
-use PKP\db\DAORegistry;
-use APP\core\Services;
+use APP\controllers\grid\catalogEntry\form\PublicationFormatMetadataForm;
+use APP\controllers\grid\files\proof\form\ApprovedProofForm;
+use APP\controllers\tab\pubIds\form\PublicIdentifiersForm;
 use APP\core\Application;
 use APP\core\Request;
+use APP\core\Services;
 use APP\facades\Repo;
 use APP\log\SubmissionEventLogEntry;
 use APP\notification\NotificationManager;
@@ -36,20 +29,23 @@ use APP\publicationFormat\PublicationFormat;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\template\TemplateManager;
 use PKP\controllers\grid\CategoryGridHandler;
+use PKP\controllers\grid\files\proof\form\ManageProofFilesForm;
 use PKP\controllers\grid\GridColumn;
+use PKP\controllers\grid\pubIds\form\PKPAssignPublicIdentifiersForm;
 use PKP\core\JSONMessage;
+use PKP\db\DAO;
+use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\log\SubmissionFileEventLogEntry;
+use PKP\log\SubmissionFileLog;
 use PKP\log\SubmissionLog;
+use PKP\plugins\PluginRegistry;
 use PKP\security\authorization\internal\RepresentationRequiredPolicy;
 use PKP\security\authorization\PublicationAccessPolicy;
 use PKP\security\Role;
 use PKP\submission\PKPSubmission;
 use PKP\submissionFile\SubmissionFile;
-use APP\controllers\grid\catalogEntry\PublicationFormatGridRow;
-use APP\controllers\grid\catalogEntry\PublicationFormatGridCategoryRow;
-use APP\controllers\grid\catalogEntry\PublicationFormatCategoryGridDataProvider;
 
 class PublicationFormatGridHandler extends CategoryGridHandler
 {
@@ -151,8 +147,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler
         parent::initialize($request, $args);
 
         // Retrieve the authorized submission.
-        $this->setSubmission($this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION));
-        $this->setPublication($this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION));
+        $this->setSubmission($this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION));
+        $this->setPublication($this->getAuthorizedContextObject(Application::ASSOC_TYPE_PUBLICATION));
 
         $this->setTitle('monograph.publicationFormats');
 
@@ -160,7 +156,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
             // Grid actions
             $router = $request->getRouter();
             $actionArgs = $this->getRequestArgs();
-            $userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+            $userRoles = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_USER_ROLES);
             $this->_canManage = 0 != count(array_intersect($userRoles, [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SITE_ADMIN, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT]));
             if ($this->_canManage) {
                 $this->addAction(
@@ -361,7 +357,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      */
     public function setApproved($args, $request)
     {
-        $representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
+        $representation = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_REPRESENTATION);
         $representationDao = Application::getRepresentationDAO();
 
         if (!$representation) {
@@ -424,7 +420,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
     {
         $context = $request->getContext();
         $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
-        $publicationFormat = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
+        $publicationFormat = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_REPRESENTATION);
 
         if (!$publicationFormat) {
             return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
@@ -469,7 +465,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
     {
         $this->initialize($request);
         $submission = $this->getSubmission();
-        $representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
+        $representation = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_REPRESENTATION);
 
         $approvedProofForm = new ApprovedProofForm($submission, $representation, $request->getUserVar('submissionFileId'));
         $approvedProofForm->initData();
@@ -488,7 +484,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
     public function saveApprovedProof($args, $request)
     {
         $submission = $this->getSubmission();
-        $representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
+        $representation = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_REPRESENTATION);
 
         $approvedProofForm = new ApprovedProofForm($submission, $representation, $request->getUserVar('submissionFileId'));
         $approvedProofForm->readInputData();
@@ -570,7 +566,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
         if ($request->getUserVar('approval')) {
             $confirmationText = __('editor.submission.proofreading.confirmCompletion');
         }
-        if ($submissionFile && $submissionFile->getData('assocType') == ASSOC_TYPE_REPRESENTATION) {
+        if ($submissionFile && $submissionFile->getData('assocType') == Application::ASSOC_TYPE_REPRESENTATION) {
             $formTemplate = $this->getAssignPublicIdentifiersFormTemplate();
             $assignPublicIdentifiersForm = new PKPAssignPublicIdentifiersForm($formTemplate, $submissionFile, $request->getUserVar('approval'), $confirmationText);
             if (!$request->getUserVar('confirmed')) {
@@ -610,7 +606,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      */
     public function selectFiles($args, $request)
     {
-        $representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
+        $representation = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_REPRESENTATION);
 
         $manageProofFilesForm = new ManageProofFilesForm($this->getSubmission()->getId(), $this->getPublication()->getId(), $representation->getId());
         $manageProofFilesForm->initData();
@@ -627,7 +623,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      */
     public function editFormatMetadata($args, $request)
     {
-        $representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
+        $representation = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_REPRESENTATION);
 
         $publicationFormatForm = new PublicationFormatMetadataForm($this->getSubmission(), $this->getPublication(), $representation);
         $publicationFormatForm->initData();
@@ -645,7 +641,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      */
     public function updateFormatMetadata($args, $request)
     {
-        $representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
+        $representation = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_REPRESENTATION);
 
         $publicationFormatForm = new PublicationFormatMetadataForm($this->getSubmission(), $this->getPublication(), $representation);
         $publicationFormatForm->readInputData();
@@ -667,7 +663,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      */
     public function identifiers($args, $request)
     {
-        $representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
+        $representation = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_REPRESENTATION);
 
         $form = new PublicIdentifiersForm($representation);
         $form->initData();
@@ -684,7 +680,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      */
     public function updateIdentifiers($args, $request)
     {
-        $representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
+        $representation = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_REPRESENTATION);
 
         $form = new PublicIdentifiersForm($representation);
         $form->readInputData();
@@ -710,7 +706,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
             return new JSONMessage(false);
         }
 
-        $representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
+        $representation = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_REPRESENTATION);
 
         $form = new PublicIdentifiersForm($representation);
         $form->clearPubId($request->getUserVar('pubIdPlugIn'));

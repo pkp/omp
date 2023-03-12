@@ -47,7 +47,7 @@ class PublicationFormatService
             ->getCollector()
             ->filterBySubmissionIds([$submission->getId()])
             ->filterByAssoc(
-                ASSOC_TYPE_REPRESENTATION,
+                Application::ASSOC_TYPE_REPRESENTATION,
                 [$publicationFormat->getId()]
             )
             ->getMany();

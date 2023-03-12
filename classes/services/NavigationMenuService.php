@@ -64,7 +64,7 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
 
         $request = Application::get()->getRequest();
         $context = $request->getContext();
-        $contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
+        $contextId = $context ? $context->getId() : Application::CONTEXT_ID_NONE;
 
         $series = Repo::section()
             ->getCollector()
@@ -140,7 +140,7 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
         $isUserLoggedIn = Validation::isLoggedIn();
         $isUserLoggedInAs = Validation::isLoggedInAs();
         $context = $request->getContext();
-        $contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
+        $contextId = $context ? $context->getId() : Application::CONTEXT_ID_NONE;
 
         $this->transformNavMenuItemTitle($templateMgr, $navigationMenuItem);
 

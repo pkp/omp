@@ -15,6 +15,7 @@
 
 namespace APP\plugins\generic\usageEvent;
 
+use APP\core\Application;
 use APP\submission\Submission;
 
 class UsageEventPlugin extends \PKP\plugins\generic\usageEvent\PKPUsageEventPlugin
@@ -94,19 +95,19 @@ class UsageEventPlugin extends \PKP\plugins\generic\usageEvent\PKPUsageEventPlug
 
                     if ($press) {
                         $pubObject = $press;
-                        $assocType = ASSOC_TYPE_PRESS;
+                        $assocType = Application::ASSOC_TYPE_PRESS;
                     }
 
                     if ($series) {
                         $pubObject = $series;
-                        $assocType = ASSOC_TYPE_SERIES;
+                        $assocType = Application::ASSOC_TYPE_SERIES;
                         $canonicalUrlParams = [$series->getPath()];
                         $idParams = ['s' . $series->getId()];
                     }
 
                     if ($submission) {
                         $pubObject = $submission;
-                        $assocType = ASSOC_TYPE_MONOGRAPH;
+                        $assocType = Application::ASSOC_TYPE_MONOGRAPH;
                         $canonicalUrlParams = [$pubObject->getId()];
                         $idParams = ['m' . $pubObject->getId()];
                         if (isset($publicationId)) {
@@ -120,12 +121,12 @@ class UsageEventPlugin extends \PKP\plugins\generic\usageEvent\PKPUsageEventPlug
                     $canonicalUrlOp = $op;
                     break;
 
-                // Publication format file.
+                    // Publication format file.
                 case 'CatalogBookHandler::view':
                 case 'CatalogBookHandler::download':
                 case 'HtmlMonographFilePlugin::monographDownload':
                     $pubObject = $hookArgs[3];
-                    $assocType = ASSOC_TYPE_SUBMISSION_FILE;
+                    $assocType = Application::ASSOC_TYPE_SUBMISSION_FILE;
                     $canonicalUrlOp = 'download';
                     $submission = $hookArgs[1];
                     $publicationFormat = $hookArgs[2];
@@ -143,10 +144,10 @@ class UsageEventPlugin extends \PKP\plugins\generic\usageEvent\PKPUsageEventPlug
             }
 
             switch ($assocType) {
-                case ASSOC_TYPE_PRESS:
-                case ASSOC_TYPE_SERIES:
-                case ASSOC_TYPE_MONOGRAPH:
-                case ASSOC_TYPE_SUBMISSION_FILE:
+                case Application::ASSOC_TYPE_PRESS:
+                case Application::ASSOC_TYPE_SERIES:
+                case Application::ASSOC_TYPE_MONOGRAPH:
+                case Application::ASSOC_TYPE_SUBMISSION_FILE:
                     $canonicalUrlPage = 'catalog';
                     break;
             }
@@ -161,9 +162,9 @@ class UsageEventPlugin extends \PKP\plugins\generic\usageEvent\PKPUsageEventPlug
     protected function getHtmlPageAssocTypes()
     {
         return [
-            ASSOC_TYPE_PRESS,
-            ASSOC_TYPE_SERIES,
-            ASSOC_TYPE_MONOGRAPH
+            Application::ASSOC_TYPE_PRESS,
+            Application::ASSOC_TYPE_SERIES,
+            Application::ASSOC_TYPE_MONOGRAPH
         ];
     }
 

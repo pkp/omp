@@ -15,6 +15,7 @@
 
 namespace APP\controllers\submission;
 
+use APP\core\Application;
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 
 use PKP\handler\PKPHandler;
@@ -86,7 +87,7 @@ class CoverHandler extends PKPHandler
     public function cover($args, $request)
     {
         // this function is only used on the book page i.e. for published submissiones
-        $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+        $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_MONOGRAPH);
 
         $coverImageUrl = $submission->getCurrentPublication()->getLocalizedCoverImageUrl($submission->getData('contextId'));
         if (!$coverImageUrl) {
@@ -104,9 +105,9 @@ class CoverHandler extends PKPHandler
      */
     public function thumbnail($args, $request)
     {
-        // use ASSOC_TYPE_MONOGRAPH to set the cover at any workflow stage
+        // use Application::ASSOC_TYPE_MONOGRAPH to set the cover at any workflow stage
         // i.e. also if the monograph has not been published yet
-        $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+        $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_MONOGRAPH);
 
         $coverImageThumbnailUrl = $submission->getCurrentPublication()->getLocalizedCoverImageThumbnailUrl($submission->getData('contextId'));
         if (!$coverImageThumbnailUrl) {

@@ -246,7 +246,7 @@ class CatalogBookHandler extends Handler
         $pubFormatFiles = Repo::submissionFile()
             ->getCollector()
             ->filterBySubmissionIds([$submission->getId()])
-            ->filterByAssoc(ASSOC_TYPE_PUBLICATION_FORMAT)
+            ->filterByAssoc(Application::ASSOC_TYPE_PUBLICATION_FORMAT)
             ->getMany();
 
         $availableFiles = [];
@@ -369,7 +369,7 @@ class CatalogBookHandler extends Handler
         $path = $submissionFile->getData('path');
         $filename = Services::get('file')->formatFilename($path, $submissionFile->getLocalizedData('name'));
         switch ($submissionFile->getData('assocType')) {
-            case ASSOC_TYPE_PUBLICATION_FORMAT: // Publication format file
+            case Application::ASSOC_TYPE_PUBLICATION_FORMAT: // Publication format file
                 if ($submissionFile->getData('assocId') != $publicationFormat->getId() || $submissionFile->getDirectSalesPrice() === null) {
                     $dispatcher->handle404();
                 }

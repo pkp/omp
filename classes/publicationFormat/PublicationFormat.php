@@ -17,6 +17,7 @@
 
 namespace APP\publicationFormat;
 
+use APP\core\Application;
 use APP\core\Services;
 use APP\facades\Repo;
 use PKP\db\DAORegistry;
@@ -314,7 +315,7 @@ class PublicationFormat extends Representation
             ->filterBySubmissionIds([$publication->getData('submissionId')])
             ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
             ->filterByAssoc(
-                ASSOC_TYPE_PUBLICATION_FORMAT,
+                Application::ASSOC_TYPE_PUBLICATION_FORMAT,
                 [$this->getId()]
             )
             ->getMany();

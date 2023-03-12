@@ -105,7 +105,7 @@ class WorkflowHandler extends PKPWorkflowHandler
         parent::setupIndex($request);
 
         $templateMgr = TemplateManager::getManager($request);
-        $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+        $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
 
         $submissionContext = $request->getContext();
         if ($submission->getContextId() !== $submissionContext->getId()) {

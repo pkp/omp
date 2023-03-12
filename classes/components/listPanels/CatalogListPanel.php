@@ -145,9 +145,9 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
 
         $templateMgr = TemplateManager::getManager($request);
         $templateMgr->setConstants([
-            'ASSOC_TYPE_PRESS' => ASSOC_TYPE_PRESS,
+            'ASSOC_TYPE_PRESS' => Application::ASSOC_TYPE_PRESS,
             'ASSOC_TYPE_CATEGORY' => Application::ASSOC_TYPE_CATEGORY,
-            'ASSOC_TYPE_SERIES' => ASSOC_TYPE_SERIES,
+            'ASSOC_TYPE_SERIES' => Application::ASSOC_TYPE_SERIES,
         ]);
 
         $templateMgr->setLocaleKeys([

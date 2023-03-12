@@ -87,7 +87,7 @@ class CatalogHandler extends PKPCatalogHandler
         $submissions = $collector->limit($count)->offset($offset)->getMany();
 
         $featureDao = DAORegistry::getDAO('FeatureDAO'); /** @var FeatureDAO $featureDao */
-        $featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $context->getId());
+        $featuredMonographIds = $featureDao->getSequencesByAssoc(Application::ASSOC_TYPE_PRESS, $context->getId());
 
         $this->_setupPaginationTemplate($request, $submissions->count(), $page, $count, $offset, $total);
 
@@ -123,7 +123,7 @@ class CatalogHandler extends PKPCatalogHandler
 
         // Provide a list of new releases to browse
         $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /** @var NewReleaseDAO $newReleaseDao */
-        $newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
+        $newReleases = $newReleaseDao->getMonographsByAssoc(Application::ASSOC_TYPE_PRESS, $press->getId());
         $templateMgr->assign([
             'publishedSubmissions' => $newReleases,
             'authorUserGroups' => $authorUserGroups = Repo::userGroup()->getCollector()->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])->filterByContextIds([$press->getId()])->getMany(),
@@ -179,13 +179,13 @@ class CatalogHandler extends PKPCatalogHandler
         $submissions = $collector->limit($count)->offset($offset)->getMany();
 
         $featureDao = DAORegistry::getDAO('FeatureDAO'); /** @var FeatureDAO $featureDao */
-        $featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_SERIES, $series->getId());
+        $featuredMonographIds = $featureDao->getSequencesByAssoc(Application::ASSOC_TYPE_SERIES, $series->getId());
 
         // Provide a list of new releases to browse
         $newReleases = [];
         if ($page === 1) {
             $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /** @var NewReleaseDAO $newReleaseDao */
-            $newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_SERIES, $series->getId());
+            $newReleases = $newReleaseDao->getMonographsByAssoc(Application::ASSOC_TYPE_SERIES, $series->getId());
         }
 
         $this->_setupPaginationTemplate($request, $submissions->count(), $page, $count, $offset, $total);

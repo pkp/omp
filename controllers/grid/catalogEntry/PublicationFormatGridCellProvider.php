@@ -15,16 +15,17 @@
 
 namespace APP\controllers\grid\catalogEntry;
 
-use PKP\controllers\grid\files\FileNameGridColumn;
+use APP\core\Application;
 use PKP\controllers\api\file\linkAction\AddFileLinkAction;
-use PKP\linkAction\request\RemoteActionConfirmationModal;
 use PKP\controllers\grid\DataObjectGridCellProvider;
+use PKP\controllers\grid\files\fileList\linkAction\SelectFilesLinkAction;
+use PKP\controllers\grid\files\FileNameGridColumn;
 use PKP\controllers\grid\GridHandler;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
+use PKP\linkAction\request\RemoteActionConfirmationModal;
 use PKP\security\Role;
 use PKP\submissionFile\SubmissionFile;
-use PKP\controllers\grid\files\fileList\linkAction\SelectFilesLinkAction;
 
 class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
 {
@@ -190,14 +191,14 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                             WORKFLOW_STAGE_ID_PRODUCTION,
                             [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SITE_ADMIN, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT],
                             SubmissionFile::SUBMISSION_FILE_PROOF,
-                            ASSOC_TYPE_REPRESENTATION,
+                            Application::ASSOC_TYPE_REPRESENTATION,
                             $data->getId()
                         ),
                         new SelectFilesLinkAction(
                             $request,
                             [
                                 'submissionId' => $this->getSubmissionId(),
-                                'assocType' => ASSOC_TYPE_REPRESENTATION,
+                                'assocType' => Application::ASSOC_TYPE_REPRESENTATION,
                                 'assocId' => $data->getId(),
                                 'representationId' => $data->getId(),
                                 'publicationId' => $this->getPublicationId(),
