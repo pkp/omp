@@ -304,7 +304,7 @@ class Chapter extends \PKP\core\DataObject
     /**
      * get date published
      *
-     * @return date
+     * @return string
      */
     public function getDatePublished()
     {
@@ -314,7 +314,7 @@ class Chapter extends \PKP\core\DataObject
     /**
      * set date published
      *
-     * @param date $datePublished
+     * @param string $datePublished
      */
     public function setDatePublished($datePublished)
     {
@@ -410,7 +410,6 @@ class Chapter extends \PKP\core\DataObject
     /**
      * set license url
      *
-     * @param $licenseUrl null|string
      */
     public function setLicenseUrl(?string $licenseUrl): void
     {

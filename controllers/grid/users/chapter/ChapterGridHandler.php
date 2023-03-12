@@ -21,6 +21,7 @@ use APP\controllers\tab\pubIds\form\PublicIdentifiersForm;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\monograph\Chapter;
+use APP\monograph\ChapterDAO;
 use APP\notification\NotificationManager;
 use APP\publication\Publication;
 use APP\submission\Submission;
@@ -265,7 +266,9 @@ class ChapterGridHandler extends CategoryGridHandler
      */
     public function loadData($request, $filter)
     {
-        return DAORegistry::getDAO('ChapterDAO')
+        /** @var ChapterDAO */
+        $chapterDao = DAORegistry::getDAO('ChapterDAO');
+        return $chapterDao
             ->getByPublicationId($this->getPublication()->getId())
             ->toAssociativeArray();
     }
@@ -566,7 +569,8 @@ class ChapterGridHandler extends CategoryGridHandler
      */
     public function _getChapterFromRequest($request)
     {
-        return DAORegistry::getDAO('ChapterDAO')->getChapter(
+        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
+        return $chapterDao->getChapter(
             (int) $request->getUserVar('chapterId'),
             $this->getPublication()->getId()
         );

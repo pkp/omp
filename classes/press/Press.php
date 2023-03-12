@@ -23,8 +23,7 @@ namespace APP\press;
 
 use APP\core\Application;
 use PKP\context\Context;
-use PKP\core\DAORegistry;
-
+use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 
 class Press extends Context

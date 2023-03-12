@@ -17,7 +17,7 @@ use PKP\cliTool\InstallTool;
 
 require(dirname(__FILE__) . '/bootstrap.php');
 
-class OMPInstallTool extends \PKP\cliTool\InstallTool
+class OMPInstallTool extends InstallTool
 {
     /**
      * Read installation parameters from stdin.

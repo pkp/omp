@@ -17,6 +17,7 @@ namespace APP\plugins\importexport\native\filter;
 
 use APP\core\Application;
 use APP\facades\Repo;
+use Exception;
 use PKP\plugins\importexport\native\filter\PKPNativeFilterHelper;
 use PKP\plugins\importexport\PKPImportExportFilter;
 

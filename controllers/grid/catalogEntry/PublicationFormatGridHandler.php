@@ -576,7 +576,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
                 return new JSONMessage(true, $assignPublicIdentifiersForm->fetch($request));
             }
             if ($request->getUserVar('approval')) {
-                // Asign pub ids
+                // Assign pub ids
                 $assignPublicIdentifiersForm->readInputData();
                 $assignPublicIdentifiersForm->execute();
             }

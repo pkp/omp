@@ -34,8 +34,8 @@ class UsageStatsLoader extends PKPUsageStatsLoader
      */
     public function __construct($args)
     {
-        $this->temporaryTitleInvestigationsDao = DAORegistry::getDAO('TemporaryTitleInvestigationsDAO'); /* @var TemporaryTitleInvestigationsDAO $temporaryTitleInvestigationsDao */
-        $this->temporaryTitleRequestsDao = DAORegistry::getDAO('TemporaryTitleRequestsDAO'); /* @var TemporaryTitleRequestsDAO $temporaryTitleRequestsDao */
+        $this->temporaryTitleInvestigationsDao = DAORegistry::getDAO('TemporaryTitleInvestigationsDAO'); /** @var TemporaryTitleInvestigationsDAO $temporaryTitleInvestigationsDao */
+        $this->temporaryTitleRequestsDao = DAORegistry::getDAO('TemporaryTitleRequestsDAO'); /** @var TemporaryTitleRequestsDAO $temporaryTitleRequestsDao */
         parent::__construct($args);
     }
 

@@ -17,6 +17,10 @@ namespace APP\services;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\log\SubmissionEventLogEntry;
+use APP\publicationFormat\IdentificationCodeDAO;
+use APP\publicationFormat\MarketDAO;
+use APP\publicationFormat\PublicationDateDAO;
+use APP\publicationFormat\SalesRightsDAO;
 use PKP\db\DAORegistry;
 use PKP\log\SubmissionLog;
 
@@ -36,10 +40,12 @@ class PublicationFormatService
         // Delete publication format metadata
         $metadataDaos = ['IdentificationCodeDAO', 'MarketDAO', 'PublicationDateDAO', 'SalesRightsDAO'];
         foreach ($metadataDaos as $metadataDao) {
-            $result = DAORegistry::getDAO($metadataDao)->getByPublicationFormatId($publicationFormat->getId());
+            /** @var IdentificationCodeDAO|MarketDAO|PublicationDateDAO|SalesRightsDAO */
+            $dao = DAORegistry::getDAO($metadataDao);
+            $result = $dao->getByPublicationFormatId($publicationFormat->getId());
             while (!$result->eof()) {
                 $object = $result->next();
-                DAORegistry::getDAO($metadataDao)->deleteObject($object);
+                $dao->deleteObject($object);
             }
         }
 

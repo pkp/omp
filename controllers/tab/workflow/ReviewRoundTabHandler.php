@@ -15,7 +15,6 @@
 
 namespace APP\controllers\tab\workflow;
 
-use APP\handler\Handler;
 use PKP\controllers\tab\workflow\PKPReviewRoundTabHandler;
 use PKP\security\authorization\WorkflowStageAccessPolicy;
 

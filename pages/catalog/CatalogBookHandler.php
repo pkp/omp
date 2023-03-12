@@ -17,6 +17,7 @@
 namespace APP\pages\catalog;
 
 use APP\core\Application;
+use APP\core\Request;
 use APP\core\Services;
 use APP\facades\Repo;
 use APP\handler\Handler;
@@ -27,6 +28,7 @@ use APP\payment\omp\OMPPaymentManager;
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
+use PKP\citation\CitationDAO;
 use PKP\core\PKPApplication;
 use PKP\core\PKPRequest;
 use PKP\db\DAORegistry;
@@ -36,6 +38,7 @@ use PKP\plugins\PluginRegistry;
 use PKP\security\authorization\ContextRequiredPolicy;
 use PKP\security\Validation;
 use PKP\submission\Genre;
+use PKP\submission\GenreDAO;
 use PKP\submission\PKPSubmission;
 
 class CatalogBookHandler extends Handler
@@ -196,7 +199,9 @@ class CatalogBookHandler extends Handler
         ]);
 
         // Assign chapters (if they exist)
-        $templateMgr->assign('chapters', DAORegistry::getDAO('ChapterDAO')->getByPublicationId($this->publication->getId())->toAssociativeArray());
+        /** @var ChapterDAO */
+        $chapterDao = DAORegistry::getDAO('ChapterDAO');
+        $templateMgr->assign('chapters', $chapterDao->getByPublicationId($this->publication->getId())->toAssociativeArray());
 
         $pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
         if ($this->isChapterRequest && $this->chapter->getData('licenseUrl')) {
@@ -219,7 +224,9 @@ class CatalogBookHandler extends Handler
 
         // Citations
         if ($this->publication->getData('citationsRaw')) {
-            $parsedCitations = DAORegistry::getDAO('CitationDAO')->getByPublicationId($this->publication->getId());
+            /** @var CitationDAO */
+            $citationDao = DAORegistry::getDAO('CitationDAO');
+            $parsedCitations = $citationDao->getByPublicationId($this->publication->getId());
             $templateMgr->assign([
                 'citations' => $parsedCitations->toArray(),
                 'parsedCitations' => $parsedCitations, // compatible with older themes
@@ -315,7 +322,7 @@ class CatalogBookHandler extends Handler
      * Download a published submission publication format file.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      * @param bool $view True iff inline viewer should be used, if available
      */
     public function download($args, $request, $view = false)
@@ -430,6 +437,7 @@ class CatalogBookHandler extends Handler
             // if the file is a publication format file (i.e. not a dependent file e.g. CSS or images), fire an usage event.
             if ($submissionFile->getData('assocId') == $publicationFormat->getId()) {
                 $assocType = Application::ASSOC_TYPE_SUBMISSION_FILE;
+                /** @var GenreDAO */
                 $genreDao = DAORegistry::getDAO('GenreDAO');
                 $genre = $genreDao->getById($submissionFile->getData('genreId'));
                 // TO-DO: is this correct ?
@@ -478,7 +486,7 @@ class CatalogBookHandler extends Handler
      */
     public function setupTemplate($request, $submission = null)
     {
-        $templateMgr = TemplateManager::getmanager($request);
+        $templateMgr = TemplateManager::getManager($request);
         if ($seriesId = $submission->getCurrentPublication()->getData('seriesId')) {
             $series = Repo::section()->get($seriesId, $submission->getData('contextId'));
             $templateMgr->assign('series', $series);
@@ -494,6 +502,7 @@ class CatalogBookHandler extends Handler
     {
         if ($chapterId > 0) {
             $this->isChapterRequest = true;
+            /** @var ChapterDAO */
             $chapterDao = DAORegistry::getDAO('ChapterDAO');
             $chapters = $chapterDao->getBySourceChapterId($chapterId);
             $chapters = $chapters->toAssociativeArray();
@@ -522,6 +531,7 @@ class CatalogBookHandler extends Handler
     protected function setChapterPublicationIds(): void
     {
         if ($this->chapter && $this->isChapterRequest) {
+            /** @var ChapterDAO */
             $chapterDao = DAORegistry::getDAO('ChapterDAO');
             $chapters = $chapterDao->getBySourceChapterId($this->chapter->getSourceChapterId());
             $chapters = $chapters->toAssociativeArray();
@@ -543,6 +553,7 @@ class CatalogBookHandler extends Handler
      */
     protected function getSourceChapter(Submission $submission): ?Chapter
     {
+        /** @var ChapterDAO */
         $chapterDao = DAORegistry::getDAO('ChapterDAO');
         $chapters = $chapterDao->getBySourceChapterId($this->chapter->getSourceChapterId());
         $chapters = $chapters->toAssociativeArray();

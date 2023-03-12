@@ -25,7 +25,6 @@ use PKP\decision\Decision as BaseDecision;
 
 class Decision extends BaseDecision
 {
-
 }
 
 if (!PKP_STRICT_MODE) {

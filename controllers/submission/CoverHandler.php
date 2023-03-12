@@ -86,7 +86,7 @@ class CoverHandler extends PKPHandler
      */
     public function cover($args, $request)
     {
-        // this function is only used on the book page i.e. for published submissiones
+        // this function is only used on the book page i.e. for published submissions
         $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_MONOGRAPH);
 
         $coverImageUrl = $submission->getCurrentPublication()->getLocalizedCoverImageUrl($submission->getData('contextId'));

@@ -18,6 +18,7 @@ namespace APP\controllers\grid\catalogEntry\form;
 use APP\core\Application;
 use APP\notification\Notification;
 use APP\template\TemplateManager;
+use Exception;
 use PKP\db\DAORegistry;
 use PKP\form\Form;
 use PKP\plugins\PKPPubIdPluginHelper;
@@ -215,7 +216,7 @@ class PublicationFormatMetadataForm extends Form
             'returnableIndicatorCode',
         ]);
 
-        // consider the additional field names from the public identifer plugins
+        // consider the additional field names from the public identifier plugins
         $pubIdPluginHelper = $this->_getPubIdPluginHelper();
         $pubIdPluginHelper->readInputData($submission->getContextId(), $this);
     }
@@ -262,7 +263,7 @@ class PublicationFormatMetadataForm extends Form
         $publicationFormat->setTechnicalProtectionCode($this->getData('technicalProtectionCode'));
         $publicationFormat->setReturnableIndicatorCode($this->getData('returnableIndicatorCode'));
 
-        // consider the additional field names from the public identifer plugins
+        // consider the additional field names from the public identifier plugins
         $pubIdPluginHelper = $this->_getPubIdPluginHelper();
         $pubIdPluginHelper->execute($submission->getContextId(), $this, $publicationFormat);
 

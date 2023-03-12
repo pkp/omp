@@ -168,7 +168,7 @@ class TemporaryItemRequestsDAO extends PKPTemporaryItemRequestsDAO
                 ';
         }
 
-        $temporaryInstitutionsDAO = DAORegistry::getDAO('TemporaryInstitutionsDAO'); /* @var TemporaryInstitutionsDAO $temporaryInstitutionsDAO */
+        $temporaryInstitutionsDAO = DAORegistry::getDAO('TemporaryInstitutionsDAO'); /** @var TemporaryInstitutionsDAO $temporaryInstitutionsDAO */
         $institutionIds = $temporaryInstitutionsDAO->getInstitutionIdsByLoadId($loadId);
         foreach ($institutionIds as $institutionId) {
             DB::statement($metricBookRequestsUniqueUpsertSql, [$loadId, Application::ASSOC_TYPE_SUBMISSION_FILE, (int) $institutionId]);

@@ -144,7 +144,7 @@ class Upgrade extends Installer
             $salutation = $row->salutation;
             $suffix = $row->suffix;
             foreach ($supportedLocales as $siteLocale) {
-                $preferredPublicName = ($salutation != '' ? "${salutation} " : '') . "${firstName} " . ($middleName != '' ? "${middleName} " : '') . $lastName . ($suffix != '' ? ", ${suffix}" : '');
+                $preferredPublicName = ($salutation != '' ? "{$salutation} " : '') . "{$firstName} " . ($middleName != '' ? "{$middleName} " : '') . $lastName . ($suffix != '' ? ", {$suffix}" : '');
                 DB::update(
                     "INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, 'preferredPublicName', ?, 'string')",
                     [(int) $userId, $siteLocale, $preferredPublicName]
@@ -154,7 +154,7 @@ class Upgrade extends Installer
 
         // author suffix will be migrated to the author preferred public name
         // author preferred public names will be inserted for each press supported locale
-        // get supported locales for the press (there shold actually be only one press)
+        // get supported locales for the press (there should actually be only one press)
         $pressDao = DAORegistry::getDAO('PressDAO'); /** @var PressDAO $pressDao */
         $presses = $pressDao->getAll();
         $pressessSupportedLocales = [];
@@ -177,7 +177,7 @@ class Upgrade extends Installer
             $pressId = $row->press_id;
             $supportedLocales = $pressessSupportedLocales[$pressId];
             foreach ($supportedLocales as $locale) {
-                $preferredPublicName = "${firstName} " . ($middleName != '' ? "${middleName} " : '') . $lastName . ($suffix != '' ? ", ${suffix}" : '');
+                $preferredPublicName = "{$firstName} " . ($middleName != '' ? "{$middleName} " : '') . $lastName . ($suffix != '' ? ", {$suffix}" : '');
                 DB::update(
                     "INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, 'preferredPublicName', ?, 'string')",
                     [(int) $authorId, $locale, $preferredPublicName]

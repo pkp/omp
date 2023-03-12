@@ -166,10 +166,10 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
                 $dc11Description->addStatement('dc:identifier', $pubId);
             }
         }
-
         $context = $request->getContext();
         if (!$context) {
             $contextDao = \APP\core\Application::getContextDAO();
+            /** @var Press */
             $context = $contextDao->getById($monograph->getData('contextId'));
         }
         if ($context->areDoisEnabled()) {

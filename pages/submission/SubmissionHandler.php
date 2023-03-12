@@ -150,8 +150,9 @@ class SubmissionHandler extends PKPSubmissionHandler
         });
 
         $chapterGrid = new ChapterGridHandler();
-        $chapters = DAORegistry::getDAO('ChapterDAO')
-            ->getByPublicationId($publication->getId())
+        /** @var ChapterDAO */
+        $chapterDao = DAORegistry::getDAO('ChapterDAO');
+        $chapters = $chapterDao->getByPublicationId($publication->getId())
             ->toArray();
         $chapterData = [];
         foreach ($chapters as $chapter) {

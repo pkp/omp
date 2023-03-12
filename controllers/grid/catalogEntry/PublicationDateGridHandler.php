@@ -19,6 +19,7 @@ use APP\controllers\grid\catalogEntry\form\PublicationDateForm;
 use APP\core\Application;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
+use Exception;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
@@ -97,7 +98,7 @@ class PublicationDateGridHandler extends GridHandler
     }
 
     /**
-     * Get the publication format assocated with these dates
+     * Get the publication format associated with these dates
      *
      * @return PublicationFormat
      */

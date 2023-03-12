@@ -19,6 +19,7 @@ use APP\controllers\grid\catalogEntry\form\MarketForm;
 use APP\core\Application;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
+use Exception;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
@@ -98,7 +99,7 @@ class MarketsGridHandler extends GridHandler
     }
 
     /**
-     * Get the publication format assocated with these markets
+     * Get the publication format associated with these markets
      *
      * @return PublicationFormat
      */

@@ -390,7 +390,7 @@ class OMPMigration extends \PKP\migration\Migration
 
         // Logs queued (unfulfilled) payments.
         Schema::create('queued_payments', function (Blueprint $table) {
-            $table->comment('A list of queued (unfilfilled) payments, i.e. payments that have not yet been completed via an online payment system.');
+            $table->comment('A list of queued (unfilled) payments, i.e. payments that have not yet been completed via an online payment system.');
             $table->bigInteger('queued_payment_id')->autoIncrement();
             $table->datetime('date_created');
             $table->datetime('date_modified');

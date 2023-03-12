@@ -18,6 +18,8 @@ namespace APP\API\v1\_submissions;
 
 use APP\core\Application;
 use APP\facades\Repo;
+use APP\press\FeatureDAO;
+use APP\press\NewReleaseDAO;
 use APP\submission\Collector;
 use APP\submission\Submission;
 use PKP\db\DAORegistry;
@@ -117,6 +119,7 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
             return $response->withStatus(400)->withJsonError('api.submissions.400.missingRequired');
         }
 
+        /** @var FeatureDAO */
         $featureDao = DAORegistry::getDAO('FeatureDAO');
         $featureDao->deleteByMonographId($submissionId);
         if (!empty($params['featured'])) {
@@ -124,7 +127,7 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
                 $featureDao->insertFeature($submissionId, $feature['assoc_type'], $feature['assoc_id'], $feature['seq']);
             }
         }
-
+        /** @var NewReleaseDAO */
         $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
         $newReleaseDao->deleteByMonographId($submissionId);
         if (!empty($params['newRelease'])) {
@@ -169,7 +172,7 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
         if (empty($assocType) || empty($assocId)) {
             return $response->withStatus(400)->withJsonError('api.submissions.400.missingRequired');
         }
-
+        /** @var FeatureDAO */
         $featureDao = DAORegistry::getDAO('FeatureDAO');
         $featureDao->deleteByAssoc($assocType, $assocId);
         if (!empty($params['featured'])) {

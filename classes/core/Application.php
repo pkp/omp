@@ -19,6 +19,8 @@
 
 namespace APP\core;
 
+use APP\press\PressDAO;
+use APP\publicationFormat\PublicationFormatDAO;
 use PKP\core\PKPApplication;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
@@ -166,17 +168,21 @@ class Application extends PKPApplication
     /**
      * Get the top-level context DAO.
      */
-    public static function getContextDAO()
+    public static function getContextDAO(): PressDAO
     {
         return DAORegistry::getDAO('PressDAO');
     }
 
     /**
      * Get the representation DAO.
+     *
+     * @return PublicationFormatDAO|RepresentationDAOInterface
      */
     public static function getRepresentationDAO(): RepresentationDAOInterface
     {
-        return DAORegistry::getDAO('PublicationFormatDAO');
+        /** @var PublicationFormatDAO|RepresentationDAOInterface */
+        $dao = DAORegistry::getDAO('PublicationFormatDAO');
+        return $dao;
     }
 
     /**

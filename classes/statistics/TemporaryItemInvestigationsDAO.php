@@ -71,7 +71,7 @@ class TemporaryItemInvestigationsDAO extends PKPTemporaryItemInvestigationsDAO
     }
 
     /**
-     * Load unique COUNTER item (book and chpater) investigations
+     * Load unique COUNTER item (book and chapter) investigations
      */
     public function compileCounterSubmissionDailyMetrics(string $loadId): void
     {
@@ -163,7 +163,7 @@ class TemporaryItemInvestigationsDAO extends PKPTemporaryItemInvestigationsDAO
                 ';
         }
 
-        $temporaryInstitutionsDAO = DAORegistry::getDAO('TemporaryInstitutionsDAO'); /* @var TemporaryInstitutionsDAO $temporaryInstitutionsDAO */
+        $temporaryInstitutionsDAO = DAORegistry::getDAO('TemporaryInstitutionsDAO'); /** @var TemporaryInstitutionsDAO $temporaryInstitutionsDAO */
         $institutionIds = $temporaryInstitutionsDAO->getInstitutionIdsByLoadId($loadId);
         foreach ($institutionIds as $institutionId) {
             DB::statement($metricBookInvestigationsUniqueUpsertSql, [$loadId, (int) $institutionId]);

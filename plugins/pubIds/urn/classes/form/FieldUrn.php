@@ -21,7 +21,7 @@ class FieldUrn extends FieldText
     /** @copydoc Field::$component */
     public $component = 'field-urn';
 
-    /** @var string The urnPrefix from the urn plugin sttings */
+    /** @var string The urnPrefix from the urn plugin settings */
     public $urnPrefix = '';
 
     /**

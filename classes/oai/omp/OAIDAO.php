@@ -188,7 +188,9 @@ class OAIDAO extends PKPOAIDAO
         $series = $this->getSeries($row['series_id']);
         $publicationFormatId = $row['data_object_id'];
 
-        $record->identifier = $this->oai->publicationFormatIdToIdentifier($publicationFormatId);
+        /** @var PressOAI */
+        $oai = $this->oai;
+        $record->identifier = $oai->publicationFormatIdToIdentifier($publicationFormatId);
         $record->sets = [self::setSpec($press, $series)];
 
         if ($isRecord) {

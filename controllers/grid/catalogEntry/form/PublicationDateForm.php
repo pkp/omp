@@ -16,6 +16,7 @@
 namespace APP\controllers\grid\catalogEntry\form;
 
 use APP\template\TemplateManager;
+use Exception;
 use PKP\db\DAORegistry;
 use PKP\form\Form;
 

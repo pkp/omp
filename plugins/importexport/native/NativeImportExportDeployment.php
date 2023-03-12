@@ -17,7 +17,7 @@ namespace APP\plugins\importexport\native;
 class NativeImportExportDeployment extends \PKP\plugins\importexport\native\PKPNativeImportExportDeployment
 {
     //
-    // Deploymenturation items for subclasses to override
+    // Deployment items for subclasses to override
     //
     /**
      * Get the submission node name

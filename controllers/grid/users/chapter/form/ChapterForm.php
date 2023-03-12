@@ -18,6 +18,8 @@ namespace APP\controllers\grid\users\chapter\form;
 
 use APP\core\Application;
 use APP\facades\Repo;
+use APP\monograph\Chapter;
+use APP\submissionFile\DAO;
 use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
 use PKP\form\Form;
@@ -333,12 +335,12 @@ class ChapterForm extends Form
 
         // Save the chapter file associations
         $selectedFiles = (array) $this->getData('files');
-        Repo::submissionFile()
-            ->dao
-            ->updateChapterFiles(
-                $selectedFiles,
-                $this->getChapter()->getId()
-            );
+        /** @var DAO */
+        $dao = Repo::submissionFile()->dao;
+        $dao->updateChapterFiles(
+            $selectedFiles,
+            $this->getChapter()->getId()
+        );
 
         return true;
     }

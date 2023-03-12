@@ -17,6 +17,7 @@ namespace APP\plugins;
 
 use APP\facades\Repo;
 use APP\monograph\Chapter;
+use APP\monograph\ChapterDAO;
 use APP\submission\Submission;
 use PKP\context\Context;
 use PKP\core\DataObject;
@@ -30,7 +31,7 @@ use PKP\submissionFile\SubmissionFile;
 abstract class PubIdPlugin extends PKPPubIdPlugin
 {
     //
-    // Protected template methods from PKPPlubIdPlugin
+    // Protected template methods from PKPPubIdPlugin
     //
     /**
      * @copydoc PKPPubIdPlugin::getPubObjectTypes()
@@ -125,7 +126,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
             return null;
         }
 
-        // Costruct the pub id from prefix and suffix.
+        // Construct the pub id from prefix and suffix.
         $pubId = $this->constructPubId($pubIdPrefix, $pubIdSuffix, $contextId);
 
         return $pubId;
@@ -178,7 +179,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
     ): string {
         // %p - press initials
         $pubIdSuffix = PKPString::regexp_replace('/%p/', PKPString::regexp_replace('/[^-._;()\/A-Za-z0-9]/', '', PKPString::strtolower($context->getAcronym($context->getPrimaryLocale()))), $pubIdSuffix);
-
+        /** @var Chapter $pubObject */
         // %x - custom identifier
         if ($pubObject->getStoredPubId('publisher-id')) {
             $pubIdSuffix = PKPString::regexp_replace('/%x/', $pubObject->getStoredPubId('publisher-id'), $pubIdSuffix);
@@ -220,10 +221,12 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
      */
     public function checkDuplicate($pubId, $pubObjectType, $excludeId, $contextId)
     {
+        /** @var ChapterDAO */
+        $chapterDao = DAORegistry::getDAO('ChapterDAO');
         foreach ($this->getPubObjectTypes() as $type => $fqcn) {
             if ($type === 'Chapter') {
                 $excludeTypeId = $type === $pubObjectType ? $excludeId : null;
-                if (DAORegistry::getDAO('ChapterDAO')->pubIdExists($this->getPubIdType(), $pubId, $excludeTypeId, $contextId)) {
+                if ($chapterDao->pubIdExists($this->getPubIdType(), $pubId, $excludeTypeId, $contextId)) {
                     return false;
                 }
             }

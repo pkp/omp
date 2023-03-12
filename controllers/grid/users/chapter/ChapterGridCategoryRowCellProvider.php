@@ -26,6 +26,8 @@ class ChapterGridCategoryRowCellProvider extends GridCellProvider
 
     /**
      * @see GridCellProvider::getCellActions()
+     *
+     * @param ChapterGridCategoryRow $row
      */
     public function getCellActions($request, $row, $column, $position = GridHandler::GRID_ACTION_POSITION_DEFAULT)
     {
@@ -57,6 +59,8 @@ class ChapterGridCategoryRowCellProvider extends GridCellProvider
 
     /**
      * @see GridCellProvider::getTemplateVarsFromRowColumn()
+     *
+     * @param ChapterGridCategoryRow $row
      */
     public function getTemplateVarsFromRowColumn($row, $column)
     {

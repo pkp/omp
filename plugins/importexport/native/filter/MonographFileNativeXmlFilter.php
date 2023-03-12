@@ -13,6 +13,10 @@
 
 namespace APP\plugins\importexport\native\filter;
 
+use DOMDocument;
+use DOMElement;
+use PKP\submissionFile\SubmissionFile;
+
 class MonographFileNativeXmlFilter extends \PKP\plugins\importexport\native\filter\SubmissionFileNativeXmlFilter
 {
     //
@@ -32,12 +36,8 @@ class MonographFileNativeXmlFilter extends \PKP\plugins\importexport\native\filt
     //
     /**
      * Create and return a submissionFile node.
-     *
-     * @param \DOMDocument $doc
-     * @param \PKP\submissionFile\SubmissionFile $submissionFile
-     * @return \DOMElement
      */
-    public function createSubmissionFileNode($doc, $submissionFile)
+    public function createSubmissionFileNode(DOMDocument $doc, SubmissionFile $submissionFile): ?DOMElement
     {
         $deployment = $this->getDeployment();
         $submissionFileNode = parent::createSubmissionFileNode($doc, $submissionFile);

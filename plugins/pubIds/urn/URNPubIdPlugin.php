@@ -17,6 +17,7 @@ use APP\core\Application;
 use APP\core\Services;
 use APP\facades\Repo;
 use APP\plugins\PubIdPlugin;
+use APP\plugins\pubIds\urn\classes\form\URNSettingsForm;
 use APP\publication\Publication;
 use APP\template\TemplateManager;
 use PKP\linkAction\LinkAction;
@@ -248,7 +249,7 @@ class URNPubIdPlugin extends PubIdPlugin
      */
     public function isObjectTypeEnabled($pubObjectType, $contextId)
     {
-        return (bool) $this->getSetting($contextId, "enable${pubObjectType}URN");
+        return (bool) $this->getSetting($contextId, "enable{$pubObjectType}URN");
     }
 
     /**

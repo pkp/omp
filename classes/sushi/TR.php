@@ -176,7 +176,7 @@ class TR extends CounterR5Report
                     $this->sectionTypes = explode('|', $filter['Value']);
             }
         }
-        // check section_type and metric_type missmatch ?
+        // check section_type and metric_type mismatch ?
     }
 
     /**
@@ -218,7 +218,7 @@ class TR extends CounterR5Report
             ]);
         }
 
-        // Group resulty by submission ID
+        // Group result by submission ID
         // If Section_Type is attribute to show, group additionally by section type
         // Also filter results by requested section and metric types
         $resultsGroupedBySubmission = $items = [];

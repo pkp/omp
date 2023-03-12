@@ -19,6 +19,7 @@ use APP\controllers\grid\catalogEntry\form\SalesRightsForm;
 use APP\core\Application;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
+use Exception;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
@@ -77,7 +78,7 @@ class SalesRightsGridHandler extends GridHandler
     /**
      * Get the publication associated with this grid.
      *
-     * @return Publicaton
+     * @return Publication
      */
     public function getPublication()
     {
@@ -85,9 +86,9 @@ class SalesRightsGridHandler extends GridHandler
     }
 
     /**
-     * Set the Publicaton
+     * Set the Publication
      *
-     * @param Publicaton
+     * @param Publication
      */
     public function setPublication($publication)
     {
@@ -95,7 +96,7 @@ class SalesRightsGridHandler extends GridHandler
     }
 
     /**
-     * Get the publication format assocated with these sales rights
+     * Get the publication format associated with these sales rights
      *
      * @return PublicationFormat
      */

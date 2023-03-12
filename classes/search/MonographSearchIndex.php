@@ -64,10 +64,10 @@ class MonographSearchIndex extends SubmissionSearchIndex
      */
     public function updateFileIndex($monographId, $type, $submissionFileId)
     {
-        $submisssionFile = Repo::submissionFile()->get($submissionFileId);
+        $submissionFile = Repo::submissionFile()->get($submissionFileId);
 
-        if (isset($submisssionFile)) {
-            $parser = SearchFileParser::fromFile($submisssionFile);
+        if (isset($submissionFile)) {
+            $parser = SearchFileParser::fromFile($submissionFile);
         }
 
         if (isset($parser)) {

@@ -17,6 +17,8 @@
 
 namespace APP\spotlight;
 
+use PKP\db\DAOResultFactory;
+
 class SpotlightDAO extends \PKP\db\DAO
 {
     /**

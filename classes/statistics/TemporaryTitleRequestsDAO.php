@@ -139,7 +139,7 @@ class TemporaryTitleRequestsDAO
                 ';
         }
 
-        $temporaryInstitutionsDAO = DAORegistry::getDAO('TemporaryInstitutionsDAO'); /* @var TemporaryInstitutionsDAO $temporaryInstitutionsDAO */
+        $temporaryInstitutionsDAO = DAORegistry::getDAO('TemporaryInstitutionsDAO'); /** @var TemporaryInstitutionsDAO $temporaryInstitutionsDAO */
         $institutionIds = $temporaryInstitutionsDAO->getInstitutionIdsByLoadId($loadId);
         foreach ($institutionIds as $institutionId) {
             DB::statement($metricTitleRequestsUniqueUpsertSql, [$loadId, Application::ASSOC_TYPE_SUBMISSION_FILE, (int) $institutionId]);

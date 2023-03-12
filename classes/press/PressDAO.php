@@ -18,7 +18,8 @@ namespace APP\press;
 
 use APP\core\Application;
 use APP\facades\Repo;
-use APP\publication\DAO;
+use APP\monograph\ChapterDAO;
+use APP\publicationFormat\PublicationFormatDAO;
 use PKP\context\ContextDAO;
 use PKP\db\DAORegistry;
 use PKP\metadata\MetadataTypeDescription;
@@ -68,6 +69,7 @@ class PressDAO extends ContextDAO
     {
         $pubObjectDaos = ['ChapterDAO', 'PublicationFormatDAO'];
         foreach ($pubObjectDaos as $daoName) {
+            /** @var ChapterDAO|PublicationFormatDAO */
             $dao = DAORegistry::getDAO($daoName);
             $dao->deleteAllPubIds($pressId, $pubIdType);
         }

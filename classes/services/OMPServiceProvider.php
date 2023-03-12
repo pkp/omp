@@ -15,9 +15,6 @@
 
 namespace APP\services;
 
-require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pimple/Container.php');
-require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pimple/ServiceProviderInterface.php');
-
 use Pimple\Container;
 
 use PKP\services\PKPFileService;

@@ -23,11 +23,11 @@ use APP\notification\NotificationManager;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\submission\Submission;
 use Exception;
-use HookRegistry;
 use Illuminate\Support\Facades\App;
 use PKP\context\Context;
 use PKP\core\Core;
 use PKP\db\DAORegistry;
+use PKP\plugins\Hook;
 use PKP\publication\Collector;
 use PKP\submission\PKPSubmission;
 use PKP\submissionFile\SubmissionFile;
@@ -130,13 +130,15 @@ class Repository extends \PKP\publication\Repository
             // Duplicate publication format metadata
             $metadataDaos = ['IdentificationCodeDAO', 'MarketDAO', 'PublicationDateDAO', 'SalesRightsDAO'];
             foreach ($metadataDaos as $metadataDao) {
-                $result = DAORegistry::getDAO($metadataDao)->getByPublicationFormatId($oldPublicationFormat->getId());
+                /** @var IdentificationCodeDAO|MarketDAO|PublicationDateDAO|SalesRightsDAO */
+                $dao = DAORegistry::getDAO($metadataDao);
+                $result = $dao->getByPublicationFormatId($oldPublicationFormat->getId());
                 while (!$result->eof()) {
                     $oldObject = $result->next();
                     $newObject = clone $oldObject;
                     $newObject->setData('id', null);
                     $newObject->setData('publicationFormatId', $newPublicationFormat->getId());
-                    DAORegistry::getDAO($metadataDao)->insertObject($newObject);
+                    $dao->insertObject($newObject);
                 }
             }
 
@@ -284,7 +286,7 @@ class Repository extends \PKP\publication\Repository
     /** @copydoc \PKP\publication\Repository::publish() */
     public function publish(Publication $publication)
     {
-        HookRegistry::register('Publication::publish::before', [$this, 'addChapterLicense']);
+        Hook::add('Publication::publish::before', [$this, 'addChapterLicense']);
         parent::publish($publication);
 
         $submission = Repo::submission()->get($publication->getData('submissionId'));

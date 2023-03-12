@@ -13,10 +13,10 @@
 
 namespace APP\plugins\generic\pdfJsViewer;
 
+use APP\core\Application;
 use APP\template\TemplateManager;
 use PKP\plugins\GenericPlugin;
 use PKP\plugins\Hook;
-use APP\core\Application;
 
 class PdfJsViewerPlugin extends GenericPlugin
 {

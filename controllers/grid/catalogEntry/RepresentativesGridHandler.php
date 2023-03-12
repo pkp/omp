@@ -19,6 +19,7 @@ use APP\controllers\grid\catalogEntry\form\RepresentativeForm;
 use APP\core\Application;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
+use APP\publicationFormat\MarketDAO;
 use PKP\controllers\grid\CategoryGridHandler;
 use PKP\controllers\grid\GridColumn;
 use PKP\core\JSONMessage;
@@ -336,9 +337,11 @@ class RepresentativesGridHandler extends CategoryGridHandler
         // Don't allow a representative to be deleted if they are associated
         // with a publication format's market metadata
         $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
+        /** @var MarketDAO */
+        $marketDao = DAORegistry::getDAO('MarketDAO');
         foreach ($submission->getData('publications') as $publication) {
             foreach ($publication->getData('publicationFormats') as $publicationFormat) {
-                $markets = DAORegistry::getDAO('MarketDAO')->getByPublicationFormatId($publicationFormat->getId())->toArray();
+                $markets = $marketDao->getByPublicationFormatId($publicationFormat->getId())->toArray();
                 foreach ($markets as $market) {
                     if (in_array($representative->getId(), [$market->getAgentId(), $market->getSupplierId()])) {
                         return new JSONMessage(false, __('manager.representative.inUse'));

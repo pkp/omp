@@ -34,7 +34,7 @@ class DAO extends \PKP\section\DAO
     /** @copydoc EntityDAO::$settingsTable */
     public $settingsTable = 'series_settings';
 
-    /** @copydoc EntityDAO::$primarykeyColumn */
+    /** @copydoc EntityDAO::$primaryKeyColumn */
     public $primaryKeyColumn = 'series_id';
 
     /** @copydoc EntityDAO::$primaryTableColumns */
@@ -80,7 +80,7 @@ class DAO extends \PKP\section\DAO
     }
 
     /**
-     * Unassociate all categories with a series
+     * Disassociate all categories with a series
      */
     public function removeFromCategory(int $seriesId): void
     {

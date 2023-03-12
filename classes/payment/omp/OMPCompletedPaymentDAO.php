@@ -27,7 +27,7 @@ use PKP\payment\CompletedPayment;
 class OMPCompletedPaymentDAO extends DAO
 {
     /**
-     * Retrieve a ComplatedPayment by its ID.
+     * Retrieve a CompletedPayment by its ID.
      *
      * @param int $completedPaymentId
      * @param int $contextId optional

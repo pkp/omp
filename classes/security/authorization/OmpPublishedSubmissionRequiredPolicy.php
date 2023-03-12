@@ -16,6 +16,7 @@ namespace APP\security\authorization;
 
 use APP\core\Application;
 use APP\facades\Repo;
+use PKP\security\authorization\AuthorizationPolicy;
 use PKP\security\authorization\DataObjectRequiredPolicy;
 
 class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy
@@ -48,7 +49,7 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy
     {
         $submissionId = $this->getDataObjectId();
         if (!$submissionId) {
-            return AUTHORIZATION_DENY;
+            return AuthorizationPolicy::AUTHORIZATION_DENY;
         }
 
         // Make sure the published submissions belongs to the press.
@@ -57,12 +58,12 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy
             $submission = Repo::submission()->get($submissionId, $this->context->getId());
         }
         if (!$submission) {
-            return AUTHORIZATION_DENY;
+            return AuthorizationPolicy::AUTHORIZATION_DENY;
         }
 
         // Save the published submission to the authorization context.
         $this->addAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION, $submission);
-        return AUTHORIZATION_PERMIT;
+        return AuthorizationPolicy::AUTHORIZATION_PERMIT;
     }
 
     /**

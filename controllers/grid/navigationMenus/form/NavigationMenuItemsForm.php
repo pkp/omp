@@ -19,6 +19,7 @@ use APP\core\Application;
 use APP\core\Services;
 use APP\facades\Repo;
 use APP\section\Section;
+use APP\services\NavigationMenuService;
 use APP\template\TemplateManager;
 use PKP\controllers\grid\navigationMenus\form\PKPNavigationMenuItemsForm;
 use PKP\db\DAORegistry;
@@ -112,9 +113,9 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm
             $navigationMenuItem = $navigationMenuItemDao->newDataObject();
         }
 
-        if ($this->getData('menuItemType') == NMI_TYPE_SERIES) {
+        if ($this->getData('menuItemType') == NavigationMenuService::NMI_TYPE_SERIES) {
             $navigationMenuItem->setPath($this->getData('relatedSeriesId'));
-        } elseif ($this->getData('menuItemType') == NMI_TYPE_CATEGORY) {
+        } elseif ($this->getData('menuItemType') == NavigationMenuService::NMI_TYPE_CATEGORY) {
             $navigationMenuItem->setPath($this->getData('relatedCategoryId'));
         }
 

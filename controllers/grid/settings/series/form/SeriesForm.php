@@ -10,7 +10,7 @@
  * @class SeriesForm
  * @ingroup controllers_grid_settings_series_form
  *
- * @brief Form for adding/edditing a series
+ * @brief Form for adding/editing a series
  * stores/retrieves from an associative array
  */
 

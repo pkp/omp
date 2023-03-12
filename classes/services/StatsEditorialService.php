@@ -24,9 +24,9 @@ class StatsEditorialService extends \PKP\services\PKPStatsEditorialService
      *
      * @param array $args
      */
-    protected function _getQueryBuilder($args = [])
+    protected function getQueryBuilder($args = [])
     {
-        $statsQB = parent::_getQueryBuilder($args);
+        $statsQB = parent::getQueryBuilder($args);
         if (!empty(($args['seriesIds']))) {
             $statsQB->filterBySections($args['seriesIds']);
         }

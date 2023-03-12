@@ -35,7 +35,7 @@ class SubjectDAO extends CodelistItemDAO
         if (!Locale::isLocaleValid($locale)) {
             $locale = LocaleInterface::DEFAULT_LOCALE;
         }
-        return "lib/pkp/locale/${locale}/bic21subjects.xml";
+        return "lib/pkp/locale/{$locale}/bic21subjects.xml";
     }
 
     /**

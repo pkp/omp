@@ -16,8 +16,10 @@
 namespace APP\pages\index;
 
 use APP\core\Application;
+use APP\core\Request;
 use APP\facades\Repo;
 use APP\observers\events\UsageEvent;
+use APP\press\Press;
 use APP\spotlight\Spotlight;
 use APP\template\TemplateManager;
 use PKP\config\Config;
@@ -118,7 +120,7 @@ class IndexHandler extends PKPIndexHandler
         $templateMgr->assign('homepageImage', $press->getLocalizedSetting('homepageImage'));
         $templateMgr->assign('pageTitleTranslated', $press->getLocalizedSetting('name'));
 
-        // Display creative commons logo/licence if enabled.
+        // Display creative commons logo/license if enabled.
         $templateMgr->assign('displayCreativeCommons', $press->getSetting('includeCreativeCommons'));
 
         $this->_setupAnnouncements($press, $templateMgr);

@@ -41,9 +41,11 @@ class DAO extends \PKP\publication\DAO
      */
     public function fromRow(object $primaryRow): Publication
     {
+        /** @var ChapterDAO */
+        $chapterDao = DAORegistry::getDAO('ChapterDAO');
         $publication = parent::fromRow($primaryRow);
         $publication->setData('publicationFormats', Application::getRepresentationDao()->getByPublicationId($publication->getId()));
-        $publication->setData('chapters', DAORegistry::getDAO('ChapterDAO')->getByPublicationId($publication->getId())->toArray());
+        $publication->setData('chapters', $chapterDao->getByPublicationId($publication->getId())->toArray());
         return $publication;
     }
 }
