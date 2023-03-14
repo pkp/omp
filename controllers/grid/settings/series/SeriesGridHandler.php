@@ -279,18 +279,32 @@ class SeriesGridHandler extends SetupGridHandler
     {
         $press = $request->getPress();
         $series = Repo::section()->get($request->getUserVar('seriesId'), $press->getId());
+
         if (!isset($series)) {
             return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
         }
+
+        // Validate if it can be deleted
+        $seriesEmpty = Repo::section()->isEmpty($series->getId(), $press->getId());
+        if (!$seriesEmpty) {
+            return new JSONMessage(false, __('manager.sections.alertDelete'));
+        }
+
         $activeSectionsCount = Repo::section()->getCollector()
             ->filterByContextIds([$press->getId()])
             ->excludeInactive()
             ->getCount();
-        $activeSectionsCount = (!$series->getIsInactive()) ? $activeSectionsCount - 1 : $activeSectionsCount;
+
+        $activeSectionsCount = (!$series->getIsInactive())
+            ? $activeSectionsCount - 1
+            : $activeSectionsCount;
+
         if ($activeSectionsCount < 1) {
             return new JSONMessage(false, __('manager.series.confirmDeactivateSeries.error'));
         }
+
         Repo::section()->delete($series);
+
         return DAO::getDataChangedEvent($series->getId());
     }
 

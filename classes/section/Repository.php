@@ -13,6 +13,7 @@
 
 namespace APP\section;
 
+use APP\facades\Repo;
 use Illuminate\Support\Enumerable;
 
 class Repository extends \PKP\section\Repository
@@ -53,5 +54,17 @@ class Repository extends \PKP\section\Repository
     public function categoryAssociationExists(int $seriesId, int $categoryId): bool
     {
         return $this->dao->categoryAssociationExists($seriesId, $categoryId);
+    }
+
+    /**
+     * Check if the section has any submissions assigned to it.
+     */
+    public function isEmpty(int $seriesId, int $contextId): bool
+    {
+        return Repo::submission()
+            ->getCollector()
+            ->filterByContextIds([$contextId])
+            ->filterBySeriesIds([$seriesId])
+            ->getCount() === 0;
     }
 }
