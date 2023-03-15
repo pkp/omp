@@ -276,7 +276,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->unique(['press_id', 'path'], 'series_path');
         });
         Schema::table('publications', function (Blueprint $table) {
-            $table->foreign('series_id', 'publications_series_id')->references('series_id')->on('series')->onDelete('cascade');
+            $table->foreign('series_id', 'publications_series_id')->references('series_id')->on('series')->onDelete('set null');
         });
 
         // Series-specific settings

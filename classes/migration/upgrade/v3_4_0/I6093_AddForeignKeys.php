@@ -75,11 +75,10 @@ class I6093_AddForeignKeys extends \PKP\migration\upgrade\v3_4_0\I6093_AddForeig
 
             $table->foreign('submission_id', 'publications_submission_id')->references('submission_id')->on('submissions')->onDelete('cascade');
 
-            $table->foreign('series_id', 'publications_series_id')->references('series_id')->on('series')->onDelete('cascade');
+            $table->foreign('series_id', 'publications_series_id')->references('series_id')->on('series')->onDelete('set null');
         });
 
         Schema::table('publication_formats', function (Blueprint $table) {
-
             $table->foreign('publication_id', 'publication_formats_publication_id')->references('publication_id')->on('publications')->onDelete('cascade');
             $table->index(['publication_id'], 'publication_formats_publication_id');
         });
