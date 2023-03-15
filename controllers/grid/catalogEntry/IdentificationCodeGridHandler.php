@@ -16,17 +16,18 @@
 namespace APP\controllers\grid\catalogEntry;
 
 use APP\controllers\grid\catalogEntry\form\IdentificationCodeForm;
-use PKP\db\DAO;
-use APP\controllers\grid\catalogEntry\IdentificationCodeGridCellProvider;
-use APP\controllers\grid\catalogEntry\IdentificationCodeGridRow;
+use APP\core\Application;
+use APP\notification\Notification;
 use APP\notification\NotificationManager;
+use Exception;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
+use PKP\db\DAO;
+use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\security\authorization\PublicationAccessPolicy;
-use PKP\db\DAORegistry;
 use PKP\security\Role;
 
 class IdentificationCodeGridHandler extends GridHandler
@@ -97,7 +98,7 @@ class IdentificationCodeGridHandler extends GridHandler
     }
 
     /**
-     * Get the publication format assocated with these identification codes
+     * Get the publication format associated with these identification codes
      *
      * @return PublicationFormat
      */
@@ -142,8 +143,8 @@ class IdentificationCodeGridHandler extends GridHandler
         parent::initialize($request, $args);
 
         // Retrieve the authorized submission.
-        $this->setSubmission($this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION));
-        $this->setPublication($this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION));
+        $this->setSubmission($this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION));
+        $this->setPublication($this->getAuthorizedContextObject(Application::ASSOC_TYPE_PUBLICATION));
         $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
         $representationId = null;
 
@@ -331,7 +332,7 @@ class IdentificationCodeGridHandler extends GridHandler
             // Create trivial notification.
             $currentUser = $request->getUser();
             $notificationMgr = new NotificationManager();
-            $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => $notificationContent]);
+            $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => $notificationContent]);
 
             // Prepare the grid row data
             $row = $this->getRowInstance();
@@ -370,7 +371,7 @@ class IdentificationCodeGridHandler extends GridHandler
             if ($result) {
                 $currentUser = $request->getUser();
                 $notificationMgr = new NotificationManager();
-                $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedIdentificationCode')]);
+                $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedIdentificationCode')]);
                 return DAO::getDataChangedEvent();
             } else {
                 return new JSONMessage(false, __('manager.setup.errorDeletingItem'));

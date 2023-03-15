@@ -17,8 +17,8 @@ namespace APP\controllers\grid\catalogEntry;
 
 use APP\core\Application;
 use APP\facades\Repo;
-use PKP\submissionFile\SubmissionFile;
 use PKP\controllers\grid\files\SubmissionFilesCategoryGridDataProvider;
+use PKP\submissionFile\SubmissionFile;
 
 class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryGridDataProvider
 {
@@ -46,7 +46,7 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
      */
     public function getRepresentation()
     {
-        return $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
+        return $this->getAuthorizedContextObject(Application::ASSOC_TYPE_REPRESENTATION);
     }
 
     /**
@@ -56,7 +56,7 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
      */
     public function getSubmission()
     {
-        return $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+        return $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
     }
 
     /**
@@ -66,7 +66,7 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
      */
     public function getPublication()
     {
-        return $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION);
+        return $this->getAuthorizedContextObject(Application::ASSOC_TYPE_PUBLICATION);
     }
 
     //
@@ -83,7 +83,7 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
             [
                 'representationId' => $representation->getId(),
                 'publicationId' => $this->getPublication()->getId(),
-                'assocType' => ASSOC_TYPE_REPRESENTATION,
+                'assocType' => Application::ASSOC_TYPE_REPRESENTATION,
                 'assocId' => $representation->getId(),
             ]
         );
@@ -116,7 +116,7 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
             ->getCollector()
             ->filterBySubmissionIds([$this->getPublication()->getData('submissionId')])
             ->filterByAssoc(
-                ASSOC_TYPE_REPRESENTATION,
+                Application::ASSOC_TYPE_REPRESENTATION,
                 [$categoryDataElement->getId()]
             )
             ->filterByFileStages([$this->getFileStage()])

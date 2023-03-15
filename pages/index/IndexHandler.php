@@ -15,15 +15,17 @@
 
 namespace APP\pages\index;
 
-use PKP\security\Validation;
-use PKP\db\DAORegistry;
-use PKP\config\Config;
-use PKP\pages\index\PKPIndexHandler;
 use APP\core\Application;
+use APP\core\Request;
 use APP\facades\Repo;
 use APP\observers\events\UsageEvent;
+use APP\press\Press;
 use APP\spotlight\Spotlight;
 use APP\template\TemplateManager;
+use PKP\config\Config;
+use PKP\db\DAORegistry;
+use PKP\pages\index\PKPIndexHandler;
+use PKP\security\Validation;
 
 class IndexHandler extends PKPIndexHandler
 {
@@ -109,7 +111,7 @@ class IndexHandler extends PKPIndexHandler
         // Display New Releases
         if ($press->getSetting('displayNewReleases')) {
             $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /** @var NewReleaseDAO $newReleaseDao */
-            $newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
+            $newReleases = $newReleaseDao->getMonographsByAssoc(Application::ASSOC_TYPE_PRESS, $press->getId());
             $templateMgr->assign('newReleases', $newReleases);
         }
 
@@ -118,7 +120,7 @@ class IndexHandler extends PKPIndexHandler
         $templateMgr->assign('homepageImage', $press->getLocalizedSetting('homepageImage'));
         $templateMgr->assign('pageTitleTranslated', $press->getLocalizedSetting('name'));
 
-        // Display creative commons logo/licence if enabled.
+        // Display creative commons logo/license if enabled.
         $templateMgr->assign('displayCreativeCommons', $press->getSetting('includeCreativeCommons'));
 
         $this->_setupAnnouncements($press, $templateMgr);
@@ -126,7 +128,7 @@ class IndexHandler extends PKPIndexHandler
         // Display Featured Books
         if ($press->getSetting('displayFeaturedBooks')) {
             $featureDao = DAORegistry::getDAO('FeatureDAO'); /** @var FeatureDAO $featureDao */
-            $featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
+            $featuredMonographIds = $featureDao->getSequencesByAssoc(Application::ASSOC_TYPE_PRESS, $press->getId());
             $featuredMonographs = [];
             if (!empty($featuredMonographIds)) {
                 foreach ($featuredMonographIds as $submissionId => $value) {

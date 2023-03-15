@@ -16,8 +16,10 @@
 namespace APP\controllers\grid\navigationMenus\form;
 
 use APP\core\Application;
+use APP\core\Services;
 use APP\facades\Repo;
 use APP\section\Section;
+use APP\services\NavigationMenuService;
 use APP\template\TemplateManager;
 use PKP\controllers\grid\navigationMenus\form\PKPNavigationMenuItemsForm;
 use PKP\db\DAORegistry;
@@ -31,11 +33,11 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm
      */
     public function fetch($request, $template = null, $display = false)
     {
-        $customTemplates = \Services::get('navigationMenu')->getMenuItemCustomEditTemplates();
+        $customTemplates = Services::get('navigationMenu')->getMenuItemCustomEditTemplates();
 
         $request = Application::get()->getRequest();
         $context = $request->getContext();
-        $contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
+        $contextId = $context ? $context->getId() : Application::CONTEXT_ID_NONE;
 
         $series = Repo::section()
             ->getCollector()
@@ -111,9 +113,9 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm
             $navigationMenuItem = $navigationMenuItemDao->newDataObject();
         }
 
-        if ($this->getData('menuItemType') == NMI_TYPE_SERIES) {
+        if ($this->getData('menuItemType') == NavigationMenuService::NMI_TYPE_SERIES) {
             $navigationMenuItem->setPath($this->getData('relatedSeriesId'));
-        } elseif ($this->getData('menuItemType') == NMI_TYPE_CATEGORY) {
+        } elseif ($this->getData('menuItemType') == NavigationMenuService::NMI_TYPE_CATEGORY) {
             $navigationMenuItem->setPath($this->getData('relatedCategoryId'));
         }
 

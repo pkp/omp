@@ -166,10 +166,10 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
                 $dc11Description->addStatement('dc:identifier', $pubId);
             }
         }
-
         $context = $request->getContext();
         if (!$context) {
             $contextDao = \APP\core\Application::getContextDAO();
+            /** @var Press */
             $context = $contextDao->getById($monograph->getData('contextId'));
         }
         if ($context->areDoisEnabled()) {
@@ -206,7 +206,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $pubFormatFiles = Repo::submissionFile()
             ->getCollector()
             ->filterBySubmissionIds([$monograph->getId()])
-            ->filterByAssoc(ASSOC_TYPE_PUBLICATION_FORMAT)
+            ->filterByAssoc(Application::ASSOC_TYPE_PUBLICATION_FORMAT)
             ->getMany();
 
         // Relation (Add publication file format to monograph / edited volume)

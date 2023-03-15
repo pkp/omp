@@ -121,6 +121,7 @@ class Repository extends \PKP\doi\Repository
 
         /** @var PressDAO $contextDao */
         $contextDao = Application::getContextDAO();
+        /** @var Press */
         $context = $contextDao->getById($submission->getData('contextId'));
 
         foreach ($publications as $publication) {

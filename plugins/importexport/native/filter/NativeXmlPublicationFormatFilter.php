@@ -16,7 +16,9 @@ namespace APP\plugins\importexport\native\filter;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\plugins\importexport\onix30\Onix30ExportDeployment;
+use APP\publicationFormat\PublicationFormat;
 use APP\submission\Submission;
+use DOMElement;
 use PKP\core\PKPApplication;
 use PKP\db\DAORegistry;
 
@@ -61,6 +63,7 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
      * Handle a submission element
      *
      * @param \DOMElement $node
+     *
      * @return array Array of PublicationFormat objects
      */
     public function handleElement($node)
@@ -69,7 +72,7 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
         $context = $deployment->getContext();
         $submission = $deployment->getSubmission();
         assert($submission instanceof Submission);
-
+        /** @var PublicationFormat */
         $representation = parent::handleElement($node);
 
         if ($node->getAttribute('approved') == 'true') {
@@ -230,6 +233,7 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
             for ($i = 0 ; $i < $nodeList->length ; $i ++) {
                 $salesRights = $salesRightsDao->newDataObject();
                 $salesRights->setPublicationFormatId($representation->getId());
+                /** @var DOMElement */
                 $salesRightsNode = $nodeList->item($i);
                 $salesRightsROW = $this->_extractTextFromNode($salesRightsNode, $onixDeployment, 'ROWSalesRightsType');
                 if ($salesRightsROW) {
@@ -269,6 +273,7 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
             $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /** @var RepresentativeDAO $representativeDao */
 
             for ($i = 0 ; $i < $nodeList->length ; $i ++) {
+                /** @var DOMElement */
                 $productSupplyNode = $nodeList->item($i);
                 $market = $marketDao->newDataObject();
                 $market->setPublicationFormatId($representation->getId());

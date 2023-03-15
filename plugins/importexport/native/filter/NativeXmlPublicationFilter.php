@@ -17,6 +17,7 @@ use APP\core\Application;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\plugins\importexport\onix30\Onix30ExportDeployment;
+use DOMDocument;
 use PKP\db\DAORegistry;
 use PKP\plugins\importexport\native\filter\PKPNativeFilterHelper;
 
@@ -96,7 +97,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
                 $importClass = 'Chapter';
                 break;
             default:
-                $deployment->addError(ASSOC_TYPE_PUBLICATION, $publication->getId(), __('plugins.importexport.common.error.unknownElement', ['param' => $elementName]));
+                $deployment->addError(Application::ASSOC_TYPE_PUBLICATION, $publication->getId(), __('plugins.importexport.common.error.unknownElement', ['param' => $elementName]));
         }
         // Caps on class name for consistency with imports, whose filter
         // group names are generated implicitly.
@@ -126,7 +127,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
         $onixDeployment->setFileDBIds($existingDeployment->getFileDBIds());
         $onixDeployment->setAuthorDBIds($existingDeployment->getAuthorDBIds());
         $importFilter->setDeployment($existingDeployment);
-        $formatDoc = new \DOMDocument();
+        $formatDoc = new DOMDocument();
         $formatDoc->appendChild($formatDoc->importNode($n, true));
         return $importFilter->execute($formatDoc);
     }
@@ -150,7 +151,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
                         $chapters[] = $chapter;
                         break;
                     default:
-                        $deployment->addWarning(ASSOC_TYPE_PUBLICATION, $publication->getId(), __('plugins.importexport.common.error.unknownElement', ['param' => $n->tagName]));
+                        $deployment->addWarning(Application::ASSOC_TYPE_PUBLICATION, $publication->getId(), __('plugins.importexport.common.error.unknownElement', ['param' => $n->tagName]));
                 }
             }
         }
@@ -173,7 +174,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
         $request = Application::get()->getRequest();
 
         $importFilter->setDeployment($existingDeployment);
-        $chapterDoc = new \DOMDocument();
+        $chapterDoc = new DOMDocument();
         $chapterDoc->appendChild($chapterDoc->importNode($n, true));
         return $importFilter->execute($chapterDoc);
     }
@@ -199,7 +200,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
                         $coverImages[key($coverImage)] = reset($coverImage);
                         break;
                     default:
-                        $deployment->addWarning(ASSOC_TYPE_PUBLICATION, $object->getId(), __('plugins.importexport.common.error.unknownElement', ['param' => $n->tagName]));
+                        $deployment->addWarning(Application::ASSOC_TYPE_PUBLICATION, $object->getId(), __('plugins.importexport.common.error.unknownElement', ['param' => $n->tagName]));
                 }
             }
         }
@@ -243,7 +244,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
                         file_put_contents($filePath, base64_decode($n->textContent));
                         break;
                     default:
-                        $deployment->addWarning(ASSOC_TYPE_PUBLICATION, $object->getId(), __('plugins.importexport.common.error.unknownElement', ['param' => $n->tagName]));
+                        $deployment->addWarning(Application::ASSOC_TYPE_PUBLICATION, $object->getId(), __('plugins.importexport.common.error.unknownElement', ['param' => $n->tagName]));
                 }
             }
         }
@@ -303,7 +304,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
                         $series->setData('onlineIssn', $n->textContent);
                         break;
                     default:
-                        $deployment->addWarning(ASSOC_TYPE_PUBLICATION, $object->getId(), __('plugins.importexport.common.error.unknownElement', ['param' => $n->tagName]));
+                        $deployment->addWarning(Application::ASSOC_TYPE_PUBLICATION, $object->getId(), __('plugins.importexport.common.error.unknownElement', ['param' => $n->tagName]));
                 }
             }
         }
@@ -312,7 +313,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
         if ($series->getData('path')) {
             $existingSeries = Repo::section()->getByPath($seriesPath, $context->getId());
             if (!$existingSeries) {
-                $deployment->addWarning(ASSOC_TYPE_PUBLICATION, $object->getId(), __('plugins.importexport.native.error.unknownSeries', ['param' => $seriesPath]));
+                $deployment->addWarning(Application::ASSOC_TYPE_PUBLICATION, $object->getId(), __('plugins.importexport.native.error.unknownSeries', ['param' => $seriesPath]));
 
                 $series->setData('contextId', $context->getId());
                 $seriesId = Repo::section()->add($series);

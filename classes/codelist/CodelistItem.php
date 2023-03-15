@@ -22,6 +22,8 @@
 
 namespace APP\codelist;
 
+use PKP\core\DataObject;
+
 class CodelistItem extends DataObject
 {
     //

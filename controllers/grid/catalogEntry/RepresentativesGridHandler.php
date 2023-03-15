@@ -16,15 +16,15 @@
 namespace APP\controllers\grid\catalogEntry;
 
 use APP\controllers\grid\catalogEntry\form\RepresentativeForm;
-use PKP\db\DAO;
-use APP\controllers\grid\catalogEntry\RepresentativesGridCellProvider;
-use APP\controllers\grid\catalogEntry\RepresentativesGridCategoryRow;
-use APP\controllers\grid\catalogEntry\RepresentativesGridRow;
-use PKP\db\DAORegistry;
+use APP\core\Application;
+use APP\notification\Notification;
 use APP\notification\NotificationManager;
+use APP\publicationFormat\MarketDAO;
 use PKP\controllers\grid\CategoryGridHandler;
 use PKP\controllers\grid\GridColumn;
 use PKP\core\JSONMessage;
+use PKP\db\DAO;
+use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\security\authorization\SubmissionAccessPolicy;
@@ -99,7 +99,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
         parent::initialize($request, $args);
 
         // Retrieve the authorized monograph.
-        $this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
+        $this->setMonograph($this->getAuthorizedContextObject(Application::ASSOC_TYPE_MONOGRAPH));
 
         $representativeId = (int) $request->getUserVar('representativeId'); // set if editing or deleting a representative entry
 
@@ -298,7 +298,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
             // Create trivial notification.
             $currentUser = $request->getUser();
             $notificationMgr = new NotificationManager();
-            $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => $notificationContent]);
+            $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => $notificationContent]);
 
             // Prepare the grid row data
             $row = $this->getRowInstance();
@@ -336,10 +336,12 @@ class RepresentativesGridHandler extends CategoryGridHandler
 
         // Don't allow a representative to be deleted if they are associated
         // with a publication format's market metadata
-        $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+        $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
+        /** @var MarketDAO */
+        $marketDao = DAORegistry::getDAO('MarketDAO');
         foreach ($submission->getData('publications') as $publication) {
             foreach ($publication->getData('publicationFormats') as $publicationFormat) {
-                $markets = DAORegistry::getDAO('MarketDAO')->getByPublicationFormatId($publicationFormat->getId())->toArray();
+                $markets = $marketDao->getByPublicationFormatId($publicationFormat->getId())->toArray();
                 foreach ($markets as $market) {
                     if (in_array($representative->getId(), [$market->getAgentId(), $market->getSupplierId()])) {
                         return new JSONMessage(false, __('manager.representative.inUse'));
@@ -353,7 +355,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
         if ($result) {
             $currentUser = $request->getUser();
             $notificationMgr = new NotificationManager();
-            $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedRepresentative')]);
+            $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedRepresentative')]);
             return DAO::getDataChangedEvent($representative->getId(), (int) $representative->getIsSupplier());
         } else {
             return new JSONMessage(false, __('manager.setup.errorDeletingItem'));

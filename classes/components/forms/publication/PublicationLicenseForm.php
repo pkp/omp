@@ -14,21 +14,26 @@
 
 namespace APP\components\forms\publication;
 
+use APP\core\Application;
 use APP\facades\Repo;
+use APP\publication\Publication;
 use APP\submission\Submission;
+use Illuminate\Support\LazyCollection;
 use PKP\components\forms\FieldText;
 use PKP\components\forms\publication\PKPPublicationLicenseForm;
+use PKP\context\Context;
+use PKP\userGroup\UserGroup;
 
 class PublicationLicenseForm extends PKPPublicationLicenseForm
 {
     /**
      * Constructor
      *
-     * @param $action string URL to submit the form to
-     * @param $locales array Supported locales
-     * @param $publication Publication The publication to change settings for
-     * @param $context Context The publication's context
-     * @param $userGroups array User groups in this context
+     * @param string $action URL to submit the form to
+     * @param array $locales Supported locales
+     * @param Publication $publication The publication to change settings for
+     * @param Context $context The publication's context
+     * @param LazyCollection<UserGroup> $userGroups User groups in this context
      */
     public function __construct($action, $locales, $publication, $context, $userGroups)
     {
@@ -38,7 +43,7 @@ class PublicationLicenseForm extends PKPPublicationLicenseForm
         if ($submission->getData('workType') === Submission::WORK_TYPE_EDITED_VOLUME) {
             // Get the name of the context's license setting
             $chapterLicenseUrlDescription = '';
-            $licenseOptions = \Application::getCCLicenseOptions();
+            $licenseOptions = Application::getCCLicenseOptions();
             if ($publication->getData('licenseUrl')) {
                 if (array_key_exists($publication->getData('licenseUrl'), $licenseOptions)) {
                     $licenseName = __($licenseOptions[$publication->getData('licenseUrl')]);

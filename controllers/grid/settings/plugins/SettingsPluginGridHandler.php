@@ -15,9 +15,10 @@
 
 namespace APP\controllers\grid\settings\plugins;
 
+use APP\core\Application;
+use PKP\controllers\grid\plugins\PluginGridHandler;
 use PKP\controllers\grid\plugins\PluginGridRow;
 use PKP\db\DAORegistry;
-use PKP\controllers\grid\plugins\PluginGridHandler;
 use PKP\security\authorization\ContextAccessPolicy;
 use PKP\security\authorization\PluginAccessPolicy;
 use PKP\security\Role;
@@ -53,7 +54,7 @@ class SettingsPluginGridHandler extends PluginGridHandler
         $secondPress = $presses->next();
         $singlePress = $firstPress && !$secondPress;
 
-        $userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+        $userRoles = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_USER_ROLES);
 
         $showSitePlugins = false;
         if ($singlePress && in_array(Role::ROLE_ID_SITE_ADMIN, $userRoles)) {
@@ -81,7 +82,7 @@ class SettingsPluginGridHandler extends PluginGridHandler
      */
     public function getRowInstance()
     {
-        return new PluginGridRow($this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES));
+        return new PluginGridRow($this->getAuthorizedContextObject(Application::ASSOC_TYPE_USER_ROLES));
     }
 
     /**

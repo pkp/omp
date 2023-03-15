@@ -15,6 +15,8 @@
 
 namespace APP\plugins\importexport\users;
 
+use BadMethodCallException;
+
 class UserImportExportPlugin extends \PKP\plugins\importexport\users\PKPUserImportExportPlugin
 {
     /**

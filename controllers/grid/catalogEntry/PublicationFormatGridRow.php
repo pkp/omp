@@ -15,8 +15,8 @@
 
 namespace APP\controllers\grid\catalogEntry;
 
-use PKP\controllers\grid\files\SubmissionFilesGridRow;
 use PKP\controllers\grid\files\FilesGridCapabilities;
+use PKP\controllers\grid\files\SubmissionFilesGridRow;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 
@@ -36,7 +36,7 @@ class PublicationFormatGridRow extends SubmissionFilesGridRow
 
         parent::__construct(
             new FilesGridCapabilities(
-                $canManage ? FILE_GRID_ADD | FILE_GRID_DELETE | FILE_GRID_MANAGE | FILE_GRID_EDIT | FILE_GRID_VIEW_NOTES : 0
+                $canManage ? FilesGridCapabilities::FILE_GRID_ADD | FilesGridCapabilities::FILE_GRID_DELETE | FilesGridCapabilities::FILE_GRID_MANAGE | FilesGridCapabilities::FILE_GRID_EDIT | FilesGridCapabilities::FILE_GRID_VIEW_NOTES : 0
             ),
             WORKFLOW_STAGE_ID_PRODUCTION
         );

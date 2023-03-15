@@ -16,7 +16,9 @@ namespace APP\plugins\importexport\native\filter;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\plugins\importexport\onix30\Onix30ExportDeployment;
+use Exception;
 use PKP\db\DAORegistry;
+use PKP\submission\Representation;
 use PKP\xslt\XSLTransformer;
 
 class PublicationFormatNativeXmlFilter extends \PKP\plugins\importexport\native\filter\RepresentationNativeXmlFilter
@@ -41,6 +43,7 @@ class PublicationFormatNativeXmlFilter extends \PKP\plugins\importexport\native\
      *
      * @param \DOMDocument $doc
      * @param \APP\publicationFormat\PublicationFormat $representation
+     *
      * @return \DOMElement
      */
     public function createRepresentationNode($doc, $representation)
@@ -52,7 +55,7 @@ class PublicationFormatNativeXmlFilter extends \PKP\plugins\importexport\native\
         $representationNode->setAttribute('url_path', $representation->getData('urlPath'));
         $representationNode->setAttribute('entry_key', $representation->getData('entryKey'));
 
-        // If all nexessary press settings exist, export ONIX metadata
+        // If all necessary press settings exist, export ONIX metadata
         $context = $this->getDeployment()->getContext();
         if ($context->getContactName() && $context->getContactEmail() && $context->getData('publisher') && $context->getData('location') && $context->getData('codeType') && $context->getData('codeValue')) {
             $publication = $this->getDeployment()->getPublication();
@@ -92,7 +95,8 @@ class PublicationFormatNativeXmlFilter extends \PKP\plugins\importexport\native\
     /**
      * Get the available submission files for a representation
      *
-     * @param \PKP\submissio\Representation $representation
+     * @param Representation $representation
+     *
      * @return \Iterator
      */
     public function getFiles($representation)
@@ -103,7 +107,7 @@ class PublicationFormatNativeXmlFilter extends \PKP\plugins\importexport\native\
             ->getCollector()
             ->filterBySubmissionIds([$submission->getId()])
             ->filterByAssoc(
-                ASSOC_TYPE_PUBLICATION_FORMAT,
+                Application::ASSOC_TYPE_PUBLICATION_FORMAT,
                 [$representation->getId()]
             )
             ->getMany();

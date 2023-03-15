@@ -18,6 +18,8 @@
 
 namespace APP\codelist;
 
+use PKP\core\DataObject;
+
 class ONIXCodelistItem extends DataObject
 {
     //

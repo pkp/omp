@@ -17,8 +17,8 @@
 
 namespace APP\log;
 
+use APP\core\Application;
 use PKP\log\EmailLogDAO;
-use PKP\log\MonographFileEmailLogEntry;
 
 class MonographFileEmailLogDAO extends EmailLogDAO
 {
@@ -30,7 +30,7 @@ class MonographFileEmailLogDAO extends EmailLogDAO
     public function newDataObject()
     {
         $returner = new MonographFileEmailLogEntry();
-        $returner->setAssocType(ASSOC_TYPE_SUBMISSION_FILE);
+        $returner->setAssocType(Application::ASSOC_TYPE_SUBMISSION_FILE);
         return $returner;
     }
 
@@ -45,7 +45,7 @@ class MonographFileEmailLogDAO extends EmailLogDAO
      */
     public function getByEventType($fileId, $eventType, $userId = null)
     {
-        return parent::_getByEventType(ASSOC_TYPE_SUBMISSION_FILE, $fileId, $eventType, $userId);
+        return parent::_getByEventType(Application::ASSOC_TYPE_SUBMISSION_FILE, $fileId, $eventType, $userId);
     }
 }
 

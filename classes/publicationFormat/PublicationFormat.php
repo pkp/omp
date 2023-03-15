@@ -17,6 +17,7 @@
 
 namespace APP\publicationFormat;
 
+use APP\core\Application;
 use APP\core\Services;
 use APP\facades\Repo;
 use PKP\db\DAORegistry;
@@ -314,7 +315,7 @@ class PublicationFormat extends Representation
             ->filterBySubmissionIds([$publication->getData('submissionId')])
             ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
             ->filterByAssoc(
-                ASSOC_TYPE_PUBLICATION_FORMAT,
+                Application::ASSOC_TYPE_PUBLICATION_FORMAT,
                 [$this->getId()]
             )
             ->getMany();
@@ -636,10 +637,10 @@ class PublicationFormat extends Representation
     /**
      * Set the stored public ID of the submission.
      *
-     * @param $pubIdType string One of the NLM pub-id-type values or
+     * @param string $pubIdType One of the NLM pub-id-type values or
      * 'other::something' if not part of the official NLM list
      * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
-     * @param $pubId string
+     * @param string $pubId
      */
     public function setStoredPubId($pubIdType, $pubId)
     {

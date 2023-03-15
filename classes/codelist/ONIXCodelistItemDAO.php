@@ -131,13 +131,13 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
     public function getFilename($locale)
     {
         $masterLocale = LocaleInterface::DEFAULT_LOCALE;
-        $localizedFile = "locale/${locale}/ONIX_BookProduct_CodeLists.xsd";
+        $localizedFile = "locale/{$locale}/ONIX_BookProduct_CodeLists.xsd";
         if (Locale::isLocaleValid($locale) && file_exists($localizedFile)) {
             return $localizedFile;
         }
 
         // Fall back on the version for the master locale.
-        return "locale/${masterLocale}/ONIX_BookProduct_CodeLists.xsd";
+        return "locale/{$masterLocale}/ONIX_BookProduct_CodeLists.xsd";
     }
 
     /**

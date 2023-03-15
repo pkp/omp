@@ -139,13 +139,13 @@ class Collector extends \PKP\submission\Collector
 
         if (!empty($this->orderByFeatured)) {
             if (is_array($this->seriesIds)) {
-                $assocType = ASSOC_TYPE_SERIES;
+                $assocType = Application::ASSOC_TYPE_SERIES;
                 $assocIds = $this->seriesIds;
             } elseif (is_array($this->categoryIds)) {
                 $assocType = Application::ASSOC_TYPE_CATEGORY;
                 $assocIds = $this->categoryIds;
             } else {
-                $assocType = ASSOC_TYPE_PRESS;
+                $assocType = Application::ASSOC_TYPE_PRESS;
                 $assocIds = is_array($this->contextIds)
                     ? $this->contextIds
                     : [Application::CONTEXT_ID_NONE];

@@ -16,17 +16,18 @@
 namespace APP\controllers\grid\catalogEntry;
 
 use APP\controllers\grid\catalogEntry\form\SalesRightsForm;
-use PKP\db\DAO;
-use APP\controllers\grid\catalogEntry\SalesRightsGridCellProvider;
-use APP\controllers\grid\catalogEntry\SalesRightsGridRow;
+use APP\core\Application;
+use APP\notification\Notification;
 use APP\notification\NotificationManager;
+use Exception;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
+use PKP\db\DAO;
+use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\security\authorization\PublicationAccessPolicy;
-use PKP\db\DAORegistry;
 use PKP\security\Role;
 
 class SalesRightsGridHandler extends GridHandler
@@ -77,7 +78,7 @@ class SalesRightsGridHandler extends GridHandler
     /**
      * Get the publication associated with this grid.
      *
-     * @return Publicaton
+     * @return Publication
      */
     public function getPublication()
     {
@@ -85,9 +86,9 @@ class SalesRightsGridHandler extends GridHandler
     }
 
     /**
-     * Set the Publicaton
+     * Set the Publication
      *
-     * @param Publicaton
+     * @param Publication
      */
     public function setPublication($publication)
     {
@@ -95,7 +96,7 @@ class SalesRightsGridHandler extends GridHandler
     }
 
     /**
-     * Get the publication format assocated with these sales rights
+     * Get the publication format associated with these sales rights
      *
      * @return PublicationFormat
      */
@@ -140,8 +141,8 @@ class SalesRightsGridHandler extends GridHandler
         parent::initialize($request, $args);
 
         // Retrieve the authorized submission.
-        $this->setSubmission($this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION));
-        $this->setPublication($this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION));
+        $this->setSubmission($this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION));
+        $this->setPublication($this->getAuthorizedContextObject(Application::ASSOC_TYPE_PUBLICATION));
         $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
         $representationId = null;
 
@@ -328,7 +329,7 @@ class SalesRightsGridHandler extends GridHandler
             // Create trivial notification.
             $currentUser = $request->getUser();
             $notificationMgr = new NotificationManager();
-            $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => $notificationContent]);
+            $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => $notificationContent]);
 
             // Prepare the grid row data
             $row = $this->getRowInstance();
@@ -367,7 +368,7 @@ class SalesRightsGridHandler extends GridHandler
             if ($result) {
                 $currentUser = $request->getUser();
                 $notificationMgr = new NotificationManager();
-                $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedSalesRights')]);
+                $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedSalesRights')]);
                 return DAO::getDataChangedEvent();
             } else {
                 return new JSONMessage(false, __('manager.setup.errorDeletingItem'));

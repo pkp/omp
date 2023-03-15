@@ -10,7 +10,7 @@
  * @class WorkflowHandler
  * @ingroup pages_reviewer
  *
- * @brief Handle requests for the submssion workflow.
+ * @brief Handle requests for the submission workflow.
  */
 
 namespace APP\pages\workflow;
@@ -32,6 +32,7 @@ use APP\decision\types\SendInternalReview;
 use APP\decision\types\SkipInternalReview;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
+use APP\notification\Notification;
 use APP\publication\Publication;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
@@ -105,7 +106,7 @@ class WorkflowHandler extends PKPWorkflowHandler
         parent::setupIndex($request);
 
         $templateMgr = TemplateManager::getManager($request);
-        $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+        $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
 
         $submissionContext = $request->getContext();
         if ($submission->getContextId() !== $submissionContext->getId()) {
@@ -188,15 +189,15 @@ class WorkflowHandler extends PKPWorkflowHandler
     {
         switch ($stageId) {
             case WORKFLOW_STAGE_ID_SUBMISSION:
-                return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION;
+                return Notification::NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION;
             case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
-                return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW;
+                return Notification::NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW;
             case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
-                return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW;
+                return Notification::NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW;
             case WORKFLOW_STAGE_ID_EDITING:
-                return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING;
+                return Notification::NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING;
             case WORKFLOW_STAGE_ID_PRODUCTION:
-                return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION;
+                return Notification::NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION;
         }
         return null;
     }

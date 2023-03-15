@@ -15,13 +15,14 @@
  */
 
 namespace APP\API\v1\_submissions;
- 
+
 use APP\core\Application;
 use APP\facades\Repo;
+use APP\press\FeatureDAO;
+use APP\press\NewReleaseDAO;
 use APP\submission\Collector;
 use APP\submission\Submission;
 use PKP\db\DAORegistry;
-use PKP\plugins\Hook;
 use PKP\security\Role;
 
 class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmissionsHandler
@@ -118,6 +119,7 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
             return $response->withStatus(400)->withJsonError('api.submissions.400.missingRequired');
         }
 
+        /** @var FeatureDAO */
         $featureDao = DAORegistry::getDAO('FeatureDAO');
         $featureDao->deleteByMonographId($submissionId);
         if (!empty($params['featured'])) {
@@ -125,7 +127,7 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
                 $featureDao->insertFeature($submissionId, $feature['assoc_type'], $feature['assoc_id'], $feature['seq']);
             }
         }
-
+        /** @var NewReleaseDAO */
         $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
         $newReleaseDao->deleteByMonographId($submissionId);
         if (!empty($params['newRelease'])) {
@@ -150,7 +152,7 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
      * @param Response $response object
      * @param array $args {
      * 		@option int assocType Whether these featured items are for a
-     *			press, category or series. Values: ASSOC_TYPE_*
+     *			press, category or series. Values: Application::ASSOC_TYPE_*
      * 		@option int assocId The press, category or series id
      *		@option array featured List of assoc arrays with submission ids and
      *			seq value.
@@ -164,13 +166,13 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
     {
         $params = $slimRequest->getParsedBody();
 
-        $assocType = isset($params['assocType']) && in_array($params['assocType'], [ASSOC_TYPE_PRESS, Application::ASSOC_TYPE_CATEGORY, ASSOC_TYPE_SERIES]) ? (int) $params['assocType'] : null;
+        $assocType = isset($params['assocType']) && in_array($params['assocType'], [Application::ASSOC_TYPE_PRESS, Application::ASSOC_TYPE_CATEGORY, Application::ASSOC_TYPE_SERIES]) ? (int) $params['assocType'] : null;
         $assocId = isset($params['assocId']) ? (int) $params['assocId'] : null;
 
         if (empty($assocType) || empty($assocId)) {
             return $response->withStatus(400)->withJsonError('api.submissions.400.missingRequired');
         }
-
+        /** @var FeatureDAO */
         $featureDao = DAORegistry::getDAO('FeatureDAO');
         $featureDao->deleteByAssoc($assocType, $assocId);
         if (!empty($params['featured'])) {

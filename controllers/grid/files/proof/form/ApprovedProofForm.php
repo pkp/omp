@@ -16,12 +16,12 @@ namespace APP\controllers\grid\files\proof\form;
 
 use APP\facades\Repo;
 use APP\template\TemplateManager;
-
 use PKP\form\Form;
+use PKP\submissionFile\SubmissionFile;
 
 class ApprovedProofForm extends Form
 {
-    /** @var PKP\submissionFile\SubmissionFile $approvedProof */
+    /** @var SubmissionFile $approvedProof */
     public $approvedProof;
 
     /** @var Monograph $monograph */

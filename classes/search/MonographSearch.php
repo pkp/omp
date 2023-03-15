@@ -21,6 +21,7 @@ namespace APP\search;
 use APP\core\Application;
 use APP\core\Services;
 use APP\facades\Repo;
+use APP\press\Press;
 use PKP\db\DAORegistry;
 use PKP\plugins\Hook;
 use PKP\search\SubmissionSearch;
@@ -97,6 +98,7 @@ class MonographSearch extends SubmissionSearch
 
                 case 'pressTitle':
                     if (!isset($contextTitles[$data['press_id']])) {
+                        /** @var Press */
                         $press = $contextDao->getById($data['press_id']);
                         $contextTitles[$data['press_id']] = $press->getLocalizedName();
                     }
@@ -279,7 +281,7 @@ class MonographSearch extends SubmissionSearch
                     'press' => $contextCache[$contextId],
                     'monograph' => $monograph,
                     'publishedSubmission' => $publishedSubmission,
-                    'seriesArrangment' => $seriesCache[$seriesId]
+                    'seriesArrangement' => $seriesCache[$seriesId]
                 ];
             }
         }

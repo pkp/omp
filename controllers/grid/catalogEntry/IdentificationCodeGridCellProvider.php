@@ -15,6 +15,7 @@
 
 namespace APP\controllers\grid\catalogEntry;
 
+use APP\publicationFormat\IdentificationCode;
 use PKP\controllers\grid\DataObjectGridCellProvider;
 
 class IdentificationCodeGridCellProvider extends DataObjectGridCellProvider
@@ -33,6 +34,7 @@ class IdentificationCodeGridCellProvider extends DataObjectGridCellProvider
      */
     public function getTemplateVarsFromRowColumn($row, $column)
     {
+        /** @var IdentificationCode */
         $element = $row->getData();
         $columnId = $column->getId();
         assert($element instanceof \PKP\core\DataObject && !empty($columnId));

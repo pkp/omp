@@ -17,6 +17,7 @@
 
 namespace APP\notification;
 
+use APP\core\Application;
 use APP\decision\Decision;
 use APP\notification\managerDelegate\ApproveSubmissionNotificationManager;
 use PKP\notification\managerDelegate\EditorAssignmentNotificationManager;
@@ -36,7 +37,7 @@ class NotificationManager extends PKPNotificationManager
     public function getNotificationTitle($notification)
     {
         switch ($notification->getType()) {
-            case NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
+            case Notification::NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
                 return __('notification.type.configurePaymentMethod.title');
         }
         return parent::getNotificationTitle($notification);
@@ -48,7 +49,7 @@ class NotificationManager extends PKPNotificationManager
     public function getIconClass($notification)
     {
         switch ($notification->getType()) {
-            case NOTIFICATION_TYPE_REVIEWER_COMMENT:
+            case Notification::NOTIFICATION_TYPE_REVIEWER_COMMENT:
                 return 'notifyIconNewComment';
         }
         return parent::getIconClass($notification);
@@ -60,9 +61,9 @@ class NotificationManager extends PKPNotificationManager
     public function getStyleClass($notification)
     {
         switch ($notification->getType()) {
-            case NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT:
-            case NOTIFICATION_TYPE_INDEX_ASSIGNMENT:
-            case NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
+            case Notification::NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT:
+            case Notification::NOTIFICATION_TYPE_INDEX_ASSIGNMENT:
+            case Notification::NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
                 return NOTIFICATION_STYLE_CLASS_WARNING;
         }
         return parent::getStyleClass($notification);
@@ -74,10 +75,10 @@ class NotificationManager extends PKPNotificationManager
     public function isVisibleToAllUsers($notificationType, $assocType, $assocId)
     {
         switch ($notificationType) {
-                case NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
-                    return true;
-                default:
-                    return parent::isVisibleToAllUsers($notificationType, $assocType, $assocId);
+            case Notification::NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
+                return true;
+            default:
+                return parent::isVisibleToAllUsers($notificationType, $assocType, $assocId);
         }
     }
 
@@ -87,19 +88,19 @@ class NotificationManager extends PKPNotificationManager
     protected function getMgrDelegate($notificationType, $assocType, $assocId)
     {
         switch ($notificationType) {
-            case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW:
-                assert($assocType == ASSOC_TYPE_SUBMISSION && is_numeric($assocId));
+            case Notification::NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW:
+                assert($assocType == Application::ASSOC_TYPE_SUBMISSION && is_numeric($assocId));
                 return new EditorAssignmentNotificationManager($notificationType);
-            case NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW:
-                assert($assocType == ASSOC_TYPE_SUBMISSION && is_numeric($assocId));
+            case Notification::NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW:
+                assert($assocType == Application::ASSOC_TYPE_SUBMISSION && is_numeric($assocId));
                 return new EditorDecisionNotificationManager($notificationType);
-            case NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
-                assert($assocType == ASSOC_TYPE_SUBMISSION && is_numeric($assocId));
+            case Notification::NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
+                assert($assocType == Application::ASSOC_TYPE_SUBMISSION && is_numeric($assocId));
                 return new PendingRevisionsNotificationManager($notificationType);
-            case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
-            case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
-            case NOTIFICATION_TYPE_VISIT_CATALOG:
-                assert($assocType == ASSOC_TYPE_SUBMISSION && is_numeric($assocId));
+            case Notification::NOTIFICATION_TYPE_APPROVE_SUBMISSION:
+            case Notification::NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
+            case Notification::NOTIFICATION_TYPE_VISIT_CATALOG:
+                assert($assocType == Application::ASSOC_TYPE_SUBMISSION && is_numeric($assocId));
                 return new ApproveSubmissionNotificationManager($notificationType);
         }
         // Otherwise, fall back on parent class

@@ -21,6 +21,7 @@ use APP\press\Press;
 use APP\press\PressDAO;
 use APP\publicationFormat\PublicationFormat;
 use APP\publicationFormat\PublicationFormatDAO;
+use PKP\db\DAORegistry;
 use PKP\doi\exceptions\DoiException;
 use PKP\submissionFile\SubmissionFile;
 
@@ -73,7 +74,7 @@ class Repository extends \PKP\submission\Repository
         $chapters = $publication->getData('chapters');
         if ($context->isDoiTypeEnabled(Repo::doi()::TYPE_CHAPTER) && !empty($chapters)) {
             /** @var ChapterDAO $chapterDao */
-            $chapterDao = \DAORegistry::getDAO('ChapterDAO');
+            $chapterDao = DAORegistry::getDAO('ChapterDAO');
             foreach ($chapters as $chapter) {
                 if (empty($chapter->getData('doiId'))) {
                     try {
@@ -91,7 +92,7 @@ class Repository extends \PKP\submission\Repository
         $publicationFormats = $publication->getData('publicationFormats');
         if ($context->isDoiTypeEnabled(Repo::doi()::TYPE_REPRESENTATION) && !empty($publicationFormats)) {
             /** @var PublicationFormatDAO $publicationFormatDao */
-            $publicationFormatDao = \DAORegistry::getDAO('PublicationFormatDAO');
+            $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
             /** @var PublicationFormat $publicationFormat */
             foreach ($publicationFormats as $publicationFormat) {
                 if (empty($publicationFormat->getData('doiId'))) {

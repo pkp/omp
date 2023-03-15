@@ -15,8 +15,9 @@
 
 namespace APP\controllers\grid\catalogEntry\form;
 
-use PKP\db\DAORegistry;
 use APP\template\TemplateManager;
+use Exception;
+use PKP\db\DAORegistry;
 use PKP\form\Form;
 
 class IdentificationCodeForm extends Form

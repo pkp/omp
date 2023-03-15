@@ -17,6 +17,8 @@
 
 namespace APP\plugins\metadata\dc11\schema;
 
+use APP\core\Application;
+
 class Dc11Schema extends \PKP\plugins\metadata\dc11\schema\PKPDc11Schema
 {
     /**
@@ -24,6 +26,6 @@ class Dc11Schema extends \PKP\plugins\metadata\dc11\schema\PKPDc11Schema
      */
     public function __construct()
     {
-        parent::__construct(ASSOC_TYPE_PUBLICATION_FORMAT);
+        parent::__construct(Application::ASSOC_TYPE_PUBLICATION_FORMAT);
     }
 }

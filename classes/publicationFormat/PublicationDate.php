@@ -17,11 +17,11 @@
 
 namespace APP\publicationFormat;
 
-use PKP\db\DAORegistry;
-
 use APP\core\Application;
+
 use PKP\core\DataObject;
 use PKP\core\PKPString;
+use PKP\db\DAORegistry;
 
 class PublicationDate extends DataObject
 {
@@ -220,8 +220,8 @@ class PublicationDate extends DataObject
                             if ($i > 0 && $previousFormatCharacter != $formatCharacters[$i] && $previousFormatCharacter != 'T') {
                                 $thisDate .= $separator;
                             }
-                        $thisDate .= $numbers[$i];
-                        break;
+                            $thisDate .= $numbers[$i];
+                            break;
                     }
 
                     $previousFormatCharacter = $formatCharacters[$i];
@@ -254,8 +254,8 @@ class PublicationDate extends DataObject
         $date = $this->getDate();
         switch ($this->getDateFormat()) {
             case '12': return strtotime($date);
-            case '05': return strtotime("${date}-01-01");
-            case '01': return strtotime("${date}-01");
+            case '05': return strtotime("{$date}-01-01");
+            case '01': return strtotime("{$date}-01");
             case '13': // FIXME: improve resolution below day
             case '14': // FIXME: improve resolution below day
             case '06': // FIXME: improve resolution below day

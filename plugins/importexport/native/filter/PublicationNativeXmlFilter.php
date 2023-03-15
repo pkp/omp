@@ -15,7 +15,9 @@
 
 namespace APP\plugins\importexport\native\filter;
 
+use APP\core\Application;
 use APP\facades\Repo;
+use Exception;
 use PKP\plugins\importexport\native\filter\PKPNativeFilterHelper;
 use PKP\plugins\importexport\PKPImportExportFilter;
 
@@ -103,7 +105,7 @@ class PublicationNativeXmlFilter extends \PKP\plugins\importexport\native\filter
                 $entityNode->appendChild($clone);
             } else {
                 $deployment = $this->getDeployment();
-                $deployment->addError(ASSOC_TYPE_PUBLICATION, $entity->getId(), __('plugins.importexport.chapter.exportFailed'));
+                $deployment->addError(Application::ASSOC_TYPE_PUBLICATION, $entity->getId(), __('plugins.importexport.chapter.exportFailed'));
 
                 throw new Exception(__('plugins.importexport.chapter.exportFailed'));
             }

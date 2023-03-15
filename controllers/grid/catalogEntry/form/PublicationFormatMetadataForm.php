@@ -16,11 +16,13 @@
 namespace APP\controllers\grid\catalogEntry\form;
 
 use APP\core\Application;
-use PKP\plugins\PluginRegistry;
-use PKP\db\DAORegistry;
+use APP\notification\Notification;
 use APP\template\TemplateManager;
+use Exception;
+use PKP\db\DAORegistry;
 use PKP\form\Form;
 use PKP\plugins\PKPPubIdPluginHelper;
+use PKP\plugins\PluginRegistry;
 
 class PublicationFormatMetadataForm extends Form
 {
@@ -138,10 +140,10 @@ class PublicationFormatMetadataForm extends Form
         $templateMgr->assign('pubObject', $publicationFormat);
 
         $templateMgr->assign('notificationRequestOptions', [
-            NOTIFICATION_LEVEL_NORMAL => [
-                NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD => [ASSOC_TYPE_PRESS, $context->getId()],
+            Notification::NOTIFICATION_LEVEL_NORMAL => [
+                Notification::NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD => [Application::ASSOC_TYPE_PRESS, $context->getId()],
             ],
-            NOTIFICATION_LEVEL_TRIVIAL => []
+            Notification::NOTIFICATION_LEVEL_TRIVIAL => []
         ]);
 
         return parent::fetch($request, $template, $display);
@@ -214,7 +216,7 @@ class PublicationFormatMetadataForm extends Form
             'returnableIndicatorCode',
         ]);
 
-        // consider the additional field names from the public identifer plugins
+        // consider the additional field names from the public identifier plugins
         $pubIdPluginHelper = $this->_getPubIdPluginHelper();
         $pubIdPluginHelper->readInputData($submission->getContextId(), $this);
     }
@@ -261,7 +263,7 @@ class PublicationFormatMetadataForm extends Form
         $publicationFormat->setTechnicalProtectionCode($this->getData('technicalProtectionCode'));
         $publicationFormat->setReturnableIndicatorCode($this->getData('returnableIndicatorCode'));
 
-        // consider the additional field names from the public identifer plugins
+        // consider the additional field names from the public identifier plugins
         $pubIdPluginHelper = $this->_getPubIdPluginHelper();
         $pubIdPluginHelper->execute($submission->getContextId(), $this, $publicationFormat);
 

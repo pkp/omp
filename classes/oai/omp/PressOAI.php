@@ -58,6 +58,7 @@ class PressOAI extends OAI
         $this->site = $request->getSite();
         $this->press = $request->getPress();
         $this->pressId = isset($this->press) ? $this->press->getId() : null;
+        /** @var OAIDAO */
         $this->dao = DAORegistry::getDAO('OAIDAO');
         $this->dao->setOAI($this);
     }

@@ -36,8 +36,8 @@ class ChapterGridAuthorCellProvider extends DataObjectGridCellProvider
      * Extracts variables for a given column from a data element
      * so that they may be assigned to template before rendering.
      *
-     * @param $row GridRow
-     * @param $column GridColumn
+     * @param GridRow $row
+     * @param GridColumn $column
      *
      * @return array
      */

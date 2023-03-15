@@ -16,6 +16,8 @@
 namespace APP\pages\authorDashboard;
 
 use APP\components\listPanels\ContributorsListPanel;
+use APP\core\Application;
+use APP\notification\Notification;
 use APP\publication\Publication;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
@@ -39,7 +41,7 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler
      */
     public function submission($args, $request)
     {
-        $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+        $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
         $templateMgr = TemplateManager::getManager($request);
         $reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /** @var ReviewRoundDAO $reviewRoundDao */
         $internalReviewRounds = $reviewRoundDao->getBySubmissionId($submission->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
@@ -54,7 +56,7 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler
     {
         parent::setupTemplate($request);
 
-        $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+        $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
 
         $chaptersGridUrl = $request->getDispatcher()->url(
             $request,
@@ -106,10 +108,10 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler
      */
     protected function _getNotificationRequestOptions($submission)
     {
-        $submissionAssocTypeAndIdArray = [ASSOC_TYPE_SUBMISSION, $submission->getId()];
+        $submissionAssocTypeAndIdArray = [Application::ASSOC_TYPE_SUBMISSION, $submission->getId()];
         $notificationRequestOptions = parent::_getNotificationRequestOptions($submission);
-        $notificationRequestOptions[NOTIFICATION_LEVEL_TASK][NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS] = $submissionAssocTypeAndIdArray;
-        $notificationRequestOptions[NOTIFICATION_LEVEL_NORMAL][NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW] = $submissionAssocTypeAndIdArray;
+        $notificationRequestOptions[Notification::NOTIFICATION_LEVEL_TASK][Notification::NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS] = $submissionAssocTypeAndIdArray;
+        $notificationRequestOptions[Notification::NOTIFICATION_LEVEL_NORMAL][Notification::NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW] = $submissionAssocTypeAndIdArray;
         return $notificationRequestOptions;
     }
 

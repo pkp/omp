@@ -21,6 +21,7 @@ use APP\controllers\tab\pubIds\form\PublicIdentifiersForm;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\monograph\Chapter;
+use APP\monograph\ChapterDAO;
 use APP\notification\NotificationManager;
 use APP\publication\Publication;
 use APP\submission\Submission;
@@ -73,7 +74,7 @@ class ChapterGridHandler extends CategoryGridHandler
      */
     public function getMonograph(): Submission
     {
-        return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+        return $this->getAuthorizedContextObject(Application::ASSOC_TYPE_MONOGRAPH);
     }
 
     /**
@@ -81,7 +82,7 @@ class ChapterGridHandler extends CategoryGridHandler
      */
     public function getPublication(): Publication
     {
-        return $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION);
+        return $this->getAuthorizedContextObject(Application::ASSOC_TYPE_PUBLICATION);
     }
 
     /**
@@ -227,7 +228,7 @@ class ChapterGridHandler extends CategoryGridHandler
     {
         $submission = $this->getMonograph();
         $publication = $this->getPublication();
-        $userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+        $userRoles = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_USER_ROLES);
 
         if ($publication->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
             return false;
@@ -265,7 +266,9 @@ class ChapterGridHandler extends CategoryGridHandler
      */
     public function loadData($request, $filter)
     {
-        return DAORegistry::getDAO('ChapterDAO')
+        /** @var ChapterDAO */
+        $chapterDao = DAORegistry::getDAO('ChapterDAO');
+        return $chapterDao
             ->getByPublicationId($this->getPublication()->getId())
             ->toAssociativeArray();
     }
@@ -458,7 +461,7 @@ class ChapterGridHandler extends CategoryGridHandler
             'chapterId' => $chapter->getId(),
         ]);
 
-        if (array_intersect([Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT], $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES))) {
+        if (array_intersect([Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT], $this->getAuthorizedContextObject(Application::ASSOC_TYPE_USER_ROLES))) {
             $publisherIdEnabled = in_array('chapter', (array) $request->getContext()->getData('enablePublisherId'));
             $pubIdPlugins = PluginRegistry::getPlugins('pubIds');
             $pubIdEnabled = false;
@@ -566,7 +569,8 @@ class ChapterGridHandler extends CategoryGridHandler
      */
     public function _getChapterFromRequest($request)
     {
-        return DAORegistry::getDAO('ChapterDAO')->getChapter(
+        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
+        return $chapterDao->getChapter(
             (int) $request->getUserVar('chapterId'),
             $this->getPublication()->getId()
         );

@@ -15,14 +15,20 @@
 
 namespace APP\services;
 
+use APP\codelist\ONIXCodelistItemDAO;
+use APP\core\Application;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
+use APP\press\FeatureDAO;
+use APP\press\NewReleaseDAO;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\submission\Submission;
+use PKP\config\Config;
 use PKP\db\DAORegistry;
 use PKP\file\ContextFileManager;
 use PKP\file\FileManager;
 use PKP\plugins\Hook;
+use PKP\submission\GenreDAO;
 
 class ContextService extends \PKP\services\PKPContextService
 {
@@ -35,9 +41,9 @@ class ContextService extends \PKP\services\PKPContextService
     public function __construct()
     {
         $this->installFileDirs = [
-            \Config::getVar('files', 'files_dir') . '/%s/%d',
-            \Config::getVar('files', 'files_dir') . '/%s/%d/monographs',
-            \Config::getVar('files', 'public_files_dir') . '/%s/%d',
+            Config::getVar('files', 'files_dir') . '/%s/%d',
+            Config::getVar('files', 'files_dir') . '/%s/%d/monographs',
+            Config::getVar('files', 'public_files_dir') . '/%s/%d',
         ];
 
         Hook::add('Context::edit', [$this, 'afterEditContext']);
@@ -122,6 +128,7 @@ class ContextService extends \PKP\services\PKPContextService
         $publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
         $publicationFormatTombstoneMgr->insertTombstonesByPress($context);
 
+        /** @var GenreDAO */
         $genreDao = DAORegistry::getDAO('GenreDAO');
         $genreDao->deleteByContextId($context->getId());
     }
@@ -147,11 +154,13 @@ class ContextService extends \PKP\services\PKPContextService
 
         Repo::submission()->deleteByContextId($context->getId());
 
+        /** @var FeatureDAO */
         $featureDao = DAORegistry::getDAO('FeatureDAO');
-        $featureDao->deleteByAssoc(ASSOC_TYPE_PRESS, $context->getId());
+        $featureDao->deleteByAssoc(Application::ASSOC_TYPE_PRESS, $context->getId());
 
+        /** @var NewReleaseDAO */
         $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
-        $newReleaseDao->deleteByAssoc(ASSOC_TYPE_PRESS, $context->getId());
+        $newReleaseDao->deleteByAssoc(Application::ASSOC_TYPE_PRESS, $context->getId());
 
         $publicFileManager = new PublicFileManager();
         $publicFileManager->rmtree($publicFileManager->getContextFilesPath($context->getId()));
@@ -172,7 +181,9 @@ class ContextService extends \PKP\services\PKPContextService
         $props = $args[2];
 
         if (!empty($props['codeType'])) {
-            if (!DAORegistry::getDAO('ONIXCodelistItemDAO')->codeExistsInList($props['codeType'], 'List44')) {
+            /** @var ONIXCodelistItemDAO */
+            $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+            if (!$onixCodelistItemDao->codeExistsInList($props['codeType'], 'List44')) {
                 $errors['codeType'] = [__('manager.settings.publisherCodeType.invalid')];
             }
         }

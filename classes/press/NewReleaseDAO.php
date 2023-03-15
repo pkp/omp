@@ -26,7 +26,7 @@ class NewReleaseDAO extends \PKP\db\DAO
     /**
      * Get monograph IDs by association.
      *
-     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocType Application::ASSOC_TYPE_...
      * @param int $assocId
      *
      * @return array [monographId => true]
@@ -48,7 +48,7 @@ class NewReleaseDAO extends \PKP\db\DAO
     /**
      * Get monographs by association.
      *
-     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocType Application::ASSOC_TYPE_...
      * @param int $assocId
      *
      * @return array Monograph
@@ -79,7 +79,7 @@ class NewReleaseDAO extends \PKP\db\DAO
      * Insert a new NewRelease.
      *
      * @param int $monographId
-     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocType Application::ASSOC_TYPE_...
      * @param int $assocId
      */
     public function insertNewRelease($monographId, $assocType, $assocId)
@@ -113,7 +113,7 @@ class NewReleaseDAO extends \PKP\db\DAO
     /**
      * Delete a new release by association.
      *
-     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocType Application::ASSOC_TYPE_...
      * @param int $assocId
      */
     public function deleteByAssoc($assocType, $assocId)
@@ -128,7 +128,7 @@ class NewReleaseDAO extends \PKP\db\DAO
      * Delete a new release.
      *
      * @param int $monographId
-     * @param int $assocType ASSOC_TYPE_...
+     * @param int $assocType Application::ASSOC_TYPE_...
      * @param int $assocId
      */
     public function deleteNewRelease($monographId, $assocType, $assocId)

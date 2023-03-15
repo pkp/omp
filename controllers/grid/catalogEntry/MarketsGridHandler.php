@@ -16,17 +16,18 @@
 namespace APP\controllers\grid\catalogEntry;
 
 use APP\controllers\grid\catalogEntry\form\MarketForm;
-use PKP\db\DAO;
-use APP\controllers\grid\catalogEntry\MarketsGridCellProvider;
-use APP\controllers\grid\catalogEntry\MarketsGridRow;
+use APP\core\Application;
+use APP\notification\Notification;
 use APP\notification\NotificationManager;
+use Exception;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
+use PKP\db\DAO;
+use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\security\authorization\PublicationAccessPolicy;
-use PKP\db\DAORegistry;
 use PKP\security\Role;
 
 class MarketsGridHandler extends GridHandler
@@ -98,7 +99,7 @@ class MarketsGridHandler extends GridHandler
     }
 
     /**
-     * Get the publication format assocated with these markets
+     * Get the publication format associated with these markets
      *
      * @return PublicationFormat
      */
@@ -143,8 +144,8 @@ class MarketsGridHandler extends GridHandler
         parent::initialize($request, $args);
 
         // Retrieve the authorized submission.
-        $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
-        $this->setPublication($this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION));
+        $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
+        $this->setPublication($this->getAuthorizedContextObject(Application::ASSOC_TYPE_PUBLICATION));
         $this->setSubmission($submission);
         $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
         $representationId = null;
@@ -339,7 +340,7 @@ class MarketsGridHandler extends GridHandler
             // Create trivial notification.
             $currentUser = $request->getUser();
             $notificationMgr = new NotificationManager();
-            $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => $notificationContent]);
+            $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => $notificationContent]);
 
             // Prepare the grid row data
             $row = $this->getRowInstance();
@@ -378,7 +379,7 @@ class MarketsGridHandler extends GridHandler
             if ($result) {
                 $currentUser = $request->getUser();
                 $notificationMgr = new NotificationManager();
-                $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedMarket')]);
+                $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedMarket')]);
                 return DAO::getDataChangedEvent();
             } else {
                 return new JSONMessage(false, __('manager.setup.errorDeletingItem'));

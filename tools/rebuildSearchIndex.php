@@ -13,6 +13,9 @@
  * @brief CLI tool to rebuild the monograph keyword search database.
  */
 
+use APP\core\Application;
+use PKP\cliTool\CommandLineTool;
+
 require(dirname(__FILE__) . '/bootstrap.php');
 
 class rebuildSearchIndex extends CommandLineTool

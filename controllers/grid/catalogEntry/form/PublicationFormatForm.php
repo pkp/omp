@@ -16,9 +16,10 @@
 namespace APP\controllers\grid\catalogEntry\form;
 
 use APP\core\Application;
-use PKP\db\DAORegistry;
 use APP\log\SubmissionEventLogEntry;
 use APP\template\TemplateManager;
+use Exception;
+use PKP\db\DAORegistry;
 use PKP\form\Form;
 use PKP\log\SubmissionLog;
 

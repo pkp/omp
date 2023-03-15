@@ -14,9 +14,10 @@
 
 namespace APP\components\forms\submission;
 
-use DAORegistry;
+use APP\codelist\ONIXCodelistItemDAO;
 use PKP\components\forms\FieldSelect;
 use PKP\components\forms\FormComponent;
+use PKP\db\DAORegistry;
 
 define('FORM_AUDIENCE', 'audience');
 
@@ -39,9 +40,11 @@ class AudienceForm extends FormComponent
         $this->action = $action;
         $this->successMessage = __('monograph.audience.success');
 
-        $audienceCodes = $this->getOptions(DAORegistry::getDAO('ONIXCodelistItemDAO')->getCodes('List28'));
-        $audienceRangeQualifiers = $this->getOptions(DAORegistry::getDAO('ONIXCodelistItemDAO')->getCodes('List30'));
-        $audienceRanges = $this->getOptions(DAORegistry::getDAO('ONIXCodelistItemDAO')->getCodes('List77'));
+        /** @var ONIXCodelistItemDAO */
+        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+        $audienceCodes = $this->getOptions($onixCodelistItemDao->getCodes('List28'));
+        $audienceRangeQualifiers = $this->getOptions($onixCodelistItemDao->getCodes('List30'));
+        $audienceRanges = $this->getOptions($onixCodelistItemDao->getCodes('List77'));
 
         $this->addField(new FieldSelect('audience', [
             'label' => __('monograph.audience'),

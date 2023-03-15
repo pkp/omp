@@ -61,7 +61,7 @@ class Section extends \PKP\section\PKPSection
     }
 
     /**
-     * Get the series full title (with title + preffix and subtitle).
+     * Get the series full title (with title + prefix and subtitle).
      */
     public function getLocalizedFullTitle(): string
     {
@@ -270,7 +270,7 @@ class Section extends \PKP\section\PKPSection
     public function getEditorsString(): string
     {
         $subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /** @var SubEditorsDAO $subEditorsDao */
-        $assignments = $subEditorsDao->getBySubmissionGroupIds([$this->getId()], Application::ASSOC_TYPE_SECTION, $this->getPressId());
+        $assignments = $subEditorsDao->getBySubmissionGroupIds([$this->getId()], Application::ASSOC_TYPE_SECTION, $this->getData('contextId'));
         $editors = Repo::user()
             ->getCollector()
             ->filterByUserIds(

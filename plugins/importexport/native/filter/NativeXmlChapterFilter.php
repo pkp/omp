@@ -13,7 +13,12 @@
 
 namespace APP\plugins\importexport\native\filter;
 
+use APP\core\Application;
 use APP\facades\Repo;
+use APP\monograph\Chapter;
+use APP\monograph\ChapterDAO;
+use APP\submissionFile\DAO;
+use DOMElement;
 use PKP\db\DAORegistry;
 use PKP\plugins\PluginRegistry;
 
@@ -149,7 +154,7 @@ class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\Nat
 
         $authorId = $deployment->getAuthorDBId($n->getAttribute('author_id'));
         if (!$authorId) {
-            $deployment->addError(ASSOC_TYPE_CHAPTER, $chapter->getId(), 'Author with ID "' . $n->getAttribute('author_id') . '" was not found');
+            $deployment->addError(Application::ASSOC_TYPE_CHAPTER, $chapter->getId(), 'Author with ID "' . $n->getAttribute('author_id') . '" was not found');
         }
         $seq = $n->getAttribute('seq');
 
@@ -178,13 +183,12 @@ class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\Nat
         if (!$submissionFile) {
             return;
         }
-
-        Repo::submissionFile()
-            ->dao
-            ->updateChapterFiles(
-                [$submissionFile->getId()],
-                $chapter->getId()
-            );
+        /** @var DAO */
+        $dao = Repo::submissionFile()->dao;
+        $dao->updateChapterFiles(
+            [$submissionFile->getId()],
+            $chapter->getId()
+        );
     }
 
     /**

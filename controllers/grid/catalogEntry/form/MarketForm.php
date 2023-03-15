@@ -15,8 +15,10 @@
 
 namespace APP\controllers\grid\catalogEntry\form;
 
-use PKP\db\DAORegistry;
+use APP\monograph\RepresentativeDAO;
 use APP\template\TemplateManager;
+use Exception;
+use PKP\db\DAORegistry;
 use PKP\form\Form;
 
 class MarketForm extends Form
@@ -161,14 +163,16 @@ class MarketForm extends Form
             'taxTypeCodes' => $onixCodelistItemDao->getCodes('List171'), // VAT, GST
         ]);
 
-        $availableAgents = DAORegistry::getDAO('RepresentativeDAO')->getAgentsByMonographId($submission->getId());
+        /** @var RepresentativeDAO */
+        $representativeDao = DAORegistry::getDAO('RepresentativeDAO');
+        $availableAgents = $representativeDao->getAgentsByMonographId($submission->getId());
         $agentOptions = [];
         while ($agent = $availableAgents->next()) {
             $agentOptions[$agent->getId()] = $agent->getName();
         }
         $templateMgr->assign('availableAgents', $agentOptions);
 
-        $availableSuppliers = DAORegistry::getDAO('RepresentativeDAO')->getSuppliersByMonographId($submission->getId());
+        $availableSuppliers = $representativeDao->getSuppliersByMonographId($submission->getId());
         $supplierOptions = [];
         while ($supplier = $availableSuppliers->next()) {
             $supplierOptions[$supplier->getId()] = $supplier->getName();

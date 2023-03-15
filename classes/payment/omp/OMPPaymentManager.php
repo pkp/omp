@@ -18,7 +18,9 @@
 
 namespace APP\payment\omp;
 
+use APP\core\Application;
 use APP\facades\Repo;
+use Exception;
 use PKP\db\DAORegistry;
 use PKP\payment\CompletedPayment;
 use PKP\payment\PaymentManager;
@@ -113,13 +115,13 @@ class OMPPaymentManager extends PaymentManager
         $returner = false;
         if ($queuedPayment) {
             switch ($queuedPayment->getType()) {
-            case self::PAYMENT_TYPE_PURCHASE_FILE:
-                $returner = true;
-                break;
-            default:
-                // Invalid payment type
-                assert(false);
-        }
+                case self::PAYMENT_TYPE_PURCHASE_FILE:
+                    $returner = true;
+                    break;
+                default:
+                    // Invalid payment type
+                    assert(false);
+            }
         }
 
         $ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /** @var OMPCompletedPaymentDAO $ompCompletedPaymentDao */
@@ -164,7 +166,7 @@ class OMPPaymentManager extends PaymentManager
         switch ($payment->getType()) {
             case self::PAYMENT_TYPE_PURCHASE_FILE:
                 $submissionFile = Repo::submissionFile()->get($payment->getAssocId());
-                if (!$submissionFile || $submissionFile->getData('assocType') !== ASSOC_TYPE_PUBLICATION_FORMAT) {
+                if (!$submissionFile || $submissionFile->getData('assocType') !== Application::ASSOC_TYPE_PUBLICATION_FORMAT) {
                     return false;
                 }
 
@@ -178,5 +180,5 @@ class OMPPaymentManager extends PaymentManager
 
 if (!PKP_STRICT_MODE) {
     class_alias('\APP\payment\omp\OMPPaymentManager', '\OMPPaymentManager');
-    define('PAYMENT_TYPE_PURCHASE_FILE', \OMPPaymentManager::PAYMENT_TYPE_PURCHASE_FILE);
+    define('PAYMENT_TYPE_PURCHASE_FILE', OMPPaymentManager::PAYMENT_TYPE_PURCHASE_FILE);
 }

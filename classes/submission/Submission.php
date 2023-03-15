@@ -214,10 +214,10 @@ class Submission extends PKPSubmission
         $context = Services::get('context')->get($this->getData('contextId'));
         $fieldValue = null; // Scrutinizer
         switch ($field) {
-            case PERMISSIONS_FIELD_LICENSE_URL:
+            case static::PERMISSIONS_FIELD_LICENSE_URL:
                 $fieldValue = $context->getData('licenseUrl');
                 break;
-            case PERMISSIONS_FIELD_COPYRIGHT_HOLDER:
+            case static::PERMISSIONS_FIELD_COPYRIGHT_HOLDER:
                 switch ($context->getData('copyrightHolderType')) {
                     case 'author':
                         if (!$publication) {
@@ -235,7 +235,7 @@ class Submission extends PKPSubmission
                         break;
                 }
                 break;
-            case PERMISSIONS_FIELD_COPYRIGHT_YEAR:
+            case static::PERMISSIONS_FIELD_COPYRIGHT_YEAR:
                 $fieldValue = date('Y');
                 if (!$publication) {
                     $publication = $this->getCurrentPublication();
@@ -340,6 +340,6 @@ class Submission extends PKPSubmission
 
 if (!PKP_STRICT_MODE) {
     class_alias('\APP\submission\Submission', '\Submission');
-    define('WORK_TYPE_EDITED_VOLUME', \Submission::WORK_TYPE_EDITED_VOLUME);
-    define('WORK_TYPE_AUTHORED_WORK', \Submission::WORK_TYPE_AUTHORED_WORK);
+    define('WORK_TYPE_EDITED_VOLUME', Submission::WORK_TYPE_EDITED_VOLUME);
+    define('WORK_TYPE_AUTHORED_WORK', Submission::WORK_TYPE_AUTHORED_WORK);
 }

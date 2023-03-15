@@ -21,7 +21,7 @@ use PKP\plugins\importexport\PKPImportExportDeployment;
 class Onix30ExportDeployment extends PKPImportExportDeployment
 {
     //
-    // Deploymenturation items for subclasses to override
+    // Deployment items for subclasses to override
     //
     /**
      * Get the submission node name

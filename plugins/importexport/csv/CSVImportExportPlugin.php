@@ -17,8 +17,10 @@ use APP\core\Application;
 use APP\facades\Repo;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
+use PKP\core\Core;
 use PKP\db\DAORegistry;
 use PKP\file\FileManager;
+use PKP\file\TemporaryFileManager;
 use PKP\plugins\ImportExportPlugin;
 use PKP\security\Role;
 use PKP\submission\PKPSubmission;
@@ -244,7 +246,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $submissionFile->setFileStage(SubmissionFile::SUBMISSION_FILE_PROOF);
                         $submissionFile->setDateUploaded(Core::getCurrentDate());
                         $submissionFile->setDateModified(Core::getCurrentDate());
-                        $submissionFile->setAssocType(ASSOC_TYPE_REPRESENTATION);
+                        $submissionFile->setAssocType(Application::ASSOC_TYPE_REPRESENTATION);
                         $submissionFile->setAssocId($publicationFormatId);
                         $submissionFile->setFileType('application/pdf');
 
