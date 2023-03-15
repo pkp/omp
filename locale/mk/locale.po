@@ -1,9 +1,10 @@
 # Teodora Fildishevska <t.fildishevska@gmail.com>, 2022.
 # Ana Vucurevic <ana.vucurevic97@yahoo.com>, 2023.
+# Mirko Spiroski <mspiroski@id-press.eu>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-03-15 10:57+0000\n"
-"Last-Translator: Ana Vucurevic <ana.vucurevic97@yahoo.com>\n"
+"PO-Revision-Date: 2023-03-15 11:05+0000\n"
+"Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "mk/>\n"
 "Language: mk\n"
@@ -1187,7 +1188,7 @@ msgid "installer.installationInstructions"
 msgstr ""
 "<p> Ви благодариме што го преземавте <strong> Отворен монографски печат на "
 "{$version} </strong> на Проектот за јавно знаење. Пред да продолжите, "
-"прочитајте ја датотеката <a href=\"{$baseUrl}/docs/README\">README</a> "
+"прочитајте ја датотеката <a href=\"{$baseUrl}/docs/README.md\">README</a> "
 "вклучена во овој софтвер. За повеќе информации во врска со Проектот за јавно "
 "знаење и неговите софтверски проекти, посетете ја <a href=\"http://pkp.sfu."
 "ca/\" target=\"_blank\">PKP web site</a>. Ако имате извештаи за грешки или "
