@@ -115,13 +115,13 @@ class IndexHandler extends PKPIndexHandler
             $templateMgr->assign('newReleases', $newReleases);
         }
 
-        // Assign header and content for home page.
-        $templateMgr->assign('additionalHomeContent', $press->getLocalizedSetting('additionalHomeContent'));
-        $templateMgr->assign('homepageImage', $press->getLocalizedSetting('homepageImage'));
-        $templateMgr->assign('pageTitleTranslated', $press->getLocalizedSetting('name'));
-
-        // Display creative commons logo/license if enabled.
-        $templateMgr->assign('displayCreativeCommons', $press->getSetting('includeCreativeCommons'));
+        $templateMgr->assign([
+            'additionalHomeContent' => $press->getLocalizedSetting('additionalHomeContent'),
+            'homepageImage' => $press->getLocalizedSetting('homepageImage'),
+            'pageTitleTranslated' => $press->getLocalizedSetting('name'),
+            'displayCreativeCommons' => $press->getSetting('includeCreativeCommons'),
+            'authorUserGroups' => Repo::userGroup()->getCollector()->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])->filterByContextIds([$press->getId()])->getMany()->remember(),
+        ]);
 
         $this->_setupAnnouncements($press, $templateMgr);
 

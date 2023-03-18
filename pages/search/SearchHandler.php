@@ -60,7 +60,7 @@ class SearchHandler extends Handler
             'authorUserGroups' => Repo::userGroup()->getCollector()
                 ->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])
                 ->filterByContextIds($press ? [$press->getId()] : null)
-                ->getMany(),
+                ->getMany()->remember(),
         ]);
 
         // Display

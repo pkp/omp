@@ -37,7 +37,7 @@
 
 	{* Featured *}
 	{if !empty($featuredMonographs)}
-		{include file="frontend/components/monographList.tpl" monographs=$featuredMonographs titleKey="catalog.featured"}
+		{include file="frontend/components/monographList.tpl" monographs=$featuredMonographs titleKey="catalog.featured" authorUserGroups=$authorUserGroups}
 	{/if}
 
 	{* New releases *}

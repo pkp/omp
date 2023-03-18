@@ -99,7 +99,7 @@ class CatalogHandler extends PKPCatalogHandler
 
         $templateMgr->assign([
             'publishedSubmissions' => $submissions->toArray(),
-            'authorUserGroups' => $authorUserGroups = Repo::userGroup()->getCollector()->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])->filterByContextIds([$context->getId()])->getMany(),
+            'authorUserGroups' => $authorUserGroups = Repo::userGroup()->getCollector()->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])->filterByContextIds([$context->getId()])->getMany()->remember(),
             'featuredMonographIds' => $featuredMonographIds,
             'contextSeries' => $seriesIterator->toArray(),
         ]);
@@ -126,7 +126,7 @@ class CatalogHandler extends PKPCatalogHandler
         $newReleases = $newReleaseDao->getMonographsByAssoc(Application::ASSOC_TYPE_PRESS, $press->getId());
         $templateMgr->assign([
             'publishedSubmissions' => $newReleases,
-            'authorUserGroups' => $authorUserGroups = Repo::userGroup()->getCollector()->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])->filterByContextIds([$press->getId()])->getMany(),
+            'authorUserGroups' => $authorUserGroups = Repo::userGroup()->getCollector()->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])->filterByContextIds([$press->getId()])->getMany()->remember(),
         ]);
 
         // Display
@@ -195,7 +195,7 @@ class CatalogHandler extends PKPCatalogHandler
             'publishedSubmissions' => $submissions->toArray(),
             'featuredMonographIds' => $featuredMonographIds,
             'newReleasesMonographs' => $newReleases,
-            'authorUserGroups' => $authorUserGroups = Repo::userGroup()->getCollector()->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])->filterByContextIds([$context->getId()])->getMany(),
+            'authorUserGroups' => $authorUserGroups = Repo::userGroup()->getCollector()->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])->filterByContextIds([$context->getId()])->getMany()->remember(),
         ]);
 
         $templateMgr->display('frontend/pages/catalogSeries.tpl');

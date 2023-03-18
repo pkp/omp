@@ -65,11 +65,11 @@
 
 		{* New releases *}
 		{if !empty($newReleasesMonographs)}
-			{include file="frontend/components/monographList.tpl" monographs=$newReleasesMonographs titleKey="catalog.newReleases"}
+			{include file="frontend/components/monographList.tpl" monographs=$newReleasesMonographs titleKey="catalog.newReleases" authorUserGroups=$authorUserGroups}
 		{/if}
 
 		{* All monographs *}
-		{include file="frontend/components/monographList.tpl" monographs=$publishedSubmissions featured=$featuredMonographIds titleKey="catalog.category.heading"}
+		{include file="frontend/components/monographList.tpl" monographs=$publishedSubmissions featured=$featuredMonographIds titleKey="catalog.category.heading" authorUserGroups=$authorUserGroups}
 
 		{* Pagination *}
 		{if $prevPage > 1}
