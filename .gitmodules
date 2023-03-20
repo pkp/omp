@@ -31,3 +31,6 @@
 [submodule "plugins/generic/citationStyleLanguage"]
 	path = plugins/generic/citationStyleLanguage
 	url = https://github.com/pkp/citationStyleLanguage
+[submodule "plugins/generic/webFeed"]
+	path = plugins/generic/webFeed
+	url = https://github.com/pkp/webFeed.git
