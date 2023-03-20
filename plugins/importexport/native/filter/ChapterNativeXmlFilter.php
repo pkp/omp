@@ -30,19 +30,6 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
         parent::__construct($filterGroup);
     }
 
-
-    //
-    // Implement template methods from PersistableFilter
-    //
-    /**
-     * @copydoc PersistableFilter::getClassName()
-     */
-    public function getClassName()
-    {
-        return (string) self::class;
-    }
-
-
     //
     // Implement template methods from Filter
     //

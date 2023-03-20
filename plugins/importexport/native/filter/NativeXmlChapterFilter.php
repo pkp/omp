@@ -58,18 +58,6 @@ class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\Nat
         return 'chapter';
     }
 
-    //
-    // Implement template methods from PersistableFilter
-    //
-    /**
-     * @copydoc PersistableFilter::getClassName()
-     */
-    public function getClassName()
-    {
-        return (string) self::class;
-    }
-
-
     /**
      * Handle a chapter element
      *

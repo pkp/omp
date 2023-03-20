@@ -39,18 +39,6 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         parent::__construct($filterGroup);
     }
 
-
-    //
-    // Implement template methods from PersistableFilter
-    //
-    /**
-     * @copydoc PersistableFilter::getClassName()
-     */
-    public function getClassName()
-    {
-        return 'plugins.importexport.onix30.filter.MonographONIX30XmlFilter';
-    }
-
     //
     // Implement template methods from Filter
     //

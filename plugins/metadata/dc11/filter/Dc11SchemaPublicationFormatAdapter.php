@@ -32,18 +32,6 @@ use PKP\plugins\PluginRegistry;
 class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
 {
     //
-    // Implement template methods from Filter
-    //
-    /**
-     * @see Filter::getClassName()
-     */
-    public function getClassName()
-    {
-        return (string) self::class;
-    }
-
-
-    //
     // Implement template methods from MetadataDataObjectAdapter
     //
     /**
