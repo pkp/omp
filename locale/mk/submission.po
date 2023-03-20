@@ -1,15 +1,16 @@
+# Ana Vucurevic <ana.vucurevic97@yahoo.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-10 20:52+0000\n"
-"Last-Translator: Ivan Lazarevski <shredgod_lobos@hotmail.com>\n"
+"PO-Revision-Date: 2023-03-15 15:21+0000\n"
+"Last-Translator: Ana Vucurevic <ana.vucurevic97@yahoo.com>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/"
-"submission/mk_MK/>\n"
-"Language: mk_MK\n"
+"submission/mk/>\n"
+"Language: mk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "submission.upload.selectComponent"
 msgstr "Одберете компонента"
@@ -132,7 +133,7 @@ msgid "submission.submit.upload"
 msgstr "Прикачи поднесок"
 
 msgid "author.volumeEditor"
-msgstr ""
+msgstr "Уредник на том"
 
 msgid "author.isVolumeEditor"
 msgstr "Идентификувајте го овој соработник како уредник на овој том."
@@ -261,10 +262,10 @@ msgid "submission.event.metadataUnpublished"
 msgstr "Метаподатоците на монографот повеќе не се објавени."
 
 msgid "submission.event.publicationFormatMadeAvailable"
-msgstr "Форматот на издавање  \"{$publicationFormatName}\" е достапен."
+msgstr "Форматот на публикација\"{$publicationFormatName}\" е достапен."
 
 msgid "submission.event.publicationFormatMadeUnavailable"
-msgstr "Форматот на издавање  \"{$publicationFormatName}\" е недостапен."
+msgstr "Форматот на публикација\"{$publicationFormatName}\" е недостапен."
 
 msgid "submission.event.publicationFormatPublished"
 msgstr "Форматот \"{$publicationFormatName}\" е одобрен за издавање."
@@ -326,7 +327,7 @@ msgstr ""
 msgid "submission.list.orderingFeaturesSection"
 msgstr ""
 "Со помош на влечење или притискање на копчињата можете да го промените "
-"редоследот на карактеристики на  {$title}."
+"редоследот на карактеристики на {$title}."
 
 msgid "submission.list.saveFeatureOrder"
 msgstr "Зачувај нарачка"
@@ -362,7 +363,7 @@ msgstr ""
 "во каталогот?"
 
 msgid "publication.scheduledIn"
-msgstr "Закажано за издавање во  <a href=\"{$issueUrl}\">{$issueName}</a>."
+msgstr "Закажано за публикација во <a href=\"{$issueUrl}\">{$issueName}</a>."
 
 msgid "submission.publication"
 msgstr "Издание"
@@ -460,127 +461,171 @@ msgid "submission.queries.production"
 msgstr "Продукциска дискусија"
 
 msgid "publication.chapter.landingPage"
-msgstr ""
+msgstr "Поглавје"
 
 msgid "publication.chapter.hasLandingPage"
 msgstr ""
+"Покажете го ова поглавје сопствена страница и поврзете се до таа страница од "
+"содржината на книгата."
 
 msgid "publication.publish.success"
-msgstr ""
+msgstr "Публикацискиот статус е успешно променет."
 
 msgid "chapter.volume"
-msgstr ""
+msgstr "Том"
 
 msgid "submission.withoutChapter"
-msgstr ""
+msgstr "{$name} — Без ова поглавје"
 
 msgid "submission.chapterCreated"
-msgstr ""
+msgstr " — Поглавјето е создадено"
 
 msgid "chapter.pages"
-msgstr ""
+msgstr "Страници"
 
 msgid "editor.submission.decision.sendInternalReview"
-msgstr ""
+msgstr "Испрати до Внатрешна Проверка"
 
 msgid "editor.submission.decision.sendInternalReview.description"
-msgstr ""
+msgstr "Овој поднесок е подготвен да се испрати за внатрешна проверка."
 
 msgid "editor.submission.decision.sendInternalReview.log"
-msgstr ""
+msgstr "{$editorName} го испрати поднесокот до фазата на внатрешна проверка."
 
 msgid "editor.submission.decision.sendInternalReview.completed"
-msgstr ""
+msgstr "Испратено за Внатрешна Проверка"
 
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr ""
+"Поднесокот, {$title}, е испратен до фазата за внатрешна проверка. Авторот е "
+"известен, освен ако не одлучивте да го прескокнете тој емаил."
 
 msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
 msgstr ""
+"Испратете емаил до авторите за да ги известите дека овој поднесок ќе биде "
+"испратен на внатрешен преглед. Доколку е возможно, дајте им на авторите "
+"некои индикации за тоа колку долго би можел да потрае процесот на внатрешна "
+"проверка и кога да очекуваат повторно да слушнат од уредниците."
 
 msgid "editor.submission.decision.promoteFiles.internalReview"
 msgstr ""
+"Селектирајте ги датотеките кои треба да се испратат до фазата на внатрешен "
+"преглед."
 
 msgid "editor.submission.decision.sendExternalReview.log"
 msgstr ""
+"{$editorName} го испрати овој поднесок до фазата за надворешна проверка."
 
 msgid "editor.submission.decision.sendExternalReview.completed"
-msgstr ""
+msgstr "Испратено за Надворешна Проверка"
 
 msgid "editor.submission.decision.sendExternalReview.completed.description"
-msgstr ""
+msgstr "Овој поднесок, {$title}, е испратен до фазата за надворешна проверка."
 
 msgid "editor.submission.decision.backToReview"
-msgstr ""
+msgstr "Назад кон Проверка"
 
 msgid "editor.submission.decision.backToReview.description"
 msgstr ""
+"Вратете ја одлуката да го прифатите овој поднесок и испратете го назад во "
+"фазата на преглед."
 
 msgid "editor.submission.decision.backToReview.log"
 msgstr ""
+"{$editorName} ја вратил одлуката за прифаќање на овој поднесок и го вратил "
+"во фаза на ревизија."
 
 msgid "editor.submission.decision.backToReview.completed"
-msgstr ""
+msgstr "Вратено за Ревизија"
 
 msgid "editor.submission.decision.backToReview.completed.description"
-msgstr ""
+msgstr "Поднесокот, {$title}, е вратен во фазата на ревизија."
 
 msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
 msgstr ""
+"Испратете емаил до авторите за да ги известите дека нивниот поднесок се "
+"враќа назад во фазата на ревизија. Објаснете зошто е донесена оваа одлука и "
+"информирајте го авторот каков понатамошен преглед ќе биде преземен."
 
 msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
 msgstr ""
+"Испратете емаил до авторите за да ги известите дека овој поднесок ќе биде "
+"испратен на отворена рецензија. Ако е можно, дајте им на авторите некои "
+"индикации за тоа колку долго може да трае процесот на рецензија и кога да "
+"очекуваат повторно да слушнат од уредниците."
 
 msgid "editor.submission.decision.promoteFiles.externalReview"
 msgstr ""
+"Селектирајте ги датотеките кои треба да се испратат до фазата на ревизија."
 
 msgid "editor.submission.recommend.sendExternalReview"
-msgstr ""
+msgstr "Препорачај Испрати на Надворешен Ревизија"
 
 msgid "editor.submission.recommend.sendExternalReview.description"
 msgstr ""
+"Препорачај овој поднесок да се испрати во фазата на надворешна ревизија."
 
 msgid "editor.submission.recommend.sendExternalReview.log"
 msgstr ""
+"{$editorName} препорача овој поднесок да се испрати до фаза на надворешна "
+"ревизија."
 
 msgid "doi.submission.incorrectContext"
 msgstr ""
+"Не може да се креира DOI за следниот поднесок: {$pubObjectTitle}. Не постои "
+"во сегашниот контекст на списанието."
 
 msgid "publication.chapter.licenseUrl"
-msgstr ""
+msgstr "Линк за Лиценца"
 
 msgid "publication.chapterDefaultLicenseURL"
-msgstr ""
+msgstr "Линк на Стандардна Лиценца за Поглавје"
 
 msgid "submission.copyright.description"
 msgstr ""
+"Ве молиме прочитајте ги и разберете ги условите за авторски права за "
+"поднесоци во ова списание."
 
 msgid "submission.wizard.notAllowed.description"
 msgstr ""
+"Не ви е дозволено да поднесувате во ова списание бидејќи авторите мора да "
+"бидат регистрирани од едиторите. Доколку сметате дека ова е грешка, Ве "
+"молиме исконтактирајте го/ја<a href='mailto:{$email}'>{$name}</a>."
 
 msgid "submission.wizard.noSectionAllowed.description"
 msgstr ""
+"Не Ви е дозволено да поднесувате до ова списание бидејќи поднесоците до сите "
+"делови на ова списание се деактивирани или ограничени. Доколку сметате дека "
+"ова е грешка, Ве молиме исконтактирајте го/ја <a "
+"href='mailto:{$email}'>{$name}</a>."
 
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
+"{$contextName} не прифаќа поднесоци до {$section} низата. Доколку Ви треба "
+"помош за враќање на вашиот поднесок, Ве молиме исконтактирајте го/ја<a "
+"href='mailto:{$email}'>{$name}</a>."
 
 msgid "submission.sectionNotFound"
-msgstr ""
+msgstr "Низата за овој поднесок не е пронајдена."
 
 msgid "submission.sectionRestrictedToEditors"
-msgstr ""
+msgstr "Само на уредниците им е дозволено да поднесуваат до оваа низа."
 
 msgid "submission.wizard.submitting.monograph"
-msgstr ""
+msgstr "Поднесување <strong>Монограф</strong>."
 
 msgid "submission.wizard.submitting.monographInLanguage"
-msgstr ""
+msgstr "Поднесување <strong>Монограф</strong> во<strong>{$language}</strong>."
 
 msgid "submission.wizard.submitting.editedVolume"
-msgstr ""
+msgstr "Поднесување <strong>Уреден Том</strong>."
 
 msgid "submission.wizard.submitting.editedVolumeInLanguage"
 msgstr ""
+"Поднесување <strong>Едитиран Том</strong> во<strong>{$language}</strong>."
 
 msgid "submission.wizard.chapters.description"
 msgstr ""
+"Ве молиме наведете ги сите поглавја од овој поднесок. Ако испраќате уреден "
+"том, ве молиме проверете дали секое поглавје ги означува соработниците за "
+"тоа поглавје."

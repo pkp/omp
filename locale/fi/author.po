@@ -1,0 +1,19 @@
+# Antti-Jussi Nygård <ajnyga@gmail.com>, 2023.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-03-01 21:48+0000\n"
+"Last-Translator: Antti-Jussi Nygård <ajnyga@gmail.com>\n"
+"Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/author/fi/>"
+"\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "author.submit.notAccepting"
+msgstr "Tämä julkaisija ei tällä hetkellä ota vastaan käsikirjoituksia."
+
+msgid "author.submit"
+msgstr "Uusi käsikirjoitus"

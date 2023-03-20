@@ -1,7 +1,7 @@
-# Petro Bilous <petrobilous@ukr.net>, 2022.
+# Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-08-06 07:25+0000\n"
+"PO-Revision-Date: 2023-02-28 16:58+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "paymethod-manual-emails/uk/>\n"
@@ -18,9 +18,9 @@ msgstr "Сповіщення про оплату вручну"
 
 msgid "emails.manualPaymentNotification.body"
 msgstr ""
-"Платіж, здійснений вручну, потрібно обробити для е-видавництва {$contextName}"
-" і користувача {$senderName} (ім'я користувача &quot;{$senderUsername}&quot;)"
-".<br />\n"
+"Платіж, здійснений вручну, потрібно обробити для е-видавництва "
+"«{$contextName}» і користувача {$senderName} (ім'я користувача "
+"&quot;{$senderUsername}&quot;).<br />\n"
 "<br />\n"
 "Товар, що оплачується: &quot;{$paymentName}&quot;.<br />\n"
 "Вартість становить {$paymentAmount} ({$paymentCurrencyCode}).<br />\n"

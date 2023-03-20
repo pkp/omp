@@ -1,0 +1,188 @@
+# Boris Badurina <boris.badurina@gmail.com>, 2023.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-02-23 08:15+0000\n"
+"Last-Translator: Boris Badurina <boris.badurina@gmail.com>\n"
+"Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/admin/hr/>"
+"\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "admin.hostedContexts"
+msgstr "Mediji"
+
+msgid "admin.settings.appearance.success"
+msgstr "Postavke izgleda stranice uspješno su ažurirane."
+
+msgid "admin.settings.config.success"
+msgstr "Postavke konfiguracije stranice uspješno su ažurirane."
+
+msgid "admin.settings.redirect"
+msgstr "Preusmjeravanje na nakladnika"
+
+msgid "admin.siteManagement.description"
+msgstr ""
+"Dodajte, uredite ili uklonite medije s ove stranice i upravljajte postavkama "
+"na cijeloj stranici."
+
+msgid "admin.settings.statistics.sushi.public.description"
+msgstr ""
+"Učiniti SUSHI API krajnje točke javno dostupne za sve medije na ovoj "
+"stranici ili ne. Ako omogućite javni API, svaki medij može nadjačati ovu "
+"postavku kako bi njegova statistika postala privatnom. Međutim, ako "
+"onemogućite javni API, mediji ne mogu učiniti svoj API javnim."
+
+msgid "admin.settings.info.success"
+msgstr "Podaci o stranici uspješno su ažurirani."
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Zahtjevi za glavnu stranicu bit će preusmjereni na ovog nakladnika. Ovo može "
+"biti korisno ako web mjesto, na primjer, samo jednog nakladnika ugošćuje."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Ne preusmjeravati"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "Ovo će biti zadani jezik za stranicu i sve ugošćene nakladnike."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Označene lokacije mogu biti nepotpune."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr ""
+"Odaberite sve lokalne postavke za podršku na web mjestu. Odabrane postavke "
+"bit će dostupne za korištenje svim medijima koji se nalaze na stranici, a "
+"također će se pojaviti u izborniku za odabir jezika koji će se pojaviti na "
+"svakoj stranici web-mjesta (što se može nadjačati na stranicama specifičnim "
+"za medije). Ako nije odabrano više jezika, izbornik za prebacivanje jezika "
+"neće se pojaviti, a proširene jezične postavke neće biti dostupne medijima."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"Jeste li sigurni da želite deinstalirati ove lokalne postavke? To može "
+"utjecati na bilo koji medij koji trenutno koristi ove postavke."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Odaberite sve dodatne lokalne postavke za instaliranje podrške u ovom "
+"sustavu. Lokacije moraju biti instalirane prije nego što ih mogu koristiti "
+"mediji. Pogledajte OMP dokumentaciju za informacije o dodavanju podrške za "
+"nove jezike."
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Jeste li sigurni da želite onemogućiti ove lokalne postavke? To može "
+"utjecati na bilo koji medij koji trenutno koristi lokalne postavke."
+
+msgid "admin.systemVersion"
+msgstr "OMP verzija"
+
+msgid "admin.systemConfiguration"
+msgstr "OMP konfiguracija"
+
+msgid "admin.presses.pressSettings"
+msgstr "Postavke za medije"
+
+msgid "admin.presses.noneCreated"
+msgstr "Nisu još stvoreni mediji."
+
+msgid "admin.contexts.create"
+msgstr "Stvori medij"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Potreban je naslov."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Potrebna je putanja."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"Putanja može sadržavati samo slova, brojeve i znakove _ i -. Mora započeti i "
+"završiti slovom ili brojem."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Odabranu putanju već koristi drugi medij."
+
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr ""
+"Primarne lokalne postavke moraju biti jedne od podržanih lokalnih postavki."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} uspješno je kreiran."
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} uspješno je uređen."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Opis medija"
+
+msgid "admin.presses.addPress"
+msgstr "Dodaj medij"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>NAPOMENA!</div>\n"
+"<p>Sustav nije mogao automatski prebrisati konfiguracijsku datoteku. Da "
+"biste primijenili svoje konfiguracijske promjene, morate otvoriti <tt>config."
+"inc.php</tt> u odgovarajućem uređivaču teksta i zamijeniti njegov sadržaj "
+"sadržajem tekstualnog polja ispod.</p>"
+
+msgid "admin.settings.enableBulkEmails.description"
+msgstr ""
+"Odaberite medije kojima bi se trebalo dopustiti skupno slanje e-pošte. Kada "
+"je ova značajka omogućena, upravitelj medija moći će poslati e-poštu svim "
+"korisnicima koji su registrirani u njihovom mediju.<br><br>Zlouporaba ove "
+"značajke za slanje neželjene e-pošte može kršiti zakone protiv neželjene "
+"pošte u nekim jurisdikcijama i može rezultirati da je e-pošta vašeg "
+"poslužitelja blokirana kao neželjena pošta. Zatražite tehnički savjet prije "
+"nego što omogućite ovu značajku i razmislite o savjetovanju s voditeljima "
+"medija kako biste osigurali da se koristi na odgovarajući "
+"način.<br><br>Daljnja ograničenja ove značajke mogu se omogućiti za svaki "
+"medij posjetom čarobnjaka za postavke na popisu <a href= \""
+"{$hostedContextsUrl}\">Mediji</a>."
+
+msgid "admin.settings.disableBulkEmailRoles.description"
+msgstr ""
+"Voditelj medija neće moći slati skupne poruke e-pošte nijednoj od dolje "
+"odabranih uloga. Koristite ovu postavku za ograničavanje zlouporabe značajke "
+"obavijesti e-poštom. Na primjer, možda bi bilo sigurnije onemogućiti skupnu "
+"e-poštu čitateljima, autorima ili drugim velikim grupama korisnika koji nisu "
+"pristali primati takve e-poruke.<br><br>Značajka skupne e-pošte može se "
+"potpuno onemogućiti za ovaj medij u <a href=\"{$siteSettingsUrl}\""
+">Administrator > Postavke web-mjesta</a>."
+
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgstr ""
+"Značajka skupne e-pošte onemogućena je za ovaj medij. Omogućite ovu značajku "
+"u <a href=\"{$siteSettingsUrl}\">Administrator > Postavke web-mjesta</a>."
+
+msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgstr "Poglavlje ID nije cijeli broj"
+
+msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgstr "Serija ID nije cijeli broj"
+
+msgid "admin.settings.statistics.geo.description"
+msgstr ""
+"Odaberite vrstu zemljopisne statistike korištenja koju mogu prikupiti mediji "
+"na ovoj stranici. Detaljnija geografska statistika može značajno povećati "
+"veličinu vaše baze podataka i u nekim rijetkim slučajevima može potkopati "
+"anonimnost vaših posjetitelja. Svaki medij može drugačije konfigurirati ovu "
+"postavku, ali medij nikada ne može prikupiti detaljnije zapise od onih koji "
+"su ovdje konfigurirani. Na primjer, ako stranica podržava samo zemlju i "
+"regiju, medij može odabrati zemlju i regiju ili samo zemlju. Medij neće moći "
+"pratiti državu, regiju i grad."
+
+msgid "admin.settings.statistics.institutions.description"
+msgstr ""
+"Omogućite institucionalnu statistiku ako želite da mediji na ovoj stranici "
+"mogu prikupljati statistiku korištenja po instituciji. Mediji će morati "
+"dodati ustanovu i njezine IP raspone kako bi koristili ovu značajku. "
+"Omogućavanje institucionalne statistike može značajno povećati veličinu vaše "
+"baze podataka."

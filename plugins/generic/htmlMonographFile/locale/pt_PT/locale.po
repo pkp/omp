@@ -1,0 +1,21 @@
+# Carla Marques <carla.marques@usdb.uminho.pt>, 2023.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-03-03 14:47+0000\n"
+"Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
+"Language-Team: Portuguese <http://translate.pkp.sfu.ca/projects/omp/"
+"generic-htmlMonographFile/pt/>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "plugins.generic.htmlMonographFile.displayName"
+msgstr "Ficheiro de Livro em HTML"
+
+msgid "plugins.generic.htmlMonographFile.description"
+msgstr ""
+"Este plugin fornece suporte de renderização para ficheiros de livros em "
+"formato HTML."
