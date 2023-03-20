@@ -15,12 +15,18 @@
 
 namespace APP\plugins\importexport\onix30\filter;
 
+use APP\codelist\ONIXCodelistItemDAO;
 use APP\core\Application;
 use APP\facades\Repo;
+use APP\plugins\importexport\onix30\Onix30ExportDeployment;
 use APP\publication\Publication;
+use APP\publicationFormat\PublicationFormat;
+use APP\submission\Submission;
 use DOMDocument;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
+use PKP\filter\FilterGroup;
+use PKP\submission\SubmissionLanguageDAO;
 use PKP\submission\SubmissionSubjectDAO;
 
 class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\NativeExportFilter
@@ -525,12 +531,10 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         while ($salesRights = $allSalesRights->next()) {
             if (!$salesRights->getROWSetting()) {
                 $salesRightsNode = $doc->createElementNS($deployment->getNamespace(), 'SalesRights');
-                $publishingDetailNode->appendChild($salesRightsNode);
                 $salesRightsNode->appendChild($this->_buildTextNode($doc, 'SalesRightsType', $salesRights->getType()));
 
                 // now do territories and countries.
                 $territoryNode = $doc->createElementNS($deployment->getNamespace(), 'Territory');
-                $salesRightsNode->appendChild($territoryNode);
 
                 if (sizeof($salesRights->getRegionsIncluded()) > 0 && sizeof($salesRights->getCountriesExcluded()) > 0) {
                     $territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsIncluded', trim(join(' ', $salesRights->getRegionsIncluded()))));
@@ -543,8 +547,13 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
                     $territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsExcluded', trim(join(' ', $salesRights->getRegionsExcluded()))));
                 }
 
-                unset($territoryNode);
-                unset($salesRightsNode);
+                // Include territory and sales rights if the territory isn't empty
+                if ($territoryNode->firstElementChild) {
+                    $salesRightsNode->appendChild($territoryNode);
+                    $publishingDetailNode->appendChild($salesRightsNode);
+                } else {
+                    $deployment->addWarning(Application::ASSOC_TYPE_MONOGRAPH, $deployment->getSubmission()->getId(), __('plugins.importexport.common.error.salesRightRequiresTerritory'));
+                }
             } else { // found the SalesRights object that is assigned 'rest of world'.
                 $salesRightsROW = $salesRights; // stash this for later since it always goes last.
             }
@@ -567,7 +576,6 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
             $productSupplyNode->appendChild($marketNode);
 
             $territoryNode = $doc->createElementNS($deployment->getNamespace(), 'Territory');
-            $marketNode->appendChild($territoryNode);
 
             if (sizeof($market->getCountriesIncluded()) > 0) {
                 $territoryNode->appendChild($this->_buildTextNode($doc, 'CountriesIncluded', trim(join(' ', $market->getCountriesIncluded()))));
@@ -583,6 +591,11 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
 
             if (sizeof($market->getRegionsExcluded()) > 0) {
                 $territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsExcluded', trim(join(' ', $market->getRegionsExcluded()))));
+            }
+
+            // Include territory if it's not empty
+            if ($territoryNode->firstElementChild) {
+                $marketNode->appendChild($territoryNode);
             }
 
             unset($marketNode);
@@ -738,7 +751,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
      * Convenience method for building a Measure node.
      *
      * @param \DOMDocument $doc
-     * @param ONIX30ExportDeployment $deployment
+     * @param Onix30ExportDeployment $deployment
      * @param string $type
      * @param string $measurement
      * @param string $unitCode

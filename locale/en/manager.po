@@ -1158,6 +1158,9 @@ msgstr "{$count} of {$total} monographs"
 msgid "stats.publications.abstracts"
 msgstr "Catalog Entries"
 
+msgid "plugins.importexport.common.error.salesRightRequiresTerritory"
+msgstr "A sales right record has been skipped because it has no country nor region assigned."
+
 msgid "plugins.importexport.common.error.noObjectsSelected"
 msgstr "No objects selected."
 
