@@ -1,9 +1,9 @@
-# Mirko Spiroski <mspiroski@id-press.eu>, 2021.
+# Mirko Spiroski <mspiroski@id-press.eu>, 2021, 2023.
 # Ana Vucurevic <ana.vucurevic97@yahoo.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-03-15 15:21+0000\n"
-"Last-Translator: Ana Vucurevic <ana.vucurevic97@yahoo.com>\n"
+"PO-Revision-Date: 2023-03-20 17:18+0000\n"
+"Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "mk/>\n"
 "Language: mk\n"
@@ -439,9 +439,11 @@ msgstr ""
 "Дозволете идентификатори на дигитални објекти (DOI) да се доделат на "
 "работата објавена од ова списание."
 
-#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
-msgstr "Ве молиме, изберете ги предметите на кои треба да се доделат ДОИ."
+msgstr ""
+"Ве молиме, изберете ги предметите на кои треба да се доделат ДОИ. Повеќето "
+"издвачи доделуваат ДОИ кон монографии/поглавја, но вие би можеле да означите "
+"ДОИ кон сите објавени содржини."
 
 msgid "doi.manager.settings.doiSuffixLegacy"
 msgstr ""
@@ -480,10 +482,9 @@ msgstr "Идентификација по е-пошта"
 msgid "manager.setup.emailSignature"
 msgstr "Потпис"
 
-#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
-"Подготвените е-пошти што системот ги испраќа во име на изданието ќе го "
+"Подготвените е-пошти што системот ги испраќа во име на изданието, ќе го "
 "додадат следниов потпис до крајот."
 
 msgid "manager.setup.enableAnnouncements.enable"
@@ -1725,3 +1726,8 @@ msgstr "Емаил адресата на списанието"
 
 msgid "emailTemplate.variable.statisticsReportNotify.publicationStatsLink"
 msgstr "Линк до странизата за статистики од книгите"
+
+msgid "manager.sections.alertDelete"
+msgstr ""
+"Пред да се избрише оваа серија, мора да го преместите придруѓниот поднесок "
+"од оваа серија кон друга серија."
