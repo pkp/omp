@@ -15,6 +15,8 @@
 
 namespace APP\controllers\grid\catalogEntry;
 
+use APP\publication\Publication;
+use APP\submission\Submission;
 use PKP\controllers\grid\GridRow;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
@@ -22,7 +24,7 @@ use PKP\linkAction\request\RemoteActionConfirmationModal;
 
 class MarketsGridRow extends GridRow
 {
-    /** @var Monograph */
+    /** @var Submission */
     public $_monograph;
 
     /** @var Publication */
@@ -98,7 +100,7 @@ class MarketsGridRow extends GridRow
     /**
      * Get the monograph for this row (already authorized)
      *
-     * @return Monograph
+     * @return Submission
      */
     public function getMonograph()
     {

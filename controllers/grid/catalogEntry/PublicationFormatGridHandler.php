@@ -26,14 +26,18 @@ use APP\facades\Repo;
 use APP\log\SubmissionEventLogEntry;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
+use APP\publication\Publication;
 use APP\publicationFormat\PublicationFormat;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
+use APP\services\PublicationFormatService;
+use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\controllers\grid\CategoryGridHandler;
 use PKP\controllers\grid\files\proof\form\ManageProofFilesForm;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\pubIds\form\PKPAssignPublicIdentifiersForm;
 use PKP\core\JSONMessage;
+use PKP\core\PKPRequest;
 use PKP\db\DAO;
 use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
@@ -335,11 +339,17 @@ class PublicationFormatGridHandler extends CategoryGridHandler
         $submission = $this->getSubmission();
         $representation = $this->getRequestedPublicationFormat($request);
 
-        if (!$request->checkCSRF() || !$representation) {
+        if (!$request->checkCSRF()) {
+            return new JSONMessage(false, __('form.csrfInvalid'));
+        }
+
+        if (!$representation) {
             return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
         }
 
-        Services::get('publicationFormat')->deleteFormat($representation, $submission, $context);
+        /** @var PublicationFormatService */
+        $publicationFormatService = Services::get('publicationFormat');
+        $publicationFormatService->deleteFormat($representation, $submission, $context);
 
         $currentUser = $request->getUser();
         $notificationMgr = new NotificationManager();
@@ -362,7 +372,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
         $representationDao = Application::getRepresentationDAO();
 
         if (!$representation) {
-            return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
+            return new JSONMessage(false, __('common.unknownError'));
         }
 
         $confirmationText = __('grid.catalogEntry.approvedRepresentation.removeMessage');
@@ -424,7 +434,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
         $publicationFormat = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_REPRESENTATION);
 
         if (!$publicationFormat) {
-            return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
+            return new JSONMessage(false, __('common.unknownError'));
         }
 
         $newAvailableState = (int) $request->getUserVar('newAvailableState');

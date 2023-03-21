@@ -280,7 +280,7 @@ class SeriesGridHandler extends SetupGridHandler
         $press = $request->getPress();
         $series = Repo::section()->get($request->getUserVar('seriesId'), $press->getId());
 
-        if (!isset($series)) {
+        if (!$series) {
             return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
         }
 

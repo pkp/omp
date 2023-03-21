@@ -15,6 +15,7 @@
 
 namespace APP\controllers\grid\catalogEntry;
 
+use APP\submission\Submission;
 use PKP\controllers\grid\GridRow;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
@@ -22,7 +23,7 @@ use PKP\linkAction\request\RemoteActionConfirmationModal;
 
 class RepresentativesGridRow extends GridRow
 {
-    /** @var Monograph */
+    /** @var Submission */
     public $_monograph;
 
     /**
@@ -93,7 +94,7 @@ class RepresentativesGridRow extends GridRow
     /**
      * Get the monograph for this row (already authorized)
      *
-     * @return Monograph
+     * @return Submission
      */
     public function getMonograph()
     {

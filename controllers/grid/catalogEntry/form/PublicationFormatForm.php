@@ -17,6 +17,9 @@ namespace APP\controllers\grid\catalogEntry\form;
 
 use APP\core\Application;
 use APP\log\SubmissionEventLogEntry;
+use APP\publication\Publication;
+use APP\publicationFormat\PublicationFormat;
+use APP\submission\Submission;
 use APP\template\TemplateManager;
 use Exception;
 use PKP\db\DAORegistry;
@@ -25,7 +28,7 @@ use PKP\log\SubmissionLog;
 
 class PublicationFormatForm extends Form
 {
-    /** @var Monograph The monograph associated with the format being edited */
+    /** @var Submission The monograph associated with the format being edited */
     public $_monograph;
 
     /** @var PublicationFormat the format being edited */
@@ -77,7 +80,7 @@ class PublicationFormatForm extends Form
     /**
      * Get the Monograph
      *
-     * @return Monograph
+     * @return Submission
      */
     public function getMonograph()
     {
@@ -87,7 +90,7 @@ class PublicationFormatForm extends Form
     /**
      * Set the MonographId
      *
-     * @param Monograph
+     * @param Submission
      */
     public function setMonograph($monograph)
     {

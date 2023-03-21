@@ -15,13 +15,16 @@
 
 namespace APP\controllers\grid\users\chapter;
 
+use APP\monograph\Chapter;
+use APP\publication\Publication;
+use APP\submission\Submission;
 use PKP\controllers\grid\GridCategoryRow;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\RemoteActionConfirmationModal;
 
 class ChapterGridCategoryRow extends GridCategoryRow
 {
-    /** @var Monograph */
+    /** @var Submission */
     public $_monograph;
 
     /** @var Publication */
@@ -96,7 +99,7 @@ class ChapterGridCategoryRow extends GridCategoryRow
     /**
      * Get the monograph for this row (already authorized)
      *
-     * @return Monograph
+     * @return Submission
      */
     public function getMonograph()
     {
