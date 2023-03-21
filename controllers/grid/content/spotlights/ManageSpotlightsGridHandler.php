@@ -19,11 +19,14 @@ use APP\controllers\grid\content\spotlights\form\SpotlightForm;
 use APP\facades\Repo;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
+use APP\press\Press;
 use APP\spotlight\Spotlight;
+use APP\spotlight\SpotlightDAO;
 use APP\submission\Submission;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
+use PKP\core\PKPRequest;
 use PKP\db\DAO;
 use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
@@ -80,7 +83,7 @@ class ManageSpotlightsGridHandler extends GridHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param array $args
      * @param array $roleAssignments
      */
@@ -223,7 +226,7 @@ class ManageSpotlightsGridHandler extends GridHandler
      * Edit a spotlight entry
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -310,19 +313,15 @@ class ManageSpotlightsGridHandler extends GridHandler
         $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /** @var SpotlightDAO $spotlightDao */
         $press = $this->getPress();
         $spotlight = $spotlightDao->getById($spotlightId, $press->getId());
-        if ($spotlight != null) { // authorized
-
-            $result = $spotlightDao->deleteObject($spotlight);
-
-            if ($result) {
-                $currentUser = $request->getUser();
-                $notificationMgr = new NotificationManager();
-                $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedSpotlight')]);
-                return DAO::getDataChangedEvent();
-            } else {
-                return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-            }
+        if (!$spotlight) {
+            return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
         }
+
+        $spotlightDao->deleteObject($spotlight);
+        $currentUser = $request->getUser();
+        $notificationMgr = new NotificationManager();
+        $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedSpotlight')]);
+        return DAO::getDataChangedEvent();
     }
 
     /**

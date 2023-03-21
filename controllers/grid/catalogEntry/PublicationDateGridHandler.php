@@ -19,6 +19,7 @@ use APP\controllers\grid\catalogEntry\form\PublicationDateForm;
 use APP\core\Application;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
+use APP\publicationFormat\PublicationDateDAO;
 use Exception;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
@@ -364,18 +365,14 @@ class PublicationDateGridHandler extends GridHandler
 
         $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /** @var PublicationDateDAO $publicationDateDao */
         $publicationDate = $publicationDateDao->getById($publicationDateId, $this->getPublication()->getId());
-        if ($publicationDate != null) { // authorized
-
-            $result = $publicationDateDao->deleteObject($publicationDate);
-
-            if ($result) {
-                $currentUser = $request->getUser();
-                $notificationMgr = new NotificationManager();
-                $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedPublicationDate')]);
-                return DAO::getDataChangedEvent();
-            } else {
-                return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-            }
+        if (!$publicationDate) {
+            return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
         }
+
+        $publicationDateDao->deleteObject($publicationDate);
+        $currentUser = $request->getUser();
+        $notificationMgr = new NotificationManager();
+        $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedPublicationDate')]);
+        return DAO::getDataChangedEvent();
     }
 }

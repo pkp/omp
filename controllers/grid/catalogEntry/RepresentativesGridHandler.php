@@ -17,12 +17,15 @@ namespace APP\controllers\grid\catalogEntry;
 
 use APP\controllers\grid\catalogEntry\form\RepresentativeForm;
 use APP\core\Application;
+use APP\monograph\RepresentativeDAO;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
 use APP\publicationFormat\MarketDAO;
+use APP\submission\Submission;
 use PKP\controllers\grid\CategoryGridHandler;
 use PKP\controllers\grid\GridColumn;
 use PKP\core\JSONMessage;
+use PKP\core\PKPRequest;
 use PKP\db\DAO;
 use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
@@ -32,7 +35,7 @@ use PKP\security\Role;
 
 class RepresentativesGridHandler extends CategoryGridHandler
 {
-    /** @var Monograph */
+    /** @var Submission */
     public $_monograph;
 
     /**
@@ -55,7 +58,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
     /**
      * Get the monograph associated with this grid.
      *
-     * @return Monograph
+     * @return Submission
      */
     public function getMonograph()
     {
@@ -65,7 +68,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
     /**
      * Set the Monograph
      *
-     * @param Monograph
+     * @param Submission
      */
     public function setMonograph($monograph)
     {
@@ -331,7 +334,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
         $representative = $representativeDao->getById($representativeId, $this->getMonograph()->getId());
 
         if (!$representative) {
-            return new JSONMessage(false, __('api.404.resourceNotFound'));
+            return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
         }
 
         // Don't allow a representative to be deleted if they are associated
@@ -350,15 +353,10 @@ class RepresentativesGridHandler extends CategoryGridHandler
             }
         }
 
-        $result = $representativeDao->deleteObject($representative);
-
-        if ($result) {
-            $currentUser = $request->getUser();
-            $notificationMgr = new NotificationManager();
-            $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedRepresentative')]);
-            return DAO::getDataChangedEvent($representative->getId(), (int) $representative->getIsSupplier());
-        } else {
-            return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-        }
+        $representativeDao->deleteObject($representative);
+        $currentUser = $request->getUser();
+        $notificationMgr = new NotificationManager();
+        $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedRepresentative')]);
+        return DAO::getDataChangedEvent($representative->getId(), (int) $representative->getIsSupplier());
     }
 }

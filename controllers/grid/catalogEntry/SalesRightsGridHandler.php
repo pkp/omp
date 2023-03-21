@@ -19,10 +19,15 @@ use APP\controllers\grid\catalogEntry\form\SalesRightsForm;
 use APP\core\Application;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
+use APP\publication\Publication;
+use APP\publicationFormat\PublicationFormat;
+use APP\publicationFormat\SalesRightsDAO;
+use APP\submission\Submission;
 use Exception;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
+use PKP\core\PKPRequest;
 use PKP\db\DAO;
 use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
@@ -46,8 +51,7 @@ class SalesRightsGridHandler extends GridHandler
         parent::__construct();
         $this->addRoleAssignment(
             [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SITE_ADMIN],
-            ['fetchGrid', 'fetchRow', 'addRights', 'editRights',
-                'updateRights', 'deleteRights']
+            ['fetchGrid', 'fetchRow', 'addRights', 'editRights', 'updateRights', 'deleteRights']
         );
     }
 
@@ -355,24 +359,18 @@ class SalesRightsGridHandler extends GridHandler
      */
     public function deleteRights($args, $request)
     {
-
         // Identify the sales rights entry to be deleted
         $salesRightsId = $request->getUserVar('salesRightsId');
-
         $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /** @var SalesRightsDAO $salesRightsDao */
         $salesRights = $salesRightsDao->getById($salesRightsId, $this->getPublication()->getId());
-        if ($salesRights != null) { // authorized
-
-            $result = $salesRightsDao->deleteObject($salesRights);
-
-            if ($result) {
-                $currentUser = $request->getUser();
-                $notificationMgr = new NotificationManager();
-                $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedSalesRights')]);
-                return DAO::getDataChangedEvent();
-            } else {
-                return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-            }
+        if (!$salesRights) {
+            return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
         }
+
+        $salesRightsDao->deleteObject($salesRights);
+        $currentUser = $request->getUser();
+        $notificationMgr = new NotificationManager();
+        $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedSalesRights')]);
+        return DAO::getDataChangedEvent();
     }
 }

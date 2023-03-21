@@ -19,10 +19,16 @@ use APP\controllers\grid\catalogEntry\form\MarketForm;
 use APP\core\Application;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
+use APP\publication\Publication;
+use APP\publicationFormat\MarketDAO;
+use APP\publicationFormat\PublicationFormat;
+use APP\publicationFormat\PublicationFormatDAO;
+use APP\submission\Submission;
 use Exception;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
+use PKP\core\PKPRequest;
 use PKP\db\DAO;
 use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
@@ -372,18 +378,14 @@ class MarketsGridHandler extends GridHandler
 
         $marketDao = DAORegistry::getDAO('MarketDAO'); /** @var MarketDAO $marketDao */
         $market = $marketDao->getById($marketId, $this->getPublication()->getId());
-        if ($market != null) { // authorized
-
-            $result = $marketDao->deleteObject($market);
-
-            if ($result) {
-                $currentUser = $request->getUser();
-                $notificationMgr = new NotificationManager();
-                $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedMarket')]);
-                return DAO::getDataChangedEvent();
-            } else {
-                return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-            }
+        if (!$market) {
+            return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
         }
+
+        $marketDao->deleteObject($market);
+        $currentUser = $request->getUser();
+        $notificationMgr = new NotificationManager();
+        $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedMarket')]);
+        return DAO::getDataChangedEvent();
     }
 }
