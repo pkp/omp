@@ -54,7 +54,7 @@ class SalesRightsGridRow extends GridRow
 
         if ($salesRights != null && is_numeric($salesRights->getId())) {
             $router = $request->getRouter();
-            $actionArgs = [
+            $actionArgs = ($this->getRequestArgs() ?: []) + [
                 'submissionId' => $monograph->getId(),
                 'salesRightsId' => $salesRights->getId()
             ];
