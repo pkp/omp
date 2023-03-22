@@ -20,18 +20,6 @@ use PKP\submissionFile\SubmissionFile;
 class MonographFileNativeXmlFilter extends \PKP\plugins\importexport\native\filter\SubmissionFileNativeXmlFilter
 {
     //
-    // Implement template methods from PersistableFilter
-    //
-    /**
-     * @copydoc PersistableFilter::getClassName()
-     */
-    public function getClassName()
-    {
-        return (string) self::class;
-    }
-
-
-    //
     // Implement/override functions from SubmissionFileNativeXmlFilter
     //
     /**

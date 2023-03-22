@@ -23,17 +23,6 @@ use PKP\plugins\importexport\native\filter\PKPNativeFilterHelper;
 
 class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter\NativeXmlPKPPublicationFilter
 {
-    //
-    // Implement template methods from PersistableFilter
-    //
-    /**
-     * @copydoc PersistableFilter::getClassName()
-     */
-    public function getClassName()
-    {
-        return (string) self::class;
-    }
-
     /**
      * Populate the submission object from the node
      *

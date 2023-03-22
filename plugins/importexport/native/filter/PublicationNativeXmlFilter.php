@@ -23,17 +23,6 @@ use PKP\plugins\importexport\PKPImportExportFilter;
 
 class PublicationNativeXmlFilter extends \PKP\plugins\importexport\native\filter\PKPPublicationNativeXmlFilter
 {
-    //
-    // Implement template methods from PersistableFilter
-    //
-    /**
-     * @copydoc PersistableFilter::getClassName()
-     */
-    public function getClassName()
-    {
-        return (string) self::class;
-    }
-
     /**
      * Get the representation export filter group name
      *

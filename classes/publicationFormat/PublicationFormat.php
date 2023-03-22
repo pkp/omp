@@ -364,7 +364,7 @@ class PublicationFormat extends Representation
     /**
      * Get the PublicationDate objects for this format.
      *
-     * @return array PublicationDate
+     * @return DAOResultFactory PublicationDate
      */
     public function getPublicationDates()
     {

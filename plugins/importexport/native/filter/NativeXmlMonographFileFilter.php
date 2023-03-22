@@ -15,14 +15,4 @@ namespace APP\plugins\importexport\native\filter;
 
 class NativeXmlMonographFileFilter extends \PKP\plugins\importexport\native\filter\NativeXmlSubmissionFileFilter
 {
-    //
-    // Implement template methods from PersistableFilter
-    //
-    /**
-     * @copydoc PersistableFilter::getClassName()
-     */
-    public function getClassName()
-    {
-        return (string) self::class;
-    }
 }

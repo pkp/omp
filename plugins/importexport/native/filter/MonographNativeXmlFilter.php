@@ -16,18 +16,6 @@ namespace APP\plugins\importexport\native\filter;
 class MonographNativeXmlFilter extends \PKP\plugins\importexport\native\filter\SubmissionNativeXmlFilter
 {
     //
-    // Implement template methods from PersistableFilter
-    //
-    /**
-     * @copydoc PersistableFilter::getClassName()
-     */
-    public function getClassName()
-    {
-        return (string) self::class;
-    }
-
-
-    //
     // Implement abstract methods from SubmissionNativeXmlFilter
     //
     /**
@@ -48,6 +36,7 @@ class MonographNativeXmlFilter extends \PKP\plugins\importexport\native\filter\S
      *
      * @param \DOMDocument $doc
      * @param \APP\submission\Submission $submission
+     *
      * @return \DOMElement
      */
     public function createSubmissionNode($doc, $submission)

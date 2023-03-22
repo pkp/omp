@@ -18,17 +18,6 @@ use PKP\plugins\importexport\PKPImportExportFilter;
 
 class NativeXmlMonographFilter extends \PKP\plugins\importexport\native\filter\NativeXmlSubmissionFilter
 {
-    //
-    // Implement template methods from PersistableFilter
-    //
-    /**
-     * @copydoc PersistableFilter::getClassName()
-     */
-    public function getClassName()
-    {
-        return (string) self::class;
-    }
-
     /**
      * Populate the submission object from the node
      *

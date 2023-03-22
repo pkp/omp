@@ -24,17 +24,6 @@ use PKP\xslt\XSLTransformer;
 class PublicationFormatNativeXmlFilter extends \PKP\plugins\importexport\native\filter\RepresentationNativeXmlFilter
 {
     //
-    // Implement template methods from PersistableFilter
-    //
-    /**
-     * @copydoc PersistableFilter::getClassName()
-     */
-    public function getClassName()
-    {
-        return (string) self::class;
-    }
-
-    //
     // Extend functions in RepresentationNativeXmlFilter
     //
     /**
