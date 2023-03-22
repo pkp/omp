@@ -283,19 +283,15 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		$spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
 		$press = $this->getPress();
 		$spotlight = $spotlightDao->getById($spotlightId, $press->getId());
-		if ($spotlight != null) { // authorized
-
-			$result = $spotlightDao->deleteObject($spotlight);
-
-			if ($result) {
-				$currentUser = $request->getUser();
-				$notificationMgr = new NotificationManager();
-				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedSpotlight')));
-				return DAO::getDataChangedEvent();
-			} else {
-				return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-			}
+		if (!$spotlight) {
+			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
+
+		$spotlightDao->deleteObject($spotlight);
+		$currentUser = $request->getUser();
+		$notificationMgr = new NotificationManager();
+		$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedSpotlight')));
+		return DAO::getDataChangedEvent();
 	}
 
 	/**

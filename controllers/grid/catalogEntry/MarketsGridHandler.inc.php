@@ -338,19 +338,15 @@ class MarketsGridHandler extends GridHandler {
 
 		$marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
 		$market = $marketDao->getById($marketId, $this->getPublication()->getId());
-		if ($market != null) { // authorized
-
-			$result = $marketDao->deleteObject($market);
-
-			if ($result) {
-				$currentUser = $request->getUser();
-				$notificationMgr = new NotificationManager();
-				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedMarket')));
-				return DAO::getDataChangedEvent();
-			} else {
-				return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-			}
+		if (!$market) {
+			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
+
+		$marketDao->deleteObject($market);
+		$currentUser = $request->getUser();
+		$notificationMgr = new NotificationManager();
+		$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedMarket')));
+		return DAO::getDataChangedEvent();
 	}
 }
 
