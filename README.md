@@ -13,8 +13,6 @@ Read one of these guides to get started using OMP:
 
 Visit our [Documentation Hub](https://docs.pkp.sfu.ca/) for user guides, tutorials, and technical documentation.
 
-You will find detailed guides in [docs](docs) folder.
-
 ## Bugs / Feature Requests
 
 > ⚠️ If you have found a security risk or vulnerability, please read our [security policy](SECURITY.md).
