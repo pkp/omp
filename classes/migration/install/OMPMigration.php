@@ -117,6 +117,8 @@ class OMPMigration extends \PKP\migration\Migration
         // Publication Format metadata.
         Schema::create('publication_format_settings', function (Blueprint $table) {
             $table->comment('More data about publication formats, including localized properties.');
+            $table->bigIncrements('publication_format_setting_id');
+
             $table->bigInteger('publication_format_id');
             $table->foreign('publication_format_id', 'publication_format_settings_publication_format_id')->references('publication_format_id')->on('publication_formats')->onDelete('cascade');
             $table->index(['publication_format_id'], 'publication_format_id_key');
@@ -125,7 +127,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->string('setting_name', 255);
             $table->text('setting_value')->nullable();
             $table->string('setting_type', 6)->comment('(bool|int|float|string|object)');
-            $table->unique(['publication_format_id', 'locale', 'setting_name'], 'publication_format_settings_pkey');
+            $table->unique(['publication_format_id', 'locale', 'setting_name'], 'publication_format_settings_unique');
         });
 
         Schema::create('identification_codes', function (Blueprint $table) {
@@ -227,6 +229,8 @@ class OMPMigration extends \PKP\migration\Migration
 
         Schema::create('features', function (Blueprint $table) {
             $table->comment('Information about which submissions are featured in the press.');
+            $table->bigIncrements('feature_id');
+
             $table->bigInteger('submission_id');
             $table->foreign('submission_id')->references('submission_id')->on('submissions')->onDelete('cascade');
             $table->index(['submission_id'], 'features_submission_id');
@@ -236,11 +240,13 @@ class OMPMigration extends \PKP\migration\Migration
 
             $table->bigInteger('seq');
 
-            $table->unique(['assoc_type', 'assoc_id', 'submission_id'], 'press_features_pkey');
+            $table->unique(['assoc_type', 'assoc_id', 'submission_id'], 'press_features_unique');
         });
 
         Schema::create('new_releases', function (Blueprint $table) {
             $table->comment('Information about which submissions in the press are considered new releases.');
+            $table->bigIncrements('new_release_id');
+
             $table->bigInteger('submission_id');
             $table->foreign('submission_id', 'new_releases_submission_id')->references('submission_id')->on('submissions')->onDelete('cascade');
             $table->index(['submission_id'], 'new_releases_submission_id');
@@ -248,7 +254,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->bigInteger('assoc_type');
             $table->bigInteger('assoc_id');
 
-            $table->unique(['assoc_type', 'assoc_id', 'submission_id'], 'new_releases_pkey');
+            $table->unique(['assoc_type', 'assoc_id', 'submission_id'], 'new_releases_unique');
         });
 
         // Press series.
@@ -376,6 +382,8 @@ class OMPMigration extends \PKP\migration\Migration
         // Spotlight metadata.
         Schema::create('spotlight_settings', function (Blueprint $table) {
             $table->comment('More data about spotlights, including localized properties.');
+            $table->bigIncrements('spotlight_setting_id');
+
             $table->bigInteger('spotlight_id');
             $table->foreign('spotlight_id')->references('spotlight_id')->on('spotlights')->onCascade('delete');
             $table->index(['spotlight_id'], 'spotlight_settings_id');
@@ -385,7 +393,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->text('setting_value')->nullable();
             $table->string('setting_type', 6)->comment('(bool|int|float|string|object|date)');
 
-            $table->unique(['spotlight_id', 'locale', 'setting_name'], 'spotlight_settings_pkey');
+            $table->unique(['spotlight_id', 'locale', 'setting_name'], 'spotlight_settings_unique');
         });
 
         // Logs queued (unfulfilled) payments.

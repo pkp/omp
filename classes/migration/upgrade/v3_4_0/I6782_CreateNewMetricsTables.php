@@ -26,6 +26,8 @@ class I6782_CreateNewMetricsTables extends Migration
     public function up(): void
     {
         Schema::create('metrics_context', function (Blueprint $table) {
+            $table->bigIncrements('metrics_context_id');
+
             $table->string('load_id', 255);
             $table->index(['load_id'], 'metrics_context_load_id');
 
@@ -37,6 +39,8 @@ class I6782_CreateNewMetricsTables extends Migration
             $table->integer('metric');
         });
         Schema::create('metrics_series', function (Blueprint $table) {
+            $table->bigIncrements('metrics_series_id');
+
             $table->string('load_id', 255);
             $table->index(['load_id'], 'metrics_series_load_id');
 
@@ -54,6 +58,8 @@ class I6782_CreateNewMetricsTables extends Migration
             $table->index(['context_id', 'series_id'], 'metrics_series_context_id_series_id');
         });
         Schema::create('metrics_submission', function (Blueprint $table) {
+            $table->bigIncrements('metrics_submission_id');
+
             $table->string('load_id', 255);
             $table->index(['load_id'], 'ms_load_id');
 
@@ -85,6 +91,8 @@ class I6782_CreateNewMetricsTables extends Migration
             $table->index(['context_id', 'submission_id', 'assoc_type', 'file_type'], 'ms_context_id_submission_id_assoc_type_file_type');
         });
         Schema::create('metrics_counter_submission_daily', function (Blueprint $table) {
+            $table->bigIncrements('metrics_counter_submission_daily_id');
+
             $table->string('load_id', 255);
             $table->index(['load_id'], 'msd_load_id');
 
@@ -112,6 +120,8 @@ class I6782_CreateNewMetricsTables extends Migration
             $table->unique(['load_id', 'context_id', 'submission_id', 'date'], 'msd_uc_load_id_context_id_submission_id_date');
         });
         Schema::create('metrics_counter_submission_monthly', function (Blueprint $table) {
+            $table->bigIncrements('metrics_counter_submission_monthly_id');
+
             $table->bigInteger('context_id');
             $table->foreign('context_id', 'msm_context_id_foreign')->references('press_id')->on('presses')->onDelete('cascade');
             $table->index(['context_id'], 'metrics_counter_submission_monthly_context_id');
@@ -136,6 +146,8 @@ class I6782_CreateNewMetricsTables extends Migration
             $table->unique(['context_id', 'submission_id', 'month'], 'msm_uc_context_id_submission_id_month');
         });
         Schema::create('metrics_counter_submission_institution_daily', function (Blueprint $table) {
+            $table->bigIncrements('metrics_counter_submission_institution_daily_id');
+
             $table->string('load_id', 255);
             $table->index(['load_id'], 'msid_load_id');
 
@@ -167,6 +179,8 @@ class I6782_CreateNewMetricsTables extends Migration
             $table->unique(['load_id', 'context_id', 'submission_id', 'institution_id', 'date'], 'msid_uc_load_id_context_id_submission_id_institution_id_date');
         });
         Schema::create('metrics_counter_submission_institution_monthly', function (Blueprint $table) {
+            $table->bigIncrements('metrics_counter_submission_institution_monthly_id');
+
             $table->bigInteger('context_id');
             $table->foreign('context_id', 'msim_context_id_foreign')->references('press_id')->on('presses')->onDelete('cascade');
             $table->index(['context_id'], 'msim_context_id');
@@ -195,6 +209,8 @@ class I6782_CreateNewMetricsTables extends Migration
             $table->unique(['context_id', 'submission_id', 'institution_id', 'month'], 'msim_uc_context_id_submission_id_institution_id_month');
         });
         Schema::create('metrics_submission_geo_daily', function (Blueprint $table) {
+            $table->bigIncrements('metrics_submission_geo_daily_id');
+
             $table->string('load_id', 255);
             $table->index(['load_id'], 'msgd_load_id');
 
@@ -217,6 +233,8 @@ class I6782_CreateNewMetricsTables extends Migration
             $table->unique(['load_id', 'context_id', 'submission_id', 'country', 'region', 'city', 'date'], 'msgd_uc_load_context_submission_c_r_c_date');
         });
         Schema::create('metrics_submission_geo_monthly', function (Blueprint $table) {
+            $table->bigIncrements('metrics_submission_geo_monthly_id');
+
             $table->bigInteger('context_id');
             $table->foreign('context_id', 'msgm_context_id_foreign')->references('press_id')->on('presses')->onDelete('cascade');
             $table->index(['context_id'], 'metrics_submission_geo_monthly_context_id');
@@ -237,6 +255,8 @@ class I6782_CreateNewMetricsTables extends Migration
         });
         // Usage stats total book and chapter item temporary records
         Schema::create('usage_stats_total_temporary_records', function (Blueprint $table) {
+            $table->bigIncrements('usage_stats_temp_total_id');
+
             $table->dateTime('date', $precision = 0);
             $table->string('ip', 255);
             $table->string('user_agent', 255);
@@ -277,6 +297,8 @@ class I6782_CreateNewMetricsTables extends Migration
         // Usage stats unique book and chapter item investigations temporary records
         // No need to consider series_id here because investigations are only relevant/calculated on submission level.
         Schema::create('usage_stats_unique_item_investigations_temporary_records', function (Blueprint $table) {
+            $table->bigIncrements('usage_stats_temp_unique_item_id');
+
             $table->dateTime('date', $precision = 0);
             $table->string('ip', 255);
             $table->string('user_agent', 255);
@@ -312,6 +334,8 @@ class I6782_CreateNewMetricsTables extends Migration
         // Usage stats unique book and chapter item requests temporary records
         // No need to consider series_id here because requests are only relevant/calculated on submission level.
         Schema::create('usage_stats_unique_item_requests_temporary_records', function (Blueprint $table) {
+            $table->bigIncrements('usage_stats_temp_item_id');
+
             $table->dateTime('date', $precision = 0);
             $table->string('ip', 255);
             $table->string('user_agent', 255);
@@ -347,6 +371,8 @@ class I6782_CreateNewMetricsTables extends Migration
         // Usage stats unique title investigations temporary records
         // No need to consider series_id here because investigations are only relevant/calculated on submission level.
         Schema::create('usage_stats_unique_title_investigations_temporary_records', function (Blueprint $table) {
+            $table->bigIncrements('usage_stats_temp_unique_investigations_id');
+
             $table->dateTime('date', $precision = 0);
             $table->string('ip', 255);
             $table->string('user_agent', 255);
@@ -382,6 +408,8 @@ class I6782_CreateNewMetricsTables extends Migration
         // Usage stats unique title requests temporary records
         // No need to consider series_id here because requests are only relevant/calculated on submission level.
         Schema::create('usage_stats_unique_title_requests_temporary_records', function (Blueprint $table) {
+            $table->bigIncrements('usage_stats_temp_unique_requests_id');
+
             $table->dateTime('date', $precision = 0);
             $table->string('ip', 255);
             $table->string('user_agent', 255);
@@ -416,6 +444,8 @@ class I6782_CreateNewMetricsTables extends Migration
         });
         // Usage stats institution temporary records
         Schema::create('usage_stats_institution_temporary_records', function (Blueprint $table) {
+            $table->bigIncrements('usage_stats_temp_institution_id');
+
             $table->string('load_id', 255);
             $table->bigInteger('line_number');
 
