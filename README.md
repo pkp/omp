@@ -1,49 +1,33 @@
 # Open Monograph Press
 
-> Open Monograph Press (OMP) has been developed by the Public Knowledge Project. For general information about OMP and other open research systems, visit the [PKP web site][pkp].
-
 [![Build Status](https://travis-ci.org/pkp/omp.svg?branch=main)](https://travis-ci.org/pkp/omp)
 
-## Documentation
+Open Monograph Press (OMP) is open source software developed by the [Public Knowledge Project](https://pkp.sfu.ca/) to manage scholarly presses. [Learn More](https://pkp.sfu.ca/software/omp/)
+
+## Usage
+
+Read one of these guides to get started using OMP:
+
+- Read the [Admin Guide](https://docs.pkp.sfu.ca/admin-guide/) to learn how to install and configure the application from an official release package. Use this guide to deploy to production.
+- Read the [Getting Started](https://docs.pkp.sfu.ca/dev/documentation/en/getting-started) guide to learn how to install the application from this source repository. Use this guide for local development.
+
+Visit our [Documentation Hub](https://docs.pkp.sfu.ca/) for user guides, tutorials, and technical documentation.
 
 You will find detailed guides in [docs](docs) folder.
 
-## Using Git development source
+## Bugs / Feature Requests
 
-Checkout submodules and copy default configuration :
+> ⚠️ If you have found a security risk or vulnerability, please read our [security policy](SECURITY.md).
 
-    git submodule update --init --recursive
-    cp config.TEMPLATE.inc.php config.inc.php
-
-Install or update dependencies via Composer (https://getcomposer.org/):
-
-    composer --working-dir=lib/pkp install
-    composer --working-dir=plugins/paymethod/paypal install
-    composer --working-dir=plugins/generic/citationStyleLanguage install
-
-Install or update dependencies via [NPM](https://www.npmjs.com/):
-
-    # install [nodejs](https://nodejs.org/en/) if you don't already have it
-    npm install
-    npm run build
-
-If your PHP version supports built-in development server :
-
-    php -S localhost:8000
-
-See [Development documentation](https://docs.pkp.sfu.ca/dev/) for more complete development guidance.
-
-## Bugs / Issues
-
-See https://github.com/pkp/pkp-lib/#issues for information on reporting issues.
-
-## Running Tests
-
-See [Unit Tests](https://pkp.sfu.ca/wiki/index.php?title=Unit_Tests), and also [Github Documentation for PKP Contributors](https://pkp.sfu.ca/wiki/index.php?title=Github_Documentation_for_PKP_Contributors) for Travis-based continuous integration testing.
+All issues should be filed at the [pkp/pkp-lib](https://github.com/pkp/pkp-lib/issues/) repository. Feature requests can be made at our [Community Forum](https://forum.pkp.sfu.ca/). Learn more about how to [report a problem](https://docs.pkp.sfu.ca/dev/contributors/#report-a-problem).
 
 ## Community Code of Conduct
 
-This repository is one of PKP's community spaces and all activities here are guided by [PKP's Code of Conduct](https://pkp.sfu.ca/code-of-conduct/). Please review the Code and help us create a welcoming environment for all participants.
+This repository is a PKP community space. All activities here are governed by [PKP's Code of Conduct](https://pkp.sfu.ca/code-of-conduct/). Please review the Code and help us create a welcoming environment for all participants.
+
+## Contributions
+
+Read the [Contributor's Guide](https://docs.pkp.sfu.ca/dev/contributors/) to learn how to make a pull request. This document describes our code formatting guidelines as well as information about how we organize stable branches and submodules.
 
 ## License
 
@@ -52,12 +36,6 @@ This software is released under the the [GNU General Public License][gpl-licence
 See the file [COPYING][gpl-licence] included with this distribution for the terms
 of this license.
 
-Third parties are welcome to modify and redistribute OJS in entirety or parts
+Third parties are welcome to modify and redistribute OMP in entirety or parts
 according to the terms of this license. PKP also welcomes patches for
 improvements or bug fixes to the software.
-
-[pkp]: http://pkp.sfu.ca/
-[readme]: docs/README
-[wiki-dev]: http://pkp.sfu.ca/wiki/index.php/HOW-TO_check_out_PKP_applications_from_git
-[php-unit]: http://phpunit.de/
-[gpl-licence]: docs/COPYING
