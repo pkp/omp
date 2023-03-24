@@ -288,6 +288,8 @@ class OMPMigration extends \PKP\migration\Migration
         // Series-specific settings
         Schema::create('series_settings', function (Blueprint $table) {
             $table->comment('More data about series, including localized properties such as series titles.');
+            $table->bigIncrements('series_setting_id');
+
             $table->bigInteger('series_id');
             $table->foreign('series_id', 'series_settings_series_id')->references('series_id')->on('series')->onDelete('cascade');
             $table->index(['series_id'], 'series_settings_series_id');
@@ -296,7 +298,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->string('setting_name', 255);
             $table->text('setting_value')->nullable();
 
-            $table->unique(['series_id', 'locale', 'setting_name'], 'series_settings_pkey');
+            $table->unique(['series_id', 'locale', 'setting_name'], 'series_settings_unique');
         });
 
         Schema::create('submission_chapters', function (Blueprint $table) {
@@ -328,7 +330,10 @@ class OMPMigration extends \PKP\migration\Migration
         // Language dependent monograph chapter metadata.
         Schema::create('submission_chapter_settings', function (Blueprint $table) {
             $table->comment('More information about submission chapters, including localized properties such as chapter titles.');
+            $table->bigIncrements('submission_chapter_setting_id');
+
             $table->bigInteger('chapter_id');
+
             $table->foreign('chapter_id')->references('chapter_id')->on('submission_chapters')->onDelete('cascade');
             $table->index(['chapter_id'], 'submission_chapter_settings_chapter_id');
 
@@ -337,7 +342,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->text('setting_value')->nullable();
             $table->string('setting_type', 6)->comment('(bool|int|float|string|object)');
 
-            $table->unique(['chapter_id', 'locale', 'setting_name'], 'submission_chapter_settings_pkey');
+            $table->unique(['chapter_id', 'locale', 'setting_name'], 'submission_chapter_settings_unique');
         });
 
         Schema::create('submission_chapter_authors', function (Blueprint $table) {

@@ -117,9 +117,9 @@
 		<migration class="APP\migration\upgrade\v3_4_0\PreflightCheckMigration" fallback="3.3.9.9" />
 		<migration class="PKP\migration\upgrade\v3_4_0\I8060_UpdateUserLocalesDefaultToEmptyArrayFromNull" />
 		<migration class="PKP\migration\upgrade\v3_4_0\I7245_UpdateUserLocaleStringToParsableJsonString" />
-		<migration class="APP\migration\upgrade\v3_4_0\MergeLocalesMigration"/>
 		<migration class="APP\migration\upgrade\v3_4_0\I3573_AddPrimaryKeys" />
 		<migration class="APP\migration\upgrade\v3_4_0\I6093_AddForeignKeys" />
+		<migration class="APP\migration\upgrade\v3_4_0\MergeLocalesMigration"/>
 		<migration class="PKP\migration\upgrade\v3_4_0\FailedJobsMigration" />
 		<migration class="PKP\migration\upgrade\v3_4_0\UpgradeMigration" />
 		<migration class="APP\migration\upgrade\v3_4_0\I6091_AddFilterNamespaces" />

@@ -25,11 +25,11 @@ class MergeLocalesMigration extends \PKP\migration\upgrade\v3_4_0\MergeLocalesMi
     public static function getSettingsTables(): Collection
     {
         return collect([
-            'press_settings' => 'press_id',
-            'publication_format_settings' => 'publication_format_id',
-            'series_settings' => 'series_id',
-            'spotlight_settings' => 'spotlight_id',
-            'submission_chapter_settings' => 'chapter_id',
+            'press_settings' => ['press_id', 'press_setting_id'],
+            'publication_format_settings' => ['publication_format_id', 'publication_format_setting_id'],
+            'series_settings' => ['series_id', 'series_setting_id'],
+            'spotlight_settings' => ['spotlight_id', 'spotlight_setting_id'],
+            'submission_chapter_settings' => ['chapter_id', 'submission_chapter_setting_id'],
         ])->merge(parent::getSettingsTables());
     }
 }

@@ -23,6 +23,8 @@ class I3573_AddPrimaryKeys extends \PKP\migration\upgrade\v3_4_0\I3573_AddPrimar
             'features' => 'feature_id', // INDEX RENAME?
             'new_releases' => 'new_release_id',
             'spotlight_settings' => 'spotlight_setting_id',
+            'submission_chapter_settings' => 'submission_chapter_setting_id',
+            'series_settings' => 'series_setting_id',
             'press_settings' => 'press_setting_id',
             'metrics_context' => 'metrics_context_id',
             'metrics_series' => 'metrics_series_id',
@@ -44,13 +46,14 @@ class I3573_AddPrimaryKeys extends \PKP\migration\upgrade\v3_4_0\I3573_AddPrimar
 
     public static function getIndexData(): array
     {
-        return [
+        return array_merge(parent::getIndexData(), [
             'press_settings' => ['press_settings_pkey', ['press_id', 'locale', 'setting_name'], 'press_settings_unique'],
             'series_settings' => ['series_settings_pkey', ['series_id', 'locale', 'setting_name'], 'series_settings_unique'],
             'publication_format_settings' => ['publication_format_settings_pkey', ['publication_format_id', 'locale', 'setting_name'], 'publication_format_settings_unique'],
+            'submission_chapter_settings' => ['submission_chapter_settings_pkey', ['chapter_id', 'locale', 'setting_name'], 'submission_chapter_settings_unique'],
             'features' => ['press_features_pkey', ['assoc_type', 'assoc_id', 'submission_id'], 'press_features_unique'],
             'new_releases' => ['new_releases_pkey', ['assoc_type', 'assoc_id', 'submission_id'], 'new_releases_unique'],
             'spotlight_settings' => ['spotlight_settings_pkey', ['spotlight_id', 'locale', 'setting_name'], 'spotlight_settings_unique'],
-        ];
+        ]);
     }
 }
