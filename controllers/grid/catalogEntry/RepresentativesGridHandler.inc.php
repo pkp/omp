@@ -307,7 +307,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 		$representative = $representativeDao->getById($representativeId, $this->getMonograph()->getId());
 
 		if (!$representative) {
-			return new JSONMessage(false, __('api.404.resourceNotFound'));
+			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
 
 		// Don't allow a representative to be deleted if they are associated
@@ -324,16 +324,11 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 			}
 		}
 
-		$result = $representativeDao->deleteObject($representative);
-
-		if ($result) {
-			$currentUser = $request->getUser();
-			$notificationMgr = new NotificationManager();
-			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedRepresentative')));
-			return DAO::getDataChangedEvent($representative->getId(), (int) $representative->getIsSupplier());
-		} else {
-			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-		}
+		$representativeDao->deleteObject($representative);
+		$currentUser = $request->getUser();
+		$notificationMgr = new NotificationManager();
+		$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedRepresentative')));
+		return DAO::getDataChangedEvent($representative->getId(), (int) $representative->getIsSupplier());
 	}
 }
 

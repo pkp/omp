@@ -328,19 +328,15 @@ class SalesRightsGridHandler extends GridHandler {
 
 		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
 		$salesRights = $salesRightsDao->getById($salesRightsId, $this->getPublication()->getId());
-		if ($salesRights != null) { // authorized
-
-			$result = $salesRightsDao->deleteObject($salesRights);
-
-			if ($result) {
-				$currentUser = $request->getUser();
-				$notificationMgr = new NotificationManager();
-				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedSalesRights')));
-				return DAO::getDataChangedEvent();
-			} else {
-				return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-			}
+		if (!$salesRights) {
+			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
+
+		$salesRightsDao->deleteObject($salesRights);
+		$currentUser = $request->getUser();
+		$notificationMgr = new NotificationManager();
+		$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedSalesRights')));
+		return DAO::getDataChangedEvent();
 	}
 }
 

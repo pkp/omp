@@ -331,19 +331,15 @@ class IdentificationCodeGridHandler extends GridHandler {
 
 		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
 		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getPublication()->getId());
-		if ($identificationCode != null) { // authorized
-
-			$result = $identificationCodeDao->deleteObject($identificationCode);
-
-			if ($result) {
-				$currentUser = $request->getUser();
-				$notificationMgr = new NotificationManager();
-				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedIdentificationCode')));
-				return DAO::getDataChangedEvent();
-			} else {
-				return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-			}
+		if (!$identificationCode) {
+			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
+
+		$identificationCodeDao->deleteObject($identificationCode);
+		$currentUser = $request->getUser();
+		$notificationMgr = new NotificationManager();
+		$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedIdentificationCode')));
+		return DAO::getDataChangedEvent();
 	}
 }
 
