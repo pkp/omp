@@ -15,6 +15,7 @@
 
 namespace APP\controllers\grid\catalogEntry;
 
+use APP\submission\Submission;
 use PKP\controllers\grid\GridRow;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
@@ -22,7 +23,7 @@ use PKP\linkAction\request\RemoteActionConfirmationModal;
 
 class PublicationDateGridRow extends GridRow
 {
-    /** @var Monograph */
+    /** @var Submission */
     public $_monograph;
 
     /** @var Publication */
@@ -31,7 +32,7 @@ class PublicationDateGridRow extends GridRow
     /**
      * Constructor
      *
-     * @param Monograph $monograph
+     * @param Submission $monograph
      */
     public function __construct($monograph, $publication)
     {
@@ -100,7 +101,7 @@ class PublicationDateGridRow extends GridRow
     /**
      * Get the monograph for this row (already authorized)
      *
-     * @return Monograph
+     * @return Submission
      */
     public function getMonograph()
     {

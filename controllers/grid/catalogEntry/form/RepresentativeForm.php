@@ -15,14 +15,16 @@
 
 namespace APP\controllers\grid\catalogEntry\form;
 
-use PKP\db\DAORegistry;
-use APP\template\TemplateManager;
-use PKP\form\Form;
 use APP\core\Application;
+use APP\monograph\Representative;
+use APP\submission\Submission;
+use APP\template\TemplateManager;
+use PKP\db\DAORegistry;
+use PKP\form\Form;
 
 class RepresentativeForm extends Form
 {
-    /** @var Monograph The monograph associated with the format being edited */
+    /** @var Submission The monograph associated with the format being edited */
     public $_monograph;
 
     /** @var Representative the entry being edited */
@@ -82,7 +84,7 @@ class RepresentativeForm extends Form
     /**
      * Get the Monograph
      *
-     * @return Monograph
+     * @return Submission
      */
     public function getMonograph()
     {
@@ -92,7 +94,7 @@ class RepresentativeForm extends Form
     /**
      * Set the Monograph
      *
-     * @param Monograph
+     * @param Submission
      */
     public function setMonograph($monograph)
     {

@@ -19,6 +19,8 @@ namespace APP\controllers\grid\users\chapter\form;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\monograph\Chapter;
+use APP\publication\Publication;
+use APP\submission\Submission;
 use APP\submissionFile\DAO;
 use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
@@ -26,7 +28,7 @@ use PKP\form\Form;
 
 class ChapterForm extends Form
 {
-    /** @var Monograph The monograph associated with the chapter being edited */
+    /** @var Submission The monograph associated with the chapter being edited */
     public $_monograph;
 
     /** @var Publication The publication associated with the chapter being edited */
@@ -38,7 +40,7 @@ class ChapterForm extends Form
     /**
      * Constructor.
      *
-     * @param Monograph $monograph
+     * @param Submission $monograph
      * @param Publication $publication
      * @param Chapter $chapter
      */
@@ -66,7 +68,7 @@ class ChapterForm extends Form
     /**
      * Get the monograph associated with this chapter grid.
      *
-     * @return Monograph
+     * @return Submission
      */
     public function getMonograph()
     {
@@ -76,7 +78,7 @@ class ChapterForm extends Form
     /**
      * Set the monograph associated with this chapter grid.
      *
-     * @param Monograph $monograph
+     * @param Submission $monograph
      */
     public function setMonograph($monograph)
     {

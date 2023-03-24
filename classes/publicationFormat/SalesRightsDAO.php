@@ -17,10 +17,8 @@
 
 namespace APP\publicationFormat;
 
-use PKP\plugins\Hook;
 use PKP\db\DAOResultFactory;
-
-use APP\publicationFormat\SalesRights;
+use PKP\plugins\Hook;
 
 class SalesRightsDAO extends \PKP\db\DAO
 {

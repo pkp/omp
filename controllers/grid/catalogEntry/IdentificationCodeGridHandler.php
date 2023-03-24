@@ -19,10 +19,16 @@ use APP\controllers\grid\catalogEntry\form\IdentificationCodeForm;
 use APP\core\Application;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
+use APP\publication\Publication;
+use APP\publicationFormat\IdentificationCodeDAO;
+use APP\publicationFormat\PublicationFormat;
+use APP\publicationFormat\PublicationFormatDAO;
+use APP\submission\Submission;
 use Exception;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
+use PKP\core\PKPRequest;
 use PKP\db\DAO;
 use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
@@ -364,18 +370,14 @@ class IdentificationCodeGridHandler extends GridHandler
 
         $identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /** @var IdentificationCodeDAO $identificationCodeDao */
         $identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getPublication()->getId());
-        if ($identificationCode != null) { // authorized
-
-            $result = $identificationCodeDao->deleteObject($identificationCode);
-
-            if ($result) {
-                $currentUser = $request->getUser();
-                $notificationMgr = new NotificationManager();
-                $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedIdentificationCode')]);
-                return DAO::getDataChangedEvent();
-            } else {
-                return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-            }
+        if (!$identificationCode) {
+            return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
         }
+
+        $identificationCodeDao->deleteObject($identificationCode);
+        $currentUser = $request->getUser();
+        $notificationMgr = new NotificationManager();
+        $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedIdentificationCode')]);
+        return DAO::getDataChangedEvent();
     }
 }

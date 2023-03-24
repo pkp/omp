@@ -15,6 +15,8 @@
 namespace APP\controllers\grid\files\proof\form;
 
 use APP\facades\Repo;
+use APP\publicationFormat\PublicationFormat;
+use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\form\Form;
 use PKP\submissionFile\SubmissionFile;
@@ -24,7 +26,7 @@ class ApprovedProofForm extends Form
     /** @var SubmissionFile $approvedProof */
     public $approvedProof;
 
-    /** @var Monograph $monograph */
+    /** @var Submission $monograph */
     public $monograph;
 
     /** @var PublicationFormat $publicationFormat */
@@ -33,7 +35,7 @@ class ApprovedProofForm extends Form
     /**
      * Constructor
      *
-     * @param Monograph $monograph
+     * @param Submission $monograph
      * @param PublicationFormat $publicationFormat
      * @param int $submissionFileId
      */

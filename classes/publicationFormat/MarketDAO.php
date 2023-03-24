@@ -17,10 +17,8 @@
 
 namespace APP\publicationFormat;
 
-use PKP\plugins\Hook;
 use PKP\db\DAOResultFactory;
-
-use APP\publicationFormat\Market;
+use PKP\plugins\Hook;
 
 class MarketDAO extends \PKP\db\DAO
 {

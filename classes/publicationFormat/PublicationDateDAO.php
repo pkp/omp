@@ -17,10 +17,8 @@
 
 namespace APP\publicationFormat;
 
-use PKP\plugins\Hook;
 use PKP\db\DAOResultFactory;
-
-use APP\publicationFormat\PublicationDate;
+use PKP\plugins\Hook;
 
 class PublicationDateDAO extends \PKP\db\DAO
 {

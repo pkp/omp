@@ -16,6 +16,7 @@
 namespace APP\search;
 
 use APP\facades\Repo;
+use APP\submission\Submission;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
 use PKP\plugins\Hook;
@@ -137,7 +138,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
     /**
      * Index all monograph files (galley files).
      *
-     * @param Monograph $monograph
+     * @param Submission $monograph
      */
     public function submissionFilesChanged($monograph)
     {

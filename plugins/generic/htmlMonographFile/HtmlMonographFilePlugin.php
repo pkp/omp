@@ -144,7 +144,7 @@ class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
      * This function performs any necessary filtering, like image URL replacement.
      *
      * @param PKPRequest $request
-     * @param Monograph $monograph
+     * @param Submission $monograph
      * @param PublicationFormat $publicationFormat
      * @param SubmissionFile $submissionFile
      *
