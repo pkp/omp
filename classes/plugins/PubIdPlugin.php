@@ -39,7 +39,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
     public function getPubObjectTypes()
     {
         $pubObjectTypes = parent::getPubObjectTypes();
-        $pubObjectTypes['Chapter'] = '\Chapter'; // FIXME: Add namespacing
+        $pubObjectTypes['Chapter'] = Chapter::class;
         return $pubObjectTypes;
     }
 
