@@ -30,9 +30,6 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
     /** @var int Number of items to show at one time */
     public $count = 30;
 
-    /** @var array Query parameters to pass if this list executes GET requests  */
-    public $getParams = [];
-
     /** @var int Count of total items available for list */
     public $itemsMax = 0;
 
