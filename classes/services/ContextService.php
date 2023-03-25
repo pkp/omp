@@ -292,7 +292,7 @@ class ContextService extends \PKP\services\PKPContextService
 
                     imagedestroy($thumbnail);
                     if ($object instanceof Submission) {
-                        $object->setCoverImage([
+                        $object->setData('coverImage', [
                             'name' => $cover['name'],
                             'width' => $cover['width'],
                             'height' => $cover['height'],
@@ -315,7 +315,7 @@ class ContextService extends \PKP\services\PKPContextService
                         ]);
                     }
                     // Update category object to store new thumbnail information.
-                    $objectDao->updateObject($object);
+                    $objectDao->update($object);
                 }
                 unset($object);
             }

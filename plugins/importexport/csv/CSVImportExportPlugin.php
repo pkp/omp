@@ -240,15 +240,15 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $temporaryFileManager->copyFile($pdfUrl, $temporaryFilename);
 
                         $submissionFile = $submissionFileDao->newDataObject();
-                        $submissionFile->setSubmissionId($submissionId);
+                        $submissionFile->setData('submissionId', $submissionId);
                         $submissionFile->setSubmissionLocale($submission->getLocale());
                         $submissionFile->setGenreId($genre->getId());
                         $submissionFile->setFileStage(SubmissionFile::SUBMISSION_FILE_PROOF);
                         $submissionFile->setDateUploaded(Core::getCurrentDate());
                         $submissionFile->setDateModified(Core::getCurrentDate());
                         $submissionFile->setAssocType(Application::ASSOC_TYPE_REPRESENTATION);
-                        $submissionFile->setAssocId($publicationFormatId);
-                        $submissionFile->setFileType('application/pdf');
+                        $submissionFile->setData('assocId', $publicationFormatId);
+                        $submissionFile->setData('mimetype', 'application/pdf');
 
                         // Assume open access, no price.
                         $submissionFile->setDirectSalesPrice(0);

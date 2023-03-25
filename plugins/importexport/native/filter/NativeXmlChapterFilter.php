@@ -94,21 +94,21 @@ class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\Nat
                     case 'title':
                         $locale = $n->getAttribute('locale');
                         if (empty($locale)) {
-                            $locale = $context->getLocale();
+                            $locale = $context->getPrimaryLocale();
                         }
                         $chapter->setData('title', $n->textContent, $locale);
                         break;
                     case 'abstract':
                         $locale = $n->getAttribute('locale');
                         if (empty($locale)) {
-                            $locale = $context->getLocale();
+                            $locale = $context->getPrimaryLocale();
                         }
                         $chapter->setData('abstract', $n->textContent, $locale);
                         break;
                     case 'subtitle':
                         $locale = $n->getAttribute('locale');
                         if (empty($locale)) {
-                            $locale = $context->getLocale();
+                            $locale = $context->getPrimaryLocale();
                         }
                         $chapter->setData('subtitle', $n->textContent, $locale);
                         break;

@@ -302,13 +302,8 @@ class Submission extends PKPSubmission
     public function getAuthorOrEditorString($preferred = true)
     {
         if ($this->getWorkType() != self::WORK_TYPE_EDITED_VOLUME) {
-            $userGroupIds = Repo::author()->getSubmissionAuthors($this, true)
-                ->pluck('userGroupId')
-                ->unique()
-                ->toArray();
-
             $userGroups = Repo::userGroup()->getCollector()
-                ->filterByUserIds($userGroupIds)
+                ->filterByContextIds([$this->getData('contextId')])
                 ->getMany();
 
             return $this->getCurrentPublication()->getAuthorString($userGroups);
