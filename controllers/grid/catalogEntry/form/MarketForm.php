@@ -16,6 +16,7 @@
 namespace APP\controllers\grid\catalogEntry\form;
 
 use APP\monograph\RepresentativeDAO;
+use APP\publication\Publication;
 use APP\template\TemplateManager;
 use Exception;
 use PKP\db\DAORegistry;
@@ -28,6 +29,9 @@ class MarketForm extends Form
 
     /** @var Market Market the entry being edited */
     public $_market;
+
+    /** @var Publication */
+    public $_publication;
 
     /**
      * Constructor.

@@ -35,6 +35,9 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
     /** @var bool */
     protected $_canManage;
 
+    /** @var int */
+    public $_publicationId;
+
     /**
      * Constructor
      *

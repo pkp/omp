@@ -43,6 +43,9 @@ class SalesRightsGridHandler extends GridHandler
     /** @var PublicationFormat */
     public $_publicationFormat;
 
+    /** @var Publication */
+    public $_publication;
+
     /**
      * Constructor
      */
