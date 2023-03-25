@@ -202,35 +202,6 @@ class SpotlightDAO extends \PKP\db\DAO
     }
 
     /**
-     * Delete spotlights by spotlight type ID.
-     *
-     * @param int $typeId
-     *
-     * @return bool
-     */
-    public function deleteByTypeId($typeId)
-    {
-        $spotlights = $this->getByTypeId($typeId);
-        while (($spotlight = $spotlights->next())) {
-            $this->deleteObject($spotlight);
-        }
-    }
-
-    /**
-     * Delete spotlights by Assoc ID
-     *
-     * @param int $assocType
-     * @param int $assocId
-     */
-    public function deleteByAssoc($assocType, $assocId)
-    {
-        $spotlights = $this->getByAssocId($assocType, $assocId);
-        while ($spotlight = $spotlights->next()) {
-            $this->deleteById($spotlight->getId());
-        }
-    }
-
-    /**
      * Retrieve an array of spotlights matching a press id.
      *
      * @param int $pressId
