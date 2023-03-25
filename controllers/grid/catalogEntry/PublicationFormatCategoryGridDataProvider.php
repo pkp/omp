@@ -18,6 +18,7 @@ namespace APP\controllers\grid\catalogEntry;
 use APP\core\Application;
 use APP\facades\Repo;
 use PKP\controllers\grid\files\SubmissionFilesCategoryGridDataProvider;
+use PKP\controllers\grid\files\SubmissionFilesGridDataProvider;
 use PKP\submissionFile\SubmissionFile;
 
 class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryGridDataProvider
@@ -129,6 +130,8 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
             return [];
         }
         $this->_gridHandler->setEmptyCategoryRowText('grid.noItems');
-        return $this->getDataProvider()->prepareSubmissionFileData($submissionFiles, false, $filter);
+        /** @var SubmissionFilesGridDataProvider */
+        $dataProvider = $this->getDataProvider();
+        return $dataProvider->prepareSubmissionFileData($submissionFiles, false, $filter);
     }
 }

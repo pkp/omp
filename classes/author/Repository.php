@@ -13,8 +13,6 @@
 
 namespace APP\author;
 
-use APP\core\Request;
-use PKP\Services\PKPSchemaService;
 use APP\monograph\Chapter;
 
 class Repository extends \PKP\author\Repository

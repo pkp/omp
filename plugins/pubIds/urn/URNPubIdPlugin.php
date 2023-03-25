@@ -16,6 +16,7 @@ namespace APP\plugins\pubIds\urn;
 use APP\core\Application;
 use APP\core\Services;
 use APP\facades\Repo;
+use APP\plugins\generic\urn\classes\form\FieldUrn;
 use APP\plugins\PubIdPlugin;
 use APP\plugins\pubIds\urn\classes\form\URNSettingsForm;
 use APP\publication\Publication;
@@ -410,7 +411,7 @@ class URNPubIdPlugin extends PubIdPlugin
             // Load the checkNumber.js file that is required for this field
             $this->addJavaScript(Application::get()->getRequest(), TemplateManager::getManager(Application::get()->getRequest()));
 
-            $form->addField(new classes\form\FieldUrn('pub-id::other::urn', [
+            $form->addField(new FieldUrn('pub-id::other::urn', [
                 'label' => __('plugins.pubIds.urn.displayName'),
                 'description' => __('plugins.pubIds.urn.editor.urn.description', ['prefix' => $prefix]),
                 'value' => $form->publication->getData('pub-id::other::urn'),
