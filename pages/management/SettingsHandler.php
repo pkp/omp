@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SettingsHandler
+ *
  * @ingroup pages_management
  *
  * @brief Handle requests for settings pages.
@@ -15,8 +16,8 @@
 
 namespace APP\pages\management;
 
-use PKP\pages\management\ManagementHandler;
 use APP\template\TemplateManager;
+use PKP\pages\management\ManagementHandler;
 use PKP\security\Role;
 
 class SettingsHandler extends ManagementHandler
@@ -50,6 +51,9 @@ class SettingsHandler extends ManagementHandler
     public function workflow($args, $request)
     {
         parent::workflow($args, $request);
+
+        $this->addReviewFormWorkflowSupport($request);
+
         TemplateManager::getManager($request)->display('management/workflow.tpl');
     }
 
