@@ -23,6 +23,9 @@ use PKP\tests\PKPTestCase;
 
 class ChapterTest extends PKPTestCase
 {
+    /** @var Chapter */
+    public $chapter;
+
     /**
      * @see PKPTestCase::setUp()
      */

@@ -23,7 +23,7 @@
 namespace APP\section;
 
 use APP\core\Application;
-use App\facades\Repo;
+use APP\facades\Repo;
 use PKP\core\PKPString;
 use PKP\db\DAORegistry;
 use stdClass;
