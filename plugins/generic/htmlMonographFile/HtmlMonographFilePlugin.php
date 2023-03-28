@@ -14,10 +14,12 @@
 namespace APP\plugins\generic\htmlMonographFile;
 
 use APP\core\Application;
+use APP\core\Request;
 use APP\core\Services;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\observers\events\UsageEvent;
+use APP\publicationFormat\PublicationFormat;
 use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
 use PKP\plugins\Hook;
@@ -87,6 +89,8 @@ class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
 
         $mimetype = $submissionFile->getData('mimetype');
         if ($submissionFile && $mimetype == 'text/html') {
+            /** @var ?Publication */
+            $filePublication = null;
             foreach ($submission->getData('publications') as $publication) {
                 if ($publication->getId() === $publicationFormat->getData('publicationId')) {
                     $filePublication = $publication;
@@ -143,7 +147,7 @@ class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
      * Return string containing the contents of the HTML file.
      * This function performs any necessary filtering, like image URL replacement.
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param Submission $monograph
      * @param PublicationFormat $publicationFormat
      * @param SubmissionFile $submissionFile
@@ -240,7 +244,7 @@ class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
             switch (strtolower_codesafe($urlParts[0])) {
                 case 'press':
                     $url = $request->url(
-                        $urlParts[1] ?? $request->getRequestedContextPath($request),
+                        $urlParts[1] ?? $request->getRouter()->getRequestedContextPath($request),
                         null,
                         null,
                         null,

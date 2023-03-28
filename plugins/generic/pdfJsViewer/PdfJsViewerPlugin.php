@@ -29,8 +29,8 @@ class PdfJsViewerPlugin extends GenericPlugin
     {
         if (parent::register($category, $path, $mainContextId)) {
             if ($this->getEnabled($mainContextId)) {
-                Hook::add('CatalogBookHandler::view', [$this, 'viewCallback'], HOOK_SEQUENCE_LATE);
-                Hook::add('CatalogBookHandler::download', [$this, 'downloadCallback'], HOOK_SEQUENCE_LATE);
+                Hook::add('CatalogBookHandler::view', [$this, 'viewCallback'], Hook::SEQUENCE_LATE);
+                Hook::add('CatalogBookHandler::download', [$this, 'downloadCallback'], Hook::SEQUENCE_LATE);
             }
             return true;
         }
@@ -80,6 +80,8 @@ class PdfJsViewerPlugin extends GenericPlugin
         $submissionFile = & $args[3];
 
         if ($submissionFile->getData('mimetype') == 'application/pdf') {
+            /** @var ?Publication */
+            $filePublication = null;
             foreach ($submission->getData('publications') as $publication) {
                 if ($publication->getId() === $publicationFormat->getData('publicationId')) {
                     $filePublication = $publication;
@@ -87,8 +89,6 @@ class PdfJsViewerPlugin extends GenericPlugin
                 }
             }
             $request = Application::get()->getRequest();
-            $router = $request->getRouter();
-            $dispatcher = $request->getDispatcher();
             $templateMgr = TemplateManager::getManager($request);
             $templateMgr->assign([
                 'pluginUrl' => $request->getBaseUrl() . '/' . $this->getPluginPath(),
@@ -129,17 +129,5 @@ class PdfJsViewerPlugin extends GenericPlugin
 
         // Return to regular handling
         return false;
-    }
-
-    /**
-     * Get the plugin base URL.
-     *
-     * @param PKPRequest $request
-     *
-     * @return string
-     */
-    private function _getPluginUrl($request)
-    {
-        return $request->getBaseUrl() . '/' . $this->getPluginPath();
     }
 }
