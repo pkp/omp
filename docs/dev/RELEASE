@@ -36,17 +36,10 @@ OMP release:
 
 2. Update release documentation:
 
-    docs/README
     docs/release-notes/README-<VERSION>
-    SECURITY.md
 
 
-3. Copy the current release notes to docs/:
-
-    cp docs/release-notes/README-<VERSION> docs/RELEASE
-
-
-4. After committing any pending modifications, tag the release in git (both the
+3. After committing any pending modifications, tag the release in git (both the
     OMP codebase and the PKP library to be distributed with it):
 
 WARNING: If the release is to have minified JS, set the default in
@@ -60,7 +53,7 @@ config.TEMPLATE.inc.php and compile and commit the latest JS before tagging!
     git push --tags
 
 
-5. Build the OMP package and patch files:
+4. Build the OMP package and patch files:
 
 WARNING: If working on a stable branch, the latest `js/build.js` file will be
 compiled when `tools/buildpkg.sh` is run. Remove js/build.js from the .gitignore
@@ -69,14 +62,14 @@ file and commit it to the new stable branch.
     sh tools/buildpkg.sh <VERSION> <TAG>-<BRANCH>
 
 
-6. Place the new package, patches, version descriptor, and Doxygen docs on the
+5. Place the new package, patches, version descriptor, and Doxygen docs on the
     OMP web site:
 
     https://pkp.sfu.ca/omp/omp_download/
     https://pkp.sfu.ca/omp/xml/omp-version.xml
     https://pkp.sfu.ca/omp/doxygen/master/html/
 
-7. Place the release notes, upgrade instructions, and readme on the OMP website:
+6. Place the release notes, upgrade instructions, and readme on the OMP website:
 
     https://pkp.sfu.ca/omp/README-<VERSION>
     https://pkp.sfu.ca/omp/RELEASE-<VERSION>
