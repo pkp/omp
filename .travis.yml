@@ -27,7 +27,7 @@ addons:
       - libu2f-udev
 
 
-before_install:a
+before_install:
   - if [ -n "$LIBONIG_INSTALL" ]; then sudo apt-get install libonig5; fi
   - ./tools/startSubmodulesTRAVIS.sh
   - npm i g -npm
