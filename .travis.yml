@@ -4,7 +4,7 @@ env:
     - secure=fRBfUOCW74WoTqn++xJLCL6k0Ug4f8LSD75mbrfMWdP9Wuu5WzTpFH2K0fNOK2Znfg0Vqpr1442Sjjo+C4PxiM65RPIoi36CfFEqEPdhN2EF5kSXEngj97LF3SQzCklDxf/pI9Z9cbr5QgJhiVexLXuBg2Dsru/UvBD871+p4kA=
     - APPLICATION=omp
 
-dist: bionic
+dist: focal
 os: linux
 language: php
 python:
@@ -27,7 +27,8 @@ addons:
       - libu2f-udev
 
 
-before_install:
+before_install:a
+  - if [ -n "$LIBONIG_INSTALL" ]; then sudo apt-get install libonig5; fi
   - ./tools/startSubmodulesTRAVIS.sh
   - npm i g -npm
   - ./lib/pkp/tools/travis/prepare-webserver.sh
@@ -48,18 +49,17 @@ jobs:
       php: 8.1.0
     - env: TEST=mariadb SAVE_BUILD=true
       php: 8.0
-      after_script:
-      - sudo service mariadb stop
-      - sudo apt-get remove --purge mariadb-server mariadb-client mariadb-common
+      addons:
+        mariadb: '10.3'
     - env: TEST=mysql SAVE_BUILD=true
       php: 8.1.0
-# PHP8.2 supports disabled pending resolution of https://travis-ci.community/t/php-8-2-support/13401/3
-#    - env: TEST=mysql
-#      php: 8.2.0
-#    - env: TEST=pgsql
-#      php: 8.2.0
+    - env: TEST=mysql LIBONIG_INSTALL=1
+      php: 8.2.0
+    - env: TEST=pgsql LIBONIG_INSTALL=1
+      php: 8.2.0
 
     - stage: validate
+      php: 8.0
       name: "Validate and lint"
       script:
       - |
