@@ -1,16 +1,17 @@
 # Alfredo Cosco <alfredo.cosco@gmail.com>, 2021.
 # Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>, 2022.
 # Fulvio Delle Donne <fulviodelledonne@libero.it>, 2022.
+# Michele Tutone <tutone@francoangeli.it>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-22T21:00:19+00:00\n"
-"PO-Revision-Date: 2022-08-09 10:00+0000\n"
-"Last-Translator: Fulvio Delle Donne <fulviodelledonne@libero.it>\n"
+"PO-Revision-Date: 2023-04-05 08:48+0000\n"
+"Last-Translator: Michele Tutone <tutone@francoangeli.it>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/submission/"
-"it_IT/>\n"
-"Language: it_IT\n"
+"it/>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -141,13 +142,13 @@ msgid "submission.submit.upload"
 msgstr "Carica"
 
 msgid "author.volumeEditor"
-msgstr ""
+msgstr "Curatore"
 
 msgid "author.isVolumeEditor"
 msgstr "Identifica questo contributore come il curatore del volume."
 
 msgid "submission.submit.seriesPosition"
-msgstr "Posizione occupata nella collana (cio?, Libro 2, o Volume 2)"
+msgstr "Posizione occupata nella collana (ad es. Libro 2, o Volume 2)"
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "Esempi: Libro 2, Volume 2"
@@ -187,9 +188,9 @@ msgstr "Informazioni generali"
 
 msgid "submission.submit.whatNext.description"
 msgstr ""
-"La Press ? stata informata del tuo caricamento e ti ? stata inviata una "
-"email di conferma. Appena l'editor avr? visionato il tuo lavoro, si metter? "
-"in contatto con te."
+"Il board editoriale è stato informato del tuo caricamento e ti è stata "
+"inviata una email di conferma. Appena l'editor avrà visionato il tuo lavoro, "
+"si metterà in contatto con te."
 
 msgid "submission.submit.checklistErrors"
 msgstr ""
@@ -203,7 +204,7 @@ msgid "submission.submit.userGroup"
 msgstr "Carico nel mio ruolo di..."
 
 msgid "submission.submit.noContext"
-msgstr "La casa editrice di questa proposta non si trova."
+msgstr "L'ambiente digitale di questa proposta non si trova."
 
 msgid "grid.chapters.title"
 msgstr "Capitoli"
@@ -236,11 +237,11 @@ msgid "submission.catalogEntry.confirm"
 msgstr "Aggiungi questo libro al catalogo pubblico"
 
 msgid "submission.catalogEntry.confirm.required"
-msgstr ""
-"Per favore, conferma che l'immissione ? pronta per entrare nel Catalogo."
+msgstr "Per favore, conferma che la proposta è pronta per andare in catalogo."
 
 msgid "submission.catalogEntry.isAvailable"
-msgstr "Questa Monografia ? pronta per essere aggiunta al Catalogo pubblico."
+msgstr ""
+"Questa monografia è pronta per essere aggiunta pubblicamente sul catalogo."
 
 msgid "submission.catalogEntry.viewSubmission"
 msgstr "Vedi la proposta"
@@ -267,33 +268,33 @@ msgid "submission.event.metadataPublished"
 msgstr "I metadati della Monografia sono stati approvati per la pubblicazione."
 
 msgid "submission.event.metadataUnpublished"
-msgstr "I metadati della Monografia non sono pi? pubblici."
+msgstr "I metadati della monografia non sono più pubblicati."
 
 msgid "submission.event.publicationFormatMadeAvailable"
-msgstr "Il formato \"{$publicationFormatName}\" ? ora disponibile."
+msgstr "Il formato \"{$publicationFormatName}\" è ora disponibile."
 
 msgid "submission.event.publicationFormatMadeUnavailable"
-msgstr "Il formato \"{$publicationFormatName}\" non ? pi? disponibile."
+msgstr "Il formato \"{$publicationFormatName}\" non è più disponibile."
 
 msgid "submission.event.publicationFormatPublished"
 msgstr ""
-"Il formato \"{$publicationFormatName}\" ? stato approvato per la "
+"Il formato \"{$publicationFormatName}\" è stato approvato per la "
 "pubblicazione."
 
 msgid "submission.event.publicationFormatUnpublished"
-msgstr "Il formato \"{$publicationFormatName}\" non ? pi? pubblicato."
+msgstr "Il formato \"{$publicationFormatName}\" non è più pubblicato."
 
 msgid "submission.event.catalogMetadataUpdated"
 msgstr "I metadati del catalogo sono stati aggiornati."
 
 msgid "submission.event.publicationMetadataUpdated"
-msgstr "I metadati \"{$formatName}\" ? stato aggiornato."
+msgstr "I metadati \"{$formatName}\" sono stati aggiornati."
 
 msgid "submission.event.publicationFormatCreated"
-msgstr "Il formato \"{$formatName}\" ? stato creato."
+msgstr "Il formato \"{$formatName}\" è stato creato."
 
 msgid "submission.event.publicationFormatRemoved"
-msgstr "Il formato \"{$formatName}\" ? stato rimosso."
+msgstr "Il formato \"{$formatName}\" è stato rimosso."
 
 msgid "editor.submission.decision.sendExternalReview"
 msgstr "Inviare in revisione esterna"
@@ -415,7 +416,7 @@ msgid "publication.event.unpublished"
 msgstr "Questo articolo è stato rimosso da un'uscita."
 
 msgid "publication.event.versionPublished"
-msgstr "E' stata pubblicata una nuova versione."
+msgstr "È stata pubblicata una nuova versione."
 
 msgid "publication.event.versionScheduled"
 msgstr "Una nuova versione è stata pianificata per la pubblicazione."
@@ -563,57 +564,78 @@ msgid "editor.submission.decision.promoteFiles.externalReview"
 msgstr "Seleziona i file da inviare alla fase di revisione."
 
 msgid "editor.submission.recommend.sendExternalReview"
-msgstr "Raccomandare l'invio alla revisione esterna"
+msgstr "Suggerisci l'invio alla revisione esterna"
 
 msgid "editor.submission.recommend.sendExternalReview.description"
-msgstr "Raccomanda l'invio di questo documento alla fase di revisione esterna."
+msgstr "Suggerisci l'invio di questo documento alla fase di revisione esterna."
 
 msgid "editor.submission.recommend.sendExternalReview.log"
 msgstr ""
-"{$editorName} ha raccomandato di inviare questa proposta alla fase di "
-"revisione esterna."
+"{$editorName} ha suggerito di inviare questa proposta alla fase di revisione "
+"esterna."
 
 msgid "doi.submission.incorrectContext"
 msgstr ""
+"Impossibile creare il DOI per la proposta: {$pubObjectTitle}. Non è stata "
+"trovata nell'attuale ambiente digitale."
 
 msgid "publication.chapter.licenseUrl"
-msgstr ""
+msgstr "URL della licenza"
 
 msgid "publication.chapterDefaultLicenseURL"
-msgstr ""
+msgstr "URL della licenza di default per il capitolo"
 
 msgid "submission.copyright.description"
 msgstr ""
+"Per favore, leggi e accetta i termini del copyright per le proposte qui "
+"ricevute."
 
 msgid "submission.wizard.notAllowed.description"
 msgstr ""
+"Non sei autorizzato a effettuare proposte in questo ambiente digitale perché "
+"gli autori devono essere registrati dal board editoriale. Se credi ci sia un "
+"errore, contatta <a href='mailto:{$email}'>{$name}</a>."
 
 msgid "submission.wizard.noSectionAllowed.description"
 msgstr ""
+"Non sei autorizzato a effettuare proposte in questo ambiente digitale perché "
+"tutte le collane sono disattive o limitate. Se credi ci sia un errore, "
+"contatta <a href='mailto:{$email}'>{$name}</a>."
 
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
+"{$contextName} non accetta proposte per la collana: {$section}. Se hai "
+"bisogno di aiuto per recuperare la tua precedente proposta, contatta <a "
+"href='mailto:{$email}'>{$name}</a>."
 
 msgid "submission.sectionNotFound"
-msgstr ""
+msgstr "La collana di questa proposta non è stata trovata."
 
 msgid "submission.sectionRestrictedToEditors"
 msgstr ""
+"Solo il board editoriale è autorizzato ad effettuare proposte a questa "
+"collana."
 
 msgid "submission.wizard.submitting.monograph"
-msgstr ""
+msgstr "Proponi una <strong>monografia</strong>."
 
 msgid "submission.wizard.submitting.monographInLanguage"
 msgstr ""
+"Proponi una <strong>monografia</strong> in <strong>{$language}</strong>."
 
 msgid "submission.wizard.submitting.editedVolume"
-msgstr ""
+msgstr "Proponi un <strong>volume collettaneo</strong>."
 
 msgid "submission.wizard.submitting.editedVolumeInLanguage"
 msgstr ""
+"Proponi un <strong>volume collettaneo</strong> in "
+"<strong>{$language}</strong>."
 
 msgid "submission.wizard.chapters.description"
 msgstr ""
+"Per favore, fornisci l'elenco dei capitoli di questa proposta. Se stai "
+"proponendo un volume collettaneo, assicurati che ogni capitolo sia "
+"accompagnato dal nome del suo autore."
 
 #~ msgid "submission.upload.selectBookElement"
 #~ msgstr "Seleziona un elemento del libro"
