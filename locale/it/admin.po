@@ -1,8 +1,143 @@
 # Michele Tutone <tutone@francoangeli.it>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-04-05 08:48+0000\n"
+"Last-Translator: Michele Tutone <tutone@francoangeli.it>\n"
+"Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/admin/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "admin.hostedContexts"
+msgstr "Press registrate"
+
+msgid "admin.settings.appearance.success"
+msgstr ""
+"Le impostazioni di visualizzazione del sito sono state aggiornate con "
+"successo."
+
+msgid "admin.settings.config.success"
+msgstr "Le impostazioni del sito sono state aggiornate con successo."
+
+msgid "admin.settings.info.success"
+msgstr "Le informazioni del sito sono state aggiornate con successo."
+
+msgid "admin.settings.redirect"
+msgstr "Redirect"
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Nessun redirect"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "Questa sarà la lingua di default del sito e di ogni press installata."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Le lingue contrassegnate potrebbero essere incomplete."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"Sei sicuro di voler disinstallare questa lingua? Questa scelta si "
+"ripercuoterà su tutte le press che stanno attualmente usando questa lingua."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Installa tutte le lingue che vuoi siano supportate dal sistema. Le lingue "
+"devono essere installate prima di poterle usare. Consulta la documentazione "
+"di OMP per informazioni sull'aggiunta di nuove lingue non ancora supportate."
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Sei sicuro di voler disabilitare questa lingua? Questa scelta si "
+"ripercuoterà su tutte le press che stanno attualmente usando questa lingua."
+
+msgid "admin.systemVersion"
+msgstr "Versione di OMP"
+
+msgid "admin.systemConfiguration"
+msgstr "Configurazione di OMP"
+
+msgid "admin.presses.noneCreated"
+msgstr "Nessuna press è stata creata."
+
+msgid "admin.contexts.create"
+msgstr "Crea una press"
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "È obbligatorio un path."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Il path selezionato è già in uso da un'altra press."
+
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr "La lingua principale dev'essere tra quelle supportate dalla press."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} è stato creato con successo."
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} è stato modificato con successo."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Descrizione della press"
+
+msgid "admin.presses.addPress"
+msgstr "Aggiungi una press"
+
+msgid "admin.settings.disableBulkEmailRoles.description"
+msgstr ""
+"Il press manager non sarà abilitato all'invio massivo delle email per i "
+"ruoli qui selezionati. Usa questa impostazione per limitare il possibile "
+"abuso della funzione. Ad esempio può essere più sicuro disabilitare gli "
+"invii massivi ai lettori, autori o altri gruppi di utenze che non hanno dato "
+"il consenso a ricevere comunicazioni. <br><br>L'invio massivo di email può "
+"essere disabilitato del tutto per questa press da <a href=\""
+"{$siteSettingsUrl}\">Amministratore> Impostazioni del sito</a>."
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Il sito principale reindirizzerà a questa press. Può essere utile se sul "
+"sito è installata un'unica press, ad esempio."
+
+msgid "admin.presses.pressSettings"
+msgstr "Impostazioni della press"
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr ""
+"Seleziona le lingue che vuoi siano disponibili per l'intero sito. Le lingue "
+"selezionate saranno disponibili per tutte le press installate sul sito e "
+"appariranno in un menu su ogni pagina del sito (le impostazioni della "
+"singola press possono modificare questo comportamento). Se qui si seleziona "
+"una sola lingua, il menu di scelta non apparirà e le impostazioni relative "
+"alle lingue delle singole press non saranno modificabili."
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "È obbligatorio un titolo."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"Il path può includere solo lettere, numeri e i caratteri _ e -. È "
+"obbligatorio che inizi e finisca con una lettera o numero."
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>NOTE!</h4>\n"
+"<p>Il sistema non può sovrascrivere automaticamente il file di "
+"configurazione. Per applicare le modifiche apri <tt>config.inc.php</tt> in "
+"un text editor e sostituisci il suo contenuto con il testo che trovi qui di "
+"seguito.</p>"
+
+msgid "admin.settings.enableBulkEmails.description"
+msgstr ""
+"Seleziona le press che dovranno essere abilitati ad invii massivi di email. "
+"Quando questa funzione è abilitata, il press manager potrà inviare email a "
+"tutti gli utenti registrati della rivista. <br><br>Un abuso di questa "
+"funzione con l'invio di email non richieste potrebbe costituire violazione "
+"delle normative sulla privacy in alcuni paesi e riflettersi con il blocco "
+"del servizio. Prima di abilitare questa funzione si suggerisce un'accurata "
+"valutazione e definizione del suo uso appropriato. <br><br>Ulteriori "
+"restrizioni di questa funzione possono essere abilitate per ciascuna rivista "
+"nella configurazione iniziale (setting wizard) nella sezione <a href=\""
+"{$hostedContextsUrl}\">Press registrate</a>."
