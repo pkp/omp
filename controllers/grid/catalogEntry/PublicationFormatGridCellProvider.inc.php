@@ -23,6 +23,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	/** @var int Submission ID */
 	var $_submissionId;
 
+	var $_publicationId;
+
 	/** @var boolean */
 	protected $_canManage;
 
