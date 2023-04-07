@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-02-28 16:58+0000\n"
+"PO-Revision-Date: 2023-04-08 15:48+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "uk/>\n"
@@ -482,11 +482,10 @@ msgstr "Ідентифікація за адресою електронної п
 msgid "manager.setup.emailSignature"
 msgstr "Підпис"
 
-#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
-"Підготовлені листи, що відправляються системою від імени видавництва, "
-"міститимуть наступний підпис, добавлений у кінці листа."
+"До електронних листів, надісланих автоматично від імені е-видавництва, буде "
+"додано такий підпис."
 
 msgid "manager.setup.enableAnnouncements.enable"
 msgstr "Включити оголошення"
@@ -1753,3 +1752,13 @@ msgid "mailable.statisticsReportNotify.description"
 msgstr ""
 "Цей електронний лист автоматично надсилається щомісяця редакторам і "
 "менеджерам е-видавництва, щоб надати їм огляд стану системи."
+
+msgid "plugins.importexport.common.error.salesRightRequiresTerritory"
+msgstr ""
+"Запис про права продажу пропущено, оскільки з ним не пов'язано ні країну, ні "
+"регіон."
+
+msgid "manager.sections.alertDelete"
+msgstr ""
+"Перш ніж цю серію можна буде видалити, потрібно перемістити пов'язані з нею "
+"подання до іншої серії."
