@@ -28,3 +28,6 @@ msgid "emails.manualPaymentNotification.description"
 msgstr ""
 "This email template is used to notify a press manager contact that a manual "
 "payment was requested."
+
+msgid "emailTemplate.variable.manualPaymentPlugin.senderUsername"
+msgstr "The username of the user who made the payment"

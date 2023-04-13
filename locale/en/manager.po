@@ -1419,6 +1419,9 @@ msgstr "Index Requested"
 msgid "mailable.indexComplete.name"
 msgstr "Index Completed"
 
+msgid "mailable.layoutComplete.name"
+msgstr "Galleys Complete"
+
 msgid "mailable.publicationVersionNotify.name"
 msgstr "New Version Created"
 
