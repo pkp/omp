@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PreflightCheckMigration
+ *
  * @brief Check for common problems early in the upgrade process.
  */
 
@@ -78,6 +79,18 @@ class PreflightCheckMigration extends \PKP\migration\upgrade\v3_4_0\PreflightChe
             $orphanedIds = DB::table('publication_format_settings AS pfs')->leftJoin('publication_formats AS pf', 'pfs.publication_format_id', '=', 'pf.publication_format_id')->whereNull('pf.publication_format_id')->distinct()->pluck('pfs.publication_format_id');
             foreach ($orphanedIds as $publicationFormatId) {
                 DB::table('publication_format_settings')->where('publication_format_id', '=', $publicationFormatId)->delete();
+            }
+
+            // Clean orphaned submission_chapter_authors entries by author_id
+            $orphanedIds = DB::table('submission_chapter_authors AS sca')->leftJoin('authors AS a', 'sca.author_id', '=', 'a.author_id')->whereNull('a.author_id')->distinct()->pluck('sca.author_id');
+            foreach ($orphanedIds as $authorId) {
+                DB::table('submission_chapter_authors')->where('author_id', '=', $authorId)->delete();
+            }
+
+            // Clean orphaned submission_chapter_authors entries by chapter_id
+            $orphanedIds = DB::table('submission_chapter_authors AS sca')->leftJoin('submission_chapters AS c', 'sca.chapter_id', '=', 'c.chapter_id')->whereNull('c.chapter_id')->distinct()->pluck('sca.chapter_id');
+            foreach ($orphanedIds as $chapterId) {
+                DB::table('submission_chapter_authors')->where('chapter_id', '=', $chapterId)->delete();
             }
 
             // Clean orphaned completed_payments entries by context_id
