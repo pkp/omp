@@ -8,9 +8,11 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Notification
+ *
  * @ingroup notification
  *
  * @see NotificationDAO
+ *
  * @brief OMP subclass for Notifications (defines OMP-specific types and icons).
  */
 

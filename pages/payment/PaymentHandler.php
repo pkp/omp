@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PaymentHandler
+ *
  * @ingroup pages_payment
  *
  * @brief Handle requests for payment functions.
@@ -15,8 +16,8 @@
 
 namespace APP\pages\payment;
 
-use PKP\plugins\PluginRegistry;
 use APP\handler\Handler;
+use PKP\plugins\PluginRegistry;
 
 class PaymentHandler extends Handler
 {

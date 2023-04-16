@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class MonographNativeXmlFilter
+ *
  * @brief Class that converts a Monograph to a Native XML document.
  */
 

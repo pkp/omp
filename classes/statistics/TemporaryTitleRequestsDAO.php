@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class TemporaryTitleRequestsDAO
+ *
  * @ingroup statistics
  *
  * @brief Operations for retrieving and adding unique title (submission) requests (primary files downloads).

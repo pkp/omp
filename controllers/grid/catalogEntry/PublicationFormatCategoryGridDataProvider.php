@@ -7,7 +7,8 @@
  * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class ProofFilesGridDataProvider
+ * @class PublicationFormatCategoryGridDataProvider
+ *
  * @ingroup controllers_grid_files_final
  *
  * @brief Provide access to proof files management.

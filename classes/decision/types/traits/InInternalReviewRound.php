@@ -30,7 +30,7 @@ use PKP\submissionFile\SubmissionFile;
 trait InInternalReviewRound
 {
     use WithReviewAssignments;
-    
+
     /** @copydoc DecisionType::getStageId() */
     public function getStageId(): int
     {

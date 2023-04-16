@@ -6,21 +6,21 @@
  * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class submissionFile
+ * @class Repository
  *
  * @brief A repository to find and manage submission files.
  */
 
 namespace APP\submissionFile;
 
-use Illuminate\Support\Facades\App;
 use APP\core\Request;
 use APP\submissionFile\maps\Schema;
+use Illuminate\Support\Facades\App;
 use PKP\plugins\Hook;
 use PKP\services\PKPSchemaService;
+use PKP\submissionFile\Collector;
 use PKP\submissionFile\Repository as SubmissionFileRepository;
 use PKP\submissionFile\SubmissionFile;
-use PKP\submissionFile\Collector;
 
 class Repository extends SubmissionFileRepository
 {

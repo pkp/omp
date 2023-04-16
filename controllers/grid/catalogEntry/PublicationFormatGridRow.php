@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationFormatGridRow
+ *
  * @ingroup controllers_grid_catalogEntry
  *
  * @brief Handle publication format grid row requests.

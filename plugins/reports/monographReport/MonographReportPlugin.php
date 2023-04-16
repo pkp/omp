@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class MonographReportPlugin
+ *
  * @ingroup plugins_reports_monographReport
  *
  * @brief The monograph report plugin will output a .csv file containing basic information (title, DOI, etc.) from all monographs

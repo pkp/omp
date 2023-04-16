@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ChapterGridCategoryRow
+ *
  * @ingroup controllers_grid_users_chapter
  *
  * @brief Chapter grid category row definition

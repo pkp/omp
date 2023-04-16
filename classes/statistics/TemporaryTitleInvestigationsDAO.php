@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class TemporaryTitleInvestigationsDAO
+ *
  * @ingroup statistics
  *
  * @brief Operations for retrieving and adding unique title (submission) investigations (book and chapter abstract, primary and supp files views).

@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Report
+ *
  * @ingroup plugins_reports_monographReport
  *
  * @brief The Report class implements an iterator which will retrieve basic information (title, DOI, etc.) from all monographs in a press

@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SiteAccessOptionsForm
+ *
  * @ingroup controllers_tab_settings_siteAccessOptions_form
  *
  * @brief Form to edit site access options.

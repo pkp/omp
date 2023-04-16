@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationFormatForm
+ *
  * @ingroup controllers_grid_catalogEntry_form
  *
  * @brief Form for adding/editing a format

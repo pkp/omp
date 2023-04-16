@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class MonographONIX30XmlFilter
+ *
  * @ingroup plugins_importexport_onix30
  *
  * @brief Base class that converts a monograph to an ONIX 3.0 document

@@ -7,7 +7,8 @@
  * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class SpotlightsGridHandler
+ * @class ManageSpotlightsGridHandler
+ *
  * @ingroup controllers_grid_content_spotlights
  *
  * @brief Handle grid requests for spotlights.
@@ -306,7 +307,6 @@ class ManageSpotlightsGridHandler extends GridHandler
      */
     public function deleteSpotlight($args, $request)
     {
-
         // Identify the entry to be deleted
         $spotlightId = $request->getUserVar('spotlightId');
 

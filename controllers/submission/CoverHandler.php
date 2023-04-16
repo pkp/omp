@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class CoverHandler
+ *
  * @ingroup controllers_submission
  *
  * @brief Component serving up cover images for submissions.

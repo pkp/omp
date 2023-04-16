@@ -7,6 +7,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ApprovedProofForm
+ *
  * @ingroup controllers_grid_files_proof_form
  *
  * @brief Form for editing approved proofs (available for direct sales).

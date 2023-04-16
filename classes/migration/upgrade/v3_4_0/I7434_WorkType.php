@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class I7434_WorkType
+ *
  * @brief Consolidate submission workType settings in the submissions table
  */
 

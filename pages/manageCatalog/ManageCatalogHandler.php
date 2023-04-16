@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ManageCatalogHandler
+ *
  * @ingroup pages_manageCatalog
  *
  * @brief Handle requests for catalog management.

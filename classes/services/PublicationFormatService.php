@@ -7,6 +7,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationFormatService
+ *
  * @ingroup services
  *
  * @brief A service class with methods to handle publication formats

@@ -1,13 +1,14 @@
 <?php
 
 /**
- * @file controllers/grid/users/chapter/ChapterGridAuthorCellProvider.inc.php
+ * @file controllers/grid/users/chapter/ChapterGridAuthorCellProvider.php
  *
  * Copyright (c) 2014-2022 Simon Fraser University
  * Copyright (c) 2000-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class DataObjectGridCellProvider
+ * @class ChapterGridAuthorCellProvider
+ *
  * @ingroup controllers_grid_users_chapter
  *
  * @brief Base class for a cell provider that can retrieve labels for submission contributors

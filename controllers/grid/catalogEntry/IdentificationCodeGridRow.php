@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class IdentificationCodeGridRow
+ *
  * @ingroup controllers_grid_catalogEntry
  *
  * @brief Identification Code grid row definition

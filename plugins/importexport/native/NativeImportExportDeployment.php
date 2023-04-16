@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class NativeImportExportDeployment
+ *
  * @brief Class configuring the native import/export process to this
  * application's specifics.
  */

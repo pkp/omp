@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class NativeXmlPublicationFormatFilter
+ *
  * @brief Class that converts a Native XML document to a set of publication formats.
  */
 
@@ -90,7 +91,7 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
                     case 'submission_file_ref': $this->_processFileRef($n, $deployment, $representation);
                         break;
                     default:
-                    }
+                }
             }
         }
 

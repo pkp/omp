@@ -7,6 +7,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class FieldUrn
+ *
  * @ingroup classes_controllers_form
  *
  * @brief A field for entering a URN and then having the check number generated.

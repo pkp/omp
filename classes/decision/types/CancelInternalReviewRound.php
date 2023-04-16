@@ -7,7 +7,7 @@
  * Copyright (c) 2000-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class decision
+ * @class CancelInternalReviewRound
  *
  * @brief A decision to return a submission back from the internal review stage
  *   if has more than one internal review round, remains in the external review stage

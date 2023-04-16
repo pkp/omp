@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Onix30ExportPlugin
+ *
  * @ingroup plugins_importexport_onix30
  *
  * @brief ONIX 3.0 XML import/export plugin

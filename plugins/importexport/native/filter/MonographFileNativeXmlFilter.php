@@ -7,7 +7,8 @@
  * Copyright (c) 2000-2022 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class ArtworkFileNativeXmlFilter
+ * @class MonographFileNativeXmlFilter
+ *
  * @brief Filter to convert an artwork file to a Native XML document
  */
 

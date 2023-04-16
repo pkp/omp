@@ -7,6 +7,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SpotlightForm
+ *
  * @ingroup controllers_grid_content_spotlights_form
  *
  * @brief Form for reading/creating/editing spotlight items.

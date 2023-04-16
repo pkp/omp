@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SubmissionEventLogEntry
+ *
  * @ingroup log
  *
  * @see SubmissionEventLogDAO
@@ -39,15 +40,15 @@ class SubmissionEventLogEntry extends PKPSubmissionEventLogEntry
 if (!PKP_STRICT_MODE) {
     class_alias('\APP\log\SubmissionEventLogEntry', '\SubmissionEventLogEntry');
     foreach ([
-       'SUBMISSION_LOG_PUBLICATION_FORMAT_PUBLISH',
-       'SUBMISSION_LOG_PUBLICATION_FORMAT_UNPUBLISH',
-       'SUBMISSION_LOG_CATALOG_METADATA_UPDATE',
-       'SUBMISSION_LOG_PUBLICATION_FORMAT_METADATA_UPDATE',
-       'SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE',
-       'SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE',
-       'SUBMISSION_LOG_PUBLICATION_FORMAT_AVAILABLE',
-       'SUBMISSION_LOG_PUBLICATION_FORMAT_UNAVAILABLE',
+        'SUBMISSION_LOG_PUBLICATION_FORMAT_PUBLISH',
+        'SUBMISSION_LOG_PUBLICATION_FORMAT_UNPUBLISH',
+        'SUBMISSION_LOG_CATALOG_METADATA_UPDATE',
+        'SUBMISSION_LOG_PUBLICATION_FORMAT_METADATA_UPDATE',
+        'SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE',
+        'SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE',
+        'SUBMISSION_LOG_PUBLICATION_FORMAT_AVAILABLE',
+        'SUBMISSION_LOG_PUBLICATION_FORMAT_UNAVAILABLE',
     ] as $constantName) {
-       define($constantName, constant('\SubmissionEventLogEntry::' . $constantName));
+        define($constantName, constant('\SubmissionEventLogEntry::' . $constantName));
     }
 }

@@ -7,6 +7,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ContextService
+ *
  * @ingroup services
  *
  * @brief Extends the base context service class with app-specific
@@ -57,6 +58,7 @@ class ContextService extends \PKP\services\PKPContextService
      *
      * @param string $hookName
      * @param array $args [
+     *
      *		@option Press The new context
      *		@option Press The current context
      *		@option array The params to edit
@@ -116,6 +118,7 @@ class ContextService extends \PKP\services\PKPContextService
      *
      * @param string $hookName
      * @param array $args [
+     *
      *		@option Context The new context
      *		@option Request
      * ]
@@ -138,6 +141,7 @@ class ContextService extends \PKP\services\PKPContextService
      *
      * @param string $hookName
      * @param array $args [
+     *
      *		@option Context The new context
      *		@option Request
      * ]
@@ -171,6 +175,7 @@ class ContextService extends \PKP\services\PKPContextService
      *
      * @param string $hookName
      * @param array $args [
+     *
      *		@option Context The new context
      *		@option Request
      * ]
