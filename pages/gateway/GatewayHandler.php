@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class GatewayHandler
+ *
  * @ingroup pages_gateway
  *
  * @brief Handle external gateway requests.
@@ -15,8 +16,8 @@
 
 namespace APP\pages\gateway;
 
-use PKP\plugins\PluginRegistry;
 use APP\handler\Handler;
+use PKP\plugins\PluginRegistry;
 
 class GatewayHandler extends Handler
 {

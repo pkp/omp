@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class BrowseBlockSettingsForm
+ *
  * @ingroup plugins_blocks_browse
  *
  * @brief Form for press managers to setup Browse block plugin

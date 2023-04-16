@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class I7132_AddSourceChapterId
+ *
  * @brief Add column source_chapter_id to submission_chapters table.
  */
 
@@ -23,8 +24,7 @@ class I7132_AddSourceChapterId extends \PKP\migration\Migration
     public function up(): void
     {
         // pkp/pkp-lib#7132 Add source_chapter_id
-        Schema::table('submission_chapters', function($table)
-        {
+        Schema::table('submission_chapters', function ($table) {
             $table->bigInteger('source_chapter_id')->nullable();
             $table->foreign('source_chapter_id')->references('chapter_id')->on('submission_chapters')->onDelete('set null');
             $table->index(['source_chapter_id'], 'submission_chapters_source_chapter_id');
@@ -37,8 +37,7 @@ class I7132_AddSourceChapterId extends \PKP\migration\Migration
     public function down(): void
     {
         //remove source_chapter_id
-        Schema::table('submission_chapters', function($table)
-        {
+        Schema::table('submission_chapters', function ($table) {
             $table->dropForeign('submission_chapters_source_chapter_id_foreign');
             $table->dropColumn('source_chapter_id');
         });

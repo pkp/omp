@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Onix30ExportDeployment
+ *
  * @ingroup plugins_importexport_onix30
  *
  * @brief Class configuring the native import/export process to this

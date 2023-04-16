@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class CatalogHandler
+ *
  * @ingroup pages_catalog
  *
  * @brief Handle requests for the press-specific part of the public-facing
@@ -47,6 +48,7 @@ class CatalogHandler extends PKPCatalogHandler
      * Show a page of the catalog
      *
      * @param array $args [
+     *
      *		@option int Page number if available
      * ]
      *
@@ -137,6 +139,7 @@ class CatalogHandler extends PKPCatalogHandler
      * View the content of a series.
      *
      * @param array $args [
+     *
      *		@option string Series path
      *		@option int Page number if available
      * ]

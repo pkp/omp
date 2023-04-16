@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SeriesForm
+ *
  * @ingroup controllers_grid_settings_series_form
  *
  * @brief Form for adding/editing a series

@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class RepresentativesGridCategoryRow
+ *
  * @ingroup controllers_grid_catalogEntry
  *
  * @brief Representatives grid category row definition

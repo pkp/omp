@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ProofFilesGridDataProvider
+ *
  * @ingroup controllers_grid_files_final
  *
  * @brief Provide access to proof files management.

@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class InformationHandler
+ *
  * @ingroup pages_information
  *
  * @brief Display press information.
@@ -103,8 +104,6 @@ class InformationHandler extends Handler
 
     /**
      * Initialize the template.
-     *
-     * @param Press $press
      */
     public function setupTemplate($request)
     {

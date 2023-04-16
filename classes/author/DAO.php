@@ -13,8 +13,8 @@
 
 namespace APP\author;
 
-use Illuminate\Support\Facades\DB;
 use APP\monograph\Chapter;
+use Illuminate\Support\Facades\DB;
 
 class DAO extends \PKP\author\DAO
 {

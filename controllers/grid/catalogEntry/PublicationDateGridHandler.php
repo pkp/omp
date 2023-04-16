@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationDateGridHandler
+ *
  * @ingroup controllers_grid_catalogEntry
  *
  * @brief Handle publication format grid requests for publication dates.
@@ -359,7 +360,6 @@ class PublicationDateGridHandler extends GridHandler
      */
     public function deleteDate($args, $request)
     {
-
         // Identify the code to be deleted
         $publicationDateId = $request->getUserVar('publicationDateId');
 

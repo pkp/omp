@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SeriesGridHandler
+ *
  * @ingroup controllers_grid_settings_series
  *
  * @brief Handle series grid requests.
@@ -364,7 +365,6 @@ class SeriesGridHandler extends SetupGridHandler
      */
     public function activateSeries($args, $request)
     {
-
         // Identify the current series
         $seriesId = (int) $request->getUserVar('seriesKey');
 

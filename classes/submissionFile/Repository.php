@@ -13,14 +13,14 @@
 
 namespace APP\submissionFile;
 
-use Illuminate\Support\Facades\App;
 use APP\core\Request;
 use APP\submissionFile\maps\Schema;
+use Illuminate\Support\Facades\App;
 use PKP\plugins\Hook;
 use PKP\services\PKPSchemaService;
+use PKP\submissionFile\Collector;
 use PKP\submissionFile\Repository as SubmissionFileRepository;
 use PKP\submissionFile\SubmissionFile;
-use PKP\submissionFile\Collector;
 
 class Repository extends SubmissionFileRepository
 {

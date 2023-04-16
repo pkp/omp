@@ -7,6 +7,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class CatalogListPanel
+ *
  * @ingroup classes_components_listPanels
  *
  * @brief Instantiates and manages a UI component to list catalog entries.

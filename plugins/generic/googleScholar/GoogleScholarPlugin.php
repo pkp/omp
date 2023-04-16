@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class GoogleScholarPlugin
+ *
  * @brief Inject Google Scholar meta tags into monograph views to facilitate indexing.
  */
 

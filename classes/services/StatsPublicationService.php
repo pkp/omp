@@ -7,6 +7,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class StatsPublicationService
+ *
  * @ingroup services
  *
  * @brief Helper class that encapsulates statistics business logic

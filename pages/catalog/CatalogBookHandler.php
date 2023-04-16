@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class CatalogBookHandler
+ *
  * @ingroup pages_catalog
  *
  * @brief Handle requests for the book-specific part of the public-facing

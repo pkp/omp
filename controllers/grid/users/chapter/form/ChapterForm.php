@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ChapterForm
+ *
  * @ingroup controllers_grid_users_chapter_form
  *
  * @brief Form for adding/editing a chapter

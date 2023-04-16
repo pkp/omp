@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class MonographSearchIndex
+ *
  * @ingroup search
  *
  * @brief Class to add content to the monograph search index.

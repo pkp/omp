@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class IdentificationCodeGridHandler
+ *
  * @ingroup controllers_grid_catalogEntry
  *
  * @brief Handle publication format grid requests for identification codes.
@@ -364,7 +365,6 @@ class IdentificationCodeGridHandler extends GridHandler
      */
     public function deleteCode($args, $request)
     {
-
         // Identify the code to be deleted
         $identificationCodeId = $request->getUserVar('identificationCodeId');
 

@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationDateGridRow
+ *
  * @ingroup controllers_grid_catalogEntry
  *
  * @brief Publication Date grid row definition

@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class BackendSubmissionsHandler
+ *
  * @ingroup api_v1_backend
  *
  * @brief Handle API requests for backend operations.
@@ -101,6 +102,7 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
      * @param Request $slimRequest Slim request object
      * @param Response $response object
      * @param array $args {
+     *
      * 		@option array featured Optional. Featured flags with assoc type, id
      *		  and seq values.
      * 		@option array newRelease Optional. New release flags assoc type, id
@@ -151,6 +153,7 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
      * @param Request $slimRequest Slim request object
      * @param Response $response object
      * @param array $args {
+     *
      * 		@option int assocType Whether these featured items are for a
      *			press, category or series. Values: Application::ASSOC_TYPE_*
      * 		@option int assocId The press, category or series id

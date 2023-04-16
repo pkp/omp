@@ -14,6 +14,7 @@ use APP\core\Application;
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @ingroup api_v1_submissions
+ *
  * @brief Handle requests for submission API functions.
  *
  */

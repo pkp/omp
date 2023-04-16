@@ -9,6 +9,7 @@
  *  the file docs/COPYING.
  *
  * @class CompileUsageStatsFromTemporaryRecords
+ *
  * @ingroup jobs
  *
  * @brief Class to handle the usage metrics data loading as a Job
@@ -65,7 +66,7 @@ class CompileUsageStatsFromTemporaryRecords extends BaseJob
             } else {
                 $message = __('usageStats.compileMetrics.error', ['filename' => $filename]);
             }
-            
+
             throw new JobException($message);
         }
 

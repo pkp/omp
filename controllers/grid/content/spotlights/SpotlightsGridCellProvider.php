@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SpotlightsGridCellProvider
+ *
  * @ingroup controllers_grid_content_spotlights
  *
  * @brief Base class for a cell provider that can retrieve labels for spotlights

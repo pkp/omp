@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class DefaultThemePlugin
+ *
  * @brief Default theme
  */
 
@@ -15,9 +16,9 @@ namespace APP\plugins\themes\default;
 
 use APP\core\Application;
 use APP\file\PublicFileManager;
+use PKP\config\Config;
 use PKP\plugins\ThemePlugin;
 use PKP\session\SessionManager;
-use PKP\config\Config;
 
 class DefaultThemePlugin extends ThemePlugin
 {
@@ -39,7 +40,6 @@ class DefaultThemePlugin extends ThemePlugin
      */
     public function init()
     {
-
         // Register theme options
         $this->addOption('typography', 'FieldOptions', [
             'type' => 'radio',

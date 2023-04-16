@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class OMPServiceProvider
+ *
  * @ingroup services
  *
  * @brief Utility class to package all OMP services

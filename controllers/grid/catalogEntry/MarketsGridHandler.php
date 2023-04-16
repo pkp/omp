@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class MarketsGridHandler
+ *
  * @ingroup controllers_grid_catalogEntry
  *
  * @brief Handle publication format grid requests for markets.
@@ -372,7 +373,6 @@ class MarketsGridHandler extends GridHandler
      */
     public function deleteMarket($args, $request)
     {
-
         // Identify the markets entry to be deleted
         $marketId = $request->getUserVar('marketId');
 

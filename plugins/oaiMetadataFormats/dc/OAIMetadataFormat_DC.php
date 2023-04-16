@@ -12,6 +12,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class OAIMetadataFormat_DC
+ *
  * @ingroup oai_format_dc
  *
  * @see OAI

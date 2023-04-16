@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationFormatGridCategoryRow
+ *
  * @ingroup controllers_grid_representations
  *
  * @brief Representations grid row definition

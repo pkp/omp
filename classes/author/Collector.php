@@ -13,9 +13,7 @@
 
 namespace APP\author;
 
-use APP\core\Application;
 use Illuminate\Database\Query\Builder;
-use Illuminate\Support\Facades\DB;
 
 class Collector extends \PKP\author\Collector
 {

@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class IdentificationCodeGridCellProvider
+ *
  * @ingroup controllers_grid_catalogEntry
  *
  * @brief Base class for a cell provider that can retrieve labels for identification codes

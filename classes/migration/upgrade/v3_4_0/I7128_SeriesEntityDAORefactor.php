@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class I7128_SeriesEntityDAORefactor
+ *
  * @brief Remove deprecated setting_type requirement after converting series DAO to use new repository pattern
  */
 

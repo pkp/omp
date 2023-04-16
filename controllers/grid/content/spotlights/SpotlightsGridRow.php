@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SpotlightsGridRow
+ *
  * @ingroup controllers_grid_content_spotlights
  *
  * @brief Spotlights grid row definition
