@@ -1,7 +1,7 @@
 # Carla Marques <carla.marques@usdb.uminho.pt>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-02-27 11:22+0000\n"
+"PO-Revision-Date: 2023-04-18 09:49+0000\n"
 "Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "pt/>\n"
@@ -1696,3 +1696,16 @@ msgstr ""
 
 msgid "doi.editor.assignDoi.emptySuffix"
 msgstr "O DOI não pode ser atribuído porque falta o sufixo personalizado."
+
+msgid "mailable.layoutComplete.name"
+msgstr "Composições completas"
+
+msgid "manager.sections.alertDelete"
+msgstr ""
+"Antes de excluir esta série, deve mover as submissões associadas a esta "
+"série para outra série."
+
+msgid "plugins.importexport.common.error.salesRightRequiresTerritory"
+msgstr ""
+"Um registo de direito de vendas foi ignorado porque não tem país ou região "
+"atribuído."
