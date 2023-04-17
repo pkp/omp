@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-08 15:48+0000\n"
+"PO-Revision-Date: 2023-04-17 07:25+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "uk/>\n"
@@ -1762,3 +1762,6 @@ msgid "manager.sections.alertDelete"
 msgstr ""
 "Перш ніж цю серію можна буде видалити, потрібно перемістити пов'язані з нею "
 "подання до іншої серії."
+
+msgid "mailable.layoutComplete.name"
+msgstr "Гранки зроблено"
