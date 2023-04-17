@@ -1,11 +1,11 @@
 # Carla Marques <carla.marques@usdb.uminho.pt>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-03-03 14:57+0000\n"
+"PO-Revision-Date: 2023-04-18 09:49+0000\n"
 "Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
-"Language-Team: Portuguese <http://translate.pkp.sfu.ca/projects/omp/"
-"paymethod-manual/pt/>\n"
-"Language: pt\n"
+"Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
+"omp/paymethod-manual/pt_PT/>\n"
+"Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -40,3 +40,6 @@ msgstr "Título"
 
 msgid "plugins.paymethod.manual.purchase.fee"
 msgstr "Taxa"
+
+msgid "plugins.paymethod.manual.manualPaymentNotify.name"
+msgstr "Notificação de Pagamento Manual"
