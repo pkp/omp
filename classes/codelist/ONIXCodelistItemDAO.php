@@ -207,7 +207,7 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
         $returner = [];
         $cacheContents = & $cache->getContents();
         if ($codesFilter = trim($codesFilter ?? '')) {
-            $codesFilter = '/' . implode('|', array_map(fn ($term) => preg_quote($term), PKPString::regexp_split('/\s+/', $codesFilter))) . '/i';
+            $codesFilter = '/' . implode('|', array_map(fn ($term) => preg_quote($term, '/'), PKPString::regexp_split('/\s+/', $codesFilter))) . '/i';
         }
         if (is_array($cacheContents)) {
             foreach ($cache->getContents() as $code => $entry) {

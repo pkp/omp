@@ -181,7 +181,7 @@ class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
 
         foreach ($embeddableFiles as $embeddableFile) {
             $fileUrl = $request->url(null, 'catalog', 'download', [$monograph->getBestId(), 'version', $publicationFormat->getData('publicationId'), $publicationFormat->getBestId(), $embeddableFile->getBestId()], ['inline' => true]);
-            $pattern = preg_quote($embeddableFile->getLocalizedData('name'));
+            $pattern = preg_quote($embeddableFile->getLocalizedData('name'), '/');
 
             $contents = preg_replace(
                 '/([Ss][Rr][Cc]|[Hh][Rr][Ee][Ff]|[Dd][Aa][Tt][Aa])\s*=\s*"([^"]*' . $pattern . ')"/',
