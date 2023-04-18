@@ -2,7 +2,7 @@
 
 > Open Monograph Press (OMP) has been developed by the Public Knowledge Project. For general information about OMP and other open research systems, visit the [PKP web site][pkp].
 
-[![Build Status](https://travis-ci.org/pkp/omp.svg?branch=stable-3_3_0)](https://travis-ci.org/pkp/omp)
+[![Build Status](https://app.travis-ci.com/pkp/omp.svg?branch=stable-3_3_0)](https://app.travis-ci.com/pkp/omp)
 
 ## Documentation
 
