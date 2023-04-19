@@ -14,8 +14,6 @@
  *
  */
 
-use Stringy\Stringy;
-
 import('lib.pkp.api.v1.vocabs.PKPVocabHandler');
 import('classes.core.Services');
 
@@ -37,7 +35,7 @@ class VocabHandler extends PKPVocabHandler {
 
 		$vocab = $requestParams['vocab'] ?? '';
 		$locale = $requestParams['locale'] ?? AppLocale::getLocale();
-		$term = $requestParams['term'] ?? 'Por tu';
+		$term = $requestParams['term'] ?? null;
 		$codeList = (int) ($requestParams['codeList'] ?? static::LANGUAGE_CODE_LIST);
 
 		if (!in_array($locale, $context->getData('supportedSubmissionLocales'))) {
@@ -54,7 +52,7 @@ class VocabHandler extends PKPVocabHandler {
 
 		/** @var ONIXCodelistItemDAO */
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
-		$codes = array_map(fn ($value) => trim($value), array_values($onixCodelistItemDao->getCodes('List' . $codeList, [], $term)));
+		$codes = array_map('trim', array_values($onixCodelistItemDao->getCodes('List' . $codeList, [], $term)));
 		asort($codes);
 		return $response->withJson($codes, 200);
 	}
