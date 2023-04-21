@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-21 03:49+0000\n"
+"PO-Revision-Date: 2023-04-22 12:49+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/manager/cs/>\n"
 "Language: cs\n"
@@ -207,7 +207,7 @@ msgid "manager.people.allSiteUsers"
 msgstr "Zapsat uživatele z této stránky do tohoto tisku"
 
 msgid "manager.people.allUsers"
-msgstr "Všichni zapsaní uživatelé"
+msgstr "Všichni zaregistrovaní uživatelé"
 
 msgid "manager.people.confirmRemove"
 msgstr ""
@@ -451,11 +451,12 @@ msgid "manager.setup.editorDecision"
 msgstr "Rozhodnutí editora"
 
 msgid "manager.setup.emailBounceAddress"
-msgstr "Kontrolní adresa"
+msgstr "Adresa pro nedoručitelné zprávy"
 
 msgid "manager.setup.emailBounceAddress.description"
 msgstr ""
-"V případě nedoručitelných e-mailů bude na tuto adresu zaslána chybová zpráva."
+"Jakékoliv nedoručitelné e-maily povedou k zaslání chybové zprávy na tuto "
+"adresu."
 
 msgid "manager.setup.emailBounceAddress.disabled"
 msgstr ""
