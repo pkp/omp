@@ -1,19 +1,19 @@
-# Jordi LC <jordi.lacruz@uab.cat>, 2021.
+# Jordi LC <jordi.lacruz@uab.cat>, 2021, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2021-08-04 11:04+0000\n"
+"PO-Revision-Date: 2023-04-22 12:49+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
-"Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/locale/"
-"es_ES/>\n"
-"Language: es_ES\n"
+"Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/locale/es/>"
+"\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "common.payments"
 msgstr "Pagos"
@@ -898,7 +898,7 @@ msgid "navigation.wizard"
 msgstr "Asistente"
 
 msgid "navigation.linksAndMedia"
-msgstr "Enlaces y  redes sociales"
+msgstr "Enlaces y redes sociales"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Enlace a su catálogo."
@@ -1555,9 +1555,8 @@ msgstr "Se te ha denegado el acceso al fichero de la monografía especificado."
 msgid "user.authorization.invalidMonograph"
 msgstr "¡No se ha solicitado monografía o esta no es válida!"
 
-#, fuzzy
 msgid "user.authorization.noContext"
-msgstr "¡Ninguna editorial dentro del contexto!"
+msgstr "No se encontró ninguna editorial que coincida con su solicitud."
 
 msgid "user.authorization.seriesAssignment"
 msgstr "Estás intentando acceder a una monografía que no es parte de tu serie."
@@ -1660,37 +1659,37 @@ msgid "catalog.coverImageTitle"
 msgstr "Imagen de cubierta"
 
 msgid "grid.catalogEntry.chapters"
-msgstr ""
+msgstr "Capítulos"
 
 msgid "search.results.orderBy.article"
-msgstr ""
+msgstr "Título del artículo"
 
 msgid "search.results.orderBy.author"
-msgstr ""
+msgstr "Autor/a"
 
 msgid "search.results.orderBy.date"
-msgstr ""
+msgstr "Fecha de publicación"
 
 msgid "search.results.orderBy.monograph"
-msgstr ""
+msgstr "Título de la monografía"
 
 msgid "search.results.orderBy.press"
-msgstr ""
+msgstr "Nombre de la editorial"
 
 msgid "search.results.orderBy.popularityAll"
-msgstr ""
+msgstr "Popularidad (histórica)"
 
 msgid "search.results.orderBy.popularityMonth"
-msgstr ""
+msgstr "Popularidad (último mes)"
 
 msgid "search.results.orderBy.relevance"
-msgstr ""
+msgstr "Relevancia"
 
 msgid "search.results.orderDir.asc"
-msgstr ""
+msgstr "Ascendente"
 
 msgid "search.results.orderDir.desc"
-msgstr ""
+msgstr "Descendente"
 
 #~ msgid "monograph.coverImage.uploadInstructions"
 #~ msgstr ""
