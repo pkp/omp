@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-22 12:49+0000\n"
+"PO-Revision-Date: 2023-04-24 04:49+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/manager/cs/>\n"
 "Language: cs\n"
@@ -376,7 +376,7 @@ msgstr ""
 "(např. značky META)."
 
 msgid "manager.setup.details"
-msgstr "Detaily"
+msgstr "Podrobnosti"
 
 msgid "manager.setup.details.description"
 msgstr "Název tisku, kontakty, sponzoři a vyhledávače."
@@ -593,8 +593,9 @@ msgstr "Položek na stránku"
 
 msgid "manager.setup.itemsPerPage.description"
 msgstr ""
-"Omezit počet položek (například podání, uživatelů nebo úprav úkolů), které "
-"se mají zobrazit v seznamu před zobrazením dalších položek na jiné stránce."
+"Omezit počet položek (například příspěvků, uživatelů nebo redakčních úkolů), "
+"které se mají zobrazit v seznamu před zobrazením dalších položek na jiné "
+"stránce."
 
 msgid "manager.setup.keyInfo"
 msgstr "Klíčová informace"
@@ -706,7 +707,8 @@ msgstr "Odkazy na stránky"
 
 msgid "manager.setup.numPageLinks.description"
 msgstr ""
-"Omezit počet odkazů, které se mají zobrazit na následující stránky v seznamu."
+"Omezte počet odkazů, které se mají zobrazit na následujících stránkách v "
+"seznamu."
 
 msgid "manager.setup.onlineAccessManagement"
 msgstr "Přístup k obsahu tisku"
@@ -927,7 +929,7 @@ msgstr ""
 "při výpisu tisku ve výsledcích vyhledávání."
 
 msgid "manager.setup.searchEngineIndexing"
-msgstr "Indexování vyhledávání"
+msgstr "Indexace vyhledávacími nástroji"
 
 msgid "manager.setup.searchEngineIndexing.description"
 msgstr ""
@@ -1376,7 +1378,7 @@ msgid "stats.publications.abstracts"
 msgstr "Záznamy do katalogu"
 
 msgid "plugins.importexport.common.error.noObjectsSelected"
-msgstr "Nejsou vybrány žádné objekty."
+msgstr "Nebyly vybrány žádné objekty."
 
 msgid "plugins.importexport.common.error.validation"
 msgstr "Vybrané objekty se nepodařilo převést."
@@ -1421,7 +1423,7 @@ msgid "emailTemplate.variable.context.contactName"
 msgstr "Jméno primárního kontaktu vydavatelství"
 
 msgid "emailTemplate.variable.context.contextSignature"
-msgstr "Podpis vydavatelství pro automatizované e-maily"
+msgstr "Emailový podpis vydavatelství pro automatizované e-maily"
 
 msgid "emailTemplate.variable.context.contactEmail"
 msgstr "E-mailová adresa hlavní kontaktní osoby vydavatelství"
@@ -1684,7 +1686,7 @@ msgstr "Poštovní adresa vydavatelství"
 msgid "mailable.statisticsReportNotify.description"
 msgstr ""
 "Tento e-mail je každý měsíc automaticky zasílán redaktorům a manažerům "
-"tisku, aby jim poskytl přehled o stavu systému."
+"nakladatelství, aby jim poskytl přehled o stavu systému."
 
 msgid "emailTemplate.variable.statisticsReportNotify.publicationStatsLink"
 msgstr "Odkaz na stránku se statistikami knih"
