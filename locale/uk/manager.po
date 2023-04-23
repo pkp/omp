@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-18 09:49+0000\n"
+"PO-Revision-Date: 2023-04-24 04:49+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "uk/>\n"
@@ -315,7 +315,8 @@ msgstr "Налаштування оголошень оновлено."
 msgid "manager.setup.announcementsDescription"
 msgstr ""
 "Для інформування читачів про новини та події е-видавництва можна публікувати "
-"оголошення. Оприлюднені оголошення з'являться на сторінці \"Оголошення\"."
+"оголошення. Опубліковані оголошення з'являтимуться на сторінці \"Оголошення\""
+"."
 
 msgid "manager.setup.announcementsIntroduction"
 msgstr "Додаткова інформація"
@@ -492,15 +493,15 @@ msgstr "Включити оголошення"
 
 msgid "manager.setup.enableAnnouncements.description"
 msgstr ""
-"Оголошення можна публікувати, щоб інформувати читачів про новини й події. "
+"Для інформування читачів про новини та події можна публікувати оголошення. "
 "Опубліковані оголошення з'являтимуться на сторінці \"Оголошення\"."
 
 msgid "manager.setup.numAnnouncementsHomepage"
-msgstr "Показувати на домашній сторінці"
+msgstr "Показувати на головній сторінці"
 
 msgid "manager.setup.numAnnouncementsHomepage.description"
 msgstr ""
-"Як багато оголошень показувати на домашній сторінці. Залиште це поле пустим, "
+"Як багато оголошень показувати на головній сторінці. Залиште це поле пустим, "
 "щоб не показувати жодного."
 
 msgid "manager.setup.enablePressInstructions"
