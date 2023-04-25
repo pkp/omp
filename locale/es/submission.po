@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2023-04-25 08:49+0000\n"
+"PO-Revision-Date: 2023-04-26 17:49+0000\n"
 "Last-Translator: pep sanso <pep.sanso@uab.cat>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "es/>\n"
@@ -656,17 +656,27 @@ msgstr "No se ha podido encontrar la colección para este envío."
 msgid "submission.sectionRestrictedToEditors"
 msgstr "Solo el equipo editorial puede hacer envíos a esta colección."
 
+#, fuzzy
 msgid "submission.wizard.submitting.monograph"
-msgstr ""
+msgstr "Enviando una <strong>monografía</strong>."
 
+#, fuzzy
 msgid "submission.wizard.submitting.monographInLanguage"
 msgstr ""
+"Enviando una <strong>monografía</strong> en <strong>{$language}</strong>."
 
+#, fuzzy
 msgid "submission.wizard.submitting.editedVolume"
-msgstr ""
+msgstr "Enviando un <strong>volumen editado</strong>."
 
+#, fuzzy
 msgid "submission.wizard.submitting.editedVolumeInLanguage"
 msgstr ""
+"Enviando un <strong>volumen editado</strong> en <strong>{$language}</strong>."
 
+#, fuzzy
 msgid "submission.wizard.chapters.description"
 msgstr ""
+"Proporcionar todos los capítulos de este envío. Si remite un volumen "
+"editado, asegúrese de que en cada capítulo se indican los colaboradores del "
+"mismo."
