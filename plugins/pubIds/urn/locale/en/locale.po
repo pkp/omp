@@ -207,8 +207,14 @@ msgstr "The URN for this publication will be {$urn}."
 msgid "plugins.pubIds.urn.editor.preview.publication.none"
 msgstr "A URN has not been assigned to this publication."
 
-msgid "plugins.pubIds.urn.editor.preview.galleys"
-msgstr "Galley: {$galleyLabel}"
+msgid "plugins.pubIds.urn.editor.preview.chapters"
+msgstr "Chapter: {$chapterLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.publicationFormats"
+msgstr "Publication Format: {$publicationFormatLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.submissionFiles"
+msgstr "Files: {$submissionFileLabel}"
 
 msgid "plugins.pubIds.urn.editor.preview.objects"
 msgstr "Item"

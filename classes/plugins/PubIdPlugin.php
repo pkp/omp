@@ -233,6 +233,6 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
             }
         }
 
-        return true;
+        return parent::checkDuplicate($pubId, $pubObjectType, $excludeId, $contextId);
     }
 }
