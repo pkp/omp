@@ -1,19 +1,19 @@
-# Pia Piontkowitz <pia.piontkowitz@rub.de>, 2021, 2022.
+# Pia Piontkowitz <pia.piontkowitz@rub.de>, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
-"PO-Revision-Date: 2022-02-22 11:05+0000\n"
+"PO-Revision-Date: 2023-04-26 17:49+0000\n"
 "Last-Translator: Pia Piontkowitz <pia.piontkowitz@rub.de>\n"
-"Language-Team: German <http://translate.pkp.sfu.ca/projects/omp/manager/"
-"de_DE/>\n"
-"Language: de_DE\n"
+"Language-Team: German <http://translate.pkp.sfu.ca/projects/omp/manager/de/>"
+"\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr ""
@@ -457,9 +457,11 @@ msgstr ""
 "Digital Object Identifier (DOIs) zu Monographien, Kapiteln, "
 "Publikationsformaten, und Dateien zuweisen."
 
-#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
-msgstr "Bitte wählen Sie die Objekte aus, denen DOIs zugewiesen werden sollen."
+msgstr ""
+"Bitte wählen Sie die Objekte aus, denen DOIs zugewiesen werden sollen. Die "
+"meisten Verlage vergeben DOIs an Monographien/Kapitel, aber vielleicht "
+"möchten Sie allen veröffentlichen Objekten DOIs zuweisen."
 
 msgid "doi.manager.settings.doiSuffixLegacy"
 msgstr ""
@@ -496,11 +498,10 @@ msgstr "E-Mail-Identifizierung"
 msgid "manager.setup.emailSignature"
 msgstr "Signatur"
 
-#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
-"Den vorbereiteten E-Mails, die das System im Namen des Verlags verschickt, "
-"werden die folgende Signatur am Ende der Nachricht zugefügt."
+"Alle E-Mails, die vom System im Namen des Verlags verschickt werden, tragen "
+"die folgende Signatur."
 
 msgid "manager.setup.enableAnnouncements.enable"
 msgstr "Ankündigungen freischalten"
@@ -1415,31 +1416,35 @@ msgid "grid.series.urlWillBe"
 msgstr "Die URL der Reihe wird {$sampleUrl} sein"
 
 msgid "stats.contextStats"
-msgstr ""
+msgstr "Verlagsstatistik"
 
 msgid "stats.context.tooltip.text"
-msgstr ""
+msgstr "Anzahl der Besucher/innen der Verlags- und Katalog-Startseite."
 
 msgid "stats.context.tooltip.label"
-msgstr ""
+msgstr "Über Verlagsstatistken"
 
 msgid "stats.context.downloadReport.description"
 msgstr ""
+"Laden Sie eine CSV/Excel-Datei mit Nutzungsstatistiken für diesen Verlag "
+"herunter, die den folgenden Parametern entsprechen."
 
 msgid "stats.context.downloadReport.downloadContext.description"
-msgstr ""
+msgstr "Anzahl der Anzeigen der Verlags- und Katalog-Startseite."
 
 msgid "stats.context.downloadReport.downloadContext"
-msgstr ""
+msgstr "Verlag herunterladen"
 
 msgid "stats.publications.downloadReport.description"
 msgstr ""
+"Laden Sie eine CSV/Excel-Datei mit Nutzungsstatistiken für Monographien "
+"herunter, die den folgenden Parametern entsprechen."
 
 msgid "stats.publications.downloadReport.downloadSubmissions"
-msgstr ""
+msgstr "Monographien herunterladen"
 
 msgid "stats.publications.downloadReport.downloadSubmissions.description"
-msgstr ""
+msgstr "Anzahl der Abstract-Besuche und Datei-Downloads für jede Monographie."
 
 msgid "stats.publicationStats"
 msgstr "Monographie Statistiken"
@@ -1721,33 +1726,43 @@ msgstr "Monographien-DOIs"
 
 msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
 msgstr ""
+"Diese E-Mail benachrichtigt Autor/innen, dass ihre Einreichung in die "
+"interne Begutachtung geschickt wird."
 
 msgid "mailable.decision.initialDecline.notifyAuthor.description"
 msgstr ""
+"Diese E-Mail benachrichtigt Autor/innen, dass ihre Einreichung vor der "
+"Begutachtung abgelehnt wird, da sie die Anforderungen für Veröffentlichungen "
+"in diesem Verlag nicht erfüllt."
 
 msgid "manager.institutions.noContext"
-msgstr ""
+msgstr "Der Verlag dieser Institution konnte nicht gefunden werden."
 
 msgid "manager.manageEmails.description"
 msgstr ""
+"Nachrichten bearbeiten, die in E-Mails von diesem Verlag verschickt werden."
 
 msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
-msgstr ""
+msgstr "Zur internen Begutachtung geschickt"
 
 msgid "mailable.indexRequest.name"
-msgstr ""
+msgstr "Index angefordert"
 
 msgid "mailable.indexComplete.name"
-msgstr ""
+msgstr "Index vollständig"
 
 msgid "mailable.publicationVersionNotify.name"
-msgstr ""
+msgstr "Neue Version kreiert"
 
 msgid "mailable.publicationVersionNotify.description"
 msgstr ""
+"Diese E-Mail benachrichtigt automatisch zugewiesene Redakteur/innen, wenn "
+"eine neue Version der Einreichung kreiert wird."
 
 msgid "mailable.submissionNeedsEditor.description"
 msgstr ""
+"Diese E-Mail wird an Verlagsmanager/innen geschickt, wenn ein neuer Beitrag "
+"eingereicht wurde und keine Redakteur/innen zugewiesen sind."
 
 #~ msgid "manager.people.existingUserRequired"
 #~ msgstr "Sie müssen eine/n existierende/n Benutzer/in angeben."
@@ -1776,3 +1791,28 @@ msgstr ""
 #~ "den Gutachter/innen Informationen zu Bewertung des eingereichten "
 #~ "Manuskripts. Diese Anleitungen sind für interne Gutachter/innen, die "
 #~ "generell den Begutachtungsprozess verlagsintern durchführen."
+
+msgid "plugins.importexport.common.error.salesRightRequiresTerritory"
+msgstr ""
+"Ein Datensatz des Verkaufsrechts wurde übersprungen, weil ihm weder ein Land "
+"noch eine Region zugewiesen wurde."
+
+msgid "manager.sections.alertDelete"
+msgstr ""
+"Bevor diese Reihe entfernt werden kann, müssen Sie Beiträge aus dieser Reihe "
+"in andere Reihen verschieben."
+
+msgid "mailable.layoutComplete.name"
+msgstr "Fahnen vollständig"
+
+msgid "emailTemplate.variable.context.mailingAddress"
+msgstr "Adresse des Verlags"
+
+msgid "emailTemplate.variable.statisticsReportNotify.publicationStatsLink"
+msgstr "Link zur Statistikseite der Bücher"
+
+msgid "mailable.statisticsReportNotify.description"
+msgstr ""
+"Diese E-Mail wird monatlich automatisch an Redakteur/innen und "
+"Verlagsmanager/innen versandt, um ihnen einen Überblick über den "
+"Systemzustand zu geben."
