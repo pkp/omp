@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-26 17:49+0000\n"
+"PO-Revision-Date: 2023-04-28 05:49+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/uk/>\n"
@@ -359,8 +359,8 @@ msgstr "Опубліковано в <a href=\"{$issueUrl}\">{$issueName}</a>."
 
 msgid "publication.publish.confirmation"
 msgstr ""
-"Усі вимоги до публікації виконано. Чи впевнені Ви, що хочете зробити цей "
-"запис каталогу публічним?"
+"Усі вимоги до публікації виконано. Ви впевнені, що хочете зробити цей запис "
+"каталогу публічним?"
 
 msgid "publication.scheduledIn"
 msgstr "Заплановано до публікації в <a href=\"{$issueUrl}\">{$issueName}</a>."
