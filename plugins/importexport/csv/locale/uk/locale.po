@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-26 17:49+0000\n"
+"PO-Revision-Date: 2023-04-28 05:49+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-csv/uk/>\n"
@@ -22,7 +22,7 @@ msgstr "Імпортувати подання до е-видавництв із 
 msgid "plugins.importexport.csv.cliOnly"
 msgstr ""
 "\n"
-"\t\t<p>Наразі цей плагін підтримує роботу тільки з командного рядка. "
+"\t\t<p>Wей плагін наразі підтримує роботу тільки з командного рядка. "
 "Виконайте команду…\n"
 "\t\t\t<pre>php tools/importExport.php CSVImportExportPlugin</pre>\n"
 "\t\t\t…для отримання більше інформації.</p>\n"
@@ -45,7 +45,7 @@ msgid "plugins.importexport.csv.unknownUser"
 msgstr "Невідомий користувач: \"{$username}\". Ініційовано вихід."
 
 msgid "plugins.importexport.csv.unknownLocale"
-msgstr "Невідома мова: \"{$locale}\". Пропускаємо значення."
+msgstr "Невідома локалізація: \"{$locale}\". Пропускаємо значення."
 
 msgid "plugins.importexport.csv.unknownPress"
 msgstr "Невідоме е-видавництво: {$contextPath}. Пропускаємо значення."
