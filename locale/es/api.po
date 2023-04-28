@@ -1,8 +1,46 @@
 # Marc Bria <marc.bria@gmail.com>, 2023.
+# Jordi LC <jordi.lacruz@uab.cat>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-04-29 14:49+0000\n"
+"Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
+"Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/api/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "api.submissions.400.submissionIdsRequired"
+msgstr ""
+"Debe proporcionar uno o más identificadores de envío para añadirlos al "
+"catálogo."
+
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "No se han podido encontrar uno o más de los envíos que ha especificado."
+
+msgid "api.submissions.400.wrongContext"
+msgstr "El envío que ha solicitado no está en esta editorial."
+
+msgid "api.emails.403.disabled"
+msgstr ""
+"No se ha activado la funcionalidad de notificación por correo electrónico en "
+"esta editorial."
+
+msgid "api.publications.403.contextsDidNotMatch"
+msgstr "La publicación que ha solicitado no forma parte de esta editorial."
+
+msgid "api.publications.403.submissionsDidNotMatch"
+msgstr "La publicación que ha solicitado no forma parte de este envío."
+
+msgid "api.submissions.403.cantChangeContext"
+msgstr "No puede cambiar la editorial de un envío."
+
+msgid "api.submission.400.inactiveSection"
+msgstr "Esta sección ya no recibe más envíos."
+
+msgid "api.emailTemplates.403.notAllowedChangeContext"
+msgstr ""
+"No tiene permiso para mover esta plantilla de correo electrónico a otra "
+"editorial."
