@@ -24,7 +24,6 @@ use PKP\context\Context;
 use PKP\core\DataObject;
 use PKP\core\PKPString;
 use PKP\db\DAORegistry;
-
 use PKP\plugins\PKPPubIdPlugin;
 use PKP\submission\Representation;
 use PKP\submissionFile\SubmissionFile;
@@ -45,7 +44,12 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
     }
 
     /**
-     * @copydoc PKPPubIdPlugin::getPubId()
+     * Get the public identifier.
+     *
+     * @param object $pubObject
+     * 	Publication, Representation, SubmissionFile, Chapter
+     *
+     * @return string
      */
     public function getPubId($pubObject)
     {
@@ -62,29 +66,26 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
         $pubObjectType = $this->getPubObjectType($pubObject);
 
         // Initialize variables for publication objects.
-        $submission = ($pubObjectType == 'Submission' ? $pubObject : null);
+        $submission = null;
+        // Publication is actually handled differently now, but keep it here however for now.
+        $publication = ($pubObjectType == 'Publication' ? $pubObject : null);
         $representation = ($pubObjectType == 'Representation' ? $pubObject : null);
         $submissionFile = ($pubObjectType == 'SubmissionFile' ? $pubObject : null);
         $chapter = ($pubObjectType == 'Chapter' ? $pubObject : null);
 
-        // Get the context id.
-        if ($pubObjectType == 'Submission') {
-            $contextId = $pubObject->getContextId();
-        } else {
-            // Retrieve the submission.
-            if (is_a($pubObject, 'Chapter') || is_a($pubObject, 'Representation')) {
-                $publication = Repo::publication()->get($pubObject->getData('publicationId'));
-                $submission = Repo::submission()->get($publication->getData('submissionId'));
-            } else {
-                assert(is_a($pubObject, 'SubmissionFile'));
-                $submission = Repo::submission()->get($pubObject->getData('submissionId'));
-            }
-            if (!$submission) {
-                return null;
-            }
-            // Now we can identify the context.
-            $contextId = $submission->getContextId();
+        // Retrieve the submission.
+        if (is_a($pubObject, 'Chapter') || is_a($pubObject, 'Representation')) {
+            $publication = Repo::publication()->get($pubObject->getData('publicationId'));
+            $submission = Repo::submission()->get($publication->getData('submissionId'));
+        } else { // Publication or SubmissionFile
+            $submission = Repo::submission()->get($pubObject->getData('submissionId'));
         }
+        if (!$submission) {
+            return null;
+        }
+        // Now we can identify the context.
+        $contextId = $submission->getData('contextId');
+
         // Check the context
         $context = $this->getContext($contextId);
         if (!$context) {
@@ -214,7 +215,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
      */
     public function getDAOs()
     {
-        return array_merge(parent::getDAOs(), ['Chapter' => DAORegistry::getDAO('ChapterDAO')]);
+        return array_merge(parent::getDAOs(), [DAORegistry::getDAO('ChapterDAO')]);
     }
 
     /**
@@ -233,6 +234,6 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
             }
         }
 
-        return true;
+        return parent::checkDuplicate($pubId, $pubObjectType, $excludeId, $contextId);
     }
 }
