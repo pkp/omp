@@ -2,7 +2,7 @@
 # Jordi LC <jordi.lacruz@uab.cat>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-28 19:09+0000\n"
+"PO-Revision-Date: 2023-04-29 14:49+0000\n"
 "Last-Translator: Marc Bria <marc.bria@gmail.com>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/admin/es/>\n"
 "Language: es\n"
@@ -56,7 +56,7 @@ msgid "admin.contexts.create"
 msgstr "Crear editorial"
 
 msgid "admin.contexts.form.titleRequired"
-msgstr "El título es obligatorio"
+msgstr "El título es obligatorio."
 
 msgid "admin.contexts.form.pathRequired"
 msgstr "La ruta es obligatoria."
