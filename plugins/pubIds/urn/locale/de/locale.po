@@ -1,8 +1,9 @@
 # Tadej Grlić <tadejgrlic@gmail.com>, 2023.
+# Pia Piontkowitz <pia.piontkowitz@rub.de>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-28 18:48+0000\n"
-"Last-Translator: Tadej Grlić <tadejgrlic@gmail.com>\n"
+"PO-Revision-Date: 2023-04-29 14:49+0000\n"
+"Last-Translator: Pia Piontkowitz <pia.piontkowitz@rub.de>\n"
 "Language-Team: German <http://translate.pkp.sfu.ca/projects/omp/pubIds-urn/"
 "de/>\n"
 "Language: de\n"
@@ -259,3 +260,12 @@ msgstr "Galley-Kopie: {$galleyLabel}"
 
 msgid "plugins.pubIds.urn.editor.preview.objects"
 msgstr "Artikel"
+
+msgid "plugins.pubIds.urn.editor.preview.chapters"
+msgstr "Kapitel: {$chapterLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.submissionFiles"
+msgstr "Dateien: {$submissionFileLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.publicationFormats"
+msgstr "Publikationsformat: {$publicationFormatLabel}"
