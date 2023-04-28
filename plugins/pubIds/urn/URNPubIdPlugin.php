@@ -20,7 +20,6 @@ use APP\plugins\PubIdPlugin;
 use APP\plugins\pubIds\urn\classes\form\FieldPubIdUrn;
 use APP\plugins\pubIds\urn\classes\form\FieldTextUrn;
 use APP\plugins\pubIds\urn\classes\form\URNSettingsForm;
-use APP\publication\Publication;
 use APP\template\TemplateManager;
 use PKP\components\forms\FormComponent;
 use PKP\linkAction\LinkAction;
@@ -42,9 +41,6 @@ class URNPubIdPlugin extends PubIdPlugin
             return $success;
         }
         if ($success && $this->getEnabled($mainContextId)) {
-            Hook::add('Publication::getProperties::summaryProperties', [$this, 'modifyObjectProperties']);
-            Hook::add('Publication::getProperties::fullProperties', [$this, 'modifyObjectProperties']);
-            Hook::add('Publication::getProperties::values', [$this, 'modifyObjectPropertyValues']);
             Hook::add('Publication::validate', [$this, 'validatePublicationUrn']);
             Hook::add('Form::config::before', [$this, 'addPublicationFormFields']);
             Hook::add('Form::config::before', [$this, 'addPublishFormNotice']);
@@ -228,7 +224,7 @@ class URNPubIdPlugin extends PubIdPlugin
     public function getSuffixPatternsFieldNames()
     {
         return  [
-            'Submission' => 'urnPublicationSuffixPattern',
+            'Publication' => 'urnPublicationSuffixPattern',
             'Representation' => 'urnRepresentationSuffixPattern',
             'SubmissionFile' => 'urnSubmissionFileSuffixPattern',
             'Chapter' => 'urnChapterSuffixPattern',
@@ -257,53 +253,6 @@ class URNPubIdPlugin extends PubIdPlugin
     public function getNotUniqueErrorMsg()
     {
         return __('plugins.pubIds.urn.editor.urnSuffixCustomIdentifierNotUnique');
-    }
-
-    /**
-     * Add URN to submission properties
-     *
-     * @param string $hookName <Object>::getProperties::summaryProperties or
-     *  <Object>::getProperties::fullProperties
-     * @param array $args [
-     *
-     * 		@option $props array Existing properties
-     * 		@option $object Publication
-     * 		@option $args array Request args
-     * ]
-     */
-    public function modifyObjectProperties(string $hookName, array $args): void
-    {
-        $props = & $args[0];
-        $props[] = 'pub-id::other::urn';
-    }
-
-    /**
-     * Add URN submission value
-     *
-     * @param string $hookName <Object>::getProperties::values
-     * @param array $args [
-     *
-     * 		@option $values array Key/value store of property values
-     * 		@option $object Publication
-     * 		@option $props array Requested properties
-     * 		@option $args array Request args
-     * ]
-     */
-    public function modifyObjectPropertyValues(string $hookName, array $args): void
-    {
-        $values = & $args[0];
-        $object = $args[1];
-        $props = $args[2];
-
-        // URNs are already added to property values for Publications
-        if ($object instanceof Publication) {
-            return;
-        }
-
-        if (in_array('pub-id::other::urn', $props)) {
-            $pubId = $this->getPubId($object);
-            $values['pub-id::other::urn'] = $pubId ? $pubId : null;
-        }
     }
 
     /**
