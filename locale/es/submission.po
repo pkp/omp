@@ -1,11 +1,12 @@
 # pep sanso <pep.sanso@uab.cat>, 2023.
+# Jordi LC <jordi.lacruz@uab.cat>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2023-04-26 17:49+0000\n"
-"Last-Translator: pep sanso <pep.sanso@uab.cat>\n"
+"PO-Revision-Date: 2023-04-29 14:49+0000\n"
+"Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "es/>\n"
 "Language: es\n"
@@ -32,9 +33,9 @@ msgstr "Tipo de libro"
 
 msgid "submission.workflowType.description"
 msgstr ""
-"Una monografía es una obra escrita totalmente por uno o más autores/as. Una "
-"obra colectiva tiene diferentes autores/as para cada capítulo (los detalles "
-"de capítulo se introducen posteriormente durante el proceso)."
+"Una monografía es una obra escrita totalmente por uno o más autores/as. Un "
+"volumen editado tiene diferentes autores/as para cada capítulo (los detalles "
+"de capítulo se introducirán posteriormente durante el proceso)."
 
 msgid "submission.workflowType.editedVolume.label"
 msgstr "Obra colectiva"
@@ -49,7 +50,7 @@ msgid "submission.workflowType.change"
 msgstr "Cambiar"
 
 msgid "submission.editorName"
-msgstr "{$editorName} (ed)"
+msgstr "{$editorName} (ed.)"
 
 msgid "submission.monograph"
 msgstr "Monografía"
@@ -261,7 +262,7 @@ msgid "submission.catalogEntry.publicationMetadata"
 msgstr "Formato de publicación"
 
 msgid "submission.event.metadataPublished"
-msgstr "Los metadatos de la monografía  se han aprobado para su publicación."
+msgstr "Los metadatos de la monografía se han aprobado para su publicación."
 
 msgid "submission.event.metadataUnpublished"
 msgstr "Los metadatos de la monografía no están ya publicados."
@@ -472,211 +473,170 @@ msgstr "Detalles de publicación de la versión {$version}"
 msgid "submission.queries.production"
 msgstr "Discusiones de producción"
 
-#, fuzzy
 msgid "publication.chapter.landingPage"
 msgstr "Página del capítulo"
 
-#, fuzzy
 msgid "publication.chapter.hasLandingPage"
 msgstr ""
-"Muestre este capítulo en su propia página y el enlace a esa página desde el "
+"Mostrar este capítulo en su propia página y enlazar a esa página desde el "
 "índice del libro."
 
-#, fuzzy
 msgid "publication.publish.success"
-msgstr "El estado de la publicación cambió con éxito."
+msgstr "El estado de la publicación se modificó con éxito."
 
-#, fuzzy
 msgid "chapter.volume"
 msgstr "Volumen"
 
-#, fuzzy
 msgid "submission.withoutChapter"
 msgstr "{$name} — Sin este capítulo"
 
-#, fuzzy
 msgid "submission.chapterCreated"
 msgstr " — Capítulo creado"
 
 msgid "chapter.pages"
 msgstr "Páginas"
 
-#, fuzzy
 msgid "editor.submission.decision.sendInternalReview"
 msgstr "Enviar a revisión interna"
 
-#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.description"
-msgstr "Este envío está listo para remitir a revisión interna."
+msgstr "Este envío está listo para remitirse a revisión interna."
 
-#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.log"
-msgstr "{$editorName} ha remitido este envío a fase de revisión interna."
+msgstr "{$editorName} ha remitido este envío a la fase de revisión interna."
 
-#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.completed"
 msgstr "Enviado a revisión interna"
 
-#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr ""
-"El envió, {$title}, se ha enviado a la fase de revisión interna. Se ha "
-"notificado el autor/a, a menos que haya elegido omitir ese correo "
+"El envío, {$title}, se ha remitido a la fase de revisión interna. Se ha "
+"notificado al autor/a, a menos que haya decidido omitir el correo "
 "electrónico."
 
-#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
 msgstr ""
-"Envíe un correo electrónico a los autores para informarles de que este envío "
-"se remitirá a revisión interna. Si es posible, indique a los autores cuánto "
-"tiempo puede durar el proceso de revisión interna y cuándo pueden esperar "
-"volver a tener noticias de los editores."
+"Enviar un correo electrónico a los autores/as para informarlos de que este "
+"envío se remitirá a revisión interna. Si es posible, indique a los autores/"
+"as cuánto tiempo puede durar el proceso de revisión interna y cuándo está "
+"previsto que vuelvan a tener noticias de los editores/as."
 
-#, fuzzy
 msgid "editor.submission.decision.promoteFiles.internalReview"
 msgstr ""
 "Seleccionar los archivos que deben enviarse a la fase de revisión interna."
 
-#, fuzzy
 msgid "editor.submission.decision.sendExternalReview.log"
 msgstr "{$editorName} remitió este envío a la fase de revisión externa."
 
-#, fuzzy
 msgid "editor.submission.decision.sendExternalReview.completed"
 msgstr "Enviado a revisión externa"
 
-#, fuzzy
 msgid "editor.submission.decision.sendExternalReview.completed.description"
 msgstr "El envío, {$title}, se ha remitido a la fase de revisión externa."
 
-#, fuzzy
 msgid "editor.submission.decision.backToReview"
 msgstr "Volver a revisión"
 
-#, fuzzy
 msgid "editor.submission.decision.backToReview.description"
 msgstr ""
-"Revertir la decisión de aceptar este envío y devolver a la fase de revisión."
+"Revertir la decisión de aceptar este envío y devolverlo a la fase de "
+"revisión."
 
-#, fuzzy
 msgid "editor.submission.decision.backToReview.log"
 msgstr ""
 "{$editorName} ha revertido la decisión de aceptar este envío y lo ha "
 "devuelto a la fase de revisión."
 
-#, fuzzy
 msgid "editor.submission.decision.backToReview.completed"
 msgstr "Devuelto a revisión"
 
-#, fuzzy
 msgid "editor.submission.decision.backToReview.completed.description"
 msgstr "El envío, {$title}, se ha devuelto a la fase de revisión."
 
-#, fuzzy
 msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
 msgstr ""
 "Enviar un correo electrónico a los autores/as para informarles de que su "
-"envío ha sido devuelto a la fase de revisión. Explicar por qué se ha tomado "
+"envío ha sido devuelto a la fase de revisión. Explique por qué se ha tomado "
 "esta decisión e informe al autor/a de qué otras revisiones se llevarán a "
 "cabo."
 
-#, fuzzy
 msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
 msgstr ""
-"Enviar un correo electrónico a los autores/as para informarles de que el "
-"trabajo se remitirá a la fase de revisión por pares. Si es posible, dar a "
-"los autores/as alguna indicación sobre el tiempo que puede durar el proceso "
-"de revisión por pares y cuándo deben esperar volver a tener noticias de los "
-"editores."
+"Enviar un correo electrónico a los autores/as para informarles de que este "
+"trabajo se remitirá a la fase de revisión por pares. Si es posible, dé a los "
+"autores/as alguna indicación sobre el tiempo que puede durar el proceso de "
+"revisión por pares y cuándo está previsto que vuelvan a tener noticias de "
+"los editores/as."
 
-#, fuzzy
 msgid "editor.submission.decision.promoteFiles.externalReview"
-msgstr "Seleccionar los archivos que deben enviarse a la fase de revisión."
+msgstr "Seleccionar los archivos que deberían enviarse a la fase de revisión."
 
-#, fuzzy
 msgid "editor.submission.recommend.sendExternalReview"
-msgstr "Recomendar enviar a revisión externa"
+msgstr "Recomendar el envío a revisión externa"
 
-#, fuzzy
 msgid "editor.submission.recommend.sendExternalReview.description"
 msgstr "Recomendar que este envío pase a la fase de revisión externa."
 
-#, fuzzy
 msgid "editor.submission.recommend.sendExternalReview.log"
 msgstr ""
-"{$editorName} recomienda que este envío pase a la fase de revisión externa."
+"{$editorName} recomendó que este envío pasara a la fase de revisión externa."
 
-#, fuzzy
 msgid "doi.submission.incorrectContext"
 msgstr ""
 "No se pudo crear un DOI para el siguiente envío: {$pubObjectTitle}. No "
-"existe en el contexto de prensa actual."
+"existe en el contexto editorial actual."
 
-#, fuzzy
 msgid "publication.chapter.licenseUrl"
 msgstr "URL de la licencia"
 
-#, fuzzy
 msgid "publication.chapterDefaultLicenseURL"
-msgstr "URL por defecto de la licencia del capítulo"
+msgstr "URL predeterminada de la licencia del capítulo"
 
-#, fuzzy
 msgid "submission.copyright.description"
 msgstr ""
-"Leer y comprender las condiciones de copyright para los envíos a esta "
+"Lea y acepte los términos de derechos de autoría para los envíos a esta "
 "editorial."
 
-#, fuzzy
 msgid "submission.wizard.notAllowed.description"
 msgstr ""
-"No está permitido enviar artículos a esta publicación porque los autores "
-"deben estar registrados por el equipo de redacción. Si cree que se trata de "
-"un error, póngase en contacto con <a href='mailto:{$email}'>{$name}</a>."
+"No puede enviar artículos a esta editorial porque los autores/as deben haber "
+"sido registrados por el equipo editorial. Si cree que se trata de un error, "
+"póngase en contacto con <a href='mailto:{$email}'>{$name}</a>."
 
-#, fuzzy
 msgid "submission.wizard.noSectionAllowed.description"
 msgstr ""
-"No está permitido enviar artículos a esta publicación porque los envíos a "
-"todas las secciones de esta editorial han sido desactivados o restringidos. "
-"Si cree que se trata de un error, póngase en contacto con <a "
+"No puede enviar artículos a esta editorial porque los envíos a todas las "
+"secciones de esta editorial han sido desactivados o restringidos. Si cree "
+"que se trata de un error, póngase en contacto con <a "
 "href='mailto:{$email}'>{$name}</a>."
 
-#, fuzzy
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
 "{$contextName} no acepta envíos a la colección {$section}. Si necesita ayuda "
 "para recuperar su envío, póngase en contacto con <a "
 "href='mailto:{$email}'>{$name}</a>."
 
-#, fuzzy
 msgid "submission.sectionNotFound"
-msgstr "No se ha podido encontrar la colección para este envío."
+msgstr "No se ha podido encontrar la colección de este envío."
 
-#, fuzzy
 msgid "submission.sectionRestrictedToEditors"
 msgstr "Solo el equipo editorial puede hacer envíos a esta colección."
 
-#, fuzzy
 msgid "submission.wizard.submitting.monograph"
 msgstr "Enviando una <strong>monografía</strong>."
 
-#, fuzzy
 msgid "submission.wizard.submitting.monographInLanguage"
 msgstr ""
 "Enviando una <strong>monografía</strong> en <strong>{$language}</strong>."
 
-#, fuzzy
 msgid "submission.wizard.submitting.editedVolume"
 msgstr "Enviando un <strong>volumen editado</strong>."
 
-#, fuzzy
 msgid "submission.wizard.submitting.editedVolumeInLanguage"
 msgstr ""
 "Enviando un <strong>volumen editado</strong> en <strong>{$language}</strong>."
 
-#, fuzzy
 msgid "submission.wizard.chapters.description"
 msgstr ""
-"Proporcionar todos los capítulos de este envío. Si remite un volumen "
-"editado, asegúrese de que en cada capítulo se indican los colaboradores del "
-"mismo."
+"Proporcione todos los capítulos de este envío. Si está enviando un volumen "
+"editado, asegúrese de que en cada capítulo se indican sus colaboradores/as."
