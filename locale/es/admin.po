@@ -1,8 +1,75 @@
 # Marc Bria <marc.bria@gmail.com>, 2023.
+# Jordi LC <jordi.lacruz@uab.cat>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-04-28 19:09+0000\n"
+"Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
+"Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/admin/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "admin.hostedContexts"
+msgstr "Editoriales alojadas"
+
+msgid "admin.settings.appearance.success"
+msgstr "Los ajustes de apariencia del sitio se han actualizado con éxito."
+
+msgid "admin.settings.info.success"
+msgstr "Los información del sitio se ha actualizado con éxito."
+
+msgid "admin.settings.redirect"
+msgstr "Redirección a la editorial"
+
+msgid "admin.settings.noPressRedirect"
+msgstr "No redireccionar"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr ""
+"Este será el idioma predeterminado del sitio y de todas las editoriales "
+"alojadas."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Las configuraciones regionales señaladas podrían estar incompletas."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"¿Seguro que quiere desinstalar esta configuración regional? Esto podría "
+"afectar a todas las editoriales alojadas que la utilicen en este momento."
+
+msgid "admin.systemVersion"
+msgstr "Versión de OMP"
+
+msgid "admin.systemConfiguration"
+msgstr "Configuración de OMP"
+
+msgid "admin.presses.pressSettings"
+msgstr "Ajustes de la editorial"
+
+msgid "admin.presses.noneCreated"
+msgstr "No se ha creado ninguna editorial."
+
+msgid "admin.contexts.create"
+msgstr "Crear editorial"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "El título es obligatorio"
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "La ruta es obligatoria."
+
+msgid "admin.settings.config.success"
+msgstr "Los ajustes de configuración del sitio se han actualizado con éxito."
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Las solicitudes al sitio web principal serán redirigidas a esta editorial. "
+"Esto puede ser útil si el sitio web solo aloja una editorial, por ejemplo."
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"¿Seguro que quiere desactivar esta configuración regional? Esto podría "
+"afectar a todas las editoriales alojadas que la utilicen en este momento."
