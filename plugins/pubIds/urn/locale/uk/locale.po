@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-28 05:49+0000\n"
+"PO-Revision-Date: 2023-04-29 14:49+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "pubIds-urn/uk/>\n"
@@ -250,3 +250,12 @@ msgstr "Гранка: {$galleyLabel}"
 
 msgid "plugins.pubIds.urn.editor.preview.objects"
 msgstr "Елемент"
+
+msgid "plugins.pubIds.urn.editor.preview.chapters"
+msgstr "Глава: {$chapterLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.publicationFormats"
+msgstr "Формат публікації: {$publicationFormatLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.submissionFiles"
+msgstr "Файли: {$submissionFileLabel}"
