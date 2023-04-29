@@ -1,7 +1,7 @@
 # Pia Piontkowitz <pia.piontkowitz@rub.de>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-26 17:49+0000\n"
+"PO-Revision-Date: 2023-04-29 14:49+0000\n"
 "Last-Translator: Pia Piontkowitz <pia.piontkowitz@rub.de>\n"
 "Language-Team: German <http://translate.pkp.sfu.ca/projects/omp/api/de/>\n"
 "Language: de\n"
@@ -42,4 +42,4 @@ msgid "api.submissions.403.cantChangeContext"
 msgstr "Sie können den Verlag einer Einreichung nicht ändern."
 
 msgid "api.submission.400.inactiveSection"
-msgstr "Für diese Sektion sind keine Einreichungen mehr möglich."
+msgstr "Für diese Rubrik sind keine Einreichungen mehr möglich."
