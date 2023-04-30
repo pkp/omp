@@ -1,14 +1,19 @@
 # Ljiljana Brkić <ljilja96@outlook.com>, 2023.
+# Pia Piontkowitz <pia.piontkowitz@rub.de>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-05-01 15:49+0000\n"
+"Last-Translator: Pia Piontkowitz <pia.piontkowitz@rub.de>\n"
+"Language-Team: German <http://translate.pkp.sfu.ca/projects/omp/emails/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "emails.passwordResetConfirm.subject"
-msgstr ""
+msgstr "Bestätigung der Passwortzurücksetzung"
 
 msgid "emails.passwordResetConfirm.body"
 msgstr ""
@@ -20,57 +25,59 @@ msgid "emails.passwordReset.body"
 msgstr ""
 
 msgid "emails.userRegister.subject"
-msgstr ""
+msgstr "Registrierung bei dem Verlag"
 
 msgid "emails.userRegister.body"
 msgstr ""
 
 msgid "emails.userValidateContext.subject"
-msgstr ""
+msgstr "Account validieren"
 
 msgid "emails.userValidateContext.body"
 msgstr ""
 
 msgid "emails.userValidateSite.subject"
-msgstr ""
+msgstr "Account validieren"
 
 msgid "emails.userValidateSite.body"
 msgstr ""
 
 msgid "emails.reviewerRegister.subject"
-msgstr ""
+msgstr "Registrierung als Benutzer/in bei {$contextName}"
 
 msgid "emails.reviewerRegister.body"
 msgstr ""
 
 msgid "emails.editorAssign.subject"
 msgstr ""
+"Sie wurden als Redakteur/in von einer Einreichung bei {$contextName} "
+"zugewiesen"
 
 msgid "emails.editorAssign.body"
 msgstr ""
 
 msgid "emails.reviewRequest.subject"
-msgstr ""
+msgstr "Anfrage zur Begutachtung eines Manuskripts"
 
 #, fuzzy
 msgid "emails.reviewRequest.body"
 msgstr ""
 
 msgid "emails.reviewRequestSubsequent.subject"
-msgstr ""
+msgstr "Anfrage zur Begutachtung einer überarbeiteten Einreichung"
 
 #, fuzzy
 msgid "emails.reviewRequestSubsequent.body"
 msgstr ""
 
 msgid "emails.reviewResponseOverdueAuto.subject"
-msgstr ""
+msgstr "Anfrage zur Begutachtung eines Manuskripts"
 
 msgid "emails.reviewResponseOverdueAuto.body"
 msgstr ""
 
 msgid "emails.reviewCancel.subject"
-msgstr ""
+msgstr "Anfrage zur Begutachtung zurückgezogen"
 
 msgid "emails.reviewCancel.body"
 msgstr ""
@@ -83,14 +90,13 @@ msgid "emails.reviewReinstate.body"
 msgstr ""
 
 msgid "emails.reviewDecline.subject"
-msgstr ""
+msgstr "Nicht in der Lage zu begutachten"
 
 msgid "emails.reviewDecline.body"
 msgstr ""
 
-#, fuzzy
 msgid "emails.reviewRemind.subject"
-msgstr ""
+msgstr "Eine Erinnerung, Ihr Gutachten bitte abzuschließen"
 
 #, fuzzy
 msgid "emails.reviewRemind.body"
@@ -101,84 +107,100 @@ msgid "emails.reviewRemindAuto.body"
 msgstr ""
 
 msgid "emails.editorDecisionAccept.subject"
-msgstr ""
+msgstr "Ihre Einreichung wurde bei {$contextName} angenommen"
 
 msgid "emails.editorDecisionAccept.body"
 msgstr ""
 
 msgid "emails.editorDecisionSendToInternal.subject"
-msgstr ""
+msgstr "Ihre Einreichung wurde zur internen Begutachtung geschickt"
 
 msgid "emails.editorDecisionSendToInternal.body"
 msgstr ""
 
 msgid "emails.editorDecisionSkipReview.subject"
-msgstr ""
+msgstr "Ihre Einreichung wurde in das Lektorat geschickt"
 
 msgid "emails.editorDecisionSkipReview.body"
 msgstr ""
 
 msgid "emails.layoutRequest.subject"
 msgstr ""
+"Die Einreichung {$submissionId} ist bereit für die Produktion bei "
+"{$contextAcronym}"
 
 #, fuzzy
 msgid "emails.layoutRequest.body"
 msgstr ""
 
 msgid "emails.layoutComplete.subject"
-msgstr ""
+msgstr "Fahnen vollständig"
 
 #, fuzzy
 msgid "emails.layoutComplete.body"
 msgstr ""
 
 msgid "emails.indexRequest.subject"
-msgstr ""
+msgstr "Index anfordern"
 
 msgid "emails.indexRequest.body"
 msgstr ""
 
 msgid "emails.indexComplete.subject"
-msgstr ""
+msgstr "Indexfahnen vollständig"
 
 msgid "emails.indexComplete.body"
 msgstr ""
 
 msgid "emails.emailLink.subject"
-msgstr ""
+msgstr "Möglicherweise interessantes Manuskript"
 
 msgid "emails.emailLink.body"
 msgstr ""
 
 msgid "emails.emailLink.description"
 msgstr ""
+"Diese E-Mail-Vorlage bietet registrierten Leser/innen die Möglichkeit, "
+"Informationen über eine Monographie an eine interessierte Person zu senden. "
+"Sie ist über die Reading Tools verfügbar und muss von dem/der Verlagsmanager/"
+"in auf der Verwaltungsseite der Reading Tools aktiviert werden."
 
 msgid "emails.notifySubmission.subject"
-msgstr ""
+msgstr "Benachrichtigung über eine Einreichung"
 
 msgid "emails.notifySubmission.body"
 msgstr ""
 
 msgid "emails.notifySubmission.description"
 msgstr ""
+"Eine Benachrichtigung eines/einer Benutzer/in, die von einem Modal des "
+"Einreichungsinformationszentrums gesendet wird."
 
 msgid "emails.notifyFile.subject"
-msgstr ""
+msgstr "Benachrichtigung über eine Einreichungsdatei"
 
 msgid "emails.notifyFile.body"
 msgstr ""
 
 msgid "emails.notifyFile.description"
 msgstr ""
+"Eine Benachrichtigung von einem/einer Benutzer/in, die von einem modalen "
+"Dateiinformationszentrum gesendet wird"
 
 msgid "emails.statisticsReportNotification.subject"
-msgstr ""
+msgstr "Redaktionelle Aktivitäten für {$month}, {$year}"
 
 msgid "emails.statisticsReportNotification.body"
 msgstr ""
 
 msgid "emails.announcement.subject"
-msgstr ""
+msgstr "{$announcementTitle}"
 
 msgid "emails.announcement.body"
 msgstr ""
+
+msgid "emails.revisedVersionNotify.subject"
+msgstr "Überarbeitete Version hochgeladen"
+
+msgid "emails.reviewReinstate.subject"
+msgstr "Können Sie weiterhin einen Beitrag für {$contextName} begutachten?"
