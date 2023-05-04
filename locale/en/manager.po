@@ -819,7 +819,7 @@ msgid "manager.setup.selectEditorDescription"
 msgstr "The press editor who will see it through the editorial process."
 
 msgid "manager.setup.selectSectionDescription"
-msgstr "The press monograph for which the item will be considered."
+msgstr "The press series for which the item will be considered."
 
 msgid "manager.setup.showGalleyLinksDescription"
 msgstr "Always show galley links and indicate restricted access."

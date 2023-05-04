@@ -1018,7 +1018,7 @@ msgid "manager.setup.selectEditorDescription"
 msgstr "El editor/a lo verá durante el proceso editorial."
 
 msgid "manager.setup.selectSectionDescription"
-msgstr "La monografía para la cual se considerará el elemento."
+msgstr "La serie para la cual se considerará el elemento."
 
 msgid "manager.setup.showGalleyLinksDescription"
 msgstr ""
