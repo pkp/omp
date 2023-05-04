@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-24 04:49+0000\n"
+"PO-Revision-Date: 2023-05-05 19:49+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/manager/cs/>\n"
 "Language: cs\n"
