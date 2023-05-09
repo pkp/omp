@@ -2,7 +2,7 @@
 # Ana Vucurevic <ana.vucurevic97@yahoo.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-03-20 17:18+0000\n"
+"PO-Revision-Date: 2023-05-10 13:49+0000\n"
 "Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "mk/>\n"
@@ -994,7 +994,7 @@ msgid "manager.setup.selectEditorDescription"
 msgstr "Уредникот на изданието кој ќе го види преку уредничкиот процес."
 
 msgid "manager.setup.selectSectionDescription"
-msgstr "Секција на изданието за кој ќе се разгледа ставката."
+msgstr "Серија на изданието за кој ќе се разгледа ставката."
 
 msgid "manager.setup.showGalleyLinksDescription"
 msgstr ""
@@ -1731,3 +1731,10 @@ msgid "manager.sections.alertDelete"
 msgstr ""
 "Пред да се избрише оваа серија, мора да го преместите придруѓниот поднесок "
 "од оваа серија кон друга серија."
+
+msgid "mailable.layoutComplete.name"
+msgstr "Пробниот отисок е комплетен"
+
+msgid "plugins.importexport.common.error.salesRightRequiresTerritory"
+msgstr ""
+"Правото за продажба е прескокнато бидејќи нема означено земја или подрачје."
