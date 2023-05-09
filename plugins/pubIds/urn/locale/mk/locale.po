@@ -1,8 +1,9 @@
 # Ana Vucurevic <ana.vucurevic97@yahoo.com>, 2023.
+# Mirko Spiroski <mspiroski@id-press.eu>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-03-15 15:21+0000\n"
-"Last-Translator: Ana Vucurevic <ana.vucurevic97@yahoo.com>\n"
+"PO-Revision-Date: 2023-05-10 13:49+0000\n"
+"Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/"
 "pubIds-urn/mk/>\n"
 "Language: mk\n"
@@ -245,3 +246,12 @@ msgstr "Отпечаток: {$galleyLabel}"
 
 msgid "plugins.pubIds.urn.editor.preview.objects"
 msgstr "Ставка"
+
+msgid "plugins.pubIds.urn.editor.preview.submissionFiles"
+msgstr "Фајлови: {$submissionFileLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.chapters"
+msgstr "Поглавје: {$chapterLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.publicationFormats"
+msgstr "Публикациски формат: {$publicationFormatLabel}"
