@@ -19,7 +19,9 @@ use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\plugins\importexport\onix30\Onix30ExportDeployment;
 use DOMDocument;
+use PKP\context\Context;
 use PKP\db\DAORegistry;
+use PKP\filter\FilterDAO;
 use PKP\plugins\importexport\native\filter\PKPNativeFilterHelper;
 
 class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter\NativeXmlPKPPublicationFilter
@@ -78,7 +80,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
     {
         $deployment = $this->getDeployment();
         $publication = $deployment->getPublication();
-        $importClass = null; // Scrutinizer
+        $importClass = null;
         switch ($elementName) {
             case 'publication_format':
                 $importClass = 'PublicationFormat';

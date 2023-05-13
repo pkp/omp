@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class IdentificationCode
+ *
  * @ingroup publicationFormat
  *
  * @see IdentificationCodeDAO
@@ -16,6 +17,7 @@
  */
 
 namespace APP\publicationFormat;
+
 use PKP\core\DataObject;
 use PKP\db\DAORegistry;
 
