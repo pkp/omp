@@ -24,7 +24,7 @@
 <div id="importExportTabs" class="pkp_controllers_tab">
 	<ul>
 		<li><a href="#import-tab">{translate key="plugins.importexport.native.import"}</a></li>
-		<li><a href="#export-tab">{translate key="plugins.importexport.native.export"}</a></li>
+		<li><a href="#exportSubmissions-tab">{translate key="plugins.importexport.native.export"}</a></li>
 	</ul>
 	<div id="import-tab">
 		<script type="text/javascript">
@@ -57,7 +57,7 @@
 			{/fbvFormArea}
 		</form>
 	</div>
-	<div id="export-tab">
+	<div id="exportSubmissions-tab">
 		{if !$currentContext->getData('publisher') || !$currentContext->getData('location') || !$currentContext->getData('codeType') || !$currentContext->getData('codeValue')}
 			{capture assign="contextSettingsUrl"}{url page="management" op="settings" path="context"}{/capture}
 			{translate key="plugins.importexport.native.onix30.pressMissingFields" url=$contextSettingsUrl}
