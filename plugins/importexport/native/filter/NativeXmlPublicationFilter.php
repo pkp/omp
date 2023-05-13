@@ -19,6 +19,7 @@ use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\plugins\importexport\onix30\Onix30ExportDeployment;
 use DOMDocument;
+use Exception;
 use PKP\context\Context;
 use PKP\db\DAORegistry;
 use PKP\filter\FilterDAO;
@@ -108,8 +109,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
      */
     public function parsePublicationFormat($n, $publication)
     {
-        $importFilter = $this->getImportFilter($n->tagName);
-        assert($importFilter); // There should be a filter
+        $importFilter = $this->getImportFilter($n->tagName) ?? throw new Exception("Filter not found for \"{$n->tagName}\"");
 
         $existingDeployment = $this->getDeployment();
         $request = Application::get()->getRequest();
@@ -159,8 +159,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
      */
     public function parseChapter($n, $publication)
     {
-        $importFilter = $this->getImportFilter($n->tagName);
-        assert($importFilter); // There should be a filter
+        $importFilter = $this->getImportFilter($n->tagName) ?? throw new Exception("Filter not found for \"{$n->tagName}\"");
 
         $existingDeployment = $this->getDeployment();
         $request = Application::get()->getRequest();
