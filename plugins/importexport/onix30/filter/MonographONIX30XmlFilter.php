@@ -352,7 +352,6 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
             $descDetailNode->appendChild($contributorNode);
 
             unset($contributorNode);
-            unset($sequenceNode);
             unset($userGroup);
             unset($author);
         }
@@ -669,7 +668,6 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
                     unset($supplierWebsiteNode);
                 }
                 unset($supplierNode);
-                unset($supplierWebsiteNode);
             } else { // No suppliers specified, use the Press settings instead.
                 $supplierNode = $doc->createElementNS($deployment->getNamespace(), 'Supplier');
                 $supplyDetailNode->appendChild($supplierNode);
