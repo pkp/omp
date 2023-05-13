@@ -1742,3 +1742,6 @@ msgstr ""
 
 #~ msgid "about.contributors"
 #~ msgstr "Fonts de suport"
+
+msgid "section.section"
+msgstr "Sèries"

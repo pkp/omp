@@ -1657,3 +1657,6 @@ msgstr ""
 
 #~ msgid "debug.notes.currencyListLoad"
 #~ msgstr "Lastet valutalisten \"{$filename}\" fra XML"
+
+msgid "section.section"
+msgstr "Serier"

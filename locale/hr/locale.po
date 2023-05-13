@@ -1622,3 +1622,6 @@ msgstr "Relevantnost"
 
 msgid "search.results.orderDir.asc"
 msgstr "Uzlazni"
+
+msgid "section.section"
+msgstr "Nizovi"

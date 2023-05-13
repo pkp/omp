@@ -1786,3 +1786,6 @@ msgstr ""
 
 #~ msgid "notification.type.reviewerComment"
 #~ msgstr "Un évaluateur a commenté \"{$title}\"."
+
+msgid "section.section"
+msgstr "Séries"

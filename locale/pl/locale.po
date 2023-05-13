@@ -1655,3 +1655,6 @@ msgstr "Rosnąco"
 
 msgid "search.results.orderDir.desc"
 msgstr "Malejąco"
+
+msgid "section.section"
+msgstr "Serie"

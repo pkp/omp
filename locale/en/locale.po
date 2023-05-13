@@ -1528,3 +1528,6 @@ msgstr "Ascending"
 
 msgid "search.results.orderDir.desc"
 msgstr "Descending"
+
+msgid "section.section"
+msgstr "Series"

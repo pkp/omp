@@ -1904,3 +1904,6 @@ msgstr "In discesa"
 
 #~ msgid "submissionGroup.assignedSubEditors"
 #~ msgstr "Editor assegnati"
+
+msgid "section.section"
+msgstr "Collana"

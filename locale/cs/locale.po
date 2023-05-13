@@ -1646,3 +1646,6 @@ msgstr "Sestupně"
 
 #~ msgid "debug.notes.currencyListLoad"
 #~ msgstr "Seznam měn \"{$filename}\" načtený z XML"
+
+msgid "section.section"
+msgstr "Edice"
