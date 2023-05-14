@@ -1750,3 +1750,6 @@ msgstr "Absteigend"
 #~ msgstr ""
 #~ "Die URL der Reihe soll lauten {$sampleUrl}. 'Path' (deutsch \"Pfad\") ist "
 #~ "eine Zeichenkette, durch die die Reihe eindeutig identifizierbar wird."
+
+msgid "section.section"
+msgstr "Reihe"

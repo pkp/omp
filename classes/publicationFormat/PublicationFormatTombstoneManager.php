@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationFormatTombstoneManager
+ *
  * @ingroup publicationFormat
  *
  * @brief Class defining basic operations for publication format tombstones.

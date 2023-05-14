@@ -1724,3 +1724,6 @@ msgstr "Laskeva"
 
 #~ msgid "grid.category.categories"
 #~ msgstr "Kategoriat"
+
+msgid "section.section"
+msgstr "Sarja"

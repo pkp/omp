@@ -1684,3 +1684,6 @@ msgstr "Растечки"
 
 msgid "search.results.orderDir.desc"
 msgstr "Опаѓачки"
+
+msgid "section.section"
+msgstr "Серии"

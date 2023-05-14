@@ -1689,3 +1689,6 @@ msgstr "Növekvő"
 
 msgid "search.results.orderDir.desc"
 msgstr "Csökkenő"
+
+msgid "section.section"
+msgstr "Sorozatok"

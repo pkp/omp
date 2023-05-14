@@ -1663,3 +1663,6 @@ msgstr "За зростанням"
 
 msgid "search.results.orderDir.desc"
 msgstr "За убуванням"
+
+msgid "section.section"
+msgstr "Серії"

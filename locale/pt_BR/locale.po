@@ -1714,3 +1714,6 @@ msgstr "Descendente"
 
 #~ msgid "grid.action.addAnnouncement"
 #~ msgstr "Adicionar Notícia"
+
+msgid "section.section"
+msgstr "Séries"

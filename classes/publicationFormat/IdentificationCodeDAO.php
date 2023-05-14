@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class IdentificationCodeDAO
+ *
  * @ingroup publicationFormat
  *
  * @see IdentificationCode
@@ -17,10 +18,8 @@
 
 namespace APP\publicationFormat;
 
-use APP\publicationFormat\IdentificationCode;
-
-use PKP\plugins\Hook;
 use PKP\db\DAOResultFactory;
+use PKP\plugins\Hook;
 
 class IdentificationCodeDAO extends \PKP\db\DAO
 {

@@ -1719,3 +1719,6 @@ msgstr ""
 
 #~ msgid "debug.notes.currencyListLoad"
 #~ msgstr "Chaidh liosta nan airgeadra “{$filename}” on XML"
+
+msgid "section.section"
+msgstr "Sreath"

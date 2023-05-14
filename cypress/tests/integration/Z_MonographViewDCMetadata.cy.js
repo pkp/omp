@@ -1,5 +1,5 @@
 /**
- * @file cypress/tests/integration/Z_MonographViewDCMetadata.spec.js
+ * @file cypress/tests/integration/Z_MonographViewDCMetadata.cy.js
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky
@@ -25,7 +25,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 			subtitle: 'Test subtitle',
 			abstract: 'Test abstract',
 			authors: [
-				'Name 1 Author 1', 
+				'Name 1 Author 1',
 				'Name 2 Author 2'
 			],
 			chapters: [
@@ -182,7 +182,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 					values: [
 						{
 							locale: 'en',
-							contents: [ 
+							contents: [
 								submission.localeMetadata
 									.find(element => element.locale == 'en')
 									.oneValue
@@ -224,11 +224,11 @@ describe('Monograph View Metadata - DC Plugin', function() {
 					values: [
 						{
 							locale: 'fr',
-							contents: [ 
+							contents: [
 								submission.localeTitles.fr_CA.prefix + ' ' + submission.localeTitles.fr_CA.title + ': ' + submission.localeTitles.fr_CA.subtitle
 							]
 						},
-						
+
 					]
 				},
 				{
@@ -243,7 +243,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 									.find(element => element.metadata == 'type')
 									.value
 							]
-							
+
 						},
 						{
 							locale: 'fr',
@@ -449,7 +449,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 					cy.wait(500);
 					cy.get('#metadata-' + manyValueMetadata.metadata + '-selected-' + localeName).contains(value);
 					cy.wait(1000);
-				}); 
+				});
 			});
 
 			locale.oneValue.forEach((oneValueMetadata) => {
@@ -520,7 +520,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 		cy.get('#publication-button').click();
 		cy.addToCatalog();
 	});
-	
+
 	it('Tests if Header DC Metadata are present and consistent', function() {
 		cy.visit('/index.php/publicknowledge/catalog/book/' + submission.urlPath);
 

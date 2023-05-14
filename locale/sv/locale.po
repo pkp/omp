@@ -1537,3 +1537,6 @@ msgstr "Fallande"
 
 #~ msgid "grid.action.addAnnouncement"
 #~ msgstr "Lägg till ett meddelande"
+
+msgid "section.section"
+msgstr "Serier"

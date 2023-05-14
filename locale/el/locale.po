@@ -1778,3 +1778,6 @@ msgstr ""
 
 #~ msgid "notification.type.reviewerComment"
 #~ msgstr "Ένας Αξιολογητής έχει σχολιάσει το \"{$title}\"."
+
+msgid "section.section"
+msgstr "Σειρές"

@@ -1641,3 +1641,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Objavljeni vtičniki datotek podpirajo prikazovanje različnih vrst "
 #~ "dokumentov, npr. z vdelavo PDF."
+
+msgid "section.section"
+msgstr "Zbirka"

@@ -1666,3 +1666,6 @@ msgstr ""
 
 msgid "search.results.orderDir.desc"
 msgstr ""
+
+msgid "section.section"
+msgstr "Colección"

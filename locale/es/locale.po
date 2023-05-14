@@ -1848,3 +1848,6 @@ msgstr "Descendente"
 #~ msgstr ""
 #~ "La URL de la colección es {$sampleUrl}. La ruta es una cadena de "
 #~ "caracteres que sirven para identificar una serie."
+
+msgid "section.section"
+msgstr "Colección"
