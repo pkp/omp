@@ -11,7 +11,9 @@ describe('Statistics Tests', function() {
 	it('Generates usage statistics', function() {
 		var today = new Date().toISOString().split('T')[0];
 		var daysAgo90 = (d => new Date(d.setDate(d.getDate()-91)) )(new Date).toISOString().split('T')[0];
-		cy.exec('php lib/pkp/tools/generateTestMetrics.php 1 ' + daysAgo90 + ' ' + today);
+		cy.exec('php lib/pkp/tools/generateTestMetrics.php 1 ' + daysAgo90 + ' ' + today).then((result) => {
+			expect(result.stdout).to.match(/\d+ records added for \d+ submissions/);
+		});
 	});
 
 	it('Check statistics', function() {
@@ -27,7 +29,9 @@ describe('Statistics Tests', function() {
 		cy.checkTable(
 			'Monograph Details',
 			'monographs',
-			['Allan', 'Dawson et al.']
+			['Allan', 'Dawson et al.'],
+			2,
+			1
 		);
 		cy.checkFilters([
 			'Library & Information Studies',
