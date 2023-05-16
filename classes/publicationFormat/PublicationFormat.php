@@ -36,9 +36,7 @@ class PublicationFormat extends Representation
      */
     public function getBestId()
     {
-        return $this->getData('urlPath')
-            ? $this->getData('urlPath')
-            : $this->getId();
+        return strlen($urlPath = $this->getData('urlPath')) ? $urlPath : $this->getId();
     }
 
     /**

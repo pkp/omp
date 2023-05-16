@@ -225,7 +225,7 @@ class PublicationFormatForm extends Form
         $publicationFormat->setEntryKey($this->getData('entryKey'));
         $publicationFormat->setPhysicalFormat($this->getData('isPhysicalFormat') ? true : false);
         $publicationFormat->setRemoteURL($this->getData('remoteURL'));
-        $publicationFormat->setData('urlPath', $this->getData('urlPath'));
+        $publicationFormat->setData('urlPath', strlen($urlPath = $this->getData('urlPath')) ? $urlPath : null);
         parent::execute(...$functionParams);
 
         if ($existingFormat) {
