@@ -298,7 +298,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
 
         $productTitleDetailNode->appendChild($titleElementNode);
 
-        $publication = $submission->getCurrentPublication(); /** @var Publication $publication */
+        $publication = $submission->getCurrentPublication();
         if (!$publication->getLocalizedData('prefix') || !$publication->getLocalizedData('title')) {
             $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim($publication->getLocalizedData('prefix') ?? $publication->getLocalizedTitle())));
         } else {

@@ -72,7 +72,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
 
         $publication = $monograph->getCurrentPublication();
         $publicationLocale = $publication->getData('locale');
-        $submissionBestId = strlen($urlPath = $publication->getData('urlPath')) ? $urlPath : $monograph->getId();
+        $submissionBestId = strlen($urlPath = (string) $publication->getData('urlPath')) ? $urlPath : $monograph->getId();
 
         $templateMgr = TemplateManager::getManager($request);
         $isChapterRequest = $templateMgr->getTemplateVars('isChapterRequest');
@@ -209,7 +209,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
         $press = $request->getContext();
 
         $publicationLocale = $publication->getData('locale');
-        $submissionBestId = strlen($urlPath = $publication->getData('urlPath')) ? $urlPath : $monograph->getId();
+        $submissionBestId = strlen($urlPath = (string) $publication->getData('urlPath')) ? $urlPath : $monograph->getId();
 
         $templateMgr = TemplateManager::getManager($request);
         $chapter = $templateMgr->getTemplateVars('chapter');
