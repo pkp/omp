@@ -346,7 +346,7 @@ class CatalogBookHandler extends Handler
         }
 
         $publicationFormat = Application::get()->getRepresentationDAO()->getByBestId($representationId, $publicationId);
-        if (!$publicationFormat || !$publicationFormat->getIsAvailable() || $remoteURL = $publicationFormat->getRemoteURL()) {
+        if (!$publicationFormat || !$publicationFormat->getIsAvailable() || $publicationFormat->getRemoteURL()) {
             $dispatcher->handle404();
         }
 

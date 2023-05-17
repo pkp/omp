@@ -54,10 +54,10 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy
         }
 
         // Make sure the published submissions belongs to the press.
-        $submission = Repo::submission()->getByUrlPath($submissionId, $this->context->getId());
-        if (!$submission && ctype_digit((string) $submissionId)) {
-            $submission = Repo::submission()->get($submissionId, $this->context->getId());
-        }
+        $submission = ctype_digit((string) $submissionId)
+            ? Repo::submission()->get((int) $submissionId, $this->context->getId())
+            : Repo::submission()->getByUrlPath($submissionId, $this->context->getId());
+
         if (!$submission) {
             return AuthorizationPolicy::AUTHORIZATION_DENY;
         }
