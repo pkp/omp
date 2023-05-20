@@ -1,11 +1,12 @@
 # Carla Marques <carla.marques@usdb.uminho.pt>, 2023.
+# José Carvalho <jcarvalho@keep.pt>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-02-28 12:38+0000\n"
-"Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
-"Language-Team: Portuguese <http://translate.pkp.sfu.ca/projects/omp/"
-"pubIds-urn/pt/>\n"
-"Language: pt\n"
+"PO-Revision-Date: 2023-05-16 03:14+0000\n"
+"Last-Translator: José Carvalho <jcarvalho@keep.pt>\n"
+"Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
+"omp/pubIds-urn/pt_PT/>\n"
+"Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -244,3 +245,12 @@ msgstr ""
 "Não pode gerar um URN porque faltam dados a uma ou mais partes do padrão "
 "URN. Pode ser necessário uma publicação ser atribuída a um volume, definir "
 "um ID da editora ou inserir número de páginas."
+
+msgid "plugins.pubIds.urn.editor.preview.publicationFormats"
+msgstr "Formato de Publicação: {$publicationFormatLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.chapters"
+msgstr "Capítulo: {$chapterLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.submissionFiles"
+msgstr "Ficheiros: {$submissionFileLabel}"
