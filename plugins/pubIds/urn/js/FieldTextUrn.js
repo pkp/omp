@@ -2,7 +2,7 @@
  * @defgroup plugins_pubIds_urn_js
  */
 /**
- * @file plugins/pubIds/urn/js/FieldUrn.js
+ * @file plugins/pubIds/urn/js/FieldTextUrn.js
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -39,6 +39,7 @@ var template = pkp.Vue.compile('<div class="pkpFormField pkpFormField--text pkpF
 '					:style="inputStyles"' +
 '				/>' +
 '				<button' +
+'					v-if="applyCheckNumber"' +
 '					class="pkpButton pkpFormField--urn__button"' +
 '					@click.prevent="addCheckNumber"' +
 '				>' +
@@ -53,12 +54,20 @@ var template = pkp.Vue.compile('<div class="pkpFormField pkpFormField--text pkpF
 '			</div>' +
 '		</div>');
 
-pkp.Vue.component('field-urn', {
-	name: 'FieldUrn',
+pkp.Vue.component('field-text-urn', {
+	name: 'FieldTextUrn',
 	extends: pkp.Vue.component('field-text'),
 	props: {
+		addCheckNumberLabel: {
+			type: String,
+			required: true
+		},
 		urnPrefix: {
 			type: String,
+			required: true
+		},
+		applyCheckNumber: {
+			type: Boolean,
 			required: true
 		}
 	},

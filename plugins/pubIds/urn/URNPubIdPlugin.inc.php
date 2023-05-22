@@ -29,12 +29,6 @@ class URNPubIdPlugin extends PubIdPlugin {
 			HookRegistry::register('Publication::getProperties::fullProperties', array($this, 'modifyObjectProperties'));
 			HookRegistry::register('Publication::getProperties::values', array($this, 'modifyObjectPropertyValues'));
 			HookRegistry::register('Publication::validate', array($this, 'validatePublicationUrn'));
-			HookRegistry::register('Galley::getProperties::summaryProperties', array($this, 'modifyObjectProperties'));
-			HookRegistry::register('Galley::getProperties::fullProperties', array($this, 'modifyObjectProperties'));
-			HookRegistry::register('Galley::getProperties::values', array($this, 'modifyObjectPropertyValues'));
-			HookRegistry::register('Issue::getProperties::summaryProperties', array($this, 'modifyObjectProperties'));
-			HookRegistry::register('Issue::getProperties::fullProperties', array($this, 'modifyObjectProperties'));
-			HookRegistry::register('Issue::getProperties::values', array($this, 'modifyObjectPropertyValues'));
 			HookRegistry::register('Form::config::before', array($this, 'addPublicationFormFields'));
 			HookRegistry::register('Form::config::before', array($this, 'addPublishFormNotice'));
 			HookRegistry::register('TemplateManager::display', array($this, 'loadUrnFieldComponent'));
@@ -201,7 +195,7 @@ class URNPubIdPlugin extends PubIdPlugin {
 	 */
 	function getSuffixPatternsFieldNames() {
 		return  array(
-			'Submission' => 'urnPublicationSuffixPattern',
+			'Publication' => 'urnPublicationSuffixPattern',
 			'Representation' => 'urnRepresentationSuffixPattern',
 			'SubmissionFile' => 'urnSubmissionFileSuffixPattern',
 			'Chapter' => 'urnChapterSuffixPattern',
@@ -230,13 +224,13 @@ class URNPubIdPlugin extends PubIdPlugin {
 	}
 
 	/**
-	 * Add URN to submission, issue or galley properties
+	 * Add URN to publication properties
 	 *
 	 * @param $hookName string <Object>::getProperties::summaryProperties or
 	 *  <Object>::getProperties::fullProperties
 	 * @param $args array [
 	 * 		@option $props array Existing properties
-	 * 		@option $object Submission|Issue|Galley
+	 * 		@option $object Publication
 	 * 		@option $args array Request args
 	 * ]
 	 *
@@ -249,12 +243,12 @@ class URNPubIdPlugin extends PubIdPlugin {
 	}
 
 	/**
-	 * Add URN submission, issue or galley values
+	 * Add URN publication values
 	 *
 	 * @param $hookName string <Object>::getProperties::values
 	 * @param $args array [
 	 * 		@option $values array Key/value store of property values
-	 * 		@option $object Submission|Issue|Galley
+	 * 		@option $object Publication
 	 * 		@option $props array Requested properties
 	 * 		@option $args array Request args
 	 * ]
@@ -345,6 +339,13 @@ class URNPubIdPlugin extends PubIdPlugin {
 			$pattern = $this->getSetting($form->submissionContext->getId(), 'urnPublicationSuffixPattern');
 		}
 
+		$appyCheckNumber = $this->getSetting($form->submissionContext->getId(), 'urnCheckNo');
+
+		if ($appyCheckNumber) {
+			// Load the checkNumber.js file that is required for URN fields
+			$this->addJavaScript(Application::get()->getRequest(), TemplateManager::getManager(Application::get()->getRequest()));
+		}
+
 		// If a pattern exists, use a DOI-like field to generate the URN
 		if ($pattern) {
 			$fieldData = [
@@ -358,6 +359,7 @@ class URNPubIdPlugin extends PubIdPlugin {
 				'assignIdLabel' => __('plugins.pubIds.urn.editor.urn.assignUrn'),
 				'clearIdLabel' => __('plugins.pubIds.urn.editor.clearObjectsURN'),
 				'missingPartsLabel' => __('plugins.pubIds.doi.editor.missingParts'),
+				'applyCheckNumber' => $appyCheckNumber,
 			];
 			if ($form->publication->getData('pub-id::publisher-id')) {
 				$fieldData['publisherId'] = $form->publication->getData('pub-id::publisher-id');
@@ -365,28 +367,24 @@ class URNPubIdPlugin extends PubIdPlugin {
 			if ($form->publication->getData('pages')) {
 				$fieldData['pages'] = $form->publication->getData('pages');
 			}
-			if ($form->publication->getData('issueId')) {
-				$issue = Services::get('issue')->get($form->publication->getData('issueId'));
-				if ($issue) {
-					$fieldData['issueNumber'] = $issue->getNumber() ?? '';
-					$fieldData['issueVolume'] = $issue->getVolume() ?? '';
-					$fieldData['year'] = $issue->getYear() ?? '';
-				}
+			if ($suffixType === 'default') {
+				$fieldData['missingPartsLabel'] = __('plugins.pubIds.urn.editor.missingIssue');
+			} else {
+				$fieldData['missingPartsLabel'] = __('plugins.pubIds.urn.editor.missingParts');
 			}
-			$form->addField(new \PKP\components\forms\FieldPubId('pub-id::other::urn', $fieldData));
+			$this->import('classes.form.FieldPubIdUrn');
+			$form->addField(new \Plugins\Generic\URN\FieldPubIdUrn('pub-id::other::urn', $fieldData));
 
 		// Otherwise add a field for manual entry that includes a button to generate
 		// the check number
 		} else {
-			// Load the checkNumber.js file that is required for this field
-			$this->addJavaScript(Application::get()->getRequest(), TemplateManager::getManager(Application::get()->getRequest()));
-
-			$this->import('classes.form.FieldUrn');
-			$form->addField(new \Plugins\Generic\URN\FieldUrn('pub-id::other::urn', [
+			$this->import('classes.form.FieldTextUrn');
+			$form->addField(new \Plugins\Generic\URN\FieldTextUrn('pub-id::other::urn', [
 				'label' => __('plugins.pubIds.urn.displayName'),
 				'description' => __('plugins.pubIds.urn.editor.urn.description', ['prefix' => $prefix]),
 				'value' => $form->publication->getData('pub-id::other::urn'),
-				'addCheckNumberLabel' => __('plugins.pubIds.urn.editor.addCheckNo'),
+				'urnPrefix' => $prefix,
+				'applyCheckNumber' => $appyCheckNumber,
 			]));
 		}
 	}
@@ -405,14 +403,16 @@ class URNPubIdPlugin extends PubIdPlugin {
 
 		$submission = Services::get('submission')->get($form->publication->getData('submissionId'));
 		$publicationUrnEnabled = $this->getSetting($submission->getData('contextId'), 'enablePublicationURN');
-		$galleyUrnEnabled = $this->getSetting($submission->getData('contextId'), 'enableRepresentationURN');
+		$chapterUrnEnabled = $this->getSetting($submission->getData('contextId'), 'enableChapterURN');
+		$publicationFormatUrnEnabled = $this->getSetting($submission->getData('contextId'), 'enableRepresentationURN');
+		$submissionFileUrnEnabled = $this->getSetting($submission->getData('contextId'), 'enableSubmissionFileURN');
 		$warningIconHtml = '<span class="fa fa-exclamation-triangle pkpIcon--inline"></span>';
 
-		if (!$publicationUrnEnabled && !$galleyUrnEnabled) {
+		if (!$publicationUrnEnabled && !$chapterUrnEnabled && !$publicationFormatUrnEnabled && !$submissionFileUrnEnabled) {
 			return;
 
 		// Use a simplified view when only assigning to the publication
-		} else if (!$galleyUrnEnabled) {
+		} else if ($publicationFormatUrnEnabled && !$chapterUrnEnabled && !$publicationFormatUrnEnabled && !$submissionFileUrnEnabled) {
 			if ($form->publication->getData('pub-id::other::urn')) {
 				$msg = __('plugins.pubIds.urn.editor.preview.publication', ['urn' => $form->publication->getData('pub-id::other::urn')]);
 			} else {
@@ -434,12 +434,39 @@ class URNPubIdPlugin extends PubIdPlugin {
 					$urnTableRows[] = [$warningIconHtml . __('submission.status.unassigned'), 'Publication'];
 				}
 			}
-			if ($galleyUrnEnabled) {
-				foreach ((array) $form->publication->getData('galleys') as $galley) {
-					if ($galley->getStoredPubId('other::urn')) {
-						$urnTableRows[] = [$galley->getStoredPubId('other::urn'), __('plugins.pubIds.urn.editor.preview.galleys', ['galleyLabel' => $galley->getGalleyLabel()])];
+			if ($chapterUrnEnabled) {
+				/** @var Chapter $chapter */
+				foreach ((array) $form->publication->getData('chapters') as $chapter) {
+					if ($chapter->getStoredPubId('other::urn')) {
+						$urnTableRows[] = [$chapter->getStoredPubId('other::urn'), __('plugins.pubIds.urn.editor.preview.chapters', ['chapterLabel' => $chapter->getLocalizedTitle()])];
 					} else {
-						$urnTableRows[] = [$warningIconHtml . __('submission.status.unassigned'),__('plugins.pubIds.urn.editor.preview.galleys', ['galleyLabel' => $galley->getGalleyLabel()])];
+						$urnTableRows[] = [$warningIconHtml . __('submission.status.unassigned'),__('plugins.pubIds.urn.editor.preview.chapters', ['chapterLabel' => $chapter->getLocalizedTitle()])];
+					}
+				}
+			}
+			if ($publicationFormatUrnEnabled) {
+				/** @var PublicationFormat $publicationFormat */
+				foreach ((array) $form->publication->getData('publicationFormats') as $publicationFormat) {
+					if ($publicationFormat->getStoredPubId('other::urn')) {
+						$urnTableRows[] = [$publicationFormat->getStoredPubId('other::urn'), __('plugins.pubIds.urn.editor.preview.publicationFormats', ['publicationFormatLabel' => $publicationFormat->getLocalizedName()])];
+					} else {
+						$urnTableRows[] = [$warningIconHtml . __('submission.status.unassigned'),__('plugins.pubIds.urn.editor.preview.publicationFormats', ['publicationFormatLabel' => $publicationFormat->getLocalizedName()])];
+					}
+				}
+			}
+			if ($submissionFileUrnEnabled) {
+				import('lib.pkp.classes.submission.SubmissionFile'); // Constants
+				import('classes.search.MonographSearch'); // Constants
+				$submissionFiles = Services::get('submissionFile')->getMany([
+					'submissionIds' => [$form->publication->getData('submissionId')],
+					'fileStages' => [SUBMISSION_FILE_PROOF],
+				]);
+				/** @var SubmissionFile $submissionFile */
+				foreach ($submissionFiles as $submissionFile) {
+					if ($submissionFile->getStoredPubId('other::urn')) {
+						$urnTableRows[] = [$submissionFile->getStoredPubId('other::urn'), __('plugins.pubIds.urn.editor.preview.submissionFiles', ['submissionFileLabel' => $submissionFile->getLocalizedData('name')])];
+					} else {
+						$urnTableRows[] = [$warningIconHtml . __('submission.status.unassigned'),__('plugins.pubIds.urn.editor.preview.submissionFiles', ['submissionFileLabel' => $submissionFile->getLocalizedData('name')])];
 					}
 				}
 			}
@@ -461,7 +488,7 @@ class URNPubIdPlugin extends PubIdPlugin {
 	}
 
 	/**
-	 * Load the FieldUrn Vue.js component into Vue.js
+	 * Load the FieldTextUrn or FieldPubIdUrn Vue.js component into Vue.js
 	 *
 	 * @param string $hookName
 	 * @param array $args
@@ -474,33 +501,46 @@ class URNPubIdPlugin extends PubIdPlugin {
 			return;
 		}
 
-		$templateMgr->addJavaScript(
-			'urn-field-component',
-			Application::get()->getRequest()->getBaseUrl() . '/' . $this->getPluginPath() . '/js/FieldUrn.js',
-			[
-				'contexts' => 'backend',
-				'priority' => STYLE_SEQUENCE_LAST,
-			]
-		);
+		$context = Application::get()->getRequest()->getContext();
+		$suffixType = $this->getSetting($context->getId(), 'urnSuffix');
+		if ($suffixType === 'default' || $suffixType === 'pattern') {
+			$templateMgr->addJavaScript(
+				'field-pub-id-urn-component',
+				Application::get()->getRequest()->getBaseUrl() . '/' . $this->getPluginPath() . '/js/FieldPubIdUrn.js',
+				[
+					'contexts' => 'backend',
+					'priority' => STYLE_SEQUENCE_LAST,
+				]
+			);
+		} else {
+			$templateMgr->addJavaScript(
+				'urn-field-component',
+				Application::get()->getRequest()->getBaseUrl() . '/' . $this->getPluginPath() . '/js/FieldTextUrn.js',
+				[
+					'contexts' => 'backend',
+					'priority' => STYLE_SEQUENCE_LAST,
+				]
+			);
 
-		$templateMgr->addStyleSheet(
-			'urn-field-component',
-			'
-				.pkpFormField--urn__input {
-					display: inline-block;
-				}
+			$templateMgr->addStyleSheet(
+				'urn-field-component',
+				'
+					.pkpFormField--urn__input {
+						display: inline-block;
+					}
 
-				.pkpFormField--urn__button {
-					margin-left: 0.25rem;
-					height: 2.5rem; // Match input height
-				}
-			',
-			[
-				'contexts' => 'backend',
-				'inline' => true,
-				'priority' => STYLE_SEQUENCE_LAST,
-			]
-		);
+					.pkpFormField--urn__button {
+						margin-left: 0.25rem;
+						height: 2.5rem; // Match input height
+					}
+				',
+				[
+					'contexts' => 'backend',
+					'inline' => true,
+					'priority' => STYLE_SEQUENCE_LAST,
+				]
+			);
+		}
 	}
 
 
