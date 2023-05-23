@@ -1,18 +1,19 @@
+# Antti-Jussi Nygård <ajnyga@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
-"PO-Revision-Date: 2020-12-11 20:34+0000\n"
+"PO-Revision-Date: 2023-05-23 20:49+0000\n"
 "Last-Translator: Antti-Jussi Nygård <ajnyga@gmail.com>\n"
 "Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/submission/"
-"fi_FI/>\n"
-"Language: fi_FI\n"
+"fi/>\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "submission.upload.selectComponent"
 msgstr "Valitse osa"
@@ -136,7 +137,7 @@ msgid "submission.submit.upload"
 msgstr "Lataa käsikirjoitus"
 
 msgid "author.volumeEditor"
-msgstr ""
+msgstr "Niteen toimittaja"
 
 msgid "author.isVolumeEditor"
 msgstr "Merkitse tämä tekijä teoksen toimittajaksi."
@@ -349,7 +350,7 @@ msgid "publication.invalidSeries"
 msgstr "Sarjaa ei löytynyt."
 
 msgid "publication.inactiveSeries"
-msgstr "{$series} (Inactive)"
+msgstr "{$series} (Pois käytöstä)"
 
 msgid "publication.required.issue"
 msgstr "Julkaisu pitää lisätä numeroon ennen kuin sen von julkaista."
@@ -455,130 +456,168 @@ msgid "submission.queries.production"
 msgstr "Tuotantoon liittyvät keskustelut"
 
 msgid "publication.chapter.landingPage"
-msgstr ""
+msgstr "Luvun laskeutumissivu"
 
 msgid "publication.chapter.hasLandingPage"
 msgstr ""
+"Näytä tämä luku omalla sivullaan ja linkitä sivulle kirjan laskeutumissivun "
+"sisällysluettelosta."
 
 msgid "publication.publish.success"
-msgstr ""
+msgstr "Julkaisutila muutettu onnistuneesti."
 
 msgid "chapter.volume"
-msgstr ""
+msgstr "Vuosikerta"
 
 msgid "submission.withoutChapter"
-msgstr ""
+msgstr "{$name} — Ilman tätä lukua"
 
 msgid "submission.chapterCreated"
-msgstr ""
+msgstr " — Luku luotu"
 
 msgid "chapter.pages"
-msgstr ""
+msgstr "Sivut"
 
 msgid "editor.submission.decision.sendInternalReview"
-msgstr ""
+msgstr "Lähetä sisäiseen arviointiin"
 
 msgid "editor.submission.decision.sendInternalReview.description"
-msgstr ""
+msgstr "Tämä käsikirjoitus on valmis lähetettäväksi sisäiseen arviointiin."
 
 msgid "editor.submission.decision.sendInternalReview.log"
-msgstr ""
+msgstr "{$editorName} lähetti tämän käsikirjoituksen sisäiseen arviointiin."
 
 msgid "editor.submission.decision.sendInternalReview.completed"
-msgstr ""
+msgstr "Lähetetty sisäiseen arviointiin"
 
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr ""
+"Käsikirjoitus {$title} on lähetetty sisäiseen arviointiin. Kirjoittajalle on "
+"ilmoitettu asiasta, ellet päättänyt ohittaa tätä sähköpostiviestiä."
 
 msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
 msgstr ""
+"Ilmoita sähköpostilla kirjoittajille käsikirjoituksen lähettämisestä "
+"sisäiseen arviointiin. Mikäli mahdollista kerro myös arvio sen kestosta ja "
+"milloin kirjoittajat voivat kuulla asiasta uudelleen. Tätä sähköpostia ei "
+"lähetetä ennen päätöksen tallentamista."
 
 msgid "editor.submission.decision.promoteFiles.internalReview"
-msgstr ""
+msgstr "Valitse tiedostot, jotka siirretään sisäiseen arviointiin."
 
 msgid "editor.submission.decision.sendExternalReview.log"
-msgstr ""
+msgstr "{$editorName} lähetti tämän käsikirjoituksen ulkoiseen arviointiin."
 
 msgid "editor.submission.decision.sendExternalReview.completed"
-msgstr ""
+msgstr "Lähetetty ulkoiseen arviointiin"
 
 msgid "editor.submission.decision.sendExternalReview.completed.description"
-msgstr ""
+msgstr "Käsikirjoitus {$title} on lähetetty ulkoiseen arviointiin."
 
 msgid "editor.submission.decision.backToReview"
-msgstr ""
+msgstr "Palauta vertaisarvioitavaksi"
 
 msgid "editor.submission.decision.backToReview.description"
 msgstr ""
+"Peru päätös käsikirjoituksen hyväksymisestä ja palauta käsikirjoitus "
+"arviointivaiheeseen."
 
 msgid "editor.submission.decision.backToReview.log"
 msgstr ""
+"{$editorName} perui päätöksen hyväksyä käsikirjoitus ja palautti sen "
+"arviointivaiheeseen."
 
 msgid "editor.submission.decision.backToReview.completed"
-msgstr ""
+msgstr "Palautettu arviointivaiheeseen"
 
 msgid "editor.submission.decision.backToReview.completed.description"
-msgstr ""
+msgstr "Käsikirjoitus {$title} on palautettu arviointivaiheeseen."
 
 msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
 msgstr ""
+"Lähetä sähköpostia kirjoittajille ja ilmoita käsikirjoituksen "
+"palauttamisesta arviointivaiheeseen. Perustele miksi päätös on tehty ja "
+"kerro kirjoittajille miten käsikirjoitusta arvioidaan edelleen."
 
 msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
 msgstr ""
+"Ilmoita sähköpostilla kirjoittajille käsikirjoituksen lähettämisestä "
+"vertaisarviointiin. Mikäli mahdollista kerro myös arvio sen kestosta ja "
+"milloin kirjoittajat voivat kuulla asiasta uudelleen."
 
 msgid "editor.submission.decision.promoteFiles.externalReview"
-msgstr ""
+msgstr "Valitse tiedostot, jotka siirretään arviointivaiheeseen."
 
 msgid "editor.submission.recommend.sendExternalReview"
-msgstr ""
+msgstr "Suosittele lähettämistä ulkoiseen arviointiin"
 
 msgid "editor.submission.recommend.sendExternalReview.description"
-msgstr ""
+msgstr "Suosittele, että tämä käsikirjoitus lähetetään ulkoiseen arviointiin."
 
 msgid "editor.submission.recommend.sendExternalReview.log"
 msgstr ""
+"{$editorName} suositteli, että tämä käsikirjoitus lähetetään ulkoiseen "
+"arviointiin."
 
 msgid "doi.submission.incorrectContext"
 msgstr ""
+"Käsikirjoitukselle {$pubObjectTitle}ei voitu luoda DOI-tunnusta. "
+"Käsikirjoitusta ei ole olemassa tämän julkaisijan sivustolla."
 
 msgid "publication.chapter.licenseUrl"
-msgstr ""
+msgstr "Lisenssin URL-osoite"
 
 msgid "publication.chapterDefaultLicenseURL"
-msgstr ""
+msgstr "Lukujen oletuslisenssin URL-osoite"
 
 msgid "submission.copyright.description"
 msgstr ""
+"Lue ja sisäistä tämän julkaisijan tekijänoikeusehdot käsikirjoituksille."
 
 msgid "submission.wizard.notAllowed.description"
 msgstr ""
+"Et voi lähettää käsikirjoitusta tälle julkaisijalle, koska vain "
+"toimituskunta voi rekisteröidä uusia kirjoittajia. Jos arvioit tämän olevan "
+"virhe, otathan yhteyttä <a href='mailto:{$email}'>{$name}</a>."
 
 msgid "submission.wizard.noSectionAllowed.description"
 msgstr ""
+"Et voi lähettää käsikirjoitusta tälle julkaisijalle, koska kaikki julkaisun "
+"sarjat ovat pois käytöstä tai rajoitettuja. Jos arvelet, että ilmoitus on "
+"virheellinen, otathan yhteyttä <a href='mailto:{$email}'>{$name}</a>."
 
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
+"{$contextName} ei vastaanota käsikirjoituksia sarjaan {$section}. Jos "
+"tarvitset apua käsikirjoituksesi kanssa, ota yhteyttä <a "
+"href='mailto:{$email}'>{$name}</a>."
 
 msgid "submission.sectionNotFound"
-msgstr ""
+msgstr "Sarjaa tälle käsikirjoitukselle ei löytynyt."
 
 msgid "submission.sectionRestrictedToEditors"
-msgstr ""
+msgstr "Vain toimituskunta voi lisätä käsikirjoituksia tähän sarjaan."
 
 msgid "submission.wizard.submitting.monograph"
-msgstr ""
+msgstr "Lähetetään <strong>monografiaa</strong>."
 
 msgid "submission.wizard.submitting.monographInLanguage"
 msgstr ""
+"Lähetetään <strong>monografiaa</strong> kielellä "
+"<strong>{$language}</strong>."
 
 msgid "submission.wizard.submitting.editedVolume"
-msgstr ""
+msgstr "Lähetetään <strong>toimitettua teosta</strong>."
 
 msgid "submission.wizard.submitting.editedVolumeInLanguage"
 msgstr ""
+"Lähetetään <strong>toimitettua teosta</strong> kielellä "
+"<strong>{$language}</strong>."
 
 msgid "submission.wizard.chapters.description"
 msgstr ""
+"Anna kaikki tämän käsikirjoituksen luvut. Jos lähetät toimitetun teoksen, "
+"varmista, että jokaisessa luvussa ilmoitetaan kyseisen luvun kirjoittajat."
 
 #~ msgid "submission.submit.placement.categories"
 #~ msgstr "Kategoriat"
