@@ -1,18 +1,19 @@
+# Antti-Jussi Nygård <ajnyga@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
-"PO-Revision-Date: 2021-06-12 13:02+0000\n"
+"PO-Revision-Date: 2023-05-23 20:49+0000\n"
 "Last-Translator: Antti-Jussi Nygård <ajnyga@gmail.com>\n"
-"Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/manager/"
-"fi_FI/>\n"
-"Language: fi_FI\n"
+"Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/manager/fi/>"
+"\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr ""
@@ -438,19 +439,25 @@ msgstr "Uutuudet"
 
 msgid "manager.setup.enableDois.description"
 msgstr ""
+"Salli digitaalisten objektitunnisteiden (DOI) määrittäminen tämän "
+"julkaisijan sisällöille."
 
-#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
-msgstr "Valitse objektit, joille DOI-tunnisteet tulee määrittää."
+msgstr ""
+"Valitse, minkä tyyppisille kohteille annetaan DOI-tunnus. Useimmat "
+"julkaisijat antavat DOI-tunnukset teoksille ja luvuille, mutta voit "
+"halutessasi antaa DOI-tunnukset kaikille julkaistaville kohteille."
 
 msgid "doi.manager.settings.doiSuffixLegacy"
 msgstr ""
+"Käytä oletusrakennetta.<br />%p.%m teoksille<br />%p.%m.c%c luvuille<br /"
+">%p.%m.%f julkaisumuodoille<br />%p.%m.%f.%s tiedostoille."
 
 msgid "doi.manager.settings.doiCreationTime.copyedit"
-msgstr ""
+msgstr "Kun teknisen toimittamisen työvaiheeseen on päästy"
 
 msgid "manager.dois.formatIdentifier.file"
-msgstr ""
+msgstr "Formaatti / {$format}"
 
 msgid "manager.setup.editorDecision"
 msgstr "Toimittajan päätös"
@@ -476,11 +483,10 @@ msgstr "Sähköpostitunnistautuminen"
 msgid "manager.setup.emailSignature"
 msgstr "Allekirjoitus"
 
-#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
-"Valmiisiin sähköposteihin, jotka järjestelmä lähettää julkaisijan puolesta, "
-"lisätään seuraava allekirjoitus."
+"Valmiisiin sähköposteihin, jotka järjestelmä lähettää automaattisesti "
+"julkaisijan puolesta, lisätään seuraava allekirjoitus."
 
 msgid "manager.setup.enableAnnouncements.enable"
 msgstr "Ota ilmoitukset käyttöön"
@@ -1349,16 +1355,18 @@ msgid "grid.series.urlWillBe"
 msgstr "Sarjan URL-osoitteeksi tulee: {$sampleUrl}"
 
 msgid "stats.contextStats"
-msgstr ""
+msgstr "Julkaisijan tilastot"
 
 msgid "stats.context.tooltip.text"
-msgstr ""
+msgstr "Julkaisijan sivuston etusivun ja luettelosivun kävijöiden määrä."
 
 msgid "stats.context.tooltip.label"
-msgstr ""
+msgstr "Tietoa julkaisijan tilastoista"
 
 msgid "stats.context.downloadReport.description"
 msgstr ""
+"Lataa CSV/Excel-taulukko tämän julkaisijan käyttötilastoista, jotka "
+"vastaavat seuraavia valintoja."
 
 msgid "stats.context.downloadReport.downloadContext.description"
 msgstr ""
@@ -1508,10 +1516,10 @@ msgstr "DOI-prefiksi on pakollinen, ja sen on oltava muodossa 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""
-"Käytä alla annettua muotoilua luodaksesi DOI-suffikseja. Käytä %p "
+"Käytä alla annettua rakennetta luodaksesi DOI-suffikseja. Käytä %p "
 "julkaisijan alkukirjaimille, %m kirjan tunnisteelle, %c luvun tunnisteelle, "
 "%f julkaisumuodon tunnisteelle, %s tiedoston tunnisteelle ja %x "
-"\"mukautetulle tunnisteelle\"."
+"\"mukautetulle tunnisteelle\". "
 
 msgid "doi.manager.settings.doiSuffixPattern.example"
 msgstr ""
@@ -1531,16 +1539,16 @@ msgid "doi.manager.settings.doiSuffixPattern.files"
 msgstr "tiedostoille"
 
 msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
-msgstr "Anna DOI-suffiksin muotoilu kirjoille."
+msgstr "Anna DOI-suffiksin rakenne kirjoille."
 
 msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
-msgstr "Anna DOI-suffiksin muotoilu luvuille."
+msgstr "Anna DOI-suffiksin rakenne luvuille."
 
 msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
-msgstr "Anna DOI-suffiksin muotoilu julkaisumuodoille."
+msgstr "Anna DOI-suffiksin rakenne julkaisumuodoille."
 
 msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
-msgstr "Anna DOI-suffiksin muotoilu tiedostoille."
+msgstr "Anna DOI-suffiksin rakenne tiedostoille."
 
 msgid "doi.manager.settings.doiReassign"
 msgstr "Määritä DOI-tunnisteet uudelleen"
@@ -1587,7 +1595,7 @@ msgstr ""
 msgid "doi.editor.patternNotResolved"
 msgstr ""
 "DOI-tunnistetta ei voida määrittää, koska se sisältää resolvoitumattoman "
-"muotoilun."
+"rakenteen."
 
 msgid "doi.editor.canBeAssigned"
 msgstr ""
@@ -1617,7 +1625,7 @@ msgstr "DOI-tunnistetta ei voida määrittää, koska mukautettu suffiksi puuttu
 msgid "doi.editor.assignDoi.pattern"
 msgstr ""
 "DOI-tunnistetta {$pubId} ei voida määrittää, koska se sisältää "
-"resolvoitumattoman muotoilun."
+"resolvoitumattoman rakenteen."
 
 msgid "doi.editor.assignDoi.assigned"
 msgstr "DOI-tunniste {$pubId} on määritetty."
@@ -1874,3 +1882,8 @@ msgstr ""
 
 #~ msgid "grid.category.categoryDetails"
 #~ msgstr "Kategorian tiedot"
+
+msgid "manager.sections.alertDelete"
+msgstr ""
+"Ennen kuin tämä sarja voidaan poistaa, sinun on siirrettävä tähän sarjaan "
+"liittyvät käsikirjoitukset muihin sarjoihin."
