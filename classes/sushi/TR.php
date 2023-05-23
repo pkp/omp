@@ -260,7 +260,7 @@ class TR extends CounterR5Report
                 foreach ($submissionResults as $sectionType => $results) {
                     // Get the submission properties
                     $submission = Repo::submission()->get($submissionId);
-                    if (!$submission) {
+                    if (!$submission || !$submission->getOriginalPublication()) {
                         break;
                     }
                     $currentPublication = $submission->getCurrentPublication();
@@ -356,7 +356,7 @@ class TR extends CounterR5Report
                 $results = $submissionResults;
                 // Get the submission properties
                 $submission = Repo::submission()->get($submissionId);
-                if (!$submission) {
+                if (!$submission || !$submission->getOriginalPublication()) {
                     break;
                 }
                 $currentPublication = $submission->getCurrentPublication();
