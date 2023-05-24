@@ -1,7 +1,7 @@
-# Diego José Macêdo <diegojmacedo@gmail.com>, 2022.
+# Diego José Macêdo <diegojmacedo@gmail.com>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-09-29 20:48+0000\n"
+"PO-Revision-Date: 2023-05-25 09:42+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "pubIds-urn/pt_BR/>\n"
@@ -250,3 +250,12 @@ msgstr "Composição final: {$galleyLabel}"
 
 msgid "plugins.pubIds.urn.editor.preview.objects"
 msgstr "Item"
+
+msgid "plugins.pubIds.urn.editor.preview.submissionFiles"
+msgstr "Arquivos: {$submissionFileLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.publicationFormats"
+msgstr "Formato de Publicação: {$publicationFormatLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.chapters"
+msgstr "Capítulo: {$chapterLabel}"
