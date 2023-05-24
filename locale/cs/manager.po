@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-05-05 19:49+0000\n"
+"PO-Revision-Date: 2023-05-25 09:42+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/manager/cs/>\n"
 "Language: cs\n"
@@ -1703,3 +1703,6 @@ msgid "plugins.importexport.common.error.salesRightRequiresTerritory"
 msgstr ""
 "Záznam o právu prodeje byl přeskočen, protože nemá přiřazenou zemi ani "
 "oblast."
+
+msgid "emailTemplate.variable.context.contextAcronym"
+msgstr "Iniciály vydavatelství"
