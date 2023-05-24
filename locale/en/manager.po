@@ -1201,6 +1201,9 @@ msgstr "The URL to the press's homepage"
 msgid "emailTemplate.variable.context.contactName"
 msgstr "The name of the press's primary contact"
 
+msgid "emailTemplate.variable.context.contextAcronym"
+msgstr "The press's initials"
+
 msgid "emailTemplate.variable.context.contextSignature"
 msgstr "The press's email signature for automated emails"
 
