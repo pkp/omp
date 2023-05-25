@@ -127,4 +127,19 @@ class Repository extends \PKP\decision\Repository
             Notification::NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS,
         ];
     }
+
+    public function getDecisionTypesMadeByRecommendingUsers(int $stageId): array
+    {
+        $recommendatorsAvailableDecisions = [];
+        switch($stageId) {
+            case WORKFLOW_STAGE_ID_SUBMISSION:
+                $recommendatorsAvailableDecisions = [
+                    new SendInternalReview()
+                ];
+        }
+
+        Hook::call('Workflow::RecommendatorDecisions', [&$recommendatorsAvailableDecisions, $stageId]);
+
+        return $recommendatorsAvailableDecisions;
+    }
 }
