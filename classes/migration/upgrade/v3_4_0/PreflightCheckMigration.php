@@ -181,4 +181,48 @@ class PreflightCheckMigration extends \PKP\migration\upgrade\v3_4_0\PreflightChe
             return $affectedRows;
         });
     }
+
+    protected function getEntityRelationships(): array
+    {
+        return [
+            $this->getContextTable() => ['submissions', 'user_groups', 'series', 'categories', 'navigation_menu_items', 'filters', 'genres', 'announcement_types', 'navigation_menus', 'spotlights', 'notifications', 'library_files', 'email_templates', $this->getContextSettingsTable(), 'plugin_settings', 'user_group_stage', 'subeditor_submission_group', 'notification_subscription_settings', 'completed_payments'],
+            'submissions' => ['publication_formats', 'submission_files', 'publications', 'review_rounds', 'review_assignments', 'submission_search_objects', 'library_files', 'submission_settings', 'submission_comments', 'stage_assignments', 'review_round_files', 'representatives', 'new_releases', 'features', 'edit_decisions'],
+            'users' => ['submission_files', 'review_assignments', 'email_log', 'notifications', 'event_log', 'user_user_groups', 'user_settings', 'user_interests', 'temporary_files', 'submission_comments', 'subeditor_submission_group', 'stage_assignments', 'sessions', 'query_participants', 'notification_subscription_settings', 'notes', 'email_log_users', 'edit_decisions', 'completed_payments', 'access_keys'],
+            'submission_files' => ['submission_files', 'submission_file_settings', 'submission_file_revisions', 'review_round_files', 'review_files'],
+            'publication_formats' => ['sales_rights', 'publication_format_settings', 'publication_dates', 'markets', 'identification_codes'],
+            'submission_chapters' => ['submission_chapters', 'submission_chapter_settings', 'submission_chapter_authors'],
+            'publications' => ['submissions', 'publication_formats', 'submission_chapters', 'authors', 'citations', 'publication_settings', 'publication_categories'],
+            'user_groups' => ['authors', 'user_user_groups', 'user_group_stage', 'user_group_settings', 'subeditor_submission_group', 'stage_assignments'],
+            'series' => ['publications', 'series_settings', 'series_categories'],
+            'authors' => ['submission_chapters', 'publications', 'submission_chapter_authors', 'author_settings'],
+            'categories' => ['categories', 'series_categories', 'publication_categories', 'category_settings'],
+            'review_forms' => ['series', 'review_assignments', 'review_form_elements', 'review_form_settings'],
+            'review_rounds' => ['review_assignments', 'review_round_files', 'edit_decisions'],
+            'data_object_tombstones' => ['data_object_tombstone_settings', 'data_object_tombstone_oai_set_objects'],
+            'files' => ['submission_files', 'submission_file_revisions'],
+            'filters' => ['filters', 'filter_settings'],
+            'genres' => ['submission_files', 'genre_settings'],
+            'navigation_menu_item_assignments' => ['navigation_menu_item_assignments', 'navigation_menu_item_assignment_settings'],
+            'navigation_menu_items' => ['navigation_menu_item_assignments', 'navigation_menu_item_settings'],
+            'announcement_types' => ['announcements', 'announcement_type_settings'],
+            'review_assignments' => ['review_form_responses', 'review_files'],
+            'review_form_elements' => ['review_form_responses', 'review_form_element_settings'],
+            'controlled_vocab_entries' => ['user_interests', 'controlled_vocab_entry_settings'],
+            'queries' => ['query_participants'],
+            'navigation_menus' => ['navigation_menu_item_assignments'],
+            'library_files' => ['library_file_settings'],
+            'event_log' => ['event_log_settings'],
+            'email_templates' => ['email_templates_settings'],
+            'email_log' => ['email_log_users'],
+            'spotlights' => ['spotlight_settings'],
+            'static_pages' => ['static_page_settings'],
+            'controlled_vocabs' => ['controlled_vocab_entries'],
+            'citations' => ['citation_settings'],
+            'submission_search_keyword_list' => ['submission_search_object_keywords'],
+            'submission_search_objects' => ['submission_search_object_keywords'],
+            'announcements' => ['announcement_settings'],
+            'filter_groups' => ['filters'],
+            'notifications' => ['notification_settings']
+        ];
+    }
 }
