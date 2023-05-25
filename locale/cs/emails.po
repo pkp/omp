@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-22 12:49+0000\n"
+"PO-Revision-Date: 2023-05-26 22:09+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/emails/cs/>\n"
 "Language: cs\n"
@@ -383,7 +383,7 @@ msgstr ""
 "<br />\n"
 "V případě jakýchkoli dotazů mě, prosím, kontaktujte.<br />\n"
 "<br />\n"
-"{$signatureFullName}"
+"{$senderName}"
 
 msgid "emails.emailLink.subject"
 msgstr "Rukopis možného zájmu"
