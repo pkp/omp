@@ -14,11 +14,6 @@
 
 namespace APP\migration\upgrade\v3_4_0;
 
-use Exception;
-use Illuminate\Database\MySqlConnection;
-use Illuminate\Database\PostgresConnection;
-use Illuminate\Support\Facades\DB;
-
 class PreflightCheckMigration extends \PKP\migration\upgrade\v3_4_0\PreflightCheckMigration
 {
     protected function getContextTable(): string
@@ -36,79 +31,154 @@ class PreflightCheckMigration extends \PKP\migration\upgrade\v3_4_0\PreflightChe
         return 'press_id';
     }
 
-    public function up(): void
+    protected function buildOrphanedEntityProcessor(): void
     {
-        parent::up();
-        try {
-            // Clean orphaned series entries by press_id
-            $orphanedIds = DB::table('series AS s')->leftJoin('presses AS p', 's.press_id', '=', 'p.press_id')->whereNull('p.press_id')->distinct()->pluck('s.press_id');
-            foreach ($orphanedIds as $pressId) {
-                DB::table('series')->where('press_id', '=', $pressId)->delete();
-            }
+        parent::buildOrphanedEntityProcessor();
 
-            // Clean orphaned sections entries by review_form_id
-            $orphanedIds = DB::table('series AS s')->leftJoin('review_forms AS rf', 's.review_form_id', '=', 'rf.review_form_id')->whereNull('rf.review_form_id')->whereNotNull('s.review_form_id')->distinct()->pluck('s.review_form_id');
-            foreach ($orphanedIds as $reviewFormId) {
-                DB::table('series')->where('review_form_id', '=', $reviewFormId)->update(['review_form_id' => null]);
-            }
+        $this->addTableProcessor('publication_formats', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~2 entities: doi_id->dois.doi_id(not found in previous version) publication_id->publications.publication_id
+            $affectedRows += $this->deleteRequiredReference('publication_formats', 'publication_id', 'publications', 'publication_id');
+            return $affectedRows;
+        });
 
-            // Clean orphaned section_settings entries
-            $orphanedIds = DB::table('series_settings AS ss')->leftJoin('series AS s', 'ss.series_id', '=', 's.series_id')->whereNull('s.series_id')->distinct()->pluck('ss.series_id');
-            foreach ($orphanedIds as $seriesId) {
-                DB::table('series_settings')->where('series_id', '=', $seriesId)->delete();
-            }
+        $this->addTableProcessor('submission_chapters', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~4 entities: doi_id->dois.doi_id(not found in previous version) primary_contact_id->authors.author_id publication_id->publications.publication_id source_chapter_id->submission_chapters.chapter_id
+            $affectedRows += $this->deleteRequiredReference('submission_chapters', 'publication_id', 'publications', 'publication_id');
 
-            // Clean orphaned publications entries by primary_contact_id
-            switch (true) {
-                case DB::connection() instanceof MySqlConnection:
-                    DB::statement('UPDATE publications p LEFT JOIN users u ON (p.primary_contact_id = u.user_id) SET p.primary_contact_id = NULL WHERE u.user_id IS NULL');
-                    break;
-                case DB::connection() instanceof PostgresConnection:
-                    DB::statement('UPDATE publications SET primary_contact_id = NULL WHERE publication_id IN (SELECT publication_id FROM publications p LEFT JOIN users u ON (p.primary_contact_id = u.user_id) WHERE u.user_id IS NULL AND p.primary_contact_id IS NOT NULL)');
-                    break;
-                default: throw new Exception('Unknown database connection type!');
-            }
+            $affectedRows += $this->cleanOptionalReference('submission_chapters', 'primary_contact_id', 'authors', 'author_id');
+            return $affectedRows;
+        });
 
-            // Clean orphaned publication_formats entries by publication_id
-            $orphanedIds = DB::table('publication_formats AS pf')->leftJoin('publications AS p', 'pf.publication_id', '=', 'p.publication_id')->whereNull('p.publication_id')->distinct()->pluck('pf.publication_id');
-            foreach ($orphanedIds as $publicationId) {
-                DB::table('publication_formats')->where('publication_id', '=', $publicationId)->delete();
-            }
+        $this->addTableProcessor('publications', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~4 entities: primary_contact_id->authors.author_id doi_id->dois.doi_id(not found in previous version) series_id->series.series_id submission_id->submissions.submission_id
+            $affectedRows += $this->cleanOptionalReference('publications', 'series_id', 'series', 'series_id');
+            return $affectedRows;
+        });
 
-            // Clean orphaned publication_format_settings entries
-            $orphanedIds = DB::table('publication_format_settings AS pfs')->leftJoin('publication_formats AS pf', 'pfs.publication_format_id', '=', 'pf.publication_format_id')->whereNull('pf.publication_format_id')->distinct()->pluck('pfs.publication_format_id');
-            foreach ($orphanedIds as $publicationFormatId) {
-                DB::table('publication_format_settings')->where('publication_format_id', '=', $publicationFormatId)->delete();
-            }
+        $this->addTableProcessor('series', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~2 entities: press_id->presses.press_id review_form_id->review_forms.review_form_id
+            $affectedRows += $this->deleteRequiredReference('series', $this->getContextKeyField(), $this->getContextTable(), $this->getContextKeyField());
+            $affectedRows += $this->cleanOptionalReference('series', 'review_form_id', 'review_forms', 'review_form_id');
+            return $affectedRows;
+        });
 
-            // Clean orphaned submission_chapter_authors entries by author_id
-            $orphanedIds = DB::table('submission_chapter_authors AS sca')->leftJoin('authors AS a', 'sca.author_id', '=', 'a.author_id')->whereNull('a.author_id')->distinct()->pluck('sca.author_id');
-            foreach ($orphanedIds as $authorId) {
-                DB::table('submission_chapter_authors')->where('author_id', '=', $authorId)->delete();
-            }
+        $this->addTableProcessor('spotlights', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~1 entities: press_id->presses.press_id
+            $affectedRows += $this->deleteRequiredReference('spotlights', $this->getContextKeyField(), $this->getContextTable(), $this->getContextKeyField());
+            return $affectedRows;
+        });
 
-            // Clean orphaned submission_chapter_authors entries by chapter_id
-            $orphanedIds = DB::table('submission_chapter_authors AS sca')->leftJoin('submission_chapters AS c', 'sca.chapter_id', '=', 'c.chapter_id')->whereNull('c.chapter_id')->distinct()->pluck('sca.chapter_id');
-            foreach ($orphanedIds as $chapterId) {
-                DB::table('submission_chapter_authors')->where('chapter_id', '=', $chapterId)->delete();
-            }
+        $this->addTableProcessor('completed_payments', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~2 entities: context_id->presses.press_id user_id->users.user_id
+            $affectedRows += $this->deleteRequiredReference('completed_payments', 'context_id', $this->getContextTable(), $this->getContextKeyField());
+            $affectedRows += $this->deleteOptionalReference('completed_payments', 'user_id', 'users', 'user_id');
+            return $affectedRows;
+        });
 
-            // Clean orphaned completed_payments entries by context_id
-            $orphanedIds = DB::table('completed_payments AS cp')->leftJoin('presses AS p', 'p.press_id', '=', 'cp.context_id')->whereNull('p.press_id')->distinct()->pluck('cp.context_id');
-            foreach ($orphanedIds as $pressId) {
-                DB::table('completed_payments')->where('context_id', '=', $pressId)->delete();
-            }
+        $this->addTableProcessor('features', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~1 entities: submission_id->submissions.submission_id
+            $affectedRows += $this->deleteRequiredReference('features', 'submission_id', 'submissions', 'submission_id');
+            return $affectedRows;
+        });
 
-            // Clean orphaned completed_payments entries by user_id
-            $orphanedIds = DB::table('completed_payments AS cp')->leftJoin('users AS u', 'u.user_id', '=', 'cp.user_id')->whereNull('u.user_id')->distinct()->pluck('cp.user_id');
-            foreach ($orphanedIds as $userId) {
-                DB::table('completed_payments')->where('user_id', '=', $userId)->delete();
-            }
-        } catch (Exception $e) {
-            if ($fallbackVersion = $this->setFallbackVersion()) {
-                $this->_installer->log("A pre-flight check failed. The software was successfully upgraded to {$fallbackVersion} but could not be upgraded further (to " . $this->_installer->newVersion->getVersionString() . '). Check and correct the error, then try again.');
-            }
-            throw $e;
-        }
+        $this->addTableProcessor('identification_codes', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~1 entities: publication_format_id->publication_formats.publication_format_id
+            $affectedRows += $this->deleteRequiredReference('identification_codes', 'publication_format_id', 'publication_formats', 'publication_format_id');
+            return $affectedRows;
+        });
+
+        $this->addTableProcessor('markets', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~1 entities: publication_format_id->publication_formats.publication_format_id
+            $affectedRows += $this->deleteRequiredReference('markets', 'publication_format_id', 'publication_formats', 'publication_format_id');
+            return $affectedRows;
+        });
+
+        $this->addTableProcessor('new_releases', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~1 entities: submission_id->submissions.submission_id
+            $affectedRows += $this->deleteRequiredReference('new_releases', 'submission_id', 'submissions', 'submission_id');
+            return $affectedRows;
+        });
+
+        $this->addTableProcessor('press_settings', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~1 entities: press_id->presses.press_id
+            $affectedRows += $this->deleteRequiredReference($this->getContextSettingsTable(), $this->getContextKeyField(), $this->getContextTable(), $this->getContextKeyField());
+            return $affectedRows;
+        });
+
+        $this->addTableProcessor('publication_dates', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~1 entities: publication_format_id->publication_formats.publication_format_id
+            $affectedRows += $this->deleteRequiredReference('publication_dates', 'publication_format_id', 'publication_formats', 'publication_format_id');
+            return $affectedRows;
+        });
+
+        $this->addTableProcessor('publication_format_settings', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~1 entities: publication_format_id->publication_formats.publication_format_id
+            $affectedRows += $this->deleteRequiredReference('publication_format_settings', 'publication_format_id', 'publication_formats', 'publication_format_id');
+            return $affectedRows;
+        });
+
+        $this->addTableProcessor('representatives', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~1 entities: submission_id->submissions.submission_id
+            $affectedRows += $this->deleteRequiredReference('representatives', 'submission_id', 'submissions', 'submission_id');
+            return $affectedRows;
+        });
+
+        $this->addTableProcessor('sales_rights', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~1 entities: publication_format_id->publication_formats.publication_format_id
+            $affectedRows += $this->deleteRequiredReference('sales_rights', 'publication_format_id', 'publication_formats', 'publication_format_id');
+            return $affectedRows;
+        });
+
+        $this->addTableProcessor('series_categories', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~2 entities: category_id->categories.category_id series_id->series.series_id
+            $affectedRows += $this->deleteRequiredReference('series_categories', 'series_id', 'series', 'series_id');
+            $affectedRows += $this->deleteRequiredReference('series_categories', 'category_id', 'categories', 'category_id');
+            return $affectedRows;
+        });
+
+        $this->addTableProcessor('series_settings', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~1 entities: series_id->series.series_id
+            $affectedRows += $this->deleteRequiredReference('series_settings', 'series_id', 'series', 'series_id');
+            return $affectedRows;
+        });
+
+        $this->addTableProcessor('spotlight_settings', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~1 entities: spotlight_id->spotlights.spotlight_id
+            $affectedRows += $this->deleteRequiredReference('spotlight_settings', 'spotlight_id', 'spotlights', 'spotlight_id');
+            return $affectedRows;
+        });
+
+        $this->addTableProcessor('submission_chapter_authors', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~2 entities: author_id->authors.author_id chapter_id->submission_chapters.chapter_id
+            $affectedRows += $this->deleteRequiredReference('submission_chapter_authors', 'chapter_id', 'submission_chapters', 'chapter_id');
+            $affectedRows += $this->deleteRequiredReference('submission_chapter_authors', 'author_id', 'authors', 'author_id');
+            return $affectedRows;
+        });
+
+        $this->addTableProcessor('submission_chapter_settings', function (): int {
+            $affectedRows = 0;
+            // Depends directly on ~1 entities: chapter_id->submission_chapters.chapter_id
+            $affectedRows += $this->deleteRequiredReference('submission_chapter_settings', 'chapter_id', 'submission_chapters', 'chapter_id');
+            return $affectedRows;
+        });
     }
 }
