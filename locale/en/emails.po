@@ -383,7 +383,7 @@ msgstr ""
 "<br />\n"
 "If you have any questions, please contact me.<br />\n"
 "<br />\n"
-"{$signatureFullName}"
+"{$senderName}"
 
 msgid "emails.emailLink.subject"
 msgstr "Manuscript of Possible Interest"
