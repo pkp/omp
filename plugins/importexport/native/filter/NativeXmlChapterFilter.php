@@ -21,6 +21,7 @@ use APP\monograph\ChapterDAO;
 use APP\submissionFile\DAO;
 use DOMElement;
 use PKP\db\DAORegistry;
+use PKP\filter\FilterGroup;
 use PKP\plugins\PluginRegistry;
 
 class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\NativeImportFilter
@@ -85,9 +86,9 @@ class NativeXmlChapterFilter extends \PKP\plugins\importexport\native\filter\Nat
         $chapterId = $chapterDao->insertChapter($chapter);
         $chapter->setData('id', $chapterId);
 
-        // Handle metadata in subelements
+        // Handle metadata in sub-elements
         for ($n = $node->firstChild; $n !== null; $n = $n->nextSibling) {
-            if ($n instanceof \DOMElement) {
+            if ($n instanceof DOMElement) {
                 switch ($n->tagName) {
                     case 'id':
                         $this->parseIdentifier($n, $chapter);

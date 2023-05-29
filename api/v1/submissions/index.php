@@ -4,8 +4,6 @@
  * @defgroup api_v1_submissions Submission API requests
  */
 
-use APP\core\Application;
-
 /**
  * @file api/v1/submissions/index.php
  *
@@ -18,6 +16,9 @@ use APP\core\Application;
  * @brief Handle requests for submission API functions.
  *
  */
+
+use APP\core\Application;
+
 $requestPath = Application::get()->getRequest()->getRequestPath();
 if (strpos($requestPath, '/files')) {
     return new \PKP\API\v1\submissions\PKPSubmissionFileHandler();

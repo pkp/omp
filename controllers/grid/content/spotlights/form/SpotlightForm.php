@@ -17,6 +17,7 @@ namespace APP\controllers\grid\content\spotlights\form;
 
 use APP\facades\Repo;
 use APP\spotlight\Spotlight;
+use APP\spotlight\SpotlightDAO;
 use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
 use PKP\form\Form;

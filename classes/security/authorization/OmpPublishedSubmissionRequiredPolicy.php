@@ -16,19 +16,21 @@
 namespace APP\security\authorization;
 
 use APP\core\Application;
+use APP\core\Request;
 use APP\facades\Repo;
+use APP\press\Press;
 use PKP\security\authorization\AuthorizationPolicy;
 use PKP\security\authorization\DataObjectRequiredPolicy;
 
 class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy
 {
-    /** @var Context */
+    /** @var Press */
     public $context;
 
     /**
      * Constructor
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param array $args request parameters
      * @param string $submissionParameterName the request parameter we expect
      *  the submission id in.

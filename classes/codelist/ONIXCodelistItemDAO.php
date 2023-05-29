@@ -28,7 +28,6 @@ use PKP\file\FileManager;
 use PKP\file\TemporaryFileManager;
 use PKP\i18n\interfaces\LocaleInterface;
 use PKP\plugins\Hook;
-
 use PKP\xslt\XSLTransformer;
 
 class ONIXCodelistItemDAO extends \PKP\db\DAO
@@ -250,7 +249,7 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
     /**
      * Internal function to return a Codelist object from a row.
      *
-     * @return CodelistItem
+     * @return ONIXCodelistItem
      */
     public function &_fromRow($code, &$entry)
     {

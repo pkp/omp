@@ -18,6 +18,7 @@
 
 namespace APP\publicationFormat;
 
+use APP\codelist\ONIXCodelistItemDAO;
 use PKP\core\DataObject;
 use PKP\db\DAORegistry;
 

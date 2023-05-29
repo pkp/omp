@@ -20,13 +20,18 @@ use APP\core\Application;
 use APP\core\Request;
 use APP\facades\Repo;
 use APP\observers\events\UsageEvent;
+use APP\press\FeatureDAO;
+use APP\press\NewReleaseDAO;
 use APP\press\Press;
+use APP\press\PressDAO;
 use APP\spotlight\Spotlight;
+use APP\spotlight\SpotlightDAO;
 use APP\template\TemplateManager;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
 use PKP\pages\index\PKPIndexHandler;
 use PKP\security\Validation;
+use PKP\site\Site;
 
 class IndexHandler extends PKPIndexHandler
 {

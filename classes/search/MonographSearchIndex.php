@@ -17,13 +17,13 @@
 namespace APP\search;
 
 use APP\facades\Repo;
+use APP\press\PressDAO;
 use APP\submission\Submission;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
 use PKP\plugins\Hook;
 use PKP\search\SearchFileParser;
 use PKP\search\SubmissionSearch;
-
 use PKP\search\SubmissionSearchIndex;
 use PKP\submissionFile\SubmissionFile;
 
@@ -47,7 +47,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
      *
      * @param int $monographId
      * @param int $type
-     * @param string $text
+     * @param string|string[] $text
      * @param int $assocId optional
      */
     public function updateTextIndex($monographId, $type, $text, $assocId = null)

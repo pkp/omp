@@ -18,6 +18,7 @@
 
 namespace APP\publicationFormat;
 
+use APP\monograph\RepresentativeDAO;
 use PKP\core\DataObject;
 use PKP\db\DAORegistry;
 

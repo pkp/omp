@@ -113,11 +113,13 @@ class Press extends Context
     /**
      * Get the DAO for this context object.
      *
-     * @return DAO
+     * @return PressDAO
      */
     public function getDAO()
     {
-        return DAORegistry::getDAO('PressDAO');
+        /** @var PressDAO */
+        $dao = DAORegistry::getDAO('PressDAO');
+        return $dao;
     }
 }
 

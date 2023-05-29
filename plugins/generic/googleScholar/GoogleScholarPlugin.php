@@ -15,6 +15,7 @@
 namespace APP\plugins\generic\googleScholar;
 
 use APP\template\TemplateManager;
+use PKP\citation\CitationDAO;
 use PKP\db\DAORegistry;
 use PKP\plugins\GenericPlugin;
 use PKP\plugins\Hook;
@@ -204,7 +205,7 @@ class GoogleScholarPlugin extends GenericPlugin
         return __('plugins.generic.googleScholar.description');
     }
 
-    private function _setFileUrl($availableFile, \APP\template\TemplateManager $templateMgr, int $i, \APP\Core\Request $request, \APP\submission\Submission $submission): void
+    private function _setFileUrl($availableFile, TemplateManager $templateMgr, int $i, \APP\Core\Request $request, \APP\submission\Submission $submission): void
     {
         switch ($availableFile->getData('mimetype')) {
             case 'application/pdf':

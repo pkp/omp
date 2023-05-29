@@ -18,17 +18,18 @@ namespace APP\controllers\grid\catalogEntry;
 
 use APP\controllers\grid\catalogEntry\form\SalesRightsForm;
 use APP\core\Application;
+use APP\core\Request;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
 use APP\publication\Publication;
 use APP\publicationFormat\PublicationFormat;
+use APP\publicationFormat\PublicationFormatDAO;
 use APP\publicationFormat\SalesRightsDAO;
 use APP\submission\Submission;
 use Exception;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
-use PKP\core\PKPRequest;
 use PKP\db\DAO;
 use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
@@ -129,7 +130,7 @@ class SalesRightsGridHandler extends GridHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param array $args
      * @param array $roleAssignments
      */
@@ -268,7 +269,7 @@ class SalesRightsGridHandler extends GridHandler
      * Edit a new (empty) rights entry
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -281,7 +282,7 @@ class SalesRightsGridHandler extends GridHandler
      * Edit a sales rights entry
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -305,7 +306,7 @@ class SalesRightsGridHandler extends GridHandler
      * Update a sales rights entry
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -357,7 +358,7 @@ class SalesRightsGridHandler extends GridHandler
      * Delete a sales rights entry
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */

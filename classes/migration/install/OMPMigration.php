@@ -270,7 +270,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->foreign('review_form_id', 'series_review_form_id')->references('review_form_id')->on('review_forms')->onDelete('set null');
             $table->index(['review_form_id'], 'series_review_form_id');
 
-            //  NOTNULL not included for the sake of 1.1 upgrade, which didn't include this column
+            //  NOT NULL not included for the sake of 1.1 upgrade, which didn't include this column
             $table->float('seq', 8, 2)->default(0)->nullable();
 
             $table->smallInteger('featured')->default(0);

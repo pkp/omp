@@ -15,7 +15,10 @@
 namespace APP\plugins\importexport\csv;
 
 use APP\core\Application;
+use APP\core\Request;
 use APP\facades\Repo;
+use APP\publicationFormat\PublicationDateDAO;
+use APP\publicationFormat\PublicationFormatDAO;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\core\Core;
@@ -24,6 +27,7 @@ use PKP\file\FileManager;
 use PKP\file\TemporaryFileManager;
 use PKP\plugins\ImportExportPlugin;
 use PKP\security\Role;
+use PKP\submission\GenreDAO;
 use PKP\submission\PKPSubmission;
 use PKP\submissionFile\SubmissionFile;
 
@@ -74,7 +78,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
      * Display the plugin.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function display($args, $request)
     {

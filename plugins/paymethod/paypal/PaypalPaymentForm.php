@@ -20,6 +20,7 @@ use APP\template\TemplateManager;
 use Exception;
 use Omnipay\PayPal\Message\RestAuthorizeResponse;
 use PKP\form\Form;
+use PKP\payment\QueuedPayment;
 
 class PaypalPaymentForm extends Form
 {

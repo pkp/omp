@@ -25,7 +25,6 @@ use APP\notification\managerDelegate\ApproveSubmissionNotificationManager;
 use PKP\notification\managerDelegate\EditorAssignmentNotificationManager;
 use PKP\notification\managerDelegate\EditorDecisionNotificationManager;
 use PKP\notification\managerDelegate\PendingRevisionsNotificationManager;
-
 use PKP\notification\PKPNotificationManager;
 
 class NotificationManager extends PKPNotificationManager

@@ -20,15 +20,23 @@
 
 namespace APP\plugins\metadata\dc11\filter;
 
+use APP\codelist\ONIXCodelistItemDAO;
 use APP\core\Application;
 use APP\facades\Repo;
+use APP\oai\omp\OAIDAO;
+use APP\press\Press;
+use APP\publicationFormat\PublicationFormat;
+use APP\section\Section;
 use APP\submission\Submission;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\i18n\LocaleConversion;
 use PKP\metadata\MetadataDataObjectAdapter;
+use PKP\metadata\MetadataDescription;
 use PKP\plugins\Hook;
 use PKP\plugins\PluginRegistry;
+use PKP\submission\SubmissionKeywordDAO;
+use PKP\submission\SubmissionSubjectDAO;
 
 class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
 {
@@ -68,7 +76,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $publication = Repo::publication()->get($publicationFormat->getData('publicationId'));
         $monograph = Repo::submission()->get($publication->getData('submissionId'));
         $press = $oaiDao->getPress($monograph->getPressId());
-        $series = $oaiDao->getSeries($monograph->getSeriesId()); /** @var Series $series */
+        $series = $oaiDao->getSeries($monograph->getSeriesId()); /** @var Section $series */
         $dc11Description = $this->instantiateMetadataDescription();
 
         // Title
@@ -147,7 +155,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             $dc11Description->addStatement('dc:identifier', $request->url($press->getPath(), 'catalog', 'book', [$monograph->getId()]));
         }
 
-        // Public idntifiers (e.g. DOI, URN)
+        // Public identifiers (e.g. DOI, URN)
         $pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
         foreach ((array) $pubIdPlugins as $plugin) {
             $pubId = $plugin->getPubId($publicationFormat);
@@ -157,7 +165,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         }
         $context = $request->getContext();
         if (!$context) {
-            $contextDao = \APP\core\Application::getContextDAO();
+            $contextDao = Application::getContextDAO();
             /** @var Press */
             $context = $contextDao->getById($monograph->getData('contextId'));
         }

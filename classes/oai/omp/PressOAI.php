@@ -25,12 +25,14 @@
 namespace APP\oai\omp;
 
 use APP\core\Application;
+use APP\press\Press;
 use PKP\db\DAORegistry;
 use PKP\oai\OAI;
 use PKP\oai\OAIRepository;
 use PKP\oai\OAIResumptionToken;
-
 use PKP\plugins\Hook;
+use PKP\site\Site;
+use PKP\site\VersionDAO;
 
 class PressOAI extends OAI
 {

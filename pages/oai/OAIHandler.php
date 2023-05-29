@@ -16,6 +16,7 @@
 
 namespace APP\pages\oai;
 
+use APP\core\Request;
 use APP\handler\Handler;
 use APP\oai\omp\PressOAI;
 use PKP\config\Config;
@@ -45,7 +46,7 @@ class OAIHandler extends Handler
      * Handle an OAI request.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function index($args, $request)
     {

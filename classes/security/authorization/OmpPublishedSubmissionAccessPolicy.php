@@ -15,6 +15,7 @@
 
 namespace APP\security\authorization;
 
+use APP\core\Request;
 use PKP\security\authorization\internal\ContextPolicy;
 
 class OmpPublishedSubmissionAccessPolicy extends ContextPolicy
@@ -22,7 +23,7 @@ class OmpPublishedSubmissionAccessPolicy extends ContextPolicy
     /**
      * Constructor
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param array $args request parameters
      * @param array $roleAssignments
      * @param string $submissionParameterName the request parameter we

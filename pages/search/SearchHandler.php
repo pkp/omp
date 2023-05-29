@@ -16,6 +16,7 @@
 
 namespace APP\pages\search;
 
+use APP\core\Request;
 use APP\facades\Repo;
 use APP\handler\Handler;
 use APP\search\MonographSearch;
@@ -27,7 +28,7 @@ class SearchHandler extends Handler
      * Show the search form
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function index($args, $request)
     {
@@ -38,9 +39,7 @@ class SearchHandler extends Handler
      * View the results of a search operation.
      *
      * @param array $args
-     * @param PKPRequest $request
-     *
-     * @return string
+     * @param Request $request
      */
     public function search($args, $request)
     {

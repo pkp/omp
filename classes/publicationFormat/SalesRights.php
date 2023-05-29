@@ -18,6 +18,7 @@
 
 namespace APP\publicationFormat;
 
+use APP\codelist\ONIXCodelistItemDAO;
 use PKP\db\DAORegistry;
 
 class SalesRights extends \PKP\core\DataObject

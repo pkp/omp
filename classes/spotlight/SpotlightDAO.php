@@ -19,6 +19,7 @@
 namespace APP\spotlight;
 
 use PKP\db\DAOResultFactory;
+use PKP\db\DBResultRange;
 
 class SpotlightDAO extends \PKP\db\DAO
 {
@@ -86,7 +87,7 @@ class SpotlightDAO extends \PKP\db\DAO
     /**
      * Get a new data object.
      *
-     * @return DataObject
+     * @return Spotlight
      */
     public function newDataObject()
     {
@@ -183,8 +184,6 @@ class SpotlightDAO extends \PKP\db\DAO
      * Delete a spotlight.
      *
      * @param Spotlight $spotlight
-     *
-     * @return bool
      */
     public function deleteObject($spotlight)
     {
@@ -235,7 +234,7 @@ class SpotlightDAO extends \PKP\db\DAO
      * Retrieve an array of spotlights matching a press id.
      *
      * @param int $pressId
-     * @param null|mixed $rangeInfo
+     * @param ?DBResultRange $rangeInfo
      *
      * @return array Array containing matching Spotlights
      */
@@ -300,9 +299,9 @@ class SpotlightDAO extends \PKP\db\DAO
      *
      * @param int $assocType
      * @param int $assocId
-     * @param null|mixed $rangeInfo
+     * @param ?DBResultRange $rangeInfo
      *
-     * @return object DAOResultFactory containing matching Spotlights
+     * @return DAOResultFactory<Spotlight> containing matching Spotlights
      */
     public function getByAssoc($assocType, $assocId, $rangeInfo = null)
     {
@@ -324,9 +323,9 @@ class SpotlightDAO extends \PKP\db\DAO
      * Retrieve an array of numSpotlights spotlights matching a particular Assoc ID.
      *
      * @param int $assocType
-     * @param null|mixed $rangeInfo
+     * @param ?DBResultRange $rangeInfo
      *
-     * @return object DAOResultFactory containing matching Spotlights
+     * @return DAOResultFactory<Spotlight> containing matching Spotlights
      */
     public function getNumSpotlightsByAssoc($assocType, $assocId, $rangeInfo = null)
     {

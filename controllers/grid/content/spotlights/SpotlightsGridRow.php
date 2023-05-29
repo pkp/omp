@@ -16,6 +16,7 @@
 
 namespace APP\controllers\grid\content\spotlights;
 
+use APP\press\Press;
 use PKP\controllers\grid\GridRow;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
@@ -104,8 +105,6 @@ class SpotlightsGridRow extends GridRow
 
     /**
      * Set the press for this row (already authorized)
-     *
-     * @return Press
      */
     public function setPress($press)
     {

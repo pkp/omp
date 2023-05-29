@@ -29,6 +29,7 @@ use APP\notification\Notification;
 use APP\notification\NotificationManager;
 use APP\publication\Publication;
 use APP\publicationFormat\PublicationFormat;
+use APP\publicationFormat\PublicationFormatDAO;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\services\PublicationFormatService;
 use APP\submission\Submission;
@@ -38,7 +39,6 @@ use PKP\controllers\grid\files\proof\form\ManageProofFilesForm;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\pubIds\form\PKPAssignPublicIdentifiersForm;
 use PKP\core\JSONMessage;
-use PKP\core\PKPRequest;
 use PKP\db\DAO;
 use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
@@ -219,7 +219,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param array $args
      * @param array $roleAssignments
      */
@@ -363,7 +363,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      * Set a format's "approved" state
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -424,7 +424,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      * Set a format's "available" state
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -469,7 +469,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      * Edit an approved proof.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -489,7 +489,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      * Save an approved proof.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -551,7 +551,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      * Add a new publication format
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -564,7 +564,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      * Set the approval status for a file.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function setProofFileCompletion($args, $request)
     {
@@ -612,7 +612,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      * Show the form to allow the user to select files from previous stages
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -629,7 +629,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      * Load a form to edit a format's metadata
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -647,7 +647,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      * Save a form to edit format's metadata
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -669,7 +669,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      * Edit pub ids
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -686,7 +686,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      * Update pub ids
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -708,7 +708,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      * Clear pub id
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -729,7 +729,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      * Show dependent files for a monograph file.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function dependentFiles($args, $request)
     {

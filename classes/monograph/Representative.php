@@ -18,6 +18,7 @@
 
 namespace APP\monograph;
 
+use APP\codelist\ONIXCodelistItemDAO;
 use PKP\db\DAORegistry;
 
 class Representative extends \PKP\core\DataObject

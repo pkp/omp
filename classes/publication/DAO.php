@@ -14,6 +14,7 @@
 namespace APP\publication;
 
 use APP\core\Application;
+use APP\monograph\ChapterDAO;
 use PKP\db\DAORegistry;
 
 class DAO extends \PKP\publication\DAO

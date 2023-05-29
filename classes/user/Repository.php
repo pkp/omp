@@ -13,6 +13,7 @@
 
 namespace APP\user;
 
+use APP\payment\omp\OMPCompletedPaymentDAO;
 use PKP\db\DAORegistry;
 
 class Repository extends \PKP\user\Repository

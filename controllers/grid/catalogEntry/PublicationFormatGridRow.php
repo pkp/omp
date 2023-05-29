@@ -20,6 +20,7 @@ use PKP\controllers\grid\files\FilesGridCapabilities;
 use PKP\controllers\grid\files\SubmissionFilesGridRow;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
+use PKP\submissionFile\SubmissionFile;
 
 class PublicationFormatGridRow extends SubmissionFilesGridRow
 {

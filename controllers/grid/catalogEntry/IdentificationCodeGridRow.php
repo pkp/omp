@@ -16,6 +16,7 @@
 
 namespace APP\controllers\grid\catalogEntry;
 
+use APP\publication\Publication;
 use APP\submission\Submission;
 use PKP\controllers\grid\GridRow;
 use PKP\linkAction\LinkAction;

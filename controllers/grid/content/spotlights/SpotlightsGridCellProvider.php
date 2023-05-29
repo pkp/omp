@@ -16,7 +16,10 @@
 
 namespace APP\controllers\grid\content\spotlights;
 
+use APP\spotlight\Spotlight;
 use PKP\controllers\grid\DataObjectGridCellProvider;
+use PKP\controllers\grid\GridColumn;
+use PKP\controllers\grid\GridRow;
 
 class SpotlightsGridCellProvider extends DataObjectGridCellProvider
 {
@@ -39,6 +42,7 @@ class SpotlightsGridCellProvider extends DataObjectGridCellProvider
 
         $columnId = $column->getId();
         assert(is_a($element, 'DataObject') && !empty($columnId));
+        /** @var Spotlight $element */
         switch ($columnId) {
             case 'type':
                 return ['label' => $element->getLocalizedType()];

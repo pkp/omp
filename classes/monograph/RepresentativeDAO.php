@@ -55,7 +55,7 @@ class RepresentativeDAO extends \PKP\db\DAO
      *
      * @param int $monographId
      *
-     * @return DAOResultFactory containing matching representatives.
+     * @return DAOResultFactory<Representative> containing matching representatives.
      */
     public function getSuppliersByMonographId($monographId)
     {
@@ -74,7 +74,7 @@ class RepresentativeDAO extends \PKP\db\DAO
      *
      * @param int $monographId
      *
-     * @return DAOResultFactory containing matching representatives.
+     * @return DAOResultFactory<Representative> containing matching representatives.
      */
     public function getAgentsByMonographId($monographId)
     {

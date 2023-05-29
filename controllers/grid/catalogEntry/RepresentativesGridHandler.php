@@ -18,6 +18,7 @@ namespace APP\controllers\grid\catalogEntry;
 
 use APP\controllers\grid\catalogEntry\form\RepresentativeForm;
 use APP\core\Application;
+use APP\core\Request;
 use APP\monograph\RepresentativeDAO;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
@@ -26,7 +27,6 @@ use APP\submission\Submission;
 use PKP\controllers\grid\CategoryGridHandler;
 use PKP\controllers\grid\GridColumn;
 use PKP\core\JSONMessage;
-use PKP\core\PKPRequest;
 use PKP\db\DAO;
 use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
@@ -83,7 +83,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param array $args
      * @param array $roleAssignments
      */
@@ -246,7 +246,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
      * Edit a representative entry
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -270,7 +270,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
      * Update a representative entry
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -322,7 +322,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
      * Delete a representative entry
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */

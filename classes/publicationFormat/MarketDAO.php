@@ -55,7 +55,7 @@ class MarketDAO extends \PKP\db\DAO
      *
      * @param int $publicationFormatId
      *
-     * @return DAOResultFactory containing matching market.
+     * @return DAOResultFactory<Market> containing matching market.
      */
     public function getByPublicationFormatId($publicationFormatId)
     {

@@ -20,6 +20,7 @@ use APP\author\Author;
 use APP\controllers\grid\users\chapter\form\ChapterForm;
 use APP\controllers\tab\pubIds\form\PublicIdentifiersForm;
 use APP\core\Application;
+use APP\core\Request;
 use APP\facades\Repo;
 use APP\monograph\Chapter;
 use APP\monograph\ChapterDAO;
@@ -39,6 +40,7 @@ use PKP\plugins\PluginRegistry;
 use PKP\security\authorization\PublicationAccessPolicy;
 use PKP\security\Role;
 use PKP\submission\PKPSubmission;
+use PKP\user\User;
 
 class ChapterGridHandler extends CategoryGridHandler
 {
@@ -113,7 +115,7 @@ class ChapterGridHandler extends CategoryGridHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param array $args
      * @param array $roleAssignments
      */
@@ -360,7 +362,7 @@ class ChapterGridHandler extends CategoryGridHandler
      * Edit chapter pub ids
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -377,7 +379,7 @@ class ChapterGridHandler extends CategoryGridHandler
      * Update chapter pub ids
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -403,7 +405,7 @@ class ChapterGridHandler extends CategoryGridHandler
      * Clear chapter pub id
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -443,7 +445,7 @@ class ChapterGridHandler extends CategoryGridHandler
      * Edit a chapter metadata modal
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -482,7 +484,7 @@ class ChapterGridHandler extends CategoryGridHandler
      * Edit a chapter
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -504,7 +506,7 @@ class ChapterGridHandler extends CategoryGridHandler
      * Update a chapter
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -542,7 +544,7 @@ class ChapterGridHandler extends CategoryGridHandler
      * Delete a chapter
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */

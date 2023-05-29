@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\DB;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
 use PKP\statistics\PKPTemporaryTotalsDAO;
+use PKP\statistics\TemporaryInstitutionsDAO;
 
 class TemporaryTotalsDAO extends PKPTemporaryTotalsDAO
 {

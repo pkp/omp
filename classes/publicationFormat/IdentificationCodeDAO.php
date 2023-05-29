@@ -55,7 +55,7 @@ class IdentificationCodeDAO extends \PKP\db\DAO
      *
      * @param int $publicationFormatId
      *
-     * @return DAOResultFactory containing matching identification codes
+     * @return DAOResultFactory<IdentificationCode> containing matching identification codes
      */
     public function getByPublicationFormatId($publicationFormatId)
     {

@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\DB;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
 use PKP\statistics\PKPTemporaryItemRequestsDAO;
+use PKP\statistics\TemporaryInstitutionsDAO;
 
 class TemporaryItemRequestsDAO extends PKPTemporaryItemRequestsDAO
 {

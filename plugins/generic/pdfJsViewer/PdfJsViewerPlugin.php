@@ -15,6 +15,7 @@
 namespace APP\plugins\generic\pdfJsViewer;
 
 use APP\core\Application;
+use APP\publication\Publication;
 use APP\template\TemplateManager;
 use PKP\plugins\GenericPlugin;
 use PKP\plugins\Hook;

@@ -25,7 +25,9 @@ use APP\handler\Handler;
 use APP\monograph\Chapter;
 use APP\monograph\ChapterDAO;
 use APP\observers\events\UsageEvent;
+use APP\payment\omp\OMPCompletedPaymentDAO;
 use APP\payment\omp\OMPPaymentManager;
+use APP\publication\Publication;
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
@@ -41,6 +43,7 @@ use PKP\security\Validation;
 use PKP\submission\Genre;
 use PKP\submission\GenreDAO;
 use PKP\submission\PKPSubmission;
+use PKP\submissionFile\SubmissionFile;
 
 class CatalogBookHandler extends Handler
 {
@@ -65,7 +68,7 @@ class CatalogBookHandler extends Handler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param array $args
      * @param array $roleAssignments
      */
@@ -84,7 +87,7 @@ class CatalogBookHandler extends Handler
      * Display a published submission in the public catalog.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function book($args, $request)
     {
@@ -312,7 +315,7 @@ class CatalogBookHandler extends Handler
      * format file.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function view($args, $request)
     {
@@ -482,7 +485,7 @@ class CatalogBookHandler extends Handler
     /**
      * Set up common template variables.
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param Submission $submission
      */
     public function setupTemplate($request, $submission = null)

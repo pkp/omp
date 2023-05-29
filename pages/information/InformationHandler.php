@@ -16,6 +16,7 @@
 
 namespace APP\pages\information;
 
+use APP\core\Request;
 use APP\handler\Handler;
 use APP\template\TemplateManager;
 
@@ -25,7 +26,7 @@ class InformationHandler extends Handler
      * Display the information page for the press.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function index($args, $request)
     {

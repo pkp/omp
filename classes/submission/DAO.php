@@ -13,8 +13,9 @@
 
 namespace APP\submission;
 
+use APP\press\FeatureDAO;
+use APP\press\NewReleaseDAO;
 use PKP\db\DAORegistry;
-
 use PKP\observers\events\SubmissionDeleted;
 
 class DAO extends \PKP\submission\DAO

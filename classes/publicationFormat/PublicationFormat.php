@@ -18,11 +18,12 @@
 
 namespace APP\publicationFormat;
 
+use APP\codelist\ONIXCodelistItemDAO;
 use APP\core\Application;
 use APP\core\Services;
 use APP\facades\Repo;
 use PKP\db\DAORegistry;
-
+use PKP\db\DAOResultFactory;
 use PKP\submission\Representation;
 use PKP\submissionFile\SubmissionFile;
 
@@ -341,7 +342,7 @@ class PublicationFormat extends Representation
     /**
      * Get the SalesRights objects for this format.
      *
-     * @return DAOResultFactory SalesRights
+     * @return DAOResultFactory<SalesRights> SalesRights
      */
     public function getSalesRights()
     {
@@ -352,7 +353,7 @@ class PublicationFormat extends Representation
     /**
      * Get the IdentificationCode objects for this format.
      *
-     * @return DAOResultFactory IdentificationCode
+     * @return DAOResultFactory<IdentificationCode> IdentificationCode
      */
     public function getIdentificationCodes()
     {
@@ -363,7 +364,7 @@ class PublicationFormat extends Representation
     /**
      * Get the PublicationDate objects for this format.
      *
-     * @return DAOResultFactory PublicationDate
+     * @return DAOResultFactory<PublicationDate> PublicationDate
      */
     public function getPublicationDates()
     {
@@ -374,7 +375,7 @@ class PublicationFormat extends Representation
     /**
      * Get the Market objects for this format.
      *
-     * @return DAOResultFactory Market
+     * @return DAOResultFactory<Market> Market
      */
     public function getMarkets()
     {
@@ -547,7 +548,7 @@ class PublicationFormat extends Representation
      * Ideally, do this with a DOMDocument schema validation. We do it this way for now because
      * of a potential issue with libxml2:  http://stackoverflow.com/questions/6284827
      *
-     * @return string
+     * @return string[]
      */
     public function hasNeededONIXFields()
     {

@@ -22,6 +22,7 @@ use APP\template\TemplateManager;
 use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
+use PKP\components\forms\FormComponent;
 use PKP\db\DAORegistry;
 use PKP\form\Form;
 use PKP\install\Installer;
@@ -158,7 +159,7 @@ class ManualPaymentPlugin extends PaymethodPlugin
      * Handle incoming requests/notifications
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function handle($args, $request)
     {
@@ -199,6 +200,7 @@ class ManualPaymentPlugin extends PaymethodPlugin
                 $templateMgr->display('frontend/pages/message.tpl');
                 exit;
         }
+        /** @todo Implement method in parent class or throw */
         parent::handle($args, $request); // Don't know what to do with it
     }
 

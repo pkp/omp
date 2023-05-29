@@ -16,6 +16,7 @@
 namespace APP\components\forms\submission;
 
 use APP\codelist\ONIXCodelistItemDAO;
+use APP\submission\Submission;
 use PKP\components\forms\FieldSelect;
 use PKP\components\forms\FormComponent;
 use PKP\db\DAORegistry;

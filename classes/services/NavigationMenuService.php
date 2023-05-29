@@ -19,7 +19,6 @@ namespace APP\services;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\template\TemplateManager;
-
 use PKP\core\PKPApplication;
 use PKP\plugins\Hook;
 use PKP\security\Validation;

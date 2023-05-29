@@ -19,7 +19,6 @@
 namespace APP\monograph;
 
 use APP\facades\Repo;
-
 use Illuminate\Support\LazyCollection;
 use PKP\core\PKPString;
 use PKP\db\DAORegistry;
@@ -221,7 +220,7 @@ class Chapter extends \PKP\core\DataObject
      * 'other::something' if not part of the official NLM list
      * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>). @endliteral
      *
-     * @return int
+     * @return string
      */
     public function getStoredPubId($pubIdType)
     {

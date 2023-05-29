@@ -22,6 +22,7 @@ use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\press\FeatureDAO;
 use APP\press\NewReleaseDAO;
+use APP\press\Press;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\submission\Submission;
 use PKP\config\Config;
@@ -200,7 +201,7 @@ class ContextService extends \PKP\services\PKPContextService
      * Processes all cover images to resize the thumbnails according to the passed
      * width and height maximums.
      *
-     * @param Context $context
+     * @param Press $context
      * @param int $maxWidth The maximum width allowed for a cover image
      * @param int $maxHeight The maximum width allowed for a cover image
      */

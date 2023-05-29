@@ -18,10 +18,13 @@ namespace APP\services;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\log\SubmissionEventLogEntry;
+use APP\press\Press;
 use APP\publicationFormat\IdentificationCodeDAO;
 use APP\publicationFormat\MarketDAO;
 use APP\publicationFormat\PublicationDateDAO;
+use APP\publicationFormat\PublicationFormat;
 use APP\publicationFormat\SalesRightsDAO;
+use APP\submission\Submission;
 use PKP\db\DAORegistry;
 use PKP\log\SubmissionLog;
 
@@ -32,7 +35,7 @@ class PublicationFormatService
      *
      * @param PublicationFormat $publicationFormat
      * @param Submission $submission
-     * @param Context $context
+     * @param Press $context
      */
     public function deleteFormat($publicationFormat, $submission, $context)
     {

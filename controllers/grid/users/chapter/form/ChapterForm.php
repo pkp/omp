@@ -20,6 +20,7 @@ namespace APP\controllers\grid\users\chapter\form;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\monograph\Chapter;
+use APP\monograph\ChapterDAO;
 use APP\publication\Publication;
 use APP\submission\Submission;
 use APP\submissionFile\DAO;
@@ -136,7 +137,7 @@ class ChapterForm extends Form
     {
         //Create chapter license URL description
         $chapterLicenseUrlDescription = '';
-        if ($this->getMonograph()->getData('workType') === \APP\submission\Submission::WORK_TYPE_EDITED_VOLUME) {
+        if ($this->getMonograph()->getData('workType') === Submission::WORK_TYPE_EDITED_VOLUME) {
             $licenseOptions = Application::getCCLicenseOptions();
             $context = Application::get()->getRequest()->getContext();
             if ($this->getPublication()->getData('chapterLicenseUrl')) {

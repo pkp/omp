@@ -55,7 +55,7 @@ class SalesRightsDAO extends \PKP\db\DAO
      *
      * @param int $publicationFormatId
      *
-     * @return DAOResultFactory containing matching sales rights.
+     * @return DAOResultFactory<SalesRights> containing matching sales rights.
      */
     public function getByPublicationFormatId($publicationFormatId)
     {

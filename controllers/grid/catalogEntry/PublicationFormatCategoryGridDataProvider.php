@@ -18,8 +18,11 @@ namespace APP\controllers\grid\catalogEntry;
 
 use APP\core\Application;
 use APP\facades\Repo;
+use APP\publication\Publication;
+use APP\submission\Submission;
 use PKP\controllers\grid\files\SubmissionFilesCategoryGridDataProvider;
 use PKP\controllers\grid\files\SubmissionFilesGridDataProvider;
+use PKP\submission\Representation;
 use PKP\submissionFile\SubmissionFile;
 
 class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryGridDataProvider

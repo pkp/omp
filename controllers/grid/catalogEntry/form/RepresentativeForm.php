@@ -16,8 +16,10 @@
 
 namespace APP\controllers\grid\catalogEntry\form;
 
+use APP\codelist\ONIXCodelistItemDAO;
 use APP\core\Application;
 use APP\monograph\Representative;
+use APP\monograph\RepresentativeDAO;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\db\DAORegistry;

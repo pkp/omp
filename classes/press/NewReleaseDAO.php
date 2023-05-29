@@ -19,7 +19,6 @@
 namespace APP\press;
 
 use APP\facades\Repo;
-
 use PKP\submission\PKPSubmission;
 
 class NewReleaseDAO extends \PKP\db\DAO

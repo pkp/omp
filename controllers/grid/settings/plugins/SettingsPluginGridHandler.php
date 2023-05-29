@@ -17,6 +17,7 @@
 namespace APP\controllers\grid\settings\plugins;
 
 use APP\core\Application;
+use APP\press\PressDAO;
 use PKP\controllers\grid\plugins\PluginGridHandler;
 use PKP\controllers\grid\plugins\PluginGridRow;
 use PKP\db\DAORegistry;
