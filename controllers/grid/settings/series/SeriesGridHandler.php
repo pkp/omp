@@ -18,6 +18,7 @@ namespace APP\controllers\grid\settings\series;
 
 use APP\controllers\grid\settings\series\form\SeriesForm;
 use APP\core\Application;
+use APP\core\Request;
 use APP\facades\Repo;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
@@ -216,7 +217,7 @@ class SeriesGridHandler extends SetupGridHandler
      * An action to add a new series
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function addSeries($args, $request)
     {
@@ -229,7 +230,7 @@ class SeriesGridHandler extends SetupGridHandler
      * An action to edit a series
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -247,7 +248,7 @@ class SeriesGridHandler extends SetupGridHandler
      * Update a series
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -272,7 +273,7 @@ class SeriesGridHandler extends SetupGridHandler
      * Delete a series
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -313,7 +314,7 @@ class SeriesGridHandler extends SetupGridHandler
      * Deactivate a series.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -359,7 +360,7 @@ class SeriesGridHandler extends SetupGridHandler
      * Activate a series.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */

@@ -16,7 +16,6 @@
 namespace APP\components\listPanels;
 
 use APP\core\Application;
-
 use APP\facades\Repo;
 use APP\submission\Collector;
 use APP\template\TemplateManager;

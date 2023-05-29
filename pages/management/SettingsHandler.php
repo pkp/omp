@@ -16,6 +16,7 @@
 
 namespace APP\pages\management;
 
+use APP\core\Request;
 use APP\template\TemplateManager;
 use PKP\pages\management\ManagementHandler;
 use PKP\security\Role;

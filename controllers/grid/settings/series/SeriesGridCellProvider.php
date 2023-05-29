@@ -16,7 +16,9 @@
 namespace APP\controllers\grid\settings\series;
 
 use PKP\controllers\grid\GridCellProvider;
+use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
+use PKP\controllers\grid\GridRow;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\RemoteActionConfirmationModal;
 
@@ -50,7 +52,7 @@ class SeriesGridCellProvider extends GridCellProvider
     {
         switch ($column->getId()) {
             case 'inactive':
-                $element = $row->getData(); /** @var DataObject $element */
+                $element = $row->getData(); /** @var array $element */
 
                 $router = $request->getRouter();
 

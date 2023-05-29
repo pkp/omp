@@ -55,7 +55,7 @@ class PublicationDateDAO extends \PKP\db\DAO
      *
      * @param int $representationId
      *
-     * @return DAOResultFactory containing matching publication dates
+     * @return DAOResultFactory<PublicationDate> containing matching publication dates
      */
     public function getByPublicationFormatId($representationId)
     {

@@ -20,6 +20,7 @@
 namespace APP\search;
 
 use APP\core\Application;
+use APP\core\Request;
 use APP\core\Services;
 use APP\facades\Repo;
 use APP\press\Press;
@@ -351,10 +352,12 @@ class MonographSearch extends SubmissionSearch
     /**
      * Return the search DAO
      *
-     * @return DAO
+     * @return MonographSearchDAO
      */
     protected function getSearchDao()
     {
-        return DAORegistry::getDAO('MonographSearchDAO');
+        /** @var MonographSearchDAO */
+        $dao = DAORegistry::getDAO('MonographSearchDAO');
+        return $dao;
     }
 }

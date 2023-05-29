@@ -25,6 +25,9 @@ use PKP\context\ContextDAO;
 use PKP\db\DAORegistry;
 use PKP\metadata\MetadataTypeDescription;
 
+/**
+ * @extends ContextDAO<Press>
+ */
 class PressDAO extends ContextDAO
 {
     /** @copydoc SchemaDAO::$schemaName */

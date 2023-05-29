@@ -20,14 +20,16 @@
 namespace APP\payment\omp;
 
 use APP\core\Application;
+use APP\core\Request;
 use APP\facades\Repo;
 use Exception;
 use PKP\db\DAORegistry;
 use PKP\payment\CompletedPayment;
 use PKP\payment\PaymentManager;
 use PKP\payment\QueuedPayment;
+use PKP\payment\QueuedPaymentDAO;
+use PKP\plugins\PaymethodPlugin;
 use PKP\plugins\PluginRegistry;
-
 use PKP\submissionFile\SubmissionFile;
 
 class OMPPaymentManager extends PaymentManager
@@ -47,7 +49,7 @@ class OMPPaymentManager extends PaymentManager
     /**
      * Create a queued payment.
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param int $type PAYMENT_TYPE_...
      * @param int $userId ID of user responsible for payment
      * @param int $assocId ID of associated entity
@@ -87,7 +89,7 @@ class OMPPaymentManager extends PaymentManager
     /**
      * Get the payment plugin.
      *
-     * @return PaymentPlugin
+     * @return PaymethodPlugin
      */
     public function getPaymentPlugin()
     {
@@ -105,7 +107,7 @@ class OMPPaymentManager extends PaymentManager
     /**
      * Fulfill a queued payment.
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param QueuedPayment $queuedPayment
      * @param string $payMethodPluginName Name of payment plugin.
      *

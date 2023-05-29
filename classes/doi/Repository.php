@@ -20,6 +20,7 @@ use APP\facades\Repo;
 use APP\monograph\Chapter;
 use APP\monograph\ChapterDAO;
 use APP\plugins\PubIdPlugin;
+use APP\press\Press;
 use APP\press\PressDAO;
 use APP\publication\Publication;
 use APP\publicationFormat\PublicationFormat;

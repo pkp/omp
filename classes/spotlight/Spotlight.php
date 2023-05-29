@@ -19,6 +19,8 @@
 namespace APP\spotlight;
 
 use APP\facades\Repo;
+use APP\section\Section;
+use APP\submission\Submission;
 use PKP\core\DataObject;
 
 class Spotlight extends DataObject
@@ -176,7 +178,7 @@ class Spotlight extends DataObject
     /**
      * Returns the associated item with this spotlight.
      *
-     * @return DataObject
+     * @return Section|Submission|null
      */
     public function getSpotlightItem()
     {

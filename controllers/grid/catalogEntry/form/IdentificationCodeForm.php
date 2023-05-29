@@ -16,6 +16,12 @@
 
 namespace APP\controllers\grid\catalogEntry\form;
 
+use APP\codelist\ONIXCodelistItemDAO;
+use APP\publication\Publication;
+use APP\publicationFormat\IdentificationCode;
+use APP\publicationFormat\IdentificationCodeDAO;
+use APP\publicationFormat\PublicationFormatDAO;
+use APP\submission\Submission;
 use APP\template\TemplateManager;
 use Exception;
 use PKP\db\DAORegistry;

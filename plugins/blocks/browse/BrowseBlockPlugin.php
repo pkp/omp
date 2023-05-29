@@ -21,6 +21,7 @@ use PKP\core\JSONMessage;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\plugins\BlockPlugin;
+use PKP\template\PKPTemplateManager;
 
 class BrowseBlockPlugin extends BlockPlugin
 {

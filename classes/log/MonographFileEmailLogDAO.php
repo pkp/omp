@@ -19,7 +19,9 @@
 namespace APP\log;
 
 use APP\core\Application;
+use PKP\db\DAOResultFactory;
 use PKP\log\EmailLogDAO;
+use PKP\log\EmailLogEntry;
 
 class MonographFileEmailLogDAO extends EmailLogDAO
 {
@@ -42,7 +44,7 @@ class MonographFileEmailLogDAO extends EmailLogDAO
      * @param int $eventType SUBMISSION_EMAIL_...
      * @param int $userId optional Return only emails sent to this user.
      *
-     * @return DAOResultFactory
+     * @return DAOResultFactory<EmailLogEntry>
      */
     public function getByEventType($fileId, $eventType, $userId = null)
     {

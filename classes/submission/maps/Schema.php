@@ -14,6 +14,8 @@
 namespace APP\submission\maps;
 
 use APP\core\Application;
+use APP\press\FeatureDAO;
+use APP\press\NewReleaseDAO;
 use APP\submission\Submission;
 use PKP\db\DAORegistry;
 

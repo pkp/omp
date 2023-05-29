@@ -18,6 +18,7 @@ namespace APP\pages\workflow;
 
 use APP\components\listPanels\ContributorsListPanel;
 use APP\core\Application;
+use APP\core\Request;
 use APP\core\Services;
 use APP\decision\types\AcceptFromInternal;
 use APP\decision\types\CancelInternalReviewRound;
@@ -90,7 +91,7 @@ class WorkflowHandler extends PKPWorkflowHandler
      * Show the internal review stage.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function internalReview($args, $request)
     {
@@ -184,7 +185,7 @@ class WorkflowHandler extends PKPWorkflowHandler
      *
      * @param int $stageId
      *
-     * @return int
+     * @return ?int
      */
     protected function getEditorAssignmentNotificationTypeByStageId($stageId)
     {

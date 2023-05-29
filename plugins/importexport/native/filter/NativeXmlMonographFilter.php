@@ -15,6 +15,9 @@
 namespace APP\plugins\importexport\native\filter;
 
 use APP\core\Application;
+use APP\submission\Submission;
+use DOMElement;
+use PKP\filter\Filter;
 use PKP\plugins\importexport\PKPImportExportFilter;
 
 class NativeXmlMonographFilter extends \PKP\plugins\importexport\native\filter\NativeXmlSubmissionFilter

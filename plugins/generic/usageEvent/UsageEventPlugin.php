@@ -17,6 +17,8 @@
 namespace APP\plugins\generic\usageEvent;
 
 use APP\core\Application;
+use APP\press\Press;
+use APP\section\Section;
 use APP\submission\Submission;
 
 class UsageEventPlugin extends \PKP\plugins\generic\usageEvent\PKPUsageEventPlugin
@@ -86,7 +88,7 @@ class UsageEventPlugin extends \PKP\plugins\generic\usageEvent\PKPUsageEventPlug
                     }
 
                     $press = $templateMgr->getTemplateVars('currentContext'); /** @var Press $press */
-                    $series = $templateMgr->getTemplateVars('series'); /** @var Series $series */
+                    $series = $templateMgr->getTemplateVars('series'); /** @var Section $series */
                     $submission = $templateMgr->getTemplateVars('publishedSubmission');
 
                     // No published objects, no usage event.

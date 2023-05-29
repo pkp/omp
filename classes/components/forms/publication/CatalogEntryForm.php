@@ -17,6 +17,8 @@
 namespace APP\components\forms\publication;
 
 use APP\facades\Repo;
+use APP\publication\Publication;
+use APP\submission\Submission;
 use PKP\components\forms\FieldOptions;
 use PKP\components\forms\FieldSelect;
 use PKP\components\forms\FieldText;

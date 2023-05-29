@@ -19,6 +19,8 @@
 
 namespace APP\core;
 
+use APP\payment\omp\OMPPaymentManager;
+use APP\press\Press;
 use APP\press\PressDAO;
 use APP\publicationFormat\PublicationFormatDAO;
 use PKP\core\PKPApplication;
@@ -170,7 +172,9 @@ class Application extends PKPApplication
      */
     public static function getContextDAO(): PressDAO
     {
-        return DAORegistry::getDAO('PressDAO');
+        /** @var PressDAO */
+        $dao = DAORegistry::getDAO('PressDAO');
+        return $dao;
     }
 
     /**
@@ -235,13 +239,13 @@ class Application extends PKPApplication
     /**
      * Get the payment manager.
      *
-     * @param Context $context
+     * @param Press $context
      *
      * @return OMPPaymentManager
      */
     public static function getPaymentManager($context)
     {
-        return new \APP\payment\omp\OMPPaymentManager($context);
+        return new OMPPaymentManager($context);
     }
 
     public static function getSectionIdPropName(): string

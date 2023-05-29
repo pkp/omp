@@ -18,6 +18,7 @@
 namespace APP\controllers\grid\settings\series\form;
 
 use APP\core\Application;
+use APP\core\Request;
 use APP\facades\Repo;
 use APP\section\Section;
 use APP\template\TemplateManager;
@@ -25,6 +26,7 @@ use PKP\controllers\grid\settings\sections\form\PKPSectionForm;
 use PKP\core\Core;
 use PKP\db\DAORegistry;
 use PKP\file\ContextFileManager;
+use PKP\file\TemporaryFileDAO;
 use PKP\file\TemporaryFileManager;
 
 class SeriesForm extends PKPSectionForm

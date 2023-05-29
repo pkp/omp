@@ -16,7 +16,9 @@ namespace APP\plugins\importexport\native\filter;
 
 use APP\facades\Repo;
 use DOMDocument;
+use PKP\filter\FilterGroup;
 use PKP\plugins\PluginRegistry;
+use PKP\submissionFile\SubmissionFile;
 
 class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\NativeExportFilter
 {

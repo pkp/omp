@@ -17,8 +17,9 @@
 namespace APP\controllers\submission;
 
 use APP\core\Application;
+use APP\core\Request;
+use APP\press\Press;
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
-
 use PKP\handler\PKPHandler;
 
 class CoverHandler extends PKPHandler
@@ -32,7 +33,7 @@ class CoverHandler extends PKPHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param array $args
      * @param array $roleAssignments
      */

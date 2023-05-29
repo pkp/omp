@@ -18,6 +18,7 @@ namespace APP\controllers\grid\catalogEntry;
 
 use APP\controllers\grid\catalogEntry\form\MarketForm;
 use APP\core\Application;
+use APP\core\Request;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
 use APP\publication\Publication;
@@ -29,7 +30,6 @@ use Exception;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
-use PKP\core\PKPRequest;
 use PKP\db\DAO;
 use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
@@ -131,7 +131,7 @@ class MarketsGridHandler extends GridHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param array $args
      * @param array $roleAssignments
      */
@@ -280,7 +280,7 @@ class MarketsGridHandler extends GridHandler
      * Add a new market
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function addMarket($args, $request)
     {
@@ -291,7 +291,7 @@ class MarketsGridHandler extends GridHandler
      * Edit a markets entry
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -315,7 +315,7 @@ class MarketsGridHandler extends GridHandler
      * Update a markets entry
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -367,7 +367,7 @@ class MarketsGridHandler extends GridHandler
      * Delete a market entry
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */

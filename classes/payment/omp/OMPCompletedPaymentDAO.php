@@ -22,7 +22,7 @@ namespace APP\payment\omp;
 use PKP\core\Core;
 use PKP\db\DAO;
 use PKP\db\DAOResultFactory;
-
+use PKP\db\DBResultRange;
 use PKP\payment\CompletedPayment;
 
 class OMPCompletedPaymentDAO extends DAO
@@ -144,7 +144,7 @@ class OMPCompletedPaymentDAO extends DAO
      * @param int $contextId
      * @param DBResultRange|null $rangeInfo
      *
-     * @return object DAOResultFactory containing matching payments
+     * @return DAOResultFactory<CompletedPayment> containing matching payments
      */
     public function getByContextId($contextId, $rangeInfo = null)
     {
@@ -165,7 +165,7 @@ class OMPCompletedPaymentDAO extends DAO
      * @param int $userId
      * @param DBResultRange|null $rangeInfo
      *
-     * @return DAOResultFactory Matching payments
+     * @return DAOResultFactory<CompletedPayment> Matching payments
      */
     public function getByUserId($userId, $rangeInfo = null)
     {

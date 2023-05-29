@@ -15,7 +15,6 @@ namespace APP\submissionFile;
 
 use APP\facades\Repo;
 use Illuminate\Support\Facades\DB;
-
 use PKP\submissionFile\DAO as BaseDAO;
 use PKP\submissionFile\SubmissionFile;
 

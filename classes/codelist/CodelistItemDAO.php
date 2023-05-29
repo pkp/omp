@@ -20,6 +20,7 @@
 namespace APP\codelist;
 
 use PKP\cache\CacheManager;
+use PKP\cache\GenericCache;
 use PKP\core\Registry;
 use PKP\db\DAO;
 use PKP\db\XMLDAO;

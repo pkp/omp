@@ -16,6 +16,7 @@
 
 namespace APP\pages\reviewer;
 
+use APP\core\Request;
 use PKP\pages\reviewer\PKPReviewerHandler;
 use PKP\security\authorization\SubmissionAccessPolicy;
 use PKP\security\Role;
@@ -40,7 +41,7 @@ class ReviewerHandler extends PKPReviewerHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param array $args
      * @param array $roleAssignments
      */

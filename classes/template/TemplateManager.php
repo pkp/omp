@@ -19,12 +19,14 @@
 namespace APP\template;
 
 use APP\core\Application;
+use APP\core\Request;
 use APP\file\PublicFileManager;
 use APP\notification\Notification;
 use PKP\context\Context;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\i18n\LocaleMetadata;
+use PKP\notification\NotificationDAO;
 use PKP\security\Role;
 use PKP\session\SessionManager;
 use PKP\site\Site;
@@ -35,7 +37,7 @@ class TemplateManager extends PKPTemplateManager
     /**
      * Initialize template engine and assign basic template variables.
      *
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function initialize($request)
     {

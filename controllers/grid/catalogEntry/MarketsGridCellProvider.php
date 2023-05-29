@@ -16,7 +16,10 @@
 
 namespace APP\controllers\grid\catalogEntry;
 
+use APP\publicationFormat\Market;
 use PKP\controllers\grid\DataObjectGridCellProvider;
+use PKP\controllers\grid\GridColumn;
+use PKP\controllers\grid\GridRow;
 
 class MarketsGridCellProvider extends DataObjectGridCellProvider
 {
@@ -37,6 +40,7 @@ class MarketsGridCellProvider extends DataObjectGridCellProvider
         $element = $row->getData();
         $columnId = $column->getId();
         assert(is_a($element, 'DataObject') && !empty($columnId));
+        /** @var Market $element */
         switch ($columnId) {
             case 'territory':
                 return ['label' => $element->getTerritoriesAsString()];

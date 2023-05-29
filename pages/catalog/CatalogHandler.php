@@ -18,8 +18,11 @@
 namespace APP\pages\catalog;
 
 use APP\core\Application;
+use APP\core\Request;
 use APP\facades\Repo;
 use APP\observers\events\UsageEvent;
+use APP\press\FeatureDAO;
+use APP\press\NewReleaseDAO;
 use APP\submission\Collector;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
@@ -37,7 +40,7 @@ class CatalogHandler extends PKPCatalogHandler
      * Show the catalog home.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function index($args, $request)
     {
@@ -52,7 +55,7 @@ class CatalogHandler extends PKPCatalogHandler
      *		@option int Page number if available
      * ]
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param bool $isFirstPage Return the first page of results
      */
     public function page($args, $request, $isFirstPage = false)
@@ -115,7 +118,7 @@ class CatalogHandler extends PKPCatalogHandler
      * Show the catalog new releases.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function newReleases($args, $request)
     {
@@ -144,9 +147,7 @@ class CatalogHandler extends PKPCatalogHandler
      *		@option int Page number if available
      * ]
      *
-     * @param PKPRequest $request
-     *
-     * @return string
+     * @param Request $request
      */
     public function series($args, $request)
     {
@@ -210,9 +211,7 @@ class CatalogHandler extends PKPCatalogHandler
      * @deprecated Since OMP 3.2.1, use pages/search instead.
      *
      * @param array $args
-     * @param PKPRequest $request
-     *
-     * @return string
+     * @param Request $request
      */
     public function results($args, $request)
     {
@@ -309,7 +308,7 @@ class CatalogHandler extends PKPCatalogHandler
     /**
      * Assign the pagination template variables
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param int $submissionsCount Number of submissions being shown
      * @param int $page Page number being shown
      * @param int $count Max number of monographs being shown

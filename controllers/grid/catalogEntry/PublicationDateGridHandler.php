@@ -18,9 +18,14 @@ namespace APP\controllers\grid\catalogEntry;
 
 use APP\controllers\grid\catalogEntry\form\PublicationDateForm;
 use APP\core\Application;
+use APP\core\Request;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
+use APP\publication\Publication;
 use APP\publicationFormat\PublicationDateDAO;
+use APP\publicationFormat\PublicationFormat;
+use APP\publicationFormat\PublicationFormatDAO;
+use APP\submission\Submission;
 use Exception;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
@@ -125,7 +130,7 @@ class PublicationDateGridHandler extends GridHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param array $args
      * @param array $roleAssignments
      */
@@ -265,7 +270,7 @@ class PublicationDateGridHandler extends GridHandler
      * Edit a new (empty) date
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -278,7 +283,7 @@ class PublicationDateGridHandler extends GridHandler
      * Edit a date
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -302,7 +307,7 @@ class PublicationDateGridHandler extends GridHandler
      * Update a date
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -354,7 +359,7 @@ class PublicationDateGridHandler extends GridHandler
      * Delete a date
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */

@@ -18,8 +18,8 @@
 
 namespace APP\publicationFormat;
 
+use APP\codelist\ONIXCodelistItemDAO;
 use APP\core\Application;
-
 use PKP\core\DataObject;
 use PKP\core\PKPString;
 use PKP\db\DAORegistry;
@@ -167,7 +167,7 @@ class PublicationDate extends DataObject
      * the format specified from List55.  Necessary, so it can be
      * parsed correctly in the template.
      *
-     * @return string
+     * @return string[]
      */
     public function getReadableDates()
     {
@@ -247,7 +247,7 @@ class PublicationDate extends DataObject
     /**
      * Return a best guess of the UNIX time corresponding to this date
      *
-     * @return int? Number of seconds since the UNIX epoch, or null if it could not be determined
+     * @return ?int Number of seconds since the UNIX epoch, or null if it could not be determined
      * FIXME: Hirji support
      */
     public function getUnixTime()

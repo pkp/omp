@@ -16,6 +16,7 @@
 
 namespace APP\pages\payment;
 
+use APP\core\Request;
 use APP\handler\Handler;
 use PKP\plugins\PluginRegistry;
 
@@ -25,7 +26,7 @@ class PaymentHandler extends Handler
      * Pass request to plugin.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function plugin($args, $request)
     {

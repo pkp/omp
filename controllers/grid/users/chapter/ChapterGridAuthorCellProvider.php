@@ -20,6 +20,8 @@ use APP\author\Author;
 use APP\publication\Publication;
 use Exception;
 use PKP\controllers\grid\DataObjectGridCellProvider;
+use PKP\controllers\grid\GridColumn;
+use PKP\controllers\grid\GridRow;
 
 class ChapterGridAuthorCellProvider extends DataObjectGridCellProvider
 {

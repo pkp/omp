@@ -16,6 +16,7 @@
 
 namespace APP\components\forms\publication;
 
+use APP\publication\Publication;
 use PKP\components\forms\FieldHTML;
 use PKP\components\forms\FormComponent;
 

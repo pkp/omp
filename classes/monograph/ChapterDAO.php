@@ -56,7 +56,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
      * @param int $publicationId
      * @param bool $orderBySequence
      *
-     * @return DAOResultFactory
+     * @return DAOResultFactory<Chapter>
      */
     public function getByPublicationId($publicationId, $orderBySequence = true)
     {
@@ -79,7 +79,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
      *
      * @param int $pressId
      *
-     * @return DAOResultFactory
+     * @return DAOResultFactory<Chapter>
      */
     public function getByContextId($pressId)
     {
@@ -99,6 +99,8 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
 
     /**
      * Retrieve all chapters that include a given DOI ID
+     *
+     * @return DAOResultFactory<Chapter>
      */
     public function getByDoiId(int $doiId): DAOResultFactory
     {
@@ -116,6 +118,8 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
 
     /**
      * Retrieve all chapters by source chapter id.
+     *
+     * @return DAOResultFactory<Chapter>
      */
     public function getBySourceChapterId(int $sourceChapterId, bool $orderByPublicationId = true): DAOResultFactory
     {
@@ -139,9 +143,9 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     public function getBySourceChapterAndPublication(int $sourceChapterId, int $publicationId): Chapter|null
     {
         $result = $this->retrieve(
-            'SELECT * 
-            FROM submission_chapters 
-            WHERE (source_chapter_id = ? OR (source_chapter_id IS NULL AND chapter_id = ?))  
+            'SELECT *
+            FROM submission_chapters
+            WHERE (source_chapter_id = ? OR (source_chapter_id IS NULL AND chapter_id = ?))
             AND publication_id = ?',
             [$sourceChapterId, $sourceChapterId, $publicationId]
         );

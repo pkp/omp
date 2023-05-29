@@ -18,6 +18,7 @@ use APP\facades\Repo;
 use APP\publication\Publication;
 use PKP\db\DAORegistry;
 use PKP\services\PKPSchemaService;
+use PKP\submission\GenreDAO;
 use PKP\submissionFile\SubmissionFile;
 
 class Schema extends \PKP\publication\maps\Schema

@@ -16,7 +16,10 @@
 
 namespace APP\controllers\grid\catalogEntry;
 
+use APP\publicationFormat\PublicationDate;
 use PKP\controllers\grid\DataObjectGridCellProvider;
+use PKP\controllers\grid\GridColumn;
+use PKP\controllers\grid\GridRow;
 
 class PublicationDateGridCellProvider extends DataObjectGridCellProvider
 {
@@ -37,6 +40,7 @@ class PublicationDateGridCellProvider extends DataObjectGridCellProvider
         $element = $row->getData();
         $columnId = $column->getId();
         assert(is_a($element, 'DataObject') && !empty($columnId));
+        /** @var PublicationDate $element */
         switch ($columnId) {
             case 'code':
                 return ['label' => $element->getNameForONIXCode()];

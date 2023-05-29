@@ -16,14 +16,20 @@
 
 namespace APP\controllers\grid\catalogEntry\form;
 
+use APP\codelist\ONIXCodelistItemDAO;
 use APP\core\Application;
 use APP\notification\Notification;
+use APP\publication\Publication;
+use APP\publicationFormat\PublicationFormat;
+use APP\publicationFormat\PublicationFormatDAO;
+use APP\submission\Submission;
 use APP\template\TemplateManager;
 use Exception;
 use PKP\db\DAORegistry;
 use PKP\form\Form;
 use PKP\plugins\PKPPubIdPluginHelper;
 use PKP\plugins\PluginRegistry;
+use PKP\submission\Representation;
 
 class PublicationFormatMetadataForm extends Form
 {

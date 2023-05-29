@@ -20,13 +20,17 @@ namespace APP\oai\omp;
 
 use APP\core\Application;
 use APP\facades\Repo;
+use APP\press\Press;
+use APP\press\PressDAO;
+use APP\publicationFormat\PublicationFormatDAO;
+use APP\section\Section;
 use Illuminate\Support\Facades\DB;
 use PKP\db\DAORegistry;
 use PKP\oai\OAISet;
 use PKP\oai\PKPOAIDAO;
 use PKP\plugins\Hook;
-
 use PKP\submission\PKPSubmission;
+use PKP\tombstone\DataObjectTombstoneDAO;
 
 class OAIDAO extends PKPOAIDAO
 {
@@ -73,7 +77,7 @@ class OAIDAO extends PKPOAIDAO
      *
      * @param int $seriesId
      *
-     * @return Series
+     * @return Section
      */
     public function getSeries($seriesId)
     {
@@ -148,7 +152,7 @@ class OAIDAO extends PKPOAIDAO
      * @param string $seriesSpec
      * @param int $restrictPressId
      *
-     * @return array (int, int, int)
+     * @return int[] (int, int)
      */
     public function getSetPressSeriesId($pressSpec, $seriesSpec, $restrictPressId = null)
     {

@@ -24,6 +24,7 @@ use APP\services\NavigationMenuService;
 use APP\template\TemplateManager;
 use PKP\controllers\grid\navigationMenus\form\PKPNavigationMenuItemsForm;
 use PKP\db\DAORegistry;
+use PKP\navigationMenu\NavigationMenuItemDAO;
 
 class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm
 {

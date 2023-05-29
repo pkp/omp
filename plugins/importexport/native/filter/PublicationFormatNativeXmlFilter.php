@@ -18,8 +18,11 @@ use APP\core\Application;
 use APP\facades\Repo;
 use APP\plugins\importexport\onix30\Onix30ExportDeployment;
 use Exception;
+use Illuminate\Support\LazyCollection;
 use PKP\db\DAORegistry;
+use PKP\filter\FilterDAO;
 use PKP\submission\Representation;
+use PKP\submissionFile\SubmissionFile;
 use PKP\xslt\XSLTransformer;
 
 class PublicationFormatNativeXmlFilter extends \PKP\plugins\importexport\native\filter\RepresentationNativeXmlFilter
@@ -87,7 +90,7 @@ class PublicationFormatNativeXmlFilter extends \PKP\plugins\importexport\native\
      *
      * @param Representation $representation
      *
-     * @return \Iterator
+     * @return LazyCollection<int,SubmissionFile>
      */
     public function getFiles($representation)
     {

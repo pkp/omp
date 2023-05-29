@@ -19,6 +19,7 @@ namespace APP\statistics;
 use Illuminate\Support\Facades\DB;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
+use PKP\statistics\TemporaryInstitutionsDAO;
 
 class TemporaryTitleInvestigationsDAO
 {

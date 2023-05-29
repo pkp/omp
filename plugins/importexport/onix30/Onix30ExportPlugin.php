@@ -17,13 +17,14 @@
 namespace APP\plugins\importexport\onix30;
 
 use APP\core\Application;
+use APP\core\Request;
 use APP\template\TemplateManager;
 use BadMethodCallException;
 use PKP\core\PKPApplication;
 use PKP\plugins\ImportExportPlugin;
 use stdClass;
 
-class Onix30ExportPlugin extends \PKP\plugins\ImportExportPlugin
+class Onix30ExportPlugin extends ImportExportPlugin
 {
     /**
      * @copydoc Plugin::register()
@@ -85,7 +86,7 @@ class Onix30ExportPlugin extends \PKP\plugins\ImportExportPlugin
      * Display the plugin.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function display($args, $request)
     {

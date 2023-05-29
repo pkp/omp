@@ -25,6 +25,7 @@ namespace APP\section;
 
 use APP\core\Application;
 use APP\facades\Repo;
+use PKP\context\SubEditorsDAO;
 use PKP\core\PKPString;
 use PKP\db\DAORegistry;
 use stdClass;

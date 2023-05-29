@@ -16,7 +16,10 @@
 
 namespace APP\controllers\grid\catalogEntry;
 
+use APP\publicationFormat\SalesRights;
 use PKP\controllers\grid\DataObjectGridCellProvider;
+use PKP\controllers\grid\GridColumn;
+use PKP\controllers\grid\GridRow;
 
 class SalesRightsGridCellProvider extends DataObjectGridCellProvider
 {
@@ -37,6 +40,7 @@ class SalesRightsGridCellProvider extends DataObjectGridCellProvider
         $element = $row->getData();
         $columnId = $column->getId();
         assert(is_a($element, 'DataObject') && !empty($columnId));
+        /** @var SalesRights $element */
         switch ($columnId) {
             case 'type':
                 return ['label' => $element->getNameForONIXCode()];

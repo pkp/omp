@@ -18,6 +18,7 @@ namespace APP\pages\authorDashboard;
 
 use APP\components\listPanels\ContributorsListPanel;
 use APP\core\Application;
+use APP\core\Request;
 use APP\notification\Notification;
 use APP\publication\Publication;
 use APP\submission\Submission;
@@ -27,6 +28,7 @@ use PKP\context\Context;
 use PKP\core\PKPApplication;
 use PKP\db\DAORegistry;
 use PKP\pages\authorDashboard\PKPAuthorDashboardHandler;
+use PKP\submission\reviewRound\ReviewRoundDAO;
 use PKP\submissionFile\SubmissionFile;
 
 class AuthorDashboardHandler extends PKPAuthorDashboardHandler
@@ -38,7 +40,7 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler
      * Displays the author dashboard.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function submission($args, $request)
     {

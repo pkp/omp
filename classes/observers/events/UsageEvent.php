@@ -18,9 +18,11 @@
 namespace APP\observers\events;
 
 use APP\core\Application;
+use APP\core\PageRouter;
 use APP\monograph\Chapter;
 use APP\section\Section;
 use APP\submission\Submission;
+use Exception;
 use PKP\context\Context;
 use PKP\submission\Representation;
 use PKP\submissionFile\SubmissionFile;

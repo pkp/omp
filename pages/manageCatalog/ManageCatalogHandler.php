@@ -17,15 +17,16 @@
 namespace APP\pages\manageCatalog;
 
 use APP\core\Application;
+use APP\core\Request;
 use APP\facades\Repo;
 use APP\handler\Handler;
 use APP\submission\Collector;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
-use PKP\core\JSONMessage;
 use PKP\db\DAORegistry;
 use PKP\security\authorization\PKPSiteAccessPolicy;
 use PKP\security\Role;
+use PKP\submission\GenreDAO;
 
 class ManageCatalogHandler extends Handler
 {
@@ -52,7 +53,7 @@ class ManageCatalogHandler extends Handler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param array $args
      * @param array $roleAssignments
      */
@@ -81,9 +82,7 @@ class ManageCatalogHandler extends Handler
      * Show the catalog management home.
      *
      * @param array $args
-     * @param PKPRequest $request
-     *
-     * @return JSONMessage JSON object
+     * @param Request $request
      */
     public function index($args, $request)
     {

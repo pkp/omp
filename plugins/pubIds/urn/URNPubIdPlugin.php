@@ -14,14 +14,18 @@
 
 namespace APP\plugins\pubIds\urn;
 
+use APP\components\forms\publication\PublishForm;
 use APP\core\Application;
 use APP\facades\Repo;
+use APP\monograph\Chapter;
 use APP\plugins\PubIdPlugin;
 use APP\plugins\pubIds\urn\classes\form\FieldPubIdUrn;
 use APP\plugins\pubIds\urn\classes\form\FieldTextUrn;
 use APP\plugins\pubIds\urn\classes\form\URNSettingsForm;
+use APP\publicationFormat\PublicationFormat;
 use APP\template\TemplateManager;
 use PKP\components\forms\FormComponent;
+use PKP\components\forms\publication\PKPPublicationIdentifiersForm;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\RemoteActionConfirmationModal;
 use PKP\plugins\Hook;

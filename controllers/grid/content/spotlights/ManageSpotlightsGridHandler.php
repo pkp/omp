@@ -17,6 +17,7 @@
 namespace APP\controllers\grid\content\spotlights;
 
 use APP\controllers\grid\content\spotlights\form\SpotlightForm;
+use APP\core\Request;
 use APP\facades\Repo;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
@@ -27,7 +28,6 @@ use APP\submission\Submission;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
-use PKP\core\PKPRequest;
 use PKP\db\DAO;
 use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
@@ -247,7 +247,7 @@ class ManageSpotlightsGridHandler extends GridHandler
      * Update a spotlight entry
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -301,7 +301,7 @@ class ManageSpotlightsGridHandler extends GridHandler
      * Delete a spotlight entry
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -329,7 +329,7 @@ class ManageSpotlightsGridHandler extends GridHandler
      * based on the spotlight type chosen.
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */

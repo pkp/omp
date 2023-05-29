@@ -130,6 +130,8 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
 
     /**
      * Retrieve all publication formats that include a given DOI ID
+     *
+     * @return DAOResultFactory<PublicationFormat>
      */
     public function getByDoiId(int $doiId): DAOResultFactory
     {
@@ -178,6 +180,8 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
      * @copydoc RepresentationDAO::getByPublicationId()
      *
      * @param null|mixed $contextId
+     *
+     * @return DAOResultFactory<PublicationFormat>
      */
     public function getByPublicationId($publicationId, $contextId = null): array
     {
@@ -211,7 +215,7 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
      *
      * @param int $pressId
      *
-     * @return DAOResultFactory (PublicationFormat)
+     * @return DAOResultFactory<PublicationFormat>
      */
     public function getByContextId($pressId)
     {
@@ -235,7 +239,7 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
      *
      * @param int $publicationId
      *
-     * @return DAOResultFactory (PublicationFormat)
+     * @return DAOResultFactory<PublicationFormat>
      */
     public function getApprovedByPublicationId($publicationId)
     {

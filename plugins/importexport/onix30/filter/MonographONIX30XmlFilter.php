@@ -19,6 +19,7 @@ namespace APP\plugins\importexport\onix30\filter;
 use APP\codelist\ONIXCodelistItemDAO;
 use APP\core\Application;
 use APP\facades\Repo;
+use APP\monograph\RepresentativeDAO;
 use APP\plugins\importexport\onix30\Onix30ExportDeployment;
 use APP\publication\Publication;
 use APP\publicationFormat\PublicationFormat;
@@ -151,6 +152,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
      */
     public function createProductNode($doc, $submission, $publicationFormat)
     {
+        /** @var Onix30ExportDeployment */
         $deployment = $this->getDeployment();
         $context = $deployment->getContext();
         $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */

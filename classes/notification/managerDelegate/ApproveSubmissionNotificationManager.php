@@ -30,7 +30,6 @@ class ApproveSubmissionNotificationManager extends PKPApproveSubmissionNotificat
     {
         $router = $request->getRouter();
         $dispatcher = $router->getDispatcher();
-        /** @var Press   */
         $contextDao = Application::getContextDAO();
         $context = $contextDao->getById($notification->getContextId());
 

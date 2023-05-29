@@ -18,9 +18,15 @@
 namespace APP\jobs\statistics;
 
 use APP\statistics\StatisticsHelper;
+use APP\statistics\TemporaryItemInvestigationsDAO;
+use APP\statistics\TemporaryItemRequestsDAO;
+use APP\statistics\TemporaryTitleInvestigationsDAO;
+use APP\statistics\TemporaryTitleRequestsDAO;
+use APP\statistics\TemporaryTotalsDAO;
 use PKP\db\DAORegistry;
 use PKP\job\exceptions\JobException;
 use PKP\jobs\BaseJob;
+use PKP\statistics\TemporaryInstitutionsDAO;
 use PKP\task\FileLoader;
 
 class CompileUsageStatsFromTemporaryRecords extends BaseJob

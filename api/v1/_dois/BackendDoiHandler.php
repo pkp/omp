@@ -18,6 +18,7 @@
 namespace APP\API\v1\_dois;
 
 use APP\facades\Repo;
+use Exception;
 use PKP\core\APIResponse;
 use PKP\db\DAORegistry;
 use PKP\security\Role;
@@ -62,7 +63,7 @@ class BackendDoiHandler extends \PKP\API\v1\_dois\PKPBackendDoiHandler
         $context = $this->getRequest()->getContext();
 
         /** @var \APP\monograph\ChapterDAO $chapterDao */
-        $chapterDao = \PKP\db\DAORegistry::getDAO('ChapterDAO');
+        $chapterDao = DAORegistry::getDAO('ChapterDAO');
         $chapter = $chapterDao->getChapter($args['chapterId']);
         if (!$chapter) {
             return $response->withStatus(404)->withJsonError('api.404.resourceNotFound');
@@ -93,7 +94,7 @@ class BackendDoiHandler extends \PKP\API\v1\_dois\PKPBackendDoiHandler
         $context = $this->getRequest()->getContext();
 
         /** @var \APP\publicationFormat\PublicationFormatDAO $publicationFormatDao */
-        $publicationFormatDao = \PKP\db\DAORegistry::getDAO('PublicationFormatDAO');
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
         $publicationFormat = $publicationFormatDao->getById($args['publicationFormatId']);
 
         $publication = Repo::publication()->get($publicationFormat->getData('publicationId'));

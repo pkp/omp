@@ -18,6 +18,7 @@ namespace APP\controllers\grid\catalogEntry;
 
 use APP\controllers\grid\catalogEntry\form\IdentificationCodeForm;
 use APP\core\Application;
+use APP\core\Request;
 use APP\notification\Notification;
 use APP\notification\NotificationManager;
 use APP\publication\Publication;
@@ -29,7 +30,6 @@ use Exception;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
-use PKP\core\PKPRequest;
 use PKP\db\DAO;
 use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
@@ -130,7 +130,7 @@ class IdentificationCodeGridHandler extends GridHandler
     /**
      * @see PKPHandler::authorize()
      *
-     * @param PKPRequest $request
+     * @param Request $request
      * @param array $args
      * @param array $roleAssignments
      */
@@ -270,7 +270,7 @@ class IdentificationCodeGridHandler extends GridHandler
      * Edit a new (empty) code
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -283,7 +283,7 @@ class IdentificationCodeGridHandler extends GridHandler
      * Edit a code
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -307,7 +307,7 @@ class IdentificationCodeGridHandler extends GridHandler
      * Update a code
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */
@@ -359,7 +359,7 @@ class IdentificationCodeGridHandler extends GridHandler
      * Delete a code
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      *
      * @return JSONMessage JSON object
      */

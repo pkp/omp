@@ -22,6 +22,7 @@ use DOMDocument;
 use Exception;
 use PKP\context\Context;
 use PKP\db\DAORegistry;
+use PKP\filter\Filter;
 use PKP\filter\FilterDAO;
 use PKP\plugins\importexport\native\filter\PKPNativeFilterHelper;
 
@@ -75,7 +76,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
      *
      * @param string $elementName Name of XML element
      *
-     * @return \APP\filter\Filter
+     * @return Filter
      */
     public function getImportFilter($elementName)
     {
@@ -248,7 +249,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
     /**
      * Parse out the cover and store it in the object.
      *
-     * @param \PKP\plugins\importexport\native\filter\NativeExportFilter $filter
+     * @param NativeXmlPublicationFilter $filter
      * @param \DOMElement $node
      * @param \APP\publication\Publication $object
      */

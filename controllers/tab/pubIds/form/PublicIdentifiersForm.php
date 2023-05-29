@@ -17,6 +17,7 @@
 namespace APP\controllers\tab\pubIds\form;
 
 use APP\core\Application;
+use APP\monograph\ChapterDAO;
 use APP\template\TemplateManager;
 use PKP\controllers\tab\pubIds\form\PKPPublicIdentifiersForm;
 use PKP\db\DAORegistry;

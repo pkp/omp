@@ -16,9 +16,9 @@
 
 namespace APP\controllers\tab\workflow;
 
+use APP\core\Request;
 use PKP\controllers\tab\workflow\PKPReviewRoundTabHandler;
 use PKP\security\authorization\WorkflowStageAccessPolicy;
-
 use PKP\security\Role;
 
 class ReviewRoundTabHandler extends PKPReviewRoundTabHandler
@@ -55,7 +55,7 @@ class ReviewRoundTabHandler extends PKPReviewRoundTabHandler
      * JSON fetch the internal review round info (tab).
      *
      * @param array $args
-     * @param PKPRequest $request
+     * @param Request $request
      */
     public function internalReviewRound($args, $request)
     {

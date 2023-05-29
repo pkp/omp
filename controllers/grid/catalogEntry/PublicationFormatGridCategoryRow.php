@@ -16,7 +16,10 @@
 
 namespace APP\controllers\grid\catalogEntry;
 
+use APP\publication\Publication;
+use APP\submission\Submission;
 use PKP\controllers\grid\GridCategoryRow;
+use PKP\controllers\grid\GridCellProvider;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\linkAction\request\RemoteActionConfirmationModal;

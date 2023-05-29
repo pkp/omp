@@ -23,8 +23,10 @@ use APP\press\FeatureDAO;
 use APP\press\NewReleaseDAO;
 use APP\submission\Collector;
 use APP\submission\Submission;
+use PKP\core\APIResponse;
 use PKP\db\DAORegistry;
 use PKP\security\Role;
+use Slim\Http\Request as SlimRequest;
 
 class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmissionsHandler
 {
@@ -99,8 +101,8 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
     /**
      * Save changes to a submission's featured or new release flags
      *
-     * @param Request $slimRequest Slim request object
-     * @param Response $response object
+     * @param SlimRequest $slimRequest Slim request object
+     * @param APIResponse $response object
      * @param array $args {
      *
      * 		@option array featured Optional. Featured flags with assoc type, id
@@ -109,7 +111,7 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
      *		  and seq values.
      * }
      *
-     * @return Response
+     * @return APIResponse
      */
     public function saveDisplayFlags($slimRequest, $response, $args)
     {
@@ -150,8 +152,8 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
      * Save changes to the sequence of featured items in the catalog, series or
      * category.
      *
-     * @param Request $slimRequest Slim request object
-     * @param Response $response object
+     * @param SlimRequest $slimRequest Slim request object
+     * @param APIResponse $response object
      * @param array $args {
      *
      * 		@option int assocType Whether these featured items are for a
@@ -163,7 +165,7 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
      *			the existing features for this assoc type and id. Default: false
      * }
      *
-     * @return Response
+     * @return APIResponse
      */
     public function saveFeaturedOrder($slimRequest, $response, $args)
     {
@@ -190,10 +192,10 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
     /**
      * Add one or more submissions to the catalog
      *
-     * @param Request $slimRequest Slim request object
-     * @param Response $response object
+     * @param SlimRequest $slimRequest Slim request object
+     * @param APIResponse $response object
      *
-     * @return Response
+     * @return APIResponse
      */
     public function addToCatalog($slimRequest, $response, $args)
     {

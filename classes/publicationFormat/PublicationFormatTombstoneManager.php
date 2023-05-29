@@ -25,6 +25,8 @@ use PKP\config\Config;
 use PKP\db\DAORegistry;
 use PKP\plugins\Hook;
 use PKP\submission\PKPSubmission;
+use PKP\tombstone\DataObjectTombstone;
+use PKP\tombstone\DataObjectTombstoneDAO;
 
 class PublicationFormatTombstoneManager
 {

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\DB;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
 use PKP\statistics\PKPTemporaryItemInvestigationsDAO;
+use PKP\statistics\TemporaryInstitutionsDAO;
 
 class TemporaryItemInvestigationsDAO extends PKPTemporaryItemInvestigationsDAO
 {
