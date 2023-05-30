@@ -112,7 +112,7 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler
     protected function _getNotificationRequestOptions($submission)
     {
         $submissionAssocTypeAndIdArray = [Application::ASSOC_TYPE_SUBMISSION, $submission->getId()];
-        $notificationRequestOptions = parent::_getNotificationRequestOptions($submission);
+        $notificationRequestOptions = [];
         $notificationRequestOptions[Notification::NOTIFICATION_LEVEL_TASK][Notification::NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS] = $submissionAssocTypeAndIdArray;
         $notificationRequestOptions[Notification::NOTIFICATION_LEVEL_NORMAL][Notification::NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW] = $submissionAssocTypeAndIdArray;
         return $notificationRequestOptions;

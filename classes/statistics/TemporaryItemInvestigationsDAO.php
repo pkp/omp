@@ -29,12 +29,7 @@ class TemporaryItemInvestigationsDAO extends PKPTemporaryItemInvestigationsDAO
      */
     protected function getInsertData(object $entryData): array
     {
-        return array_merge(
-            parent::getInsertData($entryData),
-            [
-                'chapter_id' => $entryData->chapterId,
-            ]
-        );
+        return ['chapter_id' => $entryData->chapterId];
     }
 
     /**
