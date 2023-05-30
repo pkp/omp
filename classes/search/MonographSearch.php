@@ -203,7 +203,7 @@ class MonographSearch extends SubmissionSearch
                 while ($context = $contexts->next()) {
                     if (in_array(
                         $request->getUserVar('pressTitle'),
-                        (array) $context->getTitle(null)
+                        (array) $context->getName(null)
                     )) {
                         break;
                     }
@@ -230,7 +230,7 @@ class MonographSearch extends SubmissionSearch
         $indexFieldMap[SubmissionSearch::SUBMISSION_SEARCH_INDEX_TERMS] = 'indexTerms';
         $keywords = [];
         if (isset($searchFilters['query'])) {
-            $keywords[null] = $searchFilters['query'];
+            $keywords[''] = $searchFilters['query'];
         }
         foreach ($indexFieldMap as $bitmap => $searchField) {
             if (isset($searchFilters[$searchField]) && !empty($searchFilters[$searchField])) {
