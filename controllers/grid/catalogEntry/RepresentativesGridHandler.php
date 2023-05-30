@@ -312,7 +312,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
             $row->initialize($request);
 
             // Render the row into a JSON response
-            return DAO::getDataChangedEvent($representativeId, (int) $representative->getIsSupplier());
+            return DAO::getDataChangedEvent();
         } else {
             return new JSONMessage(true, $representativeForm->fetch($request));
         }
@@ -358,6 +358,6 @@ class RepresentativesGridHandler extends CategoryGridHandler
         $currentUser = $request->getUser();
         $notificationMgr = new NotificationManager();
         $notificationMgr->createTrivialNotification($currentUser->getId(), Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedRepresentative')]);
-        return DAO::getDataChangedEvent($representative->getId(), (int) $representative->getIsSupplier());
+        return DAO::getDataChangedEvent();
     }
 }
