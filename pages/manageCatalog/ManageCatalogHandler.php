@@ -147,6 +147,6 @@ class ManageCatalogHandler extends Handler
                 'catalog' => $catalogList->getConfig()
             ]
         ]);
-        return $templateMgr->display('manageCatalog/index.tpl');
+        $templateMgr->display('manageCatalog/index.tpl');
     }
 }
