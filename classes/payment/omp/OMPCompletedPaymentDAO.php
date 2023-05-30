@@ -176,7 +176,7 @@ class OMPCompletedPaymentDAO extends DAO
                 $rangeInfo
             ),
             $this,
-            '_returnPaymentFromRow'
+            '_fromRow'
         );
     }
 
