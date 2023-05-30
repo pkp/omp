@@ -66,7 +66,7 @@ class GoogleScholarPlugin extends GenericPlugin
         // See discussion: https://github.com/pkp/pkp-lib/issues/4870
         $requestArgs = $request->getRequestedArgs();
         if (in_array('version', $requestArgs)) {
-            return;
+            return false;
         }
 
         $templateMgr = TemplateManager::getManager($request);

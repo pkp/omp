@@ -185,10 +185,8 @@ class Spotlight extends DataObject
         switch ($this->getAssocType()) {
             case self::SPOTLIGHT_TYPE_BOOK:
                 return Repo::submission()->get($this->getAssocId());
-                break;
             case self::SPOTLIGHT_TYPE_SERIES:
                 return Repo::section()->get($this->getAssocId(), $this->getPressId());
-                break;
             default:
                 assert(false);
                 break;
