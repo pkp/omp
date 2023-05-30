@@ -64,7 +64,6 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
     {
         /** @var Onix30ExportDeployment */
         $deployment = $this->getDeployment();
-        $context = $deployment->getContext();
         $submission = $deployment->getSubmission();
         assert($submission instanceof Submission);
         /** @var PublicationFormat */
@@ -363,7 +362,7 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
 
                 // Extract Pricing information for this format.
                 $representation->setReturnableIndicatorCode($this->_extractTextFromNode($supplierNode, $onixDeployment, 'ReturnsCode'));
-                $representation->getProductAvailabilityCode($this->_extractTextFromNode($supplierNode, $onixDeployment, 'ProductAvailability'));
+                $representation->setProductAvailabilityCode($this->_extractTextFromNode($supplierNode, $onixDeployment, 'ProductAvailability'));
 
                 $marketDao->insertObject($market);
             }
