@@ -136,6 +136,6 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
         $this->_gridHandler->setEmptyCategoryRowText('grid.noItems');
         /** @var SubmissionFilesGridDataProvider */
         $dataProvider = $this->getDataProvider();
-        return $dataProvider->prepareSubmissionFileData($submissionFiles, false, $filter);
+        return $dataProvider->prepareSubmissionFileData($submissionFiles->toArray(), false, $filter);
     }
 }
