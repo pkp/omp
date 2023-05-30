@@ -93,7 +93,7 @@ class SeriesForm extends PKPSectionForm
             $series = Repo::section()->get($seriesId, $context->getId());
             if ($series) {
                 $this->setSeries($series);
-                $categoryIds = Repo::section()->getAssignedCategoryIds($series->getId(), $context->getId());
+                $categoryIds = Repo::section()->getAssignedCategoryIds($series->getId());
             }
         }
 

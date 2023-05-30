@@ -107,7 +107,7 @@ class SpotlightForm extends Form
     {
         $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /** @var SpotlightDAO $spotlightDao */
 
-        $spotlight = $spotlightDao->getById($this->getSpotlightId(), $this->getPressId());
+        $spotlight = $spotlightDao->getById($this->getSpotlightId());
 
         if (!$spotlight) {
             // this is a new spotlight

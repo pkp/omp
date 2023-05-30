@@ -214,9 +214,8 @@ class IdentificationCodeForm extends Form
         $identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /** @var IdentificationCodeDAO $identificationCodeDao */
         $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
 
-        $submission = $this->getSubmission();
         $identificationCode = $this->getIdentificationCode();
-        $publicationFormat = $publicationFormatDao->getById($this->getData('representationId', $this->getPublication()->getId()));
+        $publicationFormat = $publicationFormatDao->getById($this->getData('representationId'), $this->getPublication()->getId());
 
         if (!$identificationCode) {
             // this is a new code to this published submission

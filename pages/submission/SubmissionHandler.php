@@ -79,7 +79,7 @@ class SubmissionHandler extends PKPSubmissionHandler
             'submissions'
         );
 
-        $form = new StartSubmission($apiUrl, $context, $userGroups, $sections);
+        $form = new StartSubmission($apiUrl, $context, $userGroups);
 
         $templateMgr = TemplateManager::getManager($request);
 

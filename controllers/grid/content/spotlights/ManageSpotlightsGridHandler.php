@@ -259,7 +259,7 @@ class ManageSpotlightsGridHandler extends GridHandler
         $press = $this->getPress();
 
         $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /** @var SpotlightDAO $spotlightDao */
-        $spotlight = $spotlightDao->getById($spotlightId, $press->getId());
+        $spotlight = $spotlightDao->getById($spotlightId);
 
         // Form handling
         $spotlightForm = new SpotlightForm($press->getId(), $spotlightId);
@@ -270,7 +270,7 @@ class ManageSpotlightsGridHandler extends GridHandler
 
             if (!isset($spotlight)) {
                 // This is a new entry
-                $spotlight = $spotlightDao->getById($spotlightId, $press->getId());
+                $spotlight = $spotlightDao->getById($spotlightId);
                 // New added entry action notification content.
                 $notificationContent = __('notification.addedSpotlight');
             } else {
@@ -311,8 +311,7 @@ class ManageSpotlightsGridHandler extends GridHandler
         $spotlightId = $request->getUserVar('spotlightId');
 
         $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /** @var SpotlightDAO $spotlightDao */
-        $press = $this->getPress();
-        $spotlight = $spotlightDao->getById($spotlightId, $press->getId());
+        $spotlight = $spotlightDao->getById($spotlightId);
         if (!$spotlight) {
             return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
         }
