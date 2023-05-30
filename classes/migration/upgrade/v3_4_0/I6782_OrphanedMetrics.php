@@ -78,8 +78,8 @@ class I6782_OrphanedMetrics extends \PKP\migration\upgrade\v3_4_0\I6782_Orphaned
         // Clean orphaned series IDs
         // as assoc_id
         $orphanedIds = DB::table('metrics AS m')->leftJoin('series AS s', 'm.assoc_id', '=', 's.series_id')->where('m.assoc_type', '=', self::ASSOC_TYPE_SERIES)->whereNull('s.series_id')->distinct()->pluck('m.assoc_id');
-        $orphandedSeries = DB::table('metrics')->select($metricsColumns)->where('assoc_type', '=', self::ASSOC_TYPE_SERIES)->whereIn('assoc_id', $orphanedIds)->where('metric_type', '=', $this->getMetricType());
-        DB::table('metrics_tmp')->insertUsing($metricsColumns, $orphandedSeries);
+        $orphanedSeries = DB::table('metrics')->select($metricsColumns)->where('assoc_type', '=', self::ASSOC_TYPE_SERIES)->whereIn('assoc_id', $orphanedIds)->where('metric_type', '=', $this->getMetricType());
+        DB::table('metrics_tmp')->insertUsing($metricsColumns, $orphanedSeries);
         DB::table('metrics')->where('assoc_type', '=', self::ASSOC_TYPE_SERIES)->whereIn('assoc_id', $orphanedIds)->delete();
     }
 }

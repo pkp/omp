@@ -34,11 +34,11 @@ class I6782_MetricsSeries extends Migration
         }
 
         // The not existing foreign keys should already be moved to the metrics_tmp in I6782_OrphanedMetrics
-        $selectSerieMetrics = DB::table('metrics as m')
+        $selectSeriesMetrics = DB::table('metrics as m')
             ->select(DB::raw("m.load_id, m.context_id, m.assoc_id, {$dayFormatSql}, m.metric"))
             ->where('m.assoc_type', '=', self::ASSOC_TYPE_SERIES)
             ->where('m.metric_type', '=', 'omp::counter');
-        DB::table('metrics_series')->insertUsing(['load_id', 'context_id', 'series_id', 'date', 'metric'], $selectSerieMetrics);
+        DB::table('metrics_series')->insertUsing(['load_id', 'context_id', 'series_id', 'date', 'metric'], $selectSeriesMetrics);
     }
 
     /**

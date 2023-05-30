@@ -302,7 +302,7 @@ class TR extends CounterR5Report
                         }
                     }
 
-                    $perfomances = [];
+                    $performances = [];
                     foreach ($results as $result) {
                         // if granularity=Month, the results will contain metrics for each month
                         // else the results will only contain the summarized metrics for the whole period
@@ -347,9 +347,9 @@ class TR extends CounterR5Report
                             }
                         }
                         $periodMetrics['Instance'] = $instances;
-                        $perfomances[] = $periodMetrics;
+                        $performances[] = $periodMetrics;
                     }
-                    $item['Performance'] = $perfomances;
+                    $item['Performance'] = $performances;
                     $items[] = $item;
                 }
             } else { // Section_Type is not in attributes_to_show
@@ -395,7 +395,7 @@ class TR extends CounterR5Report
                     // so do not consider it here
                 }
 
-                $perfomances = [];
+                $performances = [];
                 foreach ($results as $result) {
                     // if granularity=Month, the results will contain metrics for each month
                     // else the results will only contain the summarized metrics for the whole period
@@ -441,9 +441,9 @@ class TR extends CounterR5Report
                         }
                     }
                     $periodMetrics['Instance'] = $instances;
-                    $perfomances[] = $periodMetrics;
+                    $performances[] = $periodMetrics;
                 }
-                $item['Performance'] = $perfomances;
+                $item['Performance'] = $performances;
                 $items[] = $item;
             }
         }
