@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-18 09:49+0000\n"
+"PO-Revision-Date: 2023-06-01 06:49+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-native/uk/>\n"
@@ -23,7 +23,7 @@ msgid "plugins.importexport.native.import"
 msgstr "Імпорт"
 
 msgid "plugins.importexport.native.import.instructions"
-msgstr "Завантажте файл XML для імпорту"
+msgstr "Вивантажте файл XML для імпорту"
 
 msgid "plugins.importexport.native.export"
 msgstr "Експорт"
@@ -35,7 +35,7 @@ msgid "plugins.importexport.native.results"
 msgstr "Результати"
 
 msgid "plugins.inportexport.native.uploadFile"
-msgstr "Будь ласка, завантажте файл через \"Імпорт\", щоб продовжити."
+msgstr "Будь ласка, вивантажте файл через \"Імпорт\", щоб продовжити."
 
 msgid "plugins.importexport.native.importComplete"
 msgstr "Імпорт виконано успішно. Було імпортовано такі елементи:"
