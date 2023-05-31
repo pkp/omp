@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-05-25 09:42+0000\n"
+"PO-Revision-Date: 2023-06-01 06:49+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "uk/>\n"
@@ -168,7 +168,7 @@ msgid "manager.statistics.reports.defaultReport.monographAbstract"
 msgstr "Перегляди анотації монографії"
 
 msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
-msgstr "Анотація монографії та скачування"
+msgstr "Анотація та завантаження монографії"
 
 msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
 msgstr "Перегляди головної сторінки серії"
@@ -414,22 +414,22 @@ msgid "manager.setup.displayCurrentMonograph"
 msgstr "Додати зміст для поточної монографії (якщо це доступно)."
 
 msgid "manager.setup.displayOnHomepage"
-msgstr "Контент домашньої сторінки"
+msgstr "Контент головної сторінки"
 
 msgid "manager.setup.displayFeaturedBooks"
-msgstr "Показати рекомендовані книги на домашній сторінці"
+msgstr "Показати рекомендовані книги на головній сторінці"
 
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Рекомендовані книги"
 
 msgid "manager.setup.displayInSpotlight"
-msgstr "Показати книги в фокусі уваги на домашній сторінці"
+msgstr "Показати книги в фокусі уваги на головній сторінці"
 
 msgid "manager.setup.displayInSpotlight.label"
 msgstr "Фокус уваги"
 
 msgid "manager.setup.displayNewReleases"
-msgstr "Показати нові релізи на домашній сторінці"
+msgstr "Показати нові релізи на головній сторінці"
 
 msgid "manager.setup.displayNewReleases.label"
 msgstr "Нові релізи"
@@ -642,7 +642,7 @@ msgstr "Шаблони верстки"
 
 msgid "manager.setup.layoutTemplatesDescription"
 msgstr ""
-"Шаблони можуть бути завантажені в розділ \"Верстка\" для кожного зі "
+"У розділ \"Верстка\" може бути вивантажено шаблони для кожного зі "
 "стандартних форматів, що публікуються в е-видавництві (наприклад, "
 "монографії, книжкового огляду тощо), з використанням будь-якого формату "
 "файлу (наприклад, pdf, doc тощо), з додаванням анотацій і вказівкою шрифта, "
@@ -666,8 +666,8 @@ msgstr "Вигляд і стиль"
 
 msgid "manager.setup.look.description"
 msgstr ""
-"Заголовок домашньої сторінки, контент, заголовок е-видавництва, панель "
-"навігації та таблиця стилів."
+"Заголовок головної сторінки, контент, заголовок е-видавництва, підвал, "
+"панель навігації та таблиця стилів."
 
 msgid "manager.setup.settings"
 msgstr "Налаштування"
@@ -690,10 +690,10 @@ msgid "manager.setup.masthead.success"
 msgstr "Вихідні дані цього е-видавницва було оновлено."
 
 msgid "manager.setup.noImageFileUploaded"
-msgstr "Файл зображення не завантажено."
+msgstr "Файл зображення не вивантажено."
 
 msgid "manager.setup.noStyleSheetUploaded"
-msgstr "Листок стилів не завантажено."
+msgstr "Таблицю стилів не вивантажено."
 
 msgid "manager.setup.note"
 msgstr "Примітка"
@@ -769,22 +769,22 @@ msgid "manager.setup.pressArchiving"
 msgstr "Архівування е-видавництва"
 
 msgid "manager.setup.homepageContent"
-msgstr "Контент домашньої сторінки е-видавництва"
+msgstr "Контент головної сторінки е-видавництва"
 
 msgid "manager.setup.homepageContentDescription"
 msgstr ""
-"Домашня сторінка е-видавництва складається з навігаційних покликань за "
-"замовчуванням. Контент додаткової домашньої сторінки може бути доповнено за "
+"Головна сторінка е-видавництва складається з навігаційних покликань за "
+"замовчуванням. Додаткової вміст домашньої сторінки може бути доповнено за "
 "допомогою однієї чи всіх таких опцій, які з'являться на сторінці в "
 "показаному порядку."
 
 msgid "manager.setup.pressHomepageContent"
-msgstr "Контент домашньої сторінки е-видавництва"
+msgstr "Контент головної сторінки е-видавництва"
 
 msgid "manager.setup.pressHomepageContentDescription"
 msgstr ""
-"Домашня сторінка е-видавництва складається з навігаційних покликань за "
-"замовчуванням. Контент додаткової домашньої сторінки може бути доповнено за "
+"Головна сторінка е-видавництва складається з навігаційних покликань за "
+"замовчуванням. Додаткової вміст домашньої сторінки може бути доповнено за "
 "допомогою однієї чи всіх таких опцій, які з'являться на сторінці в "
 "показаному порядку."
 
@@ -1104,10 +1104,10 @@ msgstr ""
 
 msgid "manager.setup.genresDescription"
 msgstr ""
-"Ці жанри використовуются для йменування файлів і представлені в випадаючому "
-"меню при завантаженні файлів. Жанри, позначені ##, дозволяють користувачу "
-"пов'язати файл або з усією книгою 99Z, або з окремою главою за номером "
-"(наприклад, 02)."
+"Ці жанри використовуються для йменування файлів і представлені в випадаючому "
+"меню при вивантаженні файлів. Жанри, позначені ##, дозволяють користувачу "
+"пов'язати файл або з усією книгою 99Z, або з окремою главою за номером ("
+"наприклад, 02)."
 
 msgid "manager.setup.disableSubmissions.notAccepting"
 msgstr ""
