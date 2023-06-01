@@ -1,26 +1,26 @@
-# Petro Bilous <petrobilous@ukr.net>, 2022.
+# Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-24 06:56+0000\n"
+"PO-Revision-Date: 2023-06-01 06:49+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
-"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/paymethod-"
-"paypal/uk_UA/>\n"
-"Language: uk_UA\n"
+"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
+"paymethod-paypal/uk/>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.paymethod.paypal.displayName"
-msgstr "Метод Оплати Paypal"
+msgstr "Метод оплати Paypal"
 
 msgid "plugins.paymethod.paypal.description"
 msgstr "Оплату буде здійснено через сервіс PayPal."
 
 msgid "plugins.paymethod.paypal"
-msgstr "Метод Оплати Paypal"
+msgstr "Метод оплати Paypal"
 
 msgid "plugins.paymethod.paypal.settings"
 msgstr "Налаштування методу оплати Paypal"
@@ -39,5 +39,5 @@ msgstr "Секретна комбінація"
 
 msgid "plugins.paymethod.paypal.error"
 msgstr ""
-"Помилка при проведенні транзакції. Будь ласка, зв'яжіться з менеджером е-"
-"видавництва."
+"Сталася помилка транзакції. Будь ласка, зверніться до менеджера е-"
+"видавництва, щоб отримати детальнішу інформацію."
