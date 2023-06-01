@@ -14,8 +14,8 @@
 
 namespace APP\migration\upgrade\v3_4_0;
 
-use Exception;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class I9039_DropDeprecatedFields extends \PKP\migration\upgrade\v3_4_0\I9039_DropDeprecatedFields
@@ -28,10 +28,8 @@ class I9039_DropDeprecatedFields extends \PKP\migration\upgrade\v3_4_0\I9039_Dro
         parent::up();
 
         // Release the index assigned to the column before dropping it
-        try {
+        if (DB::getDoctrineSchemaManager()->introspectTable('publication_formats')->hasIndex('publication_format_submission_id')) {
             Schema::table('publication_formats', fn (Blueprint $table) => $table->dropIndex('publication_format_submission_id'));
-        } catch (Exception $e) {
-            $this->_installer->log("Failed to remove the index publication_format_submission_id from the entity publication_formats, we'll assume it doesn't exist and proceed");
         }
 
         if (Schema::hasColumn('publication_formats', 'submission_id')) {
