@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-06-01 06:49+0000\n"
+"PO-Revision-Date: 2023-06-01 22:03+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/uk/>\n"
@@ -30,7 +30,7 @@ msgstr "Тип подання"
 
 msgid "submission.workflowType.description"
 msgstr ""
-"Монографія - це видання за цілковитим авторством одного або декількох "
+"Монографія – це видання за цілковитим авторством одного або декількох "
 "авторів. Том за редакцією має різних авторів для кожної глави (з деталям "
 "глав, введеними пізніше в цьому процесі)"
 
