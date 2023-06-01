@@ -142,11 +142,6 @@ class I6093_AddForeignKeys extends \PKP\migration\upgrade\v3_4_0\I6093_AddForeig
             $table->index(['submission_id'], 'representatives_submission_id');
         });
 
-        Schema::table('publication_formats', function (Blueprint $table) {
-            $table->foreign('submission_id')->references('submission_id')->on('submissions')->onDelete('cascade');
-            $table->index(['submission_id'], 'publication_formats_submission_id');
-        });
-
         Schema::table('features', function (Blueprint $table) {
             $table->foreign('submission_id')->references('submission_id')->on('submissions')->onDelete('cascade');
             $table->index(['submission_id'], 'features_submission_id');
