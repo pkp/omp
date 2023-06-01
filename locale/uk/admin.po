@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-28 05:49+0000\n"
+"PO-Revision-Date: 2023-06-01 06:49+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/admin/uk/>"
 "\n"
@@ -30,8 +30,9 @@ msgstr "Перенаправлення е-видавництва"
 
 msgid "admin.settings.redirectInstructions"
 msgstr ""
-"Запити до головної сторінки буде перенаправлено на це е-видавництво. Це може "
-"бути корисним, наприклад, якщо вебсайт уміщує лише одне е-видавництво."
+"Запити до головного вебсайту будуть перенаправлятися до цього е-видавництва. "
+"Це може бути корисним, наприклад, якщо на вебсайті представлено лише одне "
+"е-видавництво."
 
 msgid "admin.settings.noPressRedirect"
 msgstr "Не перенаправляти"
