@@ -1,0 +1,13 @@
+{
+	"title": "Event Log",
+	"properties": {
+		"publicationFormatName": {
+			"type": "string",
+			"description": "The name of publication format being logged.",
+			"multilingual": true,
+			"validation": [
+				"nullable"
+			]
+		}
+	}
+}

@@ -18,7 +18,8 @@ namespace APP\controllers\grid\catalogEntry\form;
 
 use APP\codelist\ONIXCodelistItemDAO;
 use APP\core\Application;
-use APP\log\SubmissionEventLogEntry;
+use APP\facades\Repo;
+use APP\log\event\SubmissionEventLogEntry;
 use APP\publication\Publication;
 use APP\publicationFormat\IdentificationCodeDAO;
 use APP\publicationFormat\PublicationFormat;
@@ -26,9 +27,10 @@ use APP\publicationFormat\PublicationFormatDAO;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
 use Exception;
+use PKP\core\Core;
+use PKP\core\PKPApplication;
 use PKP\db\DAORegistry;
 use PKP\form\Form;
-use PKP\log\SubmissionLog;
 
 class PublicationFormatForm extends Form
 {
@@ -268,7 +270,17 @@ class PublicationFormatForm extends Form
 
         if (!$existingFormat) {
             // log the creation of the format.
-            SubmissionLog::logEvent(Application::get()->getRequest(), $this->getMonograph(), SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE, 'submission.event.publicationFormatCreated', ['formatName' => $publicationFormat->getLocalizedName()]);
+            $logEntry = Repo::eventLog()->newDataObject([
+                'assocType' => PKPApplication::ASSOC_TYPE_SUBMISSION,
+                'assocId' => $this->getMonograph()->getId(),
+                'eventType' => SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE,
+                'userId' => Application::get()->getRequest()->getUser()?->getId(),
+                'message' => 'submission.event.publicationFormatCreated',
+                'isTranslate' => false,
+                'dateLogged' => Core::getCurrentDate(),
+                'publicationFormatName' => $publicationFormat->getData('name')
+            ]);
+            Repo::eventLog()->add($logEntry);
         }
 
         return $representationId;
