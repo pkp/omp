@@ -107,6 +107,16 @@ class MonographSearchIndex extends SubmissionSearchIndex
      */
     public function submissionMetadataChanged($submission)
     {
+        // Check whether a search plugin jumps in
+        $hookResult = Hook::call(
+            'MonographSearchIndex::submissionMetadataChanged',
+            [$submission]
+        );
+
+        if (!empty($hookResult)) {
+            return;
+        }
+
         $publication = $submission->getCurrentPublication();
 
         // Build author keywords
@@ -143,6 +153,15 @@ class MonographSearchIndex extends SubmissionSearchIndex
      */
     public function submissionFilesChanged($monograph)
     {
+        // Check whether a search plugin jumps in.
+        $hookResult = Hook::call(
+            'MonographSearchIndex::submissionFilesChanged',
+            [$monograph]
+        );
+        if (!empty($hookResult)) {
+            return;
+        }
+
         // Index galley files
         $submissionFiles = Repo::submissionFile()
             ->getCollector()
@@ -198,6 +217,16 @@ class MonographSearchIndex extends SubmissionSearchIndex
      */
     public function rebuildIndex($log = false)
     {
+        // Check whether a search plugin jumps in.
+        $hookResult = Hook::call(
+            'MonographSearchIndex::rebuildIndex',
+            [$log]
+        );
+
+        if (!empty($hookResult)) {
+            return;
+        }
+
         // Clear index
         if ($log) {
             echo 'Clearing index ... ';
