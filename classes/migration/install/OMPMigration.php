@@ -79,10 +79,6 @@ class OMPMigration extends \PKP\migration\Migration
             $table->foreign('publication_id', 'publication_formats_publication_id')->references('publication_id')->on('publications')->onDelete('cascade');
             $table->index(['publication_id'], 'publication_formats_publication_id');
 
-            //  DEPRECATED: Held over for the OJS 2.x to 3. upgrade process pkp/pkp-lib#3572
-            $table->bigInteger('submission_id')->nullable();
-            $table->index(['submission_id'], 'publication_format_submission_id');
-
             $table->smallInteger('physical_format')->default(1)->nullable();
             $table->string('entry_key', 64)->nullable();
             $table->float('seq', 8, 2)->default(0);
