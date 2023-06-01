@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-06-01 06:49+0000\n"
+"PO-Revision-Date: 2023-06-01 22:03+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "uk/>\n"
@@ -383,10 +383,10 @@ msgstr ""
 "сторінки (наприклад, теги META)."
 
 msgid "manager.setup.details"
-msgstr "Детальніше"
+msgstr "Подробиці"
 
 msgid "manager.setup.details.description"
-msgstr "Назва е-видавництва, контакти, спонсори й пошукові системи."
+msgstr "Назва е-видавництва, контакти, спонсори та пошукові системи."
 
 msgid "manager.setup.disableUserRegistration"
 msgstr ""
@@ -567,7 +567,7 @@ msgid "manager.setup.generalInformation"
 msgstr "Загальна інформація"
 
 msgid "manager.setup.gettingDownTheDetails"
-msgstr "Крок 1. До дрібніших деталей"
+msgstr "Крок 1. Ознайомлення з деталями"
 
 msgid "manager.setup.guidelines"
 msgstr "Настанови"
@@ -1417,7 +1417,7 @@ msgid "stats.publicationStats"
 msgstr "Статистика монографії"
 
 msgid "stats.publications.details"
-msgstr "Деталі монографії"
+msgstr "Подробиці монографії"
 
 msgid "stats.publications.none"
 msgstr ""
