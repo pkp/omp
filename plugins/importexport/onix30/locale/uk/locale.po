@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-25 08:49+0000\n"
+"PO-Revision-Date: 2023-06-01 06:49+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-onix30/uk/>\n"
@@ -41,7 +41,7 @@ msgid "plugins.importexport.onix30.noFormats"
 msgstr "Монографії без форматів публікації не показано."
 
 msgid "plugins.importexport.onix30.exportSubmissionsSelect"
-msgstr "Оберіть Монографії для експорту"
+msgstr "Оберіть монографії для експорту"
 
 msgid "plugins.importexport.onix30.selectMonograph"
 msgstr "Оберіть монографію для експорту:"
@@ -50,7 +50,7 @@ msgid "plugins.importexport.onix30.exportButton"
 msgstr "Експортувати"
 
 msgid "plugins.importexport.onix30.exportFormats"
-msgstr "Доступні Формати"
+msgstr "Доступні формати"
 
 msgid "plugins.importexport.onix30.unavailable"
 msgstr "Недоступно"
