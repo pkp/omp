@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-06-01 06:49+0000\n"
+"PO-Revision-Date: 2023-06-01 22:03+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/locale/uk/"
 ">\n"
@@ -20,7 +20,7 @@ msgid "monograph.audience"
 msgstr "Аудиторія"
 
 msgid "monograph.audience.success"
-msgstr "Деталі аудиторії збережено."
+msgstr "Детальну інформацію про аудиторію оновлено."
 
 msgid "monograph.coverImage"
 msgstr "Зображення обкладинки"
@@ -47,10 +47,10 @@ msgid "monograph.publicationFormat"
 msgstr "Формат"
 
 msgid "monograph.publicationFormatDetails"
-msgstr "Деталі щодо доступних форматів публікацій: {$format}"
+msgstr "Детальніше щодо доступних форматів публікацій: {$format}"
 
 msgid "monograph.miscellaneousDetails"
-msgstr "Деталі про цю монографію"
+msgstr "Детальніше про цю монографію"
 
 msgid "monograph.carousel.publicationFormats"
 msgstr "Формати:"
@@ -185,7 +185,7 @@ msgid "grid.catalogEntry.validPriceRequired"
 msgstr "Необхідно ввести коректну ціну."
 
 msgid "grid.catalogEntry.publicationFormatDetails"
-msgstr "Деталі формату"
+msgstr "Подробиці формату"
 
 msgid "grid.catalogEntry.physicalFormat"
 msgstr "Фізичний формат"
@@ -798,7 +798,7 @@ msgid "catalog.viewableFile.title"
 msgstr "{$type} переглядів файлу \"{$title}\""
 
 msgid "catalog.viewableFile.return"
-msgstr "Повернутися до перегляду деталей про {$monographTitle}"
+msgstr "Повернутися до перегляду подробиць про \"{$monographTitle}\""
 
 msgid "submission.search"
 msgstr "Пошук книг"
@@ -1505,8 +1505,8 @@ msgstr "Управління каталогом"
 msgid "notification.type.visitCatalog"
 msgstr ""
 "Монографію було затверджено. Будь ласка, відвідайте розділ \"Маркетинг і "
-"опублікування\", щоб ознайомитися з деталями каталогу, використовуючи "
-"покликання вище."
+"опублікування\", щоб ознайомитися з детальною інформацією про каталог, "
+"використовуючи покликання вище."
 
 msgid "user.authorization.invalidReviewAssignment"
 msgstr ""
