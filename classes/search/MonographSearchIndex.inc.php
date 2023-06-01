@@ -83,6 +83,16 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * @param $assocId int optional
 	 */
 	public function deleteTextIndex($monographId, $type = null, $assocId = null) {
+		// Check whether a search plugin jumps in.
+		$hookResult = HookRegistry::call(
+			'MonographSearchIndex::submissionDeleted',
+			[$monographId]
+		);
+
+		if (!empty($hookResult)) {
+			return;
+		}
+
 		$searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
 		return $searchDao->deleteSubmissionKeywords($monographId, $type, $assocId);
 	}
@@ -92,6 +102,16 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * @param Submission $submission
 	 */
 	public function submissionMetadataChanged($submission) {
+		// Check whether a search plug-in jumps in.
+		$hookResult = HookRegistry::call(
+			'MonographSearchIndex::submissionMetadataChanged',
+			[$submission]
+		);
+
+		if (!empty($hookResult)) {
+			return;
+		}
+
 		$publication = $submission->getCurrentPublication();
 
 		// Build author keywords
@@ -127,6 +147,16 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * @param $monograph Monograph
 	 */
 	public function submissionFilesChanged($monograph) {
+		// Check whether a search plugin jumps in.
+		$hookResult = HookRegistry::call(
+			'MonographSearchIndex::submissionFilesChanged',
+			[$monograph]
+		);
+
+		if (!empty($hookResult)) {
+			return;
+		}
+
 		// Index galley files
 		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
 		import('classes.search.MonographSearch'); // Constants
@@ -176,6 +206,15 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * @param $log boolean Whether or not to log progress to the console.
 	 */
 	public function rebuildIndex($log = false) {
+		// Check whether a search plugin jumps in.
+		$hookResult = HookRegistry::call(
+			'MonographSearchIndex::rebuildIndex',
+			[$log]
+		);
+		if (!empty($hookResult)) {
+			return;
+		}
+
 		// Clear index
 		if ($log) echo 'Clearing index ... ';
 		$searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
