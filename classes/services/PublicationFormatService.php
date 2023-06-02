@@ -17,16 +17,17 @@ namespace APP\services;
 
 use APP\core\Application;
 use APP\facades\Repo;
-use APP\log\SubmissionEventLogEntry;
+use APP\log\event\SubmissionEventLogEntry;
 use APP\press\Press;
 use APP\publicationFormat\IdentificationCodeDAO;
 use APP\publicationFormat\MarketDAO;
 use APP\publicationFormat\PublicationDateDAO;
 use APP\publicationFormat\PublicationFormat;
 use APP\publicationFormat\SalesRightsDAO;
+use PKP\core\Core;
+use PKP\core\PKPApplication;
 use APP\submission\Submission;
 use PKP\db\DAORegistry;
-use PKP\log\SubmissionLog;
 
 class PublicationFormatService
 {
@@ -68,6 +69,16 @@ class PublicationFormatService
         }
 
         // Log the deletion of the format.
-        SubmissionLog::logEvent(Application::get()->getRequest(), $submission, SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE, 'submission.event.publicationFormatRemoved', ['formatName' => $publicationFormat->getLocalizedName()]);
+        $eventLog = Repo::eventLog()->newDataObject([
+            'assocType' => PKPApplication::ASSOC_TYPE_SUBMISSION,
+            'assocId' => $submission->getId(),
+            'eventType' => SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE,
+            'userId' => Application::get()->getRequest()->getUser()?->getId(),
+            'message' => 'submission.event.publicationFormatRemoved',
+            'isTranslated' => false,
+            'dateLogged' => Core::getCurrentDate(),
+            'publicationFormatName' => $publicationFormat->getData('name') // formatName
+        ]);
+        Repo::eventLog()->add($eventLog);
     }
 }
