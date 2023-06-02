@@ -88,7 +88,9 @@ class I8933_EventLogLocalized extends \PKP\migration\upgrade\v3_4_0\I8933_EventL
             'file' => 'filename',
             'name' => 'userFullName'
         ]);
-
+        $map->put(268435474, [ // SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE
+            'formatName' => 'publicationFormatName'
+        ]);
         return $map;
     }
 }
