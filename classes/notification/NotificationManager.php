@@ -118,7 +118,6 @@ class NotificationManager extends PKPNotificationManager
             default:
                 return parent::getNotificationTypeByEditorDecision($decision);
         }
-        return null;
     }
 }
 

@@ -17,6 +17,7 @@
 namespace APP\controllers\grid\catalogEntry;
 
 use APP\core\Application;
+use APP\publicationFormat\PublicationFormat;
 use PKP\controllers\api\file\linkAction\AddFileLinkAction;
 use PKP\controllers\grid\DataObjectGridCellProvider;
 use PKP\controllers\grid\files\fileList\linkAction\SelectFilesLinkAction;
@@ -97,8 +98,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
     {
         $data = $row->getData();
 
-        if (is_a($data, 'Representation')) {
-            /** @var Representation $data */
+        if ($data instanceof PublicationFormat) {
             switch ($column->getId()) {
                 case 'indent': return [];
                 case 'name':
@@ -151,7 +151,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
     {
         $data = $row->getData();
         $router = $request->getRouter();
-        if (is_a($data, 'Representation')) {
+        if ($data instanceof PublicationFormat) {
             switch ($column->getId()) {
                 case 'isAvailable':
                     return [new LinkAction(

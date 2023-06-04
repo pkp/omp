@@ -187,7 +187,7 @@ class SpotlightDAO extends \PKP\db\DAO
      */
     public function deleteObject($spotlight)
     {
-        return $this->deleteById($spotlight->getId());
+        $this->deleteById($spotlight->getId());
     }
 
     /**
