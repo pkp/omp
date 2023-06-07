@@ -16,6 +16,7 @@
 
 namespace APP\pages\information;
 
+use APP\core\Application;
 use APP\core\Request;
 use APP\handler\Handler;
 use APP\template\TemplateManager;
