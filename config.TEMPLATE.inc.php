@@ -113,7 +113,7 @@ trust_x_forwarded_for = Off
 ; Set the following parameter to off if you want to work with the uncompiled
 ; (non-minified) JavaScript source for debugging or if you are working off a
 ; development branch without compiled JavaScript.
-enable_minified = Off
+enable_minified = On
 
 ; Provide a unique site ID and OAI base URL to PKP for statistics and security
 ; alert purposes only.
