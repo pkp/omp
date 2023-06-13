@@ -10,7 +10,7 @@
   * Upgrade descriptor file.
   -->
 
-<install version="3.4.0.0">
+<install version="3.5.0.0">
 	<code function="checkPhpVersion" />
 
 	<upgrade minversion="0.9.9.0" maxversion="3.0.9.9">
@@ -177,6 +177,10 @@
 		<migration class="APP\migration\upgrade\v3_4_0\I8933_EventLogLocalized"/>
 		<data file="dbscripts/xml/upgrade/3.4.0_preupdate_email_templates.xml" />
 		<note file="docs/release-notes/README-3.4.0" />
+	</upgrade>
+
+	<upgrade minversion="3.1.0.0" maxversion="3.4.9.9">
+		<migration class="APP\migration\upgrade\v3_5_0\I8333_AddMissingForeignKeys" />
 	</upgrade>
 
 	<upgrade minversion="3.1.0.0" maxversion="3.2.9.9">
