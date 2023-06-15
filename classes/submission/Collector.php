@@ -137,7 +137,7 @@ class Collector extends \PKP\submission\Collector
         // order by series position
         if ($this->orderBy === self::ORDERBY_SERIES_POSITION) {
             $this->columns[] = 'po.series_position';
-            $q->leftJoin('publications as po', 's.current_publication_id', '=', 'po.publication_id');
+            $q->reorder()->orderBy('po.series_position', $this->orderDirection);
         }
 
         if (!empty($this->orderByFeatured)) {

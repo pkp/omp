@@ -6,7 +6,7 @@
 			"type": "string",
 			"validation": [
 				"nullable",
-				"in:title-1,title-2,datePublished-1,datePublished-2,seriesPosition-1,seriesPosition-2"
+				"in:title-ASC,title-DESC,datePublished-ASC,datePublished-DESC,seriesPosition-ASC,seriesPosition-DESC"
 			]
 		},
 		"codeType": {
