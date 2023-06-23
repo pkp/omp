@@ -1,8 +1,167 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
+# Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-06-24 08:49+0000\n"
+"Last-Translator: Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>\n"
+"Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/default/"
+"fr_FR/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "default.contextSettings.authorGuidelines"
+msgstr ""
+"<p>Les auteurs sont invités à effectuer une soumission à cette presse. Les "
+"soumissions considérées comme adaptées seront envoyées pour évaluation par "
+"les pairs avant de déterminer si elles seront acceptées ou rejetées.</"
+"p><p>Avant de soumettre une soumission, les auteurs sont responsables de "
+"l'obtention de l'autorisation de publier tout le matériel inclus dans la "
+"soumission tels des photos, des documents et des ensembles de données. Tous "
+"les auteurs identifiés sur la soumission doivent consentir à être identifiés "
+"comme auteur. Le cas échéant, la recherche doit être approuvée par un comité "
+"d'éthique approprié conformément aux exigences légales du pays de l'étude.</"
+"p><p>Un éditeur peut rejeter une soumission si elle ne répond pas aux normes "
+"minimales de qualité. Avant de soumettre, veuillez vous assurer que la "
+"portée et le plan du livre sont correctement structurés et articulés. Le "
+"titre doit être concis et le résumé doit pouvoir se suffire à lui-même. Cela "
+"augmentera la probabilité que des experts acceptent d'évaluer le livre. "
+"Lorsque vous êtes convaincu que votre soumission répond à cette norme, "
+"veuillez suivre la liste de contrôle ci-dessous pour préparer votre "
+"soumission.</p>"
+
+msgid "default.contextSettings.checklist"
+msgstr ""
+"<p>Toutes les soumissions doivent répondre aux exigences suivantes.</"
+"p><ul><li>Cette soumission répond aux exigences décrites dans les <a href=\""
+"{$submissionGuidelinesUrl}\">Consignes aux auteurs</a>.</li ><li>Cette "
+"soumission n'a pas encore été publiée et n'est pas en cours d'examen par un "
+"autre éditeur.</li><li>Toutes les références ont été vérifiées pour leur "
+"exactitude et leur exhaustivité.</li><li>Tous les tableaux et figures ont "
+"été numérotés et nommés.</li><li>Les permissions requises ont été obtenues "
+"pour publier toutes les photographies, ensembles de données et autres "
+"éléments fournis avec cette soumission.</li></ul>"
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+"Vous souhaitez soumettre une contribution à cet éditeur ? Nous vous "
+"recommandons de lire la page <a href=\"{$indexUrl}/{$contextPath}/about\">À "
+"propos de cet éditeur</a> pour connaitre sa politique éditoriale ainsi que "
+"la page <a href=\"{$indexUrl}/{$contextPath}/about/submissions#"
+"authorGuidelines\">Consignes aux auteurs</a>. Les auteurs doivent <a href=\""
+"{$indexUrl}/{$contextPath}/user/register\">s'inscrire</a> auprès de "
+"l'éditeur avant d'envoyer une soumission ou, s'ils sont déjà inscrits, "
+"simplement <a href=\"{$indexUrl}/index/login\">se connecter</a> et débuter "
+"la procédure (en 5 étapes)."
+
+msgid "default.genres.bibliography"
+msgstr "Bibliographie"
+
+msgid "default.genres.manuscript"
+msgstr "Manuscrit de livre"
+
+msgid "default.genres.chapter"
+msgstr "Manuscrit de chapitre"
+
+msgid "default.genres.glossary"
+msgstr "Glossaire"
+
+msgid "default.genres.index"
+msgstr "Index"
+
+msgid "default.genres.preface"
+msgstr "Préface"
+
+#, fuzzy
+msgid "default.genres.prospectus"
+msgstr "Prospectus"
+
+msgid "default.genres.table"
+msgstr "Tableau"
+
+msgid "default.genres.figure"
+msgstr "Figure"
+
+msgid "default.genres.photo"
+msgstr "Photographie"
+
+msgid "default.genres.illustration"
+msgstr "Illustration"
+
+msgid "default.genres.other"
+msgstr "Autre"
+
+msgid "default.groups.plural.manager"
+msgstr "Responsables de presses"
+
+msgid "default.groups.name.manager"
+msgstr "Responsable de presses"
+
+msgid "default.genres.appendix"
+msgstr "Annexes"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Auteur du chapitre"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Auteurs du chapitre"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "AC"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Directeur d'ouvrage"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Directeurs d'ouvrage"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "DO"
+
+msgid "default.groups.abbrev.manager"
+msgstr "RP"
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+"<p>Les noms et adresses courriel saisis sur ce site de presses seront "
+"utilisés exclusivement pour les fins convenues de celles-ci. Ils ne seront "
+"pas utilisés pour d'autres fins ou transmis à une tierce partie.</p>"
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr ""
+"Ces presses fournissent un accès libre et immédiat à leur contenu en partant "
+"du principe que diffuser librement la recherche auprès du public contribue à "
+"élargir les échanges de connaissances à l'échelle mondiale."
+
+msgid "default.contextSettings.forReaders"
+msgstr ""
+"Nous encourageons les lecteurs à s'abonner au service de notification de cet "
+"éditeur. Utilisez le <a href=\"{$indexUrl}/{$contextPath}/user/register\""
+">lien d'inscription</a> situé en haut de la page d'accueil de cet éditeur. "
+"Cette inscription permettra au lecteur de recevoir par courriel la table des "
+"matières de chaque nouvelle publication de cet éditeur. Cette liste permet "
+"également à l'éditeur de revendiquer un certain niveau de soutien ou de "
+"lectorat. Vous pouvez consulter <a href=\"{$indexUrl}/{$contextPath}/about/"
+"submissions#privacyStatement\">la déclaration de confidentialité </a> de "
+"l'éditeur qui stipule que les noms et adresses courriel de ses lecteurs ne "
+"seront pas utilisés à d'autres fins."
+
+msgid "default.contextSettings.forLibrarians"
+msgstr ""
+"Nous encourageons les personnels des bibliothèques de recherche à ajouter "
+"cet éditeur à la liste des ressources numériques de leurs bibliothèques. De "
+"plus, ce système de publication open source peut répondre aux besoins des "
+"bibliothèques souhaitant héberger une solution d'édition pour leurs "
+"chercheurs (voir <a href=\"http://pkp.sfu.ca/omp\">Open Monograph Press</a>)."
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Évaluateur externe"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Évaluateurs externes"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "ÉvEx"
