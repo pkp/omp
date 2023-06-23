@@ -1,8 +1,49 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
+# Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-06-24 08:49+0000\n"
+"Last-Translator: Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>\n"
+"Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/api/fr_FR/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "api.publications.403.submissionsDidNotMatch"
+msgstr ""
+"La publication que vous avez demandée ne fait pas partie de cette soumission."
+
+msgid "api.submissions.400.submissionIdsRequired"
+msgstr ""
+"Vous devez fournir un ou plusieurs identifiants de soumission à ajouter au "
+"catalogue."
+
+msgid "api.submissions.400.submissionsNotFound"
+msgstr ""
+"Une ou plusieurs soumissions que vous avez spécifiées n'ont pas pu être "
+"trouvées."
+
+msgid "api.submissions.400.wrongContext"
+msgstr "La soumission que vous avez demandée n'est pas dans cette presse."
+
+msgid "api.emails.403.disabled"
+msgstr ""
+"La fonctionnalité de notification par courriel n'a pas été activée pour "
+"cette presse."
+
+msgid "api.emailTemplates.403.notAllowedChangeContext"
+msgstr ""
+"Vous n'êtes pas autorisé à déplacer ce modèle d'e-mail vers une autre presse."
+
+msgid "api.publications.403.contextsDidNotMatch"
+msgstr ""
+"La publication que vous avez demandée ne fait pas partie de cette presse."
+
+msgid "api.submissions.403.cantChangeContext"
+msgstr "Vous ne pouvez pas changer la presse d'une soumission."
+
+msgid "api.submission.400.inactiveSection"
+msgstr "Cette section ne reçoit plus de soumissions."
