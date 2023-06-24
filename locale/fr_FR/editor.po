@@ -1,8 +1,217 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
+# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-06-25 13:49+0000\n"
+"Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
+"Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/editor/fr_FR/"
+">\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Annuler la requête"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Actions et options globales de la soumission."
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Actions et options propres à un fichier individuel."
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr ""
+"Choisissez un évaluateur ci-dessus et cliquez sur le bouton « Choisir "
+"l'évaluateur » pour continuer."
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr ""
+"Vous entamez le processus d'évaluation interne de cette soumission. La liste "
+"des fichiers faisant partie de cette soumission est affichée ci-dessous. Ils "
+"peuvent être sélectionnés pour être révisés."
+
+msgid "editor.monograph.legend.participants"
+msgstr ""
+"Afficher et gérer les participants à cette soumission : auteurs, rédacteurs, "
+"designers, etc."
+
+msgid "editor.submission.introduction"
+msgstr ""
+"Lors de la soumission, l'éditeur, après avoir consulté les fichiers soumis, "
+"choisit l'action appropriée (qui inclut la notification à l'auteur) : "
+"Envoyer à évaluation interne (sélection des fichiers pour évaluation interne)"
+" ; Envoyer à évaluation externe (sélection des fichiers pour évaluation "
+"externe) ; Accepter la soumission (sélection des fichiers pour l'étape "
+"éditoriale) ; ou Refuser la soumission (archivage de la soumission)."
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr ""
+"Tous les fichiers qui ont déjà été téléchargés à n'importe quelle étape de "
+"la soumission peuvent être ajoutés à la liste de vérification des épreuves "
+"en cochant la case « Inclure » ci-dessous et en cliquant sur « Rechercher ». "
+"Tous les fichiers disponibles seront répertoriés et pourront être "
+"sélectionnés pour inclusion."
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr ""
+"Différents formats de publication, tels que couverture rigide, couverture "
+"souple et format numérique, peuvent être téléchargés dans la section Formats "
+"de publication ci-dessous. Vous pouvez utiliser la grille des formats de "
+"publication suivante comme aide-mémoire pour savoir ce qu'il reste à faire "
+"pour publier un format de publication."
+
+msgid "editor.submissionArchive"
+msgstr "Archives des soumissions"
+
+msgid "editor.monograph.clearReview"
+msgstr "Supprimer l'évaluateur"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Saisir la recommandation"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Saisir la recommendation de l'évaluateur"
+
+msgid "editor.monograph.recommendation"
+msgstr "Recommendation"
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Remplacer l'évaluateur"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Recommandations/commentaires de l'éditeur pour l'évaluateur"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Télécharger l'évaluation"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Options d'évaluation par les pairs"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Fichiers d'épreuves"
+
+msgid "editor.monograph.internalReview"
+msgstr "Procéder à l'évaluation interne"
+
+msgid "editor.monograph.externalReview"
+msgstr "Procéder à l'évaluation externe"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Choisir les fichiers d'épreuves finales"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Fichiers d'épreuves finales actuels"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Fichiers en cours"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Message à l'utilisateur"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Actions de soumission"
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Actions de section"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr ""
+"Les options associées à une section particulière, comme le téléchargement de "
+"fichiers ou l'ajout d'utilisateurs."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Actions de l'élément"
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr ""
+"Visualiser et gérer l'entrée du catalogue de soumission, y compris les "
+"métadonnées et les formats de publication"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr ""
+"Visualiser et gérer les métadonnées, les notes, les notifications et "
+"l'historique des soumissions"
+
+msgid "editor.monograph.legend.add"
+msgstr "Télécharger un fichier dans la section"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Ajouter un utilisateur à la section"
+
+msgid "editor.monograph.legend.settings"
+msgstr ""
+"Afficher et accéder aux paramètres de l'élément, tels que les informations "
+"et les options de suppression"
+
+msgid "editor.monograph.legend.more_info"
+msgstr ""
+"Plus d'informations : notes sur les fichiers, options de notification et "
+"historique"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr ""
+"Informations sur le fichier : notes, options de notification et historique ("
+"aucune note n'a encore été ajoutée)"
+
+msgid "editor.monograph.legend.notes"
+msgstr ""
+"Informations sur le fichier : notes, options de notification et historique ("
+"notes disponibles)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr ""
+"Informations sur le fichier : notes, options de notification et historique ("
+"nouvelles notes ajoutées depuis la dernière visite)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Modifier l'élément"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Supprimer l'élément"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Action terminée"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Action en cours ou non encore terminée"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Fichier téléchargé par le rôle dans le titre de la colonne de la grille"
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Copie au propre"
+
+msgid "editor.monograph.proofs"
+msgstr "Épreuves"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Approbation et publication"
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr ""
+"Ajoutez les formats de publication (par exemple, numérique, livre de poche) "
+"pour lesquels le maquettiste prépare des épreuves pour relecture. Avant "
+"qu'un format ne soit rendu <em>Disponible</em> (c'est-à-dire publié), les "
+"<em>Épreuves</em> doivent être cochées comme approuvées et l'entrée de "
+"<em>Catalogue</em> pour le format doit être cochée comme publiée."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Choisir les modalités de téléchargement"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Choisir les modalités"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Ajouter une réponse"
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr ""
+"Le public identifié comme '{$publicIdentifier}' existe déjà pour un autre "
+"objet du même type. Veuillez choisir des identifiants uniques pour les "
+"objets du même type dans votre maison d'édition."
+
+msgid "editor.submissions.assignedTo"
+msgstr "Assigné à un/e éditeur/éditrice"
