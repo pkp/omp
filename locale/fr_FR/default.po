@@ -1,9 +1,10 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
 # Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>, 2023.
+# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-06-24 08:49+0000\n"
-"Last-Translator: Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>\n"
+"PO-Revision-Date: 2023-06-26 18:49+0000\n"
+"Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/default/"
 "fr_FR/>\n"
 "Language: fr_FR\n"
@@ -75,9 +76,8 @@ msgstr "Index"
 msgid "default.genres.preface"
 msgstr "Préface"
 
-#, fuzzy
 msgid "default.genres.prospectus"
-msgstr "Prospectus"
+msgstr "Plan"
 
 msgid "default.genres.table"
 msgstr "Tableau"
@@ -165,3 +165,27 @@ msgstr "Évaluateurs externes"
 
 msgid "default.groups.abbrev.externalReviewer"
 msgstr "ÉvEx"
+
+msgid "default.groups.name.editor"
+msgstr "Responsable éditorial/e"
+
+msgid "default.groups.plural.editor"
+msgstr "Responsables éditoriaux/ales"
+
+msgid "default.groups.abbrev.editor"
+msgstr "RE"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Éditeur/rice de la collection"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Éditeurs/trices de collections"
+
+msgid "default.groups.name.subscriptionManager"
+msgstr "Gestionnaire d'abonnements"
+
+msgid "default.groups.plural.subscriptionManager"
+msgstr "Gestionnaires d'abonnements"
+
+msgid "default.groups.abbrev.subscriptionManager"
+msgstr "GesAb"
