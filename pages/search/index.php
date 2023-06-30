@@ -20,6 +20,5 @@
 switch ($op) {
     case 'index':
     case 'search':
-        define('HANDLER_CLASS', 'APP\pages\search\SearchHandler');
-        break;
+        return new APP\pages\search\SearchHandler();
 }

@@ -19,6 +19,5 @@
 
 switch ($op) {
     case 'plugin':
-        define('HANDLER_CLASS', 'APP\pages\payment\PaymentHandler');
-        break;
+        return new APP\pages\payment\PaymentHandler();
 }

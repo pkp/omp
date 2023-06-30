@@ -20,6 +20,5 @@
 
 switch ($op) {
     case 'index':
-        define('HANDLER_CLASS', 'APP\pages\index\IndexHandler');
-        break;
+        return new APP\pages\index\IndexHandler();
 }

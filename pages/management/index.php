@@ -25,16 +25,13 @@ switch ($op) {
     case 'series':
     case 'settings':
     case 'access':
-        define('HANDLER_CLASS', 'APP\pages\management\SettingsHandler');
-        break;
+        return new APP\pages\management\SettingsHandler();
     case 'tools':
     case 'importexport':
     case 'statistics':
     case 'permissions':
     case 'resetPermissions':
-        define('HANDLER_CLASS', 'PKP\pages\management\PKPToolsHandler');
-        break;
+        return new PKP\pages\management\PKPToolsHandler();
     case 'navigation':
-        define('HANDLER_CLASS', 'APP\pages\management\NavigationHandler');
-        break;
+        return new APP\pages\management\NavigationHandler();
 }

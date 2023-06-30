@@ -26,11 +26,9 @@ switch ($op) {
     case 'series':
     case 'thumbnail':
     case 'results':
-        define('HANDLER_CLASS', 'APP\pages\catalog\CatalogHandler');
-        break;
+        return new APP\pages\catalog\CatalogHandler();
     case 'book':
     case 'download':
     case 'view':
-        define('HANDLER_CLASS', 'APP\pages\catalog\CatalogBookHandler');
-        break;
+        return new APP\pages\catalog\CatalogBookHandler();
 }

@@ -20,6 +20,5 @@
 switch ($op) {
     case 'index':
     case 'plugin':
-        define('HANDLER_CLASS', 'APP\pages\gateway\GatewayHandler');
-        break;
+        return new APP\pages\gateway\GatewayHandler($request);
 }

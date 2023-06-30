@@ -20,6 +20,5 @@
 switch ($op) {
     case 'index':
     case 'homepage':
-        define('HANDLER_CLASS', 'APP\pages\manageCatalog\ManageCatalogHandler');
-        break;
+        return new APP\pages\manageCatalog\ManageCatalogHandler();
 }
