@@ -32,6 +32,4 @@ switch ($op) {
     case 'permissions':
     case 'resetPermissions':
         return new PKP\pages\management\PKPToolsHandler();
-    case 'navigation':
-        return new APP\pages\management\NavigationHandler();
 }
