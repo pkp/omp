@@ -1,8 +1,39 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
+# Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>, 2023.
+# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-06-25 13:49+0000\n"
+"Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
+"Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/"
+"blocks-browse/fr_FR/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "plugins.block.browse"
+msgstr "Explorer"
+
+msgid "plugins.block.browse.displayName"
+msgstr "Bloc de navigation"
+
+msgid "plugins.block.browse.description"
+msgstr "Ce plugin fournit des outils de navigation dans la barre latérale."
+
+msgid "plugins.block.browse.settings"
+msgstr "Paramètres"
+
+msgid "plugins.block.browse.settings.title"
+msgstr "Explorer les options"
+
+msgid "plugins.block.browse.category"
+msgstr "Catégories"
+
+msgid "plugins.block.browse.series"
+msgstr "Collections"
+
+msgid "plugins.block.browse.newReleases"
+msgstr "Nouveautés"
