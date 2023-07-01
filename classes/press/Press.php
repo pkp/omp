@@ -25,66 +25,9 @@ namespace APP\press;
 use APP\core\Application;
 use PKP\context\Context;
 use PKP\db\DAORegistry;
-use PKP\facades\Locale;
 
 class Press extends Context
 {
-    /**
-     * Get "localized" press page title (if applicable).
-     *
-     * @return string|null
-     *
-     * @deprecated 3.3.0, use getLocalizedData() instead
-     */
-    public function getLocalizedPageHeaderTitle()
-    {
-        $titleArray = $this->getData('name');
-        foreach ([Locale::getLocale(), $this->getPrimaryLocale()] as $locale) {
-            if (isset($titleArray[$locale])) {
-                return $titleArray[$locale];
-            }
-        }
-        return null;
-    }
-
-    /**
-     * @deprecated Since OMP 3.2.1, use getLocalizedPageHeaderTitle instead.
-     *
-     * @return string
-     */
-    public function getPageHeaderTitle()
-    {
-        return $this->getLocalizedPageHeaderTitle();
-    }
-
-    /**
-     * Get "localized" press page logo (if applicable).
-     *
-     * @return array|null
-     *
-     * @deprecated 3.3.0, use getLocalizedData() instead
-     */
-    public function getLocalizedPageHeaderLogo()
-    {
-        $logoArray = $this->getData('pageHeaderLogoImage');
-        foreach ([Locale::getLocale(), $this->getPrimaryLocale()] as $locale) {
-            if (isset($logoArray[$locale])) {
-                return $logoArray[$locale];
-            }
-        }
-        return null;
-    }
-
-    /**
-     * @deprecated Since OMP 3.2.1, use getLocalizedPageHeaderLogo instead.
-     *
-     * @return array|null
-     */
-    public function getPageHeaderLogo()
-    {
-        return $this->getLocalizedPageHeaderLogo();
-    }
-
     /**
      * Returns true if this press contains the fields required for creating valid
      * ONIX export metadata.
