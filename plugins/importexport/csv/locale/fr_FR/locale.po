@@ -1,8 +1,73 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
+# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-07-02 12:58+0000\n"
+"Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
+"Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-csv/fr_FR/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "plugins.importexport.csv.displayName"
+msgstr "Plugin d'importation de contenu délimité par des tabulations"
+
+msgid "plugins.importexport.csv.cliOnly"
+msgstr ""
+"\n"
+"\t\t<p>Ce plugin ne prend actuellement en charge que les opérations en ligne "
+"de commande. Exécutez...\n"
+"\t\t\t<pre>php tools/importExport.php CSVImportExportPlugin</pre>\n"
+"\t\t\t...pour plus d'informations.</p>\n"
+"\t"
+
+msgid "plugins.importexport.csv.cliUsage"
+msgstr ""
+"Outil de ligne de commande pour l'importation de données CSV dans OMP\n"
+"\t\t\tUtilisation :\n"
+"\t\t\t{$scriptName} [--dry-run] fileName.csv username\n"
+"\t\t\tL'option --dry-run peut être utilisée pour tester sans faire de "
+"changements.\n"
+"\t\t\tSpécifiez le nom d'utilisateur auquel vous souhaitez attribuer les "
+"soumissions.\n"
+
+msgid "plugins.importexport.csv.description"
+msgstr ""
+"Importer les soumissions à partir de données délimitées par des tabulations."
+
+msgid "plugins.importexport.csv.fileDoesNotExist"
+msgstr "Le fichier \"{$filename}\" n'existe pas.  Fermeture de l'application."
+
+msgid "plugins.importexport.csv.unknownUser"
+msgstr "Utilisateur inconnu : \"{$username}\".  Fermeture de l'application."
+
+msgid "plugins.importexport.csv.unknownLocale"
+msgstr "Locale inconnu : \"{$locale}\".  Omettre."
+
+msgid "plugins.importexport.csv.unknownPress"
+msgstr "Maison d'édition inconnue : \"{$contextPath}\".  Omettre."
+
+msgid "plugins.importexport.csv.noGenre"
+msgstr "Le type de livre n'existe pas.  Fermeture  de l'application."
+
+msgid "plugins.importexport.csv.noAuthorGroup"
+msgstr ""
+"Le groupe d'auteurs par défaut n'existe pas dans la maison d'édition {$press}"
+".  Cette soumission n'est pas prise en compte."
+
+msgid "plugins.importexport.csv.noSeries"
+msgstr ""
+"Le chemin de la collection {$seriesPath} n'existe pas.  Impossible de "
+"l'ajouter à cette soumission."
+
+msgid "plugins.importexport.csv.import.submission"
+msgstr "Soumission « {$title} » importée avec succès."
+
+msgid "plugins.importexport.csv.import.success.description"
+msgstr ""
+"L'importation a réussi. Les éléments importés avec succès sont repris dans "
+"la liste ci-dessous."
