@@ -1,8 +1,35 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
+# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-07-02 12:58+0000\n"
+"Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
+"Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/locale/fr_FR/"
+">\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "common.payments"
+msgstr "Paiements"
+
+msgid "monograph.audience"
+msgstr "Public"
+
+msgid "monograph.audience.success"
+msgstr "Les détails du public ont été mis à jour."
+
+msgid "monograph.coverImage"
+msgstr "Image de la page de couverture"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Intervalle du public (de)"
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Qualificatif de l'intervalle du public"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Intervalle du public (à)"
