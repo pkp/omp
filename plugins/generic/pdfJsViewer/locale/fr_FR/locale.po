@@ -1,9 +1,10 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
 # Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>, 2023.
+# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-06-24 08:49+0000\n"
-"Last-Translator: Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>\n"
+"PO-Revision-Date: 2023-07-02 12:58+0000\n"
+"Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/"
 "generic-pdfJsViewer/fr_FR/>\n"
 "Language: fr_FR\n"
@@ -17,3 +18,6 @@ msgid "plugins.generic.pdfJsViewer.description"
 msgstr ""
 "Ce plugin fournit un support de rendu pour les fichiers PDF utilisant la "
 "bibliothèque PDF.js."
+
+msgid "plugins.generic.pdfJsViewer.displayName"
+msgstr "Plugin PDF.js l visionneuse de PDF"
