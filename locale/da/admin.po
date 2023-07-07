@@ -1,12 +1,12 @@
-# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022.
+# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022, 2023.
 # Jesper B. Thestrup <jbt@kb.dk>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2023-02-17 03:04+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2023-07-08 04:04+0000\n"
+"Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/admin/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -93,8 +93,8 @@ msgstr "Der kræves en sti."
 
 msgid "admin.contexts.form.pathAlphaNumeric"
 msgstr ""
-"Stien må kun indeholde alfanumeriske tegn, understregninger og bindestreger "
-"og skal begynde og slutte med et alfanumerisk tegn."
+"Stien må kun bestå af bogstaver, tal samt \"_\" og \"-\". Den skal begynde "
+"og slutte med et bogstav eller tal."
 
 msgid "admin.contexts.form.pathExists"
 msgstr "Den valgte sti bruges allerede af en anden udgiver."
