@@ -27,7 +27,7 @@ msgstr ""
 "mail, og din adgangskode vil ikke blive ændret. Klik på nedenstående URL-"
 "adresse, hvis adgangskoden skal ændres.<br />\n"
 "<br />\n"
-"Nulstil min password: {$lostPasswordUrl}<br />\n"
+"Nulstil min password: {$passwordResetUrl}<br />\n"
 "<br />\n"
 "{$siteContactName}"
 
