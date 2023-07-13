@@ -20,7 +20,7 @@ msgstr ""
 "<br /> <br /> Če te zahteve niste podali vi, prezrite to e-poštno sporočilo "
 "in vaše geslo ne bo spremenjeno. Če želite ponastaviti geslo, kliknite "
 "spodnjo povezavo.<br /> <br /> Ponastavi geslo: <a href="
-"\"{$lostPasswordUrl}\">{$lostPasswordUrl}</a><br /> <br /> "
+"\"{$passwordResetUrl}\">{$passwordResetUrl}</a><br /> <br /> "
 "{$siteContactName}"
 
 msgid "emails.passwordReset.subject"

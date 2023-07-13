@@ -23,7 +23,7 @@ msgstr ""
 "contrasinal non se cambiará. Se desexa restablecer o seu contrasinal, faga "
 "clic no seguinte URL.<br />\n"
 "<br />\n"
-"Restablecer o meu contrasinal: {$lostPasswordUrl}<br />\n"
+"Restablecer o meu contrasinal: {$passwordResetUrl}<br />\n"
 "<br />\n"
 "{$siteContactName}"
 

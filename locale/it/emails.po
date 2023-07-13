@@ -24,7 +24,7 @@ msgstr ""
 "verrà modificata. Se desideri reimpostare la password, fa' clic sull'URL "
 "sottostante.<br />\n"
 "<br />\n"
-"Reimposta la password: {$lostPasswordUrl}<br />\n"
+"Reimposta la password: {$passwordResetUrl}<br />\n"
 "<br />\n"
 "{$signature}"
 

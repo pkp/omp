@@ -27,7 +27,7 @@ msgstr ""
 "será alterada. Caso deseje redefinir sua senha, clique no endereço a seguir."
 "<br />\n"
 "<br />\n"
-"Redefinir senha: {$lostPasswordUrl}<br />\n"
+"Redefinir senha: {$passwordResetUrl}<br />\n"
 "<br />\n"
 "{$siteContactName}"
 

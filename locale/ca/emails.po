@@ -27,7 +27,7 @@ msgstr ""
 "canviarà la vostra contrasenya. Si voleu restablir la vostra contrasenya, "
 "cliqueu a la URL de sota.<br />\n"
 "<br />\n"
-"Restableix la meva contrasenya: {$lostPasswordUrl}<br />\n"
+"Restableix la meva contrasenya: {$passwordResetUrl}<br />\n"
 "<br />\n"
 "{$siteContactName}"
 
