@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-07-10 09:58+0000\n"
+"PO-Revision-Date: 2023-07-13 12:59+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/locale/fr_FR/"
 ">\n"
@@ -1074,3 +1074,6 @@ msgstr "Il n'y a pas de maison d'édition disponible."
 
 msgid "site.pressView"
 msgstr "Voir le site de l'éditeur"
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} ou {$viewSubmissions}."
