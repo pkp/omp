@@ -212,7 +212,7 @@ class ContextService extends \PKP\services\PKPContextService
         $contextFileManager = new ContextFileManager($context->getId());
 
         $objectDaos = [
-            Repo::publication()->dao,
+            Repo::submission()->dao,
             Repo::section()->dao,
             Repo::submission()->dao,
         ];
@@ -228,13 +228,16 @@ class ContextService extends \PKP\services\PKPContextService
                     ->filterByContextIds([$context->getId()])
                     ->getMany()
                     ->toArray();
-            } else {
+            } elseif ($objectDao instanceof \PKP\section\DAO) {
                 $objects = Repo::section()
                     ->getCollector()
                     ->filterByContextIds([$context->getId()])
                     ->getMany()
                     ->toArray();
+            } else {
+                throw new \Exception('Unknown DAO ' . get_class($objectDao) . ' for cover image!');
             }
+
             foreach ($objects as $object) {
                 if ($object instanceof Submission) {
                     foreach ($object->getData('publications') as $publication) {
@@ -248,14 +251,17 @@ class ContextService extends \PKP\services\PKPContextService
                             );
                         }
                     }
-                } else {
-                    $cover = $object->getImage();
-                    if ($object instanceof \APP\section\Section) {
-                        $basePath = $contextFileManager->getBasePath() . 'series/';
-                    } elseif ($object instanceof \PKP\category\Category) {
-                        $basePath = $contextFileManager->getBasePath() . 'categories/';
-                    }
+                    continue;
                 }
+
+                // $object is a category or section
+                $cover = $object->getImage();
+                if ($object instanceof \APP\section\Section) {
+                    $basePath = $contextFileManager->getBasePath() . 'series/';
+                } elseif ($object instanceof \PKP\category\Category) {
+                    $basePath = $contextFileManager->getBasePath() . 'categories/';
+                }
+
                 if ($cover) {
                     // delete old cover thumbnail
                     $fileManager->deleteByPath($basePath . $cover['thumbnailName']);
@@ -323,7 +329,6 @@ class ContextService extends \PKP\services\PKPContextService
                     // Update category object to store new thumbnail information.
                     $objectDao->update($object);
                 }
-                unset($object);
             }
         }
     }
