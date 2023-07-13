@@ -22,7 +22,7 @@ msgstr ""
 "değiştirilmeyecektir. Parolanızı sıfırlamak istiyorsanız, aşağıdaki URL'ye "
 "tıklayın.<br />\n"
 "<br />\n"
-"Parolamı sıfırla: {$lostPasswordUrl}<br />\n"
+"Parolamı sıfırla: {$passwordResetUrl}<br />\n"
 "<br />\n"
 "{$siteContactName}"
 

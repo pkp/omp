@@ -27,7 +27,7 @@ msgstr ""
 "no se cambiará. Si desea restablecer su contraseña, haga clic en la "
 "dirección URL que aparece debajo.<br />\n"
 "<br />\n"
-"Restablecer contraseña: {$lostPasswordUrl}<br />\n"
+"Restablecer contraseña: {$passwordResetUrl}<br />\n"
 "<br />\n"
 "{$siteContactName}"
 

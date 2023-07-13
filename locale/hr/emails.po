@@ -26,7 +26,7 @@ msgstr ""
 "biti promijenjena. Ako želite poništiti lozinku, kliknite na donji URL.<br /"
 ">\n"
 "<br />\n"
-"Poništi moju lozinku: {$lostPasswordUrl}<br />\n"
+"Poništi moju lozinku: {$passwordResetUrl}<br />\n"
 "<br />\n"
 "{$siteContactName}"
 

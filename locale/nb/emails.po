@@ -23,7 +23,7 @@ msgstr ""
 "postadressen, og passordet ditt vil ikke bli endret. Klikk på URL-en "
 "nedenfor for å endre passordet. <br />\n"
 "<br />\n"
-"Tilbakestill passordet mitt: {$lostPasswordUrl} <br />\n"
+"Tilbakestill passordet mitt: {$passwordResetUrl} <br />\n"
 "<br />\n"
 "{$siteContactName}"
 

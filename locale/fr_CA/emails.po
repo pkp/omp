@@ -23,7 +23,7 @@ msgstr ""
 "mot de passe demeurera le même. Si vous souhaitez modifier votre mot de "
 "passe, cliquez sur l'adresse URL ci-dessous.<br />\n"
 "<br />\n"
-"Modifier mon mot de passe: {$lostPasswordUrl}<br />\n"
+"Modifier mon mot de passe: {$passwordResetUrl}<br />\n"
 "<br />\n"
 "{$siteContactName}"
 

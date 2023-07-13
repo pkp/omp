@@ -24,7 +24,7 @@ msgstr ""
 "Jeśli nie wysłałeś tej prośby, zignoruj tego maila, Twoje hasło nie zostanie "
 "zmienione. Jeśli chcesz zresetować hasło, kliknij na poniższy URL.<br />\n"
 "<br />\n"
-"Zresetuj moje hasło: {$lostPasswordUrl}<br />\n"
+"Zresetuj moje hasło: {$passwordResetUrl}<br />\n"
 "<br />\n"
 "{$siteContactName}"
 

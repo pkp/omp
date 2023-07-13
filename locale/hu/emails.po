@@ -24,7 +24,7 @@ msgstr ""
 "nem fog megváltozni. Ha szeretné visszaállítani a jelszavát, kattintson az "
 "alábbi URL-re.<br />\n"
 "<br />\n"
-"Jelszavam visszaállítása: {$lostPasswordUrl}<br />\n"
+"Jelszavam visszaállítása: {$passwordResetUrl}<br />\n"
 "<br />\n"
 "{$siteContactName}"
 
