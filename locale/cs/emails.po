@@ -23,7 +23,7 @@ msgstr ""
 "se nezmění. Pokud si heslo přejete obnovit, klikněte, prosím, na odkaz níže."
 "<br />\n"
 "<br />\n"
-"Obnovit mé heslo: {$lostPasswordUrl}<br />\n"
+"Obnovit mé heslo: {$passwordResetUrl}<br />\n"
 "<br />\n"
 " {$siteContactName}"
 
