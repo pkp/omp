@@ -1,8 +1,80 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
+# Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-07-19 13:58+0000\n"
+"Last-Translator: Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>\n"
+"Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"fr_FR/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"Ceci remplacera tous les éventuels paramètres régionaux de la presse "
+"précédemment spécifiés pour ce paramètre régional"
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Assurez-vous qu'au moins une case a été cochée pour chaque tâche assignée au "
+"directeur de collection."
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Désolé, aucune autre langue n'est disponible. Contactez l'administrateur du "
+"site si vous souhaitez ajouter d'autres langues à cette presse."
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Soumissions envoyées pour cette collection"
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Cette langue sera la langue par défaut du site de la presse."
+
+msgid "manager.series.form.reviewFormId"
+msgstr ""
+"Merci de vérifier que vous avez choisi un formulaire d'évaluation valide."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Ne sera pas inclus dans l'index de la presse"
+
+msgid "manager.series.editorRestriction"
+msgstr ""
+"Seuls les éditeurs et les directeurs de collection peuvent soumettre de "
+"nouveaux éléments."
+
+msgid "manager.series.confirmDelete"
+msgstr "Voulez-vous vraiment supprimer définitivement cette collection ?"
+
+msgid "manager.series.indexed"
+msgstr "Indexé"
+
+msgid "manager.series.open"
+msgstr "Soumissions ouvertes"
+
+msgid "manager.series.readingTools"
+msgstr "Outils de lecture"
+
+msgid "manager.series.submissionReview"
+msgstr "Ne sera pas évalué par les pairs"
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "N'exige pas de résumé"
+
+msgid "manager.series.disableComments"
+msgstr "Désactiver les commentaires des lecteurs pour cette collection."
+
+msgid "manager.series.book"
+msgstr "Collection de livres"
+
+msgid "manager.series.create"
+msgstr "Créer une collection"
+
+msgid "manager.series.policy"
+msgstr "Description de la collection"
+
+msgid "manager.series.assigned"
+msgstr "Éditeurs pour cette collection"
