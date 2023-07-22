@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-07-02 12:58+0000\n"
+"PO-Revision-Date: 2023-07-23 09:58+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-csv/fr_FR/>\n"
@@ -56,8 +56,8 @@ msgstr "Le type de livre n'existe pas.  Fermeture  de l'application."
 
 msgid "plugins.importexport.csv.noAuthorGroup"
 msgstr ""
-"Le groupe d'auteurs par défaut n'existe pas dans la maison d'édition {$press}"
-".  Cette soumission n'est pas prise en compte."
+"Le groupe d'auteurs/trices par défaut n'existe pas dans la maison d'édition "
+"{$press}.  Cette soumission n'est pas prise en compte."
 
 msgid "plugins.importexport.csv.noSeries"
 msgstr ""
