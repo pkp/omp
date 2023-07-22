@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-07-22 09:26+0000\n"
+"PO-Revision-Date: 2023-07-23 09:58+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/locale/fr_FR/"
 ">\n"
@@ -44,8 +44,8 @@ msgid "monograph.proofReadingDescription"
 msgstr ""
 "Le responsable de la mise en page transfère ici les fichiers qui sont prêts "
 "pour publication. Utiliser <em>Assigner un vérificateur</em> pour identifier "
-"les auteurs et les autres personnes qui reliront les épreuves et chargerons "
-"les fichiers corrigés pour approbation avant la publication."
+"les auteurs/trices et les autres personnes qui reliront les épreuves et "
+"chargerons les fichiers corrigés pour approbation avant la publication."
 
 msgid "monograph.task.addNote"
 msgstr "Ajouter à la tâche"
@@ -113,7 +113,7 @@ msgid "grid.action.manageSeries"
 msgstr "Configurer les collections de cette maison d'édition"
 
 msgid "user.role.editors"
-msgstr "Rédacteurs/trices"
+msgstr "Éditeurs/trices"
 
 msgid "grid.action.approveProofs"
 msgstr "Voir la grille des épreuves"
@@ -927,13 +927,13 @@ msgid "navigation.catalog.administration.series"
 msgstr "Collection"
 
 msgid "navigation.infoForAuthors"
-msgstr "Pour les auteurs"
+msgstr "Pour les auteurs/trices"
 
 msgid "navigation.infoForLibrarians"
 msgstr "Pour les bibliothécaires"
 
 msgid "navigation.infoForAuthors.long"
-msgstr "Information pour les auteurs"
+msgstr "Information pour les auteurs/trices"
 
 msgid "navigation.infoForLibrarians.long"
 msgstr "Information pour les bibliothécaires"
@@ -988,8 +988,8 @@ msgstr "Soumettre une proposition"
 
 msgid "user.noRoles.submitMonographRegClosed"
 msgstr ""
-"Soumettre une monographie : l'enregistrement des auteurs est actuellement "
-"désactivé."
+"Soumettre une monographie : l'enregistrement des auteurs/trices est "
+"actuellement désactivé."
 
 msgid "user.noRoles.regReviewer"
 msgstr "S'inscrire en tant que rapporteur"
@@ -1005,14 +1005,14 @@ msgstr "Demander les rôles suivants."
 
 msgid "user.register.noContextReviewerInterests"
 msgstr ""
-"Si vous avez demandé à être évaluateur pour une maison d'édition, veuillez "
-"indiquer vos domaines d'intérêt."
+"Si vous avez demandé à être évaluteur/trice pour une maison d'édition, "
+"veuillez indiquer vos domaines d'intérêt."
 
 msgid "user.role.manager"
-msgstr "Responsable de la maison d'édition"
+msgstr "Responsable éditorial"
 
 msgid "user.role.pressEditor"
-msgstr "Responsable d'édition"
+msgstr "Éditeur/trice"
 
 msgid "user.role.subEditor"
 msgstr "Éditeur/trice de collection"
@@ -1024,7 +1024,7 @@ msgid "user.role.productionEditor"
 msgstr "Directeur/trice de production"
 
 msgid "user.role.managers"
-msgstr "Responsables de la maison d'édition"
+msgstr "Responsables éditoriaux"
 
 msgid "user.role.subEditors"
 msgstr "Éditeurs/trices de collection"
@@ -1079,10 +1079,10 @@ msgstr "{$newSubmission} ou {$viewSubmissions}."
 
 msgid "about.submissionPreparationChecklist.description"
 msgstr ""
-"En tant que partie intégrante du processus de soumission, les auteurs "
+"En tant que partie intégrante du processus de soumission, les auteurs/trices "
 "doivent s'assurer de la conformité de leur soumission avec tous les éléments "
-"suivants, et les soumissions peuvent être retournées aux auteurs qui ne sont "
-"pas conformes à ces directives."
+"suivants, et les soumissions peuvent être retournées aux auteurs/trices qui "
+"ne sont pas conformes à ces directives."
 
 msgid "about.aboutOMPPress"
 msgstr ""
@@ -1330,7 +1330,7 @@ msgid "about.onlineSubmissions.viewSubmissions"
 msgstr "Voir vos soumissions en attente"
 
 msgid "about.authorGuidelines"
-msgstr "Directives aux auteurs"
+msgstr "Directives aux auteurs/trices"
 
 msgid "about.submissionPreparationChecklist"
 msgstr "Liste de vérification de la soumission"
@@ -1455,12 +1455,12 @@ msgstr ""
 
 msgid "log.editor.decision"
 msgstr ""
-"Une décision du rédacteur ({$decision}) pour la monographie {$submissionId} "
-"a été enregistré par {$editorName}."
+"Une décision de l'éditeur/trice ({$decision}) pour la monographie "
+"{$submissionId} a été enregistré par {$editorName}."
 
 msgid "log.editor.recommendation"
 msgstr ""
-"Une recommendation du rédacteur ({$decision}) pour la monographie "
+"Une recommendation de l'éditeur/trice ({$decision}) pour la monographie "
 "{$submissionId} a été enregistré par {$editorName}."
 
 msgid "log.editor.archived"
@@ -1468,7 +1468,8 @@ msgstr "La soumission {$submissionId} a été archivée."
 
 msgid "log.editor.editorAssigned"
 msgstr ""
-"{$editorName} a été assigné comme rédacteur de la soumission {$submissionId}."
+"{$editorName} a été assigné comme éditeur/trice de la soumission "
+"{$submissionId}."
 
 msgid "log.proofread.complete"
 msgstr ""
