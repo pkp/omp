@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-07-10 09:58+0000\n"
+"PO-Revision-Date: 2023-07-22 07:37+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "fr_FR/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "les renseignements sur les chapitres sont ajoutés plus tard)."
 
 msgid "submission.artwork.permissions"
-msgstr "Permissions"
+msgstr "Autorisations"
 
 msgid "submission.chapter.editChapter"
 msgstr "Modifier le chapitre"
@@ -399,7 +399,7 @@ msgid "catalog.browseTitles"
 msgstr "{$numTitles} titres"
 
 msgid "publication.catalogEntry"
-msgstr "Catalogue"
+msgstr "Entrée de catalogue"
 
 msgid "publication.catalogEntry.success"
 msgstr "Les détails de l'entrée dans le catalogue ont été mis à jour."
@@ -519,7 +519,7 @@ msgid "chapter.pages"
 msgstr "Pages"
 
 msgid "editor.submission.decision.sendInternalReview"
-msgstr "Envoyer au rapporteur interne"
+msgstr "Envoyer à l'évaluation interne"
 
 msgid "editor.submission.decision.sendInternalReview.description"
 msgstr "Cette soumission est prête à être envoyée pour évaluation interne."
