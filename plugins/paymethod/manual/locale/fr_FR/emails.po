@@ -1,9 +1,10 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
 # Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>, 2023.
+# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-07-19 13:58+0000\n"
-"Last-Translator: Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>\n"
+"PO-Revision-Date: 2023-07-23 09:58+0000\n"
+"Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/"
 "paymethod-manual-emails/fr_FR/>\n"
 "Language: fr_FR\n"
@@ -30,8 +31,8 @@ msgstr ""
 
 msgid "emails.manualPaymentNotification.description"
 msgstr ""
-"Ce modèle de courriel est utilisé pour notifier un responsable de maison "
-"d'édition qu'un paiement manuel a été demandé."
+"Ce modèle de courriel est utilisé pour notifier un/e responsable éditorial "
+"qu'un paiement manuel a été demandé."
 
 msgid "emailTemplate.variable.manualPaymentPlugin.senderUsername"
 msgstr "Le nom d'utilisateur de l’utilisateur qui a effectué le paiement"
