@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-07-22 07:37+0000\n"
+"PO-Revision-Date: 2023-07-22 09:26+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "fr_FR/>\n"
@@ -29,7 +29,7 @@ msgid "submission.supportingAgencies"
 msgstr "Organismes de soutien"
 
 msgid "author.volumeEditor"
-msgstr "Éditeur/trice scientifique"
+msgstr "Directeur/trice de l’ouvrage"
 
 msgid "submission.submit.coverNote"
 msgstr "Note de présentation pour l'éditeur"
