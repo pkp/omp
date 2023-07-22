@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-07-22 07:37+0000\n"
+"PO-Revision-Date: 2023-07-23 09:58+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/editor/fr_FR/"
 ">\n"
@@ -24,8 +24,8 @@ msgstr "Actions et options propres à un fichier individuel."
 
 msgid "editor.monograph.selectReviewerInstructions"
 msgstr ""
-"Choisissez un évaluateur ci-dessus et cliquez sur le bouton « Choisir "
-"l'évaluateur » pour continuer."
+"Choisissez un évaluteur/trice ci-dessus et cliquez sur le bouton « Choisir "
+"l'évaluteur/trice » pour continuer."
 
 msgid "editor.monograph.internalReviewDescription"
 msgstr ""
@@ -35,8 +35,8 @@ msgstr ""
 
 msgid "editor.monograph.legend.participants"
 msgstr ""
-"Afficher et gérer les participants à cette soumission : auteurs, rédacteurs, "
-"maquettistes, etc."
+"Afficher et gérer les participants à cette soumission : auteurs/trices, é"
+"diteurs/trices, maquettistes, etc."
 
 msgid "editor.submission.introduction"
 msgstr ""
@@ -67,22 +67,22 @@ msgid "editor.submissionArchive"
 msgstr "Archives des soumissions"
 
 msgid "editor.monograph.clearReview"
-msgstr "Supprimer l'évaluateur"
+msgstr "Supprimer l'évaluteur/trice"
 
 msgid "editor.monograph.enterRecommendation"
 msgstr "Saisir la recommandation"
 
 msgid "editor.monograph.enterReviewerRecommendation"
-msgstr "Saisir la recommendation de l'évaluateur"
+msgstr "Saisir la recommendation de l'évaluteur/trice"
 
 msgid "editor.monograph.recommendation"
 msgstr "Recommandation"
 
 msgid "editor.monograph.replaceReviewer"
-msgstr "Remplacer l'évaluateur"
+msgstr "Remplacer l'évaluteur/trice"
 
 msgid "editor.monograph.editorToEnter"
-msgstr "Recommandations/commentaires de l'éditeur pour l'évaluateur"
+msgstr "Recommandations/commentaires de l'éditeur pour l'évaluteur/trice"
 
 msgid "editor.monograph.uploadReviewForReviewer"
 msgstr "Télécharger l'évaluation"
