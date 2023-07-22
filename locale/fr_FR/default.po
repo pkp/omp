@@ -3,7 +3,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-06-26 18:49+0000\n"
+"PO-Revision-Date: 2023-07-22 07:37+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/default/"
 "fr_FR/>\n"
@@ -189,3 +189,6 @@ msgstr "Gestionnaires d'abonnements"
 
 msgid "default.groups.abbrev.subscriptionManager"
 msgstr "GesAb"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "RS"
