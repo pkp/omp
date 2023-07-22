@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-06-25 13:49+0000\n"
+"PO-Revision-Date: 2023-07-22 07:37+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/editor/fr_FR/"
 ">\n"
@@ -35,8 +35,8 @@ msgstr ""
 
 msgid "editor.monograph.legend.participants"
 msgstr ""
-"Afficher et gérer les participants à cette soumission : auteurs, rédacteurs, "
-"designers, etc."
+"Afficher et gérer les participants à cette soumission : auteurs, rédacteurs, "
+"maquettistes, etc."
 
 msgid "editor.submission.introduction"
 msgstr ""
@@ -76,7 +76,7 @@ msgid "editor.monograph.enterReviewerRecommendation"
 msgstr "Saisir la recommendation de l'évaluateur"
 
 msgid "editor.monograph.recommendation"
-msgstr "Recommendation"
+msgstr "Recommandation"
 
 msgid "editor.monograph.replaceReviewer"
 msgstr "Remplacer l'évaluateur"
