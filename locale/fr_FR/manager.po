@@ -3,7 +3,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-07-23 09:58+0000\n"
+"PO-Revision-Date: 2023-07-23 13:25+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "fr_FR/>\n"
@@ -1221,7 +1221,7 @@ msgid "manager.setup.lists.success"
 msgstr "Les paramètres de liste ont été mis à jour."
 
 msgid "manager.setup.look"
-msgstr "Aspect et convivialité"
+msgstr "Apparence"
 
 msgid "manager.setup.look.description"
 msgstr ""
