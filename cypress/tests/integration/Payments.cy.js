@@ -37,7 +37,8 @@ describe('Payments', function() {
         cy.waitJQuery();
         cy.get('#publicationFormats-button').click();
         cy.get('.pkp_linkaction_editApprovedProof').click();
-        cy.get('.pkp_modal #directSales').click();
+        cy.wait(1000);
+        cy.get('.pkp_modal #directSales').click().pause();
         cy.get('.pkp_modal input[type="text"][name="price"]').type('9.99');
         cy.get('.pkp_modal .formButtons .submitFormButton').click();
         cy.get('#publication .pkpButton').contains('Publish').click();
