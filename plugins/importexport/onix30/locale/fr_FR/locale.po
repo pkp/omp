@@ -1,8 +1,80 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
+# Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-07-11 03:03+0000\n"
+"Last-Translator: Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>\n"
+"Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-onix30/fr_FR/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "plugins.importexport.onix30.displayName"
+msgstr "Plugin d'export des monographies en ONIX 3.0"
+
+msgid "plugins.importexport.onix30.description"
+msgstr "Exporter les métadonnées de monographie au format ONIX 3.0"
+
+msgid "plugins.importexport.onix30.error.unknownPress"
+msgstr "Le chemin indiqué \"{$contextPath}\" n'existe pas."
+
+msgid "plugins.importexport.onix30.cliUsage"
+msgstr ""
+"Utilisation : {$scriptName} {$pluginName} [xmlFileName] [pressPath] "
+"[monographId] "
+
+msgid "plugins.importexport.onix30.cliError"
+msgstr "Erreur :"
+
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr "Impossible d'écrire dans le fichier \"{$fileName}\"."
+
+msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgstr ""
+"Aucune monographie ne correspond à l'ID de monographie indiqué \""
+"{$monographId}\"."
+
+msgid "plugins.importexport.onix30.noFormats"
+msgstr "Les monographies sans formats de publication ne sont pas affichées."
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Sélectionnez les monographies à exporter"
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr "Sélectionnez une monographie à exporter :"
+
+msgid "plugins.importexport.onix30.exportButton"
+msgstr "Exporter"
+
+msgid "plugins.importexport.onix30.exportFormats"
+msgstr "Formats disponibles"
+
+msgid "plugins.importexport.onix30.unavailable"
+msgstr "Non disponible"
+
+msgid "plugins.importexport.onix30.validityStatus"
+msgstr "Statut ONIX"
+
+msgid "plugins.importexport.onix30.formatValid"
+msgstr "Valide"
+
+msgid "plugins.importexport.onix30.formatInvalid"
+msgstr "Invalide"
+
+msgid "plugins.importexport.onix30.pressMissingFields"
+msgstr ""
+"Il manque à cette presse certaines informations requises. Merci d'accéder "
+"aux <a href=\"{$url}\">Paramètres de la presse</a> et de compléter les "
+"données manquantes."
+
+msgid "plugins.importexport.onix30.form.addresseeField"
+msgstr "Destinataire de cet export"
+
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
+msgstr ""
+"Vous pouvez laisser ce champ vide et créer un export global.  Cet export "
+"n'aura alors pas d'élément &lt;Addressee&gt. "

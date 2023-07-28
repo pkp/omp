@@ -1,9 +1,9 @@
 # Carla Marques <carla.marques@usdb.uminho.pt>, 2021, 2022, 2023.
-# José Carvalho <jcarvalho@keep.pt>, 2022.
+# José Carvalho <jcarvalho@keep.pt>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-02-10 12:35+0000\n"
-"Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
+"PO-Revision-Date: 2023-07-25 09:58+0000\n"
+"Last-Translator: José Carvalho <jcarvalho@keep.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/locale/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -462,7 +462,7 @@ msgid "grid.action.addSpotlight"
 msgstr "Adicionar Destaque"
 
 msgid "manager.series.open"
-msgstr "Submissões Abertas"
+msgstr "Submissões abertas"
 
 msgid "manager.series.indexed"
 msgstr "Indexado"

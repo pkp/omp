@@ -1,8 +1,1795 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
+# Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>, 2023.
+# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-07-23 13:25+0000\n"
+"Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
+"Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"fr_FR/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"Ceci remplacera tous les éventuels paramètres régionaux de la presse "
+"précédemment spécifiés pour ce paramètre régional"
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Assurez-vous qu'au moins une case a été cochée pour chaque tâche assignée à "
+"l'éditeur/trice de collection."
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Désolé, aucune autre langue n'est disponible. Contactez l'administrateur du "
+"site si vous souhaitez ajouter d'autres langues à cette presse."
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Soumissions envoyées pour cette collection"
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Cette langue sera la langue par défaut du site de la presse."
+
+msgid "manager.series.form.reviewFormId"
+msgstr ""
+"Merci de vérifier que vous avez choisi un formulaire d'évaluation valide."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Ne sera pas inclus dans l'index de la presse"
+
+msgid "manager.series.editorRestriction"
+msgstr ""
+"Seuls les éditeurs/trices et les éditeurs/trices de collection peuvent "
+"soumettre de nouveaux éléments."
+
+msgid "manager.series.confirmDelete"
+msgstr "Voulez-vous vraiment supprimer définitivement cette collection ?"
+
+msgid "manager.series.indexed"
+msgstr "Indexé"
+
+msgid "manager.series.open"
+msgstr "Soumissions actives"
+
+msgid "manager.series.readingTools"
+msgstr "Outils de lecture"
+
+msgid "manager.series.submissionReview"
+msgstr "Ne sera pas évalué par les pairs"
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "N'exige pas de résumé"
+
+msgid "manager.series.disableComments"
+msgstr "Désactiver les commentaires des lecteurs pour cette collection."
+
+msgid "manager.series.book"
+msgstr "Collection de livres"
+
+msgid "manager.series.create"
+msgstr "Créer une collection"
+
+msgid "manager.series.policy"
+msgstr "Description de la collection"
+
+msgid "manager.series.assigned"
+msgstr "Éditeurs pour cette collection"
+
+msgid "emailTemplate.variable.context.contextAcronym"
+msgstr "Initiales de la maison d'édition"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "L'adresse mail du contact principal de la maison d'édition"
+
+msgid "emailTemplate.variable.context.mailingAddress"
+msgstr "L'adresse postale de la maison d'édition"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "Nom du type de paiement"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "Montant dû"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "Monnaie du montant dû, par exemple EUR"
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr "Nom du site web lorsque plusieurs maisons d'édition sont hébergées"
+
+msgid "emailTemplate.variable.statisticsReportNotify.publicationStatsLink"
+msgstr "Le lien vers la page des statistiques sur les livres"
+
+msgid "mailable.validateEmailContext.name"
+msgstr "Valider l'e-mail (enregistrement auprès de la maison d'édition)"
+
+msgid "doi.displayName"
+msgstr "DOI"
+
+msgid "doi.manager.displayName"
+msgstr "DOI"
+
+msgid "doi.description"
+msgstr ""
+"Ce plugin permet d'attribuer des identifiants d'objets numériques (DOI) aux "
+"monographies, chapitres, formats de publication et fichiers dans OMP."
+
+msgid "doi.readerDisplayName"
+msgstr "DOI :"
+
+msgid "doi.manager.settings.description"
+msgstr ""
+"Veuillez configurer le module DOI afin de gérer et utiliser les DOI dans OMP "
+":"
+
+msgid "doi.manager.settings.explainDois"
+msgstr "Veuillez choisir les objets publiés auxquels seront attribués des DOI :"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Monographies"
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Chapitres"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Formats de publication"
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Fichiers"
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "Préfixe DOI"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "Le préfixe DOI est obligatoire et doit être sous la forme 10.xxxx."
+
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr ""
+"Par exemple, press%ppub%r pourrait créer un DOI tel que 10.1234/"
+"pressESPpub100"
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "pour des livres"
+
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "pour des chapitres"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "pour des formats de publication"
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "pour des fichiers"
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Merci de saisir le modèle de suffixe DOI pour les livres."
+
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Merci de saisir le modèle de suffixe DOI pour les chapitres."
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr ""
+"Merci de saisir le modèle du suffixe DOI pour les formats de publication."
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Merci de saisir le modèle du suffixe DOI pour les fichiers."
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "Réassigner les DOI"
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Voulez-vous supprimer l'ensemble des DOI existants ?"
+
+msgid "doi.editor.doi"
+msgstr "DOI"
+
+msgid "doi.editor.doi.description"
+msgstr "Le DOI doit commencer par {$prefix}."
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Attribuer"
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "chapitre"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "format de publication"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "livre"
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "fichier"
+
+msgid "doi.editor.customSuffixMissing"
+msgstr ""
+"Le DOI ne peut pas être attribué car le suffixe personnalisé est manquant."
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"Vous ne pouvez pas générer un DOI parce qu'il manque des données dans une ou "
+"plusieurs parties du modèle de DOI."
+
+msgid "doi.editor.patternNotResolved"
+msgstr "Le DOI ne peut pas être attribué car il contient un modèle non résolu."
+
+msgid "doi.editor.canBeAssigned"
+msgstr ""
+"Ce que vous voyez est un aperçu du DOI. Cochez la case et enregistrez le "
+"formulaire pour attribuer le DOI."
+
+msgid "doi.editor.assigned"
+msgstr "Le DOI est attribué à cet objet : {$pubObjectType}."
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Le suffixe DOI attribué est déjà utilisé pour un autre élément publié. "
+"Veuillez entrer un suffixe DOI unique pour chaque élément."
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Supprimer"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Voulez-vous vraiment supprimer le DOI existant ?"
+
+msgid "doi.editor.assignDoi"
+msgstr "Attribuer le DOI {$pubId} à cet objet de type {$pubObjectType}"
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr ""
+"Le DOI {$pubId} ne peut pas être attribué car il contient un modèle non "
+"résolu."
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "Le DOI {$pubId} a été attribué."
+
+msgid "doi.editor.missingPrefix"
+msgstr "Le DOI doit commencer par {$doiPrefix}."
+
+msgid "doi.editor.preview.publication"
+msgstr "Le DOI pour cette publication sera {$doi}."
+
+msgid "doi.editor.preview.publication.none"
+msgstr "Un DOI n'a pas été attribué pour cette publication."
+
+msgid "doi.editor.preview.chapters"
+msgstr "Chapitre : {$title}"
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Format de publication : {$title}"
+
+msgid "doi.editor.preview.files"
+msgstr "Fichier : {$title}"
+
+msgid "doi.editor.preview.objects"
+msgstr "Élément"
+
+msgid "doi.manager.submissionDois"
+msgstr "DOI de livres"
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
+msgstr ""
+"Ce courriel informe l'auteur que sa soumission est envoyée à l'étape "
+"d'évaluation interne."
+
+msgid "manager.institutions.noContext"
+msgstr "La maison d'édition de cette institution n'a pas été trouvée."
+
+msgid "manager.manageEmails.description"
+msgstr ""
+"Modifier les messages envoyés dans les courriels de cette maison d'édition."
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
+msgstr "Envoyer à l'évaluation interne"
+
+msgid "mailable.indexRequest.name"
+msgstr "Index demandé"
+
+msgid "mailable.indexComplete.name"
+msgstr "Index complété"
+
+msgid "mailable.layoutComplete.name"
+msgstr "Épreuves terminées"
+
+msgid "mailable.publicationVersionNotify.name"
+msgstr "Nouvelle version créée"
+
+msgid "mailable.publicationVersionNotify.description"
+msgstr ""
+"Ce courriel informe automatiquement les éditeurs/trices désigné.e.s "
+"lorsqu'une nouvelle version de la soumission a été créée."
+
+msgid "manager.series.unassigned"
+msgstr "Responsables de collection disponibles"
+
+msgid "manager.sections.alertDelete"
+msgstr ""
+"Avant de pouvoir supprimer cette collection, vous devez déplacer les "
+"soumissions associées à cette collection vers d'autres collections."
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Ces champs sont obligatoires pour publier des <a href=\"https://en.wikipedia."
+"org/wiki/ONIX_for_Books\">métadonnées ONIX</a> valides."
+
+msgid "manager.people.allSiteUsers"
+msgstr "Inscrire un utilisateur à cette maison d'édition à partir de ce site"
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "Un titre abrégé est requis pour cette collection."
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Les paiements seront activés pour cette maison d'édition. Veuillez noter que "
+"les utilisateurs devront se connecter pour effectuer des paiements."
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Type de code de la maison d'édition"
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Ce n'est pas un type de code éditeur valide."
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Supprimer cet utilisateur de cette maison d'édition ? Cette action "
+"désinscrira l'utilisateur de tous les rôles dans cette maison d'édition."
+
+msgid "manager.setup.details.description"
+msgstr ""
+"Nom de la maison d'édition, contacts, commanditaires, et moteurs de "
+"recherche."
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Vues du résumé de la monographie"
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Sélectionner un utilisateur à fusionner au compte d'un autre utilisateur ("
+"par ex. : lorsque quelqu'un possède deux comptes utilisateur). Le compte "
+"sélectionné en premier sera supprimé et ses soumissions, assignations, etc. "
+"seront affectées au second compte."
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Veuillez inclure toute information sur votre maison d'édition susceptible "
+"d'intéresser les lecteurs, les auteurs/trices ou les évaluteurs/trices. Il "
+"peut s'agir de votre politique de libre accès, de la portée et de l'objectif "
+"de la maison d'édition, de la divulgation des sponsors et de l'histoire de "
+"la maison d'édition."
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Afficher les livres à la une sur la page d'accueil"
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Tous les outils associés spécifiquement à l'importation et à l'exportation "
+"des données (maisons d'édition, monographies, utilisateurs)"
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"La synchronisation de l'inscription inscrira tous les utilisateurs de la "
+"maison d'édition spécifiée dans cette maison d'édition, et le rôle qui leur "
+"avait été assigné dans la maison d'édition spécifiée leur sera attribué dans "
+"cette maison d'édition. Cette fonction permet de synchroniser un groupe "
+"d'utilisateurs communs (ex. : évaluteurs/trices) parmi les différentes "
+"maisons d'édition."
+
+msgid "manager.setup.contextSummary"
+msgstr "Résumé de la maison d'édition"
+
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Utile lorsque la maison d'édition va au-delà des limites de la discipline ou "
+"lorsque les auteurs/trices présentent des soumissions multidisciplinaires."
+
+msgid "manager.setup.enableDois.description"
+msgstr ""
+"Permettre l'attribution d'identificateurs d'objets numériques (DOI) aux "
+"travaux publiés par cette maison d'édition."
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr ""
+"Sélectionnez les types de travaux publiés par cette maison d'édition "
+"auxquels des DOI doivent être attribués. La plupart des maisons d'édition "
+"attribuent des DOI aux monographies/chapitres, mais il se peut que vous "
+"souhaitiez attribuer des DOI à tous les documents publiés."
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Afin d'envoyer des courriels non livrés à une adresse de rebond, l"
+"'administrateur-trice du site Web doit activer l'option "
+"<code>allow_envelope_sender</code> dans le fichier de configuration. Une "
+"configuration particulière du serveur pourrait être requise, tel qu'indiqué "
+"dans la documentation d'OMP."
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Désactiver cet utilisateur ? Ceci empêchera l'utilisateur de se connecter au "
+"système.\n"
+"\n"
+"Vous pouvez éventuellement fournir à l'utilisateur une raison expliquant la "
+"désactivation de son compte."
+
+msgid "manager.setup.copyediting"
+msgstr "Correcteurs/trices"
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Vous ne possédez pas les droits administratifs vous permettant de modifier "
+"cet utilisateur parce que :\n"
+"\t\t<ul>\n"
+"\t\t\t<li>L'utilisateur est un administrateur du site</li>\n"
+"\t\t\t<li>L'utilisateur est actif dans des maisons d'édition que vous ne "
+"gérez pas</li>\n"
+"\t\t</ul>\n"
+"\tCette tâche doit être effectuée par un administrateur du site.\n"
+"\t"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+"Les directives pour la correction d'épreuves seront mises à la disposition "
+"des Correcteurs/trices, Auteurs/trices, Maquettistes et Éditeurs/trices de "
+"collection à l'étape de l'Édition de la soumission. Vous trouverez ci-"
+"dessous un ensemble de directives par défaut en HTML, qui peuvent être "
+"modifiées ou remplacées par le/la Responsable éditorial en tout temps (en "
+"HTML ou texte brut)."
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr ""
+"Des identifiants personnalisés seront utilisés pour identifier les éléments "
+"publiés."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+"Des identifiants personnalisés seront utilisés pour identifier les épreuves ("
+"par exemple, les fichiers HTML ou PDF) des articles publiés."
+
+msgid "manager.setup.information.description"
+msgstr ""
+"De brèves descriptions de la presse à l'intention des bibliothécaires et des "
+"auteurs/trices et lecteurs potentiels. Elles sont disponibles dans la barre "
+"latérale du site lorsque le bloc d'information a été ajouté."
+
+msgid "manager.setup.focusAndScope.description"
+msgstr ""
+"Décrire aux auteurs/trices, aux lecteurs et aux bibliothécaires la gamme de "
+"monographies et d'autres documents que publie la maison d'édition."
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Décrivez brièvement votre maison d'édition et identifiez les responsables "
+"éditoriaux, les éditeurs/trices et les autres membres de l'équipe éditoriale."
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"Les instructions de mise en page peuvent être préparées pour la mise en "
+"forme des livres publiés dans la maison d'édition et être saisies ci-dessous "
+"en HTML ou en texte brut. Elles seront mises à la disposition du maquettiste "
+"et du responsable de collection sur la page d'édition de chaque soumission. "
+"Étant donné que chaque maison d'édition peut utiliser ses propres formats de "
+"fichiers, normes bibliographiques, feuilles de style, etc., aucun ensemble "
+"d'instructions par défaut n'est fourni."
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"OMP se conforme à l'<a href=\"https://www.openarchives.org\" target=\"_blank"
+"\">Open Archives Initiative</a> Protocol for Metadata Harvesting, qui "
+"constitue, à l'échelle mondiale, la nouvelle norme d'indexation des "
+"ressources numériques issues de la recherche. Les auteurs/trices utiliseront "
+"un modèle semblable pour fournir des métadonnées pour leur soumission. Le/La "
+"Responsable éditorial devra sélectionner les catégories pour l'indexation et "
+"présenter aux auteurs/trices et auteures des exemples pertinents afin de les "
+"aider à indexer leur travail."
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"Des modèles de chaque format standard publié par la maison d'édition (par "
+"exemple, monographie, critique de livre, etc.) peuvent être téléchargés dans "
+"la section Mise en page, dans tous les formats (par exemple, pdf, doc, etc.)"
+". Ils contiennent des annotations sur la police de caractères, la taille, "
+"les marges, etc. qui guideront les maquettistes et les correcteurs "
+"d'épreuves."
+
+msgid "manager.setup.management.description"
+msgstr ""
+"Accès et sécurité, planification, annonces, édition, mise en page et "
+"correction d'épreuves."
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+"Lorsque vous utilisez l'option Notifier l'auteur, ajoutez les adresses "
+"électroniques de tous les coauteurs/trices pour les soumissions à auteurs/"
+"trices multiples, et pas seulement celle de l'utilisateur qui envoie la "
+"soumission."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr ""
+"Le/La responsable éditorial le/la responsable de la collection assigné.e à "
+"la soumission vérifiera les épreuves."
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+"Veuillez inclure toute information sur votre maison d'édition susceptible "
+"d'intéresser les lecteurs, les auteurs/trices ou les évaluteurs/trices. Il "
+"peut s'agir de votre politique de libre accès, de la portée et de l'objectif "
+"de la maison d'édition, de la notice sur les droits d'auteur, de la "
+"divulgation des sponsors et de l'histoire de la maison d'édition."
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr ""
+"Les directives pour la correction d'épreuves seront mises à la disposition "
+"des Correcteurs d'épreuves, Auteurs, Maquettistes et Responsables de "
+"collection à l'étape de l'Édition de la soumission. Vous trouverez ci-"
+"dessous un ensemble de directives par défaut en HTML, qui peuvent être "
+"modifiées ou remplacées par le/la Responsable éditorial en tout temps (en "
+"HTML ou texte brut)."
+
+msgid "manager.setup.policies.description"
+msgstr ""
+"Orientation, évaluation par les pairs, rubriques, confidentialité, sécurité "
+"et autres sujets connexes."
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr ""
+"La page d'accueil de la maison d'édition est constituée par défaut de liens "
+"de navigation. Il est possible d'ajouter du contenu à la page d'accueil en "
+"utilisant une ou toutes les options suivantes, qui apparaîtront dans l'ordre "
+"indiqué."
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+"Cette page permet de configurer différents éléments de l'apparence de la "
+"maison d'édition, notamment les éléments de l'en-tête et du pied de page, le "
+"style et le thème de la maison d'édition, ainsi que la manière dont les "
+"listes d'informations sont présentées aux utilisateurs."
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr ""
+"Les éléments de la publication peuvent être publiés collectivement, dans le "
+"cadre d'une monographie dotée de sa propre table des matières. Il est "
+"également possible de publier des articles individuels dès qu'ils sont "
+"prêts, en les ajoutant à la table des matières du volume « en cours ». Dans "
+"la section « À propos de la maison d'édition », veuillez fournir aux "
+"lecteurs une déclaration sur le système utilisé par la maison d'édition et "
+"sur la fréquence de publication prévue."
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Politique d'évaluation"
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr ""
+"Pour activer ces options, l'administrateur du site doit activer l'option "
+"<tt>scheduled_tasks</tt> dans le fichier de configuration OMP. Il pourrait "
+"s'avérer nécessaire d'intégrer d'autres configurations au serveur pour "
+"supporter cette fonctionnalité (qui n'est peut-être pas possible sur tous "
+"les serveurs), tel qu'indiqué dans les documents d'OMP."
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Fournir une brève description de la maison d'édition (entre 50 et 300 "
+"caractères) que les moteurs de recherche peuvent afficher lorsqu'ils "
+"incluent la maison d'édition dans les résultats de la recherche."
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr ""
+"Aider les moteurs de recherche comme Google à découvrir et à afficher votre "
+"site. Nous vous encourageons à envoyer votre <a href=\"{$sitemapUrl}\" "
+"target=\"_blank\">plan de site</a> (sitemap)."
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr "Toujours afficher les liens des épreuves et indiquer l'accès restreint."
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Cinq étapes pour configurer le site Web d'une maison d'édition"
+
+msgid "manager.setup.typeExamples"
+msgstr ""
+"(par exemple : Enquête historique ; Quasi-expérimental ; Analyse littéraire ;"
+" Sondage/Entrevue)"
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+"Un(e) maquettiste sera nommé(e) pour préparer les fichiers HTML, PDF, etc. "
+"pour la publication électronique."
+
+msgid "manager.setup.subjectExamples"
+msgstr ""
+"(Par exemple : Photosynthèse ; Trous noirs ; Cartes en quadrichromie ; "
+"Théorème de Bayes)"
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "S'agit-il d'un format physique (non numérique) ?"
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+"Pour créer un nouveau format de publication, veuillez remplir le formulaire "
+"ci-dessous et cliquer sur le bouton « Créer »."
+
+msgid "manager.setup.editorialTeam.description"
+msgstr ""
+"L'équipe éditoriale doit contenir une liste des éditeurs, des responsables "
+"et des autres postes associés à la maison d'édition. Les informations que "
+"vous saisissez ici apparaîtront dans la rubrique À propos de la maison "
+"d'édition."
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Ces genres sont utilisés pour nommer les fichiers et présentés dans un menu "
+"déroulant lorsque les fichiers sont téléchargés. Les genres ## permettent à "
+"l'utilisateur d'associer le fichier au livre entier 99Z ou à un chapitre "
+"particulier par un chiffre (par exemple, 02)."
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"Le prospectus est un document rédigé par la maison d'édition qui aide les "
+"auteurs/trices à décrire les documents soumis de façon à ce que l'éditeur "
+"puisse déterminer la valeur de la soumission. Un prospectus peut contenir "
+"plusieurs éléments, comme les débouchés commerciaux ou la valeur théorique. "
+"Dans tous les cas, la maison d'édition devrait rédiger un prospectus qui "
+"s'ajoutera à son agenda de publication."
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+"<h3>Mentions de droit d'auteurs de Creative Commons proposés</h3>\n"
+"<h4>1. Politique proposée pour les maisons d'édition qui offrent l'accès "
+"libre</h4>\n"
+"Les auteurs qui publient dans cette maison d'édition acceptent les termes "
+"suivants :\n"
+"<ol type=\"a\">\n"
+"\t<li>Les auteurs conservent le droit d'auteur et accordent à la maison "
+"d'édition le droit de première publication, l'ouvrage étant alors disponible "
+"simultanément, sous la licence <a target=\"_blank\" href=\"https"
+"://creativecommons.org/licenses/by/3.0\">Licence d’attribution Creative "
+"Commons</a> permettant à d'autres de partager l'ouvrage tout en "
+"reconnaissant la paternité et la publication initiale dans cette maison "
+"d'édition.</li>\n"
+"\t<li>Les auteurs peuvent conclure des ententes contractuelles "
+"additionnelles et séparées pour la diffusion non exclusive de la version de "
+"l'ouvrage publiée par la maison d'édition (par ex., le dépôt institutionnel "
+"ou la publication dans un livre), accompagné d'une mention reconnaissant sa "
+"publication initiale dans cette maison d'édition.</li>\n"
+"\t<li>Les auteurs ont le droit et sont encouragés à publier leur ouvrage en "
+"ligne (par ex., dans un dépôt institutionnel ou sur le site Web d'une "
+"institution) avant et pendant le processus de soumission, car cela peut "
+"mener à des échanges fructueux ainsi qu'à un nombre plus important, plus "
+"rapidement, de références à l’ouvrage publié (Voir <a target=\"_new\" href="
+"\"http://opcit.eprints.org/oacitation-biblio.html\">The Effect of Open "
+"Access</a>).</li>\n"
+"</ol>\n"
+"\n"
+"<h4>Politique suggérée aux maison d'édition offrant l'accès libre "
+"différé</h4>\n"
+"Les auteurs publiant dans cette maison d'édition acceptent les termes "
+"suivants :\n"
+"<ol type=\"a\">\n"
+"\t<li>Les auteurs détiennent le droit d'auteurs et accordent à la maison "
+"d'édition le droit de première publication, avec l’ouvrage disponible "
+"simultanément [SPÉCIFIER LA PÉRIODE DE TEMPS] après publication, sous la "
+"licence <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by/3"
+".0\">Licence d’attribution Creative Commons </a> qui permet à d'autres de "
+"partager l'ouvrage en reconnaissant la paternité et la publication initiale "
+"dans cette revue.</li>\n"
+"\t<li>Les auteurs peuvent conclure des ententes contractuelles "
+"additionnelles et séparées pour la diffusion non exclusive de la version de "
+"l'ouvrage publiée par la maison d'édition (par ex., le dépôt institutionnel "
+"ou la publication dans un livre), accompagné d'une mention reconnaissant sa "
+"publication initiale dans cette maison d'édition.</li>\n"
+"\t<li> Les auteurs ont le droit et sont encouragés à publier leur ouvrage en "
+"ligne (par ex., dans un dépôt institutionnel ou sur le site Web d'une "
+"institution) avant et pendant le processus de soumission, car cela peut "
+"mener à des échanges fructueux ainsi qu'à un nombre plus important, plus "
+"rapidement, de références à l’ouvrage publié (Consulter <a target=\"_blank\" "
+"href=\"https://web-archive.southampton.ac.uk/opcit.eprints.org/oacitation-"
+"biblio.html\">The Effect of Open Access</a>).</li>\n"
+"</ol>"
+
+msgid "manager.setup.basicEditorialStepsDescription"
+msgstr ""
+"Étapes : Soumission en attente &gt; Soumission en évaluation &gt; Soumission "
+"en édition &gt; Table des matières.<br /><br />\n"
+"Choisissez un modèle pour gérer ces aspects du processus éditorial. Pour "
+"nommer un/une éditeur/trice et les responsables de collection, allez dans la "
+"rubrique Éditeurs de Gestion de la maison d'édition."
+
+msgid "manager.setup.referenceLinkingDescription"
+msgstr ""
+"<p>Afin de permettre aux lecteurs de repérer les versions en ligne de "
+"l'ouvrage cité par un auteur, les options suivantes sont disponibles.</p>\n"
+"\n"
+"<ol>\n"
+"\t<li><strong>Ajouter un outil de lecture</strong><p>Le/La responsable "
+"éditorial peut ajouter « Trouver des références » aux Outils de lecture "
+"accompagnant les articles publiés, pour permettre aux lecteurs d'insérer le "
+"titre d'une référence et de rechercher l'ouvrage cité dans des bases de "
+"données universitaires présélectionnées.</p></li>\n"
+"\t<li><strong>Liens incorporés dans les références</strong><p>Le/La "
+"maquettiste peut ajouter un lien à des références en ligne, en suivant les "
+"instructions suivantes (qui peuvent être modifiées).</p></li>\n"
+"</ol>"
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+"Le/La Responsable éditorial inscrit tous les utilisateurs, alors que les É"
+"diteurs/trices et les Éditeurs/trices de collection ne peuvent inscrire que "
+"les évaluateurs/trices."
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr ""
+"Des rappels automatiques par courriel (disponibles dans les Courriels par "
+"défaut d'OMP) peuvent être envoyés aux évaluateurs/trices à deux moments "
+"précis (à tout moment, le/la responsable éditorial peut également envoyer un "
+"courriel à l'évaluateur/trice directement)"
+
+msgid "manager.setup.categories.description"
+msgstr ""
+"Vous pouvez créer une liste de catégories pour vous aider à organiser vos "
+"publications. Les catégories sont des groupements de livres par sujet, comme "
+"l'économie, la littérature, la poésie, etc. Les catégories peuvent être "
+"encastrées dans des « catégories mères ». Par exemple, une catégorie mère "
+"Économie peut contenir les catégories microéconomie et macroéconomie. Les "
+"visiteurs pourront effectuer une recherche et naviguer le site de la presse "
+"par catégorie."
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr ""
+"Veuillez sélectionner la collection à laquelle vous souhaitez que cet "
+"élément de menu soit lié."
+
+msgid "stats.context.tooltip.text"
+msgstr ""
+"Nombre de visiteurs ayant consulté la page d'index de la maison d'édition et "
+"du catalogue."
+
+msgid "stats.context.downloadReport.downloadContext.description"
+msgstr ""
+"Le nombre de pages vues de l'index de la maison d'édition et du catalogue."
+
+msgid "stats.publications.downloadReport.description"
+msgstr ""
+"Téléchargez une feuille de calcul CSV/Excel contenant les statistiques "
+"d'utilisation des monographies correspondant aux paramètres suivants."
+
+msgid "mailable.statisticsReportNotify.description"
+msgstr ""
+"Ce courriel est envoyé automatiquement chaque mois aux éditeurs/trices et "
+"aux responsables éditoriaux pour leur fournir un aperçu de l'intégrité du "
+"système."
+
+msgid "plugins.importexport.common.error.salesRightRequiresTerritory"
+msgstr ""
+"Un enregistrement de droit de vente a été ignoré parce qu'aucun pays ou "
+"région ne lui a été attribué."
+
+msgid "mailable.validateEmailContext.description"
+msgstr ""
+"Ce courriel est automatiquement envoyé à un nouvel utilisateur lors de son "
+"inscription sur le site lorsque les paramètres exigent la validation de "
+"l'adresse de courriel."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Envoyer une copie de l'accusé de réception de la soumission au contact "
+"principal de la maison d'édition."
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr ""
+"Si vous modifiez votre configuration DOI, les DOI ayant déjà été assignés ne "
+"seront pas affectés. Une fois la configuration DOI sauvegardée, utilisez ce "
+"bouton pour effacer tous les DOI existants afin que les nouveaux paramètres "
+"puissent prendre effet à l'égard des objets existants."
+
+msgid "mailable.decision.initialDecline.notifyAuthor.description"
+msgstr ""
+"Ce courriel informe l'auteur que sa soumission est refusée, avant d'être "
+"envoyée pour évaluation, parce qu'elle ne remplit pas les conditions "
+"requises pour être publiée par la maison d'édition."
+
+msgid "mailable.submissionNeedsEditor.description"
+msgstr ""
+"Cet courriel est envoyé aux responsables éditoriaux lorsqu'une nouvelle "
+"soumission est faite et qu'aucun/e éditeur/trice n'est assigné/e."
+
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Saisissez un modèle de suffixe DOI personnalisé pour chaque type de "
+"publication. Le modèle de suffixe personnalisé peut utiliser les symboles "
+"suivants :<br><br> <code>%p</code> pour les initiales de la maison "
+"d'édition<br><code>%m</code> pour l'identifiant de la "
+"monographie<br><code>%c</code> pour l'identifiant du chapitre<br><code>%f</"
+"code> pour l'identifiant du format de publication<br><code>%s</code> pour "
+"l'identifiant du fichier<br><code>%x</code> pour un numéro "
+"personnalisé.<br><br>Attention, les suffixes personnalisés entraînent "
+"souvent des problèmes de génération et de dépôt des DOI. Lorsque vous "
+"utilisez un modèle de suffixe personnalisé, vérifiez soigneusement que les "
+"éditeurs peuvent générer des DOI et les déposer auprès d'une agence "
+"d'enregistrement telle que Crossref. "
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Ajouter un/une responsable pour cette collection à partir de la liste de "
+"responsables de collection. Lorsqu'un/e responsable a été ajouté, indiquez "
+"s'il sera en charge de l'ÉVALUATION (évaluation par les pairs) et/ou du "
+"TRAVAIL ÉDITORIAL (révision, mise en page et correction d'épreuves) des "
+"soumissions de cette collection. Pour ajouter un/une responsable à la série, "
+"il faut cliquer <a href=\"{$seriesEditorsUrl}\">Responsables de collection</"
+"a> dans la section Rôles des administrateurs de la maison d'édition."
+
+msgid "manager.series.hideAbout"
+msgstr ""
+"Omettre cette collection dans la rubrique « A propos de la maison d'édition "
+"»."
+
+msgid "manager.series.form.titleRequired"
+msgstr "Un titre est requis pour la collection."
+
+msgid "manager.series.noneCreated"
+msgstr "Aucune série n'a été créée."
+
+msgid "manager.series.existingUsers"
+msgstr "Utilisateurs actuels"
+
+msgid "manager.series.seriesTitle"
+msgstr "Titre de la collection"
+
+msgid "manager.series.restricted"
+msgstr ""
+"Ne pas autoriser les auteur(e)s à soumettre directement leurs textes à cette "
+"collection."
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"Au moins une collection doit être active. Visitez les paramètres du flux de "
+"travaux pour désactiver toutes les soumissions à cette maison d'édition."
+
+msgid "manager.payment.generalOptions"
+msgstr "Options générales"
+
+msgid "manager.payment.success"
+msgstr "Les paramètres de paiement ont été mis à jour."
+
+msgid "manager.settings"
+msgstr "Paramètres"
+
+msgid "manager.settings.pressSettings"
+msgstr "Paramètres de la maison d'édition"
+
+msgid "manager.settings.press"
+msgstr "Maison d'édition"
+
+msgid "manager.settings.publisher.identity"
+msgstr "Identité de la maison d'édition"
+
+msgid "manager.settings.publisher"
+msgstr "Marque de la maison d'édition"
+
+msgid "manager.settings.location"
+msgstr "Situation géographique"
+
+msgid "manager.settings.publisherCode"
+msgstr "Code de la maison d'édition"
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Tous les paramètres associés au processus de distribution (avis, indexage, "
+"archivage, paiement, outils de lecture)."
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Téléchargement des fichiers des monographies"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Résumé et téléchargements de la monographie"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Vues de la page d'accueil de la collection"
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Vues de la page d'accueil de la maison d'édition"
+
+msgid "manager.tools"
+msgstr "Outils"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Outils permettant de générer des rapports relatifs aux statistiques "
+"d'utilisation (pages vues de l'index du catalogue, pages vues des résumés de "
+"monographies, téléchargements de fichiers de monographies)"
+
+msgid "manager.users.availableRoles"
+msgstr "Rôles disponibles"
+
+msgid "manager.users.currentRoles"
+msgstr "Rôles actuels"
+
+msgid "manager.users.selectRole"
+msgstr "Choisir un rôle"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Utilisateurs inscrits à cette maison d'édition"
+
+msgid "manager.people.allPresses"
+msgstr "Toutes les maison d'édition"
+
+msgid "manager.people.allUsers"
+msgstr "Tous les utilisateurs inscrits"
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Inscrire un utilisateur actuel"
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Avec la maison d'édition"
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Sélectionner un utilisateur à qui attribuer la paternité des textes, les "
+"assignations d'édition etc. de l'utilisateur précédent."
+
+msgid "manager.system"
+msgstr "Paramètres du système"
+
+msgid "manager.system.archiving"
+msgstr "Archivage"
+
+msgid "manager.system.reviewForms"
+msgstr "Formulaires d'évaluation"
+
+msgid "manager.system.readingTools"
+msgstr "Outils de lecture"
+
+msgid "manager.system.payments"
+msgstr "Paiements"
+
+msgid "user.authorization.pluginLevel"
+msgstr "Vous n'avez pas de droits suffisants pour gérer ce plugin."
+
+msgid "manager.pressManagement"
+msgstr "Administration de la maison d'édition"
+
+msgid "manager.setup"
+msgstr "Configuration"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Contenu"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Ajouter un élément À propos"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Ajouter un élément à la liste de vérification"
+
+msgid "manager.setup.addItem"
+msgstr "Ajouter un élément"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Ajouter un élément à afficher dans « À propos de la maison d'édition »"
+
+msgid "manager.setup.addNavItem"
+msgstr "Ajouter un élément"
+
+msgid "manager.setup.addSponsor"
+msgstr "Ajouter un commanditaire"
+
+msgid "manager.setup.announcements"
+msgstr "Annonces"
+
+msgid "manager.setup.announcements.success"
+msgstr "Les paramètres des annonces ont été mis à jour."
+
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Des annonces peuvent être publiées pour informer les lecteurs de nouvelles "
+"et d'événements relatifs à la maison d'édition. Les annonces publiées "
+"apparaîtront sur la page des Annonces."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Informations complémentaires"
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+"Saisissez toute information supplémentaire qui doit être affichée aux "
+"lecteurs sur la page Annonces."
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(À paraître dans « À propos de la maison d'édition ») "
+
+msgid "manager.setup.contextAbout"
+msgstr "À propos de la maison d'édition"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Instructions d'édition"
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Avis de droits d'auteur"
+
+msgid "manager.setup.coverage"
+msgstr "Couverture"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Hauteur maximale de l'image de la couverture"
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Largeur maximale de l'image de la couverture"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Les images seront réduites si elles dépassent cette taille, mais ne seront "
+"jamais agrandies ou étirées pour s'adapter à ces dimensions."
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Étape 5. Personnaliser l'apparence"
+
+msgid "manager.setup.customTags"
+msgstr "Balises personnalisées"
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Balises d'en-tête HTML personnalisées à insérer dans l'en-tête de chaque "
+"page (par exemple, balises META)."
+
+msgid "manager.setup.details"
+msgstr "Détails"
+
+msgid "manager.setup.discipline"
+msgstr "Discipline et sous-disciplines académiques"
+
+msgid "manager.setup.disciplineExamples"
+msgstr ""
+"(Par exemple : Histoire ; Éducation ; Sociologie ; Psychologie ; Études "
+"culturelles ; Droit)"
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr ""
+"Donner des exemples de disciplines académiques pertinentes pour cette maison "
+"d'édition"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Ajouter le sommaire pour la monographie courante (si disponible)."
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Contenu de la page d'accueil"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Livres à la une"
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Afficher les livres à la une sur la page d'accueil"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "À la une"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Afficher les nouvelles publications sur la page d'accueil"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Nouveautés"
+
+msgid "doi.manager.settings.doiSuffixLegacy"
+msgstr ""
+"Utiliser les modèles par défaut :<br />%p.%m pour des livres<br />%p.%m.c%c "
+"pour des chapitres<br />%p.%m.%f pour des formats de publication<br /"
+">%p.%m.%f.%s pour des fichiers."
+
+msgid "doi.manager.settings.doiCreationTime.copyedit"
+msgstr "À l'étape de la correction d'épreuves"
+
+msgid "manager.dois.formatIdentifier.file"
+msgstr "Format / {$format}"
+
+msgid "manager.setup.editorDecision"
+msgstr "Décision du/de la responsable éditorial"
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Adresse de courriel pour les messages non délivrés"
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"Tout courriel non délivré entraînera un message d'erreur envoyé à cette "
+"adresse."
+
+msgid "manager.setup.emails"
+msgstr "Identification par courriel"
+
+msgid "manager.setup.emailSignature"
+msgstr "Signature"
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"Les courriers électroniques envoyés automatiquement au nom de la presse "
+"porteront la signature suivante."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Activer les annonces"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Des annonces peuvent être publiées pour informer les lecteurs de nouvelles "
+"et d'événements. Les annonces publiées apparaîtront sur la page Annonces."
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Afficher sur la page d'accueil"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Préciser combien d'annonces doivent être affichées sur la page d'accueil. "
+"Laissez ce champ vide pour n'en afficher aucune."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Permettre à cette revue d'apparaître publiquement sur le site"
+
+msgid "manager.setup.enableUserRegistration"
+msgstr ""
+"Les utilisateurs et utilisatrices peuvent s'inscrire eux-mêmes et elles-"
+"mêmes à la maison d'édition."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Mission de la maison d'édition"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>EXEMPLE DE DONNÉES HTML</strong>"
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Aide aux auteurs/trices pour l'indexation de leur travail"
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "L'adresse de courriel du contact principal est obligatoire."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Le nom du contact principal est obligatoire."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "Le courriel du soutien est obligatoire."
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Le nom du soutien est obligatoire."
+
+msgid "manager.setup.generalInformation"
+msgstr "Information générale"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Étape 1. Consignation des détails"
+
+msgid "manager.setup.guidelines"
+msgstr "Directives"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Étape 3. Préparation du flux de travail"
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Le nombre d'évaluteurs/trices par soumission est requis."
+
+msgid "manager.setup.focusScope"
+msgstr "Objectif et portée"
+
+msgid "manager.setup.identity"
+msgstr "Identité de la maison d'édition"
+
+msgid "manager.setup.information"
+msgstr "Information"
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Pour les auteurs/trices"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Pour les bibliothécaires"
+
+msgid "manager.setup.information.forReaders"
+msgstr "Pour les lecteurs"
+
+msgid "manager.setup.information.success"
+msgstr ""
+"Les informations relatives à cette maison d'édition ont été mises à jour."
+
+msgid "manager.setup.institution"
+msgstr "Institution"
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Éléments par page"
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Limiter le nombre d'éléments (par exemple : soumissions, utilisateurs ou "
+"utilisatrices, ou assignations) à afficher dans une liste avant d'afficher "
+"les éléments subséquents dans une autre page."
+
+msgid "manager.setup.keyInfo"
+msgstr "Renseignements de base"
+
+msgid "manager.setup.labelName"
+msgstr "Nom de l'étiquette"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Maquettistes"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Instructions de mise en page"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Modèles de mise en page"
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Fichier modèle"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Titre"
+
+msgid "manager.setup.lists"
+msgstr "Listes"
+
+msgid "manager.setup.lists.success"
+msgstr "Les paramètres de liste ont été mis à jour."
+
+msgid "manager.setup.look"
+msgstr "Apparence"
+
+msgid "manager.setup.look.description"
+msgstr ""
+"En-tête de la page d'accueil, contenu, en-tête de la maison d'édition, pied "
+"de page, barre de navigation, et feuille de style."
+
+msgid "manager.setup.settings"
+msgstr "Paramètres"
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Gestion des étapes éditoriales de base"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Configuration de la gestion et de la publication"
+
+msgid "manager.setup.managingThePress"
+msgstr "Étape 4. Gestion des paramètres"
+
+msgid "manager.setup.masthead.success"
+msgstr "Les détails de l'en-tête de cette maison d'édition ont été mis à jour."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Aucun fichier d'image téléchargé."
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Aucune feuille de style téléchargée."
+
+msgid "manager.setup.note"
+msgstr "Note"
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr ""
+"La révision est effectuée par l'éditeur/trice ou l'éditeur/trice de "
+"collection assigné.e à la soumission."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+"Le/la responsable éditorial ou le/la responsable de collection assigné.e à "
+"la soumission préparera les fichiers HTML, PDF, etc."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Liens"
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Limiter le nombre de liens à afficher sur les pages subséquentes dans une "
+"liste."
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Accéder au contenu de la maison d'édition"
+
+msgid "manager.setup.onlineIssn"
+msgstr "ISSN en ligne"
+
+msgid "manager.setup.policies"
+msgstr "Politiques"
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "La déclaration de confidentialité a été mise à jour."
+
+msgid "manager.setup.pressDescription"
+msgstr "Description de la maison d'édition"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "Une brève description de votre maison d'édition."
+
+msgid "manager.setup.aboutPress"
+msgstr "À propos de la maison d'édition"
+
+msgid "manager.setup.pressArchiving"
+msgstr "Archivage de la maison d'édition"
+
+msgid "manager.setup.homepageContent"
+msgstr "Contenu de la page d'accueil de la maison d'édition"
+
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+"La page d'accueil de la maison d'édition est constituée par défaut de liens "
+"de navigation. Il est possible d'ajouter du contenu à la page d'accueil en "
+"utilisant une ou toutes les options suivantes, qui apparaîtront dans l'ordre "
+"indiqué."
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Contenu de la page d'accueil de la maison d'édition"
+
+msgid "manager.setup.contextInitials"
+msgstr "Initiales de la maison d'édition"
+
+msgid "manager.setup.selectCountry"
+msgstr ""
+"Sélectionnez le pays où est domiciliée cette maison d'édition, ou le pays "
+"correspondant à l'adresse postale de la maison d'édition ou de l'éditeur."
+
+msgid "manager.setup.layout"
+msgstr "Mise en page de la maison d'édition"
+
+msgid "manager.setup.pageHeader"
+msgstr "En-tête de la page de la maison d'édition"
+
+msgid "manager.setup.pressPolicies"
+msgstr "Étape 2. Politiques de la maison d'édition"
+
+msgid "manager.setup.pressSetup"
+msgstr "Configuration de la maison d'édition"
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "La configuration de votre maison d'édition a été mise à jour."
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Feuille de style non valide. Le format accepté est .css."
+
+msgid "manager.setup.pressTheme"
+msgstr "Thème de la maison d'édition"
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Miniature de la maison d'édition"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr ""
+"Un petit logo de la maison d'édition qui peut être utilisé dans les listes "
+"de maisons d'édition."
+
+msgid "manager.setup.contextTitle"
+msgstr "Nom de la maison d'édition"
+
+msgid "manager.setup.printIssn"
+msgstr "ISSN imprimé"
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Directives pour la correction d'épreuves"
+
+msgid "manager.setup.proofreading"
+msgstr "Correcteurs/trices d’épreuves"
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Fournir des instructions aux maquettistes."
+
+msgid "manager.setup.publisher"
+msgstr "Éditeur"
+
+msgid "manager.setup.publisherDescription"
+msgstr ""
+"Le nom de l'organisation qui gère la maison d'édition apparaitra dans la "
+"page À propos de cette maison d'édition ."
+
+msgid "manager.setup.referenceLinking"
+msgstr "Lien de référence"
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Instructions de mise en page pour les liens de référence"
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr ""
+"Les utilisateurs doivent être inscrits et se connecter pour afficher le "
+"contenu en accès libre."
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr ""
+"Les utilisateurs doivent être inscrits et se connecter pour afficher le site "
+"de la maison d'édition."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Lignes directrices pour l'évaluation externe"
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr ""
+"Les lignes directrices pour l'évaluation fourniront aux évaluteurs/trices "
+"les critères nécessaires pour déterminer si une soumission peut être publiée "
+"par la maison d'édition. Elles peuvent aussi contenir des instructions "
+"spéciales qui aideront l'évaluteur/trice à rédiger une évaluation efficace "
+"et utile. Lors de l'évaluation, les évaluteurs/trices auront accès à deux "
+"zones d'entrée de texte, la première « pour l'auteur/trice et le/la "
+"responsable éditorial » et la seconde « pour le/la responsable éditorial ». "
+"Ou bien, le responsable éditorial peut créer un formulaire d'évaluation dans "
+"la section Formulaires d'évaluation. Dans tous les cas, les responsables "
+"éditoriaux pourront, s'ils le désirent, joindre les évaluations à leur "
+"correspondance avec l'auteur."
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Lignes directrices pour l'évaluation interne"
+
+msgid "manager.setup.reviewOptions"
+msgstr "Options d'évaluation"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Restreindre l'accès aux fichiers"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr ""
+"Les évaluteurs/trices auront accès au fichier de soumission uniquement s'ils "
+"acceptent de l'évaluer."
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Accès pour l'évaluateur/trice"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Activer l'accès en un clic pour l'évaluateur/trice"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr ""
+"Insérer un lien sécurisé dans l'invitation par courriel aux évaluateurs/"
+"trices."
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Notation de l'évaluateur/trice"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Rappels aux évaluateurs/trices"
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr ""
+"Les responsables éditoriaux noteront les évaluateurs/trices sur une échelle "
+"qualitative de cinq points après chaque évaluation."
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Indexation par les moteurs de recherche"
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr "Les paramètres d'indexation du moteur de recherche ont été mis à jour."
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr ""
+"(Si aucune section n'est ajoutée, les éléments seront ajoutés par défaut à "
+"la section Monographies.)"
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Sections et éditeurs/trices de sections"
+
+msgid "manager.setup.securitySettings"
+msgstr "Paramètres d'accès et de sécurité"
+
+msgid "manager.setup.securitySettings.note"
+msgstr ""
+"D'autres options liées à l'accès et à la sécurité peuvent être configurées à "
+"partir de la page <a href=\"{$accessAndSecurityUrl}\" target=\"_blank\" "
+"class=\"action\">Accès et sécurité</a>."
+
+msgid "manager.setup.selectEditorDescription"
+msgstr ""
+"L'éditeur/trice de la maison d'édition qui suivra le processus éditorial."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr ""
+"La collection de la maison d'édition pour laquelle l'élément sera pris en "
+"considération."
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Accès au site"
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Voir le contenu de la monographie"
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Mots-clés"
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr ""
+"Donner des exemples de mots-clés ou de sujets comme guide pour les auteurs/"
+"trices"
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Directives pour la soumission"
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "L'élément de la liste de contrôle est obligatoire."
+
+msgid "manager.setup.workflow"
+msgstr "Flux des travaux"
+
+msgid "manager.setup.submissions.description"
+msgstr ""
+"Directives à l'intention des auteurs/trices, droits d'auteur et indexation ("
+"y compris l'enregistrement)."
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Type (méthode/approche)"
+
+msgid "manager.setup.typeProvideExamples"
+msgstr ""
+"Proposer des exemples pertinents de types de recherche, méthodes, et "
+"approches pertinents pour ce domaine"
+
+msgid "manager.setup.useCopyeditors"
+msgstr "Un/e correcteur/trice sera assigné.e à chaque soumission."
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "La maison d'édition aura recours à un comité éditorial/d'évaluation."
+
+msgid "manager.setup.useImageTitle"
+msgstr "Image du titre"
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Feuille de style de la maison d'édition"
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+"Un(e) correcteur/trice sera désigné(e) pour vérifier (avec les auteurs/"
+"trices) les épreuves avant la publication."
+
+msgid "manager.setup.userRegistration"
+msgstr "Inscription de l'utilisateur"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Texte du titre"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Volumes par année"
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Format"
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Vous devez choisir un format."
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Vous devez nommer ce format."
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+"Le format de cette publication est actuellement utilisé par une monographie "
+"de votre maison d'édition et ne peut donc pas être supprimé."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Nouveau format de publication"
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Cette maison d'édition n'accepte pas de soumissions actuellement. Visitez "
+"les paramètres du flux de travaux pour autoriser les soumissions."
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Empêchez les utilisateurs de soumettre de nouvelles soumissions à la maison "
+"d'édition. Les soumissions peuvent être désactivées par collection dans la "
+"page de paramètres des <a href=\"{$url}\">collections</a>."
+
+msgid "manager.setup.genres"
+msgstr "Genres"
+
+msgid "manager.setup.newGenre"
+msgstr "Nouveau genre de monographie"
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"Pour créer un nouveau genre, veuillez remplir le formulaire ci-dessous et "
+"cliquer le bouton « Créer »."
+
+msgid "manager.setup.deleteSelected"
+msgstr "Supprimer la sélection"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Rétablir les paramètres par défaut"
+
+msgid "manager.setup.prospectus"
+msgstr "Prospectus"
+
+msgid "manager.setup.submitToCategories"
+msgstr "Accepter les soumissions par catégorie"
+
+msgid "manager.setup.submitToSeries"
+msgstr "Accepter les soumissions par collection"
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"L'ISSN (International Standard Serial Number) est un numéro à huit chiffres "
+"qui identifie les publications périodiques, y compris les journaux "
+"numériques. Ce numéro peut être obtenu auprès du <a href=\"https://www.issn."
+"org\" target=\"_blank\">Centre international de l'ISSN</a>."
+
+msgid "manager.setup.currentFormats"
+msgstr "Formats actuels"
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Catégories et séries"
+
+msgid "manager.setup.series.description"
+msgstr ""
+"Vous pouvez créer autant de collections que vous le souhaitez pour organiser "
+"vos publications. Une collection représente un ensemble spécial de livres "
+"consacrés à un thème ou à des sujets que quelqu'un a proposé, généralement "
+"un ou deux membres de la faculté, et dont il/elle assure la supervision. Les "
+"visiteurs pourront rechercher et parcourir la presse par série."
+
+msgid "manager.setup.reviewForms"
+msgstr "Formulaires d'évaluation"
+
+msgid "manager.setup.roleType"
+msgstr "Type de rôle"
+
+msgid "manager.setup.authorRoles"
+msgstr "Rôles de l'auteur/e"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Rôles de gestion"
+
+msgid "manager.setup.availableRoles"
+msgstr "Rôles disponibles"
+
+msgid "manager.setup.currentRoles"
+msgstr "Rôles actuels"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Rôles des évaluateurs/trices internes"
+
+msgid "manager.setup.masthead"
+msgstr "Bloc générique"
+
+msgid "manager.setup.editorialTeam"
+msgstr "Équipe éditoriale"
+
+msgid "manager.setup.files"
+msgstr "Fichiers"
+
+msgid "manager.setup.productionTemplates"
+msgstr "Modèles de production"
+
+msgid "manager.files.note"
+msgstr ""
+"Note : L'explorateur de fichiers est une fonction avancée qui permet aux "
+"fichiers et aux répertoires associés à une maison d'édition d'être affichés "
+"et manipulés directement."
+
+msgid "manager.publication.library"
+msgstr "Bibliothèque de la maison d'édition"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Réinitialiser les permissions sur les monographies"
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr ""
+"Êtes-vous sûr de vouloir réinitialiser les données relatives aux permissions "
+"déjà attachées aux monographies ?"
+
+msgid "manager.setup.resetPermissions.description"
+msgstr ""
+"Les informations relatives aux droits d'auteur et aux licences seront "
+"attachées de manière permanente au contenu publié, ce qui garantit que ces "
+"données ne changeront pas si la maison d'édition modifie ses politiques pour "
+"les nouvelles soumissions. Pour réinitialiser les informations relatives aux "
+"permissions stockées et déjà jointes au contenu publié, utilisez le bouton "
+"ci-dessous."
+
+msgid "manager.setup.resetPermissions.success"
+msgstr "Les permissions de la monographie ont été réinitialisées avec succès."
+
+msgid "grid.genres.title.short"
+msgstr "Éléments"
+
+msgid "grid.genres.title"
+msgstr "Éléments de la monographie"
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr ""
+"Envoyer une copie au contact principal, identifié dans les paramètres de la "
+"maison d'édition."
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr ""
+"Le chemin d'accès de la collection ne peut contenir que des caractères "
+"alphanumériques."
+
+msgid "grid.series.pathExists"
+msgstr ""
+"Le chemin d'accès de la collection existe déjà. Veuillez entrer un chemin "
+"d'accès unique."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Sélectionner une collection"
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Sélectionner une catégorie"
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr ""
+"Veuillez sélectionner la catégorie à laquelle vous souhaitez que cet élément "
+"de menu soit lié."
+
+msgid "grid.series.urlWillBe"
+msgstr "L'URL de la collection sera la suivante : {$sampleUrl}"
+
+msgid "stats.contextStats"
+msgstr "Statistiques de la maison d'édition"
+
+msgid "stats.context.tooltip.label"
+msgstr "A propos des statistiques de la maison d'édition"
+
+msgid "stats.context.downloadReport.description"
+msgstr ""
+"Télécharger une feuille de calcul CSV/Excel avec les statistiques "
+"d'utilisation de cette maison d'édition correspondant aux paramètres "
+"suivants."
+
+msgid "stats.context.downloadReport.downloadContext"
+msgstr "Téléchargements de l'éditeur"
+
+msgid "stats.publications.downloadReport.downloadSubmissions"
+msgstr "Téléchargements de monographies"
+
+msgid "stats.publications.downloadReport.downloadSubmissions.description"
+msgstr ""
+"Le nombre de consultations de résumés et de téléchargements de fichiers pour "
+"chaque monographie."
+
+msgid "stats.publicationStats"
+msgstr "Statistiques de la monographie"
+
+msgid "stats.publications.details"
+msgstr "Détails de la monographie"
+
+msgid "stats.publications.none"
+msgstr ""
+"Aucune monographie n'a été trouvée avec des statistiques d'utilisation "
+"correspondant à ces paramètres."
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Nombre total de consultations du catalogue par date"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Total des consultations de fichiers par date"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$count} de {$total} monographies"
+
+msgid "stats.publications.abstracts"
+msgstr "Entrées de catalogue"
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Aucun objet sélectionné."
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Impossible de convertir les objets sélectionnés."
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "XML invalide :"
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Exporter les soumissions"
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"Aucun contact principal n'a été défini pour cette maison d'édition. Vous "
+"pouvez le faire dans les <a href=\"{$url}\">paramètres de la maison "
+"d'édition</a>."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Les objets spécifiés sont introuvables."
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "L'utilisateur spécifié, « {$userName} », n'existe pas."
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "Le processus n'a pas réussi à analyser les formats de publication"
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "Le processus n'a pas réussi à analyser les chapitres"
+
+msgid "emailTemplate.variable.context.contextName"
+msgstr "Le nom de la maison d'édition"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "L'URL de la page d'accueil de la maison d'édition"
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "Le nom du contact principal de la maison d'édition"
+
+msgid "emailTemplate.variable.context.contextSignature"
+msgstr "La signature mail de la maison d'édition pour les mails automatiques"
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr ""
+"Le DOI ne peut pas être attribué car le suffixe personnalisé est manquant."
