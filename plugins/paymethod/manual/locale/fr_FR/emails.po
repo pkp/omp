@@ -1,8 +1,38 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
+# Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>, 2023.
+# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-07-23 09:58+0000\n"
+"Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
+"Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/"
+"paymethod-manual-emails/fr_FR/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "emails.manualPaymentNotification.subject"
+msgstr "Notification de paiement manuel"
+
+msgid "emails.manualPaymentNotification.body"
+msgstr ""
+"Il est nécessaire de réaliser un paiement manuel pour la maison d'édition "
+"{$contextName} et l'utilisateur {$senderName} (nom d'utilisateur "
+"&quot;{$senderUsername}&quot;).<br />\n"
+"<br />\n"
+"L'article en cours de paiement est &quot;{$paymentName}&quot;.<br />\n"
+"Le prix est {$paymentAmount} ({$paymentCurrencyCode}).<br />\n"
+"<br />\n"
+"Ce courriel a été généré par le plugin de paiement manuel d'Open Monograph "
+"Press."
+
+msgid "emails.manualPaymentNotification.description"
+msgstr ""
+"Ce modèle de courriel est utilisé pour notifier un/e responsable éditorial "
+"qu'un paiement manuel a été demandé."
+
+msgid "emailTemplate.variable.manualPaymentPlugin.senderUsername"
+msgstr "Le nom d'utilisateur de l’utilisateur qui a effectué le paiement"

@@ -1,8 +1,43 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
+# Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-07-19 13:58+0000\n"
+"Last-Translator: Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>\n"
+"Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/"
+"paymethod-paypal/fr_FR/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "plugins.paymethod.paypal.displayName"
+msgstr "Paiement des frais Paypal"
+
+msgid "plugins.paymethod.paypal.description"
+msgstr "Les paiements seront traités avec le service PayPal."
+
+msgid "plugins.paymethod.paypal"
+msgstr "Paiement des frais Paypal"
+
+msgid "plugins.paymethod.paypal.settings"
+msgstr "Paramètres de paiement Paypal"
+
+msgid "plugins.paymethod.paypal.settings.testMode"
+msgstr "Mode test"
+
+msgid "plugins.paymethod.paypal.settings.accountName"
+msgstr "Nom du compte"
+
+msgid "plugins.paymethod.paypal.settings.clientId"
+msgstr "Identifiant du client"
+
+msgid "plugins.paymethod.paypal.settings.secret"
+msgstr "Code secret"
+
+msgid "plugins.paymethod.paypal.error"
+msgstr ""
+"Une erreur s'est produite lors de la transaction. Pour plus d'information, "
+"merci de contacter le responsable administratif de la maison d'édition."
