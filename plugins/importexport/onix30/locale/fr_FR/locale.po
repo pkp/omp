@@ -1,9 +1,10 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
 # Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>, 2023.
+# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-07-11 03:03+0000\n"
-"Last-Translator: Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>\n"
+"PO-Revision-Date: 2023-07-30 17:58+0000\n"
+"Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-onix30/fr_FR/>\n"
 "Language: fr_FR\n"
@@ -20,7 +21,7 @@ msgid "plugins.importexport.onix30.description"
 msgstr "Exporter les métadonnées de monographie au format ONIX 3.0"
 
 msgid "plugins.importexport.onix30.error.unknownPress"
-msgstr "Le chemin indiqué \"{$contextPath}\" n'existe pas."
+msgstr "Le chemin indiqué « {$contextPath} » n'existe pas."
 
 msgid "plugins.importexport.onix30.cliUsage"
 msgstr ""
@@ -31,12 +32,12 @@ msgid "plugins.importexport.onix30.cliError"
 msgstr "Erreur :"
 
 msgid "plugins.importexport.onix30.export.error.couldNotWrite"
-msgstr "Impossible d'écrire dans le fichier \"{$fileName}\"."
+msgstr "Impossible d'écrire dans le fichier « {$fileName} »."
 
 msgid "plugins.importexport.onix30.export.error.monographNotFound"
 msgstr ""
-"Aucune monographie ne correspond à l'ID de monographie indiqué \""
-"{$monographId}\"."
+"Aucune monographie ne correspond à l'ID de monographie indiqué « "
+"{$monographId} »."
 
 msgid "plugins.importexport.onix30.noFormats"
 msgstr "Les monographies sans formats de publication ne sont pas affichées."
