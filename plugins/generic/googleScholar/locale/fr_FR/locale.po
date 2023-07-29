@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-07-02 12:58+0000\n"
+"PO-Revision-Date: 2023-07-30 17:58+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/"
 "generic-googleScholar/fr_FR/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.generic.googleScholar.name"
-msgstr "Plugin d'indexation Google Scholar"
+msgstr "Plugin d’indexation Google Scholar"
 
 msgid "plugins.generic.googleScholar.description"
-msgstr "Ce plugin permet d'indexer le contenu publié dans Google Scholar."
+msgstr "Ce plugin permet d’indexer le contenu publié dans Google Scholar."
