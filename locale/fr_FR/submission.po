@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-07-30 17:58+0000\n"
+"PO-Revision-Date: 2023-08-01 08:58+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "fr_FR/>\n"
@@ -534,9 +534,9 @@ msgstr "Envoyé pour évaluation interne"
 
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr ""
-"La soumission, « {$title} », a été envoyée à l’étape d’évaluation interne. "
-"L’auteur·rice en a été informé, à moins que vous n’ayez choisi d’ignorer cet "
-"e-mail."
+"La soumission, « {$title} », a été envoyée à l'étape d'évaluation interne. "
+"Une notification a été envoyée à l'auteur·rice, à moins que vous n'ayez "
+"choisi d'ignorer ce courriel."
 
 msgid "editor.submission.decision.promoteFiles.internalReview"
 msgstr ""
