@@ -3,7 +3,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-08-01 08:58+0000\n"
+"PO-Revision-Date: 2023-08-02 17:58+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "fr_FR/>\n"
@@ -115,7 +115,7 @@ msgstr "DOI"
 
 msgid "doi.description"
 msgstr ""
-"Ce plugin permet d’attribuer des identifiants d’objets numériques (DOI) aux "
+"Ce module permet d’attribuer des identifiants d’objets numériques (DOI) aux "
 "monographies, chapitres, formats de publication et fichiers dans OMP."
 
 msgid "doi.readerDisplayName"
@@ -939,7 +939,7 @@ msgid "manager.system.payments"
 msgstr "Paiements"
 
 msgid "user.authorization.pluginLevel"
-msgstr "Vous n’avez pas de droits suffisants pour gérer ce plugin."
+msgstr "Vous n’avez pas de droits suffisants pour gérer ce module."
 
 msgid "manager.pressManagement"
 msgstr "Administration de la maison d’édition"
