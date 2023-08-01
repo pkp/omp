@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-07-30 17:58+0000\n"
+"PO-Revision-Date: 2023-08-01 12:53+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/emails/fr_FR/"
 ">\n"
@@ -27,7 +27,7 @@ msgstr ""
 "{$siteContactName}"
 
 msgid "emails.passwordResetConfirm.subject"
-msgstr "Confirmation de réinitialisation du mot de passe"
+msgstr "Confirmation de la réinitialisation du mot de passe"
 
 msgid "emails.userRegister.subject"
 msgstr "Inscription à la maison d’édition"
