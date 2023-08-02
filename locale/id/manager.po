@@ -1,8 +1,42 @@
 # elpinowindy <elpinowindy@proton.me>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-08-02 17:58+0000\n"
+"Last-Translator: elpinowindy <elpinowindy@proton.me>\n"
+"Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "manager.system.readingTools"
+msgstr "Alat Baca"
+
+msgid "manager.setup.announcements"
+msgstr "Pengumuman"
+
+msgid "manager.setup.announcements.success"
+msgstr "Pengaturan pengumuman telah diperbarui."
+
+msgid "manager.system.payments"
+msgstr "Pembayaran"
+
+msgid "manager.pressManagement"
+msgstr "Manajemen Penerbitan"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Konten"
+
+msgid "manager.setup.information.forReaders"
+msgstr "Untuk Pembaca"
+
+msgid "manager.setup.information.description"
+msgstr ""
+"Deskripsi singkat penerbit untuk pustakawan dan calon penulis dan pembaca. "
+"Ini tersedia di bilah sisi situs jika blok Informasi telah ditambahkan."
+
+msgid "manager.system.reviewForms"
+msgstr "Form Tinjauan"
