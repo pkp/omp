@@ -85,12 +85,14 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
 
         // Creator
         foreach ($publication->getData('authors') as $author) {
-            $authorName = $author->getFullName(false, true);
-            $affiliation = $author->getLocalizedAffiliation();
-            if (!empty($affiliation)) {
-                $authorName .= '; ' . $affiliation;
+            $authorNames = $author->getFullNames(false, true);
+            foreach ($authorNames as $locale => &$authorName) {
+                $affiliation = $author->getAffiliation($locale);
+                if (!empty($affiliation)) {
+                    $authorName .= '; ' . $affiliation;
+                }
             }
-            $dc11Description->addStatement('dc:creator', $authorName);
+            $this->_addLocalizedElements($dc11Description, 'dc:creator', $authorNames);
             unset($authorName);
         }
 
