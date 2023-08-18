@@ -10,7 +10,7 @@
   * Upgrade descriptor file.
   -->
 
-<install version="3.4.0.1">
+<install version="3.4.0.2">
 	<code function="checkPhpVersion" />
 
 	<upgrade minversion="0.9.9.0" maxversion="3.0.9.9">
