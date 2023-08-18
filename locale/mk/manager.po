@@ -2,7 +2,7 @@
 # Ana Vucurevic <ana.vucurevic97@yahoo.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-05-10 13:49+0000\n"
+"PO-Revision-Date: 2023-08-01 08:58+0000\n"
 "Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "mk/>\n"
@@ -1738,3 +1738,6 @@ msgstr "Пробниот отисок е комплетен"
 msgid "plugins.importexport.common.error.salesRightRequiresTerritory"
 msgstr ""
 "Правото за продажба е прескокнато бидејќи нема означено земја или подрачје."
+
+msgid "emailTemplate.variable.context.contextAcronym"
+msgstr "Иницијали на прес"
