@@ -102,7 +102,7 @@ class GoogleScholarPlugin extends GenericPlugin
         // Authors in order
         $authors = $isChapterRequest ? $templateMgr->getTemplateVars('chapterAuthors') : $publication->getData('authors');
         foreach ($authors as $i => $author) {
-            $templateMgr->addHeader('googleScholarAuthor' . $i++, '<meta name="citation_author" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
+            $templateMgr->addHeader('googleScholarAuthor' . $i++, '<meta name="citation_author" content="' . htmlspecialchars($author->getFullName(false, false, $publicationLocale)) . '"/>');
             if ($affiliation = htmlspecialchars($author->getLocalizedData('affiliation', $publicationLocale))) {
                 $templateMgr->addHeader('googleScholarAuthor' . $i++ . 'Affiliation', '<meta name="citation_author_institution" content="' . $affiliation . '"/>');
             }

@@ -98,7 +98,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
 
         $authors = $isChapterRequest ? $templateMgr->getTemplateVars('chapterAuthors') : $publication->getData('authors');
         foreach ($authors as $i => $author) {
-            $templateMgr->addHeader('dublinCoreAuthor' . $i++, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
+            $templateMgr->addHeader('dublinCoreAuthor' . $i++, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName(false, false, $publicationLocale)) . '"/>');
         }
 
         $datePublished = $isChapterRequest
@@ -235,7 +235,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
 
         $authors = $chapter ? $chapter->getAuthors()->toArray() : $publication->getData('authors');
         foreach ($authors as $i => $author) {
-            $templateMgr->addHeader('dublinCoreAuthor' . $i++, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
+            $templateMgr->addHeader('dublinCoreAuthor' . $i++, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName(false, false, $publicationLocale)) . '"/>');
         }
 
         $datePublished = $chapter
