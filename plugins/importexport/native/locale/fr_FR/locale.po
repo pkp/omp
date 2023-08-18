@@ -1,9 +1,10 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
 # Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>, 2023.
+# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-07-11 03:03+0000\n"
-"Last-Translator: Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>\n"
+"PO-Revision-Date: 2023-07-30 17:58+0000\n"
+"Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-native/fr_FR/>\n"
 "Language: fr_FR\n"
@@ -53,7 +54,7 @@ msgid "plugins.importexport.native.results"
 msgstr "Bilan"
 
 msgid "plugins.inportexport.native.uploadFile"
-msgstr "Téléversez un fichier sous \"Importer\" pour continuer."
+msgstr "Veuillez téléverser un fichier sous « Importer » pour continuer."
 
 msgid "plugins.importexport.native.error.unknownSeries"
 msgstr "Collection inconnue {$param}"
