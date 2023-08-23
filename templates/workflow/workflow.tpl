@@ -81,6 +81,25 @@
 					</template>
 				</ul>
 			</dropdown>
+			<pkp-button
+				:disabled="!canChangeLang || publicationList.length > 1 || submission.status === getConstant('STATUS_PUBLISHED')"
+				@click="$modal.show('changeLangModal')"
+			>
+				{{ changeLangButtonLabel }}
+			</pkp-button>
+			{* Modal to change submission language and metadata *}
+			<modal
+				:close-label="__('common.close')"
+				name="changeLangModal"
+				title="{translate key="submission.list.changeLangTitle"}"
+			>
+				<div id="changeSubmissionLanguage">
+					<p>{translate key="submission.list.changeLangDescription"}</p>
+					<div class="pkpPublication" aria-live="polite">
+						<pkp-form ref="changeLangSubmissionForm" v-bind="components.{$smarty.const.FORM_CHANGE_SUBMISSION_LANGUAGE_METADATA}" @set="updateSubmissionLangMetadataFormData" @closed="setFocusToRef('changeLangButton')" @success="changeSubmissionLanguage"></pkp-form>
+					</div>
+				</div>
+			</modal>
 			{if $canAccessEditorialHistory}
 				<pkp-button
 					ref="activityButton"
@@ -220,6 +239,12 @@
 						class="pkpPublication__versionPublished"
 					>
 						{translate key="publication.editDisabled"}
+					</div>
+					<div
+						v-if="workingPublication.status !== getConstant('STATUS_PUBLISHED') && !submissionSupportedLocales.includes(submission.locale)"
+						class="pkpSubmission__localeNotSupported"
+					>
+						{translate key="submission.localeNotSupported" subLocale=$changeLangButtonLabel}
 					</div>
 					<tabs class="pkpPublication__tabs" :is-side-tabs="true" :track-history="true" :label="publicationTabsLabel">
 						<tab id="titleAbstract" label="{translate key="publication.titleAbstract"}">
