@@ -1,7 +1,7 @@
 OMP 3.4.0 Release Notes
-Git tag: 3_4_0-1
+Git tag: 3_4_0-2
 
-Release date: June 16, 2023
+Release date: August 24, 2023
 ============================
 
 Configuration Changes
@@ -42,7 +42,49 @@ New config.inc.php section for queues is added, with the following parameters:
 
 - The setting security.force_ssl, when enabled, will also set the "Secure" flag for the session cookie.
 
-3.3.0-1 build
+3.4.0-2 build
+-------------
+    #9247: Fatal error: Uncaught TypeError when opening Activity
+    #9246: Improve support for CC and BCC fields in the new decision email step UI
+    #9236: DataCite updateDepositStatus does not work
+    #9231: Use smaller data types for load_id and city in the metrics tables
+    #9227: Incorrect (encrypted) password sent to the user after the user was added by Admin/Journal Manager
+    #9222: Exception when listing jobs
+    #9217: Missing E-mail Template SUBMISSION_SAVED_FOR_LATER after upgrade from 3.3.0-1
+    #9210: OMP 3.4.0 Sitemap does not respect chapter landing page setting
+    #9195: Add controlling configuration to queue jobs
+    #9194: Record reviewer recommendation by proxy causes fatal error
+    #9184: Author names do not localize in reader front end
+    #9183: OAI interface reports errors when date ranges are specified
+    #9180: Update to cypress 12, reduce flakiness on M1
+    #9171: Undefined array key "user" in pkp/classes/proxy/ProxyParser.php on line 57
+    #9168: PHP fatal error when assigning editors to new submissions
+    #9166: Submission checklist migration sometimes presents an error on upgrade
+    #9161: Wrong type cast for testDOIPrefix in DataciteSettings form
+    #9153: Sending email to a reviewer results in a fatal error
+    #9152: Locale migration does not take into account plugin_settings table
+    #9150: Error on User Import Uncaught BadMethodCallException...
+    #9149: Job configuration not included in OMP template configuration file
+    #9148: Recommend decision email form doesn't respect to, cc and bcc fields
+    #9145: Authors may have trouble initiating discussions
+    #9142: One-click review request access keys not being generated/sent
+    #9139: PHP error with array_intersect on null
+    #9136: Missing uniqueSiteId on new installations
+    #9134: (OMP 3.4.0-1) Error when changing Cover Image Max Width & Height
+    #9126: Multilingual Metadata in Crossref
+    #9123: Doi migration script failing to return doi_id
+    #9121: Unsupported assoc_type in the event log: 515
+    #9119: zh_Hant is not considered a valid locale code
+    #9111: Wrong variable name in PASSWORD_RESET_CONFIRM email template
+    #9109: REVIEW_COMPLETE email template seems to be not installed
+    #9089: Make easier to create custom Vue component in plugin
+    #9045: Inability to Properly Add and Display New Fields in PKPMetadataForm
+    #8980: Form heading much shorter than needed
+    #8854: Discussions: mail attached files alongside the content
+    #8288: Announcements placed on homepage may include announcements from other contexts
+    #7052: Can't access all contexts from dropdown when exceeds viewport height
+
+3.4.0-1 build
 -------------
     #9102: Review Reports not generate
     #9084: HTML should be stripped from submission titles when used in email titles
@@ -57,7 +99,7 @@ New Features
 ------------
     #8490 #8484: Improved MariaDB testing and support
     #8478: Improve GoogleScholarPlugin
-    #8474: Improve the content of REVIEW_COMPLETE and REVIEW_EDITED templates 
+    #8474: Improve the content of REVIEW_COMPLETE and REVIEW_EDITED templates
     #8437: Add descriptive comments to database tables/columns
     #8406: Improve DublinCoreMetaPlugin
     #8403: Consider submissions with no contributors
@@ -67,7 +109,7 @@ New Features
     #7191: Improve submission wizard accessibility and usability
     #2676: Track and report on institutional subscriber usage
     #8328: CSV for stats API timeline functions
-    #8306: Enhance the queue failed jobs functionality. 
+    #8306: Enhance the queue failed jobs functionality.
     #6781: Support COUNTER Release 5
     #6782: Improve usage statistics handling in the background/code
     #7392: Ensure Site Administrators have "global" access within journals
@@ -84,14 +126,14 @@ New Features
     #6328: Migrate locale file loading to standard toolset
     #5678: Introduce code formatter to enforce code style
     #8290: Inclusion of Data Availability Statement as submission metadata
-    #8258: Add more context and documentation to Crossref setup/credentials 
+    #8258: Add more context and documentation to Crossref setup/credentials
     #8250: Improve help text for statistics settings forms
     #8240: Consider parent object ID in DAO exists and get functions
     #8310: Discourage DOI assignment for items other than submissions
     #8239: Update Cypress to support end-to-end testing
     #8210: Standardize locale code handling
     #8157: Extend all setting_value columns in settings table to mediumText
-    #8155: Allow Mailables to use custom email templates through API 
+    #8155: Allow Mailables to use custom email templates through API
     #8127: Allow embedding a footer to certain emails
     #8117: Refactor email sending code in plugins and convert to Mailables
     #8093 #8092 #7129 #7128 #7127 #7126 #7125 #7124: Add improved Repository patterns
@@ -124,7 +166,7 @@ New Features
     #6895: IP location and institution service
     #6685: OPS should support tombstones for deleted content
     #6241: Add an option to make a submission file mandatory
-    #6222: Embed discussion content into the notification message body  
+    #6222: Embed discussion content into the notification message body
     #6201: Port Citation Style Language plugin to OMP
     #6126: Send a weekly email to editors of pending tasks
     #6099: Add a "country" field to journal setup
@@ -167,16 +209,16 @@ Bug Fixes
     #8363: Submission search index not updating after deleting a submission
     #8348: Missing email template variables in emails related to a new submission
     #8344: Author country is not validated in the REST API
-    #8263: Current and default values are not being displayed correctly in form fields (as per appearance theme form) 
+    #8263: Current and default values are not being displayed correctly in form fields (as per appearance theme form)
     #8231: Consider valid spacial characters in DOI suffix
     #8223: Update API Key related cypress test
-    #8219: Native Import/Export plugin - Security Issue regarding file download 
+    #8219: Native Import/Export plugin - Security Issue regarding file download
     #8176: Remove LDAP plugin and auth plugin category
     #8170: Upgrade sokil/php-isocodes to fix warnings
     #8166: The dc oai metadata format plugin for OJS has duplicated localization
     #8160: Flaky test failing most of OMP builds
     #8158: Replace abandoned Stringy package
-    #8143: SubmissionFile's corresponding File not deleted when a new Note process is cancelled  
+    #8143: SubmissionFile's corresponding File not deleted when a new Note process is cancelled
     #8091: Consider new templates for automatic notification emails and remove redundant
     #8060: User locales set to NULL on user registration
     #8014: Document new usage stats implementation
@@ -208,7 +250,7 @@ Bug Fixes
     #7687: Consolidate DOI settings migrations into pkp-lib where possible
     #7673: Remove locale requirement in upgrade XML when installing new email templates
     #7665: The DataCite Export plugin misrepresents page numbers of journal articles
-    #7624: Replace strftime() as it's deprecate in PHP 8.1 
+    #7624: Replace strftime() as it's deprecate in PHP 8.1
     #7608: Add test to check DC metadata tags on article landing page
     #7592: Refactor review assignments emails
     #7537: Sync PKP repository for TextEditorExtras and make release
@@ -247,7 +289,7 @@ Bug Fixes
     #7077: Hover/focus states misaligned in default theme navigation menu
     #7074: Include discussion emails in activity log
     #7050: Remove unused issue import test files
-    #7034: Import/Export plugin - remove get_class dependency for filter retrieval 
+    #7034: Import/Export plugin - remove get_class dependency for filter retrieval
     #7009: GoogleScholarPlugin.inc.php still references removed SupplementaryFile class
     #7002: "usage" command missing from native import/export CLI
     #6999: [OMP] Native import/export: import of publication formats does not work
@@ -258,17 +300,17 @@ Bug Fixes
     #6927: Quicksubmit cover image preview is broken
     #6925: Set default user for CLI tool
     #6921: Show exception error message when a plugin migration fails
-    #6918: Aria-labelledby on galley links must include galley label 
+    #6918: Aria-labelledby on galley links must include galley label
     #6917: Increase contrast of required indicator in login/registration forms
     #6916: [OMP] Spotlight autocomplete layout broken
     #6915: Register Laravel service providers to allow use of global functions
     #6904: REVIEW_REQUEST_REMIND_AUTO & REVIEW_REMIND_AUTO
     #6894: OMP allow selection of files when adding a new chapter
     #6893: OMP Allow easier ISBN editing in Publication Formats
-    #6882: Unnecessary path part in search URLs 
+    #6882: Unnecessary path part in search URLs
     #6874: remove commercial URL from config.TEMPLATE.inc.php
     #6850: Move creator (author) management tools to API and new form structures
-    #6849: Tool to convert old and apache log files into new format 
+    #6849: Tool to convert old and apache log files into new format
     #6839: Import/Export plugin - SubmissionFiles lose doi data on import
     #6831: Update gettext dependency to 5.x
     #6826: Migrate TinyMCE to 5.x
@@ -281,7 +323,7 @@ Bug Fixes
     #6432: Email templates offer first alphabetically available installed language even if language is not active
     #6306: Add an option to enable/disable categories in submission workflow
     #6272: Re-add submission acknowledgement email recipient controls in Settings
-    #6160: Submission process confusion with Corresponding Contact and Privacy Consent 
+    #6160: Submission process confusion with Corresponding Contact and Privacy Consent
     #6039: Difficulty to edit fields in other languages
     #6006: DOI/Crossref Cypress Tests
     #5998: A stalled request to plugins.xml can block subsequent http requests
