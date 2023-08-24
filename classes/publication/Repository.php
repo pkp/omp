@@ -78,7 +78,7 @@ class Repository extends \PKP\publication\Repository
             }
 
             $supportedLocales = $submissionContext->getSupportedSubmissionLocales();
-            in_array($primaryLocale = $submission->getData('locale'), $allowedLocales) || array_push($allowedLocales, $primaryLocale);
+            in_array($primaryLocale = $submission->getData('locale'), $supportedLocales) || array_push($supportedLocales, $primaryLocale);
             foreach ($supportedLocales as $localeKey) {
                 if (!array_key_exists($localeKey, $publication->getData('coverImage'))) {
                     continue;
