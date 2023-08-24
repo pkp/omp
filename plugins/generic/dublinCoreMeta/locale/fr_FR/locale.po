@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-06-26 18:49+0000\n"
+"PO-Revision-Date: 2023-08-02 17:58+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/"
 "generic-dublinCoreMeta/fr_FR/>\n"
@@ -14,9 +14,9 @@ msgstr ""
 "X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.generic.dublinCoreMeta.name"
-msgstr "Plugin d'indexation Dublin Core"
+msgstr "Plugin d’indexation Dublin Core"
 
 msgid "plugins.generic.dublinCoreMeta.description"
 msgstr ""
-"Ce plugin intègre les balises meta Dublin Core dans les monographies à des "
-"fins d'indexation."
+"Ce module intègre les balises meta Dublin Core dans les monographies à des "
+"fins d’indexation."

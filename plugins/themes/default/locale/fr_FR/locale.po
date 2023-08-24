@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-07-10 09:58+0000\n"
+"PO-Revision-Date: 2023-07-30 17:58+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/fr_FR/>\n"
@@ -20,16 +20,16 @@ msgstr ""
 
 msgid "plugins.themes.default.option.typography.notoSans_notoSerif"
 msgstr ""
-"Noto Sans/Noto Serif : une combinaison complémentaire d'en-têtes sans "
+"Noto Sans/Noto Serif : une combinaison complémentaire d’en-têtes sans "
 "empattement et de corps de texte avec empattement."
 
 msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
-msgstr "Image d'arrière-plan de l'en-tête"
+msgstr "Image d’arrière-plan de l’en-tête"
 
 msgid "plugins.themes.default.option.useHomepageImageAsHeader.description"
 msgstr ""
-"Lorsqu'une image de page d'accueil a été téléversée, l'afficher en arrière-"
-"plan de l'en-tête au lieu de sa position habituelle sur la page d'accueil."
+"Lorsqu’une image de page d’accueil a été téléversée, l’afficher en arrière-"
+"plan de l’en-tête au lieu de sa position habituelle sur la page d’accueil."
 
 msgid "plugins.themes.default.name"
 msgstr "Thème par défaut"
@@ -41,7 +41,7 @@ msgid "plugins.themes.default.option.typography.label"
 msgstr "Typographie"
 
 msgid "plugins.themes.default.option.typography.description"
-msgstr "Choisissez une combinaison de polices adaptée à cette maison d'édition."
+msgstr "Choisissez une combinaison de polices adaptée à cette maison d’édition."
 
 msgid "plugins.themes.default.option.typography.notoSerif"
 msgstr ""
@@ -50,7 +50,7 @@ msgstr ""
 
 msgid "plugins.themes.default.option.typography.notoSerif_notoSans"
 msgstr ""
-"Noto Serif/Noto Sans : une combinaison complémentaire d'en-têtes avec "
+"Noto Serif/Noto Sans : une combinaison complémentaire d’en-têtes avec "
 "empattement et de corps de texte sans empattement."
 
 msgid "plugins.themes.default.option.typography.lato"
@@ -62,28 +62,28 @@ msgstr ""
 
 msgid "plugins.themes.default.option.typography.lora_openSans"
 msgstr ""
-"Lora/Open Sans : une combinaison complémentaire d'en-têtes avec empattement "
+"Lora/Open Sans : une combinaison complémentaire d’en-têtes avec empattement "
 "et de corps de texte sans empattement."
 
 msgid "plugins.themes.default.option.colour.label"
 msgstr "Couleur"
 
 msgid "plugins.themes.default.option.colour.description"
-msgstr "Choisir la couleur de l'en-tête."
+msgstr "Choisir la couleur de l’en-tête."
 
 msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
-msgstr "Afficher l'image de la page d'accueil comme arrière-plan de l'en-tête."
+msgstr "Afficher l’image de la page d’accueil comme arrière-plan de l’en-tête."
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
 msgstr "Afficher les collections"
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
 msgstr ""
-"Ajouter une liste de liens vers toutes les collections de la maison "
-"d'édition sur la page du catalogue"
+"Ajouter une liste de liens vers toutes les collections de la maison d’"
+"édition sur la page du catalogue"
 
 msgid "plugins.themes.default.option.displayStats.label"
-msgstr "Options d'affichage des statistiques d'utilisation"
+msgstr "Options d’affichage des statistiques d’utilisation"
 
 msgid "plugins.themes.default.option.displayStats.none"
 msgstr ""
@@ -91,11 +91,11 @@ msgstr ""
 
 msgid "plugins.themes.default.option.displayStats.line"
 msgstr ""
-"Utiliser un graphique à lignes pour montrer les statistiques d'utilisation."
+"Utiliser un graphique à lignes pour montrer les statistiques d’utilisation."
 
 msgid "plugins.themes.default.option.displayStats.bar"
 msgstr ""
-"Utiliser un graphique à barres pour afficher les statistiques d'utilisation."
+"Utiliser un graphique à barres pour afficher les statistiques d’utilisation."
 
 msgid "plugins.themes.default.displayStats.monthInitials"
 msgstr "Jan Fév Mar Avr Mai Juin Juil Aoû Sep Oct Nov Déc"

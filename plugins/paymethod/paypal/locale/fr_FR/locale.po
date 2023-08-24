@@ -1,9 +1,10 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
 # Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>, 2023.
+# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-07-19 13:58+0000\n"
-"Last-Translator: Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>\n"
+"PO-Revision-Date: 2023-07-30 17:58+0000\n"
+"Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/"
 "paymethod-paypal/fr_FR/>\n"
 "Language: fr_FR\n"
@@ -39,5 +40,5 @@ msgstr "Code secret"
 
 msgid "plugins.paymethod.paypal.error"
 msgstr ""
-"Une erreur s'est produite lors de la transaction. Pour plus d'information, "
-"merci de contacter le responsable administratif de la maison d'édition."
+"Une erreur s’est produite lors de la transaction. Pour plus d’information, "
+"merci de contacter le gestionnaire de la maison d’édition."

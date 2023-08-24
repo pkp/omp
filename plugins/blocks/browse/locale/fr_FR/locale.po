@@ -3,7 +3,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-06-25 13:49+0000\n"
+"PO-Revision-Date: 2023-08-02 17:58+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/"
 "blocks-browse/fr_FR/>\n"
@@ -21,7 +21,7 @@ msgid "plugins.block.browse.displayName"
 msgstr "Bloc de navigation"
 
 msgid "plugins.block.browse.description"
-msgstr "Ce plugin fournit des outils de navigation dans la barre latérale."
+msgstr "Ce module fournit des outils de navigation dans la barre latérale."
 
 msgid "plugins.block.browse.settings"
 msgstr "Paramètres"
