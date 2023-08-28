@@ -50,6 +50,9 @@ class IndexHandler extends PKPIndexHandler
         $this->validate(null, $request);
         $press = $request->getPress();
 
+        $templateMgr = TemplateManager::getManager($request);
+        $this->_setupAnnouncements($press ?? $request->getSite(), $templateMgr);
+
         if (!$press) {
             $press = $this->getTargetContext($request, $hasNoContexts);
             if ($press) {
@@ -128,8 +131,6 @@ class IndexHandler extends PKPIndexHandler
             'displayCreativeCommons' => $press->getSetting('includeCreativeCommons'),
             'authorUserGroups' => Repo::userGroup()->getCollector()->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])->filterByContextIds([$press->getId()])->getMany()->remember(),
         ]);
-
-        $this->_setupAnnouncements($press, $templateMgr);
 
         // Display Featured Books
         if ($press->getSetting('displayFeaturedBooks')) {
