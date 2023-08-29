@@ -62,4 +62,8 @@
 		<descr>Automatically remove jobs that failed more than X days ago. The time limit can be changed in the the delete_failed_jobs_after setting in the config file.</descr>
 		<frequency day="1"/>
 	</task>
+	<task class="PKP\task\RemoveExpiredInvitations">
+		<descr>Remove expired Invitations daily</descr>
+		<frequency day="1"/>
+	</task>
 </scheduled_tasks>
