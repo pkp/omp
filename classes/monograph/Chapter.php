@@ -22,49 +22,12 @@ use APP\facades\Repo;
 use Illuminate\Support\LazyCollection;
 use PKP\core\PKPString;
 use PKP\db\DAORegistry;
-use PKP\facades\Locale;
 
 class Chapter extends \PKP\core\DataObject
 {
     //
     // Get/set methods
     //
-
-    /**
-     * Get localized data for this object.
-     *
-     * It selects the locale in the following order:
-     * - $preferredLocale
-     * - the user's current locale
-     * - the first locale we find data for
-     *
-     * @todo Chapters should have access to their publication's locale
-     *  and should fall back to that after the user's current locale
-     *  and before the last fall back to the first data available.
-     *
-     * @param string $key
-     * @param string $preferredLocale
-     */
-    public function getLocalizedData($key, $preferredLocale = null)
-    {
-        // 1. Preferred locale
-        if ($preferredLocale && $this->getData($key, $preferredLocale)) {
-            return $this->getData($key, $preferredLocale);
-        }
-        // 2. User's current locale
-        if (!empty($this->getData($key, Locale::getLocale()))) {
-            return $this->getData($key, Locale::getLocale());
-        }
-        // 3. The first locale we can find data for
-        $data = $this->getData($key, null);
-        foreach ((array) $data as $value) {
-            if (!empty($value)) {
-                return $value;
-            }
-        }
-
-        return null;
-    }
 
     /**
      * Get the combined title and subtitle for all locales
