@@ -17,6 +17,7 @@
 namespace APP\pages\reviewer;
 
 use APP\core\Request;
+use APP\facades\Repo;
 use PKP\pages\reviewer\PKPReviewerHandler;
 use PKP\security\authorization\SubmissionAccessPolicy;
 use PKP\security\Role;
@@ -47,12 +48,26 @@ class ReviewerHandler extends PKPReviewerHandler
      */
     public function authorize($request, &$args, $roleAssignments)
     {
-        $router = $request->getRouter();
+        $context = $request->getContext();
+        if ($context->getData('reviewerAccessKeysEnabled')) {
+            $accessKeyCode = $request->getUserVar('key');
+            if ($accessKeyCode) {
+                $keyHash = md5($accessKeyCode);
+
+                $invitation = Repo::invitation()->getBOByKeyHash($keyHash);
+
+                if (isset($invitation)) {
+                    $invitation->acceptHandle();
+                }
+            }
+        }
+
         $this->addPolicy(new SubmissionAccessPolicy(
             $request,
             $args,
             $roleAssignments
         ));
+
         return parent::authorize($request, $args, $roleAssignments);
     }
 }
