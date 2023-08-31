@@ -17,6 +17,8 @@
 
 namespace APP\tests\classes\monograph;
 
+use APP\core\Application;
+use APP\core\PageRouter;
 use APP\monograph\Chapter;
 use PKP\facades\Locale;
 use PKP\tests\PKPTestCase;
@@ -31,6 +33,12 @@ class ChapterTest extends PKPTestCase
      */
     protected function setUp(): void
     {
+        $request = Application::get()->getRequest();
+        if (is_null($request->getRouter())) {
+            $router = new PageRouter();
+            $request->setRouter($router);
+        }
+
         $this->chapter = new Chapter();
     }
 
