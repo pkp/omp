@@ -42,10 +42,9 @@ class Chapter extends \PKP\core\DataObject
      *  and should fall back to that after the user's current locale
      *  and before the last fall back to the first data available.
      *
-     * @param string $key
      * @param string $preferredLocale
      */
-    public function getLocalizedData($key, $preferredLocale = null)
+    public function getLocalizedData(string $key, string $preferredLocale = null, string &$selectedLocale = null): mixed
     {
         // 1. Preferred locale
         if ($preferredLocale && $this->getData($key, $preferredLocale)) {
