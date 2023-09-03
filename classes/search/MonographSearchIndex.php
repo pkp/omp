@@ -64,7 +64,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
      * @param int $type
      * @param int $submissionFileId
      */
-    public function updateFileIndex($monographId, $type, $submissionFileId)
+    public function submissionFileChanged($monographId, $type, $submissionFileId)
     {
         $submissionFile = Repo::submissionFile()->get($submissionFileId);
 
@@ -174,7 +174,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
             ->getMany();
 
         foreach ($submissionFiles as $submissionFile) {
-            $this->updateFileIndex($monograph->getId(), SubmissionSearch::SUBMISSION_SEARCH_GALLEY_FILE, $submissionFile->getId());
+            $this->submissionFileChanged($monograph->getId(), SubmissionSearch::SUBMISSION_SEARCH_GALLEY_FILE, $submissionFile->getId());
         }
     }
 
