@@ -62,11 +62,15 @@ class MonographSearchIndex extends SubmissionSearchIndex
      *
      * @param int $monographId
      * @param int $type
-     * @param int $submissionFileId
+     * @param SubmissionFile $submissionFile
      */
-    public function submissionFileChanged($monographId, $type, $submissionFileId)
+    public function submissionFileChanged($monographId, $type, $submissionFile)
     {
-        $submissionFile = Repo::submissionFile()->get($submissionFileId);
+        if (Hook::ABORT === Hook::call('MonographSearchIndex::submissionFileChanged', [$monographId, $type, $submissionFile->getId()])) {
+            return;
+        }
+
+        $submissionFile = Repo::submissionFile()->get($submissionFile->getId());
 
         if (isset($submissionFile)) {
             $parser = SearchFileParser::fromFile($submissionFile);
@@ -75,7 +79,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
         if (isset($parser)) {
             if ($parser->open()) {
                 $searchDao = DAORegistry::getDAO('MonographSearchDAO'); /** @var MonographSearchDAO $searchDao */
-                $objectId = $searchDao->insertObject($monographId, $type, $submissionFileId);
+                $objectId = $searchDao->insertObject($monographId, $type, $submissionFile->getId());
 
                 while (($text = $parser->read()) !== false) {
                     $this->indexObjectKeywords($objectId, $text);
@@ -174,7 +178,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
             ->getMany();
 
         foreach ($submissionFiles as $submissionFile) {
-            $this->submissionFileChanged($monograph->getId(), SubmissionSearch::SUBMISSION_SEARCH_GALLEY_FILE, $submissionFile->getId());
+            $this->submissionFileChanged($monograph->getId(), SubmissionSearch::SUBMISSION_SEARCH_GALLEY_FILE, $submissionFile);
         }
     }
 
