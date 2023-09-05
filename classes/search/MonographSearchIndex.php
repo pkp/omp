@@ -19,6 +19,7 @@ namespace APP\search;
 use APP\facades\Repo;
 use APP\press\PressDAO;
 use APP\submission\Submission;
+use Exception;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
 use PKP\plugins\Hook;
@@ -29,6 +30,8 @@ use PKP\submissionFile\SubmissionFile;
 
 class MonographSearchIndex extends SubmissionSearchIndex
 {
+    private const MINIMUM_DATA_LENGTH = 80 * 1024;
+
     /**
      * Index a block of text for an object.
      *
@@ -70,24 +73,24 @@ class MonographSearchIndex extends SubmissionSearchIndex
             return;
         }
 
-        $submissionFile = Repo::submissionFile()->get($submissionFile->getId());
-
-        if (isset($submissionFile)) {
-            $parser = SearchFileParser::fromFile($submissionFile);
+        // If no search plug-in is activated then fall back to the default database search implementation.
+        $parser = SearchFileParser::fromFile($submissionFile);
+        if (!$parser?->open()) {
+            error_log(new Exception("Unable to index the file \"{$parser->filePath}\""));
+            return;
         }
+        try {
+            $searchDao = DAORegistry::getDAO('MonographSearchDAO'); /** @var MonographSearchDAO $searchDao */
+            $objectId = $searchDao->insertObject($monographId, $type, $submissionFile->getId());
 
-        if (isset($parser)) {
-            if ($parser->open()) {
-                $searchDao = DAORegistry::getDAO('MonographSearchDAO'); /** @var MonographSearchDAO $searchDao */
-                $objectId = $searchDao->insertObject($monographId, $type, $submissionFile->getId());
-
-                while (($text = $parser->read()) !== false) {
-                    $this->indexObjectKeywords($objectId, $text);
+            do {
+                for ($buffer = ''; ($chunk = $parser->read()) !== false && strlen($buffer .= $chunk) < static::MINIMUM_DATA_LENGTH;);
+                if (strlen($buffer)) {
+                    $this->indexObjectKeywords($objectId, $buffer);
                 }
-                $parser->close();
-            } else {
-                // cannot open parser; unsupported format?
-            }
+            } while ($chunk !== false);
+        } finally {
+            $parser->close();
         }
     }
 
