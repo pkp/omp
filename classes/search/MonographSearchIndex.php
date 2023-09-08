@@ -187,6 +187,23 @@ class MonographSearchIndex extends SubmissionSearchIndex
             } catch (Throwable $e) {
                 $exceptions[] = $e;
             }
+            $dependentFiles = Repo::submissionFile()->getCollector()
+                ->filterByAssoc(
+                    PKPApplication::ASSOC_TYPE_SUBMISSION_FILE,
+                    [$submissionFile->getId()]
+                )
+                ->filterBySubmissionIds([$monograph->getId()])
+                ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_DEPENDENT])
+                ->includeDependentFiles()
+                ->getMany();
+
+            foreach ($dependentFiles as $dependentFile) {
+                try {
+                    $this->submissionFileChanged($monograph->getId(), SubmissionSearch::SUBMISSION_SEARCH_SUPPLEMENTARY_FILE, $dependentFile);
+                } catch (Throwable $e) {
+                    $exceptions[] = $e;
+                }
+            }
         }
         if (count($exceptions)) {
             $errorMessage = implode("\n\n", $exceptions);
