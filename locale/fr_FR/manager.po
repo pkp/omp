@@ -3,7 +3,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-09-07 16:58+0000\n"
+"PO-Revision-Date: 2023-09-08 06:53+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "fr_FR/>\n"
@@ -608,8 +608,8 @@ msgstr ""
 
 msgid "manager.setup.editorialTeam.description"
 msgstr ""
-"Liste des responsables éditoriaux, des directeur·rice·s et d’autres "
-"personnes associées à la maison d’édition."
+"Liste des responsables éditoriaux et d’autres personnes associées à la "
+"maison d’édition."
 
 msgid "manager.setup.genresDescription"
 msgstr ""
