@@ -173,7 +173,9 @@ class MonographSearchIndex extends SubmissionSearchIndex
             'MonographSearchIndex::submissionFilesChanged',
             [$monograph]
         );
-        if (!empty($hookResult)) {
+
+        // If a search plug-in is activated then skip the default database search implementation.
+        if ($hookResult !== Hook::CONTINUE && !is_null($hookResult)) {
             return;
         }
 
@@ -268,7 +270,8 @@ class MonographSearchIndex extends SubmissionSearchIndex
             [$log]
         );
 
-        if (!empty($hookResult)) {
+        // If a search plug-in is activated then skip the default database search implementation.
+        if ($hookResult !== Hook::CONTINUE && !is_null($hookResult)) {
             return;
         }
 
