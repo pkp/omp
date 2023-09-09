@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-09-07 16:58+0000\n"
+"PO-Revision-Date: 2023-09-10 12:58+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/locale/fr_FR/"
 ">\n"
@@ -1079,10 +1079,10 @@ msgstr "{$newSubmission} ou {$viewSubmissions}."
 
 msgid "about.submissionPreparationChecklist.description"
 msgstr ""
-"En tant que partie intégrante du processus de soumission, les auteur·e·s "
-"doivent s’assurer de la conformité de leur soumission avec tous les éléments "
-"suivants, et les soumissions peuvent être retournées aux auteur·e·s qui ne "
-"sont pas conformes à ces directives."
+"Dans le cadre du processus de soumission, les auteur·e·s doivent vérifier "
+"que leur soumission est conforme aux conditions et directives suivantes. Les "
+"propositions qui ne les respectent pas peuvent être renvoyées à leurs "
+"auteur·e·s."
 
 msgid "about.aboutOMPPress"
 msgstr ""
