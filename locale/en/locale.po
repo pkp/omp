@@ -1468,3 +1468,12 @@ msgstr "Descending"
 
 msgid "section.section"
 msgstr "Series"
+
+msgid "search.cli.rebuildIndex.indexing"
+msgstr "Indexing \"{$pressName}\""
+
+msgid "search.cli.rebuildIndex.indexingByPressNotSupported"
+msgstr "This search implementation does not allow per-press re-indexing."
+
+msgid "search.cli.rebuildIndex.unknownPress"
+msgstr "The given press path \"{$pressPath}\" could not be resolved to a press."

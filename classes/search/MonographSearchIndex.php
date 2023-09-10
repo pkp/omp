@@ -259,10 +259,16 @@ class MonographSearchIndex extends SubmissionSearchIndex
      * Rebuild the search index for all presses.
      *
      * @param bool $log Whether or not to log progress to the console.
+     * @param \APP\press\Press $press If given the user wishes to
+     *  re-index only one press. Not all search implementations
+     *  may be able to do so. Most notably: The default SQL
+     *  implementation does not support press-specific re-indexing
+     *  as index data is not partitioned by press.
+     * @param array $switches Optional index administration switches.
      *
      * @hook MonographSearchIndex::rebuildIndex [[$log]]
      */
-    public function rebuildIndex($log = false)
+    public function rebuildIndex($log = false, $press = null, $switches = [])
     {
         // Check whether a search plugin jumps in.
         $hookResult = Hook::call(
@@ -275,14 +281,19 @@ class MonographSearchIndex extends SubmissionSearchIndex
             return;
         }
 
+        // Check that no press was given as we do not support press-specific re-indexing.
+        if ($press instanceof Press) {
+            exit(__('search.cli.rebuildIndex.indexingByPressNotSupported') . "\n");
+        }
+
         // Clear index
         if ($log) {
-            echo 'Clearing index ... ';
+            echo __('search.cli.rebuildIndex.clearingIndex') . ' ... ';
         }
         $searchDao = DAORegistry::getDAO('MonographSearchDAO'); /** @var MonographSearchDAO $searchDao */
         $searchDao->clearIndex();
         if ($log) {
-            echo "done\n";
+            echo __('search.cli.rebuildIndex.done') . "\n";
         }
 
         // Build index
@@ -293,7 +304,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
             $numIndexed = 0;
 
             if ($log) {
-                echo 'Indexing "', $press->getLocalizedName(), '" ... ';
+                echo __('search.cli.rebuildIndex.indexing', ['pressName' => $press->getLocalizedName()]) . ' ... ';
             }
 
             $monographs = Repo::submission()
@@ -311,7 +322,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
             $this->submissionChangesFinished();
 
             if ($log) {
-                echo $numIndexed, " monographs indexed\n";
+                echo __('search.cli.rebuildIndex.result', ['numIndexed' => $numIndexed]) . "\n";
             }
         }
     }
