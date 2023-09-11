@@ -22,6 +22,7 @@ use APP\submission\Submission;
 use Exception;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
+use PKP\jobs\submissions\UpdateSubmissionSearchJob;
 use PKP\plugins\Hook;
 use PKP\search\SearchFileParser;
 use PKP\search\SubmissionSearch;
@@ -120,13 +121,8 @@ class MonographSearchIndex extends SubmissionSearchIndex
      */
     public function submissionMetadataChanged($submission)
     {
-        // Check whether a search plugin jumps in
-        $hookResult = Hook::call(
-            'MonographSearchIndex::submissionMetadataChanged',
-            [$submission]
-        );
-
-        if (!empty($hookResult)) {
+        // Check whether a search plug-in jumps in.
+        if (Hook::ABORT === Hook::call('MonographSearchIndex::submissionMetadataChanged', [$submission])) {
             return;
         }
 
@@ -168,14 +164,8 @@ class MonographSearchIndex extends SubmissionSearchIndex
      */
     public function submissionFilesChanged($monograph)
     {
-        // Check whether a search plugin jumps in.
-        $hookResult = Hook::call(
-            'MonographSearchIndex::submissionFilesChanged',
-            [$monograph]
-        );
-
         // If a search plug-in is activated then skip the default database search implementation.
-        if ($hookResult !== Hook::CONTINUE && !is_null($hookResult)) {
+        if (Hook::ABORT === Hook::call('MonographSearchIndex::submissionFilesChanged', [$monograph])) {
             return;
         }
 
@@ -270,14 +260,8 @@ class MonographSearchIndex extends SubmissionSearchIndex
      */
     public function rebuildIndex($log = false, $press = null, $switches = [])
     {
-        // Check whether a search plugin jumps in.
-        $hookResult = Hook::call(
-            'MonographSearchIndex::rebuildIndex',
-            [$log]
-        );
-
         // If a search plug-in is activated then skip the default database search implementation.
-        if ($hookResult !== Hook::CONTINUE && !is_null($hookResult)) {
+        if (Hook::ABORT === Hook::call('MonographSearchIndex::rebuildIndex', [$log, $press, $switches])) {
             return;
         }
 
@@ -299,27 +283,23 @@ class MonographSearchIndex extends SubmissionSearchIndex
         // Build index
         $pressDao = DAORegistry::getDAO('PressDAO'); /** @var PressDAO $pressDao */
 
-        $presses = $pressDao->getAll();
-        while ($press = $presses->next()) {
+        $presses = $pressDao->getAll()->toIterator();
+        foreach ($presses as $press) {
             $numIndexed = 0;
 
             if ($log) {
                 echo __('search.cli.rebuildIndex.indexing', ['pressName' => $press->getLocalizedName()]) . ' ... ';
             }
 
-            $monographs = Repo::submission()
+            $submissions = Repo::submission()
                 ->getCollector()
                 ->filterByContextIds([$press->getId()])
                 ->getMany();
 
-            foreach ($monographs as $monograph) {
-                if ($monograph->getDatePublished()) {
-                    $this->submissionMetadataChanged($monograph);
-                    $this->submissionFilesChanged($monograph);
-                    $numIndexed++;
-                }
+            foreach ($submissions as $submission) {
+                dispatch(new UpdateSubmissionSearchJob($submission->getId()));
+                ++$numIndexed;
             }
-            $this->submissionChangesFinished();
 
             if ($log) {
                 echo __('search.cli.rebuildIndex.result', ['numIndexed' => $numIndexed]) . "\n";
