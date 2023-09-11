@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-09-08 06:53+0000\n"
+"PO-Revision-Date: 2023-09-12 19:58+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "fr_FR/>\n"
@@ -149,10 +149,10 @@ msgid "submission.workflowType.editedVolume.label"
 msgstr "Ouvrage collectif"
 
 msgid "submission.workflowType.editedVolume"
-msgstr "Ouvrage collectif."
+msgstr "Ouvrage collectif"
 
 msgid "submission.workflowType.authoredWork"
-msgstr "Monographie."
+msgstr "Monographie"
 
 msgid "submission.workflowType.change"
 msgstr "Modifier"
@@ -234,7 +234,8 @@ msgstr "En évaluation"
 
 msgid "author.isVolumeEditor"
 msgstr ""
-"Identifier ce·tte contributeur·rice comme le·la directeur·rice de ce volume."
+"Identifier ce contributeur ou cette contributrice comme responsable du "
+"volume."
 
 msgid "submission.submit.seriesPosition"
 msgstr "Position dans cette collection (ex : livre 2 ou Volume 2)"
@@ -646,4 +647,4 @@ msgid "submission.wizard.chapters.description"
 msgstr ""
 "Veuillez fournir tous les chapitres de cette soumission. Si vous soumettez "
 "un ouvrage collectif, veillez à ce que chaque chapitre indique ses "
-"contributeurs."
+"contributeurs et/ou contributrices."
