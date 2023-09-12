@@ -8,7 +8,6 @@
  * @brief Display the front page of the site
  *
  * @uses $homepageImage array Details about the uploaded homepage image
- * @uses $spotlights array Selected spotlights to promote on the homepage
  * @uses $featuredMonographs array List of featured releases in this press
  * @uses $newReleases array List of new releases in this press
  * @uses $announcements array List of announcements
@@ -21,19 +20,14 @@
 
 <div class="page page_homepage">
 
+	{if $highlights->count()}
+		{include file="frontend/components/highlights.tpl" highlights=$highlights}
+	{/if}
+
 	{* Homepage Image *}
 	{if !$activeTheme->getOption('useHomepageImageAsHeader') && $homepageImage}
 		<img src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}" alt="{$homepageImageAltText|escape}">
 	{/if}
-
-	{* Spotlights *}
-	{if !empty($spotlights)}
-		<h2 id="homepageSpotlights" class="pkp_screen_reader">
-			{translate key="spotlight.spotlights"}
-		</h2>
-		{include file="frontend/components/spotlights.tpl"}
-	{/if}
-
 
 	{* Featured *}
 	{if !empty($featuredMonographs)}

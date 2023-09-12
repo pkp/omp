@@ -406,57 +406,6 @@ msgstr "Редактировать этого представителя"
 msgid "grid.action.deleteRepresentative"
 msgstr "Удалить представителя"
 
-msgid "spotlight"
-msgstr "Фокус внимания (Spotlight)"
-
-msgid "spotlight.spotlights"
-msgstr "Фокусы внимания (Spotlights)"
-
-msgid "spotlight.noneExist"
-msgstr "Нет текущих фокусов внимания."
-
-msgid "spotlight.title.homePage"
-msgstr "В фокусе внимания"
-
-msgid "spotlight.author"
-msgstr "Автор, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Пункт фокуса внимания"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Главная страница"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Положение фокуса внимания"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Введите  название фокуса внимания (автозаполнение)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Название фокуса внимания"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Книга"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Требуется элемент."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "Требуется название фокуса внимания."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Пожалуйста, выберите место для этого Фокуса внимания."
-
-msgid "grid.action.editSpotlight"
-msgstr "Редактировать этот Фокус внимания"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Удалить этот Фокус внимания"
-
-msgid "grid.action.addSpotlight"
-msgstr "Добавить Фокус внимания"
-
 msgid "manager.series.open"
 msgstr "Открыть подачу материала"
 
@@ -892,9 +841,6 @@ msgstr "Ссылки и Социальные сети"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Ссылка на ваш каталог."
-
-msgid "navigation.skip.spotlights"
-msgstr "Перейти к фокусам внимания"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Серии"
@@ -1437,15 +1383,6 @@ msgstr "Рынок сбыта изменен."
 
 msgid "notification.removedMarket"
 msgstr "Рынок сбыта удален."
-
-msgid "notification.addedSpotlight"
-msgstr "Добавлен Фокус внимания."
-
-msgid "notification.editedSpotlight"
-msgstr "Фокус внимания Изменен."
-
-msgid "notification.removedSpotlight"
-msgstr "Фокус внимания Удален."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Сохранены метаданные каталога."

@@ -420,12 +420,6 @@ msgstr "Wyświetl polecane książki na stronie głównej"
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Polecane książki"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Wyświetl książki w wyróżnieniach na stronie głównej"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Wyróżnione"
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Wyświetl nowe wydania na stronie głównej"
 

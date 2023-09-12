@@ -411,57 +411,6 @@ msgstr "Επεξεργασία του Αντιπροσώπου"
 msgid "grid.action.deleteRepresentative"
 msgstr "Διαγραφή του Αντιπροσώπου"
 
-msgid "spotlight"
-msgstr ""
-
-msgid "spotlight.spotlights"
-msgstr "Βιτρίνα"
-
-msgid "spotlight.noneExist"
-msgstr "Δεν υπάρχουν τρέχουσες καταχωρήσεις στη Βιτρίνα."
-
-msgid "spotlight.title.homePage"
-msgstr "Στη βιτρίνα"
-
-msgid "spotlight.author"
-msgstr "Συγγραφέας,"
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Spotlight Item"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Αρχική σελίδα"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Τοποθεσία Βιτρίνας"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Εισαγωγή Τίτλου Βιτρίνας (autocomplete)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Τίτλος Βιτρίνας"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Βιβλίο"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Απαιτείται ένα τεκμήριο."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "Απαιτείται τίτλος Βιτρίνας"
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Παρακαλούμε επιλέξτε μια τοποθεσία της Βιτρίνας"
-
-msgid "grid.action.editSpotlight"
-msgstr "Επεξεργασία αυτής της Βιτρίνας"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Διαγραφής αυτής της Βιτρίνας"
-
-msgid "grid.action.addSpotlight"
-msgstr "Προσθήκη στη Βιτρίνα"
-
 msgid "manager.series.open"
 msgstr "Ανοικτές Υποβολές"
 
@@ -888,9 +837,6 @@ msgid "navigation.linksAndMedia"
 msgstr "Σύνδεσμοι και Κοινωνικά Μέσα"
 
 msgid "navigation.navigationMenus.catalog.description"
-msgstr ""
-
-msgid "navigation.skip.spotlights"
 msgstr ""
 
 msgid "navigation.navigationMenus.series.generic"
@@ -1423,15 +1369,6 @@ msgstr "Τα στοιχεία της Αγοράς έχουν επεξεργασ�
 
 msgid "notification.removedMarket"
 msgstr "Η Αγορά έχει αφαιρεθεί."
-
-msgid "notification.addedSpotlight"
-msgstr "Η Βιτρίνα έχει προστεθεί."
-
-msgid "notification.editedSpotlight"
-msgstr "Η Βιτρίνα έχει επεξεργαστεί."
-
-msgid "notification.removedSpotlight"
-msgstr "Η Βιτρίνα έχει αφαιρεθεί."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Τα μεταδεδομένα του Καταλόγου έχουν αποθηκευτεί."

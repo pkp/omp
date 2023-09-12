@@ -412,57 +412,6 @@ msgstr "Edita aquest representant"
 msgid "grid.action.deleteRepresentative"
 msgstr "Elimina aquest representant"
 
-msgid "spotlight"
-msgstr "Destacat"
-
-msgid "spotlight.spotlights"
-msgstr "Punts destacats"
-
-msgid "spotlight.noneExist"
-msgstr "Actualment no hi ha punts destacats."
-
-msgid "spotlight.title.homePage"
-msgstr "El centre d'atenció"
-
-msgid "spotlight.author"
-msgstr "Autor/a, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Element del punt destacat"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Inici"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Ubicació del punt destacat"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Introduïu el títol destacat (autocompleta)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Títol del punt destacat"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Llibre"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Cal que introduïu un element."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "Cal que introduïu un títol per al punt destacat."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Trieu una ubicació per al punt destacat."
-
-msgid "grid.action.editSpotlight"
-msgstr "Edita aquest punt destacat"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Elimina aquest punt destacat"
-
-msgid "grid.action.addSpotlight"
-msgstr "Afegeix un punt destacat"
-
 msgid "manager.series.open"
 msgstr "Trameses obertes"
 
@@ -899,9 +848,6 @@ msgstr "Enllaços i xarxes socials"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Enllaçar amb el vostre catàleg."
-
-msgid "navigation.skip.spotlights"
-msgstr "Passar a destacats"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Sèries"
@@ -1445,15 +1391,6 @@ msgstr "S'ha editat el mercat."
 
 msgid "notification.removedMarket"
 msgstr "S'ha eliminat el mercat."
-
-msgid "notification.addedSpotlight"
-msgstr "S'ha afegit un punt destacat."
-
-msgid "notification.editedSpotlight"
-msgstr "S'ha editat el punt destacat."
-
-msgid "notification.removedSpotlight"
-msgstr "S'ha eliminat el punt destacat."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "S'han desat les metadades del catàleg."

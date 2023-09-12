@@ -516,57 +516,6 @@ msgstr "Modifier ce(tte) représentant(e)"
 msgid "grid.action.deleteRepresentative"
 msgstr "Supprimer ce(tte) représentant(e)"
 
-msgid "spotlight"
-msgstr "À la une"
-
-msgid "spotlight.spotlights"
-msgstr "À la une"
-
-msgid "spotlight.noneExist"
-msgstr "Il n’y a pas de livres à la une actuellement."
-
-msgid "spotlight.title.homePage"
-msgstr "À la une"
-
-msgid "spotlight.author"
-msgstr "Auteur, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Ouvrage à la une"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Page d’accueil"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Emplacement à la une"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Saisir le titre à la une (remplissage automatique)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Titre de l’ouvrage à la une"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Livre"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Un élément est requis."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "Un titre à la une est requis."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Veuillez choisir un emplacement pour ce titre à la une."
-
-msgid "grid.action.editSpotlight"
-msgstr "Modifier les titres à la une"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Retirer un titre de la rubrique À la une"
-
-msgid "grid.action.addSpotlight"
-msgstr "Ajouter un titre à la rubrique À la une"
-
 msgid "manager.series.open"
 msgstr "Soumissions actives"
 
@@ -952,9 +901,6 @@ msgstr "Liens et réseaux sociaux"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Lien vers votre catalogue."
-
-msgid "navigation.skip.spotlights"
-msgstr "Passer aux titres à la une"
 
 msgid "navigation.navigationMenus.series.description"
 msgstr "Lien vers une collection."
@@ -1522,15 +1468,6 @@ msgstr "Un marché a été ajouté."
 
 msgid "notification.editedMarket"
 msgstr "Le marché a été modifié."
-
-msgid "notification.addedSpotlight"
-msgstr "Ajout à la rubrique « À la une »."
-
-msgid "notification.editedSpotlight"
-msgstr "Un titre à la une a été modifié."
-
-msgid "notification.removedSpotlight"
-msgstr "Un titre à la une a été supprimé."
 
 msgid "notification.savedPublicationFormatMetadata"
 msgstr "Les métadonnées du format de publication ont été sauvegardées."

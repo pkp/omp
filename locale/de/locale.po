@@ -414,57 +414,6 @@ msgstr "Diesen Vertriebspartner bearbeiten"
 msgid "grid.action.deleteRepresentative"
 msgstr "Vertriebspartner entfernen"
 
-msgid "spotlight"
-msgstr "Spotlight"
-
-msgid "spotlight.spotlights"
-msgstr "Spotlights"
-
-msgid "spotlight.noneExist"
-msgstr "Aktuell sind keine Spotlights vorhanden."
-
-msgid "spotlight.title.homePage"
-msgstr "Im Rampenlicht"
-
-msgid "spotlight.author"
-msgstr "Autor, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Spotlight-Titel"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Homepage"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Spotlightplatzierung"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Geben Sie den Titel des Spotlights ein (Auto-Vervollständigen)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Spotlight-Titel (wie er auf der Website erscheinen soll)"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Buch"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Bitte machen Sie eine Angabe."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "Bitte geben Sie den Titel des Spotlights an."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Bitte wählen Sie einen Platz für dieses Spotlight."
-
-msgid "grid.action.editSpotlight"
-msgstr "Spotlight bearbeiten"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Spotlight löschen"
-
-msgid "grid.action.addSpotlight"
-msgstr "Spotlight hinzufügen"
-
 msgid "manager.series.open"
 msgstr "Offene Einreichungen"
 
@@ -917,9 +866,6 @@ msgstr "Links und Soziale Netzwerke"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Link zu Ihrem Katalog."
-
-msgid "navigation.skip.spotlights"
-msgstr "Zu Spotlights springen"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Reihen"
@@ -1460,15 +1406,6 @@ msgstr "Absatzmarkt bearbeitet."
 
 msgid "notification.removedMarket"
 msgstr "Absatzmarkt gelöscht."
-
-msgid "notification.addedSpotlight"
-msgstr "Spotlight hinzugefügt."
-
-msgid "notification.editedSpotlight"
-msgstr "Spotlight bearbeitet."
-
-msgid "notification.removedSpotlight"
-msgstr "Spotlight entfernt."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Die Katalogmetadaten wurden gespeichert."

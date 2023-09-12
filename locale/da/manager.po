@@ -427,12 +427,6 @@ msgstr "Vis udvalgte bøger på startsiden"
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Udvalgte bøger"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Vis bøger fra spotlight på startsiden"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Spotlight"
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Vis nyudgivelser på startsiden"
 

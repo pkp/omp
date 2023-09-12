@@ -411,57 +411,6 @@ msgstr "Muokkaa tätä edustajaa"
 msgid "grid.action.deleteRepresentative"
 msgstr "Poista tämä edustaja"
 
-msgid "spotlight"
-msgstr "Nosto"
-
-msgid "spotlight.spotlights"
-msgstr "Nostot"
-
-msgid "spotlight.noneExist"
-msgstr "Ei yhtään nostoa."
-
-msgid "spotlight.title.homePage"
-msgstr "Nostetut"
-
-msgid "spotlight.author"
-msgstr "Kirjoittaja, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Nostettu nimeke"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Etusivu"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Noston sijainti"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Anna nostettava nimeke (automaattinen täydennys)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Noston otsikko"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Kirja"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Kohde vaaditaan."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "Noston otsikko on pakollinen."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Valitse tämän noston sijainti."
-
-msgid "grid.action.editSpotlight"
-msgstr "Muokkaa tätä nostoa"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Poista tämä nosto"
-
-msgid "grid.action.addSpotlight"
-msgstr "Lisää nosto"
-
 msgid "manager.series.open"
 msgstr "Käsikirjoitukset vapaasti lähetettävissä"
 
@@ -891,9 +840,6 @@ msgstr "Linkit ja sosiaalinen media"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Linkki omaan luetteloon."
-
-msgid "navigation.skip.spotlights"
-msgstr "Siirry uutuuslistaan"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Sarja"
@@ -1424,15 +1370,6 @@ msgstr "Markkina muokattu."
 
 msgid "notification.removedMarket"
 msgstr "Markkina poistettu."
-
-msgid "notification.addedSpotlight"
-msgstr "Nosto lisätty."
-
-msgid "notification.editedSpotlight"
-msgstr "Nostoa muokattu."
-
-msgid "notification.removedSpotlight"
-msgstr "Nosto poistettu."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Luettelon metatiedot tallennettu."

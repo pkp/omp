@@ -371,12 +371,6 @@ msgstr "Display featured books on the home page"
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Featured Books"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Display books in the spotlight on the home page"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Spotlight"
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Display new releases on the home page"
 

@@ -85,33 +85,6 @@ msgstr "Zemlje"
 msgid "grid.catalogEntry.agent"
 msgstr "Agent"
 
-msgid "grid.content.spotlights.form.item"
-msgstr "Unesite istaknuti naslov (automatsko dovršavanje)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Ime središta pažnje"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Knjiga"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Potreban je predmet."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "Potrebno je ime središta pažnje."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Molimo odaberite mjesto za ovo središte pažnje."
-
-msgid "grid.action.editSpotlight"
-msgstr "Uredi ovo središte pažnje"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Izbriši ovo središte pažnje"
-
-msgid "grid.action.addSpotlight"
-msgstr "Dodaj središte pažnje"
-
 msgid "manager.series.open"
 msgstr "Otvorene prijave"
 
@@ -141,9 +114,6 @@ msgstr "Društvene mreže"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Poveznica na katalog."
-
-msgid "navigation.skip.spotlights"
-msgstr "Prijeđi na središta pažnje"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Nizovi"
@@ -510,30 +480,6 @@ msgstr "Uredite ovog predstavnika"
 
 msgid "grid.action.deleteRepresentative"
 msgstr "Izbriši ovog predstavnika"
-
-msgid "spotlight"
-msgstr "Središte pažnje"
-
-msgid "spotlight.spotlights"
-msgstr "Središta pažnje"
-
-msgid "spotlight.noneExist"
-msgstr "Trenutno nema središta pažnje."
-
-msgid "spotlight.title.homePage"
-msgstr "U središtu pažnje"
-
-msgid "spotlight.author"
-msgstr "Autor, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Predmet središta pažnje"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Početna stranica"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Mjesto središta pažnje"
 
 msgid "manager.series.indexed"
 msgstr "Indeksirano"
@@ -1394,15 +1340,6 @@ msgstr "Uređeno tržište."
 
 msgid "notification.removedMarket"
 msgstr "Uklonjeno tržište."
-
-msgid "notification.addedSpotlight"
-msgstr "Dodano središte pažnje."
-
-msgid "notification.editedSpotlight"
-msgstr "Uređeno središte pažnje."
-
-msgid "notification.removedSpotlight"
-msgstr "Uklonjeno središte pažnje."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Metapodaci kataloga spremljeni."

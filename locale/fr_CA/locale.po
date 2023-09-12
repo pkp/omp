@@ -415,57 +415,6 @@ msgstr "Modifier ce(tte) représentant(e)"
 msgid "grid.action.deleteRepresentative"
 msgstr "Supprimer ce(tte) représentant(e)"
 
-msgid "spotlight"
-msgstr ""
-
-msgid "spotlight.spotlights"
-msgstr "Sous les projecteurs"
-
-msgid "spotlight.noneExist"
-msgstr "Aucun ouvrage n'apparait dans la rubrique Sous les projecteurs."
-
-msgid "spotlight.title.homePage"
-msgstr "Pleins feux sur..."
-
-msgid "spotlight.author"
-msgstr "Auteur, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Ouvrage en vedette"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Page d'accueil"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Emplacement de l'ouvrage en vedette"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Saisir le titre de l'ouvrage en vedette (remplissage automatique)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Titre de l'ouvrage en vedette"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Livre"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Vous devez indiquer un ouvrage."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "Vous devez indiquer le titre de l'ouvrage."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Veuillez choisir un emplacement pour ce titre en vedette."
-
-msgid "grid.action.editSpotlight"
-msgstr "Modifier les titres en vedette"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Retirer un titre de la rubrique Sous les projecteurs"
-
-msgid "grid.action.addSpotlight"
-msgstr "Ajouter un titre à la rubrique Sous les projecteurs"
-
 msgid "manager.series.open"
 msgstr "Soumissions libres"
 
@@ -891,9 +840,6 @@ msgid "navigation.linksAndMedia"
 msgstr "Liens et médias sociaux"
 
 msgid "navigation.navigationMenus.catalog.description"
-msgstr ""
-
-msgid "navigation.skip.spotlights"
 msgstr ""
 
 msgid "navigation.navigationMenus.series.generic"
@@ -1435,15 +1381,6 @@ msgstr "Le marché a été modifié."
 
 msgid "notification.removedMarket"
 msgstr "Le marché a été supprimé."
-
-msgid "notification.addedSpotlight"
-msgstr "Ajout à la rubrique \"Sous les projecteurs\"."
-
-msgid "notification.editedSpotlight"
-msgstr "Modification dans la rubrique \"Sous les projecteurs\"."
-
-msgid "notification.removedSpotlight"
-msgstr "Titre supprimé de la rubrique \"Sous les projecteurs\"."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Les métadonnées du catalogue ont été sauvegardées."

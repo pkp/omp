@@ -1049,12 +1049,6 @@ msgstr "Contenu de la page d’accueil"
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Livres à la une"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Afficher les livres à la une sur la page d’accueil"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "À la une"
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Afficher les nouvelles publications sur la page d’accueil"
 

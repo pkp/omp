@@ -403,57 +403,6 @@ msgstr "Bu Temsilciyi Düzenle"
 msgid "grid.action.deleteRepresentative"
 msgstr "Bu Temsilciyi Sil"
 
-msgid "spotlight"
-msgstr "Gündem"
-
-msgid "spotlight.spotlights"
-msgstr "İlgi çekenler"
-
-msgid "spotlight.noneExist"
-msgstr "Mevcut gündem yok."
-
-msgid "spotlight.title.homePage"
-msgstr "Gündemde"
-
-msgid "spotlight.author"
-msgstr "Yazar, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Gündem Öğesi"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Anasayfa"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Gündem Konumu"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Gündem başlığını girin (otomatik tamamlama)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Gündem başlığı"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Kitap"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Bir öğe gerekli."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "Bir gündem başlığı gerekli."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Lütfen bu gündem için bir yer seçin."
-
-msgid "grid.action.editSpotlight"
-msgstr "Bu gündemi düzenleyin"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Bu gündemi sil"
-
-msgid "grid.action.addSpotlight"
-msgstr "Gündem ekle"
-
 msgid "manager.series.open"
 msgstr "Açık Gönderimler"
 
@@ -880,9 +829,6 @@ msgstr "Bağlantılar ve Sosyal Medya"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Fihristinize bağlantı verin."
-
-msgid "navigation.skip.spotlights"
-msgstr "Gündem maddelerine geçin"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Dizi"
@@ -1413,15 +1359,6 @@ msgstr "Pazar düzenlendi."
 
 msgid "notification.removedMarket"
 msgstr "Pazar kaldırıldı."
-
-msgid "notification.addedSpotlight"
-msgstr "Gündem eklendi."
-
-msgid "notification.editedSpotlight"
-msgstr "Gündem düzenlendi."
-
-msgid "notification.removedSpotlight"
-msgstr "Gündem kaldırıldı."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Fihrist üst verileri kaydedildi."

@@ -411,57 +411,6 @@ msgstr "Уредете го овој Претставник"
 msgid "grid.action.deleteRepresentative"
 msgstr "Избришете го овој претставник"
 
-msgid "spotlight"
-msgstr "Рефлектор"
-
-msgid "spotlight.spotlights"
-msgstr "Рефлектори"
-
-msgid "spotlight.noneExist"
-msgstr "Во моментов нема рефлектори."
-
-msgid "spotlight.title.homePage"
-msgstr "Во центар на внимание"
-
-msgid "spotlight.author"
-msgstr "Автор, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Предмет на внимание"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Домашна страница"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Локација на центар на внимание"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Внесете наслов на центар на внимание(автоматско комплетирање)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Наслов на центар на внимание"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Книга"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Потребна е ставка."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "Наслов на центар на внимание е потребен."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Ве молиме изберете локација за овој центар на внимание."
-
-msgid "grid.action.editSpotlight"
-msgstr "Уредете го овој центар на внимание"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Избришете го овој центар на внимание"
-
-msgid "grid.action.addSpotlight"
-msgstr "Додадете центар на внимание"
-
 msgid "manager.series.open"
 msgstr "Отворете ги поднесоците"
 
@@ -901,9 +850,6 @@ msgstr "Врски и социјални медиуми"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Врска до вашиот каталог."
-
-msgid "navigation.skip.spotlights"
-msgstr "Прескокнете до центрите на внимание"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Серии"
@@ -1441,15 +1387,6 @@ msgstr "Уреден пазар."
 
 msgid "notification.removedMarket"
 msgstr "Отстранет пазар."
-
-msgid "notification.addedSpotlight"
-msgstr "Центар на внимание додаден."
-
-msgid "notification.editedSpotlight"
-msgstr "Уреден центар на внимание."
-
-msgid "notification.removedSpotlight"
-msgstr "Отстранет центар на внимание."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Метаподатоците за каталогот се зачувани."

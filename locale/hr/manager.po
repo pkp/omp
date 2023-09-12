@@ -602,12 +602,6 @@ msgstr "Uključite sadržaj sadašnje monografije (ako je dostupan)."
 msgid "manager.setup.displayOnHomepage"
 msgstr "Sadržaj početne stranice"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Prikažite knjige na početnoj stranici tako da budu u centru pažnje"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Centar pažnje"
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Prikaži nova izdanja na početnoj stranici"
 

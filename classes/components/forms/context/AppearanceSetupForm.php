@@ -35,20 +35,13 @@ class AppearanceSetupForm extends PKPAppearanceSetupForm
             return ['value' => $key, 'label' => $label];
         }, array_keys($catalogSortOptions), $catalogSortOptions);
 
-        $this->addField(new FieldOptions('displayInSpotlight', [
-            'label' => __('manager.setup.displayInSpotlight.label'),
-            'value' => (bool) $context->getData('displayInSpotlight'),
+        $this->addField(new FieldOptions('displayFeaturedBooks', [
+            'label' => __('manager.setup.displayFeaturedBooks.label'),
+            'value' => (bool) $context->getData('displayFeaturedBooks'),
             'options' => [
-                ['value' => 'true', 'label' => __('manager.setup.displayInSpotlight')],
+                ['value' => 'true', 'label' => __('manager.setup.displayFeaturedBooks')],
             ],
         ]))
-            ->addField(new FieldOptions('displayFeaturedBooks', [
-                'label' => __('manager.setup.displayFeaturedBooks.label'),
-                'value' => (bool) $context->getData('displayFeaturedBooks'),
-                'options' => [
-                    ['value' => 'true', 'label' => __('manager.setup.displayFeaturedBooks')],
-                ],
-            ]))
             ->addField(new FieldOptions('displayNewReleases', [
                 'label' => __('manager.setup.displayNewReleases.label'),
                 'value' => (bool) $context->getData('displayNewReleases'),

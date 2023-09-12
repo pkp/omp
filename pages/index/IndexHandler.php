@@ -24,8 +24,6 @@ use APP\press\FeatureDAO;
 use APP\press\NewReleaseDAO;
 use APP\press\Press;
 use APP\press\PressDAO;
-use APP\spotlight\Spotlight;
-use APP\spotlight\SpotlightDAO;
 use APP\template\TemplateManager;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
@@ -63,6 +61,10 @@ class IndexHandler extends PKPIndexHandler
         }
 
         $this->setupTemplate($request);
+        $templateMgr = TemplateManager::getManager($request);
+        $templateMgr->assign([
+            'highlights' => $this->getHighlights($press),
+        ]);
 
         if ($press) {
             // Display the current press home.
@@ -142,14 +144,6 @@ class IndexHandler extends PKPIndexHandler
                 }
             }
             $templateMgr->assign('featuredMonographs', $featuredMonographs);
-        }
-
-        // Display In Spotlight
-        if ($press->getSetting('displayInSpotlight')) {
-            // Include random spotlight items for the press home page.
-            $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /** @var SpotlightDAO $spotlightDao */
-            $spotlights = $spotlightDao->getRandomByPressId($press->getId(), Spotlight::MAX_SPOTLIGHTS_VISIBLE);
-            $templateMgr->assign('spotlights', $spotlights);
         }
 
         $templateMgr->display('frontend/pages/index.tpl');

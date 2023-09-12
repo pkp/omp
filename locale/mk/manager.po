@@ -422,12 +422,6 @@ msgstr "Прикажете избрани книги на почетната с�
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Избрани книги"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Прикажете книги во центарот на вниманието на почетната страница"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Центар на внимание"
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Прикажете нови изданија на почетната страница"
 

@@ -422,12 +422,6 @@ msgstr "Показати рекомендовані книги на головн
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Рекомендовані книги"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Показати книги в фокусі уваги на головній сторінці"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Фокус уваги"
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Показати нові релізи на головній сторінці"
 

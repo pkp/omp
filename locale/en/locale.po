@@ -387,57 +387,6 @@ msgstr "Edit this Representative"
 msgid "grid.action.deleteRepresentative"
 msgstr "Delete this Representative"
 
-msgid "spotlight"
-msgstr "Spotlight"
-
-msgid "spotlight.spotlights"
-msgstr "Spotlights"
-
-msgid "spotlight.noneExist"
-msgstr "There are no current spotlights."
-
-msgid "spotlight.title.homePage"
-msgstr "In the Spotlight"
-
-msgid "spotlight.author"
-msgstr "Author, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Spotlight Item"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Homepage"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Spotlight Location"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Enter spotlighted title (autocomplete)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Spotlight title"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Book"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "An item is required."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "A spotlight title is required."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Please choose a location for this spotlight."
-
-msgid "grid.action.editSpotlight"
-msgstr "Edit this spotlight"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Delete this spotlight"
-
-msgid "grid.action.addSpotlight"
-msgstr "Add Spotlight"
-
 msgid "manager.series.open"
 msgstr "Open Submissions"
 
@@ -851,9 +800,6 @@ msgstr "Links and Social Media"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Link to your catalog."
-
-msgid "navigation.skip.spotlights"
-msgstr "Skip to spotlights"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Series"
@@ -1312,15 +1258,6 @@ msgstr "Market edited."
 
 msgid "notification.removedMarket"
 msgstr "Market removed."
-
-msgid "notification.addedSpotlight"
-msgstr "Spotlight added."
-
-msgid "notification.editedSpotlight"
-msgstr "Spotlight edited."
-
-msgid "notification.removedSpotlight"
-msgstr "Spotlight removed."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Catalog metadata saved."

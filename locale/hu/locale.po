@@ -410,57 +410,6 @@ msgstr "Képviselő szerkesztése"
 msgid "grid.action.deleteRepresentative"
 msgstr "Képviselő törlése"
 
-msgid "spotlight"
-msgstr "Kiemelt"
-
-msgid "spotlight.spotlights"
-msgstr "Kiemeltek"
-
-msgid "spotlight.noneExist"
-msgstr "Nincsenek aktuális kiemelések."
-
-msgid "spotlight.title.homePage"
-msgstr "Kiemeltek között"
-
-msgid "spotlight.author"
-msgstr "Szerző "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Kiemelt tétel"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Kezdőoldal"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Kiemelés helye"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Adja meg a kiemelni kívánt címet (automatikus kitöltés)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Kiemelt címe"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Könyv"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Egy tétel kötelező."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "A kiemelt elem címe kötelező."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Kérjük, válasszon egy helyet ennek a kiemelésnek."
-
-msgid "grid.action.editSpotlight"
-msgstr "Kiemelt elem szerkesztése"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Kiemelt elem törlése"
-
-msgid "grid.action.addSpotlight"
-msgstr "Kiemelt elem hozzáadása"
-
 msgid "manager.series.open"
 msgstr "Beküldések megnyitása"
 
@@ -907,9 +856,6 @@ msgstr "Linkek és közösségi média"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Link a katalógushoz."
-
-msgid "navigation.skip.spotlights"
-msgstr "Ugrás a kiemeltekhez"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Sorozat"
@@ -1448,15 +1394,6 @@ msgstr "Piac szerkesztve."
 
 msgid "notification.removedMarket"
 msgstr "Piac eltávolítva."
-
-msgid "notification.addedSpotlight"
-msgstr "Kiemelt hozzáadva."
-
-msgid "notification.editedSpotlight"
-msgstr "Kiemelt szerkesztve."
-
-msgid "notification.removedSpotlight"
-msgstr "Kiemelt eltávolítva."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Katalógus metaadatok mentve."

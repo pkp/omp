@@ -131,7 +131,6 @@ class Application extends PKPApplication
             'QualifierDAO' => 'APP\codelist\QualifierDAO',
             'RepresentativeDAO' => 'APP\monograph\RepresentativeDAO',
             'SalesRightsDAO' => 'APP\publicationFormat\SalesRightsDAO',
-            'SpotlightDAO' => 'APP\spotlight\SpotlightDAO',
             'SubjectDAO' => 'APP\codelist\SubjectDAO',
             'TemporaryTotalsDAO' => 'APP\statistics\TemporaryTotalsDAO',
             'TemporaryItemInvestigationsDAO' => 'APP\statistics\TemporaryItemInvestigationsDAO',

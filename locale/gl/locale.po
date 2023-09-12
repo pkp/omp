@@ -409,57 +409,6 @@ msgstr "Editar este representante"
 msgid "grid.action.deleteRepresentative"
 msgstr "Borrar este representante"
 
-msgid "spotlight"
-msgstr "Destaque"
-
-msgid "spotlight.spotlights"
-msgstr "Destaques"
-
-msgid "spotlight.noneExist"
-msgstr "Non existen destaques."
-
-msgid "spotlight.title.homePage"
-msgstr "En destaque"
-
-msgid "spotlight.author"
-msgstr "Autor, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Elemento destacado"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Páxina de inicio"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Ubicación dos destaques"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Inserir título do destaque (autocompletar)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Título do destaque"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Libro"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "É necesario un elemento."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "É necesario un título do destaque."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Elixe unha ubicación para este destaque."
-
-msgid "grid.action.editSpotlight"
-msgstr "Editar este destaque"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Borrar este destaque"
-
-msgid "grid.action.addSpotlight"
-msgstr "Engadir destaque"
-
 msgid "manager.series.open"
 msgstr "Envíos abertos"
 
@@ -891,9 +840,6 @@ msgstr "Ligazóns e Redes Sociais"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Ligazón ao seu catálogo."
-
-msgid "navigation.skip.spotlights"
-msgstr "Ir aos destaques"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Coleccións"
@@ -1424,15 +1370,6 @@ msgstr "Mercado editado."
 
 msgid "notification.removedMarket"
 msgstr "Mercado eliminado."
-
-msgid "notification.addedSpotlight"
-msgstr "Engadido destaque."
-
-msgid "notification.editedSpotlight"
-msgstr "Destaque editado."
-
-msgid "notification.removedSpotlight"
-msgstr "Destaque eliminado."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Catálogo de metadatos gardado."
