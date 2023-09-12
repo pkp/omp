@@ -414,57 +414,6 @@ msgstr "Deasaich an neach-ionaid seo"
 msgid "grid.action.deleteRepresentative"
 msgstr "Sguab an neach-ionaid seo às"
 
-msgid "spotlight"
-msgstr "Prosbaig"
-
-msgid "spotlight.spotlights"
-msgstr "Prosbaigean"
-
-msgid "spotlight.noneExist"
-msgstr "Chan eil prosbaig ann aig an àm seo."
-
-msgid "spotlight.title.homePage"
-msgstr "Fon phrosbaig"
-
-msgid "spotlight.author"
-msgstr "Ùghdar, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Nì fon phrosbaig"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "An duilleag-dhachaigh"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Ionad na prosbaig"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Cuir a-steach tiotal airson na prosbaig (le fèin-choileanadh)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Tiotal na prosbaig"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Leabhar"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Tha feum air nì."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "Tha feum air tiotal airson na prosbaig."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Tagh ionad dhan phrosbaig seo."
-
-msgid "grid.action.editSpotlight"
-msgstr "Deasaich a’ phrosbaig seo"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Sguab a’ phrosbaig seo às"
-
-msgid "grid.action.addSpotlight"
-msgstr "Cuir prosbaig ris"
-
 msgid "manager.series.open"
 msgstr "Tagraidhean fosgailte"
 
@@ -909,9 +858,6 @@ msgstr "Ceanglaichean is meadhanan sòisealta"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Ceangail ris a’ chatalog agad."
-
-msgid "navigation.skip.spotlights"
-msgstr "Leum chun nam prosbaigean"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Sreath"
@@ -1462,15 +1408,6 @@ msgstr "Chaidh a’ mhargaid a dheasachadh."
 
 msgid "notification.removedMarket"
 msgstr "Chaidh a’ mhargaid a thoirt air falbh."
-
-msgid "notification.addedSpotlight"
-msgstr "Chaidh prosbaig a chur ris."
-
-msgid "notification.editedSpotlight"
-msgstr "Chaidh a’ phrosbaig a dheasachadh."
-
-msgid "notification.removedSpotlight"
-msgstr "Chaidh a’ phrosbaig a thoirt air falbh."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Chaidh meata-dàta a’ chatalog a shàbhaladh."

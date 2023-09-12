@@ -413,12 +413,6 @@ msgstr "Zobrazení doporučených knih na domovské stránce"
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Doporučené knihy"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Zobrazení zvýrazněných knih na domovské stránce"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Upozornění"
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Zobrazení nových verzí na domovské stránce"
 

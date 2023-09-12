@@ -407,57 +407,6 @@ msgstr "Zmień przedstawiciela"
 msgid "grid.action.deleteRepresentative"
 msgstr "Usuń przedstawiciela"
 
-msgid "spotlight"
-msgstr "Wyróżnione"
-
-msgid "spotlight.spotlights"
-msgstr "Wyróżnione"
-
-msgid "spotlight.noneExist"
-msgstr "Brak aktualnie wyróżnionych."
-
-msgid "spotlight.title.homePage"
-msgstr "Wyróżnione"
-
-msgid "spotlight.author"
-msgstr "Autor "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Wyróżniony przedmiot"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Strona główna"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Lokalizacja wyróżnionej pozycji"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Wprowadź wyróżniony tytuł (autouzupełniane)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Wyróżniony tytuł"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Książka"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Pozycja jest wymagana."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "Wyróżniony tytuł jest wymagany."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Proszę wybierz lokalizację dla wyróżnionej pozycji."
-
-msgid "grid.action.editSpotlight"
-msgstr "Zmień wyróżnioną pozycję"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Usuń wyróżnioną pozycję"
-
-msgid "grid.action.addSpotlight"
-msgstr "Dodaj wyróżnione"
-
 msgid "manager.series.open"
 msgstr "Otwarte zgłoszenia"
 
@@ -892,9 +841,6 @@ msgstr "Linki i media społecznościowe"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Link do Twojego katalogu."
-
-msgid "navigation.skip.spotlights"
-msgstr "Przejdź do wyróżnionych"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Serie"
@@ -1418,15 +1364,6 @@ msgstr "Zmieniono rynek."
 
 msgid "notification.removedMarket"
 msgstr "Usunięto rynek."
-
-msgid "notification.addedSpotlight"
-msgstr "Dodano wyróżnione."
-
-msgid "notification.editedSpotlight"
-msgstr "Zmieniono wyróżnione."
-
-msgid "notification.removedSpotlight"
-msgstr "Usunięto wyróżnione."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Zapisano metadane katalogu."

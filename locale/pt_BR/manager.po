@@ -423,12 +423,6 @@ msgstr "Mostrar publicações aprimoradas na página inicial"
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Livros em destaque"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Mostrar publicações em destaque na página inicial"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Destaque"
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Mostrar novos lançamentos na página inicial"
 

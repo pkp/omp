@@ -412,57 +412,6 @@ msgstr "Redigér denne repræsentant"
 msgid "grid.action.deleteRepresentative"
 msgstr "Slet denne repræsentant"
 
-msgid "spotlight"
-msgstr "Spotlight"
-
-msgid "spotlight.spotlights"
-msgstr "Spotlights"
-
-msgid "spotlight.noneExist"
-msgstr "Der er ingen aktuelle spotlights."
-
-msgid "spotlight.title.homePage"
-msgstr "I spotlightet"
-
-msgid "spotlight.author"
-msgstr "Forfatter, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Spotlight-element"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Homepage"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Spotlights-område"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Indtast spotlightet titel (autofuldførelse)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Spotlight-titel"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Bog"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Et element er påkrævet."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "En spotlight-titel er påkrævet."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Vælg en placering til dette spotlight."
-
-msgid "grid.action.editSpotlight"
-msgstr "Redigér dette spotlight"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Slet dette spotlight"
-
-msgid "grid.action.addSpotlight"
-msgstr "Tilføj spotlight"
-
 msgid "manager.series.open"
 msgstr "Åbn indsendelser"
 
@@ -898,9 +847,6 @@ msgstr "Links til sociale medier"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Link til dit katalog."
-
-msgid "navigation.skip.spotlights"
-msgstr "Spring til spotlights"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Serier"
@@ -1422,15 +1368,6 @@ msgstr "Marked redigeret."
 
 msgid "notification.removedMarket"
 msgstr "Marked fjernet."
-
-msgid "notification.addedSpotlight"
-msgstr "Spotlight tilføjet."
-
-msgid "notification.editedSpotlight"
-msgstr "Spotlight redigeret."
-
-msgid "notification.removedSpotlight"
-msgstr "Spotlight fjernet."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Katalog-metadata gemt."

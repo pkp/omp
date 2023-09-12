@@ -404,57 +404,6 @@ msgstr "Upravit tohoto zástupce"
 msgid "grid.action.deleteRepresentative"
 msgstr "Odstranit tohoto zástupce"
 
-msgid "spotlight"
-msgstr "Doporučení"
-
-msgid "spotlight.spotlights"
-msgstr "Doporučujeme"
-
-msgid "spotlight.noneExist"
-msgstr "Aktuálně nemáte zvoleny žádné doporučené publikace."
-
-msgid "spotlight.title.homePage"
-msgstr "V doporučených publikacích"
-
-msgid "spotlight.author"
-msgstr "Autor, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Doporučená položka"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Domovská stránka"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Umístění doporučených položek"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Zadejte jméno doporučeného titulu (dokončuje se automaticky)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Doporučený titul"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Kniha"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Tuto položku je třeba zadat."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "Je třeba zadat jméno doporučené položky."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Vyberte prosím umístění této doporučené položky."
-
-msgid "grid.action.editSpotlight"
-msgstr "Upravit tuto doporučenou položku"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Odstranit tuto doporučenou položku"
-
-msgid "grid.action.addSpotlight"
-msgstr "Přidat doporučenou položku"
-
 msgid "manager.series.open"
 msgstr "Otevřít příspěvky"
 
@@ -883,9 +832,6 @@ msgstr "Odkazy a sociální média"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Odkázat do katalogu."
-
-msgid "navigation.skip.spotlights"
-msgstr "Přeskočit k doporučeným"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Edice"
@@ -1404,15 +1350,6 @@ msgstr "Trh byl upraven."
 
 msgid "notification.removedMarket"
 msgstr "Trh byl odstraněn."
-
-msgid "notification.addedSpotlight"
-msgstr "Doporučená položka byla přidána."
-
-msgid "notification.editedSpotlight"
-msgstr "Doporučená položka byla upravena."
-
-msgid "notification.removedSpotlight"
-msgstr "Doporučená položka byla odstraněna."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Metadata katalogu byla uložena."

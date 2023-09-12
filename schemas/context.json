@@ -56,12 +56,6 @@
 				"nullable"
 			]
 		},
-		"displayInSpotlight": {
-			"type": "boolean",
-			"validation": [
-				"nullable"
-			]
-		},
 		"displayNewReleases": {
 			"type": "boolean",
 			"validation": [

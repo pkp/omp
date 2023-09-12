@@ -413,57 +413,6 @@ msgstr "Editar representante"
 msgid "grid.action.deleteRepresentative"
 msgstr "Excluir representante"
 
-msgid "spotlight"
-msgstr "Em destaque"
-
-msgid "spotlight.spotlights"
-msgstr "Em destaques"
-
-msgid "spotlight.noneExist"
-msgstr "Sem destaques."
-
-msgid "spotlight.title.homePage"
-msgstr "Em destaque"
-
-msgid "spotlight.author"
-msgstr "Autor, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Destacar item"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Início"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Posição dos destaques"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Informe o título para os destaques (autocompletar)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Título do destaque"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Livro"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "É obrigatório informar informar um item."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "É obrigatório informar um título de destaque."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Escolha a posição dos destaques."
-
-msgid "grid.action.editSpotlight"
-msgstr "Editar este destaque"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Excluir este destaque"
-
-msgid "grid.action.addSpotlight"
-msgstr "Incluir destaque"
-
 msgid "manager.series.open"
 msgstr "Submissões abertas"
 
@@ -897,9 +846,6 @@ msgstr "Links e Redes Sociais"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Link para o seu catálogo."
-
-msgid "navigation.skip.spotlights"
-msgstr "Ir para destaques"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Series"
@@ -1424,15 +1370,6 @@ msgstr "Mercado editado."
 
 msgid "notification.removedMarket"
 msgstr "Mercado excluído."
-
-msgid "notification.addedSpotlight"
-msgstr "Destaque incluído."
-
-msgid "notification.editedSpotlight"
-msgstr "Destaque editado."
-
-msgid "notification.removedSpotlight"
-msgstr "Destaque excluído."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Metadados do catálogo salvos."

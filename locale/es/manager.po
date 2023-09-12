@@ -432,12 +432,6 @@ msgstr "Mostrar los libros destacados en la página de inicio"
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Libros destacados"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Mostrar los libros como destacados en la página de inicio"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Foco"
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Mostrar novedades en la página de inicio"
 

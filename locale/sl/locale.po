@@ -403,57 +403,6 @@ msgstr "Uredi tega zastopnika"
 msgid "grid.action.deleteRepresentative"
 msgstr "Izbriši tega zastopnika"
 
-msgid "spotlight"
-msgstr "Izpostavljamo"
-
-msgid "spotlight.spotlights"
-msgstr "Izpostavljamo"
-
-msgid "spotlight.noneExist"
-msgstr "Trenutno ne izpostavljamo ničesar."
-
-msgid "spotlight.title.homePage"
-msgstr "V ospredju"
-
-msgid "spotlight.author"
-msgstr "Avtor, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Izpostavljen element"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Domača stran"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Lokacija izpostavljenega elementa"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Vnesi  izpostavljen naslov (samodokončanje)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Naslov izpostavljenega elementa"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Knjiga"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Element je obvezen."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "Naslov izpostavljenega elementa je obvezen."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Prosimo, da za ta izpostavljeni element izberete lokacijo."
-
-msgid "grid.action.editSpotlight"
-msgstr "Uredi ta izpostavljeni element"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Izbriši ta izpostavljeni element"
-
-msgid "grid.action.addSpotlight"
-msgstr "Dodaj izpostavljeni element"
-
 msgid "manager.series.open"
 msgstr "Odpri oddajo prispevkov"
 
@@ -881,9 +830,6 @@ msgid "navigation.linksAndMedia"
 msgstr "Povezave in družabna omrežja"
 
 msgid "navigation.navigationMenus.catalog.description"
-msgstr ""
-
-msgid "navigation.skip.spotlights"
 msgstr ""
 
 msgid "navigation.navigationMenus.series.generic"
@@ -1390,15 +1336,6 @@ msgstr "Trg urejen."
 
 msgid "notification.removedMarket"
 msgstr "Trg odstranjen."
-
-msgid "notification.addedSpotlight"
-msgstr "Izpostavljeni element dodan."
-
-msgid "notification.editedSpotlight"
-msgstr "Izpostavljeni element urejen."
-
-msgid "notification.removedSpotlight"
-msgstr "Izpostavljeni element odstranjen."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Metapodatki kataloga shranjeni."

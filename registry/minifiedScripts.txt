@@ -107,7 +107,6 @@ lib/pkp/js/controllers/grid/users/stageParticipant/form/StageParticipantNotifyHa
 lib/pkp/js/controllers/grid/users/stageParticipant/form/AddParticipantFormHandler.js
 lib/pkp/js/pages/reviewer/ReviewerTabHandler.js
 lib/pkp/js/pages/authorDashboard/SubmissionEmailHandler.js
-js/controllers/grid/content/spotlights/form/SpotlightFormHandler.js
 js/controllers/modals/catalogEntry/form/RepresentativeFormHandler.js
 js/controllers/modals/catalogEntry/form/PublicationFormatMetadataFormHandler.js
 js/controllers/grid/files/proof/form/ApprovedProofFormHandler.js

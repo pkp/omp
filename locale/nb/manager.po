@@ -419,12 +419,6 @@ msgstr "Vis utvalgte bøker på hovedsiden"
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Utvalgte bøker"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Vis bøker fra spotlight på hovedsiden"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Spotlight"
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Vis nye utgivelser på hovedsiden"
 

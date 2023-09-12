@@ -440,12 +440,6 @@ msgstr "Featured Bücher auf der Startseite anzeigen"
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Featured Bücher"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Bücher im Spotlight auf der Startseite anzeigen"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Spotlight"
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Neuerscheinungen auf der Startseite anzeigen"
 

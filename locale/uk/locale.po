@@ -407,57 +407,6 @@ msgstr "Редагувати цього представника"
 msgid "grid.action.deleteRepresentative"
 msgstr "Видалити цього представника"
 
-msgid "spotlight"
-msgstr "Фокус уваги"
-
-msgid "spotlight.spotlights"
-msgstr "Фокуси уваги"
-
-msgid "spotlight.noneExist"
-msgstr "Тут немає поточних фокусів уваги."
-
-msgid "spotlight.title.homePage"
-msgstr "У фокусі уваги"
-
-msgid "spotlight.author"
-msgstr "Автор, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Пункт фокусу уваги"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Головна сторінка"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Положення фокусу уваги"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Введіть назву фокусу уваги (автозаповнення)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Назва фокусу уваги"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Книга"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Вимагається елемент."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "Вимагається назва фокусу уваги."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Будь ласка, виберіть положення цього фокусу уваги."
-
-msgid "grid.action.editSpotlight"
-msgstr "Редагувати цей фокус уваги"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Видалити цей фокус уваги"
-
-msgid "grid.action.addSpotlight"
-msgstr "Додати фокус уваги"
-
 msgid "manager.series.open"
 msgstr "Відкрити подання"
 
@@ -892,9 +841,6 @@ msgstr "Посилання і соціальні медіа"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Покликання на Ваш каталог."
-
-msgid "navigation.skip.spotlights"
-msgstr "Перейти до фокусів уваги"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Серія"
@@ -1420,15 +1366,6 @@ msgstr "Магазин відредаговано."
 
 msgid "notification.removedMarket"
 msgstr "Магазин видалено."
-
-msgid "notification.addedSpotlight"
-msgstr "Фокус уваги додано."
-
-msgid "notification.editedSpotlight"
-msgstr "Фокус уваги відредаговано."
-
-msgid "notification.removedSpotlight"
-msgstr "Фокус уваги видалено."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Метадані каталогу збережено."

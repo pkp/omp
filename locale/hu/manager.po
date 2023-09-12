@@ -431,12 +431,6 @@ msgstr "Válogatott könyvek megjelenítése a kezdőlapon"
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Válogatott könyvek"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Kiemelt könyvek megjelenítése a kezdőlapon"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Kiemelés"
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Új megjelenések megjelenítése a kezdőlapon"
 

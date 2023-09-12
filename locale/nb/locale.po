@@ -405,57 +405,6 @@ msgstr "Rediger representant"
 msgid "grid.action.deleteRepresentative"
 msgstr "Ta bort representant"
 
-msgid "spotlight"
-msgstr "Spotlight"
-
-msgid "spotlight.spotlights"
-msgstr "Spotlights"
-
-msgid "spotlight.noneExist"
-msgstr "Det finnes ingen aktuelle spotlights."
-
-msgid "spotlight.title.homePage"
-msgstr "I spotlight"
-
-msgid "spotlight.author"
-msgstr "Forfattere, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Spotlight-element"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Hovedside"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Spotlight-plassering"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Legg inn spotlight-tittelen (autofullføring)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Spotlight-tittel"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Bok"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Et objekt kreves."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "En spotlight-tittel kreves."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Velg et område for denne spotlighten."
-
-msgid "grid.action.editSpotlight"
-msgstr "Rediger spotlight"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Ta bort spotlight"
-
-msgid "grid.action.addSpotlight"
-msgstr "Legg til spotlight"
-
 msgid "manager.series.open"
 msgstr "Åpne innleveringer"
 
@@ -884,9 +833,6 @@ msgstr "Lenker og sosiale medier"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Lenke til din katalog."
-
-msgid "navigation.skip.spotlights"
-msgstr "Gå til spotlight"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Serier"
@@ -1416,15 +1362,6 @@ msgstr "Marked redigert."
 
 msgid "notification.removedMarket"
 msgstr "Marked fjernet."
-
-msgid "notification.addedSpotlight"
-msgstr "Spotlight lagt til."
-
-msgid "notification.editedSpotlight"
-msgstr "Spotlight redigert."
-
-msgid "notification.removedSpotlight"
-msgstr "Spotlight fjernet."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Metadata lagret."

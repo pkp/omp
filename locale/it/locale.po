@@ -417,57 +417,6 @@ msgstr "Edita il rappresentante"
 msgid "grid.action.deleteRepresentative"
 msgstr "Cancella il rappresentante"
 
-msgid "spotlight"
-msgstr "In evidenza"
-
-msgid "spotlight.spotlights"
-msgstr "In evidenza"
-
-msgid "spotlight.noneExist"
-msgstr "Non ci sono libri in evidenza."
-
-msgid "spotlight.title.homePage"
-msgstr "In evidenza"
-
-msgid "spotlight.author"
-msgstr "Autore, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Volume in evidenza"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Homepage"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Collocazione per \"In evidenza\""
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Inserisci il titolo messo In evidenza (autocompletamento)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Titolo In evidenza"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Libro"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Occorre indicare un libro."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "Occorre indicare un titolo In evidenza."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Per favore, scegli un posto per questo libro In evidenza."
-
-msgid "grid.action.editSpotlight"
-msgstr "Edita questo volume In evidenza"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Cancella questo volume In evidenza"
-
-msgid "grid.action.addSpotlight"
-msgstr "Aggiungi \"In evidenza\""
-
 msgid "manager.series.open"
 msgstr "Proposte libere"
 
@@ -907,9 +856,6 @@ msgstr "Link ai Social Media"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Link al tuo catalogo."
-
-msgid "navigation.skip.spotlights"
-msgstr "Passare ai libri in evidenza"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Collane"
@@ -1440,15 +1386,6 @@ msgstr "Mercato modificato."
 
 msgid "notification.removedMarket"
 msgstr "Mercato rimosso."
-
-msgid "notification.addedSpotlight"
-msgstr "Spotlight aggiunto."
-
-msgid "notification.editedSpotlight"
-msgstr "Spotlight modificato."
-
-msgid "notification.removedSpotlight"
-msgstr "Spotlight rimosso."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Metadati del Catalogo salvati."

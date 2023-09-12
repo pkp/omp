@@ -410,57 +410,6 @@ msgstr "Editar este Representante"
 msgid "grid.action.deleteRepresentative"
 msgstr "Remover este Representante"
 
-msgid "spotlight"
-msgstr "Destaque"
-
-msgid "spotlight.spotlights"
-msgstr "Destaques"
-
-msgid "spotlight.noneExist"
-msgstr "Não existem destaques."
-
-msgid "spotlight.title.homePage"
-msgstr "Em destaque"
-
-msgid "spotlight.author"
-msgstr "Autor, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Item Destacado"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Página inicial"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Posição dos destaques"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Introduzir o título do destaque (autocompletar)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Título do destaque"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Livro"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "É necessário um item."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "É necessário um título de destaque."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Por favor escolha uma localização para este destaque."
-
-msgid "grid.action.editSpotlight"
-msgstr "Editar este destaque"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Remover este destaque"
-
-msgid "grid.action.addSpotlight"
-msgstr "Adicionar Destaque"
-
 msgid "manager.series.open"
 msgstr "Submissões abertas"
 
@@ -890,9 +839,6 @@ msgstr "Links e Redes Sociais"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Link para o seu catálogo."
-
-msgid "navigation.skip.spotlights"
-msgstr "Saltar para os destaques"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Séries"
@@ -1409,15 +1355,6 @@ msgstr "Mercado editado."
 
 msgid "notification.removedMarket"
 msgstr "Mercado removido."
-
-msgid "notification.addedSpotlight"
-msgstr "Destaque adicionado."
-
-msgid "notification.editedSpotlight"
-msgstr "Destaque editado."
-
-msgid "notification.removedSpotlight"
-msgstr "Destaque removido."
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Metadados do catálogo guardados."

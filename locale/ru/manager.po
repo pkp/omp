@@ -428,12 +428,6 @@ msgstr "Отображаемые книги на главной странице
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Популярные книги"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Отображение книг в фокусе внимания на главной странице"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Фокус внимания (Spotlight)"
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Отображаемые новые книги на главной странице"
 

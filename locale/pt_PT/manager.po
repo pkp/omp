@@ -190,9 +190,6 @@ msgstr "Disponibilizar livros em destaque na página de início"
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Livros em Destaque"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Dispor livros destacados na página de início"
-
 msgid "manager.setup.displayNewReleases.label"
 msgstr "Novos Lançamentos"
 
@@ -1017,9 +1014,6 @@ msgstr ""
 
 msgid "manager.setup.disciplineProvideExamples"
 msgstr "Forneça exemplos de disciplinas académicas relevantes para esta editora"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Destacados"
 
 msgid "manager.setup.displayNewReleases"
 msgstr "Dispor novos lançamentos na página de início"

@@ -364,39 +364,6 @@ class OMPMigration extends \PKP\migration\Migration
             $table->index(['doi_id'], 'submission_files_doi_id');
         });
 
-
-        // Spotlights
-        Schema::create('spotlights', function (Blueprint $table) {
-            $table->comment('Information about which submissions to the press are spotlighted.');
-            $table->bigInteger('spotlight_id')->autoIncrement();
-
-            $table->smallInteger('assoc_type');
-            $table->smallInteger('assoc_id');
-
-            $table->bigInteger('press_id');
-            $table->foreign('press_id')->references('press_id')->on('presses')->onDelete('cascade');
-            $table->index(['press_id'], 'spotlights_press_id');
-
-            $table->index(['assoc_type', 'assoc_id'], 'spotlights_assoc');
-        });
-
-        // Spotlight metadata.
-        Schema::create('spotlight_settings', function (Blueprint $table) {
-            $table->comment('More data about spotlights, including localized properties.');
-            $table->bigIncrements('spotlight_setting_id');
-
-            $table->bigInteger('spotlight_id');
-            $table->foreign('spotlight_id')->references('spotlight_id')->on('spotlights')->onCascade('delete');
-            $table->index(['spotlight_id'], 'spotlight_settings_id');
-
-            $table->string('locale', 14)->default('');
-            $table->string('setting_name', 255);
-            $table->text('setting_value')->nullable();
-            $table->string('setting_type', 6)->comment('(bool|int|float|string|object|date)');
-
-            $table->unique(['spotlight_id', 'locale', 'setting_name'], 'spotlight_settings_unique');
-        });
-
         // Logs queued (unfulfilled) payments.
         Schema::create('queued_payments', function (Blueprint $table) {
             $table->comment('A list of queued (unfilled) payments, i.e. payments that have not yet been completed via an online payment system.');
@@ -449,8 +416,6 @@ class OMPMigration extends \PKP\migration\Migration
         Schema::drop('submission_chapters');
         Schema::drop('submission_chapter_settings');
         Schema::drop('submission_chapter_authors');
-        Schema::drop('spotlights');
-        Schema::drop('spotlight_settings');
         Schema::drop('queued_payments');
         Schema::drop('completed_payments');
         Schema::drop('publication_formats');

@@ -377,57 +377,6 @@ msgstr ""
 msgid "grid.action.deleteRepresentative"
 msgstr ""
 
-msgid "spotlight"
-msgstr ""
-
-msgid "spotlight.spotlights"
-msgstr ""
-
-msgid "spotlight.noneExist"
-msgstr ""
-
-msgid "spotlight.title.homePage"
-msgstr ""
-
-msgid "spotlight.author"
-msgstr ""
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr ""
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr ""
-
-msgid "grid.content.spotlights.form.location"
-msgstr ""
-
-msgid "grid.content.spotlights.form.item"
-msgstr ""
-
-msgid "grid.content.spotlights.form.title"
-msgstr ""
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr ""
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr ""
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr ""
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr ""
-
-msgid "grid.action.editSpotlight"
-msgstr ""
-
-msgid "grid.action.deleteSpotlight"
-msgstr ""
-
-msgid "grid.action.addSpotlight"
-msgstr ""
-
 msgid "manager.series.open"
 msgstr ""
 
@@ -842,9 +791,6 @@ msgstr ""
 msgid "navigation.navigationMenus.catalog.description"
 msgstr ""
 
-msgid "navigation.skip.spotlights"
-msgstr ""
-
 msgid "navigation.navigationMenus.series.generic"
 msgstr ""
 
@@ -1226,15 +1172,6 @@ msgid "notification.editedMarket"
 msgstr ""
 
 msgid "notification.removedMarket"
-msgstr ""
-
-msgid "notification.addedSpotlight"
-msgstr ""
-
-msgid "notification.editedSpotlight"
-msgstr ""
-
-msgid "notification.removedSpotlight"
 msgstr ""
 
 msgid "notification.savedCatalogMetadata"

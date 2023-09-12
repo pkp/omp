@@ -403,57 +403,6 @@ msgstr "Redigera representant"
 msgid "grid.action.deleteRepresentative"
 msgstr "Ta bort representant"
 
-msgid "spotlight"
-msgstr "Spotlight"
-
-msgid "spotlight.spotlights"
-msgstr "Spotlights"
-
-msgid "spotlight.noneExist"
-msgstr "Det finns inga aktuella spotlights."
-
-msgid "spotlight.title.homePage"
-msgstr "I spotlight"
-
-msgid "spotlight.author"
-msgstr "Författare, "
-
-msgid "grid.content.spotlights.spotlightItemTitle"
-msgstr "Spotlight-element"
-
-msgid "grid.content.spotlights.category.homepage"
-msgstr "Hemsida"
-
-msgid "grid.content.spotlights.form.location"
-msgstr "Plats för spotlight"
-
-msgid "grid.content.spotlights.form.item"
-msgstr "Ange spotlight-titeln (autocomplete)"
-
-msgid "grid.content.spotlights.form.title"
-msgstr "Spotlight-titel"
-
-msgid "grid.content.spotlights.form.type.book"
-msgstr "Bok"
-
-msgid "grid.content.spotlights.itemRequired"
-msgstr "Ett objekt krävs."
-
-msgid "grid.content.spotlights.titleRequired"
-msgstr "En spotlight-titel krävs."
-
-msgid "grid.content.spotlights.locationRequired"
-msgstr "Välj plats för denna spotlight."
-
-msgid "grid.action.editSpotlight"
-msgstr "Redigera spotlight"
-
-msgid "grid.action.deleteSpotlight"
-msgstr "Ta bort spotlight"
-
-msgid "grid.action.addSpotlight"
-msgstr "Lägg till spotlight"
-
 msgid "manager.series.open"
 msgstr "Öppna bidrag"
 
@@ -871,9 +820,6 @@ msgstr "Länkar och sociala medier"
 
 msgid "navigation.navigationMenus.catalog.description"
 msgstr "Länk till din katalog."
-
-msgid "navigation.skip.spotlights"
-msgstr "Gå till spotlight"
 
 msgid "navigation.navigationMenus.series.generic"
 msgstr "Serier"
@@ -1301,15 +1247,6 @@ msgstr "Marknad redigerad."
 
 msgid "notification.removedMarket"
 msgstr "Marknad borttagen."
-
-msgid "notification.addedSpotlight"
-msgstr ""
-
-msgid "notification.editedSpotlight"
-msgstr ""
-
-msgid "notification.removedSpotlight"
-msgstr ""
 
 msgid "notification.savedCatalogMetadata"
 msgstr "Metadata sparad."

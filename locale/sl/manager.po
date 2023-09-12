@@ -408,12 +408,6 @@ msgstr "Na domači strani prikaži predstavljene knjige"
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr ""
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Na domači strani prikaži aktualne knjige"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr ""
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Prikaži novosti na domači strani"
 

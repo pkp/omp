@@ -425,12 +425,6 @@ msgstr "Näytä esittelyssä olevat kirjat etusivulla"
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Esittelyssä olevat teokset"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Näytä kirjat nostoissa etusivulla"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Nosto"
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Näytä uutuudet etusivulla"
 

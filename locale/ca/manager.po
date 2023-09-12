@@ -430,12 +430,6 @@ msgstr "Mostrar els llibres destacats a la pàgina d'inici"
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Llibres destacats"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Mostrar els llibres en els destacats de la pàgina d'inici"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Focus"
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Mostrar les novetats a la pàgina d'inici"
 

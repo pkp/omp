@@ -11,9 +11,6 @@
 	<a href="#pkp_content_main">{translate key="navigation.skip.main"}</a>
 	<a href="#siteNav">{translate key="navigation.skip.nav"}</a>
 	{if !$requestedPage || $requestedPage === 'index'}
-		{if !empty($spotlights)}
-			<a href="#homepageSpotlights">{translate key="navigation.skip.spotlights"}</a>
-		{/if}
 		{if $numAnnouncementsHomepage && $announcements|@count}
 			<a href="#homepageAnnouncements">{translate key="navigation.skip.announcements"}</a>
 		{/if}

@@ -411,12 +411,6 @@ msgstr "Visa utvalda böcker på förstasidan"
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr "Utvalda böcker"
 
-msgid "manager.setup.displayInSpotlight"
-msgstr "Visa böcker i spotlight på förstasidan"
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr "Spotlight"
-
 msgid "manager.setup.displayNewReleases"
 msgstr "Visa nya utgivningar på förstasidan"
 

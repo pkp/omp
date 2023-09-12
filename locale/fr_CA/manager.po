@@ -416,12 +416,6 @@ msgstr ""
 msgid "manager.setup.displayFeaturedBooks.label"
 msgstr ""
 
-msgid "manager.setup.displayInSpotlight"
-msgstr ""
-
-msgid "manager.setup.displayInSpotlight.label"
-msgstr ""
-
 msgid "manager.setup.displayNewReleases"
 msgstr ""
 
