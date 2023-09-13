@@ -218,6 +218,26 @@ class MonographSearchIndex extends SubmissionSearchIndex
     }
 
     /**
+     * Signal to the indexing back-end that a file was deleted.
+     *
+     * @see MonographSearchIndex::submissionMetadataChanged() above for more
+     * comments.
+     *
+     * @param int $type optional
+     * @param int $assocId optional
+     */
+    public function submissionFileDeleted($monographId, $type = null, $assocId = null)
+    {
+        // If a search plug-in is activated then skip the default database search implementation.
+        if (Hook::ABORT === Hook::call('MonographSearchIndex::submissionFileDeleted', [$monographId, $type, $assocId])) {
+            return;
+        }
+
+        $searchDao = DAORegistry::getDAO('MonographSearchDAO'); /** @var MonographSearchDAO $searchDao */
+        return $searchDao->deleteSubmissionKeywords($monographId, $type, $assocId);
+    }
+
+    /**
      * @copydoc SubmissionSearchIndex::submissionChangesFinished()
      *
      * @hook MonographSearchIndex::monographChangesFinished []
