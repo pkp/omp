@@ -16,7 +16,9 @@
 
 namespace APP\search;
 
+use APP\core\Application;
 use APP\facades\Repo;
+use APP\press\Press;
 use APP\press\PressDAO;
 use APP\submission\Submission;
 use Exception;
@@ -121,7 +123,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
     public function submissionMetadataChanged($submission)
     {
         // Check whether a search plug-in jumps in.
-        if (Hook::ABORT === Hook::call('MonographSearchIndex::submissionMetadataChanged', [$submission])) {
+        if (Hook::ABORT === Hook::call('MonographSearchIndex::monographMetadataChanged', [$submission])) {
             return;
         }
 
@@ -182,7 +184,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
             }
             $dependentFiles = Repo::submissionFile()->getCollector()
                 ->filterByAssoc(
-                    PKPApplication::ASSOC_TYPE_SUBMISSION_FILE,
+                    Application::ASSOC_TYPE_SUBMISSION_FILE,
                     [$submissionFile->getId()]
                 )
                 ->filterBySubmissionIds([$monograph->getId()])
