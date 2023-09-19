@@ -3,7 +3,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-09-07 16:58+0000\n"
+"PO-Revision-Date: 2023-09-20 21:06+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/default/"
 "fr_FR/>\n"
@@ -117,7 +117,7 @@ msgid "default.groups.name.volumeEditor"
 msgstr "Directeur·rice d’ouvrage"
 
 msgid "default.groups.plural.volumeEditor"
-msgstr "Directeurs/trices d’ouvrage"
+msgstr "Directeur·rice·s d’ouvrage"
 
 msgid "default.groups.abbrev.volumeEditor"
 msgstr "DO"
