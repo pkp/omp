@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-09-14 11:06+0000\n"
+"PO-Revision-Date: 2023-09-20 21:06+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/locale/fr_FR/"
 ">\n"
@@ -1021,7 +1021,7 @@ msgid "user.role.copyeditor"
 msgstr "Éditeur·rice"
 
 msgid "user.role.productionEditor"
-msgstr "Directeur·rice de production"
+msgstr "Responsable de production"
 
 msgid "user.role.managers"
 msgstr "Gestionnaires"
@@ -1036,7 +1036,7 @@ msgid "user.role.proofreaders"
 msgstr "Correcteurs/trices d’épreuves"
 
 msgid "user.role.productionEditors"
-msgstr "Directeur·rice·s de production"
+msgstr "Responsables de production"
 
 msgid "user.register.selectContext"
 msgstr "Sélectionner une maison d’édition à laquelle vous enregistrer :"
