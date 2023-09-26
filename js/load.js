@@ -32,12 +32,11 @@ import WorkflowPage from '@/components/Container/WorkflowPageOMP.vue';
 import JobsPage from '@/components/Container/JobsPage.vue';
 import FailedJobsPage from '@/components/Container/FailedJobsPage.vue';
 import FailedJobDetailsPage from '@/components/Container/FailedJobDetailsPage.vue';
-import CatalogListPanel from '@/components/ListPanel/submissions/CatalogListPanel.vue';
+import ManageCatalogPage from '@/components/Container/ManageCatalogPage.vue';
 import SubmissionsPage from '@/components/Container/SubmissionsPage.vue';
 
-// Required by the URN plugin
-import FieldText from '@/components/Form/fields/FieldText.vue';
-import FieldPubId from '@/components/Form/fields/FieldPubId.vue';
+// styles
+import '@/styles/_global.less';
 
 // Expose Vue, the registry and controllers in a global var
 window.pkp = Object.assign(PkpLoad, {
@@ -52,6 +51,7 @@ window.pkp = Object.assign(PkpLoad, {
 		DoiPage,
 		ImportExportPage,
 		ManageEmailsPage,
+		ManageCatalogPage,
 		JobsPage,
 		FailedJobsPage,
 		FailedJobDetailsPage,
@@ -66,8 +66,3 @@ window.pkp = Object.assign(PkpLoad, {
 		SubmissionsPage,
 	},
 });
-
-// Required by the URN plugin
-window.pkp.Vue.component('field-text', FieldText);
-window.pkp.Vue.component('field-pub-id', FieldPubId);
-window.pkp.Vue.component('catalog-list-panel', CatalogListPanel);
