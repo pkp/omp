@@ -1,0 +1,995 @@
+# Kamdin Parsakia <kamdinparsakia@iranmehr.ac.ir>, 2023.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-09-26 23:06+0000\n"
+"Last-Translator: Kamdin Parsakia <kamdinparsakia@iranmehr.ac.ir>\n"
+"Language-Team: Persian <http://translate.pkp.sfu.ca/projects/omp/locale/fa/>"
+"\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "common.payments"
+msgstr "پرداخت‌ها"
+
+msgid "monograph.audience"
+msgstr "مخاطبان"
+
+msgid "monograph.audience.success"
+msgstr "جزئیات مخاطب به روزرسانی شد."
+
+msgid "monograph.coverImage"
+msgstr "عکس جلد"
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "انتخاب طیف مخاطب"
+
+msgid "monograph.audience.rangeTo"
+msgstr "طیف مخاطبین (تا)"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "طیف مخاطبین (از)"
+
+msgid "monograph.audience.rangeExact"
+msgstr "طیف مخاطبین (دقیق)"
+
+msgid "monograph.languages"
+msgstr "زبان‌ها"
+
+msgid "monograph.publicationFormat"
+msgstr "فرمت"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "جزئیات این کتاب یا رساله"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "فرمت‌ها:"
+
+msgid "monograph.type"
+msgstr "نوع نوشته دریافتی"
+
+msgid "submission.pageProofs"
+msgstr "شواهد"
+
+msgid "monograph.task.addNote"
+msgstr "افزودن به وظیفه"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "دسترسی باز"
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "حک کردن برند"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "تعداد صفحات"
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "نوشته پشت جلد"
+
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "نوشته روی جلد"
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr "جنس محصول"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "جزئیات محصول (اختیاری)"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "شناسایی محصول"
+
+msgid "monograph.publicationFormat.price"
+msgstr "قیمت"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "تعیین قیمت الزامی است."
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "نوع قیمت"
+
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "قابلیت مرجوع کردن محصول"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "مشخصات دیجیتال"
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "ابعاد فیزیکی"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "حجم فایل (مگابایت)"
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "وارد کردن حجم فایل آپلود شده"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "ارتفاع"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "قطر"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "وزن"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "عرض"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "کشور"
+
+msgid "monograph.publicationFormat.productRegion"
+msgstr "منطقه توزیع محصول"
+
+msgid "monograph.publicationFormat.taxRate"
+msgstr "نرخ مالیات"
+
+msgid "monograph.publicationFormat.taxType"
+msgstr "نوع مالیات"
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "کد شناسایی ناقص است."
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "برخی از فیلدهای فراداده ناقص است."
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr "فرمت انتشاری که انتخاب کردید قابل استفاده نیست."
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "باز کردن تب فرمت انتشار."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "فرمت انتشار"
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "تعیین قیمت معتبر ضروری است."
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "جزئیات فرمت"
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "جنس فیزیکی"
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr "لینک سایت خارجی"
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "یک کد سیزده رقمی ISBN."
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "کد ده رقمی ISBN."
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "تعیین شناسه برای کتاب ضروری است."
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "یک فرمت انتشار باید انتخاب شود."
+
+msgid "grid.catalogEntry.availability"
+msgstr "موجودی"
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "موجود"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "ناموجود"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "تأییدیه فرمت"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr "نشان دادن عدم تأیید فراداده برای این فرمت."
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "موجود بودن فرمت"
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"این فرمت را برای خوانندگان غیرقابل دسترس قرار بده. فایل‌های قابل دانلود و "
+"انواع دیگر توزیع کتاب در بخش کاتالوگ آن دیگر نمایش داده نخواهد شد."
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "کاتالوگ تأیید نشده."
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "اثبات تأیید نشده."
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "تأیید شده"
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "در انتظار تأیید"
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "کد موجودی محصول الزامی است."
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "کد جنس محصول باید انتخاب شود."
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "مقدار کد"
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "نوع کد ONIX"
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "کد شناسایی الزامی است."
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "مقدار الزامی است."
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "حق فروش"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "مقدار کد"
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "باقی مناطق؟"
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr "در حال حاضر حق فروش در سایر کشورها برای این انتشار تعیین شده است."
+
+msgid "grid.catalogEntry.countries"
+msgstr "کشورها"
+
+msgid "grid.catalogEntry.regions"
+msgstr "مناطق"
+
+msgid "grid.catalogEntry.included"
+msgstr "انتخاب شده"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "بیرون گذاشته شده"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "قلمرو"
+
+msgid "grid.catalogEntry.markets"
+msgstr "قلمروهای بازار"
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "تاریخ‌های انتشار"
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr "تعیین نقش نماینده الزامی است."
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "تاریخ"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "نقش"
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "فرمت تاریخ"
+
+msgid "grid.catalogEntry.representatives"
+msgstr "نمایندگان"
+
+msgid "grid.catalogEntry.representativeType"
+msgstr "نوع نماینده"
+
+msgid "grid.catalogEntry.agent"
+msgstr "عامل فروش"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "عوامل فروش"
+
+msgid "grid.catalogEntry.supplier"
+msgstr "تأمین کننده"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "تأمین کنندگان"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "انتخاب نقش:"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "نقش"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "اسم"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "شماره تلفن"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "ایمیل"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "وبسایت"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "کد شناسایی نمایندگی"
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "نوع کد شناسایی نماینده"
+
+msgid "grid.action.editRepresentative"
+msgstr "ویرایش این نماینده"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "حذف این نماینده"
+
+msgid "spotlight.author"
+msgstr "نویسنده، "
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "صفحه خانگی"
+
+msgid "spotlight"
+msgstr "ویژه"
+
+msgid "spotlight.noneExist"
+msgstr "در حال حاضر محصول ویژه‌ای وجود ندارد."
+
+msgid "spotlight.title.homePage"
+msgstr "ویژه شده"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "موقعیت مورد ویژه"
+
+msgid "grid.content.spotlights.form.title"
+msgstr "عنوان ویژه"
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "کتاب"
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "تعیین یک آیتم ضروری است."
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "تعیین عنوان ویژه ضروری است."
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "لطفاً یک محل برای این آیتم ویژه انتخاب کنید."
+
+msgid "grid.action.editSpotlight"
+msgstr "ویرایش این آیتم ویژه"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "حذف این آیتم ویژه"
+
+msgid "grid.action.addSpotlight"
+msgstr "اضافه کردن آیتم ویژه"
+
+msgid "manager.series.indexed"
+msgstr "نمایه شده"
+
+msgid "grid.action.catalogEntry"
+msgstr "مشاهده فرم کاتالوگ"
+
+msgid "grid.action.editFormat"
+msgstr "ویرایش فرمت"
+
+msgid "grid.action.deleteFormat"
+msgstr "حذف این فرمت"
+
+msgid "grid.action.addFormat"
+msgstr "اضافه کردن فرمت انتشار"
+
+msgid "grid.action.pageProofApproved"
+msgstr "صفحات اثبات فایل برای این انتشار آماده است"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "ورودی کاتالوگ جدید"
+
+msgid "grid.action.publicCatalog"
+msgstr "مشاهده این آیتم در کاتالوگ"
+
+msgid "grid.action.feature"
+msgstr "تغییر وضعیت نمایش برجسته"
+
+msgid "grid.action.releaseMonograph"
+msgstr "نشان کردن این ارسال به عنوان «انتشار تازه»"
+
+msgid "grid.action.manageCategories"
+msgstr "پیکربندی دسته‌ها برای این انتشارات"
+
+msgid "grid.action.manageSeries"
+msgstr "پیکربندی سری‌های این انتشارات"
+
+msgid "grid.action.addCode"
+msgstr "اضافه کردن کد"
+
+msgid "grid.action.editCode"
+msgstr "ویرایش این کد"
+
+msgid "grid.action.addRights"
+msgstr "اضافه کردن حق فروش"
+
+msgid "grid.action.editRights"
+msgstr "ویرایش این حقوق"
+
+msgid "grid.action.deleteRights"
+msgstr "حذف این حقوق"
+
+msgid "grid.action.addMarket"
+msgstr "اضافه کردن بازار"
+
+msgid "grid.action.deleteMarket"
+msgstr "حذف این بازار"
+
+msgid "grid.action.addDate"
+msgstr "اضافه کردن تاریخ انتشار"
+
+msgid "grid.action.editDate"
+msgstr "ویرایش این تاریخ"
+
+msgid "grid.action.deleteDate"
+msgstr "حذف این تاریخ"
+
+msgid "grid.action.createContext"
+msgstr "ایجاد نشر جدید"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "برو به صفحه اعلانات"
+
+msgid "grid.action.submissionEmail"
+msgstr "کلیک جهت خواندن این ایمیل"
+
+msgid "grid.action.approveProofs"
+msgstr "مشاهده گرید اثبات‌ها"
+
+msgid "grid.action.proofApproved"
+msgstr "فرمت اثبات شده"
+
+msgid "grid.action.formatAvailable"
+msgstr "تغییر وضعیت موجودی این فرمت"
+
+msgid "grid.reviewAttachments.add"
+msgstr "اضافه کردن ضمیمه به بررسی"
+
+msgid "series.series"
+msgstr "مجموعه‌ها"
+
+msgid "series.path"
+msgstr "مسیر"
+
+msgid "catalog.manage"
+msgstr "مدیریت کاتالوگ"
+
+msgid "catalog.manage.newReleases"
+msgstr "تازه‌ها"
+
+msgid "catalog.manage.category"
+msgstr "دسته‌بندی"
+
+msgid "catalog.manage.series"
+msgstr "مجموعه‌ها"
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "ISSN چاپی و آنلاین نباید یکسان باشد."
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "ISSN آنلاین"
+
+msgid "catalog.manage.series.printIssn"
+msgstr "ISSN چاپی"
+
+msgid "catalog.selectSeries"
+msgstr "انتخاب مجموعه‌ها"
+
+msgid "catalog.selectCategory"
+msgstr "انتخاب دسته‌بندی"
+
+msgid "catalog.manage.categoryDescription"
+msgstr ""
+"روی دکمه «ویژگی» کلید کنید و سپس برای انتخاب کتاب جهت ویژه این دسته‌بندی "
+"ستاره را بزنید."
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "کاروسل"
+
+msgid "catalog.manage.newRelease"
+msgstr "نشر"
+
+msgid "catalog.manage.manageSeries"
+msgstr "مدیریت مجموعه‌ها"
+
+msgid "catalog.manage.manageCategories"
+msgstr "مدیریت دسته‌بندی‌ها"
+
+msgid "catalog.manage.noMonographs"
+msgstr "هیچ جلدی انتخاب نشده."
+
+msgid "catalog.manage.featured"
+msgstr "برجسته"
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "برجسته در مجموعه"
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "این جلد برجسته شده است."
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "این جلد برجسته نشده."
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "علامت‌گذاری جلد به عنوان انتشار تازه برداشته شده."
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "انتشار تازه"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "انتشار جدید در دسته‌بندی"
+
+msgid "catalog.manage.nonOrderable"
+msgstr "این جلد تا وقتی برجسته نشده قابل سفارش نیست."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "جستجو بر اساس عنوان یا نویسنده"
+
+msgid "catalog.manage.isNotFeatured"
+msgstr "این جلد برجسته نیست؛ آن را به حالت برجسته تغییر بده."
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr "این جلد انتشار تازه نیست؛ آن را به انتشار تازه تغییر بده."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "هیچ دریافتی برای اضافه شدن به این کاتالوگ انتخاب نشده."
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "حداقل یکی از دریافت‌ها یافت نشد."
+
+msgid "catalog.noTitles"
+msgstr "هیچ عنوانی تاکنون منتشر نشده."
+
+msgid "catalog.noTitlesNew"
+msgstr "هیچ انتشار تازه‌ای در حال حاضر وجود ندارد."
+
+msgid "catalog.feature"
+msgstr "برجستگی"
+
+msgid "catalog.featured"
+msgstr "برجسته"
+
+msgid "catalog.featuredBooks"
+msgstr "کتاب‌های برجسته"
+
+msgid "catalog.foundTitleSearch"
+msgstr "یک عنوان منطبق با جستجوی «{$searchQuery}» پیدا شد."
+
+msgid "catalog.foundTitlesSearch"
+msgstr "{$number} عنوان منطبق با جستجوی شما برای «{$searchQuery}» یافت شد."
+
+msgid "catalog.newReleases"
+msgstr "انتشارهای تازه"
+
+msgid "catalog.dateAdded"
+msgstr "اضافه شده"
+
+msgid "catalog.publicationInfo"
+msgstr "مشخصات انتشار"
+
+msgid "catalog.published"
+msgstr "منتشر شده"
+
+msgid "catalog.forthcoming"
+msgstr "به زودی"
+
+msgid "catalog.categories"
+msgstr "دسته‌بندی‌ها"
+
+msgid "catalog.parentCategory"
+msgstr "دسته‌بندی والد"
+
+msgid "catalog.aboutTheAuthor"
+msgstr "درباره {$roleName}"
+
+msgid "catalog.sortBy"
+msgstr "ترتیب جلدها"
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr "انتخاب چگونگی چینش کتاب‌ها در این مجموعه."
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr "انتخاب نحوه چینش کتاب‌ها در این دسته‌بندی."
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr "انتخاب نحوه چینش کتاب‌ها در کاتالوگ."
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr "جایگاه مجموعه‌ها (اول پایین‌ترین)"
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr "جایگاه مجموعه‌ها (اول بالاترین)"
+
+msgid "catalog.viewableFile.title"
+msgstr "مشاهده {$type} فایل {$title}"
+
+msgid "catalog.viewableFile.return"
+msgstr "بازگشت به مشاهده جزئیات درباره {$monographTitle}"
+
+msgid "submission.search"
+msgstr "جستجوی کتاب"
+
+msgid "common.publication"
+msgstr "جلد"
+
+msgid "common.publications"
+msgstr "جلدها"
+
+msgid "common.preview"
+msgstr "پیش نمایش"
+
+msgid "common.feature"
+msgstr "برجستگی"
+
+msgid "common.searchCatalog"
+msgstr "جستجوی کاتالوگ"
+
+msgid "common.moreInfo"
+msgstr "اطلاعات بیش‌تر"
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "لطفاً یک گزینه معتبر از لیست انتخاب کند."
+
+msgid "common.listbuilder.itemExists"
+msgstr "نمی‌توانید یک آیتم را دوباره انتخاب کنید."
+
+msgid "common.software"
+msgstr "Open Monograph Press"
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "navigation.catalog"
+msgstr "کاتالوگ"
+
+msgid "navigation.competingInterestPolicy"
+msgstr "سیاست منافع رقابتی"
+
+msgid "navigation.catalog.allMonographs"
+msgstr "همه جلدها"
+
+msgid "navigation.catalog.manage"
+msgstr "مدیریت"
+
+msgid "navigation.catalog.administration.short"
+msgstr "اداره"
+
+msgid "navigation.catalog.administration.categories"
+msgstr "دسته‌بندی‌ها"
+
+msgid "navigation.catalog.administration.series"
+msgstr "مجموعه‌ها"
+
+msgid "navigation.infoForAuthors"
+msgstr "برای نویسندگان"
+
+msgid "navigation.infoForLibrarians"
+msgstr "برای کتابداران"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "اطلاعات برای نویسندگان"
+
+msgid "navigation.newReleases"
+msgstr "انتشارات تازه"
+
+msgid "navigation.published"
+msgstr "منتشر شده"
+
+msgid "navigation.wizard"
+msgstr "ابزار جادویی"
+
+msgid "navigation.linksAndMedia"
+msgstr "پیوندها و رسانه‌های اجتماعی"
+
+msgid "navigation.skip.spotlights"
+msgstr "پریدن به ویژه‌ها"
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "مجموعه‌ها"
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "دسته‌بندی"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "پیوند به یک دسته‌بندی."
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "انتشارات تازه"
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "پیوند به انتشارات تازه خودتان."
+
+msgid "context.contexts"
+msgstr "نشرها"
+
+msgid "context.context"
+msgstr "نشر"
+
+msgid "context.current"
+msgstr "نشر کنونی:"
+
+msgid "user.authorization.representationNotFound"
+msgstr "فرمت انتشار درخواست شده یافت نشد."
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "در بر گرفتن کاربران بدون نقش در این نشر."
+
+msgid "user.noRoles.submitMonograph"
+msgstr "ارسال پروپوزال"
+
+msgid "user.noRoles.regReviewer"
+msgstr "ثبت نام به عنوان داور"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr "ثبت نام به عنوان داور: در حال حاضر ثبت نام داوران غیر فعال است."
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "بله، درخواست نقش {$userGroup}."
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+"بله، می‌خواهم با درخواست‌های داوری نوشته‌های ارسالی به این نشر در ارتباط "
+"باشم."
+
+msgid "user.register.otherContextRoles"
+msgstr "درخواست نقش‌های ذیل."
+
+msgid "user.role.manager"
+msgstr "مدیریت نشر"
+
+msgid "user.role.pressEditor"
+msgstr "دبیر نشر"
+
+msgid "user.role.subEditor"
+msgstr "دبیر مجموعه"
+
+msgid "user.role.copyeditor"
+msgstr "صفحه‌آرا"
+
+msgid "user.role.proofreader"
+msgstr "بازرس پروف"
+
+msgid "user.role.productionEditor"
+msgstr "دبیر انتشار"
+
+msgid "user.role.managers"
+msgstr "مدیران نشر"
+
+msgid "user.role.subEditors"
+msgstr "دبیران مجموعه"
+
+msgid "user.role.editors"
+msgstr "دبیران"
+
+msgid "user.role.copyeditors"
+msgstr "صفحه‌آراها"
+
+msgid "user.role.proofreaders"
+msgstr "بازرسان پروف"
+
+msgid "user.role.productionEditors"
+msgstr "دبیران انتشار"
+
+msgid "user.register.selectContext"
+msgstr "یک نشر برای ثبت انتخاب کنید:"
+
+msgid "user.register.noContexts"
+msgstr "هیچ نشری برای ثبت موجود نیست."
+
+msgid "user.register.privacyStatement"
+msgstr "بیانیه محرمانگی"
+
+msgid "user.register.registrationDisabled"
+msgstr "در حال حاضر امکان ثبت نام در این نشر وجود ندارد."
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "پسورد وارد شده کوتاه است."
+
+msgid "user.register.readerDescription"
+msgstr "اطلاع رسانی شده همزمان با انتشار جلد از طریق ایمیل."
+
+msgid "monograph.publicationFormats"
+msgstr "فرمت‌های انتشار"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "موجودی محصول"
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr "قرار دادن فراداده برای این فرمت انتشار در کاتالوگ کتاب."
+
+msgid "grid.catalogEntry.proof"
+msgstr "اثبات"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "جزئیات فرمت انتشار قابل استفاده: {$format}"
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "محافظت فنی دیجیتال"
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "قیمت‌ها و بازارها ناقص است."
+
+msgid "monograph.proofReadingDescription"
+msgstr "صفحه‌آرا فایل نهایی آماده انتشار را آپلود می‌نماید."
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "انتخاب نام الزامی است."
+
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "درصد تخفیف"
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "این فرمت در یک سایت جداگانه قابل دسترسی خواهد بود"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"تأیید فراداده برای این فرمت. فراداده می‌تواند از طریق پنل ویرایش برای هر "
+"فرمت چک شود."
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"این فرمت را برای خوانندگان در دسترس قرار بده. فایل‌های قابل دانلود و انواع "
+"دیگر توزیع کتاب در بخش کاتالوگ آن نمایش داده خواهد شد."
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "تعیین فرمت تاریخ الزامی است."
+
+msgid "spotlight.spotlights"
+msgstr "ویژه‌ها"
+
+msgid "grid.action.featureMonograph"
+msgstr "برجسته کردن این آیتم در کاروسل کاتالوگ"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "نمایش تب فرمت انتشار"
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "فرمت در فهرست نیست."
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr "تعیین تاریخ الزامی بوده و تاریخ باید با فرمت انتخاب شده مطابقت کند."
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "آیتم ویژه"
+
+msgid "grid.action.deleteCode"
+msgstr "حذف این کد"
+
+msgid "grid.action.availableRepresentation"
+msgstr "تأیید/رد این فرد"
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "حجم فایل برای فرمت‌های دیجیتالی الزامی است."
+
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"می‌تواند یک عامل فروش برای نمایندگی خود در این محدوده تعیین نمایید (اختیاری)."
+
+msgid "grid.content.spotlights.form.item"
+msgstr "وارد کردن عنوان ویژه (تکمیل خودکار)"
+
+msgid "grid.action.editMarket"
+msgstr "ویرایش این بازار"
+
+msgid "series.featured.description"
+msgstr "این مجموعه‌ها در منوی گشت و گذار اصلی نمایش داده خواهد شد"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "نوع حق فروش"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+"اگر خدمات را خودتان به مشتریان خود ارائه می‌دهد می‌توانید بخش زیر را خالی "
+"بگذارید."
+
+msgid "manager.series.open"
+msgstr "دریافتی‌های باز"
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+"این گزینه را برای به کارگیری عمومی این حق فروش انتخاب کنید. در این حالت "
+"نیازی به انتخاب کشور و مناطق فروش نیست."
+
+msgid "grid.action.addRepresentative"
+msgstr "اضافه کردن نماینده"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "فایل‌ها"
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "لطفاً یک ISSN معتبر وارد کنید."
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "نمایش فرمت در کاتالوگ"
+
+msgid "grid.action.approveProof"
+msgstr "تأیید نسخه اثبات برای نمایه سازی و ورود به کاتالوگ"
+
+msgid "catalog.manage.homepageDescription"
+msgstr ""
+"عکس جلد کتب انتخاب شده بالای صفحه اصلی به عنوان یک مجموعه قابل اسکرول نمایش "
+"داده می‌شود. روی گزینه «ویژگی» کلیک کرده و سپس با کلیک بر روی ستاره کتاب را "
+"به کاروسل خود اضافه کنید."
+
+msgid "catalog.manage.seriesDescription"
+msgstr ""
+"روی گزینه «ویژگی‌» کلیک کرده و سپس ستار را برای انتخاب یک کتاب ویژه برای این "
+"مجموعه بزنید."
+
+msgid "common.prefix"
+msgstr "پیشوند"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "برجسته در دسته‌بندی"
+
+msgid "common.listbuilder.completeForm"
+msgstr "لطفاً فرم را کامل کنید."
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "جلد به عنوان انتشار تازه نشان شده."
+
+msgid "common.homePageHeader.altText"
+msgstr "هدر صفحه اصلی"
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "انتشار تازه در مجموعه‌ها"
+
+msgid "navigation.catalog.administration"
+msgstr "اداره کاتالوگ"
+
+msgid "context.select"
+msgstr "تعویض به نشر دیگر:"
+
+msgid "catalog.manage.isFeatured"
+msgstr "این جلد برجسته است؛ آن را از حالت برجسته خارج کن."
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "اطلاعات برای کتابداران"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr "ارسال نوشته: در حال حاضر ثبت نام نویسنده غیر فعال است."
+
+msgid "catalog.manage.isNewRelease"
+msgstr "این جلد یک انتشار تازه است؛ آن را از حالت انتشار تازه خارج کن."
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "پیوند به کاتالوگ خودتان."
+
+msgid "user.reviewerPrompt"
+msgstr "آیا مایلید نوشته‌های ارسالی به این نشر را داوری کنید؟"
+
+msgid "catalog.manage.findSubmissions"
+msgstr "یافتن جلدهایی برای افزودن به این کاتالوگ"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "پیوند به مجموعه‌ها."
+
+msgid "user.register.contextsPrompt"
+msgstr "می‌خواهید در کدام نشرهای این سایت ثبت نام کنید؟"
+
+msgid "catalog.noTitlesSearch"
+msgstr "هیچ عنوانی مطابق جستجوی «{$searchQuery}» یافت نشد."
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+"اگر برای داوری در هر یک از نشرها درخواست دادید لطفاً موضوعات مورد علاقه خود "
+"را وارد کنید."
+
+msgid "catalog.category.heading"
+msgstr "همه کتاب‌ها"
+
+msgid "catalog.category.subcategories"
+msgstr "زیردسته‌ها"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr ""
+"یادداشت: برای سفارش آیتم‌های مورد نظر ابتدا باید وارد سایت شوید (تمامی آیتم‌"
+"های علامت گذاری شده با دسترسی باز بدون نیاز به ورود و به طور رایگان قابل "
+"دریافت است)."
