@@ -160,3 +160,7 @@ msgstr ""
 #~ msgstr ""
 #~ "Vous voulez supprimer cette presse et tout son contenu de façon "
 #~ "permanente?"
+
+#, fuzzy
+msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
+msgstr "Utiliser le site comme la plateforme pour toutes les revues."

@@ -185,3 +185,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Esteu segurs que voleu eliminar aquesta publicació i els seus continguts "
 #~ "de manera permanent?"
+
+msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
+msgstr ""

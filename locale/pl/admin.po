@@ -193,3 +193,7 @@ msgstr ""
 
 #~ msgid "admin.languages.noLocalesToDownload"
 #~ msgstr "Brak ustawień regionalnych dostępnych do pobrania."
+
+#, fuzzy
+msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
+msgstr "Użyj witryny jako platformy dla wszystkich czasopism."

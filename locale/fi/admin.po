@@ -218,3 +218,7 @@ msgstr ""
 
 #~ msgid "admin.presses.pressDescription"
 #~ msgstr "Painon kuvaus"
+
+#, fuzzy
+msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
+msgstr "Käytä sivustoa kaikkien julkaisukanavien alustana."

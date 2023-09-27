@@ -205,3 +205,8 @@ msgstr ""
 "plages d’adresses IP afin d’utiliser cette fonctionnalité. L’activation des "
 "statistiques institutionnelles peut augmenter considérablement la taille de "
 "votre base de données."
+
+#, fuzzy
+msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
+msgstr ""
+"Utiliser ce site comme plateforme pour toutes les revues, tous les éditeurs "

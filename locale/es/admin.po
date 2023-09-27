@@ -194,3 +194,8 @@ msgstr ""
 "electrónicos.<br><br>La función de correo electrónico masivo se puede "
 "deshabilitar por completo para esta editorial en <a href=\"{$siteSettingsUrl}"
 "\">Admin > Configuración del sitio</a>."
+
+#, fuzzy
+msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
+msgstr ""
+"Usar este sitio como plataforma para todas las revistas/editoriales/"

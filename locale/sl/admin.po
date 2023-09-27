@@ -152,3 +152,7 @@ msgstr ""
 #~ msgstr ""
 #~ "Ali ste prepričani, da želite dokončno zbrisati to založbo in vso njeno "
 #~ "vsebino?"
+
+#, fuzzy
+msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
+msgstr "Uporabi strežnik kot platformo za vse revije."

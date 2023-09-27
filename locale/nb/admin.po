@@ -189,3 +189,7 @@ msgstr ""
 
 #~ msgid "admin.languages.noLocalesToDownload"
 #~ msgstr "Ingen språkpakker er tilgjengelig for nedlasting."
+
+#, fuzzy
+msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
+msgstr "Bruk nettsiden som plattform for alle tidsskrifter."
