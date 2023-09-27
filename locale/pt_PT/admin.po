@@ -187,3 +187,7 @@ msgstr ""
 "substituir essa configuração para tornar suas estatísticas privadas. No "
 "entanto, se você desativar a API pública, as editoras não poderão tornar sua "
 "própria API pública."
+
+#, fuzzy
+msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
+msgstr "Use o site como plataforma para todas as revistas."

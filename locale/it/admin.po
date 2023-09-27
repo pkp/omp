@@ -141,3 +141,7 @@ msgstr ""
 "restrizioni di questa funzione possono essere abilitate per ciascuna rivista "
 "nella configurazione iniziale (setting wizard) nella sezione <a href=\""
 "{$hostedContextsUrl}\">Press registrate</a>."
+
+#, fuzzy
+msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
+msgstr "Indica il sito come piattaforma per tutte le riviste."

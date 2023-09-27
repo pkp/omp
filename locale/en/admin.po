@@ -177,3 +177,6 @@ msgstr ""
 "presses on this site. If you enable the public API, each press may override "
 "this setting to make their statistics private. However, if you disable the "
 "public API, presses can not make their own API public."
+
+msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
+msgstr "Use the site as the platform for all presses."

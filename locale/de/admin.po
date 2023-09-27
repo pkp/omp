@@ -207,3 +207,7 @@ msgstr ""
 #~ msgstr ""
 #~ "Sind Sie sicher, dass Sie diesen Verlag und alle Verlagsinhalte endgültig "
 #~ "löschen möchten?"
+
+#, fuzzy
+msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
+msgstr "Website als Plattform für alle Zeitschriften verwenden."

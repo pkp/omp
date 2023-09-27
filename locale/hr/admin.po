@@ -186,3 +186,7 @@ msgstr ""
 "dodati ustanovu i njezine IP raspone kako bi koristili ovu značajku. "
 "Omogućavanje institucionalne statistike može značajno povećati veličinu vaše "
 "baze podataka."
+
+#, fuzzy
+msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
+msgstr "Koristite stranicu kao platformu za sve časopise."

@@ -194,3 +194,7 @@ msgstr ""
 #~ msgstr ""
 #~ "Tem certeza que deseja apagar definitivamente esta editora e todo seu "
 #~ "conteúdo?"
+
+#, fuzzy
+msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
+msgstr "Use o site como plataforma para todos os periódicos."

@@ -204,3 +204,7 @@ msgstr ""
 #~ "\t</ul>\n"
 #~ "<p>Jazykové balíčky mohou být staženy ručně z <a href=\"http://pkp.sfu.ca"
 #~ "\" target=\"_blank\">webové stránky PKP</a>.</p>"
+
+#, fuzzy
+msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
+msgstr "Použijte tento web jako platformu pro všechny časopisy."
