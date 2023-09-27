@@ -1,7 +1,7 @@
 # Kamdin Parsakia <kamdinparsakia@iranmehr.ac.ir>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-09-26 23:06+0000\n"
+"PO-Revision-Date: 2023-09-28 23:06+0000\n"
 "Last-Translator: Kamdin Parsakia <kamdinparsakia@iranmehr.ac.ir>\n"
 "Language-Team: Persian <http://translate.pkp.sfu.ca/projects/omp/locale/fa/>"
 "\n"
@@ -993,3 +993,301 @@ msgstr ""
 "یادداشت: برای سفارش آیتم‌های مورد نظر ابتدا باید وارد سایت شوید (تمامی آیتم‌"
 "های علامت گذاری شده با دسترسی باز بدون نیاز به ورود و به طور رایگان قابل "
 "دریافت است)."
+
+msgid "user.register.authorDescription"
+msgstr "قادر به ارسال برای انتشارات."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr "تمایل به انجام داوری برای انتشارات."
+
+msgid "user.register.reviewerDescription"
+msgstr "تمایل به انجام داوری برای تمامی نشرها."
+
+msgid "user.register.reviewerInterests"
+msgstr "تعیین حوزه‌های علاقمه‌مندی جهت داوری:"
+
+msgid "user.register.form.userGroupRequired"
+msgstr "باید حداقل یک نقش انتخاب کنید"
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"بله، شرایط جمع آوری و نگهداری اطلاعات توسط ناشر را می‌پذیرم ( <a href=\""
+"{$privacyUrl}\" target=\"_blank\">بیانیه محرمانگی</a>)."
+
+msgid "site.noPresses"
+msgstr "هیچ نشری در دسترس نیست."
+
+msgid "site.pressView"
+msgstr "مشاهده وبسایت نشر"
+
+msgid "about.pressContact"
+msgstr "ارتباط با انتشارات"
+
+msgid "about.aboutContext"
+msgstr "درباره نشر"
+
+msgid "about.editorialTeam"
+msgstr "هیئت تحریریه"
+
+msgid "about.editorialPolicies"
+msgstr "سیاست‌های دبیری"
+
+msgid "about.focusAndScope"
+msgstr "اهداف و زمینه‌ها"
+
+msgid "about.seriesPolicies"
+msgstr "سیاست‌های دسته‌بندی و مجموعه کتاب‌ها"
+
+msgid "about.submissions"
+msgstr "ارسالی‌ها"
+
+msgid "about.onlineSubmissions.login"
+msgstr "ورود"
+
+msgid "about.onlineSubmissions.register"
+msgstr "ثبت نام"
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "برای ثبت نام وارد شوید یا ثبت نام کنید ({$login} یا {$register})."
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "ارسال نوشته جدید"
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "مشاهده ارسال‌های در حال بررسی"
+
+msgid "about.authorGuidelines"
+msgstr "راهنمای نویسندگان"
+
+msgid "about.submissionPreparationChecklist"
+msgstr "چک لیست آماده سازی نوشته ارسالی"
+
+msgid "about.copyrightNotice"
+msgstr "تذکر حق نشر"
+
+msgid "about.privacyStatement"
+msgstr "بیانیه محرمانگی"
+
+msgid "about.reviewPolicy"
+msgstr "فرآیند دوری همتا"
+
+msgid "about.publicationFrequency"
+msgstr "تکرر انتشار"
+
+msgid "about.openAccessPolicy"
+msgstr "سیاست دسترسی باز"
+
+msgid "about.pressSponsorship"
+msgstr "اسپانسری انتشارات"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr "اطلاعات بیش‌تر درباره سیستم انتشار، پلتفرم و جریان کار OMP/PKP."
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "فرآیند انتشار و دبیری"
+
+msgid "about.aboutSoftware"
+msgstr "درباره سیستم مدیریت کتاب"
+
+msgid "help.searchReturnResults"
+msgstr "بازگشت به نتایج جستجو"
+
+msgid "help.goToEditPage"
+msgstr "باز کردن صفحه جدید برای ویرایش اطلاعات"
+
+msgid "installer.appInstallation"
+msgstr "نصب OMP"
+
+msgid "installer.ompUpgrade"
+msgstr "به روز رسانی OMP"
+
+msgid "installer.installApplication"
+msgstr "نصب OMP"
+
+msgid "installer.updatingInstructions"
+msgstr ""
+"برای به روز رسانی نسخه نصب شده OMP روی <a href=\"{$upgradeUrl}\">این لینک</"
+"a> کلید نمایید."
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "مراحل پیش از نصب"
+
+msgid "installer.preInstallationInstructions"
+msgstr ""
+"1. فایل‌ها و نشانی‌های زیر باید قابل نوشتن شود:\n"
+"\t<li><tt>config.inc.php</tt> is writable (optional): {$writable_config}</li>"
+"\n"
+"\t<li><tt>public/</tt> is writable: {$writable_public}</li>\n"
+"\t<li><tt>cache/</tt> is writable: {$writable_cache}</li>\n"
+"\t<li><tt>cache/t_cache/</tt> is writable: {$writable_templates_cache}</li>\n"
+"\t<li><tt>cache/t_compile/</tt> is writable: "
+"{$writable_templates_compile}</li>\n"
+"\t<li><tt>cache/_db</tt> is writable: {$writable_db_cache}</li>\n"
+"<p>2. یک نشانی برای ذخیره‌سازی فایل‌ها باید ایجاد شود (رجوع شود به بخش "
+"تنظیمات فایل).</p>"
+
+msgid "installer.localeSettingsInstructions"
+msgstr ""
+"برای پشتیبانی کامل از Unicode باید تنظیمات PHP با پشتیبانی از  <a href="
+"\"https://www.php.net/mbstring\" target=\"_blank\">mbstring</a> سازگار باشد."
+"\n"
+"سرور شما در حال حاضر از {$supportsMBString} پشتیبانی می‌کند."
+
+msgid "installer.allowFileUploads"
+msgstr "در حال حاضر سرور شما اجازه آپلود {$allowFileUploads} را می‌دهد."
+
+msgid "installer.maxFileUploadSize"
+msgstr "حداکثر حجم فایل قابل آپلود در سرور شما {$maxFileUploadSize} می‌باشد."
+
+msgid "installer.localeInstructions"
+msgstr "زبان اصلی برای استفاده از برنامه."
+
+msgid "installer.additionalLocalesInstructions"
+msgstr ""
+"در صورتی که مایلید زبان‌های دیگری همزمان با نصب در سایت شما پشتیبانی شود از "
+"لیست زیر زبان مورد نظر را انتخاب نمایید. ترجمه زبان‌هایی که علامت ستاره (*) "
+"دارند ناقص است."
+
+msgid "installer.databaseSettingsInstructions"
+msgstr ""
+"برای نگهداری از اطلاعات به دیتابیس SQL نیاز است. لطفاً سیستم مورد نیاز برای "
+"نصب OMP را مطالعه نمایید."
+
+msgid "installer.upgradeApplication"
+msgstr "به روز رسانی OMP"
+
+msgid "installer.upgradeComplete"
+msgstr ""
+"به روز رسانی OMP به ورژن {$version} با موفقیت انجام شد. لطفاً پیش از هر "
+"اقدامی تنظیمات نصب (\"Installed\") در فایل onfig.inc.php را به حالت On "
+"برگردانید."
+
+msgid "log.review.reviewDueDateSet"
+msgstr ""
+"موعد مقرر برای دور {$round} داوری نوشته ارسالی {$submissionId} توسط "
+"{$reviewerName} در تاریخ {$dueDate} تنظیم شد."
+
+msgid "log.review.reviewDeclined"
+msgstr ""
+"{$reviewerName} داوری دور {$round} برای مقاله {$submissionId} را رد کرد."
+
+msgid "log.review.reviewAccepted"
+msgstr ""
+"{$reviewerName} داوری دور {$round} برای مقاله {$submissionId} را پذیرفت."
+
+msgid "log.review.reviewUnconsidered"
+msgstr ""
+"{$reviewerName} داوری دور {$round} برای مقاله {$submissionId} را در حالت "
+"تصمیم گیری نشده قرار داد."
+
+msgid "log.editor.recommendation"
+msgstr ""
+"پیشنهاد دبیر ({$decision}) برای نوشته ارسالی {$submissionId} توسط "
+"{$editorName} ثبت شد."
+
+msgid "log.editor.editorAssigned"
+msgstr "{$editorName} به عنوان دبیر برای نوشته ارسالی {$submissionId} تعیین شد."
+
+msgid "log.proofread.complete"
+msgstr ""
+"{$proofreaderName} نوشته ارسالی {$submissionId} را برای زمان‌بندی فرستاد."
+
+msgid "log.imported"
+msgstr "{$userName} جلد {$submissionId} را ایمپورت کرد."
+
+msgid "notification.addedIdentificationCode"
+msgstr "کد شناسایی افزوده شد."
+
+msgid "notification.editedIdentificationCode"
+msgstr "کد شناسایی ویرایش شد."
+
+msgid "notification.removedIdentificationCode"
+msgstr "کد شناسایی حذف شد."
+
+msgid "notification.addedPublicationDate"
+msgstr "تاریخ انتشار افزوده شد."
+
+msgid "notification.removedPublicationDate"
+msgstr "تاریخ انتشار حذف شد."
+
+msgid "notification.addedPublicationFormat"
+msgstr "فرمت انتشار افزوده شد."
+
+msgid "notification.editedPublicationFormat"
+msgstr "فرمت انتشار ویرایش شد."
+
+msgid "notification.removedPublicationFormat"
+msgstr "فرمت انتشار حذف شد."
+
+msgid "notification.addedSalesRights"
+msgstr "حق فروش افزوده شد."
+
+msgid "notification.removedSalesRights"
+msgstr "حق فروش حذف شد."
+
+msgid "notification.addedRepresentative"
+msgstr "نماینده افزوده شد."
+
+msgid "about.onlineSubmissions"
+msgstr "ارسالی‌های آنلاین"
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} یا {$viewSubmissions}."
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr ""
+"به عنوان بخشی از فرآیند ارسال نوشته، نویسندگان باید تمامی موارد زیر را رعایت "
+"نمایند."
+
+msgid "about.aboutOMPPress"
+msgstr "این نشر از سیستم مدیریت محتوای OMP {$ompVersion} استفاده می‌کند."
+
+msgid "about.aboutOMPSite"
+msgstr "این نشر از سیستم مدیریت محتوای OMP {$ompVersion} استفاده می‌کند."
+
+msgid "installer.installationInstructions"
+msgstr ""
+"از دانلود و انتخاب OMP متشکریم. قبل از شروع فرآیند حتماً راهنمای نصب را از "
+"طریق وبسایت PKP مطالعه نمایید."
+
+msgid "installer.upgradeInstructions"
+msgstr ""
+"از انتخاب و نصب OMP متشکریم. لطفاً پیش از ادامه مراحل با دقت راهنمای نصب را "
+"مطالعه و مرور نمایید."
+
+msgid "installer.filesDirInstructions"
+msgstr ""
+"مسیر کامل محل نگهداری فایل‌ها را وارد کنید. دقت کنید که این مسیر قابل دسترسی "
+"برای عموم نباشد."
+
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+"مهم: قبل از اقدام به استفاده از سیستم فایل کانفیگ (config.inc.php) را ویرایش "
+"کرده و محتوای آن را با موارد زیر جایگزین کنید."
+
+msgid "installer.installationComplete"
+msgstr ""
+"نصب OMP با موفقیت انجام شد. برای شروع استفاده از آن با نام کاربری و پسورد "
+"وارد شده در صفحه قبل وارد شوید."
+
+msgid "log.editor.decision"
+msgstr ""
+"تصمیم دبیر ({$decision}) برای نوشته ارسالی {$submissionId} توسط {$editorName}"
+" ثبت شد."
+
+msgid "log.editor.archived"
+msgstr "نوشته ارسالی {$submissionId} آرشیو شد."
+
+msgid "log.editor.restored"
+msgstr "نوشته ارسالی {$submissionId} برای قرارگیری در صف بازیابی شد."
+
+msgid "log.proofread.assign"
+msgstr ""
+"{$assignerName} {$proofreaderName} را برای ویراستاری نوشته ارسالی "
+"{$submissionId} تعیین کرد."
+
+msgid "notification.editedPublicationDate"
+msgstr "تاریخ انتشار ویرایش شد."
+
+msgid "notification.editedSalesRights"
+msgstr "حق فروش ویرایش شد."
