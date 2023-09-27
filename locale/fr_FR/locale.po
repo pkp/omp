@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-08-02 17:58+0000\n"
+"PO-Revision-Date: 2023-09-20 21:06+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/locale/fr_FR/"
 ">\n"
@@ -44,8 +44,8 @@ msgid "monograph.proofReadingDescription"
 msgstr ""
 "Le·La maquettiste transfère ici les fichiers qui sont prêts pour "
 "publication. Utiliser <em>Assigner un vérificateur</em> pour identifier les "
-"auteur·rices·s et les autres personnes qui reliront les épreuves et "
-"chargerons les fichiers corrigés pour approbation avant la publication."
+"auteur·e·s et les autres personnes qui reliront les épreuves et chargerons "
+"les fichiers corrigés pour approbation avant la publication."
 
 msgid "monograph.task.addNote"
 msgstr "Ajouter à la tâche"
@@ -773,7 +773,7 @@ msgstr ""
 "Cette monographie ne peut être commandée tant qu’elle n’est pas publiée."
 
 msgid "catalog.manage.filter.searchByAuthorOrTitle"
-msgstr "Recherche par titre ou par auteur"
+msgstr "Recherche par titre ou par auteur·e"
 
 msgid "catalog.manage.isNotFeatured"
 msgstr ""
@@ -927,13 +927,13 @@ msgid "navigation.catalog.administration.series"
 msgstr "Collection"
 
 msgid "navigation.infoForAuthors"
-msgstr "Pour les auteur·rices·s"
+msgstr "Pour les auteur·e·s"
 
 msgid "navigation.infoForLibrarians"
 msgstr "Pour les bibliothécaires"
 
 msgid "navigation.infoForAuthors.long"
-msgstr "Information pour les auteur·rices·s"
+msgstr "Information pour les auteur·e·s"
 
 msgid "navigation.infoForLibrarians.long"
 msgstr "Information pour les bibliothécaires"
@@ -988,8 +988,8 @@ msgstr "Soumettre une proposition"
 
 msgid "user.noRoles.submitMonographRegClosed"
 msgstr ""
-"Soumettre une monographie : l’enregistrement des auteur·rices·s est "
-"actuellement désactivé."
+"Soumettre une monographie : l’enregistrement des auteur·e·s est actuellement "
+"désactivé."
 
 msgid "user.noRoles.regReviewer"
 msgstr "S’inscrire en tant que rapporteur"
@@ -1005,8 +1005,8 @@ msgstr "Demander les rôles suivants."
 
 msgid "user.register.noContextReviewerInterests"
 msgstr ""
-"Si vous avez demandé à être évaluateur·rice pour une maison d’édition, "
-"veuillez indiquer vos domaines d’intérêt."
+"Si vous avez demandé à être évaluateur ou évaluatrice pour une maison d’"
+"édition, veuillez indiquer vos domaines d’intérêt."
 
 msgid "user.role.manager"
 msgstr "Gestionnaire"
@@ -1015,19 +1015,19 @@ msgid "user.role.pressEditor"
 msgstr "Éditeur·rice"
 
 msgid "user.role.subEditor"
-msgstr "Éditeur·rice de collection"
+msgstr "Responsable de collection"
 
 msgid "user.role.copyeditor"
 msgstr "Éditeur·rice"
 
 msgid "user.role.productionEditor"
-msgstr "Directeur·rice de production"
+msgstr "Responsable de production"
 
 msgid "user.role.managers"
 msgstr "Gestionnaires"
 
 msgid "user.role.subEditors"
-msgstr "Éditeur·rice·s de collection"
+msgstr "Responsables de collection"
 
 msgid "user.role.copyeditors"
 msgstr "Éditeur·rice·s"
@@ -1036,7 +1036,7 @@ msgid "user.role.proofreaders"
 msgstr "Correcteurs/trices d’épreuves"
 
 msgid "user.role.productionEditors"
-msgstr "Directeurs/trices de production"
+msgstr "Responsables de production"
 
 msgid "user.register.selectContext"
 msgstr "Sélectionner une maison d’édition à laquelle vous enregistrer :"
@@ -1079,10 +1079,10 @@ msgstr "{$newSubmission} ou {$viewSubmissions}."
 
 msgid "about.submissionPreparationChecklist.description"
 msgstr ""
-"En tant que partie intégrante du processus de soumission, les auteur·rices·s "
-"doivent s’assurer de la conformité de leur soumission avec tous les éléments "
-"suivants, et les soumissions peuvent être retournées aux auteur·rices·s qui "
-"ne sont pas conformes à ces directives."
+"Dans le cadre du processus de soumission, les auteur·e·s doivent vérifier "
+"que leur soumission est conforme aux conditions et directives suivantes. Les "
+"propositions qui ne les respectent pas peuvent être renvoyées à leurs "
+"auteur·e·s."
 
 msgid "about.aboutOMPPress"
 msgstr ""
@@ -1250,8 +1250,8 @@ msgstr "Acheter la monographie ou télecharger le chapitre"
 
 msgid "user.authorization.monographReviewer"
 msgstr ""
-"L’accès vous a été refusé car vous ne semblez pas être un·e évaluateur·rice "
-"désigné·e pour cette monographie."
+"L’accès vous a été refusé car vous ne semblez pas être un évaluateur ou une "
+"évaluatrice désignée pour cette monographie."
 
 msgid "payment.directSales.monograph.description"
 msgstr ""
@@ -1321,7 +1321,9 @@ msgid "about.onlineSubmissions.register"
 msgstr "Enregistrer"
 
 msgid "about.onlineSubmissions.registrationRequired"
-msgstr "{$login} ou ({$register}) pour faire une soumission."
+msgstr ""
+"{$login} à un compte existant ou {$register} un nouveau compte pour faire "
+"une soumission."
 
 msgid "about.onlineSubmissions.newSubmission"
 msgstr "Faire une nouvelle soumission"
@@ -1330,7 +1332,7 @@ msgid "about.onlineSubmissions.viewSubmissions"
 msgstr "Voir vos soumissions en attente"
 
 msgid "about.authorGuidelines"
-msgstr "Directives aux auteur·rices·s"
+msgstr "Directives aux auteures et auteurs"
 
 msgid "about.submissionPreparationChecklist"
 msgstr "Liste de vérification de la soumission"
@@ -1586,13 +1588,13 @@ msgstr ""
 
 msgid "user.authorization.invalidReviewAssignment"
 msgstr ""
-"L’accès vous a été refusé car vous ne semblez pas être un évaluateur valable "
-"pour cette monographie."
+"L'accès vous a été refusé car il apparaît que vous n'êtes pas un évaluateur "
+"ou une évaluatrice valide pour cette monographie."
 
 msgid "user.authorization.monographAuthor"
 msgstr ""
-"L’accès vous a été refusé car vous ne semblez pas être l’auteur·rice de "
-"cette monographie."
+"L’accès vous a été refusé car vous ne semblez pas être l’auteur·e de cette "
+"monographie."
 
 msgid "user.authorization.monographFile"
 msgstr "L’accès au fichier de la monographie spécifiée vous a été refusé."
@@ -1687,7 +1689,7 @@ msgid "search.results.orderBy.article"
 msgstr "Titre de l’article"
 
 msgid "search.results.orderBy.author"
-msgstr "Auteur·rice"
+msgstr "Auteur·e"
 
 msgid "search.results.orderBy.date"
 msgstr "Date de publication"
