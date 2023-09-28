@@ -1,7 +1,7 @@
 # Kamdin Parsakia <kamdinparsakia@iranmehr.ac.ir>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-09-28 23:06+0000\n"
+"PO-Revision-Date: 2023-09-30 00:06+0000\n"
 "Last-Translator: Kamdin Parsakia <kamdinparsakia@iranmehr.ac.ir>\n"
 "Language-Team: Persian <http://translate.pkp.sfu.ca/projects/omp/locale/fa/>"
 "\n"
@@ -1291,3 +1291,251 @@ msgstr "تاریخ انتشار ویرایش شد."
 
 msgid "notification.editedSalesRights"
 msgstr "حق فروش ویرایش شد."
+
+msgid "notification.editedRepresentative"
+msgstr "نماینده ویرایش شد."
+
+msgid "notification.removedRepresentative"
+msgstr "نماینده حذف شد."
+
+msgid "notification.addedMarket"
+msgstr "بازار افزوده شد."
+
+msgid "notification.editedMarket"
+msgstr "بازار ویرایش شد."
+
+msgid "notification.addedSpotlight"
+msgstr "بازار حذف شد."
+
+msgid "notification.editedSpotlight"
+msgstr "ویژه ویرایش شد."
+
+msgid "notification.removedSpotlight"
+msgstr "ویژه حذف شد."
+
+msgid "notification.proofsApproved"
+msgstr "پروف تأیید شد."
+
+msgid "notification.removedSubmission"
+msgstr "نوشته ارسالی پاک شد."
+
+msgid "notification.type.submissionSubmitted"
+msgstr "یک جلد جدید با عنوان \"{$title}\" ارسال شده است."
+
+msgid "notification.type.editing"
+msgstr "رخدادهای ویرایش"
+
+msgid "notification.type.reviewing"
+msgstr "رخدادهای داوری"
+
+msgid "notification.type.site"
+msgstr "رخدادهای سایت"
+
+msgid "notification.type.userComment"
+msgstr "یک خواننده برای عنوان {$title} نظر ارسال نمود."
+
+msgid "notification.type.public"
+msgstr "اعلانات عمومی"
+
+msgid "notification.type.copyeditorRequest"
+msgstr "از شما برای بررسی فایل {$file} درخواست شده است."
+
+msgid "notification.type.layouteditorRequest"
+msgstr "از شما برای بررسی ویراستاری عنوان \"{$file}\" درخواست شده است."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "فرآیند داوری داخلی آغاز شد."
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "در انتظار تأیید."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+"این جلد تا زمانی که منتشر نشود در کاتالوگ نمایش داده نخواهد شد. برای اضافه "
+"کردن این جلد به کاتالوگ روی تب انتشار کلیک نمایید."
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "هیچ روش پرداختی تنظیم نشده است."
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "مدیریت کاتالوگ"
+
+msgid "notification.type.visitCatalog"
+msgstr ""
+"این جلد تأیید شده است. لطفاً به بخش بازاریابی و انتشار مراجعه کرده تا جزئیات "
+"کاتالوگ را مدیریت کنید."
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr ""
+"دسترسی شما مجاز نمی‌باشد چرا که به نظر می‌رسید شما داور معتبری برای این جلد "
+"نیستید."
+
+msgid "user.authorization.monographAuthor"
+msgstr ""
+"دسترسی شما مجاز نمی‌باشد چرا که به نظر می‌رسد شما نویسنده این جلد نیستید."
+
+msgid "user.authorization.monographReviewer"
+msgstr ""
+"دسترسی شما مجاز نمی‌باشد چرا که به نظر نمی‌رسد دبیر تعیین شده برای این جلد "
+"باشید."
+
+msgid "user.authorization.monographFile"
+msgstr "دسترسی شما به فایل مخصوص این جلد مجاز نمی‌باشد."
+
+msgid "user.authorization.invalidMonograph"
+msgstr "جلد نامعتبر است یا هیچ جلدی درخواست داده نشده!"
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr "دسترسی غیر مجاز! شما برای این مرحله از کار تعیین نشده‌اید."
+
+msgid "payment.directSales"
+msgstr "دانلود از وبسایت نشر"
+
+msgid "payment.directSales.price"
+msgstr "قیمت"
+
+msgid "payment.directSales.availability"
+msgstr "موجودی"
+
+msgid "payment.directSales.catalog"
+msgstr "کاتالوگ"
+
+msgid "payment.directSales.approved"
+msgstr "تأیید شده"
+
+msgid "payment.directSales.priceCurrency"
+msgstr "قیمت ({$currency})"
+
+msgid "payment.directSales.numericOnly"
+msgstr ""
+"قیمت باید فقط شامل ارقام باشد. لطفاً از هیچ نماد یا حروفی استفاده نکنید."
+
+msgid "payment.directSales.directSales"
+msgstr "فروش‌های مستقیم"
+
+msgid "payment.directSales.amount"
+msgstr "{$amount} ({$currency})"
+
+msgid "payment.directSales.notAvailable"
+msgstr "ناموجود"
+
+msgid "payment.directSales.notSet"
+msgstr "تنظیم نشده"
+
+msgid "payment.directSales.openAccess"
+msgstr "دسترسی باز"
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "وارد کردن قیمت عددی معتبر الزامی است."
+
+msgid "payment.directSales.purchase"
+msgstr "سفارش {$format} ({$amount} {$currency})"
+
+msgid "payment.directSales.download"
+msgstr "دانلود {$format}"
+
+msgid "payment.directSales.monograph.name"
+msgstr "سفارش دانلود جلد یا فصل"
+
+msgid "payment.directSales.monograph.description"
+msgstr "این تراکنش برای سفارش دانلود مستقیم یک جلد یا یک فصل از آن می‌باشد."
+
+msgid "debug.notes.helpMappingLoad"
+msgstr ""
+"فایل Reloaded XML به نقشه‌کشی فایل {$filename} در جستجوی {$id} کمک می‌کند."
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "کتاب"
+
+msgid "submission.pdf.download"
+msgstr "دانلود این فایل PDF"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "ثبت در سایر نشرها"
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "مخفی کردن سایر نشرها"
+
+msgid "submission.round"
+msgstr "دوره {$round}"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "یک ارسال منتشر شده نامعتبر مشخص شد."
+
+msgid "catalog.coverImageTitle"
+msgstr "عکس جلد"
+
+msgid "grid.catalogEntry.chapters"
+msgstr "فصل‌ها"
+
+msgid "search.results.orderBy.article"
+msgstr "عنوان مقاله"
+
+msgid "search.results.orderBy.author"
+msgstr "نویسنده"
+
+msgid "search.results.orderBy.date"
+msgstr "تاریخ انتشار"
+
+msgid "search.results.orderBy.monograph"
+msgstr "عنوان جلد"
+
+msgid "search.results.orderBy.press"
+msgstr "عنوان نشر"
+
+msgid "search.results.orderBy.popularityAll"
+msgstr "محبوبیت (همه زمان‌ها)"
+
+msgid "search.results.orderBy.popularityMonth"
+msgstr "محبوبیت (ماه اخیر)"
+
+msgid "search.results.orderBy.relevance"
+msgstr "مرتبط بودن"
+
+msgid "search.results.orderDir.asc"
+msgstr "صعودی"
+
+msgid "search.results.orderDir.desc"
+msgstr "نزولی"
+
+msgid "section.section"
+msgstr "مجموعه"
+
+msgid "notification.savedCatalogMetadata"
+msgstr "فراداده کاتالوگ ذخیره شد."
+
+msgid "notification.type.indexRequest"
+msgstr "از شما برای ایجاد نمایه برای عنوان \"{$file}\" درخواست شده است."
+
+msgid "payment.directSales.price.description"
+msgstr ""
+"فرمت‌هایی که از طریق دسترسی باز قابل دانلود هستند هیچ هزینه‌ای برای "
+"خوانندگان و توزیع کنندگان در بر نخواهد داشت."
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "فراداده فرمت انتشار ذخیره شد."
+
+msgid "notification.type.approveSubmission"
+msgstr ""
+"این ارسال در حال حاضر منتظر تأیید در ابزار وروی کاتالوگ است تا در کاتالوگ "
+"عمومی نمایش داده شود."
+
+msgid "notification.type.submissions"
+msgstr "رخدادهای ارسال"
+
+msgid "notification.type.configurePaymentMethod"
+msgstr "پیش از اقدام به تنظیمات فروش باید روش پرداخت تعیین شود."
+
+msgid "notification.type.editorAssignmentTask"
+msgstr "یک جلد جدید ارسال شده و باید برای آن دبیر مشخص شود."
+
+msgid "user.authorization.noContext"
+msgstr "هیچ نشری مطابق درخواست شما یافت نشد."
+
+msgid "user.authorization.seriesAssignment"
+msgstr "شما در حال تلاش برای دسترسی به جلدی هستید که مربوط به مجموعه شما نیست."
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+"دسترسی غیرمجاز! گروه کاربری که شما تحت آن در حال فعالیت هستید برای این مرحله "
+"از کار تعیین نشده است. لطفاً تنظیمات نشر را ملاحظه کنید."
