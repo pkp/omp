@@ -147,6 +147,11 @@ class ManageCatalogHandler extends Handler
                 'catalog' => $catalogList->getConfig()
             ]
         ]);
+
+        $templateMgr->assign([
+            'pageComponent' => 'ManageCatalogPage',
+        ]);
+
         return $templateMgr->display('manageCatalog/index.tpl');
     }
 }

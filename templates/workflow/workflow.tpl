@@ -35,7 +35,7 @@
 			</badge>
 			{include file="workflow/submissionIdentification.tpl"}
 		</h1>
-		<template slot="actions">
+		<template #actions>
 			<pkp-button
 				v-if="submission.status === getConstant('STATUS_PUBLISHED')"
 				element="a"
@@ -116,7 +116,7 @@
 
 			{* Modal to select one of the revision decisions *}
 			<modal
-				:close-label="__('common.close')"
+				:close-label="t('common.close')"
 				name="selectRevisionDecision"
 				title="Revisions"
 			>
@@ -125,7 +125,7 @@
 
 			{* Modal to select one of the revision recommendations *}
 			<modal
-				:close-label="__('common.close')"
+				:close-label="t('common.close')"
 				name="selectRevisionRecommendation"
 				title="Revisions"
 			>
@@ -183,7 +183,7 @@
 							</dropdown>
 						</span>
 						{if $canAccessProduction}
-							<template slot="actions">
+							<template #actions>
 								<pkp-button
 									v-if="workingPublication.status === getConstant('STATUS_QUEUED')"
 									ref="publish"
