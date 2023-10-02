@@ -564,6 +564,9 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      */
     public function addFormat($args, $request)
     {
+        $templateMgr = TemplateManager::getManager();
+        $templateMgr->assign('addFormat', true);
+
         return $this->editFormat($args, $request);
     }
 
