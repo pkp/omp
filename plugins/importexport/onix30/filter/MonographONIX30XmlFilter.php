@@ -27,7 +27,6 @@ use DOMDocument;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\filter\FilterGroup;
-use PKP\submission\SubmissionLanguageDAO;
 use PKP\submission\SubmissionSubjectDAO;
 
 class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\NativeExportFilter
@@ -361,26 +360,16 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
             $descDetailNode->appendChild($this->_buildTextNode($doc, 'NoContributor', '')); // empty state of fact.
         }
 
-        /* --- Add Language elements --- */
+        /* --- Add Language element --- */
 
-        $submissionLanguageDao = DAORegistry::getDAO('SubmissionLanguageDAO'); /** @var SubmissionLanguageDAO $submissionLanguageDao */
-        $allLanguages = $submissionLanguageDao->getLanguages($publication->getId(), array_keys(Locale::getSupportedFormLocales()));
-        $uniqueLanguages = [];
-        foreach ($allLanguages as $locale => $languages) {
-            $uniqueLanguages = array_merge($uniqueLanguages, $languages);
+        $languageNode = $doc->createElementNS($deployment->getNamespace(), 'Language');
+        $languageNode->appendChild($this->_buildTextNode($doc, 'LanguageRole', '01'));
+        $onixLanguageCode = $onixCodelistItemDao->getCodeFromValue($submission->getData('locale'), 'List74');
+        if ($onixLanguageCode != '') {
+            $languageNode->appendChild($this->_buildTextNode($doc, 'LanguageCode', $onixLanguageCode));
+            $descDetailNode->appendChild($languageNode);
         }
-
-        foreach ($uniqueLanguages as $language) {
-            $languageNode = $doc->createElementNS($deployment->getNamespace(), 'Language');
-
-            $languageNode->appendChild($this->_buildTextNode($doc, 'LanguageRole', '01'));
-            $onixLanguageCode = $onixCodelistItemDao->getCodeFromValue($language, 'List74');
-            if ($onixLanguageCode != '') {
-                $languageNode->appendChild($this->_buildTextNode($doc, 'LanguageCode', $onixLanguageCode));
-                $descDetailNode->appendChild($languageNode);
-            }
-            unset($languageNode);
-        }
+        unset($languageNode);
 
         /* --- add Extents for 00 (main content), 04 (back matter), 08 for digital works ---*/
 
