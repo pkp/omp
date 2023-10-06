@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file api/v1/dois/DoiHandler.php
+ * @file api/v1/dois/DoiController.php
  *
- * Copyright (c) 2014-2023 Simon Fraser University
- * Copyright (c) 2003-2023 John Willinsky
+ * Copyright (c) 2023 Simon Fraser University
+ * Copyright (c) 2023 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class DoiHandler
+ * @class DoiController
  *
  * @ingroup api_v1_dois
  *
@@ -20,10 +20,9 @@ namespace APP\API\v1\dois;
 use APP\facades\Repo;
 use APP\monograph\ChapterDAO;
 use APP\publicationFormat\PublicationFormatDAO;
-use PKP\API\v1\dois\PKPDoiHandler;
 use PKP\db\DAORegistry;
 
-class DoiHandler extends PKPDoiHandler
+class DoiController extends \PKP\API\v1\dois\PKPDoiController
 {
     /**
      * @copydoc PKPDoiHandler::getPubObjectHandler()

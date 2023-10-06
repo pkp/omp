@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file api/v1/stats/sushi/StatsSushiHandler.php
+ * @file api/v1/stats/sushi/StatsSushiController.php
  *
- * Copyright (c) 2022 Simon Fraser University
- * Copyright (c) 2022 John Willinsky
+ * Copyright (c) 2023 Simon Fraser University
+ * Copyright (c) 2023 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class StatsSushiHandler
+ * @class StatsSushiController
  *
  * @ingroup api_v1_stats
  *
@@ -19,31 +19,24 @@ namespace APP\API\v1\stats\sushi;
 
 use APP\sushi\TR;
 use APP\sushi\TR_B3;
-use PKP\core\APIResponse;
-use Slim\Http\Request as SlimHttpRequest;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
-class StatsSushiHandler extends \PKP\API\v1\stats\sushi\PKPStatsSushiHandler
+class StatsSushiController extends \PKP\API\v1\stats\sushi\PKPStatsSushiController
 {
     /**
-     * Get this API's endpoints definitions
+     * @copydoc \PKP\core\PKPBaseController::getGroupRoutes()
      */
-    protected function getGETDefinitions(array $roles = null): array
+    public function getGroupRoutes(): void
     {
-        return array_merge(
-            parent::getGETDefinitions($roles),
-            [
-                [
-                    'pattern' => $this->getEndpointPattern() . '/reports/tr',
-                    'handler' => [$this, 'getReportsTR'],
-                    'roles' => $roles
-                ],
-                [
-                    'pattern' => $this->getEndpointPattern() . '/reports/tr_b3',
-                    'handler' => [$this, 'getReportsTRB3'],
-                    'roles' => $roles
-                ],
-            ]
-        );
+        parent::getGroupRoutes();
+
+        Route::get('reports/tr', $this->getReportsTR(...))
+            ->name('stats.sushi.getReportsTR');
+
+        Route::get('reports/tr_b3', $this->getReportsTRB3(...))
+            ->name('stats.sushi.getReportsTRB3');
     }
 
     /**
@@ -51,18 +44,18 @@ class StatsSushiHandler extends \PKP\API\v1\stats\sushi\PKPStatsSushiHandler
      * A customizable report detailing activity at the press level
      * that allows the user to apply filters and select other configuration options for the report.
      */
-    public function getReportsTR(SlimHttpRequest $slimRequest, APIResponse $response, array $args): APIResponse
+    public function getReportsTR(Request $illuminateRequest): JsonResponse
     {
-        return $this->getReportResponse(new TR(), $slimRequest, $response, $args);
+        return $this->getReportResponse(new TR(), $illuminateRequest);
     }
 
     /**
      * COUNTER 'Book Usage by Access Type' [TR_B3].
      * This is a Standard View of Title Master Report that reports on book usage showing all applicable Metric_Types broken down by Access_Type.
      */
-    public function getReportsTRB3(SlimHttpRequest $slimRequest, APIResponse $response, array $args): APIResponse
+    public function getReportsTRB3(Request $illuminateRequest): JsonResponse
     {
-        return $this->getReportResponse(new TR_B3(), $slimRequest, $response, $args);
+        return $this->getReportResponse(new TR_B3(), $illuminateRequest);
     }
 
     /**

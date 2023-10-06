@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file api/v1/_submissions/BackendSubmissionsHandler.php
+ * @file api/v1/_submissions/BackendSubmissionsController.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2023 Simon Fraser University
+ * Copyright (c) 2023 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class BackendSubmissionsHandler
+ * @class BackendSubmissionsController
  *
- * @ingroup api_v1_backend
+ * @ingroup api_v1__submission
  *
  * @brief Handle API requests for backend operations.
  *
@@ -23,50 +23,38 @@ use APP\press\FeatureDAO;
 use APP\press\NewReleaseDAO;
 use APP\submission\Collector;
 use APP\submission\Submission;
-use PKP\core\APIResponse;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Route;
 use PKP\db\DAORegistry;
 use PKP\security\Role;
-use Slim\Http\Request as SlimRequest;
 
-class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmissionsHandler
+class BackendSubmissionsController extends \PKP\API\v1\_submissions\PKPBackendSubmissionsController
 {
     /**
-     * Constructor
+     * @copydoc \PKP\core\PKPBaseController::getGroupRoutes()
      */
-    public function __construct()
+    public function getGroupRoutes(): void
     {
-        $rootPattern = '/{contextPath}/api/{version}/_submissions';
-        $this->_endpoints = [
-            'POST' => [
-                [
-                    'pattern' => "{$rootPattern}/saveDisplayFlags",
-                    'handler' => [$this, 'saveDisplayFlags'],
-                    'roles' => [
-                        Role::ROLE_ID_SITE_ADMIN,
-                        Role::ROLE_ID_MANAGER,
-                    ],
-                ],
-                [
-                    'pattern' => "{$rootPattern}/saveFeaturedOrder",
-                    'handler' => [$this, 'saveFeaturedOrder'],
-                    'roles' => [
-                        Role::ROLE_ID_SITE_ADMIN,
-                        Role::ROLE_ID_MANAGER,
-                    ],
-                ],
-            ],
-            'PUT' => [
-                [
-                    'pattern' => "{$rootPattern}/addToCatalog",
-                    'handler' => [$this, 'addToCatalog'],
-                    'roles' => [
-                        Role::ROLE_ID_SITE_ADMIN,
-                        Role::ROLE_ID_MANAGER,
-                    ],
-                ],
-            ],
-        ];
-        parent::__construct();
+        parent::getGroupRoutes();
+
+        Route::middleware([
+            self::roleAuthorizer([
+                Role::ROLE_ID_SITE_ADMIN,
+                Role::ROLE_ID_MANAGER,
+            ]),
+        ])->group(function () {
+
+            Route::post('saveDisplayFlags', $this->saveDisplayFlags(...))
+                ->name('_submission.displayFlag.save');
+
+            Route::post('saveFeaturedOrder', $this->saveFeaturedOrder(...))
+                ->name('_submission.featuredOrder.save');
+
+            Route::put('addToCatalog', $this->addToCatalog(...))
+                ->name('_submission.catalog.addTo');
+        });
     }
 
     /**
@@ -100,27 +88,17 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
 
     /**
      * Save changes to a submission's featured or new release flags
-     *
-     * @param SlimRequest $slimRequest Slim request object
-     * @param APIResponse $response object
-     * @param array $args {
-     *
-     * 		@option array featured Optional. Featured flags with assoc type, id
-     *		  and seq values.
-     * 		@option array newRelease Optional. New release flags assoc type, id
-     *		  and seq values.
-     * }
-     *
-     * @return APIResponse
      */
-    public function saveDisplayFlags($slimRequest, $response, $args)
+    public function saveDisplayFlags(Request $illuminateRequest): JsonResponse
     {
-        $params = $slimRequest->getParsedBody();
+        $params = $illuminateRequest->input();
 
         $submissionId = isset($params['submissionId']) ? (int) $params['submissionId'] : null;
 
         if (empty($submissionId)) {
-            return $response->withStatus(400)->withJsonError('api.submissions.400.missingRequired');
+            return response()->json([
+                'error' => __('api.submissions.400.missingRequired'),
+            ], Response::HTTP_BAD_REQUEST);
         }
 
         /** @var FeatureDAO */
@@ -145,37 +123,24 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
             'newRelease' => $newReleaseDao->getNewReleaseAll($submissionId),
         ];
 
-        return $response->withJson($output);
+        return response()->json($output, Response::HTTP_OK);
     }
 
     /**
      * Save changes to the sequence of featured items in the catalog, series or
      * category.
-     *
-     * @param SlimRequest $slimRequest Slim request object
-     * @param APIResponse $response object
-     * @param array $args {
-     *
-     * 		@option int assocType Whether these featured items are for a
-     *			press, category or series. Values: Application::ASSOC_TYPE_*
-     * 		@option int assocId The press, category or series id
-     *		@option array featured List of assoc arrays with submission ids and
-     *			seq value.
-     *		@option bool append Whether to replace or append the features to
-     *			the existing features for this assoc type and id. Default: false
-     * }
-     *
-     * @return APIResponse
      */
-    public function saveFeaturedOrder($slimRequest, $response, $args)
+    public function saveFeaturedOrder(Request $illuminateRequest): JsonResponse
     {
-        $params = $slimRequest->getParsedBody();
+        $params = $illuminateRequest->input();
 
         $assocType = isset($params['assocType']) && in_array($params['assocType'], [Application::ASSOC_TYPE_PRESS, Application::ASSOC_TYPE_CATEGORY, Application::ASSOC_TYPE_SERIES]) ? (int) $params['assocType'] : null;
         $assocId = isset($params['assocId']) ? (int) $params['assocId'] : null;
 
         if (empty($assocType) || empty($assocId)) {
-            return $response->withStatus(400)->withJsonError('api.submissions.400.missingRequired');
+            return response()->json([
+                'error' => __('api.submissions.400.missingRequired'),
+            ], Response::HTTP_BAD_REQUEST);
         }
         /** @var FeatureDAO */
         $featureDao = DAORegistry::getDAO('FeatureDAO');
@@ -186,31 +151,29 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
             }
         }
 
-        return $response->withJson(true);
+        return response()->json([], Response::HTTP_OK);
     }
 
     /**
      * Add one or more submissions to the catalog
-     *
-     * @param SlimRequest $slimRequest Slim request object
-     * @param APIResponse $response object
-     *
-     * @return APIResponse
      */
-    public function addToCatalog($slimRequest, $response, $args)
+    public function addToCatalog(Request $illuminateRequest): JsonResponse
     {
-        $params = $slimRequest->getParsedBody();
+        $params = $illuminateRequest->input();
 
         if (empty($params['submissionIds'])) {
-            return $response->withStatus(400)->withJsonError('api.submissions.400.submissionIdsRequired');
+            return response()->json([
+                'error' => __('api.submissions.400.submissionIdsRequired'),
+            ], Response::HTTP_BAD_REQUEST);
         }
 
         $submissionIds = array_map('intval', (array) $params['submissionIds']);
 
         if (empty($submissionIds)) {
-            return $response->withStatus(400)->withJsonError('api.submissions.400.submissionIdsRequired');
+            return response()->json([
+                'error' => __('api.submissions.400.submissionIdsRequired'),
+            ], Response::HTTP_BAD_REQUEST);
         }
-
 
         $primaryLocale = $this->getRequest()->getContext()->getPrimaryLocale();
         $allowedLocales = $this->getRequest()->getContext()->getSupportedFormLocales();
@@ -218,17 +181,25 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
         $validPublications = [];
         foreach ($submissionIds as $submissionId) {
             $submission = Repo::submission()->get($submissionId);
+
             if (!$submission) {
-                return $response->withStatus(400)->withJsonError('api.submissions.400.submissionsNotFound');
+                return response()->json([
+                    'error' => __('api.submissions.400.submissionsNotFound'),
+                ], Response::HTTP_NOT_FOUND);
             }
+
             $publication = $submission->getCurrentPublication();
+
             if ($publication->getData('status') === Submission::STATUS_PUBLISHED) {
                 continue;
             }
+
             $errors = Repo::publication()->validatePublish($publication, $submission, $allowedLocales, $primaryLocale);
+
             if (!empty($errors)) {
-                return $response->withStatus(400)->withJson($errors);
+                return response()->json($errors, Response::HTTP_BAD_REQUEST);
             }
+
             $validPublications[] = $publication;
         }
 
@@ -236,6 +207,6 @@ class BackendSubmissionsHandler extends \PKP\API\v1\_submissions\PKPBackendSubmi
             Repo::publication()->publish($validPublication);
         }
 
-        return $response->withJson(true);
+        return response()->json([], Response::HTTP_OK);
     }
 }

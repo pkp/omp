@@ -20,8 +20,9 @@
 use APP\core\Application;
 
 $requestPath = Application::get()->getRequest()->getRequestPath();
+
 if (strpos($requestPath, '/files')) {
-    return new \PKP\API\v1\submissions\PKPSubmissionFileHandler();
+    return new \PKP\core\PKPApiRoutingHandler(new \PKP\API\v1\submissions\PKPSubmissionFileController());
 } else {
-    return new \PKP\API\v1\submissions\PKPSubmissionHandler();
+    return new \PKP\core\PKPApiRoutingHandler(new \PKP\API\v1\submissions\PKPSubmissionController());
 }
