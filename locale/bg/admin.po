@@ -1,8 +1,64 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-10-08 10:06+0000\n"
+"Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
+"Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/admin/bg/>"
+"\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "admin.settings.config.success"
+msgstr "Конфигурационните настройки на сайта са актуализирани успешно."
+
+msgid "admin.settings.info.success"
+msgstr "Информацията на сайта е актуализирана успешно."
+
+msgid "admin.settings.redirect"
+msgstr "Пренасочване към издание"
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Да не се пренасочва"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "Това ще бъде езикът по подразбиране за сайта и всички хоствани издания."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Маркираните езикови версии (локали) може да са непълни."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"Сигурни ли сте, че искате да деинсталирате тази езикова версия (локал)? Това "
+"може да засегне всички хоствани издания, които в момента използват локала."
+
+msgid "admin.hostedContexts"
+msgstr "Хоствани издания"
+
+msgid "admin.settings.appearance.success"
+msgstr "Настройките за външен вид на сайта са актуализирани успешно."
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Заявките към основния сайт ще бъдат пренасочени към това издание. Това може "
+"да е полезно, ако сайтът хоства само едно издание, например."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr ""
+"Изберете всички езикови версии (локали) за поддръжка на сайта. Избраните "
+"локали ще бъдат достъпни за използване от всички издания, хоствани на сайта, "
+"и също така ще се показват в меню за избор на език, за да се показват на "
+"всяка страница на сайта (което може да бъде заменено на страници, специфични "
+"за изданието). Ако не са избрани множество локали, менюто за превключване на "
+"езика няма да се появи и разширените езикови настройки няма да са достъпни "
+"за изданията."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Изберете всички допълнителни езикови версии (локали), за които да "
+"инсталирате поддръжка в тази система. Локалите трябва да бъдат инсталирани, "
+"преди да могат да се използват от хоствани издания. Вижте документацията на "
+"OMP за информация относно добавянето на поддръжка за нови езици."
