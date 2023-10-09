@@ -15,4 +15,4 @@
  * @brief Handle API requests for announcements.
  */
 
-return new \PKP\core\PKPApiRoutingHandler(new \PKP\API\v1\announcements\PKPAnnouncementController());
+return new \PKP\handler\APIHandler(new \PKP\API\v1\announcements\PKPAnnouncementController());

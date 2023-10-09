@@ -15,4 +15,4 @@
  * @brief Handle API requests for institutions.
  */
 
-return new \PKP\core\PKPApiRoutingHandler(new \PKP\API\v1\institutions\PKPInstitutionController());
+return new \PKP\handler\APIHandler(new \PKP\API\v1\institutions\PKPInstitutionController());

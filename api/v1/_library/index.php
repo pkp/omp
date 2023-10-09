@@ -15,4 +15,4 @@
  * @brief Handle API requests for the publisher and submission library files.
  */
 
-return new \PKP\core\PKPApiRoutingHandler(new \PKP\API\v1\_library\PKPLibraryController());
+return new \PKP\handler\APIHandler(new \PKP\API\v1\_library\PKPLibraryController());

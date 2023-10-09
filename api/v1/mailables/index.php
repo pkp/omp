@@ -15,4 +15,4 @@
  * @brief Handle API requests for mailables.
  */
 
-return new \PKP\core\PKPApiRoutingHandler(new \PKP\API\v1\mailables\PKPMailableController());
+return new \PKP\handler\APIHandler(new \PKP\API\v1\mailables\PKPMailableController());

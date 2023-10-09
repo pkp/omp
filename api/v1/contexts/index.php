@@ -14,4 +14,4 @@
  * @brief Handle API requests for contexts (presses).
  */
 
-return new \PKP\core\PKPApiRoutingHandler(new \PKP\API\v1\contexts\PKPContextController());
+return new \PKP\handler\APIHandler(new \PKP\API\v1\contexts\PKPContextController());

@@ -17,4 +17,4 @@
  *
  */
 
-return new \PKP\core\PKPApiRoutingHandler(new \APP\API\v1\_submissions\BackendSubmissionsController());
+return new \PKP\handler\APIHandler(new \APP\API\v1\_submissions\BackendSubmissionsController());

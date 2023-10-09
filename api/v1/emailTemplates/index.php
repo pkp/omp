@@ -15,4 +15,4 @@
  * @brief Handle API requests for emailTemplates.
  */
 
-return new \PKP\core\PKPApiRoutingHandler(new \PKP\API\v1\emailTemplates\PKPEmailTemplateController());
+return new \PKP\handler\APIHandler(new \PKP\API\v1\emailTemplates\PKPEmailTemplateController());

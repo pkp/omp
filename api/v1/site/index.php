@@ -15,4 +15,4 @@
  * @brief Handle API requests for the site object.
  */
 
-return new \PKP\core\PKPApiRoutingHandler(new \PKP\API\v1\site\PKPSiteController());
+return new \PKP\handler\APIHandler(new \PKP\API\v1\site\PKPSiteController());

@@ -15,4 +15,4 @@
  * @brief Handle API requests for vocabs.
  */
 
-return new \PKP\core\PKPApiRoutingHandler(new \APP\API\v1\vocabs\VocabController());
+return new \PKP\handler\APIHandler(new \APP\API\v1\vocabs\VocabController());
