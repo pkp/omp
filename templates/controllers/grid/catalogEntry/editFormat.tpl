@@ -21,7 +21,7 @@
 			</a>
 		</li>
 
-		{if !isset($addFormat)}
+		{if isset($representationId)}
 			<li>
 				<a href="{url router=PKPApplication::ROUTE_COMPONENT op="editFormatMetadata" submissionId=$submissionId representationId=$representationId publicationId=$publicationId}">
 					{translate key="submission.informationCenter.metadata"}
