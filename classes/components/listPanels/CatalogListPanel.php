@@ -150,25 +150,6 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
             'ASSOC_TYPE_SERIES' => Application::ASSOC_TYPE_SERIES,
         ]);
 
-        $templateMgr->setLocaleKeys([
-            'submission.catalogEntry.new',
-            'submission.list.saveFeatureOrder',
-            'submission.list.orderFeatures',
-            'catalog.manage.categoryFeatured',
-            'catalog.manage.seriesFeatured',
-            'catalog.manage.featured',
-            'catalog.manage.feature.categoryNewRelease',
-            'catalog.manage.feature.seriesNewRelease',
-            'catalog.manage.feature.newRelease',
-            'submission.list.orderingFeatures',
-            'submission.list.orderingFeaturesSection',
-            'catalog.manage.isFeatured',
-            'catalog.manage.isNotFeatured',
-            'catalog.manage.isNewRelease',
-            'catalog.manage.isNotNewRelease',
-            'submission.list.viewEntry',
-            'submission.list.viewSubmission',
-        ]);
 
         return $config;
     }
