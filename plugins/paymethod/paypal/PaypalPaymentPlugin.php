@@ -27,7 +27,6 @@ use PKP\db\DAORegistry;
 use PKP\payment\QueuedPaymentDAO;
 use PKP\plugins\Hook;
 use PKP\plugins\PaymethodPlugin;
-use Slim\Http\Request as SlimRequest;
 
 require_once(dirname(__FILE__) . '/vendor/autoload.php');
 
@@ -126,11 +125,11 @@ class PaypalPaymentPlugin extends PaymethodPlugin
      */
     public function saveSettings(string $hookName, array $args)
     {
-        $slimRequest = $args[0]; /** @var SlimRequest $slimRequest */
+        $illuminateRequest = $args[0]; /** @var \Illuminate\Http\Request $illuminateRequest */
         $request = $args[1]; /** @var Request $request */
         $updatedSettings = $args[3]; /** @var Collection $updatedSettings */
 
-        $allParams = $slimRequest->getParsedBody();
+        $allParams = $illuminateRequest->input();
         $saveParams = [];
         foreach ($allParams as $param => $val) {
             switch ($param) {

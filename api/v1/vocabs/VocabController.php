@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file api/v1/vocab/VocabHandler.php
+ * @file api/v1/vocab/VocabController.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2023 Simon Fraser University
+ * Copyright (c) 2023 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class VocabHandler
+ * @class VocabController
  *
  * @ingroup api_v1_vocab
  *
@@ -19,29 +19,32 @@ namespace APP\API\v1\vocabs;
 
 use APP\codelist\ONIXCodelistItemDAO;
 use APP\core\Application;
-use PKP\core\APIResponse;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\submission\SubmissionLanguageDAO;
-use Slim\Http\Request;
 
-class VocabHandler extends \PKP\API\v1\vocabs\PKPVocabHandler
+class VocabController extends \PKP\API\v1\vocabs\PKPVocabController
 {
     public const LANGUAGE_CODE_LIST = 74;
 
     /**
-     * @copydoc PKPVocabHandler::getMany()
+     * @copydoc \PKP\API\v1\vocabs\PKPVocabController::getMany()
      */
-    public function getMany(Request $slimRequest, APIResponse $response, array $args): APIResponse
+    public function getMany(Request $illuminateRequest): JsonResponse
     {
         $request = Application::get()->getRequest();
         $context = $request->getContext();
 
         if (!$context) {
-            return $response->withStatus(404)->withJsonError('api.404.resourceNotFound');
+            return response()->json([
+                'error' => __('api.404.resourceNotFound'),
+            ], Response::HTTP_NOT_FOUND);
         }
 
-        $requestParams = $slimRequest->getQueryParams();
+        $requestParams = $illuminateRequest->query();
 
         $vocab = $requestParams['vocab'] ?? '';
         $locale = $requestParams['locale'] ?? Locale::getLocale();
@@ -49,7 +52,9 @@ class VocabHandler extends \PKP\API\v1\vocabs\PKPVocabHandler
         $codeList = (int) ($requestParams['codeList'] ?? static::LANGUAGE_CODE_LIST);
 
         if (!in_array($locale, $context->getData('supportedSubmissionLocales'))) {
-            return $response->withStatus(400)->withJsonError('api.vocabs.400.localeNotSupported', ['locale' => $locale]);
+            return response()->json([
+                'error' => __('api.vocabs.400.localeNotSupported', ['locale' => $locale]),
+            ], Response::HTTP_BAD_REQUEST);
         }
 
         // In order to use the languages from ONIX, this route overwrites needs to overwrite only the SubmissionLanguageDAO::CONTROLLED_VOCAB_SUBMISSION_LANGUAGE vocabulary
@@ -61,6 +66,7 @@ class VocabHandler extends \PKP\API\v1\vocabs\PKPVocabHandler
         $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
         $codes = array_map(fn ($value) => trim($value), array_values($onixCodelistItemDao->getCodes('List' . $codeList, [], $term)));
         asort($codes);
-        return $response->withJson($codes, 200);
+
+        return response()->json($codes, Response::HTTP_OK);
     }
 }
