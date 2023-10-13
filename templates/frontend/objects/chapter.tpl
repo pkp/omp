@@ -11,8 +11,8 @@
  * Core components are produced manually below, but can also be added via
  * plugins using the hooks provided:
  *
- * Templates::Catalog::Chapter::Main
- * Templates::Catalog::Chapter::Details
+ * @hook Templates::Catalog::Chapter::Main []
+ * @hook Templates::Catalog::Chapter::Details []
  *
  * @uses $currentPress Press The press currently being viewed
  * @uses $monograph Monograph The monograph to be displayed
@@ -31,6 +31,7 @@
  * @uses $datePublished	date Date this chapter was published.
  * @uses $firstDatePublished date Earliest chapter publishing date.
  * @uses $chapterPublicationIds array List of publication ids containing this chapter.
+ *
  *}
 <div class="obj_monograph_full obj_chapter">
 
