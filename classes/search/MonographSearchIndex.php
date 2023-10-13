@@ -190,7 +190,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
     /**
      * @copydoc SubmissionSearchIndex::submissionChangesFinished()
      *
-     * @hook MonographSearchIndex::monographChangesFinished
+     * @hook MonographSearchIndex::monographChangesFinished []
      */
     public function submissionChangesFinished()
     {
