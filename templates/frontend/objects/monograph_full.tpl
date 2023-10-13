@@ -46,8 +46,8 @@
  * Core components are produced manually below, but can also be added via
  * plugins using the hooks provided:
  *
- * Templates::Catalog::Book::Main
- * Templates::Catalog::Book::Details
+ * @hook Templates::Catalog::Book::Main []
+ * @hook Templates::Catalog::Book::Details []
  *
  * @uses $currentPress Press The press currently being viewed
  * @uses $monograph Monograph The monograph to be displayed

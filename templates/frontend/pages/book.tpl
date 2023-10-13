@@ -11,6 +11,8 @@
  * @uses $availableFiles array List of available MonographFiles
  * @uses $publishedSubmission PublishedSubmission The published submission object.
  * @uses $series Series The series this monograph is assigned to, if any.
+ *
+ * @hook Templates::Catalog::Book::Footer::PageFooter []
  *}
 {if $isChapterRequest}
 	{$pageTitle = $chapter->getLocalizedFullTitle()}
