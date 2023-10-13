@@ -121,6 +121,9 @@ class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
      * Callback to rewrite and serve HTML content.
      *
      * @param string $hookName
+     *
+     * @hook HtmlMonographFilePlugin::monographDownload [[&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline]]
+     * @hook HtmlMonographFilePlugin::monographDownloadFinished [[&$returner]]
      */
     public function downloadCallback($hookName, $params)
     {

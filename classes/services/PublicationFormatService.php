@@ -24,9 +24,9 @@ use APP\publicationFormat\MarketDAO;
 use APP\publicationFormat\PublicationDateDAO;
 use APP\publicationFormat\PublicationFormat;
 use APP\publicationFormat\SalesRightsDAO;
+use APP\submission\Submission;
 use PKP\core\Core;
 use PKP\core\PKPApplication;
-use APP\submission\Submission;
 use PKP\db\DAORegistry;
 
 class PublicationFormatService

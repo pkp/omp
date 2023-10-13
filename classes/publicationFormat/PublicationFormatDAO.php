@@ -297,6 +297,8 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
      * @param bool $callHooks
      *
      * @return PublicationFormat
+     *
+     * @hook PublicationFormatDAO::_fromRow [[&$publicationFormat, &$row]]
      */
     public function _fromRow($row, $params = [], $callHooks = true)
     {

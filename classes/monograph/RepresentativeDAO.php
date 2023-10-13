@@ -105,6 +105,8 @@ class RepresentativeDAO extends \PKP\db\DAO
      * @param bool $callHooks
      *
      * @return Representative
+     *
+     * @hook RepresentativeDAO::_fromRow [[&$representative, &$row]]
      */
     public function _fromRow($row, $callHooks = true)
     {

@@ -42,6 +42,8 @@ class PublicationFormatTombstoneManager
      *
      * @param PublicationFormat $publicationFormat
      * @param Press $press
+     *
+     * @hook PublicationFormatTombstoneManager::insertPublicationFormatTombstone [[&$publicationFormatTombstone, &$publicationFormat, &$press]]
      */
     public function insertTombstoneByPublicationFormat($publicationFormat, $press)
     {

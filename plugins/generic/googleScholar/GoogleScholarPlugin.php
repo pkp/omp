@@ -56,6 +56,8 @@ class GoogleScholarPlugin extends GenericPlugin
      * @param array $args
      *
      * @return bool
+     *
+     * @hook GoogleScholarPlugin::references [[&$outputReferences, $submission->getId()]]
      */
     public function monographView($hookName, $args)
     {

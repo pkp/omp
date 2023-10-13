@@ -203,6 +203,8 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
      * @param array $row
      *
      * @return Chapter
+     *
+     * @hook ChapterDAO::_fromRow [[&$chapter, &$row]]
      */
     public function _fromRow($row)
     {

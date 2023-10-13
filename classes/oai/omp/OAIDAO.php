@@ -99,6 +99,8 @@ class OAIDAO extends PKPOAIDAO
      * @param int $total
      *
      * @return array OAISet
+     *
+     * @hook OAIDAO::getSets [[&$this, $pressId, $offset, $limit, $total, &$sets]]
      */
     public function getSets($pressId, $offset, $limit, &$total)
     {

@@ -103,6 +103,8 @@ class SalesRightsDAO extends \PKP\db\DAO
      * @param bool $callHooks
      *
      * @return SalesRights
+     *
+     * @hook SalesRightsDAO::_fromRow [[&$salesRights, &$row]]
      */
     public function _fromRow($row, $callHooks = true)
     {

@@ -192,6 +192,8 @@ class CodelistItemDAO extends DAO
      * @param array $entry
      *
      * @return CodelistItem
+     *
+     * @hook CodelistItemDAO::_fromRow [[&$codelistItem, &$code, &$entry]]
      */
     public function _fromRow($code, $entry)
     {

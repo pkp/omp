@@ -272,7 +272,7 @@ class Repository extends \PKP\publication\Repository
                         $publicFileManager->removeContextFile($submission->getData('contextId'), $this->getThumbnailFileName($oldCoverImage[$localeKey]['uploadName']));
                     }
 
-                // Otherwise generate a new thumbnail if a cover image exists
+                    // Otherwise generate a new thumbnail if a cover image exists
                 } elseif (!empty($newCoverImage) && array_key_exists('temporaryFileId', $newCoverImage)) {
                     $coverImageFilePath = $publicFileManager->getContextFilesPath($submission->getData('contextId')) . '/' . $coverImages[$localeKey]['uploadName'];
                     $this->makeThumbnail(
