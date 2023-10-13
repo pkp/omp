@@ -86,6 +86,8 @@ class MarketDAO extends \PKP\db\DAO
      * @param bool $callHooks
      *
      * @return Market
+     *
+     * @hook MarketDAO::_fromRow [[&$market, &$row]]
      */
     public function _fromRow($row, $callHooks = true)
     {

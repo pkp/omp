@@ -86,6 +86,8 @@ class IdentificationCodeDAO extends \PKP\db\DAO
      * @param bool $callHooks
      *
      * @return IdentificationCode
+     *
+     * @hook IdentificationCodeDAO::_fromRow [[&$identificationCode, &$row]]
      */
     public function _fromRow($row, $callHooks = true)
     {

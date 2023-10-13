@@ -351,8 +351,8 @@ class URNPubIdPlugin extends PubIdPlugin
             }
             $form->addField(new FieldPubIdUrn('pub-id::other::urn', $fieldData));
 
-        // Otherwise add a field for manual entry that includes a button to generate
-        // the check number
+            // Otherwise add a field for manual entry that includes a button to generate
+            // the check number
         } else {
             $form->addField(new FieldTextUrn('pub-id::other::urn', [
                 'label' => __('plugins.pubIds.urn.displayName'),
@@ -383,7 +383,7 @@ class URNPubIdPlugin extends PubIdPlugin
         if (!$publicationUrnEnabled && !$chapterUrnEnabled && !$publicationFormatUrnEnabled && !$submissionFileUrnEnabled) {
             return;
 
-        // Use a simplified view when only assigning to the publication
+            // Use a simplified view when only assigning to the publication
         } elseif ($publicationFormatUrnEnabled && !$chapterUrnEnabled && !$publicationFormatUrnEnabled && !$submissionFileUrnEnabled) {
             if ($form->publication->getData('pub-id::other::urn')) {
                 $msg = __('plugins.pubIds.urn.editor.preview.publication', ['urn' => $form->publication->getData('pub-id::other::urn')]);
@@ -396,7 +396,7 @@ class URNPubIdPlugin extends PubIdPlugin
             ]));
             return;
 
-        // Show a table if probably more than one URN is going to be created
+            // Show a table if probably more than one URN is going to be created
         } else {
             $urnTableRows = [];
             if ($publicationUrnEnabled) {

@@ -250,6 +250,8 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
      * Internal function to return a Codelist object from a row.
      *
      * @return ONIXCodelistItem
+     *
+     * @hook ONIXCodelistItemDAO::_fromRow [[&$codelistItem, &$code, &$entry]]
      */
     public function &_fromRow($code, &$entry)
     {

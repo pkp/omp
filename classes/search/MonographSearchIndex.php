@@ -104,6 +104,8 @@ class MonographSearchIndex extends SubmissionSearchIndex
      * Index monograph metadata.
      *
      * @param Submission $submission
+     *
+     * @hook MonographSearchIndex::submissionMetadataChanged [[$submission]]
      */
     public function submissionMetadataChanged($submission)
     {
@@ -150,6 +152,8 @@ class MonographSearchIndex extends SubmissionSearchIndex
      * Index all monograph files (galley files).
      *
      * @param Submission $monograph
+     *
+     * @hook MonographSearchIndex::submissionFilesChanged [[$monograph]]
      */
     public function submissionFilesChanged($monograph)
     {
@@ -185,6 +189,8 @@ class MonographSearchIndex extends SubmissionSearchIndex
 
     /**
      * @copydoc SubmissionSearchIndex::submissionChangesFinished()
+     *
+     * @hook MonographSearchIndex::monographChangesFinished
      */
     public function submissionChangesFinished()
     {
@@ -214,6 +220,8 @@ class MonographSearchIndex extends SubmissionSearchIndex
      * Rebuild the search index for all presses.
      *
      * @param bool $log Whether or not to log progress to the console.
+     *
+     * @hook MonographSearchIndex::rebuildIndex [[$log]]
      */
     public function rebuildIndex($log = false)
     {

@@ -187,6 +187,8 @@ class PressOAI extends OAI
 
     /**
      * @see OAI#records
+     *
+     * @hook PressOAI::records [[&$this, $from, $until, $set, $offset, $limit, &$total, &$records]]
      */
     public function records($metadataPrefix, $from, $until, $set, $offset, $limit, &$total)
     {
@@ -205,6 +207,8 @@ class PressOAI extends OAI
 
     /**
      * @see OAI#identifiers
+     *
+     * @hook PressOAI::identifiers [[&$this, $from, $until, $set, $offset, $limit, &$total, &$records]]
      */
     public function identifiers($metadataPrefix, $from, $until, $set, $offset, $limit, &$total)
     {
@@ -223,6 +227,8 @@ class PressOAI extends OAI
 
     /**
      * @see OAI#sets
+     *
+     * @hook PressOAI::sets [[&$this, $offset, $limit, &$total, &$sets]]
      */
     public function sets($offset, $limit, &$total)
     {

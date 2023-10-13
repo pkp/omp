@@ -88,6 +88,8 @@ class CatalogBookHandler extends Handler
      *
      * @param array $args
      * @param Request $request
+     *
+     * @hook CatalogBookHandler::book [[&$request, &$submission, &$this->publication, &$this->chapter]]
      */
     public function book($args, $request)
     {
@@ -328,6 +330,10 @@ class CatalogBookHandler extends Handler
      * @param array $args
      * @param Request $request
      * @param bool $view True iff inline viewer should be used, if available
+     *
+     * @hook CatalogBookHandler::view [[&$this, &$submission, &$publicationFormat, &$submissionFile]]
+     * @hook CatalogBookHandler::download [[&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline]]
+     * @hook FileManager::downloadFileFinished [[&$returner]]
      */
     public function download($args, $request, $view = false)
     {

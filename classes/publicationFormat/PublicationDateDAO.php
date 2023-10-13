@@ -86,6 +86,8 @@ class PublicationDateDAO extends \PKP\db\DAO
      * @param bool $callHooks
      *
      * @return PublicationDate
+     *
+     * @hook PublicationDateDAO::_fromRow [[&$publicationDate, &$row]]
      */
     public function _fromRow($row, $callHooks = true)
     {

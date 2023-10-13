@@ -61,6 +61,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
      * @param PublicationFormat $publicationFormat
      *
      * @return MetadataDescription
+     *
+     * @hook Dc11SchemaPublicationFormatAdapter::extractMetadataFromDataObject [[&$this, $monograph, $press, &$dc11Description]]
      */
     public function extractMetadataFromDataObject(&$publicationFormat)
     {

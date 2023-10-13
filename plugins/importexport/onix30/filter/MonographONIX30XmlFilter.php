@@ -21,7 +21,6 @@ use APP\core\Application;
 use APP\facades\Repo;
 use APP\monograph\RepresentativeDAO;
 use APP\plugins\importexport\onix30\Onix30ExportDeployment;
-use APP\publication\Publication;
 use APP\publicationFormat\PublicationFormat;
 use APP\submission\Submission;
 use DOMDocument;

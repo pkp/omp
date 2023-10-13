@@ -308,6 +308,8 @@ class MonographSearch extends SubmissionSearch
 
     /**
      * See SubmissionSearch::getResultSetOrderingOptions()
+     *
+     * @hook SubmissionSearch::getResultSetOrderingOptions [[$context, &$resultSetOrderingOptions]]
      */
     public function getResultSetOrderingOptions($request)
     {
