@@ -1,8 +1,78 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-10-23 11:06+0000\n"
+"Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
+"Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-onix30/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "plugins.importexport.onix30.description"
+msgstr "Експортиране на метаданни на монография във формат ONIX 3.0"
+
+msgid "plugins.importexport.onix30.cliError"
+msgstr "ГРЕШКА:"
+
+msgid "plugins.importexport.onix30.error.unknownPress"
+msgstr "Посоченият път за издателство, \"{$contextPath},\" не съществува."
+
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr "Не можа да се запише във файла „{$fileName}“."
+
+msgid "plugins.importexport.onix30.noFormats"
+msgstr "Не се показват монографии без формат на публикация."
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Изберете монографии за експортиране"
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr "Изберете монография за експортиране:"
+
+msgid "plugins.importexport.onix30.exportFormats"
+msgstr "Достъпни формати"
+
+msgid "plugins.importexport.onix30.validityStatus"
+msgstr "ONIX статус"
+
+msgid "plugins.importexport.onix30.displayName"
+msgstr "Плъгин за експортиране на монографии в ONIX 3.0"
+
+msgid "plugins.importexport.onix30.cliUsage"
+msgstr ""
+"Употреба: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId]"
+" "
+
+msgid "plugins.importexport.onix30.formatInvalid"
+msgstr "Невалиден"
+
+msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgstr ""
+"Нито една монография не съответства на посочения идентификатор на монография "
+"„{$monographId}“."
+
+msgid "plugins.importexport.onix30.exportButton"
+msgstr "Експорт"
+
+msgid "plugins.importexport.onix30.pressMissingFields"
+msgstr ""
+"В това издателство липсва част от необходимата информация. Моля, отидете на "
+"<a href=\"{$url}\">Настройки на издателство</a> и попълнете липсващите данни."
+
+msgid "plugins.importexport.onix30.unavailable"
+msgstr "Недостъпно"
+
+msgid "plugins.importexport.onix30.formatValid"
+msgstr "Валиден"
+
+msgid "plugins.importexport.onix30.form.addresseeField"
+msgstr "Адресат (получател) за този експорт"
+
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
+msgstr ""
+"Можете да оставите това поле празно и да създадете общо експортиране. Това "
+"ще доведе до експортиране на ONIX без &lt;Addressee&gt; композитен. "
