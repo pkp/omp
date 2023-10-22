@@ -1,8 +1,72 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2023.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-10-23 11:06+0000\n"
+"Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
+"Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-csv/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "plugins.importexport.csv.import.success.description"
+msgstr ""
+"Импортирането беше успешно. Успешно импортираните елементи са изброени "
+"по-долу."
+
+msgid "plugins.importexport.csv.displayName"
+msgstr "Плъгин за импортиране на съдържание с разделители табулатори"
+
+msgid "plugins.importexport.csv.description"
+msgstr ""
+"Импортиране на подадени материали в издателство, разделени с табулатори."
+
+msgid "plugins.importexport.csv.cliOnly"
+msgstr ""
+"\n"
+"\t\t<p>Този плъгин в момента поддържа работа само от командния ред. "
+"Изпълни...\n"
+"\t\t\t<pre>php tools/importExport.php CSVImportExportPlugin</pre>\n"
+"\t\t\t...за повече информация.</p>\n"
+"\t"
+
+msgid "plugins.importexport.csv.cliUsage"
+msgstr ""
+"Инструмент от командния ред за импортиране на CSV данни в OMP\n"
+"\t\t\tУпотреба:\n"
+"\t\t\t{$scriptName} [--dry-run] fileName.csv username\n"
+"\t\t\tОпцията --dry-run може да се използва за тестване, без да се правят "
+"промени.\n"
+"\t\t\tПосочете потребителското име, на което искате да присвоите "
+"изпращанията.\n"
+
+msgid "plugins.importexport.csv.fileDoesNotExist"
+msgstr "Файлът \"{$filename}\" не съществува. Излизане."
+
+msgid "plugins.importexport.csv.unknownUser"
+msgstr "Неизвестен потребител: „{$username}“. Излизане."
+
+msgid "plugins.importexport.csv.unknownLocale"
+msgstr "Неизвестен локал(езикова настройка): „{$locale}“. Прескачане."
+
+msgid "plugins.importexport.csv.unknownPress"
+msgstr "Неизвестно издателство: „{$contextPath}“. Прескачане."
+
+msgid "plugins.importexport.csv.noGenre"
+msgstr "Няма отбелязан жанр на ръкописа. Излизане."
+
+msgid "plugins.importexport.csv.noAuthorGroup"
+msgstr ""
+"Няма зададена група автори по подразбиране в издателство {$press}. "
+"Пропускане на това изпращане."
+
+msgid "plugins.importexport.csv.noSeries"
+msgstr ""
+"Пътят посочен за серията/колекцията {$seriesPath} не съществува. Не може да "
+"се добави към това изпращане."
+
+msgid "plugins.importexport.csv.import.submission"
+msgstr "Изпращане на материали: „{$title}“ е импортирано успешно."
