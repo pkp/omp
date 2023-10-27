@@ -1,11 +1,11 @@
-# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022.
+# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-10-01 08:01+0000\n"
+"PO-Revision-Date: 2023-10-28 07:06+0000\n"
 "Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
-"Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/importexport-"
-"native/da_DK/>\n"
-"Language: da_DK\n"
+"Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-native/da/>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -57,3 +57,9 @@ msgstr ""
 "\teksport [xmlFileName] [press_path] monographs [monographId1] "
 "[monographId2] ...\n"
 "\teksport [xmlFileName] [press_path] monograph [monographId]\n"
+
+msgid "plugins.importexport.common.error.invalidFileExtension"
+msgstr "Der blev angivet et forsidebillede med et ugyldigt filtypenavn."
+
+msgid "plugins.importexport.common.error.coverImageNameUnspecified"
+msgstr "Der blev indlejret et forsidebillede uden at angive et navn."
