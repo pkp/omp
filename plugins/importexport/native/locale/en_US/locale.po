@@ -46,3 +46,9 @@ msgstr ""
 
 msgid "plugins.importexport.native.error.unknownSeries"
 msgstr "Unknown series {$param}"
+
+msgid "plugins.importexport.common.error.invalidFileExtension"
+msgstr "A cover image with an invalid file extension was specified."
+
+msgid "plugins.importexport.common.error.coverImageNameUnspecified"
+msgstr "A cover image was embedded without specifying a name."
