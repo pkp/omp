@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-06-02 22:44+0000\n"
+"PO-Revision-Date: 2023-09-28 23:06+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/admin/uk/>"
 "\n"
@@ -195,6 +195,5 @@ msgstr ""
 "якщо ви вимкнете загальнодоступний API, е-видавництва не зможуть зробити "
 "свій API загальнодоступним."
 
-#, fuzzy
 msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
-msgstr "Використовувати вебсайт як платформу для всіх журналів."
+msgstr "Використовувати вебсайт як платформу для всіх е-видавництв."

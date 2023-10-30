@@ -1,0 +1,32 @@
+# Cyril Kamburov <cc@intermedia.bg>, 2023.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-10-25 15:06+0000\n"
+"Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
+"Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/"
+"pubIds-urn/bg/>\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "plugins.pubIds.urn.displayName"
+msgstr "УИР (URN)"
+
+msgid "plugins.pubIds.urn.manager.settings.urnObjectsRequired"
+msgstr "Моля, изберете обектите, към които да бъдат присвоени УИР (URN)."
+
+msgid "plugins.pubIds.urn.manager.settings.urnObjects"
+msgstr "Съдържание от това издателство"
+
+msgid "plugins.pubIds.urn.description"
+msgstr ""
+"Този плъгин позволява присвояването на унифицирани имена на ресурси (URN) "
+"към монографии, глави, формати на публикации и файлове в OMP."
+
+msgid "plugins.pubIds.urn.manager.settings.description"
+msgstr ""
+"Моля, конфигурирайте приставката (плъгин) за УИР (URN), за да можете да "
+"управлявате и използвате URN в OMP:"
