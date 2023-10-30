@@ -3,8 +3,8 @@
 # Carlos Costa <carlos.costa@uc.pt>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-02-17 03:04+0000\n"
-"Last-Translator: Carlos Costa <carlos.costa@uc.pt>\n"
+"PO-Revision-Date: 2023-10-31 11:06+0000\n"
+"Last-Translator: José Carvalho <jcarvalho@keep.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/admin/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -188,6 +188,5 @@ msgstr ""
 "entanto, se você desativar a API pública, as editoras não poderão tornar sua "
 "própria API pública."
 
-#, fuzzy
 msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
-msgstr "Use o site como plataforma para todas as revistas."
+msgstr "Use o website como plataforma para todas as revistas."
