@@ -1,0 +1,21 @@
+# Cyril Kamburov <cc@intermedia.bg>, 2023.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-10-18 10:06+0000\n"
+"Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
+"Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/"
+"generic-htmlMonographFile/bg/>\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "plugins.generic.htmlMonographFile.displayName"
+msgstr "HTML файл с монография"
+
+msgid "plugins.generic.htmlMonographFile.description"
+msgstr ""
+"Този плъгин предоставя поддръжка за изобразяване на файлове с HTML "
+"монография."

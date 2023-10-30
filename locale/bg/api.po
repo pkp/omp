@@ -1,0 +1,44 @@
+# Cyril Kamburov <cc@intermedia.bg>, 2023.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-10-18 10:06+0000\n"
+"Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
+"Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/api/bg/>\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "api.submissions.400.submissionsNotFound"
+msgstr ""
+"Един или повече от посочените от вас изпратени материали не можаха да бъдат "
+"намерени."
+
+msgid "api.submissions.400.wrongContext"
+msgstr "Търсените от вас изпратени материали не са намерени в това издателство."
+
+msgid "api.emails.403.disabled"
+msgstr "Функцията за известяване по имейл не е активирана за това издателство."
+
+msgid "api.publications.403.contextsDidNotMatch"
+msgstr "Публикацията, която поискахте, не се намира в това издателство."
+
+msgid "api.submissions.403.cantChangeContext"
+msgstr "Не можете да промените издателството на подаваните материали."
+
+msgid "api.submission.400.inactiveSection"
+msgstr "Този раздел вече не приема заявки за нови публикации."
+
+msgid "api.submissions.400.submissionIdsRequired"
+msgstr ""
+"Трябва да предоставите един или повече идентификатори на изпращаните "
+"материали, които да бъдат добавени към каталога."
+
+msgid "api.emailTemplates.403.notAllowedChangeContext"
+msgstr "Нямате права да преместите този имейл шаблон в друго издателство."
+
+msgid "api.publications.403.submissionsDidNotMatch"
+msgstr ""
+"Публикацията, която поискахте, не е част от това изпращане на материали."

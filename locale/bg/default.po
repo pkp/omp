@@ -1,0 +1,192 @@
+# Cyril Kamburov <cc@intermedia.bg>, 2023.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-10-23 11:06+0000\n"
+"Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
+"Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/default/"
+"bg/>\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "default.genres.bibliography"
+msgstr "Библиография"
+
+msgid "default.genres.chapter"
+msgstr "Ръкопис на раздел от книга"
+
+msgid "default.genres.glossary"
+msgstr "Речник"
+
+msgid "default.genres.index"
+msgstr "Индекс"
+
+msgid "default.genres.preface"
+msgstr "Предговор"
+
+msgid "default.genres.table"
+msgstr "Таблица"
+
+msgid "default.genres.figure"
+msgstr "Фигура"
+
+msgid "default.genres.photo"
+msgstr "Фотография"
+
+msgid "default.genres.other"
+msgstr "Друго"
+
+msgid "default.groups.name.manager"
+msgstr "Мениджър на издателство"
+
+msgid "default.groups.plural.manager"
+msgstr "Мениджъри на издателство"
+
+msgid "default.groups.abbrev.manager"
+msgstr "МИ"
+
+msgid "default.groups.plural.editor"
+msgstr "Редактори на издателство"
+
+msgid "default.groups.abbrev.editor"
+msgstr "РИ"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "РС"
+
+msgid "default.groups.name.subscriptionManager"
+msgstr "Мениджър на абонамент"
+
+msgid "default.groups.plural.subscriptionManager"
+msgstr "Мениджъри на абонамент"
+
+msgid "default.groups.abbrev.subscriptionManager"
+msgstr "МА"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Автор на раздел от книга"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Автори на раздел от книга"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "АР"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Редактори на том"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "РТ"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Външни рецензенти"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "ВР"
+
+msgid "default.genres.appendix"
+msgstr "Приложение"
+
+msgid "default.genres.manuscript"
+msgstr "Ръкопис на книга"
+
+msgid "default.genres.prospectus"
+msgstr "Проспект"
+
+msgid "default.genres.illustration"
+msgstr "Илюстрация"
+
+msgid "default.groups.name.editor"
+msgstr "Редактор на издателство"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Редактор на серия (колекция)"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Редактори на серия (колекция)"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Редактор на том"
+
+msgid "default.contextSettings.authorGuidelines"
+msgstr ""
+"<p>Авторите са поканени да изпратят материали към това издателство. "
+"Изпратените материали, които се считат за подходящи, ще бъдат изпратени за "
+"рецензиране, преди да се определи дали ще бъдат приети или отхвърлени.</"
+"p><p>Преди да направят изпращане, авторите носят отговорност за получаване "
+"на разрешение за публикуване на всеки материал, включен в подаването , като "
+"снимки, документи и набори от данни. Всички автори, посочени в подаването, "
+"трябва да дадат съгласието си да бъдат идентифицирани като автори. Когато е "
+"уместно, изследването трябва да бъде одобрено от съответна комисия по етика "
+"в съответствие със законовите изисквания на държавата на изследването.</"
+"p><p>Редакторът може да отхвърли подаването, ако то не отговаря на "
+"минималните стандарти за качество. Преди да изпратите, моля, уверете се, че "
+"обхватът и схемата на книгата са структурирани и формулирани правилно. "
+"Заглавието трябва да е кратко и резюмето трябва да може да стои "
+"самостоятелно. Това ще увеличи вероятността рецензенти да се съгласят да "
+"прегледат книгата. Когато сте доволни, че подаването ви отговаря на този "
+"стандарт, моля, следвайте контролния списък по-долу, за да подготвите "
+"подаването си.</p>"
+
+msgid "default.contextSettings.checklist"
+msgstr ""
+"<p>Всички изпратени материали трябва да отговарят на следните изисквания.</"
+"p><ul><li>Тeзи изпращани материали отговарят на изискванията, посочени в <a "
+"href=\"{$submissionGuidelinesUrl}\">Указанията за авторите</a>.</li "
+"><li>Това представяне не е публикувано преди, нито подадено пред друго "
+"издателство за разглеждане.</li><li>Всички препратки са проверени за точност "
+"и пълнота.</li><li>Всички таблици и фигури са е номерирани и етикетирани.</"
+"li><li>Получено е разрешение за публикуване на всички снимки, набори от "
+"данни и други материали, предоставени с това изпращане.</li></ul>"
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+"<p>Имената и имейл адресите, въведени в този сайт на издателството, ще бъдат "
+"използвани изключително за посочените цели и няма да бъдат предоставяни за "
+"никакви други цели или на друга страна.</p>"
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr ""
+"Това издателство предоставя незабавен отворен достъп до съдържанието си на "
+"принципа, че предоставянето на научните изследвания свободно достъпни за "
+"обществеността подкрепя по-голям глобален обмен на знания."
+
+msgid "default.contextSettings.forReaders"
+msgstr ""
+"Насърчаваме читателите да се запишат за услугата за публикуване на известия "
+"на това издателство. Използвайте връзката <a href=\""
+"{$indexUrl}/{$contextPath}/user/register\">Регистрация</a> в горната част на "
+"началната страница за издателството. Тази регистрация ще доведе до това, че "
+"читателят ще получава съдържанието по имейл за всяка нова монография "
+"публикувана от издателството. Този списък също така позволява на "
+"издателството да претендира за определено ниво на подкрепа или читателска "
+"аудитория. Вижте издателската <a href=\"{$indexUrl}/{$contextPath}/about/"
+"submissions#privacyStatement\">Декларация за поверителност</a>, която "
+"гарантира на читателите, че тяхното име и имейл адрес няма да бъдат "
+"използвани за други цели."
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+"Интересувате ли се от изпращане на материал в това издателство? Препоръчваме "
+"ви да прегледате страницата <a href=\"{$indexUrl}/{$contextPath}/about\""
+">Относно издателството</a> за правилата на секцията и <a href=\"{$indexUrl}/{"
+" $contextPath}/about/submissions#authorGuidelines\">Указания за автор</a>. "
+"Авторите трябва да <a href=\"{$indexUrl}/{$contextPath}/user/register\">се "
+"регистрират</a> в издателството, преди да изпратят, или ако вече са "
+"регистрирани, могат да <a href=\"{$indexUrl} /index/login\">влязат</a> и "
+"започнат процеса от 5 стъпки."
+
+msgid "default.contextSettings.forLibrarians"
+msgstr ""
+"Насърчаваме изследователите в библиотеките да включат това издателство в "
+"електронния каталог на библиотеката си. Също така, тази система за "
+"публикуване с отворен код е подходяща за библиотеки, които да хостват "
+"електронни публикационни системи за членовете си и издават електронни и "
+"печатни издания и/или участват в редактирането им (вижте <a href=\"https"
+"://pkp.sfu.ca/omp\">Open Monograph Press </a>)."
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Външен рецензент"
