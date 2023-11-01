@@ -369,7 +369,6 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
             $languageNode->appendChild($this->_buildTextNode($doc, 'LanguageCode', $onixLanguageCode));
             $descDetailNode->appendChild($languageNode);
         }
-        unset($languageNode);
 
         /* --- add Extents for 00 (main content), 04 (back matter), 08 for digital works ---*/
 
