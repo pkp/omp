@@ -66,6 +66,7 @@ class IndexHandler extends PKPIndexHandler
             'highlights' => $this->getHighlights($press),
         ]);
 
+        $this->_setupAnnouncements($journal ?? $request->getSite(), $templateMgr);
         if ($press) {
             // Display the current press home.
             $this->_displayPressIndexPage($press, $request);
