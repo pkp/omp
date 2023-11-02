@@ -33,7 +33,6 @@ import JobsPage from '@/components/Container/JobsPage.vue';
 import FailedJobsPage from '@/components/Container/FailedJobsPage.vue';
 import FailedJobDetailsPage from '@/components/Container/FailedJobDetailsPage.vue';
 import ManageCatalogPage from '@/components/Container/ManageCatalogPage.vue';
-import SubmissionsPage from '@/components/Container/SubmissionsPage.vue';
 
 // styles
 import '@/styles/_global.less';
@@ -62,7 +61,6 @@ window.pkp = Object.assign(PkpLoad, window.pkp || {}, {
 		StatsContextPage,
 		StatsUsersPage,
 		SubmissionWizardPage,
-		WorkflowPage,
-		SubmissionsPage,
+		WorkflowPage
 	},
 });
