@@ -197,6 +197,7 @@
 		<migration class="PKP\migration\upgrade\v3_5_0\I9197_MigrateAccessKeys"/>
 		<migration class="PKP\migration\upgrade\v3_5_0\I9262_Highlights"/>
 		<migration class="APP\migration\upgrade\v3_5_0\I9262_Highlights"/>
+		<migration class="PKP\migration\upgrade\v3_5_0\I9253_SiteAnnouncements"/>
 	</upgrade>
 
 	<!-- Update plugin configuration - should be done as the final upgrade task -->
