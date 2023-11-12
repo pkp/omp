@@ -23,6 +23,7 @@ use APP\section\Repository as SectionRepository;
 use APP\submission\Repository as SubmissionRepository;
 use APP\submissionFile\Repository as SubmissionFileRepository;
 use APP\user\Repository as UserRepository;
+use PKP\submission\reviewAssignment\Repository as ReviewAssignmentRepository;
 
 class Repo extends \PKP\facades\Repo
 {
@@ -69,5 +70,10 @@ class Repo extends \PKP\facades\Repo
     public static function mailable(): MailRepository
     {
         return app(MailRepository::class);
+    }
+
+    public static function reviewAssignment(): ReviewAssignmentRepository
+    {
+        return app(ReviewAssignmentRepository::class);
     }
 }
