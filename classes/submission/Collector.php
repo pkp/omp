@@ -174,4 +174,9 @@ class Collector extends \PKP\submission\Collector
 
         return $q;
     }
+
+    protected function getReviewStages(): array
+    {
+        return [WORKFLOW_STAGE_ID_EXTERNAL_REVIEW, WORKFLOW_STAGE_ID_INTERNAL_REVIEW];
+    }
 }

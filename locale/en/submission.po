@@ -622,3 +622,6 @@ msgstr ""
 "Please provide all of the chapters of this submission. If you are submitting "
 "an edited volume, please make sure that each chapter indicates the "
 "contributors for that chapter."
+
+msgid "submission.dashboard.view.reviewInternal"
+msgstr "All in internal review"

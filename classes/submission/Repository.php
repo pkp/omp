@@ -21,9 +21,15 @@ use APP\press\Press;
 use APP\press\PressDAO;
 use APP\publicationFormat\PublicationFormat;
 use APP\publicationFormat\PublicationFormatDAO;
+use Illuminate\Support\Collection;
+use PKP\context\Context;
 use PKP\db\DAORegistry;
 use PKP\doi\exceptions\DoiException;
+use PKP\security\Role;
+use PKP\submission\DashboardView;
+use PKP\submission\PKPSubmission;
 use PKP\submissionFile\SubmissionFile;
+use PKP\user\User;
 
 class Repository extends \PKP\submission\Repository
 {
@@ -130,5 +136,24 @@ class Repository extends \PKP\submission\Repository
         }
 
         return $doiCreationFailures;
+    }
+
+    protected function mapDashboardViews($types, Context $context, User $user, bool $canAccessUnassignedSubmission): Collection
+    {
+        $views = parent::mapDashboardViews($types, $context, $user, $canAccessUnassignedSubmission);
+
+        $collector = Repo::submission()->getCollector()
+            ->filterByContextIds([$context->getId()])
+            ->filterByStageIds([WORKFLOW_STAGE_ID_INTERNAL_REVIEW])
+            ->filterByStatus([PKPSubmission::STATUS_QUEUED]);
+
+        return $views->put(DashboardView::TYPE_REVIEW_INTERNAL, new DashboardView(
+            DashboardView::TYPE_REVIEW_INTERNAL,
+            __('submission.dashboard.view.reviewInternal'),
+            [Role::ROLE_ID_SITE_ADMIN, Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT],
+            $canAccessUnassignedSubmission ? $collector : $collector->assignedTo([$user->getId()]),
+            $canAccessUnassignedSubmission ? null : 'assigned',
+            ['stageIds' => [WORKFLOW_STAGE_ID_INTERNAL_REVIEW], 'status' => [PKPSubmission::STATUS_QUEUED]]
+        ));
     }
 }
