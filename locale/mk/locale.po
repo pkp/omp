@@ -3,8 +3,8 @@
 # Mirko Spiroski <mspiroski@id-press.eu>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-03-15 15:21+0000\n"
-"Last-Translator: Ana Vucurevic <ana.vucurevic97@yahoo.com>\n"
+"PO-Revision-Date: 2023-11-21 10:41+0000\n"
+"Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "mk/>\n"
 "Language: mk\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "common.payments"
 msgstr "Плаќања"
@@ -1687,3 +1687,15 @@ msgstr "Опаѓачки"
 
 msgid "section.section"
 msgstr "Серии"
+
+msgid "search.cli.rebuildIndex.indexing"
+msgstr "Индексирање \"{$pressName}\""
+
+msgid "search.cli.rebuildIndex.indexingByPressNotSupported"
+msgstr ""
+"Оваа имплементација за пребарување не дозволува реиндексирање на пер-прес."
+
+msgid "search.cli.rebuildIndex.unknownPress"
+msgstr ""
+"Дадената патека за објавување \"{$pressPath}\" не може да се совлада со "
+"печатење."
