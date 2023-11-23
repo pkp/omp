@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-11-20 07:38+0000\n"
+"PO-Revision-Date: 2023-11-23 08:31+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/locale/bg/"
 ">\n"
@@ -20,3 +20,61 @@ msgstr "Плащания"
 
 msgid "monograph.audience.success"
 msgstr "Подробностите за аудиторията са актуализирани."
+
+msgid "monograph.coverImage"
+msgstr "Изображение на обложката"
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Квалификатор на обхвата на аудиторията"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Обхват на аудиторията (от)"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Обхват на аудиторията (прецизно)"
+
+msgid "monograph.languages"
+msgstr "Езици (английски, френски, испански)"
+
+msgid "monograph.publicationFormat"
+msgstr "Формат"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "Подробности за наличния формат на публикация: {$format}"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Подробности за тази монография"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Формати:"
+
+msgid "submission.pageProofs"
+msgstr "Коректури"
+
+msgid "monograph.task.addNote"
+msgstr "Добавяне към задачите"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Отворен достъп"
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "Импринт (Търговска марка)"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Брой страници"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Обхват на аудиторията (до)"
+
+msgid "monograph.publicationFormats"
+msgstr "Публикационни формати"
+
+msgid "monograph.type"
+msgstr "Тип на подадения материал"
+
+msgid "monograph.proofReadingDescription"
+msgstr ""
+"Редакторът на оформление качва готовите за производство файлове, които са "
+"подготвени за публикуване тук. Използвайте <em>+Присвояване</em>, за да "
+"посочите автори и други, които да коригират коректурите на страницата, с "
+"коригирани файлове, качени за одобрение преди публикуване."
