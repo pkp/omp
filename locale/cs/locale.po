@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-24 04:49+0000\n"
+"PO-Revision-Date: 2023-11-27 15:26+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/locale/cs/>\n"
 "Language: cs\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "common.payments"
 msgstr "Platby"
@@ -1649,3 +1649,14 @@ msgstr "Sestupně"
 
 msgid "section.section"
 msgstr "Edice"
+
+msgid "search.cli.rebuildIndex.indexingByPressNotSupported"
+msgstr ""
+"Tato implementace vyhledávání neumožňuje reindexaci pro jednotlivá "
+"vydavatelství."
+
+msgid "search.cli.rebuildIndex.unknownPress"
+msgstr "Zadanou cestu k tisku \"{$pressPath}\" se nepodařilo převést na tisk."
+
+msgid "search.cli.rebuildIndex.indexing"
+msgstr "Indexace \"{$pressName}\""
