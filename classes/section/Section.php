@@ -47,7 +47,7 @@ class Section extends \PKP\section\PKPSection
     /**
      * Get title of series.
      */
-    public function getTitle(?string $locale, bool $includePrefix = true): string|array
+    public function getTitle(?string $locale, bool $includePrefix = true): string|array|null
     {
         $title = $this->getData('title', $locale);
         if ($includePrefix) {
