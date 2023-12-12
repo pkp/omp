@@ -120,7 +120,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
         $onixDeployment->setFileDBIds($existingDeployment->getFileDBIds());
         $onixDeployment->setAuthorDBIds($existingDeployment->getAuthorDBIds());
         $importFilter->setDeployment($existingDeployment);
-        $formatDoc = new DOMDocument();
+        $formatDoc = new DOMDocument('1.0', 'utf-8');
         $formatDoc->appendChild($formatDoc->importNode($n, true));
         return $importFilter->execute($formatDoc);
     }
@@ -166,7 +166,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
         $request = Application::get()->getRequest();
 
         $importFilter->setDeployment($existingDeployment);
-        $chapterDoc = new DOMDocument();
+        $chapterDoc = new DOMDocument('1.0', 'utf-8');
         $chapterDoc->appendChild($chapterDoc->importNode($n, true));
         return $importFilter->execute($chapterDoc);
     }
