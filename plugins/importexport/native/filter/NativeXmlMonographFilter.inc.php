@@ -125,7 +125,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 		$request = Application::get()->getRequest();
 
 		$importFilter->setDeployment($existingDeployment);
-		$formatDoc = new DOMDocument();
+		$formatDoc = new DOMDocument('1.0', 'utf-8');
 		$formatDoc->appendChild($formatDoc->importNode($n, true));
 		return $importFilter->execute($formatDoc);
 	}
