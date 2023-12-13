@@ -58,7 +58,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
     public function &process(&$submissions)
     {
         // Create the XML document
-        $doc = new DOMDocument('1.0');
+        $doc = new DOMDocument('1.0', 'utf-8');
         $doc->preserveWhiteSpace = false;
         $doc->formatOutput = true;
         $this->_doc = $doc;
