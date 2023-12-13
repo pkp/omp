@@ -127,13 +127,13 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
 
 		$existingDeployment = $this->getDeployment();
 		$request = Application::get()->getRequest();
-		
+
 		$onixDeployment = new Onix30ExportDeployment($request->getContext(), $request->getUser());
 		$onixDeployment->setPublication($existingDeployment->getPublication());
 		$onixDeployment->setFileDBIds($existingDeployment->getFileDBIds());
 		$onixDeployment->setAuthorDBIds($existingDeployment->getAuthorDBIds());
 		$importFilter->setDeployment($existingDeployment);
-		$formatDoc = new DOMDocument();
+		$formatDoc = new DOMDocument('1.0', 'utf-8');
 		$formatDoc->appendChild($formatDoc->importNode($n, true));
 		return $importFilter->execute($formatDoc);
 	}
@@ -177,7 +177,7 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
 		$request = Application::get()->getRequest();
 
 		$importFilter->setDeployment($existingDeployment);
-		$chapterDoc = new DOMDocument();
+		$chapterDoc = new DOMDocument('1.0', 'utf-8');
 		$chapterDoc->appendChild($chapterDoc->importNode($n, true));
 		return $importFilter->execute($chapterDoc);
 	}
@@ -229,7 +229,7 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
 		for ($n = $node->firstChild; $n !== null; $n=$n->nextSibling) {
 			if (is_a($n, 'DOMElement')) {
 				switch ($n->tagName) {
-					case 'cover_image': 
+					case 'cover_image':
 						$coverImage['uploadName'] = uniqid() . '-' . basename(preg_replace(
 							"/[^a-z0-9\.\-]+/",
 							'',
@@ -241,7 +241,7 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
 						));
 						break;
 					case 'cover_image_alt_text':
-						$coverImage['altText'] = $n->textContent; 
+						$coverImage['altText'] = $n->textContent;
 						break;
 					case 'embed':
 						if (!isset($coverImage['uploadName'])) {

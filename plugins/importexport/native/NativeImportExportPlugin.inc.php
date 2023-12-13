@@ -309,7 +309,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				}
 
 				$xmlString = file_get_contents($xmlFile);
-				$document = new DOMDocument();
+				$document = new DOMDocument('1.0', 'utf-8');
 				$document->loadXml($xmlString);
 				$deployment = new NativeImportExportDeployment($press, $user);
 				$deployment->setImportPath(dirname($xmlFile));
