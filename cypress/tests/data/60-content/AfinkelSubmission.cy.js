@@ -219,7 +219,9 @@ describe('Data suite tests', function() {
 		cy.get('#contributor-email-error').contains('This is not a valid email address.');
 		cy.get('.pkpFormField:contains("Email")').find('input').clear().type(submission.authors[0].email);
 		cy.get('.modal__panel:contains("Add Contributor")').find('button').contains('Save').click();
+		cy.wait(3000);
 		cy.get('button').contains('Order').click();
+		cy.wait(3000);
 		cy.get('button:contains("Decrease position of Alvin Finkel")').click();
 		cy.get('button').contains('Save Order').click();
 		cy.get('button:contains("Preview")').click(); // Will only appear after order is saved
