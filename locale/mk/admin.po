@@ -1,7 +1,7 @@
 # Mirko Spiroski <mspiroski@id-press.eu>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-03-14 20:17+0000\n"
+"PO-Revision-Date: 2023-11-21 10:41+0000\n"
 "Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/admin/mk/"
 ">\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "admin.hostedContexts"
 msgstr "Наши Изданија"
@@ -191,6 +191,5 @@ msgstr ""
 "Меѓутоа, ако ги оневозможите јавните API, објавите на можат да ги направат "
 "јавни нивните API."
 
-#, fuzzy
 msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
-msgstr "Користете ја страницата како платформа за сите списанија."
+msgstr "Користете ја страницата како платформа за сите објави."

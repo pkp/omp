@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-10-25 15:06+0000\n"
+"PO-Revision-Date: 2023-11-20 07:38+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/"
 "pubIds-urn/bg/>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "plugins.pubIds.urn.displayName"
 msgstr "УИР (URN)"
@@ -30,3 +30,229 @@ msgid "plugins.pubIds.urn.manager.settings.description"
 msgstr ""
 "Моля, конфигурирайте приставката (плъгин) за УИР (URN), за да можете да "
 "управлявате и използвате URN в OMP:"
+
+msgid "plugins.pubIds.urn.manager.settings.urnResolver.description"
+msgstr "(напр. https://nbn-resolving.de)"
+
+msgid "plugins.pubIds.urn.manager.settings.form.urnResolverRequired"
+msgstr "Моля, въведете URL адреса на преобразувателя."
+
+msgid "plugins.pubIds.urn.manager.settings.urnReassign"
+msgstr "Преназначаване на УИР"
+
+msgid "plugins.pubIds.urn.manager.settings.urnReassign.description"
+msgstr ""
+"Ако промените вашата УИР конфигурация, УИР, които вече са били зададени, "
+"няма да бъдат засегнати. След като конфигурацията на УИР бъде запазена, "
+"използвайте този бутон, за да изчистите всички съществуващи УИР, така че "
+"новите настройки да влязат в сила с всички съществуващи обекти."
+
+msgid "plugins.pubIds.urn.manager.settings.urnReassign.confirm"
+msgstr "Сигурни ли сте, че искате да изтриете всички съществуващи УИР?"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeSubmissionFile"
+msgstr "файл"
+
+msgid "plugins.pubIds.urn.editor.assigned"
+msgstr "УИР е присвоен на {$pubObjectType}."
+
+msgid "plugins.pubIds.urn.manager.settings.enablePublicationURN"
+msgstr "Монографии"
+
+msgid "plugins.pubIds.urn.manager.settings.enableChapterURN"
+msgstr "Раздели"
+
+msgid "plugins.pubIds.urn.manager.settings.urnPrefix"
+msgstr "УИР префикс"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffix"
+msgstr "УИР суфикс"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.example"
+msgstr "Например, press%ppub%r ще създаде УИР суфикс \"pressESPub100\"."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.submissions"
+msgstr "за монографии"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.chapters"
+msgstr "за глави / раздели"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.files"
+msgstr "за файлове"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixDefault"
+msgstr "Използване на шаблоните по подразбиране."
+
+msgid "plugins.pubIds.urn.manager.settings.urnPublicationSuffixPatternRequired"
+msgstr "Моля, въведете модела на суфикс на УИР за монографии."
+
+msgid "plugins.pubIds.urn.manager.settings.urnRepresentationSuffixPatternRequired"
+msgstr "Моля, въведете модела на суфикс на УИР за формати на публикация."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSubmissionFileSuffixPatternRequired"
+msgstr "Моля, въведете модела на суфикс на УИР за файлове."
+
+msgid "plugins.pubIds.urn.manager.settings.checkNo"
+msgstr "Контролен номер"
+
+msgid "plugins.pubIds.urn.manager.settings.namespace"
+msgstr "Пространство от имена"
+
+msgid "plugins.pubIds.urn.manager.settings.namespace.choose"
+msgstr "Избиране"
+
+msgid "plugins.pubIds.urn.manager.settings.urnResolver"
+msgstr "URL адрес на преобразувателя"
+
+msgid "plugins.pubIds.urn.editor.clearObjectsURN.confirm"
+msgstr "Сигурни ли сте, че искате да изтриете съществуващия УИР?"
+
+msgid "plugins.pubIds.urn.editor.clearObjectsURN"
+msgstr "Изтриване"
+
+msgid "plugins.pubIds.urn.editor.addCheckNo"
+msgstr "Добавяне на контролен номер"
+
+msgid "plugins.pubIds.urn.editor.assignURN.emptySuffix"
+msgstr "УИР не може да бъде присвоен, защото персонализираният суфикс липсва."
+
+msgid "plugins.pubIds.urn.editor.assignURN.assigned"
+msgstr "УИР на {$pubId} е присвоен."
+
+msgid "plugins.pubIds.urn.form.checkNoRequired"
+msgstr "Липсва контролен номер."
+
+msgid "plugins.pubIds.urn.editor.urn.description"
+msgstr "УИР трябва да започва с {$prefix}."
+
+msgid "plugins.pubIds.urn.editor.urn.assignUrn"
+msgstr "Присвояване"
+
+msgid "plugins.pubIds.urn.editor.missingPrefix"
+msgstr "УИР трябва да започва с {$urnPrefix}."
+
+msgid "plugins.pubIds.urn.editor.preview.publication"
+msgstr "УИР за тази публикация ще бъде {$urn}."
+
+msgid "plugins.pubIds.urn.editor.preview.publication.none"
+msgstr "УИР не е присвоен на тази публикация."
+
+msgid "plugins.pubIds.urn.editor.preview.chapters"
+msgstr "Глава / раздел: {$chapterLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.publicationFormats"
+msgstr "Публикационен формат: {$publicationFormatLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.submissionFiles"
+msgstr "Файлове: {$submissionFileLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.objects"
+msgstr "Елемент"
+
+msgid "plugins.pubIds.urn.manager.settings.explainURNs"
+msgstr ""
+"Моля, изберете обектите за публикуване, на които ще бъдат присвоени "
+"унифицирани имена на ресурси (УИР):"
+
+msgid "plugins.pubIds.urn.manager.settings.enableRepresentationURN"
+msgstr "Публикационни формати"
+
+msgid "plugins.pubIds.urn.manager.settings.enableSubmissionFileURN"
+msgstr "Файлове"
+
+msgid "plugins.pubIds.urn.manager.settings.urnPrefix.description"
+msgstr ""
+"УИР префиксът е фиксиран и никога не променя част от УИР (напр. \"urn"
+":nbn:de:0000-\")."
+
+msgid "plugins.pubIds.urn.manager.settings.form.urnPrefixPattern"
+msgstr ""
+"Моделът на УИР префикс трябва да бъде във формата \"urn:\"&lt;NID&gt;\":\""
+"&lt;NSS&gt;."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffix.description"
+msgstr ""
+"УИР суфиксът може да приеме произволна форма, но трябва да бъде уникален "
+"сред всички публикуващи обекти със същия присвоен УИР префикс:"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern"
+msgstr ""
+"Използвайте шаблона, въведен по-долу, за да генерирате УИР суфикси. "
+"Използвайте %p за инициали на пресата, %m за идентификатор на монографията, "
+"%c за идентификатор на глава/раздел, %f за идентификатор на формата на "
+"публикацията, %s за идентификатор на файл и %x за „Персонализиран "
+"идентификатор”."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.representations"
+msgstr "за публикационни формати"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixDefault.description"
+msgstr ""
+"%p.%m за монографии<br />%p.%m.c%c за глави или раздели<br />%p.%m.%f за "
+"формати на публикации<br />%p.%m.%f.%s за файлове."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixCustomIdentifier"
+msgstr ""
+"Въведете отделен УИР суфикс за всеки публикуван елемент. Ще намерите "
+"допълнително поле за въвеждане на УИР на страницата с метаданни на всеки "
+"елемент."
+
+msgid "plugins.pubIds.urn.manager.settings.urnChapterSuffixPatternRequired"
+msgstr "Моля, въведете модела на УИР суфикса за глави/раздели."
+
+msgid "plugins.pubIds.urn.manager.settings.checkNo.label"
+msgstr ""
+"Контролният номер ще бъде автоматично изчислен и добавен в края, като "
+"последна цифра на УИР."
+
+msgid "plugins.pubIds.urn.manager.settings.namespace.description"
+msgstr ""
+"Пространството от имена на постоянен идентификатор, обикновено е необходимо "
+"за регистрацията (напр. в Deutsche Nationalbibliothek)."
+
+msgid "plugins.pubIds.urn.editor.urn"
+msgstr "УИР"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeSubmission"
+msgstr "монография"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeChapter"
+msgstr "глава / раздел"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeRepresentation"
+msgstr "публикационен формат"
+
+msgid "plugins.pubIds.urn.editor.customSuffixMissing"
+msgstr "УИР не може да бъде присвоен, защото персонализираният суфикс липсва."
+
+msgid "plugins.pubIds.urn.editor.patternNotResolved"
+msgstr "УИР не може да бъде присвоен, защото съдържа неразрешен шаблон."
+
+msgid "plugins.pubIds.urn.editor.canBeAssigned"
+msgstr ""
+"Това, което виждате, е преглед на УИР. Поставете отметка в квадратчето и "
+"запазете формуляра, за да зададете УИР."
+
+msgid "plugins.pubIds.urn.editor.urnSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Даденият УИР суфикс вече се използва за друг публикуван елемент. Моля, "
+"въведете уникален УИР суфикс за всеки елемент."
+
+msgid "plugins.pubIds.urn.editor.assignURN"
+msgstr "Присвояване на УИР {$pubId} към {$pubObjectType}"
+
+msgid "plugins.pubIds.urn.editor.assignURN.pattern"
+msgstr ""
+"УИР на {$pubId} не може да бъде присвоен, защото съдържа неразрешен модел."
+
+msgid "plugins.pubIds.urn.editor.missingIssue"
+msgstr ""
+"Не можете да генерирате УИР, докато тази публикация не бъде добавена към "
+"конкретен брой на изданието."
+
+msgid "plugins.pubIds.urn.editor.missingParts"
+msgstr ""
+"Не можете да генерирате УИР, тъй като в една или повече части от модела на "
+"УИР липсват данни. Може да се наложи да добавите публикацията към конкретно "
+"издание, да зададете идентификатор на издател или да въведете номера на "
+"страници."
