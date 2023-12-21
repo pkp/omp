@@ -117,7 +117,6 @@ class Application extends PKPApplication
             'IdentificationCodeDAO' => 'APP\publicationFormat\IdentificationCodeDAO',
             'LayoutAssignmentDAO' => 'submission\layoutAssignment\LayoutAssignmentDAO',
             'MarketDAO' => 'APP\publicationFormat\MarketDAO',
-            'MetricsDAO' => 'PKP\statistics\PKPMetricsDAO',
             'MonographFileEmailLogDAO' => 'APP\log\MonographFileEmailLogDAO',
             'MonographSearchDAO' => 'APP\search\MonographSearchDAO',
             'NewReleaseDAO' => 'APP\press\NewReleaseDAO',
