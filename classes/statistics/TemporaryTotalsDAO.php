@@ -25,6 +25,7 @@
 namespace APP\statistics;
 
 use APP\core\Application;
+use DateTimeImmutable;
 use Illuminate\Support\Facades\DB;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
@@ -52,8 +53,8 @@ class TemporaryTotalsDAO extends PKPTemporaryTotalsDAO
      */
     public function compileSeriesMetrics(string $loadId): void
     {
-        $date = substr($loadId, -12, 8);
-        DB::table('metrics_series')->where('load_id', '=', $loadId)->orWhere('date', '=', DB::raw("DATE({$date})"))->delete();
+        $date = DateTimeImmutable::createFromFormat('Ymd', substr($loadId, -12, 8));
+        DB::table('metrics_series')->where('load_id', '=', $loadId)->orWhereDate('date', '=', $date)->delete();
         $selectSeriesMetrics = DB::table($this->table)
             ->select(DB::raw('load_id, context_id, series_id, DATE(date) as date, count(*) as metric'))
             ->where('load_id', '=', $loadId)
@@ -67,8 +68,8 @@ class TemporaryTotalsDAO extends PKPTemporaryTotalsDAO
      */
     public function compileSubmissionMetrics(string $loadId): void
     {
-        $date = substr($loadId, -12, 8);
-        DB::table('metrics_submission')->where('load_id', '=', $loadId)->orWhere('date', '=', DB::raw("DATE({$date})"))->delete();
+        $date = DateTimeImmutable::createFromFormat('Ymd', substr($loadId, -12, 8));
+        DB::table('metrics_submission')->where('load_id', '=', $loadId)->orWhereDate('date', '=', $date)->delete();
         $selectSubmissionMetrics = DB::table($this->table)
             ->select(DB::raw('load_id, context_id, submission_id, assoc_type, DATE(date) as date, count(*) as metric'))
             ->where('load_id', '=', $loadId)
