@@ -33,7 +33,7 @@ describe('Payments', function() {
           })
         cy.get('button[id="publication-button"]').click();
         cy.get('.pkpButton--isWarnable').contains('Unpublish').click();
-        cy.get('.modal__footer > .pkpButton').contains('Unpublish').should('be.visible').click();
+        cy.get('[role=dialog] .pkpButton').contains('Unpublish').should('be.visible').click();
         cy.waitJQuery();
         cy.get('#publicationFormats-button').click();
         cy.get('.pkp_linkaction_editApprovedProof').click();
