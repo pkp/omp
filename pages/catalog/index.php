@@ -25,6 +25,7 @@ switch ($op) {
     case 'newReleases':
     case 'series':
     case 'thumbnail':
+    case 'seriesIndex':
     case 'results':
         return new APP\pages\catalog\CatalogHandler();
     case 'book':
