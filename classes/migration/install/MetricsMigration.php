@@ -280,13 +280,14 @@ class MetricsMigration extends \PKP\migration\Migration
                     break;
             }
         });
+
         // Usage stats total book and chapter item temporary records
         Schema::create('usage_stats_total_temporary_records', function (Blueprint $table) {
             $table->comment('Temporary stats totals based on visitor log records. Data in this table is provisional. See the metrics_* tables for compiled stats.');
             $table->bigIncrements('usage_stats_temp_total_id');
 
             $table->dateTime('date', $precision = 0);
-            $table->string('ip', 255);
+            $table->string('ip', 64);
             $table->string('user_agent', 255);
             $table->bigInteger('line_number');
             $table->string('canonical_url', 255);
@@ -321,7 +322,10 @@ class MetricsMigration extends \PKP\migration\Migration
             $table->string('region', 3)->default('');
             $table->string('city', 255)->default('');
             $table->string('load_id', 50);
+
+            $table->index(['load_id', 'context_id', 'ip'], 'ust_load_id_context_id_ip');
         });
+
         // Usage stats unique book and chapter item investigations temporary records
         // No need to consider series_id here because investigations are only relevant/calculated on submission level.
         Schema::create('usage_stats_unique_item_investigations_temporary_records', function (Blueprint $table) {
@@ -329,7 +333,7 @@ class MetricsMigration extends \PKP\migration\Migration
             $table->bigIncrements('usage_stats_temp_unique_item_id');
 
             $table->dateTime('date', $precision = 0);
-            $table->string('ip', 255);
+            $table->string('ip', 64);
             $table->string('user_agent', 255);
             $table->bigInteger('line_number');
 
@@ -359,7 +363,10 @@ class MetricsMigration extends \PKP\migration\Migration
             $table->string('region', 3)->default('');
             $table->string('city', 255)->default('');
             $table->string('load_id', 50);
+
+            $table->index(['load_id', 'context_id', 'ip'], 'usii_load_id_context_id_ip');
         });
+
         // Usage stats unique book and chapter item requests temporary records
         // No need to consider series_id here because requests are only relevant/calculated on submission level.
         Schema::create('usage_stats_unique_item_requests_temporary_records', function (Blueprint $table) {
@@ -367,7 +374,7 @@ class MetricsMigration extends \PKP\migration\Migration
             $table->bigIncrements('usage_stats_temp_item_id');
 
             $table->dateTime('date', $precision = 0);
-            $table->string('ip', 255);
+            $table->string('ip', 64);
             $table->string('user_agent', 255);
             $table->bigInteger('line_number');
 
@@ -397,14 +404,17 @@ class MetricsMigration extends \PKP\migration\Migration
             $table->string('region', 3)->default('');
             $table->string('city', 255)->default('');
             $table->string('load_id', 50);
+
+            $table->index(['load_id', 'context_id', 'ip'], 'usir_load_id_context_id_ip');
         });
+
         // Usage stats unique title investigations temporary records
         // No need to consider series_id here because investigations are only relevant/calculated on submission level.
         Schema::create('usage_stats_unique_title_investigations_temporary_records', function (Blueprint $table) {
             $table->comment('Temporary stats for views and downloads from institutions based on visitor log records. Data in this table is provisional. See the metrics_* tables for compiled stats.');
             $table->bigIncrements('usage_stats_temp_unique_investigations_id');
             $table->dateTime('date', $precision = 0);
-            $table->string('ip', 255);
+            $table->string('ip', 64);
             $table->string('user_agent', 255);
             $table->bigInteger('line_number');
 
@@ -434,7 +444,10 @@ class MetricsMigration extends \PKP\migration\Migration
             $table->string('region', 3)->default('');
             $table->string('city', 255)->default('');
             $table->string('load_id', 50);
+
+            $table->index(['load_id', 'context_id', 'ip'], 'usti_load_id_context_id_ip');
         });
+
         // Usage stats unique title requests temporary records
         // No need to consider series_id here because requests are only relevant/calculated on submission level.
         Schema::create('usage_stats_unique_title_requests_temporary_records', function (Blueprint $table) {
@@ -442,7 +455,7 @@ class MetricsMigration extends \PKP\migration\Migration
             $table->bigIncrements('usage_stats_temp_unique_requests_id');
 
             $table->dateTime('date', $precision = 0);
-            $table->string('ip', 255);
+            $table->string('ip', 64);
             $table->string('user_agent', 255);
             $table->bigInteger('line_number');
 
@@ -472,7 +485,10 @@ class MetricsMigration extends \PKP\migration\Migration
             $table->string('region', 3)->default('');
             $table->string('city', 255)->default('');
             $table->string('load_id', 50);
+
+            $table->index(['load_id', 'context_id', 'ip'], 'ustr_load_id_context_id_ip');
         });
+
         // Usage stats institution temporary records
         Schema::create('usage_stats_institution_temporary_records', function (Blueprint $table) {
             $table->comment('Temporary stats by institution. Data in this table is provisional. See the metrics_* tables for compiled stats.');

@@ -74,16 +74,44 @@ class TemporaryTitleRequestsDAO
      *
      * See https://www.projectcounter.org/code-of-practice-five-sections/7-processing-rules-underlying-counter-reporting-data/#titles
      */
-    public function compileTitleUniqueClicks(): void
+    public function compileTitleUniqueClicks(string $loadId): void
     {
         if (substr(Config::getVar('database', 'driver'), 0, strlen('postgres')) === 'postgres') {
-            DB::statement("DELETE FROM {$this->table} usutr WHERE EXISTS (SELECT * FROM (SELECT 1 FROM {$this->table} usutrt WHERE usutrt.load_id = usutr.load_id AND usutrt.ip = usutr.ip AND usutrt.user_agent = usutr.user_agent AND usutrt.context_id = usutr.context_id AND usutrt.submission_id = usutr.submission_id AND EXTRACT(HOUR FROM usutrt.date) = EXTRACT(HOUR FROM usutr.date) AND usutr.line_number < usutrt.line_number) AS tmp)");
+            DB::statement(
+                "
+                DELETE FROM {$this->table} usutr
+                WHERE EXISTS (
+                    SELECT * FROM (
+                        SELECT 1 FROM {$this->table} usutrt
+                        WHERE usutr.load_id = ? AND usutrt.load_id = usutr.load_id AND
+                            usutrt.context_id = usutr.context_id AND
+                            usutrt.ip = usutr.ip AND
+                            usutrt.user_agent = usutr.user_agent AND
+                            usutrt.submission_id = usutr.submission_id AND
+                            EXTRACT(HOUR FROM usutrt.date) = EXTRACT(HOUR FROM usutr.date) AND
+                            usutr.line_number < usutrt.line_number
+                    ) AS tmp
+                )
+                ",
+                [$loadId]
+            );
         } else {
-            DB::statement("
+            DB::statement(
+                "
                 DELETE FROM usutr USING {$this->table} usutr
-                INNER JOIN {$this->table} usutrt ON (usutrt.load_id = usutr.load_id AND usutrt.ip = usutr.ip AND usutrt.user_agent = usutr.user_agent AND usutrt.context_id = usutr.context_id AND usutrt.submission_id = usutr.submission_id)
-                WHERE TIMESTAMPDIFF(HOUR, usutr.date, usutrt.date) = 0 AND usutr.line_number < usutrt.line_number
-            ");
+                INNER JOIN {$this->table} usutrt ON (
+                    usutrt.load_id = usutr.load_id AND
+                    usutrt.context_id = usutr.context_id AND
+                    usutrt.ip = usutr.ip AND
+                    usutrt.user_agent = usutr.user_agent AND
+                    usutrt.submission_id = usutr.submission_id
+                )
+                WHERE usutr.load_id = ? AND
+                    TIMESTAMPDIFF(HOUR, usutr.date, usutrt.date) = 0 AND
+                    usutr.line_number < usutrt.line_number
+                ",
+                [$loadId]
+            );
         }
     }
 
