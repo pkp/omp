@@ -8,6 +8,10 @@
  * @brief Compiler entry point for building the JavaScript package. File imports
  *  using the `@` symbol are aliased to `lib/ui-library/src`.
  */
+
+// styles
+import '@/styles/_global.less';
+
 import PkpLoad from '../lib/pkp/js/load.js';
 
 // Import controllers used by OMP
@@ -34,9 +38,6 @@ import FailedJobsPage from '@/components/Container/FailedJobsPage.vue';
 import FailedJobDetailsPage from '@/components/Container/FailedJobDetailsPage.vue';
 import ManageCatalogPage from '@/components/Container/ManageCatalogPage.vue';
 
-// styles
-import '@/styles/_global.less';
-
 // Expose Vue, the registry and controllers in a global var
 window.pkp = Object.assign(PkpLoad, window.pkp || {}, {
 	controllers: {
@@ -61,6 +62,6 @@ window.pkp = Object.assign(PkpLoad, window.pkp || {}, {
 		StatsContextPage,
 		StatsUsersPage,
 		SubmissionWizardPage,
-		WorkflowPage
+		WorkflowPage,
 	},
 });
