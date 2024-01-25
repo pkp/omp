@@ -30,7 +30,10 @@ class TemporaryItemRequestsDAO extends PKPTemporaryItemRequestsDAO
      */
     protected function getInsertData(object $entryData): array
     {
-        return ['chapter_id' => $entryData->chapterId];
+        return array_merge(
+            parent::getInsertData($entryData),
+            ['chapter_id' => $entryData->chapterId]
+        );
     }
 
     /**
@@ -43,28 +46,89 @@ class TemporaryItemRequestsDAO extends PKPTemporaryItemRequestsDAO
      *
      * See https://www.projectcounter.org/code-of-practice-five-sections/7-processing-rules-underlying-counter-reporting-data/#counting
      */
-    public function compileBookItemUniqueClicks(): void
+    public function compileBookItemUniqueClicks(string $loadId): void
     {
         if (substr(Config::getVar('database', 'driver'), 0, strlen('postgres')) === 'postgres') {
-            DB::statement("DELETE FROM {$this->table} usur WHERE EXISTS (SELECT * FROM (SELECT 1 FROM {$this->table} usurt WHERE usurt.load_id = usur.load_id AND usurt.ip = usur.ip AND usurt.user_agent = usur.user_agent AND usurt.context_id = usur.context_id AND usurt.submission_id = usur.submission_id AND usurt.chapter_id IS NULL AND usur.chapter_id IS NULL AND EXTRACT(HOUR FROM usurt.date) = EXTRACT(HOUR FROM usur.date) AND usur.line_number < usurt.line_number) AS tmp)");
+            DB::statement(
+                "
+                DELETE FROM {$this->table} usur
+                WHERE EXISTS (
+                    SELECT * FROM (
+                        SELECT 1 FROM {$this->table} usurt
+                        WHERE usur.load_id = ? AND usurt.load_id = usur.load_id AND
+                            usurt.context_id = usur.context_id AND
+                            usurt.ip = usur.ip AND
+                            usurt.user_agent = usur.user_agent AND
+                            usurt.submission_id = usur.submission_id AND
+                            usurt.chapter_id IS NULL AND usur.chapter_id IS NULL AND
+                            EXTRACT(HOUR FROM usurt.date) = EXTRACT(HOUR FROM usur.date) AND
+                            usur.line_number < usurt.line_number
+                    ) AS tmp
+                )
+                ",
+                [$loadId]
+            );
         } else {
-            DB::statement("
+            DB::statement(
+                "
                 DELETE FROM usur USING {$this->table} usur
-                INNER JOIN {$this->table} usurt ON (usurt.load_id = usur.load_id AND usurt.ip = usur.ip AND usurt.user_agent = usur.user_agent AND usurt.context_id = usur.context_id AND usurt.submission_id = usur.submission_id)
-                WHERE usurt.chapter_id IS NULL AND usur.chapter_id IS NULL AND TIMESTAMPDIFF(HOUR, usur.date, usurt.date) = 0 AND usur.line_number < usurt.line_number
-            ");
+                INNER JOIN {$this->table} usurt ON (
+                    usurt.load_id = usur.load_id AND
+                    usurt.context_id = usur.context_id AND
+                    usurt.ip = usur.ip AND
+                    usurt.user_agent = usur.user_agent AND
+                    usurt.submission_id = usur.submission_id
+                )
+                WHERE usur.load_id = ? AND
+                    usurt.chapter_id IS NULL AND usur.chapter_id IS NULL AND
+                    TIMESTAMPDIFF(HOUR, usur.date, usurt.date) = 0 AND
+                    usur.line_number < usurt.line_number
+                ",
+                [$loadId]
+            );
         }
     }
-    public function compileChapterItemUniqueClicks(): void
+    public function compileChapterItemUniqueClicks(string $loadId): void
     {
         if (substr(Config::getVar('database', 'driver'), 0, strlen('postgres')) === 'postgres') {
-            DB::statement("DELETE FROM {$this->table} usur WHERE EXISTS (SELECT * FROM (SELECT 1 FROM {$this->table} usurt WHERE usurt.load_id = usur.load_id AND usurt.ip = usur.ip AND usurt.user_agent = usur.user_agent AND usurt.context_id = usur.context_id AND usurt.submission_id = usur.submission_id AND usurt.chapter_id = usur.chapter_id AND usurt.chapter_id IS NOT NULL AND EXTRACT(HOUR FROM usurt.date) = EXTRACT(HOUR FROM usur.date) AND usur.line_number < usurt.line_number) AS tmp)");
+            DB::statement(
+                "
+                DELETE FROM {$this->table} usur
+                WHERE EXISTS (
+                    SELECT * FROM (
+                        SELECT 1 FROM {$this->table} usurt
+                        WHERE usur.load_id = ? AND usurt.load_id = usur.load_id AND
+                            usurt.context_id = usur.context_id AND
+                            usurt.ip = usur.ip AND
+                            usurt.user_agent = usur.user_agent AND
+                            usurt.submission_id = usur.submission_id AND
+                            usurt.chapter_id = usur.chapter_id AND usurt.chapter_id IS NOT NULL AND
+                            EXTRACT(HOUR FROM usurt.date) = EXTRACT(HOUR FROM usur.date) AND
+                            usur.line_number < usurt.line_number
+                    ) AS tmp
+                )
+                ",
+                [$loadId]
+            );
         } else {
-            DB::statement("
+            DB::statement(
+                "
                 DELETE FROM usur USING {$this->table} usur
-                INNER JOIN {$this->table} usurt ON (usurt.load_id = usur.load_id AND usurt.ip = usur.ip AND usurt.user_agent = usur.user_agent AND usurt.context_id = usur.context_id AND usurt.submission_id = usur.submission_id AND usurt.chapter_id = usur.chapter_id)
-                WHERE usurt.chapter_id IS NOT NULL AND TIMESTAMPDIFF(HOUR, usur.date, usurt.date) = 0 AND usur.line_number < usurt.line_number
-            ");
+                INNER JOIN {$this->table} usurt ON (
+                    usurt.load_id = usur.load_id AND
+                    usurt.context_id = usur.context_id AND
+                    usurt.ip = usur.ip AND
+                    usurt.user_agent = usur.user_agent AND
+                    usurt.submission_id = usur.submission_id AND
+                    usurt.chapter_id = usur.chapter_id
+                )
+                WHERE usur.load_id = ? AND
+                    usurt.chapter_id IS NOT NULL AND
+                    TIMESTAMPDIFF(HOUR, usur.date, usurt.date) = 0 AND
+                    usur.line_number < usurt.line_number
+                ",
+                [$loadId]
+            );
         }
     }
 

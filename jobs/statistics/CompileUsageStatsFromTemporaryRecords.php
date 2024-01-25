@@ -103,13 +103,13 @@ class CompileUsageStatsFromTemporaryRecords extends BaseJob
         $temporaryTitleInvestigationsDao = DAORegistry::getDAO('TemporaryTitleInvestigationsDAO'); /** @var TemporaryTitleInvestigationsDAO $temporaryTitleInvestigationsDao */
         $temporaryTitleRequestsDao = DAORegistry::getDAO('TemporaryTitleRequestsDAO'); /** @var TemporaryTitleRequestsDAO $temporaryTitleRequestsDao */
 
-        $temporaryTotalsDao->removeDoubleClicks(StatisticsHelper::COUNTER_DOUBLE_CLICK_TIME_FILTER_SECONDS);
-        $temporaryItemInvestigationsDao->compileBookItemUniqueClicks();
-        $temporaryItemInvestigationsDao->compileChapterItemUniqueClicks();
-        $temporaryItemRequestsDao->compileBookItemUniqueClicks();
-        $temporaryItemRequestsDao->compileChapterItemUniqueClicks();
-        $temporaryTitleInvestigationsDao->compileTitleUniqueClicks();
-        $temporaryTitleRequestsDao->compileTitleUniqueClicks();
+        $temporaryTotalsDao->removeDoubleClicks($this->loadId, StatisticsHelper::COUNTER_DOUBLE_CLICK_TIME_FILTER_SECONDS);
+        $temporaryItemInvestigationsDao->compileBookItemUniqueClicks($this->loadId);
+        $temporaryItemInvestigationsDao->compileChapterItemUniqueClicks($this->loadId);
+        $temporaryItemRequestsDao->compileBookItemUniqueClicks($this->loadId);
+        $temporaryItemRequestsDao->compileChapterItemUniqueClicks($this->loadId);
+        $temporaryTitleInvestigationsDao->compileTitleUniqueClicks($this->loadId);
+        $temporaryTitleRequestsDao->compileTitleUniqueClicks($this->loadId);
 
         $temporaryTotalsDao->compileContextMetrics($this->loadId);
         $temporaryTotalsDao->compileSeriesMetrics($this->loadId);
