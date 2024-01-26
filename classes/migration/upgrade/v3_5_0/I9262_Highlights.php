@@ -23,10 +23,9 @@ use PKP\core\Core;
 use PKP\facades\Locale;
 use PKP\file\ContextFileManager;
 use PKP\install\DowngradeNotSupportedException;
-use PKP\migration\Migration;
 use stdClass;
 
-class I9262_Highlights extends Migration
+class I9262_Highlights extends \PKP\migration\upgrade\v3_5_0\I9262_Highlights
 {
     public const SPOTLIGHT_TYPE_BOOK = 3; // APP\spotlight\Spotlight::SPOTLIGHT_TYPE_BOOK
     public const SPOTLIGHT_TYPE_SERIES = 4; // APP\spotlight\Spotlight::SPOTLIGHT_TYPE_SERIES
@@ -36,6 +35,8 @@ class I9262_Highlights extends Migration
      */
     public function up(): void
     {
+        parent::up();
+
         $request = Application::get()->getRequest();
         $dispatcher = Application::get()->getDispatcher();
         $validAssocTypes = $this->getValidAssocTypes();
