@@ -16,87 +16,39 @@
 
 namespace APP\tasks;
 
-use APP\core\Application;
-use APP\statistics\TemporaryTitleInvestigationsDAO;
-use APP\statistics\TemporaryTitleRequestsDAO;
-use Exception;
-use PKP\db\DAORegistry;
-use PKP\scheduledTask\ScheduledTaskHelper;
+use APP\jobs\statistics\CompileCounterSubmissionDailyMetrics;
+use APP\jobs\statistics\CompileCounterSubmissionInstitutionDailyMetrics;
+use APP\jobs\statistics\CompileSeriesMetrics;
+use APP\jobs\statistics\CompileSubmissionGeoDailyMetrics;
+use APP\jobs\statistics\CompileUniqueInvestigations;
+use APP\jobs\statistics\CompileUniqueRequests;
+use APP\jobs\statistics\DeleteUsageStatsTemporaryRecords;
+use APP\jobs\statistics\ProcessUsageStatsLogFile;
+use PKP\jobs\statistics\ArchiveUsageStatsLogFile;
+use PKP\jobs\statistics\CompileContextMetrics;
+use PKP\jobs\statistics\CompileSubmissionMetrics;
+use PKP\jobs\statistics\RemoveDoubleClicks;
+use PKP\site\Site;
 use PKP\task\PKPUsageStatsLoader;
 
 class UsageStatsLoader extends PKPUsageStatsLoader
 {
-    /** DAOs for temporary usage stats tables where the log entries are inserted for further processing */
-    private TemporaryTitleInvestigationsDAO $temporaryTitleInvestigationsDao;
-    private TemporaryTitleRequestsDAO $temporaryTitleRequestsDao;
-
-    /**
-     * Constructor.
-     */
-    public function __construct($args)
+    protected function getFileJobs(string $filePath, Site $site): array
     {
-        $this->temporaryTitleInvestigationsDao = DAORegistry::getDAO('TemporaryTitleInvestigationsDAO');
-        $this->temporaryTitleRequestsDao = DAORegistry::getDAO('TemporaryTitleRequestsDAO');
-        parent::__construct($args);
-    }
-
-    /**
-     * @copydoc PKPUsageStatsLoader::deleteByLoadId()
-     */
-    protected function deleteByLoadId(string $loadId): void
-    {
-        parent::deleteByLoadId($loadId);
-        $this->temporaryTitleInvestigationsDao->deleteByLoadId($loadId);
-        $this->temporaryTitleRequestsDao->deleteByLoadId($loadId);
-    }
-
-    /**
-     * @copydoc PKPUsageStatsLoader::insertTemporaryUsageStatsData()
-     */
-    protected function insertTemporaryUsageStatsData(object $entry, int $lineNumber, string $loadId): void
-    {
-        try {
-            $this->temporaryTotalsDao->insert($entry, $lineNumber, $loadId);
-            $this->temporaryInstitutionsDao->insert($entry->institutionIds, $lineNumber, $loadId);
-            if (!empty($entry->submissionId)) {
-                $this->temporaryItemInvestigationsDao->insert($entry, $lineNumber, $loadId);
-                $this->temporaryTitleInvestigationsDao->insert($entry, $lineNumber, $loadId);
-                if ($entry->assocType == Application::ASSOC_TYPE_SUBMISSION_FILE) {
-                    $this->temporaryItemRequestsDao->insert($entry, $lineNumber, $loadId);
-                    $this->temporaryTitleRequestsDao->insert($entry, $lineNumber, $loadId);
-                }
-            }
-        } catch (\Illuminate\Database\QueryException $e) {
-            $this->addExecutionLogEntry(__('admin.scheduledTask.usageStatsLoader.insertError', ['file' => $loadId, 'lineNumber' => $lineNumber, 'msg' => $e->getMessage()]), ScheduledTaskHelper::SCHEDULED_TASK_MESSAGE_TYPE_ERROR);
-        }
-    }
-
-    /**
-     * @copydoc PKPUsageStatsLoader::getValidAssocTypes()
-     */
-    protected function getValidAssocTypes(): array
-    {
+        $loadId = basename($filePath);
         return [
-            Application::ASSOC_TYPE_SUBMISSION_FILE,
-            Application::ASSOC_TYPE_SUBMISSION_FILE_COUNTER_OTHER,
-            Application::ASSOC_TYPE_CHAPTER,
-            Application::ASSOC_TYPE_SUBMISSION,
-            Application::ASSOC_TYPE_SERIES,
-            Application::ASSOC_TYPE_PRESS,
+            new ProcessUsageStatsLogFile($filePath, $loadId),
+            new RemoveDoubleClicks($loadId),
+            new CompileUniqueInvestigations($loadId),
+            new CompileUniqueRequests($loadId),
+            new CompileContextMetrics($loadId),
+            new CompileSeriesMetrics($loadId),
+            new CompileSubmissionMetrics($loadId),
+            new CompileSubmissionGeoDailyMetrics($loadId),
+            new CompileCounterSubmissionDailyMetrics($loadId),
+            new CompileCounterSubmissionInstitutionDailyMetrics($loadId),
+            new DeleteUsageStatsTemporaryRecords($loadId),
+            new ArchiveUsageStatsLogFile($loadId, $site),
         ];
-    }
-
-    /**
-     * @copydoc PKPUsageStatsLoader::isLogEntryValid()
-     */
-    protected function isLogEntryValid(object $entry): void
-    {
-        parent::isLogEntryValid($entry);
-        if (!empty($entry->chapterId) && !is_int($entry->chapterId)) {
-            throw new Exception(__('admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId'));
-        }
-        if (!empty($entry->seriesId) && !is_int($entry->seriesId)) {
-            throw new Exception(__('admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId'));
-        }
     }
 }
