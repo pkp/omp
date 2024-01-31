@@ -36,7 +36,6 @@ use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\security\Role;
 use PKP\stageAssignment\StageAssignment;
-use PKP\stageAssignment\StageAssignmentDAO;
 use PKP\submission\SubmissionAgencyDAO;
 use PKP\submission\SubmissionDisciplineDAO;
 use PKP\submission\SubmissionKeywordDAO;
@@ -419,10 +418,10 @@ class Report implements IteratorAggregate
      */
     private function getEditors(): array
     {
-        /** @var StageAssignmentDAO */
-        $stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
+        $stageAssignments = StageAssignment::withSubmissionId($this->submission->getId())
+            ->get();
 
-        return collect($stageAssignmentDao->getBySubmissionAndStageId($this->submission->getId())->toIterator())
+        return $stageAssignments
             ->filter(fn (StageAssignment $stageAssignment) => $this->getEditorUserGroups()->get($stageAssignment->getUserGroupId()))
             ->map(fn (StageAssignment $stageAssignment) => $this->getUser($stageAssignment->getUserId()))
             ->unique(fn (User $user) => $user->getId())
