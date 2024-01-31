@@ -21,10 +21,8 @@ use APP\publicationFormat\PublicationDateDAO;
 use APP\publicationFormat\PublicationFormatDAO;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
-use PKP\core\Core;
 use PKP\db\DAORegistry;
 use PKP\file\FileManager;
-use PKP\file\TemporaryFileManager;
 use PKP\plugins\ImportExportPlugin;
 use PKP\security\Role;
 use PKP\submission\GenreDAO;
@@ -160,7 +158,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                     if (in_array($locale, $supportedLocales)) {
                         $submission = Repo::submission()->newDataObject();
                         $submission->setContextId($press->getId());
-                        $submission->setUserId($user->getId());
+                        $submission->setData('uploaderUserId', $user->getId());
                         $submission->stampLastActivity();
                         $submission->setStatus(PKPSubmission::STATUS_PUBLISHED);
                         $submission->setWorkType($isEditedVolume == 1 ? Submission::WORK_TYPE_EDITED_VOLUME : Submission::WORK_TYPE_AUTHORED_WORK);
@@ -218,7 +216,6 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $publicationFormat->setPhysicalFormat(false);
                         $publicationFormat->setIsApproved(true);
                         $publicationFormat->setIsAvailable(true);
-                        $publicationFormat->setSubmissionId($submissionId);
                         $publicationFormat->setProductAvailabilityCode('20'); // ONIX code for Available.
                         $publicationFormat->setEntryKey('DA'); // ONIX code for Digital
                         $publicationFormat->setData('name', 'PDF', $submission->getLocale());
@@ -240,30 +237,32 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $publicationDateDao->insertObject($publicationDate);
 
                         // Submission File.
-                        $temporaryFileManager = new TemporaryFileManager();
-                        $temporaryFilename = tempnam($temporaryFileManager->getBasePath(), 'remote');
-                        $temporaryFileManager->copyFile($pdfUrl, $temporaryFilename);
+                        $fileManager = new FileManager();
+                        $extension = $fileManager->parseFileExtension($_FILES['uploadedFile']['name']);
+                        $submissionDir = Repo::submissionFile()->getSubmissionDir($press->getId(), $submissionId);
+                        /** @var PKPFileService */
+                        $fileService = Services::get('file');
+                        $fileId = $fileService->add(
+                            $pdfUrl,
+                            $submissionDir . '/' . uniqid() . '.' . $extension
+                        );
 
                         $submissionFile = $submissionFileDao->newDataObject();
                         $submissionFile->setData('submissionId', $submissionId);
                         $submissionFile->setSubmissionLocale($submission->getLocale());
                         $submissionFile->setGenreId($genre->getId());
                         $submissionFile->setFileStage(SubmissionFile::SUBMISSION_FILE_PROOF);
-                        $submissionFile->setDateUploaded(Core::getCurrentDate());
-                        $submissionFile->setDateModified(Core::getCurrentDate());
                         $submissionFile->setAssocType(Application::ASSOC_TYPE_REPRESENTATION);
                         $submissionFile->setData('assocId', $publicationFormatId);
                         $submissionFile->setData('mimetype', 'application/pdf');
+                        $submissionFile->setData('fileId', $fileId);
 
                         // Assume open access, no price.
                         $submissionFile->setDirectSalesPrice(0);
                         $submissionFile->setSalesType('openAccess');
 
                         Repo::submissionFile()
-                            ->add($submissionFile, $temporaryFilename);
-
-                        $fileManager = new FileManager();
-                        $fileManager->deleteByPath($temporaryFilename);
+                            ->add($submissionFile);
 
                         echo __('plugins.importexport.csv.import.submission', ['title' => $title]) . "\n";
                     } else {
