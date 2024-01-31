@@ -158,10 +158,10 @@ msgstr ""
 "Dodaj, edytuj lub usuń wydawnictwa z tej witryny i zarządzaj ustawieniami "
 "całej witryny."
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgid "admin.job.processLogFile.invalidLogEntry.chapterId"
 msgstr "Identyfikator rozdziału nie jest liczbą całkowitą"
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgid "admin.job.processLogFile.invalidLogEntry.seriesId"
 msgstr "Identyfikator serii nie jest liczbą całkowitą"
 
 msgid "admin.settings.statistics.geo.description"

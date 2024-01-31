@@ -162,10 +162,10 @@ msgstr ""
 "Značajka skupne e-pošte onemogućena je za ovaj medij. Omogućite ovu značajku "
 "u <a href=\"{$siteSettingsUrl}\">Administrator > Postavke web-mjesta</a>."
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgid "admin.job.processLogFile.invalidLogEntry.chapterId"
 msgstr "Poglavlje ID nije cijeli broj"
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgid "admin.job.processLogFile.invalidLogEntry.seriesId"
 msgstr "Serija ID nije cijeli broj"
 
 msgid "admin.settings.statistics.geo.description"

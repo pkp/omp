@@ -157,10 +157,10 @@ msgstr ""
 "Hozzáadhat, szerkeszthet vagy eltávolíthat kiadókat erről az oldalról, és "
 "kezelheti az egész honlapra vonatkozó beállításokat."
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgid "admin.job.processLogFile.invalidLogEntry.chapterId"
 msgstr ""
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgid "admin.job.processLogFile.invalidLogEntry.seriesId"
 msgstr ""
 
 msgid "admin.settings.statistics.geo.description"

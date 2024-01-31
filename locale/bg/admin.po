@@ -140,7 +140,7 @@ msgstr ""
 "настройки в списъка с <a href= \"{$hostedContextsUrl}\">Хоствани "
 "издателства</a>."
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgid "admin.job.processLogFile.invalidLogEntry.seriesId"
 msgstr "ID на серията не е цяло число"
 
 msgid "admin.settings.statistics.geo.description"
@@ -193,7 +193,7 @@ msgstr ""
 "Добавяне, редактиране или премахване на издателства от този сайт и "
 "управление на настройките за целия сайт."
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgid "admin.job.processLogFile.invalidLogEntry.chapterId"
 msgstr "ID на глава не е цяло число"
 
 msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
