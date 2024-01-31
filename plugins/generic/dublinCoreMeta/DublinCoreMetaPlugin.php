@@ -115,7 +115,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
         }
 
         $abstracts = $isChapterRequest ? $chapter->getData('abstract') : $publication->getData('abstract');
-        foreach ($abstracts as $locale => $abstract) {
+        foreach ($abstracts ?: [] as $locale => $abstract) {
             if ($abstract != '') {
                 $templateMgr->addHeader('dublinCoreAbstract' . $locale, '<meta name="DC.Description" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
             }
@@ -252,7 +252,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
         }
 
         $abstracts = $chapter ? $chapter->getData('abstract') : $publication->getData('abstract');
-        foreach ($abstracts as $locale => $abstract) {
+        foreach ($abstracts ?: [] as $locale => $abstract) {
             if ($abstract != '') {
                 $templateMgr->addHeader('dublinCoreAbstract' . $locale, '<meta name="DC.Description" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
             }
