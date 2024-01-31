@@ -159,10 +159,10 @@ msgstr ""
 "Додади, корегирај или отстрани книги од овој сајт и менаџирај ги проширените "
 "подесувања."
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgid "admin.job.processLogFile.invalidLogEntry.chapterId"
 msgstr "ИД на поглавјето не е цел број"
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgid "admin.job.processLogFile.invalidLogEntry.seriesId"
 msgstr "ИД на серијата не е цел број"
 
 msgid "admin.settings.statistics.geo.description"

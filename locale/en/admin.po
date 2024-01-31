@@ -147,10 +147,10 @@ msgid "admin.siteManagement.description"
 msgstr ""
 "Add, edit or remove presses from this site and manage site-wide settings."
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgid "admin.job.processLogFile.invalidLogEntry.chapterId"
 msgstr "Chapter ID is not an integer"
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgid "admin.job.processLogFile.invalidLogEntry.seriesId"
 msgstr "Series ID is not an integer"
 
 msgid "admin.settings.statistics.geo.description"
