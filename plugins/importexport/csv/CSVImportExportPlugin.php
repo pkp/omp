@@ -16,6 +16,7 @@ namespace APP\plugins\importexport\csv;
 
 use APP\core\Application;
 use APP\core\Request;
+use APP\core\Services;
 use APP\facades\Repo;
 use APP\publicationFormat\PublicationDateDAO;
 use APP\publicationFormat\PublicationFormatDAO;
@@ -110,169 +111,185 @@ class CSVImportExportPlugin extends ImportExportPlugin
             exit;
         }
 
-        $data = file($filename);
-
-        if (is_array($data) && count($data) > 0) {
-            $user = Repo::user()->getByUsername($username);
-            if (!$user) {
-                echo __('plugins.importexport.csv.unknownUser', ['username' => $username]) . "\n";
-                exit;
-            }
-
-            $pressDao = Application::getContextDAO();
-            $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
-            $submissionFileDao = Repo::submissionFile()->dao;
-            $genreDao = DAORegistry::getDAO('GenreDAO'); /** @var GenreDAO $genreDao */
-            $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /** @var PublicationDateDAO $publicationDateDao */
-
-            foreach ($data as $csvLine) {
-                // Format is:
-                // Press Path, Author string, title, series path, year, is_edited_volume, locale, URL to PDF, doi (optional)
-                [$pressPath, $authorString, $title, $seriesPath, $year, $isEditedVolume, $locale, $pdfUrl, $doi] = preg_split('/\t/', $csvLine);
-
-                $press = $pressDao->getByPath($pressPath);
-
-                if ($press) {
-                    $supportedLocales = $press->getSupportedSubmissionLocales();
-                    if (!is_array($supportedLocales) || count($supportedLocales) < 1) {
-                        $supportedLocales = [$press->getPrimaryLocale()];
-                    }
-                    $authorGroup = Repo::userGroup()->getCollector()
-                        ->filterByContextIds([$press->getId()])
-                        ->filterByRoleIds([Role::ROLE_ID_AUTHOR])
-                        ->filterByIsDefault(true)
-                        ->getMany()
-                        ->first();
-
-                    // we need a Genre for the files.  Assume a key of MANUSCRIPT as a default.
-                    $genre = $genreDao->getByKey('MANUSCRIPT', $press->getId());
-
-                    if (!$genre) {
-                        echo __('plugins.importexport.csv.noGenre') . "\n";
-                        exit;
-                    }
-                    if (!$authorGroup) {
-                        echo __('plugins.importexport.csv.noAuthorGroup', ['press' => $pressPath]) . "\n";
-                        continue;
-                    }
-                    if (in_array($locale, $supportedLocales)) {
-                        $submission = Repo::submission()->newDataObject();
-                        $submission->setContextId($press->getId());
-                        $submission->setData('uploaderUserId', $user->getId());
-                        $submission->stampLastActivity();
-                        $submission->setStatus(PKPSubmission::STATUS_PUBLISHED);
-                        $submission->setWorkType($isEditedVolume == 1 ? Submission::WORK_TYPE_EDITED_VOLUME : Submission::WORK_TYPE_AUTHORED_WORK);
-                        $submission->setCopyrightNotice($press->getLocalizedSetting('copyrightNotice'), $locale);
-                        $submission->setLocale($locale);
-
-                        $series = $seriesPath ? Repo::section()->getByPath($seriesPath, $press->getId()) : null;
-                        if ($series) {
-                            $submission->setSeriesId($series->getId());
-                        } else {
-                            // It is possible to have submission without series
-                            // echo __('plugins.importexport.csv.noSeries', ['seriesPath' => $seriesPath]) . "\n";
-                        }
-
-                        $submissionId = Repo::submission()->dao->insert($submission);
-
-                        $contactEmail = $press->getContactEmail();
-                        $authorString = trim($authorString, '"'); // remove double quotes if present.
-                        $authors = preg_split('/,\s*/', $authorString);
-                        $firstAuthor = true;
-                        foreach ($authors as $authorString) {
-                            // Examine the author string. Best case is: Given1 Family1 <email@address.com>, Given2 Family2 <email@address.com>, etc
-                            // But default to press email address based on press path if not present.
-                            $givenName = $familyName = $emailAddress = null;
-                            $authorString = trim($authorString); // whitespace.
-                            if (preg_match('/^(\w+)(\s+\w+)?\s*(<([^>]+)>)?$/', $authorString, $matches)) {
-                                $givenName = $matches[1]; // Mandatory
-                                if (count($matches) > 2) {
-                                    $familyName = $matches[2];
-                                }
-                                if (count($matches) == 5) {
-                                    $emailAddress = $matches[4];
-                                } else {
-                                    $emailAddress = $contactEmail;
-                                }
-                            }
-                            $author = Repo::author()->newDataObject();
-                            $author->setSubmissionId($submissionId);
-                            $author->setUserGroupId($authorGroup->getId());
-                            $author->setGivenName($givenName, $locale);
-                            $author->setFamilyName($familyName, $locale);
-                            $author->setEmail($emailAddress);
-                            if ($firstAuthor) {
-                                $author->setPrimaryContact(1);
-                                $firstAuthor = false;
-                            }
-                            Repo::author()->add($author);
-                        } // Authors done.
-
-                        $submission->setTitle($title, $locale);
-                        Repo::submission()->dao->update($submission);
-
-                        // Submission is done.  Create a publication format for it.
-                        $publicationFormat = $publicationFormatDao->newDataObject();
-                        $publicationFormat->setPhysicalFormat(false);
-                        $publicationFormat->setIsApproved(true);
-                        $publicationFormat->setIsAvailable(true);
-                        $publicationFormat->setProductAvailabilityCode('20'); // ONIX code for Available.
-                        $publicationFormat->setEntryKey('DA'); // ONIX code for Digital
-                        $publicationFormat->setData('name', 'PDF', $submission->getLocale());
-                        $publicationFormat->setSequence(REALLY_BIG_NUMBER);
-                        $publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
-
-                        if ($doi) {
-                            $publicationFormat->setStoredPubId('doi', $doi);
-                        }
-
-                        $publicationFormatDao->updateObject($publicationFormat);
-
-                        // Create a publication format date for this publication format.
-                        $publicationDate = $publicationDateDao->newDataObject();
-                        $publicationDate->setDateFormat('05'); // List55, YYYY
-                        $publicationDate->setRole('01'); // List163, Publication Date
-                        $publicationDate->setDate($year);
-                        $publicationDate->setPublicationFormatId($publicationFormatId);
-                        $publicationDateDao->insertObject($publicationDate);
-
-                        // Submission File.
-                        $fileManager = new FileManager();
-                        $extension = $fileManager->parseFileExtension($_FILES['uploadedFile']['name']);
-                        $submissionDir = Repo::submissionFile()->getSubmissionDir($press->getId(), $submissionId);
-                        /** @var PKPFileService */
-                        $fileService = Services::get('file');
-                        $fileId = $fileService->add(
-                            $pdfUrl,
-                            $submissionDir . '/' . uniqid() . '.' . $extension
-                        );
-
-                        $submissionFile = $submissionFileDao->newDataObject();
-                        $submissionFile->setData('submissionId', $submissionId);
-                        $submissionFile->setSubmissionLocale($submission->getLocale());
-                        $submissionFile->setGenreId($genre->getId());
-                        $submissionFile->setFileStage(SubmissionFile::SUBMISSION_FILE_PROOF);
-                        $submissionFile->setAssocType(Application::ASSOC_TYPE_REPRESENTATION);
-                        $submissionFile->setData('assocId', $publicationFormatId);
-                        $submissionFile->setData('mimetype', 'application/pdf');
-                        $submissionFile->setData('fileId', $fileId);
-
-                        // Assume open access, no price.
-                        $submissionFile->setDirectSalesPrice(0);
-                        $submissionFile->setSalesType('openAccess');
-
-                        Repo::submissionFile()
-                            ->add($submissionFile);
-
-                        echo __('plugins.importexport.csv.import.submission', ['title' => $title]) . "\n";
-                    } else {
-                        echo __('plugins.importexport.csv.unknownLocale', ['locale' => $locale]) . "\n";
-                    }
-                } else {
-                    echo __('plugins.importexport.csv.unknownPress', ['pressPath' => $pressPath]) . "\n";
-                }
-            }
+        $user = Repo::user()->getByUsername($username);
+        if (!$user) {
+            echo __('plugins.importexport.csv.unknownUser', ['username' => $username]) . "\n";
+            exit;
         }
+
+        $pressDao = Application::getContextDAO();
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
+        $genreDao = DAORegistry::getDAO('GenreDAO'); /** @var GenreDAO $genreDao */
+        $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /** @var PublicationDateDAO $publicationDateDao */
+
+        $file = new \SplFileObject($filename, 'r');
+        // Press Path, Author string, title, series path (optional), year, is_edited_volume, locale, URL to PDF, doi (optional)
+        $expectedHeaders = ['pressPath', 'authorString', 'title', 'abstract', 'seriesPath', 'year', 'isEditedVolume', 'locale', 'filename', 'doi'];
+        $header = $file->fgetcsv() ?: [];
+        if (count(array_intersect($expectedHeaders, $header)) !== count($expectedHeaders)) {
+            echo __('plugins.importexport.csv.invalidHeader') . "\n";
+            exit;
+        }
+
+        while (($row = $file->fgetcsv()) !== false) {
+            if (trim(implode('', $row)) === '') {
+                continue;
+            }
+
+            $pressPath = $authorString = $title = $seriesPath = $year = $isEditedVolume = $locale = $filename = $doi = $abstract = null;
+            foreach ($header as $index => $field) {
+                $$field = $row[$index];
+            }
+
+            $press = $pressDao->getByPath($pressPath);
+            if (!$press) {
+                echo __('plugins.importexport.csv.unknownPress', ['contextPath' => $pressPath]) . "\n";
+                continue;
+            }
+
+            $supportedLocales = $press->getSupportedSubmissionLocales();
+            if (!is_array($supportedLocales) || count($supportedLocales) < 1) {
+                $supportedLocales = [$press->getPrimaryLocale()];
+            }
+            if (!in_array($locale, $supportedLocales)) {
+                echo __('plugins.importexport.csv.unknownLocale', ['locale' => $locale]) . "\n";
+                continue;
+            }
+
+            // we need a Genre for the files.  Assume a key of MANUSCRIPT as a default.
+            $genre = $genreDao->getByKey('MANUSCRIPT', $press->getId());
+            if (!$genre) {
+                echo __('plugins.importexport.csv.noGenre') . "\n";
+                continue;
+            }
+
+            $authorGroup = Repo::userGroup()->getCollector()
+                ->filterByContextIds([$press->getId()])
+                ->filterByRoleIds([Role::ROLE_ID_AUTHOR])
+                ->filterByIsDefault(true)
+                ->getMany()
+                ->first();
+            if (!$authorGroup) {
+                echo __('plugins.importexport.csv.noAuthorGroup', ['press' => $pressPath]) . "\n";
+                continue;
+            }
+
+            $submission = Repo::submission()->newDataObject();
+            $submission->setContextId($press->getId());
+
+            $publication = Repo::publication()->newDataObject();
+            $submissionId = Repo::submission()->add($submission, $publication, $press);
+            $submission = Repo::submission()->get($submissionId);
+            $publication = $submission->getCurrentPublication();
+            $publicationId = $publication->getId();
+
+            $submission->stampLastActivity();
+            $submission->setStatus(PKPSubmission::STATUS_PUBLISHED);
+            $submission->setWorkType($isEditedVolume == 1 ? Submission::WORK_TYPE_EDITED_VOLUME : Submission::WORK_TYPE_AUTHORED_WORK);
+            $submission->setCopyrightNotice($press->getLocalizedSetting('copyrightNotice'), $locale);
+            $submission->setLocale($locale);
+            $submission->setStageId(WORKFLOW_STAGE_ID_PRODUCTION);
+            $submission->setAbstract($abstract, $locale);
+            $submission->setSubmissionProgress('');
+
+            $series = $seriesPath ? Repo::section()->getByPath($seriesPath, $press->getId()) : null;
+            if ($series) {
+                $submission->setSeriesId($series->getId());
+            }
+
+            $contactEmail = $press->getContactEmail();
+            $authorString = trim($authorString, '"'); // remove double quotes if present.
+            $authors = preg_split('/\s*;\s*/', $authorString);
+            $firstAuthor = true;
+            foreach ($authors as $authorString) {
+                // Examine the author string. Best case is: Given1 Family1 <email@address.com>, Given2 Family2 <email@address.com>, etc
+                // But default to press email address based on press path if not present.
+                $givenName = $familyName = $emailAddress = null;
+                $authorString = trim($authorString); // whitespace.
+                if (!preg_match('/^(\w+)([\w\s]+)?(<([^>]+)>)?$/', $authorString, $matches)) {
+                    echo __('plugins.importexport.csv.invalidAuthor', ['author' => $authorString]) . "\n";
+                    continue;
+                }
+                $givenName = trim($matches[1]); // Mandatory
+                if (isset($matches[2])) {
+                    $familyName = trim($matches[2]);
+                }
+                $emailAddress = $matches[4] ?? $contactEmail;
+                $author = Repo::author()->newDataObject();
+                $author->setData('publicationId', $publicationId);
+                $author->setSubmissionId($submissionId);
+                $author->setUserGroupId($authorGroup->getId());
+                $author->setGivenName($givenName, $locale);
+                $author->setFamilyName($familyName, $locale);
+                $author->setEmail($emailAddress);
+                if ($firstAuthor) {
+                    $author->setPrimaryContact(1);
+                    $firstAuthor = false;
+                }
+                Repo::author()->add($author);
+            } // Authors done.
+
+            $submission->setTitle($title, $locale);
+            Repo::publication()->edit($publication, []);
+            Repo::submission()->edit($submission, []);
+
+            // Submission is done.  Create a publication format for it.
+            $publicationFormat = $publicationFormatDao->newDataObject();
+            $publicationFormat->setData('publicationId', $publicationId);
+            $publicationFormat->setPhysicalFormat(false);
+            $publicationFormat->setIsApproved(true);
+            $publicationFormat->setIsAvailable(true);
+            $publicationFormat->setProductAvailabilityCode('20'); // ONIX code for Available.
+            $publicationFormat->setEntryKey('DA'); // ONIX code for Digital
+            $publicationFormat->setData('name', 'PDF', $submission->getLocale());
+            $publicationFormat->setSequence(REALLY_BIG_NUMBER);
+            $publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
+
+            if ($doi) {
+                $publicationFormat->setStoredPubId('doi', $doi);
+            }
+
+            $publicationFormatDao->updateObject($publicationFormat);
+
+            // Create a publication format date for this publication format.
+            $publicationDate = $publicationDateDao->newDataObject();
+            $publicationDate->setDateFormat('05'); // List55, YYYY
+            $publicationDate->setRole('01'); // List163, Publication Date
+            $publicationDate->setDate($year);
+            $publicationDate->setPublicationFormatId($publicationFormatId);
+            $publicationDateDao->insertObject($publicationDate);
+
+            // Submission File.
+            $fileManager = new FileManager();
+            $extension = $fileManager->parseFileExtension($filename);
+            $submissionDir = Repo::submissionFile()->getSubmissionDir($press->getId(), $submissionId);
+            /** @var \PKP\services\PKPFileService */
+            $fileService = Services::get('file');
+            $fileId = $fileService->add(
+                $filename,
+                $submissionDir . '/' . uniqid() . '.' . $extension
+            );
+
+            $submissionFile = Repo::submissionFile()->newDataObject();
+            $submissionFile->setData('submissionId', $submissionId);
+            $submissionFile->setData('uploaderUserId', $user->getId());
+            $submissionFile->setSubmissionLocale($submission->getLocale());
+            $submissionFile->setGenreId($genre->getId());
+            $submissionFile->setFileStage(SubmissionFile::SUBMISSION_FILE_PROOF);
+            $submissionFile->setAssocType(Application::ASSOC_TYPE_REPRESENTATION);
+            $submissionFile->setData('assocId', $publicationFormatId);
+            $submissionFile->setData('mimetype', 'application/pdf');
+            $submissionFile->setData('fileId', $fileId);
+
+            // Assume open access, no price.
+            $submissionFile->setDirectSalesPrice(0);
+            $submissionFile->setSalesType('openAccess');
+
+            Repo::submissionFile()->add($submissionFile);
+
+            echo __('plugins.importexport.csv.import.submission', ['title' => $title]) . "\n";
+        }
+        $file = null;
     }
 
     /**

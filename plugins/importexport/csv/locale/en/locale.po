@@ -65,3 +65,9 @@ msgstr "Submission: '{$title}' successfully imported."
 msgid "plugins.importexport.csv.import.success.description"
 msgstr ""
 "The import was successful. Successfully-imported items are listed below."
+
+msgid "plugins.importexport.csv.invalidHeader"
+msgstr "The CSV file is either missing or has an invalid header, please take a look at the sample file \"sample.csv\" present at the plugin folder."
+
+msgid "plugins.importexport.csv.invalidAuthor"
+msgstr "The author \"{$author}\" has an invalid format and was skipped."
