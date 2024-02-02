@@ -1,12 +1,12 @@
 # Niels Erik Frederiksen <nef@kb.dk>, 2021.
-# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022, 2023.
+# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022, 2023, 2024.
 # Jesper B. Thestrup <jbt@kb.dk>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2023-11-17 16:38+0000\n"
+"PO-Revision-Date: 2024-01-11 14:39+0000\n"
 "Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/manager/da/>"
 "\n"
@@ -499,12 +499,12 @@ msgstr ""
 "begivenheder. Publicerede meddelelser vises på siden Meddelelser."
 
 msgid "manager.setup.numAnnouncementsHomepage"
-msgstr "Vis på hjemmesiden"
+msgstr "Vis på forsiden"
 
 msgid "manager.setup.numAnnouncementsHomepage.description"
 msgstr ""
-"Hvor mange meddelelser, der skal vises på hjemmesiden. Lad dette felt være "
-"tomt, hvis ingen skal vises."
+"Antal meddelelser der skal vises på forsiden. Lad feltet være tomt, hvis der "
+"ikke skal vises nogen."
 
 msgid "manager.setup.enablePressInstructions"
 msgstr "Offentliggør denne udgiver på webstedet"
