@@ -23,6 +23,7 @@ use Exception;
 use Illuminate\Support\Collection;
 use Omnipay\Omnipay;
 use PKP\components\forms\FormComponent;
+use PKP\config\Config;
 use PKP\db\DAORegistry;
 use PKP\payment\QueuedPaymentDAO;
 use PKP\plugins\Hook;
@@ -64,12 +65,13 @@ class PaypalPaymentPlugin extends PaymethodPlugin
      */
     public function register($category, $path, $mainContextId = null)
     {
-        if (parent::register($category, $path, $mainContextId)) {
-            $this->addLocaleData();
-            Hook::add('Form::config::before', [$this, 'addSettings']);
-            return true;
+        if (!parent::register($category, $path, $mainContextId)) {
+            return false;
         }
-        return false;
+
+        $this->addLocaleData();
+        Hook::add('Form::config::before', [$this, 'addSettings']);
+        return true;
     }
 
     /**
@@ -178,6 +180,12 @@ class PaypalPaymentPlugin extends PaymethodPlugin
      */
     public function handle($args, $request)
     {
+        // Application is set to sandbox mode and will not run the features of plugin
+        if (Config::getVar('general', 'sandbox', false)) {
+            error_log('Application is set to sandbox mode and no payment will be done via paypal');
+            return;
+        }
+
         $context = $request->getContext();
         $queuedPaymentDao = DAORegistry::getDAO('QueuedPaymentDAO'); /** @var QueuedPaymentDAO $queuedPaymentDao */
         try {
