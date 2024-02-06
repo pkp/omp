@@ -125,6 +125,10 @@ enable_beacon = On
 ; 0, unvalidated accounts will never be removed. Use this setting to automatically remove bot registrations.
 user_validation_period = 28
 
+; Turn sandbox mode to On in order to prevent the software from interacting with outside systems.
+; Use this for development or testing purposes.
+sandbox = Off
+
 
 ;;;;;;;;;;;;;;;;;;;;;
 ; Database Settings ;
