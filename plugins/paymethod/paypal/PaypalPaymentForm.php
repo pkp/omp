@@ -19,6 +19,7 @@ use APP\core\Application;
 use APP\template\TemplateManager;
 use Exception;
 use Omnipay\PayPal\Message\RestAuthorizeResponse;
+use PKP\config\Config;
 use PKP\form\Form;
 use PKP\payment\QueuedPayment;
 
@@ -49,6 +50,15 @@ class PaypalPaymentForm extends Form
      */
     public function display($request = null, $template = null)
     {
+        // Application is set to sandbox mode and will not run the features of plugin
+        if (Config::getVar('general', 'sandbox', false)) {
+            error_log('Application is set to sandbox mode and no payment will be done via paypal');
+            TemplateManager::getManager($request)
+                ->assign('message', 'common.sandbox')
+                ->display('frontend/pages/message.tpl');
+            return;
+        }
+
         try {
             $context = $request->getContext();
             $paymentManager = Application::getPaymentManager($context);
