@@ -59,7 +59,7 @@
 											/>
 											<span 
                                                 class="listPanel__itemSubTitle"
-                                                v-html="localize(
+                                                v-strip-unsave-html="localize(
                                                             item.publications.find(p => p.id == item.currentPublicationId).fullTitle,
                                                             item.publications.find(p => p.id == item.currentPublicationId).locale
                                                         )"
