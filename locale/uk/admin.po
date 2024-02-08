@@ -161,10 +161,10 @@ msgstr ""
 "Додати, редагувати або видалити е-видавництва із цього вебсайту й керувати "
 "налаштуваннями всього сайту."
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgid "admin.job.processLogFile.invalidLogEntry.chapterId"
 msgstr "ID глави не є цілим числом"
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgid "admin.job.processLogFile.invalidLogEntry.seriesId"
 msgstr "ID серії не є цілим числом"
 
 msgid "admin.settings.statistics.geo.description"

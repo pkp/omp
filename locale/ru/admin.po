@@ -153,10 +153,10 @@ msgstr ""
 msgid "admin.siteManagement.description"
 msgstr ""
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgid "admin.job.processLogFile.invalidLogEntry.chapterId"
 msgstr ""
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgid "admin.job.processLogFile.invalidLogEntry.seriesId"
 msgstr ""
 
 msgid "admin.settings.statistics.geo.description"

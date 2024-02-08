@@ -169,10 +169,10 @@ msgstr ""
 "Verlage hinzufügen, bearbeiten, oder löschen und seitenübergreifende "
 "Einstellungen verwalten."
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgid "admin.job.processLogFile.invalidLogEntry.chapterId"
 msgstr "Kapitel ID ist keine ganze Zahl"
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgid "admin.job.processLogFile.invalidLogEntry.seriesId"
 msgstr "Reihen ID ist keine ganze Zahl"
 
 msgid "admin.settings.statistics.geo.description"

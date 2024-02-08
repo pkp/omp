@@ -159,10 +159,10 @@ msgstr ""
 "Lisää, muokkaa tai poista julkaisijoita tältä sivustolta ja hallitse koko "
 "sivuston asetuksia."
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgid "admin.job.processLogFile.invalidLogEntry.chapterId"
 msgstr "Luvun ID-tunnus ei ole kokonaisluku"
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgid "admin.job.processLogFile.invalidLogEntry.seriesId"
 msgstr "Sarjan ID-tunnus ei ole kokonaisluku"
 
 msgid "admin.settings.statistics.geo.description"
