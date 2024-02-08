@@ -191,10 +191,10 @@ msgstr ""
 "Ajouter, modifier ou supprimer des maisons d’édition de ce site et gérer les "
 "paramètres au niveau du site."
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgid "admin.job.processLogFile.invalidLogEntry.chapterId"
 msgstr "L’ID du chapitre n’est pas un nombre entier"
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgid "admin.job.processLogFile.invalidLogEntry.seriesId"
 msgstr "L’ID de la collection n’est pas un nombre entier"
 
 msgid "admin.settings.statistics.institutions.description"

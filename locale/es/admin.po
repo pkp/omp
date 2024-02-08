@@ -128,10 +128,10 @@ msgstr ""
 "Añadir, editar o eliminar editoriales a este sitio y gestionar la "
 "configuración de todo el sitio."
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgid "admin.job.processLogFile.invalidLogEntry.chapterId"
 msgstr "El ID del capítulo (Chapter ID) no es un número entero"
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgid "admin.job.processLogFile.invalidLogEntry.seriesId"
 msgstr "El ID de la serie (Series ID) no es un número entero"
 
 msgid "admin.settings.statistics.geo.description"

@@ -156,10 +156,10 @@ msgstr ""
 "Adicione, edite ou remova editoras deste site e gerencie as configurações de "
 "todo o site."
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgid "admin.job.processLogFile.invalidLogEntry.chapterId"
 msgstr "O ID do capítulo não é um número inteiro"
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgid "admin.job.processLogFile.invalidLogEntry.seriesId"
 msgstr "O ID da série não é um número inteiro"
 
 msgid "admin.settings.statistics.geo.description"

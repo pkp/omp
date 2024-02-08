@@ -159,10 +159,10 @@ msgstr ""
 "Tilføj, rediger eller fjern udgivere fra denne hjemmeside og rediger "
 "indstillinger for hele hjemmesiden."
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.chapterId"
+msgid "admin.job.processLogFile.invalidLogEntry.chapterId"
 msgstr "Kapitel ID er ikke et heltal"
 
-msgid "admin.scheduledTask.usageStatsLoader.invalidLogEntry.seriesId"
+msgid "admin.job.processLogFile.invalidLogEntry.seriesId"
 msgstr "Serie ID er ikke et heltal"
 
 msgid "admin.settings.statistics.geo.description"
