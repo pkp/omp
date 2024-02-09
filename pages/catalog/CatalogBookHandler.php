@@ -241,7 +241,7 @@ class CatalogBookHandler extends Handler
 
         // Retrieve editors for an edited volume
         $editors = [];
-        if ($submission->getWorkType() == $submission::WORK_TYPE_EDITED_VOLUME) {
+        if ($submission->getData('workType') == $submission::WORK_TYPE_EDITED_VOLUME) {
             foreach ($this->publication->getData('authors') as $author) {
                 if ($author->getIsVolumeEditor()) {
                     $editors[] = $author;
@@ -294,7 +294,7 @@ class CatalogBookHandler extends Handler
         ]);
 
         // Ask robots not to index outdated versions and point to the canonical url for the latest version
-        if ($this->publication->getId() !== $submission->getCurrentPublication()->getId()) {
+        if ($this->publication->getId() != $submission->getData('currentPublicationId')) {
             $templateMgr->addHeader('noindex', '<meta name="robots" content="noindex">');
             $url = $request->getDispatcher()->url($request, PKPApplication::ROUTE_PAGE, null, 'catalog', 'book', $submission->getBestId());
             $templateMgr->addHeader('canonical', '<link rel="canonical" href="' . $url . '">');

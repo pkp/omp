@@ -175,7 +175,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
             }
 
             $submission = Repo::submission()->newDataObject();
-            $submission->setContextId($press->getId());
+            $submission->setData('contextId', $press->getId());
 
             $publication = Repo::publication()->newDataObject();
             $submissionId = Repo::submission()->add($submission, $publication, $press);
@@ -184,17 +184,17 @@ class CSVImportExportPlugin extends ImportExportPlugin
             $publicationId = $publication->getId();
 
             $submission->stampLastActivity();
-            $submission->setStatus(PKPSubmission::STATUS_PUBLISHED);
-            $submission->setWorkType($isEditedVolume == 1 ? Submission::WORK_TYPE_EDITED_VOLUME : Submission::WORK_TYPE_AUTHORED_WORK);
-            $submission->setCopyrightNotice($press->getLocalizedSetting('copyrightNotice'), $locale);
-            $submission->setLocale($locale);
-            $submission->setStageId(WORKFLOW_STAGE_ID_PRODUCTION);
-            $submission->setAbstract($abstract, $locale);
-            $submission->setSubmissionProgress('');
+            $submission->setData('status', PKPSubmission::STATUS_PUBLISHED);
+            $submission->setData('workType', $isEditedVolume == 1 ? Submission::WORK_TYPE_EDITED_VOLUME : Submission::WORK_TYPE_AUTHORED_WORK);
+            $publication->setData('copyrightNotice', $press->getLocalizedSetting('copyrightNotice'), $locale);
+            $submission->setData('locale', $locale);
+            $submission->setData('stageId', WORKFLOW_STAGE_ID_PRODUCTION);
+            $publication->setData('abstract', $abstract, $locale);
+            $submission->setData('submissionProgress', '');
 
             $series = $seriesPath ? Repo::section()->getByPath($seriesPath, $press->getId()) : null;
             if ($series) {
-                $submission->setSeriesId($series->getId());
+                $publication->setData('seriesId', $series->getId());
             }
 
             $contactEmail = $press->getContactEmail();
@@ -229,7 +229,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                 Repo::author()->add($author);
             } // Authors done.
 
-            $submission->setTitle($title, $locale);
+            $publication->setData('title', $title, $locale);
             Repo::publication()->edit($publication, []);
             Repo::submission()->edit($submission, []);
 
@@ -241,7 +241,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
             $publicationFormat->setIsAvailable(true);
             $publicationFormat->setProductAvailabilityCode('20'); // ONIX code for Available.
             $publicationFormat->setEntryKey('DA'); // ONIX code for Digital
-            $publicationFormat->setData('name', 'PDF', $submission->getLocale());
+            $publicationFormat->setData('name', 'PDF', $submission->getData('locale'));
             $publicationFormat->setSequence(REALLY_BIG_NUMBER);
             $publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
 
@@ -273,7 +273,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
             $submissionFile = Repo::submissionFile()->newDataObject();
             $submissionFile->setData('submissionId', $submissionId);
             $submissionFile->setData('uploaderUserId', $user->getId());
-            $submissionFile->setSubmissionLocale($submission->getLocale());
+            $submissionFile->setSubmissionLocale($submission->getData('locale'));
             $submissionFile->setGenreId($genre->getId());
             $submissionFile->setFileStage(SubmissionFile::SUBMISSION_FILE_PROOF);
             $submissionFile->setAssocType(Application::ASSOC_TYPE_REPRESENTATION);

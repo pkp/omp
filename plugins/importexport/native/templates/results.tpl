@@ -43,7 +43,7 @@
 	{translate key="plugins.importexport.native.importComplete"}
 	<ul>
 		{foreach from=$submissions item=submission}
-			<li>{$submission->getLocalizedTitle()|strip_unsafe_html}</li>
+			<li>{$submission->getCurrentPublication()->getLocalizedFullTitle()|strip_unsafe_html}</li>
 		{/foreach}
 	</ul>
 {/if}

@@ -77,8 +77,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $oaiDao = DAORegistry::getDAO('OAIDAO'); /** @var OAIDAO $oaiDao */
         $publication = Repo::publication()->get($publicationFormat->getData('publicationId'));
         $monograph = Repo::submission()->get($publication->getData('submissionId'));
-        $press = $oaiDao->getPress($monograph->getPressId());
-        $series = $oaiDao->getSeries($monograph->getSeriesId()); /** @var Section $series */
+        $press = $oaiDao->getPress($monograph->getData('contextId'));
+        $series = $oaiDao->getSeries($publication->getData('seriesId')); /** @var Section $series */
         $dc11Description = $this->instantiateMetadataDescription();
 
         // Title
@@ -109,7 +109,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $this->_addLocalizedElements($dc11Description, 'dc:subject', $subjects);
 
         // Description
-        $this->_addLocalizedElements($dc11Description, 'dc:description', $monograph->getAbstract(null));
+        $this->_addLocalizedElements($dc11Description, 'dc:description', $publication->getData('abstract'));
 
         // Publisher
         $publisherInstitution = $press->getSetting('publisherInstitution');
@@ -121,7 +121,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $this->_addLocalizedElements($dc11Description, 'dc:publisher', $publishers);
 
         // Contributor
-        $contributors = $monograph->getSponsor(null);
+        $contributors = $monograph->getData('sponsor');
         if (is_array($contributors)) {
             foreach ($contributors as $locale => $contributor) {
                 $contributors[$locale] = array_map('trim', explode(';', $contributor));
@@ -133,15 +133,15 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         // FIXME: should we use the publication dates of the publication format? If yes,
         // in which role preference order?
         if ($monograph instanceof Submission) {
-            if ($monograph->getDatePublished()) {
-                $dc11Description->addStatement('dc:date', date('Y-m-d', strtotime($monograph->getDatePublished())));
+            if ($datePublished = $publication->getData('datePublished')) {
+                $dc11Description->addStatement('dc:date', date('Y-m-d', strtotime($datePublished)));
             }
         }
 
         // Type
         $types = array_merge_recursive(
             [Locale::getLocale() => __('rt.metadata.pkp.dctype')],
-            (array) $monograph->getType(null)
+            (array) $publication->getData('type')
         );
         $this->_addLocalizedElements($dc11Description, 'dc:type', $types);
 
@@ -188,7 +188,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
 
         // Source (press title and pages)
         $sources = $press->getName(null);
-        $pages = $monograph->getPages();
+        $pages = $publication->getData('pages');
         if (!empty($pages)) {
             $pages = '; ' . $pages;
         }
@@ -221,7 +221,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         }
 
         // Coverage
-        $coverage = (array) $monograph->getCoverage(null);
+        $coverage = (array) $publication->getData('coverage');
         $this->_addLocalizedElements($dc11Description, 'dc:coverage', $coverage);
 
         // Rights

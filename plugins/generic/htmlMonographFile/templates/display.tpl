@@ -34,7 +34,7 @@
 		</a>
 
 		<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:$publicationFormat->getBestId():$downloadFile->getBestId()}" class="title">
-			{$monograph->getLocalizedTitle()|escape}
+			{$filePublication->getLocalizedFullTitle()|escape}
 		</a>
 	</header>
 

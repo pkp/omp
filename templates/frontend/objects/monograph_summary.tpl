@@ -12,27 +12,28 @@
  * @uses $isFeatured bool Is this a featured monograph?
  *}
 <div class="obj_monograph_summary{if $isFeatured} is_featured{/if}">
+	{assign var=currentPublication value=$monograph->getCurrentPublication()}
 		<a {if $press}href="{url press=$press->getPath() page="catalog" op="book" path=$monograph->getBestId()}"{else}href="{url page="catalog" op="book" path=$monograph->getBestId()}"{/if} class="cover">
-			{assign var="coverImage" value=$monograph->getCurrentPublication()->getLocalizedData('coverImage')}
+			{assign var="coverImage" value=$currentPublication->getLocalizedData('coverImage')}
 			<img
 				src="{$monograph->getCurrentPublication()->getLocalizedCoverImageThumbnailUrl($monograph->getData('contextId'))}"
 				alt="{$coverImage.altText|escape|default:''}"
 			>
 		</a>
-		{if $monograph->getSeriesPosition()}
+		{if $currentPublication->getData('seriesPosition')}
 			<div class="seriesPosition">
-				{$monograph->getSeriesPosition()|escape}
+				{$currentPublication->getData('seriesPosition')|escape}
 			</div>
 		{/if}
 		<{$heading} class="title">
 			<a {if $press}href="{url press=$press->getPath() page="catalog" op="book" path=$monograph->getBestId()}"{else}href="{url page="catalog" op="book" path=$monograph->getBestId()}"{/if}>
-				{$monograph->getCurrentPublication()->getLocalizedFullTitle(null, 'html')|strip_unsafe_html}
+				{$currentPublication->getLocalizedFullTitle(null, 'html')|strip_unsafe_html}
 			</a>
 		</{$heading}>
 		<div class="author">
-			{$monograph->getCurrentPublication()->getAuthorString($authorUserGroups, true)|escape}
+			{$currentPublication->getAuthorString($authorUserGroups, true)|escape}
 		</div>
 		<div class="date">
-			{$monograph->getDatePublished()|date_format:$dateFormatLong}
+			{$currentPublication->getData('datePublished')|date_format:$dateFormatLong}
 		</div>
 </div><!-- .obj_monograph_summary -->
