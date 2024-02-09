@@ -19,7 +19,6 @@ namespace APP\plugins\reports\monographReport;
 use APP\press\Press;
 use DateTimeImmutable;
 use Exception;
-use PKP\core\PKPString;
 use PKP\plugins\ReportPlugin;
 use SplFileObject;
 
@@ -85,7 +84,7 @@ class MonographReportPlugin extends ReportPlugin
      */
     private function createOutputStream(): SplFileObject
     {
-        $acronym = PKPString::regexp_replace('/[^A-Za-z0-9 ]/', '', $this->press->getLocalizedAcronym());
+        $acronym = preg_replace('/[^A-Za-z0-9 ]/u', '', $this->press->getLocalizedAcronym());
         $date = (new DateTimeImmutable())->format('Ymd');
 
         // Prepare for UTF8-encoded CSV output.

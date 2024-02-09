@@ -20,7 +20,6 @@
 namespace APP\codelist;
 
 use PKP\cache\CacheManager;
-use PKP\core\PKPString;
 use PKP\core\Registry;
 use PKP\db\XMLDAO;
 use PKP\facades\Locale;
@@ -40,7 +39,7 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
         $locale ??= Locale::getLocale();
         $cacheName = 'Onix' . $this->getListName() . 'Cache';
 
-        $cache = & Registry::get($cacheName, true, null);
+        $cache = &Registry::get($cacheName, true, null);
         if ($cache === null) {
             $cacheManager = CacheManager::getManager();
             $cache = $cacheManager->getFileCache(
@@ -59,10 +58,10 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
 
     public function _cacheMiss($cache, $id)
     {
-        $allCodelistItems = & Registry::get('all' . $this->getListName() . 'CodelistItems', true, null);
+        $allCodelistItems = &Registry::get('all' . $this->getListName() . 'CodelistItems', true, null);
         if ($allCodelistItems === null) {
             // Add a locale load to the debug notes.
-            $notes = & Registry::get('system.debug.notes');
+            $notes = &Registry::get('system.debug.notes');
             $locale = $cache->cacheId ?? Locale::getLocale();
             $filename = $this->getFilename($locale);
             $notes[] = ['debug.notes.codelistItemListLoad', ['filename' => $filename]];
@@ -147,7 +146,7 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
      */
     public function setListName($list)
     {
-        $this->_list = & $list;
+        $this->_list = &$list;
     }
 
     /**
@@ -181,10 +180,10 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
     public function &getCodelistItems($list, $locale = null)
     {
         $this->setListName($list);
-        $cache = & $this->_getCache($locale);
+        $cache = &$this->_getCache($locale);
         $returner = [];
         foreach ($cache->getContents() as $code => $entry) {
-            $returner[] = & $this->_fromRow($code, $entry);
+            $returner[] = &$this->_fromRow($code, $entry);
         }
         return $returner;
     }
@@ -202,17 +201,17 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
     public function &getCodes($list, $codesToExclude = [], $codesFilter = null, $locale = null)
     {
         $this->setListName($list);
-        $cache = & $this->_getCache($locale);
+        $cache = &$this->_getCache($locale);
         $returner = [];
-        $cacheContents = & $cache->getContents();
+        $cacheContents = &$cache->getContents();
         if ($codesFilter = trim($codesFilter ?? '')) {
-            $codesFilter = '/' . implode('|', array_map(fn ($term) => preg_quote($term, '/'), PKPString::regexp_split('/\s+/', $codesFilter))) . '/i';
+            $codesFilter = '/' . implode('|', array_map(fn ($term) => preg_quote($term, '/'), preg_split('/\s+/', $codesFilter))) . '/i';
         }
         if (is_array($cacheContents)) {
             foreach ($cache->getContents() as $code => $entry) {
                 if ($code != '') {
                     if (!in_array($code, $codesToExclude) && (!$codesFilter || preg_match($codesFilter, $entry[0]))) {
-                        $returner[$code] = & $entry[0];
+                        $returner[$code] = &$entry[0];
                     }
                 }
             }

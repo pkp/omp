@@ -20,9 +20,9 @@ use APP\facades\Repo;
 use APP\monograph\Chapter;
 use APP\monograph\ChapterDAO;
 use APP\submission\Submission;
+use Illuminate\Support\Str;
 use PKP\context\Context;
 use PKP\core\DataObject;
-use PKP\core\PKPString;
 use PKP\db\DAORegistry;
 use PKP\plugins\PKPPubIdPlugin;
 use PKP\submission\Representation;
@@ -145,7 +145,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
         ?Representation $representation = null,
         ?SubmissionFile $submissionFile = null
     ): string {
-        $pubIdSuffix = PKPString::regexp_replace('/[^-._;()\/A-Za-z0-9]/', '', PKPString::strtolower($context->getAcronym($context->getPrimaryLocale())));
+        $pubIdSuffix = preg_replace('/[^-._;()\/A-Za-z0-9]/', '', Str::lower($context->getAcronym($context->getPrimaryLocale())));
 
         if ($submission) {
             $pubIdSuffix .= '.' . $submission->getId();
@@ -180,31 +180,31 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
         ?SubmissionFile $submissionFile = null
     ): string {
         // %p - press initials
-        $pubIdSuffix = PKPString::regexp_replace('/%p/', PKPString::regexp_replace('/[^-._;()\/A-Za-z0-9]/', '', PKPString::strtolower($context->getAcronym($context->getPrimaryLocale()))), $pubIdSuffix);
+        $pubIdSuffix = preg_replace('/%p/', preg_replace('/[^-._;()\/A-Za-z0-9]/u', '', Str::lower($context->getAcronym($context->getPrimaryLocale()))), $pubIdSuffix);
         /** @var Chapter $pubObject */
         // %x - custom identifier
         if ($pubObject->getStoredPubId('publisher-id')) {
-            $pubIdSuffix = PKPString::regexp_replace('/%x/', $pubObject->getStoredPubId('publisher-id'), $pubIdSuffix);
+            $pubIdSuffix = preg_replace('/%x/', $pubObject->getStoredPubId('publisher-id'), $pubIdSuffix);
         }
 
         if ($submission) {
             // %m - monograph id
-            $pubIdSuffix = PKPString::regexp_replace('/%m/', $submission->getId(), $pubIdSuffix);
+            $pubIdSuffix = preg_replace('/%m/', $submission->getId(), $pubIdSuffix);
         }
 
         if ($chapter) {
             // %c - chapter id
-            $pubIdSuffix = PKPString::regexp_replace('/%c/', $chapter->getId(), $pubIdSuffix);
+            $pubIdSuffix = preg_replace('/%c/', $chapter->getId(), $pubIdSuffix);
         }
 
         if ($representation) {
             // %f - publication format id
-            $pubIdSuffix = PKPString::regexp_replace('/%f/', $representation->getId(), $pubIdSuffix);
+            $pubIdSuffix = preg_replace('/%f/', $representation->getId(), $pubIdSuffix);
         }
 
         if ($submissionFile) {
             // %s - file id
-            $pubIdSuffix = PKPString::regexp_replace('/%s/', $submissionFile->getId(), $pubIdSuffix);
+            $pubIdSuffix = preg_replace('/%s/', $submissionFile->getId(), $pubIdSuffix);
         }
 
         return $pubIdSuffix;
