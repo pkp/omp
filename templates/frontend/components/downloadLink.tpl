@@ -17,7 +17,7 @@
 {assign var=publicationFormatId value=$publicationFormat->getBestId()}
 
 {* Generate the download URL *}
-{if $publication->getId() === $monograph->getCurrentPublication()->getId()}
+{if $publication->getId() == $monograph->getData('currentPublicationId')}
 	{capture assign=downloadUrl}{url op="view" path=$monograph->getBestId()|to_array:$publicationFormatId:$downloadFile->getBestId()}{/capture}
 {else}
 	{capture assign=downloadUrl}{url op="view" path=$monograph->getBestId()|to_array:"version":$publication->getId():$publicationFormatId:$downloadFile->getBestId()}{/capture}

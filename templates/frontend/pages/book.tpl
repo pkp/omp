@@ -15,9 +15,9 @@
  * @hook Templates::Catalog::Book::Footer::PageFooter []
  *}
 {if $isChapterRequest}
-	{$pageTitle = $chapter->getLocalizedFullTitle()}
+	{assign var=pageTitle value=$chapter->getLocalizedFullTitle()}
 {else}
-	{$pageTitle = $publishedSubmission->getLocalizedFullTitle()}
+	{assign var=pageTitle value=$publishedSubmission->getCurrentPublication()->getLocalizedFullTitle()}
 {/if}
 
 {include file="frontend/components/header.tpl" pageTitleTranslated=$pageTitle}

@@ -20,7 +20,7 @@
 	</h2>
 
 	{* Only show editors for edited volumes *}
-	{if $monograph->getWorkType() == $monograph::WORK_TYPE_EDITED_VOLUME && $editors|@count && !$isChapterRequest}
+	{if $monograph->getData('workType') == $monograph::WORK_TYPE_EDITED_VOLUME && $editors|@count && !$isChapterRequest}
 		{assign var="authors" value=$editors}
 		{assign var="identifyAsEditors" value=true}
 	{/if}

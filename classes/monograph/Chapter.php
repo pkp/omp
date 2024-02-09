@@ -256,6 +256,7 @@ class Chapter extends \PKP\core\DataObject
     {
         return $this->setData('abstract', $abstract, $locale);
     }
+
     /**
      * Get localized abstract of a chapter.
      */

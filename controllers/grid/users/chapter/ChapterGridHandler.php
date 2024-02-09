@@ -242,7 +242,7 @@ class ChapterGridHandler extends CategoryGridHandler
         }
 
         // Incomplete submissions can be edited. (Presumably author.)
-        if ($submission->getDateSubmitted() == null) {
+        if ($submission->getData('dateSubmitted') == null) {
             return true;
         }
 

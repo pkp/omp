@@ -8,7 +8,7 @@
  * Display the internal review stage on the author dashboard.
  *}
 
-{if $submission->getStageId() >= $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW && count($reviewRounds)}
+{if $submission->getData('stageId') >= $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW && count($reviewRounds)}
 	{include file="authorDashboard/reviewRoundTab.tpl" reviewRounds=$reviewRounds reviewRoundTabsId="internalReviewRoundTabs" lastReviewRoundNumber=$lastReviewRoundNumber}
 
 	<!-- Display queries grid -->

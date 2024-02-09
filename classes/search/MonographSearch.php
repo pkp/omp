@@ -267,7 +267,7 @@ class MonographSearch extends SubmissionSearch
             $publishedSubmission = $publishedSubmissionCache[$monographId];
 
             if ($monograph) {
-                $seriesId = $monograph->getSeriesId();
+                $seriesId = $monograph->getSectionId();
                 if (!isset($seriesCache[$seriesId])) {
                     $seriesCache[$seriesId] = $seriesId ? Repo::section()->get($seriesId) : null;
                 }

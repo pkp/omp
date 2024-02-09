@@ -10,7 +10,7 @@
  * cover image.
  *}
 
-{assign var=coverImage value=$monograph->getCoverImage()}
+{assign var=coverImage value=$monograph->getCurrentPublication()->getData('coverImage')}
 {if empty($coverImage)}
 	{assign var=coverImageWidth value="103"}
 	{assign var=coverImageHeight value="100"}

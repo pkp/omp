@@ -85,10 +85,10 @@ class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
      */
     public function viewCallback($hookName, $params)
     {
-        $submission = & $params[1];
-        $publicationFormat = & $params[2];
-        $submissionFile = & $params[3];
-        $inline = & $params[4];
+        $submission = &$params[1];
+        $publicationFormat = &$params[2];
+        $submissionFile = &$params[3];
+        $inline = &$params[4];
         $request = Application::get()->getRequest();
 
         $mimetype = $submissionFile->getData('mimetype');
@@ -127,10 +127,10 @@ class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
      */
     public function downloadCallback($hookName, $params)
     {
-        $submission = & $params[1];
-        $publicationFormat = & $params[2];
-        $submissionFile = & $params[3];
-        $inline = & $params[4];
+        $submission = &$params[1];
+        $publicationFormat = &$params[2];
+        $submissionFile = &$params[3];
+        $inline = &$params[4];
         $request = Application::get()->getRequest();
 
         $mimetype = $submissionFile->getData('mimetype');

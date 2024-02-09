@@ -190,8 +190,8 @@ class PublicationFormatMetadataForm extends Form
 
         // initialize the pubId fields.
         $pubIdPluginHelper = $this->_getPubIdPluginHelper();
-        $pubIdPluginHelper->init($submission->getContextId(), $this, $publicationFormat);
-        $pubIdPluginHelper->setLinkActions($submission->getContextId(), $this, $publicationFormat);
+        $pubIdPluginHelper->init($submission->getData('contextId'), $this, $publicationFormat);
+        $pubIdPluginHelper->setLinkActions($submission->getData('contextId'), $this, $publicationFormat);
     }
 
     /**
@@ -225,7 +225,7 @@ class PublicationFormatMetadataForm extends Form
 
         // consider the additional field names from the public identifier plugins
         $pubIdPluginHelper = $this->_getPubIdPluginHelper();
-        $pubIdPluginHelper->readInputData($submission->getContextId(), $this);
+        $pubIdPluginHelper->readInputData($submission->getData('contextId'), $this);
     }
 
     /**
@@ -236,7 +236,7 @@ class PublicationFormatMetadataForm extends Form
         $submission = $this->getSubmission();
         $publicationFormat = $this->getPublicationFormat();
         $pubIdPluginHelper = $this->_getPubIdPluginHelper();
-        $pubIdPluginHelper->validate($submission->getContextId(), $this, $publicationFormat);
+        $pubIdPluginHelper->validate($submission->getData('contextId'), $this, $publicationFormat);
         return parent::validate($callHooks);
     }
 
@@ -272,7 +272,7 @@ class PublicationFormatMetadataForm extends Form
 
         // consider the additional field names from the public identifier plugins
         $pubIdPluginHelper = $this->_getPubIdPluginHelper();
-        $pubIdPluginHelper->execute($submission->getContextId(), $this, $publicationFormat);
+        $pubIdPluginHelper->execute($submission->getData('contextId'), $this, $publicationFormat);
 
         $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
         $publicationFormatDao->updateObject($publicationFormat);

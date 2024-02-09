@@ -82,7 +82,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
             ->getMock();
         $monograph = new Submission();
         $monograph->setId(static::SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
-        $monograph->setPressId(static::SUBMISSION_FILE_DAO_TEST_PRESS_ID);
+        $monograph->setData('contextId', static::SUBMISSION_FILE_DAO_TEST_PRESS_ID);
         $monograph->setLocale('en');
         $submissionDao->expects($this->any())
             ->method('get')
@@ -126,7 +126,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         // Create a submission
         $submissionDao = Repo::submission()->dao;
         $submission = Repo::submission()->newDataObject();
-        $submission->setPressId(static::SUBMISSION_FILE_DAO_TEST_PRESS_ID);
+        $submission->setData('contextId', static::SUBMISSION_FILE_DAO_TEST_PRESS_ID);
         $submission->setLocale('en');
         $submissionId = Repo::submission()->dao->insert($submission);
 
@@ -143,7 +143,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
             ->getMock();
         $monograph = new Submission();
         $monograph->setId($submissionId);
-        $monograph->setPressId(static::SUBMISSION_FILE_DAO_TEST_PRESS_ID);
+        $monograph->setData('contextId', static::SUBMISSION_FILE_DAO_TEST_PRESS_ID);
         $monograph->setLocale('en');
         $submissionDao->expects($this->any())
             ->method('get')
