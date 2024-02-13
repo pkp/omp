@@ -21,10 +21,10 @@
 	{assign var=publicationFormatId value=$format->getId()}
 
 	{* Remote resources *}
-	{if $format->getRemoteUrl() && !$isChapterRequest}
+	{if $format->getData('urlRemote') && !$isChapterRequest}
 		{* Only one resource allowed per format, so mimic single-file-download *}
 		<div class="pub_format_{$publicationFormatId|escape} pub_format_remote">
-			<a href="{$format->getRemoteURL()|escape}" target="_blank" class="remote_resource">
+			<a href="{$format->getData('urlRemote')|escape}" target="_blank" class="remote_resource">
 				{$format->getLocalizedName()|escape}
 			</a>
 		</div>

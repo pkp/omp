@@ -19,7 +19,7 @@
 </script>
 {if $pubObject instanceof Representation}
 	<form class="pkp_form" id="assignPublicIdentifierForm" method="post" action="{url component="grid.catalogEntry.PublicationFormatGridHandler" op="setApproved" submissionId=$submissionId publicationId=$pubObject->getData('publicationId') representationId=$pubObject->getId() newApprovedState=$approval confirmed=true escape=false}">
-		{assign var=remoteObject value=$pubObject->getRemoteURL()}
+		{assign var=remoteObject value=$pubObject->getData('urlRemote')}
 {elseif $pubObject instanceof SubmissionFile}
 	<form class="pkp_form" id="assignPublicIdentifierForm" method="post" action="{url component="grid.catalogEntry.PublicationFormatGridHandler" op="setProofFileCompletion" submissionFileId=$pubObject->getId() submissionId=$pubObject->getData('submissionId') publicationId=$publicationId approval=$approval confirmed=true escape=false}">
 {/if}

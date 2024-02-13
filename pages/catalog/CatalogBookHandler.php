@@ -194,7 +194,7 @@ class CatalogBookHandler extends Handler
         foreach ($this->publication->getData('publicationFormats') as $format) {
             if ($format->getIsAvailable()) {
                 $availablePublicationFormats[] = $format;
-                if ($format->getRemoteURL()) {
+                if ($format->getData('urlRemote')) {
                     $availableRemotePublicationFormats[] = $format;
                 }
             }
@@ -355,7 +355,7 @@ class CatalogBookHandler extends Handler
         }
 
         $publicationFormat = Application::get()->getRepresentationDAO()->getByBestId($representationId, $publicationId);
-        if (!$publicationFormat || !$publicationFormat->getIsAvailable() || $publicationFormat->getRemoteURL()) {
+        if (!$publicationFormat || !$publicationFormat->getIsAvailable() || $publicationFormat->getData('urlRemote')) {
             $dispatcher->handle404();
         }
 

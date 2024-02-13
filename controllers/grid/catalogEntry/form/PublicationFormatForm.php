@@ -155,7 +155,7 @@ class PublicationFormatForm extends Form
                 'isPhysicalFormat' => $format->getPhysicalFormat() ? true : false,
                 'isbn10' => $isbn10,
                 'isbn13' => $isbn13,
-                'remoteURL' => $format->getRemoteURL(),
+                'remoteURL' => $format->getData('urlRemote'),
                 'urlPath' => $format->getData('urlPath'),
             ];
         } else {
@@ -229,7 +229,7 @@ class PublicationFormatForm extends Form
         $publicationFormat->setName($this->getData('name'));
         $publicationFormat->setEntryKey($this->getData('entryKey'));
         $publicationFormat->setPhysicalFormat($this->getData('isPhysicalFormat') ? true : false);
-        $publicationFormat->setRemoteURL(strlen($remoteUrl = (string) $this->getData('remoteURL')) ? $remoteUrl : null);
+        $publicationFormat->setData('urlRemote', strlen($remoteUrl = (string) $this->getData('remoteURL')) ? $remoteUrl : null);
         $publicationFormat->setData('urlPath', strlen($urlPath = (string) $this->getData('urlPath')) ? $urlPath : null);
         parent::execute(...$functionParams);
 

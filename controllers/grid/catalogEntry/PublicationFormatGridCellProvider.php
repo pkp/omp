@@ -102,8 +102,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
             switch ($column->getId()) {
                 case 'indent': return [];
                 case 'name':
-                    $remoteURL = $data->getRemoteURL();
-                    if ($remoteURL) {
+                    if ($remoteURL = $data->getData('urlRemote')) {
                         return ['label' => '<a href="' . htmlspecialchars($remoteURL) . '" target="_blank">' . htmlspecialchars($data->getLocalizedName()) . '</a>' . '<span class="onix_code">' . $data->getNameForONIXCode() . '</span>'];
                     }
                     return ['label' => htmlspecialchars($data->getLocalizedName()) . '<span class="onix_code">' . $data->getNameForONIXCode() . '</span>'];
@@ -182,8 +181,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                 case 'name':
                     // if it is a remotely hosted content, don't provide
                     // file upload and select link actions
-                    $remoteURL = $data->getRemoteURL();
-                    if ($remoteURL) {
+                    if ($data->getData('urlRemote')) {
                         return [];
                     }
                     // If this is just an author account, don't give any actions
