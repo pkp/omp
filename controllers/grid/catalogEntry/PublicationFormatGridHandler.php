@@ -263,15 +263,13 @@ class PublicationFormatGridHandler extends CategoryGridHandler
     public function editFormat($args, $request)
     {
         $representation = $this->getRequestedPublicationFormat($request);
-        // Check if this is a remote galley
-        $remoteURL = isset($representation) ? $representation->getRemoteURL() : null;
         $templateMgr = TemplateManager::getManager($request);
-        $templateMgr->assign('submissionId', $this->getSubmission()->getId());
-        $templateMgr->assign('publicationId', $this->getPublication()->getId());
-        $templateMgr->assign('remoteRepresentation', $remoteURL);
-        if ($representation) {
-            $templateMgr->assign('representationId', $representation->getId());
-        }
+        $templateMgr->assign([
+            'submissionId' => $this->getSubmission()->getId(),
+            'publicationId' => $this->getPublication()->getId(),
+            'remoteRepresentation' => $representation?->getData('urlRemote') ?: null,
+            'representationId' => $representation?->getId()
+        ]);
 
         $publisherIdEnabled = in_array('representation', (array) $request->getContext()->getData('enablePublisherId'));
         $pubIdPlugins = PluginRegistry::getPlugins('pubIds');

@@ -128,8 +128,7 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
             ->getMany();
 
         // if it is a remotely hosted content, don't provide the files rows
-        $remoteURL = $categoryDataElement->getRemoteURL();
-        if ($remoteURL) {
+        if ($categoryDataElement->getData('urlRemote')) {
             $this->_gridHandler->setEmptyCategoryRowText('grid.remotelyHostedItem');
             return [];
         }

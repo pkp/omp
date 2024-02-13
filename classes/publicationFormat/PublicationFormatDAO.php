@@ -329,7 +329,7 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
         $publicationFormat->setProductAvailabilityCode($row['product_availability_code']);
         $publicationFormat->setTechnicalProtectionCode($row['technical_protection_code']);
         $publicationFormat->setReturnableIndicatorCode($row['returnable_indicator_code']);
-        $publicationFormat->setRemoteURL($row['remote_url']);
+        $publicationFormat->setData('urlRemote', $row['remote_url']);
         $publicationFormat->setData('urlPath', $row['url_path']);
         $publicationFormat->setIsAvailable($row['is_available']);
         $publicationFormat->setData('doiId', $row['doi_id']);
@@ -392,7 +392,7 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
                 $publicationFormat->getProductAvailabilityCode(),
                 $publicationFormat->getTechnicalProtectionCode(),
                 $publicationFormat->getReturnableIndicatorCode(),
-                $publicationFormat->getRemoteURL(),
+                $publicationFormat->getData('urlRemote'),
                 $publicationFormat->getData('urlPath'),
                 (int) $publicationFormat->getIsAvailable(),
                 $publicationFormat->getData('doiId') === null ? null : (int) $publicationFormat->getData('doiId')
@@ -464,7 +464,7 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
                 $publicationFormat->getProductAvailabilityCode(),
                 $publicationFormat->getTechnicalProtectionCode(),
                 $publicationFormat->getReturnableIndicatorCode(),
-                $publicationFormat->getRemoteURL(),
+                $publicationFormat->getData('urlRemote'),
                 $publicationFormat->getData('urlPath'),
                 (int) $publicationFormat->getIsAvailable(),
                 $publicationFormat->getData('doiId'),
