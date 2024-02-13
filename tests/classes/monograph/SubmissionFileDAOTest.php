@@ -83,7 +83,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $monograph = new Submission();
         $monograph->setId(static::SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
         $monograph->setData('contextId', static::SUBMISSION_FILE_DAO_TEST_PRESS_ID);
-        $monograph->setLocale('en');
+        $monograph->setData('locale', 'en');
         $submissionDao->expects($this->any())
             ->method('get')
             ->will($this->returnValue($monograph));
@@ -127,7 +127,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $submissionDao = Repo::submission()->dao;
         $submission = Repo::submission()->newDataObject();
         $submission->setData('contextId', static::SUBMISSION_FILE_DAO_TEST_PRESS_ID);
-        $submission->setLocale('en');
+        $submission->setData('locale', 'en');
         $submissionId = Repo::submission()->dao->insert($submission);
 
         $publication = Repo::publication()->newDataObject(['submissionId' => $submissionId]);
@@ -144,7 +144,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $monograph = new Submission();
         $monograph->setId($submissionId);
         $monograph->setData('contextId', static::SUBMISSION_FILE_DAO_TEST_PRESS_ID);
-        $monograph->setLocale('en');
+        $monograph->setData('locale', 'en');
         $submissionDao->expects($this->any())
             ->method('get')
             ->will($this->returnValue($monograph));
