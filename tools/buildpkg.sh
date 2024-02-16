@@ -85,9 +85,6 @@ lib/pkp/lib/vendor/ezyang/htmlpurifier/tests						\
 lib/pkp/lib/vendor/leafo/lessphp/tests							\
 lib/pkp/lib/vendor/leafo/lessphp/docs							\
 lib/pkp/lib/vendor/moxiecode/plupload/examples						\
-lib/pkp/lib/vendor/phpmailer/phpmailer/docs						\
-lib/pkp/lib/vendor/phpmailer/phpmailer/examples						\
-lib/pkp/lib/vendor/phpmailer/phpmailer/test						\
 lib/pkp/lib/vendor/robloach								\
 lib/pkp/lib/vendor/smarty/smarty/demo							\
 lib/pkp/lib/vendor/pimple/pimple/ext/pimple/tests					\
