@@ -138,8 +138,10 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
             'submissions'
         );
 
-        $locales = $context->getSupportedFormLocaleNames();
-        $locales = array_map(fn (string $locale, string $name) => ['key' => $locale, 'label' => $name], array_keys($locales), $locales);
+        $locales = collect($context->getSupportedSubmissionMetadataLocaleNames())
+            ->map(fn (string $locale, string $name) => ['key' => $locale, 'label' => $name])
+            ->values()
+            ->toArray();
         $addEntryForm = new \APP\components\forms\catalog\AddEntryForm($addEntryApiUrl, $searchSubmissionsApiUrl, $locales);
         $config['addEntryForm'] = $addEntryForm->getConfig();
 
@@ -149,7 +151,6 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
             'ASSOC_TYPE_CATEGORY' => Application::ASSOC_TYPE_CATEGORY,
             'ASSOC_TYPE_SERIES' => Application::ASSOC_TYPE_SERIES,
         ]);
-
 
         return $config;
     }

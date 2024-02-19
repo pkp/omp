@@ -77,7 +77,7 @@ class Repository extends \PKP\publication\Repository
                 $submissionContext = Services::get('context')->get($submission->getData('contextId'));
             }
 
-            $supportedLocales = $submissionContext->getSupportedSubmissionLocales();
+            $supportedLocales = $submission->getPublicationLanguages($submissionContext->getSupportedSubmissionMetadataLocales());
             foreach ($supportedLocales as $localeKey) {
                 if (!array_key_exists($localeKey, $publication->getData('coverImage'))) {
                     continue;
@@ -272,7 +272,7 @@ class Repository extends \PKP\publication\Repository
                         $publicFileManager->removeContextFile($submission->getData('contextId'), $this->getThumbnailFileName($oldCoverImage[$localeKey]['uploadName']));
                     }
 
-                    // Otherwise generate a new thumbnail if a cover image exists
+                // Otherwise generate a new thumbnail if a cover image exists
                 } elseif (!empty($newCoverImage) && array_key_exists('temporaryFileId', $newCoverImage)) {
                     $coverImageFilePath = $publicFileManager->getContextFilesPath($submission->getData('contextId')) . '/' . $coverImages[$localeKey]['uploadName'];
                     $this->makeThumbnail(

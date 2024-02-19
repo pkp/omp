@@ -48,7 +48,8 @@ class PublicationFormatForm extends Form
      */
     public function __construct($monograph, $publicationFormat, $publication)
     {
-        parent::__construct('controllers/grid/catalogEntry/form/formatForm.tpl');
+        $localeNames = Application::get()->getRequest()->getContext()->getSupportedSubmissionMetadataLocaleNames() + $monograph->getPublicationLanguageNames();
+        parent::__construct('controllers/grid/catalogEntry/form/formatForm.tpl', true, $monograph->getData('locale'), $localeNames);
         $this->setMonograph($monograph);
         $this->setPublicationFormat($publicationFormat);
         $this->setPublication($publication);

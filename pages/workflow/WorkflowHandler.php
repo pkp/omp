@@ -115,9 +115,14 @@ class WorkflowHandler extends PKPWorkflowHandler
             $submissionContext = Services::get('context')->get($submission->getData('contextId'));
         }
 
-        $locales = $submissionContext->getSupportedFormLocaleNames();
-        $locales = array_map(fn (string $locale, string $name) => ['key' => $locale, 'label' => $name], array_keys($locales), $locales);
         $latestPublication = $submission->getLatestPublication();
+
+        $submissionLocale = $submission->getData('locale');
+        $locales = collect($submissionContext->getSupportedSubmissionMetadataLocaleNames() + $submission->getPublicationLanguageNames())
+            ->map(fn (string $name, string $locale) => ['key' => $locale, 'label' => $name])
+            ->sortBy('key')
+            ->values()
+            ->toArray();
 
         $submissionApiUrl = $request->getDispatcher()->url($request, PKPApplication::ROUTE_API, $submissionContext->getData('urlPath'), 'submissions/' . $submission->getId());
         $latestPublicationApiUrl = $request->getDispatcher()->url($request, PKPApplication::ROUTE_API, $submissionContext->getData('urlPath'), 'submissions/' . $submission->getId() . '/publications/' . $latestPublication->getId());
@@ -156,9 +161,9 @@ class WorkflowHandler extends PKPWorkflowHandler
 
         $components = $templateMgr->getState('components');
         $components[FORM_AUDIENCE] = $audienceForm->getConfig();
-        $components[FORM_CATALOG_ENTRY] = $catalogEntryForm->getConfig();
+        $components[FORM_CATALOG_ENTRY] = $this->getLocalizedForm($catalogEntryForm, $submissionLocale, $locales);
         $components[FORM_PUBLICATION_DATES] = $publicationDatesForm->getConfig();
-        $components[$publicationLicenseForm->id] = $publicationLicenseForm->getConfig();
+        $components[$publicationLicenseForm->id] = $this->getLocalizedForm($publicationLicenseForm, $submissionLocale, $locales);
 
         $publicationFormIds = $templateMgr->getState('publicationFormIds');
         $publicationFormIds[] = FORM_CATALOG_ENTRY;

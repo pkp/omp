@@ -119,7 +119,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->foreign('publication_format_id', 'publication_format_settings_publication_format_id')->references('publication_format_id')->on('publication_formats')->onDelete('cascade');
             $table->index(['publication_format_id'], 'publication_format_id_key');
 
-            $table->string('locale', 14)->default('');
+            $table->string('locale', 28)->default('');
             $table->string('setting_name', 255);
             $table->text('setting_value')->nullable();
             $table->string('setting_type', 6)->comment('(bool|int|float|string|object)');
@@ -290,7 +290,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->foreign('series_id', 'series_settings_series_id')->references('series_id')->on('series')->onDelete('cascade');
             $table->index(['series_id'], 'series_settings_series_id');
 
-            $table->string('locale', 14)->default('');
+            $table->string('locale', 28)->default('');
             $table->string('setting_name', 255);
             $table->text('setting_value')->nullable();
 
@@ -333,7 +333,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->foreign('chapter_id')->references('chapter_id')->on('submission_chapters')->onDelete('cascade');
             $table->index(['chapter_id'], 'submission_chapter_settings_chapter_id');
 
-            $table->string('locale', 14)->default('');
+            $table->string('locale', 28)->default('');
             $table->string('setting_name', 255);
             $table->text('setting_value')->nullable();
             $table->string('setting_type', 6)->comment('(bool|int|float|string|object)');

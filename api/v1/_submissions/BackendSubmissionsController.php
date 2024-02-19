@@ -175,8 +175,7 @@ class BackendSubmissionsController extends \PKP\API\v1\_submissions\PKPBackendSu
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        $primaryLocale = $this->getRequest()->getContext()->getPrimaryLocale();
-        $allowedLocales = $this->getRequest()->getContext()->getSupportedFormLocales();
+        $supportedMetadataLocales = $this->getRequest()->getContext()->getSupportedSubmissionMetadataLocales();
 
         $validPublications = [];
         foreach ($submissionIds as $submissionId) {
@@ -193,9 +192,8 @@ class BackendSubmissionsController extends \PKP\API\v1\_submissions\PKPBackendSu
             if ($publication->getData('status') === Submission::STATUS_PUBLISHED) {
                 continue;
             }
-
-            $errors = Repo::publication()->validatePublish($publication, $submission, $allowedLocales, $primaryLocale);
-
+            $allowedLocales = $submission->getPublicationLanguages($supportedMetadataLocales);
+            $errors = Repo::publication()->validatePublish($publication, $submission, $allowedLocales, $submission->getData('locale'));
             if (!empty($errors)) {
                 return response()->json($errors, Response::HTTP_BAD_REQUEST);
             }
