@@ -1,8 +1,8 @@
 # Carla Marques <carla.marques@usdb.uminho.pt>, 2021, 2022, 2023.
-# José Carvalho <jcarvalho@keep.pt>, 2022, 2023.
+# José Carvalho <jcarvalho@keep.pt>, 2022, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-07-25 09:58+0000\n"
+"PO-Revision-Date: 2024-02-06 09:02+0000\n"
 "Last-Translator: José Carvalho <jcarvalho@keep.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/locale/pt_PT/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "common.payments"
 msgstr "Pagamentos"
@@ -1592,3 +1592,14 @@ msgstr "Descendente"
 
 msgid "section.section"
 msgstr "Séries"
+
+msgid "search.cli.rebuildIndex.indexing"
+msgstr "Indexação \"{$pressName}\""
+
+msgid "search.cli.rebuildIndex.indexingByPressNotSupported"
+msgstr "Esta implementação de pesquisa não permite a reindexação por editora."
+
+msgid "search.cli.rebuildIndex.unknownPress"
+msgstr ""
+"O caminho da editora \"{$pressPath}\" fornecido não pode ser encontrado para "
+"uma editora."
