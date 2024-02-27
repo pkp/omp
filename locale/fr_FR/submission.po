@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-02-24 11:39+0000\n"
+"PO-Revision-Date: 2024-02-28 11:26+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "fr_FR/>\n"
@@ -149,10 +149,10 @@ msgid "submission.workflowType.editedVolume.label"
 msgstr "Ouvrage collectif"
 
 msgid "submission.workflowType.editedVolume"
-msgstr "Ouvrage collectif"
+msgstr "Ouvrage collectif."
 
 msgid "submission.workflowType.authoredWork"
-msgstr "Monographie"
+msgstr "Monographie."
 
 msgid "submission.workflowType.change"
 msgstr "Modifier"
