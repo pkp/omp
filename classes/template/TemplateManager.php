@@ -23,12 +23,12 @@ use APP\core\Request;
 use APP\file\PublicFileManager;
 use APP\notification\Notification;
 use PKP\context\Context;
+use PKP\core\PKPSessionGuard;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\i18n\LocaleMetadata;
 use PKP\notification\NotificationDAO;
 use PKP\security\Role;
-use PKP\session\SessionManager;
 use PKP\site\Site;
 use PKP\template\PKPTemplateManager;
 
@@ -42,7 +42,7 @@ class TemplateManager extends PKPTemplateManager
     public function initialize($request)
     {
         parent::initialize($request);
-        if (!SessionManager::isDisabled()) {
+        if (!PKPSessionGuard::isSessionDisable()) {
             /**
              * Kludge to make sure no code that tries to connect to
              * the database is executed (e.g., when loading
@@ -129,7 +129,7 @@ class TemplateManager extends PKPTemplateManager
         parent::setupBackendPage();
 
         $request = Application::get()->getRequest();
-        if (SessionManager::isDisabled() || !$request->getContext() || !$request->getUser()) {
+        if (PKPSessionGuard::isSessionDisable() || !$request->getContext() || !$request->getUser()) {
             return;
         }
 
