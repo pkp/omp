@@ -20,11 +20,11 @@ use APP\core\Request;
 use APP\handler\Handler;
 use APP\oai\omp\PressOAI;
 use PKP\config\Config;
+use PKP\core\PKPSessionGuard;
 use PKP\oai\OAIConfig;
 use PKP\plugins\PluginRegistry;
-use PKP\session\SessionManager;
 
-SessionManager::disable();
+PKPSessionGuard::disableSession();
 
 class OAIHandler extends Handler
 {
