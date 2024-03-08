@@ -37,10 +37,10 @@ class PublicationDatesForm extends FormComponent {
 
 		$this->addField(new FieldOptions('enableChapterPublicationDates', [
 			'label' => __('submission.catalogEntry.chapterPublicationDates'),
-			'type' => 'checkbox',
+			'type' => 'radio',
 			'value' => $submission->getData('enableChapterPublicationDates'),
 			'options' => [
-				['value' => true, 'false' => __('submission.catalogEntry.disableChapterPublicationDates')],
+				['value' => false, 'label' => __('submission.catalogEntry.disableChapterPublicationDates')],
 				['value' => true, 'label' => __('submission.catalogEntry.enableChapterPublicationDates')],
 			]
 		]));
