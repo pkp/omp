@@ -1,8 +1,8 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
-# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
+# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-09-20 21:06+0000\n"
+"PO-Revision-Date: 2024-02-29 14:39+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/locale/fr_FR/"
 ">\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "common.payments"
 msgstr "Paiements"
@@ -958,7 +958,7 @@ msgid "user.role.manager"
 msgstr "Gestionnaire"
 
 msgid "user.role.pressEditor"
-msgstr "Éditeur·rice"
+msgstr "Responsable d’édition"
 
 msgid "user.role.subEditor"
 msgstr "Responsable de collection"
@@ -1651,3 +1651,15 @@ msgstr "Décroissant"
 
 msgid "section.section"
 msgstr "Collection"
+
+msgid "search.cli.rebuildIndex.indexing"
+msgstr "Indexation de « {$pressName} »"
+
+msgid "search.cli.rebuildIndex.unknownPress"
+msgstr ""
+"Le chemin d'accès à la maison d'édition « {$pressPath} » n'a pas pu être "
+"résolu en une maison d'édition."
+
+msgid "search.cli.rebuildIndex.indexingByPressNotSupported"
+msgstr ""
+"Cette fonctionnalité de recherche ne permet pas la réindexation par éditeur."

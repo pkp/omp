@@ -1,8 +1,8 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
-# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
+# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-09-07 16:58+0000\n"
+"PO-Revision-Date: 2024-02-29 14:39+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-csv/fr_FR/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "plugins.importexport.csv.displayName"
 msgstr "Plugin d’importation de contenu délimité par des tabulations"
@@ -71,3 +71,11 @@ msgid "plugins.importexport.csv.import.success.description"
 msgstr ""
 "L’importation a réussi. Les éléments importés avec succès sont repris dans "
 "la liste ci-dessous."
+
+msgid "plugins.importexport.csv.invalidAuthor"
+msgstr "L'auteur « {$author} » a un format non valide et a été ignoré."
+
+msgid "plugins.importexport.csv.invalidHeader"
+msgstr ""
+"Le fichier CSV est manquant ou a un en-tête invalide, veuillez consulter le "
+"fichier d'exemple « sample.csv » présent dans le dossier du plugin."

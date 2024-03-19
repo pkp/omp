@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-02-21 15:39+0000\n"
+"PO-Revision-Date: 2024-03-16 21:39+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/emails/fr_FR/"
 ">\n"
@@ -182,7 +182,7 @@ msgstr ""
 
 msgid "emails.reviewResponseOverdueAuto.body"
 msgstr ""
-"Cher·ère {$recipientName},<br />\n"
+"Cher·ère {$reviewerName},<br />\n"
 "Ceci n’est qu’un petit rappel de notre demande d’évaluation de la soumission "
 "« {$submissionTitle} »for {$contextName}. Nous espérions recevoir votre "
 "réponse pour le {$responseDueDate}, et ce courriel a été automatiquement "
