@@ -535,9 +535,6 @@ msgstr "Papéis atuais"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Papéis de Revisor Interno"
 
-msgid "manager.setup.masthead"
-msgstr "Página de Início"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Equipa editorial"
 

@@ -1194,9 +1194,6 @@ msgstr "Roles actuais"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Roles de revisión interna"
 
-msgid "manager.setup.masthead"
-msgstr "Cabeceira"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Equipo editorial"
 

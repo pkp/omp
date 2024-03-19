@@ -1201,9 +1201,6 @@ msgstr "Trenutne funkcije"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Funkcije interne recenzije"
 
-msgid "manager.setup.masthead"
-msgstr "Impresum"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Uredništvo"
 

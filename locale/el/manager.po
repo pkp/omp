@@ -1180,9 +1180,6 @@ msgstr "Τρέχον Ρόλοι"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Ρόλοι Εσωτερικής Αξιολόγησης"
 
-msgid "manager.setup.masthead"
-msgstr "Ταυτότητα"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Συντακτική ομάδα"
 

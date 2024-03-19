@@ -1131,9 +1131,6 @@ msgstr "Trenutne vloge"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Vloge notranjih recenzentov"
 
-msgid "manager.setup.masthead"
-msgstr "Kolofon"
-
 msgid "manager.setup.editorialTeam"
 msgstr ""
 

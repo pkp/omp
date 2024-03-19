@@ -1248,9 +1248,6 @@ msgstr "Aktuelle Funktionen"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Funktionen von \"Interne/r Gutachter/in\""
 
-msgid "manager.setup.masthead"
-msgstr "Impressum"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Herausgeber/innen"
 

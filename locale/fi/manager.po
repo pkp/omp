@@ -1198,9 +1198,6 @@ msgstr "Nykyiset roolit"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Sisäisen arvioinnin roolit"
 
-msgid "manager.setup.masthead"
-msgstr "Tunnuslaatikko"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Toimituskunta"
 

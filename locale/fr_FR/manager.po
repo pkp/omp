@@ -1617,9 +1617,6 @@ msgstr "Rôles actuels"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Rôles des évaluateur·rice·s internes"
 
-msgid "manager.setup.masthead"
-msgstr "Bloc générique"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Équipe éditoriale"
 

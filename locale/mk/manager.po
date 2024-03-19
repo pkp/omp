@@ -1201,9 +1201,6 @@ msgstr "Тековни улоги"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Улогите на внатрешниот преглед"
 
-msgid "manager.setup.masthead"
-msgstr "Мајстор"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Уреднички тим"
 

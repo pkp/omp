@@ -1169,9 +1169,6 @@ msgstr "Současné role"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Role pro interní recenze"
 
-msgid "manager.setup.masthead"
-msgstr "Hlavička"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Redakční tým"
 
