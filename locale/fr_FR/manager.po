@@ -1,9 +1,9 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
 # Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>, 2023.
-# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
+# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-09-08 06:53+0000\n"
+"PO-Revision-Date: 2024-02-27 14:37+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "fr_FR/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr ""
@@ -693,8 +693,8 @@ msgstr ""
 msgid "manager.setup.referenceLinkingDescription"
 msgstr ""
 "<p>Afin de permettre aux lecteur·rice·s de repérer les versions en ligne de "
-"l’ouvrage cité par un.e auteur·rice, les options suivantes sont "
-"disponibles.</p>\n"
+"l’ouvrage cité par un·e auteur·e, les options suivantes sont disponibles.</p>"
+"\n"
 "\n"
 "<ol>\n"
 "\t<li><strong>Ajouter un outil de lecture</strong><p>Le·La responsable "
