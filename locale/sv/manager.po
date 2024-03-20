@@ -1090,9 +1090,6 @@ msgstr ""
 msgid "manager.setup.internalReviewRoles"
 msgstr ""
 
-msgid "manager.setup.masthead"
-msgstr "Allmänt"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Redaktion"
 

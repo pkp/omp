@@ -1180,9 +1180,6 @@ msgstr "Aktuelle roller"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Interne vurderingsroller"
 
-msgid "manager.setup.masthead"
-msgstr "Kolofon"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Redaksjon"
 

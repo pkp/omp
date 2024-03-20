@@ -1186,9 +1186,6 @@ msgstr "Bieżące role"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Role związane z wewnętrznym procesem recenzji"
 
-msgid "manager.setup.masthead"
-msgstr "Stopka redakcyjna"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Zespół redaktorski"
 

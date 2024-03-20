@@ -1196,9 +1196,6 @@ msgstr "Текущие роли"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Роли внутренних рецензентов"
 
-msgid "manager.setup.masthead"
-msgstr "Выходные данные"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Редакция"
 

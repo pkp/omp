@@ -1207,9 +1207,6 @@ msgstr "Papéis atuais"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Papéis de avlaiação interna"
 
-msgid "manager.setup.masthead"
-msgstr "Expediente"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Equipe editorial"
 

@@ -981,9 +981,6 @@ msgstr "Current Roles"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Internal Review Roles"
 
-msgid "manager.setup.masthead"
-msgstr "Masthead"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Editorial Team"
 

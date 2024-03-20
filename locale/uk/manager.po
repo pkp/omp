@@ -1202,9 +1202,6 @@ msgstr "Поточні ролі"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Ролі для внутрішнього рецензування"
 
-msgid "manager.setup.masthead"
-msgstr "Вихідні дані"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Редакція"
 

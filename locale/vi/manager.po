@@ -932,9 +932,6 @@ msgstr ""
 msgid "manager.setup.internalReviewRoles"
 msgstr ""
 
-msgid "manager.setup.masthead"
-msgstr ""
-
 msgid "manager.setup.editorialTeam"
 msgstr ""
 

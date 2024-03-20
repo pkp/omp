@@ -1199,9 +1199,6 @@ msgstr "Aktuelle roller"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Interne bedømmerroller"
 
-msgid "manager.setup.masthead"
-msgstr "Kolofon"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Redaktionelt hold"
 

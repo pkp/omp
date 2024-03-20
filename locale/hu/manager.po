@@ -1206,9 +1206,6 @@ msgstr "Jelenlegi szerepkörök"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Belső szakmai lektorálási szerepkörök"
 
-msgid "manager.setup.masthead"
-msgstr "Fejléc"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Szerkesztőség"
 
