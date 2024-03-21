@@ -102,7 +102,7 @@ class SubmissionHandler extends PKPSubmissionHandler
                     ? 'submission.wizard.submitting.monographInLanguage'
                     : 'submission.wizard.submitting.editedVolumeInLanguage'
                 ),
-                ['language' => Locale::getMetadata($submission->getData('locale'))->getDisplayName()]
+                ['language' => Locale::getSubmissionLocaleDisplayNames([$submission->getData('locale')])[$submission->getData('locale')]]
             );
         }
 
@@ -130,7 +130,7 @@ class SubmissionHandler extends PKPSubmissionHandler
 
         Hook::add('Template::SubmissionWizard::Section', function (string $hookName, array $params) {
             $templateMgr = $params[1]; /** @var TemplateManager $templateMgr */
-            $output = & $params[2]; /** @var string $step */
+            $output = &$params[2]; /** @var string $step */
 
             $output .= sprintf(
                 '<template v-else-if="section.id === \'' . self::CHAPTERS_SECTION_ID . '\'">%s</template>',
@@ -143,7 +143,7 @@ class SubmissionHandler extends PKPSubmissionHandler
         Hook::add('Template::SubmissionWizard::Section::Review', function (string $hookName, array $params) {
             $step = $params[0]['step']; /** @var string $step */
             $templateMgr = $params[1]; /** @var TemplateManager $templateMgr */
-            $output = & $params[2]; /** @var string $output */
+            $output = &$params[2]; /** @var string $output */
 
             if ($step === 'details') {
                 $output .= $templateMgr->fetch('submission/review-chapters.tpl');

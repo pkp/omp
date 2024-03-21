@@ -30,7 +30,7 @@ class PressMigration extends \PKP\migration\Migration
             $table->bigInteger('press_id')->autoIncrement();
             $table->string('path', 32);
             $table->float('seq', 8, 2)->default(0);
-            $table->string('primary_locale', 14);
+            $table->string('primary_locale', 28);
             $table->smallInteger('enabled')->default(1);
             $table->unique(['path'], 'press_path');
         });
@@ -44,7 +44,7 @@ class PressMigration extends \PKP\migration\Migration
             $table->foreign('press_id')->references('press_id')->on('presses')->onDelete('cascade');
             $table->index(['press_id'], 'press_settings_press_id');
 
-            $table->string('locale', 14)->default('');
+            $table->string('locale', 28)->default('');
             $table->string('setting_name', 255);
             $table->text('setting_value')->nullable();
 

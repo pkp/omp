@@ -311,7 +311,7 @@ describe('Data suite tests', function() {
 			.find('h4').contains('Keywords').siblings('.submissionWizard__reviewPanel__item__value').contains('None provided')
 			.parents('.submissionWizard__reviewPanel')
 			.find('h4').contains('Abstract').siblings('.submissionWizard__reviewPanel__item__value').contains(submission.abstract);
-		cy.get('h3').contains('Details (French)')
+		cy.get('h3').contains('Details (French (Canada))')
 			.parents('.submissionWizard__reviewPanel')
 			.find('h4').contains('Title').siblings('.submissionWizard__reviewPanel__item__value').contains('None provided')
 			.parents('.submissionWizard__reviewPanel')
@@ -319,7 +319,7 @@ describe('Data suite tests', function() {
 			.parents('.submissionWizard__reviewPanel')
 			.find('h4').contains('Abstract').siblings('.submissionWizard__reviewPanel__item__value').contains('None provided');
 		cy.get('h3').contains('For the Editors (English)');
-		cy.get('h3').contains('For the Editors (French)');
+		cy.get('h3').contains('For the Editors (French (Canada))');
 
 		// Submit
 		cy.contains('Make a Submission: Review');

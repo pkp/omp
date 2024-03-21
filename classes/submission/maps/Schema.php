@@ -59,7 +59,13 @@ class Schema extends \PKP\submission\maps\Schema
             $output['newRelease'] = $newReleaseDao->getNewReleaseAll($submission->getId());
         }
 
-        $output = $this->schemaService->addMissingMultilingualValues($this->schemaService::SCHEMA_SUBMISSION, $output, $this->context->getSupportedSubmissionLocales());
+        $locales = $this->context->getSupportedSubmissionMetaDataLocales();
+
+        if (!in_array($submissionLocale = $submission->getData('locale'), $locales)) {
+            $locales[] = $submissionLocale;
+        }
+
+        $output = $this->schemaService->addMissingMultilingualValues($this->schemaService::SCHEMA_SUBMISSION, $output, $locales);
 
         ksort($output);
 
