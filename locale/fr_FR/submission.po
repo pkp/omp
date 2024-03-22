@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-02-28 11:26+0000\n"
+"PO-Revision-Date: 2024-03-23 09:38+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "fr_FR/>\n"
@@ -259,7 +259,7 @@ msgid "submission.submit.finishingUp"
 msgstr "Terminer"
 
 msgid "submission.submit.confirmation"
-msgstr "Confirmer la soumission"
+msgstr "Confirmer"
 
 msgid "submission.submit.nextSteps"
 msgstr "Étapes suivantes"
@@ -273,7 +273,7 @@ msgid "submission.submit.placement"
 msgstr "Placement de la soumission"
 
 msgid "submission.submit.upload"
-msgstr "Transférer la soumission"
+msgstr "Transférer"
 
 msgid "submission.submit.submissionFile"
 msgstr "Fichier de soumission"
