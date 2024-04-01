@@ -1,3 +1,360 @@
 # Malina-Giorgiana Zaharia <zahariamalina01@gmail.com>, 2024.
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2024-04-02 15:39+0000\n"
+"Last-Translator: Malina-Giorgiana Zaharia <zahariamalina01@gmail.com>\n"
+"Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/manager/ro/"
+">\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Aceasta va fi limba prestabilită pentru site-ul presei."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Vă rog să vă asigurați că cel puțin una dintre căsuțe pentru fiecare "
+"coordonator al editurii este bifată."
+
+msgid "manager.series.indexed"
+msgstr "Indexat"
+
+msgid "manager.series.open"
+msgstr "Propuneri deschise"
+
+msgid "manager.series.readingTools"
+msgstr "Instrumente de lectură"
+
+msgid "manager.series.submissionReview"
+msgstr "Nu va fi revizat pe perechi"
+
+msgid "manager.series.submissionIndexing"
+msgstr "Nu va fi inclus în indexarea editurii"
+
+msgid "manager.series.editorRestriction"
+msgstr "Elemente care pot fi trimise doar de către editori sau editorii seriei."
+
+msgid "manager.series.confirmDelete"
+msgstr "Sunteți sigur că vreți să ștergeți definitiv această serie?"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Propuneri făcute pentru această serie"
+
+msgid "manager.series.assigned"
+msgstr "Editori pentru această serie"
+
+#, fuzzy
+msgid "manager.series.hideAbout"
+msgstr "Omiteți această serie din secțiunea Despre publicație"
+
+msgid "manager.series.unassigned"
+msgstr "Editori de serie disponibili"
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "Un titlu abreviat este necesar pentru această serie."
+
+msgid "manager.series.form.titleRequired"
+msgstr "Un titlu este necesar pentru această serie."
+
+msgid "manager.series.noneCreated"
+msgstr "Nu a fost creată nicio serie."
+
+msgid "manager.series.existingUsers"
+msgstr "Utilizatori existenți"
+
+msgid "manager.series.seriesTitle"
+msgstr "Titlul seriei"
+
+#, fuzzy
+msgid "manager.series.restricted"
+msgstr "Nu permiteți autorilor să trimită direct acestei serii."
+
+#, fuzzy
+msgid "manager.sections.alertDelete"
+msgstr ""
+"Înainte de a șterge această serie, trebuie să mutați propunerile asociate "
+"acestei serii spre altă serie."
+
+msgid "manager.payment.generalOptions"
+msgstr "Opțiuni generale"
+
+#, fuzzy
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Plățile vor fi posibile pentru această publicație. Țineți cont că vi se va "
+"cere să vă conectați pentru a realiza plata."
+
+#, fuzzy
+msgid "manager.payment.success"
+msgstr "Setările plății au fost apdatate."
+
+msgid "manager.settings"
+msgstr "Setări"
+
+#, fuzzy
+msgid "manager.settings.pressSettings"
+msgstr "Setările editurii"
+
+msgid "manager.settings.press"
+msgstr "Editură"
+
+msgid "manager.settings.publisher.identity"
+msgstr "Identitatea editurii"
+
+msgid "manager.settings.publisher"
+msgstr "Numele editurii"
+
+msgid "manager.settings.location"
+msgstr "Locație geografică"
+
+msgid "manager.settings.publisherCode"
+msgstr "Codul editurii"
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Tipul de cod al editurii"
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Acesta nu este un tip de cod al editurii valid."
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Toate setările specifice procesului de distribuire (notificare, indexare, "
+"arhivare, plată, unelte de lectură)."
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Descărcări ale fișierelor monografe"
+
+#, fuzzy
+msgid "manager.series.abstractsNotRequired"
+msgstr "Nu sunt necesare rezumate"
+
+msgid "manager.series.disableComments"
+msgstr "Dezactivați comentariile cititorilor pentru această serie."
+
+msgid "manager.series.book"
+msgstr "Serii de cărți"
+
+msgid "manager.series.create"
+msgstr "Crează serii"
+
+msgid "manager.series.policy"
+msgstr "Descrierea seriei"
+
+#, fuzzy
+msgid "user.authorization.pluginLevel"
+msgstr "Nu aveți privilegii suficiente pentru a gestiona acest plugin"
+
+msgid "manager.pressManagement"
+msgstr "Gestionarea editurii"
+
+msgid "manager.setup"
+msgstr "Configurație"
+
+#, fuzzy
+msgid "manager.setup.aboutItemContent"
+msgstr "Conținut/cuprins"
+
+msgid "manager.users.selectRole"
+msgstr "Selectează funcția"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Utilizatori înscriși la editură"
+
+msgid "manager.people.allPresses"
+msgstr "Toate editurile"
+
+msgid "manager.people.allUsers"
+msgstr "Toți utilizatorii înscriși"
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Înscrie un utilizator existent"
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Cu editura"
+
+#, fuzzy
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Selectează un utilizator căruia să îi atribui drepturile de autor, sarcinile "
+"de editare, etc."
+
+#, fuzzy
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"Sincronizarea înscrierii va pune pe listă toți utilizatorii înscriși în "
+"rolul editurii  pentru același rol al editurii. Această funcție permite unui "
+"grup comun de utilizatori ( ex. revizori) să fie sincronizați între edituri."
+
+#, fuzzy
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Blocați acest utilizator? Aceasta nu îi va permite utilizatorului să se "
+"conecteze la sistem.\n"
+"\n"
+"Opțional, poți să îi oferi utilizatorului un motiv pentru această decizie."
+
+msgid "manager.system"
+msgstr "Setări ale sistemului"
+
+#, fuzzy
+msgid "manager.system.archiving"
+msgstr "Arhivat"
+
+#, fuzzy
+msgid "manager.system.reviewForms"
+msgstr "Forme de revizie"
+
+#, fuzzy
+msgid "manager.system.readingTools"
+msgstr "Unelte de lectură"
+
+#, fuzzy
+msgid "manager.system.payments"
+msgstr "Modalități de plată"
+
+#, fuzzy
+msgid "manager.setup.addAboutItem"
+msgstr "Adaugă Despre element"
+
+#, fuzzy
+msgid "manager.setup.addChecklistItem"
+msgstr "Adaugă element de pe lista de verificare"
+
+#, fuzzy
+msgid "manager.setup.addItem"
+msgstr "Adaugă item"
+
+#, fuzzy
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Adaugă un element care să apară în secțiunea „Despre editură”"
+
+#, fuzzy
+msgid "manager.setup.addNavItem"
+msgstr "Adaugă item"
+
+#, fuzzy
+msgid "manager.setup.addSponsor"
+msgstr "Adaugă organizația care sponsorizează"
+
+msgid "manager.setup.announcements"
+msgstr "Anunțuri"
+
+#, fuzzy
+msgid "manager.setup.announcements.success"
+msgstr "Setările anunțurilor au fost actualizate."
+
+#, fuzzy
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Anunțurile pot fi publicate pentru a informa cititorii  cu privire la știri "
+"sau evenimente legate de editură. Anunțurile publicate vor apărea pe pagina "
+"de Anunțuri."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Informații suplimentare"
+
+#, fuzzy
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Va apărea în secțiunea Despre editură) "
+
+msgid "manager.setup.contextAbout"
+msgstr "Despre editură"
+
+#, fuzzy
+msgid "manager.setup.contextSummary"
+msgstr "Sumarul editurii"
+
+#, fuzzy
+msgid "manager.setup.copyediting"
+msgstr "Editori ai textului original"
+
+#, fuzzy
+msgid "manager.setup.copyeditInstructions"
+msgstr "Instrucțiuni pentru editori ai textului original"
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"Acesta va înlocui oricare setare locală de publicare specifică configurației "
+"locale"
+
+#, fuzzy
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Adăgați un editor pentru această serie din editorii disponibili. Odată "
+"adăugat, stabiliți dacă editorul seriei va supraveghea revizia (revizie în "
+"grup) și/sau EDITAREA (revizuirea formatării, aranjare în pagină și "
+"corectare) propunerilor pentru această serie. Editorii seriei sunt creați "
+"prin a clica <a href=\"{$editoriSerieUrl}\">editori serie</a> sub opțiunea "
+"Roluri în Managementul Publicației."
+
+#, fuzzy
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"Cel puțin una dintre serii trebuie să fie activă. Vizitează setările "
+"fluxului de lucru pentru a dezactiva toate propunerile pentru această "
+"publicație."
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Ne cerem iertare, dar nu sunt disponibile și alte limbi. Contactează "
+"administratorul site-ului dacă dorești să utilizezi limbaj adițional pentru "
+"publicație."
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Aceste câmpuri sunt obligatorii pentru a publica <a href=\"https://en."
+"wikipedia.org/wiki/ONIX_for_Books\">ONIX metadata</a>."
+
+#, fuzzy
+msgid "manager.series.form.reviewFormId"
+msgstr "Vă rog să vă asigurați că ați ales o formă de revizuire corectă."
+
+#, fuzzy
+msgid "manager.people.allSiteUsers"
+msgstr "Înscrie un utilizator de pe acest site la editură"
+
+#, fuzzy
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Selectează un utilizator pentru a-l asocia cu un alt cont ( de ex. atunci "
+"când cineva are două conturi de utilizator). Contul selectat prima dată va "
+"fi șters, iar depunerile de documente, sarcinile etc. vor fi atribuite celui "
+"de-al doilea cont."
+
+#, fuzzy
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Include orice informație despre editura ta care ar putea fi de interes "
+"pentru cititori, autori sau revizori. Aceasta ar putea include politica ta "
+"deschisă de acces, obiectivul și scopul editurii, dezvăluirea sponsorilor "
+"sau istoria editurii."
+
+#, fuzzy
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Doriți să eliminați acest utilizator din această editură? Această acțiune va "
+"elimina utilizatorul din toate rolurile în această editură."
+
+#, fuzzy
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Ne pare rău, dar nu ai drepturi administrative asupra acestui utilizator. "
+"Aceasta poate fi deoarece:\n"
+"\t\t<ul>\n"
+"\t\t\t<li> Utilizatorul este administrator al site-ului</li>\n"
+"\t\t\t<li>Utilizatorul este activ la edituri pe care nu le gestionezi</li>\n"
+"\t\t</ul>\n"
+"\tAceastă sarcină trebuie  dusă la îndeplinire de către administratorul site-"
+"ului.\n"
+"\t"
+
+#, fuzzy
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+"Introduceți informații suplimentare care ar trebui să le apară cititorilor "
+"pe pagina de Anunțuri."
