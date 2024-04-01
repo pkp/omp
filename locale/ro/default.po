@@ -1,3 +1,102 @@
 # Iusan Daria <daria.iusan@yahoo.com>, 2024.
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2024-04-02 15:39+0000\n"
+"Last-Translator: Iusan Daria <daria.iusan@yahoo.com>\n"
+"Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/default/ro/"
+">\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "default.genres.appendix"
+msgstr "Apendice"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliografie"
+
+msgid "default.genres.manuscript"
+msgstr "carte manuscris"
+
+msgid "default.genres.glossary"
+msgstr "Glosar"
+
+msgid "default.genres.index"
+msgstr "Index"
+
+msgid "default.genres.preface"
+msgstr "Prefață"
+
+msgid "default.genres.prospectus"
+msgstr "Prospect"
+
+msgid "default.genres.figure"
+msgstr "Figura"
+
+msgid "default.genres.illustration"
+msgstr "Ilustrație"
+
+msgid "default.genres.other"
+msgstr "Altele"
+
+msgid "default.groups.name.manager"
+msgstr "manager de presă"
+
+msgid "default.groups.plural.manager"
+msgstr "manageri de presă"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "editor de serie"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "editori de serie"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Autorul capitolului"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Autorii capitolului"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "editorii volumului"
+
+msgid "default.genres.photo"
+msgstr "imagine"
+
+msgid "default.contextSettings.authorGuidelines"
+msgstr ""
+"<p>Autorii sunt invitați să se înscrie în această publicație. Acele "
+"înscrieri care sunt considerate potrivite, vor fi trimise la revizie înainte "
+"de a stabili dacă sunt acceptate sau respinse.</p><p>Înainte de a se "
+"înscrie, autorii sunt responsabili de obținerea unei aprobări de publicare a "
+"oricărui material inclus, precum fotografii, documente sau seturi de date. "
+"Toți autorii înscriși trebuie să fie de acord să fie identificați ca autori. "
+"Dacă este cazul, cercetarea ar trebui să fie aprobată de un comitet de etică "
+"adecvat, în conformitate cu cerințele legale din țara în care se desfășoară "
+"studiul.</p><p>Un editor poate respinge o trimitere dacă aceasta nu "
+"îndeplinește standardele minime de calitate. Înainte de a trimite cartea, vă "
+"rugăm să vă asigurați că domeniul de aplicare și schița cărții sunt "
+"structurate corespunzător. Titlul trebuie să fie concis și rezumatul trebuie "
+"să însumeze firul narativ. Acest aspect va crește șansa ca recenzenții să "
+"scrie o recenzie a cărții. După ce sunteți sigur că lucrarea dvs. "
+"îndeplinește acest standard, vă rugăm să urmați lista de verificare de mai "
+"jos pentru a vă pregăti lucrarea.</p>"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "editorul volumului"
+
+msgid "default.contextSettings.checklist"
+msgstr ""
+"<p>Toate înscrierile trebuie să îndeplinească următoarele cerințe.</"
+"p><ul><li> Această lucrare îndeplinește toate cerințele din <a href=\""
+"{$submissionGuidelinesUrl}\"> ghidul autorului</a>.</li><li> Această lucrare "
+"nu a mai fost publicată, nici nu a mai fost trimisă altei edituri pentru "
+"evaluare.</li><li>Toate referințele au fost verificate pentru acuratețe și "
+"completitudine.</li><li> Toate tabelele și figurile au fost numerotate și "
+"etichetate.</li><li>A fost obținută permisiunea de a publica toate "
+"fotografiile, seturile de date și alte materiale furnizate împreună cu "
+"această lucrare.</li></ul>"
