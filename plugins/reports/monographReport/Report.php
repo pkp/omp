@@ -422,8 +422,8 @@ class Report implements IteratorAggregate
             ->get();
 
         return $stageAssignments
-            ->filter(fn (StageAssignment $stageAssignment) => $this->getEditorUserGroups()->get($stageAssignment->getUserGroupId()))
-            ->map(fn (StageAssignment $stageAssignment) => $this->getUser($stageAssignment->getUserId()))
+            ->filter(fn (StageAssignment $stageAssignment) => $this->getEditorUserGroups()->get($stageAssignment->userGroupId))
+            ->map(fn (StageAssignment $stageAssignment) => $this->getUser($stageAssignment->userId))
             ->unique(fn (User $user) => $user->getId())
             ->values()
             ->toArray();
