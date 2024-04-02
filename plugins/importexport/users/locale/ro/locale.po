@@ -1,8 +1,9 @@
 # Iusan Daria <daria.iusan@yahoo.com>, 2024.
+# Ruxandra Berescu <ruxy_berescu@yahoo.com>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-03-22 10:39+0000\n"
-"Last-Translator: Iusan Daria <daria.iusan@yahoo.com>\n"
+"PO-Revision-Date: 2024-04-03 17:39+0000\n"
+"Last-Translator: Ruxandra Berescu <ruxy_berescu@yahoo.com>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-users/ro/>\n"
 "Language: ro\n"
@@ -15,3 +16,76 @@ msgstr ""
 
 msgid "plugins.importexport.users.displayName"
 msgstr "Utilizator XML Plugin"
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "Atenție"
+
+msgid "plugins.importexport.users.unknownPress"
+msgstr "O adresă necunoscută „{$contextPath}” a fost specificată."
+
+msgid "plugins.importexport.users.export.exportByRole"
+msgstr "Exportați în funcție de rol"
+
+msgid "plugins.importexport.users.export.exportAllUsers"
+msgstr "Exportați tot"
+
+msgid "plugins.importexport.users.export.errorsOccurred"
+msgstr "Erori apărute în timpul exportului"
+
+msgid "plugins.importexport.users.uploadFile"
+msgstr "Vă rugăm să încărcați un fișier sub „Importați” pentru a continua."
+
+msgid "plugins.importexport.users.description"
+msgstr "Utilizatori de import și export"
+
+msgid "plugins.importexport.users.import.importUsers"
+msgstr "Importați utilizatori"
+
+msgid "plugins.importexport.users.import.instructions"
+msgstr ""
+"Selectați un fișier de date XML care să conțină informații despre utilizator "
+"pentru a le importa în această publicație. Consultați ajutorul pentru "
+"detalii despre formatul fișierului. <br /><br />Aveți în vedere faptul că "
+"dacă fișierul importat conține nume de utilizatori sau adrese de email care "
+"deja există în sistem, nu se vor importa datele pentru acești utilizatori "
+"iar noile roluri care se creează vor fi atribuite utilizatorilor existenți."
+
+msgid "plugins.importexport.users.import.dataFile"
+msgstr "Fișier de date de utilizator"
+
+msgid "plugins.importexport.users.import.sendNotify"
+msgstr ""
+"Trimiteți un email sub formă de notificare către fiecare utilizator importat "
+"care să conțină numele de utilizator și parola acelui utilizator."
+
+msgid "plugins.importexport.users.import.continueOnError"
+msgstr "Continuați să importați alți utilizatori dacă apare o eroare."
+
+msgid "plugins.importexport.users.import.usersWereImported"
+msgstr "Următorii utilizatori au fost importați în sistem cu succes"
+
+msgid "plugins.importexport.users.import.errorsOccurred"
+msgstr "S-au produs niște erori în timpul importului"
+
+msgid "plugins.importexport.users.import.confirmUsers"
+msgstr ""
+"Confirmați că aceștia sunt utilizatorii pe care doriți să îi importați în "
+"sistem"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr ""
+"Nu se pot folosi parole codificate cu {$importHash}; OMP este configurat să "
+"utilizeze {$ompHash}. Dacă doriți să continuați, va fi necesar să resetați "
+"parolele utilizatorilor importați."
+
+msgid "plugins.importexport.users.export.exportUsers"
+msgstr "Utilizatori exportați"
+
+msgid "plugins.importexport.users.importComplete"
+msgstr ""
+"Importarea s-a făcut cu succes.  Utilizatorii cu numele de utilizator și "
+"adresele de email care nu sunt deja în uz au fost importate, împreună cu "
+"grupurile de utilizatori aferente."
+
+msgid "plugins.importexport.users.results"
+msgstr "Rezultate"
