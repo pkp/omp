@@ -418,7 +418,7 @@ class Report implements IteratorAggregate
      */
     private function getEditors(): array
     {
-        $stageAssignments = StageAssignment::withSubmissionId($this->submission->getId())
+        $stageAssignments = StageAssignment::withSubmissionIds([$this->submission->getId()])
             ->get();
 
         return $stageAssignments
