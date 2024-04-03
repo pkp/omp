@@ -1,3 +1,54 @@
 # Iusan Daria <daria.iusan@yahoo.com>, 2024.
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2024-04-03 17:39+0000\n"
+"Last-Translator: Iusan Daria <daria.iusan@yahoo.com>\n"
+"Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/"
+"themes-default/ro/>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "plugins.themes.default.name"
+msgstr "temă prestabilită"
+
+msgid "plugins.themes.default.description"
+msgstr "Această temă implementează tema prestabilită."
+
+msgid "plugins.themes.default.option.typography.label"
+msgstr "Tipografie"
+
+msgid "plugins.themes.default.option.typography.description"
+msgstr "Alege o combinație de fonturi potrivită acestei prese."
+
+msgid "plugins.themes.default.option.typography.notoSans"
+msgstr ""
+"Noto Sans: Un font digital-nativ conceput de Google pentru un suport "
+"lingvistic extins."
+
+msgid "plugins.themes.default.option.typography.notoSerif_notoSans"
+msgstr ""
+"Noto Serif/Noto Sans: O pereche complementară formată din titlul cu fond "
+"serif și din corpul de text cu fond sans-serif."
+
+msgid "plugins.themes.default.option.typography.lato"
+msgstr "Lato: font sans-serif modern și popular,"
+
+msgid "plugins.themes.default.option.colour.label"
+msgstr "Culoare"
+
+msgid "plugins.themes.default.option.colour.description"
+msgstr "Alegeți o culoare pentru titlu."
+
+msgid "plugins.themes.default.displayStats.monthInitials"
+msgstr "ian febr mart apr mai iun iul aug sept oct nov dec"
+
+msgid "plugins.themes.default.displayStats.downloads"
+msgstr "Descărcări"
+
+msgid "plugins.themes.default.displayStats.noStats"
+msgstr "Datele de descărcare nu sunt încă disponibile."
