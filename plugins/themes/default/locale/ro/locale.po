@@ -1,7 +1,7 @@
 # Iusan Daria <daria.iusan@yahoo.com>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-03 19:18+0000\n"
+"PO-Revision-Date: 2024-04-04 19:39+0000\n"
 "Last-Translator: Iusan Daria <daria.iusan@yahoo.com>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/ro/>\n"
@@ -32,8 +32,8 @@ msgstr ""
 
 msgid "plugins.themes.default.option.typography.notoSerif_notoSans"
 msgstr ""
-"Noto Serif/Noto Sans: O pereche complementară formată din titlul cu fond "
-"serif și din corpul de text cu fond sans-serif."
+"Noto Serif/Noto Sans: combinație între fontul serif pentru titlu și fontul "
+"sans-serif pentru corpul de text."
 
 msgid "plugins.themes.default.option.typography.lato"
 msgstr "Lato: Un font sans-serif modern și popular."
@@ -58,5 +58,45 @@ msgstr "Noto Serif: o variantă de tip serif ."
 
 msgid "plugins.themes.default.option.typography.notoSans_notoSerif"
 msgstr ""
-"Noto Sans/Noto Serif: combinație de sans-serif pentru titlu și serif pentru "
-"corp de text."
+"Noto Sans/Noto Serif: combinație între fontul sans-serif pentru titlu și "
+"fontul serif pentru corpul de text."
+
+msgid "plugins.themes.default.option.typography.lora"
+msgstr "Lora: un font de tip serif lat, adecvat pentru cititul online."
+
+msgid "plugins.themes.default.option.typography.lora_openSans"
+msgstr ""
+"Lora/Open Sans: combinație între font serif pentru titlu și fontul sans-"
+"serif pentru corpul de text."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
+msgstr "Imagine de fundal a antetului"
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.description"
+msgstr ""
+"Atunci când a fost încărcată o imagine a paginii de pornire, afișați-o în "
+"fundalul antetului în loc de poziția sa obișnuită pe pagina de pornire."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
+msgstr "Afișați imaginea de pe pagina de start ca fundal al antetului."
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
+msgstr "Afișați seriile"
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
+msgstr ""
+"Adăugați o listă cu linkurile tuturor seriilor editurii pe pagina de catalog"
+
+msgid "plugins.themes.default.option.displayStats.label"
+msgstr "Opțiuni de afișare a statisticilor de utilizare"
+
+msgid "plugins.themes.default.option.displayStats.none"
+msgstr ""
+"Nu afișați diagrama statisticilor de utilizare a cererilor pentru "
+"utilizatori."
+
+msgid "plugins.themes.default.option.displayStats.line"
+msgstr "Utilizați diagrama cu linii pentru a afișa statisticile de utilizare."
+
+msgid "plugins.themes.default.option.displayStats.bar"
+msgstr "Utilizați diagrama cu coloane pentru a afișa statisticile de utilizare."
