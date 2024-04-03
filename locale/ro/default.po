@@ -1,7 +1,7 @@
 # Iusan Daria <daria.iusan@yahoo.com>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-02 15:39+0000\n"
+"PO-Revision-Date: 2024-04-03 17:39+0000\n"
 "Last-Translator: Iusan Daria <daria.iusan@yahoo.com>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/default/ro/"
 ">\n"
@@ -100,3 +100,6 @@ msgstr ""
 "etichetate.</li><li>A fost obținută permisiunea de a publica toate "
 "fotografiile, seturile de date și alte materiale furnizate împreună cu "
 "această lucrare.</li></ul>"
+
+msgid "default.genres.table"
+msgstr "tabel"
