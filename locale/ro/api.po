@@ -1,7 +1,7 @@
 # Iusan Daria <daria.iusan@yahoo.com>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-02 15:39+0000\n"
+"PO-Revision-Date: 2024-04-03 19:18+0000\n"
 "Last-Translator: Iusan Daria <daria.iusan@yahoo.com>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/api/ro/>\n"
 "Language: ro\n"
@@ -29,8 +29,7 @@ msgstr ""
 "Nu a fost activată funcția de notificare prin email pentru această editură."
 
 msgid "api.emailTemplates.403.notAllowedChangeContext"
-msgstr ""
-"Nu aveți permisiunea să mutați acest șablon de email la o altă editură."
+msgstr "Nu aveți permisiunea să mutați acest model de email la o altă editură."
 
 msgid "api.publications.403.contextsDidNotMatch"
 msgstr "Lucrarea solicitată nu se regăsește la această editură."
