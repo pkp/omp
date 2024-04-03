@@ -1,7 +1,7 @@
 # Iusan Daria <daria.iusan@yahoo.com>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-02 15:39+0000\n"
+"PO-Revision-Date: 2024-04-03 19:18+0000\n"
 "Last-Translator: Iusan Daria <daria.iusan@yahoo.com>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/author/ro/>"
 "\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Weblate 4.18.2\n"
 
 msgid "author.submit.notAccepting"
-msgstr "Editura nu acceptă momentan trimiteri."
+msgstr "Această editură nu acceptă momentan cereri."
 
 msgid "author.submit"
 msgstr "Cerere nouă"
