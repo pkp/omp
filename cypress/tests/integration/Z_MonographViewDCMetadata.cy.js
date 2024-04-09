@@ -473,7 +473,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 			cy.get('div#representations-grid a').contains('Add publication format').click();
 			cy.wait(1500); // Wait for the form to settle
 			cy.get('input[id^="name-en-"]').type(publicationFormat.name, {delay: 0});
-			cy.get('div.pkp_modal_panel div.header:contains("Add publication format")').click();
+			cy.get('[role="dialog"] h1:contains("Add publication format")').click();
 			cy.get('button:contains("OK")').click();
 
 			// Select proof file
@@ -488,7 +488,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 			cy.get('form[id="assignPublicIdentifierForm"] button[id^="submitFormButton-"]').click();
 			cy.waitJQuery();
 			cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("' + publicationFormat.name + '") a[id*="-isAvailable-availableRepresentation-button-"]').click();
-			cy.get('.pkpModalConfirmButton').click();
+			cy.get('button:contains("OK")').click();
 			cy.waitJQuery();
 
 			// File completion

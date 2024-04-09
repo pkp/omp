@@ -32,7 +32,7 @@ Cypress.Commands.add('addChapters', (chapters) => {
 		if ('subtitle' in chapter) {
 			cy.get('form[id="editChapterForm"] input[id^="subtitle-en-"]').type(chapter.subtitle, {delay: 0});
 		}
-		cy.get('div.pkp_modal_panel div:contains("Add Chapter")').click(); // FIXME: Resolve focus problem on title field
+		cy.get('[role="dialog"] h1:contains("Add Chapter")').click(); // FIXME: Resolve focus problem on title field
 
 		cy.flushNotifications();
 		cy.get('form[id="editChapterForm"] button:contains("Save")').click();
