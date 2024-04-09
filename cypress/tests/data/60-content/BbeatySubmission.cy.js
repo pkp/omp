@@ -153,7 +153,7 @@ describe('Data suite tests', function() {
 		cy.get('input[id^="remoteURL-"]').type('https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf', {delay: 0});
 		cy.get('input[id^="isbn13-"]').type('978-951-98548-9-2', {delay: 0});
 		cy.get('input[id^="isbn10-"]').type('951-98548-9-4', {delay: 0});
-		cy.get('div.pkp_modal_panel div.header:contains("Add publication format")').click(); // FIXME: Focus problem with multilingual input
+		cy.get('[role="dialog"] h1:contains("Add publication format")').click(); // FIXME: Focus problem with multilingual input
 		cy.get('button:contains("OK")').click();
 
 	});

@@ -32,17 +32,17 @@ describe('Payments', function() {
             cy.get('.listPanel__itemActions .pkpButton').click();
           })
         cy.get('button[id="publication-button"]').click();
-        cy.get('.pkpButton--isWarnable').contains('Unpublish').click();
-        cy.get('[role=dialog] .pkpButton').contains('Unpublish').should('be.visible').click();
+        cy.get('button').contains('Unpublish').click();
+        cy.get('[role=dialog] button').contains('Unpublish').should('be.visible').click();
         cy.waitJQuery();
         cy.get('#publicationFormats-button').click();
         cy.get('.pkp_linkaction_editApprovedProof').click();
         cy.wait(1000);
-        cy.get('.pkp_modal #directSales').click().pause();
-        cy.get('.pkp_modal input[type="text"][name="price"]').type('9.99');
-        cy.get('.pkp_modal .formButtons .submitFormButton').click();
+        cy.get('[role="dialog"] #directSales').click();
+        cy.get('[role="dialog"] input[type="text"][name="price"]').type('9.99');
+        cy.get('[role="dialog"] .formButtons .submitFormButton').click();
         cy.get('#publication .pkpButton').contains('Publish').click();
-        cy.get('.pkp_modal .pkpButton').contains('Publish').click();
+        cy.get('[role="dialog"] .pkpButton').contains('Publish').click();
         cy.get('.pkpPublication__versionPublished').should('be.visible');
         cy.logout();
     });

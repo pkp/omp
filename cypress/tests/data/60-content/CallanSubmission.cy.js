@@ -147,7 +147,7 @@ describe('Data suite tests', function() {
 		cy.get('*[id^="component-grid-catalogentry-publicationformatgrid-addFormat-button-"]').click();
 		cy.wait(1000); // Avoid occasional failure due to form init taking time
 		cy.get('input[id^="name-en-"]').type('PDF', {delay: 0});
-		cy.get('div.pkp_modal_panel div.header:contains("Add publication format")').click(); // FIXME: Focus problem with multilingual input
+		cy.get('[role="dialog"] h1:contains("Add publication format")').click(); // FIXME: Focus problem with multilingual input
 		cy.get('button:contains("OK")').click();
 
 		// Select proof file
@@ -162,7 +162,7 @@ describe('Data suite tests', function() {
 		cy.get('form[id="assignPublicIdentifierForm"] button[id^="submitFormButton-"]').click();
 		cy.waitJQuery();
 		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("PDF") a[id*="-isAvailable-availableRepresentation-button-"]').click();
-		cy.get('.pkpModalConfirmButton').click();
+		cy.get('button:contains("OK")').click();
 		cy.waitJQuery();
 
 		// File completion
