@@ -1,7 +1,7 @@
 # Elena-Ionela Buhalo <elena.buhalo@stud.ubbcluj.ro>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-09 13:18+0000\n"
+"PO-Revision-Date: 2024-04-10 16:39+0000\n"
 "Last-Translator: Elena-Ionela Buhalo <elena.buhalo@stud.ubbcluj.ro>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/editor/ro/>"
 "\n"
@@ -58,10 +58,10 @@ msgid "editor.monograph.externalReview"
 msgstr "Inițiere evaluare externă"
 
 msgid "editor.monograph.final.selectFinalDraftFiles"
-msgstr "Selectare fișiere draft finale"
+msgstr "Selectare fișiere schiță finale"
 
 msgid "editor.monograph.final.currentFiles"
-msgstr "Fișiere draft finale actuale"
+msgstr "Fișiere schiță finale actuale"
 
 msgid "editor.monograph.copyediting.currentFiles"
 msgstr "Fișiere actuale"
@@ -77,18 +77,17 @@ msgstr "Selectare acțiuni"
 
 msgid "editor.monograph.legend.sectionActionsDescription"
 msgstr ""
-"Opțiuni specifice unei secțiuni anume, ca de exemplu încărcare fișiere sau "
-"adăugare de utilizatori."
+"Opțiuni specifice unei secțiuni anume, ca de exemplu încărcare de fișiere "
+"sau adăugare de utilizatori."
 
 msgid "editor.monograph.legend.itemActions"
-msgstr "Acțiuni element"
+msgstr "Acțiuni obiect"
 
 msgid "editor.monograph.legend.itemActionsDescription"
 msgstr "Acțiuni și opțiuni specifice unui fișier individual."
 
 msgid "editor.monograph.legend.bookInfo"
-msgstr ""
-"Vizualizați și gestionați metadatele, notițele, notificările și istoricul"
+msgstr "Vizualizați și gestionați metadatele, notele, notificările și istoricul"
 
 msgid "editor.monograph.legend.participants"
 msgstr ""
@@ -121,7 +120,7 @@ msgid "editor.monograph.legend.delete"
 msgstr "Ștergere obiect"
 
 msgid "editor.monograph.legend.in_progress"
-msgstr "Acțiuni în derulare sau încă incompletă"
+msgstr "Acțiune în derulare sau încă incompletă"
 
 msgid "editor.monograph.legend.complete"
 msgstr "Acțiune completă"
@@ -145,7 +144,7 @@ msgstr ""
 msgid "editor.monograph.legend.catalogEntry"
 msgstr ""
 "Vizualizați și gestionați intrarea în catalogul de înregistrare, inclusiv "
-"metadatele și formatele de publicare"
+"metadatele și formatele de publicație"
 
 msgid "editor.monograph.legend.notes"
 msgstr ""
@@ -166,7 +165,49 @@ msgid "editor.monograph.editorial.fairCopy"
 msgstr "Copie corectă"
 
 msgid "editor.monograph.proofs"
-msgstr "Dovezi"
+msgstr "Probe"
 
 msgid "editor.monograph.production.approvalAndPublishing"
 msgstr "Aprobare și publicare"
+
+msgid "editor.submissions.assignedTo"
+msgstr "Atribuit editorului"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr ""
+"Diferite formate de publicație, cum ar fi copertă cartonată, copertă moale "
+"și digitală, pot fi încărcate în secțiunea de Formate de publicație de mai "
+"jos. Puteți folosi grila de formate de publicație de mai jos ca o listă de "
+"verificare pentru ce rămâne de făcut pentru a publica un format de "
+"publicație."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr ""
+"Adăugați formate de publicație (de ex. digitală, broșată) pentru care "
+"editorul de aspect pregătește probe de pagină pentru corectare. <em>Probele</"
+"em> trebuie verificate pentru a fi aprobate și intrarea de <em>Catalog</em> "
+"pentru format trebuie să fie verificată așa cum este publicată în intrarea "
+"de catalog a cărții, înainte de a putea fi creat un format <em>Disponibil</"
+"em> (adică publicat)."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Stabiliți condițiile de descărcare"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Stabilire condiții"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Adăugare răspuns"
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr ""
+"Oricare dintre fișierele care au fost deja încărcate în orice etapă de "
+"înregistrare pot fi adăugate la lista de Fișiere probă, bifând căsuța de "
+"„Include” de mai jos și clicând pe „Căutare”: toate fișierele disponibile "
+"vor fi listate și pot fi alese pentru includere."
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr ""
+"Identificatorul public '{$publicIdentifier}' există deja pentru un alt "
+"obiect de același tip. Alegeți identificatori unici pentru obiectele de "
+"același tip din presa dumneavoastră."
