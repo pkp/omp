@@ -1,7 +1,7 @@
 # Elena-Ionela Buhalo <elena.buhalo@stud.ubbcluj.ro>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-09 13:11+0000\n"
+"PO-Revision-Date: 2024-04-09 13:18+0000\n"
 "Last-Translator: Elena-Ionela Buhalo <elena.buhalo@stud.ubbcluj.ro>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/editor/ro/>"
 "\n"
@@ -151,3 +151,22 @@ msgid "editor.monograph.legend.notes"
 msgstr ""
 "Informații despre fișier: note, opțiuni de notificare și istoric (Notele "
 "sunt disponibile)"
+
+msgid "editor.submission.introduction"
+msgstr ""
+"În timpul înregistrării, editorul, după consultarea fișierelor transmise, "
+"selectează acțiunea corespunzătoare (care include notificarea autorului): "
+"Trimitere către evaluare internă (presupune selectarea fișierelor pentru "
+"Evaluarea internă); Trimitere către Evaluare externă (presupune selectarea "
+"fișierelor pentru Evaluarea externă); Acceptare înregistrare (presupune "
+"selectarea fișierelor pentru etapa de Editare); sau Refuzare înregistrare ("
+"înregistrare arhivă)."
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Copie corectă"
+
+msgid "editor.monograph.proofs"
+msgstr "Dovezi"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Aprobare și publicare"
