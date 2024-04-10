@@ -2,7 +2,7 @@
 # Ruxandra Berescu <ruxy_berescu@yahoo.com>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-10 20:20+0000\n"
+"PO-Revision-Date: 2024-04-11 15:35+0000\n"
 "Last-Translator: Ruxandra Berescu <ruxy_berescu@yahoo.com>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/locale/ro/>"
 "\n"
@@ -109,3 +109,941 @@ msgstr "Procentaj de reducere, dacă se aplică"
 
 msgid "monograph.publicationFormat.productFileSize.override"
 msgstr "Doriți să introduceți valoarea mărimii fișierului personalizat?"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Grosime"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Greutate"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Lățime"
+
+msgid "submission.pageProofs"
+msgstr "Pagini probă"
+
+msgid "monograph.proofReadingDescription"
+msgstr ""
+"Redactorul încarcă fișierele gata produse care au fost pregătite pentru a fi "
+"publicate aici. Folosește <em>+Atribuie</em> pentru a desemna autori și "
+"alții pentru a face proofreading paginilor probă, cu fișierele corectate "
+"încărcate pentru aprobarea destinată publicării."
+
+msgid "monograph.task.addNote"
+msgstr "Adăugați o sarcină"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Acces deschis"
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "Imprimare (numele mărcii)"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Număr de pagini"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Țara de producție"
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Trebuie să se aleagă un format de publicare."
+
+msgid "grid.catalogEntry.availability"
+msgstr "Disponibilitate"
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Disponibil"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Nedisponibil"
+
+msgid "grid.catalogEntry.proof"
+msgstr "Probă"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Acceptarea formatării"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p>Acceptați metadata pentru această formatare. Metadata poate fi verificată "
+"în panoul de editare pentru fiecare formatare.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Disponibilitatea formatării"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p>Fă această formatare <em>disponibilă pentru cititori</em>. Fișierele care "
+"pot fi descărcate, precum și alte distribuții vor apărea în intrarea "
+"catalogului cărții.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Intrarea catalogului nu a fost aprobată."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Această formatare nu se găsește în intrarea catalogului."
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Protecție tehnică digitală"
+
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Regiune de distribuție a produsului"
+
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Rată de impozitare"
+
+msgid "monograph.publicationFormat.taxType"
+msgstr "Tip de impozitare"
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr ""
+"Includeți metadata pentru formatarea acestei publicări în intrarea "
+"catalogului pentru această carte."
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Lipsesc piața și prețurile."
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Lipsește un cod de identificare."
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Lipsesc câmpuri de metadate."
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "Filă formatare pentru publicare deschisă."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Formatarea publicării"
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "Este necesar un nume."
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "Este necesar un preț valid."
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Detalii despre formatare"
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Formatare fizică"
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr "URL de conținut remote"
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "Un cod ISBN format din 13 caractere, precum 978-951-98548-9-2."
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "Un cod ISBN format din 10 caractere, precum 951-98548-9-4."
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "Este necesar un cod de identificare a monografiei."
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Proba nu a fost aprobată."
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Aprobat"
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "Este necesară dimensiunea unui fișier pentru formatări digitale."
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "Este necesar un cod de valabilitate a produsului."
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Valoarea codului"
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "Tip de cod ONIX"
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "Este necesar un cod de identificare."
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Este necesară o valoare."
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Drepturi de vânzări"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Valoarea codului"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Tip de drepturi de vânzări"
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Restul lumii?"
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr ""
+"Deja există un tip de vânzări ROW definit pentru formatarea acestei "
+"publicări."
+
+msgid "grid.catalogEntry.countries"
+msgstr "Țări"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Regiuni"
+
+msgid "grid.catalogEntry.included"
+msgstr "Incluse"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "Excluse"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Teritoriile pieței"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Teritoriu"
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Datele publicării"
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr "Este necesar un rol reprezentativ."
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "Este necesară formatarea unei date."
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Data"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Rol"
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Formatarea datei"
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Reprezentanți"
+
+msgid "grid.catalogEntry.representativeType"
+msgstr "Tip de reprezentanți"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Agenți"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Furnizori"
+
+msgid "grid.catalogEntry.agent"
+msgstr "Agent"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"Puteți să alegeți un agent care să vă reprezinte în teritoriul definit.  Nu "
+"este necesar."
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Furnizor"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Alegeți un rol:"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Rol"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Nume"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Număr de telefon"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "Adresă de email"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Website"
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Tip de act de identitate al reprezentantului (GLN recomandat)"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+"Puteți păstra secțiunea următoare goală dacă vă oferiți propriile servicii "
+"clienților dumneavoastră."
+
+msgid "grid.action.addRepresentative"
+msgstr "Adăugați reprezentant"
+
+msgid "grid.action.editRepresentative"
+msgstr "Modificați acest reprezentant"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Ștergeți acest reprezentant"
+
+msgid "spotlight"
+msgstr "Remarcat"
+
+msgid "spotlight.spotlights"
+msgstr "Remarcați"
+
+msgid "spotlight.noneExist"
+msgstr "Nu există nimeni remarcat în acest moment."
+
+msgid "spotlight.title.homePage"
+msgstr "Cei mai remarcați"
+
+msgid "spotlight.author"
+msgstr "Autor, "
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "Element remarcat"
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "Pagina principală"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "Locația remarcată"
+
+msgid "grid.content.spotlights.form.title"
+msgstr "Titlul remarcat"
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Carte"
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "Este necesar un element."
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "Este necesar un titlu remarcat."
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Vă rugăm alegeți o locație pentru acest obiect remarcat."
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Ștergeți acest obiect remarcat"
+
+msgid "grid.action.addSpotlight"
+msgstr "Adăugați un obiect remarcat"
+
+msgid "manager.series.open"
+msgstr "Propuneri deschise"
+
+msgid "manager.series.indexed"
+msgstr "Indexat"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Fișiere"
+
+msgid "grid.action.catalogEntry"
+msgstr "Vezi forma de intrare a catalogului"
+
+msgid "grid.action.editFormat"
+msgstr "Modificați această formatare"
+
+msgid "grid.action.deleteFormat"
+msgstr "Ștergeți această formatare"
+
+msgid "grid.action.addFormat"
+msgstr "Adăugați formatare de publicare"
+
+msgid "grid.action.pageProofApproved"
+msgstr "Fișierul de pagini probă este gata pentru publicare"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "Intrare în catalog nouă"
+
+msgid "grid.action.publicCatalog"
+msgstr "Vezi acest articol în catalog"
+
+msgid "grid.action.feature"
+msgstr "Modificați vizualizarea caracteristicilor"
+
+msgid "grid.action.featureMonograph"
+msgstr "Evidențiați în caruselul catalog"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Marcați această propunere ca „articol nou”"
+
+msgid "grid.action.manageCategories"
+msgstr "Configurați categorii pentru această editură"
+
+msgid "grid.action.addCode"
+msgstr "Adăugați codul"
+
+msgid "grid.action.editCode"
+msgstr "Editați acest cod"
+
+msgid "grid.action.addRights"
+msgstr "Adăugați drepturi de vânzări"
+
+msgid "grid.action.editRights"
+msgstr "Editați aceste drepturi"
+
+msgid "grid.action.deleteRights"
+msgstr "Ștergeți aceste drepturi"
+
+msgid "grid.action.addMarket"
+msgstr "Adăugați magazin"
+
+msgid "grid.action.editMarket"
+msgstr "Editați acest magazin"
+
+msgid "grid.action.addDate"
+msgstr "Adăugați dată de publicare"
+
+msgid "grid.action.editDate"
+msgstr "Editați această dată"
+
+msgid "grid.action.deleteDate"
+msgstr "Ștergeți această dată"
+
+msgid "grid.action.createContext"
+msgstr "Creați o nouă publicare"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Arată fila formatării pentru publicare"
+
+msgid "grid.action.submissionEmail"
+msgstr "Clicați pentru a citi acest email"
+
+msgid "grid.action.approveProofs"
+msgstr "Vezi rama probelor"
+
+msgid "grid.action.proofApproved"
+msgstr "Formatarea a fost verificată"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Aprobați/respingeți această formatare"
+
+msgid "grid.reviewAttachments.add"
+msgstr "Adăugați un atașament acestei revizii"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Fișiere disponibile"
+
+msgid "series.series"
+msgstr "Colecție"
+
+msgid "series.featured.description"
+msgstr "Această colecție va apărea în navigarea principală"
+
+msgid "series.path"
+msgstr "Rută"
+
+msgid "catalog.manage"
+msgstr "Administrarea catalogului"
+
+msgid "catalog.manage.newReleases"
+msgstr "Articole noi"
+
+msgid "catalog.manage.category"
+msgstr "Categorie"
+
+msgid "catalog.manage.series"
+msgstr "Colecție"
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "catalog.categories"
+msgstr "Categorii"
+
+msgid "catalog.category.subcategories"
+msgstr "Subcategorii"
+
+msgid "catalog.aboutTheAuthor"
+msgstr "Despre {$roleName}"
+
+msgid "catalog.sortBy"
+msgstr "Ordinea monografiilor"
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr "Alegeți felul în care să fie ordonate cărților din această serie."
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr "Alegeți felul în care să fie ordonate cărțile din această categorie."
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr "Alegeți felul în care să fie ordonat cărțile din acest catalog."
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr "Poziția seriilor (de la cele mai inferioare)"
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr "Poziția seriilor (de la cele mai superioare)"
+
+msgid "submission.search"
+msgstr "Căutare de cărți"
+
+msgid "common.publication"
+msgstr "Monografie"
+
+msgid "common.publications"
+msgstr "Monografii"
+
+msgid "common.prefix"
+msgstr "Prefix"
+
+msgid "common.preview"
+msgstr "Previzualizare"
+
+msgid "common.feature"
+msgstr "Caracteristici"
+
+msgid "common.searchCatalog"
+msgstr "Catalogul de căutări"
+
+msgid "common.moreInfo"
+msgstr "Mai multe informații"
+
+msgid "common.listbuilder.completeForm"
+msgstr "Vă rugăm completați întregul formular."
+
+msgid "common.listbuilder.itemExists"
+msgstr "Nu puteți adăuga același articol de două ori."
+
+msgid "common.software"
+msgstr "Open Monograph Press"
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "common.homePageHeader.altText"
+msgstr "Antetul paginii principale"
+
+msgid "navigation.catalog"
+msgstr "Catalog"
+
+msgid "navigation.competingInterestPolicy"
+msgstr "Politica privind conflicte de interes"
+
+msgid "navigation.catalog.allMonographs"
+msgstr "Toate monografiile"
+
+msgid "navigation.catalog.manage"
+msgstr "Administrează"
+
+msgid "navigation.catalog.administration.short"
+msgstr "Administrație"
+
+msgid "navigation.catalog.administration"
+msgstr "Catalog de administrație"
+
+msgid "navigation.catalog.administration.series"
+msgstr "Colecții"
+
+msgid "navigation.infoForAuthors"
+msgstr "Pentru autori"
+
+msgid "navigation.infoForLibrarians"
+msgstr "Pentru bibliotecari"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Informație pentru autori"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Informație pentru bibliotecari"
+
+msgid "navigation.newReleases"
+msgstr "Articole noi"
+
+msgid "navigation.published"
+msgstr "Publicate"
+
+msgid "navigation.wizard"
+msgstr "Asistent"
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Link către catalogul tău."
+
+msgid "navigation.skip.spotlights"
+msgstr "Săriți peste articolele remarcate"
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Serii"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Link către serii."
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Categorie"
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Articole noi"
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Link către articolele tale noi."
+
+msgid "context.contexts"
+msgstr "Edituri"
+
+msgid "context.context"
+msgstr "Editură"
+
+msgid "context.current"
+msgstr "Editura actuală:"
+
+msgid "context.select"
+msgstr "Schimbați cu o altă editură:"
+
+msgid "user.authorization.representationNotFound"
+msgstr "Formatarea de publicare cerută nu a putut fi găsită."
+
+msgid "user.noRoles.submitMonograph"
+msgstr "Trimiteți o propunere"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr ""
+"Trimiteți o monografie: înregistrarea autorului este momentan dezactivată."
+
+msgid "user.reviewerPrompt"
+msgstr "Ați fi dispus să revizuiți propunerile pentru această editură?"
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Da, solicitați rolul {$userGroup}."
+
+msgid "user.register.contextsPrompt"
+msgstr "Pentru care editură de pe acest website ați dori să vă înregistrați?"
+
+msgid "user.register.otherContextRoles"
+msgstr "Solicitați următoarele roluri."
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+"Dacă ați solicitat să fiți revizor pentru una dintre edituri, vă rugăm "
+"introduceți-vă subiectele de interes."
+
+msgid "user.role.manager"
+msgstr "Managerul editurii"
+
+msgid "user.role.pressEditor"
+msgstr "Editor"
+
+msgid "user.role.subEditor"
+msgstr "Editorul seriei"
+
+msgid "user.role.copyeditor"
+msgstr "Redactor"
+
+msgid "user.role.proofreader"
+msgstr "Proofreader"
+
+msgid "user.role.managers"
+msgstr "Managerii editurii"
+
+msgid "user.role.subEditors"
+msgstr "Editorii de serii"
+
+msgid "user.role.editors"
+msgstr "Editori"
+
+msgid "user.role.copyeditors"
+msgstr "Redactori"
+
+msgid "user.role.proofreaders"
+msgstr "Proofreaderi"
+
+msgid "user.role.productionEditors"
+msgstr "Editori de producție"
+
+msgid "user.register.noContexts"
+msgstr "Nu există edituri cu care să vă înregistrați pe acest website."
+
+msgid "user.register.privacyStatement"
+msgstr "Declarație de confidențialitate"
+
+msgid "user.register.registrationDisabled"
+msgstr "Această editură nu acceptă momentan înregistrări ale utilizatorilor."
+
+msgid "user.register.readerDescription"
+msgstr "Publicarea unei monografii notificate prin email."
+
+msgid "user.register.authorDescription"
+msgstr "Se pot prezenta articole editurii."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr ""
+"Dispus să efectuez o evaluare în pereche a articolelor prezentate în editură."
+
+msgid "user.register.reviewerInterests"
+msgstr ""
+"Identificarea intereselor de revizuire (domenii substanțiale și metode de "
+"cercetare):"
+
+msgid "user.register.form.userGroupRequired"
+msgstr "Trebuie să selectați cel puțin un rol"
+
+msgid "site.noPresses"
+msgstr "Nu există edituri disponibile."
+
+msgid "site.pressView"
+msgstr "Vezi pagina web a editurii"
+
+msgid "about.pressContact"
+msgstr "Contactul editurii"
+
+msgid "about.aboutContext"
+msgstr "Despre editură"
+
+msgid "about.editorialTeam"
+msgstr "Echipa editurii"
+
+msgid "about.editorialPolicies"
+msgstr "Politicile editurii"
+
+msgid "about.focusAndScope"
+msgstr "Orientare și domeniu de activitate"
+
+msgid "about.seriesPolicies"
+msgstr "Serii și politici de categorii"
+
+msgid "about.submissions"
+msgstr "Propuneri"
+
+msgid "about.onlineSubmissions"
+msgstr "Propuneri online"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Autentificare"
+
+msgid "about.onlineSubmissions.register"
+msgstr "Înregistrare"
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr ""
+"Trebuie să vă autentificați {$login} sau să vă înregistrați {$register} "
+"pentru a trimite o propunere."
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} sau {$viewSubmissions}."
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Trimiteți o nouă propunere"
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "Vezi propunerile în așteptare"
+
+msgid "about.authorGuidelines"
+msgstr "Ghid pentru autori"
+
+msgid "about.submissionPreparationChecklist"
+msgstr "Lista de verificare a pregătirii pentru trimiterea propunerilor"
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr ""
+"Ca parte a procesului de trimitere a propunerilor, autorii trebuie să "
+"verifice conformitatea depunerii lor cu următoarele articole, iar "
+"propunerile vor putea fi înapoiate autorilor care nu respectă aceste cerințe."
+
+msgid "about.copyrightNotice"
+msgstr "Aviz pentru drepturi de autor"
+
+msgid "about.privacyStatement"
+msgstr "Declarație de confidențialitate"
+
+msgid "about.reviewPolicy"
+msgstr "Proces de revizie în pereche"
+
+msgid "about.publicationFrequency"
+msgstr "Frecvența publicațiilor"
+
+msgid "about.openAccessPolicy"
+msgstr "Politica de acces deschisă"
+
+msgid "about.pressSponsorship"
+msgstr "Sponsorizarea editurii"
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "Editura OMP și procesul de publicare"
+
+msgid "about.aboutSoftware"
+msgstr "Despre Open Monograph Press"
+
+msgid "help.searchReturnResults"
+msgstr "Înapoi la Rezultatele căutării"
+
+msgid "help.goToEditPage"
+msgstr "Deschideți o pagină nouă pentru a edita această informație"
+
+msgid "installer.appInstallation"
+msgstr "Instalare OMP"
+
+msgid "installer.ompUpgrade"
+msgstr "Actualizare OMP"
+
+msgid "installer.installApplication"
+msgstr "Instalare Open Monograph Press"
+
+msgid "installer.updatingInstructions"
+msgstr ""
+"Dacă actualizați o instalare deja existentă a OMP, <a href=\"{$upgradeUrl}\""
+">clicați aici</a> pentru a continua."
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr ""
+"<p>Indică faptul că metadata pentru această formatare nu a fost aprobată.</p>"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr ""
+"O dată este necesară iar valoarea datei trebuie să coincidă cu formatarea "
+"datei alese."
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p>Această formatare nu va fi <em>valabilă cititorilor</em>. Orice fișier "
+"care poate fi descărcat sau alte distribuții nu vor mai apărea în intrarea "
+"catalogului cărții.</p>"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "Act de identitate al reprezentantului"
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Aprobare în așteptare"
+
+msgid "grid.content.spotlights.form.item"
+msgstr "Introduceți titlul remarcat (autocompletare)"
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "Este necesar să se aleagă un cod de compoziție a produsului."
+
+msgid "grid.action.editSpotlight"
+msgstr "Modificați acest obiect remarcat"
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+"Marcați această căsuță pentru a utiliza această intrare de drept de vânzări "
+"precum un filtru pentru formatarea dumneavoastră.  În acest caz nu este "
+"necesar să se aleagă nici țările, nici regiunile."
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "Formatarea apare în intrarea catalogului"
+
+msgid "catalog.parentCategory"
+msgstr "Categorie de părinți"
+
+msgid "about.aboutOMPPress"
+msgstr ""
+"Această editură folosește Open Monograph Press {$ompVersion}, care este un "
+"software open source de gestionare și publicare a presei, fiind dezvoltat, "
+"susținut și distribuit gratuit de Public Knowledge Project sub Licența "
+"Publică Generală GNU. Vizitează websiteul PKP pentru <a href=\"https://pkp."
+"sfu.ca/\"> a afla mai multe despre acest software</a>. Vă rugăm <a href=\""
+"{$contactUrl}\"> contactați editura </a> prin email dacă aveți întrebări "
+"despre editură sau despre propunerile de publicare pentru aceasta."
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr ""
+"<p>Formatarea de publicare pe care ați ales-o nu mai există pentru această "
+"monografie.</p>"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr ""
+"Vă rugăm să rețineți: Pentru a achiziționa articole, va trebui să vă "
+"conectați pe platformă. Selectarea unui articol pentru achiziționare vă va "
+"direcționa către pagina de conectare. Orice articol marcat cu Acess deschis "
+"poate fi descărcat gratuit, fără conectare pe platformă."
+
+msgid "about.aboutOMPSite"
+msgstr ""
+"Această editură folosește Open Monograph Press {$ompVersion}, care este un "
+"software open source de gestionare și publicare a presei, fiind dezvoltat, "
+"susținut și distribuit gratuit de Public Knowledge Project sub Licența "
+"Publică Generală GNU. Vizitați websiteul PKP pentru <a href=\"https://pkp.sfu"
+".ca/\"> a afla mai multe despre acest software</a>. Vă rugăm contactați "
+"adresa websiteului dacă aveți întrebări referitoare la editurile acestuia "
+"sau întrebări referitoare la propunerile de publicare pentru aceste edituri."
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Această formatare va fi valabilă pe un website separat"
+
+msgid "catalog.viewableFile.title"
+msgstr "{$type} vezi acest fișier {$title}"
+
+msgid "installer.installationInstructions"
+msgstr ""
+"<p>Vă mulțumim că ați descărcat Public Knowledge Project's <strong>Open "
+"Monograph Press {$version}</strong>. Înainte de a continua, vă rugăm citiți "
+"cu atenție fișierul <a href=\"{$baseUrl}/docs/README.md\"> README</a> care "
+"este inclus în acest software. Pentru mai multe informații despre Public "
+"Knowledge Project și proiectele sale software, vă rugăm vizitați <a href="
+"\"https://pkp.sfu.ca/\" target=\"_blank\"> websiteul PKP </a>. Dacă aveți un "
+"raport de eroare sau aveți nevoie de asistență tehnică pentru Open Monograph "
+"Press, vedeți <a href=\"https://forum.pkp.sfu.ca\" target=\"_blank\"> "
+"forumul de asistență </a> sau vizitați PKP online pentru <a href=\"https"
+"://github.com/pkp/pkp-lib/issues/\" target=\"_blank\"> sistemul de raport de "
+"eroare</a>. Deși forumul de asistență este metoda preferată de contactare, "
+"puteți de asemenea să trimiteți un email echipei la <a href=\"mailto:pkp."
+"contact@gmail.com\">pkp.contact@gmail.com</a>.</p>"
+
+msgid "grid.action.approveProof"
+msgstr "Aprobați proba pentru indexare și incluziune în catalog"
+
+msgid "catalog.viewableFile.return"
+msgstr "Reveniți pentru a vedea detalii despre {$monographTitle}"
+
+msgid "grid.action.manageSeries"
+msgstr "Configurați serii pentru această editură"
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "Vă rugăm selectați o opțiune validă din această listă."
+
+msgid "grid.action.deleteCode"
+msgstr "Stergeți acest cod"
+
+msgid "navigation.catalog.administration.categories"
+msgstr "Categorii"
+
+msgid "grid.action.deleteMarket"
+msgstr "Ștergeți acest magazin"
+
+msgid "navigation.linksAndMedia"
+msgstr "Linkuri și rețele sociale"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Mergeți la pagina de comunicare de presă"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Link către categorie."
+
+msgid "grid.action.formatAvailable"
+msgstr "Modificați disponibilitatea acestei formatări pornit/oprit"
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "Includeți utilizatori fără roluri în această editură."
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Vă rugăm introduceți un ISSN valid."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Înregistrează-te ca revizor"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr ""
+"Înregistrează-te ca revizor: Înregistrarea ca revizor este momentan "
+"dezactivată."
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+"Da, mi-ar plăcea să fiu contactat pentru a revizui propunerile pentru "
+"această editură."
+
+msgid "user.role.productionEditor"
+msgstr "Editor de producție"
+
+msgid "user.register.selectContext"
+msgstr "Selectați o editură cu care să vă înregistrați:"
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "Parola pe care ați introdus-o nu este suficient de lungă."
+
+msgid "user.register.reviewerDescription"
+msgstr ""
+"Dispus să efectuez o evaluare în pereche pentru propunerile pentru acest "
+"website."
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Da, sunt de acord ca datele introduse să fie păstrate conform declarației de "
+"confidențialitate</a> a acestei edituri<a href=\"{$privacyUrl}\" target="
+"\"_blank\">."
+
+msgid "about.aboutThisPublishingSystem"
+msgstr ""
+"Mai multe informații despre sistemul de publicare, despre platformă și "
+"despre fluxul muncii sunt oferite de OMP/PKP."
