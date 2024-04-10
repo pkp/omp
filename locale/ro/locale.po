@@ -1,8 +1,9 @@
 # Vasile Moraru <napocavox@gmail.com>, 2024.
+# Ruxandra Berescu <ruxy_berescu@yahoo.com>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-04 19:39+0000\n"
-"Last-Translator: Vasile Moraru <napocavox@gmail.com>\n"
+"PO-Revision-Date: 2024-04-10 20:20+0000\n"
+"Last-Translator: Ruxandra Berescu <ruxy_berescu@yahoo.com>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/locale/ro/>"
 "\n"
 "Language: ro\n"
@@ -15,3 +16,96 @@ msgstr ""
 
 msgid "common.payments"
 msgstr "Plăți"
+
+msgid "monograph.audience"
+msgstr "Public"
+
+msgid "monograph.audience.success"
+msgstr "Detaliile despre public au fost actualizate."
+
+msgid "monograph.coverImage"
+msgstr "Imagine de copertă"
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Calificator al varietății publicului"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Varietatea publicului (de)"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Varietatea publicului (către)"
+
+msgid "monograph.languages"
+msgstr "Limbi (engleză, franceză, spaniolă)"
+
+msgid "monograph.publicationFormats"
+msgstr "Formatări de publicație"
+
+msgid "monograph.publicationFormat"
+msgstr "Formatare"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "Detalii despre formatarea publicării valabile: {$format}"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Detalii despre monografie"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Formatări:"
+
+msgid "monograph.type"
+msgstr "Tip de propunere"
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Ultimele pagini"
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Compoziția produsului"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Detalii despre produs (opțional)"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Identificarea produsului"
+
+msgid "monograph.publicationFormat.price"
+msgstr "Preț"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "Este necesar un preț."
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "Tipul prețului"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Valabilitatea produsului"
+
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Indicator de retururi"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Informație digitală"
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Dimensiuni fizice"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "Mărimea fișierului în MB"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Înălțime"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Varietatea publicului (exact)"
+
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Primele pagini"
+
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Procentaj de reducere, dacă se aplică"
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Doriți să introduceți valoarea mărimii fișierului personalizat?"
