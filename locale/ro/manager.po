@@ -1,7 +1,7 @@
 # Malina-Giorgiana Zaharia <zahariamalina01@gmail.com>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-02 15:39+0000\n"
+"PO-Revision-Date: 2024-04-10 16:39+0000\n"
 "Last-Translator: Malina-Giorgiana Zaharia <zahariamalina01@gmail.com>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/manager/ro/"
 ">\n"
@@ -358,3 +358,413 @@ msgid "manager.setup.announcementsIntroduction.description"
 msgstr ""
 "Introduceți informații suplimentare care ar trebui să le apară cititorilor "
 "pe pagina de Anunțuri."
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Vizualizare pagină de rezumat a monografiei"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Rezumat al monografiei și descărcări"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Vizualizări ale paginiii principale ale seriei"
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Vizualizări pagina principală a editurii"
+
+msgid "manager.tools"
+msgstr "Instrumente"
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Toate instrumentele specifice importării și exportării de date (edituri, "
+"monografii, utilizatori)"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Instrumente pentru generarea rapoartelor legate de statistici de utilizare ("
+"vizualizări pagină indexului catalogului, vizualizări pagină rezumat "
+"monografie, descărcări fișiere monografie)"
+
+msgid "manager.users.availableRoles"
+msgstr "Funcții disponibile"
+
+msgid "manager.users.currentRoles"
+msgstr "Funcții curente"
+
+#, fuzzy
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+"Instrucțiuni de Copyedit vor fi disponibile pentru copyeditors, autori și "
+"editori de secțiuni în stagiul de editare al trimiterii. Mai jos este un set "
+"automat de instrucțiuni în HTML, care pot fi modificate sau înlocuite de "
+"managerul editurii în orice moment ( în HTML sau în text simplu)."
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Notificare privind dreptul de autor"
+
+#, fuzzy
+msgid "manager.setup.coverage"
+msgstr "Raport/ Acoperire"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Înălțimea maximă a imaginii de copertă"
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Lățimea maximă a imaginii de copertă"
+
+#, fuzzy
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Imaginile vor fi reduse când sunt mai mari decât această mărime, dar nu vor "
+"fi niciodată lățite sau scurtate pentru a se încadra în aceste dimensiuni."
+
+#, fuzzy
+msgid "manager.setup.customizingTheLook"
+msgstr "Pasul 5. Personalizarea aspectului și a vizualizării"
+
+msgid "manager.setup.customTags"
+msgstr "Etichete personalizate"
+
+#, fuzzy
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Etichete HTML de antet personalizate pentru a fi inserate în antetul "
+"fiecărei pagini ( de ex., etichete META)."
+
+msgid "manager.setup.details"
+msgstr "Detalii"
+
+msgid "manager.setup.details.description"
+msgstr "Numele editurii, contactelor, sponsorilor și al motoarelor de căutare."
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+"Managerul editurii va înregistra toate conturile de utilizatori. Editorii "
+"sau editorii secțiunii poate înregistra conturi de utilizatori pentru "
+"revizori."
+
+msgid "manager.setup.discipline"
+msgstr "Discipline și sub-disciplinei academice"
+
+msgid "manager.setup.disciplineExamples"
+msgstr ""
+"(De ex., Istorie; educație; Sociologie; Psihologie; Studii culturale; Drept)"
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr "Oferă exemple de discipline academice relevante pentru această editură"
+
+#, fuzzy
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Adaugă cuprinsul pentru monografia curentă (dacă e disponibilă)."
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Cuprinsul paginii Acasă"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Cărți recomandate"
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Arată cărți evidențiate pe pagina principală"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Centru al atenției"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Arată lansări noi pe pagina principală"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Noi lansări"
+
+#, fuzzy
+msgid "doi.manager.settings.doiSuffixLegacy"
+msgstr ""
+"Utilizează modele implicite.<br />%p.%m pentru monografii <br />%p.%m.c%c "
+"pentru capitole<br />%p.%m.%f pentru formate de publicare <br />%p.%m.%f.%s "
+"pentru fișiere."
+
+#, fuzzy
+msgid "doi.manager.settings.doiCreationTime.copyedit"
+msgstr "La atingerea stadiului de copiere"
+
+msgid "manager.dois.formatIdentifier.file"
+msgstr "Formatul / {$format}"
+
+msgid "manager.setup.editorDecision"
+msgstr "Decizia editorului"
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Adresă de respingere"
+
+#, fuzzy
+msgid "manager.setup.emails"
+msgstr "Identificarea emailului"
+
+msgid "manager.setup.emailSignature"
+msgstr "Semnătura"
+
+#, fuzzy
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"Emailurile trimise automat din partea editurii vor avea următoarea semnătură "
+"adăugată."
+
+#, fuzzy
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Permite anunțuri"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Anunțurile pot fi publicate pentru a informa cititorii cu privire la noutăți "
+"sau evenimente, Anunțurile publicate vor apărea pe pagina de Anunțuri."
+
+#, fuzzy
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Arată pe pagina principală"
+
+#, fuzzy
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Numărul anunțurilor care apar pe pagina principală. Lasă acest spațiu liber "
+"pentru a nu arăta niciunul."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Permite editurii să apară public pe site"
+
+#, fuzzy
+msgid "manager.setup.enablePublicMonographId"
+msgstr ""
+"Identificatorii personalizați vor fi folosiți pentru a identifica elementele "
+"publicate."
+
+#, fuzzy
+msgid "manager.setup.enableUserRegistration"
+msgstr "Vizitatorii pot să se înregistreze cu un cont de utilizator."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Punctul central și scopul editurii"
+
+#, fuzzy
+msgid "manager.setup.focusAndScope.description"
+msgstr ""
+"Informează autorii, cititorii și librarii cu privire la variabilitate de "
+"monografii și alte elemente pe care editura le va publica."
+
+#, fuzzy
+msgid "manager.setup.focusScope"
+msgstr "Punct central și scop"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>EXEMPLU DE DATE HTML</strong>"
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Pentru ca autorii să își indexeze scrierile"
+
+#, fuzzy
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "Adresa de email de contact principală este necesară."
+
+#, fuzzy
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Numele de contact principal este necesar."
+
+#, fuzzy
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Numărul de revizori per cerere este necesar."
+
+#, fuzzy
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "Adresa de email alternativă este necesară."
+
+#, fuzzy
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Numele alternativ este necesar."
+
+msgid "manager.setup.generalInformation"
+msgstr "Informație generală"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Pasul 1. Oferirea detaliilor"
+
+msgid "manager.setup.guidelines"
+msgstr "Instrucțiuni"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Pasul 3. Pregătirea fluxului de lucru"
+
+#, fuzzy
+msgid "manager.setup.identity"
+msgstr "Identitate media"
+
+msgid "manager.setup.information"
+msgstr "Informație"
+
+#, fuzzy
+msgid "manager.setup.information.description"
+msgstr ""
+"Descrieri sumare ale editurii pentru librari și potențiali autori și "
+"cititori. Acestea sunt disponibile în bara laterală a site-ului atunci când "
+"secțiunea „Informații” a fost adăugată."
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Pentru autori"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Pentru biblotecari"
+
+msgid "manager.setup.information.forReaders"
+msgstr "Pentru cititori"
+
+msgid "manager.setup.information.success"
+msgstr "Informația cu privire la această editură a fost actualizată."
+
+msgid "manager.setup.institution"
+msgstr "Instituția"
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Elemente per pagină"
+
+#, fuzzy
+msgid "manager.setup.keyInfo"
+msgstr "Informații cheie"
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Oferă o descriere sumară a editurii tale și idenfică editorii, directorii "
+"manageri și alți membri ai echipei tale editoriale."
+
+msgid "manager.setup.labelName"
+msgstr "Denumirea mărcii"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Editori grafici"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Instrucțiuni grafice"
+
+#, fuzzy
+msgid "manager.setup.layoutTemplates"
+msgstr "Șabloane grafice"
+
+#, fuzzy
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Fișier șablon"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Titlu"
+
+msgid "manager.setup.lists"
+msgstr "Liste"
+
+msgid "manager.setup.lists.success"
+msgstr "Setările din listă au fost actualizate."
+
+#, fuzzy
+msgid "manager.setup.look"
+msgstr "Aspect și stil"
+
+#, fuzzy
+msgid "manager.setup.look.description"
+msgstr ""
+"Antetul paginii principate, cuprins, antetul editurii, subsol, bară de "
+"navigare și fișă de stil."
+
+msgid "manager.setup.settings"
+msgstr "Setări"
+
+#, fuzzy
+msgid "manager.setup.management.description"
+msgstr ""
+"Acces și securitate, planificare, anunțuri, corectare, grafică și corectori."
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Managementul pașilor de bază ale editurii"
+
+#, fuzzy
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Managementul și configurația publicației"
+
+msgid "manager.setup.managingThePress"
+msgstr "Pasul 4. Gestionarea setărilor"
+
+msgid "manager.setup.masthead.success"
+msgstr "Detaliile redacționale ale editurii au fost actualizate."
+
+#, fuzzy
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Pentru a trimite emailuri care nu pot fi trimise la o adresă de respingere, "
+"administratorului site-ului trebuie să permită opțiunea "
+"<code>allow_envelope_sender</code> în fișierul de configurație al site-ului. "
+"Configurația serverului poate fi solicitată, așa cum este indicat în "
+"documentația OMP."
+
+#, fuzzy
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"OMP îndeplinește protocolul pentru colectarea metadatelor al <a href=\"https"
+"://www.openarchives.org\" target=\"_blank\">inițiativei arhivelor deschise</"
+"a> , care este standardul emergent pentru obținerea accesului bine indexat "
+"la resurse de căutare electronică la o scală globală. Autorii vor folosi un "
+"șablon similar pentru a oferi metadate pentru trimiterea lor. Managerul "
+"editurii trebuie să selecteze categorii pentru idnexare și prezintă autorii, "
+"oferind exemple relevante pentru a-i susține în indexarea scrierilor lor, "
+"separând termenii prin punc și virgulă (de ex., term1; term2). Intrările "
+"trebuie să fie introduse ca exemple folosind „Ex.” sau „De ex.,”."
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Limitează numărul de elemente ( de exemplu, cereri, utilizatori sau sarcini "
+"de editare) pentru a într-o listă înainte de arăta elementele car vor apărea "
+"pe altă pagină."
+
+#, fuzzy
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Util atunci când editura depășește bariere disciplinare și/sau autorii "
+"prezintă elemente multidisciplinare."
+
+#, fuzzy
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+"Identificatorii personalizați vor fi folosiți pentru a identifica galere ( "
+"de ex. fișiere HTML sau PDF) pentur elemente publicate."
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Arată cărțile recomandate pe pagina principală"
+
+msgid "manager.setup.enableDois.description"
+msgstr ""
+"Permite identificatorilor de obiect digital (DOI) care să fie asociate cu "
+"lucrări publicate de această editură."
+
+#, fuzzy
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"Instrucțiunile grafice pot fi pregătite pentru formatarea sau publicarea "
+"elementelor la editură și pot fi introduse în HTML sau text simplu. Ele vor "
+"fi disponibile în secțiunea     Editor grafic și Secțiunea editor pe pagina "
+"de editare a fiecărei cereri. (deoarece fiecare editură poate utiliza "
+"propriile formate de fișiere, standarde bibliografice, fișe de stil, etc., "
+"un set standard de instrucțiuni nefiind oferit.)"
+
+#, fuzzy
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr ""
+"Selectează tipurile de lucrări publicate de această editură cărora să li se "
+"asocieze un cod DOI. Cele mai multe edituri asociază codul DOI monografiilor/"
+"capitolelor, dar ai putea să asociezi DOI tuturor elementelor publicate."
+
+#, fuzzy
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"Orice email care nu poate fi trimis va deveni un mesaj de eroare la această "
+"adresă."
+
+#, fuzzy
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"Șabloanele pot fi încărcate pentru a apărea în secțiunea Grafică pentru "
+"fiecare dintre formatele standard publicate la editură ( de ex., monografie, "
+"recenzie de carte, etc.) folosind orice format de fișier (de ex., pdf, doc, "
+"etc.) cu adnotări adăugate pentru a specifica fontul, mărimea, margini, etc. "
+"pentru a servi drept ghid pentru Editorii grafici și Corectori."
