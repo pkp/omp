@@ -1,11 +1,12 @@
 # Jordi LC <jordi.lacruz@uab.cat>, 2021, 2023, 2024.
+# Ruxandra Berescu <ruxy_berescu@yahoo.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2024-03-02 04:53+0000\n"
-"Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
+"PO-Revision-Date: 2024-04-10 20:20+0000\n"
+"Last-Translator: Ruxandra Berescu <ruxy_berescu@yahoo.com>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/locale/es/>"
 "\n"
 "Language: es\n"
@@ -43,7 +44,7 @@ msgid "monograph.languages"
 msgstr "Idiomas (español, inglés, francés)"
 
 msgid "monograph.publicationFormats"
-msgstr "Formatos de publicación"
+msgstr "Formatos de publicaciónes"
 
 msgid "monograph.publicationFormat"
 msgstr "Formato"
