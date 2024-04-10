@@ -1,7 +1,7 @@
 # Malina-Giorgiana Zaharia <zahariamalina01@gmail.com>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-10 16:39+0000\n"
+"PO-Revision-Date: 2024-04-10 20:20+0000\n"
 "Last-Translator: Malina-Giorgiana Zaharia <zahariamalina01@gmail.com>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/manager/ro/"
 ">\n"
@@ -768,3 +768,246 @@ msgstr ""
 "recenzie de carte, etc.) folosind orice format de fișier (de ex., pdf, doc, "
 "etc.) cu adnotări adăugate pentru a specifica fontul, mărimea, margini, etc. "
 "pentru a servi drept ghid pentru Editorii grafici și Corectori."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Este un format fizic (non-digital)?"
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Format nou de publicare"
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+"Pentru a crea o nouă platformă de publicare, completează formularul de mai "
+"jos și apasă pe butonul „Crează”."
+
+#, fuzzy
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Această editură nu acceptă cereri la acest moment. Vezi setările fluxului de "
+"lucru pentru a-ți fi acceptate cererile."
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Previne utilizatorii din a trimite noi articole către editură. Elementele "
+"trimise pot fi dezactivate pentru serii individuale ale editurii la <a href="
+"\"{$url}\">serie editură</a> , din pagina de setări."
+
+msgid "manager.setup.genres"
+msgstr "Genuri"
+
+msgid "manager.setup.newGenre"
+msgstr "Gen nou al monografiei"
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"Pentru a crea un nou gen, completează formularul de mai jos și apasă pe "
+"butonul „Crează”."
+
+msgid "manager.setup.deleteSelected"
+msgstr "Selectare ștergere"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Recuperează setări prestabilite"
+
+msgid "manager.setup.prospectus"
+msgstr "Ghidul prospectului"
+
+msgid "manager.setup.submitToCategories"
+msgstr "Permite elemente trimise pe categorii"
+
+#, fuzzy
+msgid "manager.setup.submitToSeries"
+msgstr "Permite serii de elemente trimise"
+
+msgid "manager.setup.currentFormats"
+msgstr "Formatări curente"
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Categorii și serii"
+
+msgid "manager.setup.series.description"
+msgstr ""
+"Poți crea orice număr de serie pentru a te ajuta în organizare publicațiilor "
+"tale. O serie reprezintă un set special de cărți aparținătoare unei teme sau "
+"subiect pe care cineva le-a propus, de regulă un membru sau doi ai "
+"facultății, iar apoi le supraveghează. Vizitatorii vor putea să caute pe "
+"site-ul editurii pornind de la serie."
+
+msgid "manager.setup.reviewForms"
+msgstr "Formulare de revizie"
+
+msgid "manager.setup.roleType"
+msgstr "Tip de rol"
+
+msgid "manager.setup.authorRoles"
+msgstr "Roluri ale autorului"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Roluri de gestionare"
+
+msgid "manager.setup.availableRoles"
+msgstr "Funcții disponibile"
+
+msgid "manager.setup.currentRoles"
+msgstr "Funcții curente"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Roluri ale reviziei interne"
+
+msgid "manager.setup.masthead"
+msgstr "Echipă editorială"
+
+#, fuzzy
+msgid "manager.setup.editorialTeam"
+msgstr "Echipă editorială"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr ""
+"Listă de editori, directori manageri și alte persoane asociate editurii."
+
+msgid "manager.setup.files"
+msgstr "Fișiere"
+
+msgid "manager.setup.productionTemplates"
+msgstr "Producție de șabloane"
+
+#, fuzzy
+msgid "manager.files.note"
+msgstr ""
+"Notă: Navigatorul fișierelor este o funcție caracteristcă care permite "
+"fișierelor și cataloagelor asociate cu editura să fie vizualizate și "
+"manipulate direct."
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Obiectele selectate nu au putut fi convertite."
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "XML invalid:"
+
+#, fuzzy
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Exportă elemente trimise"
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"Niciun contact principal nu a fost definit de această editură. Poți accesa "
+"un contact primar la <a href=\"{$url}\">setările editurii</a>."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Obiectele specificate nu au putut fi găsite."
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "Utilizatorul specificat, „{$userName}”, nu există."
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "Procesul a eșuat în analizarea capitolelor"
+
+#, fuzzy
+msgid "emailTemplate.variable.context.contextName"
+msgstr "Numele editurii"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "URL-ul paginii principale a editurii"
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "Numele contactului principal al editurii"
+
+msgid "emailTemplate.variable.context.contextAcronym"
+msgstr "Inițialele editurii"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "Adresa de email pentru contactul principal al editurii"
+
+msgid "emailTemplate.variable.context.mailingAddress"
+msgstr "Adresa poștală a editurii"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "Numele tipului de plată"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "Suma de plată"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "Moneda sumei de plată, precum USD"
+
+msgid "emailTemplate.variable.statisticsReportNotify.publicationStatsLink"
+msgstr "Link-ul către pagina de statistici ale cărților"
+
+msgid "mailable.validateEmailContext.name"
+msgstr "Validează emailul (înregistrarea pe site-ul editurii)"
+
+msgid "mailable.validateEmailContext.description"
+msgstr ""
+"Acest email este trimis automat unui nou utilizator când se înregistrează pe "
+"site-ul edituii și când setările cer ca adresa de email să fie validată."
+
+#, fuzzy
+msgid "doi.displayName"
+msgstr "DOI"
+
+#, fuzzy
+msgid "doi.manager.displayName"
+msgstr "DOI"
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"Ghidul prospectului este un document pregătit de editură care ajută autorul "
+"să descrie materialele trimise într-un mod care permite unei edituri să "
+"determine valoarea elementelor trimise. Un prospect poate include o mulțime "
+"de elemente - de la potențial de marketing până la valoare teoretică; în "
+"orice caz, o editură trebuiă să creeze un ghid al prospectului care să "
+"completeze agenda lor de publicare."
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"ISSN (Numărul internațional standard de serie) este un număr cu 8 cifre care "
+"identifică publicații periodice incluzând foiletoane electronice. Un număr "
+"paote fi obținut de la <a href=\"https://www.issn.org\" target=\"_blank\""
+">Centrul internațional ISSN</a>."
+
+msgid "manager.setup.categories.description"
+msgstr ""
+"Poți crea o listă de categorii care să te ajute în organizarea publicațiilor "
+"tale. Categoriile sunt grupări de cărți conform tematicii, de exemplu "
+"Economie, Literatură, Poezie, și așa mai departe. Categoriile pot fi "
+"încorporate în categorii „părinte”: de exemplu, categoria Economie poate fi "
+"o categorie „părinte” pentru categoriile Microeconomie sau Macroeconomie. "
+"Vizitatorii pot să caute pe site-ul editurii pe categorii."
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Niciun obiect selectat."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Trimite o copie a emailului de recunoaștere al elementului trimis la adresa "
+"de contact principală a editurii."
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "Procesul a eșuat în analizarea formatelor de publicare"
+
+msgid "emailTemplate.variable.context.contextSignature"
+msgstr "Semnătura pentru emailurile automate ale editurii"
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr "Numele wesite-ului unde sunt găzduite mai multe editurii"
+
+msgid "mailable.statisticsReportNotify.description"
+msgstr ""
+"Acest email este trimis automat lunar către editorii și managerii editurii "
+"pentru a oferi o perspectivă generală asupra sănătății sistemului."
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Trebuie să oferi un nume acestui format."
+
+#, fuzzy
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+"Acest format de publicare nu poate fi șters deoarece este utilizat la "
+"momentul actual de o monografie în editura ta."
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Aceste genuri se utilizează pentru numirea de fișiere și sunt prezentate "
+"într-un meniu vertical în momentul încărcării fișiereor. Aceste genuri "
+"desemnate ## permit utilizatorului să asocieze fișierul cu întreaga carte "
+"99Z sau unui capitol specific prin număr ( de ex., 02)."
