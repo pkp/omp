@@ -2,7 +2,7 @@
 # Ruxandra Berescu <ruxy_berescu@yahoo.com>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-11 15:35+0000\n"
+"PO-Revision-Date: 2024-04-11 18:04+0000\n"
 "Last-Translator: Ruxandra Berescu <ruxy_berescu@yahoo.com>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/locale/ro/>"
 "\n"
@@ -1047,3 +1047,166 @@ msgid "about.aboutThisPublishingSystem"
 msgstr ""
 "Mai multe informații despre sistemul de publicare, despre platformă și "
 "despre fluxul muncii sunt oferite de OMP/PKP."
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "ISSN-ul online și cel printat nu trebuie să fie la fel."
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "ISSN online"
+
+msgid "catalog.manage.series.printIssn"
+msgstr "ISSN printat"
+
+msgid "catalog.selectSeries"
+msgstr "Selectați colecția"
+
+msgid "catalog.selectCategory"
+msgstr "Selectați categoria"
+
+msgid "catalog.manage.homepageDescription"
+msgstr ""
+"Imaginea de copertă a cărților selectate apar în partea de sus a paginii "
+"principale ca un set derulabil. Clicați pe „Carateristici” apoi pe steluță "
+"pentru a adăuga o carte în carusel. Clicați pe punctul de exclamație pentru "
+"a evidenția articolul ca unul nou, apoi trageți și lăsați articolul pentru a-"
+"l comanda."
+
+msgid "catalog.manage.categoryDescription"
+msgstr ""
+"Clicați pe „Caracteristici”, apoi pe steluță pentru a selecta o carte care "
+"apare în această categorie. Trăgeți-o și lăsați-o pentru a o comanda."
+
+msgid "catalog.manage.seriesDescription"
+msgstr ""
+"Clicați pe „Caracteristici”, apoi pe steluță pentru a selecta o carte care "
+"apare în această categorie. Trăgeți-o și lăsați-o pentru a o comanda. "
+"Colecția este identificată cu ajutorul unui editor și al unui titlu de serii "
+"dintr-o categorie sau în mod independent."
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "Carusel"
+
+msgid "catalog.manage.newRelease"
+msgstr "Publicare"
+
+msgid "catalog.manage.manageSeries"
+msgstr "Gestionați colecțiile"
+
+msgid "catalog.manage.manageCategories"
+msgstr "Gestionați categoriile"
+
+msgid "catalog.manage.noMonographs"
+msgstr "Nu există monografii atribuite."
+
+msgid "catalog.manage.featured"
+msgstr "Evidențiat"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "Evidențiat în categorie"
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "Evidențiat în serii"
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "Monografia este evidențiată."
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "Monografia nu este evidențiată."
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "Monografia este marcată ca articol nou."
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "Monografia nu este marcată ca articol nou."
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "Articol nou"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "Articol nou în categorie"
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Articol nou în serii"
+
+msgid "catalog.manage.nonOrderable"
+msgstr "Această monografie nuse poate comanda până când nu va fi publicată."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Căutați după titlu sau autor"
+
+msgid "catalog.manage.isFeatured"
+msgstr ""
+"Această monografie este evidențiată. Faceți această monografie să nu fie "
+"evidențiată."
+
+msgid "catalog.manage.isNotFeatured"
+msgstr ""
+"Această monografie nu este evidențiată. Faceți această monografie "
+"evidențiată."
+
+msgid "catalog.manage.isNewRelease"
+msgstr ""
+"Această monografie este un articol nou. Faceți această monografie să nu fie "
+"marcată ca articol nou."
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr ""
+"Această monografie nu este un articol nou. Faceți această monografie să fie "
+"marcată ca articol nou."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Nicio propunere nu a fost selectată pentru a fi adăugată în catalog."
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Una sau mai multe dintre propuneri nu a putut fi găsită."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Găsiți monografii pentru a adăuga în catalog"
+
+msgid "catalog.noTitles"
+msgstr "Niciun titlu nu a fost încă publicat."
+
+msgid "catalog.noTitlesNew"
+msgstr "Momentan niciun articol nou nu este valabil."
+
+msgid "catalog.noTitlesSearch"
+msgstr ""
+"Niciun titlu nu a fost găsit care să se potrivească cu căutarea "
+"„{$searchQuery}”."
+
+msgid "catalog.feature"
+msgstr "Evidențiați"
+
+msgid "catalog.featured"
+msgstr "Evidențiate"
+
+msgid "catalog.featuredBooks"
+msgstr "Cărți evidențiate"
+
+msgid "catalog.foundTitleSearch"
+msgstr "Un titlu a fost găsit care se potrivește cu căutarea „{$searchQuery}”."
+
+msgid "catalog.foundTitlesSearch"
+msgstr ""
+"S-au găsit {$number} rezultate care să coincidă cu căutarea „{$searchQuery}”."
+
+msgid "catalog.category.heading"
+msgstr "Toate cărțile"
+
+msgid "catalog.newReleases"
+msgstr "Articole noi"
+
+msgid "catalog.dateAdded"
+msgstr "Adăugate"
+
+msgid "catalog.publicationInfo"
+msgstr "Informații despre publicare"
+
+msgid "catalog.published"
+msgstr "Publicat"
+
+msgid "catalog.forthcoming"
+msgstr "În curând"
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "Pași de preinstalare"
