@@ -1,7 +1,7 @@
 # Malina-Giorgiana Zaharia <zahariamalina01@gmail.com>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-10 20:20+0000\n"
+"PO-Revision-Date: 2024-04-11 15:35+0000\n"
 "Last-Translator: Malina-Giorgiana Zaharia <zahariamalina01@gmail.com>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/manager/ro/"
 ">\n"
@@ -48,9 +48,8 @@ msgstr "Propuneri făcute pentru această serie"
 msgid "manager.series.assigned"
 msgstr "Editori pentru această serie"
 
-#, fuzzy
 msgid "manager.series.hideAbout"
-msgstr "Omiteți această serie din secțiunea Despre publicație"
+msgstr "Omiteți această serie din secțiunea Despre editură."
 
 msgid "manager.series.unassigned"
 msgstr "Editori de serie disponibili"
@@ -70,33 +69,28 @@ msgstr "Utilizatori existenți"
 msgid "manager.series.seriesTitle"
 msgstr "Titlul seriei"
 
-#, fuzzy
 msgid "manager.series.restricted"
-msgstr "Nu permiteți autorilor să trimită direct acestei serii."
+msgstr "Nu permite autorilor să se înscrie direct la această serie."
 
-#, fuzzy
 msgid "manager.sections.alertDelete"
 msgstr ""
-"Înainte de a șterge această serie, trebuie să mutați propunerile asociate "
-"acestei serii spre altă serie."
+"Înainte ca această serie să poată fi ștearsă, trebuie să muți cererile "
+"asociate acestei serii spre altă serie."
 
 msgid "manager.payment.generalOptions"
 msgstr "Opțiuni generale"
 
-#, fuzzy
 msgid "manager.payment.options.enablePayments"
 msgstr ""
-"Plățile vor fi posibile pentru această publicație. Țineți cont că vi se va "
-"cere să vă conectați pentru a realiza plata."
+"Plățile vor fi posibile pentru această publicație. Ține cont că ți se va "
+"cere să te conectezi pentru a realiza plăți."
 
-#, fuzzy
 msgid "manager.payment.success"
-msgstr "Setările plății au fost apdatate."
+msgstr "Setările plății au fost actualizate."
 
 msgid "manager.settings"
 msgstr "Setări"
 
-#, fuzzy
 msgid "manager.settings.pressSettings"
 msgstr "Setările editurii"
 
@@ -129,7 +123,6 @@ msgstr ""
 msgid "manager.statistics.reports.defaultReport.monographDownloads"
 msgstr "Descărcări ale fișierelor monografe"
 
-#, fuzzy
 msgid "manager.series.abstractsNotRequired"
 msgstr "Nu sunt necesare rezumate"
 
@@ -145,9 +138,8 @@ msgstr "Crează serii"
 msgid "manager.series.policy"
 msgstr "Descrierea seriei"
 
-#, fuzzy
 msgid "user.authorization.pluginLevel"
-msgstr "Nu aveți privilegii suficiente pentru a gestiona acest plugin"
+msgstr "Nu aveți privilegii suficiente pentru a gestiona acest plugin."
 
 msgid "manager.pressManagement"
 msgstr "Gestionarea editurii"
@@ -155,9 +147,8 @@ msgstr "Gestionarea editurii"
 msgid "manager.setup"
 msgstr "Configurație"
 
-#, fuzzy
 msgid "manager.setup.aboutItemContent"
-msgstr "Conținut/cuprins"
+msgstr "Cuprins"
 
 msgid "manager.users.selectRole"
 msgstr "Selectează funcția"
@@ -177,20 +168,17 @@ msgstr "Înscrie un utilizator existent"
 msgid "manager.people.enrollSyncPress"
 msgstr "Cu editura"
 
-#, fuzzy
 msgid "manager.people.mergeUsers.into.description"
 msgstr ""
 "Selectează un utilizator căruia să îi atribui drepturile de autor, sarcinile "
 "de editare, etc."
 
-#, fuzzy
 msgid "manager.people.syncUserDescription"
 msgstr ""
 "Sincronizarea înscrierii va pune pe listă toți utilizatorii înscriși în "
-"rolul editurii  pentru același rol al editurii. Această funcție permite unui "
-"grup comun de utilizatori ( ex. revizori) să fie sincronizați între edituri."
+"rolul editurii pentru același rol al editurii. Această funcție permite unui "
+"grup comun de utilizatori ( ex., revizori) să fie sincronizați între edituri."
 
-#, fuzzy
 msgid "manager.people.confirmDisable"
 msgstr ""
 "Blocați acest utilizator? Aceasta nu îi va permite utilizatorului să se "
@@ -201,79 +189,63 @@ msgstr ""
 msgid "manager.system"
 msgstr "Setări ale sistemului"
 
-#, fuzzy
 msgid "manager.system.archiving"
-msgstr "Arhivat"
+msgstr "Arhivare"
 
-#, fuzzy
 msgid "manager.system.reviewForms"
-msgstr "Forme de revizie"
+msgstr "Formate de revizie"
 
-#, fuzzy
 msgid "manager.system.readingTools"
-msgstr "Unelte de lectură"
+msgstr "Instrumente de lectură"
 
-#, fuzzy
 msgid "manager.system.payments"
 msgstr "Modalități de plată"
 
-#, fuzzy
 msgid "manager.setup.addAboutItem"
-msgstr "Adaugă Despre element"
+msgstr "Adaugă Despre articol"
 
-#, fuzzy
 msgid "manager.setup.addChecklistItem"
 msgstr "Adaugă element de pe lista de verificare"
 
-#, fuzzy
 msgid "manager.setup.addItem"
-msgstr "Adaugă item"
+msgstr "Adaugă articol"
 
-#, fuzzy
 msgid "manager.setup.addItemtoAboutPress"
-msgstr "Adaugă un element care să apară în secțiunea „Despre editură”"
+msgstr "Adaugă un articol care să apară în secțiunea „Despre editură”"
 
-#, fuzzy
 msgid "manager.setup.addNavItem"
-msgstr "Adaugă item"
+msgstr "Adaugă articol"
 
-#, fuzzy
 msgid "manager.setup.addSponsor"
-msgstr "Adaugă organizația care sponsorizează"
+msgstr "Adaugă organizația sponsor"
 
 msgid "manager.setup.announcements"
 msgstr "Anunțuri"
 
-#, fuzzy
 msgid "manager.setup.announcements.success"
 msgstr "Setările anunțurilor au fost actualizate."
 
-#, fuzzy
 msgid "manager.setup.announcementsDescription"
 msgstr ""
-"Anunțurile pot fi publicate pentru a informa cititorii  cu privire la știri "
+"Anunțurile pot fi publicate pentru a informa cititorii cu privire la știri "
 "sau evenimente legate de editură. Anunțurile publicate vor apărea pe pagina "
 "de Anunțuri."
 
 msgid "manager.setup.announcementsIntroduction"
 msgstr "Informații suplimentare"
 
-#, fuzzy
 msgid "manager.setup.appearInAboutPress"
 msgstr "(Va apărea în secțiunea Despre editură) "
 
 msgid "manager.setup.contextAbout"
 msgstr "Despre editură"
 
-#, fuzzy
 msgid "manager.setup.contextSummary"
-msgstr "Sumarul editurii"
+msgstr "Rezumatul publicației"
 
-#, fuzzy
 msgid "manager.setup.copyediting"
 msgstr "Editori ai textului original"
 
-#, fuzzy
 msgid "manager.setup.copyeditInstructions"
 msgstr "Instrucțiuni pentru editori ai textului original"
 
@@ -282,22 +254,19 @@ msgstr ""
 "Acesta va înlocui oricare setare locală de publicare specifică configurației "
 "locale"
 
-#, fuzzy
 msgid "manager.series.seriesEditorInstructions"
 msgstr ""
 "Adăgați un editor pentru această serie din editorii disponibili. Odată "
 "adăugat, stabiliți dacă editorul seriei va supraveghea revizia (revizie în "
 "grup) și/sau EDITAREA (revizuirea formatării, aranjare în pagină și "
-"corectare) propunerilor pentru această serie. Editorii seriei sunt creați "
-"prin a clica <a href=\"{$editoriSerieUrl}\">editori serie</a> sub opțiunea "
+"corectare) cererilor pentru această serie. Editorii seriei sunt creați prin "
+"a apăsa pe <a href=\"{$editoriSerieUrl}\">Editori serie</a> sub opțiunea "
 "Roluri în Managementul Publicației."
 
-#, fuzzy
 msgid "manager.series.confirmDeactivateSeries.error"
 msgstr ""
 "Cel puțin una dintre serii trebuie să fie activă. Vizitează setările "
-"fluxului de lucru pentru a dezactiva toate propunerile pentru această "
-"publicație."
+"fluxului de lucru pentru a dezactiva toate cererile pentru această editură."
 
 msgid "manager.languages.noneAvailable"
 msgstr ""
@@ -310,37 +279,31 @@ msgstr ""
 "Aceste câmpuri sunt obligatorii pentru a publica <a href=\"https://en."
 "wikipedia.org/wiki/ONIX_for_Books\">ONIX metadata</a>."
 
-#, fuzzy
 msgid "manager.series.form.reviewFormId"
-msgstr "Vă rog să vă asigurați că ați ales o formă de revizuire corectă."
+msgstr "Vă rog să vă asigurați că ați ales o formă de revizie corectă."
 
-#, fuzzy
 msgid "manager.people.allSiteUsers"
 msgstr "Înscrie un utilizator de pe acest site la editură"
 
-#, fuzzy
 msgid "manager.people.mergeUsers.from.description"
 msgstr ""
-"Selectează un utilizator pentru a-l asocia cu un alt cont ( de ex. atunci "
+"Selectează un utilizator pentru a-l asocia cu un alt cont ( de ex., atunci "
 "când cineva are două conturi de utilizator). Contul selectat prima dată va "
 "fi șters, iar depunerile de documente, sarcinile etc. vor fi atribuite celui "
 "de-al doilea cont."
 
-#, fuzzy
 msgid "manager.setup.contextAbout.description"
 msgstr ""
 "Include orice informație despre editura ta care ar putea fi de interes "
 "pentru cititori, autori sau revizori. Aceasta ar putea include politica ta "
-"deschisă de acces, obiectivul și scopul editurii, dezvăluirea sponsorilor "
-"sau istoria editurii."
+"de acces deschis, obiectivul și scopul editurii, dezvăluirea sponsorilor sau "
+"istoria editurii."
 
-#, fuzzy
 msgid "manager.people.confirmRemove"
 msgstr ""
 "Doriți să eliminați acest utilizator din această editură? Această acțiune va "
 "elimina utilizatorul din toate rolurile în această editură."
 
-#, fuzzy
 msgid "manager.people.noAdministrativeRights"
 msgstr ""
 "Ne pare rău, dar nu ai drepturi administrative asupra acestui utilizator. "
@@ -349,11 +312,10 @@ msgstr ""
 "\t\t\t<li> Utilizatorul este administrator al site-ului</li>\n"
 "\t\t\t<li>Utilizatorul este activ la edituri pe care nu le gestionezi</li>\n"
 "\t\t</ul>\n"
-"\tAceastă sarcină trebuie  dusă la îndeplinire de către administratorul site-"
+"\tAceastă sarcină trebuie dusă la îndeplinire de către administratorul site-"
 "ului.\n"
 "\t"
 
-#, fuzzy
 msgid "manager.setup.announcementsIntroduction.description"
 msgstr ""
 "Introduceți informații suplimentare care ar trebui să le apară cititorilor "
@@ -391,20 +353,19 @@ msgstr "Funcții disponibile"
 msgid "manager.users.currentRoles"
 msgstr "Funcții curente"
 
-#, fuzzy
 msgid "manager.setup.copyeditInstructionsDescription"
 msgstr ""
-"Instrucțiuni de Copyedit vor fi disponibile pentru copyeditors, autori și "
-"editori de secțiuni în stagiul de editare al trimiterii. Mai jos este un set "
-"automat de instrucțiuni în HTML, care pot fi modificate sau înlocuite de "
-"managerul editurii în orice moment ( în HTML sau în text simplu)."
+"Instrucțiuni de corectare a textului vor fi disponibile pentru revizori, "
+"autori și editori de secțiuni în stagiul de editare al articolului. Mai jos "
+"este un set automat de instrucțiuni în HTML, care pot fi modificate sau "
+"înlocuite de managerul editurii în orice moment ( în HTML sau în text "
+"simplu)."
 
 msgid "manager.setup.copyrightNotice"
 msgstr "Notificare privind dreptul de autor"
 
-#, fuzzy
 msgid "manager.setup.coverage"
-msgstr "Raport/ Acoperire"
+msgstr "Raport"
 
 msgid "manager.setup.coverThumbnailsMaxHeight"
 msgstr "Înălțimea maximă a imaginii de copertă"
@@ -412,20 +373,17 @@ msgstr "Înălțimea maximă a imaginii de copertă"
 msgid "manager.setup.coverThumbnailsMaxWidth"
 msgstr "Lățimea maximă a imaginii de copertă"
 
-#, fuzzy
 msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
 msgstr ""
 "Imaginile vor fi reduse când sunt mai mari decât această mărime, dar nu vor "
-"fi niciodată lățite sau scurtate pentru a se încadra în aceste dimensiuni."
+"fi niciodată lățite sau îngustate pentru a se încadra în aceste dimensiuni."
 
-#, fuzzy
 msgid "manager.setup.customizingTheLook"
-msgstr "Pasul 5. Personalizarea aspectului și a vizualizării"
+msgstr "Pasul 5. Personalizarea aspectului și a stilului"
 
 msgid "manager.setup.customTags"
 msgstr "Etichete personalizate"
 
-#, fuzzy
 msgid "manager.setup.customTagsDescription"
 msgstr ""
 "Etichete HTML de antet personalizate pentru a fi inserate în antetul "
@@ -453,9 +411,8 @@ msgstr ""
 msgid "manager.setup.disciplineProvideExamples"
 msgstr "Oferă exemple de discipline academice relevante pentru această editură"
 
-#, fuzzy
 msgid "manager.setup.displayCurrentMonograph"
-msgstr "Adaugă cuprinsul pentru monografia curentă (dacă e disponibilă)."
+msgstr "Adaugă cuprinsul pentru monografia curentă (dacă e disponibil)."
 
 msgid "manager.setup.displayOnHomepage"
 msgstr "Cuprinsul paginii Acasă"
@@ -475,16 +432,14 @@ msgstr "Arată lansări noi pe pagina principală"
 msgid "manager.setup.displayNewReleases.label"
 msgstr "Noi lansări"
 
-#, fuzzy
 msgid "doi.manager.settings.doiSuffixLegacy"
 msgstr ""
 "Utilizează modele implicite.<br />%p.%m pentru monografii <br />%p.%m.c%c "
 "pentru capitole<br />%p.%m.%f pentru formate de publicare <br />%p.%m.%f.%s "
 "pentru fișiere."
 
-#, fuzzy
 msgid "doi.manager.settings.doiCreationTime.copyedit"
-msgstr "La atingerea stadiului de copiere"
+msgstr "La atingerea stadiului de revizie"
 
 msgid "manager.dois.formatIdentifier.file"
 msgstr "Formatul / {$format}"
@@ -495,20 +450,17 @@ msgstr "Decizia editorului"
 msgid "manager.setup.emailBounceAddress"
 msgstr "Adresă de respingere"
 
-#, fuzzy
 msgid "manager.setup.emails"
 msgstr "Identificarea emailului"
 
 msgid "manager.setup.emailSignature"
 msgstr "Semnătura"
 
-#, fuzzy
 msgid "manager.setup.emailSignature.description"
 msgstr ""
 "Emailurile trimise automat din partea editurii vor avea următoarea semnătură "
 "adăugată."
 
-#, fuzzy
 msgid "manager.setup.enableAnnouncements.enable"
 msgstr "Permite anunțuri"
 
@@ -517,11 +469,9 @@ msgstr ""
 "Anunțurile pot fi publicate pentru a informa cititorii cu privire la noutăți "
 "sau evenimente, Anunțurile publicate vor apărea pe pagina de Anunțuri."
 
-#, fuzzy
 msgid "manager.setup.numAnnouncementsHomepage"
 msgstr "Arată pe pagina principală"
 
-#, fuzzy
 msgid "manager.setup.numAnnouncementsHomepage.description"
 msgstr ""
 "Numărul anunțurilor care apar pe pagina principală. Lasă acest spațiu liber "
@@ -530,26 +480,22 @@ msgstr ""
 msgid "manager.setup.enablePressInstructions"
 msgstr "Permite editurii să apară public pe site"
 
-#, fuzzy
 msgid "manager.setup.enablePublicMonographId"
 msgstr ""
-"Identificatorii personalizați vor fi folosiți pentru a identifica elementele "
+"Numerele DOI personalizate vor fi folosite pentru a identifica elementele "
 "publicate."
 
-#, fuzzy
 msgid "manager.setup.enableUserRegistration"
 msgstr "Vizitatorii pot să se înregistreze cu un cont de utilizator."
 
 msgid "manager.setup.focusAndScope"
 msgstr "Punctul central și scopul editurii"
 
-#, fuzzy
 msgid "manager.setup.focusAndScope.description"
 msgstr ""
-"Informează autorii, cititorii și librarii cu privire la variabilitate de "
-"monografii și alte elemente pe care editura le va publica."
+"Informează autorii, cititorii și bibliotecarii cu privire la variabilitatea "
+"de monografii și alte elemente pe care editura le va publica."
 
-#, fuzzy
 msgid "manager.setup.focusScope"
 msgstr "Punct central și scop"
 
@@ -559,23 +505,18 @@ msgstr "<strong>EXEMPLU DE DATE HTML</strong>"
 msgid "manager.setup.forAuthorsToIndexTheirWork"
 msgstr "Pentru ca autorii să își indexeze scrierile"
 
-#, fuzzy
 msgid "manager.setup.form.contactEmailRequired"
 msgstr "Adresa de email de contact principală este necesară."
 
-#, fuzzy
 msgid "manager.setup.form.contactNameRequired"
 msgstr "Numele de contact principal este necesar."
 
-#, fuzzy
 msgid "manager.setup.form.numReviewersPerSubmission"
 msgstr "Numărul de revizori per cerere este necesar."
 
-#, fuzzy
 msgid "manager.setup.form.supportEmailRequired"
 msgstr "Adresa de email alternativă este necesară."
 
-#, fuzzy
 msgid "manager.setup.form.supportNameRequired"
 msgstr "Numele alternativ este necesar."
 
@@ -591,17 +532,15 @@ msgstr "Instrucțiuni"
 msgid "manager.setup.preparingWorkflow"
 msgstr "Pasul 3. Pregătirea fluxului de lucru"
 
-#, fuzzy
 msgid "manager.setup.identity"
 msgstr "Identitate media"
 
 msgid "manager.setup.information"
 msgstr "Informație"
 
-#, fuzzy
 msgid "manager.setup.information.description"
 msgstr ""
-"Descrieri sumare ale editurii pentru librari și potențiali autori și "
+"Descrieri sumare ale editurii pentru bibliotecari și potențiali autori și "
 "cititori. Acestea sunt disponibile în bara laterală a site-ului atunci când "
 "secțiunea „Informații” a fost adăugată."
 
@@ -623,9 +562,8 @@ msgstr "Instituția"
 msgid "manager.setup.itemsPerPage"
 msgstr "Elemente per pagină"
 
-#, fuzzy
 msgid "manager.setup.keyInfo"
-msgstr "Informații cheie"
+msgstr "Informație cheie"
 
 msgid "manager.setup.keyInfo.description"
 msgstr ""
@@ -641,13 +579,11 @@ msgstr "Editori grafici"
 msgid "manager.setup.layoutInstructions"
 msgstr "Instrucțiuni grafice"
 
-#, fuzzy
 msgid "manager.setup.layoutTemplates"
 msgstr "Șabloane grafice"
 
-#, fuzzy
 msgid "manager.setup.layoutTemplates.file"
-msgstr "Fișier șablon"
+msgstr "Model de fișier"
 
 msgid "manager.setup.layoutTemplates.title"
 msgstr "Titlu"
@@ -658,20 +594,17 @@ msgstr "Liste"
 msgid "manager.setup.lists.success"
 msgstr "Setările din listă au fost actualizate."
 
-#, fuzzy
 msgid "manager.setup.look"
 msgstr "Aspect și stil"
 
-#, fuzzy
 msgid "manager.setup.look.description"
 msgstr ""
-"Antetul paginii principate, cuprins, antetul editurii, subsol, bară de "
-"navigare și fișă de stil."
+"Antet pagină principală, cuprins, antet editură, subsol, bară de navigare și "
+"fișă de stil."
 
 msgid "manager.setup.settings"
 msgstr "Setări"
 
-#, fuzzy
 msgid "manager.setup.management.description"
 msgstr ""
 "Acces și securitate, planificare, anunțuri, corectare, grafică și corectori."
@@ -679,7 +612,6 @@ msgstr ""
 msgid "manager.setup.managementOfBasicEditorialSteps"
 msgstr "Managementul pașilor de bază ale editurii"
 
-#, fuzzy
 msgid "manager.setup.managingPublishingSetup"
 msgstr "Managementul și configurația publicației"
 
@@ -689,7 +621,6 @@ msgstr "Pasul 4. Gestionarea setărilor"
 msgid "manager.setup.masthead.success"
 msgstr "Detaliile redacționale ale editurii au fost actualizate."
 
-#, fuzzy
 msgid "manager.setup.emailBounceAddress.disabled"
 msgstr ""
 "Pentru a trimite emailuri care nu pot fi trimise la o adresă de respingere, "
@@ -698,15 +629,14 @@ msgstr ""
 "Configurația serverului poate fi solicitată, așa cum este indicat în "
 "documentația OMP."
 
-#, fuzzy
 msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
 msgstr ""
 "OMP îndeplinește protocolul pentru colectarea metadatelor al <a href=\"https"
 "://www.openarchives.org\" target=\"_blank\">inițiativei arhivelor deschise</"
 "a> , care este standardul emergent pentru obținerea accesului bine indexat "
 "la resurse de căutare electronică la o scală globală. Autorii vor folosi un "
-"șablon similar pentru a oferi metadate pentru trimiterea lor. Managerul "
-"editurii trebuie să selecteze categorii pentru idnexare și prezintă autorii, "
+"șablon similar pentru a oferi metadate pentru cererea lor. Managerul "
+"editurii trebuie să selecteze categorii pentru indexare și prezintă autorii, "
 "oferind exemple relevante pentru a-i susține în indexarea scrierilor lor, "
 "separând termenii prin punc și virgulă (de ex., term1; term2). Intrările "
 "trebuie să fie introduse ca exemple folosind „Ex.” sau „De ex.,”."
@@ -717,17 +647,15 @@ msgstr ""
 "de editare) pentru a într-o listă înainte de arăta elementele car vor apărea "
 "pe altă pagină."
 
-#, fuzzy
 msgid "manager.setup.disciplineDescription"
 msgstr ""
 "Util atunci când editura depășește bariere disciplinare și/sau autorii "
 "prezintă elemente multidisciplinare."
 
-#, fuzzy
 msgid "manager.setup.enablePublicGalleyId"
 msgstr ""
-"Identificatorii personalizați vor fi folosiți pentru a identifica galere ( "
-"de ex. fișiere HTML sau PDF) pentur elemente publicate."
+"Numerele DOI personalizate vor fi folosite pentru a identifica fișiere ( de "
+"ex. fișiere HTML sau PDF) pentru articole publicate."
 
 msgid "manager.setup.displayFeaturedBooks"
 msgstr "Arată cărțile recomandate pe pagina principală"
@@ -737,37 +665,34 @@ msgstr ""
 "Permite identificatorilor de obiect digital (DOI) care să fie asociate cu "
 "lucrări publicate de această editură."
 
-#, fuzzy
 msgid "manager.setup.layoutInstructionsDescription"
 msgstr ""
 "Instrucțiunile grafice pot fi pregătite pentru formatarea sau publicarea "
-"elementelor la editură și pot fi introduse în HTML sau text simplu. Ele vor "
-"fi disponibile în secțiunea     Editor grafic și Secțiunea editor pe pagina "
-"de editare a fiecărei cereri. (deoarece fiecare editură poate utiliza "
-"propriile formate de fișiere, standarde bibliografice, fișe de stil, etc., "
-"un set standard de instrucțiuni nefiind oferit.)"
+"articolelor la editură și pot fi introduse în HTML sau text simplu. Ele vor "
+"fi disponibile în secțiunea     Editor grafic și Editor secție, pe pagina de "
+"editare a fiecărei cereri. (deoarece fiecare editură poate utiliza propriile "
+"formate de fișiere, standarde bibliografice, fișe de stil, etc., un set "
+"standard de instrucțiuni nefiind oferit.)"
 
-#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
 msgstr ""
 "Selectează tipurile de lucrări publicate de această editură cărora să li se "
-"asocieze un cod DOI. Cele mai multe edituri asociază codul DOI monografiilor/"
-"capitolelor, dar ai putea să asociezi DOI tuturor elementelor publicate."
+"asocieze un număr DOI. Cele mai multe edituri asociază numărul DOI "
+"monografiilor/capitolelor, dar ai putea să asociezi numere DOI tuturor "
+"articolelor publicate."
 
-#, fuzzy
 msgid "manager.setup.emailBounceAddress.description"
 msgstr ""
-"Orice email care nu poate fi trimis va deveni un mesaj de eroare la această "
-"adresă."
+"Orice email care nu poate fi trimis va deveni un mesaj de eroare pentru "
+"această adresă."
 
-#, fuzzy
 msgid "manager.setup.layoutTemplatesDescription"
 msgstr ""
 "Șabloanele pot fi încărcate pentru a apărea în secțiunea Grafică pentru "
 "fiecare dintre formatele standard publicate la editură ( de ex., monografie, "
 "recenzie de carte, etc.) folosind orice format de fișier (de ex., pdf, doc, "
 "etc.) cu adnotări adăugate pentru a specifica fontul, mărimea, margini, etc. "
-"pentru a servi drept ghid pentru Editorii grafici și Corectori."
+"pentru a servi drept ghid pentru editorii grafici și corectori."
 
 msgid "manager.setup.publicationFormat.physicalFormat"
 msgstr "Este un format fizic (non-digital)?"
@@ -1011,3 +936,268 @@ msgstr ""
 "într-un meniu vertical în momentul încărcării fișiereor. Aceste genuri "
 "desemnate ## permit utilizatorului să asocieze fișierul cu întreaga carte "
 "99Z sau unui capitol specific prin număr ( de ex., 02)."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Nu s-a încărcat niciun fișier imagine."
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Nu s-a încărcat nicio fișă de stil."
+
+msgid "manager.setup.note"
+msgstr "Notă"
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+"Când utilizezi un email pentru notificarea autorului, include adresele de "
+"email ale tuturor coautorilor pentru cereri de autori multipli, și nu doar "
+"utilizatorul care trimite cererea."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr ""
+"Corectarea va fi realizată de un editor sau editor de secție responsabil cu "
+"cererea."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+"Un editor sau editor de secție responsabil cu cererea va pregăti fișierele "
+"HTML, PDF, etc."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Linkuri pagină"
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Accesează conținutul editurii"
+
+msgid "manager.setup.onlineIssn"
+msgstr "ISSN online"
+
+msgid "manager.setup.policies"
+msgstr "Politici"
+
+msgid "manager.setup.policies.description"
+msgstr ""
+"Obiectivul revistei, revizie pe grup, secțiuni, confidențialitate, "
+"securitate și altele."
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "Declarația de confidențialitate a fost actualizată."
+
+msgid "manager.setup.pressDescription"
+msgstr "Descrierea pe scurt a editurii"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "O descriere pe scurt a editurii tale."
+
+msgid "manager.setup.aboutPress"
+msgstr "Despre editură"
+
+msgid "manager.setup.pressArchiving"
+msgstr "Arhive ale publicației"
+
+msgid "manager.setup.homepageContent"
+msgstr "Conținut pagină principală"
+
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+"Pagină principală a editurii conține linkuri de navigare prestabilite. "
+"Conținut adițional al paginii principale poate fi adăugat folosind una sau "
+"toate opțiunile următoare, care vor apărea în ordinea descrisă."
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Conținut pagină principală publicație"
+
+msgid "manager.setup.contextInitials"
+msgstr "Inițiale edituriă"
+
+msgid "manager.setup.selectCountry"
+msgstr ""
+"Selectează țara în care este localizată editura sau țara adresei poștale "
+"pentru editură sau editor."
+
+msgid "manager.setup.layout"
+msgstr "Grafică editură"
+
+msgid "manager.setup.pageHeader"
+msgstr "Antet pagină publicație"
+
+msgid "manager.setup.pressPolicies"
+msgstr "Pasul 2. Politicile publicației"
+
+msgid "manager.setup.pressSetup"
+msgstr "Configurație publicație"
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Configurația publicației tale a fost actualizată."
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Formatul fișei de stil nu este valid. Formatul acceptat este .css."
+
+msgid "manager.setup.pressTheme"
+msgstr "Tema publicației"
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Miniatură editură"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr ""
+"Un logo mic sau o reprezentare a editurii care poate fi folosită în liste de "
+"edituri."
+
+msgid "manager.setup.contextTitle"
+msgstr "Nume publicație"
+
+msgid "manager.setup.printIssn"
+msgstr "Printează ISSN"
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Instrucțiuni de corectare"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "format de publicare"
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "fișier"
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"Nu poți genera un DOI deoarece uneia sau mai multor părți ale șablonului DOI "
+"le lipsesc date."
+
+msgid "doi.editor.patternNotResolved"
+msgstr "DOI nu poate fi atribuit deoarece conține un șablon nerezolvat."
+
+msgid "doi.editor.assigned"
+msgstr "DOI este atribuit acestui {$pubObjectType}."
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Sufixul DOI dat este deja utilizat pentru un alt element. Te rog să "
+"introduci un sufix DOI unic pentru fiecare element."
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Șterge"
+
+#, fuzzy
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Ești sigur că vrei să ștergi DOI existent?"
+
+msgid "doi.editor.assignDoi"
+msgstr "Atribuie DOI {$pubId} acestui {$pubObjectType}"
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr ""
+"DOI {$pubId} nu poate fi atribuit deoarece conține un șablon nerezolvat."
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "DOI {$pubId} a fost atribuit."
+
+msgid "doi.editor.missingPrefix"
+msgstr "DOI trebuie să înceapă cu {$doiPrefix}."
+
+msgid "doi.editor.preview.publication"
+msgstr "DOI pentru această publicație va fi {$doi}."
+
+msgid "doi.editor.preview.publication.none"
+msgstr "Nu a fost atribuit un DOI acestei publicații."
+
+msgid "doi.editor.preview.chapters"
+msgstr "Capitol: {$title}"
+
+msgid "doi.editor.preview.files"
+msgstr "Fișier: {$title}"
+
+msgid "doi.editor.preview.objects"
+msgstr "Element"
+
+#, fuzzy
+msgid "doi.manager.submissionDois"
+msgstr "DOI monografie"
+
+msgid "mailable.decision.initialDecline.notifyAuthor.description"
+msgstr ""
+"Acest email notifică autorul că cererea este respinsă înainte de a fi "
+"trimisă spre revizie deoarece cererea nu respectă cerințele publicării ale "
+"editurii."
+
+msgid "manager.institutions.noContext"
+msgstr "Editura acestei instituției nu poate fi găsită."
+
+msgid "manager.manageEmails.description"
+msgstr "Editează mesajele trimise în emailuri de la această editură."
+
+#, fuzzy
+msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
+msgstr "Trimite spre revizie internă"
+
+msgid "mailable.indexRequest.name"
+msgstr "Index solicitat"
+
+msgid "mailable.indexComplete.name"
+msgstr "Index completat"
+
+msgid "mailable.layoutComplete.name"
+msgstr "Schițe complete"
+
+msgid "mailable.publicationVersionNotify.name"
+msgstr "Versiune nouă creată"
+
+msgid "mailable.publicationVersionNotify.description"
+msgstr ""
+"Acest email notifică automat editorii desemnați când o nouă versiune a "
+"cererii a fost creată."
+
+msgid "mailable.submissionNeedsEditor.description"
+msgstr ""
+"Acest email este trimis către managerii editurii când o nouă cerere este "
+"făcută și niciun editor nu este desemnat."
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "capitol"
+
+msgid "doi.editor.customSuffixMissing"
+msgstr "DOI nu poate fi atribuit deoarece sufixul personalizat lipsește."
+
+msgid "doi.editor.canBeAssigned"
+msgstr ""
+"Ceea ce vezi este o previzualizare a DOI. Selectează căsuța și salvează "
+"forma pentru a atribui DOI."
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr "DOI nu poate fi atribuit deoarece sufixul personalizat lipsește."
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Format publicație: {$title}"
+
+#, fuzzy
+msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
+msgstr ""
+"Acest email notifică autorul că elementul este trimis către faza de revizie "
+"internă."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr ""
+"Un editor sau editor de secție responsabil cu cererea va verifica fișierele."
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Limitează numărul de linkuri care apar în pagini succesive într-o listă."
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+"Componente multiple ale aspectului editurii pot fi configurate din această "
+"pagină, incluzând elemente de antet și subsol, stilul și tematica editurii, "
+"dar și modul în care listele de informații sunt prezentate utilizatorilor."
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+"Include orice informație despre editura ta care poate fi de interes pentru "
+"cititori, autori sau revizori. Această poate include politica ta de acces "
+"deschis, punctul central și scopul editurii, înștiințare copyright, "
+"descoperirea sponsorilor, istoricul editurii, dar și o declarație de "
+"confidențialitate."
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr ""
+"Pagina principală a editurii conține linkuri de navigare prestabilite. "
+"Conținutul adițional al paginii principale poate fi adăugat folosind una sau "
+"toate dintre opțiunile următoare, care vor apărea în ordinea descrisă."
