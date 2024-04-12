@@ -2,7 +2,7 @@
 # Ruxandra Berescu <ruxy_berescu@yahoo.com>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-11 18:04+0000\n"
+"PO-Revision-Date: 2024-04-12 21:16+0000\n"
 "Last-Translator: Ruxandra Berescu <ruxy_berescu@yahoo.com>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/locale/ro/>"
 "\n"
@@ -1210,3 +1210,496 @@ msgstr "În curând"
 
 msgid "installer.preInstallationInstructionsTitle"
 msgstr "Pași de preinstalare"
+
+msgid "installer.preInstallationInstructions"
+msgstr ""
+"<p>1. Următoarele fișiere și directoare (și conținutul lor) trebuie să fie "
+"inscriptibile:</p>\n"
+"<ul>\n"
+"\t<li><tt>config.inc.php</tt> este inscriptibil (opțional): "
+"{$writable_config}</li>\n"
+"\t<li><tt>public/</tt> este inscriptibil: {$writable_public}</li>\n"
+"\t<li><tt>cache/</tt> este inscriptibil: {$writable_cache}</li>\n"
+"\t<li><tt>cache/t_cache/</tt> este inscriptibil: "
+"{$writable_templates_cache}</li>\n"
+"\t<li><tt>cache/t_compile/</tt> este inscriptibil: "
+"{$writable_templates_compile}</li>\n"
+"\t<li><tt>cache/_db</tt> este inscriptibil: {$writable_db_cache}</li>\n"
+"</ul>\n"
+"\n"
+"<p>2. Un director pentru a stoca fișierele încărcate trebuie să fie creat și "
+"făcut inscriptibil (a se vedea \"Setări fișier\" de mai jos).</p>"
+
+msgid "installer.localeSettingsInstructions"
+msgstr ""
+"Pentru asistență Unicode completă, PHP trebuie să fie compilat în "
+"compatibilitate cu biblioteca <a href=\"https://www.php.net/mbstring\" "
+"target=\"_blank\">mbstring</a> (activată din fabrică în cele mai recente "
+"instalări ale PHP). Este posibil să întâlniți probleme atunci când folosiți "
+"grupuri mari de caractere dacă server-ul dumneavoastră nu respectă "
+"următoarele cerințe.\n"
+"<br /><br />\n"
+"Server-ul dumneavoastră este momentan compatibil cu mbstring: "
+"<strong>{$supportsMBString}</strong>"
+
+msgid "installer.allowFileUploads"
+msgstr ""
+"Server-ul dumneavoastră acceptă momentan încărcări de fișiere: "
+"<strong>{$allowFileUploads}</strong>"
+
+msgid "installer.maxFileUploadSize"
+msgstr ""
+"Server-ul dumneavoastră acceptă momentan o dimensiune maximă de încărcare de "
+"fișiere de: <strong>{$maxFileUploadSize}</strong>"
+
+msgid "installer.localeInstructions"
+msgstr ""
+"Limba principală de folosit pentru acest sistem. Vă rugăm consultați "
+"documentarea OMP dacă doriți să oferiți asistență cu alte limbi care nu apar "
+"în această listă."
+
+msgid "installer.filesDirInstructions"
+msgstr ""
+"Introduceți ruta completă către un director unde se vor salva fișierele "
+"încărcate. Acest director nu ar trebui să fie accesibil în mod direct prin "
+"web. <strong>Vă rugăm să vă asigurați că acest director există și este "
+"inscriptibil conform instalării. </strong> Numele rutelor Windows ar trebui "
+"să folosească bară oblică, de exemplu „C:/mypress/files”."
+
+msgid "installer.upgradeApplication"
+msgstr "Actualizați Open Monograph Press"
+
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>IMPORTANT!</h4>\n"
+"<p>Instalatorul nu a putut suprascrie automat fișierul de configurare. "
+"Înainte de a încerca să utilizați sistemul, vă rugăm să deschideți <tt>config"
+".inc.php</tt> într-un editor de text adecvat și să înlocuiți conținutul "
+"acestuia cu conținutul câmpului text de mai jos.</p>"
+
+msgid "log.review.reviewDueDateSet"
+msgstr ""
+"Data scadentă pentru tura {$round} de revizii de propuneri {$submissionId} "
+"de {$reviewerName} a fost setată la {$dueDate}."
+
+msgid "log.review.reviewDeclined"
+msgstr ""
+"{$reviewerName} a respins revizia pentru propunerea {$submissionId} din tura "
+"{$round}."
+
+msgid "log.review.reviewAccepted"
+msgstr ""
+"{$reviewerName} a acceptat tura {$round} de revizii pentru propuneri "
+"{$submissionId}."
+
+msgid "log.review.reviewUnconsidered"
+msgstr ""
+"{$editorName} a marcat tura {$round} de revizii pentru propuneri "
+"{$submissionId} ca neconsiderată."
+
+msgid "log.editor.decision"
+msgstr ""
+"Decizia unui editor ({$decision}) pentru monografia {$submissionId} a fost "
+"înregistrată de {$editorName}."
+
+msgid "log.editor.recommendation"
+msgstr ""
+"Recomandarea unui editor ({$decision}) pentru monografia {$submissionId} a "
+"fost înregistrată de {$editorName}."
+
+msgid "log.editor.archived"
+msgstr "Propunerea {$submissionId} a fost arhivată."
+
+msgid "log.editor.restored"
+msgstr "Propunerea {$submissionId} a fost restaurată la listă."
+
+msgid "log.editor.editorAssigned"
+msgstr ""
+"{$submissionId} a fost atribuit ca editor pentru propunerea {$submissionId}."
+
+msgid "log.proofread.assign"
+msgstr ""
+"{$assignerName} a atribuit {$proofreaderName} pentru a face proofreading "
+"propunerii {$submissionId}."
+
+msgid "log.imported"
+msgstr "{$userName} a importat monografia {$submissionId}."
+
+msgid "notification.addedIdentificationCode"
+msgstr "Cod de identificare adăugat."
+
+msgid "notification.editedIdentificationCode"
+msgstr "Cod de identificare editat."
+
+msgid "notification.addedPublicationDate"
+msgstr "Dată pentru publicare adăugată."
+
+msgid "notification.editedPublicationDate"
+msgstr "Dată pentru publicare editată."
+
+msgid "notification.removedPublicationDate"
+msgstr "Dată pentru publicare eliminată."
+
+msgid "notification.addedPublicationFormat"
+msgstr "Formatare de publicare adăugată."
+
+msgid "notification.editedPublicationFormat"
+msgstr "Formatare de publicare editată."
+
+msgid "notification.addedSalesRights"
+msgstr "Drepturi de vânzări adăugate."
+
+msgid "notification.editedSalesRights"
+msgstr "Drepturi de vânzări editate."
+
+msgid "notification.removedSalesRights"
+msgstr "Drepturi de vânzări eliminate."
+
+msgid "notification.addedRepresentative"
+msgstr "Reprezentant adăugat."
+
+msgid "notification.editedRepresentative"
+msgstr "Reprezentant editat."
+
+msgid "notification.removedRepresentative"
+msgstr "Reprezentant eliminat."
+
+msgid "notification.addedMarket"
+msgstr "Magazin adăugat."
+
+msgid "notification.removedMarket"
+msgstr "Magazin eliminat."
+
+msgid "notification.addedSpotlight"
+msgstr "Evidențiere adăugată."
+
+msgid "notification.editedSpotlight"
+msgstr "Evidențiere editată."
+
+msgid "notification.removedSpotlight"
+msgstr "Evidențiere eliminată."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "Catalog de metadate salvat."
+
+msgid "notification.proofsApproved"
+msgstr "Revizii aprobate."
+
+msgid "notification.removedSubmission"
+msgstr "Propunere eliminată."
+
+msgid "notification.type.submissionSubmitted"
+msgstr "O nouă monografie „{$title}” a fost trimisă."
+
+msgid "notification.type.editing"
+msgstr "Editare evenimente"
+
+msgid "notification.type.reviewing"
+msgstr "Revizie evenimente"
+
+msgid "notification.type.site"
+msgstr "Evenimente pe website"
+
+msgid "notification.type.submissions"
+msgstr "Evenimente de propuneri"
+
+msgid "notification.type.public"
+msgstr "Anunțuri publice"
+
+msgid "notification.type.editorAssignmentTask"
+msgstr ""
+"S-a realizat o propunere pentru o monografie pentru care este necesar să i "
+"se atribuie un editor."
+
+msgid "notification.type.layouteditorRequest"
+msgstr "Vă rugăm să revizuiți aspectul pentru „{$title}”."
+
+msgid "notification.type.indexRequest"
+msgstr "Vă rugăm să creați un index pentru „{$title}”."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "Procesul de revizie internă a început."
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "Aprobare în așteptare."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+"Monografia nu va apărea în catalog până când aceasta nu va fi publicată. "
+"Pentru a adăuga această carte la catalog, clichează pe fila Publicații."
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "Nicio metodă de plată nu a fost configurată."
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "Gestionarea Catalogului"
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr ""
+"Accesul dumneavoastră a fost respins pentru că se pare că nu sunteți un "
+"revizor valid pentru această monografie."
+
+msgid "user.authorization.monographReviewer"
+msgstr ""
+"Accesul dumneavoastră a fost respins pentru că se pare că nu sunteți un "
+"revizor atribuit acestei monografii."
+
+msgid "user.authorization.monographFile"
+msgstr "Accesul dumneavoastră a fost respins pentru acest fișier monografic."
+
+msgid "user.authorization.invalidMonograph"
+msgstr "Monografie invalidă sau nesolicitată!"
+
+msgid "user.authorization.noContext"
+msgstr ""
+"Nicio editură nu a fost găsită care să corespundă cerinței dumneavoastră."
+
+msgid "user.authorization.seriesAssignment"
+msgstr ""
+"Încercați să accesați o monografie care nu face parte din seria "
+"dumneavoastră."
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr "Acces respins! Nu ați fost atribuit acestui stagiu de flux de muncă."
+
+msgid "payment.directSales"
+msgstr "Descarcă din Website-ul Editurii"
+
+msgid "payment.directSales.price"
+msgstr "Preț"
+
+msgid "payment.directSales.availability"
+msgstr "Valabilitate"
+
+msgid "payment.directSales.catalog"
+msgstr "Catalog"
+
+msgid "payment.directSales.approved"
+msgstr "Aprobat"
+
+msgid "payment.directSales.priceCurrency"
+msgstr "Preț ({$currency})"
+
+msgid "payment.directSales.numericOnly"
+msgstr ""
+"Prețurile trebuie să conțină numai numere. Nu includeți simboluri valutare."
+
+msgid "payment.directSales.directSales"
+msgstr "Vânzări directe"
+
+msgid "payment.directSales.amount"
+msgstr "{$amount} ({$currency})"
+
+msgid "payment.directSales.notAvailable"
+msgstr "Nu este disponibil"
+
+msgid "payment.directSales.notSet"
+msgstr "Nesetat"
+
+msgid "payment.directSales.openAccess"
+msgstr "Acces deschis"
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "Un preț numeric valid este necesar."
+
+msgid "payment.directSales.purchase"
+msgstr "Achiziționați {$format} ({$amount} {$currency})"
+
+msgid "payment.directSales.download"
+msgstr "Descărcați {$format}"
+
+msgid "payment.directSales.monograph.name"
+msgstr "Achiziționați monografia sau descărcați capitolul"
+
+msgid "debug.notes.helpMappingLoad"
+msgstr ""
+"Fișierul de atribuire a ajutorului XML {$filename} a fost reîncărcat pentru "
+"{$id}."
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Carte"
+
+msgid "submission.pdf.download"
+msgstr "Descărcați acest fișier PDF"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "Înregistrați-vă cu alte edituri"
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "Ascundeți alte edituri"
+
+msgid "submission.round"
+msgstr "Tura&nbsp;{$round}"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "O propunere publicată invalidă a fost specificată."
+
+msgid "catalog.coverImageTitle"
+msgstr "Imagine de copertă"
+
+msgid "grid.catalogEntry.chapters"
+msgstr "Capitole"
+
+msgid "search.results.orderBy.article"
+msgstr "Titlul articolului"
+
+msgid "search.results.orderDir.desc"
+msgstr "Descendent"
+
+msgid "section.section"
+msgstr "Colecție"
+
+msgid "search.cli.rebuildIndex.indexing"
+msgstr "Se indexează „{$pressName}”"
+
+msgid "search.cli.rebuildIndex.indexingByPressNotSupported"
+msgstr "Această implementare de căutări nu acceptă reindexare pe publicare."
+
+msgid "search.results.orderBy.author"
+msgstr "Autor"
+
+msgid "search.results.orderBy.date"
+msgstr "Data publicării"
+
+msgid "search.results.orderBy.monograph"
+msgstr "Titlul monografiei"
+
+msgid "search.results.orderBy.press"
+msgstr "Numele editurii"
+
+msgid "search.results.orderBy.popularityAll"
+msgstr "Popularitate (All Time)"
+
+msgid "search.results.orderBy.popularityMonth"
+msgstr "Popularitate (luna trecută)"
+
+msgid "search.results.orderBy.relevance"
+msgstr "Relevanță"
+
+msgid "search.results.orderDir.asc"
+msgstr "Ascendent"
+
+msgid "search.cli.rebuildIndex.unknownPress"
+msgstr ""
+"Noua rută de publicare „{$pressPath}” nu a putut fi rezolvată într-o "
+"publicație."
+
+msgid "installer.additionalLocalesInstructions"
+msgstr ""
+"Selectați orice limbă adițională pentru ca acest sistem să o poată "
+"recunoaște. Aceste limbi vor fi disponibile pentru publicările website-ului. "
+"De asemenea, în orice moment se pot instala alte limbi prin accesarea "
+"interfeței administrării website-ului. Locațiile marcate cu * pot fi "
+"incomplete."
+
+msgid "installer.databaseSettingsInstructions"
+msgstr ""
+"OMP necesită acces la baza de date SQL pentru a-și stoca datele. Vezi "
+"cerințele de sistem de mai sus pentru o listă de baze de date care sunt "
+"suportate. Stabiliți setările care se vor utiliza pentru a vă conecta la "
+"baza de date din următoarele câmpuri."
+
+msgid "installer.installationComplete"
+msgstr ""
+"<p>Instalarea OMP a fost realizată cu succes.</p>\n"
+"<p>Pentru a începe să folosiți sistemul, <a href=\"{$loginUrl}\""
+">autentificați-vă</a> cu numele de utilizator și parola introduse în pagina "
+"anterioară.</p>\n"
+"<p>Vizitați <a href=\"https://forum.pkp.sfu.ca\" target=\"_new\">comunitatea "
+"noastră de pe forum</a> sau înscrieți-vă la <a href=\"https://pkp.sfu.ca/"
+"developer-newsletter\" target=\"_new\"> newsletter-ul nostru de dezvoltare a "
+"sistemului</a> pentru a primi notificări despre securitate și noutăți despre "
+"noi versiuni, plugin-uri sau noi caracteristici.</p>"
+
+msgid "installer.upgradeComplete"
+msgstr ""
+"<p>Actualizarea OMP la noua versiune {$version} a fost realizată cu "
+"succes.</p>\n"
+"<p>Nu uita să selectezi setarea „instalat” în fișierul de configurare "
+"<tt>config.inc.php</tt> înapoi la <em>On</em>.</p>\n"
+"<p>Vizitați <a href=\"https://forum.pkp.sfu.ca\" target=\"_new\">comunitatea "
+"noastră de pe forum</a> sau înscrieți-vă la <a href=\"https://pkp.sfu.ca/"
+"developer-newsletter\" target=\"_new\"> newsletter-ul nostru de dezvoltare a "
+"sistemului</a> pentru a primi notificări despre securitate și noutăți despre "
+"noi versiuni, plugin-uri sau noi caracteristici.</p>"
+
+msgid "log.proofread.complete"
+msgstr "{$proofreaderName} a trimis {$submissionId} pentru programarea sa."
+
+msgid "notification.removedPublicationFormat"
+msgstr "Formatare de publicare eliminată."
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "Formatare de publicare a metadatelor salvat."
+
+msgid "notification.type.approveSubmission"
+msgstr ""
+"Această propunere este momentan în așteptare pentru a fi aprobată în "
+"instrumentul de Intrare în catalog înainte să apară în catalogul public."
+
+msgid "notification.type.configurePaymentMethod"
+msgstr ""
+"O metodă de plată configurată este necesară înainte de definirea setărilor "
+"de comerț electronic."
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+"Acces respins! Grupul de lucru sub care activați nu a fost atribuit acestui "
+"stagiu de flux de muncă. Vă rugăm să vă verificați setările publicării."
+
+msgid "notification.removedIdentificationCode"
+msgstr "Cod de identificare eliminat."
+
+msgid "notification.editedMarket"
+msgstr "Magazin editat."
+
+msgid "notification.type.userComment"
+msgstr "Un cititor a comentat la „{$title}”."
+
+msgid "notification.type.visitCatalog"
+msgstr ""
+"Monografia a fost aprobată. Vă rugăm vizitați Marketing și Publicații pentru "
+"a gestiona detaliile catalogului folosind linkul de mai jos."
+
+msgid "payment.directSales.price.description"
+msgstr ""
+"Formatele de fișiere pot fi puse disponibile pentru descărcare de pe website-"
+"ul publiclației prin acces deschis, fără costuri pentru cititori sau vânzări "
+"directe (folosind un procesor de plată online, configurat în Distribuție). "
+"Pentru acest fișier indicați baza de acces."
+
+msgid "payment.directSales.monograph.description"
+msgstr ""
+"Această tranzacție este pentru achiziționarea unei descărcări directe a unei "
+"singure monografii sau a capitolului unei monografii."
+
+msgid "notification.type.copyeditorRequest"
+msgstr "Vă rugăm revizuiți corecturile pentru „{$file}”."
+
+msgid "user.authorization.monographAuthor"
+msgstr ""
+"Accesul dumneavoastră a fost respins pentru că se pare că nu sunteți autorul "
+"acestei monografii."
+
+msgid "installer.upgradeInstructions"
+msgstr ""
+"<h4>Versiunea OMP {$version}</h4>\n"
+"\n"
+"<p>Vă mulțumim pentru că ați descărcat <strong>Open Monograph Press</strong> "
+"de Public Knowledge Project. Înainte de a continua, vă rugăm citiți "
+"fișierele <a href=\"{$baseUrl}/docs/README.md\">README</a> și <a href=\""
+"{$baseUrl}/docs/UPGRADE.md\">UPGRADE</a> care sunt incluse în software. "
+"Pentru mai multe informații despre Public Knowledge Project și proiectele "
+"sale software, vă rugăm vizitați <a href=\"https://pkp.sfu.ca/\" target="
+"\"_blank\"> website-ul PKP</a>. Dacă aveți rapoarte de erori sau întrebări "
+"referitoare la asistența tehnică a Open Monograph Press, vizitați <a href="
+"\"https://forum.pkp.sfu.ca\" target=\"_blank\"> forumul de asistență</a> sau "
+"sistemul de rapoarte de erori</a> online PKP<a href=\"https://github.com/pkp/"
+"pkp-lib/issues\" target=\"_blank\">. Cu toate că forumul de asistență este "
+"metoda preferată de contact, puteți de asemenea să contactați echipa printr-"
+"un email la <a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail."
+"com</a>.\n"
+"</p>\n"
+"<p>Este foarte<strong>recomandat</strong> să faceți o copie de siguranță a "
+"bazei de date, a directorului de fișiere și a directorului de instalare OMP "
+"înainte de a continua.</p>"
