@@ -1,3 +1,179 @@
 # Elena-Ionela Buhalo <elena.buhalo@stud.ubbcluj.ro>, 2024.
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2024-04-12 21:16+0000\n"
+"Last-Translator: Elena-Ionela Buhalo <elena.buhalo@stud.ubbcluj.ro>\n"
+"Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/submission/"
+"ro/>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "submission.upload.selectComponent"
+msgstr "Selectați componenta"
+
+msgid "submission.title"
+msgstr "Titlul cărții"
+
+msgid "submission.select"
+msgstr "Selectați înregistrarea"
+
+msgid "submission.synopsis"
+msgstr "Rezumat"
+
+msgid "submission.workflowType"
+msgstr "Tipul înregistrării"
+
+msgid "submission.workflowType.description"
+msgstr ""
+"O monografie este o lucrare scrisă în întregime de unul sau mai mulți "
+"autori. Un volum editat are autori diferiți pentru fiecare capitol ( "
+"detaliile capitolului fiind introduse spre finalul acestui proces.)"
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Volum editat"
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Volum editat: Autorii sunt asociați propriului capitol."
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monografie: Autorii sunt asociați cu cartea ca întreg."
+
+msgid "submission.workflowType.change"
+msgstr "Schimbați"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (ed)"
+
+msgid "submission.monograph"
+msgstr "Monografie"
+
+msgid "submission.published"
+msgstr "Producție pregătită"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.artwork.permissions"
+msgstr "Autorizații"
+
+msgid "submission.chapter"
+msgstr "Capitol"
+
+msgid "submission.chapters"
+msgstr "Capitole"
+
+msgid "submission.chapter.addChapter"
+msgstr "Adăugați capitole"
+
+msgid "submission.chapter.editChapter"
+msgstr "Editare capitol"
+
+msgid "submission.chapter.pages"
+msgstr "Pagini"
+
+msgid "submission.copyedit"
+msgstr "Editare text"
+
+msgid "submission.proofs"
+msgstr "Probe"
+
+msgid "submission.download"
+msgstr "Descărcare"
+
+msgid "submission.sharing"
+msgstr "Distribuiți aceasta"
+
+msgid "submission.round"
+msgstr "Round&nbsp;{$round}"
+
+msgid "submissions.queuedReview"
+msgstr "În verificare"
+
+msgid "manuscript.submissions"
+msgstr "Înregistrări de manuscrise"
+
+msgid "manuscript.submission"
+msgstr "Înregistrare manuscris"
+
+msgid "submission.metadata"
+msgstr "Metadate"
+
+msgid "grid.action.addChapter"
+msgstr "Creați un capitol nou"
+
+msgid "grid.action.editChapter"
+msgstr "Editați acest capitol"
+
+msgid "grid.action.deleteChapter"
+msgstr "Ștergeți acest capitol"
+
+msgid "submission.submit"
+msgstr "Începeți înregistrarea unei noi cărți"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Înregistrare nouă"
+
+msgid "submission.submit.upload"
+msgstr "Încărcați înregistrarea"
+
+msgid "author.volumeEditor"
+msgstr "Editor de volum"
+
+msgid "author.isVolumeEditor"
+msgstr "Identificați acest colaborator drept editor al acestui volum."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Poziția în serie"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Exemple: Cartea 2, Volum 2"
+
+msgid "submission.submit.privacyStatement"
+msgstr "Declarație de confidențialitate"
+
+msgid "submission.submit.contributorRole"
+msgstr "Rolul colaboratorului"
+
+msgid "submission.submit.submissionFile"
+msgstr "Fișier de înregistrare"
+
+msgid "submission.submit.prepare"
+msgstr "Pregătiți"
+
+msgid "submission.submit.catalog"
+msgstr "Catalog"
+
+msgid "submission.submit.metadata"
+msgstr "Metadate"
+
+msgid "submission.submit.finishingUp"
+msgstr "Finalizare"
+
+msgid "submission.submit.confirmation"
+msgstr "Confirmare"
+
+msgid "submission.submit.nextSteps"
+msgstr "Pașii următori"
+
+msgid "submission.submit.coverNote"
+msgstr "Notă de copertă pentru editor"
+
+msgid "submission.submit.generalInformation"
+msgstr "Infromații generale"
+
+msgid "submission.fairCopy"
+msgstr "Copie originală"
+
+msgid "submission.publicationFormats"
+msgstr "Formate de publicație"
+
+msgid "submission.supportingAgencies"
+msgstr "Agenții de sprijin"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Începeți o nouă înregistrare în"
