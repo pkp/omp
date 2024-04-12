@@ -1,7 +1,7 @@
 # Malina-Giorgiana Zaharia <zahariamalina01@gmail.com>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-11 15:35+0000\n"
+"PO-Revision-Date: 2024-04-12 13:32+0000\n"
 "Last-Translator: Malina-Giorgiana Zaharia <zahariamalina01@gmail.com>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/manager/ro/"
 ">\n"
@@ -1201,3 +1201,93 @@ msgstr ""
 "Pagina principală a editurii conține linkuri de navigare prestabilite. "
 "Conținutul adițional al paginii principale poate fi adăugat folosind una sau "
 "toate dintre opțiunile următoare, care vor apărea în ordinea descrisă."
+
+msgid "manager.setup.proofreading"
+msgstr "Corectori"
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Oferă instrucțiuni editorilor grafici."
+
+msgid "manager.setup.referenceLinking"
+msgstr "Link de referință"
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Instrucțiuni grafice pentru linkul de referință"
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr ""
+"Utilizatorii trebuie să fie înregistrați și conectați pentru a vedea "
+"conținutul cu acces deschis."
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr ""
+"Utilizatorii trebuie să fie înregistrați și conectați pentru a vedea site-ul "
+"publicației."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Instrucțiuni pentru revizie externă"
+
+msgid "manager.setup.reviewOptions"
+msgstr "Opțiuni de revizie"
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Mementouri email automate"
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr ""
+"Editorii vor evalua revizorii pe o scară de la 1 la 5 după fiecare revizie."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Restricționează accesul la fișier"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr ""
+"Revizorii vor avea acces la documentul trimis doar după ce își vor da "
+"acordul să îl revizeze."
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Acces revizori"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Acces revizori cu un singur clic"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr ""
+"Include un link de securitate în invitația oferită prin email revizorilor."
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Evaluare revizori"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Mementouri revizori"
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Politica de evaluare"
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Indexare căutări"
+
+msgid "manager.setup.publisher"
+msgstr "Editor"
+
+msgid "manager.setup.publisherDescription"
+msgstr ""
+"Numele organizației care va oferi publicația va apărea în secțiunea Despre "
+"publicație."
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Instrucțiuni pentru revizie internă"
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr ""
+"Pentru a activa aceste opțiuni, administratorul site-ului trebuie să "
+"acctiveze <tt>scheduled_tasks</tt> opțiunea în fișierul de configurație OMP. "
+"Configurații suplimentare ale serverului pot fi necesare pentru a susține "
+"această funcționalitate ( care se poate să nu fie posibilă pe toate "
+"serverele), după cum e indicat în documentația OMP."
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Oferă o descriere sumară (50-300 caractere) a acestei publicații pe care "
+"motoarele de căutare o pot arăta atunci când editura apare ca rezultat pe "
+"lista de căutare."
