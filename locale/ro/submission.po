@@ -1,7 +1,7 @@
 # Elena-Ionela Buhalo <elena.buhalo@stud.ubbcluj.ro>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-12 21:16+0000\n"
+"PO-Revision-Date: 2024-04-13 19:00+0000\n"
 "Last-Translator: Elena-Ionela Buhalo <elena.buhalo@stud.ubbcluj.ro>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "ro/>\n"
@@ -177,3 +177,61 @@ msgstr "Agenții de sprijin"
 
 msgid "submission.submit.newSubmissionMultiple"
 msgstr "Începeți o nouă înregistrare în"
+
+msgid "submission.submit.whatNext.description"
+msgstr ""
+"Editura a fost notificată cu privire la înregistrarea dvs. și vi s-a trimis "
+"pe adresa de e-mail o confirmare pentru înregistrările dvs. De îndată ce "
+"editorul va analiza înregistrarea dvs., vă va contacta."
+
+msgid "submission.submit.checklistErrors"
+msgstr ""
+"Citiți și bifați articolele din lista de verificare a înregistrării. Au "
+"rămas {$itemsRemaining} articole nebifate."
+
+msgid "submission.submit.placement"
+msgstr "Locația înregistrării"
+
+msgid "submission.submit.userGroup"
+msgstr "Înregistrare în rolul meu ca..."
+
+msgid "submission.submit.noContext"
+msgstr "Editura acestei înregistrării nu a putut fi găsită."
+
+msgid "grid.chapters.title"
+msgstr "Capitole"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Ștergere încărcare editor"
+
+msgid "submission.complete"
+msgstr "Aprobat"
+
+msgid "submission.incomplete"
+msgstr "Aprobare în așteptare"
+
+msgid "submission.editCatalogEntry"
+msgstr "Intrare"
+
+msgid "submission.catalogEntry.new"
+msgstr "Adăugați intrare"
+
+msgid "submission.catalogEntry.add"
+msgstr "Adăugați selecția în catalog"
+
+msgid "submission.catalogEntry.select"
+msgstr "Selectați monografiile de adăugat în catalog"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr ""
+"Trebuie să selectați cel puțin o monografie pentru a o adăuga în catalog."
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Adăugați această carte în catalogul public"
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr ""
+"Confirmați faptul că înregistrarea este gata pentru a fi adăugată în catalog."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Această monografie este gata pentru a fi inclusă în catalogul public."
