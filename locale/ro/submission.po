@@ -1,7 +1,7 @@
 # Elena-Ionela Buhalo <elena.buhalo@stud.ubbcluj.ro>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-13 19:00+0000\n"
+"PO-Revision-Date: 2024-04-14 07:25+0000\n"
 "Last-Translator: Elena-Ionela Buhalo <elena.buhalo@stud.ubbcluj.ro>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "ro/>\n"
@@ -235,3 +235,413 @@ msgstr ""
 
 msgid "submission.catalogEntry.isAvailable"
 msgstr "Această monografie este gata pentru a fi inclusă în catalogul public."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Vizualizați înregistrarea"
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Date de publicare"
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Toate capitolele vor folosi data de publicare a monografiei."
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Fiecare capitol poate avea propria dată de publicare."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Monografie"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Catalog"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Format de publicație"
+
+msgid "submission.event.metadataPublished"
+msgstr "Metadatele publicației sunt aprobate pentru publicare."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Metadatele monografiei nu mai sunt publicate."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "Formatul de publicație „{$publicationFormatName}” este valabil."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "Formatul de publicație „{$publicationFormatName}” nu mai este valabil."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "Formatul de publicație „{$publicationFormatName}” nu mai este publicat."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Metadatele catalogului au fost actualizate."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Formatul de publicație „{$formatName}” a fost creat."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Formatul de publicație „{$formatName}” a fost înlăturat."
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Trimitere către verificare externă"
+
+msgid "workflow.review.externalReview"
+msgstr "Verificare externă"
+
+msgid "submission.upload.fileContents"
+msgstr "Componentă înregistrare"
+
+msgid "submission.dependentFiles"
+msgstr "Fișiere dependente"
+
+msgid "submission.metadataDescription"
+msgstr ""
+"Aceste specificații se bazează pe setul de metadate Dublin Core, un standard "
+"internațional utilizat pentru a descrie conținutul editorial."
+
+msgid "section.any"
+msgstr "Orice serie"
+
+msgid "submission.list.monographs"
+msgstr "Monografii"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} monografii"
+
+msgid "submission.list.orderFeatures"
+msgstr "Caracteristici de ordine"
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"Trageți și plasați sau clicați butoanele sus și jos pentru a schimba ordinea "
+"caracteristicilor din {$title}."
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Salvați ordinea"
+
+msgid "submission.list.viewEntry"
+msgstr "Vizualizați intrarea"
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} Titluri"
+
+msgid "publication.catalogEntry"
+msgstr "Intrare catalog"
+
+msgid "publication.catalogEntry.success"
+msgstr "Detaliile intrarării catalogului au fost actualizate."
+
+msgid "publication.invalidSeries"
+msgstr "Seria pentru această publicație nu a putut fi găsită."
+
+msgid "publication.inactiveSeries"
+msgstr "{$series} (Inactiv)"
+
+msgid "publication.publishedIn"
+msgstr "Publicat în <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Toate cerințele de publicare au fost îndeplinite. Sigur doriți să faceți "
+"publică această intrare în catalog?"
+
+msgid "publication.scheduledIn"
+msgstr ""
+"Programat pentru publicarea în <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "submission.publication"
+msgstr "Publicare"
+
+msgid "publication.status.published"
+msgstr "Publicat"
+
+msgid "submission.status.scheduled"
+msgstr "Programat"
+
+msgid "publication.status.unscheduled"
+msgstr "Neprogramat"
+
+msgid "publication.copyrightYearBasis.submissionDescription"
+msgstr ""
+"Anul drepturilor de autor va fi setat automat în funcție de data publicării."
+
+msgid "publication.datePublished"
+msgstr "Dată publicată"
+
+msgid "publication.editDisabled"
+msgstr "Această versiune a fost publicată și nu poate fi editată."
+
+msgid "publication.event.published"
+msgstr "Înregistrarea a fost publicată."
+
+msgid "publication.event.scheduled"
+msgstr "Înregistrarea a fost programată pentru publicare."
+
+msgid "publication.event.unpublished"
+msgstr "Înregistrarea nu a fost publicată."
+
+msgid "publication.event.versionPublished"
+msgstr "O nouă versiune a fost publicată."
+
+msgid "publication.event.versionScheduled"
+msgstr "O nouă versiune a fost programată pentru publicare."
+
+msgid "publication.event.versionUnpublished"
+msgstr "O versiune a fost ștearsă de la publicare."
+
+msgid "publication.invalidSubmission"
+msgstr "Înregistrarea pentru această publicație nu a putut fi găsită."
+
+msgid "publication.publish"
+msgstr "Publicați"
+
+msgid "publication.publish.requirements"
+msgstr ""
+"Următoarele cerințe trebuie îndeplinite, înainte de a putea fi publicată."
+
+msgid "publication.required.declined"
+msgstr "O înregistrare respinsă nu poate fi publicată."
+
+msgid "submission.license.description"
+msgstr ""
+"Licența va fi setată automat la <a href='{$licenseUrl}' "
+"target='_blank'>{$licenseName}</a> când aceasta va fi publicată."
+
+msgid "submission.copyrightHolder.description"
+msgstr ""
+"Dreptul de autor va fi atribuit automat la {$copyright} când aceasta va fi "
+"publicată."
+
+msgid "submission.copyrightOther.description"
+msgstr ""
+"Atribuiți drepturi de autor pentru înregistrările publicate următoarei părți."
+
+msgid "publication.unpublish"
+msgstr "Anulați publicarea"
+
+msgid "publication.unschedule.confirm"
+msgstr "Sunteți sigur că nu doriți să programați aceasta pentru publicare?"
+
+msgid "publication.version.details"
+msgstr "Detalii de publicare pentru versiunea {$version}"
+
+msgid "submission.queries.production"
+msgstr "Discuții de publicare"
+
+msgid "publication.chapter.landingPage"
+msgstr "Pagină de capitol"
+
+msgid "publication.publish.success"
+msgstr "Starea publicării a fost schimbată cu succes."
+
+msgid "chapter.volume"
+msgstr "Volum"
+
+msgid "submission.withoutChapter"
+msgstr "{$name} — Fără acest capitol"
+
+msgid "submission.chapterCreated"
+msgstr " — Capitol creat"
+
+msgid "chapter.pages"
+msgstr "Pagini"
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr "Trimitere către verificare internă"
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr ""
+"{$editorName} a trimis această înregistrare către etapa de verificare "
+"internă."
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr "Trimis către verificare internă"
+
+msgid "editor.submission.decision.promoteFiles.internalReview"
+msgstr ""
+"Selectați fișierele care ar trebui trimise către etapa de verificare internă."
+
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr ""
+"{$editorName} a trimis această înregistrare către etapa de verificare "
+"externă."
+
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr "Trimis către verficare externă"
+
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr "Înregistrarea, {$title}, a fost trimisă în etapa de verificare externă."
+
+msgid "editor.submission.decision.backToReview"
+msgstr "Înapoi la verificare"
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr ""
+"Schimbați decizia de a accepta această înregistrare și trimiteți-o înapoi la "
+"etapa de verificare."
+
+msgid "editor.submission.decision.backToReview.completed"
+msgstr "Trimisă înapoi la verificare"
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr "Înregistrarea, {$title}, a fost trimisă înapoi la etapa de verificare."
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+"Trimiteți un e-mail autorilor pentru a le anunța că această înregistrare va "
+"fi trimisă pentru evaluare inter pares. Dacă este posibil, oferiți autorilor "
+"câteva indicații despre cât de mult ar putea dura procesul de evaluare inter "
+"pares și când ar trebui să se aștepte să audă din nou de la editori."
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr ""
+"Selectați fișierele care ar trebui să fie trimise către etapa de verificare."
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr "Recomandați înregistrarea către verificare externă"
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr ""
+"Recomandați ca această înregistrare să fie trimisă către etapa de verificare "
+"externă."
+
+msgid "doi.submission.incorrectContext"
+msgstr ""
+"Nu s-a putut crea un DOI pentru următoarea înregistrare: {$pubObjectTitle}. "
+"Nu există în contextul actual de presă."
+
+msgid "publication.chapter.licenseUrl"
+msgstr "Licență URL"
+
+msgid "publication.chapterDefaultLicenseURL"
+msgstr "Adresa URL implicită a licenței de capitol"
+
+msgid "submission.copyright.description"
+msgstr ""
+"Citiți și înțelegeți termenii drepturilor de autor pentru trimiterile către "
+"această presă."
+
+msgid "submission.wizard.sectionClosed.message"
+msgstr ""
+"{$contextName} nu acceptă înregistrări la seria {$section}. Dacă aveți "
+"nevoie de ajutor pentru a vă recupera înregistrarea, vă rugăm să contactați "
+"<a href='mailto:{$email}'>{$name}</a>."
+
+msgid "submission.sectionNotFound"
+msgstr "Seria pentru această înregistrare nu a putut fi găsită."
+
+msgid "submission.sectionRestrictedToEditors"
+msgstr ""
+"Doar personalul de redacție are dreptul de a înregistra la această serie."
+
+msgid "submission.wizard.submitting.monograph"
+msgstr "Înregistrarea unei <strong>monografii</strong>."
+
+msgid "submission.wizard.submitting.monographInLanguage"
+msgstr ""
+"Înregistrarea unei <strong>monografii</strong> în "
+"<strong>{$language}</strong>."
+
+msgid "submission.wizard.submitting.editedVolume"
+msgstr "Înregistrarea unui <strong>volum editat</strong>."
+
+msgid "submission.wizard.submitting.editedVolumeInLanguage"
+msgstr ""
+"Înregistrarea unui <strong>volum editat</strong> în "
+"<strong>{$language}</strong>."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr ""
+"Formatul de publicație „{$publicationFormatName}” este aprobat pentru "
+"publicare."
+
+msgid "publication.unpublish.confirm"
+msgstr "Sunteți sigur că nu doriți să publicați aceasta?"
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr ""
+"Metadatele formatului de publicație „{$formatName}” au fost actualizate."
+
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+"Afișați acest capitol pe propria pagină și trimiteți la acea pagină din "
+"cuprinsul cărții."
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} de {$total} monografii"
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr ""
+"Această înregistrare este gata pentru a fi trimisă către verificare internă."
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Trageți și plasați sau clicați butoanele sus și jos pentru a schimba ordinea "
+"caracteristicilor de pe pagina de pornire."
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgstr ""
+"Înregistrarea, {$title}, a fost trimisă în etapa de verificare internă. "
+"Autorul a fost anunțat, cu excepția cazului în care ați ales să omiteți acel "
+"e-mail."
+
+msgid "publication.required.issue"
+msgstr ""
+"Publicația trebuie să fie atribuită unui număr înainte de a putea fi "
+"publicată."
+
+msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
+msgstr ""
+"Trimiteți un e-mail autorilor pentru a le informa că această înregistrare va "
+"fi trimisă pentru verificare internă. Dacă este posibil, oferiți autorilor "
+"câteva indicații cu privire la cât de mult ar putea dura procesul de "
+"verificare internă și când ar trebui să se aștepte să primească din nou "
+"informații de la editori."
+
+msgid "submission.publications"
+msgstr "Publicații"
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+"{$editorName} a schimbat decizia de a accepta această înregistrare și a "
+"trimis-o înapoi la etapa de verificare."
+
+msgid "publication.copyrightYearBasis.issueDescription"
+msgstr ""
+"Anul drepturilor de autor va fi setat automat atunci când acesta este "
+"publicat într-un număr."
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+"Trimiteți un e-mail autorilor pentru a le informa că înregistrarea lor este "
+"trimisă înapoi la etapa de verificare. Explicați de ce a fost luată această "
+"decizie și informați autorul despre ce revizuire ulterioară va fi "
+"întreprinsă."
+
+msgid "publication.required.reviewStage"
+msgstr ""
+"Înregistrarea trebuie să fie în etapele de ”verificare” sau ”producere” "
+"pentru a putea fi publicată."
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+"{$editorName} a recomandat ca această înregistrare să fie trimisă către "
+"etapa de verificare externă."
+
+msgid "submission.wizard.notAllowed.description"
+msgstr ""
+"Nu aveți voie să înregistrați la această presă deoarece autorii trebuie să "
+"fie înregistrați de redacția. Dacă considerați că aceasta este o eroare, "
+"contactați <a href='mailto:{$email}'>{$name}</a>."
+
+msgid "submission.wizard.noSectionAllowed.description"
+msgstr ""
+"Nu aveți voie să înregistrați la această presă deoarece înregistrările către "
+"toate secțiunile acestei prese au fost dezactivate sau restricționate. Dacă "
+"considerați că aceasta este o eroare, contactați <a "
+"href='mailto:{$email}'>{$name}</a>."
+
+msgid "submission.wizard.chapters.description"
+msgstr ""
+"Furnizați toate capitolele acestei înregistrări. Dacă înregistrați un volum "
+"editat, vă rugăm să vă asigurați că fiecare capitol indică colaboratorii "
+"pentru acel capitol."
