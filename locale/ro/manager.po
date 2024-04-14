@@ -1,7 +1,7 @@
 # Malina-Giorgiana Zaharia <zahariamalina01@gmail.com>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-13 19:00+0000\n"
+"PO-Revision-Date: 2024-04-15 01:23+0000\n"
 "Last-Translator: Malina-Giorgiana Zaharia <zahariamalina01@gmail.com>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/manager/ro/"
 ">\n"
@@ -14,12 +14,12 @@ msgstr ""
 "X-Generator: Weblate 4.18.2\n"
 
 msgid "manager.languages.primaryLocaleInstructions"
-msgstr "Aceasta va fi limba prestabilită pentru site-ul presei."
+msgstr "Aceasta va fi limba prestabilită pentru site-ul editurii."
 
 msgid "manager.series.form.mustAllowPermission"
 msgstr ""
-"Vă rog să vă asigurați că cel puțin una dintre căsuțe pentru fiecare "
-"coordonator al editurii este bifată."
+"Vă rog să vă asigurați că cel puțin una dintre căsuțe pentru fiecare sarcină "
+"a editorului de serie este bifată."
 
 msgid "manager.series.indexed"
 msgstr "Indexat"
@@ -37,7 +37,7 @@ msgid "manager.series.submissionIndexing"
 msgstr "Nu va fi inclus în indexarea editurii"
 
 msgid "manager.series.editorRestriction"
-msgstr "Elemente care pot fi trimise doar de către editori sau editorii seriei."
+msgstr "Elemente care pot fi trimise doar de către editori sau editori serie."
 
 msgid "manager.series.confirmDelete"
 msgstr "Sunteți sigur că vreți să ștergeți definitiv această serie?"
@@ -130,10 +130,10 @@ msgid "manager.series.disableComments"
 msgstr "Dezactivați comentariile cititorilor pentru această serie."
 
 msgid "manager.series.book"
-msgstr "Serii de cărți"
+msgstr "Serie de cărți"
 
 msgid "manager.series.create"
-msgstr "Crează serii"
+msgstr "Crează serie"
 
 msgid "manager.series.policy"
 msgstr "Descrierea seriei"
@@ -271,13 +271,13 @@ msgstr ""
 msgid "manager.languages.noneAvailable"
 msgstr ""
 "Ne cerem iertare, dar nu sunt disponibile și alte limbi. Contactează "
-"administratorul site-ului dacă dorești să utilizezi limbaj adițional pentru "
-"publicație."
+"administratorul site-ului dacă dorești să utilizezi limbaje adiționale "
+"pentru această publicație."
 
 msgid "manager.settings.publisher.identity.description"
 msgstr ""
 "Aceste câmpuri sunt obligatorii pentru a publica <a href=\"https://en."
-"wikipedia.org/wiki/ONIX_for_Books\">ONIX metadata</a>."
+"wikipedia.org/wiki/ONIX_for_Books\">metadate ONIX</a>."
 
 msgid "manager.series.form.reviewFormId"
 msgstr "Vă rog să vă asigurați că ați ales o formă de revizie corectă."
@@ -778,7 +778,7 @@ msgid "manager.setup.internalReviewRoles"
 msgstr "Roluri ale reviziei interne"
 
 msgid "manager.setup.masthead"
-msgstr "Echipă editorială"
+msgstr "Titlu editură"
 
 msgid "manager.setup.editorialTeam"
 msgstr "Echipă editorială"
