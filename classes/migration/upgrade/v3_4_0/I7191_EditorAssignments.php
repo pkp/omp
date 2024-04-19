@@ -16,7 +16,18 @@ namespace APP\migration\upgrade\v3_4_0;
 
 class I7191_EditorAssignments extends \PKP\migration\upgrade\v3_4_0\I7191_EditorAssignments
 {
-    protected string $sectionDb = 'series';
-    protected string $sectionIdColumn = 'series_id';
-    protected string $contextColumn = 'press_id';
+    protected function getSectionTable(): string
+    {
+        return 'series';
+    }
+
+    protected function getSectionId(): string
+    {
+        return 'series_id';
+    }
+
+    protected function getContextId(): string
+    {
+        return 'press_id';
+    }
 }
