@@ -22,7 +22,7 @@ describe('Monograph report plugin tests', () => {
 			const {itemsMax: submissionCount, items: [firstMonograph]} = submissionResponse.body;
 			const publication = firstMonograph.publications.pop();
 			expect(reportResponse.headers['content-type']).to.contain('text/comma-separated-values');
-			expect(reportResponse.body.match(/\/publicknowledge\/workflow\/access\/\d+/g).length).to.equal(submissionCount);
+			expect(reportResponse.body.match(/\/publicknowledge\/en\/workflow\/access\/\d+/g).length).to.equal(submissionCount);
 			expect(reportResponse.body).contains(publication.title.en);
 			for (const author of publication.chapters.flatMap(chapter => Object.values(chapter.authors))) {
 				expect(reportResponse.body).contains(author.givenName.en);

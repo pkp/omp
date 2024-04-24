@@ -51,7 +51,7 @@ describe('DOI tests', function() {
 
 		cy.log('Check Submission Visibility');
 		// Select a monograph
-		cy.visit(`/index.php/publicknowledge/catalog/book/${submissionId}`);
+		cy.visit(`/index.php/publicknowledge/en/catalog/book/${submissionId}`);
 
 		// Monograph DOI
 		cy.get('div.item.doi')

@@ -158,7 +158,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         $productNode = $doc->createElementNS($deployment->getNamespace(), 'Product');
 
         $request = Application::get()->getRequest();
-        $productNode->appendChild($this->_buildTextNode($doc, 'RecordReference', $request->url($context->getPath(), 'monograph', 'view', [$submission->getId()])));
+        $productNode->appendChild($this->_buildTextNode($doc, 'RecordReference', $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(), 'monograph', 'view', [$submission->getId()], urlLocaleForPage: '')));
         $productNode->appendChild($this->_buildTextNode($doc, 'NotificationType', '03'));
         $productNode->appendChild($this->_buildTextNode($doc, 'RecordSourceType', '04')); // Bibliographic agency
 
@@ -492,7 +492,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         $publisherNode->appendChild($websiteNode);
 
         $websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteRole', '18')); // 18 -> Publisher's B2C website
-        $websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath())));
+        $websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(), urlLocaleForPage: '')));
 
         /* --- Publishing Dates --- */
 
@@ -672,7 +672,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
                 $supplierNode->appendChild($supplierWebsiteNode);
 
                 $supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteRole', '18')); // 18 -> Public website
-                $supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath())));
+                $supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(), urlLocaleForPage: '')));
 
                 unset($supplierNode);
                 unset($supplierWebsiteNode);

@@ -49,7 +49,7 @@ describe('Payments', function() {
 
     it('Visit Submission page and check Direct Sales', function () {
         cy.login('gfavio');
-        cy.visit('index.php/publicknowledge/catalog');
+        cy.visit('index.php/publicknowledge/en/catalog');
         cy.get('a').contains('Bomb Canada and Other Unkind Remarks in the American Media').click();
         cy.get('a.cmp_download_link').contains('9.99 Purchase PDF (9.99 USD)').should('be.visible').click();
         cy.get('p').contains('You could send a message to us.').should('be.visible');
