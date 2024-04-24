@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-02-29 14:39+0000\n"
+"PO-Revision-Date: 2024-04-24 20:28+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/locale/fr_FR/"
 ">\n"
@@ -598,7 +598,7 @@ msgid "grid.action.pageProofApproved"
 msgstr "Le fichier d’épreuves de mise en page est prêt à être publié"
 
 msgid "grid.action.newCatalogEntry"
-msgstr "Nouvelle entrée de catalogue"
+msgstr "Nouvelle entrée dans le catalogue"
 
 msgid "grid.action.publicCatalog"
 msgstr "Voir ce titre dans le catalogue"
