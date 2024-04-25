@@ -64,7 +64,7 @@ Cypress.Commands.add('createSubmissionWithApi', (data, csrfToken) => {
 			if (typeof data.files === 'undefined' || !data.files.length) {
 				return;
 			}
-			cy.visit('/index.php/publicknowledge/submission?id=' + submissionId);
+			cy.visit('/index.php/publicknowledge/en/submission?id=' + submissionId);
 			cy.get('button:contains("Continue")').click();
 
 			// Must use the UI to upload files until we upgrade Cypress

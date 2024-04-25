@@ -190,7 +190,7 @@ describe('Data suite tests', function() {
 		cy.contains('Bomb Canada and Other Unkind Remarks in the American Media').should('not.exist');
 		cy.logout();
 		cy.request({
-				url: 'index.php/publicknowledge/catalog/book/' + submission.id,
+				url: 'index.php/publicknowledge/en/catalog/book/' + submission.id,
 				failOnStatusCode: false
 			})
 			.then((response) => {

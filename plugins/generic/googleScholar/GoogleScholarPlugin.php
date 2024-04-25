@@ -14,6 +14,7 @@
 
 namespace APP\plugins\generic\googleScholar;
 
+use APP\core\Application;
 use APP\template\TemplateManager;
 use PKP\citation\CitationDAO;
 use PKP\db\DAORegistry;
@@ -211,10 +212,10 @@ class GoogleScholarPlugin extends GenericPlugin
     {
         switch ($availableFile->getData('mimetype')) {
             case 'application/pdf':
-                $templateMgr->addHeader('googleScholarPdfUrl' . $i++, '<meta name="citation_pdf_url" content="' . $request->url(null, 'catalog', 'download', [$submission->getId(), $availableFile->getData('assocId'), $availableFile->getId()]) . '"/>');
+                $templateMgr->addHeader('googleScholarPdfUrl' . $i++, '<meta name="citation_pdf_url" content="' . $request->getDispatcher()->url($request, Application::ROUTE_PAGE, null, 'catalog', 'download', [$submission->getId(), $availableFile->getData('assocId'), $availableFile->getId()], urlLocaleForPage: '') . '"/>');
                 break;
             case 'text/xml' or 'text/html':
-                $templateMgr->addHeader('googleScholarHtmlUrl' . $i++, '<meta name="citation_fulltext_html_url" content="' . $request->url(null, 'catalog', 'download', [$submission->getId(), $availableFile->getData('assocId'), $availableFile->getId()]) . '"/>');
+                $templateMgr->addHeader('googleScholarHtmlUrl' . $i++, '<meta name="citation_fulltext_html_url" content="' . $request->getDispatcher()->url($request, Application::ROUTE_PAGE, null, 'catalog', 'download', [$submission->getId(), $availableFile->getData('assocId'), $availableFile->getId()], urlLocaleForPage: '') . '"/>');
                 break;
         }
     }

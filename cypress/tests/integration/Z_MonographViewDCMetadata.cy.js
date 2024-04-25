@@ -410,7 +410,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 				return cy.submitSubmissionWithApi(submission.id, this.csrfToken);
 			})
 			.then(xhr => {
-				cy.visit('/index.php/publicknowledge/workflow/index/' + submission.id + '/1');
+				cy.visit('/index.php/publicknowledge/en/workflow/index/' + submission.id + '/1');
 			});
 
 
@@ -522,7 +522,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 	});
 
 	it('Tests if Header DC Metadata are present and consistent', function() {
-		cy.visit('/index.php/publicknowledge/catalog/book/' + submission.urlPath);
+		cy.visit('/index.php/publicknowledge/en/catalog/book/' + submission.urlPath);
 
 		cy.get('meta[name^="DC."]').each((item, index, list) => {
 			cy.wrap(item)

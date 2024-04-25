@@ -133,7 +133,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
             }
         }
 
-        $templateMgr->addHeader('dublinCoreUri', '<meta name="DC.Identifier.URI" content="' . $request->url(null, 'catalog', 'book', [$submissionBestId]) . '"/>');
+        $templateMgr->addHeader('dublinCoreUri', '<meta name="DC.Identifier.URI" content="' . $request->getDispatcher()->url($request, Application::ROUTE_PAGE, null, 'catalog', 'book', [$submissionBestId], urlLocaleForPage: '') . '"/>');
 
         $templateMgr->addHeader('dublinCoreLanguage', '<meta name="DC.Language" scheme="ISO639-1" content="' . substr($publicationLocale, 0, 2) . '"/>');
 
@@ -145,7 +145,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
         }
 
         $templateMgr->addHeader('dublinCoreSource', '<meta name="DC.Source" content="' . htmlspecialchars($press->getName($press->getPrimaryLocale())) . '"/>');
-        $templateMgr->addHeader('dublinCoreSourceUri', '<meta name="DC.Source.URI" content="' . $request->url($press->getPath()) . '"/>');
+        $templateMgr->addHeader('dublinCoreSourceUri', '<meta name="DC.Source.URI" content="' . $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $press->getPath(), urlLocaleForPage: '') . '"/>');
 
         if ($subjects = $publication->getData('subjects')) {
             foreach ($subjects as $locale => $localeSubjects) {
@@ -276,7 +276,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
             }
         }
 
-        $templateMgr->addHeader('dublinCoreUri', '<meta name="DC.Identifier.URI" content="' . $request->url(null, 'catalog', 'book', [$submissionBestId, $publicationFormat->getId(), $submissionFile->getId()]) . '"/>');
+        $templateMgr->addHeader('dublinCoreUri', '<meta name="DC.Identifier.URI" content="' . $request->getDispatcher()->url($request, Application::ROUTE_PAGE, null, 'catalog', 'book', [$submissionBestId, $publicationFormat->getId(), $submissionFile->getId()], urlLocaleForPage: '') . '"/>');
 
         $templateMgr->addHeader('dublinCoreLanguage', '<meta name="DC.Language" scheme="ISO639-1" content="' . substr($publicationLocale, 0, 2) . '"/>');
 
@@ -292,7 +292,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
             $templateMgr->addHeader('dublinCoreIssn', '<meta name="DC.Source.ISSN" content="' . htmlspecialchars($issn) . '"/>');
         }
 
-        $templateMgr->addHeader('dublinCoreSourceUri', '<meta name="DC.Source.URI" content="' . $request->url($press->getPath()) . '"/>');
+        $templateMgr->addHeader('dublinCoreSourceUri', '<meta name="DC.Source.URI" content="' . $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $press->getPath(), urlLocaleForPage: '') . '"/>');
 
         if ($subjects = $publication->getData('subjects')) {
             foreach ($subjects as $locale => $localeSubjects) {

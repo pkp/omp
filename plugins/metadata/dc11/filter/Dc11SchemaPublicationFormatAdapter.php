@@ -156,7 +156,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         // Identifier: URL
         $request = Application::get()->getRequest();
         if ($monograph instanceof Submission) {
-            $dc11Description->addStatement('dc:identifier', $request->url($press->getPath(), 'catalog', 'book', [$publication->getData('urlPath') ?? $monograph->getId()]));
+            $dc11Description->addStatement('dc:identifier', $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $press->getPath(), 'catalog', 'book', [$publication->getData('urlPath') ?? $monograph->getId()], urlLocaleForPage: ''));
         }
 
         // Public identifiers (e.g. DOI, URN)
@@ -214,7 +214,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         foreach ($pubFormatFiles as $file) {
             {
                 if ($file->getData('assocId') == $publicationFormat->getData('id')) {
-                    $relation = $request->url($press->getData('urlPath'), 'catalog', 'view', [$publication->getData('urlPath') ?? $monograph->getId(), $publicationFormat->getId(), $file->getId()]);
+                    $relation = $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $press->getData('urlPath'), 'catalog', 'view', [$publication->getData('urlPath') ?? $monograph->getId(), $publicationFormat->getId(), $file->getId()], urlLocaleForPage: '');
                     $dc11Description->addStatement('dc:relation', $relation);
                 }
             }
