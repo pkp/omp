@@ -1,11 +1,11 @@
-# Jordi LC <jordi.lacruz@uab.cat>, 2021, 2023.
+# Jordi LC <jordi.lacruz@uab.cat>, 2021, 2023, 2024.
 # Marc Bria <marc.bria@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2023-05-25 09:42+0000\n"
+"PO-Revision-Date: 2024-04-26 12:34+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/manager/es/>"
 "\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr ""
@@ -2272,4 +2272,4 @@ msgid "emailTemplate.variable.context.mailingAddress"
 msgstr "La dirección postal de la editorial"
 
 msgid "emailTemplate.variable.context.contextAcronym"
-msgstr "Iniciales de la editorial"
+msgstr "Las iniciales de la editorial"
