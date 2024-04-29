@@ -19,6 +19,6 @@ class I5885_RenameReviewReminderSettingsName extends \PKP\migration\upgrade\v3_5
 {
     protected function getContextSettingsTable(): string
     {
-        return 'journal_settings';
+        return 'press_settings';
     }
 }
