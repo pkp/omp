@@ -1,8 +1,9 @@
 # Vasile Moraru <napocavox@gmail.com>, 2024.
+# Iusan Daria <daria.iusan@yahoo.com>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-03-12 16:14+0000\n"
-"Last-Translator: Vasile Moraru <napocavox@gmail.com>\n"
+"PO-Revision-Date: 2024-04-04 19:39+0000\n"
+"Last-Translator: Iusan Daria <daria.iusan@yahoo.com>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-csv/ro/>\n"
 "Language: ro\n"
@@ -15,3 +16,61 @@ msgstr ""
 
 msgid "plugins.importexport.csv.displayName"
 msgstr "Plugin de import al conținutului delimitat de tab-uri (TSV)"
+
+msgid "plugins.importexport.csv.fileDoesNotExist"
+msgstr "Fișierul \"{$filename}\" nu există.  Ieșiți."
+
+msgid "plugins.importexport.csv.unknownUser"
+msgstr "Utilizator necunoscut: \"{$username}\".  Ieșiți."
+
+msgid "plugins.importexport.csv.unknownLocale"
+msgstr "Regiune locală necunoscută:\"{$locale}\".  Omiteți."
+
+msgid "plugins.importexport.csv.unknownPress"
+msgstr "Editură necunoscută: \"{$contextPath}\".  Omiteți."
+
+msgid "plugins.importexport.csv.noGenre"
+msgstr "Nu există un gen de manuscris. Ieșire."
+
+msgid "plugins.importexport.csv.noSeries"
+msgstr ""
+"Ruta seriei {$seriesPath} nu există.  Nu se poate adăuga la această cerere."
+
+msgid "plugins.importexport.csv.import.submission"
+msgstr "Cererea: '{$title}' importată cu succes."
+
+msgid "plugins.importexport.csv.invalidAuthor"
+msgstr "Autorul \"{$author}\" deține un format invalid sau a fost omis."
+
+msgid "plugins.importexport.csv.cliOnly"
+msgstr ""
+"\n"
+"\t\t<p>Acest plugin suportă în prezent doar operarea în linie de comandă. "
+"Executați:.\n"
+"\t\t\t<pre>php tools/importExport.php CSVImportExportPlugin</pre>\n"
+"\t\t\t...pentru a obține mai multe informații.</p>\n"
+"\t"
+
+msgid "plugins.importexport.csv.cliUsage"
+msgstr ""
+"Instrument în linie de comandă pentru importarea datelor CSV în OMP\n"
+"\t\t\tUtilizare:\n"
+"\t\t\t{$scriptName} [--dry-run] fileName.csv username\n"
+"\t\t\tOpțiunea---dry-run poate fi utilizată pentru a testa fără a face "
+"modificări.\n"
+"\t\t\tSpecifică numele de utilizator căruia doriți să-i atribuiți cereri.\n"
+
+msgid "plugins.importexport.csv.noAuthorGroup"
+msgstr ""
+"Nu există un grup de autori prestabiliți în această editură {$press}. "
+"Omiteți această cerere."
+
+msgid "plugins.importexport.csv.import.success.description"
+msgstr ""
+"Importarea s-a finalizat cu succes. Elementele importate cu succes sunt "
+"afișate mai jos."
+
+msgid "plugins.importexport.csv.invalidHeader"
+msgstr ""
+"Fișierul CSV fie lipsește, fie are un antet invalid, vă rugăm să consultați "
+"fișierul de probă \"sample.csv\" prezent în folderul plugin."

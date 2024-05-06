@@ -1,0 +1,170 @@
+# Iusan Daria <daria.iusan@yahoo.com>, 2024.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2024-04-04 19:39+0000\n"
+"Last-Translator: Iusan Daria <daria.iusan@yahoo.com>\n"
+"Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/default/ro/"
+">\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "default.genres.appendix"
+msgstr "Apendice"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliografie"
+
+msgid "default.genres.manuscript"
+msgstr "carte manuscris"
+
+msgid "default.genres.glossary"
+msgstr "Glosar"
+
+msgid "default.genres.index"
+msgstr "Index"
+
+msgid "default.genres.preface"
+msgstr "Prefață"
+
+msgid "default.genres.prospectus"
+msgstr "Prospect"
+
+msgid "default.genres.figure"
+msgstr "Figura"
+
+msgid "default.genres.illustration"
+msgstr "Ilustrație"
+
+msgid "default.genres.other"
+msgstr "Altele"
+
+msgid "default.groups.name.manager"
+msgstr "manager de presă"
+
+msgid "default.groups.plural.manager"
+msgstr "manageri de presă"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "editor de serie"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "editori de serie"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Autorul capitolului"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Autorii capitolului"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "editorii volumului"
+
+msgid "default.genres.photo"
+msgstr "imagine"
+
+msgid "default.contextSettings.authorGuidelines"
+msgstr ""
+"<p>Autorii sunt invitați să se înscrie în această publicație. Acele "
+"înscrieri care sunt considerate potrivite, vor fi trimise la revizie înainte "
+"de a stabili dacă sunt acceptate sau respinse.</p><p>Înainte de a se "
+"înscrie, autorii sunt responsabili de obținerea unei aprobări de publicare a "
+"oricărui material inclus, precum fotografii, documente sau seturi de date. "
+"Toți autorii înscriși trebuie să fie de acord să fie identificați ca autori. "
+"Dacă este cazul, cercetarea ar trebui să fie aprobată de un comitet de etică "
+"adecvat, în conformitate cu cerințele legale din țara în care se desfășoară "
+"studiul.</p><p>Un editor poate respinge o trimitere dacă aceasta nu "
+"îndeplinește standardele minime de calitate. Înainte de a trimite cartea, vă "
+"rugăm să vă asigurați că domeniul de aplicare și schița cărții sunt "
+"structurate corespunzător. Titlul trebuie să fie concis și rezumatul trebuie "
+"să însumeze firul narativ. Acest aspect va crește șansa ca recenzenții să "
+"scrie o recenzie a cărții. După ce sunteți sigur că lucrarea dvs. "
+"îndeplinește acest standard, vă rugăm să urmați lista de verificare de mai "
+"jos pentru a vă pregăti lucrarea.</p>"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "editorul volumului"
+
+msgid "default.contextSettings.checklist"
+msgstr ""
+"<p>Toate înscrierile trebuie să îndeplinească următoarele cerințe.</"
+"p><ul><li> Această lucrare îndeplinește toate cerințele din <a href=\""
+"{$submissionGuidelinesUrl}\"> ghidul autorului</a>.</li><li> Această lucrare "
+"nu a mai fost publicată, nici nu a mai fost trimisă altei edituri pentru "
+"evaluare.</li><li>Toate referințele au fost verificate pentru acuratețe și "
+"completitudine.</li><li> Toate tabelele și figurile au fost numerotate și "
+"etichetate.</li><li>A fost obținută permisiunea de a publica toate "
+"fotografiile, seturile de date și alte materiale furnizate împreună cu "
+"această lucrare.</li></ul>"
+
+msgid "default.genres.table"
+msgstr "tabel"
+
+msgid "default.genres.chapter"
+msgstr "Capitol manuscris"
+
+msgid "default.groups.name.editor"
+msgstr "Editor"
+
+msgid "default.groups.plural.editor"
+msgstr "Editori"
+
+msgid "default.groups.name.subscriptionManager"
+msgstr "Manager de subscripție"
+
+msgid "default.groups.plural.subscriptionManager"
+msgstr "Manageri de subscripție"
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+"<p>Numele și adresele de email introduse în acest site de edită vor fi "
+"utilizate exclusiv în scopurile declarate ale acestei edituriși nu vor fi "
+"puse la dispoziție în niciun alt scop sau pentru nicio altă parte.</p>"
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr ""
+"Această editură oferă acces deschis către conținutul său, pe baza "
+"principiului că punerea la dispoziția publicului a cercetărilor în mod "
+"gratuit sprijină un schimb mai mare de cunoștințe la nivel global."
+
+msgid "default.contextSettings.forReaders"
+msgstr ""
+"Încurajăm cititorii să se înscrie la serviciul de notificare a publicării "
+"pentru această editură. Utilizați <a href=\"{$indexUrl}/{$contextPath}/user/"
+"register\"> Linkul de înregistrare</a> în partea de sus a paginii de pornire "
+"a editurii. În urma acestei înregistrări, cititorul va primi prin email "
+"cuprinsul fiecărei noi monografii a editurii. Vezi declarația de "
+"confidențialitate <a href=\"{$indexUrl}/{$contextPath}/about/submissions#"
+"privacyStatement\"> a editurii</a> care care asigură cititorii despre faptul "
+"că numele și adresele lor de email nu vor fi utilizate în alte scopuri."
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+"Sunteți interesat să trimiteți o lucrare pentru această presă? Vă recomandăm "
+"să consultați pagina<a href=\"{$indexUrl}/{$contextPath}/about\"> Despre "
+"editură</a> pentru a vedea politicile editurii și <a href=\""
+"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\">Ghidul "
+"autorului</a>. Autorii trebuie să se <a href=\"{$indexUrl}/index/login\""
+">autentifice</a>și să înceapă procesul în 5 pași."
+
+msgid "default.contextSettings.forLibrarians"
+msgstr ""
+"Încurajăm bibliotecarii de cercetare să includă această editură în "
+"colecțiile de presă electronică ale bibliotecii lor. De asemenea, acest "
+"sistem deschis de publicare este potrivit pentru ca bibliotecile să-l "
+"găzduiască cu scopul ca membrii facultăților lor să îl folosească împreună "
+"cu editura în a cărei editare sunt implicați(vezi <a href=\"https://pkp.sfu."
+"ca/omp\">Presa Monografică Deschisă</a>)."
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Critic extern"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Critici externi"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "ER"

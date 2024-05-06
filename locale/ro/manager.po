@@ -1,0 +1,1716 @@
+# Malina-Giorgiana Zaharia <zahariamalina01@gmail.com>, 2024.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2024-04-15 01:23+0000\n"
+"Last-Translator: Malina-Giorgiana Zaharia <zahariamalina01@gmail.com>\n"
+"Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/manager/ro/"
+">\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Aceasta va fi limba prestabilită pentru site-ul editurii."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Vă rog să vă asigurați că cel puțin una dintre căsuțe pentru fiecare sarcină "
+"a editorului de serie este bifată."
+
+msgid "manager.series.indexed"
+msgstr "Indexat"
+
+msgid "manager.series.open"
+msgstr "Propuneri deschise"
+
+msgid "manager.series.readingTools"
+msgstr "Instrumente de lectură"
+
+msgid "manager.series.submissionReview"
+msgstr "Nu va fi revizat pe perechi"
+
+msgid "manager.series.submissionIndexing"
+msgstr "Nu va fi inclus în indexarea editurii"
+
+msgid "manager.series.editorRestriction"
+msgstr "Elemente care pot fi trimise doar de către editori sau editori serie."
+
+msgid "manager.series.confirmDelete"
+msgstr "Sunteți sigur că vreți să ștergeți definitiv această serie?"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Propuneri făcute pentru această serie"
+
+msgid "manager.series.assigned"
+msgstr "Editori pentru această serie"
+
+msgid "manager.series.hideAbout"
+msgstr "Omiteți această serie din secțiunea Despre editură."
+
+msgid "manager.series.unassigned"
+msgstr "Editori de serie disponibili"
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "Un titlu abreviat este necesar pentru această serie."
+
+msgid "manager.series.form.titleRequired"
+msgstr "Un titlu este necesar pentru această serie."
+
+msgid "manager.series.noneCreated"
+msgstr "Nu a fost creată nicio serie."
+
+msgid "manager.series.existingUsers"
+msgstr "Utilizatori existenți"
+
+msgid "manager.series.seriesTitle"
+msgstr "Titlul seriei"
+
+msgid "manager.series.restricted"
+msgstr "Nu permite autorilor să se înscrie direct la această serie."
+
+msgid "manager.sections.alertDelete"
+msgstr ""
+"Înainte ca această serie să poată fi ștearsă, trebuie să muți cererile "
+"asociate acestei serii spre altă serie."
+
+msgid "manager.payment.generalOptions"
+msgstr "Opțiuni generale"
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Plățile vor fi posibile pentru această publicație. Ține cont că ți se va "
+"cere să te conectezi pentru a realiza plăți."
+
+msgid "manager.payment.success"
+msgstr "Setările plății au fost actualizate."
+
+msgid "manager.settings"
+msgstr "Setări"
+
+msgid "manager.settings.pressSettings"
+msgstr "Setările editurii"
+
+msgid "manager.settings.press"
+msgstr "Editură"
+
+msgid "manager.settings.publisher.identity"
+msgstr "Identitatea editurii"
+
+msgid "manager.settings.publisher"
+msgstr "Numele editurii"
+
+msgid "manager.settings.location"
+msgstr "Locație geografică"
+
+msgid "manager.settings.publisherCode"
+msgstr "Codul editurii"
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Tipul de cod al editurii"
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Acesta nu este un tip de cod al editurii valid."
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Toate setările specifice procesului de distribuire (notificare, indexare, "
+"arhivare, plată, unelte de lectură)."
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Descărcări ale fișierelor monografe"
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Nu sunt necesare rezumate"
+
+msgid "manager.series.disableComments"
+msgstr "Dezactivați comentariile cititorilor pentru această serie."
+
+msgid "manager.series.book"
+msgstr "Serie de cărți"
+
+msgid "manager.series.create"
+msgstr "Crează serie"
+
+msgid "manager.series.policy"
+msgstr "Descrierea seriei"
+
+msgid "user.authorization.pluginLevel"
+msgstr "Nu aveți privilegii suficiente pentru a gestiona acest plugin."
+
+msgid "manager.pressManagement"
+msgstr "Gestionarea editurii"
+
+msgid "manager.setup"
+msgstr "Configurație"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Cuprins"
+
+msgid "manager.users.selectRole"
+msgstr "Selectează funcția"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Utilizatori înscriși la editură"
+
+msgid "manager.people.allPresses"
+msgstr "Toate editurile"
+
+msgid "manager.people.allUsers"
+msgstr "Toți utilizatorii înscriși"
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Înscrie un utilizator existent"
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Cu editura"
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Selectează un utilizator căruia să îi atribui drepturile de autor, sarcinile "
+"de editare, etc."
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"Sincronizarea înscrierii va pune pe listă toți utilizatorii înscriși în "
+"rolul editurii pentru același rol al editurii. Această funcție permite unui "
+"grup comun de utilizatori ( ex., revizori) să fie sincronizați între edituri."
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Blocați acest utilizator? Aceasta nu îi va permite utilizatorului să se "
+"conecteze la sistem.\n"
+"\n"
+"Opțional, poți să îi oferi utilizatorului un motiv pentru această decizie."
+
+msgid "manager.system"
+msgstr "Setări ale sistemului"
+
+msgid "manager.system.archiving"
+msgstr "Arhivare"
+
+msgid "manager.system.reviewForms"
+msgstr "Formate de revizie"
+
+msgid "manager.system.readingTools"
+msgstr "Instrumente de lectură"
+
+msgid "manager.system.payments"
+msgstr "Modalități de plată"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Adaugă Despre articol"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Adaugă element de pe lista de verificare"
+
+msgid "manager.setup.addItem"
+msgstr "Adaugă articol"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Adaugă un articol care să apară în secțiunea „Despre editură”"
+
+msgid "manager.setup.addNavItem"
+msgstr "Adaugă articol"
+
+msgid "manager.setup.addSponsor"
+msgstr "Adaugă organizația sponsor"
+
+msgid "manager.setup.announcements"
+msgstr "Anunțuri"
+
+msgid "manager.setup.announcements.success"
+msgstr "Setările anunțurilor au fost actualizate."
+
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Anunțurile pot fi publicate pentru a informa cititorii cu privire la știri "
+"sau evenimente legate de editură. Anunțurile publicate vor apărea pe pagina "
+"de Anunțuri."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Informații suplimentare"
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Va apărea în secțiunea Despre editură) "
+
+msgid "manager.setup.contextAbout"
+msgstr "Despre editură"
+
+msgid "manager.setup.contextSummary"
+msgstr "Rezumatul publicației"
+
+msgid "manager.setup.copyediting"
+msgstr "Editori ai textului original"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Instrucțiuni pentru editori ai textului original"
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"Acesta va înlocui oricare setare locală de publicare specifică configurației "
+"locale"
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Adăgați un editor pentru această serie din editorii disponibili. Odată "
+"adăugat, stabiliți dacă editorul seriei va supraveghea revizia (revizie în "
+"grup) și/sau EDITAREA (revizuirea formatării, aranjare în pagină și "
+"corectare) cererilor pentru această serie. Editorii seriei sunt creați prin "
+"a apăsa pe <a href=\"{$editoriSerieUrl}\">Editori serie</a> sub opțiunea "
+"Roluri în Managementul Publicației."
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"Cel puțin una dintre serii trebuie să fie activă. Vizitează setările "
+"fluxului de lucru pentru a dezactiva toate cererile pentru această editură."
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Ne cerem iertare, dar nu sunt disponibile și alte limbi. Contactează "
+"administratorul site-ului dacă dorești să utilizezi limbaje adiționale "
+"pentru această publicație."
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Aceste câmpuri sunt obligatorii pentru a publica <a href=\"https://en."
+"wikipedia.org/wiki/ONIX_for_Books\">metadate ONIX</a>."
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Vă rog să vă asigurați că ați ales o formă de revizie corectă."
+
+msgid "manager.people.allSiteUsers"
+msgstr "Înscrie un utilizator de pe acest site la editură"
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Selectează un utilizator pentru a-l asocia cu un alt cont ( de ex., atunci "
+"când cineva are două conturi de utilizator). Contul selectat prima dată va "
+"fi șters, iar depunerile de documente, sarcinile etc. vor fi atribuite celui "
+"de-al doilea cont."
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Include orice informație despre editura ta care ar putea fi de interes "
+"pentru cititori, autori sau revizori. Aceasta ar putea include politica ta "
+"de acces deschis, obiectivul și scopul editurii, dezvăluirea sponsorilor sau "
+"istoria editurii."
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Doriți să eliminați acest utilizator din această editură? Această acțiune va "
+"elimina utilizatorul din toate rolurile în această editură."
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Ne pare rău, dar nu ai drepturi administrative asupra acestui utilizator. "
+"Aceasta poate fi deoarece:\n"
+"\t\t<ul>\n"
+"\t\t\t<li> Utilizatorul este administrator al site-ului</li>\n"
+"\t\t\t<li>Utilizatorul este activ la edituri pe care nu le gestionezi</li>\n"
+"\t\t</ul>\n"
+"\tAceastă sarcină trebuie dusă la îndeplinire de către administratorul site-"
+"ului.\n"
+"\t"
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+"Introduceți informații suplimentare care ar trebui să le apară cititorilor "
+"pe pagina de Anunțuri."
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Vizualizare pagină de rezumat a monografiei"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Rezumat al monografiei și descărcări"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Vizualizări ale paginiii principale ale seriei"
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Vizualizări pagina principală a editurii"
+
+msgid "manager.tools"
+msgstr "Instrumente"
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Toate instrumentele specifice importării și exportării de date (edituri, "
+"monografii, utilizatori)"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Instrumente pentru generarea rapoartelor legate de statistici de utilizare ("
+"vizualizări pagină indexului catalogului, vizualizări pagină rezumat "
+"monografie, descărcări fișiere monografie)"
+
+msgid "manager.users.availableRoles"
+msgstr "Funcții disponibile"
+
+msgid "manager.users.currentRoles"
+msgstr "Funcții curente"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+"Instrucțiuni de corectare a textului vor fi disponibile pentru revizori, "
+"autori și editori de secțiuni în stagiul de editare al articolului. Mai jos "
+"este un set automat de instrucțiuni în HTML, care pot fi modificate sau "
+"înlocuite de managerul editurii în orice moment ( în HTML sau în text "
+"simplu)."
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Notificare privind dreptul de autor"
+
+msgid "manager.setup.coverage"
+msgstr "Raport"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Înălțimea maximă a imaginii de copertă"
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Lățimea maximă a imaginii de copertă"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Imaginile vor fi reduse când sunt mai mari decât această mărime, dar nu vor "
+"fi niciodată lățite sau îngustate pentru a se încadra în aceste dimensiuni."
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Pasul 5. Personalizarea aspectului și a stilului"
+
+msgid "manager.setup.customTags"
+msgstr "Etichete personalizate"
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Etichete HTML de antet personalizate pentru a fi inserate în antetul "
+"fiecărei pagini ( de ex., etichete META)."
+
+msgid "manager.setup.details"
+msgstr "Detalii"
+
+msgid "manager.setup.details.description"
+msgstr "Numele editurii, contactelor, sponsorilor și al motoarelor de căutare."
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+"Managerul editurii va înregistra toate conturile de utilizatori. Editorii "
+"sau editorii secțiunii poate înregistra conturi de utilizatori pentru "
+"revizori."
+
+msgid "manager.setup.discipline"
+msgstr "Discipline și sub-disciplinei academice"
+
+msgid "manager.setup.disciplineExamples"
+msgstr ""
+"(De ex., Istorie; educație; Sociologie; Psihologie; Studii culturale; Drept)"
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr "Oferă exemple de discipline academice relevante pentru această editură"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Adaugă cuprinsul pentru monografia curentă (dacă e disponibil)."
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Cuprinsul paginii Acasă"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Cărți recomandate"
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Arată cărți evidențiate pe pagina principală"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Centru al atenției"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Arată lansări noi pe pagina principală"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Noi lansări"
+
+msgid "doi.manager.settings.doiSuffixLegacy"
+msgstr ""
+"Utilizează modele implicite.<br />%p.%m pentru monografii <br />%p.%m.c%c "
+"pentru capitole<br />%p.%m.%f pentru formate de publicare <br />%p.%m.%f.%s "
+"pentru fișiere."
+
+msgid "doi.manager.settings.doiCreationTime.copyedit"
+msgstr "La atingerea stadiului de revizie"
+
+msgid "manager.dois.formatIdentifier.file"
+msgstr "Formatul / {$format}"
+
+msgid "manager.setup.editorDecision"
+msgstr "Decizia editorului"
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Adresă de respingere"
+
+msgid "manager.setup.emails"
+msgstr "Identificarea emailului"
+
+msgid "manager.setup.emailSignature"
+msgstr "Semnătura"
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"Emailurile trimise automat din partea editurii vor avea următoarea semnătură "
+"adăugată."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Permite anunțuri"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Anunțurile pot fi publicate pentru a informa cititorii cu privire la noutăți "
+"sau evenimente, Anunțurile publicate vor apărea pe pagina de Anunțuri."
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Arată pe pagina principală"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Numărul anunțurilor care apar pe pagina principală. Lasă acest spațiu liber "
+"pentru a nu arăta niciunul."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Permite editurii să apară public pe site"
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr ""
+"Numerele DOI personalizate vor fi folosite pentru a identifica elementele "
+"publicate."
+
+msgid "manager.setup.enableUserRegistration"
+msgstr "Vizitatorii pot să se înregistreze cu un cont de utilizator."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Punctul central și scopul editurii"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr ""
+"Informează autorii, cititorii și bibliotecarii cu privire la variabilitatea "
+"de monografii și alte elemente pe care editura le va publica."
+
+msgid "manager.setup.focusScope"
+msgstr "Punct central și scop"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>EXEMPLU DE DATE HTML</strong>"
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Pentru ca autorii să își indexeze scrierile"
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "Adresa de email de contact principală este necesară."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Numele de contact principal este necesar."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Numărul de revizori per cerere este necesar."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "Adresa de email alternativă este necesară."
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Numele alternativ este necesar."
+
+msgid "manager.setup.generalInformation"
+msgstr "Informație generală"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Pasul 1. Oferirea detaliilor"
+
+msgid "manager.setup.guidelines"
+msgstr "Instrucțiuni"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Pasul 3. Pregătirea fluxului de lucru"
+
+msgid "manager.setup.identity"
+msgstr "Identitate media"
+
+msgid "manager.setup.information"
+msgstr "Informație"
+
+msgid "manager.setup.information.description"
+msgstr ""
+"Descrieri sumare ale editurii pentru bibliotecari și potențiali autori și "
+"cititori. Acestea sunt disponibile în bara laterală a site-ului atunci când "
+"secțiunea „Informații” a fost adăugată."
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Pentru autori"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Pentru biblotecari"
+
+msgid "manager.setup.information.forReaders"
+msgstr "Pentru cititori"
+
+msgid "manager.setup.information.success"
+msgstr "Informația cu privire la această editură a fost actualizată."
+
+msgid "manager.setup.institution"
+msgstr "Instituția"
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Elemente per pagină"
+
+msgid "manager.setup.keyInfo"
+msgstr "Informație cheie"
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Oferă o descriere sumară a editurii tale și idenfică editorii, directorii "
+"manageri și alți membri ai echipei tale editoriale."
+
+msgid "manager.setup.labelName"
+msgstr "Denumirea mărcii"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Editori grafici"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Instrucțiuni grafice"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Șabloane grafice"
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Model de fișier"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Titlu"
+
+msgid "manager.setup.lists"
+msgstr "Liste"
+
+msgid "manager.setup.lists.success"
+msgstr "Setările din listă au fost actualizate."
+
+msgid "manager.setup.look"
+msgstr "Aspect și stil"
+
+msgid "manager.setup.look.description"
+msgstr ""
+"Antet pagină principală, cuprins, antet editură, subsol, bară de navigare și "
+"fișă de stil."
+
+msgid "manager.setup.settings"
+msgstr "Setări"
+
+msgid "manager.setup.management.description"
+msgstr ""
+"Acces și securitate, planificare, anunțuri, corectare, grafică și corectori."
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Managementul pașilor de bază ale editurii"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Managementul și configurația publicației"
+
+msgid "manager.setup.managingThePress"
+msgstr "Pasul 4. Gestionarea setărilor"
+
+msgid "manager.setup.masthead.success"
+msgstr "Detaliile redacționale ale editurii au fost actualizate."
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Pentru a trimite emailuri care nu pot fi trimise la o adresă de respingere, "
+"administratorului site-ului trebuie să permită opțiunea "
+"<code>allow_envelope_sender</code> în fișierul de configurație al site-ului. "
+"Configurația serverului poate fi solicitată, așa cum este indicat în "
+"documentația OMP."
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"OMP îndeplinește protocolul pentru colectarea metadatelor al <a href=\"https"
+"://www.openarchives.org\" target=\"_blank\">inițiativei arhivelor deschise</"
+"a> , care este standardul emergent pentru obținerea accesului bine indexat "
+"la resurse de căutare electronică la o scală globală. Autorii vor folosi un "
+"șablon similar pentru a oferi metadate pentru cererea lor. Managerul "
+"editurii trebuie să selecteze categorii pentru indexare și prezintă autorii, "
+"oferind exemple relevante pentru a-i susține în indexarea scrierilor lor, "
+"separând termenii prin punc și virgulă (de ex., term1; term2). Intrările "
+"trebuie să fie introduse ca exemple folosind „Ex.” sau „De ex.,”."
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Limitează numărul de elemente ( de exemplu, cereri, utilizatori sau sarcini "
+"de editare) pentru a într-o listă înainte de arăta elementele car vor apărea "
+"pe altă pagină."
+
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Util atunci când editura depășește bariere disciplinare și/sau autorii "
+"prezintă elemente multidisciplinare."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+"Numerele DOI personalizate vor fi folosite pentru a identifica fișiere ( de "
+"ex. fișiere HTML sau PDF) pentru articole publicate."
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Arată cărțile recomandate pe pagina principală"
+
+msgid "manager.setup.enableDois.description"
+msgstr ""
+"Permite identificatorilor de obiect digital (DOI) care să fie asociate cu "
+"lucrări publicate de această editură."
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"Instrucțiunile grafice pot fi pregătite pentru formatarea sau publicarea "
+"articolelor la editură și pot fi introduse în HTML sau text simplu. Ele vor "
+"fi disponibile în secțiunea     Editor grafic și Editor secție, pe pagina de "
+"editare a fiecărei cereri. (deoarece fiecare editură poate utiliza propriile "
+"formate de fișiere, standarde bibliografice, fișe de stil, etc., un set "
+"standard de instrucțiuni nefiind oferit.)"
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr ""
+"Selectează tipurile de lucrări publicate de această editură cărora să li se "
+"asocieze un număr DOI. Cele mai multe edituri asociază numărul DOI "
+"monografiilor/capitolelor, dar ai putea să asociezi numere DOI tuturor "
+"articolelor publicate."
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"Orice email care nu poate fi trimis va deveni un mesaj de eroare pentru "
+"această adresă."
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"Șabloanele pot fi încărcate pentru a apărea în secțiunea Grafică pentru "
+"fiecare dintre formatele standard publicate la editură ( de ex., monografie, "
+"recenzie de carte, etc.) folosind orice format de fișier (de ex., pdf, doc, "
+"etc.) cu adnotări adăugate pentru a specifica fontul, mărimea, margini, etc. "
+"pentru a servi drept ghid pentru editorii grafici și corectori."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Este un format fizic (non-digital)?"
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Format nou de publicare"
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+"Pentru a crea o nouă platformă de publicare, completează formularul de mai "
+"jos și apasă pe butonul „Crează”."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Această editură nu acceptă cereri la acest moment. Vezi setările fluxului de "
+"lucru pentru a-ți fi acceptate cererile."
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Previne utilizatorii din a trimite noi articole către editură. Elementele "
+"trimise pot fi dezactivate pentru serii individuale ale editurii la <a href="
+"\"{$url}\">serie editură</a> , din pagina de setări."
+
+msgid "manager.setup.genres"
+msgstr "Genuri"
+
+msgid "manager.setup.newGenre"
+msgstr "Gen nou al monografiei"
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"Pentru a crea un nou gen, completează formularul de mai jos și apasă pe "
+"butonul „Crează”."
+
+msgid "manager.setup.deleteSelected"
+msgstr "Selectare ștergere"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Recuperează setări prestabilite"
+
+msgid "manager.setup.prospectus"
+msgstr "Ghidul prospectului"
+
+msgid "manager.setup.submitToCategories"
+msgstr "Permite elemente trimise pe categorii"
+
+msgid "manager.setup.submitToSeries"
+msgstr "Permite articole în serie"
+
+msgid "manager.setup.currentFormats"
+msgstr "Formatări curente"
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Categorii și serii"
+
+msgid "manager.setup.series.description"
+msgstr ""
+"Poți crea orice număr de serie pentru a te ajuta în organizare publicațiilor "
+"tale. O serie reprezintă un set special de cărți aparținătoare unei teme sau "
+"subiect pe care cineva le-a propus, de regulă un membru sau doi ai "
+"facultății, iar apoi le supraveghează. Vizitatorii vor putea să caute pe "
+"site-ul editurii pornind de la serie."
+
+msgid "manager.setup.reviewForms"
+msgstr "Formulare de revizie"
+
+msgid "manager.setup.roleType"
+msgstr "Tip de rol"
+
+msgid "manager.setup.authorRoles"
+msgstr "Roluri ale autorului"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Roluri de gestionare"
+
+msgid "manager.setup.availableRoles"
+msgstr "Funcții disponibile"
+
+msgid "manager.setup.currentRoles"
+msgstr "Funcții curente"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Roluri ale reviziei interne"
+
+msgid "manager.setup.masthead"
+msgstr "Titlu editură"
+
+msgid "manager.setup.editorialTeam"
+msgstr "Echipă editorială"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr ""
+"Listă de editori, directori manageri și alte persoane asociate editurii."
+
+msgid "manager.setup.files"
+msgstr "Fișiere"
+
+msgid "manager.setup.productionTemplates"
+msgstr "Producție de șabloane"
+
+msgid "manager.files.note"
+msgstr ""
+"Notă: Navigatorul fișierelor este o funcție avansată care permite fișierelor "
+"și cataloagelor asociate cu editura să fie vizualizate și manipulate direct."
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Obiectele selectate nu au putut fi convertite."
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "XML invalid:"
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Exportă articole"
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"Niciun contact principal nu a fost definit de această editură. Poți accesa "
+"un contact primar la <a href=\"{$url}\">setările editurii</a>."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Obiectele specificate nu au putut fi găsite."
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "Utilizatorul specificat, „{$userName}”, nu există."
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "Procesul a eșuat în analizarea capitolelor"
+
+msgid "emailTemplate.variable.context.contextName"
+msgstr "Nume edituriă"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "URL-ul paginii principale a editurii"
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "Numele contactului principal al editurii"
+
+msgid "emailTemplate.variable.context.contextAcronym"
+msgstr "Inițialele editurii"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "Adresa de email pentru contactul principal al editurii"
+
+msgid "emailTemplate.variable.context.mailingAddress"
+msgstr "Adresa poștală a editurii"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "Numele tipului de plată"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "Suma de plată"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "Moneda sumei de plată, precum USD"
+
+msgid "emailTemplate.variable.statisticsReportNotify.publicationStatsLink"
+msgstr "Link-ul către pagina de statistici ale cărților"
+
+msgid "mailable.validateEmailContext.name"
+msgstr "Validează emailul (înregistrarea pe site-ul editurii)"
+
+msgid "mailable.validateEmailContext.description"
+msgstr ""
+"Acest email este trimis automat unui nou utilizator când se înregistrează pe "
+"site-ul edituii și când setările cer ca adresa de email să fie validată."
+
+msgid "doi.displayName"
+msgstr "DOI"
+
+msgid "doi.manager.displayName"
+msgstr "Numere DOI"
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"Ghidul prospectului este un document pregătit de editură care ajută autorul "
+"să descrie materialele trimise într-un mod care permite unei edituri să "
+"determine valoarea elementelor trimise. Un prospect poate include o mulțime "
+"de elemente - de la potențial de marketing până la valoare teoretică; în "
+"orice caz, o editură trebuiă să creeze un ghid al prospectului care să "
+"completeze agenda lor de publicare."
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"ISSN (Numărul internațional standard de serie) este un număr cu 8 cifre care "
+"identifică publicații periodice incluzând foiletoane electronice. Un număr "
+"paote fi obținut de la <a href=\"https://www.issn.org\" target=\"_blank\""
+">Centrul internațional ISSN</a>."
+
+msgid "manager.setup.categories.description"
+msgstr ""
+"Poți crea o listă de categorii care să te ajute în organizarea publicațiilor "
+"tale. Categoriile sunt grupări de cărți conform tematicii, de exemplu "
+"Economie, Literatură, Poezie, și așa mai departe. Categoriile pot fi "
+"încorporate în categorii „părinte”: de exemplu, categoria Economie poate fi "
+"o categorie „părinte” pentru categoriile Microeconomie sau Macroeconomie. "
+"Vizitatorii pot să caute pe site-ul editurii pe categorii."
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Niciun obiect selectat."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Trimite o copie a emailului de recunoaștere al elementului trimis la adresa "
+"de contact principală a editurii."
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "Procesul a eșuat în analizarea formatelor de publicare"
+
+msgid "emailTemplate.variable.context.contextSignature"
+msgstr "Semnătura pentru emailurile automate ale editurii"
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr "Numele wesite-ului unde sunt găzduite mai multe editurii"
+
+msgid "mailable.statisticsReportNotify.description"
+msgstr ""
+"Acest email este trimis automat lunar către editorii și managerii editurii "
+"pentru a oferi o perspectivă generală asupra sănătății sistemului."
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Trebuie să oferi un nume acestui format."
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+"Acest format de publicare nu poate fi șters deoarece este utilizat la "
+"momentul actual de către o monografie în editura ta."
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Aceste genuri se utilizează pentru numirea de fișiere și sunt prezentate "
+"într-un meniu vertical în momentul încărcării fișiereor. Aceste genuri "
+"desemnate ## permit utilizatorului să asocieze fișierul cu întreaga carte "
+"99Z sau unui capitol specific prin număr ( de ex., 02)."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Nu s-a încărcat niciun fișier imagine."
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Nu s-a încărcat nicio fișă de stil."
+
+msgid "manager.setup.note"
+msgstr "Notă"
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+"Când utilizezi un email pentru notificarea autorului, include adresele de "
+"email ale tuturor coautorilor pentru cereri de autori multipli, și nu doar "
+"utilizatorul care trimite cererea."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr ""
+"Corectarea va fi realizată de un editor sau editor de secție responsabil cu "
+"cererea."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+"Un editor sau editor de secție responsabil cu cererea va pregăti fișierele "
+"HTML, PDF, etc."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Linkuri pagină"
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Accesează conținutul editurii"
+
+msgid "manager.setup.onlineIssn"
+msgstr "ISSN online"
+
+msgid "manager.setup.policies"
+msgstr "Politici"
+
+msgid "manager.setup.policies.description"
+msgstr ""
+"Obiectivul revistei, revizie pe grup, secțiuni, confidențialitate, "
+"securitate și altele."
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "Declarația de confidențialitate a fost actualizată."
+
+msgid "manager.setup.pressDescription"
+msgstr "Descrierea pe scurt a editurii"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "O descriere pe scurt a editurii tale."
+
+msgid "manager.setup.aboutPress"
+msgstr "Despre editură"
+
+msgid "manager.setup.pressArchiving"
+msgstr "Arhive ale publicației"
+
+msgid "manager.setup.homepageContent"
+msgstr "Conținut pagină principală"
+
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+"Pagină principală a editurii conține linkuri de navigare prestabilite. "
+"Conținut adițional al paginii principale poate fi adăugat folosind una sau "
+"toate opțiunile următoare, care vor apărea în ordinea descrisă."
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Conținut pagină principală publicație"
+
+msgid "manager.setup.contextInitials"
+msgstr "Inițiale edituriă"
+
+msgid "manager.setup.selectCountry"
+msgstr ""
+"Selectează țara în care este localizată editura sau țara adresei poștale "
+"pentru editură sau editor."
+
+msgid "manager.setup.layout"
+msgstr "Grafică editură"
+
+msgid "manager.setup.pageHeader"
+msgstr "Antet pagină publicație"
+
+msgid "manager.setup.pressPolicies"
+msgstr "Pasul 2. Politicile publicației"
+
+msgid "manager.setup.pressSetup"
+msgstr "Configurație publicație"
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Configurația publicației tale a fost actualizată."
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Formatul fișei de stil nu este valid. Formatul acceptat este .css."
+
+msgid "manager.setup.pressTheme"
+msgstr "Tema publicației"
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Miniatură editură"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr ""
+"Un logo mic sau o reprezentare a editurii care poate fi folosită în liste de "
+"edituri."
+
+msgid "manager.setup.contextTitle"
+msgstr "Nume publicație"
+
+msgid "manager.setup.printIssn"
+msgstr "Printează ISSN"
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Instrucțiuni de corectare"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "format de publicare"
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "fișier"
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"Nu poți genera un DOI deoarece uneia sau mai multor părți ale șablonului DOI "
+"le lipsesc date."
+
+msgid "doi.editor.patternNotResolved"
+msgstr "DOI nu poate fi atribuit deoarece conține un șablon nerezolvat."
+
+msgid "doi.editor.assigned"
+msgstr "DOI este atribuit acestui {$pubObjectType}."
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Sufixul DOI dat este deja utilizat pentru un alt element. Te rog să "
+"introduci un sufix DOI unic pentru fiecare element."
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Șterge"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Ești sigur că vrei să ștergi numărul DOI existent?"
+
+msgid "doi.editor.assignDoi"
+msgstr "Atribuie DOI {$pubId} acestui {$pubObjectType}"
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr ""
+"DOI {$pubId} nu poate fi atribuit deoarece conține un șablon nerezolvat."
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "DOI {$pubId} a fost atribuit."
+
+msgid "doi.editor.missingPrefix"
+msgstr "DOI trebuie să înceapă cu {$doiPrefix}."
+
+msgid "doi.editor.preview.publication"
+msgstr "DOI pentru această publicație va fi {$doi}."
+
+msgid "doi.editor.preview.publication.none"
+msgstr "Nu a fost atribuit un DOI acestei publicații."
+
+msgid "doi.editor.preview.chapters"
+msgstr "Capitol: {$title}"
+
+msgid "doi.editor.preview.files"
+msgstr "Fișier: {$title}"
+
+msgid "doi.editor.preview.objects"
+msgstr "Element"
+
+msgid "doi.manager.submissionDois"
+msgstr "Numere DOI monografie"
+
+msgid "mailable.decision.initialDecline.notifyAuthor.description"
+msgstr ""
+"Acest email notifică autorul că cererea este respinsă înainte de a fi "
+"trimisă spre revizie deoarece cererea nu respectă cerințele publicării ale "
+"editurii."
+
+msgid "manager.institutions.noContext"
+msgstr "Editura acestei instituției nu poate fi găsită."
+
+msgid "manager.manageEmails.description"
+msgstr "Editează mesajele trimise în emailuri de la această editură."
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
+msgstr "Trimite spre revizie internă"
+
+msgid "mailable.indexRequest.name"
+msgstr "Index solicitat"
+
+msgid "mailable.indexComplete.name"
+msgstr "Index completat"
+
+msgid "mailable.layoutComplete.name"
+msgstr "Schițe complete"
+
+msgid "mailable.publicationVersionNotify.name"
+msgstr "Versiune nouă creată"
+
+msgid "mailable.publicationVersionNotify.description"
+msgstr ""
+"Acest email notifică automat editorii desemnați când o nouă versiune a "
+"cererii a fost creată."
+
+msgid "mailable.submissionNeedsEditor.description"
+msgstr ""
+"Acest email este trimis către managerii editurii când o nouă cerere este "
+"făcută și niciun editor nu este desemnat."
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "capitol"
+
+msgid "doi.editor.customSuffixMissing"
+msgstr "DOI nu poate fi atribuit deoarece sufixul personalizat lipsește."
+
+msgid "doi.editor.canBeAssigned"
+msgstr ""
+"Ceea ce vezi este o previzualizare a DOI. Selectează căsuța și salvează "
+"forma pentru a atribui DOI."
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr "DOI nu poate fi atribuit deoarece sufixul personalizat lipsește."
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Format publicație: {$title}"
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
+msgstr ""
+"Acest email notifică autorul că articolul este trimis către faza de revizie "
+"internă."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr ""
+"Un editor sau editor de secție responsabil cu cererea va verifica fișierele."
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Limitează numărul de linkuri care apar în pagini succesive într-o listă."
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+"Componente multiple ale aspectului editurii pot fi configurate din această "
+"pagină, incluzând elemente de antet și subsol, stilul și tematica editurii, "
+"dar și modul în care listele de informații sunt prezentate utilizatorilor."
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+"Include orice informație despre editura ta care poate fi de interes pentru "
+"cititori, autori sau revizori. Această poate include politica ta de acces "
+"deschis, punctul central și scopul editurii, înștiințare copyright, "
+"descoperirea sponsorilor, istoricul editurii, dar și o declarație de "
+"confidențialitate."
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr ""
+"Pagina principală a editurii conține linkuri de navigare prestabilite. "
+"Conținutul adițional al paginii principale poate fi adăugat folosind una sau "
+"toate dintre opțiunile următoare, care vor apărea în ordinea descrisă."
+
+msgid "manager.setup.proofreading"
+msgstr "Corectori"
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Oferă instrucțiuni editorilor grafici."
+
+msgid "manager.setup.referenceLinking"
+msgstr "Link de referință"
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Instrucțiuni grafice pentru linkul de referință"
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr ""
+"Utilizatorii trebuie să fie înregistrați și conectați pentru a vedea "
+"conținutul cu acces deschis."
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr ""
+"Utilizatorii trebuie să fie înregistrați și conectați pentru a vedea site-ul "
+"publicației."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Instrucțiuni pentru revizie externă"
+
+msgid "manager.setup.reviewOptions"
+msgstr "Opțiuni de revizie"
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Mementouri email automate"
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr ""
+"Editorii vor evalua revizorii pe o scară de la 1 la 5 după fiecare revizie."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Restricționează accesul la fișier"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr ""
+"Revizorii vor avea acces la documentul trimis doar după ce își vor da "
+"acordul să îl revizeze."
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Acces revizori"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Acces revizori cu un singur clic"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr ""
+"Include un link de securitate în invitația oferită prin email revizorilor."
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Evaluare revizori"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Mementouri revizori"
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Politica de evaluare"
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Indexare căutări"
+
+msgid "manager.setup.publisher"
+msgstr "Editor"
+
+msgid "manager.setup.publisherDescription"
+msgstr ""
+"Numele organizației care va oferi publicația va apărea în secțiunea Despre "
+"publicație."
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Instrucțiuni pentru revizie internă"
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr ""
+"Pentru a activa aceste opțiuni, administratorul site-ului trebuie să "
+"acctiveze <tt>scheduled_tasks</tt> opțiunea în fișierul de configurație OMP. "
+"Configurații suplimentare ale serverului pot fi necesare pentru a susține "
+"această funcționalitate ( care se poate să nu fie posibilă pe toate "
+"serverele), după cum e indicat în documentația OMP."
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Oferă o descriere sumară (50-300 caractere) a acestei publicații pe care "
+"motoarele de căutare o pot arăta atunci când editura apare ca rezultat pe "
+"lista de căutare."
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr ""
+"Intrucțiunile de corectare vor fi disponibile pentru corectori, autori, "
+"editori grafici și editori de secțiuni în faza de aprobare a editării. Mai "
+"jos este un set prestabilit de instrucțiuni în HTML, care pot fi editate sau "
+"înlocuite de managerul editurii în orice moment (în HTML sau text simplu)."
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr ""
+"Articolele publicației se pot publica colectiv, ca parte a unei monografii "
+"cu propriul cuprins. De altfel, articole individuale pot fi publicate odată "
+"ce sunt gata, prin adăugarea lor cuprinsul „curent” al volumului. Oferă "
+"cititorilor, în secțiunea Despre publicație, o afirmație despre sistemul pe "
+"care editura îl va utiliza și frecvența estimată a publicării."
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr ""
+"Oferă revizorilor externi criteriile de evaluare a conformității articolului "
+"pentru publicarea la editură, care poate include instrucțiuni pentru "
+"pregătirea unei revizii utile și eficiente. Revizorii vor avea oportunitatea "
+"de a oferi comentarii destinate autorului și editorului, precum și "
+"comentarii separate, doar pentru editor."
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr ""
+"Ajută motoarele de căutare, precum Google să descopere și să arate site-ul. "
+"Ești încurajat să trimiți<a href=\"{$sitemapUrl}\" target=\"_blank\">harta "
+"site-ului tău</a>."
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr "Setările de indexare ale motorului de căutare au fost actualizate."
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Secțiuni și editori de secțiuni"
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr ""
+"(Dacă nu sunt adăugate secțiuni, atunci articolele sunt trimise către "
+"secțiunea Monografii în mod prestabilit.)"
+
+msgid "manager.setup.securitySettings"
+msgstr "Acces șe setări de securitate"
+
+msgid "manager.setup.securitySettings.note"
+msgstr ""
+"Alte opțiuni legate de securitate sau acces pot fi configurate pe pagina <a "
+"href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\"action\">Acces și "
+"Securitate</a>."
+
+msgid "manager.setup.selectEditorDescription"
+msgstr "Editorul care va supraveghea procesul editoria."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr "Seriile pentru care se va considera elementul publicat."
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr "Arată întotdeauna linkurile fișierelor și indică accesul restricționat."
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Accesare site"
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Vezi conținutul monografiei"
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Cinci pași în configurarea unui site web al unei publicații"
+
+msgid "manager.setup.subjectExamples"
+msgstr ""
+"(De ex., Fotosinteză, Găuri negre, Teorema celor patru culori; Teorema lui "
+"Bayes)"
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Cuvinte-cheie"
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr "Oferă exemple de cuvinte-cheie sau tematici drept ghid pentru autori"
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Indicații ale articolului"
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "Lista de verificare este obligatorie."
+
+msgid "manager.setup.workflow"
+msgstr "Flux de lucru"
+
+msgid "manager.setup.submissions.description"
+msgstr ""
+"Indicații pentru autori, drepturi de autor și indexare (include "
+"înregistrarea)."
+
+msgid "manager.setup.typeExamples"
+msgstr ""
+"(De ex., investigație istorică, cvasi-experimental, analiză literară, sondaj/"
+"interviu)"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Tip (metodă/abordare)"
+
+msgid "manager.setup.typeProvideExamples"
+msgstr ""
+"Oferă exemple relevante de tipuri de cercetare, metode și abordări pentru "
+"acest domeniu"
+
+msgid "manager.setup.useCopyeditors"
+msgstr "Un corector va fi desemnat să lucreze la fiecare articol."
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "Un consiliu editorial/de revizie va fi folosit de către editură."
+
+msgid "manager.setup.useImageTitle"
+msgstr "Imagine titlu"
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Fișa de stil a publicației"
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+"Un editor grafic va fi desemnat să pregătească fișiere HTML, PDF, etc. "
+"pentru publicația electronică."
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+"Un corector va fi desemnat să verifice (odată cu autorii) fișierele înainte "
+"de publicare."
+
+msgid "manager.setup.userRegistration"
+msgstr "Înregistrare utilizator"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Titlu în format text"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Volume per an"
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Format"
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Trebuie ales un format."
+
+msgid "manager.setup.referenceLinkingDescription"
+msgstr ""
+"<p>Pentru a permite cititorilor să caute versiuni are lucrării citate de un "
+"autor, următoarele opțiuni sunt valabile.</p>\n"
+"<ol>\n"
+"\t<li><strong>Adaugă un instrument de lectură</strong><p>Managerul presei "
+"poate să adauge „Găsește referințe” la opțiunea Instrumente de lectură care "
+"să însoțească articolul publicat, care permite cititorului să copieze titlul "
+"unei referințe, iar apoi să caute baze de date academică selectate anterior "
+"pentru lucrarea citată.\n"
+"</p></li>\n"
+"\t<li><strong>Link-uri încorporate în Referințe</strong><p>Editorul grafic "
+"poate să adauge un link la referințe care pot fi găsite online folosind "
+"următoarele instrucțiuni (care se pot edita).</p></li>\n"
+"</ol>"
+
+msgid "manager.setup.basicEditorialStepsDescription"
+msgstr ""
+"Pași: Listă articole &gt; Revizie articole &gt; Editare articole &gt; "
+"Cuprins <br /><br />\n"
+"Selectează un model pentru gestionarea acestor aspecte ale procesului "
+"editorial (Pentru a desemna un editor de gestiune și un editor de serie, "
+"mergi la Editori în managementul publicației.)"
+
+msgid "manager.publication.library"
+msgstr "Biblioteca publicației"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Resetează permisiuni monografie"
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr ""
+"Ești sigur că vrei să resetezi datele de permisiune deja atașate "
+"monografiilor?"
+
+msgid "manager.setup.resetPermissions.description"
+msgstr ""
+"Declarația drepturilor de autor și informația cu privire la licență vor fi "
+"în permanență atașate conținutului publicat, asigurând că aceste date nu se "
+"vor schimba în cazul unei schimbări de politici a editurii pentru noile "
+"articole. Pentru a reseta informația cu privire la permisiunile păstrare, "
+"apasă butonul de mai jos."
+
+msgid "manager.setup.resetPermissions.success"
+msgstr "Permisiunile monografiei au fost resetate cu succes."
+
+msgid "grid.genres.title.short"
+msgstr "Componenete"
+
+msgid "grid.genres.title"
+msgstr "Componente monografie"
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr ""
+"Trimite o copie către contactul principal, identificat în Setările "
+"publicației."
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr "Ruta seriilor admite doar litere și numere."
+
+msgid "grid.series.pathExists"
+msgstr "Ruta seriei deja există. Te rog să introduci o rută unică."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Selectează serie"
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr ""
+"Te rog să selectezi serie la care ai dori să atașezi acest element al "
+"meniului."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Selectează categoria"
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr ""
+"Te rog să selectezi cateogira ai dori să atașezi acest element din meniu."
+
+msgid "grid.series.urlWillBe"
+msgstr "URL-ul seriei va fi: {$sampleUrl}"
+
+msgid "stats.contextStats"
+msgstr "Statisticile editurii"
+
+msgid "stats.context.tooltip.text"
+msgstr ""
+"Numărul de vizitatori care au vizualizat pagina de indecare a editurii și a "
+"catalogului."
+
+msgid "stats.context.tooltip.label"
+msgstr "Despre statisticile editurii"
+
+msgid "stats.context.downloadReport.description"
+msgstr ""
+"Descarcă o foaie de calcul CSV/Excel cu statistici de utilizare pentru "
+"editură care să corespundă următorilor parametri."
+
+msgid "stats.context.downloadReport.downloadContext.description"
+msgstr "Număr de vizualizări pagină de indexare a editurii și a catalogului."
+
+msgid "stats.context.downloadReport.downloadContext"
+msgstr "Descarcă din editură"
+
+msgid "stats.publications.downloadReport.downloadSubmissions"
+msgstr "Descărcări monografii"
+
+msgid "stats.publications.downloadReport.downloadSubmissions.description"
+msgstr ""
+"Număr de vizualizări ale sumarului și ale descărcării de fișiere pentru "
+"fiecare monografie."
+
+msgid "stats.publicationStats"
+msgstr "Statistici monografie"
+
+msgid "stats.publications.details"
+msgstr "Detalii monografie"
+
+msgid "stats.publications.none"
+msgstr ""
+"Nicio monografie cu statistici de utilizare care să corespundă acestor "
+"parametri nu a fost găsită."
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Vizualizări totale ale catalogului per dată"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Vizualizări totale ale fișierului per dată"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$count} din {$total} monografii"
+
+msgid "stats.publications.abstracts"
+msgstr "Intrări catalog"
+
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr ""
+"De exemplu, press%ppub%r poate crea un număr DOI, precum 10.1234/"
+"pressESPpub100"
+
+msgid "doi.description"
+msgstr ""
+"Acest modul permite alocarea unui număr DOI monografiilor, capitolelor, "
+"formatelor de publicare și fișierelor în OMP."
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "doi.manager.settings.description"
+msgstr ""
+"Te rog să configurezi modulul DOI pentru a putea gestiona și folosi numere "
+"DOI în OMP:"
+
+msgid "doi.manager.settings.explainDois"
+msgstr ""
+"Te rog să selectezi obiectele publicate care vor avea un număr DOI alocat:"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Monografii"
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Capitole"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Formate de publicare"
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Fișiere"
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "Prefix DOI"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "Prefixul DOI este obligatoriu și trebuie să respecte forma 10.xxxx."
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "pentru monografii"
+
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "pentru capitole"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "pentru formate de publicare"
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "pentru fișiere"
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Te rog să introduci modelul de sufix DOI pentru monografii."
+
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Te rog să introduci modelul de sufix DOI pentru capitole."
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Te rog să introduci modelul de sufix DOI pentru formate de publicare."
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Te rog să introduci modelul de sufix DOI pentru fișiere."
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "Reasociază numerele DOI"
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr ""
+"Dacă schimbi configurația numărului tău DOI, numerele DOI care au fost deja "
+"alocate nu vor fi afectate. Odată ce configurația numărului DOI este "
+"salvată, apasă acest buton pentru a șterge toate numerele DOI existene "
+"astfel încât noile setări se vor aplica tuturor obiectelor existente."
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Ești sigur că dorești să ștergi toate numerele DOI existente?"
+
+msgid "doi.editor.doi"
+msgstr "DOI"
+
+msgid "doi.editor.doi.description"
+msgstr "Numărul DOI trebuie să înceapă cu {$prefix}."
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Alocă"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "monografie"
+
+msgid "stats.publications.downloadReport.description"
+msgstr ""
+"Descarcă o foaie de calcul CSV/Excel cu statistici de utilizare pentru "
+"monografii care să corespundă următorilor parametri."
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+"<h3>Notificări Creative Commons propuse</h3>\n"
+"<h4>Politici propuse pentru edituri care oferă acces deschis</h4>\n"
+"Autori care publică la această editură sunt de acord cu următorii termeni:\n"
+"<ol type=\"a\">\n"
+"\t<li>Autorii păstrează drepturile de autor și acordă dreptul de presă la "
+"prima publicare cu lucrarea licențiată simultan sub o <a target=\"_blank\" "
+"href=\"https://creativecommons.org/licenses/by/3.0\">Licență Creative "
+"Commons Attribution</a> care permite altora să dea mai departe lucrarea cu o "
+"recunoaștere a autorului și a publicării inițiale la editură.</li>\n"
+"\t<li>Autorilor li se permite să intre în serii contractuale separate, "
+"adiționale pentru distribuire non-exclusivă a versiunii lucrării publicate "
+"de editură (de ex., să o publice în repozitorii instituțional sau să o "
+"publice într-o carte), cu o recunoaștere publicării sale inițiale la "
+"editură.</li>\n"
+"\t<li>Autorilor li se permite și sunt încurajați să își publice lucrarea "
+"online (de ex., în repozitorii instituționale sau pe site-ul lor) înainte "
+"sau în timpul procesului de trimitare, astfel încât să ducă la schimburi "
+"productive, precum și la citări mai numeroase și mai timpurii ale lucrării "
+"publicate (Vezi <a target=\"_blank\" href=\"https://web-archive.southampton."
+"ac.uk/opcit.eprints.org/oacitation-biblio.html\">Efectul accesului "
+"deschis</a>).</li>\n"
+"</ol>\n"
+"\n"
+"<h4>Politici propuse pentru editurile care oferă acces deschis amânat</h4>\n"
+"Autorii care publică la această editură sunt de acord cu următorii termeni: "
+"\n"
+"<ol type=\"a\">\n"
+"\t<li>Autorii păstrează drepturile de autor și acordă dreptul de presă la "
+"prima publicare, cu lucrarea [SPEFICIFĂ PERIOADA DE TIMP] după publicarea "
+"simultan licențiată sub o <a target=\"_blank\" href=\"https://creativecommons"
+".org/licenses/by/3.0\">Licență Creative Commons Attribution </a> care "
+"permite altora să dea mai departe lucrarea cu o recunoaștere a autorului și "
+"a publicării inițiale la editură.</li>\n"
+"\t <li>Autorilor li se permite să intre în serii contractuale separate, "
+"adiționale pentru distribuire non-exclusivă a versiunii lucrării publicate "
+"de editură (de ex., să o publice în repozitorii instituțional sau să o "
+"publice într-o carte), cu o recunoaștere publicării sale inițiale la "
+"editură.</li>\n"
+"\t <li>Autorilor li se permite și sunt încurajați să își publice lucrarea "
+"online (de ex., în repozitorii instituționale sau pe site-ul lor) înainte "
+"sau în timpul procesului de trimitare, astfel încât să ducă la schimburi "
+"productive, precum și la citări mai numeroase și mai timpurii ale lucrării "
+"publicate (Vezi <a target=\"_blank\" href=\"https://web-archive.southampton."
+"ac.uk/opcit.eprints.org/oacitation-biblio.html\"> Efectul accesului "
+"deschis</a>).</li>\n"
+"</ol>"
+
+msgid "plugins.importexport.common.error.salesRightRequiresTerritory"
+msgstr ""
+"O înregistrare a dreptului de vânzare a fost omisă deoarece nu are alocate "
+"nicio țară sau regiune."
+
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Utilizează un model de sufix personalizat pentru fiecare tip de publicație. "
+"Modelul de sufix personalizat poată să folosească următoarele simboluri "
+"pentru a genera sufixul: <br><br> <code>%p</code> Inițiale publicație<br> "
+"<code>%m</code> ID Monografie<br> <code>%c</code> Capitol ID<br> <code>%f</"
+"code> Format de publicare ID<br> <code>%s</code> ID fișier<br> <code>%x</"
+"code> Identificator personalizat<br><br> Atenție la faptul că modelele de "
+"sufix personalizat deseori duc la probleme în generarea și depozitarea "
+"numerelor DOI. Când utilizați un model de sufix personalizat, tetați cu "
+"atenție dacă editorii pot să genereze numere DOI și să le depoziteze la o "
+"agenție de înregistrări, precum Crossref. "

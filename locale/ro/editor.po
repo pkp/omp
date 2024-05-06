@@ -1,0 +1,213 @@
+# Elena-Ionela Buhalo <elena.buhalo@stud.ubbcluj.ro>, 2024.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2024-04-10 16:39+0000\n"
+"Last-Translator: Elena-Ionela Buhalo <elena.buhalo@stud.ubbcluj.ro>\n"
+"Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/editor/ro/>"
+"\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "editor.submissionArchive"
+msgstr "Arhivă de înregistrare"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Anulare cerere"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Introduceți recomandare"
+
+msgid "editor.monograph.recommendation"
+msgstr "Recomandare"
+
+msgid "editor.monograph.clearReview"
+msgstr "Eliminare evaluator"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Introduceți recomandarea evaluatorului"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr ""
+"Selectați un evaluator de mai sus și apăsați butonul „Selectare evaluator” "
+"pentru a continua."
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Înlocuire evaluator"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Recomandările/comentariile editorului pentru evaluator"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Încărcare recenzie"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Opțiuni de evaluare inter pares"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Corectare fișiere"
+
+msgid "editor.monograph.internalReview"
+msgstr "Inițiere evaluare internă"
+
+msgid "editor.monograph.externalReview"
+msgstr "Inițiere evaluare externă"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Selectare fișiere schiță finale"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Fișiere schiță finale actuale"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Fișiere actuale"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Mesaj pentru utilizator"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Acțiuni de înregistrare"
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Selectare acțiuni"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr ""
+"Opțiuni specifice unei secțiuni anume, ca de exemplu încărcare de fișiere "
+"sau adăugare de utilizatori."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Acțiuni obiect"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Acțiuni și opțiuni specifice unui fișier individual."
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr "Vizualizați și gestionați metadatele, notele, notificările și istoricul"
+
+msgid "editor.monograph.legend.participants"
+msgstr ""
+"Vizualizați și gestionați participanții acestei înregistrări: autori, "
+"editori, proiectanți și mulți alții"
+
+msgid "editor.monograph.legend.add"
+msgstr "Încărcați un fișier în secțiune"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Adăugați un utilizator în secțiune"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Mai multe informații: note de fișier, opțiuni de notificare și istoric"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr ""
+"Informații despre fișier: note, opțiuni de notificare și istoric (nicio notă "
+"adugată încă)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr ""
+"Informații despre fișier: note, opțiuni de notificare și istoric (Note nou "
+"adăugate de la ultima vizită)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Editare obiect"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Ștergere obiect"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Acțiune în derulare sau încă incompletă"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Acțiune completă"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Fișier încărcat de rolul din titlul coloanei grilă"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr ""
+"Selectați fișierele de mai jos pentru a le trimite spre etapa de evaluare "
+"internă."
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Acțiuni și optiuni generale de înregistrare."
+
+msgid "editor.monograph.legend.settings"
+msgstr ""
+"Vizualizați și accesați setări ale obiectelor, cum ar informații și opțiuni "
+"de ștergere"
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr ""
+"Vizualizați și gestionați intrarea în catalogul de înregistrare, inclusiv "
+"metadatele și formatele de publicație"
+
+msgid "editor.monograph.legend.notes"
+msgstr ""
+"Informații despre fișier: note, opțiuni de notificare și istoric (Notele "
+"sunt disponibile)"
+
+msgid "editor.submission.introduction"
+msgstr ""
+"În timpul înregistrării, editorul, după consultarea fișierelor transmise, "
+"selectează acțiunea corespunzătoare (care include notificarea autorului): "
+"Trimitere către evaluare internă (presupune selectarea fișierelor pentru "
+"Evaluarea internă); Trimitere către Evaluare externă (presupune selectarea "
+"fișierelor pentru Evaluarea externă); Acceptare înregistrare (presupune "
+"selectarea fișierelor pentru etapa de Editare); sau Refuzare înregistrare ("
+"înregistrare arhivă)."
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Copie corectă"
+
+msgid "editor.monograph.proofs"
+msgstr "Probe"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Aprobare și publicare"
+
+msgid "editor.submissions.assignedTo"
+msgstr "Atribuit editorului"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr ""
+"Diferite formate de publicație, cum ar fi copertă cartonată, copertă moale "
+"și digitală, pot fi încărcate în secțiunea de Formate de publicație de mai "
+"jos. Puteți folosi grila de formate de publicație de mai jos ca o listă de "
+"verificare pentru ce rămâne de făcut pentru a publica un format de "
+"publicație."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr ""
+"Adăugați formate de publicație (de ex. digitală, broșată) pentru care "
+"editorul de aspect pregătește probe de pagină pentru corectare. <em>Probele</"
+"em> trebuie verificate pentru a fi aprobate și intrarea de <em>Catalog</em> "
+"pentru format trebuie să fie verificată așa cum este publicată în intrarea "
+"de catalog a cărții, înainte de a putea fi creat un format <em>Disponibil</"
+"em> (adică publicat)."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Stabiliți condițiile de descărcare"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Stabilire condiții"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Adăugare răspuns"
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr ""
+"Oricare dintre fișierele care au fost deja încărcate în orice etapă de "
+"înregistrare pot fi adăugate la lista de Fișiere probă, bifând căsuța de "
+"„Include” de mai jos și clicând pe „Căutare”: toate fișierele disponibile "
+"vor fi listate și pot fi alese pentru includere."
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr ""
+"Identificatorul public '{$publicIdentifier}' există deja pentru un alt "
+"obiect de același tip. Alegeți identificatori unici pentru obiectele de "
+"același tip din presa dumneavoastră."

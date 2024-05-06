@@ -1,0 +1,23 @@
+# Ruxandra Berescu <ruxy_berescu@yahoo.com>, 2024.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2024-04-03 17:39+0000\n"
+"Last-Translator: Ruxandra Berescu <ruxy_berescu@yahoo.com>\n"
+"Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/"
+"blocks-developedBy/ro/>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "plugins.block.developedBy.displayName"
+msgstr "Bloc „Creat de”"
+
+msgid "plugins.block.developedBy.description"
+msgstr "Acest plugin oferă în bara laterală link-ul „Creat de”."
+
+msgid "plugins.block.developedBy.blockTitle"
+msgstr "Dezvoltat de"

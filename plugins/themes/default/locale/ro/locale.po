@@ -1,0 +1,102 @@
+# Iusan Daria <daria.iusan@yahoo.com>, 2024.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2024-04-04 19:39+0000\n"
+"Last-Translator: Iusan Daria <daria.iusan@yahoo.com>\n"
+"Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/"
+"themes-default/ro/>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "plugins.themes.default.name"
+msgstr "Temă prestabilită"
+
+msgid "plugins.themes.default.description"
+msgstr "Această temă implementează tema prestabilită."
+
+msgid "plugins.themes.default.option.typography.label"
+msgstr "Tipografie"
+
+msgid "plugins.themes.default.option.typography.description"
+msgstr "Alege o combinație de fonturi potrivită acestei edituri."
+
+msgid "plugins.themes.default.option.typography.notoSans"
+msgstr ""
+"Noto Sans: Un font digital-nativ conceput de Google pentru un suport "
+"lingvistic extins."
+
+msgid "plugins.themes.default.option.typography.notoSerif_notoSans"
+msgstr ""
+"Noto Serif/Noto Sans: combinație între fontul serif pentru titlu și fontul "
+"sans-serif pentru corpul de text."
+
+msgid "plugins.themes.default.option.typography.lato"
+msgstr "Lato: Un font sans-serif modern și popular."
+
+msgid "plugins.themes.default.option.colour.label"
+msgstr "Culoare"
+
+msgid "plugins.themes.default.option.colour.description"
+msgstr "Alegeți o culoare pentru titlu."
+
+msgid "plugins.themes.default.displayStats.monthInitials"
+msgstr "ian febr mart apr mai iun iul aug sept oct nov dec"
+
+msgid "plugins.themes.default.displayStats.downloads"
+msgstr "Descărcări"
+
+msgid "plugins.themes.default.displayStats.noStats"
+msgstr "Datele de descărcare nu sunt încă disponibile."
+
+msgid "plugins.themes.default.option.typography.notoSerif"
+msgstr "Noto Serif: o variantă de tip serif ."
+
+msgid "plugins.themes.default.option.typography.notoSans_notoSerif"
+msgstr ""
+"Noto Sans/Noto Serif: combinație între fontul sans-serif pentru titlu și "
+"fontul serif pentru corpul de text."
+
+msgid "plugins.themes.default.option.typography.lora"
+msgstr "Lora: un font de tip serif lat, adecvat pentru cititul online."
+
+msgid "plugins.themes.default.option.typography.lora_openSans"
+msgstr ""
+"Lora/Open Sans: combinație între font serif pentru titlu și fontul sans-"
+"serif pentru corpul de text."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
+msgstr "Imagine de fundal a antetului"
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.description"
+msgstr ""
+"Atunci când a fost încărcată o imagine a paginii de pornire, afișați-o în "
+"fundalul antetului în loc de poziția sa obișnuită pe pagina de pornire."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
+msgstr "Afișați imaginea de pe pagina de start ca fundal al antetului."
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
+msgstr "Afișați seriile"
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
+msgstr ""
+"Adăugați o listă cu linkurile tuturor seriilor editurii pe pagina de catalog"
+
+msgid "plugins.themes.default.option.displayStats.label"
+msgstr "Opțiuni de afișare a statisticilor de utilizare"
+
+msgid "plugins.themes.default.option.displayStats.none"
+msgstr ""
+"Nu afișați diagrama statisticilor de utilizare a cererilor pentru "
+"utilizatori."
+
+msgid "plugins.themes.default.option.displayStats.line"
+msgstr "Utilizați diagrama cu linii pentru a afișa statisticile de utilizare."
+
+msgid "plugins.themes.default.option.displayStats.bar"
+msgstr "Utilizați diagrama cu coloane pentru a afișa statisticile de utilizare."
