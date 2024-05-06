@@ -24,45 +24,34 @@
 		</a>
 	</li>
 
-	{if $currentPress && ($currentPress->getLocalizedSetting('editorialTeam') || $currentPress->getLocalizedSetting('submissions'))}
-		{assign var="hasSubmenu" value=true}
+	{if $currentPress}
+		<li>
+			<a href="{url router=PKPApplication::ROUTE_PAGE page="about"}">
+				{translate key="navigation.about"}
+			</a>
+			<ul>
+				<li>
+					<a href="{url router=PKPApplication::ROUTE_PAGE page="about"}">
+						{translate key="about.aboutContext"}
+					</a>
+				</li>
+				<li>
+					<a href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="about" op="editorialMasthead"}">
+						{translate key="common.editorialMasthead"}
+					</a>
+				</li>
+				<li>
+					<a href="{url router=PKPApplication::ROUTE_PAGE page="about" op="submissions"}">
+						{translate key="about.submissions"}
+					</a>
+				</li>
+				{if $currentPress && ($currentPress->getSetting('mailingAddress') || $currentPress->getSetting('contactName'))}
+					<li>
+						<a href="{url router=PKPApplication::ROUTE_PAGE page="about" op="contact"}">
+							{translate key="about.contact"}
+						</a>
+				</li>
+			</ul>
+		</li>
 	{/if}
-	<li>
-		<a href="{url router=PKPApplication::ROUTE_PAGE page="about"}">
-			{translate key="navigation.about"}
-		</a>
-		{if $hasSubmenu}
-		<ul>
-			<li>
-				<a href="{url router=PKPApplication::ROUTE_PAGE page="about"}">
-					{translate key="about.aboutContext"}
-				</a>
-			</li>
-			<li>
-				<a href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="about" op="editorialMasthead"}">
-					{translate key="common.editorialMasthead"}
-				</a>
-			</li>
-			{if $currentPress && $currentPress->getLocalizedSetting('editorialTeam') != ''}
-				<li>
-					<a href="{url router=PKPApplication::ROUTE_PAGE page="about" op="editorialTeam"}">
-						{translate key="about.editorialTeam"}
-					</a>
-				</li>
-			{/if}
-			<li>
-				<a href="{url router=PKPApplication::ROUTE_PAGE page="about" op="submissions"}">
-					{translate key="about.submissions"}
-				</a>
-			</li>
-			{if $currentPress && ($currentPress->getSetting('mailingAddress') || $currentPress->getSetting('contactName'))}
-				<li>
-					<a href="{url router=PKPApplication::ROUTE_PAGE page="about" op="contact"}">
-						{translate key="about.contact"}
-					</a>
-				</li>
-			{/if}
-		</ul>
-		{/if}
-	</li>
 </ul>
