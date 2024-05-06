@@ -527,12 +527,6 @@ msgstr "Papéis atuais"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Papéis de Revisor Interno"
 
-msgid "manager.setup.editorialTeam"
-msgstr "Equipa editorial"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr "Lista de editores, diretores, e outras pessoas associadas à editora."
-
 msgid "manager.setup.files"
 msgstr "Ficheiros"
 

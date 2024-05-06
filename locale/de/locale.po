@@ -1033,9 +1033,6 @@ msgstr "Pressekontakt"
 msgid "about.aboutContext"
 msgstr "Über den Verlag"
 
-msgid "about.editorialTeam"
-msgstr "Herausgeber/innen"
-
 msgid "about.editorialPolicies"
 msgstr "Richtlinien für Herausgeber/innen"
 

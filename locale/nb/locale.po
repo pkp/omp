@@ -998,9 +998,6 @@ msgstr "Kontakt"
 msgid "about.aboutContext"
 msgstr "Om utgiveren"
 
-msgid "about.editorialTeam"
-msgstr "Redaksjon"
-
 msgid "about.editorialPolicies"
 msgstr "Redaksjonelle retningslinjer"
 

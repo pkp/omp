@@ -1026,9 +1026,6 @@ msgstr "ارتباط با انتشارات"
 msgid "about.aboutContext"
 msgstr "درباره نشر"
 
-msgid "about.editorialTeam"
-msgstr "هیئت تحریریه"
-
 msgid "about.editorialPolicies"
 msgstr "سیاست‌های دبیری"
 

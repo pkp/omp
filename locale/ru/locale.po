@@ -1004,9 +1004,6 @@ msgstr "Контакты издательства"
 msgid "about.aboutContext"
 msgstr "О нас"
 
-msgid "about.editorialTeam"
-msgstr "Редакция"
-
 msgid "about.editorialPolicies"
 msgstr "Редакционная политика"
 

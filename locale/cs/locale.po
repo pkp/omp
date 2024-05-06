@@ -993,9 +993,6 @@ msgstr "Kontakt"
 msgid "about.aboutContext"
 msgstr "O nakladatelství"
 
-msgid "about.editorialTeam"
-msgstr "Redakční tým"
-
 msgid "about.editorialPolicies"
 msgstr "Ediční zásady"
 

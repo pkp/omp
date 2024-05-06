@@ -1082,12 +1082,6 @@ msgstr ""
 msgid "manager.setup.internalReviewRoles"
 msgstr ""
 
-msgid "manager.setup.editorialTeam"
-msgstr "Redaktion"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr "Lista över redaktörer och annan personal vid pressen."
-
 msgid "manager.setup.files"
 msgstr "Filer"
 

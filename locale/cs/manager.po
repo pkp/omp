@@ -1161,12 +1161,6 @@ msgstr "Současné role"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Role pro interní recenze"
 
-msgid "manager.setup.editorialTeam"
-msgstr "Redakční tým"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr "Seznam redaktorů, ředitelů a dalších osob spojených s vydavatelstvím."
-
 msgid "manager.setup.files"
 msgstr "Soubory"
 

@@ -1192,14 +1192,6 @@ msgstr "Nykyiset roolit"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Sisäisen arvioinnin roolit"
 
-msgid "manager.setup.editorialTeam"
-msgstr "Toimituskunta"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Lista toimittajista, toimitusjohtajista ja muista julkaisijaan liittyvistä "
-"henkilöistä."
-
 msgid "manager.setup.files"
 msgstr "Tiedostot"
 

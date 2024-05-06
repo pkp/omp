@@ -1009,9 +1009,6 @@ msgstr "Contato"
 msgid "about.aboutContext"
 msgstr "Sobre a Editora"
 
-msgid "about.editorialTeam"
-msgstr "Equipe editorial"
-
 msgid "about.editorialPolicies"
 msgstr "Políticas editoriais"
 

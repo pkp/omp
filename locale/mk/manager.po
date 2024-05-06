@@ -1193,13 +1193,6 @@ msgstr "Тековни улоги"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Улогите на внатрешниот преглед"
 
-msgid "manager.setup.editorialTeam"
-msgstr "Уреднички тим"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Список на уредници, управни директори и други лица поврзани со изданието."
-
 msgid "manager.setup.files"
 msgstr "Датотеки"
 

@@ -1186,13 +1186,6 @@ msgstr "Roles actuais"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Roles de revisión interna"
 
-msgid "manager.setup.editorialTeam"
-msgstr "Equipo editorial"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Lista de editores/as, directores/as e outras persoas asociadas á editorial."
-
 msgid "manager.setup.files"
 msgstr "Arquivos"
 

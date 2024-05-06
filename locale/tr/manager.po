@@ -1175,14 +1175,6 @@ msgstr "Mevcut Görevler"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Dahili Değerlendirme Görevleri"
 
-msgid "manager.setup.editorialTeam"
-msgstr "Yayın Kurulu"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Editörlerin, yazı işleri müdürleri ve basınla ilişkili diğer kişilerin "
-"listesi."
-
 msgid "manager.setup.files"
 msgstr "Dosyalar"
 

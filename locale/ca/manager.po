@@ -1212,15 +1212,6 @@ msgstr "Rols actuals"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Rols de revisió interna"
 
-msgid "manager.setup.editorialTeam"
-msgstr "Equip editorial"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"La capçalera ha de contenir una llista d'editors/ores, directors/es de "
-"redacció i altres persones relacionades amb la publicació. La informació que "
-"introduïu aquí apareix a la pàgina Sobre la publicació."
-
 msgid "manager.setup.files"
 msgstr "Fitxers"
 

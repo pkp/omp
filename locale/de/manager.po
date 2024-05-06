@@ -1239,15 +1239,6 @@ msgstr "Aktuelle Funktionen"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Funktionen von \"Interne/r Gutachter/in\""
 
-msgid "manager.setup.editorialTeam"
-msgstr "Herausgeber/innen"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Das Impressum sollte ein Liste der Herausgeber/innen und Geschäftsführer/"
-"innen sowie anderer Personen enthalten, die mit dem Verlag in Verbindung "
-"stehen. Hier eingegebene Informationen erscheinen unter 'Über uns'."
-
 msgid "manager.setup.files"
 msgstr "Dateien"
 
