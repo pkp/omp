@@ -1,10 +1,11 @@
 # Jordi LC <jordi.lacruz@uab.cat>, 2021, 2023, 2024.
+# Ruxandra Berescu <ruxy_berescu@yahoo.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2024-03-02 04:53+0000\n"
+"PO-Revision-Date: 2024-04-26 19:05+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/locale/es/>"
 "\n"
@@ -43,7 +44,7 @@ msgid "monograph.languages"
 msgstr "Idiomas (español, inglés, francés)"
 
 msgid "monograph.publicationFormats"
-msgstr "Formatos de publicación"
+msgstr "Formatos de publicaciones"
 
 msgid "monograph.publicationFormat"
 msgstr "Formato"
@@ -889,7 +890,7 @@ msgid "user.noRoles.selectUsersWithoutRoles"
 msgstr "Incluir usuarios/as sin roles en la publicación."
 
 msgid "user.noRoles.submitMonograph"
-msgstr "Presentar una propuesta"
+msgstr "Enviar una propuesta"
 
 msgid "user.noRoles.submitMonographRegClosed"
 msgstr ""
@@ -980,11 +981,11 @@ msgid "user.register.readerDescription"
 msgstr "Publicación de una monografía notificada por correo electrónico."
 
 msgid "user.register.authorDescription"
-msgstr "Es posible presentar elementos a la editorial."
+msgstr "Es posible enviar elementos a la editorial."
 
 msgid "user.register.reviewerDescriptionNoInterests"
 msgstr ""
-"Dispuesto a presentar una revisión por pares de las propuestas a la "
+"Dispuesto a llevar a cabo una revisión por pares de las propuestas a la "
 "editorial."
 
 msgid "user.register.reviewerDescription"

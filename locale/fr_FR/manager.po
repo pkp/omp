@@ -3,7 +3,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-02-27 14:37+0000\n"
+"PO-Revision-Date: 2024-04-24 20:28+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "fr_FR/>\n"
@@ -283,7 +283,7 @@ msgstr ""
 "Modifier les messages envoyés dans les courriels de cette maison d’édition."
 
 msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
-msgstr "Envoyer à l’évaluation interne"
+msgstr "Envoyer pour évaluation interne"
 
 msgid "mailable.indexRequest.name"
 msgstr "Index demandé"
@@ -1316,7 +1316,7 @@ msgid "manager.setup.pressPolicies"
 msgstr "Étape 2. Politiques de la maison d’édition"
 
 msgid "manager.setup.pressSetup"
-msgstr "Configuration de la maison d’édition"
+msgstr "Paramètres de la maison d’édition"
 
 msgid "manager.setup.pressSetupUpdated"
 msgstr "La configuration de votre maison d’édition a été mise à jour."

@@ -1,0 +1,79 @@
+# Elena-Ionela Buhalo <elena.buhalo@stud.ubbcluj.ro>, 2024.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2024-04-10 16:39+0000\n"
+"Last-Translator: Elena-Ionela Buhalo <elena.buhalo@stud.ubbcluj.ro>\n"
+"Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-onix30/ro/>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "plugins.importexport.onix30.displayName"
+msgstr "ONIX 3.0 Plugin de export de monografii"
+
+msgid "plugins.importexport.onix30.cliUsage"
+msgstr ""
+"Utilizare: {$scriptName} {$pluginName} [xmlFileName] [pressPath] "
+"[monographId] "
+
+msgid "plugins.importexport.onix30.cliError"
+msgstr "EROARE:"
+
+msgid "plugins.importexport.onix30.error.unknownPress"
+msgstr "Ruta de presă specificată, \"{$contextPath},\" nu există."
+
+msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgstr ""
+"Nicio monografie nu se potrivește ID-ului monogarfiei specificat "
+"„{$monographId}”."
+
+msgid "plugins.importexport.onix30.noFormats"
+msgstr "Monografiile fără niciun format de publicație nu sunt afișate."
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr "Selectați o monografie de exportat:"
+
+msgid "plugins.importexport.onix30.description"
+msgstr "Exportați metadatele monografiei în format ONIX 3.0"
+
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr "Nu s-a putut scrie în fișierul „{$fileName}”."
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Selecare monografii de exportat"
+
+msgid "plugins.importexport.onix30.exportButton"
+msgstr "Exportare"
+
+msgid "plugins.importexport.onix30.exportFormats"
+msgstr "Formate disponibile"
+
+msgid "plugins.importexport.onix30.unavailable"
+msgstr "Indisponibil"
+
+msgid "plugins.importexport.onix30.validityStatus"
+msgstr "Stare ONIX"
+
+msgid "plugins.importexport.onix30.formatValid"
+msgstr "Valid"
+
+msgid "plugins.importexport.onix30.formatInvalid"
+msgstr "Invalid"
+
+msgid "plugins.importexport.onix30.pressMissingFields"
+msgstr ""
+"Din acestă presă lipsesc unele informații. Accesați <a href=\"{$url}\""
+">Apăsați Setări</a> și completați detalii lipsă."
+
+msgid "plugins.importexport.onix30.form.addresseeField"
+msgstr "Destinatarul (receptorul) acestui export"
+
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
+msgstr ""
+"Puteți lăsa acest câmp necompletat și crea un export general. Acest lucru va "
+"rezulta în exportul ONIX fără &lt;Addressee&gt; compozit. "

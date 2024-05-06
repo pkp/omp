@@ -1,11 +1,11 @@
 # pep sanso <pep.sanso@uab.cat>, 2023.
-# Jordi LC <jordi.lacruz@uab.cat>, 2023.
+# Jordi LC <jordi.lacruz@uab.cat>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2023-04-29 14:49+0000\n"
+"PO-Revision-Date: 2024-04-26 12:34+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "es/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "submission.upload.selectComponent"
 msgstr "Seleccionar componente"
@@ -134,7 +134,7 @@ msgid "submission.submit.newSubmissionSingle"
 msgstr "Nuevo Envío"
 
 msgid "submission.submit.upload"
-msgstr "Subir"
+msgstr "Cargar envío"
 
 msgid "author.volumeEditor"
 msgstr "Editor/a del volumen"

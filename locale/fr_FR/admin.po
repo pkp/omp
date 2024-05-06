@@ -3,7 +3,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-02-29 14:39+0000\n"
+"PO-Revision-Date: 2024-04-24 20:28+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/admin/fr_FR/>"
 "\n"
@@ -130,7 +130,7 @@ msgid "admin.systemConfiguration"
 msgstr "Configuration d’OMP"
 
 msgid "admin.presses.pressSettings"
-msgstr "Configuration de la maison d’édition"
+msgstr "Paramètres de la maison d’édition"
 
 msgid "admin.presses.noneCreated"
 msgstr "Aucune maison d’édition n’a été créée."
