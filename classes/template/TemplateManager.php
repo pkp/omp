@@ -135,6 +135,7 @@ class TemplateManager extends PKPTemplateManager
                 'name' => __('navigation.catalog'),
                 'url' => $router->url($request, null, 'manageCatalog'),
                 'isCurrent' => $request->getRequestedPage() === 'manageCatalog',
+                'icon' => 'Catalog'
             ];
 
             $index = array_search('submissions', array_keys($menu));
