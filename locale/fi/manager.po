@@ -605,12 +605,6 @@ msgstr ""
 "Rajoita niiden kohteiden (käsikirjoitus, käyttäjä jne.) lukumäärä, jotka "
 "näytetään yhdellä sivulla."
 
-msgid "manager.setup.keyInfo"
-msgstr "Avaintiedot"
-
-msgid "manager.setup.keyInfo.description"
-msgstr "Anna julkaisijan lyhyt kuvaus ja esittele toimituskunnan jäsenet."
-
 msgid "manager.setup.labelName"
 msgstr "Selitteen nimi"
 

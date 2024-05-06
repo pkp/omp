@@ -492,12 +492,6 @@ msgstr "دانەکان بە گوێرەی پەڕەکان"
 msgid "manager.setup.itemsPerPage.description"
 msgstr ""
 
-msgid "manager.setup.keyInfo"
-msgstr "زانیارییە گرنگەکان"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-
 msgid "manager.setup.labelName"
 msgstr "ناوی لەیبڵ"
 

@@ -627,15 +627,6 @@ msgstr ""
 "oder Begutachtungszuordnungen), die in einer Liste angezeigt werden, bevor "
 "weitere Elemente auf der nächsten Seite angezeigt werden."
 
-msgid "manager.setup.keyInfo"
-msgstr "Hauptinformationen"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Fügen Sie eine kurze Beschreibung Ihres Verlags ein und identifizieren Sie "
-"Redakteur/innen, Managing Directors und weitere Mitglieder des "
-"redaktionellen Teams."
-
 msgid "manager.setup.labelName"
 msgstr "Labelname"
 

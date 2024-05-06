@@ -599,14 +599,6 @@ msgstr ""
 "edición) para mostrar nunha lista antes de amosar os elementos posteriores "
 "noutra páxina."
 
-msgid "manager.setup.keyInfo"
-msgstr "Información clave"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Ofrece unha breve descrición da túa editorial e identifica aos membros do "
-"teu equipo editorial."
-
 msgid "manager.setup.labelName"
 msgstr "Nome da etiqueta"
 

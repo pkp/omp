@@ -595,14 +595,6 @@ msgstr ""
 "redigeringsoppgaver) som skal vises i en liste på én nettside, før de resten "
 "av oppføringene vises på en annen side."
 
-msgid "manager.setup.keyInfo"
-msgstr "Nøkkelinformasjon"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Gi en kort beskrivelse av utgiveren din og identifiser redaktører, "
-"tidsskriftsansvarlige og andre medlemmer av redaksjonen din."
-
 msgid "manager.setup.labelName"
 msgstr "Etikettnavn"
 
