@@ -521,12 +521,6 @@ msgstr "Items per page"
 msgid "manager.setup.itemsPerPage.description"
 msgstr "Limit the number of items (for example, submissions, users, or editing assignments) to show in a list before showing subsequent items in another page."
 
-msgid "manager.setup.keyInfo"
-msgstr "Key Information"
-
-msgid "manager.setup.keyInfo.description"
-msgstr "Provide a short description of your press and identify editors, managing directors and other members of your editorial team."
-
 msgid "manager.setup.labelName"
 msgstr "Label Name"
 

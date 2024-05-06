@@ -588,12 +588,6 @@ msgstr ""
 msgid "manager.setup.itemsPerPage.description"
 msgstr ""
 
-msgid "manager.setup.keyInfo"
-msgstr ""
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-
 msgid "manager.setup.labelName"
 msgstr "Όνομα Πεδίου"
 

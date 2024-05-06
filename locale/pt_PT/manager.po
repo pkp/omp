@@ -286,14 +286,6 @@ msgstr "Instituição"
 msgid "manager.setup.itemsPerPage"
 msgstr "Itens por página"
 
-msgid "manager.setup.keyInfo"
-msgstr "Informação chave"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Forneça uma descição da sua editora e identifique os editores, diretores e "
-"outros membros da equipa editorial."
-
 msgid "manager.setup.layoutAndGalleys"
 msgstr "Editores de layout"
 

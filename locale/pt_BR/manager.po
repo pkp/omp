@@ -604,14 +604,6 @@ msgstr ""
 "de edição) a serem exibidos em uma lista antes de mostrar os itens "
 "subsequentes em outra página."
 
-msgid "manager.setup.keyInfo"
-msgstr "Informação chave"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Forneça uma breve descrição da sua editora e identifique editores, diretores "
-"executivos e outros membros da sua equipe editorial."
-
 msgid "manager.setup.labelName"
 msgstr "Nome do rótulo"
 

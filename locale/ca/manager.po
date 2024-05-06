@@ -607,15 +607,6 @@ msgstr ""
 "assignacions editorials) que es mostren en una llista abans de mostrar els "
 "elements successius en una altra pàgina."
 
-msgid "manager.setup.keyInfo"
-msgstr "Informació clau"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Proporcioneu una breu descripció de la vostra editorial i identifiqueu els "
-"editors/ores, els directors/ores de gestió i els altres membres del vostre "
-"equip editorial."
-
 msgid "manager.setup.labelName"
 msgstr "Nom de l’etiqueta"
 
