@@ -1178,14 +1178,6 @@ msgstr "Bieżące role"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Role związane z wewnętrznym procesem recenzji"
 
-msgid "manager.setup.editorialTeam"
-msgstr "Zespół redaktorski"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Lista redaktorów, dyrektorów zarządzających i innych związanych z "
-"wydawnictwem."
-
 msgid "manager.setup.files"
 msgstr "Pliki"
 

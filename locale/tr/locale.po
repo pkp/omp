@@ -990,9 +990,6 @@ msgstr "Yayınevi İletişim"
 msgid "about.aboutContext"
 msgstr "Yayınevi Hakkında"
 
-msgid "about.editorialTeam"
-msgstr "Yayın Kurulu"
-
 msgid "about.editorialPolicies"
 msgstr "İçerik Politikaları"
 

@@ -941,9 +941,6 @@ msgstr ""
 msgid "about.aboutContext"
 msgstr ""
 
-msgid "about.editorialTeam"
-msgstr ""
-
 msgid "about.editorialPolicies"
 msgstr ""
 

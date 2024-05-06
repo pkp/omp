@@ -601,11 +601,6 @@ msgstr ""
 "Pour créer un nouveau format de publication, veuillez remplir le formulaire "
 "ci-dessous et cliquer sur le bouton « Créer »."
 
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Liste des responsables éditoriaux et d’autres personnes associées à la "
-"maison d’édition."
-
 msgid "manager.setup.genresDescription"
 msgstr ""
 "Ces genres sont utilisés pour nommer les fichiers et présentés dans un menu "
@@ -1608,9 +1603,6 @@ msgstr "Rôles actuels"
 
 msgid "manager.setup.internalReviewRoles"
 msgstr "Rôles des évaluateur·rice·s internes"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Équipe éditoriale"
 
 msgid "manager.setup.files"
 msgstr "Fichiers"

@@ -977,9 +977,6 @@ msgstr "Kontakt"
 msgid "about.aboutContext"
 msgstr "Om pressen"
 
-msgid "about.editorialTeam"
-msgstr "Redaktionsmedlemmar"
-
 msgid "about.editorialPolicies"
 msgstr "Redaktionella riktlinjer"
 

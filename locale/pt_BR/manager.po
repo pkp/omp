@@ -1199,15 +1199,6 @@ msgstr "Papéis atuais"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Papéis de avlaiação interna"
 
-msgid "manager.setup.editorialTeam"
-msgstr "Equipe editorial"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"O expediente deve conter a lista de editores, diretores e outros indivíduos "
-"associados à editora. Os dados informados aqui serão publicados na página "
-"Sobre a editora."
-
 msgid "manager.setup.files"
 msgstr "Arquivos"
 

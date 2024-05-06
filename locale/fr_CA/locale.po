@@ -999,9 +999,6 @@ msgstr "Pour contacter la presse"
 msgid "about.aboutContext"
 msgstr "A propos de la presse"
 
-msgid "about.editorialTeam"
-msgstr "Équipe de rédaction"
-
 msgid "about.editorialPolicies"
 msgstr "Politiques rédactionnelles"
 

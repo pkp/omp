@@ -1125,12 +1125,6 @@ msgstr "Trenutne vloge"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Vloge notranjih recenzentov"
 
-msgid "manager.setup.editorialTeam"
-msgstr ""
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-
 msgid "manager.setup.files"
 msgstr "Datoteke"
 

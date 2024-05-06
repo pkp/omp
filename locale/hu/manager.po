@@ -1198,14 +1198,6 @@ msgstr "Jelenlegi szerepkörök"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Belső szakmai lektorálási szerepkörök"
 
-msgid "manager.setup.editorialTeam"
-msgstr "Szerkesztőség"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"A kiadóhoz tartozó szerkesztők, ügyvezető igazgatók, és további személyek "
-"listája."
-
 msgid "manager.setup.files"
 msgstr "Fájlok"
 

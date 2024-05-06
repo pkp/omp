@@ -975,12 +975,6 @@ msgstr "Current Roles"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Internal Review Roles"
 
-msgid "manager.setup.editorialTeam"
-msgstr "Editorial Team"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr "List of editors, managing directors, and other individuals associated with the press."
-
 msgid "manager.setup.files"
 msgstr "Files"
 

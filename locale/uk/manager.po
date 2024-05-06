@@ -1194,14 +1194,6 @@ msgstr "Поточні ролі"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Ролі для внутрішнього рецензування"
 
-msgid "manager.setup.editorialTeam"
-msgstr "Редакція"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Список редакторів, керуючих директорів та інших осіб, пов'язаних з е-"
-"видавництвом."
-
 msgid "manager.setup.files"
 msgstr "Файли"
 

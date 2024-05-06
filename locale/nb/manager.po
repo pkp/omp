@@ -1172,12 +1172,6 @@ msgstr "Aktuelle roller"
 msgid "manager.setup.internalReviewRoles"
 msgstr "Interne vurderingsroller"
 
-msgid "manager.setup.editorialTeam"
-msgstr "Redaksjon"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr "Liste over redaktører, ledelse og andre personer tilknyttet utgiveren."
-
 msgid "manager.setup.files"
 msgstr "Filer"
 

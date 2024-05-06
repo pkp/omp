@@ -1006,9 +1006,6 @@ msgstr "Julkaisijan yhteystiedot"
 msgid "about.aboutContext"
 msgstr "Tietoa julkaisijasta"
 
-msgid "about.editorialTeam"
-msgstr "Toimituskunta"
-
 msgid "about.editorialPolicies"
 msgstr "Toimitukselliset käytännöt"
 

@@ -1018,9 +1018,6 @@ msgstr "Kiadó kapcsolat"
 msgid "about.aboutContext"
 msgstr "A kiadóról"
 
-msgid "about.editorialTeam"
-msgstr "Szerkesztőség"
-
 msgid "about.editorialPolicies"
 msgstr "Szerkesztési irányelvek"
 
