@@ -1024,9 +1024,6 @@ msgstr "Kontakt"
 msgid "about.aboutContext"
 msgstr "O nakladi"
 
-msgid "about.editorialTeam"
-msgstr "Uredništvo"
-
 msgid "about.editorialPolicies"
 msgstr "Urednička politika"
 

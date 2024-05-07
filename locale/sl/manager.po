@@ -569,12 +569,6 @@ msgstr ""
 msgid "manager.setup.itemsPerPage.description"
 msgstr ""
 
-msgid "manager.setup.keyInfo"
-msgstr ""
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-
 msgid "manager.setup.labelName"
 msgstr "Ime oznake"
 
@@ -1130,12 +1124,6 @@ msgstr "Trenutne vloge"
 
 msgid "manager.setup.internalReviewRoles"
 msgstr "Vloge notranjih recenzentov"
-
-msgid "manager.setup.editorialTeam"
-msgstr ""
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
 
 msgid "manager.setup.files"
 msgstr "Datoteke"

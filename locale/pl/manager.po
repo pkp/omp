@@ -603,14 +603,6 @@ msgstr ""
 "redakcyjnych) do ujęcia na liście przed prezentowaniem kolejnych pozycji na "
 "innej stronie."
 
-msgid "manager.setup.keyInfo"
-msgstr "Kluczowe informacje"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Dostarcz krótki opis Twojego wydawnictwa i określ redaktorów, dyrektorów "
-"zarządzających i innych członków Twojego zespołu redakcyjnego."
-
 msgid "manager.setup.labelName"
 msgstr "Nazwa marki"
 
@@ -1185,14 +1177,6 @@ msgstr "Bieżące role"
 
 msgid "manager.setup.internalReviewRoles"
 msgstr "Role związane z wewnętrznym procesem recenzji"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Zespół redaktorski"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Lista redaktorów, dyrektorów zarządzających i innych związanych z "
-"wydawnictwem."
 
 msgid "manager.setup.files"
 msgstr "Pliki"

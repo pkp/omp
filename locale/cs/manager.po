@@ -591,14 +591,6 @@ msgstr ""
 "které se mají zobrazit v seznamu před zobrazením dalších položek na jiné "
 "stránce."
 
-msgid "manager.setup.keyInfo"
-msgstr "Klíčová informace"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Uveďte stručný popis svého tisku a jmenujte redaktory, ředitele a další "
-"členy redakčního týmu."
-
 msgid "manager.setup.labelName"
 msgstr "Název štítku"
 
@@ -1168,12 +1160,6 @@ msgstr "Současné role"
 
 msgid "manager.setup.internalReviewRoles"
 msgstr "Role pro interní recenze"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Redakční tým"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr "Seznam redaktorů, ředitelů a dalších osob spojených s vydavatelstvím."
 
 msgid "manager.setup.files"
 msgstr "Soubory"

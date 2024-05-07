@@ -609,14 +609,6 @@ msgstr ""
 "redigeringsopgaver), der skal vises på en liste, før de efterfølgende "
 "elementer vises på en anden side."
 
-msgid "manager.setup.keyInfo"
-msgstr "Nøgleinformation"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Giv en kort beskrivelse af udgiveren og angiv redaktører, administrerende "
-"medarbejdere og andre medlemmer af den redaktionelle gruppe."
-
 msgid "manager.setup.labelName"
 msgstr "Etiketnavn"
 
@@ -1198,14 +1190,6 @@ msgstr "Aktuelle roller"
 
 msgid "manager.setup.internalReviewRoles"
 msgstr "Interne bedømmerroller"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Redaktionelt hold"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Liste over redaktører, ledelse og andre personer, der er tilknyttet "
-"udgiveren."
 
 msgid "manager.setup.files"
 msgstr "Filer"

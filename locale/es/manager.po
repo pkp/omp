@@ -617,14 +617,6 @@ msgstr ""
 "edición) a mostrar en una lista antes de mostrar elementos sucesivos en otra "
 "página."
 
-msgid "manager.setup.keyInfo"
-msgstr "Información clave"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Proporcione una breve descripción de su medio e identifique a los editores, "
-"directores generales y otros miembros de su equipo editorial."
-
 msgid "manager.setup.labelName"
 msgstr "Nombre de la etiqueta"
 
@@ -1230,15 +1222,6 @@ msgstr "Funciones actuales"
 
 msgid "manager.setup.internalReviewRoles"
 msgstr "Roles de revisión interna"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Equipo editorial"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"El equipo editorial debe contener una lista de editores/as, directores/as de "
-"gestión y otros cargos asociados a la editorial. La información que "
-"introduzca aquí aparecerá en Acerca de la publicación."
 
 msgid "manager.setup.files"
 msgstr "Archivos"

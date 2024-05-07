@@ -286,14 +286,6 @@ msgstr "Instituição"
 msgid "manager.setup.itemsPerPage"
 msgstr "Itens por página"
 
-msgid "manager.setup.keyInfo"
-msgstr "Informação chave"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Forneça uma descição da sua editora e identifique os editores, diretores e "
-"outros membros da equipa editorial."
-
 msgid "manager.setup.layoutAndGalleys"
 msgstr "Editores de layout"
 
@@ -534,12 +526,6 @@ msgstr "Papéis atuais"
 
 msgid "manager.setup.internalReviewRoles"
 msgstr "Papéis de Revisor Interno"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Equipa editorial"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr "Lista de editores, diretores, e outras pessoas associadas à editora."
 
 msgid "manager.setup.files"
 msgstr "Ficheiros"

@@ -108,14 +108,6 @@ msgstr "Za autore"
 msgid "manager.setup.information.forLibrarians"
 msgstr "Za knjižničare"
 
-msgid "manager.setup.keyInfo"
-msgstr "Glavne informacije"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Uključite kratak opis svog izdavača i identificirajte urednike, upravne "
-"direktore i druge članove uredničkog tima."
-
 msgid "manager.setup.labelName"
 msgstr "Naziv oznake"
 
@@ -1200,13 +1192,6 @@ msgstr "Trenutne funkcije"
 
 msgid "manager.setup.internalReviewRoles"
 msgstr "Funkcije interne recenzije"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Uredništvo"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Popis urednika, izvršnih direktora i drugih osoba povezanih s izdavačem."
 
 msgid "manager.setup.files"
 msgstr "Datoteke"

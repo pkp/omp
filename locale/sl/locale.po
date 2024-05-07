@@ -988,9 +988,6 @@ msgstr "Kontakt založbe"
 msgid "about.aboutContext"
 msgstr "O založbi"
 
-msgid "about.editorialTeam"
-msgstr "Uredniška ekipa"
-
 msgid "about.editorialPolicies"
 msgstr "Uredniška politika"
 

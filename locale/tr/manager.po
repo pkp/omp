@@ -596,14 +596,6 @@ msgstr ""
 "öğe sayısını (örneğin, gönderiler, kullanıcılar veya düzenleme atamaları) "
 "sınırlayın."
 
-msgid "manager.setup.keyInfo"
-msgstr "Anahtar Bilgi"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Yayınevinizin kısa bir tanımını verin ve editörleri, yazı işleri müdürleri "
-"ve yayın kurulunuzun diğer üyelerini belirleyin."
-
 msgid "manager.setup.labelName"
 msgstr "Eiket Adı"
 
@@ -1182,14 +1174,6 @@ msgstr "Mevcut Görevler"
 
 msgid "manager.setup.internalReviewRoles"
 msgstr "Dahili Değerlendirme Görevleri"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Yayın Kurulu"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Editörlerin, yazı işleri müdürleri ve basınla ilişkili diğer kişilerin "
-"listesi."
 
 msgid "manager.setup.files"
 msgstr "Dosyalar"

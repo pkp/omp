@@ -627,15 +627,6 @@ msgstr ""
 "oder Begutachtungszuordnungen), die in einer Liste angezeigt werden, bevor "
 "weitere Elemente auf der nächsten Seite angezeigt werden."
 
-msgid "manager.setup.keyInfo"
-msgstr "Hauptinformationen"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Fügen Sie eine kurze Beschreibung Ihres Verlags ein und identifizieren Sie "
-"Redakteur/innen, Managing Directors und weitere Mitglieder des "
-"redaktionellen Teams."
-
 msgid "manager.setup.labelName"
 msgstr "Labelname"
 
@@ -1247,15 +1238,6 @@ msgstr "Aktuelle Funktionen"
 
 msgid "manager.setup.internalReviewRoles"
 msgstr "Funktionen von \"Interne/r Gutachter/in\""
-
-msgid "manager.setup.editorialTeam"
-msgstr "Herausgeber/innen"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Das Impressum sollte ein Liste der Herausgeber/innen und Geschäftsführer/"
-"innen sowie anderer Personen enthalten, die mit dem Verlag in Verbindung "
-"stehen. Hier eingegebene Informationen erscheinen unter 'Über uns'."
 
 msgid "manager.setup.files"
 msgstr "Dateien"

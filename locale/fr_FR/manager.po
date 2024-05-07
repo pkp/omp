@@ -458,11 +458,6 @@ msgstr ""
 "Décrire aux auteur·e·s, aux lecteur·rice·s et aux bibliothécaires la gamme "
 "de monographies et d’autres documents que publie la maison d’édition."
 
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Décrivez brièvement votre maison d’édition et identifiez les responsables "
-"éditoriaux, les éditeur·rice·s et les autres membres de l’équipe éditoriale."
-
 msgid "manager.setup.layoutInstructionsDescription"
 msgstr ""
 "Les instructions de mise en page peuvent être préparées pour la mise en "
@@ -605,11 +600,6 @@ msgid "manager.setup.newPublicationFormatDescription"
 msgstr ""
 "Pour créer un nouveau format de publication, veuillez remplir le formulaire "
 "ci-dessous et cliquer sur le bouton « Créer »."
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Liste des responsables éditoriaux et d’autres personnes associées à la "
-"maison d’édition."
 
 msgid "manager.setup.genresDescription"
 msgstr ""
@@ -1184,9 +1174,6 @@ msgstr ""
 "utilisatrices, ou assignations) à afficher dans une liste avant d’afficher "
 "les éléments subséquents dans une autre page."
 
-msgid "manager.setup.keyInfo"
-msgstr "Renseignements de base"
-
 msgid "manager.setup.labelName"
 msgstr "Nom de l’étiquette"
 
@@ -1616,9 +1603,6 @@ msgstr "Rôles actuels"
 
 msgid "manager.setup.internalReviewRoles"
 msgstr "Rôles des évaluateur·rice·s internes"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Équipe éditoriale"
 
 msgid "manager.setup.files"
 msgstr "Fichiers"

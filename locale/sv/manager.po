@@ -586,14 +586,6 @@ msgstr ""
 "Begränsa antalet objekt (till exempel bidrag, användare, eller uppdrag) i en "
 "lista innan sidbrytning."
 
-msgid "manager.setup.keyInfo"
-msgstr "Översiktsinformation"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"En kort beskrivning av pressen, samt information om redaktörer, "
-"tidskriftsansvariga och andra medlemmar av din redaktion."
-
 msgid "manager.setup.labelName"
 msgstr "Etikettsnamn"
 
@@ -1089,12 +1081,6 @@ msgstr ""
 
 msgid "manager.setup.internalReviewRoles"
 msgstr ""
-
-msgid "manager.setup.editorialTeam"
-msgstr "Redaktion"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr "Lista över redaktörer och annan personal vid pressen."
 
 msgid "manager.setup.files"
 msgstr "Filer"

@@ -951,9 +951,6 @@ msgstr "Press Contact"
 msgid "about.aboutContext"
 msgstr "About the Press"
 
-msgid "about.editorialTeam"
-msgstr "Editorial Team"
-
 msgid "about.editorialPolicies"
 msgstr "Editorial Policies"
 
