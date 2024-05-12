@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-05-11 11:39+0000\n"
+"PO-Revision-Date: 2024-05-14 13:39+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/locale/fr_FR/"
 ">\n"
@@ -137,7 +137,7 @@ msgid "context.select"
 msgstr "Changer de maison d’édition :"
 
 msgid "user.noRoles.regReviewerClosed"
-msgstr "S’inscrire en tant que rapporteur : l’inscription est désactivée."
+msgstr "S’inscrire en tant qu’évaluateur·rice : l’inscription est désactivée."
 
 msgid "user.role.proofreader"
 msgstr "Correcteur·rice d’épreuves"
@@ -992,7 +992,7 @@ msgstr ""
 "désactivé."
 
 msgid "user.noRoles.regReviewer"
-msgstr "S’inscrire en tant que rapporteur"
+msgstr "S’inscrire en tant qu’évaluateur·rice"
 
 msgid "user.reviewerPrompt.userGroup"
 msgstr "Oui, demande du rôle {$userGroup}."
@@ -1079,10 +1079,9 @@ msgstr "{$newSubmission} ou {$viewSubmissions}."
 
 msgid "about.submissionPreparationChecklist.description"
 msgstr ""
-"Dans le cadre du processus de soumission, les auteur·e·s doivent vérifier "
-"que leur soumission est conforme aux conditions et directives suivantes. Les "
-"propositions qui ne les respectent pas peuvent être renvoyées à leurs "
-"auteur·e·s."
+"Dans le cadre de ce processus, les auteur·e·s doivent vérifier que leur "
+"soumission est conforme aux directives suivantes. Les propositions qui ne "
+"les respectent pas peuvent être renvoyées à leurs auteur·e·s."
 
 msgid "about.aboutOMPPress"
 msgstr ""
