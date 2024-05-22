@@ -36,6 +36,7 @@ use PKP\core\PKPApplication;
 use PKP\core\PKPRequest;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
+use PKP\orcid\OrcidManager;
 use PKP\plugins\Hook;
 use PKP\plugins\PluginRegistry;
 use PKP\security\authorization\ContextRequiredPolicy;
@@ -291,6 +292,11 @@ class CatalogBookHandler extends Handler
         $templateMgr->assign([
             'keywords' => $this->publication->getLocalizedData('keywords'),
             'licenseUrl' => $this->publication->getData('licenseUrl'),
+        ]);
+
+        // Add Orcid icon
+        $templateMgr->assign([
+            'orcidIcon' => OrcidManager::getIcon(),
         ]);
 
         // Ask robots not to index outdated versions and point to the canonical url for the latest version
