@@ -261,7 +261,7 @@ class Repository extends \PKP\doi\Repository
             return Repo::submissionFile()
                 ->getCollector()
                 ->getQueryBuilder()
-                ->safeCount();
+                ->getCountForPagination();
         };
 
         $isAssigned = match ($pubObjectType) {
