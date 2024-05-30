@@ -35,8 +35,8 @@
 	{assign var="description" value=$series->getLocalizedDescription()|strip_unsafe_html}
 	<div class="about_section{if $image} has_image{/if}{if $description} has_description{/if}">
 		{if $image}
-			<div class="cover" href="{url router=PKPApplication::ROUTE_PAGE page="catalog" op="fullSize" type="series" id=$series->getId()}">
-				<img src="{url router=PKPApplication::ROUTE_PAGE page="catalog" op="thumbnail" type="series" id=$series->getId()}" alt="{$series->getLocalizedTitle()|escape|default: 'null'}" />
+			<div class="cover" href="{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="fullSize" type="series" id=$series->getId()}">
+				<img src="{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="thumbnail" type="series" id=$series->getId()}" alt="{$series->getLocalizedTitle()|escape|default: 'null'}" />
 			</div>
 		{/if}
 		<div class="description">
@@ -73,12 +73,12 @@
 
 		{* Pagination *}
 		{if $prevPage > 1}
-			{capture assign=prevUrl}{url router=PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$series->getPath()|to_array:$prevPage}{/capture}
+			{capture assign=prevUrl}{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$series->getPath()|to_array:$prevPage}{/capture}
 		{elseif $prevPage === 1}
-			{capture assign=prevUrl}{url router=PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$series->getPath()}{/capture}
+			{capture assign=prevUrl}{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$series->getPath()}{/capture}
 		{/if}
 		{if $nextPage}
-			{capture assign=nextUrl}{url router=PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$series->getPath()|to_array:$nextPage}{/capture}
+			{capture assign=nextUrl}{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$series->getPath()|to_array:$nextPage}{/capture}
 		{/if}
 		{include
 			file="frontend/components/pagination.tpl"

@@ -44,12 +44,12 @@
 		</tab>
 		<tab id="sections" label="{translate key="series.series"}">
 			{help file="settings/context-settings" class="pkp_help_tab"}
-			{capture assign=seriesGridUrl}{url router=PKPApplication::ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="fetchGrid" escape=false}{/capture}
+			{capture assign=seriesGridUrl}{url router=PKP\core\PKPApplication::ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="fetchGrid" escape=false}{/capture}
 			{load_url_in_div id="seriesGridContainer" url=$seriesGridUrl}
 		</tab>
 		<tab id="categories" label="{translate key="grid.category.categories"}">
 			{help file="settings/context-settings" class="pkp_help_tab"}
-			{capture assign=categoriesUrl}{url router=PKPApplication::ROUTE_COMPONENT component="grid.settings.category.CategoryCategoryGridHandler" op="fetchGrid" escape=false}{/capture}
+			{capture assign=categoriesUrl}{url router=PKP\core\PKPApplication::ROUTE_COMPONENT component="grid.settings.category.CategoryCategoryGridHandler" op="fetchGrid" escape=false}{/capture}
 			{load_url_in_div id="categoriesContainer" url=$categoriesUrl}
 		</tab>
 	</tabs>

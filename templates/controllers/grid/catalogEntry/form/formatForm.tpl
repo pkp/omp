@@ -23,7 +23,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="addPublicationFormatForm" method="post" action="{url router=PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="updateFormat"}">
+<form class="pkp_form" id="addPublicationFormatForm" method="post" action="{url router=PKP\core\PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="updateFormat"}">
 	{csrf}
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="representationId" value="{$representationId|escape}" />

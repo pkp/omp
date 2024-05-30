@@ -141,7 +141,7 @@
 					<pkp-form v-bind="components.{$smarty.const.FORM_AUDIENCE}" @set="set" />
 				</tab>
 				<tab id="representatives" label="{translate key="grid.catalogEntry.representatives"}">
-					{capture assign=representativesGridUrl}{url router=PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.RepresentativesGridHandler" op="fetchGrid" submissionId=$submission->getId() escape=false}{/capture}
+					{capture assign=representativesGridUrl}{url router=PKP\core\PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.RepresentativesGridHandler" op="fetchGrid" submissionId=$submission->getId() escape=false}{/capture}
 					{load_url_in_div id="representativesGridContainer" url=$representativesGridUrl}
 				</tab>
 				<tab id="publicationDates" label="{translate key="grid.catalogEntry.publicationDates"}">

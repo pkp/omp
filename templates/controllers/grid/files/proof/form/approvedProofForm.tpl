@@ -18,7 +18,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="approvedProofForm" method="post" action="{url router=PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="saveApprovedProof"}">
+<form class="pkp_form" id="approvedProofForm" method="post" action="{url router=PKP\core\PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="saveApprovedProof"}">
 	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="approvedProofFormNotification"}
 	{fbvFormArea id="approvedProofInfo"}

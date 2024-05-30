@@ -19,7 +19,7 @@
 	{rdelim});
 </script>
 
-<form id="siteSetupForm" class="pkp_form" method="post" action="{url router=PKPApplication::ROUTE_COMPONENT component="tab.settings.AdminSettingsTabHandler" op="saveFormData" tab="siteSetup"}">
+<form id="siteSetupForm" class="pkp_form" method="post" action="{url router=PKP\core\PKPApplication::ROUTE_COMPONENT component="tab.settings.AdminSettingsTabHandler" op="saveFormData" tab="siteSetup"}">
 	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="siteSetupFormNotification"}
 

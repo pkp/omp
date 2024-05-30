@@ -16,14 +16,14 @@
 <div id="editPublicationFormatMetadataTabs">
 	<ul>
 		<li>
-			<a href="{url router=PKPApplication::ROUTE_COMPONENT op="editFormatTab" submissionId=$submissionId representationId=$representationId publicationId=$publicationId}">
+			<a href="{url router=PKP\core\PKPApplication::ROUTE_COMPONENT op="editFormatTab" submissionId=$submissionId representationId=$representationId publicationId=$publicationId}">
 				{translate key="common.edit"}
 			</a>
 		</li>
 
 		{if isset($representationId)}
 			<li>
-				<a href="{url router=PKPApplication::ROUTE_COMPONENT op="editFormatMetadata" submissionId=$submissionId representationId=$representationId publicationId=$publicationId}">
+				<a href="{url router=PKP\core\PKPApplication::ROUTE_COMPONENT op="editFormatMetadata" submissionId=$submissionId representationId=$representationId publicationId=$publicationId}">
 					{translate key="submission.informationCenter.metadata"}
 				</a>
 			</li>
@@ -31,7 +31,7 @@
 
 		{if !$remoteRepresentation && $representationId}
 			{if $showIdentifierTab}
-				<li><a href="{url router=PKPApplication::ROUTE_COMPONENT op="identifiers" submissionId=$submissionId representationId=$representationId publicationId=$publicationId}">{translate key="submission.identifiers"}</a></li>
+				<li><a href="{url router=PKP\core\PKPApplication::ROUTE_COMPONENT op="identifiers" submissionId=$submissionId representationId=$representationId publicationId=$publicationId}">{translate key="submission.identifiers"}</a></li>
 			{/if}
 		{/if}
 	</ul>

@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="representativeForm" method="post" action="{url router=PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.RepresentativesGridHandler" op="updateRepresentative"}">
+<form class="pkp_form" id="representativeForm" method="post" action="{url router=PKP\core\PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.RepresentativesGridHandler" op="updateRepresentative"}">
 	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="representativesFormNotification"}
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />

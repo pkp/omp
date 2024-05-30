@@ -32,7 +32,7 @@
 			<ul>
 				{foreach name="seriesListLoop" from=$contextSeries item=series}
 					<li class="series_{$series->getId()}">
-						<a href="{url router=PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$series->getPath()|escape}">{$series->getLocalizedTitle()|escape}</a>{if !$series@last}<span aria-hidden="true">{translate key="common.commaListSeparator"}</span>{/if}
+						<a href="{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$series->getPath()|escape}">{$series->getLocalizedTitle()|escape}</a>{if !$series@last}<span aria-hidden="true">{translate key="common.commaListSeparator"}</span>{/if}
 					</li>
 				{/foreach}
 			</ul>
@@ -52,12 +52,12 @@
 
 		{* Pagination *}
 		{if $prevPage > 1}
-			{capture assign=prevUrl}{url router=PKPApplication::ROUTE_PAGE page="catalog" op="page" path=$prevPage}{/capture}
+			{capture assign=prevUrl}{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="page" path=$prevPage}{/capture}
 		{elseif $prevPage === 1}
-			{capture assign=prevUrl}{url router=PKPApplication::ROUTE_PAGE page="catalog"}{/capture}
+			{capture assign=prevUrl}{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog"}{/capture}
 		{/if}
 		{if $nextPage}
-			{capture assign=nextUrl}{url router=PKPApplication::ROUTE_PAGE page="catalog" op="page" path=$nextPage}{/capture}
+			{capture assign=nextUrl}{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="page" path=$nextPage}{/capture}
 		{/if}
 		{include
 			file="frontend/components/pagination.tpl"

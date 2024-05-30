@@ -30,7 +30,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="seriesForm" method="post" action="{url router=PKPApplication::ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="updateSeries" seriesId=$seriesId}">
+<form class="pkp_form" id="seriesForm" method="post" action="{url router=PKP\core\PKPApplication::ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="updateSeries" seriesId=$seriesId}">
 	{csrf}
 	<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="seriesFormNotification"}
@@ -45,7 +45,7 @@
 
 	{if $image}
 		{capture assign="altTitle"}{translate key="submission.currentCoverImage"}{/capture}
-		<img class="pkp_helpers_container_center" height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" src="{url router=PKPApplication::ROUTE_PAGE page="catalog" op="thumbnail" type="series" id=$seriesId}" alt="{$altTitle|escape}" />
+		<img class="pkp_helpers_container_center" height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" src="{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="thumbnail" type="series" id=$seriesId}" alt="{$altTitle|escape}" />
 	{/if}
 
 	{fbvFormArea id="seriesInfo"}
@@ -107,7 +107,7 @@
 		{/if}
 
 		{capture assign="instruct"}
-			{capture assign="sampleUrl"}{url router=PKPApplication::ROUTE_PAGE page="catalog" op="series" path="Path"}{/capture}
+			{capture assign="sampleUrl"}{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="series" path="Path"}{/capture}
 			{translate key="grid.series.urlWillBe" sampleUrl=$sampleUrl}
 		{/capture}
 		{fbvFormSection title="series.path" required=true for="path"}
