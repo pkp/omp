@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-05-17 15:39+0000\n"
+"PO-Revision-Date: 2024-05-31 17:17+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/locale/fr_FR/"
 ">\n"
@@ -35,7 +35,7 @@ msgid "monograph.audience.rangeTo"
 msgstr "Intervalle du public (à)"
 
 msgid "submission.round"
-msgstr "Tour&nbsp;{$round}"
+msgstr "Cycle&nbsp;{$round}"
 
 msgid "monograph.publicationFormatDetails"
 msgstr "Détails sur le format de publication disponible : {$format}"
