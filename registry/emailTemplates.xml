@@ -68,4 +68,5 @@
 	<email key="EDITORIAL_REMINDER" name="mailable.editorialReminder.name" subject="emails.editorialReminder.subject" body="emails.editorialReminder.body"/>
 	<email key="SUBMISSION_SAVED_FOR_LATER" name="mailable.submissionSavedForLater.name" subject="emails.submissionSavedForLater.subject" body="emails.submissionSavedForLater.body"/>
 	<email key="SUBMISSION_NEEDS_EDITOR" name="mailable.submissionNeedsEditor.name" subject="emails.submissionNeedsEditor.subject" body="emails.submissionNeedsEditor.body"/>
+	<email key="CHANGE_EMAIL" name="mailable.changeProfileEmailInvitationNotify.name" subject="emails.changeProfileEmailInvitationNotify.subject" body="emails.changeProfileEmailInvitationNotify.body"/>
 </emails>
