@@ -33,7 +33,7 @@ class InformationHandler extends Handler {
 		$press = $request->getPress();
 		if ($press == null) $request->redirect('index');
 
-		$this->setupTemplate($request, $press);
+		$this->setupTemplate($request);
 
 		$contentOnly = $request->getUserVar('contentOnly');
 
@@ -99,10 +99,10 @@ class InformationHandler extends Handler {
 	 * Initialize the template.
 	 * @param $press Press
 	 */
-	function setupTemplate($request, $press) {
+	function setupTemplate($request) {
 		parent::setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_MANAGER); // FIXME needed?
-		if (!$press->getSetting('restrictSiteAccess')) {
+		if (!$request->getPress()->getSetting('restrictSiteAccess')) {
 			$templateMgr = TemplateManager::getManager($request);
 			$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 		}
