@@ -1,9 +1,9 @@
 # Teodora Fildishevska <t.fildishevska@gmail.com>, 2022.
 # Ana Vucurevic <ana.vucurevic97@yahoo.com>, 2023.
-# Mirko Spiroski <mspiroski@id-press.eu>, 2023.
+# Mirko Spiroski <mspiroski@id-press.eu>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-11-26 20:37+0000\n"
+"PO-Revision-Date: 2024-05-07 12:52+0000\n"
 "Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "mk/>\n"
@@ -730,10 +730,10 @@ msgstr ""
 "„{$searchQuery}“."
 
 msgid "catalog.feature"
-msgstr "Карактеристика"
+msgstr "Особина"
 
 msgid "catalog.featured"
-msgstr "Карактеристика"
+msgstr "Изведено"
 
 msgid "catalog.featuredBooks"
 msgstr "Избрани книги"
@@ -825,7 +825,7 @@ msgid "common.preview"
 msgstr "Преглед"
 
 msgid "common.feature"
-msgstr "Карактеристика"
+msgstr "Изведување"
 
 msgid "common.searchCatalog"
 msgstr "Каталог за пребарување"

@@ -3,7 +3,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-24 20:28+0000\n"
+"PO-Revision-Date: 2024-05-31 17:17+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "fr_FR/>\n"
@@ -822,7 +822,7 @@ msgid "manager.series.form.titleRequired"
 msgstr "Un titre est requis pour la collection."
 
 msgid "manager.series.noneCreated"
-msgstr "Aucune série n’a été créée."
+msgstr "Aucune collection n’a été créée."
 
 msgid "manager.series.existingUsers"
 msgstr "Utilisateurs actuels"
@@ -1592,7 +1592,7 @@ msgid "manager.setup.currentFormats"
 msgstr "Formats actuels"
 
 msgid "manager.setup.categoriesAndSeries"
-msgstr "Catégories et séries"
+msgstr "Catégories et collections"
 
 msgid "manager.setup.series.description"
 msgstr ""
@@ -1600,7 +1600,8 @@ msgstr ""
 "vos publications. Une collection représente un ensemble spécial de livres "
 "consacrés à un thème ou à des sujets que quelqu’un a proposé, généralement "
 "un ou deux membres de la faculté, et dont elle/il assure la supervision. Les "
-"visiteurs pourront rechercher et parcourir la maison d’édition par série."
+"visiteurs pourront rechercher et parcourir la maison d’édition par "
+"collection."
 
 msgid "manager.setup.reviewForms"
 msgstr "Formulaires d’évaluation"
