@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-03-23 09:38+0000\n"
+"PO-Revision-Date: 2024-05-31 17:17+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "fr_FR/>\n"
@@ -203,7 +203,7 @@ msgid "manuscript.submission"
 msgstr "Manuscrit soumis"
 
 msgid "submission.round"
-msgstr "Tour&nbsp;{$round}"
+msgstr "Cycle&nbsp;{$round}"
 
 msgid "manuscript.submissions"
 msgstr "Manuscrits soumis"

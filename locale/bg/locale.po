@@ -1,7 +1,7 @@
-# Cyril Kamburov <cc@intermedia.bg>, 2023.
+# Cyril Kamburov <cc@intermedia.bg>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-12-15 03:53+0000\n"
+"PO-Revision-Date: 2024-05-27 19:39+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/locale/bg/"
 ">\n"
@@ -90,3 +90,121 @@ msgstr "Тип на цената"
 
 msgid "monograph.publicationFormat.discountAmount"
 msgstr "Намаление в проценти, ако е приложимо"
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Задна корица"
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Структура на изданието"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Идентификатор на изданието"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Достъп (наличност) до изданието"
+
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Идентификатор за връщане"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Цифрова информация"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Въведете собствена стойност за размера на файла?"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Височина"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Дебелина"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Тегло"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Ширина"
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Цифрова техническа защита"
+
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Регион на разпространение на изданието"
+
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Данъчна ставка"
+
+msgid "monograph.publicationFormat.taxType"
+msgstr "Тип на данъчната ставка"
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr ""
+"Включете метаданните за този формат на публикация в записа в каталога за "
+"тази книга."
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Липсва идентификационен код."
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Липсват някои полета с метаданни."
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "Отваряне на раздела за формат на публикация."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Формат на публикацията"
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "Изисква се име."
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "Изисква се валидна цена."
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Детайли за формата на изданието"
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Физически формат"
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Този формат ще бъде достъпен на отделен уебсайт"
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr "URL на отдалечено хоствано съдържание"
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "13-цифрен ISBN код, като например 978-951-98548-9-2."
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "10-цифрен ISBN код, като например 951-98548-9-4."
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "Изисква се идентификационен номер на монография."
+
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Предна корица"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Подробности за изданието (не е задължително)"
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Физически размери"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Държава на издаване (производство)"
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Липсват данни за пазари и цени."
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "Размер на файла в мегабайти"
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr ""
+"<p>Избраният от вас формат на публикация вече не съществува за тази "
+"монография.</p>"
