@@ -1000,9 +1000,6 @@ msgstr "Επικοινωνία"
 msgid "about.aboutContext"
 msgstr ""
 
-msgid "about.editorialTeam"
-msgstr "Συντακτική ομάδα"
-
 msgid "about.editorialPolicies"
 msgstr "Πολιτικές έκδοσης"
 

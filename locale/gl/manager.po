@@ -599,14 +599,6 @@ msgstr ""
 "edición) para mostrar nunha lista antes de amosar os elementos posteriores "
 "noutra páxina."
 
-msgid "manager.setup.keyInfo"
-msgstr "Información clave"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Ofrece unha breve descrición da túa editorial e identifica aos membros do "
-"teu equipo editorial."
-
 msgid "manager.setup.labelName"
 msgstr "Nome da etiqueta"
 
@@ -1193,13 +1185,6 @@ msgstr "Roles actuais"
 
 msgid "manager.setup.internalReviewRoles"
 msgstr "Roles de revisión interna"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Equipo editorial"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Lista de editores/as, directores/as e outras persoas asociadas á editorial."
 
 msgid "manager.setup.files"
 msgstr "Arquivos"

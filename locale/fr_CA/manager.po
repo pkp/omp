@@ -580,12 +580,6 @@ msgstr ""
 msgid "manager.setup.itemsPerPage.description"
 msgstr ""
 
-msgid "manager.setup.keyInfo"
-msgstr ""
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-
 msgid "manager.setup.labelName"
 msgstr "Nom d'étiquette"
 
@@ -1179,16 +1173,6 @@ msgstr "Rôles actuels"
 
 msgid "manager.setup.internalReviewRoles"
 msgstr "Rôles des évaluateurs internes"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Équipe de rédaction"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Le bloc générique devrait contenir la liste des rédacteurs en chef, "
-"directeurs généraux et autres individus associés à la presse. Les "
-"renseignements saisis ici s'afficheront dans la section À propos de cette "
-"presse."
 
 msgid "manager.setup.files"
 msgstr "Fichier"

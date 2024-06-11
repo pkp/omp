@@ -604,14 +604,6 @@ msgstr ""
 "de edição) a serem exibidos em uma lista antes de mostrar os itens "
 "subsequentes em outra página."
 
-msgid "manager.setup.keyInfo"
-msgstr "Informação chave"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Forneça uma breve descrição da sua editora e identifique editores, diretores "
-"executivos e outros membros da sua equipe editorial."
-
 msgid "manager.setup.labelName"
 msgstr "Nome do rótulo"
 
@@ -1206,15 +1198,6 @@ msgstr "Papéis atuais"
 
 msgid "manager.setup.internalReviewRoles"
 msgstr "Papéis de avlaiação interna"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Equipe editorial"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"O expediente deve conter a lista de editores, diretores e outros indivíduos "
-"associados à editora. Os dados informados aqui serão publicados na página "
-"Sobre a editora."
 
 msgid "manager.setup.files"
 msgstr "Arquivos"

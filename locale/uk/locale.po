@@ -999,9 +999,6 @@ msgstr "Контакти е-видавництва"
 msgid "about.aboutContext"
 msgstr "Про е-видавництво"
 
-msgid "about.editorialTeam"
-msgstr "Редакція"
-
 msgid "about.editorialPolicies"
 msgstr "Редакційна політика"
 

@@ -588,12 +588,6 @@ msgstr ""
 msgid "manager.setup.itemsPerPage.description"
 msgstr ""
 
-msgid "manager.setup.keyInfo"
-msgstr ""
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-
 msgid "manager.setup.labelName"
 msgstr "Όνομα Πεδίου"
 
@@ -1179,15 +1173,6 @@ msgstr "Τρέχον Ρόλοι"
 
 msgid "manager.setup.internalReviewRoles"
 msgstr "Ρόλοι Εσωτερικής Αξιολόγησης"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Συντακτική ομάδα"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Η Ταυτότητα πρέπει να περιέχει μια λίστα από επιμελητές, υπεύθυνους "
-"διαχείρισης, και άλλα πρόσωπα που συνδέονται με τις Εκδόσεις. Πληροφορίες "
-"που  καταχωρούνται εδώ θα εμφανιστούν στη σελίδα \"Σχετικά\" των εκδόσεων"
 
 msgid "manager.setup.files"
 msgstr "Αρχεία"

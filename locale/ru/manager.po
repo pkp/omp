@@ -606,14 +606,6 @@ msgstr ""
 "заданий на редактирование), показываемых в списке. Идущие далее элементы "
 "будут показаны на следующей странице."
 
-msgid "manager.setup.keyInfo"
-msgstr "Ключевая информация"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Введите краткое описание журнала и укажите редакторов, управляющих и других "
-"членов редколлегии."
-
 msgid "manager.setup.labelName"
 msgstr "Название метки"
 
@@ -1195,14 +1187,6 @@ msgstr "Текущие роли"
 
 msgid "manager.setup.internalReviewRoles"
 msgstr "Роли внутренних рецензентов"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Редакция"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"Список редакторов, управляющих директоров и других лиц, связанных с "
-"издательством."
 
 msgid "manager.setup.files"
 msgstr "Файлы"

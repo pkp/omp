@@ -615,14 +615,6 @@ msgstr ""
 "szerkesztői hozzárendelések) számát mielőtt egy másik oldalon megjelenítené "
 "a következő elemeket."
 
-msgid "manager.setup.keyInfo"
-msgstr "Kulcsinformáció"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Adjon meg egy rövid leírást a kiadóról és nevezze meg a szerkesztőket, "
-"ügyvezetőket és a szerkesztőség további tagjait."
-
 msgid "manager.setup.labelName"
 msgstr "Címke név"
 
@@ -1205,14 +1197,6 @@ msgstr "Jelenlegi szerepkörök"
 
 msgid "manager.setup.internalReviewRoles"
 msgstr "Belső szakmai lektorálási szerepkörök"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Szerkesztőség"
-
-msgid "manager.setup.editorialTeam.description"
-msgstr ""
-"A kiadóhoz tartozó szerkesztők, ügyvezető igazgatók, és további személyek "
-"listája."
 
 msgid "manager.setup.files"
 msgstr "Fájlok"

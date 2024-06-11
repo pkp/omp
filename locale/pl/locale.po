@@ -1002,9 +1002,6 @@ msgstr "Dane kontaktowe wydawnictwa"
 msgid "about.aboutContext"
 msgstr "O wydawnictwie"
 
-msgid "about.editorialTeam"
-msgstr "Zespół redakcyjny"
-
 msgid "about.editorialPolicies"
 msgstr "Polityka wydawnicza"
 

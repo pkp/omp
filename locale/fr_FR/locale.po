@@ -1241,9 +1241,6 @@ msgstr "Contacter l’éditeur"
 msgid "about.aboutContext"
 msgstr "À propos de la maison d’édition"
 
-msgid "about.editorialTeam"
-msgstr "Équipe éditoriale"
-
 msgid "about.editorialPolicies"
 msgstr "Politiques éditoriales"
 

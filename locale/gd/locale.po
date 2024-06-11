@@ -1022,9 +1022,6 @@ msgstr "Conaltradh leis a’ chlò"
 msgid "about.aboutContext"
 msgstr "Mun chlò"
 
-msgid "about.editorialTeam"
-msgstr "An sgioba deasachaidh"
-
 msgid "about.editorialPolicies"
 msgstr "Poileasaidhean deasachaidh"
 
