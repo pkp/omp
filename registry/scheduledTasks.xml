@@ -48,7 +48,7 @@
 	</task>
 	<task class="APP\tasks\UsageStatsLoader">
 		<descr>Process the usage stats logs and load the numbers into the DB tables.</descr>
-		<frequency day="0"/>
+		<frequency hour="0"/>
 	</task>
 	<task class="PKP\task\EditorialReminders">
 		<descr>Send a monthly reminder email to editors about their outstanding tasks</descr>
