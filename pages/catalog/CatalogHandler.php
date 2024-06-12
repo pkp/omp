@@ -156,6 +156,14 @@ class CatalogHandler extends PKPCatalogHandler
         $templateMgr = TemplateManager::getManager($request);
         $context = $request->getContext();
 
+        // Provide a list of series to browse
+        if (!$seriesPath) {
+			$seriesDao = DAORegistry::getDAO('SeriesDAO');
+			$allSeries = $seriesDao->getByPressId($context->getId())->toArray();
+			$templateMgr->assign('allSeries', $allSeries);
+			return $templateMgr->display('frontend/pages/catalogSeriesIndex.tpl');
+		}
+
         // Get the series
         $series = $seriesPath ? Repo::section()->getByPath($seriesPath, $context->getId()) : null;
 
