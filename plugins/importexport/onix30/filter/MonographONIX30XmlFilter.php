@@ -480,6 +480,17 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         $textContentNode->appendChild($this->_buildTextNode($doc, 'ContentAudience', '00')); // Any audience
         $textContentNode->appendChild($this->_buildTextNode($doc, 'Text', $abstract)); // Any audience
 
+        $supportingResourceNode = $doc->createElementNS($deployment->getNamespace(), 'SupportingResource');
+        $collateralDetailNode->appendChild($supportingResourceNode);
+        $supportingResourceNode->appendChild($this->_buildTextNode($doc, 'ResourceContentType', '01')); // Front cover
+        $supportingResourceNode->appendChild($this->_buildTextNode($doc, 'ContentAudience', '00')); // Any audience
+        $supportingResourceNode->appendChild($this->_buildTextNode($doc, 'ResourceMode', '03')); // A still image
+
+        $resourceVersionNode = $doc->createElementNS($deployment->getNamespace(), 'ResourceVersion');
+        $supportingResourceNode->appendChild($resourceVersionNode);
+        $resourceVersionNode->appendChild($this->_buildTextNode($doc, 'ResourceForm', '01')); // Linkable resource
+        $resourceVersionNode->appendChild($this->_buildTextNode($doc, 'ResourceLink', $publication->getLocalizedCoverImageUrl($context->getId())));
+
         /* --- Publishing Detail --- */
 
         $publishingDetailNode = $doc->createElementNS($deployment->getNamespace(), 'PublishingDetail');
