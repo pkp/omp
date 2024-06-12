@@ -300,6 +300,13 @@ class CatalogBookHandler extends Handler
             $templateMgr->addHeader('canonical', '<link rel="canonical" href="' . $url . '">');
         }
 
+        $templateMgr->assign('pubLocaleData', $this->getPublicationLocaleData(
+            $this->publication,
+            $request->getContext()->getPrimaryLocale(),
+            $templateMgr->getTemplateVars('activeTheme')->getOption('showMultilingualMetadata') ?: [],
+            $templateMgr->getTemplateVars('activeTheme')->getOption('showMetadata') ?: []
+        ));
+
         // Display
         if (!Hook::call('CatalogBookHandler::book', [&$request, &$submission, &$this->publication, &$this->chapter])) {
             $templateMgr->display('frontend/pages/book.tpl');
@@ -610,5 +617,39 @@ class CatalogBookHandler extends Handler
         }
 
         return null;
+    }
+
+    /**
+     * Format multilingual publication data for template:
+     * Default data at least includes in one language: full title, title, subtitle, keywords, abstract
+     * showMultilingualMetadataOpts adds multilingual metadata: title (by default includes fullTitle and subtitle), keywords, abstract, etc.
+     * showMetadataOpts: additional metadata
+     */
+    protected function getPublicationLocaleData(Publication $publication, string $contextPrimaryLocale, array $showMultilingualMetadataOpts, array $showMetadataOpts): array
+    {
+        $titles = collect([
+            'title' => $publication->getTitles('html'),
+            'subtitle' => $publication->getSubtitles('html'),
+            'fullTitle' => $publication->getFullTitles('html'),
+        ]);
+        $metadataOpts = collect(['keywords', 'abstract'])->concat($showMetadataOpts)->diff($titles->keys())->unique()->values();
+        $multilingualOpts = collect($showMultilingualMetadataOpts)
+            ->when(in_array('title', $showMultilingualMetadataOpts), fn ($m) => $m->concat(['subtitle', 'fullTitle'])->unique()->values());
+        $primaryLocale = isset($titles->get('title')[$contextPrimaryLocale]) ? $contextPrimaryLocale : $publication->getData('locale');
+
+        $getText = fn (array $item, string $opt): array => [
+            $opt => [
+                'text' => ($text = array_filter($item, fn (string $locale) => $multilingualOpts->contains($opt) || $locale === $primaryLocale, ARRAY_FILTER_USE_KEY)),
+                'headingLang' => collect($text)->map(fn ($_, string $locale): string => $locale === $primaryLocale ? $contextPrimaryLocale : $locale)->toArray()
+            ],
+        ];
+
+        $pubLocaleData = $titles->mapWithKeys($getText)
+            ->union($metadataOpts->mapWithKeys(fn (string $opt): array => $getText($publication->getData($opt) ?? [], $opt)));
+        return $pubLocaleData
+            ->put('languages', $pubLocaleData->map(fn (array $item): array => array_keys($item['text']))
+                ->flatten()->sort()->prepend($primaryLocale)->unique()->values())
+            ->put('primaryLocale', $primaryLocale)
+            ->toArray();
     }
 }
