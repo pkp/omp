@@ -49,12 +49,13 @@ class Publication extends PKPPublication
      * Get the URL to a localized cover image
      *
      * @param int $contextId
+     * @param string $preferredLocale Return the cover image in a specified locale.
      *
      * @return string
      */
-    public function getLocalizedCoverImageUrl($contextId)
+    public function getLocalizedCoverImageUrl($contextId, $preferredLocale = null)
     {
-        $coverImage = $this->getLocalizedData('coverImage');
+        $coverImage = $this->getLocalizedData('coverImage', $preferredLocale);
 
         if (!$coverImage) {
             return Application::get()->getRequest()->getBaseUrl() . '/templates/images/book-default.png';
