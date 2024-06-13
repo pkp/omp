@@ -486,7 +486,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$resourceVersionNode = $doc->createElementNS($deployment->getNamespace(), 'ResourceVersion');
 		$supportingResourceNode->appendChild($resourceVersionNode);
 		$resourceVersionNode->appendChild($this->_buildTextNode($doc, 'ResourceForm', '01')); // Linkable resource
-		$resourceVersionNode->appendChild($this->_buildTextNode($doc, 'ResourceLink', $publication->getLocalizedCoverImageUrl($context->getId())));
+		$resourceVersionNode->appendChild($this->_buildTextNode($doc, 'ResourceLink', $publication->getLocalizedCoverImageUrl($context->getId(), $publication->getData('locale'))));
 
 		/* --- Publishing Detail --- */
 
