@@ -156,10 +156,8 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
 
     /**
      * Get the list of fields for which locale data is stored.
-     *
-     * @return array
      */
-    public function getLocaleFieldNames()
+    public function getLocaleFieldNames(): array
     {
         $localFieldNames = parent::getLocaleFieldNames();
         $localFieldNames[] = 'title';
@@ -172,10 +170,8 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Get a list of additional fields that do not have
      * dedicated accessors.
-     *
-     * @return array
      */
-    public function getAdditionalFieldNames()
+    public function getAdditionalFieldNames(): array
     {
         $additionalFields = parent::getAdditionalFieldNames();
         // FIXME: Move this to a PID plug-in.

@@ -411,18 +411,18 @@ class MonographSearchIndexTest extends PKPTestCase
             ->getMock();
 
         // Mock an empty result set.
-        $presssIterator = $this->getMockBuilder(DAOResultFactory::class)
+        $pressIterator = $this->getMockBuilder(DAOResultFactory::class)
             ->disableOriginalConstructor()
             ->onlyMethods(['toIterator'])
             ->getMock();
-        $presssIterator
+        $pressIterator
             ->method('toIterator')
-            ->will($this->returnValue([]));
+            ->will($this->returnValue(new \ArrayIterator()));
 
         // Mock the getAll() method.
         $pressDao->expects($this->any())
             ->method('getAll')
-            ->will($this->returnValue($presssIterator));
+            ->will($this->returnValue($pressIterator));
 
         // Register the mock DAO.
         DAORegistry::registerDAO('PressDAO', $pressDao);
