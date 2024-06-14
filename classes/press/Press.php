@@ -31,38 +31,26 @@ class Press extends Context
     /**
      * Returns true if this press contains the fields required for creating valid
      * ONIX export metadata.
-     *
-     * @return bool
      */
-    public function hasRequiredOnixHeaderFields()
+    public function hasRequiredOnixHeaderFields(): bool
     {
-        if ($this->getData('codeType') != '' && $this->getData('codeValue') != '') {
-            return true;
-        } else {
-            return false;
-        }
+        return ($this->getData('codeType') != '' && $this->getData('codeValue') != '');
     }
 
     /**
      * Get the association type for this context.
-     *
-     * @return int
      */
-    public function getAssocType()
+    public function getAssocType(): int
     {
         return Application::ASSOC_TYPE_PRESS;
     }
 
     /**
      * Get the DAO for this context object.
-     *
-     * @return PressDAO
      */
-    public function getDAO()
+    public function getDAO(): PressDAO
     {
-        /** @var PressDAO */
-        $dao = DAORegistry::getDAO('PressDAO');
-        return $dao;
+        return DAORegistry::getDAO('PressDAO');
     }
 }
 
