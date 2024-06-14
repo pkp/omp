@@ -477,10 +477,8 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
 
     /**
      * Get a list of fields for which we store localized data
-     *
-     * @return array
      */
-    public function getLocaleFieldNames()
+    public function getLocaleFieldNames(): array
     {
         return ['name'];
     }
@@ -488,7 +486,7 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
     /**
      * @see DAO::getAdditionalFieldNames()
      */
-    public function getAdditionalFieldNames()
+    public function getAdditionalFieldNames(): array
     {
         $additionalFields = parent::getAdditionalFieldNames();
         $additionalFields[] = 'pub-id::publisher-id';
