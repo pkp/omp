@@ -31,10 +31,8 @@ class Chapter extends \PKP\core\DataObject
 
     /**
      * Get the combined title and subtitle for all locales
-     *
-     * @return array
      */
-    public function getFullTitles()
+    public function getFullTitles(): array
     {
         $titles = (array) $this->getData('title');
         $fullTitles = [];
@@ -49,12 +47,8 @@ class Chapter extends \PKP\core\DataObject
 
     /**
      * Get the chapter full title (with title and subtitle).
-     *
-     * @param null|mixed $preferredLocale
-     *
-     * @return string
      */
-    public function getLocalizedFullTitle($preferredLocale = null)
+    public function getLocalizedFullTitle(?string $preferredLocale = null): string
     {
         $title = $this->getLocalizedData('title', $preferredLocale);
         $subtitle = $this->getLocalizedData('subtitle', $preferredLocale);
@@ -67,91 +61,71 @@ class Chapter extends \PKP\core\DataObject
     /**
      * Get localized title of a chapter.
      */
-    public function getLocalizedTitle()
+    public function getLocalizedTitle(): string
     {
         return $this->getLocalizedData('title');
     }
 
     /**
      * Get title of chapter (primary locale)
-     *
-     * @param string $locale
-     *
-     * @return string
      */
-    public function getTitle($locale = null)
+    public function getTitle(?string $locale = null): string|array
     {
         return $this->getData('title', $locale);
     }
 
     /**
      * Set title of chapter
-     *
-     * @param string $title
-     * @param string $locale
      */
-    public function setTitle($title, $locale = null)
+    public function setTitle(string|array $title, ?string $locale = null): void
     {
-        return $this->setData('title', $title, $locale);
+        $this->setData('title', $title, $locale);
     }
 
     /**
-     * Get localized sub title of a chapter.
+     * Get localized subtitle of a chapter.
      */
-    public function getLocalizedSubtitle()
+    public function getLocalizedSubtitle(): ?string
     {
         return $this->getLocalizedData('subtitle');
     }
 
     /**
      * Get sub title of chapter (primary locale)
-     *
-     * @param string $locale
-     *
-     * @return string
      */
-    public function getSubtitle($locale = null)
+    public function getSubtitle(?string $locale = null): string|array|null
     {
         return $this->getData('subtitle', $locale);
     }
 
     /**
-     * Set sub title of chapter
-     *
-     * @param string $subtitle
-     * @param string $locale
+     * Set subtitle of chapter
      */
-    public function setSubtitle($subtitle, $locale = null)
+    public function setSubtitle(string|array $subtitle, ?string $locale = null): void
     {
-        return $this->setData('subtitle', $subtitle, $locale);
+        $this->setData('subtitle', $subtitle, $locale);
     }
 
     /**
      * Get sequence of chapter.
-     *
-     * @return float
      */
-    public function getSequence()
+    public function getSequence(): float
     {
         return $this->getData('sequence');
     }
 
     /**
      * Set sequence of chapter.
-     *
-     * @param float $sequence
      */
-    public function setSequence($sequence)
+    public function setSequence(float $sequence): void
     {
-        return $this->setData('sequence', $sequence);
+        $this->setData('sequence', $sequence);
     }
 
     /**
      * Get all authors of this chapter.
-     *
-     * @return LazyCollection Iterator of authors
      */
-    public function getAuthors()
+    public function getAuthors(): LazyCollection
     {
         return Repo::author()->getCollector()
             ->filterByChapterIds([$this->getId()])
@@ -162,11 +136,9 @@ class Chapter extends \PKP\core\DataObject
     /**
      * Get the author names for this chapter and return them as a string.
      *
-     * @param bool $preferred If the preferred public name should be used, if exist
-     *
-     * @return string
+     * @param $preferred If the preferred public name should be used, if exist
      */
-    public function getAuthorNamesAsString($preferred = true)
+    public function getAuthorNamesAsString(bool $preferred = true): string
     {
         $authorNames = [];
         $authors = $this->getAuthors();
@@ -179,30 +151,28 @@ class Chapter extends \PKP\core\DataObject
     /**
      * Get stored public ID of the chapter.
      *
-     * @param string $pubIdType @literal string One of the NLM pub-id-type values or
+     * @param $pubIdType One of the NLM pub-id-type values or
      * 'other::something' if not part of the official NLM list
-     * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>). @endliteral
+     * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
      *
      * @return string
      */
-    public function getStoredPubId($pubIdType)
+    public function getStoredPubId(string $pubIdType)
     {
-        if ($pubIdType == 'doi') {
+        if ($pubIdType === 'doi') {
             return $this->getDoi();
-        } else {
-            return $this->getData('pub-id::' . $pubIdType);
         }
+        return $this->getData('pub-id::' . $pubIdType);
     }
 
     /**
      * Set the stored public ID of the chapter.
      *
-     * @param string $pubIdType One of the NLM pub-id-type values or
+     * @param $pubIdType One of the NLM pub-id-type values or
      * 'other::something' if not part of the official NLM list
      * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
-     * @param string $pubId
      */
-    public function setStoredPubId($pubIdType, $pubId)
+    public function setStoredPubId(string $pubIdType, string $pubId): void
     {
         if ($pubIdType == 'doi') {
             if ($doiObject = $this->getData('doiObject')) {
@@ -229,88 +199,71 @@ class Chapter extends \PKP\core\DataObject
     /**
      * @copydoc DataObject::getDAO()
      */
-    public function getDAO()
+    public function getDAO(): ChapterDAO
     {
         return DAORegistry::getDAO('ChapterDAO');
     }
 
     /**
      * Get abstract of chapter (primary locale)
-     *
-     * @param string $locale
-     *
-     * @return string
      */
-    public function getAbstract($locale = null)
+    public function getAbstract(?string $locale = null): string|array
     {
         return $this->getData('abstract', $locale);
     }
 
     /**
      * Set abstract of chapter
-     *
-     * @param string $abstract
-     * @param string $locale
      */
-    public function setAbstract($abstract, $locale = null)
+    public function setAbstract(string|array $abstract, ?string $locale = null): void
     {
-        return $this->setData('abstract', $abstract, $locale);
+        $this->setData('abstract', $abstract, $locale);
     }
 
     /**
      * Get localized abstract of a chapter.
      */
-    public function getLocalizedAbstract()
+    public function getLocalizedAbstract(): ?string
     {
         return $this->getLocalizedData('abstract');
     }
 
     /**
      * get date published
-     *
-     * @return string
      */
-    public function getDatePublished()
+    public function getDatePublished(): ?string
     {
         return $this->getData('datePublished');
     }
 
     /**
      * set date published
-     *
-     * @param string $datePublished
      */
-    public function setDatePublished($datePublished)
+    public function setDatePublished(?string $datePublished): void
     {
-        return $this->setData('datePublished', $datePublished);
+        $this->setData('datePublished', $datePublished);
     }
 
     /**
      * get pages
-     *
-     * @return string
      */
-    public function getPages()
+    public function getPages(): ?string
     {
         return $this->getData('pages');
     }
 
     /**
      * set pages
-     *
-     * @param string $pages
      */
-    public function setPages($pages)
+    public function setPages(?string $pages)
     {
         $this->setData('pages', $pages);
     }
 
     /**
      * Get source chapter id of chapter.
-     *
-     * @return null|int
      */
-    public function getSourceChapterId()
+    public function getSourceChapterId(): ?int
     {
         if (!$this->getData('sourceChapterId')) {
             $this->setSourceChapterId($this->getId());
@@ -329,51 +282,39 @@ class Chapter extends \PKP\core\DataObject
 
     /**
      * Is a landing page enabled or disabled.
-     *
-     * @return null|int
      */
-    public function isPageEnabled()
+    public function isPageEnabled(): ?bool
     {
         return $this->getData('isPageEnabled');
     }
 
     /**
      * Enable or disable a landing page.
-     *
      */
-    public function setPageEnabled(?int $enable): void
+    public function setPageEnabled(?bool $enable): void
     {
         $this->setData('isPageEnabled', $enable);
     }
 
     /**
      * Returns current DOI
-     *
      */
     public function getDoi(): ?string
     {
         $doiObject = $this->getData('doiObject');
-
-        if (empty($doiObject)) {
-            return null;
-        } else {
-            return $doiObject->getData('doi');
-        }
+        return $doiObject?->getData('doi');
     }
 
     /**
      * get license url
-     *
-     * @return null|string
      */
-    public function getLicenseUrl()
+    public function getLicenseUrl(): ?string
     {
         return $this->getData('licenseUrl');
     }
 
     /**
      * set license url
-     *
      */
     public function setLicenseUrl(?string $licenseUrl): void
     {
