@@ -520,13 +520,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 
 		$websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteRole', '29')); // 29 -> Web page for full content
 
-		$websiteUrlId = $publication->getData('submissionId');
+		$submissionBestId = $publication->getData('submissionId');
 
 		if ($publication->getData('urlPath') != '') {
-			$websiteUrlId = $publication->getData('urlPath');
+			$submissionBestId = $publication->getData('urlPath');
 		}
 
-		$websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', $websiteUrlId)));
+		$websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', $submissionBestId)));
 
 		/* --- Publishing Dates --- */
 
@@ -690,8 +690,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 				$supplierNode->appendChild($supplierWebsiteNode);
 
 				$supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteRole', '29')); // 29 -> Web page for full content
-				$supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', $websiteUrlId)));
-
+				$supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', $submissionBestId)));
 				unset($supplierNode);
 				unset($supplierWebsiteNode);
 
