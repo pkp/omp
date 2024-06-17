@@ -201,7 +201,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$descDetailNode = $doc->createElementNS($deployment->getNamespace(), 'DescriptiveDetail');
 
 		$descDetailNode->appendChild($this->_buildTextNode($doc, 'ProductComposition',
-				$publicationFormat->getProductCompositionCode() ? $publicationFormat->getProductCompositionCode() : '00')); // single item, trade only, etc.  Default to single item if not specified.
+			$publicationFormat->getProductCompositionCode() ? $publicationFormat->getProductCompositionCode() : '00')); // single item, trade only, etc.  Default to single item if not specified.
 
 		$descDetailNode->appendChild($this->_buildTextNode($doc, 'ProductForm', $publicationFormat->getEntryKey()));  // paperback, hardcover, etc
 
@@ -237,7 +237,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 			}
 		}
 
-		if($publicationFormat->getCountryManufactureCode() != '') {
+		if ($publicationFormat->getCountryManufactureCode() != '') {
 			$descDetailNode->appendChild($this->_buildTextNode($doc, 'CountryOfManufacture', $publicationFormat->getCountryManufactureCode()));
 		}
 
@@ -412,7 +412,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeVersion', '2')); // Version 2 of ^^
 
 		$submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
-		$allSubjects = $submissionSubjectDao->getSubjects($publication->getId(),  array_keys(AppLocale::getSupportedFormLocales()));
+		$allSubjects = $submissionSubjectDao->getSubjects($publication->getId(), array_keys(AppLocale::getSupportedFormLocales()));
 		$uniqueSubjects = array();
 		foreach ($allSubjects as $locale => $subjects) {
 			$uniqueSubjects = array_merge($uniqueSubjects, $subjects);
@@ -519,7 +519,14 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$publisherNode->appendChild($websiteNode);
 
 		$websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteRole', '29')); // 29 -> Web page for full content
-		$websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', $publication->getData('submissionId'))));
+
+		$websiteUrlId = $publication->getData('submissionId');
+
+		if ($publication->getData('urlPath') != '') {
+			$websiteUrlId = $publication->getData('urlPath');
+		}
+
+		$websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', $websiteUrlId)));
 
 		/* --- Publishing Dates --- */
 
@@ -683,7 +690,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 				$supplierNode->appendChild($supplierWebsiteNode);
 
 				$supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteRole', '29')); // 29 -> Web page for full content
-				$supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', $publication->getData('submissionId'))));
+				$supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', $websiteUrlId)));
 
 				unset($supplierNode);
 				unset($supplierWebsiteNode);
