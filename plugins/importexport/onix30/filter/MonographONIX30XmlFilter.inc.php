@@ -320,9 +320,10 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 			$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 			$userGroup = $userGroupDao->getById($author->getUserGroupId(), $submission->getContextId());
 
-			$userGroupOnixMap = array('AU' => 'A01', 'VE' => 'B01', 'CA' => 'A01', 'Trans' => 'B06', 'PE' => 'B21'); // From List17, ContributorRole types.
+			$userGroupOnixMap = array('author' => 'A01', 'volumeEditor' => 'B01', 'chapterAuthor' => 'A01', 'translator' => 'B06', 'editor' => 'B21'); // From List17, ContributorRole types.
 
-			$role = array_key_exists($userGroup->getLocalizedAbbrev(), $userGroupOnixMap) ? $userGroupOnixMap[$userGroup->getLocalizedAbbrev()] : 'Z99'; // Z99 - unknown contributor type.
+			$abbrevKey = substr($userGroup->getData('abbrevLocaleKey'), strrpos($userGroup->getData('abbrevLocaleKey'), '.') + 1);
+			$role = array_key_exists($abbrevKey, $userGroupOnixMap) ? $userGroupOnixMap[$abbrevKey] : 'Z99'; // Z99 - unknown contributor type.
 
 			$contributorNode->appendChild($this->_buildTextNode($doc, 'ContributorRole', $role));
 			$contributorNode->appendChild($this->_buildTextNode($doc, 'PersonName', $author->getFullName(false)));
