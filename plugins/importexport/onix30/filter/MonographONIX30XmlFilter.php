@@ -518,6 +518,19 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         $websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteRole', '18')); // 18 -> Publisher's B2C website
         $websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath())));
 
+        $websiteNode = $doc->createElementNS($deployment->getNamespace(), 'Website');
+        $publisherNode->appendChild($websiteNode);
+
+        $websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteRole', '29')); // 29 -> Web page for full content
+
+        $submissionBestId = $publication->getData('submissionId');
+
+        if ($publication->getData('urlPath') != '') {
+            $submissionBestId = $publication->getData('urlPath');
+        }
+
+        $websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', $submissionBestId)));
+
         /* --- Publishing Dates --- */
 
         $publicationDates = $publicationFormat->getPublicationDates();
@@ -680,6 +693,13 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
 
                     unset($supplierWebsiteNode);
                 }
+
+                $supplierWebsiteNode = $doc->createElementNS($deployment->getNamespace(), 'Website');
+                $supplierNode->appendChild($supplierWebsiteNode);
+
+                $supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteRole', '29')); // 29 -> Web page for full content
+                $supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', $submissionBestId)));
+
                 unset($supplierNode);
             } else { // No suppliers specified, use the Press settings instead.
                 $supplierNode = $doc->createElementNS($deployment->getNamespace(), 'Supplier');
