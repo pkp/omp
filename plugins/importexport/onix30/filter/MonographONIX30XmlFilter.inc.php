@@ -402,7 +402,6 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 			unset($extentNode);
 		}
 
-
 		/* --- Add Subject elements --- */
 
 		$subjectNode = $doc->createElementNS($deployment->getNamespace(), 'Subject');
@@ -411,18 +410,19 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeIdentifier', '12')); // 12 is BIC subject category code list.
 		$subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeVersion', '2')); // Version 2 of ^^
 
-		$submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
-		$allSubjects = $submissionSubjectDao->getSubjects($publication->getId(), array_keys(AppLocale::getSupportedFormLocales()));
-		$uniqueSubjects = array();
-		foreach ($allSubjects as $locale => $subjects) {
-			$uniqueSubjects = array_merge($uniqueSubjects, $subjects);
+		if ($publication->getData('subjects')) {
+			$allSubjects = ($publication->getData('subjects')[$publication->getData('locale')]);
+			$subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectCode', trim(join(', ', $allSubjects))));
 		}
-
-		if (sizeof($uniqueSubjects) > 0) {
-			$subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectCode', trim(join(', ', $uniqueSubjects))));
-		}
-
 		$descDetailNode->appendChild($subjectNode);
+
+		if ($publication->getData('keywords')) {
+			$allKeywords = ($publication->getData('keywords')[$publication->getData('locale')]);
+			$keywordNode = $doc->createElementNS($deployment->getNamespace(), 'Subject');
+			$keywordNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeIdentifier', '20')); // Keywords
+			$keywordNode->appendChild($this->_buildTextNode($doc, 'SubjectHeadingText', trim(join(', ', $allKeywords))));
+			$descDetailNode->appendChild($keywordNode);
+		}
 
 		/* --- Add Audience elements --- */
 
