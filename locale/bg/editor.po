@@ -1,3 +1,126 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2024.
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2024-06-25 08:39+0000\n"
+"Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
+"Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/editor/bg/"
+">\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Отказване на заданието"
+
+msgid "editor.monograph.clearReview"
+msgstr "Анулиране на рецензента"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Въвеждане на препоръка"
+
+msgid "editor.monograph.recommendation"
+msgstr "Препоръка"
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Промяна на рецензент"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Редактор за въвеждане на препоръки/коментари за рецензент"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Качване на рецензия"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Опции за рецензия"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Коректурни файлове"
+
+msgid "editor.monograph.internalReview"
+msgstr "Иницииране на вътрешна рецензия"
+
+msgid "editor.monograph.externalReview"
+msgstr "Иницииране на външна рецензия"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Изберете последните чернови"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Текущи последни чернови"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Текущи файлове"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Съобщение до потребител"
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Белова (коригирана чернова)"
+
+msgid "editor.monograph.proofs"
+msgstr "Коректури"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Одобрение и публикуване"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr ""
+"Различни формати на публикации, като твърди корици, меки корици и цифрови, "
+"могат да бъдат качени в раздела Формати на публикации по-долу. Можете да "
+"използвате таблицата с формати на публикация по-долу като контролен списък "
+"за това какво още трябва да се направи, за да публикувате формат на "
+"публикация."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Задаване на условия за изтегляне"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Задаване на условия"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Добавяне на отговор"
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr ""
+"Всички файлове, които вече са били качени на който и да е етап на подаване "
+"на материалите, могат да бъдат добавени към списъка с коректурни файлове, "
+"като поставите отметка в квадратчето за включване по-долу и щракнете върху "
+"Търсене: всички налични файлове ще бъдат изброени и могат да бъдат избрани "
+"за включване."
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr ""
+"Публичният идентификатор '{$publicIdentifier}' вече съществува за друг обект "
+"от същия тип. Моля, изберете уникални идентификатори за обектите от същия "
+"тип във вашето издателство."
+
+msgid "editor.submissions.assignedTo"
+msgstr "Асоциирано към редактор"
+
+msgid "editor.submissionArchive"
+msgstr "Архив на изпратените материали"
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr ""
+"Добавете формати на публикация (напр. цифрови, с меки корици), за които "
+"редакторът на оформлението да подготви коректури. <em>Коректурите</em> "
+"трябва да бъдат отбелязани като одобрени и записът в <em>Каталога</em> за "
+"формата трябва да бъде проверен, както е публикуван в записа в каталога на "
+"книгата, преди да може да се направи формат <em> Достъпен</em> (т.е. "
+"публикуван)."
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Въвеждане на рецензионна препоръка"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr ""
+"Изберете рецензент по-горе и натиснете бутона „Избор на рецензент“, за да "
+"продължите."
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr ""
+"Изберете файлове по-долу, за да ги изпратите на етапа на вътрешно "
+"рецензиране."
