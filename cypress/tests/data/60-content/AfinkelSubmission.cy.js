@@ -195,7 +195,7 @@ describe('Data suite tests', function() {
 			'genre': Cypress.env('defaultGenre')
 		}]);
 		cy.get('.listPanel__item:contains("delete-this-file.pdf")').find('button').contains('Remove').click();
-		cy.get('.modal__panel:contains("Are you sure you want to remove this file?")').find('button').contains('Yes').click();
+		cy.get('div[role=dialog]:contains("Are you sure you want to remove this file?")').find('button').contains('Yes').click();
 		cy.get('.listPanel__item:contains("delete-this-file.pdf")').should('not.exist');
 
 		cy.get('.submissionWizard__footer button').contains('Continue').click();
@@ -206,7 +206,7 @@ describe('Data suite tests', function() {
 		cy.get('h2').contains('Contributors');
 		cy.get('.listPanel__item:contains("Alvin Finkel")');
 		cy.get('button').contains('Add Contributor').click();
-		cy.get('.modal__panel:contains("Add Contributor")').find('button').contains('Save').click();
+		cy.get('div[role=dialog]:contains("Add Contributor")').find('button').contains('Save').click();
 		cy.get('#contributor-givenName-error-en').contains('This field is required.');
 		cy.get('#contributor-email-error').contains('This field is required.');
 		cy.get('#contributor-country-error').contains('This field is required.');
@@ -215,38 +215,38 @@ describe('Data suite tests', function() {
 		cy.get('label').contains(submission.authors[0].role).parent().find('input').click();
 		cy.get('.pkpFormField:contains("Country")').find('select').select(submission.authors[0].country)
 		cy.get('.pkpFormField:contains("Email")').find('input').type('notanemail');
-		cy.get('.modal__panel:contains("Add Contributor")').find('button').contains('Save').click();
+		cy.get('div[role=dialog]:contains("Add Contributor")').find('button').contains('Save').click();
 		cy.get('#contributor-email-error').contains('This is not a valid email address.');
 		cy.get('.pkpFormField:contains("Email")').find('input').clear().type(submission.authors[0].email);
-		cy.get('.modal__panel:contains("Add Contributor")').find('button').contains('Save').click();
+		cy.get('div[role=dialog]:contains("Add Contributor")').find('button').contains('Save').click();
 		cy.wait(3000);
 		cy.get('button').contains('Order').click();
 		cy.wait(3000);
 		cy.get('button:contains("Decrease position of Alvin Finkel")').click();
 		cy.get('button').contains('Save Order').click();
 		cy.get('button:contains("Preview")').click(); // Will only appear after order is saved
-		cy.get('.modal__panel:contains("List of Contributors")').find('tr:contains("Abbreviated")').contains('Carter et al.');
-		cy.get('.modal__panel:contains("List of Contributors")').find('tr:contains("Publication Lists")').contains('Sarah Carter (Volume editor); Alvin Finkel (Author)');
-		cy.get('.modal__panel:contains("List of Contributors")').find('tr:contains("Full")').contains('Sarah Carter (Volume editor); Alvin Finkel (Author)');
-		cy.get('.modal__panel:contains("List of Contributors")').find('.modal__closeButton').click();
+		cy.get('div[role=dialog]:contains("List of Contributors")').find('tr:contains("Abbreviated")').contains('Carter et al.');
+		cy.get('div[role=dialog]:contains("List of Contributors")').find('tr:contains("Publication Lists")').contains('Sarah Carter (Volume editor); Alvin Finkel (Author)');
+		cy.get('div[role=dialog]:contains("List of Contributors")').find('tr:contains("Full")').contains('Sarah Carter (Volume editor); Alvin Finkel (Author)');
+		cy.get('div[role=dialog]:contains("List of Contributors")').find('button:contains("Close")').click();
 		cy.get('.listPanel:contains("Contributors")').find('button').contains('Order').click();
 		cy.get('button:contains("Increase position of Alvin Finkel")').click();
 		cy.get('.listPanel:contains("Contributors")').find('button').contains('Save Order').click();
 		cy.get('.listPanel:contains("Contributors") button:contains("Preview")').click(); // Will only appear after order is saved
-		cy.get('.modal__panel:contains("List of Contributors")').find('tr:contains("Abbreviated")').contains('Finkel et al.');
-		cy.get('.modal__panel:contains("List of Contributors")').find('tr:contains("Publication Lists")').contains('Alvin Finkel (Author); Sarah Carter (Volume editor)');
-		cy.get('.modal__panel:contains("List of Contributors")').find('tr:contains("Full")').contains('Alvin Finkel (Author); Sarah Carter (Volume editor)');
-		cy.get('.modal__panel:contains("List of Contributors")').find('.modal__closeButton').click();
+		cy.get('div[role=dialog]:contains("List of Contributors")').find('tr:contains("Abbreviated")').contains('Finkel et al.');
+		cy.get('div[role=dialog]:contains("List of Contributors")').find('tr:contains("Publication Lists")').contains('Alvin Finkel (Author); Sarah Carter (Volume editor)');
+		cy.get('div[role=dialog]:contains("List of Contributors")').find('tr:contains("Full")').contains('Alvin Finkel (Author); Sarah Carter (Volume editor)');
+		cy.get('div[role=dialog]:contains("List of Contributors")').find('button:contains("Close")').click();
 
 		submission.authors.slice(1).forEach((author) => {
 			cy.get('button').contains('Add Contributor').click();
-			cy.get('.modal__panel:contains("Add Contributor")').find('button').contains('Save').click();
+			cy.get('div[role=dialog]:contains("Add Contributor")').find('button').contains('Save').click();
 			cy.get('.pkpFormField:contains("Given Name")').find('input[name*="givenName-en"]').type(author.givenName);
 			cy.get('.pkpFormField:contains("Family Name")').find('input[name*="familyName-en"]').type(author.familyName);
 			cy.get('label').contains(author.role).parent().find('input').click();
 			cy.get('.pkpFormField:contains("Country")').find('select').select(author.country)
 			cy.get('.pkpFormField:contains("Email")').find('input').type(author.email);
-			cy.get('.modal__panel:contains("Add Contributor")').find('button').contains('Save').click();
+			cy.get('div[role=dialog]:contains("Add Contributor")').find('button').contains('Save').click();
 		});
 
 		// Delete a contributor
@@ -254,9 +254,9 @@ describe('Data suite tests', function() {
 		cy.get('.pkpFormField:contains("Given Name")').find('input[name*="givenName-en"]').type('Fake Author Name');
 		cy.get('.pkpFormField:contains("Email")').find('input').type('delete@mailinator.com');
 		cy.get('.pkpFormField:contains("Country")').find('select').select('Barbados');
-		cy.get('.modal__panel:contains("Add Contributor")').find('button').contains('Save').click();
+		cy.get('div[role=dialog]:contains("Add Contributor")').find('button').contains('Save').click();
 		cy.get('.listPanel__item:contains("Fake Author Name")').find('button').contains('Delete').click();
-		cy.get('.modal__panel:contains("Are you sure you want to remove Fake Author Name as a contributor?")').find('button').contains('Delete Contributor').click();
+		cy.get('div[role=dialog]:contains("Are you sure you want to remove Fake Author Name as a contributor?")').find('button').contains('Delete Contributor').click();
 		cy.get('.listPanel__item:contains("Fake Author Name")').should('not.exist');
 
 
@@ -325,7 +325,7 @@ describe('Data suite tests', function() {
 		cy.contains('Make a Submission: Review');
 		cy.get('button:contains("Submit")').click();
 		const message = 'The submission, ' + submission.title + ', will be submitted to ' + Cypress.env('contextTitles').en + ' for editorial review';
-		cy.get('.modal__panel:contains("' + message + '")').find('button').contains('Submit').click();
+		cy.get('div[role=dialog]:contains("' + message + '")').find('button').contains('Submit').click();
 		cy.contains('Submission complete');
 		cy.get('a').contains('Create a new submission');
 		cy.get('a').contains('Return to your dashboard');
