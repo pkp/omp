@@ -17,8 +17,7 @@
 
 namespace APP\codelist;
 
-use PKP\cache\CacheManager;
-use PKP\cache\GenericCache;
+use Illuminate\Support\Facades\Cache;
 use PKP\core\Registry;
 use PKP\db\DAO;
 use PKP\db\XMLDAO;
@@ -30,35 +29,12 @@ abstract class CodelistItemDAO extends DAO
     /**
      * Get the codelist item cache.
      */
-    public function _getCache(?string $locale = null): GenericCache
+    public function _getCache(?string $locale = null): array
     {
         $locale ??= Locale::getLocale();
         $cacheName = $this->getCacheName();
 
-        $cache = & Registry::get($cacheName, true, null);
-        if ($cache === null) {
-            $cacheManager = CacheManager::getManager();
-            $cache = $cacheManager->getFileCache(
-                $this->getName() . '_codelistItems',
-                $locale,
-                [$this, '_cacheMiss']
-            );
-            $cacheTime = $cache->getCacheTime();
-            if ($cacheTime !== null && $cacheTime < filemtime($this->getFilename($locale))) {
-                $cache->flush();
-            }
-        }
-
-        return $cache;
-    }
-
-    /**
-     * Handle a cache miss
-     */
-    public function _cacheMiss(GenericCache $cache, string $id)
-    {
-        $allCodelistItems = & Registry::get('all' . $this->getName() . 'CodelistItems', true, null);
-        if ($allCodelistItems === null) {
+        return Cache::remember($cacheName, 60 * 60 * 24, function ($locale) {
             // Add a locale load to the debug notes.
             $notes = & Registry::get('system.debug.notes');
             $locale = $cache->cacheId ?? Locale::getLocale();
@@ -81,9 +57,8 @@ abstract class CodelistItemDAO extends DAO
             if (is_array($allCodelistItems)) {
                 asort($allCodelistItems);
             }
-            $cache->setEntireCache($allCodelistItems);
-        }
-        return null;
+            return $allCodelistItems;
+        });
     }
 
     /**
