@@ -3,13 +3,11 @@
 /**
  * @file classes/codelist/CodelistItemDAO.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2000-2024 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class CodelistItemDAO
- *
- * @ingroup codelist
  *
  * @see CodelistItem
  *
@@ -27,16 +25,12 @@ use PKP\db\XMLDAO;
 use PKP\facades\Locale;
 use PKP\plugins\Hook;
 
-class CodelistItemDAO extends DAO
+abstract class CodelistItemDAO extends DAO
 {
     /**
      * Get the codelist item cache.
-     *
-     * @param string $locale Locale code (optional)
-     *
-     * @return GenericCache
      */
-    public function _getCache($locale = null)
+    public function _getCache(?string $locale = null): GenericCache
     {
         $locale ??= Locale::getLocale();
         $cacheName = $this->getCacheName();
@@ -60,11 +54,8 @@ class CodelistItemDAO extends DAO
 
     /**
      * Handle a cache miss
-     *
-     * @param GenericCache $cache
-     * @param mixed $id ID that wasn't found in the cache
      */
-    public function _cacheMiss($cache, $id)
+    public function _cacheMiss(GenericCache $cache, string $id)
     {
         $allCodelistItems = & Registry::get('all' . $this->getName() . 'CodelistItems', true, null);
         if ($allCodelistItems === null) {
@@ -97,52 +88,32 @@ class CodelistItemDAO extends DAO
 
     /**
      * Get the cache name for this particular codelist database
-     *
-     * @return string
      */
-    public function getCacheName()
+    public function getCacheName(): string
     {
         return $this->getName() . 'Cache';
     }
 
     /**
      * Get the filename of the codelist database
-     *
-     * @param string $locale
-     *
-     * @return string
      */
-    public function getFilename($locale)
-    {
-        assert(false);
-    }
+    abstract public function getFilename(string $locale): string;
 
     /**
      * Get the base node name particular codelist database
      *
-     * @return string
      */
-    public function getName()
-    {
-        assert(false);
-    }
+    abstract public function getName(): string;
 
     /**
      * Get the name of the CodelistItem subclass.
-     *
-     * @return CodelistItem
      */
-    public function newDataObject()
-    {
-        assert(false);
-    }
+    abstract public function newDataObject(): CodelistItem;
 
     /**
      * Retrieve a codelist by code.
-     *
-     * @return CodelistItem
      */
-    public function getByCode($code)
+    public function getByCode(string $code): CodelistItem
     {
         $cache = $this->_getCache();
         return $this->_fromRow($code, $cache->get($code));
@@ -150,12 +121,8 @@ class CodelistItemDAO extends DAO
 
     /**
      * Retrieve an array of all the codelist items.
-     *
-     * @param string $locale an optional locale to use
-     *
-     * @return array of CodelistItems
      */
-    public function getCodelistItems($locale = null)
+    public function getCodelistItems(?string $locale = null): array
     {
         $cache = $this->_getCache($locale);
         $returner = [];
@@ -167,12 +134,8 @@ class CodelistItemDAO extends DAO
 
     /**
      * Retrieve an array of all codelist names.
-     *
-     * @param string $locale an optional locale to use
-     *
-     * @return array of CodelistItem names
      */
-    public function getNames($locale = null)
+    public function getNames(?string $locale = null): array
     {
         $cache = $this->_getCache($locale);
         $returner = [];
@@ -188,14 +151,9 @@ class CodelistItemDAO extends DAO
     /**
      * Internal function to construct and populate a Codelist object
      *
-     * @param string $code
-     * @param array $entry
-     *
-     * @return CodelistItem
-     *
      * @hook CodelistItemDAO::_fromRow [[&$codelistItem, &$code, &$entry]]
      */
-    public function _fromRow($code, $entry)
+    public function _fromRow(string $code, array $entry): CodelistItem
     {
         $codelistItem = $this->newDataObject();
         $codelistItem->setCode($code);

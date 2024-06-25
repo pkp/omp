@@ -3,13 +3,11 @@
 /**
  * @file classes/codelist/ONIXParserDOMHandler.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2000-2024 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ONIXParserDOMHandler
- *
- * @ingroup codelist
  *
  * @see XMLParser
  *
@@ -23,47 +21,40 @@
 
 namespace APP\codelist;
 
+use PKP\xml\PKPXMLParser;
 use PKP\xml\XMLNode;
 use PKP\xml\XMLParserDOMHandler;
 use XMLParser;
 
 class ONIXParserDOMHandler extends XMLParserDOMHandler
 {
-    /** @var string the list being searched for */
-    public $_listName = null;
+    /** @var The list being searched for */
+    public string $_listName;
 
-    /** @var bool to maintain state */
-    public $_foundRequestedList = false;
+    public bool $_foundRequestedList = false;
 
-    /** @var array of items the parser eventually returns */
-    public $_listItems = null;
+    /** @var List of items the parser eventually returns */
+    public ?array $_listItems = [];
 
     /** @var string to store the current character data  */
-    public $_currentValue = null;
+    public ?string $_currentValue = null;
 
     /** @var bool currently inside an xs:documentation element */
-    public $_insideDocumentation = false;
+    public bool $_insideDocumentation = false;
 
     /**
      * Constructor.
-     *
-     * @param string $listName
      */
-    public function __construct($listName)
+    public function __construct(string $listName)
     {
         parent::__construct();
         $this->_listName = $listName;
-        $this->_listItems = [];
     }
 
     /**
      * Callback function to act as the start element handler.
-     *
-     * @param XMLParser $parser
-     * @param string $tag
-     * @param array $attributes
      */
-    public function startElement($parser, $tag, $attributes)
+    public function startElement(PKPXMLParser|XMLParser $parser, string $tag, array $attributes): void
     {
         $this->currentData = null;
 
@@ -100,11 +91,8 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler
 
     /**
      * Callback function to act as the character data handler.
-     *
-     * @param XMLParser $parser
-     * @param string $data
      */
-    public function characterData($parser, $data)
+    public function characterData(PKPXMLParser|XMLParser $parser, string $data)
     {
         if ($this->_insideDocumentation) {
             if (count($this->_listItems[$this->_currentValue]) == 1) {
@@ -117,11 +105,8 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler
 
     /**
      * Callback function to act as the end element handler.
-     *
-     * @param XMLParser $parser
-     * @param string $tag
      */
-    public function endElement($parser, $tag)
+    public function endElement(PKPXMLParser|XMLParser $parser, string $tag)
     {
         switch ($tag) {
             case 'xs:simpleType':
@@ -135,10 +120,8 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler
 
     /**
      * Returns the array of found list items
-     *
-     * @return array
      */
-    public function getResult()
+    public function getResult(): mixed
     {
         return [$this->_listName => $this->_listItems];
     }

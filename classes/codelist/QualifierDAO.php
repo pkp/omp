@@ -3,13 +3,11 @@
 /**
  * @file classes/codelist/QualifierDAO.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2000-2024 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class QualifierDAO
- *
- * @ingroup codelist
  *
  * @see Qualifier
  *
@@ -26,12 +24,8 @@ class QualifierDAO extends CodelistItemDAO
 {
     /**
      * Get the filename of the qualifier database
-     *
-     * @param string $locale
-     *
-     * @return string
      */
-    public function getFilename($locale)
+    public function getFilename(string $locale): string
     {
         if (!Locale::isLocaleValid($locale)) {
             $locale = LocaleInterface::DEFAULT_LOCALE;
@@ -42,20 +36,16 @@ class QualifierDAO extends CodelistItemDAO
     /**
      * Get the base node name particular codelist database
      * This is also the node name in the XML.
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'qualifier';
     }
 
     /**
      * Get the name of the CodelistItem subclass.
-     *
-     * @return Qualifier
      */
-    public function newDataObject()
+    public function newDataObject(): Qualifier
     {
         return new Qualifier();
     }
