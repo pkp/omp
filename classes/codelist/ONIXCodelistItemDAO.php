@@ -3,13 +3,11 @@
 /**
  * @file classes/codelist/ONIXCodelistItemDAO.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2000-2024 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ONIXCodelistItemDAO
- *
- * @ingroup codelist
  *
  * @see CodelistItem
  *
@@ -20,6 +18,7 @@
 namespace APP\codelist;
 
 use PKP\cache\CacheManager;
+use PKP\cache\GenericCache;
 use PKP\core\Registry;
 use PKP\db\XMLDAO;
 use PKP\facades\Locale;
@@ -32,9 +31,9 @@ use PKP\xslt\XSLTransformer;
 class ONIXCodelistItemDAO extends \PKP\db\DAO
 {
     /** @var string The name of the codelist we are interested in */
-    public $_list;
+    public string $_list;
 
-    public function &_getCache($locale = null)
+    public function &_getCache(?string $locale = null): GenericCache
     {
         $locale ??= Locale::getLocale();
         $cacheName = 'Onix' . $this->getListName() . 'Cache';
@@ -56,7 +55,7 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
         return $cache;
     }
 
-    public function _cacheMiss($cache, $id)
+    public function _cacheMiss(GenericCache $cache, ?string $id): null
     {
         $allCodelistItems = &Registry::get('all' . $this->getListName() . 'CodelistItems', true, null);
         if ($allCodelistItems === null) {
@@ -122,12 +121,8 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
     /**
      * Get the filename for the ONIX codelist document. Use a localized
      * version if available, but if not, fall back on the master locale.
-     *
-     * @param string $locale Locale code
-     *
-     * @return string Path and filename to ONIX codelist document
      */
-    public function getFilename($locale)
+    public function getFilename(string $locale): string
     {
         $masterLocale = LocaleInterface::DEFAULT_LOCALE;
         $localizedFile = "locale/{$locale}/ONIX_BookProduct_CodeLists.xsd";
@@ -141,69 +136,51 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
 
     /**
      * Set the name of the list we want.
-     *
-     * @param string $list
      */
-    public function setListName($list)
+    public function setListName(string $list)
     {
-        $this->_list = &$list;
+        $this->_list = $list;
     }
 
     /**
      * Get the base node name particular codelist database.
-     *
-     * @return string
      */
-    public function getListName()
+    public function getListName(): string
     {
         return $this->_list;
     }
 
     /**
      * Get the name of the CodelistItem subclass.
-     *
-     * @return ONIXCodelistItem
      */
-    public function newDataObject()
+    public function newDataObject(): ONIXCodelistItem
     {
         return new ONIXCodelistItem();
     }
 
     /**
      * Retrieve an array of all the codelist items.
-     *
-     * @param string $list the List string for this code list (i.e., List30)
-     * @param string $locale an optional locale to use
-     *
-     * @return array of CodelistItems
      */
-    public function &getCodelistItems($list, $locale = null)
+    public function getCodelistItems(string $list, ?string $locale = null): array
     {
         $this->setListName($list);
-        $cache = &$this->_getCache($locale);
+        $cache = $this->_getCache($locale);
         $returner = [];
         foreach ($cache->getContents() as $code => $entry) {
-            $returner[] = &$this->_fromRow($code, $entry);
+            $returner[] = $this->_fromRow($code, $entry);
         }
         return $returner;
     }
 
     /**
      * Retrieve an array of all codelist codes and values for a given list.
-     *
-     * @param string $list the List string for this code list (i.e., List30)
-     * @param array $codesToExclude an optional list of codes to exclude from the returned list
-     * @param string $codesFilter an optional filter to match codes against.
-     * @param string $locale an optional locale to use
-     *
-     * @return array of CodelistItem names
      */
-    public function &getCodes($list, $codesToExclude = [], $codesFilter = null, $locale = null)
+    public function getCodes(string $list, array $codesToExclude = [], ?string $codesFilter = null, ?string $locale = null): array
     {
         $this->setListName($list);
-        $cache = &$this->_getCache($locale);
+        $cache = $this->_getCache($locale);
         $returner = [];
-        $cacheContents = &$cache->getContents();
+        $cacheContents = $cache->getContents();
         if ($codesFilter = trim($codesFilter ?? '')) {
             $codesFilter = '/' . implode('|', array_map(fn ($term) => preg_quote($term, '/'), preg_split('/\s+/', $codesFilter))) . '/i';
         }
@@ -211,7 +188,7 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
             foreach ($cache->getContents() as $code => $entry) {
                 if ($code != '') {
                     if (!in_array($code, $codesToExclude) && (!$codesFilter || preg_match($codesFilter, $entry[0]))) {
-                        $returner[$code] = &$entry[0];
+                        $returner[$code] = $entry[0];
                     }
                 }
             }
@@ -221,10 +198,8 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
 
     /**
      * Determines if a particular code value is valid for a given list.
-     *
-     * @return bool
      */
-    public function codeExistsInList($code, $list)
+    public function codeExistsInList(string $code, string $list): bool
     {
         $listKeys = array_keys($this->getCodes($list));
         return ($code != null && in_array($code, $listKeys));
@@ -232,10 +207,8 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
 
     /**
      * Returns an ONIX code based on a unique value and List number.
-     *
-     * @return string
      */
-    public function getCodeFromValue($value, $list)
+    public function getCodeFromValue(string $value, string $list): string
     {
         $codes = $this->getCodes($list);
         $codes = array_flip($codes);
@@ -248,11 +221,10 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
     /**
      * Internal function to return a Codelist object from a row.
      *
-     * @return ONIXCodelistItem
      *
      * @hook ONIXCodelistItemDAO::_fromRow [[&$codelistItem, &$code, &$entry]]
      */
-    public function &_fromRow($code, &$entry)
+    public function _fromRow(string $code, array $entry): ONIXCodelistItem
     {
         $codelistItem = $this->newDataObject();
         $codelistItem->setCode($code);

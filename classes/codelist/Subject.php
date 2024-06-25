@@ -7,13 +7,11 @@
 /**
  * @file classes/codelist/Subject.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2000-2024 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Subject
- *
- * @ingroup codelist
  *
  * @see SubjectDAO
  *
@@ -26,16 +24,14 @@ namespace APP\codelist;
 class Subject extends CodelistItem
 {
     /**
-     * @var int The numerical representation of these Subject Qualifiers in ONIX 3.0
+     * @var The numerical representation of these Subject Qualifiers in ONIX 3.0
      */
-    public $_onixSubjectSchemeIdentifier = 12;
+    public int $_onixSubjectSchemeIdentifier = 12;
 
     /**
      * Get the ONIX subject scheme identifier.
-     *
-     * @return string the numerical value representing this item in the ONIX 3.0 schema
      */
-    public function getOnixSubjectSchemeIdentifier()
+    public function getOnixSubjectSchemeIdentifier(): int
     {
         return $this->_onixSubjectSchemeIdentifier;
     }
