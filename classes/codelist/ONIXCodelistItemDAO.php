@@ -17,8 +17,7 @@
 
 namespace APP\codelist;
 
-use PKP\cache\CacheManager;
-use PKP\cache\GenericCache;
+use Illuminate\Support\Facades\Cache;
 use PKP\core\Registry;
 use PKP\db\XMLDAO;
 use PKP\facades\Locale;
@@ -33,35 +32,14 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
     /** @var string The name of the codelist we are interested in */
     public string $_list;
 
-    public function &_getCache(?string $locale = null): GenericCache
+    public function _getCache(?string $locale = null): array
     {
         $locale ??= Locale::getLocale();
         $cacheName = 'Onix' . $this->getListName() . 'Cache';
 
-        $cache = &Registry::get($cacheName, true, null);
-        if ($cache === null) {
-            $cacheManager = CacheManager::getManager();
-            $cache = $cacheManager->getFileCache(
-                $this->getListName() . '_codelistItems',
-                $locale,
-                [$this, '_cacheMiss']
-            );
-            $cacheTime = $cache->getCacheTime();
-            if ($cacheTime !== null && $cacheTime < filemtime($this->getFilename($locale))) {
-                $cache->flush();
-            }
-        }
-
-        return $cache;
-    }
-
-    public function _cacheMiss(GenericCache $cache, ?string $id): null
-    {
-        $allCodelistItems = &Registry::get('all' . $this->getListName() . 'CodelistItems', true, null);
-        if ($allCodelistItems === null) {
+        return Cache::remember($cacheName, 60 * 24 * 24, function () use ($locale) {
             // Add a locale load to the debug notes.
             $notes = &Registry::get('system.debug.notes');
-            $locale = $cache->cacheId ?? Locale::getLocale();
             $filename = $this->getFilename($locale);
             $notes[] = ['debug.notes.codelistItemListLoad', ['filename' => $filename]];
 
@@ -87,7 +65,7 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
             $xslFile = 'lib/pkp/xml/onixFilter.xsl';
             $filteredXml = $xslTransformer->transform($filename, XSLTransformer::XSL_TRANSFORMER_DOCTYPE_FILE, $xslFile, XSLTransformer::XSL_TRANSFORMER_DOCTYPE_FILE, XSLTransformer::XSL_TRANSFORMER_DOCTYPE_STRING);
             if (!$filteredXml) {
-                assert(false);
+                throw new \Exception('Unable to generate filtered XML!');
             }
 
             $data = null;
@@ -99,7 +77,7 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
                 $data = $xmlDao->parseWithHandler($tmpName, $handler);
                 $fileManager->deleteByPath($tmpName);
             } else {
-                fatalError('misconfigured directory permissions on: ' . $tmpDir);
+                throw new \Exception('Misconfigured directory permissions on: ' . $tmpDir);
             }
 
             // Build array with ($charKey => [stuff])
@@ -112,10 +90,8 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
             if (is_array($allCodelistItems)) {
                 asort($allCodelistItems);
             }
-
-            $cache->setEntireCache($allCodelistItems);
-        }
-        return null;
+            return $allCodelistItems;
+        });
     }
 
     /**
@@ -164,9 +140,9 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
     public function getCodelistItems(string $list, ?string $locale = null): array
     {
         $this->setListName($list);
-        $cache = $this->_getCache($locale);
+        $cachedData = $this->_getCache($locale);
         $returner = [];
-        foreach ($cache->getContents() as $code => $entry) {
+        foreach ($cachedData as $code => $entry) {
             $returner[] = $this->_fromRow($code, $entry);
         }
         return $returner;
@@ -178,18 +154,15 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
     public function getCodes(string $list, array $codesToExclude = [], ?string $codesFilter = null, ?string $locale = null): array
     {
         $this->setListName($list);
-        $cache = $this->_getCache($locale);
+        $cachedData = $this->_getCache($locale);
         $returner = [];
-        $cacheContents = $cache->getContents();
         if ($codesFilter = trim($codesFilter ?? '')) {
             $codesFilter = '/' . implode('|', array_map(fn ($term) => preg_quote($term, '/'), preg_split('/\s+/', $codesFilter))) . '/i';
         }
-        if (is_array($cacheContents)) {
-            foreach ($cache->getContents() as $code => $entry) {
-                if ($code != '') {
-                    if (!in_array($code, $codesToExclude) && (!$codesFilter || preg_match($codesFilter, $entry[0]))) {
-                        $returner[$code] = $entry[0];
-                    }
+        foreach ($cachedData as $code => $entry) {
+            if ($code != '') {
+                if (!in_array($code, $codesToExclude) && (!$codesFilter || preg_match($codesFilter, $entry[0]))) {
+                    $returner[$code] = $entry[0];
                 }
             }
         }
