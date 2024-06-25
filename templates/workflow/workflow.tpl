@@ -116,24 +116,6 @@
 				{capture assign=submissionProgressBarUrl}{url op="submissionProgressBar" submissionId=$submission->getId() stageId=$requestedStageId contextId="submission" escape=false}{/capture}
 				{load_url_in_div id="submissionProgressBarDiv" url=$submissionProgressBarUrl}
 			</div>
-
-			{* Modal to select one of the revision decisions *}
-			<modal
-				:close-label="t('common.close')"
-				name="selectRevisionDecision"
-				title="Revisions"
-			>
-				<pkp-form v-bind="components.{$smarty.const.FORM_SELECT_REVISION_DECISION}" @set="set" @success="goToRevisionDecision" />
-			</modal>
-
-			{* Modal to select one of the revision recommendations *}
-			<modal
-				:close-label="t('common.close')"
-				name="selectRevisionRecommendation"
-				title="Revisions"
-			>
-				<pkp-form v-bind="components.{$smarty.const.FORM_SELECT_REVISION_RECOMMENDATION}" @set="set" @success="goToRevisionDecision" />
-			</modal>
 		</tab>
 		<tab id="marketing" label="{translate key="settings.libraryFiles.category.marketing"}">
 			<tabs :is-side-tabs="true" :track-history="true" :label="publicationTabsLabel">
