@@ -25,9 +25,7 @@ use APP\publicationFormat\PublicationFormat;
 use APP\submission\Submission;
 use DOMDocument;
 use PKP\db\DAORegistry;
-use PKP\facades\Locale;
 use PKP\filter\FilterGroup;
-use PKP\submission\SubmissionSubjectDAO;
 
 class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\NativeExportFilter
 {
@@ -401,18 +399,19 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeIdentifier', '12')); // 12 is BIC subject category code list.
         $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeVersion', '2')); // Version 2 of ^^
 
-        $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO'); /** @var SubmissionSubjectDAO $submissionSubjectDao */
-        $allSubjects = $submissionSubjectDao->getSubjects($publication->getId(), array_keys(Locale::getSupportedFormLocales()));
-        $uniqueSubjects = [];
-        foreach ($allSubjects as $locale => $subjects) {
-            $uniqueSubjects = array_merge($uniqueSubjects, $subjects);
+        if ($publication->getData('subjects')) {
+            $allSubjects = ($publication->getData('subjects')[$publication->getData('locale')]);
+            $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectCode', trim(join(', ', $allSubjects))));
         }
-
-        if (sizeof($uniqueSubjects) > 0) {
-            $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectCode', trim(join(', ', $uniqueSubjects))));
-        }
-
         $descDetailNode->appendChild($subjectNode);
+
+        if ($publication->getData('keywords')) {
+            $allKeywords = ($publication->getData('keywords')[$publication->getData('locale')]);
+            $keywordNode = $doc->createElementNS($deployment->getNamespace(), 'Subject');
+            $keywordNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeIdentifier', '20')); // Keywords
+            $keywordNode->appendChild($this->_buildTextNode($doc, 'SubjectHeadingText', trim(join(', ', $allKeywords))));
+            $descDetailNode->appendChild($keywordNode);
+        }
 
         /* --- Add Audience elements --- */
 
