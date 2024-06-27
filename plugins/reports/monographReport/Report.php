@@ -172,7 +172,7 @@ class Report implements IteratorAggregate
             __('common.keywords') => fn () => $this->getKeywords(),
             __('submission.supportingAgencies') => fn () => $this->getAgencies(),
             __('common.status') => fn () => $this->getStatus(),
-            __('common.url') => fn () => $this->request->url(null, 'workflow', 'access', $this->submission->getId()),
+            __('common.url') => fn () => $this->request->url(null, 'workflow', 'access', [$this->submission->getId()]),
             __('catalog.manage.series.onlineIssn') => fn () => $this->getSeries()?->getOnlineISSN(),
             __('catalog.manage.series.printIssn') => fn () => $this->getSeries()?->getPrintISSN(),
             __('metadata.property.displayName.doi') => fn () => $this->publication->getDoi(),

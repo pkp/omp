@@ -40,37 +40,4 @@ class Request extends PKPRequest
     {
         return parent::getContext();
     }
-
-    /**
-     * Deprecated
-     *
-     * @see PKPPageRouter::url()
-     *
-     * @param null|mixed $pressPath
-     * @param null|mixed $page
-     * @param null|mixed $op
-     * @param null|mixed $path
-     * @param null|mixed $params
-     * @param null|mixed $anchor
-     */
-    public function url(
-        $pressPath = null,
-        $page = null,
-        $op = null,
-        $path = null,
-        $params = null,
-        $anchor = null,
-        $escape = false
-    ) {
-        return $this->_delegateToRouter(
-            'url',
-            $pressPath,
-            $page,
-            $op,
-            $path,
-            $params,
-            $anchor,
-            $escape
-        );
-    }
 }
