@@ -1,3 +1,94 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2024.
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2024-06-30 15:40+0000\n"
+"Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
+"Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/"
+"submission/bg/>\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "submission.title"
+msgstr "Заглавие на книга"
+
+msgid "submission.select"
+msgstr "Избиране на изпращане на материали"
+
+msgid "submission.workflowType"
+msgstr "Тип на изпращания материал"
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Редактиран том"
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Редактиран том: Авторите са свързани със собствена глава (раздел)."
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Монография: Авторите са свързани с книгата като цяло."
+
+msgid "submission.workflowType.change"
+msgstr "Промяна"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (ред)"
+
+msgid "submission.monograph"
+msgstr "Монография"
+
+msgid "submission.published"
+msgstr "Готово за публикуване"
+
+msgid "submission.fairCopy"
+msgstr "Белова (редактирано копие)"
+
+msgid "submission.authorListSeparator"
+msgstr "&nbsp;;; "
+
+msgid "submission.chapter.editChapter"
+msgstr "Редактиране на раздел (глава)"
+
+msgid "submission.chapters"
+msgstr "Раздели (глави)"
+
+msgid "submission.chapter"
+msgstr "Раздел (глава)"
+
+msgid "submission.chapter.pages"
+msgstr "Страници"
+
+msgid "submission.copyedit"
+msgstr "Типографска редакция"
+
+msgid "submission.publicationFormats"
+msgstr "Публикационни формати"
+
+msgid "submission.proofs"
+msgstr "Коректури"
+
+msgid "submission.download"
+msgstr "Сваляне"
+
+msgid "submission.sharing"
+msgstr "Споделяне"
+
+msgid "submission.upload.selectComponent"
+msgstr "Избиране на компонент"
+
+msgid "submission.synopsis"
+msgstr "Синопсис (резюме)"
+
+msgid "submission.workflowType.description"
+msgstr ""
+"Монографията е произведение, създадено изцяло от един или повече автори. "
+"Редактираният том има различни автори за всяка глава (с подробности за "
+"главата, въведени по-късно в този процес.)"
+
+msgid "submission.artwork.permissions"
+msgstr "Оторизации"
+
+msgid "submission.chapter.addChapter"
+msgstr "Добавяне на раздел (глава)"
