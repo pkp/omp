@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-06-25 08:39+0000\n"
+"PO-Revision-Date: 2024-06-30 15:40+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/editor/bg/"
 ">\n"
@@ -124,3 +124,93 @@ msgid "editor.monograph.internalReviewDescription"
 msgstr ""
 "Изберете файлове по-долу, за да ги изпратите на етапа на вътрешно "
 "рецензиране."
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Действия за подаване на материали"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Общи действия и опции за подаване на материали."
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Действия за раздели"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr ""
+"Опции, специфични за даден раздел, например качване на файлове или добавяне "
+"на потребители."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Действия за елемент"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Действия и опции, специфични за отделен файл."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr ""
+"Преглеждане и управление на записа в каталога за изпратени материали, "
+"включително метаданни и формати за публикуване"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr ""
+"Преглеждане и управление на метаданни за изпратени материали, бележки, "
+"известия и история"
+
+msgid "editor.monograph.legend.participants"
+msgstr ""
+"Преглеждане и управлявление на участниците в това изпращане на материали: "
+"автори, редактори, дизайнери и други"
+
+msgid "editor.monograph.legend.add"
+msgstr "Качете файл в раздела"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Добавяне на потребител към раздела"
+
+msgid "editor.monograph.legend.settings"
+msgstr ""
+"Преглед и достъп до настройките на елемента, като информация и опции за "
+"изтриване"
+
+msgid "editor.monograph.legend.more_info"
+msgstr ""
+"Повече информация: бележки за файлове, опции за уведомяване и хронология"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr ""
+"Информация за файла: бележки, опции за уведомяване и хронология (все още "
+"няма добавени бележки)"
+
+msgid "editor.monograph.legend.notes"
+msgstr ""
+"Информация за файла: бележки, опции за уведомяване и хронология (има "
+"добавени бележки)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr ""
+"Информация за файла: бележки, опции за уведомяване и хронология (има "
+"добавени бележки след последния преглед)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Редактиране на елемента"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Изтриване на елемента"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Действието се извършва или все още не е завършено"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Действието е завършено"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Файлът е качен чрез ролята в заглавието на колоната"
+
+msgid "editor.submission.introduction"
+msgstr ""
+"При подаване на материали редакторът, след като прегледа изпратените "
+"файлове, избира подходящото действие (което включва уведомяване на автора): "
+"Изпращане за вътрешна рецензия (включва избор на файлове за вътрешна "
+"рецензия); Изпращане за външна рецензия (включва избор на файлове за външна "
+"рецензия); Приемане на изпратените материали (включва избор на файлове за "
+"редакционния етап); или Отказване на изпратените материали (изпращане към "
+"архив)."
