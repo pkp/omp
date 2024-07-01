@@ -154,7 +154,12 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		// Public idntifiers (e.g. DOI, URN)
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		foreach ((array) $pubIdPlugins as $plugin) {
-			$pubId = $plugin->getPubId($publicationFormat);
+			if ($plugin->getSetting($press->getId(), 'enableRepresentationDoi')) {
+				$pubId = $plugin->getPubId($publicationFormat);
+			}
+			if (!$pubId && $plugin->getSetting($press->getId(), 'enablePublicationDoi')) {
+				$pubId = $plugin->getPubId($publication);
+			}
 			if ($pubId) {
 				$dc11Description->addStatement('dc:identifier', $pubId);
 			}
