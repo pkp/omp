@@ -28,6 +28,7 @@ use APP\press\Press;
 use APP\publicationFormat\PublicationFormat;
 use APP\section\Section;
 use APP\submission\Submission;
+use PKP\context\Context;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\i18n\LocaleConversion;
@@ -75,7 +76,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $oaiDao = DAORegistry::getDAO('OAIDAO'); /** @var OAIDAO $oaiDao */
         $publication = Repo::publication()->get($publicationFormat->getData('publicationId'));
         $monograph = Repo::submission()->get($publication->getData('submissionId'));
-        $press = $oaiDao->getPress($monograph->getPressId());
+        $press = $oaiDao->getPress($monograph->getData('contextId'));
         $series = $oaiDao->getSeries($monograph->getSeriesId()); /** @var Section $series */
         $dc11Description = $this->instantiateMetadataDescription();
 
@@ -161,18 +162,24 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
         foreach ((array) $pubIdPlugins as $plugin) {
             $pubId = $plugin->getPubId($publicationFormat);
+            if ($plugin->getSetting($press->getId(), 'enableRepresentationDoi')) {
+                $pubId = $plugin->getPubId($publicationFormat);
+            }
+            if (!$pubId && $plugin->getSetting($press->getId(), 'enablePublicationDoi')) {
+                $pubId = $plugin->getPubId($publication);
+            }
             if ($pubId) {
                 $dc11Description->addStatement('dc:identifier', $pubId);
             }
         }
-        $context = $request->getContext();
-        if (!$context) {
-            $contextDao = Application::getContextDAO();
-            /** @var Press */
-            $context = $contextDao->getById($monograph->getData('contextId'));
-        }
-        if ($context->areDoisEnabled()) {
-            $doi = $publicationFormat->getDoi();
+        if ($press->areDoisEnabled()) {
+            $enabledDoiTypes = $press->getData(Context::SETTING_ENABLED_DOI_TYPES) ?? [];
+            if (in_array(Repo::doi()::TYPE_REPRESENTATION, $enabledDoiTypes)) {
+                $doi = $publicationFormat->getDoi();
+            }
+            if (!$doi && in_array(Repo::doi()::TYPE_PUBLICATION, $enabledDoiTypes)) {
+                $doi = $publication->getDoi();
+            }
             if ($doi) {
                 $dc11Description->addStatement('dc:identifier', $doi);
             }
