@@ -20,14 +20,10 @@ use APP\submission\Submission;
 use PKP\components\forms\FieldOptions;
 use PKP\components\forms\FormComponent;
 
-define('FORM_PUBLICATION_DATES', 'publicationDates');
-
 class PublicationDatesForm extends FormComponent
 {
-    /** @copydoc FormComponent::$id */
-    public $id = FORM_PUBLICATION_DATES;
-
-    /** @copydoc FormComponent::$method */
+    public const FORM_PUBLICATION_DATES = 'publicationDates';
+    public $id = self::FORM_PUBLICATION_DATES;
     public $method = 'PUT';
 
     /** @var string */

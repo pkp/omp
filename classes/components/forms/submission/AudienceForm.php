@@ -21,14 +21,10 @@ use PKP\components\forms\FieldSelect;
 use PKP\components\forms\FormComponent;
 use PKP\db\DAORegistry;
 
-define('FORM_AUDIENCE', 'audience');
-
 class AudienceForm extends FormComponent
 {
-    /** @copydoc FormComponent::$id */
-    public $id = FORM_AUDIENCE;
-
-    /** @copydoc FormComponent::$method */
+    public const FORM_AUDIENCE = 'audience';
+    public $id = self::FORM_AUDIENCE;
     public $method = 'PUT';
 
     /** @var string */

@@ -46,7 +46,7 @@ class Schema extends \PKP\submission\maps\Schema
                 $this->context->getPath(),
                 'catalog',
                 'book',
-                $submission->getBestId()
+                [$submission->getBestId()]
             );
         }
 

@@ -153,20 +153,20 @@ class WorkflowHandler extends PKPWorkflowHandler
         $publicationLicenseForm = new \APP\components\forms\publication\PublicationLicenseForm($latestPublicationApiUrl, $locales, $latestPublication, $submissionContext, $authorUserGroups);
 
         $templateMgr->setConstants([
-            'FORM_AUDIENCE' => FORM_AUDIENCE,
-            'FORM_CATALOG_ENTRY' => FORM_CATALOG_ENTRY,
+            'FORM_AUDIENCE' => $audienceForm::FORM_AUDIENCE,
+            'FORM_CATALOG_ENTRY' => $catalogEntryForm::FORM_CATALOG_ENTRY,
             'WORK_TYPE_AUTHORED_WORK' => Submission::WORK_TYPE_AUTHORED_WORK,
             'WORK_TYPE_EDITED_VOLUME' => Submission::WORK_TYPE_EDITED_VOLUME,
         ]);
 
         $components = $templateMgr->getState('components');
-        $components[FORM_AUDIENCE] = $audienceForm->getConfig();
-        $components[FORM_CATALOG_ENTRY] = $this->getLocalizedForm($catalogEntryForm, $submissionLocale, $locales);
-        $components[FORM_PUBLICATION_DATES] = $publicationDatesForm->getConfig();
+        $components[$audienceForm::FORM_AUDIENCE] = $audienceForm->getConfig();
+        $components[$catalogEntryForm::FORM_CATALOG_ENTRY] = $this->getLocalizedForm($catalogEntryForm, $submissionLocale, $locales);
+        $components[$publicationDatesForm::FORM_PUBLICATION_DATES] = $publicationDatesForm->getConfig();
         $components[$publicationLicenseForm->id] = $this->getLocalizedForm($publicationLicenseForm, $submissionLocale, $locales);
 
         $publicationFormIds = $templateMgr->getState('publicationFormIds');
-        $publicationFormIds[] = FORM_CATALOG_ENTRY;
+        $publicationFormIds[] = $catalogEntryForm::FORM_CATALOG_ENTRY;
 
         $templateMgr->setState([
             'components' => $components,

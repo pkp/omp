@@ -120,14 +120,14 @@
 		<tab id="marketing" label="{translate key="settings.libraryFiles.category.marketing"}">
 			<tabs :is-side-tabs="true" :track-history="true" :label="publicationTabsLabel">
 				<tab id="audience" label="{translate key="monograph.audience"}">
-					<pkp-form v-bind="components.{$smarty.const.FORM_AUDIENCE}" @set="set" />
+					<pkp-form v-bind="components.{APP\components\forms\submission\AudienceForm::FORM_AUDIENCE}" @set="set" />
 				</tab>
 				<tab id="representatives" label="{translate key="grid.catalogEntry.representatives"}">
 					{capture assign=representativesGridUrl}{url router=PKP\core\PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.RepresentativesGridHandler" op="fetchGrid" submissionId=$submission->getId() escape=false}{/capture}
 					{load_url_in_div id="representativesGridContainer" url=$representativesGridUrl}
 				</tab>
 				<tab id="publicationDates" label="{translate key="grid.catalogEntry.publicationDates"}">
-					<pkp-form v-bind="components.{$smarty.const.FORM_PUBLICATION_DATES}" @set="set" />
+					<pkp-form v-bind="components.{APP\components\forms\submission\PublicationDatesForm::FORM_PUBLICATION_DATES}" @set="set" />
 				</tab>
 			</tab>
 		</tab>
@@ -208,7 +208,7 @@
 					</div>
 					<tabs class="pkpPublication__tabs" :is-side-tabs="true" :track-history="true" :label="publicationTabsLabel">
 						<tab id="titleAbstract" label="{translate key="publication.titleAbstract"}">
-							<pkp-form v-bind="components.{$smarty.const.FORM_TITLE_ABSTRACT}" @set="set" />
+							<pkp-form v-bind="components.{PKP\components\forms\publication\TitleAbstractForm::FORM_TITLE_ABSTRACT}" @set="set" />
 						</tab>
 						<tab id="contributors" label="{translate key="publication.contributors"}">
 							<contributors-list-panel
@@ -229,15 +229,15 @@
 						</tab>
 						{if $metadataEnabled}
 							<tab id="metadata" label="{translate key="submission.informationCenter.metadata"}">
-								<pkp-form v-bind="components.{$smarty.const.FORM_METADATA}" @set="set" />
+								<pkp-form v-bind="components.{PKP\components\forms\publication\PKPMetadataForm::FORM_METADATA}" @set="set" />
 							</tab>
 						{/if}
 						<tab v-if="supportsReferences" id="citations" label="{translate key="submission.citations"}">
-							<pkp-form v-bind="components.{$smarty.const.FORM_CITATIONS}" @set="set" />
+							<pkp-form v-bind="components.{PKP\components\forms\publication\PKPCitationsForm::FORM_CITATIONS}" @set="set" />
 						</tab>
 						{if $identifiersEnabled}
 							<tab id="identifiers" label="{translate key="submission.identifiers"}">
-								<pkp-form v-bind="components.{$smarty.const.FORM_PUBLICATION_IDENTIFIERS}" @set="set" />
+								<pkp-form v-bind="components.{PKP\components\forms\publication\PKPPublicationIdentifiersForm::FORM_PUBLICATION_IDENTIFIERS}" @set="set" />
 							</tab>
 						{/if}
 						{if $canAccessProduction}
@@ -247,10 +247,10 @@
 								</div>
 							</tab>
 							<tab id="catalogEntry" label="{translate key="publication.catalogEntry"}">
-								<pkp-form v-bind="components.{$smarty.const.FORM_CATALOG_ENTRY}" @set="set" />
+								<pkp-form v-bind="components.{APP\components\forms\publication\CatalogEntryForm::FORM_CATALOG_ENTRY}" @set="set" />
 							</tab>
 							<tab id="license" label="{translate key="publication.publicationLicense"}">
-								<pkp-form v-bind="components.{$smarty.const.FORM_PUBLICATION_LICENSE}" @set="set" />
+								<pkp-form v-bind="components.{PKP\components\forms\publication\PKPPublicationLicenseForm::FORM_PUBLICATION_LICENSE}" @set="set" />
 							</tab>
 						{/if}
 						{call_hook name="Template::Workflow::Publication"}

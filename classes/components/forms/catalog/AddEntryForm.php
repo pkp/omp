@@ -19,12 +19,10 @@ use PKP\components\forms\FieldSelectSubmissions;
 use PKP\components\forms\FormComponent;
 use PKP\submission\PKPSubmission;
 
-define('FORM_ADD_ENTRY', 'addEntry');
-
 class AddEntryForm extends FormComponent
 {
-    /** @copydoc FormComponent::$id */
-    public $id = FORM_ADD_ENTRY;
+    public const FORM_ADD_ENTRY = 'addEntry';
+    public $id = self::FORM_ADD_ENTRY;
 
     /**
      * @copydoc PKPAddEntryForm::__construct()

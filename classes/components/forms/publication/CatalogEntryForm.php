@@ -25,14 +25,10 @@ use PKP\components\forms\FieldText;
 use PKP\components\forms\FieldUploadImage;
 use PKP\components\forms\FormComponent;
 
-define('FORM_CATALOG_ENTRY', 'catalogEntry');
-
 class CatalogEntryForm extends FormComponent
 {
-    /** @copydoc FormComponent::$id */
-    public $id = FORM_CATALOG_ENTRY;
-
-    /** @copydoc FormComponent::$method */
+    public const FORM_CATALOG_ENTRY = 'catalogEntry';
+    public $id = self::FORM_CATALOG_ENTRY;
     public $method = 'PUT';
 
     /** @var string */

@@ -81,7 +81,7 @@ class PaypalPaymentPlugin extends PaymethodPlugin
      */
     public function addSettings($hookName, $form)
     {
-        if ($form->id !== FORM_PAYMENT_SETTINGS) {
+        if ($form->id !== \PKP\components\forms\context\PKPPaymentSettingsForm::FORM_PAYMENT_SETTINGS) {
             return;
         }
 
