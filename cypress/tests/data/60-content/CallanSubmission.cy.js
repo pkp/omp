@@ -184,7 +184,7 @@ describe('Data suite tests', function() {
 		cy.get('#publication-button').click();
 		cy.get('button').contains('Unpublish').click();
 		cy.contains('Are you sure you don\'t want this to be published?');
-		cy.get('.modal__panel button').contains('Unpublish').click();
+		cy.get('div[role=dialog] button').contains('Unpublish').click();
 		cy.wait(1000);
 		cy.visit('index.php/publicknowledge/catalog');
 		cy.contains('Bomb Canada and Other Unkind Remarks in the American Media').should('not.exist');
