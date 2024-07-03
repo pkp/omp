@@ -278,6 +278,7 @@ class ChapterForm extends Form
             }, $selectedChapterAuthorsArray),
             'chapterFileOptions' => $chapterFileOptions,
             'selectedChapterFiles' => $selectedChapterFiles,
+            'doi' => $this->getChapter()?->getDoi()
         ]);
 
         return parent::fetch($request, $template, $display);
