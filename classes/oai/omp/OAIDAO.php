@@ -248,10 +248,10 @@ class OAIDAO extends PKPOAIDAO
             ->where('pf.is_available', '=', 1)
             ->whereNotNull('pub.date_published')
             ->when($from, function ($query, $from) {
-                return $query->where('ms.last_modified', '>=', $this->datetimeToDB($from));
+                return $query->whereDate('ms.last_modified', '>=', \DateTime::createFromFormat('U', $from));
             })
             ->when($until, function ($query, $until) {
-                return $query->where('ms.last_modified', '<=', $this->datetimeToDB($until));
+                return $query->whereDate('ms.last_modified', '<=', \DateTime::createFromFormat('U', $until));
             })
             ->when($submissionId, function ($query, $submissionId) {
                 return $query->where('pf.publication_format_id', '=', $submissionId);
@@ -287,10 +287,10 @@ class OAIDAO extends PKPOAIDAO
                         return $query->where('dot.set_spec', '=', $set);
                     })
                     ->when($from, function ($query, $from) {
-                        return $query->where('dot.date_deleted', '>=', $from);
+                        return $query->whereDate('dot.date_deleted', '>=', \DateTime::createFromFormat('U', $from));
                     })
                     ->when($until, function ($query, $until) {
-                        return $query->where('dot.date_deleted', '<=', $until);
+                        return $query->whereDate('dot.date_deleted', '<=', \DateTime::createFromFormat('U', $until));
                     })
                     ->when($submissionId, function ($query, $submissionId) {
                         return $query->where('dot.data_object_id', '=', (int) $submissionId);
