@@ -31,7 +31,7 @@ class Schema extends \PKP\section\maps\Schema
                 $this->context->getPath(),
                 'catalog',
                 'series',
-                $series->getPath()
+                [$series->getPath()]
             );
         }
         $output = $this->schemaService->addMissingMultilingualValues($this->schema, $output, $this->context->getSupportedFormLocales());

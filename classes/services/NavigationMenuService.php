@@ -172,9 +172,7 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
                         $request,
                         PKPApplication::ROUTE_PAGE,
                         null,
-                        'catalog',
-                        null,
-                        null
+                        'catalog'
                     ));
                     break;
                 case self::NMI_TYPE_NEW_RELEASE:
@@ -183,8 +181,7 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
                         PKPApplication::ROUTE_PAGE,
                         null,
                         'catalog',
-                        'newReleases',
-                        null
+                        'newReleases'
                     ));
                     break;
                 case self::NMI_TYPE_SERIES:
@@ -195,7 +192,7 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
                             null,
                             'catalog',
                             'series',
-                            $relatedObject->getPath()
+                            [$relatedObject->getPath()]
                         ));
                     } else {
                         $navigationMenuItem->setIsDisplayed(false);
@@ -209,7 +206,7 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
                             null,
                             'catalog',
                             'category',
-                            $relatedObject->getPath()
+                            [$relatedObject->getPath()]
                         ));
                     } else {
                         $navigationMenuItem->setIsDisplayed(false);
