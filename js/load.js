@@ -47,7 +47,6 @@ window.pkp = Object.assign(PkpLoad, window.pkp || {}, {
 		AddContextContainer,
 		AdvancedSearchReviewerContainer,
 		AdminPage,
-		AdvancedSearchReviewerContainer,
 		DecisionPage,
 		DoiPage,
 		ImportExportPage,
