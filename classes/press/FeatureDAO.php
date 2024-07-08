@@ -82,48 +82,38 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Delete a feature by ID.
      */
-    public function deleteByMonographId($monographId)
+    public function deleteByMonographId(int $monographId)
     {
-        $this->update(
-            'DELETE FROM features WHERE submission_id = ?',
-            [(int) $monographId]
-        );
+        return DB::table('features')
+            ->where('submission_id', '=', $monographId)
+            ->delete();
     }
 
     /**
      * Delete a feature by association.
      *
-     * @param int $assocType Application::ASSOC_TYPE_...
-     * @param int $assocId
+     * @param $assocType Application::ASSOC_TYPE_...
      */
-    public function deleteByAssoc($assocType, $assocId)
+    public function deleteByAssoc(int $assocType, int $assocId): int
     {
-        $this->update(
-            'DELETE FROM features WHERE assoc_type = ? AND assoc_id = ?',
-            [(int) $assocType, (int) $assocId]
-        );
+        return DB::table('features')
+            ->where('assoc_type', '=', $assocType)
+            ->where('assoc_id', '=', $assocId)
+            ->delete();
     }
 
     /**
      * Delete a feature.
      *
-     * @param int $monographId
      * @param int $assocType Application::ASSOC_TYPE_...
-     * @param int $assocId
      */
-    public function deleteFeature($monographId, $assocType, $assocId)
+    public function deleteFeature(int $monographId, int $assocType, int $assocId): int
     {
-        $this->update(
-            'DELETE FROM features
-			WHERE	submission_id = ? AND
-				assoc_type = ? AND
-				assoc_id = ?',
-            [
-                (int) $monographId,
-                (int) $assocType,
-                (int) $assocId
-            ]
-        );
+        return DB::table('features')
+            ->where('submission_id', '=', $monographId)
+            ->where('assoc_type', '=', $assocType)
+            ->where('assoc_id', '=', $assocId)
+            ->delete();
     }
 
     /**

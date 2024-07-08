@@ -201,21 +201,19 @@ class MarketDAO extends \PKP\db\DAO
 
     /**
      * Delete a market entry by id.
-     *
-     * @param Market $market
      */
-    public function deleteObject($market)
+    public function deleteObject(Market $market): int
     {
         return $this->deleteById($market->getId());
     }
 
     /**
      * Delete a market entry by id.
-     *
-     * @param int $entryId
      */
-    public function deleteById($entryId)
+    public function deleteById(int $entryId): int
     {
-        $this->update('DELETE FROM markets WHERE market_id = ?', [(int) $entryId]);
+        return DB::table('markets')
+            ->where('market_id', '=', $entryId)
+            ->delete();
     }
 }

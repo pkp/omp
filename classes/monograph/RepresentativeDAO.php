@@ -201,16 +201,13 @@ class RepresentativeDAO extends \PKP\db\DAO
     }
 
     /**
-     * delete a representative entry by id.
-     *
-     * @param int $entryId
+     * Delete a representative entry by id.
      */
-    public function deleteById($entryId)
+    public function deleteById(int $entryId)
     {
-        return $this->update(
-            'DELETE FROM representatives WHERE representative_id = ?',
-            [(int) $entryId]
-        );
+        return DB::table('representatives')
+            ->where('representative_id', '=', $entryId)
+            ->delete();
     }
 }
 

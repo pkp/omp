@@ -148,25 +148,20 @@ class IdentificationCodeDAO extends \PKP\db\DAO
 
     /**
      * Delete an identification code by id.
-     *
-     * @param IdentificationCode $identificationCode
      */
-    public function deleteObject($identificationCode)
+    public function deleteObject(IdentificationCode $identificationCode): int
     {
         return $this->deleteById($identificationCode->getId());
     }
 
     /**
      * delete a identification code by id.
-     *
-     * @param int $entryId
      */
-    public function deleteById($entryId)
+    public function deleteById(int $entryId): int
     {
-        return $this->update(
-            'DELETE FROM identification_codes WHERE identification_code_id = ?',
-            [(int) $entryId]
-        );
+        return DB::table('identification_codes')
+            ->where('identification_code_id', '=', $entryId)
+            ->delete();
     }
 }
 

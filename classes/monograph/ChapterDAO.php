@@ -29,17 +29,12 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
 {
     /**
      * Retrieve a chapter by ID.
-     *
-     * @param int $chapterId
-     * @param int $publicationId optional
-     *
-     * @return Chapter|null
      */
-    public function getChapter($chapterId, $publicationId = null)
+    public function getChapter(int $chapterId, ?int $publicationId = null): ?Chapter
     {
-        $params = [(int) $chapterId];
+        $params = [$chapterId];
         if ($publicationId !== null) {
-            $params[] = (int) $publicationId;
+            $params[] = $publicationId;
         }
         $result = $this->retrieve(
             'SELECT * FROM submission_chapters WHERE chapter_id = ?'
@@ -53,12 +48,9 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Retrieve all chapters of a publication.
      *
-     * @param int $publicationId
-     * @param bool $orderBySequence
-     *
      * @return DAOResultFactory<Chapter>
      */
-    public function getByPublicationId($publicationId, $orderBySequence = true)
+    public function getByPublicationId(int $publicationId, bool $orderBySequence = true): DAOResultFactory
     {
         return new DAOResultFactory(
             $this->retrieve(
@@ -77,11 +69,9 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Retrieve all chapters of a press.
      *
-     * @param int $pressId
-     *
      * @return DAOResultFactory<Chapter>
      */
-    public function getByContextId($pressId)
+    public function getByContextId(int $pressId): DAOResultFactory
     {
         return new DAOResultFactory(
             $this->retrieve(
@@ -140,7 +130,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Retrieve a chapter by source chapter ID and publication ID.
      */
-    public function getBySourceChapterAndPublication(int $sourceChapterId, int $publicationId): Chapter|null
+    public function getBySourceChapterAndPublication(int $sourceChapterId, int $publicationId): ?Chapter
     {
         $result = $this->retrieve(
             'SELECT *
@@ -185,10 +175,8 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
 
     /**
      * Get a new data object
-     *
-     * @return Chapter
      */
-    public function newDataObject()
+    public function newDataObject(): Chapter
     {
         return new Chapter();
     }
@@ -196,13 +184,9 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * Internal function to return a Chapter object from a row.
      *
-     * @param array $row
-     *
-     * @return Chapter
-     *
      * @hook ChapterDAO::_fromRow [[&$chapter, &$row]]
      */
-    public function _fromRow($row)
+    public function _fromRow(array $row): Chapter
     {
         $chapter = $this->newDataObject();
         $chapter->setId((int) $row['chapter_id']);
@@ -226,10 +210,8 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
 
     /**
      * Update the settings for this object
-     *
-     * @param object $chapter
      */
-    public function updateLocaleFields($chapter)
+    public function updateLocaleFields(Chapter $chapter): void
     {
         $this->updateDataObjectSettings(
             'submission_chapter_settings',
@@ -239,11 +221,9 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     }
 
     /**
-     * Insert a new board chapter.
-     *
-     * @param Chapter $chapter
+     * Insert a new chapter.
      */
-    public function insertChapter($chapter)
+    public function insertChapter(Chapter $chapter): int
     {
         $params = [
             (int) $chapter->getData('publicationId'),
@@ -259,11 +239,9 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     }
 
     /**
-     * Update an existing board chapter.
-     *
-     * @param Chapter $chapter
+     * Update an existing chapter.
      */
-    public function updateObject($chapter): void
+    public function updateObject(Chapter $chapter): void
     {
         $this->update(
             'UPDATE submission_chapters
@@ -285,38 +263,34 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     }
 
     /**
-     * Delete a board chapter, including membership info
-     *
-     * @param Chapter $chapter
+     * Delete a chapter
      */
-    public function deleteObject($chapter)
+    public function deleteObject(Chapter $chapter): int
     {
-        $this->deleteById($chapter->getId());
+        return $this->deleteById($chapter->getId());
     }
 
     /**
-     * Delete a board chapter, including membership info
-     *
-     * @param int $chapterId
+     * Delete a chapter
      */
-    public function deleteById($chapterId)
+    public function deleteById(int $chapterId): int
     {
-        $this->update('DELETE FROM submission_chapter_authors WHERE chapter_id = ?', [(int) $chapterId]);
-        $this->update('DELETE FROM submission_chapter_settings WHERE chapter_id = ?', [(int) $chapterId]);
-        $this->update('DELETE FROM submission_chapters WHERE chapter_id = ?', [(int) $chapterId]);
-        $this->update('DELETE FROM submission_file_settings WHERE setting_name = ? AND setting_value = ?', ['chapterId', (int) $chapterId]);
+        DB::table('submission_file_settings')
+            ->where('setting_name', '=', 'chapterId')
+            ->where('setting_value', '=', $chapterId)
+            ->delete();
+        return DB::table('submission_chapters')->where('chapter_id', '=', $chapterId)->delete();
     }
 
     /**
-     * Sequentially renumber  chapters in their sequence order, optionally by monographId
+     * Sequentially renumber chapters in their sequence order, optionally by monographId
      *
-     * @param int $publicationId
      */
-    public function resequenceChapters($publicationId)
+    public function resequenceChapters(int $publicationId): void
     {
         $params = [];
         if ($publicationId !== null) {
-            $params[] = (int) $publicationId;
+            $params[] = $publicationId;
         }
 
         $result = $this->retrieve(
@@ -339,27 +313,17 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * @copydoc PKPPubIdPluginDAO::pubIdExists()
      */
-    public function pubIdExists($pubIdType, $pubId, $excludePubObjectId, $contextId)
+    public function pubIdExists(string $pubIdType, string $pubId, int $excludePubObjectId, int $contextId): bool
     {
-        $result = $this->retrieve(
-            'SELECT COUNT(*) AS row_count
-            FROM submission_chapter_settings scs
-            INNER JOIN submission_chapters sc ON scs.chapter_id = sc.chapter_id
-            INNER JOIN publications p ON sc.publication_id = p.publication_id
-            INNER JOIN submissions s ON p.submission_id = s.submission_id
-            WHERE scs.setting_name = ?
-            AND scs.setting_value = ?
-            AND sc.chapter_id <> ?
-            AND s.context_id = ?',
-            [
-                'pub-id::' . $pubIdType,
-                $pubId,
-                (int) $excludePubObjectId,
-                (int) $contextId
-            ]
-        );
-        $row = $result->current();
-        return $row ? (bool) $row->row_count : false;
+        return DB::table('submission_chapter_settings AS scs')
+            ->join('submission_chapters AS sc', 'scs.chapter_id', '=', 'sc.chapter_id')
+            ->join('publications AS p', 'sc.publication_id', '=', 'p.publication_id')
+            ->join('submissions AS s', 'p.submission_id', '=', 's.submisison_id')
+            ->where('scs.setting_name', '=', "pub-id::{$pubIdType}")
+            ->where('scs.setting_value', '=', $pubId)
+            ->where('sc.chapter_id', '<>', $excludePubObjectId)
+            ->where('s.context_id', '=', $contextId)
+            ->count() > 0;
     }
 
     /**
@@ -376,34 +340,26 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
     /**
      * @copydoc PKPPubIdPluginDAO::deletePubId()
      */
-    public function deletePubId($pubObjectId, $pubIdType)
+    public function deletePubId(int $pubObjectId, string $pubIdType): int
     {
-        $this->update(
-            'DELETE FROM submission_chapter_settings WHERE setting_name = ? AND chapter_id = ?',
-            [
-                'pub-id::' . $pubIdType,
-                (int) $pubObjectId
-            ]
-        );
         $this->flushCache();
+        return DB::table('submission_chapter_settings')
+            ->where('setting_name', '=', "pub-id::{$pubIdType}")
+            ->where('chapter_id', '=', $pubObjectId)
+            ->delete();
     }
 
     /**
      * @copydoc PKPPubIdPluginDAO::deleteAllPubIds()
      */
-    public function deleteAllPubIds($contextId, $pubIdType)
+    public function deleteAllPubIds(int $contextId, string $pubIdType): int
     {
         $chapters = $this->getByContextId($contextId);
+        $affectedRows = 0;
         while ($chapter = $chapters->next()) {
-            $this->update(
-                'DELETE FROM submission_chapter_settings WHERE setting_name = ? AND chapter_id = ?',
-                [
-                    'pub-id::' . $pubIdType,
-                    (int) $chapter->getId()
-                ]
-            );
+            $affectedRows += $this->deletePubId($chapter->getId(), $pubIdType);
         }
-        $this->flushCache();
+        return $affectedRows;
     }
 }
 

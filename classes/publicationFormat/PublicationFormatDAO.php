@@ -258,13 +258,12 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
 
     /**
      * Delete an publication format by ID.
-     *
-     * @param int $representationId
      */
-    public function deleteById($representationId)
+    public function deleteById(int $representationId): int
     {
-        $this->update('DELETE FROM publication_format_settings WHERE publication_format_id = ?', [(int) $representationId]);
-        $this->update('DELETE FROM publication_formats WHERE publication_format_id = ?', [(int) $representationId]);
+        return DB::table('publication_formats')
+            ->where('publication_format_id', '=', $representationId)
+            ->delete();
     }
 
     /**
@@ -496,27 +495,16 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
     /**
      * @copydoc PKPPubIdPluginDAO::pubIdExists()
      */
-    public function pubIdExists($pubIdType, $pubId, $excludePubObjectId, $contextId)
+    public function pubIdExists(string $pubIdType, string $pubId, int $excludePubObjectId, int $contextId): bool
     {
-        $result = $this->retrieve(
-            'SELECT COUNT(*) AS row_count
-			FROM publication_format_settings pft
-			INNER JOIN publication_formats pf ON pft.publication_format_id = pf.publication_format_id
-			INNER JOIN publications p ON p.publication_id = pf.publication_id
-			INNER JOIN submissions s ON p.submission_id = s.submission_id
-			WHERE pft.setting_name = ?
-			AND pft.setting_value = ?
-			AND pf.publication_format_id <> ?
-			AND s.context_id = ?',
-            [
-                'pub-id::' . $pubIdType,
-                $pubId,
-                (int) $excludePubObjectId,
-                (int) $contextId
-            ]
-        );
-        $row = $result->current();
-        return $row && $row->row_count;
+        return DB::table('publication_format_settings AS pft')
+            ->join('publication_formats AS pf', 'pft.publication_format_id', '=', 'pf.publication_format_id')
+            ->join('publications AS p', 'p.publication_id', '=', 'pf.publication_id')
+            ->join('submissions AS s', 's.submission_id', '=', 'p.submission_id')
+            ->where('pft.setting_name', '=', "pub-id::{$pubIdType}")
+            ->where('pf.publication_format_id', '<>', $excludePubObjectId)
+            ->where('s.context_id', '=', $contextId)
+            ->count() > 0;
     }
 
     /**
@@ -533,28 +521,27 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
     /**
      * @copydoc PKPPubIdPluginDAO::deletePubId()
      */
-    public function deletePubId($pubObjectId, $pubIdType)
+    public function deletePubId(int $pubObjectId, string $pubIdType): int
     {
-        $this->update(
-            'DELETE FROM publication_format_settings WHERE setting_name = ? AND publication_format_id = ?',
-            ['pub-id::' . $pubIdType, (int)$pubObjectId]
-        );
         $this->flushCache();
+        return DB::table('publication_format_settings')
+            ->where('setting_name', '=', "pub-id::{$pubIdType}")
+            ->where('publication_format_id', '=', $pubObjectId)
+            ->delete();
     }
 
     /**
      * @copydoc PKPPubIdPluginDAO::deleteAllPubIds()
      */
-    public function deleteAllPubIds($contextId, $pubIdType)
+    public function deleteAllPubIds(int $contextId, string $pubIdType): int
     {
         $formats = $this->getByContextId($contextId);
-        while ($format = $formats->next()) {
-            $this->update(
-                'DELETE FROM publication_format_settings WHERE setting_name = ? AND publication_format_id = ?',
-                ['pub-id::' . $pubIdType, (int)$format->getId()]
-            );
-        }
         $this->flushCache();
+        $affectedRows = 0;
+        while ($format = $formats->next()) {
+            $affectedRows += $this->deletePubId($format->getId(), $pubIdType);
+        }
+        return $affectedRows;
     }
 }
 

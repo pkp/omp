@@ -151,22 +151,20 @@ class PublicationDateDAO extends \PKP\db\DAO
 
     /**
      * Delete a publication date.
-     *
-     * @param PublicationDate $publicationDate
      */
-    public function deleteObject($publicationDate)
+    public function deleteObject(PublicationDate $publicationDate): int
     {
         return $this->deleteById($publicationDate->getId());
     }
 
     /**
-     * delete a publication date by id.
-     *
-     * @param int $entryId
+     * Delete a publication date by id.
      */
-    public function deleteById($entryId)
+    public function deleteById(int $entryId): int
     {
-        $this->update('DELETE FROM publication_dates WHERE publication_date_id = ?', [(int) $entryId]);
+        return DB::table('publication_dates')
+            ->where('publication_date_id', '=', $entryId)
+            ->delete();
     }
 }
 

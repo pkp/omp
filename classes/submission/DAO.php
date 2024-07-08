@@ -36,7 +36,7 @@ class DAO extends \PKP\submission\DAO
     ];
 
     /** @copydoc \PKP\submission\DAO::deleteById() */
-    public function deleteById(int $id)
+    public function deleteById(int $id): int
     {
         // Delete references to features or new releases.
         $featureDao = DAORegistry::getDAO('FeatureDAO'); /** @var FeatureDAO $featureDao */
@@ -47,6 +47,6 @@ class DAO extends \PKP\submission\DAO
 
         event(new SubmissionDeleted($id));
 
-        parent::deleteById($id);
+        return parent::deleteById($id);
     }
 }

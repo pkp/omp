@@ -183,22 +183,20 @@ class SalesRightsDAO extends \PKP\db\DAO
 
     /**
      * Delete a sales rights entry by id.
-     *
-     * @param SalesRights $salesRights
      */
-    public function deleteObject($salesRights)
+    public function deleteObject(SalesRights $salesRights): int
     {
         return $this->deleteById($salesRights->getId());
     }
 
     /**
-     * delete a sales rights entry by id.
-     *
-     * @param int $entryId
+     * Delete a sales rights entry by id.
      */
-    public function deleteById($entryId)
+    public function deleteById(int $entryId): int
     {
-        $this->update('DELETE FROM sales_rights WHERE sales_rights_id = ?', [(int) $entryId]);
+        return DB::table('sales_rights')
+            ->where('sales_rights_id', '=', $entryId)
+            ->delete();
     }
 }
 
