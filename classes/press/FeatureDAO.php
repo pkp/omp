@@ -162,10 +162,10 @@ class FeatureDAO extends \PKP\db\DAO
      * @param $assocType The monograph associated object type.
      * @param $assocId The monograph associated object id.
      *
-     * @return int|boolean The monograph sequence position or false if no
+     * @return int|bool The monograph sequence position or false if no
      * monograph feature is set.
      */
-    public function getSequencePosition(int $monographId, int $assocType, int $assocId): int|boolean
+    public function getSequencePosition(int $monographId, int $assocType, int $assocId): int|bool
     {
         $result = $this->retrieve(
             'SELECT seq FROM features WHERE submission_id = ? AND assoc_type = ? AND assoc_id = ?',
