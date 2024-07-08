@@ -19,6 +19,7 @@
 namespace APP\press;
 
 use APP\facades\Repo;
+use Illuminate\Support\Facades\DB;
 use PKP\submission\PKPSubmission;
 
 class NewReleaseDAO extends \PKP\db\DAO
@@ -26,16 +27,15 @@ class NewReleaseDAO extends \PKP\db\DAO
     /**
      * Get monograph IDs by association.
      *
-     * @param int $assocType Application::ASSOC_TYPE_...
-     * @param int $assocId
+     * @param $assocType \APP\core\Application::ASSOC_TYPE_...
      *
      * @return array [monographId => true]
      */
-    public function getMonographIdsByAssoc($assocType, $assocId)
+    public function getMonographIdsByAssoc(int $assocType, int $assocId): array
     {
         $result = $this->retrieve(
             'SELECT submission_id FROM new_releases WHERE assoc_type = ? AND assoc_id = ?',
-            [(int) $assocType, (int) $assocId]
+            [$assocType, $assocId]
         );
 
         $returner = [];
@@ -48,12 +48,11 @@ class NewReleaseDAO extends \PKP\db\DAO
     /**
      * Get monographs by association.
      *
-     * @param int $assocType Application::ASSOC_TYPE_...
-     * @param int $assocId
+     * @param $assocType \APP\core\Application::ASSOC_TYPE_...
      *
-     * @return array Monograph
+     * @return Submission[]
      */
-    public function getMonographsByAssoc($assocType, $assocId)
+    public function getMonographsByAssoc(int $assocType, int $assocId): array
     {
         $result = $this->retrieve(
             'SELECT	n.submission_id AS submission_id
@@ -65,7 +64,7 @@ class NewReleaseDAO extends \PKP\db\DAO
 				AND n.assoc_type = ? AND n.assoc_id = ?
 				AND s.status = ?
 			ORDER BY p.date_published DESC',
-            [(int) $assocType, (int) $assocId, PKPSubmission::STATUS_PUBLISHED]
+            [$assocType, $assocId, PKPSubmission::STATUS_PUBLISHED]
         );
 
         $returner = [];
@@ -76,13 +75,11 @@ class NewReleaseDAO extends \PKP\db\DAO
     }
 
     /**
-     * Insert a new NewRelease.
+     * Insert a new new release.
      *
-     * @param int $monographId
-     * @param int $assocType Application::ASSOC_TYPE_...
-     * @param int $assocId
+     * @param int $assocType \APP\core\Application::ASSOC_TYPE_...
      */
-    public function insertNewRelease($monographId, $assocType, $assocId)
+    public function insertNewRelease(int $monographId, int $assocType, int $assocId): void
     {
         $this->update(
             'INSERT INTO new_releases
@@ -138,35 +135,33 @@ class NewReleaseDAO extends \PKP\db\DAO
      * Check if the passed monograph id is marked as new release
      * on the passed associated object.
      *
-     * @param int $monographId The monograph id to check the new release state.
-     * @param int $assocType The associated object type that the monograph
+     * @param $monographId The monograph id to check the new release state.
+     * @param $assocType The associated object type that the monograph
      * is checked for a new release mark.
-     * @param int $assocId The associated object id that the monograph is
+     * @param $assocId The associated object id that the monograph is
      * checked for a new release mark.
      *
      * @return bool Whether or not the monograph is marked as a new release.
      */
-    public function isNewRelease($monographId, $assocType, $assocId)
+    public function isNewRelease(int $monographId, int $assocType, int $assocId): bool
     {
-        $result = $this->retrieve(
-            'SELECT submission_id FROM new_releases WHERE submission_id = ? AND assoc_type = ? AND assoc_id = ?',
-            [(int) $monographId, (int) $assocType, (int) $assocId]
-        );
-        return (bool) $result->current();
+        return DB::table('new_releases')
+            ->where('submission_id', '=', $submissionId)
+            ->where('assoc_type', '=', $assocType)
+            ->where('assoc_id', '=', $assocId)
+            ->count() > 0;
     }
 
     /**
      * Return the monograph's new release settings in all assoc types
      *
-     * @param int $monographId The monograph ID to get the new release state
-     *
-     * @return array
+     * @param $monographId The monograph ID to get the new release state
      */
-    public function getNewReleaseAll($monographId)
+    public function getNewReleaseAll(int $monographId): array
     {
         $result = $this->retrieve(
             'SELECT assoc_type, assoc_id FROM new_releases WHERE submission_id = ?',
-            [(int) $monographId]
+            [$monographId]
         );
 
         $newRelease = [];

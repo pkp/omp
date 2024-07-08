@@ -18,6 +18,7 @@
 
 namespace APP\publicationFormat;
 
+use Illuminate\Support\Facades\DB;
 use PKP\db\DAOResultFactory;
 use PKP\plugins\Hook;
 

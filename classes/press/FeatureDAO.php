@@ -3,13 +3,11 @@
 /**
  * @file classes/press/FeatureDAO.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2003-2024 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class FeatureDAO
- *
- * @ingroup press
  *
  * @see Feature
  *
@@ -18,21 +16,22 @@
 
 namespace APP\press;
 
+use Illuminate\Support\Facades\DB;
+
 class FeatureDAO extends \PKP\db\DAO
 {
     /**
      * Get monograph IDs by association.
      *
-     * @param int $assocType Application::ASSOC_TYPE_...
-     * @param int $assocId
+     * @param $assocType \APP\core\Application::ASSOC_TYPE_...
      *
      * @return array Associative array seq => monograph ID
      */
-    public function getMonographIdsByAssoc($assocType, $assocId)
+    public function getMonographIdsByAssoc(int $assocType, int $assocId): array
     {
         $result = $this->retrieve(
             'SELECT submission_id, seq FROM features WHERE assoc_type = ? AND assoc_id = ? ORDER BY seq',
-            [(int) $assocType, (int) $assocId]
+            [$assocType, $assocId]
         );
 
         $returner = [];
@@ -45,12 +44,11 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Get feature sequences by association.
      *
-     * @param int $assocType Application::ASSOC_TYPE_...
-     * @param int $assocId
+     * @param $assocType \APP\core\Application::ASSOC_TYPE_...
      *
      * @return array Associative array monograph ID => seq
      */
-    public function getSequencesByAssoc($assocType, $assocId)
+    public function getSequencesByAssoc(int $assocType, int $assocId)
     {
         return array_flip($this->getMonographIdsByAssoc($assocType, $assocId));
     }
@@ -58,12 +56,9 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Insert a new feature.
      *
-     * @param int $monographId
-     * @param int $assocType Application::ASSOC_TYPE_...
-     * @param int $assocId
-     * @param int $seq
+     * @param int $assocType \APP\core\Application::ASSOC_TYPE_...
      */
-    public function insertFeature($monographId, $assocType, $assocId, $seq)
+    public function insertFeature(int $monographId, int $assocType, int $assocId, int $seq)
     {
         $this->update(
             'INSERT INTO features
@@ -71,10 +66,10 @@ class FeatureDAO extends \PKP\db\DAO
 				VALUES
 				(?, ?, ?, ?)',
             [
-                (int) $monographId,
-                (int) $assocType,
-                (int) $assocId,
-                (int) $seq
+                $monographId,
+                $assocType,
+                $assocId,
+                $seq
             ]
         );
     }
@@ -82,7 +77,7 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Delete a feature by ID.
      */
-    public function deleteByMonographId(int $monographId)
+    public function deleteByMonographId(int $monographId): int
     {
         return DB::table('features')
             ->where('submission_id', '=', $monographId)
@@ -92,7 +87,7 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Delete a feature by association.
      *
-     * @param $assocType Application::ASSOC_TYPE_...
+     * @param $assocType \APP\core\Application::ASSOC_TYPE_...
      */
     public function deleteByAssoc(int $assocType, int $assocId): int
     {
@@ -105,7 +100,7 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Delete a feature.
      *
-     * @param int $assocType Application::ASSOC_TYPE_...
+     * @param int $assocType \APP\core\Application::ASSOC_TYPE_...
      */
     public function deleteFeature(int $monographId, int $assocType, int $assocId): int
     {
@@ -120,35 +115,33 @@ class FeatureDAO extends \PKP\db\DAO
      * Check if the passed monograph id is featured on the
      * passed associated object.
      *
-     * @param int $monographId The monograph id to check the feature state.
-     * @param int $assocType The associated object type that the monograph
+     * @param $monographId The monograph id to check the feature state.
+     * @param $assocType The associated object type that the monograph
      * is featured.
-     * @param int $assocId The associated object id that the monograph is
+     * @param $assocId The associated object id that the monograph is
      * featured.
      *
      * @return bool Whether or not the monograph is featured.
      */
-    public function isFeatured($monographId, $assocType, $assocId)
+    public function isFeatured(int $monographId, int $assocType, int $assocId): bool
     {
-        $result = $this->retrieve(
-            'SELECT submission_id FROM features WHERE submission_id = ? AND assoc_type = ? AND assoc_id = ?',
-            [(int) $monographId, (int) $assocType, (int) $assocId]
-        );
-        return (bool) $result->current();
+        return DB::table('features')
+            ->where('submission_id', '=', $monographId)
+            ->where('assoc_type', '=', $assocType)
+            ->where('assoc_id', '=', $assicId)
+            ->count() > 0;
     }
 
     /**
      * Return the monograph's featured settings in all assoc types
      *
-     * @param int $monographId The monograph id to get the feature state.
-     *
-     * @return array
+     * @param $monographId The monograph id to get the feature state.
      */
-    public function getFeaturedAll($monographId)
+    public function getFeaturedAll(int $monographId): array
     {
         $result = $this->retrieve(
             'SELECT assoc_type, assoc_id, seq FROM features WHERE submission_id = ?',
-            [(int) $monographId]
+            [$monographId]
         );
 
         $featured = [];
@@ -165,44 +158,45 @@ class FeatureDAO extends \PKP\db\DAO
     /**
      * Get the current sequence position of the passed monograph id.
      *
-     * @param int $monographId The monograph id to check the sequence position.
-     * @param int $assocType The monograph associated object type.
-     * @param int $assocId The monograph associated object id.
+     * @param $monographId The monograph id to check the sequence position.
+     * @param $assocType The monograph associated object type.
+     * @param $assocId The monograph associated object id.
      *
-     * @return int or boolean The monograph sequence position or false if no
+     * @return int|boolean The monograph sequence position or false if no
      * monograph feature is set.
      */
-    public function getSequencePosition($monographId, $assocType, $assocId)
+    public function getSequencePosition(int $monographId, int $assocType, int $assocId): int|boolean
     {
         $result = $this->retrieve(
             'SELECT seq FROM features WHERE submission_id = ? AND assoc_type = ? AND assoc_id = ?',
-            [(int) $monographId, (int) $assocType, (int) $assocId]
+            [$monographId, $assocType, $assocId]
         );
         $row = $result->current();
         return $row ? $row->seq : false;
     }
 
-    public function setSequencePosition($monographId, $assocType, $assocId, $sequencePosition)
+    public function setSequencePosition(int $monographId, int $assocType, int $assocId, int $sequencePosition): void
     {
-        $this->update(
-            'UPDATE features SET seq = ? WHERE submission_id = ? AND assoc_type = ? AND assoc_id = ?',
-            [(int) $sequencePosition, (int) $monographId, (int) $assocType, (int) $assocId]
-        );
+        DB::table('features')
+            ->where('submission_id', '=', $monographId)
+            ->where('assoc_type', '=', $assocType)
+            ->where('assoc_id', '=', $assocId)
+            ->update(['seq' => $seq]);
     }
 
     /**
      * Resequence features by association.
      *
-     * @param int $assocType Application::ASSOC_TYPE_...
-     * @param int $assocId per $assocType
+     * @param $assocType \APP\core\Application::ASSOC_TYPE_...
+     * @param $assocId Identifier per $assocType
      *
      * @return array Associative array of id => seq for resequenced set
      */
-    public function resequenceByAssoc($assocType, $assocId)
+    public function resequenceByAssoc(int $assocType, int $assocId): array
     {
         $result = $this->retrieve(
             'SELECT submission_id FROM features WHERE assoc_type = ? AND assoc_id = ? ORDER BY seq',
-            [(int) $assocType, (int) $assocId]
+            [$assocType, $assocId]
         );
 
         $returner = [];
