@@ -179,7 +179,13 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
                 $dc11Description->addStatement('dc:identifier', $doi);
             }
         }
-
+        if ($context->areDoisEnabled()) {
+            $doi = $publication->getData('doiObject');
+            if ($doi)
+            {
+                $dc11Description->addStatement('dc:relation', $doi->getData('doi'));
+            }
+        }
         // Identifier: others
         $identificationCodeFactory = $publicationFormat->getIdentificationCodes();
         while ($identificationCode = $identificationCodeFactory->next()) {
