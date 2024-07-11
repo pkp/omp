@@ -245,7 +245,7 @@ class CatalogHandler extends PKPCatalogHandler
                 }
                 break;
             default:
-                fatalError('invalid type specified');
+                throw new \Exception('invalid type specified');
                 break;
         }
 
@@ -282,7 +282,7 @@ class CatalogHandler extends PKPCatalogHandler
                 }
                 break;
             default:
-                fatalError('invalid type specified');
+                throw new \Exception('invalid type specified');
                 break;
         }
 

@@ -208,7 +208,7 @@ class PublicationDateForm extends Form
             $dateFormats = $onixCodelistItemDao->getCodes('List55');
             $templateMgr->assign('publicationDateFormats', $dateFormats);
         } else {
-            fatalError('Format not in authorized submission');
+            throw new Exception('Format not in authorized submission');
         }
 
         return parent::fetch($request, $template, $display);
@@ -250,7 +250,7 @@ class PublicationDateForm extends Form
             if ($publicationFormat != null) { // ensure this assigned format is in this submission
                 $publicationDate->setPublicationFormatId($publicationFormat->getId());
             } else {
-                fatalError('This assigned format not in authorized submission context!');
+                throw new Exception('This assigned format not in authorized submission context!');
             }
         } else {
             $existingFormat = true;

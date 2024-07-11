@@ -111,7 +111,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
             $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /** @var RepresentativeDAO $representativeDao */
             $representative = $representativeDao->getById($representativeId, $this->getMonograph()->getId());
             if (!isset($representative)) {
-                fatalError('Representative referenced outside of authorized monograph context!');
+                throw new \Exception('Representative referenced outside of authorized monograph context!');
             }
         }
 

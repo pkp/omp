@@ -202,7 +202,7 @@ class SalesRightsForm extends Form
             $types = $onixCodelistItemDao->getCodes('List46', $assignedTypes); // ONIX list for these
             $templateMgr->assign('salesRights', $types);
         } else {
-            fatalError('Format not in authorized submission');
+            throw new Exception('Format not in authorized submission');
         }
 
         return parent::fetch($request, $template, $display);
@@ -247,7 +247,7 @@ class SalesRightsForm extends Form
             if ($publicationFormat != null) { // ensure this assigned format is in this submission
                 $salesRights->setPublicationFormatId($publicationFormat->getId());
             } else {
-                fatalError('This assigned format not in authorized submission context!');
+                throw new Exception('This assigned format not in authorized submission context!');
             }
         } else {
             $existingFormat = true;

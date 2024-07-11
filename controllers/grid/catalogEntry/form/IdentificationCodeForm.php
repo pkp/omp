@@ -184,7 +184,7 @@ class IdentificationCodeForm extends Form
             $codes = $onixCodelistItemDao->getCodes('List5', $assignedCodes); // ONIX list for these
             $templateMgr->assign('identificationCodes', $codes);
         } else {
-            fatalError('Format not in authorized submission');
+            throw new \Exception('Format not in authorized submission');
         }
 
         return parent::fetch($request, $template, $display);
@@ -224,7 +224,7 @@ class IdentificationCodeForm extends Form
             if ($publicationFormat != null) { // ensure this format is in this submission
                 $identificationCode->setPublicationFormatId($publicationFormat->getId());
             } else {
-                fatalError('This format not in authorized submission context!');
+                throw new Exception('This format not in authorized submission context!');
             }
         } else {
             $existingFormat = true;

@@ -209,7 +209,7 @@ class RepresentativeForm extends Form
             $existingRepresentative = true;
             // verify that this representative is in this monograph's context
             if ($representativeDao->getById($representative->getId(), $monograph->getId()) == null) {
-                fatalError('Invalid representative!');
+                throw new \Exception('Invalid representative!');
             }
         }
 

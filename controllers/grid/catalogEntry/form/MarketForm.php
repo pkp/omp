@@ -225,7 +225,7 @@ class MarketForm extends Form
         if ($publicationFormat) { // the format exists for this submission
             $templateMgr->assign('representationId', $representationId);
         } else {
-            fatalError('Format not in authorized submission');
+            throw new Exception('Format not in authorized submission');
         }
 
         return parent::fetch($request, $template, $display);
@@ -279,7 +279,7 @@ class MarketForm extends Form
             if ($publicationFormat != null) { // ensure this assigned format is in this submission
                 $market->setPublicationFormatId($publicationFormat->getId());
             } else {
-                fatalError('This assigned format not in authorized submission context!');
+                throw new Exception('This assigned format not in authorized submission context!');
             }
         } else {
             $existingFormat = true;
