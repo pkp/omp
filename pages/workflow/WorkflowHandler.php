@@ -19,7 +19,6 @@ namespace APP\pages\workflow;
 use APP\components\listPanels\ContributorsListPanel;
 use APP\core\Application;
 use APP\core\Request;
-use APP\core\Services;
 use APP\decision\types\AcceptFromInternal;
 use APP\decision\types\CancelInternalReviewRound;
 use APP\decision\types\DeclineInternal;
@@ -112,7 +111,7 @@ class WorkflowHandler extends PKPWorkflowHandler
 
         $submissionContext = $request->getContext();
         if ($submission->getData('contextId') !== $submissionContext->getId()) {
-            $submissionContext = Services::get('context')->get($submission->getData('contextId'));
+            $submissionContext = app()->get('context')->get($submission->getData('contextId'));
         }
 
         $latestPublication = $submission->getLatestPublication();

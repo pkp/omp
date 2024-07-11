@@ -20,7 +20,6 @@ namespace APP\publicationFormat;
 
 use APP\codelist\ONIXCodelistItemDAO;
 use APP\core\Application;
-use APP\core\Services;
 use APP\facades\Repo;
 use PKP\db\DAORegistry;
 use PKP\db\DAOResultFactory;
@@ -322,7 +321,7 @@ class PublicationFormat extends Representation
 
         foreach ($stageMonographFiles as $monographFile) {
             if ($monographFile->getViewable()) {
-                $fileSize += (int) Services::get('file')->fs->fileSize($monographFile->getData('path'));
+                $fileSize += (int) app()->get('file')->fs->fileSize($monographFile->getData('path'));
             }
         }
 

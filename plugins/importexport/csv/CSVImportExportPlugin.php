@@ -16,7 +16,6 @@ namespace APP\plugins\importexport\csv;
 
 use APP\core\Application;
 use APP\core\Request;
-use APP\core\Services;
 use APP\facades\Repo;
 use APP\publicationFormat\PublicationDateDAO;
 use APP\publicationFormat\PublicationFormatDAO;
@@ -264,7 +263,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
             $extension = $fileManager->parseFileExtension($filename);
             $submissionDir = Repo::submissionFile()->getSubmissionDir($press->getId(), $submissionId);
             /** @var \PKP\services\PKPFileService */
-            $fileService = Services::get('file');
+            $fileService = app()->get('file');
             $fileId = $fileService->add(
                 $filename,
                 $submissionDir . '/' . uniqid() . '.' . $extension

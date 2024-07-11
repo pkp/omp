@@ -14,7 +14,6 @@
 namespace APP\publication;
 
 use APP\core\Application;
-use APP\core\Services;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\monograph\ChapterDAO;
@@ -74,7 +73,7 @@ class Repository extends \PKP\publication\Repository
             $submission = Repo::submission()->get($publication->getData('submissionId'));
             $submissionContext = $this->request->getContext();
             if ($submissionContext->getId() !== $submission->getData('contextId')) {
-                $submissionContext = Services::get('context')->get($submission->getData('contextId'));
+                $submissionContext = app()->get('context')->get($submission->getData('contextId'));
             }
 
             $supportedLocales = $submission->getPublicationLanguages($submissionContext->getSupportedSubmissionMetadataLocales());
@@ -258,7 +257,7 @@ class Repository extends \PKP\publication\Repository
             $submission = Repo::submission()->get($publication->getData('submissionId'));
             $submissionContext = $this->request->getContext();
             if ($submissionContext->getId() !== $submission->getData('contextId')) {
-                $submissionContext = Services::get('context')->get($submission->getData('contextId'));
+                $submissionContext = app()->get('context')->get($submission->getData('contextId'));
             }
 
             foreach ($params['coverImage'] as $localeKey => $newCoverImage) {
@@ -301,7 +300,7 @@ class Repository extends \PKP\publication\Repository
         if ($submission->getData('currentPublicationId') === $publication->getId()) {
             $context = $this->request->getContext();
             if (!$context || $context->getId() !== $submission->getData('contextId')) {
-                $context = Services::get('context')->get($submission->getData('contextId'));
+                $context = app()->get('context')->get($submission->getData('contextId'));
             }
 
             // Remove publication format tombstones for this publication
@@ -350,7 +349,7 @@ class Repository extends \PKP\publication\Repository
         parent::unpublish($publication);
 
         $submission = Repo::submission()->get($publication->getData('submissionId'));
-        $submissionContext = Services::get('context')->get($submission->getData('contextId'));
+        $submissionContext = app()->get('context')->get($submission->getData('contextId'));
 
         // Create tombstones for this publication
         $publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
@@ -384,12 +383,12 @@ class Repository extends \PKP\publication\Repository
     public function delete(Publication $publication)
     {
         $submission = Repo::submission()->get($publication->getData('submissionId'));
-        $context = Services::get('context')->get($submission->getData('contextId'));
+        $context = app()->get('context')->get($submission->getData('contextId'));
 
         // Delete Publication Formats (and all related objects)
         $publicationFormats = $publication->getData('publicationFormats');
         foreach ($publicationFormats as $publicationFormat) {
-            Services::get('publicationFormat')->deleteFormat($publicationFormat, $submission, $context);
+            app()->get('publicationFormat')->deleteFormat($publicationFormat, $submission, $context);
         }
 
         // Delete chapters and assigned chapter authors.

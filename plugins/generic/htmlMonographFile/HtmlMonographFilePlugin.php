@@ -16,7 +16,6 @@ namespace APP\plugins\generic\htmlMonographFile;
 
 use APP\core\Application;
 use APP\core\Request;
-use APP\core\Services;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\monograph\ChapterDAO;
@@ -163,7 +162,7 @@ class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
      */
     public function _getHTMLContents($request, $monograph, $publicationFormat, $submissionFile)
     {
-        $contents = Services::get('file')->fs->read($submissionFile->getData('path'));
+        $contents = app()->get('file')->fs->read($submissionFile->getData('path'));
 
         // Replace media file references
         $proofCollector = Repo::submissionFile()
