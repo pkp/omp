@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-05-27 19:39+0000\n"
+"PO-Revision-Date: 2024-06-25 08:39+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/locale/bg/"
 ">\n"
@@ -208,3 +208,26 @@ msgid "monograph.publicationFormat.formatDoesNotExist"
 msgstr ""
 "<p>Избраният от вас формат на публикация вече не съществува за тази "
 "монография.</p>"
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Трябва да се избере формат на публикацията."
+
+msgid "grid.catalogEntry.availability"
+msgstr "Достъпност"
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Достъпен"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Не е достъпен"
+
+msgid "grid.catalogEntry.proof"
+msgstr "Корекция"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Одобрение на формата"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p>Одобрете метаданните за този формат. Метаданните могат да бъдат проверени "
+"от панела за редактиране за всеки формат.</p>"
