@@ -21,7 +21,6 @@ namespace APP\tests\classes\monograph;
 use APP\core\Application;
 use APP\core\PageRouter;
 use APP\core\Request;
-use APP\core\Services;
 use APP\facades\Repo;
 use APP\press\Press;
 use APP\submission\Submission;
@@ -77,7 +76,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
 
         // Register a mock monograph DAO.
         $submissionDao = $this->getMockBuilder(\APP\submission\DAO::class)
-            ->setConstructorArgs([Services::get('schema')])
+            ->setConstructorArgs([app()->get('schema')])
             ->onlyMethods(['get'])
             ->getMock();
         $monograph = new Submission();
@@ -153,7 +152,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         // Create test files
         $submissionDir = Repo::submissionFile()
             ->getSubmissionDir(static::SUBMISSION_FILE_DAO_TEST_PRESS_ID, $submissionId);
-        $fileId1 = Services::get('file')->add(
+        $fileId1 = app()->get('file')->add(
             $this->testFile1,
             $submissionDir . '/' . uniqid() . '.txt'
         );
@@ -167,7 +166,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
             'createdAt' => '2011-12-05 00:00:00',
             'updatedAt' => '2011-12-05 00:00:00',
         ]);
-        $fileId2 = Services::get('file')->add(
+        $fileId2 = app()->get('file')->add(
             $this->testFile2,
             $submissionDir . '/' . uniqid() . '.txt'
         );
@@ -207,7 +206,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         static::assertEquals($submissionFile2->getData('genreId'), static::SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
 
         // Save a new revision of a submission file
-        $fileId3 = Services::get('file')->add(
+        $fileId3 = app()->get('file')->add(
             $this->testFile3,
             $submissionDir . '/' . uniqid() . '.txt'
         );

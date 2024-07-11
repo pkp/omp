@@ -19,7 +19,6 @@ namespace APP\pages\catalog;
 
 use APP\core\Application;
 use APP\core\Request;
-use APP\core\Services;
 use APP\facades\Repo;
 use APP\handler\Handler;
 use APP\monograph\Chapter;
@@ -390,7 +389,7 @@ class CatalogBookHandler extends Handler
         }
 
         $path = $submissionFile->getData('path');
-        $filename = Services::get('file')->formatFilename($path, $submissionFile->getLocalizedData('name'));
+        $filename = app()->get('file')->formatFilename($path, $submissionFile->getLocalizedData('name'));
         switch ($submissionFile->getData('assocType')) {
             case Application::ASSOC_TYPE_PUBLICATION_FORMAT: // Publication format file
                 if ($submissionFile->getData('assocId') != $publicationFormat->getId() || $submissionFile->getDirectSalesPrice() === null) {
@@ -403,7 +402,7 @@ class CatalogBookHandler extends Handler
                 if (!$genre->getDependent()) {
                     $dispatcher->handle404();
                 }
-                return Services::get('file')->download($submissionFile->getData('fileId'), $filename);
+                return app()->get('file')->download($submissionFile->getData('fileId'), $filename);
             default: $dispatcher->handle404();
         }
 
@@ -464,7 +463,7 @@ class CatalogBookHandler extends Handler
             }
             $returner = true;
             Hook::call('FileManager::downloadFileFinished', [&$returner]);
-            return Services::get('file')->download($submissionFile->getData('fileId'), $filename, $inline);
+            return app()->get('file')->download($submissionFile->getData('fileId'), $filename, $inline);
         }
 
         // Fall-through: user needs to pay for purchase.

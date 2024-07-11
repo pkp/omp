@@ -17,7 +17,6 @@
 namespace APP\controllers\grid\navigationMenus\form;
 
 use APP\core\Application;
-use APP\core\Services;
 use APP\facades\Repo;
 use APP\section\Section;
 use APP\services\NavigationMenuService;
@@ -35,7 +34,7 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm
      */
     public function fetch($request, $template = null, $display = false)
     {
-        $customTemplates = Services::get('navigationMenu')->getMenuItemCustomEditTemplates();
+        $customTemplates = app()->get('navigationMenu')->getMenuItemCustomEditTemplates();
 
         $request = Application::get()->getRequest();
         $context = $request->getContext();

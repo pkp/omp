@@ -3,23 +3,24 @@
 /**
  * @file classes/core/AppServiceProvider.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2003-2024 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class AppServiceProvider
  *
- * @ingroup core
- *
- * @brief Resolves requests for application classes such as the request handler
- *   to support dependency injection
+ * @brief   Resolves requests for application classes such as the request handler
+ *          to support dependency injection
  */
 
 namespace APP\core;
 
+use APP\services\ContextService;
+use APP\services\NavigationMenuService;
+use APP\services\PublicationFormatService;
+use APP\services\StatsEditorialService;
+use APP\services\StatsPublicationService;
 use PKP\core\PKPRequest;
-use PKP\submissionFile\Collector as SubmissionFileCollector;
-use PKP\submissionFile\SubmissionFile as BaseSubmissionFile;
 
 class AppServiceProvider extends \PKP\core\AppServiceProvider
 {
@@ -32,7 +33,19 @@ class AppServiceProvider extends \PKP\core\AppServiceProvider
 
         $this->app->bind(Request::class, PKPRequest::class);
 
-        $this->app->bind(\APP\submissionFile\Collector::class, SubmissionFileCollector::class);
-        $this->app->bind(\APP\submissionFile\SubmissionFile::class, BaseSubmissionFile::class);
+        // Publication Format service
+        $this->app->singleton('publicationFormat', fn ($app) => new PublicationFormatService());
+
+        // Navigation Menu service
+        $this->app->singleton('navigationMenu', fn ($app) => new NavigationMenuService());
+
+        // Context service
+        $this->app->singleton('context', fn ($app) => new ContextService());
+
+        // Publication statistics service
+        $this->app->singleton('publicationStats', fn ($app) => new StatsPublicationService());
+
+        // Editorial statistics service
+        $this->app->singleton('editorialStats', fn ($app) => new StatsEditorialService());
     }
 }

@@ -22,7 +22,6 @@ use APP\controllers\grid\files\proof\form\ApprovedProofForm;
 use APP\controllers\tab\pubIds\form\PublicIdentifiersForm;
 use APP\core\Application;
 use APP\core\Request;
-use APP\core\Services;
 use APP\facades\Repo;
 use APP\log\event\SubmissionEventLogEntry;
 use APP\notification\NotificationManager;
@@ -347,7 +346,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
         }
 
         /** @var PublicationFormatService */
-        $publicationFormatService = Services::get('publicationFormat');
+        $publicationFormatService = app()->get('publicationFormat');
         $publicationFormatService->deleteFormat($representation, $submission, $context);
 
         $currentUser = $request->getUser();
