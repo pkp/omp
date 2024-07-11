@@ -1,0 +1,216 @@
+# Cyril Kamburov <cc@intermedia.bg>, 2024.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2024-06-30 15:40+0000\n"
+"Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
+"Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/editor/bg/"
+">\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Отказване на заданието"
+
+msgid "editor.monograph.clearReview"
+msgstr "Анулиране на рецензента"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Въвеждане на препоръка"
+
+msgid "editor.monograph.recommendation"
+msgstr "Препоръка"
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Промяна на рецензент"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Редактор за въвеждане на препоръки/коментари за рецензент"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Качване на рецензия"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Опции за рецензия"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Коректурни файлове"
+
+msgid "editor.monograph.internalReview"
+msgstr "Иницииране на вътрешна рецензия"
+
+msgid "editor.monograph.externalReview"
+msgstr "Иницииране на външна рецензия"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Изберете последните чернови"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Текущи последни чернови"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Текущи файлове"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Съобщение до потребител"
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Белова (коригирана чернова)"
+
+msgid "editor.monograph.proofs"
+msgstr "Коректури"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Одобрение и публикуване"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr ""
+"Различни формати на публикации, като твърди корици, меки корици и цифрови, "
+"могат да бъдат качени в раздела Формати на публикации по-долу. Можете да "
+"използвате таблицата с формати на публикация по-долу като контролен списък "
+"за това какво още трябва да се направи, за да публикувате формат на "
+"публикация."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Задаване на условия за изтегляне"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Задаване на условия"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Добавяне на отговор"
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr ""
+"Всички файлове, които вече са били качени на който и да е етап на подаване "
+"на материалите, могат да бъдат добавени към списъка с коректурни файлове, "
+"като поставите отметка в квадратчето за включване по-долу и щракнете върху "
+"Търсене: всички налични файлове ще бъдат изброени и могат да бъдат избрани "
+"за включване."
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr ""
+"Публичният идентификатор '{$publicIdentifier}' вече съществува за друг обект "
+"от същия тип. Моля, изберете уникални идентификатори за обектите от същия "
+"тип във вашето издателство."
+
+msgid "editor.submissions.assignedTo"
+msgstr "Асоциирано към редактор"
+
+msgid "editor.submissionArchive"
+msgstr "Архив на изпратените материали"
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr ""
+"Добавете формати на публикация (напр. цифрови, с меки корици), за които "
+"редакторът на оформлението да подготви коректури. <em>Коректурите</em> "
+"трябва да бъдат отбелязани като одобрени и записът в <em>Каталога</em> за "
+"формата трябва да бъде проверен, както е публикуван в записа в каталога на "
+"книгата, преди да може да се направи формат <em> Достъпен</em> (т.е. "
+"публикуван)."
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Въвеждане на рецензионна препоръка"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr ""
+"Изберете рецензент по-горе и натиснете бутона „Избор на рецензент“, за да "
+"продължите."
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr ""
+"Изберете файлове по-долу, за да ги изпратите на етапа на вътрешно "
+"рецензиране."
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Действия за подаване на материали"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Общи действия и опции за подаване на материали."
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Действия за раздели"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr ""
+"Опции, специфични за даден раздел, например качване на файлове или добавяне "
+"на потребители."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Действия за елемент"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Действия и опции, специфични за отделен файл."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr ""
+"Преглеждане и управление на записа в каталога за изпратени материали, "
+"включително метаданни и формати за публикуване"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr ""
+"Преглеждане и управление на метаданни за изпратени материали, бележки, "
+"известия и история"
+
+msgid "editor.monograph.legend.participants"
+msgstr ""
+"Преглеждане и управлявление на участниците в това изпращане на материали: "
+"автори, редактори, дизайнери и други"
+
+msgid "editor.monograph.legend.add"
+msgstr "Качете файл в раздела"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Добавяне на потребител към раздела"
+
+msgid "editor.monograph.legend.settings"
+msgstr ""
+"Преглед и достъп до настройките на елемента, като информация и опции за "
+"изтриване"
+
+msgid "editor.monograph.legend.more_info"
+msgstr ""
+"Повече информация: бележки за файлове, опции за уведомяване и хронология"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr ""
+"Информация за файла: бележки, опции за уведомяване и хронология (все още "
+"няма добавени бележки)"
+
+msgid "editor.monograph.legend.notes"
+msgstr ""
+"Информация за файла: бележки, опции за уведомяване и хронология (има "
+"добавени бележки)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr ""
+"Информация за файла: бележки, опции за уведомяване и хронология (има "
+"добавени бележки след последния преглед)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Редактиране на елемента"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Изтриване на елемента"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Действието се извършва или все още не е завършено"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Действието е завършено"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Файлът е качен чрез ролята в заглавието на колоната"
+
+msgid "editor.submission.introduction"
+msgstr ""
+"При подаване на материали редакторът, след като прегледа изпратените "
+"файлове, избира подходящото действие (което включва уведомяване на автора): "
+"Изпращане за вътрешна рецензия (включва избор на файлове за вътрешна "
+"рецензия); Изпращане за външна рецензия (включва избор на файлове за външна "
+"рецензия); Приемане на изпратените материали (включва избор на файлове за "
+"редакционния етап); или Отказване на изпратените материали (изпращане към "
+"архив)."
