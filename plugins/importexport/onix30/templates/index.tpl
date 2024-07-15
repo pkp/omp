@@ -67,6 +67,9 @@
 								</div>
 							</template>
 						</submissions-list-panel>
+						{fbvFormSection list="true"}
+							{fbvElement type="checkbox" id="validation" label="plugins.importexport.common.validation" checked=$validation|default:true}
+						{/fbvFormSection}
 						{fbvFormSection}
 							<pkp-button :disabled="!components.submissions.itemsMax" @click="toggleSelectAll">
 								<template v-if="components.submissions.itemsMax && selectedSubmissions.length >= components.submissions.itemsMax">

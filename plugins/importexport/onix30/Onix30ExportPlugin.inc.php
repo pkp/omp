@@ -109,19 +109,22 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 				$json = new JSONMessage(true);
 				$json->setEvent('addTab', array(
 					'title' => __('plugins.importexport.native.results'),
-					'url' => $request->url(null, null, null, array('plugin', $this->getName(), 'export'), array('selectedSubmissions' => $request->getUserVar('selectedSubmissions'), 'csrfToken' => $request->getSession()->getCSRFToken())),
+					'url' => $request->url(null, null, null, array('plugin', $this->getName(), 'export'), array('selectedSubmissions' => $request->getUserVar('selectedSubmissions'), 'validation' => $request->getUserVar('validation'), 'csrfToken' => $request->getSession()->getCSRFToken())),
 				));
 				header('Content-Type: application/json');
 				return $json->getString();
 			case 'export':
 				$onixDeployment = new Onix30ExportDeployment($context, $user);
 
+				$noValidation = !$request->getUserVar('validation');
+
 				$exportXml = $this->exportSubmissions(
 					(array) $request->getUserVar('selectedSubmissions'),
 					$context,
 					$user,
-					$onixDeployment
-				);
+					$onixDeployment,
+					$noValidation
+			);
 
 				$problems = $onixDeployment->getWarningsAndErrors();
 				$foundErrors = $onixDeployment->isProcessFailed();
@@ -180,7 +183,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	 * @param $onixDeployment Onix30ExportDeployment
 	 * @return string XML contents representing the supplied submission IDs.
 	 */
-	function exportSubmissions($submissionIds, $context, $user, $onixDeployment) {
+	function exportSubmissions($submissionIds, $context, $user, $onixDeployment, $noValidation) {
 		import('lib.pkp.classes.metadata.MetadataTypeDescription');
 
 		$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
@@ -189,6 +192,8 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		$nativeExportFilters = $filterDao->getObjectsByGroup('monographs=>onix30-xml');
 		assert(count($nativeExportFilters) == 1); // Assert only a single serialization filter
 		$exportFilter = array_shift($nativeExportFilters);
+
+		if ($noValidation) $exportFilter->setNoValidation($noValidation);
 
 		$exportFilter->setDeployment($onixDeployment);
 		$submissions = array();
@@ -216,7 +221,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	}
 
 	/**
-	 * Create file given it's name and content
+	 * Create file given its name and content
 	 *
 	 * @param string $filename
 	 * @param ?DateTime $fileContent
