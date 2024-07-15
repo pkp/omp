@@ -158,6 +158,10 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 			if ($pubId) {
 				$dc11Description->addStatement('dc:identifier', $pubId);
 			}
+			$publicationPubId = $plugin->getPubId($publication);
+			if ($publicationPubId) {
+				$dc11Description->addStatement('dc:relation', $publicationPubId);
+			}
 		}
 
 		// Identifier: others
