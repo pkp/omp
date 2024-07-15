@@ -166,7 +166,12 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             if ($pubId) {
                 $dc11Description->addStatement('dc:identifier', $pubId);
             }
+            $publicationPubId = $plugin->getPubId($publication);
+            if ($publicationPubId) {
+                $dc11Description->addStatement('dc:relation', $publicationPubId);
+            }
         }
+
         $context = $request->getContext();
         if (!$context) {
             $contextDao = Application::getContextDAO();
@@ -178,14 +183,12 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             if ($doi) {
                 $dc11Description->addStatement('dc:identifier', $doi);
             }
-        }
-        if ($context->areDoisEnabled()) {
-            $doi = $publication->getData('doiObject');
-            if ($doi) {
-                $dc11Description->addStatement('dc:relation', $doi->getData('doi'));
+            $publicationDoi = $publication->getData('doiObject');
+            if ($publicationDoi) {
+                $dc11Description->addStatement('dc:relation', $publicationDoi->getData('doi'));
             }
         }
-        
+
         // Identifier: others
         $identificationCodeFactory = $publicationFormat->getIdentificationCodes();
         while ($identificationCode = $identificationCodeFactory->next()) {
