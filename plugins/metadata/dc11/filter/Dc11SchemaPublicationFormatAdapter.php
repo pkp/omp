@@ -164,6 +164,11 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             if ($pubId) {
                 $dc11Description->addStatement('dc:identifier', $pubId);
             }
+            $publicationPubId = $plugin->getPubId($publication);
+            if ($publicationPubId) {
+                $dc11Description->addStatement('dc:relation', $publicationPubId->getData('doi'));
+            }
+
         }
         $context = $request->getContext();
         if (!$context) {
@@ -175,6 +180,10 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             $doi = $publicationFormat->getDoi();
             if ($doi) {
                 $dc11Description->addStatement('dc:identifier', $doi);
+            }
+            $publicationDoi = $publication->getData('doiObject');
+            if ($publicationDoi) {
+                $dc11Description->addStatement('dc:relation', $publicationDoi->getData('doi'));
             }
         }
 
