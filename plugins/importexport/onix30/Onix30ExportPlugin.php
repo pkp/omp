@@ -133,14 +133,16 @@ class Onix30ExportPlugin extends ImportExportPlugin
                     $request,
                     __('plugins.importexport.native.export.submissions.results'),
                     'exportSubmissions',
-                    ['selectedSubmissions' => $request->getUserVar('selectedSubmissions')]
+                    ['selectedSubmissions' => $request->getUserVar('selectedSubmissions'), 'validation' => $request->getUserVar('validation')]
                 );
 
                 return $tab;
             case 'exportSubmissions':
                 $submissionIds = (array) $request->getUserVar('selectedSubmissions');
 
-                $this->getExportSubmissionsDeployment($submissionIds, $this->_childDeployment);
+                $noValidation = $request->getUserVar('validation') ? ['noValidation' => 0] : ['noValidation' => 1];
+
+                $this->getExportSubmissionsDeployment($submissionIds, $this->_childDeployment, $noValidation);
 
                 $result = $this->getExportTemplateResult($this->getDeployment(), $templateMgr, 'submissions');
 
