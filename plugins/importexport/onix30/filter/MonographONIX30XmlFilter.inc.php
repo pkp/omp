@@ -364,7 +364,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		}
 
 		if (sizeof($authors) == 0) { // this will probably never happen, but include the possibility.
-			$descDetailNode->appendChild($this->_buildTextNode($doc, 'NoContributor', '')); // empty state of fact.
+			$descDetailNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'NoContributor')); // empty state of fact.
 		}
 
 		/* --- Add Language elements --- */
