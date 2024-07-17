@@ -250,22 +250,21 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
 
         /* --- Collection information, first for series and then for product --- */
 
-        $seriesCollectionNode = $doc->createElementNS($deployment->getNamespace(), 'Collection');
-        $seriesCollectionNode->appendChild($this->_buildTextNode($doc, 'CollectionType', '10')); // publisher series.
-        $descDetailNode->appendChild($seriesCollectionNode);
-
-        $seriesTitleDetailNode = $doc->createElementNS($deployment->getNamespace(), 'TitleDetail');
-        $seriesTitleDetailNode->appendChild($this->_buildTextNode($doc, 'TitleType', '01'));
-        $seriesCollectionNode->appendChild($seriesTitleDetailNode);
-
-        $titleElementNode = $doc->createElementNS($deployment->getNamespace(), 'TitleElement');
-        $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleElementLevel', '02')); // Collection level title
-        $seriesTitleDetailNode->appendChild($titleElementNode);
-
         /* --- Series information, if this monograph is part of one. --- */
         $seriesId = $submission->getCurrentPublication()->getData('seriesId');
         $series = $seriesId ? Repo::section()->get($seriesId) : null;
         if ($series != null) {
+            $seriesCollectionNode = $doc->createElementNS($deployment->getNamespace(), 'Collection');
+            $seriesCollectionNode->appendChild($this->_buildTextNode($doc, 'CollectionType', '10')); // publisher series.
+
+            $seriesTitleDetailNode = $doc->createElementNS($deployment->getNamespace(), 'TitleDetail');
+            $seriesTitleDetailNode->appendChild($this->_buildTextNode($doc, 'TitleType', '01'));
+            $seriesCollectionNode->appendChild($seriesTitleDetailNode);
+
+            $titleElementNode = $doc->createElementNS($deployment->getNamespace(), 'TitleElement');
+            $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleElementLevel', '02')); // Collection level title
+            $seriesTitleDetailNode->appendChild($titleElementNode);
+
             if ($submission->getCurrentPublication()->getData('seriesPosition')) {
                 $titleElementNode->appendChild($this->_buildTextNode($doc, 'PartNumber', $submission->getCurrentPublication()->getData('seriesPosition')));
             }
@@ -275,6 +274,8 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
             } else {
                 if ($series->getLocalizedPrefix() != '') {
                     $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $series->getLocalizedPrefix()));
+                } else {
+                    $titleElementNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'NoPrefix'));
                 }
 
                 $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $series->getLocalizedTitle(false)));
@@ -283,7 +284,10 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
             if ($series->getLocalizedSubtitle() != '') {
                 $titleElementNode->appendChild($this->_buildTextNode($doc, 'Subtitle', $series->getLocalizedSubtitle()));
             }
+        } else {
+            $seriesCollectionNode = $doc->createElementNS($deployment->getNamespace(), 'NoCollection');
         }
+        $descDetailNode->appendChild($seriesCollectionNode);
 
         /* --- and now product level info --- */
 
@@ -302,7 +306,10 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         } else {
             if ($publication->getLocalizedData('prefix')) {
                 $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $publication->getLocalizedData('prefix')));
+            } else {
+                $titleElementNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'NoPrefix'));
             }
+
             $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', strip_tags($publication->getLocalizedData('title'))));
         }
 
@@ -356,7 +363,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         }
 
         if (sizeof($authors) == 0) { // this will probably never happen, but include the possibility.
-            $descDetailNode->appendChild($this->_buildTextNode($doc, 'NoContributor', '')); // empty state of fact.
+            $descDetailNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'NoContributor')); // empty state of fact.
         }
 
         /* --- Add Language element --- */
@@ -391,20 +398,20 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
             unset($extentNode);
         }
 
-
         /* --- Add Subject elements --- */
 
-        $subjectNode = $doc->createElementNS($deployment->getNamespace(), 'Subject');
-        $mainSubjectNode = $doc->createElementNS($deployment->getNamespace(), 'MainSubject'); // Always empty as per 3.0 spec.
-        $subjectNode->appendChild($mainSubjectNode);
-        $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeIdentifier', '12')); // 12 is BIC subject category code list.
-        $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeVersion', '2')); // Version 2 of ^^
-
         if ($publication->getData('subjects')) {
+            $subjectNode = $doc->createElementNS($deployment->getNamespace(), 'Subject');
+            $mainSubjectNode = $doc->createElementNS($deployment->getNamespace(), 'MainSubject'); // Always empty as per 3.0 spec.
+
+            $subjectNode->appendChild($mainSubjectNode);
+            $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeIdentifier', '12')); // 12 is BIC subject category code list.
+            $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeVersion', '2')); // Version 2 of ^^
+
             $allSubjects = ($publication->getData('subjects')[$publication->getData('locale')]);
             $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectCode', trim(join(', ', $allSubjects))));
+            $descDetailNode->appendChild($subjectNode);
         }
-        $descDetailNode->appendChild($subjectNode);
 
         if ($publication->getData('keywords')) {
             $allKeywords = ($publication->getData('keywords')[$publication->getData('locale')]);
@@ -516,7 +523,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
             $submissionBestId = $publication->getData('urlPath');
         }
 
-        $websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', $submissionBestId)));
+        $websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', [$submissionBestId])));
 
         /* --- Publishing Dates --- */
 
@@ -542,34 +549,48 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         $allSalesRights = $publicationFormat->getSalesRights();
         $salesRightsROW = null;
         while ($salesRights = $allSalesRights->next()) {
-            if (!$salesRights->getROWSetting()) {
-                $salesRightsNode = $doc->createElementNS($deployment->getNamespace(), 'SalesRights');
-                $salesRightsNode->appendChild($this->_buildTextNode($doc, 'SalesRightsType', $salesRights->getType()));
+            $salesRightsNode = $doc->createElementNS($deployment->getNamespace(), 'SalesRights');
+            $publishingDetailNode->appendChild($salesRightsNode);
+            $salesRightsNode->appendChild($this->_buildTextNode($doc, 'SalesRightsType', $salesRights->getType()));
 
-                // now do territories and countries.
-                $territoryNode = $doc->createElementNS($deployment->getNamespace(), 'Territory');
+            // now do territories and countries.
+            $territoryNode = $doc->createElementNS($deployment->getNamespace(), 'Territory');
+            $salesRightsNode->appendChild($territoryNode);
 
-                if (sizeof($salesRights->getRegionsIncluded()) > 0 && sizeof($salesRights->getCountriesExcluded()) > 0) {
-                    $territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsIncluded', trim(join(' ', $salesRights->getRegionsIncluded()))));
-                    $territoryNode->appendChild($this->_buildTextNode($doc, 'CountriesExcluded', trim(join(' ', $salesRights->getCountriesExcluded()))));
-                } elseif (sizeof($salesRights->getCountriesIncluded()) > 0) {
-                    $territoryNode->appendChild($this->_buildTextNode($doc, 'CountriesIncluded', trim(join(' ', $salesRights->getCountriesIncluded()))));
-                }
+            $salesCountriesIncluded = sizeof($salesRights->getCountriesIncluded()) > 0;
+            $salesRegionsIncluded = sizeof($salesRights->getRegionsIncluded()) > 0;
+            $salesCountriesExcluded = sizeof($salesRights->getCountriesExcluded()) > 0;
+            $salesRegionsExcluded = sizeof($salesRights->getRegionsExcluded()) > 0;
 
-                if (sizeof($salesRights->getRegionsExcluded()) > 0) {
+            if ($salesRights->getROWSetting()) {
+                $territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsIncluded', 'WORLD'));
+                $salesRightsROW = $salesRights;
+            } elseif ($salesCountriesIncluded) {
+                $territoryNode->appendChild($this->_buildTextNode($doc, 'CountriesIncluded', trim(join(' ', $salesRights->getCountriesIncluded()))));
+                if (!in_array('WORLD', $salesRights->getRegionsIncluded())) {
+                    if ($salesRegionsIncluded) {
+                        $territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsIncluded', trim(join(' ', $salesRights->getRegionsIncluded()))));
+                    }
+                    if ($salesRegionsExcluded) {
+                        $territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsExcluded', trim(join(' ', $salesRights->getRegionsExcluded()))));
+                    }
+                } elseif ($salesRegionsExcluded) {
                     $territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsExcluded', trim(join(' ', $salesRights->getRegionsExcluded()))));
                 }
-
-                // Include territory and sales rights if the territory isn't empty
-                if ($territoryNode->firstElementChild) {
-                    $salesRightsNode->appendChild($territoryNode);
-                    $publishingDetailNode->appendChild($salesRightsNode);
-                } else {
-                    $deployment->addWarning(Application::ASSOC_TYPE_MONOGRAPH, $deployment->getSubmission()->getId(), __('plugins.importexport.common.error.salesRightRequiresTerritory'));
+            } elseif ($salesRegionsIncluded) {
+                $territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsIncluded', trim(join(' ', $salesRights->getRegionsIncluded()))));
+                if (in_array('WORLD', $salesRights->getRegionsIncluded())) {
+                    if ($salesCountriesExcluded) {
+                        $territoryNode->appendChild($this->_buildTextNode($doc, 'CountriesExcluded', trim(join(' ', $salesRights->getCountriesExcluded()))));
+                    }
+                    if ($salesRegionsExcluded) {
+                        $territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsExcluded', trim(join(' ', $salesRights->getRegionsExcluded()))));
+                    }
                 }
-            } else { // found the SalesRights object that is assigned 'rest of world'.
-                $salesRightsROW = $salesRights; // stash this for later since it always goes last.
             }
+
+            unset($territoryNode);
+            unset($salesRightsNode);
             unset($salesRights);
         }
         if ($salesRightsROW != null) {
@@ -590,20 +611,33 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
 
             $territoryNode = $doc->createElementNS($deployment->getNamespace(), 'Territory');
 
-            if (sizeof($market->getCountriesIncluded()) > 0) {
+            $marketCountriesIncluded = sizeof($market->getCountriesIncluded()) > 0;
+            $marketRegionsIncluded = sizeof($market->getRegionsIncluded()) > 0;
+            $marketCountriesExcluded = sizeof($market->getCountriesExcluded()) > 0;
+            $marketRegionsExcluded = sizeof($market->getRegionsExcluded()) > 0;
+
+            if ($marketCountriesIncluded) {
                 $territoryNode->appendChild($this->_buildTextNode($doc, 'CountriesIncluded', trim(join(' ', $market->getCountriesIncluded()))));
-            }
-
-            if (sizeof($market->getRegionsIncluded()) > 0) {
+                if (!in_array('WORLD', $market->getRegionsIncluded())) {
+                    if ($marketRegionsIncluded) {
+                        $territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsIncluded', trim(join(' ', $market->getRegionsIncluded()))));
+                    }
+                    if ($marketRegionsExcluded) {
+                        $territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsExcluded', trim(join(' ', $market->getRegionsExcluded()))));
+                    }
+                } elseif ($marketRegionsExcluded) {
+                    $territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsExcluded', trim(join(' ', $market->getRegionsExcluded()))));
+                }
+            } elseif ($marketRegionsIncluded) {
                 $territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsIncluded', trim(join(' ', $market->getRegionsIncluded()))));
-            }
-
-            if (sizeof($market->getCountriesExcluded()) > 0) {
-                $territoryNode->appendChild($this->_buildTextNode($doc, 'CountriesExcluded', trim(join(' ', $market->getCountriesExcluded()))));
-            }
-
-            if (sizeof($market->getRegionsExcluded()) > 0) {
-                $territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsExcluded', trim(join(' ', $market->getRegionsExcluded()))));
+                if (in_array('WORLD', $market->getRegionsIncluded())) {
+                    if ($marketCountriesExcluded) {
+                        $territoryNode->appendChild($this->_buildTextNode($doc, 'CountriesExcluded', trim(join(' ', $market->getCountriesExcluded()))));
+                    }
+                    if ($marketRegionsExcluded) {
+                        $territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsExcluded', trim(join(' ', $market->getRegionsExcluded()))));
+                    }
+                }
             }
 
             // Include territory if it's not empty
@@ -728,8 +762,14 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
             $priceNode = $doc->createElementNS($deployment->getNamespace(), 'Price');
             $supplyDetailNode->appendChild($priceNode);
 
+            $excludeTaxNode = false;
+
             if ($market->getPriceTypeCode() != '') {
                 $priceNode->appendChild($this->_buildTextNode($doc, 'PriceType', $market->getPriceTypeCode()));
+                $priceTypeTaxEx = ['02', '04', '07', '09', '12', '14', '17', '22', '24', '27', '34', '42']; // Price type codes that include tax
+                if (in_array($market->getPriceTypeCode(), $priceTypeTaxEx)) {
+                    $excludeTaxNode = true;
+                }
             }
 
             if ($market->getDiscount() != '') {
@@ -741,7 +781,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
 
             $priceNode->appendChild($this->_buildTextNode($doc, 'PriceAmount', $market->getPrice()));
 
-            if ($market->getTaxTypeCode() != '' || $market->getTaxRateCode() != '') {
+            if (!$excludeTaxNode && ($market->getTaxTypeCode() != '' || $market->getTaxRateCode() != '')) {
                 $taxNode = $doc->createElementNS($deployment->getNamespace(), 'Tax');
                 $priceNode->appendChild($taxNode);
 
@@ -750,7 +790,11 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
                 }
                 if ($market->getTaxRateCode()) {
                     $taxNode->appendChild($this->_buildTextNode($doc, 'TaxRateCode', $market->getTaxRateCode()));
+                    if ($market->getTaxRateCode() == 'Z') {
+                        $taxNode->appendChild($this->_buildTextNode($doc, 'TaxRatePercent', '0')); // Zero-rated tax rate type
+                    }
                 }
+                $taxNode->appendChild($this->_buildTextNode($doc, 'TaxableAmount', $market->getPrice())); // Taxable amount defaults to full price
                 unset($taxNode);
             }
 
