@@ -330,20 +330,20 @@ class Chapter extends \PKP\core\DataObject
     /**
      * Is a landing page enabled or disabled.
      *
-     * @return null|int
+     * @return null|bool
      */
     public function isPageEnabled()
     {
-        return $this->getData('isPageEnabled');
+        return $this->getData('isPageEnabled') || !empty($this->getDoi());
     }
 
     /**
      * Enable or disable a landing page.
      *
      */
-    public function setPageEnabled(?int $enable): void
+    public function setPageEnabled(?bool $enable): void
     {
-        $this->setData('isPageEnabled', $enable);
+        $this->setData('isPageEnabled', $enable || !empty($this->getDoi()));
     }
 
     /**

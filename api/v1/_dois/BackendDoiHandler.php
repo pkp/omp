@@ -68,6 +68,9 @@ class BackendDoiHandler extends \PKP\API\v1\_dois\PKPBackendDoiHandler
         if (!$chapter) {
             return $response->withStatus(404)->withJsonError('api.404.resourceNotFound');
         }
+        if (!$chapter->isPageEnabled() && empty($chapter->getDoi())) {
+            return $response->withStatus(403)->withJsonError('api.dois.403.editItemDoiCantBeAssigned');
+        }
 
         $publication = Repo::publication()->get($chapter->getData('publicationId'));
         $submission = Repo::submission()->get($publication->getData('submissionId'));

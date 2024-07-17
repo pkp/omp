@@ -57,6 +57,9 @@
 
 	{fbvFormSection list=true title="publication.chapter.landingPage" for="customExtras"}
 	{fbvElement type="checkbox" name="isPageEnabled" id="isPageEnabled" checked=$isPageEnabled|compare:true label="publication.chapter.hasLandingPage" value="1" translate="true"}
+	{if $doi}
+		<div class="pkpFormField__description">{translate key="publication.chapter.landingPage.doi.description"}</div>
+	{/if}
 	{/fbvFormSection}
 
 	{fbvFormSection list=true title="submission.submit.addAuthor"}

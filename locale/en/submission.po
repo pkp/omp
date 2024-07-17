@@ -462,6 +462,9 @@ msgstr "Production Discussions"
 msgid "publication.chapter.landingPage"
 msgstr "Chapter Page"
 
+msgid "publication.chapter.landingPage.doi.description"
+msgstr "(This chapter will always be shown on its own page because it has a DOI.)"
+
 msgid "publication.chapter.hasLandingPage"
 msgstr ""
 "Show this chapter on its own page and link to that page from the book's "
