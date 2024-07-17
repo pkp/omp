@@ -12,7 +12,7 @@ describe('Statistics Tests', function() {
 		var today = new Date().toISOString().split('T')[0];
 		var daysAgo90 = (d => new Date(d.setDate(d.getDate()-91)) )(new Date).toISOString().split('T')[0];
 		cy.exec('php lib/pkp/tools/generateTestMetrics.php 1 ' + daysAgo90 + ' ' + today).then((result) => {
-			expect(result.stdout).to.match(/\d+ download records added for \d+ submissions/);
+			expect(result.stdout).to.match(/\d+ view and \d+ download records added for \d+ submissions/);
 		});
 	});
 
