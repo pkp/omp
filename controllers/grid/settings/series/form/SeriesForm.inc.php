@@ -112,25 +112,6 @@ class SeriesForm extends PKPSectionForm {
 			}
 		}
 
-		// Validate if it can be inactive
-		if ($this->getData('isInactive')) {
-			$request = Application::get()->getRequest();
-			$context = $request->getContext();
-			$seriesId = $this->getSeriesId();
-
-			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-			$seriesIterator = $seriesDao->getByContextId($context->getId());
-			$activeSeriesCount = 0;
-			while ($series = $seriesIterator->next()) {
-				if (!$series->getIsInactive() && ($seriesId != $series->getId())) {
-					$activeSeriesCount++;
-				}
-			}
-			if ($activeSeriesCount < 1 && $this->getData('isInactive')) {
-				$this->addError('isInactive', __('manager.series.confirmDeactivateSeries.error'));
-			}
-		}
-
 		return parent::validate($callHooks);
 	}
 

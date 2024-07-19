@@ -256,10 +256,6 @@ class SeriesGridHandler extends SetupGridHandler {
 					$activeSeriesCount++;
 				}
 			}
-			if ($activeSeriesCount < 1) {
-				return new JSONMessage(false, __('manager.series.confirmDeactivateSeries.error'));
-				return false;
-			}
 
 			$seriesDao->deleteObject($series);
 			return DAO::getDataChangedEvent($series->getId());
@@ -284,33 +280,18 @@ class SeriesGridHandler extends SetupGridHandler {
 
 		// Get series object
 		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-		// Validate if it can be inactive
-		$seriesIterator = $seriesDao->getByContextId($context->getId(),null,false);
-		$activeSeriesCount = 0;
-		while ($series = $seriesIterator->next()) {
-			if (!$series->getIsInactive()) {
-				$activeSeriesCount++;
-			}
-		}
-		if ($activeSeriesCount > 1) {
-			$series = $seriesDao->getById($seriesId, $context->getId());
 
-			if ($request->checkCSRF() && isset($series) && !$series->getIsInactive()) {
-				$series->setIsInactive(1);
-				$seriesDao->updateObject($series);
+		$series = $seriesDao->getById($seriesId, $context->getId());
 
-				// Create the notification.
-				$notificationMgr = new NotificationManager();
-				$user = $request->getUser();
-				$notificationMgr->createTrivialNotification($user->getId());
+		if ($request->checkCSRF() && isset($series) && !$series->getIsInactive()) {
+			$series->setIsInactive(1);
+			$seriesDao->updateObject($series);
 
-				return DAO::getDataChangedEvent($seriesId);
-			}
-		} else {
 			// Create the notification.
 			$notificationMgr = new NotificationManager();
 			$user = $request->getUser();
-			$notificationMgr->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_ERROR, array('contents' => __('manager.series.confirmDeactivateSeries.error')));
+			$notificationMgr->createTrivialNotification($user->getId());
+
 			return DAO::getDataChangedEvent($seriesId);
 		}
 
