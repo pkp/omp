@@ -65,3 +65,12 @@ msgstr "Submission: '{$title}' successfully imported."
 msgid "plugins.importexport.csv.import.success.description"
 msgstr ""
 "The import was successful. Successfully-imported items are listed below."
+
+msgid "plugins.importexport.csv.noCategorySelected"
+msgstr "Category '{$category}' does not exist. Unable to add it to this. Exiting."
+
+msgid "plugins.importexport.csv.invalidPdfFilename"
+msgstr "Invalid PDF name for submission '{$title}'."
+
+msgid "plugins.importexport.csv.invalidCoverImageFilename"
+msgstr "Invalid cover image filename for submission '{$title}'"
