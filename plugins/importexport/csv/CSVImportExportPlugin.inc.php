@@ -53,7 +53,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * @copydoc Plugin::getActions()
 	 */
 	function getActions($request, $actionArgs) {
-		return array(); // Not available via the web interface
+		return []; // Not available via the web interface
 	}
 
 	/**
@@ -82,6 +82,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 
 		$filename = array_shift($args);
 		$username = array_shift($args);
+		$basePath = dirname($filename);
 
 		if (!$filename || !$username) {
 			$this->usage($scriptName);
@@ -89,170 +90,326 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 		}
 
 		if (!file_exists($filename)) {
-			echo __('plugins.importexport.csv.fileDoesNotExist', array('filename' => $filename)) . "\n";
+			echo __('plugins.importexport.csv.fileDoesNotExist', ['filename' => $filename]) . "\n";
 			exit();
 		}
 
-		$data = file($filename);
+		$data = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+		if ($data === false) {
+			echo __('plugins.importexport.csv.fileDoesNotExist', ['filename' => $filename]) . "\n";
+			exit();
+		}
+		str_getcsv(array_shift($data)); // Remove column headers in first row
 
 		if (is_array($data) && count($data) > 0) {
 
+			$pressDao = Application::getContextDAO();
+			$genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
+			$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+			$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
+			$publicationDao = DAORegistry::getDAO('PublicationDAO'); /* @var $publicationDao PublicationDAO */
+			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+			$authorDao = DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
+			$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+			import('lib.pkp.classes.submission.SubmissionFile'); // constants.
+			$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
+			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 			$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
+
 			$user = $userDao->getByUsername($username);
 			if (!$user) {
-				echo __('plugins.importexport.csv.unknownUser', array('username' => $username)) . "\n";
+				echo __('plugins.importexport.csv.unknownUser', ['username' => $username]) . "\n";
 				exit();
 			}
 
-			$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
-			$authorDao = DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
-			$pressDao = Application::getContextDAO();
-			$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
-			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-			$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
-			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-			import('lib.pkp.classes.submission.SubmissionFile'); // constants.
-			$genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
-			$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
-
-			foreach ($data as $csvLine) {
+			foreach ($data as $line) {
+				$fields = str_getcsv($line);
 				// Format is:
-				// Press Path, Author string, title, series path, year, is_edited_volume, locale, URL to PDF, doi (optional)
-				list($pressPath, $authorString, $title, $seriesPath, $year, $isEditedVolume, $locale, $pdfUrl, $doi) = preg_split('/\t/', $csvLine);
+				// Press Path, Author string, title, abstract, series path, year, is_edited_volume, locale, URL to PDF, doi (optional), keywords list, subjects list, book cover image path, book cover image alt text, categories list
+				list(
+					$pressPath,
+					$authorString,
+					$title,
+					$abstract,
+					$seriesPath,
+					$year,
+					$isEditedVolume,
+					$locale,
+					$pdfUrl,
+					$doi,
+					$keywords,
+					$subjects,
+					$bookCoverImageName,
+					$bookCoverImageAltText,
+					$categories
+				) = $fields;
 
 				$press = $pressDao->getByPath($pressPath);
 
-				if ($press) {
+				if (!$press) {
+					echo __('plugins.importexport.csv.unknownPress', ['pressPath' => $pressPath]) . "\n";
+					continue;
+				}
 
-					$supportedLocales = $press->getSupportedSubmissionLocales();
-					if (!is_array($supportedLocales) || count($supportedLocales) < 1) $supportedLocales = array($press->getPrimaryLocale());
-					$authorGroup = $userGroupDao->getDefaultByRoleId($press->getId(), ROLE_ID_AUTHOR);
+				$supportedLocales = $press->getSupportedSubmissionLocales();
+				if (!is_array($supportedLocales) || count($supportedLocales) < 1) {
+					$supportedLocales = [$press->getPrimaryLocale()];
+				}
 
-					// we need a Genre for the files.  Assume a key of MANUSCRIPT as a default.
-					$genre = $genreDao->getByKey('MANUSCRIPT', $press->getId());
+				if (!in_array($locale, $supportedLocales)) {
+					echo __('plugins.importexport.csv.unknownLocale', ['locale' => $locale]) . "\n";
+					continue;
+				}
 
-					if (!$genre) {
-						echo __('plugins.importexport.csv.noGenre') . "\n";
+				// we need a Genre for the files.  Assume a key of MANUSCRIPT as a default.
+				$genre = $genreDao->getByKey('MANUSCRIPT', $press->getId());
+				if (!$genre) {
+					echo __('plugins.importexport.csv.noGenre') . "\n";
+					exit();
+				}
+
+				$authorGroup = $userGroupDao->getDefaultByRoleId($press->getId(), ROLE_ID_AUTHOR);
+
+				if (!$authorGroup) {
+					echo __('plugins.importexport.csv.noAuthorGroup', ['press' => $pressPath]) . "\n";
+					continue;
+				}
+
+				$submission = $submissionDao->newDataObject();
+				$submission->setContextId($press->getId());
+				$submission->stampLastActivity();
+				$submission->stampModified();
+				$submission->setStatus(STATUS_PUBLISHED);
+				$submission->setWorkType($isEditedVolume == 1 ? WORK_TYPE_EDITED_VOLUME : WORK_TYPE_AUTHORED_WORK);
+				$submission->setCopyrightNotice($press->getLocalizedSetting('copyrightNotice'), $locale);
+				$submission->setLocale($locale);
+				$submission->setStageId(WORKFLOW_STAGE_ID_PRODUCTION);
+				$submission->setSubmissionProgress(0);
+				$submission->setData('abstract', $abstract, $locale);
+
+				$series = $seriesPath ? $seriesDao->getByPath($seriesPath, $press->getId()) : null;
+				if ($series) {
+					$submission->setSeriesId($series->getId());
+				}
+
+				$submissionId = $submissionDao->insertObject($submission);
+
+				$publication = $publicationDao->newDataObject();
+				$publication->setData('submissionId', $submissionId);
+				$publication->setData('version', 1);
+				$publication->setData('status', STATUS_PUBLISHED);
+				$publication->setData('datePublished', Core::getCurrentDate());
+				$publicationId = $publicationDao->insertObject($publication);
+
+				$submission->setData('currentPublicationId', $publicationId);
+				$submissionDao->updateObject($submission);
+
+				$contactEmail = $press->getContactEmail();
+				$authorsString = trim($authorString, '"'); // remove double quotes if present.
+				$authors = preg_split('/;/', $authorsString);
+				$firstAuthor = true;
+
+				foreach ($authors as $authorString) {
+					// Examine the author string. Best case is: Given1 Family1 <email@address.com>, Given2 Family2 <email@address.com>, etc
+					// But default to press email address based on press path if not present.
+					$givenName = $familyName = $emailAddress = null;
+					$authorString = trim($authorString); // whitespace.
+					if (preg_match('/^([\w.\s]+)\s+([\w\s-]+)?\s*(<([^>]+)>)?$/', $authorString, $matches)) {
+						$givenName = $matches[1]; // Mandatory
+						if (count($matches) > 2) {
+							$familyName = $matches[2];
+						}
+						if (count($matches) == 5) {
+							$emailAddress = $matches[4];
+						} else {
+							$emailAddress = $contactEmail;
+						}
+					}
+					$author = $authorDao->newDataObject();
+					$author->setSubmissionId($submissionId);
+					$author->setUserGroupId($authorGroup->getId());
+					$author->setGivenName($givenName, $locale);
+					$author->setFamilyName($familyName, $locale);
+					$author->setEmail($emailAddress);
+					$insertPrimaryContactId = false;
+
+					if ($firstAuthor) {
+						$author->setPrimaryContact(true);
+						$firstAuthor = false;
+						$insertPrimaryContactId = true;
+					}
+
+
+					$author->setData('publicationId', $publicationId);
+					$authorDao->insertObject($author);
+
+					if ($insertPrimaryContactId) {
+						$publication->setData('primaryContactId', $author->getId());
+					}
+				} // Authors done.
+
+				$publication->setData('abstract', $abstract, $locale);
+				$publication->setData('title', $title, $locale);
+				$publicationDao->updateObject($publication);
+
+				// Submission is done.  Create a publication format for it.
+				$publicationFormat = $publicationFormatDao->newDataObject();
+				$publicationFormat->setData('submissionId', $submissionId);
+				$publicationFormat->setData('publicationId', $publicationId);
+				$publicationFormat->setPhysicalFormat(false);
+				$publicationFormat->setIsApproved(true);
+				$publicationFormat->setIsAvailable(true);
+				$publicationFormat->setProductAvailabilityCode('20'); // ONIX code for Available.
+				$publicationFormat->setEntryKey('DA'); // ONIX code for Digital
+				$publicationFormat->setData('name', 'PDF', $submission->getLocale());
+				$publicationFormat->setSequence(REALLY_BIG_NUMBER);
+
+				$publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
+
+				if ($doi) {
+					$publicationFormatDao->changePubId($publicationFormatId, 'doi', $doi);
+				}
+
+
+				// Create a publication format date for this publication format.
+				$publicationDate = $publicationDateDao->newDataObject();
+				$publicationDate->setDateFormat('05'); // List55, YYYY
+				$publicationDate->setRole('01'); // List163, Publication Date
+				$publicationDate->setDate($year);
+				$publicationDate->setPublicationFormatId($publicationFormatId);
+				$publicationDateDao->insertObject($publicationDate);
+
+				// Submission File.
+				import('lib.pkp.classes.file.FileManager');
+				import('lib.pkp.classes.core.Core');
+				import('classes.file.PublicFileManager');
+
+				// Submission File.
+				$fileManager = new FileManager();
+				$publicFileManager = new PublicFileManager();
+				$extension = $fileManager->parseFileExtension($pdfUrl);
+				$dirNames = Application::getFileDirectories();
+				$submissionDir = sprintf(
+					'%s/%d/%s/%d',
+					str_replace('/', '', $dirNames['context']),
+					$press->getId(),
+					str_replace('/', '', $dirNames['submission']),
+					$submissionId
+				);
+
+				$filePath = $basePath . '/' . 'submissionPdfs/' . $pdfUrl;
+
+				if (!file_exists($filePath) || !is_readable($filePath)) {
+					echo __('plugins.importexport.csv.invalidPdfFilename', ['title' => $title]) . "\n";
+					exit();
+				}
+
+				$mimeType = mime_content_type($filePath);
+
+				/** @var \PKP\services\PKPFileService */
+				$fileService = Services::get('file');
+				$fileId = $fileService->add(
+					$filePath,
+					$submissionDir . '/' . uniqid() . '.' . $extension
+				);
+
+				$submissionFile = $submissionFileDao->newDataObject();
+				$submissionFile->setData('submissionId', $submissionId);
+				$submissionFile->setData('uploaderUserId', $user->getId());
+				$submissionFile->setSubmissionLocale($submission->getLocale());
+				$submissionFile->setGenreId($genre->getId());
+				$submissionFile->setFileStage(SUBMISSION_FILE_PROOF);
+				$submissionFile->setAssocType(ASSOC_TYPE_REPRESENTATION);
+				$submissionFile->setData('assocId', $publicationFormatId);
+				$submissionFile->setData('createdAt', Core::getCurrentDate());
+				$submissionFile->setDateModified(Core::getCurrentDate());
+				$submissionFile->setData('mimetype', $mimeType);
+				$submissionFile->setData('fileId', $fileId);
+				$submissionFile->setData('name', pathinfo($filePath, PATHINFO_FILENAME));
+
+				// Assume open access, no price.
+				$submissionFile->setDirectSalesPrice(0);
+				$submissionFile->setSalesType('openAccess');
+
+				$submissionFileDao->insertObject($submissionFile);
+
+				// Keywords
+				$keywordsList = [$locale => explode(';', $keywords)];
+				if (count($keywordsList[$locale]) > 0) {
+					$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO'); /* @var $submissionKeywordDao SubmissionKeywordDAO */
+					$submissionKeywordDao->insertKeywords($keywordsList, $publicationId);
+				}
+
+				//Subjects
+				$subjectsList = [$locale => explode(";", $subjects)];
+				if (count($subjectsList[$locale]) > 0) {
+					$submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO'); /* @var $submissionKeywordDao SubmissionKeywordDAO */
+					$submissionSubjectDao->insertSubjects($subjectsList, $publicationId);
+				}
+
+				// Book Cover Image
+				$allowedFileTypes = ['gif', 'jpg', 'png', 'webp'];
+				$coverImgExtension = pathinfo(strtolower($bookCoverImageName), PATHINFO_EXTENSION);
+
+				if (!in_array($coverImgExtension, $allowedFileTypes)) {
+					echo __('plugins.importexport.common.error.invalidFileExtension');
+					exit();
+				}
+
+				$coverImagelocale = [];
+				$coverImage = [];
+
+				if ($bookCoverImageName) {
+					$sanitizedCoverImageName = str_replace([' ', '_', ':'], '-', strtolower($bookCoverImageName));
+					$sanitizedCoverImageName = preg_replace("/[^a-z0-9\.\-]+/", '', $sanitizedCoverImageName);
+					$sanitizedCoverImageName = basename($sanitizedCoverImageName);
+
+					$coverImage['uploadName'] = uniqid() . '-' . $sanitizedCoverImageName;
+					$coverImage['altText'] = $bookCoverImageAltText ?? '';
+
+					$srcFilePath = $basePath . '/' . 'coverImages/' . $bookCoverImageName;
+
+					if (!file_exists($srcFilePath) || !is_readable($srcFilePath)) {
+						echo __('plugins.importexport.csv.invalidCoverImageFilename', ['title' => $title]) . "\n";
 						exit();
 					}
-					if (!$authorGroup) {
-						echo __('plugins.importexport.csv.noAuthorGroup', array('press' => $pressPath)) . "\n";
-						continue;
-					}
-					if (in_array($locale, $supportedLocales)) {
-						$submission = $submissionDao->newDataObject();
-						$submission->setContextId($press->getId());
-						$submission->setUserId($user->getId());
-						$submission->stampLastActivity();
-						$submission->setStatus(STATUS_PUBLISHED);
-						$submission->setWorkType($isEditedVolume == 1?WORK_TYPE_EDITED_VOLUME:WORK_TYPE_AUTHORED_WORK);
-						$submission->setCopyrightNotice($press->getLocalizedSetting('copyrightNotice'), $locale);
-						$submission->setLocale($locale);
 
-						$series = $seriesDao->getByPath($seriesPath, $press->getId());
-						if ($series) {
-							$submission->setSeriesId($series->getId());
-						} else {
-							echo __('plugins.importexport.csv.noSeries', array('seriesPath' => $seriesPath)) . "\n";
-						}
+					$coverImageData = file_get_contents($srcFilePath);
+					$coverImageBase64 = base64_encode($coverImageData);
+					$destFilePath = $publicFileManager->getContextFilesPath($press->getId()) . '/' . $coverImage['uploadName'];
+					file_put_contents($destFilePath, base64_decode($coverImageBase64));
 
-						$submissionId = $submissionDao->insertObject($submission);
+					Services::get('publication')->makeThumbnail(
+						$destFilePath,
+						Services::get('publication')->getThumbnailFileName($coverImage['uploadName']),
+						$press->getData('coverThumbnailsMaxWidth'),
+						$press->getData('coverThumbnailsMaxHeight')
+					);
 
-						$contactEmail = $press->getContactEmail();
-						$authorString = trim($authorString, '"'); // remove double quotes if present.
-						$authors = preg_split('/,\s*/', $authorString);
-						$firstAuthor = true;
-						foreach ($authors as $authorString) {
-							// Examine the author string. Best case is: Given1 Family1 <email@address.com>, Given2 Family2 <email@address.com>, etc
-							// But default to press email address based on press path if not present.
-							$givenName = $familyName = $emailAddress = null;
-							$authorString = trim($authorString); // whitespace.
-							if (preg_match('/^(\w+)(\s+\w+)?\s*(<([^>]+)>)?$/', $authorString, $matches)) {
-								$givenName = $matches[1]; // Mandatory
-								if (count($matches) > 2) {
-									$familyName = $matches[2];
-								}
-								if (count($matches) == 5) {
-									$emailAddress = $matches[4];
-								} else {
-									$emailAddress = $contactEmail;
-								}
-							}
-							$author = $authorDao->newDataObject();
-							$author->setSubmissionId($submissionId);
-							$author->setUserGroupId($authorGroup->getId());
-							$author->setGivenName($givenName, $locale);
-							$author->setFamilyName($familyName, $locale);
-							$author->setEmail($emailAddress);
-							if ($firstAuthor) {
-								$author->setPrimaryContact(1);
-								$firstAuthor = false;
-							}
-							$authorDao->insertObject($author);
-						} // Authors done.
+					$coverImagelocale[$locale] = $coverImage;
 
-						$submission->setTitle($title, $locale);
-						$submissionDao->updateObject($submission);
-
-						// Submission is done.  Create a publication format for it.
-						$publicationFormat = $publicationFormatDao->newDataObject();
-						$publicationFormat->setPhysicalFormat(false);
-						$publicationFormat->setIsApproved(true);
-						$publicationFormat->setIsAvailable(true);
-						$publicationFormat->setSubmissionId($submissionId);
-						$publicationFormat->setProductAvailabilityCode('20'); // ONIX code for Available.
-						$publicationFormat->setEntryKey('DA'); // ONIX code for Digital
-						$publicationFormat->setData('name', 'PDF', $submission->getLocale());
-						$publicationFormat->setSequence(REALLY_BIG_NUMBER);
-						$publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
-
-						if ($doi) {
-							$publicationFormat->setStoredPubId('doi', $doi);
-						}
-
-						$publicationFormatDao->updateObject($publicationFormat);
-
-						// Create a publication format date for this publication format.
-						$publicationDate = $publicationDateDao->newDataObject();
-						$publicationDate->setDateFormat('05'); // List55, YYYY
-						$publicationDate->setRole('01'); // List163, Publication Date
-						$publicationDate->setDate($year);
-						$publicationDate->setPublicationFormatId($publicationFormatId);
-						$publicationDateDao->insertObject($publicationDate);
-
-						// Submission File.
-						import('lib.pkp.classes.file.TemporaryFileManager');
-						import('lib.pkp.classes.file.FileManager');
-
-						$temporaryFileManager = new TemporaryFileManager();
-						$temporaryFilename = tempnam($temporaryFileManager->getBasePath(), 'remote');
-						$temporaryFileManager->copyFile($pdfUrl, $temporaryFilename);
-						$submissionFile = $submissionFileDao->newDataObject();
-						$submissionFile->setSubmissionId($submissionId);
-						$submissionFile->setSubmissionLocale($submission->getLocale());
-						$submissionFile->setGenreId($genre->getId());
-						$submissionFile->setFileStage(SUBMISSION_FILE_PROOF);
-						$submissionFile->setDateUploaded(Core::getCurrentDate());
-						$submissionFile->setDateModified(Core::getCurrentDate());
-						$submissionFile->setAssocType(ASSOC_TYPE_REPRESENTATION);
-						$submissionFile->setAssocId($publicationFormatId);
-						$submissionFile->setFileType('application/pdf');
-
-						// Assume open access, no price.
-						$submissionFile->setDirectSalesPrice(0);
-						$submissionFile->setSalesType('openAccess');
-
-						$submissionFileDao->insertObject($submissionFile, $temporaryFilename);
-						$fileManager = new FileManager();
-						$fileManager->deleteByPath($temporaryFilename);
-
-						echo __('plugins.importexport.csv.import.submission', array('title' => $title)) . "\n";
-					} else {
-						echo __('plugins.importexport.csv.unknownLocale', array('locale' => $locale)) . "\n";
-					}
-				} else {
-					echo __('plugins.importexport.csv.unknownPress', array('pressPath' => $pressPath)) . "\n";
+					$publication->setData('coverImage', $coverImagelocale);
+					$publicationDao->updateObject($publication);
 				}
+
+				// Categories
+				$categoriesList = explode(';', $categories);
+				if (!empty($categoriesList)) {
+					$categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
+
+					foreach ($categoriesList as $categoryTitle) {
+						$category = $categoryDao->getByTitle(trim($categoryTitle), $press->getId(), $locale);
+
+						if (!$category) {
+							echo __('plugins.importexport.csv.noCategorySelected', ['category' => trim($categoryTitle)]) . "\n";
+							exit();
+						}
+
+						$categoryDao->insertPublicationAssignment($category->getId(), $publicationId);
+					}
+				}
+
+				echo __('plugins.importexport.csv.import.submission', ['title' => $title]) . "\n";
 			}
 		}
 	}
@@ -261,11 +418,9 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * Display the command-line usage information
 	 */
 	function usage($scriptName) {
-		echo __('plugins.importexport.csv.cliUsage', array(
+		echo __('plugins.importexport.csv.cliUsage', [
 			'scriptName' => $scriptName,
 			'pluginName' => $this->getName()
-		)) . "\n";
+		]) . "\n";
 	}
 }
-
-
