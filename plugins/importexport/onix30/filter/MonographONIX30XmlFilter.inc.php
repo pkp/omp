@@ -245,6 +245,29 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 			$descDetailNode->appendChild($this->_buildTextNode($doc, 'EpubTechnicalProtection', $publicationFormat->getTechnicalProtectionCode()));
 		}
 
+		/* --- License information --- */
+
+		$publication = $submission->getCurrentPublication();
+
+		if ($publication->isCCLicense()) {
+			AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION); // For CC License Names
+			$licenseOpts = Application::getCCLicenseOptions();
+			$licenseUrl = $publication->getData('licenseUrl');
+			if (array_key_exists($licenseUrl, $licenseOpts)) {
+				$licenseName = (__($licenseOpts[$licenseUrl], [], $publication->getData('locale')));
+
+				$epubLicenseNode = $doc->createElementNS($deployment->getNamespace(), 'EpubLicense');
+				$descDetailNode->appendChild($epubLicenseNode);
+				$epubLicenseNode->appendChild($this->_buildTextNode($doc, 'EpubLicenseName', $licenseName));
+
+				$epubLicenseExpressionNode = $doc->createElementNS($deployment->getNamespace(), 'EpubLicenseExpression');
+				$epubLicenseNode->appendChild($epubLicenseExpressionNode);
+
+				$epubLicenseExpressionNode->appendChild($this->_buildTextNode($doc, 'EpubLicenseExpressionType', '02'));
+				$epubLicenseExpressionNode->appendChild($this->_buildTextNode($doc, 'EpubLicenseExpressionLink', $licenseUrl));
+			}
+		}
+
 		/* --- Collection information, first for series and then for product --- */
 
 		/* --- Series information, if this monograph is part of one. --- */
@@ -299,7 +322,6 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 
 		$productTitleDetailNode->appendChild($titleElementNode);
 
-		$publication = $submission->getCurrentPublication();
 		if (!$publication->getLocalizedData('prefix') || !$publication->getLocalizedData('title')) {
 			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim($publication->getLocalizedData('prefix') ?? $publication->getLocalizedTitle())));
 		} else {
