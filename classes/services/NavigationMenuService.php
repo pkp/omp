@@ -49,7 +49,7 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
      */
     public function getMenuItemTypesCallback($hookName, $args)
     {
-        $types = & $args[0];
+        $types = &$args[0];
 
         $ompTypes = [
             self::NMI_TYPE_CATALOG => [
@@ -64,7 +64,7 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
 
         $request = Application::get()->getRequest();
         $context = $request->getContext();
-        $contextId = $context ? $context->getId() : Application::CONTEXT_ID_NONE;
+        $contextId = $context?->getId() ?? Application::SITE_CONTEXT_ID;
 
         $series = Repo::section()
             ->getCollector()
@@ -109,7 +109,7 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
      */
     public function getMenuItemCustomEditTemplatesCallback($hookName, $args)
     {
-        $templates = & $args[0];
+        $templates = &$args[0];
 
         $ompTemplates = [
             self::NMI_TYPE_CATEGORY => [
@@ -131,7 +131,7 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
      */
     public function getDisplayStatusCallback($hookName, $args)
     {
-        $navigationMenuItem = & $args[0];
+        $navigationMenuItem = &$args[0];
 
         $request = Application::get()->getRequest();
         $dispatcher = $request->getDispatcher();
@@ -140,7 +140,7 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
         $isUserLoggedIn = Validation::isLoggedIn();
         $isUserLoggedInAs = (bool) Validation::loggedInAs();
         $context = $request->getContext();
-        $contextId = $context ? $context->getId() : Application::CONTEXT_ID_NONE;
+        $contextId = $context?->getId() ?? Application::SITE_CONTEXT_ID;
 
         $this->transformNavMenuItemTitle($templateMgr, $navigationMenuItem);
 
