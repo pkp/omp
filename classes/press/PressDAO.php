@@ -64,12 +64,11 @@ class PressDAO extends ContextDAO
     /**
      * Delete the public IDs of all publishing objects in a press.
      *
-     * @param int $pressId
      * @param string $pubIdType One of the NLM pub-id-type values or
      * 'other::something' if not part of the official NLM list
      * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
      */
-    public function deleteAllPubIds($pressId, $pubIdType)
+    public function deleteAllPubIds(int $pressId, $pubIdType)
     {
         $pubObjectDaos = ['ChapterDAO', 'PublicationFormatDAO'];
         foreach ($pubObjectDaos as $daoName) {
@@ -87,7 +86,6 @@ class PressDAO extends ContextDAO
      * Check whether the given public ID exists for any publishing
      * object in a press.
      *
-     * @param int $pressId
      * @param string $pubIdType One of the NLM pub-id-type values or
      * 'other::something' if not part of the official NLM list
      * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
@@ -100,7 +98,7 @@ class PressDAO extends ContextDAO
      * @return bool
      */
     public function anyPubIdExists(
-        $pressId,
+        int $pressId,
         $pubIdType,
         $pubId,
         $assocType = MetadataTypeDescription::ASSOC_TYPE_ANY,

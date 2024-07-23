@@ -33,7 +33,7 @@ class InformationHandler extends Handler
         $this->validate(null, $request);
         $press = $request->getPress();
         if ($press == null) {
-            $request->redirect('index');
+            $request->redirect(Application::SITE_CONTEXT_PATH);
         }
 
         $this->setupTemplate($request);

@@ -31,8 +31,7 @@ use PKP\file\TemporaryFileManager;
 
 class SeriesForm extends PKPSectionForm
 {
-    /** @var int $_pressId */
-    public $_pressId;
+    public int $_pressId;
 
     /**
      * Constructor.

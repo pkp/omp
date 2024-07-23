@@ -58,9 +58,8 @@ class URNSettingsForm extends Form
      * Constructor
      *
      * @param \APP\plugins\pubIds\urn\URNPubIdPlugin $plugin
-     * @param int $contextId
      */
-    public function __construct($plugin, $contextId)
+    public function __construct($plugin, int $contextId)
     {
         $this->_contextId = $contextId;
         $this->_plugin = $plugin;

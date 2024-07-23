@@ -42,8 +42,7 @@ class PressOAI extends OAI
     /** @var Press $press associated press object */
     public $press;
 
-    /** @var int $pressId null if no press */
-    public $pressId;
+    public ?int $pressId;
 
     /** @var OAIDAO $dao DAO for retrieving OAI records/tokens from database */
     public $dao;
@@ -99,11 +98,10 @@ class PressOAI extends OAI
      * Get press ID and series ID corresponding to a set specifier.
      *
      * @param string $setSpec
-     * @param int $pressId
      *
      * @return array
      */
-    public function setSpecToSeriesId($setSpec, $pressId = null)
+    public function setSpecToSeriesId($setSpec, ?int $pressId = null)
     {
         $tmpArray = preg_split('/:/', $setSpec);
         if (count($tmpArray) == 1) {

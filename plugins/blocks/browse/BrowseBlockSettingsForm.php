@@ -20,9 +20,6 @@ use PKP\form\Form;
 
 class BrowseBlockSettingsForm extends Form
 {
-    //
-    // Private properties
-    //
     /** @var int press ID */
     public $_pressId;
 
@@ -30,16 +27,12 @@ class BrowseBlockSettingsForm extends Form
     public $_plugin;
 
 
-    //
-    // Constructor
-    //
     /**
      * Constructor
      *
      * @param BrowseBlockPlugin $plugin
-     * @param int $pressId
      */
-    public function __construct($plugin, $pressId)
+    public function __construct($plugin, int $pressId)
     {
         $this->setPressId($pressId);
         $this->setPlugin($plugin);
@@ -53,25 +46,18 @@ class BrowseBlockSettingsForm extends Form
         $this->setData('pluginJavaScriptPath', $plugin->getPluginPath());
     }
 
-    //
-    // Getters and Setters
-    //
     /**
      * Get the Press ID.
-     *
-     * @return int
      */
-    public function getPressId()
+    public function getPressId(): int
     {
         return $this->_pressId;
     }
 
     /**
      * Set the Press ID.
-     *
-     * @param int $pressId
      */
-    public function setPressId($pressId)
+    public function setPressId(int $pressId)
     {
         $this->_pressId = $pressId;
     }
@@ -96,9 +82,6 @@ class BrowseBlockSettingsForm extends Form
         $this->_plugin = $plugin;
     }
 
-    //
-    // Implement template methods from Form
-    //
     /**
      * @see Form::initData()
      */
@@ -132,9 +115,6 @@ class BrowseBlockSettingsForm extends Form
         parent::execute(...$functionArgs);
     }
 
-    //
-    // Private helper methods
-    //
     public function _getFormFields()
     {
         return [

@@ -48,12 +48,11 @@ class Publication extends PKPPublication
     /**
      * Get the URL to a localized cover image
      *
-     * @param int $contextId
      * @param string $preferredLocale Return the cover image in a specified locale.
      *
      * @return string
      */
-    public function getLocalizedCoverImageUrl($contextId, $preferredLocale = null)
+    public function getLocalizedCoverImageUrl(int $contextId, $preferredLocale = null)
     {
         $coverImage = $this->getLocalizedData('coverImage', $preferredLocale);
 
@@ -73,11 +72,9 @@ class Publication extends PKPPublication
     /**
      * Get the URL to the thumbnail of a localized cover image
      *
-     * @param int $contextId
-     *
      * @return string
      */
-    public function getLocalizedCoverImageThumbnailUrl($contextId)
+    public function getLocalizedCoverImageThumbnailUrl(int $contextId)
     {
         $url = $this->getLocalizedCoverImageUrl($contextId);
         $pathParts = pathinfo($url);
