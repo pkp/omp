@@ -93,7 +93,7 @@ class Section extends \PKP\section\PKPSection
     /**
      * Set prefix of series.
      */
-    public function setPrefix(string|array $prefix, string $locale = null): void
+    public function setPrefix(string|array $prefix, ?string $locale = null): void
     {
         $this->setData('prefix', $prefix, $locale);
     }
@@ -117,7 +117,7 @@ class Section extends \PKP\section\PKPSection
     /**
      * Set subtitle of series
      */
-    public function setSubtitle(string|array $subtitle, string $locale = null): void
+    public function setSubtitle(string|array $subtitle, ?string $locale = null): void
     {
         $this->setData('subtitle', $subtitle, $locale);
     }
@@ -259,7 +259,7 @@ class Section extends \PKP\section\PKPSection
     /**
      * Set series description.
      */
-    public function setDescription(string|array $description, string $locale = null): void
+    public function setDescription(string|array $description, ?string $locale = null): void
     {
         $this->setData('description', $description, $locale);
     }

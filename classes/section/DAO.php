@@ -62,7 +62,7 @@ class DAO extends \PKP\section\DAO
     /**
      * Retrieve a series by path.
      */
-    public function getByPath(string $path, int $pressId = null): ?Section
+    public function getByPath(string $path, ?int $pressId = null): ?Section
     {
         $row = DB::table($this->table)
             ->where('path', $path)
