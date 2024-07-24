@@ -134,10 +134,8 @@ class PublicationFormatTombstoneManager
 
     /**
      * Delete tombstone for every publication format inside the passed press.
-     *
-     * @param int $pressId
      */
-    public function deleteTombstonesByPressId($pressId)
+    public function deleteTombstonesByPressId(int $pressId)
     {
         $submissions = Repo::submission()
             ->getCollector()

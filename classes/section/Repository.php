@@ -21,7 +21,7 @@ class Repository extends \PKP\section\Repository
     public string $schemaMap = maps\Schema::class;
 
     /** @copydoc DAO::getByPath() */
-    public function getByPath(string $path, int $pressId = null): ?Section
+    public function getByPath(string $path, ?int $pressId = null): ?Section
     {
         return $this->dao->getByPath($path, $pressId);
     }

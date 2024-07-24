@@ -60,16 +60,11 @@ class OAIDAO extends PKPOAIDAO
     /**
      * Cached function to get a press
      *
-     * @param int $pressId
-     *
      * @return Press
      */
-    public function getPress($pressId)
+    public function getPress(int $pressId)
     {
-        if (!isset($this->_pressCache[$pressId])) {
-            $this->_pressCache[$pressId] = $this->_pressDao->getById($pressId);
-        }
-        return $this->_pressCache[$pressId];
+        return $this->_pressCache[$pressId] ??= $this->_pressDao->getById($pressId);
     }
 
     /**
@@ -94,7 +89,6 @@ class OAIDAO extends PKPOAIDAO
     /**
      * Return hierarchy of OAI sets (presses plus press series).
      *
-     * @param int|null $pressId
      * @param int $offset
      * @param int $total
      *
@@ -102,7 +96,7 @@ class OAIDAO extends PKPOAIDAO
      *
      * @hook OAIDAO::getSets [[&$this, $pressId, $offset, $limit, $total, &$sets]]
      */
-    public function getSets($pressId, $offset, $limit, &$total)
+    public function getSets(?int $pressId, $offset, $limit, &$total)
     {
         if (isset($pressId)) {
             $presses = [$this->getPress($pressId)];

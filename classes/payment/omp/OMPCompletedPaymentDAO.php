@@ -31,11 +31,10 @@ class OMPCompletedPaymentDAO extends DAO
      * Retrieve a CompletedPayment by its ID.
      *
      * @param int $completedPaymentId
-     * @param int $contextId optional
      *
      * @return CompletedPayment|null
      */
-    public function getById($completedPaymentId, $contextId = null)
+    public function getById($completedPaymentId, ?int $contextId = null)
     {
         $params = [(int) $completedPaymentId];
         if ($contextId) {
@@ -141,12 +140,11 @@ class OMPCompletedPaymentDAO extends DAO
     /**
      * Retrieve an array of payments for a particular context ID.
      *
-     * @param int $contextId
      * @param DBResultRange|null $rangeInfo
      *
      * @return DAOResultFactory<CompletedPayment> containing matching payments
      */
-    public function getByContextId($contextId, $rangeInfo = null)
+    public function getByContextId(int $contextId, $rangeInfo = null)
     {
         return new DAOResultFactory(
             $this->retrieveRange(

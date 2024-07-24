@@ -221,7 +221,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
     /**
      * @copydoc PKPPubIdPlugin::checkDuplicate()
      */
-    public function checkDuplicate($pubId, $pubObjectType, $excludeId, $contextId)
+    public function checkDuplicate($pubId, $pubObjectType, $excludeId, int $contextId)
     {
         /** @var ChapterDAO */
         $chapterDao = DAORegistry::getDAO('ChapterDAO');

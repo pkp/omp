@@ -79,7 +79,7 @@ class URNPubIdPlugin extends PubIdPlugin
     /**
      * @copydoc PKPPubIdPlugin::constructPubId()
      */
-    public function constructPubId($pubIdPrefix, $pubIdSuffix, $contextId)
+    public function constructPubId($pubIdPrefix, $pubIdSuffix, int $contextId)
     {
         $urn = $pubIdPrefix . $pubIdSuffix;
         $suffixFieldName = $this->getSuffixFieldName();
@@ -118,7 +118,7 @@ class URNPubIdPlugin extends PubIdPlugin
     /**
      * @copydoc PKPPubIdPlugin::getResolvingURL()
      */
-    public function getResolvingURL($contextId, $pubId)
+    public function getResolvingURL(int $contextId, $pubId)
     {
         $resolverURL = $this->getSetting($contextId, 'urnResolver');
         return $resolverURL . $pubId;
@@ -158,7 +158,7 @@ class URNPubIdPlugin extends PubIdPlugin
     /**
      * @copydoc PKPPubIdPlugin::instantiateSettingsForm()
      */
-    public function instantiateSettingsForm($contextId)
+    public function instantiateSettingsForm(int $contextId)
     {
         return new URNSettingsForm($this, $contextId);
     }
@@ -246,7 +246,7 @@ class URNPubIdPlugin extends PubIdPlugin
     /**
      * @copydoc PKPPubIdPlugin::isObjectTypeEnabled()
      */
-    public function isObjectTypeEnabled($pubObjectType, $contextId)
+    public function isObjectTypeEnabled($pubObjectType, int $contextId)
     {
         return (bool) $this->getSetting($contextId, "enable{$pubObjectType}URN");
     }
@@ -264,9 +264,9 @@ class URNPubIdPlugin extends PubIdPlugin
      */
     public function validatePublicationUrn(string $hookName, array $args): void
     {
-        $errors = & $args[0];
+        $errors = &$args[0];
         $object = $args[1];
-        $props = & $args[2];
+        $props = &$args[2];
 
         if (empty($props['pub-id::other::urn'])) {
             return;
@@ -351,8 +351,8 @@ class URNPubIdPlugin extends PubIdPlugin
             }
             $form->addField(new FieldPubIdUrn('pub-id::other::urn', $fieldData));
 
-            // Otherwise add a field for manual entry that includes a button to generate
-            // the check number
+        // Otherwise add a field for manual entry that includes a button to generate
+        // the check number
         } else {
             $form->addField(new FieldTextUrn('pub-id::other::urn', [
                 'label' => __('plugins.pubIds.urn.displayName'),
@@ -383,7 +383,7 @@ class URNPubIdPlugin extends PubIdPlugin
         if (!$publicationUrnEnabled && !$chapterUrnEnabled && !$publicationFormatUrnEnabled && !$submissionFileUrnEnabled) {
             return;
 
-            // Use a simplified view when only assigning to the publication
+        // Use a simplified view when only assigning to the publication
         } elseif ($publicationFormatUrnEnabled && !$chapterUrnEnabled && !$publicationFormatUrnEnabled && !$submissionFileUrnEnabled) {
             if ($form->publication->getData('pub-id::other::urn')) {
                 $msg = __('plugins.pubIds.urn.editor.preview.publication', ['urn' => $form->publication->getData('pub-id::other::urn')]);
@@ -396,7 +396,7 @@ class URNPubIdPlugin extends PubIdPlugin
             ]));
             return;
 
-            // Show a table if probably more than one URN is going to be created
+        // Show a table if probably more than one URN is going to be created
         } else {
             $urnTableRows = [];
             if ($publicationUrnEnabled) {

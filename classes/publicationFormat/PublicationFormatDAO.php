@@ -29,9 +29,6 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
 {
     /**
      * @copydoc RepresentationDAO::getById()
-     *
-     * @param null|mixed $publicationId
-     * @param null|mixed $contextId
      */
     public function getById(int $representationId, ?int $publicationId = null, ?int $contextId = null): PublicationFormat
     {
@@ -45,11 +42,11 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
 
         $result = $this->retrieve(
             'SELECT pf.*
-			FROM	publication_formats pf
-			' . ($contextId ? '
-				JOIN publications p ON (p.publication_id = pf.publicationId)
-				JOIN submissions s ON (s.submission_id=p.submission_id)' : '') . '
-			WHERE	pf.publication_format_id=?' .
+            FROM publication_formats pf
+            ' . ($contextId ? '
+                JOIN publications p ON (p.publication_id = pf.publicationId)
+                JOIN submissions s ON (s.submission_id=p.submission_id)' : '') . '
+            WHERE pf.publication_format_id=?' .
             ($publicationId ? ' AND pf.publication_id = ?' : '') .
             ($contextId ? ' AND s.context_id = ?' : ''),
             $params
@@ -63,27 +60,26 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
      *
      * @param string $settingName
      * @param int $publicationId optional
-     * @param int $pressId optional
      *
      * @return array The publication formats identified by setting.
      */
-    public function getBySetting($settingName, $settingValue, $publicationId = null, $pressId = null)
+    public function getBySetting($settingName, $settingValue, $publicationId = null, ?int $pressId = null)
     {
         $params = [$settingName];
 
         $sql = 'SELECT	pf.*
-			FROM	publication_formats pf ';
+            FROM publication_formats pf ';
         if ($pressId) {
             $sql .= 'INNER JOIN publications p ON p.publication_id = pf.publication_id
-			INNER JOIN submissions s ON s.submission_id = p.submission_id ';
+            INNER JOIN submissions s ON s.submission_id = p.submission_id ';
         }
         if (is_null($settingValue)) {
             $sql .= 'LEFT JOIN publication_format_settings pfs ON pf.publication_format_id = pfs.publication_format_id AND pfs.setting_name = ?
-				WHERE	(pfs.setting_value IS NULL OR pfs.setting_value = \'\')';
+                WHERE (pfs.setting_value IS NULL OR pfs.setting_value = \'\')';
         } else {
             $params[] = (string) $settingValue;
             $sql .= 'INNER JOIN publication_format_settings pfs ON pf.publication_format_id = pfs.publication_format_id
-				WHERE	pfs.setting_name = ? AND pfs.setting_value = ?';
+                WHERE pfs.setting_name = ? AND pfs.setting_value = ?';
         }
 
         if ($publicationId) {
@@ -115,11 +111,10 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
      * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
      * @param string $pubId
      * @param int $publicationId optional
-     * @param int $pressId optional
      *
      * @return PublicationFormat|null
      */
-    public function getByPubId($pubIdType, $pubId, $publicationId = null, $pressId = null)
+    public function getByPubId($pubIdType, $pubId, $publicationId = null, ?int $pressId = null)
     {
         if (empty($pubId)) {
             return null;
@@ -160,9 +155,9 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
     {
         $result = $this->retrieve(
             'SELECT pf.*
-			FROM	publication_formats pf
-			WHERE pf.url_path = ?
-				AND pf.publication_id = ?',
+            FROM publication_formats pf
+            WHERE pf.url_path = ?
+                AND pf.publication_id = ?',
             [
                 $representationId,
                 $publicationId,
@@ -179,11 +174,9 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
     /**
      * @copydoc RepresentationDAO::getByPublicationId()
      *
-     * @param null|mixed $contextId
-     *
      * @return DAOResultFactory<PublicationFormat>
      */
-    public function getByPublicationId($publicationId, $contextId = null): array
+    public function getByPublicationId($publicationId, ?int $contextId = null): array
     {
         $params = [(int) $publicationId];
         if ($contextId) {
@@ -193,10 +186,10 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
         $result = new DAOResultFactory(
             $this->retrieve(
                 'SELECT pf.*
-				FROM	publication_formats pf ' .
+                FROM publication_formats pf ' .
                 ($contextId ?
                     'INNER JOIN publications p ON (pf.publication_id=p.publication_id)
-					 INNER JOIN submissions s ON (s.submission_id = p.submission_id) '
+                    INNER JOIN submissions s ON (s.submission_id = p.submission_id) '
                     : '') .
                 'WHERE pf.publication_id=? '
                 . ($contextId ? ' AND s.context_id = ? ' : '')
@@ -213,21 +206,19 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
     /**
      * Retrieves a list of publication formats for a press
      *
-     * @param int $pressId
-     *
      * @return DAOResultFactory<PublicationFormat>
      */
-    public function getByContextId($pressId)
+    public function getByContextId(int $pressId)
     {
         return new DAOResultFactory(
             $this->retrieve(
                 'SELECT pf.*
-				FROM	publication_formats pf
-				JOIN	publications p ON (p.publication_id = pf.publication_id)
-				JOIN	submissions s ON (s.submission_id = p.submission_id)
-				WHERE	s.context_id = ?
-				ORDER BY pf.seq',
-                [(int) $pressId]
+                FROM publication_formats pf
+                JOIN publications p ON (p.publication_id = pf.publication_id)
+                JOIN submissions s ON (s.submission_id = p.submission_id)
+                WHERE s.context_id = ?
+                ORDER BY pf.seq',
+                [$pressId]
             ),
             $this,
             '_fromRow'
@@ -364,9 +355,9 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
     {
         $this->update(
             'INSERT INTO publication_formats
-				(is_approved, entry_key, physical_format, publication_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, remote_url, url_path, is_available, doi_id)
-			VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                (is_approved, entry_key, physical_format, publication_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, remote_url, url_path, is_available, doi_id)
+            VALUES
+                (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
             [
                 (int) $publicationFormat->getIsApproved(),
                 $publicationFormat->getEntryKey(),
@@ -413,33 +404,33 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
     {
         $this->update(
             'UPDATE publication_formats
-			SET	is_approved = ?,
-				entry_key = ?,
-				physical_format = ?,
-				seq = ?,
-				file_size = ?,
-				front_matter = ?,
-				back_matter = ?,
-				height = ?,
-				height_unit_code = ?,
-				width = ?,
-				width_unit_code = ?,
-				thickness = ?,
-				thickness_unit_code = ?,
-				weight = ?,
-				weight_unit_code = ?,
-				product_composition_code = ?,
-				product_form_detail_code = ?,
-				country_manufacture_code = ?,
-				imprint = ?,
-				product_availability_code = ?,
-				technical_protection_code = ?,
-				returnable_indicator_code = ?,
-				remote_url = ?,
-				url_path = ?,
-				is_available = ?,
-			    doi_id = ?
-			WHERE	publication_format_id = ?',
+            SET	is_approved = ?,
+                entry_key = ?,
+                physical_format = ?,
+                seq = ?,
+                file_size = ?,
+                front_matter = ?,
+                back_matter = ?,
+                height = ?,
+                height_unit_code = ?,
+                width = ?,
+                width_unit_code = ?,
+                thickness = ?,
+                thickness_unit_code = ?,
+                weight = ?,
+                weight_unit_code = ?,
+                product_composition_code = ?,
+                product_form_detail_code = ?,
+                country_manufacture_code = ?,
+                imprint = ?,
+                product_availability_code = ?,
+                technical_protection_code = ?,
+                returnable_indicator_code = ?,
+                remote_url = ?,
+                url_path = ?,
+                is_available = ?,
+                doi_id = ?
+            WHERE publication_format_id = ?',
             [
                 (int) $publicationFormat->getIsApproved(),
                 $publicationFormat->getEntryKey(),

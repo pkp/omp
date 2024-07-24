@@ -32,7 +32,7 @@ class UsageEvent extends \PKP\observers\events\UsageEvent
     public ?Chapter $chapter;
     public ?Section $series;
 
-    public function __construct(int $assocType, Context $context, Submission $submission = null, Representation $publicationFormat = null, SubmissionFile $submissionFile = null, Chapter $chapter = null, Section $series = null)
+    public function __construct(int $assocType, Context $context, ?Submission $submission = null, ?Representation $publicationFormat = null, ?SubmissionFile $submissionFile = null, ?Chapter $chapter = null, ?Section $series = null)
     {
         $this->chapter = $chapter;
         $this->series = $series;

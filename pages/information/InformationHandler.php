@@ -16,6 +16,7 @@
 
 namespace APP\pages\information;
 
+use APP\core\Application;
 use APP\core\Request;
 use APP\handler\Handler;
 use APP\template\TemplateManager;
@@ -33,7 +34,7 @@ class InformationHandler extends Handler
         $this->validate(null, $request);
         $press = $request->getPress();
         if ($press == null) {
-            $request->redirect('index');
+            $request->redirect(Application::SITE_CONTEXT_PATH);
         }
 
         $this->setupTemplate($request);

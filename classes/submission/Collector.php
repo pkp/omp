@@ -151,7 +151,7 @@ class Collector extends \PKP\submission\Collector
                 $assocType = Application::ASSOC_TYPE_PRESS;
                 $assocIds = is_array($this->contextIds)
                     ? $this->contextIds
-                    : [Application::CONTEXT_ID_NONE];
+                    : [Application::SITE_CONTEXT_ID];
             }
 
             $q->leftJoin('features as sf', function ($join) use ($assocType, $assocIds) {

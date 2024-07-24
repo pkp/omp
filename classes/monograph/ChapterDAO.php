@@ -80,7 +80,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
                 INNER JOIN publications p ON (spc.publication_id = p.publication_id)
                 INNER JOIN submissions s ON (p.submission_id = s.submission_id)
                 WHERE s.context_id = ?',
-                [(int) $pressId]
+                [$pressId]
             ),
             $this,
             '_fromRow'
