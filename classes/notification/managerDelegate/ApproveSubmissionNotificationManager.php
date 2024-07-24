@@ -3,13 +3,11 @@
 /**
  * @file classes/notification/managerDelegate/ApproveSubmissionNotificationManager.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2003-2024 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ApproveSubmissionNotificationManager
- *
- * @ingroup classes_notification_managerDelegate
  *
  * @brief Notification manager delegate that handles notifications related with
  * submission approval process.
@@ -19,40 +17,38 @@ namespace APP\notification\managerDelegate;
 
 use APP\core\Application;
 use APP\notification\Notification;
+use PKP\core\PKPRequest;
 use PKP\notification\managerDelegate\PKPApproveSubmissionNotificationManager;
+use PKP\notification\PKPNotification;
 
 class ApproveSubmissionNotificationManager extends PKPApproveSubmissionNotificationManager
 {
     /**
      * @copydoc PKPNotificationOperationManager::getNotificationUrl()
      */
-    public function getNotificationUrl($request, $notification)
+    public function getNotificationUrl(PKPRequest $request, PKPNotification $notification): string
     {
         $router = $request->getRouter();
         $dispatcher = $router->getDispatcher();
         $contextDao = Application::getContextDAO();
         $context = $contextDao->getById($notification->getContextId());
 
-        switch ($notification->getType()) {
-            case Notification::NOTIFICATION_TYPE_VISIT_CATALOG:
-                return $dispatcher->url($request, Application::ROUTE_PAGE, $context->getPath(), 'manageCatalog');
-        }
-
-        return parent::getNotificationUrl($request, $notification);
+        return match ($notification->getType()) {
+            Notification::NOTIFICATION_TYPE_VISIT_CATALOG => $dispatcher->url($request, Application::ROUTE_PAGE, $context->getPath(), 'manageCatalog'),
+            default => parent::getNotificationUrl($request, $notification)
+        };
     }
 
     /**
      * @copydoc PKPNotificationOperationManager::getNotificationTitle()
      */
-    public function getNotificationTitle($notification)
+    public function getNotificationTitle(PKPNotification $notification): string
     {
-        switch ($notification->getType()) {
-            case Notification::NOTIFICATION_TYPE_APPROVE_SUBMISSION:
-            case Notification::NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
-                return __('notification.type.approveSubmissionTitle');
-            case Notification::NOTIFICATION_TYPE_VISIT_CATALOG:
-                return __('notification.type.visitCatalogTitle');
-        }
+        return match ($notification->getType()) {
+            Notification::NOTIFICATION_TYPE_APPROVE_SUBMISSION,
+            Notification::NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION => __('notification.type.approveSubmissionTitle'),
+            Notification::NOTIFICATION_TYPE_VISIT_CATALOG => __('notification.type.visitCatalogTitle'),
+        };
     }
 
     /**
@@ -60,16 +56,12 @@ class ApproveSubmissionNotificationManager extends PKPApproveSubmissionNotificat
      */
     public function getNotificationMessage($request, $notification)
     {
-        switch ($notification->getType()) {
-            case Notification::NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
-                return __('notification.type.formatNeedsApprovedSubmission');
-            case Notification::NOTIFICATION_TYPE_VISIT_CATALOG:
-                return __('notification.type.visitCatalog');
-            case Notification::NOTIFICATION_TYPE_APPROVE_SUBMISSION:
-                return __('notification.type.approveSubmission');
-        }
-
-        return parent::getNotificationMessage($request, $notification);
+        return match ($notification->getType()) {
+            Notification::NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION => __('notification.type.formatNeedsApprovedSubmission'),
+            Notification::NOTIFICATION_TYPE_VISIT_CATALOG => __('notification.type.visitCatalog'),
+            Notification::NOTIFICATION_TYPE_APPROVE_SUBMISSION => __('notification.type.approveSubmission'),
+            default => parent::getNotificationMessage($request, $notification)
+        };
     }
 }
 
