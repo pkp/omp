@@ -16,24 +16,23 @@
 namespace APP\notification\managerDelegate;
 
 use APP\core\Application;
-use APP\notification\Notification;
 use PKP\core\PKPRequest;
 use PKP\notification\managerDelegate\PKPApproveSubmissionNotificationManager;
-use PKP\notification\PKPNotification;
+use PKP\notification\Notification;
 
 class ApproveSubmissionNotificationManager extends PKPApproveSubmissionNotificationManager
 {
     /**
      * @copydoc PKPNotificationOperationManager::getNotificationUrl()
      */
-    public function getNotificationUrl(PKPRequest $request, PKPNotification $notification): string
+    public function getNotificationUrl(PKPRequest $request, Notification $notification): string
     {
         $router = $request->getRouter();
         $dispatcher = $router->getDispatcher();
         $contextDao = Application::getContextDAO();
-        $context = $contextDao->getById($notification->getContextId());
+        $context = $contextDao->getById($notification->contextId);
 
-        return match ($notification->getType()) {
+        return match ($notification->type) {
             Notification::NOTIFICATION_TYPE_VISIT_CATALOG => $dispatcher->url($request, Application::ROUTE_PAGE, $context->getPath(), 'manageCatalog'),
             default => parent::getNotificationUrl($request, $notification)
         };
@@ -42,9 +41,9 @@ class ApproveSubmissionNotificationManager extends PKPApproveSubmissionNotificat
     /**
      * @copydoc PKPNotificationOperationManager::getNotificationTitle()
      */
-    public function getNotificationTitle(PKPNotification $notification): string
+    public function getNotificationTitle(Notification $notification): string
     {
-        return match ($notification->getType()) {
+        return match ($notification->type) {
             Notification::NOTIFICATION_TYPE_APPROVE_SUBMISSION,
             Notification::NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION => __('notification.type.approveSubmissionTitle'),
             Notification::NOTIFICATION_TYPE_VISIT_CATALOG => __('notification.type.visitCatalogTitle'),
@@ -54,9 +53,9 @@ class ApproveSubmissionNotificationManager extends PKPApproveSubmissionNotificat
     /**
      * @copydoc PKPNotificationOperationManager::getNotificationMessage()
      */
-    public function getNotificationMessage(PKPRequest $request, PKPNotification $notification): ?string
+    public function getNotificationMessage(PKPRequest $request, Notification $notification): ?string
     {
-        return match ($notification->getType()) {
+        return match ($notification->type) {
             Notification::NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION => __('notification.type.formatNeedsApprovedSubmission'),
             Notification::NOTIFICATION_TYPE_VISIT_CATALOG => __('notification.type.visitCatalog'),
             Notification::NOTIFICATION_TYPE_APPROVE_SUBMISSION => __('notification.type.approveSubmission'),

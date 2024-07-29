@@ -18,7 +18,6 @@ use APP\core\Services;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\monograph\ChapterDAO;
-use APP\notification\Notification;
 use APP\notification\NotificationManager;
 use APP\publicationFormat\IdentificationCodeDAO;
 use APP\publicationFormat\MarketDAO;
@@ -31,6 +30,7 @@ use Illuminate\Support\Facades\App;
 use PKP\context\Context;
 use PKP\core\Core;
 use PKP\db\DAORegistry;
+use PKP\notification\Notification;
 use PKP\plugins\Hook;
 use PKP\publication\Collector;
 use PKP\submission\PKPSubmission;
@@ -272,7 +272,7 @@ class Repository extends \PKP\publication\Repository
                         $publicFileManager->removeContextFile($submission->getData('contextId'), $this->getThumbnailFileName($oldCoverImage[$localeKey]['uploadName']));
                     }
 
-                // Otherwise generate a new thumbnail if a cover image exists
+                    // Otherwise generate a new thumbnail if a cover image exists
                 } elseif (!empty($newCoverImage) && array_key_exists('temporaryFileId', $newCoverImage)) {
                     $coverImageFilePath = $publicFileManager->getContextFilesPath($submission->getData('contextId')) . '/' . $coverImages[$localeKey]['uploadName'];
                     $this->makeThumbnail(

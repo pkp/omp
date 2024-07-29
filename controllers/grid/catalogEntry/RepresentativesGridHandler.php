@@ -20,7 +20,6 @@ use APP\controllers\grid\catalogEntry\form\RepresentativeForm;
 use APP\core\Application;
 use APP\core\Request;
 use APP\monograph\RepresentativeDAO;
-use APP\notification\Notification;
 use APP\notification\NotificationManager;
 use APP\publicationFormat\MarketDAO;
 use APP\submission\Submission;
@@ -31,6 +30,7 @@ use PKP\db\DAO;
 use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
+use PKP\notification\Notification;
 use PKP\security\authorization\SubmissionAccessPolicy;
 use PKP\security\Role;
 

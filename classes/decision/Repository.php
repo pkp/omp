@@ -27,7 +27,6 @@ use APP\decision\types\RevertDeclineInternal;
 use APP\decision\types\SendExternalReview;
 use APP\decision\types\SendInternalReview;
 use APP\decision\types\SkipInternalReview;
-use APP\notification\Notification;
 use Illuminate\Database\Eloquent\Collection;
 use PKP\decision\types\Accept;
 use PKP\decision\types\BackFromCopyediting;
@@ -46,6 +45,7 @@ use PKP\decision\types\RevertDecline;
 use PKP\decision\types\RevertInitialDecline;
 use PKP\decision\types\SendToProduction;
 use PKP\decision\types\SkipExternalReview;
+use PKP\notification\Notification;
 use PKP\plugins\Hook;
 
 class Repository extends \PKP\decision\Repository

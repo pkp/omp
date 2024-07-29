@@ -18,10 +18,10 @@ namespace APP\controllers\tab\workflow;
 
 use APP\core\Application;
 use APP\decision\types\NewInternalReviewRound;
-use APP\notification\Notification;
 use PKP\controllers\tab\workflow\PKPWorkflowTabHandler;
 use PKP\decision\DecisionType;
 use PKP\decision\types\NewExternalReviewRound;
+use PKP\notification\Notification;
 
 class WorkflowTabHandler extends PKPWorkflowTabHandler
 {

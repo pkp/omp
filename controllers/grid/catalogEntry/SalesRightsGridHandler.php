@@ -19,7 +19,6 @@ namespace APP\controllers\grid\catalogEntry;
 use APP\controllers\grid\catalogEntry\form\SalesRightsForm;
 use APP\core\Application;
 use APP\core\Request;
-use APP\notification\Notification;
 use APP\notification\NotificationManager;
 use APP\publication\Publication;
 use APP\publicationFormat\PublicationFormat;
@@ -34,6 +33,7 @@ use PKP\db\DAO;
 use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
+use PKP\notification\Notification;
 use PKP\security\authorization\PublicationAccessPolicy;
 use PKP\security\Role;
 

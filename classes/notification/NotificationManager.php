@@ -9,7 +9,6 @@
  *
  * @class NotificationManager
  *
- * @see NotificationDAO
  * @see Notification
  *
  * @brief Class for Notification Manager.
@@ -23,8 +22,8 @@ use APP\notification\managerDelegate\ApproveSubmissionNotificationManager;
 use PKP\notification\managerDelegate\EditorAssignmentNotificationManager;
 use PKP\notification\managerDelegate\EditorDecisionNotificationManager;
 use PKP\notification\managerDelegate\PendingRevisionsNotificationManager;
+use PKP\notification\Notification;
 use PKP\notification\NotificationManagerDelegate;
-use PKP\notification\PKPNotification;
 use PKP\notification\PKPNotificationManager;
 
 class NotificationManager extends PKPNotificationManager
@@ -35,9 +34,9 @@ class NotificationManager extends PKPNotificationManager
     /**
      * @copydoc PKPNotificationManager::getNotificationTitle()
      */
-    public function getNotificationTitle(PKPNotification $notification): string
+    public function getNotificationTitle(Notification $notification): string
     {
-        return match($notification->getType()) {
+        return match($notification->type) {
             Notification::NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD => __('notification.type.configurePaymentMethod.title'),
             default => parent::getNotificationTitle($notification)
         };
@@ -46,9 +45,9 @@ class NotificationManager extends PKPNotificationManager
     /**
      * @copydoc PKPNotificationManager::getIconClass()
      */
-    public function getIconClass(PKPNotification $notification): string
+    public function getIconClass(Notification $notification): string
     {
-        return match ($notification->getType()) {
+        return match ($notification->type) {
             Notification::NOTIFICATION_TYPE_REVIEWER_COMMENT => 'notifyIconNewComment',
             default => parent::getIconClass($notification)
         };
@@ -57,9 +56,9 @@ class NotificationManager extends PKPNotificationManager
     /**
      * @copydoc PKPNotificationManager::getStyleClass()
      */
-    public function getStyleClass(PKPNotification $notification): string
+    public function getStyleClass(Notification $notification): string
     {
-        return match($notification->getType()) {
+        return match($notification->type) {
             Notification::NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT,
             Notification::NOTIFICATION_TYPE_INDEX_ASSIGNMENT,
             Notification::NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD => NOTIFICATION_STYLE_CLASS_WARNING,
