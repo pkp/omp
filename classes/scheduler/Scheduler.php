@@ -16,6 +16,9 @@ namespace APP\scheduler;
 
 use APP\tasks\UsageStatsLoader;
 use PKP\scheduledTask\PKPScheduler;
+use PKP\task\EditorialReminders;
+use PKP\task\PublishSubmissions;
+use PKP\task\ReviewReminder;
 
 class Scheduler extends PKPScheduler
 {
@@ -25,6 +28,27 @@ class Scheduler extends PKPScheduler
     public function registerSchedules(): void
     {
         parent::registerSchedules();
+
+        $this
+            ->schedule
+            ->call(fn () => (new ReviewReminder())->execute())
+            ->hourly()
+            ->name(ReviewReminder::class)
+            ->withoutOverlapping();
+
+        $this
+            ->schedule
+            ->call(fn () => (new EditorialReminders())->execute())
+            ->daily()
+            ->name(EditorialReminders::class)
+            ->withoutOverlapping();
+
+        $this
+            ->schedule
+            ->call(fn () => (new PublishSubmissions())->execute())
+            ->daily()
+            ->name(PublishSubmissions::class)
+            ->withoutOverlapping();
 
         $this
             ->schedule
