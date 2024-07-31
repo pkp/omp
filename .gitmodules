@@ -25,9 +25,6 @@
 [submodule "lib/ui-library"]
 	path = lib/ui-library
 	url = https://github.com/pkp/ui-library
-[submodule "plugins/generic/acron"]
-	path = plugins/generic/acron
-	url = https://github.com/pkp/acron
 [submodule "plugins/generic/citationStyleLanguage"]
 	path = plugins/generic/citationStyleLanguage
 	url = https://github.com/pkp/citationStyleLanguage
