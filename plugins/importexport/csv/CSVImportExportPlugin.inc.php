@@ -86,23 +86,40 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 
 		if (!$filename || !$username) {
 			$this->usage($scriptName);
-			exit();
+			exit;
 		}
 
 		if (!file_exists($filename)) {
 			echo __('plugins.importexport.csv.fileDoesNotExist', ['filename' => $filename]) . "\n";
-			exit();
+			exit;
 		}
 
-		$data = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-		if ($data === false) {
+		$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
+
+		$user = $userDao->getByUsername($username);
+		if (!$user) {
+			echo __('plugins.importexport.csv.unknownUser', ['username' => $username]) . "\n";
+			exit;
+		}
+
+		$file = new SplFileObject($filename, 'r');
+		$file->setFlags(SplFileObject::READ_CSV);
+
+		$file->rewind();
+
+		if ($file->eof()) {
 			echo __('plugins.importexport.csv.fileDoesNotExist', ['filename' => $filename]) . "\n";
-			exit();
+			exit;
 		}
-		str_getcsv(array_shift($data)); // Remove column headers in first row
 
-		if (is_array($data) && count($data) > 0) {
+		if (!$file->eof()) {
+			// Imports
+			import('lib.pkp.classes.submission.SubmissionFile'); // constants.
+			import('lib.pkp.classes.file.FileManager');
+			import('lib.pkp.classes.core.Core');
+			import('classes.file.PublicFileManager');
 
+			// DAOs
 			$pressDao = Application::getContextDAO();
 			$genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
 			$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
@@ -111,22 +128,57 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 			$authorDao = DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
 			$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
-			import('lib.pkp.classes.submission.SubmissionFile'); // constants.
 			$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
 			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-			$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
+			$categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
 
-			$user = $userDao->getByUsername($username);
-			if (!$user) {
-				echo __('plugins.importexport.csv.unknownUser', ['username' => $username]) . "\n";
-				exit();
-			}
+			// Static variables
+			$fileManager = new FileManager();
+			$publicFileManager = new PublicFileManager();
+			$dirNames = Application::getFileDirectories();
+			$format = trim($dirNames['context'], '/') . '/%d/' . trim($dirNames['submission'], '/') . '/%d';
+			$allowedFileTypes = ['gif', 'jpg', 'png', 'webp'];
 
-			foreach ($data as $line) {
-				$fields = str_getcsv($line);
+			/** @var \PKP\services\PKPFileService */
+			$fileService = Services::get('file');
+			/** @var \PKP\services\PKPPublicationService */
+			$publicationService = Services::get('publication');
+
+			$invalidRows = [];
+
+			// Cache variables
+			$genres = [];
+			$authorGroups = [];
+			$series = [];
+			$cachedCategories = [];
+
+			$headers = $file->fgets(); // Retrieve headers in case of invalid rows;
+
+			while(!$file->eof()) {
+				$position = $file->ftell();
+				$rowString = $file->fgets();
+
+				$file->fseek($position);
+
+				$fields = $file->fgetcsv();
+
+				if (empty(array_filter($fields))) {
+					continue;
+				}
+
+				if (count($fields) < 15) {
+					$invalidRows[] = ['row' => $rowString, 'reason' => __('plugins.importexport.csv.csvDoesntContainAllFields', ['row' => $rowString])];
+					continue;
+				}
+
+				if (!$this->requiredFieldsPresent($fields)) {
+					$invalidRows[] = ['row' => $rowString, 'reason' => __('plugins.importexport.csv.requiredFieldsMissing', ['row' => $rowString])];
+					continue;
+				}
+
 				// Format is:
-				// Press Path, Author string, title, abstract, series path, year, is_edited_volume, locale, URL to PDF, doi (optional), keywords list, subjects list, book cover image path, book cover image alt text, categories list
-				list(
+				// Press Path, Author string, title, abstract, series path, year, is_edited_volume, locale, URL to Asset, doi (optional), keywords list, subjects list, book cover image path, book cover image alt text, categories list
+				[
 					$pressPath,
 					$authorString,
 					$title,
@@ -135,19 +187,19 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 					$year,
 					$isEditedVolume,
 					$locale,
-					$pdfUrl,
+					$filename,
 					$doi,
 					$keywords,
 					$subjects,
 					$bookCoverImageName,
 					$bookCoverImageAltText,
 					$categories
-				) = $fields;
+				] = array_pad($fields, 15, null);
 
 				$press = $pressDao->getByPath($pressPath);
 
 				if (!$press) {
-					echo __('plugins.importexport.csv.unknownPress', ['pressPath' => $pressPath]) . "\n";
+					$invalidRows[] = ['row' => $rowString, 'reason' => __('plugins.importexport.csv.unknownPress', ['pressPath' => $pressPath])];
 					continue;
 				}
 
@@ -157,23 +209,69 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 				}
 
 				if (!in_array($locale, $supportedLocales)) {
-					echo __('plugins.importexport.csv.unknownLocale', ['locale' => $locale]) . "\n";
+					$invalidRows[] = ['row' => $rowString, 'reason' => __('plugins.importexport.csv.unknownLocale', ['locale' => $locale])];
 					continue;
 				}
 
 				// we need a Genre for the files.  Assume a key of MANUSCRIPT as a default.
-				$genre = $genreDao->getByKey('MANUSCRIPT', $press->getId());
+				$genre = $genres[$press->getId()]
+					?? $genres[$press->getId()] = $genreDao->getByKey('MANUSCRIPT', $press->getId());
+
 				if (!$genre) {
-					echo __('plugins.importexport.csv.noGenre') . "\n";
-					exit();
-				}
-
-				$authorGroup = $userGroupDao->getDefaultByRoleId($press->getId(), ROLE_ID_AUTHOR);
-
-				if (!$authorGroup) {
-					echo __('plugins.importexport.csv.noAuthorGroup', ['press' => $pressPath]) . "\n";
+					$invalidRows[] = ['row' => $rowString, 'reason' => __('plugins.importexport.csv.noGenre')];
 					continue;
 				}
+
+				$authorGroup = $authorGroups[$press->getId()]
+					?? $authorGroups[$press->getId()] = $userGroupDao->getDefaultByRoleId($press->getId(), ROLE_ID_AUTHOR);
+
+				if (!$authorGroup) {
+					$invalidRows[] = ['row' => $rowString, 'reason' => __('plugins.importexport.csv.noAuthorGroup', ['press' => $pressPath])];
+					continue;
+				}
+
+				$filePath = "{$basePath}/{$filename}";
+				if (!is_readable($filePath)) {
+					$invalidRows[] = ['row' => $rowString, 'reason' => __('plugins.importexport.csv.invalidAssetFilename', ['title' => $title])];
+					continue;
+				}
+
+				$coverImgExtension = pathinfo(mb_strtolower($bookCoverImageName), PATHINFO_EXTENSION);
+
+				if (!in_array($coverImgExtension, $allowedFileTypes)) {
+					$invalidRows[] = ['row' => $rowString, 'reason' => __('plugins.importexport.common.error.invalidFileExtension')];
+					continue;
+				}
+
+				if ($bookCoverImageName) {
+					$srcFilePath = "{$basePath}/{$bookCoverImageName}";
+
+					if (!is_readable($srcFilePath)) {
+						$invalidRows[] = ['row' => $rowString, 'reason' => __('plugins.importexport.csv.invalidCoverImageFilename', ['title' => $title])];
+						continue;
+					}
+				}
+
+				$categoriesList = explode(';', $categories);
+				$dbCategories = [];
+
+				foreach($categoriesList as $categoryTitle) {
+					$dbCategory = $cachedCategories["{$categoryTitle}_{$press->getId()}"]
+						?? $cachedCategories["{$categoryTitle}_{$press->getId()}"] = $categoryDao->getByTitle(trim($categoryTitle), $press->getId(), $locale);
+
+					if (!is_null($dbCategory)) {
+						$dbCategories[] = $dbCategory;
+					}
+				}
+
+				if (count($categoriesList) < count($dbCategories)) {
+					$invalidRows[] = ['row' => $rowString, 'reason' => __('plugins.importexport.csv.allCategoriesMustExists')];
+					continue;
+				}
+
+				// All requirements passed. Start processing from here.
+				$extension = $fileManager->parseFileExtension($filename);
+				$sanitizedAbstract = PKPString::stripUnsafeHtml($abstract);
 
 				$submission = $submissionDao->newDataObject();
 				$submission->setContextId($press->getId());
@@ -185,11 +283,15 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 				$submission->setLocale($locale);
 				$submission->setStageId(WORKFLOW_STAGE_ID_PRODUCTION);
 				$submission->setSubmissionProgress(0);
-				$submission->setData('abstract', $abstract, $locale);
+				$submission->setData('abstract', $sanitizedAbstract, $locale);
 
-				$series = $seriesPath ? $seriesDao->getByPath($seriesPath, $press->getId()) : null;
-				if ($series) {
-					$submission->setSeriesId($series->getId());
+				$pressSeries = $series["{$seriesPath}_{$press->getId}"]
+					?? $series["{$seriesPath}_{$press->getId}"] = $seriesPath
+						? $seriesDao->getByPath($seriesPath, $press->getId())
+						: null;
+
+				if ($pressSeries) {
+					$submission->setSeriesId($pressSeries->getId());
 				}
 
 				$submissionId = $submissionDao->insertObject($submission);
@@ -205,50 +307,42 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 				$submissionDao->updateObject($submission);
 
 				$contactEmail = $press->getContactEmail();
-				$authorsString = trim($authorString, '"'); // remove double quotes if present.
-				$authors = preg_split('/;/', $authorsString);
-				$firstAuthor = true;
 
-				foreach ($authors as $authorString) {
-					// Examine the author string. Best case is: Given1 Family1 <email@address.com>, Given2 Family2 <email@address.com>, etc
+				$authorsString = explode(";", $authorString);
+
+				foreach ($authorsString as $index => $authorString) {
+					// Examine the author string. Best case is: "Given1,Family1,email@address.com;Given2,Family2,email@address.com", etc
 					// But default to press email address based on press path if not present.
 					$givenName = $familyName = $emailAddress = null;
 					$authorString = trim($authorString); // whitespace.
-					if (preg_match('/^([\w.\s]+)\s+([\w\s-]+)?\s*(<([^>]+)>)?$/', $authorString, $matches)) {
-						$givenName = $matches[1]; // Mandatory
-						if (count($matches) > 2) {
-							$familyName = $matches[2];
-						}
-						if (count($matches) == 5) {
-							$emailAddress = $matches[4];
-						} else {
-							$emailAddress = $contactEmail;
-						}
+					[$givenName, $familyName, $emailAddress] = explode(',', $authorString);
+
+					$givenName = trim($givenName);
+					$familyName = trim($familyName);
+
+					if (empty($emailAddress)) {
+						$emailAddress = $contactEmail;
 					}
+
+					$emailAddress = trim($emailAddress);
+
 					$author = $authorDao->newDataObject();
 					$author->setSubmissionId($submissionId);
 					$author->setUserGroupId($authorGroup->getId());
 					$author->setGivenName($givenName, $locale);
 					$author->setFamilyName($familyName, $locale);
 					$author->setEmail($emailAddress);
-					$insertPrimaryContactId = false;
 
-					if ($firstAuthor) {
+					if (!$index) {
 						$author->setPrimaryContact(true);
-						$firstAuthor = false;
-						$insertPrimaryContactId = true;
+						$publication->setData('primaryContactId', $author->getId());
 					}
-
 
 					$author->setData('publicationId', $publicationId);
 					$authorDao->insertObject($author);
-
-					if ($insertPrimaryContactId) {
-						$publication->setData('primaryContactId', $author->getId());
-					}
 				} // Authors done.
 
-				$publication->setData('abstract', $abstract, $locale);
+				$publication->setData('abstract', $sanitizedAbstract, $locale);
 				$publication->setData('title', $title, $locale);
 				$publicationDao->updateObject($publication);
 
@@ -261,7 +355,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 				$publicationFormat->setIsAvailable(true);
 				$publicationFormat->setProductAvailabilityCode('20'); // ONIX code for Available.
 				$publicationFormat->setEntryKey('DA'); // ONIX code for Digital
-				$publicationFormat->setData('name', 'PDF', $submission->getLocale());
+				$publicationFormat->setData('name', mb_strtoupper($extension), $submission->getLocale());
 				$publicationFormat->setSequence(REALLY_BIG_NUMBER);
 
 				$publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
@@ -269,7 +363,6 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 				if ($doi) {
 					$publicationFormatDao->changePubId($publicationFormatId, 'doi', $doi);
 				}
-
 
 				// Create a publication format date for this publication format.
 				$publicationDate = $publicationDateDao->newDataObject();
@@ -280,38 +373,9 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 				$publicationDateDao->insertObject($publicationDate);
 
 				// Submission File.
-				import('lib.pkp.classes.file.FileManager');
-				import('lib.pkp.classes.core.Core');
-				import('classes.file.PublicFileManager');
-
-				// Submission File.
-				$fileManager = new FileManager();
-				$publicFileManager = new PublicFileManager();
-				$extension = $fileManager->parseFileExtension($pdfUrl);
-				$dirNames = Application::getFileDirectories();
-				$submissionDir = sprintf(
-					'%s/%d/%s/%d',
-					str_replace('/', '', $dirNames['context']),
-					$press->getId(),
-					str_replace('/', '', $dirNames['submission']),
-					$submissionId
-				);
-
-				$filePath = $basePath . '/' . 'submissionPdfs/' . $pdfUrl;
-
-				if (!file_exists($filePath) || !is_readable($filePath)) {
-					echo __('plugins.importexport.csv.invalidPdfFilename', ['title' => $title]) . "\n";
-					exit();
-				}
-
-				$mimeType = mime_content_type($filePath);
-
-				/** @var \PKP\services\PKPFileService */
-				$fileService = Services::get('file');
-				$fileId = $fileService->add(
-					$filePath,
-					$submissionDir . '/' . uniqid() . '.' . $extension
-				);
+				$submissionDir = sprintf($format, $press->getId(), $submissionId);
+				$fileId = $fileService->add($filePath, $submissionDir . '/' . uniqid() . '.' . $extension);
+				$mimeType = PKPString::mime_content_type($filePath);
 
 				$submissionFile = $submissionFileDao->newDataObject();
 				$submissionFile->setData('submissionId', $submissionId);
@@ -336,52 +400,36 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 				// Keywords
 				$keywordsList = [$locale => explode(';', $keywords)];
 				if (count($keywordsList[$locale]) > 0) {
-					$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO'); /* @var $submissionKeywordDao SubmissionKeywordDAO */
+					/** @var $submissionKeywordDao SubmissionKeywordDAO */
+					$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
 					$submissionKeywordDao->insertKeywords($keywordsList, $publicationId);
 				}
 
 				//Subjects
-				$subjectsList = [$locale => explode(";", $subjects)];
+				$subjectsList = [$locale => explode(';', $subjects)];
 				if (count($subjectsList[$locale]) > 0) {
-					$submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO'); /* @var $submissionKeywordDao SubmissionKeywordDAO */
+					/** @var $submissionKeywordDao SubmissionKeywordDAO */
+					$submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
 					$submissionSubjectDao->insertSubjects($subjectsList, $publicationId);
-				}
-
-				// Book Cover Image
-				$allowedFileTypes = ['gif', 'jpg', 'png', 'webp'];
-				$coverImgExtension = pathinfo(strtolower($bookCoverImageName), PATHINFO_EXTENSION);
-
-				if (!in_array($coverImgExtension, $allowedFileTypes)) {
-					echo __('plugins.importexport.common.error.invalidFileExtension');
-					exit();
 				}
 
 				$coverImagelocale = [];
 				$coverImage = [];
 
 				if ($bookCoverImageName) {
-					$sanitizedCoverImageName = str_replace([' ', '_', ':'], '-', strtolower($bookCoverImageName));
-					$sanitizedCoverImageName = preg_replace("/[^a-z0-9\.\-]+/", '', $sanitizedCoverImageName);
+					$sanitizedCoverImageName = str_replace([' ', '_', ':'], '-', mb_strtolower($bookCoverImageName));
+					$sanitizedCoverImageName = PKPstring::regexp_replace("/[^a-z0-9\.\-]+/", '', $sanitizedCoverImageName);
 					$sanitizedCoverImageName = basename($sanitizedCoverImageName);
 
 					$coverImage['uploadName'] = uniqid() . '-' . $sanitizedCoverImageName;
 					$coverImage['altText'] = $bookCoverImageAltText ?? '';
 
-					$srcFilePath = $basePath . '/' . 'coverImages/' . $bookCoverImageName;
-
-					if (!file_exists($srcFilePath) || !is_readable($srcFilePath)) {
-						echo __('plugins.importexport.csv.invalidCoverImageFilename', ['title' => $title]) . "\n";
-						exit();
-					}
-
-					$coverImageData = file_get_contents($srcFilePath);
-					$coverImageBase64 = base64_encode($coverImageData);
 					$destFilePath = $publicFileManager->getContextFilesPath($press->getId()) . '/' . $coverImage['uploadName'];
-					file_put_contents($destFilePath, base64_decode($coverImageBase64));
+					file_put_contents($destFilePath, file_get_contents($srcFilePath));
 
-					Services::get('publication')->makeThumbnail(
+					$publicationService->makeThumbnail(
 						$destFilePath,
-						Services::get('publication')->getThumbnailFileName($coverImage['uploadName']),
+						$publicationService->getThumbnailFileName($coverImage['uploadName']),
 						$press->getData('coverThumbnailsMaxWidth'),
 						$press->getData('coverThumbnailsMaxHeight')
 					);
@@ -393,23 +441,32 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 				}
 
 				// Categories
-				$categoriesList = explode(';', $categories);
-				if (!empty($categoriesList)) {
-					$categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
 
-					foreach ($categoriesList as $categoryTitle) {
-						$category = $categoryDao->getByTitle(trim($categoryTitle), $press->getId(), $locale);
-
-						if (!$category) {
-							echo __('plugins.importexport.csv.noCategorySelected', ['category' => trim($categoryTitle)]) . "\n";
-							exit();
-						}
-
-						$categoryDao->insertPublicationAssignment($category->getId(), $publicationId);
-					}
+				foreach ($dbCategories as $category) {
+					$categoryDao->insertPublicationAssignment($category->getId(), $publicationId);
 				}
 
 				echo __('plugins.importexport.csv.import.submission', ['title' => $title]) . "\n";
+			}
+
+			if (count($invalidRows) > 0) {
+				$csvForInvalidRowsName = "{$basePath}/invalid_rows.csv";
+				$csvDataWithHeaders = [...$invalidRows];
+
+				$file = new SplFileObject($csvForInvalidRowsName, 'w');
+
+				$file->fwrite($headers);
+
+				echo __('plugin.importexport.csv.toolFoundErrorForFollowingLines') . "\n\n";
+
+				foreach ($csvDataWithHeaders as $row) {
+					echo $row['row'];
+					echo $row['reason'] . "\n\n";
+
+					$file->fwrite($row['row']);
+				}
+
+				echo __('plugin.importexport.csv.toolGeneratedCsvFileForIncorrectRows') . "\n";
 			}
 		}
 	}
@@ -422,5 +479,33 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 			'scriptName' => $scriptName,
 			'pluginName' => $this->getName()
 		]) . "\n";
+	}
+
+	private function requiredFieldsPresent($row)
+	{
+		[
+			$pressPath,
+			$authorString,
+			$title,
+			$abstract,
+			$seriesPath,
+			$year,
+			$isEditedVolume,
+			$locale,
+			$filename,
+			$doi,
+			$keywords,
+			$subjects,
+			$bookCoverImageName,
+			$bookCoverImageAltText,
+			$categories
+		 ] = array_pad($row, 15, null);
+
+		 return !is_null($pressPath)
+		 	&& !is_null($authorString)
+			&& !is_null($title)
+			&& !is_null($abstract)
+			&& !is_null($locale)
+			&& !is_null($filename);
 	}
 }
