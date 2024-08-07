@@ -76,13 +76,16 @@ msgid "plugins.importexport.csv.invalidCoverImageFilename"
 msgstr "Invalid cover image filename for submission \"{$title}\""
 
 msgid "plugins.importexport.csv.requiredFieldsMissing"
-msgstr "Required fields missing. Please verify the required fields for the row \"{$row}\""
+msgstr "Required fields missing. Please verify the required fields for this row."
 
 msgid "plugins.importexport.csv.csvDoesntContainAllFields"
-msgstr "CSV row doesn't contain all fields. Please check this row: \"{$row}\""
+msgstr "This row doesn't contain all fields."
 
 msgid "plugin.importexport.csv.toolFoundErrorForFollowingLines"
 msgstr "The tool found these errors for the following lines:"
 
 msgid "plugin.importexport.csv.toolGeneratedCsvFileForIncorrectRows"
 msgstr "A CSV file with the incorrect rows was generated with name \"invalid_rows.csv\" at the same directory as the CSV file. Please take a look at it."
+
+msgid "pugin.importexport.csv.missingHeadersOnCsv"
+msgstr "The following headers are missing on your CSV file: \"{$missingHeaders}\". Please update it as shown on file sample.csv."
