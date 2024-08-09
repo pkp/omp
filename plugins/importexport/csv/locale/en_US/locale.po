@@ -60,8 +60,32 @@ msgstr ""
 "submission."
 
 msgid "plugins.importexport.csv.import.submission"
-msgstr "Submission: '{$title}' successfully imported."
+msgstr "Submission: \"{$title}\" successfully imported."
 
 msgid "plugins.importexport.csv.import.success.description"
 msgstr ""
 "The import was successful. Successfully-imported items are listed below."
+
+msgid "plugins.importexport.csv.allCategoriesMustExists"
+msgstr "All CSV categories must be already existing on OMP. Please create it manually and retry."
+
+msgid "plugins.importexport.csv.invalidAssetFilename"
+msgstr "Invalid asset name for submission \"{$title}\"."
+
+msgid "plugins.importexport.csv.invalidCoverImageFilename"
+msgstr "Invalid cover image filename for submission \"{$title}\""
+
+msgid "plugins.importexport.csv.requiredFieldsMissing"
+msgstr "Required fields missing. Please verify the required fields for this row."
+
+msgid "plugins.importexport.csv.csvDoesntContainAllFields"
+msgstr "This row doesn't contain all fields."
+
+msgid "plugin.importexport.csv.seeInvalidRowsFile"
+msgstr "{$processedRows} submissions were imported. {$failedRows} failed. Please see the file \"invalid_rows.csv\" at the same directory as the CSV file."
+
+msgid "plugin.importexport.csv.allDataSuccessfullyImported"
+msgstr "{$processedRows} submissions were successfully imported."
+
+msgid "pugin.importexport.csv.missingHeadersOnCsv"
+msgstr "The following headers are missing on your CSV file: \"{$missingHeaders}\". Please update it as shown on file sample.csv."
