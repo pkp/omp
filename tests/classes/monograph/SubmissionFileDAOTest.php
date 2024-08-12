@@ -24,12 +24,14 @@ use APP\core\Request;
 use APP\facades\Repo;
 use APP\press\Press;
 use APP\submission\Submission;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\core\Registry;
 use PKP\db\DAORegistry;
 use PKP\submission\GenreDAO;
 use PKP\submissionFile\SubmissionFile;
 use PKP\tests\DatabaseTestCase;
 
+#[CoversClass(\APP\submissionFile\DAO::class)]
 class SubmissionFileDAOTest extends DatabaseTestCase
 {
     // Define test ids. WARNING: These are expected to match present data!
@@ -71,7 +73,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
             ->getMock();
         $mockRequest->expects($this->any())
             ->method('getContext')
-            ->will($this->returnValue($press));
+            ->willReturn($press);
         Registry::get('request', true, $mockRequest);
 
         // Register a mock monograph DAO.
@@ -85,7 +87,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $monograph->setData('locale', 'en');
         $submissionDao->expects($this->any())
             ->method('get')
-            ->will($this->returnValue($monograph));
+            ->willReturn($monograph);
         Repo::submission()->dao = $submissionDao;
 
         // Register a mock genre DAO.
@@ -95,7 +97,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         DAORegistry::registerDAO('GenreDAO', $genreDao);
         $genreDao->expects($this->any())
             ->method('getById')
-            ->will($this->returnCallback([$this, 'getTestGenre']));
+            ->willReturnCallback([$this, 'getTestGenre']);
 
         $this->_cleanFiles();
 
@@ -146,7 +148,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $monograph->setData('locale', 'en');
         $submissionDao->expects($this->any())
             ->method('get')
-            ->will($this->returnValue($monograph));
+            ->willReturn($monograph);
         Repo::submission()->dao = $submissionDao;
 
         // Create test files

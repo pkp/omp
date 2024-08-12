@@ -29,7 +29,7 @@ class PressMigration extends \PKP\migration\Migration
             $table->comment('A list of presses managed by the system.');
             $table->bigInteger('press_id')->autoIncrement();
             $table->string('path', 32);
-            $table->float('seq', 8, 2)->default(0);
+            $table->float('seq')->default(0);
             $table->string('primary_locale', 28);
             $table->smallInteger('enabled')->default(1);
             $table->unique(['path'], 'press_path');

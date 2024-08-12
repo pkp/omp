@@ -38,7 +38,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->string('publication_date_type', 32)->default('pub')->nullable();
             //  PUBLICATION_TYPE_PUBLICATION
             $table->string('publication_type', 32)->default('publication')->nullable();
-            $table->float('seq', 8, 2)->default(0);
+            $table->float('seq')->default(0);
 
             // FK relationship is defined where series table is created
             $table->bigInteger('series_id')->nullable();
@@ -81,7 +81,7 @@ class OMPMigration extends \PKP\migration\Migration
 
             $table->smallInteger('physical_format')->default(1)->nullable();
             $table->string('entry_key', 64)->nullable();
-            $table->float('seq', 8, 2)->default(0);
+            $table->float('seq')->default(0);
             $table->string('file_size', 255)->nullable();
             $table->string('front_matter', 255)->nullable();
             $table->string('back_matter', 255)->nullable();
@@ -267,7 +267,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->index(['review_form_id'], 'series_review_form_id');
 
             //  NOT NULL not included for the sake of 1.1 upgrade, which didn't include this column
-            $table->float('seq', 8, 2)->default(0)->nullable();
+            $table->float('seq')->default(0)->nullable();
 
             $table->smallInteger('featured')->default(0);
             $table->smallInteger('editor_restricted')->default(0);
@@ -310,7 +310,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->foreign('publication_id', 'submission_chapters_publication_id')->references('publication_id')->on('publications')->onDelete('cascade');
             $table->index(['publication_id'], 'submission_chapters_publication_id');
 
-            $table->float('seq', 8, 2)->default(0);
+            $table->float('seq')->default(0);
 
             // FK defined below (circular reference)
             $table->bigInteger('source_chapter_id')->nullable();
@@ -352,7 +352,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->index(['chapter_id'], 'submission_chapter_authors_chapter_id');
 
             $table->smallInteger('primary_contact')->default(0);
-            $table->float('seq', 8, 2)->default(0);
+            $table->float('seq')->default(0);
 
             $table->unique(['author_id', 'chapter_id'], 'chapter_authors_pkey');
         });
@@ -391,7 +391,7 @@ class OMPMigration extends \PKP\migration\Migration
 
             //  NOTE: assoc_id NOT numeric to incorporate file idents
             $table->string('assoc_id', 16)->nullable();
-            $table->float('amount', 8, 2);
+            $table->decimal('amount', 8, 2);
             $table->string('currency_code_alpha', 3)->nullable();
             $table->string('payment_method_plugin_name', 80)->nullable();
         });

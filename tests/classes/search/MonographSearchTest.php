@@ -9,10 +9,6 @@
  *
  * @class MonographSearchTest
  *
- * @ingroup tests_classes_search
- *
- * @see MonographSearch
- *
  * @brief Test class for the MonographSearch class
  */
 
@@ -24,10 +20,12 @@ use APP\press\Press;
 use APP\press\PressDAO;
 use APP\search\MonographSearch;
 use APP\search\MonographSearchDAO;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\db\DAORegistry;
 use PKP\plugins\Hook;
 use PKP\tests\PKPTestCase;
 
+#[CoversClass(MonographSearch::class)]
 class MonographSearchTest extends PKPTestCase
 {
     private const SUBMISSION_SEARCH_TEST_DEFAULT_MONOGRAPH = 1;
@@ -77,9 +75,7 @@ class MonographSearchTest extends PKPTestCase
     //
     // Unit tests
     //
-    /**
-     * @covers MonographSearch
-     */
+
     public function testRetrieveResults()
     {
         // Make sure that no hook is being called.
@@ -101,9 +97,6 @@ class MonographSearchTest extends PKPTestCase
         self::assertEquals('', $error);
     }
 
-    /**
-     * @covers MonographSearch
-     */
     public function testRetrieveResultsViaPluginHook()
     {
         // Diverting a search to the search plugin hook.
@@ -216,7 +209,7 @@ class MonographSearchTest extends PKPTestCase
         // Mock the getPhraseResults() method.
         $monographSearchDao->expects($this->any())
             ->method('getPhraseResults')
-            ->will($this->returnValue($searchResult));
+            ->willReturn($searchResult);
 
         // Register the mock DAO.
         DAORegistry::registerDAO('MonographSearchDAO', $monographSearchDao);
@@ -241,7 +234,7 @@ class MonographSearchTest extends PKPTestCase
         // Mock the getById() method.
         $pressDao->expects($this->any())
             ->method('getById')
-            ->will($this->returnValue($press));
+            ->willReturn($press);
 
         // Register the mock DAO.
         DAORegistry::registerDAO('PressDAO', $pressDao);

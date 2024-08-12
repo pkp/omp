@@ -35,16 +35,14 @@ class I9627_AddUsageStatsTemporaryTablesIndexes extends \PKP\migration\upgrade\v
     {
         parent::up();
 
-        $sm = Schema::getConnection()->getDoctrineSchemaManager();
-        Schema::table('usage_stats_unique_title_investigations_temporary_records', function (Blueprint $table) use ($sm) {
-            $indexesFound = $sm->listTableIndexes('usage_stats_unique_title_investigations_temporary_records');
-            if (!array_key_exists('usti_load_id_context_id_ip', $indexesFound)) {
+        Schema::table('usage_stats_unique_title_investigations_temporary_records', function (Blueprint $table) {
+            if (!Schema::hasIndex('usage_stats_unique_title_investigations_temporary_records', 'usti_load_id_context_id_ip')) {
                 $table->index(['load_id', 'context_id', 'ip'], 'usti_load_id_context_id_ip');
             }
         });
-        Schema::table('usage_stats_unique_title_requests_temporary_records', function (Blueprint $table) use ($sm) {
-            $indexesFound = $sm->listTableIndexes('usage_stats_unique_title_requests_temporary_records');
-            if (!array_key_exists('ustr_load_id_context_id_ip', $indexesFound)) {
+
+        Schema::table('usage_stats_unique_title_requests_temporary_records', function (Blueprint $table) {
+            if (!Schema::hasIndex('usage_stats_unique_title_investigations_temporary_records', 'ustr_load_id_context_id_ip')) {
                 $table->index(['load_id', 'context_id', 'ip'], 'ustr_load_id_context_id_ip');
             }
         });
