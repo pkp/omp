@@ -108,11 +108,6 @@ msgstr "Назва серії"
 msgid "manager.series.restricted"
 msgstr "Не дозволяйте авторам подавати матеріали напряму до цієї серії."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-"Як мінімум одна серія має бути активною. Відвідайте налаштування робочого "
-"процесу, щоб відключити всі подання в це видавництво."
-
 msgid "manager.payment.generalOptions"
 msgstr "Загальні параметри"
 

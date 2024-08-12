@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/settings/series/SeriesGridHandler.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2003-2024 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SeriesGridHandler
@@ -292,19 +292,6 @@ class SeriesGridHandler extends SetupGridHandler
             return new JSONMessage(false, __('manager.sections.alertDelete'));
         }
 
-        $activeSectionsCount = Repo::section()->getCollector()
-            ->filterByContextIds([$press->getId()])
-            ->excludeInactive()
-            ->getCount();
-
-        $activeSectionsCount = (!$series->getIsInactive())
-            ? $activeSectionsCount - 1
-            : $activeSectionsCount;
-
-        if ($activeSectionsCount < 1) {
-            return new JSONMessage(false, __('manager.series.confirmDeactivateSeries.error'));
-        }
-
         Repo::section()->delete($series);
 
         return DAO::getDataChangedEvent($series->getId());
@@ -327,29 +314,16 @@ class SeriesGridHandler extends SetupGridHandler
         $context = $request->getContext();
 
         // Validate if it can be inactive
-        $activeSeriesCount = Repo::section()
-            ->getCollector()
-            ->filterByContextIds([$context->getId()])
-            ->excludeInactive()
-            ->getCount();
-        if ($activeSeriesCount > 1) {
-            $series = Repo::section()->get($seriesId, $context->getId());
-            if ($request->checkCSRF() && isset($series) && !$series->getIsInactive()) {
-                $series->setIsInactive(1);
-                Repo::section()->edit($series, []);
+        $series = Repo::section()->get($seriesId, $context->getId());
+        if ($request->checkCSRF() && isset($series) && !$series->getIsInactive()) {
+            $series->setIsInactive(1);
+            Repo::section()->edit($series, []);
 
-                // Create the notification.
-                $notificationMgr = new NotificationManager();
-                $user = $request->getUser();
-                $notificationMgr->createTrivialNotification($user->getId());
-
-                return DAO::getDataChangedEvent($seriesId);
-            }
-        } else {
             // Create the notification.
             $notificationMgr = new NotificationManager();
             $user = $request->getUser();
-            $notificationMgr->createTrivialNotification($user->getId(), Notification::NOTIFICATION_TYPE_ERROR, ['contents' => __('manager.series.confirmDeactivateSeries.error')]);
+            $notificationMgr->createTrivialNotification($user->getId());
+
             return DAO::getDataChangedEvent($seriesId);
         }
 

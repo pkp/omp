@@ -600,12 +600,6 @@ msgstr ""
 "registados pela equip editorial. Se acredita que isto é um erro, entre em "
 "contato com <a href='mailto:{$email}'>{$name}</a>."
 
-msgid "submission.wizard.noSectionAllowed.description"
-msgstr ""
-"Sem permissão para submeter a esta editora porque as submissões para todas "
-"as secções desta editora foram desativadas ou restritas. Se acredita que "
-"isto é um erro, entre em contato com <a href='mailto:{$email}'>{$name}</a>."
-
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
 "{$contextName} não está a aceitar envios para a série {$section}. Se "

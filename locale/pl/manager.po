@@ -109,11 +109,6 @@ msgstr "Tytuł serii"
 msgid "manager.series.restricted"
 msgstr "Nie pozwalaj autorom na bezpośrednie zgłoszenia do tej serii."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-"Przynajmniej jedna seria musi być aktywna. Odwiedź ustawienia workflow, aby "
-"zdezaktywować wszystkie zgłoszenia do tego wydania."
-
 msgid "manager.payment.generalOptions"
 msgstr "Opcje Ogólne"
 

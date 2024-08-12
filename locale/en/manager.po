@@ -105,9 +105,6 @@ msgstr "Don't allow authors to submit directly to this series."
 msgid "manager.sections.alertDelete"
 msgstr "Before this series can be deleted, you must move associated submissions with this series to other series."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr "At least one series must be active. Visit the workflow settings to disable all submissions to this press."
-
 msgid "manager.payment.generalOptions"
 msgstr "General Options"
 

@@ -60,18 +60,6 @@ class SubmissionHandler extends PKPSubmissionHandler
             return;
         }
 
-        $sections = $this->getSubmitSections($context);
-        if (empty($sections)) {
-            $this->showErrorPage(
-                'submission.wizard.notAllowed',
-                __('submission.wizard.noSectionAllowed.description', [
-                    'email' => $context->getData('contactEmail'),
-                    'name' => $context->getData('contactName'),
-                ])
-            );
-            return;
-        }
-
         $apiUrl = $request->getDispatcher()->url(
             $request,
             Application::ROUTE_API,

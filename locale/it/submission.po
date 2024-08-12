@@ -596,12 +596,6 @@ msgstr ""
 "gli autori devono essere registrati dal board editoriale. Se credi ci sia un "
 "errore, contatta <a href='mailto:{$email}'>{$name}</a>."
 
-msgid "submission.wizard.noSectionAllowed.description"
-msgstr ""
-"Non sei autorizzato a effettuare proposte in questo ambiente digitale perché "
-"tutte le collane sono disattive o limitate. Se credi ci sia un errore, "
-"contatta <a href='mailto:{$email}'>{$name}</a>."
-
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
 "{$contextName} non accetta proposte per la collana: {$section}. Se hai "

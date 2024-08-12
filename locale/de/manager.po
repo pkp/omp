@@ -117,11 +117,6 @@ msgstr "Reihentitel"
 msgid "manager.series.restricted"
 msgstr "Verbieten Sie Autor/innen, direkt bei dieser Reihe einzureichen."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-"Mindestens eine Reihe muss aktiv sein. Gehen Sie zu den Workflow-"
-"Einstellungen um alle Einreichungen zu diesem Verlag zu deaktivieren."
-
 msgid "manager.payment.generalOptions"
 msgstr "Allgemeine Optionen"
 

@@ -89,9 +89,6 @@ msgstr ""
 msgid "manager.series.restricted"
 msgstr ""
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-
 msgid "manager.payment.generalOptions"
 msgstr ""
 

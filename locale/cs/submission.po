@@ -581,13 +581,6 @@ msgstr ""
 "redakcí zaregistrováni. Pokud se domníváte, že se jedná o chybu, kontaktujte "
 "prosím <a href='mailto:{$email}'>{$name}</a>."
 
-msgid "submission.wizard.noSectionAllowed.description"
-msgstr ""
-"Do tohoto tisku nemůžete přispívat, protože zasílání příspěvků do všech "
-"sekcí tohoto vydavatelství bylo deaktivováno nebo omezeno. Pokud se "
-"domníváte, že se jedná o chybu, kontaktujte prosím <a href='mailto:"
-"{$email}'>{$name}</a>."
-
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
 "{$contextName} nepřijímá příspěvky do seriálu {$section}. Pokud potřebujete "
