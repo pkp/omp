@@ -60,18 +60,6 @@ class SubmissionHandler extends PKPSubmissionHandler
             return;
         }
 
-        $sections = $this->getSubmitSections($context);
-        if (empty($sections)) {
-            $this->showErrorPage(
-                'submission.wizard.notAllowed',
-                __('submission.wizard.noSectionAllowed.description', [
-                    'email' => $context->getData('contactEmail'),
-                    'name' => $context->getData('contactName'),
-                ])
-            );
-            return;
-        }
-
         $apiUrl = $request->getDispatcher()->url(
             $request,
             Application::ROUTE_API,
@@ -130,7 +118,7 @@ class SubmissionHandler extends PKPSubmissionHandler
 
         Hook::add('Template::SubmissionWizard::Section', function (string $hookName, array $params) {
             $templateMgr = $params[1]; /** @var TemplateManager $templateMgr */
-            $output = & $params[2]; /** @var string $step */
+            $output = &$params[2]; /** @var string $step */
 
             $output .= sprintf(
                 '<template v-else-if="section.id === \'' . self::CHAPTERS_SECTION_ID . '\'">%s</template>',
@@ -143,7 +131,7 @@ class SubmissionHandler extends PKPSubmissionHandler
         Hook::add('Template::SubmissionWizard::Section::Review', function (string $hookName, array $params) {
             $step = $params[0]['step']; /** @var string $step */
             $templateMgr = $params[1]; /** @var TemplateManager $templateMgr */
-            $output = & $params[2]; /** @var string $output */
+            $output = &$params[2]; /** @var string $output */
 
             if ($step === 'details') {
                 $output .= $templateMgr->fetch('submission/review-chapters.tpl');

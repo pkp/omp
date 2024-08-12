@@ -591,12 +591,6 @@ msgstr ""
 "повинні бути зареєстровані редакцією. Якщо ви вважаєте, що це помилка, "
 "зверніться до <a href='mailto:{$email}'>{$name}</a>."
 
-msgid "submission.wizard.noSectionAllowed.description"
-msgstr ""
-"Вам не дозволено робити подання до цього е-видавництва, оскільки подання до "
-"всіх розділів до цього е-видавництва було деактивовано або обмежено. Якщо ви "
-"вважаєте, що це помилка, зверніться до <a href='mailto:{$email}'>{$name}</a>."
-
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
 "\"{$contextName}\" не приймає подання до серії {$section}. Якщо Вам потрібна "

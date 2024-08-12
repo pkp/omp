@@ -110,9 +110,6 @@ msgstr "Titre de la série"
 msgid "manager.series.restricted"
 msgstr "Restreint"
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-
 msgid "manager.payment.generalOptions"
 msgstr ""
 

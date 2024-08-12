@@ -719,11 +719,6 @@ msgstr ""
 "(Caso não tenha inserido Secções, os itens serão submetidos à Secção Livros "
 "por defeito.)"
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-"Pelo menos uma série deve estar ativa. Visite as configurações do fluxo de "
-"trabalho para desativar as submissões a esta editora."
-
 msgid "manager.setup.sectionsDescription"
 msgstr ""
 "Para criar ou modificar as secções da editora (ex.: Livros, Recensões, etc.)"

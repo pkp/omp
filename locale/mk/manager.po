@@ -110,11 +110,6 @@ msgstr "Наслов на серијата"
 msgid "manager.series.restricted"
 msgstr "Не дозволувајте авторите да поднесуваат директно до оваа серија."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-"Барем една серија мора да биде активна. Посетете ги поставките за работниот "
-"тек за да ги оневозможите сите поднесоци на ова издание."
-
 msgid "manager.payment.generalOptions"
 msgstr "Општи опции"
 

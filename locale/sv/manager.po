@@ -106,11 +106,6 @@ msgstr "Serietitel"
 msgid "manager.series.restricted"
 msgstr "Tillåt inte författare att skicka in bidrag direkt till serien."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-"Minst en serie måste vara aktiv. Gå till inställningarna för arbetsflöde för "
-"att inaktivera inskickning av bidrag till denna press."
-
 msgid "manager.payment.generalOptions"
 msgstr "Allmänna inställningar"
 

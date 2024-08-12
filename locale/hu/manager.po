@@ -114,11 +114,6 @@ msgstr ""
 "Ne engedélyezze, hogy a szerzők ehhez a sorozathoz közvetlenül küldjenek be "
 "anyagot."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-"Legalább egy sorozatnak aktívnak kell lennie. A munkafolyamat beállításokban "
-"letilthat minden, a kiadóhoz beüldött anyagot."
-
 msgid "manager.payment.generalOptions"
 msgstr "Általános beállítások"
 

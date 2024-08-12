@@ -97,9 +97,6 @@ msgstr "ناونیشانی زنجیرە"
 msgid "manager.series.restricted"
 msgstr "ڕێگا بە نوسەران مەدە کە بە ڕاستەوخۆیی بۆ ئەم زنجیرەیە پێشکەش بکەن."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-
 msgid "manager.payment.generalOptions"
 msgstr "بژاردە گشتییەکان"
 
