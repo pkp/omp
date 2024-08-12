@@ -585,12 +585,6 @@ msgstr ""
 "registered by the editorial staff. If you believe this is an error, please "
 "contact <a href='mailto:{$email}'>{$name}</a>."
 
-msgid "submission.wizard.noSectionAllowed.description"
-msgstr ""
-"You are not allowed to submit to this press because submissions to all "
-"sections of this press have been deactivated or restricted. If you believe "
-"this is an error, please contact <a href='mailto:{$email}'>{$name}</a>."
-
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
 "{$contextName} is not accepting submissions to the {$section} series. If you "

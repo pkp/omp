@@ -633,13 +633,6 @@ msgstr ""
 "fie înregistrați de redacția. Dacă considerați că aceasta este o eroare, "
 "contactați <a href='mailto:{$email}'>{$name}</a>."
 
-msgid "submission.wizard.noSectionAllowed.description"
-msgstr ""
-"Nu aveți voie să înregistrați la această presă deoarece înregistrările către "
-"toate secțiunile acestei prese au fost dezactivate sau restricționate. Dacă "
-"considerați că aceasta este o eroare, contactați <a "
-"href='mailto:{$email}'>{$name}</a>."
-
 msgid "submission.wizard.chapters.description"
 msgstr ""
 "Furnizați toate capitolele acestei înregistrări. Dacă înregistrați un volum "

@@ -529,9 +529,6 @@ msgstr ""
 msgid "submission.wizard.notAllowed.description"
 msgstr ""
 
-msgid "submission.wizard.noSectionAllowed.description"
-msgstr ""
-
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
 

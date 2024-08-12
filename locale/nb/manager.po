@@ -109,11 +109,6 @@ msgstr "Serietittel"
 msgid "manager.series.restricted"
 msgstr "Ikke tillat forfattere å sende inn direkte til denne serien."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-"Minst en serie må være aktiv. Gå til arbeidsflytinnstillingene for å "
-"deaktivere alle innleveringer til denne utgiveren."
-
 msgid "manager.payment.generalOptions"
 msgstr "Generelle innstillinger"
 

@@ -592,13 +592,6 @@ msgstr ""
 "бидат регистрирани од едиторите. Доколку сметате дека ова е грешка, Ве "
 "молиме исконтактирајте го/ја<a href='mailto:{$email}'>{$name}</a>."
 
-msgid "submission.wizard.noSectionAllowed.description"
-msgstr ""
-"Не Ви е дозволено да поднесувате до ова списание бидејќи поднесоците до сите "
-"делови на ова списание се деактивирани или ограничени. Доколку сметате дека "
-"ова е грешка, Ве молиме исконтактирајте го/ја <a "
-"href='mailto:{$email}'>{$name}</a>."
-
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
 "{$contextName} не прифаќа поднесоци до {$section} низата. Доколку Ви треба "

@@ -112,11 +112,6 @@ msgid "manager.series.restricted"
 msgstr ""
 "Älä salli kirjoittajien lähettää käsikirjoituksia suoraan tähän sarjaan."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-"Vähintään yhden sarjan tulee olla käytössä. Käy työnkulun asetuksissa "
-"estämässä käsikirjoitusten lähettäminen tälle julkaisijalle."
-
 msgid "manager.payment.generalOptions"
 msgstr "Yleiset valinnat"
 

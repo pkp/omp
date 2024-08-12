@@ -334,11 +334,6 @@ msgstr "Naslov serije"
 msgid "manager.series.restricted"
 msgstr "Nemojte dopustiti autorima da se izravno prijave za ovu seriju."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-"Najmanje jedna serija mora biti aktivna. Idite na postavke tijeka rada da "
-"biste onemogućili sve prijave ovom izdavaču."
-
 msgid "manager.payment.generalOptions"
 msgstr "Opće postavke"
 

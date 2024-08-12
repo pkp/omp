@@ -109,11 +109,6 @@ msgstr "Название серии"
 msgid "manager.series.restricted"
 msgstr "Не разрешайте авторам посылать материалы непосредственно в эти серии."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-"Минимум одна серия должна быть активна. Зайдите в настройки рабочего "
-"процесса, чтобы отключить отправку материалов в это издательство."
-
 msgid "manager.payment.generalOptions"
 msgstr "Общие параметры"
 

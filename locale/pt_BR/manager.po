@@ -112,11 +112,6 @@ msgstr "Título da séries"
 msgid "manager.series.restricted"
 msgstr "Não permita que os autores enviem diretamente para esta série."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-"Pelo menos uma série deve estar ativa. Visite as configurações do fluxo de "
-"trabalho para desativar todas as submissões para esta editora."
-
 msgid "manager.payment.generalOptions"
 msgstr "Opções gerais"
 

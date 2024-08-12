@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/settings/series/form/SeriesForm.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2003-2024 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SeriesForm
@@ -138,25 +138,6 @@ class SeriesForm extends PKPSectionForm
             ) {
                 $this->addError('temporaryFileId', __('form.invalidImage'));
                 return false;
-            }
-        }
-
-        // Validate if it can be inactive
-        if ($this->getData('isInactive')) {
-            $request = Application::get()->getRequest();
-            $context = $request->getContext();
-            $seriesId = $this->getSeriesId();
-
-            $activeSeries = Repo::section()
-                ->getCollector()
-                ->filterByContextIds([$context->getId()])
-                ->excludeInactive()
-                ->getMany();
-            $otherActiveSeries = $activeSeries->filter(function ($activeSection) use ($seriesId) {
-                return $activeSection->getId() != $seriesId;
-            });
-            if ($otherActiveSeries->count() < 1) {
-                $this->addError('isInactive', __('manager.series.confirmDeactivateSeries.error'));
             }
         }
 

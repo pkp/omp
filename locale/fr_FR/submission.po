@@ -614,12 +614,6 @@ msgstr ""
 "agit selon vous d’une erreur, veuillez contacter <a "
 "href='mailto:{$email}'>{$name}</a>."
 
-msgid "submission.wizard.noSectionAllowed.description"
-msgstr ""
-"Vous n’êtes pas autorisé(e) à soumettre à cette maison d’édition parce que "
-"les soumissions ont été désactivées ou restreintes. S’il s’agit selon vous d’"
-"une erreur, veuillez contacter <a href='mailto:{$email}'>{$name}</a>."
-
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
 "{$contextName} n’accepte pas de soumissions à la collection {$section}. Si "

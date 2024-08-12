@@ -602,13 +602,6 @@ msgstr ""
 "forfattere skal registreres først af redaktionen. Hvis du mener, dette er en "
 "fejl, så kontakt venligst <a href='mailto:{$email}'>{$name}</a>."
 
-msgid "submission.wizard.noSectionAllowed.description"
-msgstr ""
-"Du har ikke lov til at indsende et manuskript til denne udgiver, idet "
-"indsendelser til alle sektioner hos denne udgiver er blevet deaktiveret "
-"eller begrænset. Hvis du mener, dette er en fejl, så kontakt venligst <a "
-"href='mailto:{$email}'>{$name}</a>."
-
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
 "{$contextName} accepterer ikke indsendelser til {$section}-serien. Hvis du "
