@@ -95,9 +95,6 @@ class SubmissionFileDAOTest extends DatabaseTestCase
             ->onlyMethods(['getById'])
             ->getMock();
         DAORegistry::registerDAO('GenreDAO', $genreDao);
-        $genreDao->expects($this->any())
-            ->method('getById')
-            ->willReturnCallback([$this, 'getTestGenre']);
 
         $this->_cleanFiles();
 
