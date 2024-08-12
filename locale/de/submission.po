@@ -616,13 +616,6 @@ msgstr ""
 "der Redaktion registriert werden müssen. Wenn Sie glauben, dass dies ein "
 "Fehler ist, wenden Sie sich bitte an <a href='mailto:{$email}'>{$name}</a>."
 
-msgid "submission.wizard.noSectionAllowed.description"
-msgstr ""
-"Sie können keine Beiträge in dieser Zeitschrift einreichen, da Einreichungen "
-"für alle Reihen dieses Verlags deaktiviert oder restriktiert sind. Wenn Sie "
-"glauben, dass dies ein Fehler ist, wenden Sie sich bitte an <a "
-"href='mailto:{$email}'>{$name}</a>."
-
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
 "{$contextName} akzeptiert keine Einreichungen für die Sektion {$section}. "

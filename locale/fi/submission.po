@@ -580,12 +580,6 @@ msgstr ""
 "toimituskunta voi rekisteröidä uusia kirjoittajia. Jos arvioit tämän olevan "
 "virhe, otathan yhteyttä <a href='mailto:{$email}'>{$name}</a>."
 
-msgid "submission.wizard.noSectionAllowed.description"
-msgstr ""
-"Et voi lähettää käsikirjoitusta tälle julkaisijalle, koska kaikki julkaisun "
-"sarjat ovat pois käytöstä tai rajoitettuja. Jos arvelet, että ilmoitus on "
-"virheellinen, otathan yhteyttä <a href='mailto:{$email}'>{$name}</a>."
-
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
 "{$contextName} ei vastaanota käsikirjoituksia sarjaan {$section}. Jos "

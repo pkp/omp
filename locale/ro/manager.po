@@ -263,11 +263,6 @@ msgstr ""
 "a apăsa pe <a href=\"{$editoriSerieUrl}\">Editori serie</a> sub opțiunea "
 "Roluri în Managementul Publicației."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-"Cel puțin una dintre serii trebuie să fie activă. Vizitează setările "
-"fluxului de lucru pentru a dezactiva toate cererile pentru această editură."
-
 msgid "manager.languages.noneAvailable"
 msgstr ""
 "Ne cerem iertare, dar nu sunt disponibile și alte limbi. Contactează "

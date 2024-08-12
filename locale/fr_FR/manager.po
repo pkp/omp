@@ -825,11 +825,6 @@ msgstr ""
 "Ne pas autoriser les auteur·e·s à soumettre directement leurs textes à cette "
 "collection."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-"Au moins une collection doit être active. Visitez les paramètres du flux de "
-"travaux pour désactiver toutes les soumissions à cette maison d’édition."
-
 msgid "manager.payment.generalOptions"
 msgstr "Options générales"
 

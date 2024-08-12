@@ -603,13 +603,6 @@ msgstr ""
 "sido registrados por el equipo editorial. Si cree que se trata de un error, "
 "póngase en contacto con <a href='mailto:{$email}'>{$name}</a>."
 
-msgid "submission.wizard.noSectionAllowed.description"
-msgstr ""
-"No puede enviar artículos a esta editorial porque los envíos a todas las "
-"secciones de esta editorial han sido desactivados o restringidos. Si cree "
-"que se trata de un error, póngase en contacto con <a "
-"href='mailto:{$email}'>{$name}</a>."
-
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
 "{$contextName} no acepta envíos a la colección {$section}. Si necesita ayuda "

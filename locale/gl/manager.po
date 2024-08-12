@@ -108,11 +108,6 @@ msgstr "Título da colección"
 msgid "manager.series.restricted"
 msgstr "Non permitir aos autores enviar directamente a esta colección."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-"Polo menos unha serie debe estar activa. Visita a configuración do fluxo de "
-"traballo para desactivar todos os envíos a esta editorial."
-
 msgid "manager.payment.generalOptions"
 msgstr "Opcións xerais"
 

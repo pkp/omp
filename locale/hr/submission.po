@@ -585,12 +585,6 @@ msgstr ""
 "strane uredništva. Ako mislite da je ovo pogreška, kontaktirajte <a "
 "href='mailto:{$email}'>{$name}</a>."
 
-msgid "submission.wizard.noSectionAllowed.description"
-msgstr ""
-"Nije vam dopušteno slanje za ovaj tisak jer je slanje za sve odjeljke ovog "
-"tiska deaktivirano ili ograničeno. Ako mislite da je ovo pogreška, "
-"kontaktirajte <a href='mailto:{$email}'>{$name}</a>."
-
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
 "{$contextName} ne prihvaća prijave za seriju {$section}. Ako vam je potrebna "

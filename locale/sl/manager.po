@@ -111,9 +111,6 @@ msgstr "Naslov zbirke"
 msgid "manager.series.restricted"
 msgstr "Avtorjem ne dovoli, da prispevke oddajajo neposredno v to zbirko."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-
 msgid "manager.payment.generalOptions"
 msgstr "Splošne nastavitve"
 

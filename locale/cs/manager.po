@@ -106,11 +106,6 @@ msgstr "Název série"
 msgid "manager.series.restricted"
 msgstr "Neumožnit autorům zasílat příspěvky přímo do této série."
 
-msgid "manager.series.confirmDeactivateSeries.error"
-msgstr ""
-"Alespoň jedna série musí být aktivní. Navštivte nastavení pracovního postupu "
-"a zakažte všechna odesílání do tohoto tisku."
-
 msgid "manager.payment.generalOptions"
 msgstr "Obecné možnosti"
 
