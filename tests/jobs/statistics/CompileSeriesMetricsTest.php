@@ -45,7 +45,7 @@ class CompileSeriesMetricsTest extends PKPTestCase
     /**
      * Ensure that a serialized job can be unserialized and executed
      */
-    public function testRunSerializedJob()
+    public function testRunSerializedJob(): void
     {
         /** @var CompileSeriesMetrics $compileSeriesMetricsJob */
         $compileSeriesMetricsJob = unserialize($this->serializedJobData);
