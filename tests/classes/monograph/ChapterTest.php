@@ -20,9 +20,11 @@ namespace APP\tests\classes\monograph;
 use APP\core\Application;
 use APP\core\PageRouter;
 use APP\monograph\Chapter;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\facades\Locale;
 use PKP\tests\PKPTestCase;
 
+#[CoversClass(Chapter::class)]
 class ChapterTest extends PKPTestCase
 {
     /** @var Chapter */
@@ -50,9 +52,6 @@ class ChapterTest extends PKPTestCase
         unset($this->chapter);
     }
 
-    /**
-     * @covers chapter
-     */
     public function testGetFullTitles()
     {
         $expected = [
@@ -67,9 +66,6 @@ class ChapterTest extends PKPTestCase
         $this->assertSame($expected, $fullTitles);
     }
 
-    /**
-     * @covers chapter
-     */
     public function testGetLocalizedFullTitle()
     {
         // no preferred locale specified

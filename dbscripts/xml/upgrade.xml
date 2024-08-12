@@ -62,6 +62,7 @@
 		<migration class="APP\migration\upgrade\v3_4_0\I8151_ExtendSettingValues"/>
 		<migration class="PKP\migration\upgrade\v3_4_0\I8151_ExtendSettingValues"/>
 		<migration class="PKP\migration\upgrade\v3_4_0\I7366_UpdateUserAPIKeySettings"/>
+		<migration class="PKP\migration\upgrade\v3_4_0\I7463_LocaleColumn"/>
 		<migration class="PKP\migration\upgrade\v3_4_0\I8093_UpdateUserGroupRelationTablesFK"/>
 		<migration class="APP\migration\upgrade\v3_4_0\I7725_DecisionConstantsUpdate"/>
 		<migration class="PKP\migration\upgrade\v3_4_0\I4789_AddReviewerRequestResentColumns"/>
@@ -118,6 +119,7 @@
 	<upgrade minversion="3.1.0.0" maxversion="3.4.9.9">
 		<migration class="PKP\migration\upgrade\v3_5_0\PreflightCheckMigration" fallback="3.4.9.9" />
 		<migration class="APP\migration\upgrade\v3_5_0\I8333_AddMissingForeignKeys" />
+		<migration class="APP\migration\upgrade\v3_5_0\I9892_FloatToDecimalColumnTypeUpdate" />
 		<migration class="PKP\migration\upgrade\v3_5_0\I9895_AddAppKeyToConfigFile"/>
 		<migration class="PKP\migration\upgrade\v3_5_0\I9678_RemoveScheduledTasksTable"/>
 		<migration class="PKP\migration\upgrade\v3_5_0\InstallEmailTemplates"/>

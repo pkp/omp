@@ -9,10 +9,6 @@
  *
  * @class MonographSearchIndexTest
  *
- * @ingroup tests_classes_search
- *
- * @see MonographSearchIndex
- *
  * @brief Test class for the MonographSearchIndex class
  */
 
@@ -26,6 +22,7 @@ use APP\search\MonographSearchIndex;
 use APP\submission\Submission;
 use Mockery;
 use Mockery\MockInterface;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PKP\db\DAORegistry;
 use PKP\db\DAOResultFactory;
@@ -34,6 +31,7 @@ use PKP\submissionFile\Collector as SubmissionFileCollector;
 use PKP\submissionFile\SubmissionFile;
 use PKP\tests\PKPTestCase;
 
+#[CoversClass(MonographSearchIndex::class)]
 class MonographSearchIndexTest extends PKPTestCase
 {
     //
@@ -77,9 +75,7 @@ class MonographSearchIndexTest extends PKPTestCase
     //
     // Unit tests
     //
-    /**
-     * @covers MonographSearchIndex
-     */
+
     public function testUpdateFileIndexViaPluginHook()
     {
         // Diverting to the search plugin hook.
@@ -100,9 +96,6 @@ class MonographSearchIndexTest extends PKPTestCase
         Hook::clear('MonographSearchIndex::submissionFileChanged');
     }
 
-    /**
-     * @covers MonographSearchIndex
-     */
     public function testDeleteTextIndex()
     {
         // Prepare the mock environment for this test.
@@ -116,9 +109,6 @@ class MonographSearchIndexTest extends PKPTestCase
         $monographSearchIndex->submissionFileDeleted(0);
     }
 
-    /**
-     * @covers MonographSearchIndex
-     */
     public function testDeleteTextIndexViaPluginHook()
     {
         // Diverting to the search plugin hook.
@@ -140,9 +130,6 @@ class MonographSearchIndexTest extends PKPTestCase
         Hook::clear('MonographSearchIndex::submissionFileDeleted');
     }
 
-    /**
-     * @covers MonographSearchIndex
-     */
     public function testRebuildIndex()
     {
         // Prepare the mock environment for this test.
@@ -160,9 +147,6 @@ class MonographSearchIndexTest extends PKPTestCase
         $monographSearchIndex->rebuildIndex(true);
     }
 
-    /**
-     * @covers MonographSearchIndex
-     */
     public function testRebuildIndexViaPluginHook()
     {
         // Diverting to the search plugin hook.
@@ -180,9 +164,6 @@ class MonographSearchIndexTest extends PKPTestCase
         Hook::clear('MonographSearchIndex::rebuildIndex');
     }
 
-    /**
-     * @covers MonographSearchIndex
-     */
     public function testIndexMonographMetadata()
     {
         // Make sure that no hook is being called.
@@ -203,16 +184,13 @@ class MonographSearchIndexTest extends PKPTestCase
             ->getMock();
         $monograph->expects($this->any())
             ->method('getCurrentPublication')
-            ->will($this->returnValue($publication));
+            ->willReturn($publication);
 
         // Test indexing an monograph with a mock environment.
         $monographSearchIndex = $this->getMockMonographSearchIndex($this->atLeastOnce());
         $monographSearchIndex->submissionMetadataChanged($monograph);
     }
 
-    /**
-     * @covers MonographSearchIndex
-     */
     public function testIndexMonographMetadataViaPluginHook()
     {
         // Diverting to the search plugin hook.
@@ -231,9 +209,6 @@ class MonographSearchIndexTest extends PKPTestCase
         Hook::clear('MonographSearchIndex::monographMetadataChanged');
     }
 
-    /**
-     * @covers MonographSearchIndex
-     */
     public function testIndexSubmissionFiles()
     {
         // Make sure that no hook is being called.
@@ -247,9 +222,6 @@ class MonographSearchIndexTest extends PKPTestCase
         $this->assertTrue(true);
     }
 
-    /**
-     * @covers MonographSearchIndex
-     */
     public function testIndexSubmissionFilesViaPluginHook()
     {
         // Diverting to the search plugin hook.
@@ -388,12 +360,12 @@ class MonographSearchIndexTest extends PKPTestCase
         // Test the clearIndex() method.
         $monographSearchDao->expects($clearIndexExpected)
             ->method('clearIndex')
-            ->will($this->returnValue(null));
+            ->willReturn(null);
 
         // Test the deleteSubmissionKeywords() method.
         $monographSearchDao->expects($deleteMonographExpected)
             ->method('deleteSubmissionKeywords')
-            ->will($this->returnValue(null));
+            ->willReturn(null);
 
         // Register the mock DAO.
         DAORegistry::registerDAO('MonographSearchDAO', $monographSearchDao);
@@ -417,12 +389,12 @@ class MonographSearchIndexTest extends PKPTestCase
             ->getMock();
         $pressIterator
             ->method('toIterator')
-            ->will($this->returnValue(new \ArrayIterator()));
+            ->willReturn(new \ArrayIterator());
 
         // Mock the getAll() method.
         $pressDao->expects($this->any())
             ->method('getAll')
-            ->will($this->returnValue($pressIterator));
+            ->willReturn($pressIterator);
 
         // Register the mock DAO.
         DAORegistry::registerDAO('PressDAO', $pressDao);
@@ -460,7 +432,7 @@ class MonographSearchIndexTest extends PKPTestCase
         // Check for updateTextIndex() calls.
         $monographSearchIndex->expects($expectedCall)
             ->method('updateTextIndex')
-            ->will($this->returnValue(null));
+            ->willReturn(null);
         return $monographSearchIndex;
     }
 }
