@@ -1,9 +1,9 @@
 # Weblate Admin <alec@smecher.bc.ca>, 2023.
 # Rudy Hahusseau <rudy.hahusseau@univ-lorraine.fr>, 2023.
-# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023.
+# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-09-20 21:06+0000\n"
+"PO-Revision-Date: 2024-07-25 17:06+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/default/"
 "fr_FR/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "default.contextSettings.authorGuidelines"
 msgstr ""
@@ -171,10 +171,10 @@ msgid "default.groups.abbrev.externalReviewer"
 msgstr "ÉvEx"
 
 msgid "default.groups.name.editor"
-msgstr "Responsable éditorial"
+msgstr "Responsable d'édition"
 
 msgid "default.groups.plural.editor"
-msgstr "Responsables éditoriaux"
+msgstr "Responsables d'édition"
 
 msgid "default.groups.abbrev.editor"
 msgstr "RE"
