@@ -1618,3 +1618,10 @@ msgstr "Forsidebilde"
 
 #~ msgid "debug.notes.currencyListLoad"
 #~ msgstr "Lastet valutalisten \"{$filename}\" fra XML"
+
+msgid "site.upgradeAvailable.admin"
+msgstr ""
+"En ny versjon av OMP er tilgengelig. Du bruker for tiden OMP "
+"{$currentVersion}. Den nyeste versjonen av OMP er {$latestVersion}. Besøk <a "
+"href=\"http://pkp.sfu.ca/omp_download\" target=\"_new\">denne siden</a> for "
+"å laste ned den nyeste versjonen og for å finne instruksjon for oppgradering."

@@ -1405,3 +1405,10 @@ msgstr ""
 
 msgid "catalog.coverImageTitle"
 msgstr ""
+
+msgid "site.upgradeAvailable.admin"
+msgstr ""
+"Có một phiên bản mới của OMP! Bạn hiện đang sử dụng OMP {$currentVersion}. "
+"Phiên bản gần đây nhất là OMP {$latestVersion}. Vui lòng truy cập <a href="
+"\"http://pkp.sfu.ca/omp_download\" target=\"_new\">this page</a> để tải "
+"xuống phiên bản mới nhất và tìm hướng dẫn nâng cấp."

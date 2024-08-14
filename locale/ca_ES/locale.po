@@ -1701,3 +1701,10 @@ msgstr "Imatge de coberta"
 
 #~ msgid "about.contributors"
 #~ msgstr "Fonts de suport"
+
+msgid "site.upgradeAvailable.admin"
+msgstr ""
+"Hi ha una nova versió de l'OMP disponible. Actualment feu servir l'OMP "
+"{$currentVersion}. La versió més recent és OMP {$latestVersion}. Visiteu <a "
+"href=\"http://pkp.sfu.ca/omp_download\" target=\"_new\">aquesta pàgina</a> "
+"per descarregar la versió més recent i obtenir instruccions d'actualització."

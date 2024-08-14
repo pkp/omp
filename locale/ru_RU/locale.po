@@ -1425,3 +1425,10 @@ msgstr ""
 
 msgid "catalog.coverImageTitle"
 msgstr ""
+
+msgid "site.upgradeAvailable.admin"
+msgstr ""
+"Доступна новая версия OMP! Сейчас вы пользуетесь OMP {$currentVersion}. "
+"Самая последняя версия — OMP {$latestVersion}. Пожалуйста, зайдите на <a "
+"href=\"http://pkp.sfu.ca/omp_download\" target=\"_new\">эту страницу</a>, "
+"чтобы скачать самую последнюю версию и получить инструкции по обновлению."
