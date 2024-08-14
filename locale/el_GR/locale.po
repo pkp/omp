@@ -1740,3 +1740,11 @@ msgstr ""
 
 #~ msgid "notification.type.reviewerComment"
 #~ msgstr "Ένας Αξιολογητής έχει σχολιάσει το \"{$title}\"."
+
+msgid "site.upgradeAvailable.admin"
+msgstr ""
+"Υπάρχει διαθέσιμη μία νέα έκδοση OMP! Αυτήν τη στιγμή χρησιμοποιείτε το OMP "
+"{$currentVersion}. Η τελευταία έκδοση είναι η {$latestVersion}. Παρακαλούμε "
+"επισκεφθείτε &lt;a href=\"http://pkp.sfu.ca/omp_download\" target=\"_new"
+"\"&gt;αυτή τη σελίδα&lt;/a&gt; για να κατεβάσετε την τελευταία έκδοση και "
+"βρείτε τις οδηγίες αναβάθμσης."

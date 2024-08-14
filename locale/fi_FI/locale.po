@@ -1682,3 +1682,10 @@ msgstr "Kirjan {$monographTitle} kansi"
 
 #~ msgid "grid.category.categories"
 #~ msgstr "Kategoriat"
+
+msgid "site.upgradeAvailable.admin"
+msgstr ""
+"OMP:stä on saatavilla uusi versio! Käytät tällä hetkellä versiota OMP "
+"{$currentVersion}. Viimeisin versio on OMP {$latestVersion}. Lataa uusin "
+"versio ja tutustu päivitysohjeisiin <a href=\"http://pkp.sfu.ca/omp_download"
+"\" target=\"_new\">täällä</a>."

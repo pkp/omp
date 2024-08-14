@@ -1680,3 +1680,11 @@ msgstr "Dealbh a’ chòmhdachaidh"
 
 #~ msgid "debug.notes.currencyListLoad"
 #~ msgstr "Chaidh liosta nan airgeadra “{$filename}” on XML"
+
+msgid "site.upgradeAvailable.admin"
+msgstr ""
+"Tha tionndadh ùr de OMP ri fhaighinn! ’S e tionndadh {$currentVersion} de "
+"OMP a tha agad an-dràsta. ’S e {$latestVersion} an tionndadh as ùire de OMP. "
+"Tadhail air <a href=\"http://pkp.sfu.ca/omp_download\" target=\"_new\">an "
+"duilleag seo</a> a luchdadh a-nuas an tionndaidh as ùire agus airson "
+"stiùireadh mun àrdachadh."

@@ -1538,3 +1538,11 @@ msgstr "Titulní obrázek"
 
 #~ msgid "debug.notes.currencyListLoad"
 #~ msgstr "Seznam měn \"{$filename}\" načtený z XML"
+
+msgid "site.upgradeAvailable.admin"
+msgstr ""
+"Nová verze OMP je dostupná! V současné době používáte verzi OMP "
+"{$currentVersion}. Nejnovější verze OMP je {$latestVersion}. Navštivte, "
+"prosím, <a href=\"http://php.sfu.ca/omp_download\" target=\"_new\">tuto "
+"stránku</a> a stáhněte si nejnovější verzi OMP a přečtěte si pokyny pro "
+"upgrade."

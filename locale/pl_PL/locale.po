@@ -1628,3 +1628,10 @@ msgstr "Nieważne zgłoszenie publikacji zostało określone."
 
 msgid "catalog.coverImageTitle"
 msgstr "Okładka"
+
+msgid "site.upgradeAvailable.admin"
+msgstr ""
+"Nowa wersja OMP jest dostępna! W tej chwili używasz OMP w wersji "
+"{$currentVersion}. Najnowszą wersją jest {$latestVersion}. Przejdź <a href="
+"\"http://pkp.sfu.ca/omp_download\" target=\"_new\">na stronę </a> w celu "
+"pobrania najnowszej wersji."

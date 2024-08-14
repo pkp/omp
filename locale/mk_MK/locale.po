@@ -1646,3 +1646,10 @@ msgstr "Беше наведен неважечки објавен поднесо
 
 msgid "catalog.coverImageTitle"
 msgstr "Насловна слика"
+
+msgid "site.upgradeAvailable.admin"
+msgstr ""
+"Достапна е нова верзија на OMP! Во моментов користите OMP {$currentVersion}. "
+"Најновата верзија е OMP {$latestVersion}. Посетете ја <a href=\"http://pkp."
+"sfu.ca/omp_download\" target=\"_new\"> оваа страница </a> за да ја преземете "
+"најновата верзија и да најдете упатства за надградба."

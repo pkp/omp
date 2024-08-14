@@ -1627,3 +1627,11 @@ msgstr "Não foi especificada uma submissão publicada válida."
 
 msgid "catalog.coverImageTitle"
 msgstr "Capa"
+
+msgid "site.upgradeAvailable.admin"
+msgstr ""
+"Está disponível uma nova versão do OMP! Atualmente usa a versão do OMP "
+"{$currentVersion}. A versão mais recente do OMP é {$latestVersion}. Visite "
+"<a href=\"http://pkp.sfu.ca/omp_download\" target=\"_new\">esta página</a> "
+"para fazer download da versão mais recente e encontre as instruções para a "
+"atualização."

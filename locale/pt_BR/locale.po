@@ -1677,3 +1677,10 @@ msgstr "Capa"
 
 #~ msgid "payment.directSales.readRemotely"
 #~ msgstr "Ir para  {$format}"
+
+msgid "site.upgradeAvailable.admin"
+msgstr ""
+"Uma nova versão do sistema está disponível! Sua versão atual é OMP "
+"{$currentVersion}. A versão mais recente é OMP {$latestVersion}. Acesse <a "
+"href=\"http://pkp.sfu.ca/omp_download\" target=\"_new\">esta página</a> para "
+"baixar a nova versão e para instruções sobre atualização."
