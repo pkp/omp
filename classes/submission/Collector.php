@@ -88,6 +88,7 @@ class Collector extends \PKP\submission\Collector
             $q->select('current_p.publication_id')
                 ->from('publications', 'current_p')
                 ->leftJoin('submission_chapters as current_c', 'current_p.publication_id', '=', 'current_c.publication_id')
+                ->leftJoin('submission_chapter_settings as current_cs', 'current_cs.chapter_id', '=', 'current_c.chapter_id')
                 ->leftJoin('publication_formats as current_pf', 'current_p.publication_id', '=', 'current_pf.publication_id')
                 ->where(function (Builder $q) {
                     $q->when($this->hasDois === true, function (Builder $q) {
@@ -109,6 +110,10 @@ class Collector extends \PKP\submission\Collector
                             $q->orWhere(function (Builder $q) {
                                 $q->whereNull('current_c.doi_id');
                                 $q->whereNotNull('current_c.chapter_id');
+                                $q->where(function (Builder $q) {
+                                    $q->where('current_cs.setting_name', '=', 'isPageEnabled');
+                                    $q->where('current_cs.setting_value', '=', 1);
+                                });
                             });
                         });
                         $q->when(in_array(Repo::doi()::TYPE_REPRESENTATION, $this->enabledDoiTypes), function (Builder $q) {
