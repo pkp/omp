@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-06-25 08:39+0000\n"
+"PO-Revision-Date: 2024-08-17 07:40+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/locale/bg/"
 ">\n"
@@ -231,3 +231,440 @@ msgid "grid.catalogEntry.approvedRepresentation.message"
 msgstr ""
 "<p>Одобрете метаданните за този формат. Метаданните могат да бъдат проверени "
 "от панела за редактиране за всеки формат.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Достъпен формат"
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Записът в каталога не е одобрен."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Форматът не е в каталожния запис."
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Корекцията не е одобрена."
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Одобрено"
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Очаква одобрение"
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "Изисква се код за наличност на продукта."
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "Трябва да се избере код на състава на продукта."
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Код - стойност"
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "Тип ONIX код"
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "Изисква се идентификационен код."
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Права за продажба"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Код - стойност"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Тип права за продажба"
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Останалият свят?"
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr ""
+"Вече има дефиниран тип продажби \"Останалия свят\" за този формат на "
+"публикация."
+
+msgid "grid.catalogEntry.countries"
+msgstr "Държави"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Региони"
+
+msgid "grid.catalogEntry.included"
+msgstr "Включително"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "С изключение"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Пазарни територии"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Територия"
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr "Изисква се представителна роля."
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "Изисква се формат на датата."
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Дата"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Роля"
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Формат на дата"
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Представители"
+
+msgid "grid.catalogEntry.representativeType"
+msgstr "Тип представителство"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Агенти"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Доставчици"
+
+msgid "grid.catalogEntry.agent"
+msgstr "Агент"
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Доставчик"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Изберете роля:"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Роля"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Име"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Телефон"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "Имейл"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Уебсайт"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "Идентификатор на представителя"
+
+msgid "grid.action.addRepresentative"
+msgstr "Добавяне на представител"
+
+msgid "grid.action.editRepresentative"
+msgstr "Редакция на този представител"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Изтриване на този представител"
+
+msgid "spotlight"
+msgstr "Прожектор"
+
+msgid "spotlight.spotlights"
+msgstr "Прожектори"
+
+msgid "spotlight.noneExist"
+msgstr "Няма актуални прожектори."
+
+msgid "spotlight.title.homePage"
+msgstr "В светлината на прожекторите"
+
+msgid "spotlight.author"
+msgstr "Автор, "
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "Елемент под прожектора (в центъра на вниманието)"
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "Начална страница"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "Локация на прожектора"
+
+msgid "grid.content.spotlights.form.title"
+msgstr "Заглавие под прожектора"
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Книга"
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "Изисква се елемент."
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "Изисква се заглавие на прожектора."
+
+msgid "grid.action.editSpotlight"
+msgstr "Редактиране на този прожектор"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Изтриване на този прожектор"
+
+msgid "grid.action.addSpotlight"
+msgstr "Добавяне на прожектор"
+
+msgid "manager.series.open"
+msgstr "Отваряне на изпратените материали"
+
+msgid "manager.series.indexed"
+msgstr "Индексирани"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Файлове"
+
+msgid "grid.action.catalogEntry"
+msgstr "Преглед на каталожната форма"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "Форматът се появява в записа в каталога"
+
+msgid "grid.action.editFormat"
+msgstr "Редактиране на този формат"
+
+msgid "grid.action.deleteFormat"
+msgstr "Изтриване на този формат"
+
+msgid "grid.action.pageProofApproved"
+msgstr "Файлът с коректурата е готов за публикуване"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "Нов запис в каталога"
+
+msgid "grid.action.publicCatalog"
+msgstr "Преглед на този елемент в каталога"
+
+msgid "grid.action.feature"
+msgstr "Посочване на дисплея с препоръчани"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Маркиране на изпратения материал като 'ново издание'"
+
+msgid "grid.action.manageCategories"
+msgstr "Конфигуриране на категориите в това издателство"
+
+msgid "grid.action.manageSeries"
+msgstr "Конфигуриране на серии (поредици) за това издателство"
+
+msgid "grid.action.addCode"
+msgstr "Добавяне на код"
+
+msgid "grid.action.deleteCode"
+msgstr "Изтриване на този код"
+
+msgid "grid.action.deleteRights"
+msgstr "Изтриване на тези права"
+
+msgid "grid.action.addMarket"
+msgstr "Добавяне на пазар"
+
+msgid "grid.action.editMarket"
+msgstr "Редактиране на този пазар"
+
+msgid "grid.action.deleteMarket"
+msgstr "Изтриване на този пазар"
+
+msgid "grid.action.editDate"
+msgstr "Редактиране на тази дата"
+
+msgid "grid.action.deleteDate"
+msgstr "Изтриване на тази дата"
+
+msgid "grid.action.createContext"
+msgstr "Създаване на ново издателство"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Към страницата със съобщения на издателството"
+
+msgid "grid.action.submissionEmail"
+msgstr "Кликнете, за да прочетете този имейл"
+
+msgid "grid.action.approveProofs"
+msgstr "Преглед на коректурите (одобренията)"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Одобрение/Неодобрение на този формат"
+
+msgid "grid.reviewAttachments.add"
+msgstr "Добавяне на прикачен файл към рецензията"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Достъпни файлове"
+
+msgid "series.series"
+msgstr "Серии (колекции)"
+
+msgid "catalog.manage.series"
+msgstr "Серии (колекции)"
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "series.path"
+msgstr "Път"
+
+msgid "catalog.manage"
+msgstr "Управление на каталога"
+
+msgid "catalog.manage.newReleases"
+msgstr "Нови заглавия"
+
+msgid "catalog.manage.category"
+msgstr "Категория"
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Моля, въведете валиден ISSN."
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "Онлайн и печатен ISSN не трябва да са еднакви."
+
+msgid "catalog.manage.series.printIssn"
+msgstr "Печатен ISSN"
+
+msgid "catalog.selectSeries"
+msgstr "Избиране на серия (колекция)"
+
+msgid "catalog.selectCategory"
+msgstr "Избиране на категория"
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "Превъртащ се дисплей"
+
+msgid "catalog.manage.newRelease"
+msgstr "Издание (заглавие)"
+
+msgid "navigation.newReleases"
+msgstr "Нови заглавия"
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Нови заглавия"
+
+msgid "section.section"
+msgstr "Серии (колекции)"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr "<p>Посочете, че метаданните за този формат не са одобрени.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p>Направете този формат <em>достъпен за читателите</em>. Файловете за "
+"изтегляне и всички други дистрибуции ще се показват в записа в каталога на "
+"книгата.</p>"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr ""
+"Изисква се дата, като стойността трябва да съответства на избрания формат на "
+"датата."
+
+msgid "grid.action.approveProof"
+msgstr "Одобряване на коректурата за индексиране и включване в каталога"
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Серии (колекции)"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"Можете да посочите агент, който да ви представлява в тази определена "
+"територия. Не е задължително."
+
+msgid "grid.action.featureMonograph"
+msgstr "Препоръчване на това в страницата с каталога"
+
+msgid "navigation.catalog.administration.series"
+msgstr "Серии (колекции)"
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Тип идентификатор на представителя (препоръчва се GLN)"
+
+msgid "grid.action.editCode"
+msgstr "Редактиране на този код"
+
+msgid "series.featured.description"
+msgstr "Тази серия (колекция) ще се появи в главната навигация"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+"Можете да оставите следния раздел празен, ако предоставяте собствени услуги "
+"на клиентите си."
+
+msgid "grid.action.addRights"
+msgstr "Добавяне на права за продажба"
+
+msgid "grid.content.spotlights.form.item"
+msgstr "Въведете заглавие което да бъде под прожектора (автоматично довършване)"
+
+msgid "grid.action.editRights"
+msgstr "Редактиране на тези права"
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "Управление на каталога"
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Моля, изберете място за този прожектор."
+
+msgid "grid.action.addDate"
+msgstr "Добавяне да публикационна дата"
+
+msgid "catalog.newReleases"
+msgstr "Нови заглавия"
+
+msgid "grid.action.addFormat"
+msgstr "Добавяне на публикационен формат"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Показване на раздела за формат на публикация"
+
+msgid "grid.action.proofApproved"
+msgstr "Форматът премина коректура (одобрение)"
+
+msgid "grid.action.formatAvailable"
+msgstr "Включване и изключване на наличността на този формат"
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "Онлайн ISSN"
+
+msgid "catalog.manage.categoryDescription"
+msgstr ""
+"Кликнете върху „Препоръчани“, след това върху звездата, за да изберете "
+"препоръчана книга за тази категория; плъзнете и пуснете, за да промените "
+"подредбата."
+
+msgid "catalog.manage.seriesDescription"
+msgstr ""
+"Кликнете върху „Препоръчани“, след това върху звездата, за да изберете "
+"представена книга за тази серия (колекция); плъзнете и пуснете, за да "
+"промените подредбата.. Сериите се идентифицират с редактор(и) и заглавие на "
+"серия, в рамките на категория или независимо."
+
+msgid "catalog.manage.homepageDescription"
+msgstr ""
+"Изображението на корицата на избраните книги се появява в горната част на "
+"началната страница като набор с възможност за превъртане. Кликнете върху "
+"„Препоръчани“, след това върху звездата, за да добавите книга към "
+"превъртащия се дисплей; щракнете върху удивителния знак, за да я представите "
+"като нова версия; плъзнете и пуснете, за да промените подредбата."
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p>Този формат ще е <em>недостъпен за читателите</em>. Всички файлове за "
+"изтегляне или други дистрибуции вече няма да се показват в записа в каталога "
+"на книгата.</p>"
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "Изисква се размер на файла за цифрови формати."
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Изисква се стойност."
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+"Поставете отметка в това квадратче, за да използвате този запис за права за "
+"продажба като общ за вашия формат. В този случай не е необходимо да се "
+"избират държави и региони."
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Дати на публикуване"
