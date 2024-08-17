@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-08-17 07:40+0000\n"
+"PO-Revision-Date: 2024-08-17 18:11+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/locale/bg/"
 ">\n"
@@ -668,3 +668,566 @@ msgstr ""
 
 msgid "grid.catalogEntry.publicationDates"
 msgstr "Дати на публикуване"
+
+msgid "catalog.manage.manageSeries"
+msgstr "Управление на серии (колекции)"
+
+msgid "catalog.manage.manageCategories"
+msgstr "Управление на категории"
+
+msgid "catalog.manage.noMonographs"
+msgstr "Няма асоциирани монографии."
+
+msgid "catalog.manage.featured"
+msgstr "Препоръчани"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "Препоръчани в категорията"
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "Препоръчани в серията (колекцията)"
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "Монографията е препоръчана."
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "Монографията не е препоръчана."
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "Монографията е отбелязана като ново издание."
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "Монографията е с премахнато отбелязване като ново издание."
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "Ново издание"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "Ново издание в категорията"
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Ново издание в серията (колекцията)"
+
+msgid "catalog.manage.nonOrderable"
+msgstr "Тази монография не може да бъде подреждана, докато е препоръчана."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Търсене по заглавие или автор"
+
+msgid "catalog.manage.isNotFeatured"
+msgstr "Тази монография не е препоръчана. Добавяне към препоръчани."
+
+msgid "catalog.manage.isNewRelease"
+msgstr "Тази монография е ново издание. Премахване от нови издания."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Няма избрани материали за добавяне към каталога."
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Едно или повече от подадените материали не можаха да бъдат намерени."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Намерете монографии, които да добавите към каталога"
+
+msgid "catalog.noTitlesNew"
+msgstr "В момента няма налични нови издания."
+
+msgid "catalog.feature"
+msgstr "Препоръчано"
+
+msgid "catalog.featured"
+msgstr "Препоръчани"
+
+msgid "catalog.featuredBooks"
+msgstr "Препоръчани книги"
+
+msgid "catalog.foundTitleSearch"
+msgstr ""
+"Намерено е едно заглавие, което съответства на вашето търсене за "
+"„{$searchQuery}“."
+
+msgid "catalog.category.heading"
+msgstr "Всички книги"
+
+msgid "catalog.dateAdded"
+msgstr "Добавени"
+
+msgid "catalog.publicationInfo"
+msgstr "Информация за публикацията"
+
+msgid "catalog.published"
+msgstr "Публикувано"
+
+msgid "catalog.forthcoming"
+msgstr "Предстоящо"
+
+msgid "catalog.categories"
+msgstr "Категории"
+
+msgid "catalog.parentCategory"
+msgstr "Родителска (по-горна) категория"
+
+msgid "catalog.category.subcategories"
+msgstr "Подкатегории"
+
+msgid "catalog.aboutTheAuthor"
+msgstr "Относно {$roleName}"
+
+msgid "catalog.sortBy"
+msgstr "Подредба на монографии"
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr "Изберете как да подредите книгите в този каталог."
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr "Изберете как да подредите книгите в тази серия (колекция)."
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr "Позиция в серията (колекцията) - (първо най-ниската)"
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr "Позиция в серията (колекцията) - (първо най-високата)"
+
+msgid "catalog.viewableFile.return"
+msgstr "Връщане към подробностите за {$monographTitle}"
+
+msgid "submission.search"
+msgstr "Търсене на книги"
+
+msgid "common.publication"
+msgstr "Монография"
+
+msgid "common.publications"
+msgstr "Монографии"
+
+msgid "common.prefix"
+msgstr "Префикс"
+
+msgid "common.preview"
+msgstr "Преглед"
+
+msgid "common.feature"
+msgstr "Препоръчано"
+
+msgid "common.moreInfo"
+msgstr "Повече информация"
+
+msgid "common.listbuilder.completeForm"
+msgstr "Моля, попълнете формуляра изцяло."
+
+msgid "common.listbuilder.itemExists"
+msgstr "Не можете да добавяте един и същ елемент два пъти."
+
+msgid "common.software"
+msgstr "Open Monograph Press"
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "common.homePageHeader.altText"
+msgstr "Заглавна част (header) на началната страница"
+
+msgid "navigation.catalog"
+msgstr "Каталог"
+
+msgid "navigation.catalog.allMonographs"
+msgstr "Всички монографии"
+
+msgid "navigation.catalog.manage"
+msgstr "Управление"
+
+msgid "navigation.catalog.administration.short"
+msgstr "Администриране"
+
+msgid "navigation.catalog.administration.categories"
+msgstr "Категории"
+
+msgid "navigation.infoForAuthors"
+msgstr "За автори"
+
+msgid "navigation.infoForLibrarians"
+msgstr "За библиотекари"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Информация за автори"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Информация за библиотекари"
+
+msgid "navigation.published"
+msgstr "Публикувано"
+
+msgid "navigation.wizard"
+msgstr "Гид"
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Връзка към вашия каталог."
+
+msgid "navigation.skip.spotlights"
+msgstr "Прескачане към прожектора"
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Категория"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Връзка към категория."
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Връзка към вашите нови издания."
+
+msgid "context.contexts"
+msgstr "Издателства"
+
+msgid "context.context"
+msgstr "Издателство"
+
+msgid "context.current"
+msgstr "Текущо издателство:"
+
+msgid "user.authorization.representationNotFound"
+msgstr "Исканият формат на публикация не може да бъде намерен."
+
+msgid "user.noRoles.submitMonograph"
+msgstr "Изпращане на предложение"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr ""
+"Изпращане на монография: Регистрацията на автори в момента е деактивирана."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Регистриране като рецензент"
+
+msgid "user.reviewerPrompt"
+msgstr ""
+"Бихте ли искали да прегледате (рецензирате ) изпратените материали до това "
+"издателство?"
+
+msgid "user.register.contextsPrompt"
+msgstr "В кои издателства на този сайт бихте искали да се регистрирате?"
+
+msgid "user.register.otherContextRoles"
+msgstr "Поискване на следните роли."
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+"Ако сте поискали да бъдете рецензент за издателство, моля, въведете вашите "
+"интереси."
+
+msgid "user.role.manager"
+msgstr "Ръководител (мениджър) на издателство"
+
+msgid "user.role.pressEditor"
+msgstr "Редактор на издателство"
+
+msgid "user.role.subEditor"
+msgstr "Редактор на серии (колекции)"
+
+msgid "user.role.proofreader"
+msgstr "Коректор"
+
+msgid "user.role.productionEditor"
+msgstr "Редактор на продукцията"
+
+msgid "user.role.managers"
+msgstr "Мениджъри на издателството"
+
+msgid "user.role.editors"
+msgstr "Редактори"
+
+msgid "user.role.proofreaders"
+msgstr "Коректори"
+
+msgid "user.role.productionEditors"
+msgstr "Редактори на продукцията"
+
+msgid "user.register.noContexts"
+msgstr "Няма издателства, към които можете да се регистрирате на този сайт."
+
+msgid "user.register.privacyStatement"
+msgstr "Декларация за поверителност"
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "Паролата, която сте въвели не е достатъчно дълга."
+
+msgid "user.register.readerDescription"
+msgstr "Уведомление по имейл при публикуване на монография."
+
+msgid "user.register.reviewerDescription"
+msgstr ""
+"Готовност да извършват преглед (рецензия) на изпратени материали към сайта."
+
+msgid "user.register.reviewerInterests"
+msgstr ""
+"Идентифицирайте рецензиращите интереси (съществени области и изследователски "
+"методи):"
+
+msgid "user.register.form.userGroupRequired"
+msgstr "Трябва да изберете поне една роля"
+
+msgid "site.noPresses"
+msgstr "Няма налични издателства."
+
+msgid "site.pressView"
+msgstr "Преглед на сайта на издателство"
+
+msgid "about.pressContact"
+msgstr "Контакт с издателството"
+
+msgid "about.aboutContext"
+msgstr "Относно издателството"
+
+msgid "about.editorialTeam"
+msgstr "Редакционен екип"
+
+msgid "about.editorialPolicies"
+msgstr "Редакционни политики"
+
+msgid "about.focusAndScope"
+msgstr "Фокус и обхват"
+
+msgid "about.submissions"
+msgstr "Изпращане на материали"
+
+msgid "about.onlineSubmissions"
+msgstr "Онлайн изпращане на материали"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Вход"
+
+msgid "about.onlineSubmissions.register"
+msgstr "Регистриране"
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} или {$viewSubmissions}."
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Ново изпращане на материали"
+
+msgid "about.authorGuidelines"
+msgstr "Насоки за автора"
+
+msgid "about.copyrightNotice"
+msgstr "Известие за авторски права"
+
+msgid "about.privacyStatement"
+msgstr "Декларация за поверителност"
+
+msgid "about.reviewPolicy"
+msgstr "Процес по преглед (рецензиране)"
+
+msgid "about.publicationFrequency"
+msgstr "Честота на публикуване (периодичност)"
+
+msgid "about.openAccessPolicy"
+msgstr "Политика за отворен достъп"
+
+msgid "about.pressSponsorship"
+msgstr "Спонсорство на издателството"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr ""
+"Повече информация за системата за публикуване, платформата и работния процес "
+"от OMP/PKP."
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "Процес на редакция и публикуване чрез OMP"
+
+msgid "about.aboutSoftware"
+msgstr "Относно Open Monograph Press"
+
+msgid "help.searchReturnResults"
+msgstr "Обратно към резултатите от търсенето"
+
+msgid "help.goToEditPage"
+msgstr "Отваряне на нова страница, за редакция на тази информация"
+
+msgid "installer.appInstallation"
+msgstr "OMP инсталация"
+
+msgid "installer.ompUpgrade"
+msgstr "OMP актуализация"
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "Стъпки преди инсталиране"
+
+msgid "payment.directSales.catalog"
+msgstr "Каталог"
+
+msgid "catalog.manage.isFeatured"
+msgstr "Тази монография е препоръчана. Премахване от препоръчани."
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr ""
+"Регистриране като рецензент: Регистрацията на рецензент в момента е "
+"деактивирана."
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr "Тази монография не е ново издание. Добавяне към нови издания."
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Да, желая ролята {$userGroup}."
+
+msgid "catalog.noTitles"
+msgstr "Все още няма публикувани заглавия."
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+"Да, бих искал да се свързват с мен с искания за преглед (рецензия) на "
+"новопостъпили материали в това издателство."
+
+msgid "catalog.noTitlesSearch"
+msgstr ""
+"Не бяха намерени заглавия, които да съответстват на вашето търсене за "
+"„{$searchQuery}“."
+
+msgid "catalog.foundTitlesSearch"
+msgstr ""
+"Бяха намерени {$number} заглавия, които отговарят на вашето търсене за "
+"„{$searchQuery}“."
+
+msgid "user.role.copyeditor"
+msgstr "Редактор на оформление"
+
+msgid "user.role.subEditors"
+msgstr "Редактори на серии (колекции)"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr ""
+"Моля, обърнете внимание: За да закупите артикули, първо трябва да влезете в "
+"системата. Избирането на артикул за покупка ще ви насочи към страницата за "
+"вход. Всеки елемент, маркиран с икона за отворен достъп, може да бъде "
+"изтеглен безплатно, без да е необходимо да влизате в системата."
+
+msgid "user.role.copyeditors"
+msgstr "Редактори на оформление"
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr "Изберете как да подредите книгите в тази категория."
+
+msgid "user.register.selectContext"
+msgstr "Изберете издателство към което да се регистрирате:"
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Да, съгласен съм данните ми да бъдат събирани и съхранявани съгласно <a href="
+"\"{$privacyUrl}\" target=\"_blank\">декларацията за поверителност</a> на "
+"това издателство."
+
+msgid "catalog.viewableFile.title"
+msgstr "{$type} изглед на файла {$title}"
+
+msgid "user.register.registrationDisabled"
+msgstr "В момента това издателство не приема потребителски регистрации."
+
+msgid "common.searchCatalog"
+msgstr "Търсене в каталога"
+
+msgid "user.register.authorDescription"
+msgstr "Възможност за изпращане на материали до издателството."
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "Моля, изберете валидна опция от списъка."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr ""
+"Готовност да извършват преглед (рецензия) на изпратени материали към "
+"издателството."
+
+msgid "navigation.competingInterestPolicy"
+msgstr "Политика за конкурентни интереси"
+
+msgid "navigation.catalog.administration"
+msgstr "Администриране на каталог"
+
+msgid "about.seriesPolicies"
+msgstr "Политики за серии (колекции) и категории"
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "Изберете {$login} или {$register}, за да изпратите материали."
+
+msgid "navigation.linksAndMedia"
+msgstr "Връзки и социални медии"
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "прегледайте чакащите си заявки"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Връзка към серии (колекции)."
+
+msgid "about.submissionPreparationChecklist"
+msgstr "Контролен списък за подготовка на подаването на материали"
+
+msgid "context.select"
+msgstr "Превключване към друго издателство:"
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr ""
+"Като част от процеса по изпращане на материали, авторите са длъжни да "
+"проверят съответствието на своите материали с всички изброени по-долу "
+"елементи и изпратените материали могат да бъдат върнати на автори, които не "
+"се придържат към тези насоки."
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "Включване на потребители без роли в това издателство."
+
+msgid "about.aboutOMPPress"
+msgstr ""
+"Това издателство използва Open Monograph Press {$ompVersion}, който е "
+"софтуер за публикуване и управление на публикации, създаден с отворен код, "
+"разработен, поддържан и свободно разпространяван от Public Knowledge Project "
+"под GNU General Public License. Посетете уебсайта на PKP, за да <a href="
+"\"https://pkp.sfu.ca/\">научите повече за софтуера</a>. Моля, <a href=\""
+"{$contactUrl}\">свържете се директно с издателството</a> с въпроси относно "
+"издателството или публикуване в него."
+
+msgid "about.aboutOMPSite"
+msgstr ""
+"Това издателство използва Open Monograph Press {$ompVersion}, който е "
+"софтуер за публикуване и управление на публикации, създаден с отворен код, "
+"разработен, поддържан и свободно разпространяван от Public Knowledge Project "
+"под GNU General Public License. Посетете уебсайта на PKP, за да <a href="
+"\"https://pkp.sfu.ca/\">научите повече за софтуера</a>. Моля, свържете се "
+"директно със сайта с въпроси относно издателствата публикуващи чрез него и "
+"изпращания на материали до тях."
+
+msgid "installer.installApplication"
+msgstr "Инсталиране на Open Monograph Press"
+
+msgid "installer.updatingInstructions"
+msgstr ""
+"Ако актуализирате (надграждате) съществуваща инсталация на OMP, <a href=\""
+"{$upgradeUrl}\">щракнете тук</a>, за да продължите."
+
+msgid "installer.installationInstructions"
+msgstr ""
+"<p>Благодарим ви, че изтеглихте <strong>Open Monograph Press {$version}</"
+"strong> на Public Knowledge Project. Преди да продължите, моля, прочетете "
+"файла <a href=\"{$baseUrl}/docs/README.md\">README</a>, включен в този "
+"софтуер. За повече информация относно проекта Public Knowledge и неговите "
+"софтуерни проекти, моля, посетете <a href=\"https://pkp.sfu.ca/\" target="
+"\"_blank\">уеб сайта на PKP</a>. Ако имате доклади за грешки или запитвания "
+"за техническа поддръжка относно Open Monograph Press, вижте <a href=\"https"
+"://forum.pkp.sfu.ca\" target=\"_blank\">форума за поддръжка</a> или посетете "
+"PKP онлайн <a href=\"https://github.com/pkp/pkp-lib/issues/\" target=\"_blank"
+"\">система за докладване на грешки</a>. Въпреки че форумът за поддръжка е "
+"предпочитаният метод за контакт, можете също да изпратите имейл на екипа на "
+"<a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>"
+
+msgid "installer.preInstallationInstructions"
+msgstr ""
+"<p>1. Следните файлове и директории (и тяхното съдържание) трябва да бъдат "
+"направени записваеми:</p>\n"
+"<ul>\n"
+"\t<li><tt>config.inc.php</tt> може да се записва (по избор): "
+"{$writable_config}</li>\n"
+"\t<li><tt>public/</tt> може да се записва: {$writable_public}</li>\n"
+"\t<li><tt>cache/</tt> може да се записва: {$writable_cache}</li>\n"
+"\t<li><tt>cache/t_cache/</tt> може да се записва: "
+"{$writable_templates_cache}</li>\n"
+"\t<li><tt>cache/t_compile/</tt> може да се записва: "
+"{$writable_templates_compile}</li>\n"
+"\t<li><tt>cache/_db</tt> може да се записва: {$writable_db_cache}</li>\n"
+"</ul>\n"
+"\n"
+"<p>2. Трябва да се създаде директория за съхраняване на качени файлове и да "
+"се направи записваема (вижте „Настройки на файлове“ по-долу).</p>"
