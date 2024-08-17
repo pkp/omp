@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-06-30 15:40+0000\n"
+"PO-Revision-Date: 2024-08-17 18:11+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/bg/>\n"
@@ -92,3 +92,12 @@ msgstr "Оторизации"
 
 msgid "submission.chapter.addChapter"
 msgstr "Добавяне на раздел (глава)"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Каталог"
+
+msgid "submission.submit.catalog"
+msgstr "Каталог"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Формат на публикацията"
