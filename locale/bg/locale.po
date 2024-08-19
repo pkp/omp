@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-08-19 05:40+0000\n"
+"PO-Revision-Date: 2024-08-20 10:04+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/locale/bg/"
 ">\n"
@@ -1371,3 +1371,323 @@ msgid "log.editor.recommendation"
 msgstr ""
 "Редакторска препоръка ({$decision}) за монография {$submissionId} е записана "
 "от {$editorName}."
+
+msgid "log.editor.editorAssigned"
+msgstr ""
+"{$editorName} е асоцииран като редактор на изпратените материали "
+"{$submissionId}."
+
+msgid "log.proofread.assign"
+msgstr ""
+"{$assignerName} асоциира {$proofreaderName} като коректор към изпратените "
+"материали {$submissionId}."
+
+msgid "log.proofread.complete"
+msgstr ""
+"{$proofreaderName} изпрати {$submissionId} за планиране на публикацията."
+
+msgid "log.imported"
+msgstr "{$userName} импортира монография {$submissionId}."
+
+msgid "notification.addedIdentificationCode"
+msgstr "Добавен е идентификационен код."
+
+msgid "notification.editedIdentificationCode"
+msgstr "Редактиран е идентификационен код."
+
+msgid "notification.removedIdentificationCode"
+msgstr "Премахнат е идентификационен код."
+
+msgid "notification.addedPublicationDate"
+msgstr "Добавена е публикационна дата."
+
+msgid "notification.editedPublicationDate"
+msgstr "Редактирана е публикационна дата."
+
+msgid "notification.removedPublicationDate"
+msgstr "Премахната е публикационна дата."
+
+msgid "notification.addedPublicationFormat"
+msgstr "Добавен е публикационен формат."
+
+msgid "notification.editedPublicationFormat"
+msgstr "Редактиран е публикационен формат."
+
+msgid "notification.removedPublicationFormat"
+msgstr "Премахнат е публикационен формат."
+
+msgid "notification.addedSalesRights"
+msgstr "Добавени са права за продажба."
+
+msgid "notification.editedSalesRights"
+msgstr "Редактирани са права за продажба."
+
+msgid "notification.removedSalesRights"
+msgstr "Премахнати са права за продажба."
+
+msgid "notification.addedRepresentative"
+msgstr "Добавен е представител."
+
+msgid "notification.removedRepresentative"
+msgstr "Премахнат е представител."
+
+msgid "notification.addedMarket"
+msgstr "Добавен е пазар."
+
+msgid "notification.editedMarket"
+msgstr "Редактиран е пазар."
+
+msgid "notification.removedMarket"
+msgstr "Премахнат е пазар."
+
+msgid "notification.addedSpotlight"
+msgstr "Добавен е прожектор."
+
+msgid "notification.removedSpotlight"
+msgstr "Премахнат е прожектор."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "Метаданните за каталога са записани."
+
+msgid "notification.proofsApproved"
+msgstr "Коректурите са одобрени."
+
+msgid "notification.removedSubmission"
+msgstr "Изпратените материали са изтрити."
+
+msgid "notification.type.submissionSubmitted"
+msgstr "Изпратена е нова монография, „{$title}“."
+
+msgid "notification.type.editing"
+msgstr "Редакционни събития"
+
+msgid "notification.type.reviewing"
+msgstr "Рецензионни събития"
+
+msgid "notification.type.site"
+msgstr "Събития към сайта"
+
+msgid "notification.type.userComment"
+msgstr "Читател е направил коментар за „{$title}“."
+
+msgid "notification.type.public"
+msgstr "Публични съобщения"
+
+msgid "notification.type.copyeditorRequest"
+msgstr "Бяхте помолени да прегледате оформлението за „{$file}“."
+
+msgid "notification.type.layouteditorRequest"
+msgstr "Бяхте помолени да прегледате типографията за „{$file}“."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "Процесът на вътрешен преглед (рецензиране) започна."
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "Изчаква одобрение."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+"Монографията няма да бъде включена в каталога, докато не бъде публикувана. "
+"За да добавите тази книга към каталога, щракнете върху раздела Публикация."
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "Няма конфигуриран начин на плащане."
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr ""
+"Отказан ви е достъп, защото изглежда, че не сте асоцииран като рецензент за "
+"тази монография."
+
+msgid "user.authorization.monographAuthor"
+msgstr ""
+"Отказан ви е достъп, защото не изглежда да сте асоцииран като автор на тази "
+"монография."
+
+msgid "user.authorization.monographReviewer"
+msgstr ""
+"Отказан ви е достъп, защото не изглежда да сте асоцииран като рецензент на "
+"тази монография."
+
+msgid "user.authorization.monographFile"
+msgstr "Отказан ви е достъп до посочения файл с монография."
+
+msgid "user.authorization.invalidMonograph"
+msgstr "Невалидна монография или не е заявена монография!"
+
+msgid "user.authorization.seriesAssignment"
+msgstr ""
+"Опитвате се да получите достъп до монография, която не е част от вашата "
+"серия (колекция)."
+
+msgid "payment.directSales"
+msgstr "Изтегляне от уебсайта на издателството"
+
+msgid "payment.directSales.price"
+msgstr "Цена"
+
+msgid "payment.directSales.availability"
+msgstr "Достъпност"
+
+msgid "payment.directSales.approved"
+msgstr "Одобрено"
+
+msgid "payment.directSales.priceCurrency"
+msgstr "Цена ({$currency})"
+
+msgid "payment.directSales.numericOnly"
+msgstr "Цените трябва да са само числови. Не включвайте валутни символи."
+
+msgid "payment.directSales.amount"
+msgstr "{$amount} ({$currency})"
+
+msgid "payment.directSales.notAvailable"
+msgstr "Не е достъпно"
+
+msgid "payment.directSales.notSet"
+msgstr "Не е настроено"
+
+msgid "payment.directSales.openAccess"
+msgstr "Отворен достъп"
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "Изисква се валидно число за цена."
+
+msgid "payment.directSales.purchase"
+msgstr "Покупка {$format} ({$amount} {$currency})"
+
+msgid "payment.directSales.download"
+msgstr "Сваляне {$format}"
+
+msgid "payment.directSales.monograph.name"
+msgstr "Покупка на монография или изтегляне на глава"
+
+msgid "debug.notes.helpMappingLoad"
+msgstr ""
+"Презареден XML помощен файл за картографиране {$filename} в търсене на {$id}."
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Книга"
+
+msgid "submission.pdf.download"
+msgstr "Изтегляне на този PDF файл"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "Регистриране в други издателства"
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "Скриване на други издателства"
+
+msgid "submission.round"
+msgstr "Кръг&nbsp;{$round}"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "Посочено е невалидно публикувано изпращане на материали."
+
+msgid "catalog.coverImageTitle"
+msgstr "Корица"
+
+msgid "grid.catalogEntry.chapters"
+msgstr "Раздели"
+
+msgid "search.results.orderBy.article"
+msgstr "Заглавие на елемента"
+
+msgid "search.results.orderBy.author"
+msgstr "Автор"
+
+msgid "search.results.orderBy.monograph"
+msgstr "Заглавие на монографията"
+
+msgid "search.results.orderBy.press"
+msgstr "Наименование на издателството"
+
+msgid "search.results.orderBy.popularityMonth"
+msgstr "Популярност (последния месец)"
+
+msgid "search.results.orderBy.relevance"
+msgstr "Релевантност"
+
+msgid "search.results.orderDir.asc"
+msgstr "Възходящо"
+
+msgid "search.results.orderDir.desc"
+msgstr "Низходящо"
+
+msgid "search.cli.rebuildIndex.indexing"
+msgstr "Индексиране на \"{$pressName}\""
+
+msgid "search.cli.rebuildIndex.indexingByPressNotSupported"
+msgstr ""
+"Това изпълнение на търсачката не позволява повторно индексиране спрямо "
+"издателство."
+
+msgid "search.cli.rebuildIndex.unknownPress"
+msgstr "Даденият път за издателство \"{$pressPath}\" не може да бъде открит."
+
+msgid "notification.editedRepresentative"
+msgstr "Редактиран е представител."
+
+msgid "notification.editedSpotlight"
+msgstr "Редактиран е прожектор."
+
+msgid "notification.type.submissions"
+msgstr "Събития към изпратени материали"
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "Метаданните за публикационния формат са записани."
+
+msgid "notification.type.editorAssignmentTask"
+msgstr ""
+"Изпратена е нова монография, на която трябва да бъде асоцииран редактор."
+
+msgid "notification.type.indexRequest"
+msgstr "Бяхте помолени да интексирате „{$file}“."
+
+msgid "notification.type.approveSubmission"
+msgstr ""
+"Този материал в момента чака одобрение в инструмента за въвеждане на "
+"каталога, преди да се появи в публичния каталог."
+
+msgid "notification.type.configurePaymentMethod"
+msgstr ""
+"Необходим е конфигуриран метод на плащане, преди да можете да дефинирате "
+"настройките за електронна търговия."
+
+msgid "notification.type.visitCatalog"
+msgstr ""
+"Монографията е одобрена. Моля, посетете Маркетинг и публикации, за да "
+"управлявате подробностите за неговия каталог, като използвате връзките "
+"по-горе."
+
+msgid "user.authorization.noContext"
+msgstr "Не беше намерено издателство, което да отговаря на вашата заявка."
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr "Достъпът е отказан! Не сте асоциирани към този етап от работния процес."
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+"Достъпът е отказан! Потребителската група, към която участвате в момента, не "
+"е асоциирана към този етап от работния процес. Моля, проверете настройките "
+"на издателството."
+
+msgid "payment.directSales.directSales"
+msgstr "Директни продажби"
+
+msgid "payment.directSales.price.description"
+msgstr ""
+"Файловите формати могат да бъдат предоставени за изтегляне от уебсайта на "
+"издателството чрез отворен достъп без разходи за читателите или директни "
+"продажби (с помощта на процесор за онлайн плащане, както е конфигуриран в "
+"раздел Разпространение). За този файл посочете типа достъп."
+
+msgid "payment.directSales.monograph.description"
+msgstr ""
+"Тази транзакция е за закупуване на директно изтегляне на една монография или "
+"глава от монография."
+
+msgid "search.results.orderBy.date"
+msgstr "Публикационна дата"
+
+msgid "search.results.orderBy.popularityAll"
+msgstr "Популярност (Без ограничение в период)"
