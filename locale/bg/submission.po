@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-08-17 18:11+0000\n"
+"PO-Revision-Date: 2024-08-20 10:04+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/bg/>\n"
@@ -101,3 +101,176 @@ msgstr "Каталог"
 
 msgid "submission.catalogEntry.publicationMetadata"
 msgstr "Формат на публикацията"
+
+msgid "submission.submit.whatNext.description"
+msgstr ""
+"Издателството е уведомено за подаването ви и ви е изпратен имейл с "
+"потвърждение за вашите записи. След като редакторът прегледа изпратеното, "
+"той ще се свърже с вас."
+
+msgid "submission.submit.noContext"
+msgstr "Издателството за това изпращане на материали не можа да бъде намерено."
+
+msgid "submission.catalogEntry.select"
+msgstr "Избиране на монографии за добавяне към каталога"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr ""
+"Трябва да изберете поне една монография, която да добавите към каталога."
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Дати на публикуване"
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Всяка глава може да има своя собствена дата на публикуване."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "Форматът на публикация „{$publicationFormatName}“ е наличен."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr ""
+"Форматът на публикация „{$publicationFormatName}“ е одобрен за публикуване."
+
+msgid "submission.round"
+msgstr "Кръг&nbsp;{$round}"
+
+msgid "manuscript.submission"
+msgstr "Изпращане на ръкопис"
+
+msgid "submissions.queuedReview"
+msgstr "В процес на преглед"
+
+msgid "manuscript.submissions"
+msgstr "Изпратени ръкописи"
+
+msgid "submission.metadata"
+msgstr "Метаданни"
+
+msgid "submission.supportingAgencies"
+msgstr "Поддържащи организации"
+
+msgid "grid.action.addChapter"
+msgstr "Създаване на нов раздел"
+
+msgid "grid.action.editChapter"
+msgstr "Редактиране на този раздел"
+
+msgid "grid.action.deleteChapter"
+msgstr "Изтриване на този раздел"
+
+msgid "submission.submit"
+msgstr "Започване процес по ново изпращане на книга"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Започване процес по ново изпращане в"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Ново изпращане"
+
+msgid "submission.submit.upload"
+msgstr "Качване на материали"
+
+msgid "author.volumeEditor"
+msgstr "Редактор на том"
+
+msgid "author.isVolumeEditor"
+msgstr "Идентифициране този сътрудник като редактор на този том."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Позиция в тази серия (колекция)"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Примери: книга 2, том 2"
+
+msgid "submission.submit.privacyStatement"
+msgstr "Декларация за поверителност"
+
+msgid "submission.submit.contributorRole"
+msgstr "Роля на този сътрудник"
+
+msgid "submission.submit.submissionFile"
+msgstr "Файл с изпратени материали"
+
+msgid "submission.submit.prepare"
+msgstr "Подготовка"
+
+msgid "submission.submit.metadata"
+msgstr "Метаданни"
+
+msgid "submission.submit.finishingUp"
+msgstr "Завършване"
+
+msgid "submission.submit.confirmation"
+msgstr "Потвърждение"
+
+msgid "submission.submit.nextSteps"
+msgstr "Следващи стъпки"
+
+msgid "submission.submit.coverNote"
+msgstr "Презентационни бележки към редактора"
+
+msgid "submission.submit.generalInformation"
+msgstr "Обща информация"
+
+msgid "submission.submit.checklistErrors"
+msgstr ""
+"Моля, прочетете и отметнете елементите в контролния списък за изпращане. Има "
+"{$itemsRemaining} елемента, които не са отметнати."
+
+msgid "submission.submit.placement"
+msgstr "Разположение на подаването"
+
+msgid "submission.submit.userGroup"
+msgstr "Изпращане в ролята ми на..."
+
+msgid "grid.chapters.title"
+msgstr "Раздели"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Изтриване на каченото от оформителя"
+
+msgid "submission.complete"
+msgstr "Одобрено"
+
+msgid "submission.incomplete"
+msgstr "Очаква одобрение"
+
+msgid "submission.editCatalogEntry"
+msgstr "Запис"
+
+msgid "submission.catalogEntry.new"
+msgstr "Добавяне на запис"
+
+msgid "submission.catalogEntry.add"
+msgstr "Добавяне на избраните към каталога"
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Добавете тази книга към публичния каталог"
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Моля, потвърдете, че подаването е готово за поставяне в каталога."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Тази монография е готова за включване в публичния каталог."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Преглед на подаден материал"
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Всички глави ще използват датата на публикуване на монографията."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Монография"
+
+msgid "submission.event.metadataPublished"
+msgstr "Метаданните на монографията са одобрени за публикуване."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Метаданните на монографията не се публикуват повече."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "Форматът на публикация „{$publicationFormatName}“ на е наличен повече."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr ""
+"Форматът на публикация „{$publicationFormatName}“ е свален от публикуване."
