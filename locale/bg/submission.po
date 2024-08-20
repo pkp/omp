@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-08-20 10:04+0000\n"
+"PO-Revision-Date: 2024-08-21 12:06+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/bg/>\n"
@@ -274,3 +274,228 @@ msgstr "Форматът на публикация „{$publicationFormatName}�
 msgid "submission.event.publicationFormatUnpublished"
 msgstr ""
 "Форматът на публикация „{$publicationFormatName}“ е свален от публикуване."
+
+msgid "workflow.review.externalReview"
+msgstr "Външен преглед (рецензия)"
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Плъзнете и пуснете или докоснете бутоните нагоре и надолу, за да промените "
+"реда на елементите на началната страница."
+
+msgid "submission.metadataDescription"
+msgstr ""
+"Тези спецификации се основават на набора метаданни Dublin Core, международен "
+"стандарт, използван за описание на съдържанието на издателството."
+
+msgid "publication.catalogEntry.success"
+msgstr "Подробностите за записа в каталога са актуализирани."
+
+msgid "publication.required.issue"
+msgstr ""
+"Публикацията трябва да бъде присвоена към брой, преди да може да бъде "
+"публикувана."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Всички изисквания за публикуване са изпълнени. Сигурни ли сте, че искате да "
+"направите този запис в каталога публичен?"
+
+msgid "publication.copyrightYearBasis.issueDescription"
+msgstr ""
+"Годината на авторските права ще бъде зададена автоматично, когато това бъде "
+"публикувано в съответния брой."
+
+msgid "publication.event.scheduled"
+msgstr "Подадените материали бяха насрочени за публикуване."
+
+msgid "publication.event.versionUnpublished"
+msgstr "Версията беше премахната от графика за публикуване."
+
+msgid "publication.publish.requirements"
+msgstr ""
+"Следните изисквания трябва да бъдат изпълнени, преди това да може да бъде "
+"публикувано."
+
+msgid "publication.required.reviewStage"
+msgstr ""
+"Изпратените материали трябва да са в етапите на редактиране или "
+"производство, преди да може да бъдат публикувани."
+
+msgid "submission.license.description"
+msgstr ""
+"Лицензът ще бъде зададен автоматично на <a href='{$licenseUrl}' "
+"target='_blank'>{$licenseName}</a>, когато това бъде публикувано."
+
+msgid "submission.copyrightHolder.description"
+msgstr ""
+"Авторските права ще бъдат присвоени автоматично на {$copyright}, когато това "
+"бъде публикувано."
+
+msgid "publication.unschedule.confirm"
+msgstr "Сигурни ли сте, че не искате това да бъде планирано за публикуване?"
+
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+"Покажете тази глава на отделна страница и свържете към нея съдържанието на "
+"книгата."
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr "Изпращането е готово препращане за вътрешен преглед (рецензия)."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Метаданните на каталога бяха актуализирани."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr ""
+"Метаданните за формата на публикацията за „{$formatName}“ бяха актуализирани."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Форматът за публикация „{$formatName}“ беше създаден."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Форматът за публикация „{$formatName}“ беше премахнат."
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Изпратено за външен преглед (рецензия)"
+
+msgid "submission.upload.fileContents"
+msgstr "Компонент на изпратените материали"
+
+msgid "submission.dependentFiles"
+msgstr "Зависими файлове"
+
+msgid "section.any"
+msgstr "Всички серии (колекции)"
+
+msgid "submission.list.monographs"
+msgstr "Монографии"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} монографии"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} от {$total} монографии"
+
+msgid "submission.list.orderFeatures"
+msgstr "Подредба на елементите"
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"Плъзнете и пуснете или докоснете бутоните нагоре и надолу, за да промените "
+"реда на ерементите в {$title}."
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Зап=ис на подредбата"
+
+msgid "submission.list.viewEntry"
+msgstr "Преглед на записа"
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} заглавия"
+
+msgid "publication.catalogEntry"
+msgstr "Каталожен запис"
+
+msgid "publication.invalidSeries"
+msgstr "Серията (колекцията) за тази публикация не можа да бъде намерена."
+
+msgid "publication.inactiveSeries"
+msgstr "{$series} (неактвни)"
+
+msgid "publication.publishedIn"
+msgstr "Публикувано в <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.scheduledIn"
+msgstr "Насрочено за публикуване в <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "submission.publication"
+msgstr "Публикация"
+
+msgid "publication.status.published"
+msgstr "Публикувано"
+
+msgid "submission.status.scheduled"
+msgstr "Насрочено"
+
+msgid "publication.status.unscheduled"
+msgstr "Отменено насрочване"
+
+msgid "submission.publications"
+msgstr "Публикации"
+
+msgid "publication.copyrightYearBasis.submissionDescription"
+msgstr ""
+"Годината на авторските права ще бъде зададена автоматично въз основа на "
+"датата на публикуване."
+
+msgid "publication.datePublished"
+msgstr "Дата на публикуване"
+
+msgid "publication.editDisabled"
+msgstr "Тази версия е публикувана и не може да се редактира."
+
+msgid "publication.event.published"
+msgstr "Подадените материали бяха публикувани."
+
+msgid "publication.event.unpublished"
+msgstr "Подадените материали бяха снети от публикуване."
+
+msgid "publication.event.versionPublished"
+msgstr "Нова версия беше публикувана."
+
+msgid "publication.event.versionScheduled"
+msgstr "Нова версия беше насрочена за публикуване."
+
+msgid "publication.invalidSubmission"
+msgstr "Изпратените материали за тази публикация не можаха да бъдат намерени."
+
+msgid "publication.publish"
+msgstr "Публикуване"
+
+msgid "publication.required.declined"
+msgstr "Отказани подадени материали не могат да бъдат публикувани."
+
+msgid "submission.copyrightOther.description"
+msgstr ""
+"Преотстъпване на авторски права за публикувани материали на следната страна."
+
+msgid "publication.unpublish"
+msgstr "Снемане от публикуване"
+
+msgid "publication.unpublish.confirm"
+msgstr "Сигурни ли сте, че не искате това да бъде публикувано?"
+
+msgid "publication.version.details"
+msgstr "Подробности за публикацията за версия {$version}"
+
+msgid "submission.queries.production"
+msgstr "Производствени дискусии"
+
+msgid "publication.chapter.landingPage"
+msgstr "Страница с глава"
+
+msgid "publication.publish.success"
+msgstr "Състоянието на публикацията е променено успешно."
+
+msgid "chapter.volume"
+msgstr "Том"
+
+msgid "submission.withoutChapter"
+msgstr "{$name} — Без тази глава"
+
+msgid "submission.chapterCreated"
+msgstr " — създадена глава"
+
+msgid "chapter.pages"
+msgstr "Страници"
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr "Изпращане за вътрешен преглед (рецензия)"
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr ""
+"{$editorName} изпрати този материал към етапа за вътрешен преглед (рецензия)."
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr "Изпратено за вътрешен преглед (рецензия)"
