@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-08-21 12:06+0000\n"
+"PO-Revision-Date: 2024-08-22 13:45+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/bg/>\n"
@@ -499,3 +499,141 @@ msgstr ""
 
 msgid "editor.submission.decision.sendInternalReview.completed"
 msgstr "Изпратено за вътрешен преглед (рецензия)"
+
+msgid "submission.wizard.submitting.monograph"
+msgstr "Изпращане на <strong>монография</strong>."
+
+msgid "submission.wizard.submitting.monographInLanguage"
+msgstr ""
+"Изпращане на <strong>монография</strong> на <strong>{$language}</strong>."
+
+msgid "submission.wizard.submitting.editedVolumeInLanguage"
+msgstr ""
+"Изпращане на <strong>редактиран том</strong> на <strong>{$language}</strong>."
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr "Препоръка за изпращане за външен преглед (рецензия)"
+
+msgid "submission.sectionNotFound"
+msgstr "Серията (колекцията) за това изпращане не можа да бъде намерена."
+
+msgid "submission.sectionRestrictedToEditors"
+msgstr ""
+"Само редакционният екип може да подава материали към тази серия (колекция)."
+
+msgid "submission.wizard.submitting.editedVolume"
+msgstr "Изпращане на <strong>редактиран том</strong>."
+
+msgid "submission.wizard.chapters.description"
+msgstr ""
+"Моля, предоставете всички глави в рамките на тезиподавани материали . Ако "
+"изпращате редактиран том, моля, уверете се, че всяка глава посочва "
+"съавторите и сътрудниците за съответната глава."
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgstr ""
+"Подадените материали, {$title}, са изпратени до етапа на вътрешен преглед "
+"(рецензия). Авторът е уведомен, освен ако не сте избрали да пропуснете този "
+"имейл."
+
+msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
+msgstr ""
+"Изпратете имейл до авторите, за да ги уведомите, че този материал ще бъде "
+"подаден за вътрешна проверка (рецензия). Ако е възможно, дайте на авторите "
+"някаква индикация за това колко време може да отнеме вътрешният процес на "
+"преглед (рецензия) и кога трябва да очакват новини от редакторите."
+
+msgid "editor.submission.decision.promoteFiles.internalReview"
+msgstr ""
+"Изберете файлове, които трябва да бъдат изпратени на етапа на вътрешен "
+"преглед (рецензиране)."
+
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr ""
+"{$editorName} изпрати този материал до етапа на външен преглед (рецензиране)."
+
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr "Изпратено за външен преглед (рецензиране)"
+
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr ""
+"Подадените материали, {$title}, са изпратени до етапа на външен преглед "
+"(рецензиране)."
+
+msgid "editor.submission.decision.backToReview"
+msgstr "Обратно към преглед (рецензиране)"
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr ""
+"Отменете решението за приемане на тези материали и ги изпратете обратно на "
+"етапа на преглед (рецензиране)."
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+"{$editorName} отмени решението да приеме тези материали и ги изпрати обратно "
+"на етапа на преглед (рецензиране)."
+
+msgid "editor.submission.decision.backToReview.completed"
+msgstr "Изпратено обратно към преглед (рецензиране)"
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr ""
+"Подадените материали, {$title}, бяха изпратени обратно към кръга на преглед "
+"(рецензиране)."
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+"Изпратете имейл до авторите, за да ги уведомите, че тяхните подадени "
+"материали се връщат обратно на етапа на преглед (рецензиране). Обяснете защо "
+"е взето това решение и информирайте автора какъв допълнителен преглед ще "
+"бъде предприет."
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+"Изпратете имейл до авторите, за да ги уведомите, че този материал ще бъде "
+"изпратен за рецензиране. Ако е възможно, дайте на авторите известна "
+"индикация колко време може да отнеме процесът на рецензиране и кога трябва "
+"да очакват новини от редакторите."
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr ""
+"Изберете файлове, които трябва да бъдат изпратени на етапа на преглед "
+"(рецензиране)."
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr ""
+"Препоръчваме тези подадени материали да бъдат изпратени на етапа на външен "
+"преглед (рецензиране)."
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+"{$editorName} препоръча тези подадени материали да бъдат изпратени на етапа "
+"на външен преглед (рецензиране)."
+
+msgid "doi.submission.incorrectContext"
+msgstr ""
+"Не може да се създаде DOI за следното изпращане: {$pubObjectTitle}. Не "
+"съществува в контекста на настоящото издателство."
+
+msgid "publication.chapter.licenseUrl"
+msgstr "URL на лиценз"
+
+msgid "publication.chapterDefaultLicenseURL"
+msgstr "URL на лиценз по подразбиране за главата"
+
+msgid "submission.copyright.description"
+msgstr ""
+"Моля, прочетете и разберете условията за авторско право за изпращане към "
+"това издателство."
+
+msgid "submission.wizard.notAllowed.description"
+msgstr ""
+"Не ви е позволено да изпращате към това издателство, защото авторите трябва "
+"да бъдат регистрирани от редакцията. Ако смятате, че това е грешка, моля, "
+"свържете се с <a href='mailto:{$email}'>{$name}</a>."
+
+msgid "submission.wizard.sectionClosed.message"
+msgstr ""
+"{$contextName} не приема изпращания за серия (колекция) {$section}. Ако "
+"имате нужда от помощ за възстановяване на изпратеното от вас, моля, свържете "
+"се с <a href='mailto:{$email}'>{$name}</a>."
