@@ -65,6 +65,9 @@ class DoiListPanel extends PKPDoiListPanel
         // Provide required locale keys
         $request = Application::get()->getRequest();
         $templateMgr = TemplateManager::getManager($request);
-        $templateMgr->setLocaleKeys(['submission.monograph']);
+        $templateMgr->setLocaleKeys([
+            'submission.monograph',
+            'manager.dois.disabledChaptersDescription',
+        ]);
     }
 }

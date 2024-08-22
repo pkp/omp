@@ -392,6 +392,9 @@ msgstr "Use default patterns.<br />%p.%m for monographs<br />%p.%m.c%c for chapt
 msgid "doi.manager.settings.doiCreationTime.copyedit"
 msgstr "Upon reaching the copyediting stage"
 
+msgid "manager.dois.disabledChaptersDescription"
+msgstr "Chapters without a landing page cannot have a DOI."
+
 msgid "manager.dois.formatIdentifier.file"
 msgstr "Format / {$format}"
 
