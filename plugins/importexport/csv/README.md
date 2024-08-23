@@ -19,7 +19,7 @@ php tools/importExport.php CSVImportExportPlugin <BASE_PATH>/<CSV_FILE_NAME>.csv
 ### 2.1. Description
 The CSV must be in this format:
 
-`pressPath,authorString,title,abstract,seriesPath,year,isEditedVolume,locale,filename,doi,keywords,subjects,bookCoverImage,bookCoverImageAltText,categories`
+`pressPath,authorString,title,abstract,seriesPath,year,isEditedVolume,locale,filename,doi,keywords,subjects,bookCoverImage,bookCoverImageAltText,categories,genreName`
 
 1. **pressPath**: **(required)** is the path for the press the user wants to insert a publication. If this field is not present, the tool will jump for the other line of CSV file.
 2. **authorString**: **(required)** is the list of authors presents on the submission. For each author, it contains the given name, the surname and the email address. For each author, the string format must be on the following format: `Author1,Surname1,author@pkp.sfu.ca`.
@@ -39,6 +39,7 @@ The CSV must be in this format:
 13. **bookCoverImage**: the book cover image filename. This file must be on the same directory as the `CSV` file and ought to be in one of these formats: *gif, jpg, png or webp*. If the image isn't in one of these formats, it won't be added to the submission.
 14. **bookCoverImageAltText**: the alt text for the book cover image. It'll only work if the bookCoverImage is present.
 15. **categories**: the submission's categories. All categories present here must be already added to the Press to work correctly. If the submission presents more than one category, they must be separated by a semicolon (e.g. `Category 1;Category 2`).
+16. **genreName**: the submission's genre. If this field comes empty, the system will assume the **MANUSCRIPT** genre by default
 
 ## 3. Instructions
 1. Fill the CSV file correctly. You can use the `sample.csv` file as an example.

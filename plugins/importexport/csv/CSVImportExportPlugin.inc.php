@@ -37,6 +37,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 		'bookCoverImage',
 		'bookCoverImageAltText',
 		'categories',
+		'genreName',
 	];
 
 	/**
@@ -54,28 +55,28 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	private $_daos = [];
 
 	/**
-	 * Array for caching already retreived Presses.
+	 * Array for caching already retrieved Presses.
 	 *
 	 * @var Press[]
 	 */
 	private $_presses = [];
 
 	/**
-	 * Array for caching already retreived Genre IDs.
+	 * Array for caching already retrieved Genre IDs.
 	 *
 	 * @var int[]
 	 */
 	private $_genreIds = [];
 
 	/**
-	 * Array for caching already retreived UserGroup IDs.
+	 * Array for caching already retrieved UserGroup IDs.
 	 *
 	 * @var int[]
 	 */
 	private $_userGroupIds = [];
 
 	/**
-	 * Array for caching already retreived Serie IDs.
+	 * Array for caching already retrieved Serie IDs.
 	 *
 	 * @var int[]
 	 */
@@ -126,6 +127,21 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * @var int
 	 */
 	private $_userId;
+
+	/**
+	 * @var \SplFileObject
+	 */
+	private $_invalidRowsFile;
+
+	/**
+	 * @var int
+	 */
+	private $_failedRowsCount;
+
+	/**
+	 * @var int
+	 */
+	private $_processedRowsCount;
 
 	/**
 	 * Constructor
@@ -197,13 +213,13 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
 
-		[$filename, $username, $basePath] = $this->parseCommandLineArguments($scriptName, $args);
+		[$filename, $username, $basePath] = $this->_parseCommandLineArguments($scriptName, $args);
 
-		$this->validateUser($username);
-		$file = $this->createAndValidateCSVFile($filename);
+		$this->_validateUser($username);
+		$file = $this->_createAndValidateCSVFile($filename);
 
 		$csvForInvalidRowsName = "{$basePath}/invalid_rows.csv";
-		$invalidRowsFile = $this->createAndValidateCSVFileInvalidRows($csvForInvalidRowsName);
+		$this->_createAndValidateCSVFileInvalidRows($csvForInvalidRowsName);
 
 		// Imports
 		import('lib.pkp.classes.submission.SubmissionFile'); // constants.
@@ -211,9 +227,8 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 		import('lib.pkp.classes.core.Core');
 		import('classes.file.PublicFileManager');
 
-		// Cache variables
-		$processedRows = 0;
-		$failedRows = 0;
+		$this->_processedRowsCount = 0;
+		$this->_failedRowsCount = 0;
 		$this->_expectedRowSize = count($this->_expectedHeaders);
 
 		foreach ($file as $index => $fields) {
@@ -225,31 +240,29 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 				continue; // End of file
 			}
 
-			$processedRows++;
+			++$this->_processedRowsCount;
 
 			if (count($fields) < $this->_expectedRowSize) {
 				$reason = __('plugins.importexport.csv.csvDoesntContainAllFields');
-				$failedRows = $this->processFailedRow($invalidRowsFile, $fields, $reason, $failedRows);
+				$this->_processFailedRow($fields, $reason);
 
 				continue;
 			}
 
 			$data = (object) array_combine($this->_expectedHeaders, array_pad(array_map('trim', $fields), $this->_expectedRowSize, null));
-			if (!$this->requiredFieldsPresent($data)) {
+			if (!$this->_requiredFieldsPresent($data)) {
 				$reason = __('plugins.importexport.csv.requiredFieldsMissing');
-				$failedRows = $this->processFailedRow($invalidRowsFile, $fields, $reason, $failedRows);
+				$this->_processFailedRow($fields, $reason);
 
 				continue;
 			}
 
-			// Format is:
-			// Press Path, Author string, title, abstract, series path, year, is_edited_volume, locale, URL to Asset, doi (optional), keywords list, subjects list, book cover image path, book cover image alt text, categories list
 			$fieldsList = array_pad($fields, $this->_expectedRowSize, null);
 
-			$press = $this->getCachedPress($data->pressPath);
+			$press = $this->_getCachedPress($data->pressPath);
 			if (!$press) {
 				$reason = __('plugins.importexport.csv.unknownPress', ['contextPath' => $data->pressPath]);
-				$failedRows = $this->processFailedRow($invalidRowsFile, $fieldsList, $reason, $failedRows);
+				$this->_processFailedRow($fieldsList, $reason);
 
 				continue;
 			}
@@ -261,7 +274,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 
 			if (!in_array($data->locale, $supportedLocales)) {
 				$reason = __('plugins.importexport.csv.unknownLocale', ['locale' => $data->locale]);
-				$failedRows = $this->processFailedRow($invalidRowsFile, $fieldsList, $reason, $failedRows);
+				$this->_processFailedRow($fieldsList, $reason);
 
 				continue;
 			}
@@ -269,18 +282,19 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 			$pressId = $press->getId();
 
 			// we need a Genre for the files.  Assume a key of MANUSCRIPT as a default.
-			$genreId = $this->getCachedGenreId($pressId);
+			$genreName = mb_strtoupper($data->genreName ?? 'MANUSCRIPT');
+			$genreId = $this->_getCachedGenreId($pressId, $genreName);
 			if (!$genreId) {
-				$reason = __('plugins.importexport.csv.noGenre');
-				$failedRows = $this->processFailedRow($invalidRowsFile, $fieldsList, $reason, $failedRows);
+				$reason = __('plugins.importexport.csv.noGenre', ['manuscript' => $genreName]);
+				$this->_processFailedRow($fieldsList, $reason);
 
 				continue;
 			}
 
-			$userGroupId = $this->getCachedUserGroupId($pressId);
+			$userGroupId = $this->_getCachedUserGroupId($pressId);
 			if (!$userGroupId) {
 				$reason = __('plugins.importexport.csv.noAuthorGroup', ['press' => $data->pressPath]);
-				$failedRows = $this->processFailedRow($invalidRowsFile, $fieldsList, $reason, $failedRows);
+				$this->_processFailedRow($fieldsList, $reason);
 
 				continue;
 			}
@@ -288,16 +302,26 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 			$filePath = "{$basePath}/{$data->filename}";
 			if (!is_readable($filePath)) {
 				$reason = __('plugins.importexport.csv.invalidAssetFilename', ['title' => $data->title]);
-				$failedRows = $this->processFailedRow($invalidRowsFile, $fieldsList, $reason, $failedRows);
+				$this->_processFailedRow($fieldsList, $reason);
 
 				continue;
 			}
+
+			if ($data->seriesPath) {
+				$pressSeriesId = $this->_getCachedSerieId($data->seriesPath, $press->getId());
+				if (!$pressSeriesId) {
+					$reason = __('plugin.importexport.csv.seriesPathNotFound', ['seriesPath' => $data->seriesPath]);
+					$this->_processFailedRow($fieldsList, $reason);
+				}
+			}
+
+			$this->_initializeStaticVariables();
 
 			if ($data->bookCoverImage) {
 				$coverImgExtension = pathinfo(mb_strtolower($data->bookCoverImage), PATHINFO_EXTENSION);
 				if (!in_array($coverImgExtension, $this->_allowedFileTypes)) {
 					$reason = __('plugins.importexport.common.error.invalidFileExtension');
-					$failedRows = $this->processFailedRow($invalidRowsFile, $fieldsList, $reason, $failedRows);
+					$this->_processFailedRow($fieldsList, $reason);
 
 					continue;
 				}
@@ -305,64 +329,108 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 				$srcFilePath = "{$basePath}/{$data->bookCoverImage}";
 				if (!is_readable($srcFilePath)) {
 					$reason = __('plugins.importexport.csv.invalidCoverImageFilename', ['title' => $data->title]);
-					$failedRows = $this->processFailedRow($invalidRowsFile, $fieldsList, $reason, $failedRows);
+					$this->_processFailedRow($fieldsList, $reason);
+
+					continue;
+				}
+
+				$sanitizedCoverImageName = str_replace([' ', '_', ':'], '-', mb_strtolower($data->bookCoverImage));
+				$sanitizedCoverImageName = PKPstring::regexp_replace('/[^a-z0-9\.\-]+/', '', $sanitizedCoverImageName);
+				$sanitizedCoverImageName = basename($sanitizedCoverImageName);
+
+				$coverImageUploadName = uniqid() . '-' . $sanitizedCoverImageName;
+
+				$destFilePath = $this->_publicFileManager->getContextFilesPath($press->getId()) . '/' . $coverImageUploadName;
+
+				$bookCoverImageSaved = $this->_fileManager->copyFile($srcFilePath, $destFilePath);
+
+				if (!$bookCoverImageSaved) {
+					$reason = __('plugin.importexport.csv.erroWhileSavingBookCoverImage');
+					$this->_processFailedRow($fieldsList, $reason);
+
+					continue;
+				}
+
+				// Try to create the book cover image thumbnail. If it fails for some reason, add this row as an invalid
+				// and the book cover image will be deleted before jump for the next CSV row.
+				try {
+					$this->_publicationService->makeThumbnail(
+						$destFilePath,
+						$this->_publicationService->getThumbnailFileName($coverImageUploadName),
+						$press->getData('coverThumbnailsMaxWidth'),
+						$press->getData('coverThumbnailsMaxHeight')
+					);
+				} catch (Exception $exception) {
+					$reason = __('plugin.importexport.csv.errorWhileSavingThumbnail');
+					$this->_processFailedRow($fieldsList, $reason);
+
+					unlink($destFilePath);
 
 					continue;
 				}
 			}
 
-			$dbCategoryIds = $this->getCategoryDataForValidRow($data->categories, $pressId, $data->locale);
+			$dbCategoryIds = $this->_getCategoryDataForValidRow($data->categories, $pressId, $data->locale);
 			if (!$dbCategoryIds) {
 				$reason = __('plugins.importexport.csv.allCategoriesMustExists');
-				$failedRows = $this->processFailedRow($invalidRowsFile, $fieldsList, $reason, $failedRows);
+				$this->_processFailedRow($fieldsList, $reason);
 
 				continue;
 			}
 
 			// All requirements passed. Start processing from here.
-			$this->initializeStaticVariables();
-			$submission = $this->processSubmission($data, $pressId);
-			$publication = $this->processPublication($submission, $data, $press);
-			$this->processAuthors($data, $press->getContactEmail(), $submission->getId(), $publication, $userGroupId);
+			$submission = $this->_processSubmission($data, $pressId);
+			$submissionId = $submission->getId();
+
+			// Copy Submission file. If an error occured, save this row as invalid, delete the saved submission and continue the loop.
+			try {
+				$extension = $this->_fileManager->parseFileExtension($data->filename);
+				$submissionDir = sprintf($this->_format, $pressId, $submissionId);
+				$fileId = $this->_fileService->add($filePath, $submissionDir . '/' . uniqid() . '.' . $extension);
+			} catch (Exception $exception) {
+				$reason = __('plugin.importexport.csv.errorWhileSavingSubmissionFile');
+				$this->_processFailedRow($fieldsList, $reason);
+
+				/** @var SubmissionDAO $submissionDao */
+				$submissionDao = $this->_getCachedDao('SubmissionDAO');
+				$submissionDao->deleteById($submissionId);
+
+				continue;
+			}
+
+			$publication = $this->_processPublication($submission, $data, $press);
+			$publicationId = $publication->getId();
+			$this->_processAuthors($data, $press->getContactEmail(), $submissionId, $publication, $userGroupId);
 
 			// Submission is done.  Create a publication format for it.
-			$extension = $this->_fileManager->parseFileExtension($data->filename);
-			$publicationFormatId = $this->processPublicationFormat($submission->getId(), $publication->getId(), $extension, $data);
+			$publicationFormatId = $this->_processPublicationFormat($submissionId, $publicationId, $extension, $data);
 
-			$this->processPublicationDate($data->year, $publicationFormatId);
+			$this->_processPublicationDate($data->year, $publicationFormatId);
 
 			// Submission File.
-			$this->processPublicationFile(
-				$data,
-				$submission->getId(),
-				$filePath,
-				$extension,
-				$publicationFormatId,
-				$pressId,
-				$genreId
-			);
+			$this->_processPublicationFile($data, $submissionId, $filePath, $publicationFormatId, $genreId, $fileId);
 
-			$this->processKeywords($data, $publication->getId());
-			$this->processSubjects($data, $publication->getId());
+			$this->_processKeywords($data, $publicationId);
+			$this->_processSubjects($data, $publicationId);
 
 			if ($data->bookCoverImage) {
-				$this->processBookCoverImage($data, $srcFilePath, $publication);
+				$this->_processBookCoverImage($data, $coverImageUploadName, $publication);
 			}
 
 			/** @var CategoryDAO $categoryDao */
-			$categoryDao = $this->getCachedDao('CategoryDAO');
+			$categoryDao = $this->_getCachedDao('CategoryDAO');
 			foreach ($dbCategoryIds as $categoryId) {
-				$categoryDao->insertPublicationAssignment($categoryId, $publication->getId());
+				$categoryDao->insertPublicationAssignment($categoryId, $publicationId);
 			}
 
 			echo __('plugins.importexport.csv.import.submission', ['title' => $data->title]) . "\n";
 		}
 
-		if ($failedRows === 0) {
-			echo __('plugin.importexport.csv.allDataSuccessfullyImported', ['processedRows' => $processedRows]) . "\n\n";
+		if ($this->_failedRowsCount === 0) {
+			echo __('plugin.importexport.csv.allDataSuccessfullyImported', ['processedRows' => $this->_processedRowsCount]) . "\n\n";
 			unlink($csvForInvalidRowsName);
 		} else {
-			echo __('plugin.importexport.csv.seeInvalidRowsFile', ['processedRows' => $processedRows - $failedRows, 'failedRows' => $failedRows]) . "\n\n";
+			echo __('plugin.importexport.csv.seeInvalidRowsFile', ['processedRows' => $this->_processedRowsCount - $this->_failedRowsCount, 'failedRows' => $this->_failedRowsCount]) . "\n\n";
 		}
 	}
 
@@ -383,7 +451,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * @param array $args
 	 * @return string[]
 	 */
-	private function parseCommandLineArguments($scriptName, $args) {
+	private function _parseCommandLineArguments($scriptName, $args) {
 		$filename = array_shift($args);
 		$username = array_shift($args);
 		$basePath = dirname($filename);
@@ -400,9 +468,10 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * Retrieve and validate the User by username
 	 *
 	 * @param string $username
+	 * @return void
 	 */
-	private function validateUser($username) {
-		$user = $this->getUser($username);
+	private function _validateUser($username) {
+		$user = $this->_getUser($username);
 		if (!$user) {
 			echo __('plugins.importexport.csv.unknownUser', ['username' => $username]) . "\n";
 			exit(1);
@@ -414,8 +483,9 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	/**
 	 * @param string $filename
 	 * @param 'r'|'w' $mode
+	 * @return \SplFileObject
 	 */
-	private function createNewFile($filename, $mode) {
+	private function _createNewFile($filename, $mode) {
 		try {
 			return new SplFileObject($filename, $mode);
 		} catch (Exception $e) {
@@ -426,9 +496,10 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 
 	/**
 	 * @param string $filename
+	 * @return \SplFileObject
 	 */
-	private function createAndValidateCSVFile($filename) {
-		$file = $this->createNewFile($filename, 'r');
+	private function _createAndValidateCSVFile($filename) {
+		$file = $this->_createNewFile($filename, 'r');
 		$file->setFlags(SplFileObject::READ_CSV);
 
 		$headers = $file->fgetcsv();
@@ -445,95 +516,99 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 
 	/**
 	 * @param string $basePath
+	 * @return void
 	 */
-	private function createAndValidateCSVFileInvalidRows($csvForInvalidRowsName) {
-		$invalidRowsFile = $this->createNewFile($csvForInvalidRowsName, 'w');
-		$invalidRowsFile->fputcsv(array_merge(array_pad($this->_expectedHeaders, $this->_expectedRowSize, null), ['error']));
-
-		return $invalidRowsFile;
+	private function _createAndValidateCSVFileInvalidRows($csvForInvalidRowsName) {
+		$this->_invalidRowsFile = $this->_createNewFile($csvForInvalidRowsName, 'w');
+		$this->_invalidRowsFile->fputcsv(array_merge($this->_expectedHeaders, ['error']));
 	}
 
 	/**
 	 * Insert static data that will be used for the submission processing
+	 *
+	 * @return void
 	 */
-	private function initializeStaticVariables() {
-		$this->_dirNames = Application::getFileDirectories();
-		$this->_format = trim($this->_dirNames['context'], '/') . '/%d/' . trim($this->_dirNames['submission'], '/') . '/%d';
-
-		$this->_fileManager = new FileManager();
-		$this->_publicFileManager = new PublicFileManager();
-
-		$this->_fileService = Services::get('file');
-		$this->_publicationService = Services::get('publication');
+	private function _initializeStaticVariables() {
+		$this->_dirNames = $this->_dirNames ?? Application::getFileDirectories();
+		$this->_format = $this->_format ?? trim($this->_dirNames['context'], '/') . '/%d/' . trim($this->_dirNames['submission'], '/') . '/%d';
+		$this->_fileManager = $this->_fileManager ?? new FileManager();
+		$this->_publicFileManager = $this->_publicFileManager ?? new PublicFileManager();
+		$this->_fileService = $this->_fileService ?? Services::get('file');
+		$this->_publicationService = $this->_publicationService ?? Services::get('publication');
 	}
 
 	/**
 	 * Returns a cached DAO or create a new one, if it isn't initialized yet.
 	 *
 	 * @param string $daoType
+	 * @return DAO
 	 */
-	private function getCachedDao($daoType) {
+	private function _getCachedDao($daoType) {
 		return $this->_daos[$daoType] ?? $this->_daos[$daoType] = DAORegistry::getDAO($daoType);
 	}
 
 	/**
-	 * Returns a cached Press or create a new one, if it isn't retreived yet.
+	 * Returns a cached Press or create a new one, if it isn't retrieved yet.
 	 *
 	 * @param string $pressPath
+	 * @return ?Press Null if not found
 	 */
-	private function getCachedPress($pressPath) {
-		return $this->_presses[$pressPath] ?? $this->_presses[$pressPath] = $this->getPressByPath($pressPath);
+	private function _getCachedPress($pressPath) {
+		return $this->_presses[$pressPath] ?? $this->_presses[$pressPath] = $this->_getPress($pressPath);
 	}
 
 	/**
-	 * Returns a cached Genre or create a new one, if it isn't retreived yet.
+	 * Returns a cached Genre or create a new one, if it isn't retrieved yet.
 	 *
 	 * @param string $pressPath
+	 * @param string $genreName
+	 * @return ?int Null if not found
 	 */
-	private function getCachedGenreId($pressId) {
-		return $this->_genreIds[$pressId] ?? $this->_genreIds[$pressId] = $this->getGenreIdByPressId($pressId);
+	private function _getCachedGenreId($pressId, $genreName) {
+		return $this->_genreIds[$pressId] ?? $this->_genreIds[$pressId] = $this->_getGenreId($pressId, $genreName);
 	}
 
 	/**
-	 * Returns a cached Serie ID or create a new one, if it isn't retreived yet.
+	 * Returns a cached Serie ID or create a new one, if it isn't retrieved yet.
 	 *
 	 * @param string $seriesPath
 	 * @param int $pressId
+	 * @return ?int Null if not found
 	 */
-	private function getCachedSerieId($seriesPath, $pressId) {
+	private function _getCachedSerieId($seriesPath, $pressId) {
 		$key = "{$seriesPath}_{$pressId}";
-		return $this->_serieIds[$key] ?? $this->_serieIds[$key] = $this->getSerieIdByPathAndPressId($seriesPath, $pressId);
+		return $this->_serieIds[$key] ?? $this->_serieIds[$key] = $this->_getSerieId($seriesPath, $pressId);
 	}
 
 	/**
-	 * Returns a cached UserGroup ID or create a new one, if it isn't retreived yet.
+	 * Returns a cached UserGroup ID or create a new one, if it isn't retrieved yet.
 	 *
 	 * @param string $pressPath
+	 * @return ?int Null if not found
 	 */
-	private function getCachedUserGroupId($pressId) {
-		return $this->_userGroupIds[$pressId] ?? $this->_userGroupIds[$pressId] = $this->getUserGroupIdByPressId($pressId);
+	private function _getCachedUserGroupId($pressId) {
+		return $this->_userGroupIds[$pressId] ?? $this->_userGroupIds[$pressId] = $this->_getUserGroupId($pressId);
 	}
 
 	/**
 	 * Insert data on the invalid_rows.csv file and increase the failed rows counter
 	 *
-	 * @param SplFileObject $invalidRowsFile
 	 * @param array $fields
-	 * @param int $failedRows
 	 * @param string $reason
+	 * @return void
 	 */
-	private function processFailedRow($invalidRowsFile, $fields, $reason, $failedRows) {
-		$invalidRowsFile->fputcsv(array_merge(array_pad($fields, $this->_expectedRowSize, null), [$reason]));
-
-		return $failedRows + 1;
+	private function _processFailedRow($fields, $reason) {
+		$this->_invalidRowsFile->fputcsv(array_merge(array_pad($fields, $this->_expectedRowSize, null), [$reason]));
+		++$this->_failedRowsCount;
 	}
 
 	/**
 	 * Verify if all required fields are present on a CSV row
 	 *
 	 * @param object $row
+	 * @return boolean
 	 */
-	private function requiredFieldsPresent($row) {
+	private function _requiredFieldsPresent($row) {
 		 return !!$row->pressPath
 		 	&& !!$row->authorString
 			&& !!$row->title
@@ -546,10 +621,11 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * Retrives a user by username
 	 *
 	 * @param string $username
+	 * @return ?User Null if not found
 	 */
-	private function getUser($username) {
+	private function _getUser($username) {
 		/** @var UserDAO $userDao  */
-		$userDao = $this->getCachedDao('UserDAO');
+		$userDao = $this->_getCachedDao('UserDAO');
 		return $userDao->getByUsername($username);
 	}
 
@@ -557,11 +633,11 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * Retrieves a Press by path.
 	 *
 	 * @param string $pressPath
-	 * @return Press
+	 * @return ?Press Null if not found
 	 */
-	private function getPressByPath($pressPath) {
+	private function _getPress($pressPath) {
 		/** @var PressDAO $pressDao */
-		$pressDao = $this->getCachedDao('PressDAO');
+		$pressDao = $this->_getCachedDao('PressDAO');
 		return $pressDao->getByPath($pressPath);
 	}
 
@@ -570,13 +646,15 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * will be false
 	 *
 	 * @param int $pressId
+	 * @param string $genreName
+	 * @return ?int Null if not found
 	 */
-	private function getGenreIdByPressId($pressId) {
+	private function _getGenreId($pressId, $genreName) {
 		/** @var GenreDAO $genreDao */
-		$genreDao = $this->getCachedDao('GenreDAO');
-		$genre = $genreDao->getByKey('MANUSCRIPT', $pressId);
+		$genreDao = $this->_getCachedDao('GenreDAO');
+		$genre = $genreDao->getByKey($genreName, $pressId);
 
-		return !$genre ? false : $genre->getId();
+		return $genre->getId() ?? null;
 	}
 
 	/**
@@ -584,13 +662,14 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * the result will be false
 	 *
 	 * @param int $pressId
+	 * @return ?int Null if not found
 	 */
-	private function getUserGroupIdByPressId($pressId) {
+	private function _getUserGroupId($pressId) {
 		/** @var UserGroupDAO $userGroupDao */
-		$userGroupDao = $this->getCachedDao('UserGroupDAO');
+		$userGroupDao = $this->_getCachedDao('UserGroupDAO');
 		$userGroup = $userGroupDao->getDefaultByRoleId($pressId, ROLE_ID_AUTHOR);
 
-		return !$userGroup ? false : $userGroup->getId();
+		return $userGroup->getId() ?? null;
 	}
 
 	/**
@@ -599,13 +678,14 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 *
 	 * @param string $seriesPath
 	 * @param int $pressId
+	 * @return ?int Null if not found
 	 */
-	private function getSerieIdByPathAndPressId($seriesPath, $pressId) {
+	private function _getSerieId($seriesPath, $pressId) {
 		/** @var SeriesDAO $seriesDao */
-		$seriesDao = $this->getCachedDao('SeriesDAO');
+		$seriesDao = $this->_getCachedDao('SeriesDAO');
 		$serie = $seriesDao->getByPath($seriesPath, $pressId);
 
-		return is_null($serie) ? false : $serie->getId();
+		return $serie->getId() ?? null;
 	}
 
 	/**
@@ -617,10 +697,11 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * @param string $categories
 	 * @param int $pressId
 	 * @param string $locale
+	 * @return ?int[] Null if not found
 	 */
-	private function getCategoryDataForValidRow($categories, $pressId, $locale) {
+	private function _getCategoryDataForValidRow($categories, $pressId, $locale) {
 		/** @var CategoryDAO $categoryDao */
-		$categoryDao = $this->getCachedDao('CategoryDAO');
+		$categoryDao = $this->_getCachedDao('CategoryDAO');
 		$cachedCategories = [];
 
 		$categoriesList = explode(';', $categories);
@@ -636,7 +717,8 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 			}
 		}
 
-		return count($categoriesList) < count($dbCategoryIds) ? false : $dbCategoryIds;
+		$countsMatch = count($categoriesList) === count($dbCategoryIds);
+		return $countsMatch ? $dbCategoryIds : null;
 	}
 
 	/**
@@ -646,9 +728,9 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * @param int $pressId
 	 * @return Submission
 	 */
-	private function processSubmission($data, $pressId) {
+	private function _processSubmission($data, $pressId) {
 		/** @var SubmissionDAO $submissionDao */
-		$submissionDao = $this->getCachedDao('SubmissionDAO');
+		$submissionDao = $this->_getCachedDao('SubmissionDAO');
 
 		$submission = $submissionDao->newDataObject();
 		$submission->setData('contextId', $pressId);
@@ -671,11 +753,12 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * @param Submission $submissionId
 	 * @param object $data
 	 * @param Press $press
+	 * @param ?int $pressSeriesId Null if no seriesPath on data object
 	 * @return Publication $publicationData
 	 */
-	private function processPublication($submission, $data, $press) {
+	private function _processPublication($submission, $data, $press, $pressSeriesId = null) {
 		/** @var PublicationDAO $publicationDao */
-		$publicationDao = $this->getCachedDao('PublicationDAO');
+		$publicationDao = $this->_getCachedDao('PublicationDAO');
 		$sanitizedAbstract = PKPString::stripUnsafeHtml($data->abstract);
 		$locale = $data->locale;
 
@@ -689,7 +772,6 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 		$publication->setData('copyrightNotice', $press->getLocalizedData('copyrightNotice', $locale), $locale);
 
 		if ($data->seriesPath) {
-			$pressSeriesId = $this->getCachedSerieId($data->seriesPath, $press->getId());
 			$publication->setData('seriesId', $pressSeriesId);
 		}
 
@@ -699,7 +781,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 		$submission->setData('currentPublicationId', $publication->getId());
 
 		/** @var SubmissionDAO $submissionDao */
-		$submissionDao = $this->getCachedDao('SubmissionDAO');
+		$submissionDao = $this->_getCachedDao('SubmissionDAO');
 		$submissionDao->updateObject($submission);
 
 		return $publication;
@@ -713,10 +795,11 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * @param int $submissionId
 	 * @param Publication $publication
 	 * @param int $userGroupId
+	 * @return void
 	 */
-	private function processAuthors($data, $contactEmail, $submissionId, $publication, $userGroupId) {
+	private function _processAuthors($data, $contactEmail, $submissionId, $publication, $userGroupId) {
 		/** @var AuthorDAO $authorDao */
-		$authorDao = $this->getCachedDao('AuthorDAO');
+		$authorDao = $this->_getCachedDao('AuthorDAO');
 		$authorsString = explode(';', $data->authorString);
 
 		foreach ($authorsString as $index => $authorString) {
@@ -751,7 +834,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 				$publication->setData('primaryContactId', $author->getId());
 
 				/** @var PublicationDAO $publicationDao */
-				$publicationDao = $this->getCachedDao('PublicationDAO');
+				$publicationDao = $this->_getCachedDao('PublicationDAO');
 				$publicationDao->updateObject($publication);
 			}
 		}
@@ -764,10 +847,11 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * @param int $publicationId
 	 * @param string $extension
 	 * @param object $data
+	 * @return int
 	 */
-	private function processPublicationFormat($submissionId, $publicationId, $extension, $data) {
+	private function _processPublicationFormat($submissionId, $publicationId, $extension, $data) {
 		/** @var PublicationFormatDAO $publicationFormatDao */
-		$publicationFormatDao = $this->getCachedDao('PublicationFormatDAO');
+		$publicationFormatDao = $this->_getCachedDao('PublicationFormatDAO');
 
 		$publicationFormat = $publicationFormatDao->newDataObject();
 		$publicationFormat->setData('submissionId', $submissionId);
@@ -794,10 +878,11 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 *
 	 * @param int $year
 	 * @param int $publicationFormatId
+	 * @return void
 	 */
-	private function processPublicationDate($year, $publicationFormatId) {
+	private function _processPublicationDate($year, $publicationFormatId) {
 		/** @var PublicationDateDAO $publicationDateDao */
-		$publicationDateDao = $this->getCachedDao('PublicationDateDAO');
+		$publicationDateDao = $this->_getCachedDao('PublicationDateDAO');
 
 		$publicationDate = $publicationDateDao->newDataObject();
 		$publicationDate->setDateFormat('05'); // List55, YYYY
@@ -813,18 +898,16 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * @param object $data
 	 * @param int $submissionId
 	 * @param string $filePath
-	 * @param string $extension
 	 * @param int $publicationFormatId
-	 * @param int $pressId
 	 * @param int $genreId
+	 * @param int $fileId
+	 * @return void
 	 */
-	private function processPublicationFile($data, $submissionId, $filePath, $extension, $publicationFormatId, $pressId, $genreId) {
-		$submissionDir = sprintf($this->_format, $pressId, $submissionId);
-		$fileId = $this->_fileService->add($filePath, $submissionDir . '/' . uniqid() . '.' . $extension);
+	private function _processPublicationFile($data, $submissionId, $filePath, $publicationFormatId, $genreId, $fileId) {
 		$mimeType = PKPString::mime_content_type($filePath);
 
 		/** @var SubmissionFileDAO $submissionFileDao */
-		$submissionFileDao = $this->getCachedDao('SubmissionFileDAO');
+		$submissionFileDao = $this->_getCachedDao('SubmissionFileDAO');
 
 		/** @var SubmissionFile $submissionFile */
 		$submissionFile = $submissionFileDao->newDataObject();
@@ -853,13 +936,14 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 *
 	 * @param object $data
 	 * @param int $publicationId
+	 * @return void
 	 */
-	private function processKeywords($data, $publicationId) {
+	private function _processKeywords($data, $publicationId) {
 		$keywordsList = [$data->locale => explode(';', $data->keywords)];
 
 		if (count($keywordsList[$data->locale]) > 0) {
 			/** @var SubmissionKeywordDAO $submissionKeywordDao */
-			$submissionKeywordDao = $this->getCachedDao('SubmissionKeywordDAO');
+			$submissionKeywordDao = $this->_getCachedDao('SubmissionKeywordDAO');
 			$submissionKeywordDao->insertKeywords($keywordsList, $publicationId);
 		}
 	}
@@ -869,13 +953,14 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 *
 	 * @param object $data
 	 * @param int $publicationId
+	 * @return void
 	 */
-	private function processSubjects($data, $publicationId) {
+	private function _processSubjects($data, $publicationId) {
 		$subjectsList = [$data->locale => explode(';', $data->subjects)];
 
 		if (count($subjectsList[$data->locale]) > 0) {
 			/** @var SubmissionSubjectDAO $submissionSubjectDao */
-			$submissionSubjectDao = $this->getCachedDao('SubmissionSubjectDAO');
+			$submissionSubjectDao = $this->_getCachedDao('SubmissionSubjectDAO');
 			$submissionSubjectDao->insertSubjects($subjectsList, $publicationId);
 		}
 	}
@@ -884,37 +969,20 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * Process data for the Book Cover Image
 	 *
 	 * @param object $data
-	 * @param string $srcFilePath
+	 * @param string $uploadName
 	 * @param Publication $publication
+	 * @return void
 	 */
-	private function processBookCoverImage($data, $srcFilePath, $publication) {
-		$press = $this->_presses[$data->pressPath];
-		$coverImagelocale = [];
+	private function _processBookCoverImage($data, $uploadName, $publication) {
 		$coverImage = [];
 
-		$sanitizedCoverImageName = str_replace([' ', '_', ':'], '-', mb_strtolower($data->bookCoverImage));
-		$sanitizedCoverImageName = PKPstring::regexp_replace('/[^a-z0-9\.\-]+/', '', $sanitizedCoverImageName);
-		$sanitizedCoverImageName = basename($sanitizedCoverImageName);
+		$coverImage['uploadName'] = $uploadName;
+		$coverImage['altText'] = $data->bookCoverImageAltText ?? '';
 
-		$coverImage['uploadName'] = uniqid() . '-' . $sanitizedCoverImageName;
-		$coverImage['altText'] = $bookCoverImageAltText ?? '';
-
-		$destFilePath = $this->_publicFileManager->getContextFilesPath($press->getId()) . '/' . $coverImage['uploadName'];
-		copy($srcFilePath, $destFilePath);
-
-		$this->_publicationService->makeThumbnail(
-			$destFilePath,
-			$this->_publicationService->getThumbnailFileName($coverImage['uploadName']),
-			$press->getData('coverThumbnailsMaxWidth'),
-			$press->getData('coverThumbnailsMaxHeight')
-		);
-
-		$coverImagelocale[$data->locale] = $coverImage;
-
-		$publication->setData('coverImage', $coverImagelocale);
+		$publication->setData('coverImage', [$data->locale => $coverImage]);
 
 		/** @var PublicationDAO $publicationDao */
-		$publicationDao = $this->getCachedDao('PublicationDAO');
+		$publicationDao = $this->_getCachedDao('PublicationDAO');
 		$publicationDao->updateObject($publication);
 	}
 }

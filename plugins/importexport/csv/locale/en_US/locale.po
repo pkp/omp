@@ -47,7 +47,7 @@ msgid "plugins.importexport.csv.unknownPress"
 msgstr "Unknown Press: \"{$contextPath}\".  Skipping."
 
 msgid "plugins.importexport.csv.noGenre"
-msgstr "There is no manuscript genre.  Exiting."
+msgstr "There is no {$manuscript} genre."
 
 msgid "plugins.importexport.csv.noAuthorGroup"
 msgstr ""
@@ -89,3 +89,16 @@ msgstr "{$processedRows} submissions were successfully imported."
 
 msgid "pugin.importexport.csv.missingHeadersOnCsv"
 msgstr "The following headers are missing on your CSV file: \"{$missingHeaders}\". Please update it as shown on file sample.csv."
+
+msgid "plugin.importexport.csv.erroWhileSavingBookCoverImage"
+msgstr "An error occurred while copying the book cover image."
+
+msgid "plugin.importexport.csv.errorWhileSavingThumbnail"
+msgstr "An error occurred while saving book cover image thumbnail."
+
+msgid "plugin.importexport.csv.errorWhileSavingSubmissionFile"
+msgstr "An error ocurred while saving the Submission file."
+
+msgid "plugin.importexport.csv.seriesPathNotFound"
+msgstr "Could not found a serie by path \"{$seriesPath}\"."
+
