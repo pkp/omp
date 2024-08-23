@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-08-22 13:45+0000\n"
+"PO-Revision-Date: 2024-08-23 14:46+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/bg/>\n"
@@ -637,3 +637,8 @@ msgstr ""
 "{$contextName} не приема изпращания за серия (колекция) {$section}. Ако "
 "имате нужда от помощ за възстановяване на изпратеното от вас, моля, свържете "
 "се с <a href='mailto:{$email}'>{$name}</a>."
+
+msgid "publication.chapter.landingPage.doi.description"
+msgstr ""
+"(Тази глава винаги ще се показва на собствена страница, защото има присвоен "
+"DOI.)"
