@@ -285,7 +285,8 @@ class Chapter extends \PKP\core\DataObject
      */
     public function isPageEnabled(): ?bool
     {
-        return $this->getData('isPageEnabled');
+        return $this->getData('isPageEnabled') || !empty($this->getDoi());
+        ;
     }
 
     /**
@@ -293,7 +294,7 @@ class Chapter extends \PKP\core\DataObject
      */
     public function setPageEnabled(?bool $enable): void
     {
-        $this->setData('isPageEnabled', $enable);
+        $this->setData('isPageEnabled', $enable || !empty($this->getDoi()));
     }
 
     /**

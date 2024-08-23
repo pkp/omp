@@ -65,6 +65,11 @@ class BackendDoiController extends \PKP\API\v1\_dois\PKPBackendDoiController
                 'error' => __('api.404.resourceNotFound'),
             ], Response::HTTP_NOT_FOUND);
         }
+        if (!$chapter->isPageEnabled() && empty($chapter->getDoi())) {
+            return response()->json([
+                'error' => __('api.dois.403.editItemDoiCantBeAssigned'),
+            ], Response::HTTP_FORBIDDEN);
+        }
 
         $publication = Repo::publication()->get($chapter->getData('publicationId'));
         $submission = Repo::submission()->get($publication->getData('submissionId'));

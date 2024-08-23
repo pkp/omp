@@ -103,7 +103,8 @@ describe('Data suite tests', function() {
 				{
 					'title': 'Chapter 1: Mind Control—Internal or External?',
 					'contributors': ['Michael Dawson'],
-					files: ['chapter1.pdf']
+					files: ['chapter1.pdf'],
+					'landingPage': true
 				},
 				{
 					'title': 'Chapter 2: Classical Music and the Classical Mind',
