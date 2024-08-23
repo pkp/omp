@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-06-25 08:39+0000\n"
+"PO-Revision-Date: 2024-08-20 10:04+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/locale/bg/"
 ">\n"
@@ -231,3 +231,1463 @@ msgid "grid.catalogEntry.approvedRepresentation.message"
 msgstr ""
 "<p>Одобрете метаданните за този формат. Метаданните могат да бъдат проверени "
 "от панела за редактиране за всеки формат.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Достъпен формат"
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Записът в каталога не е одобрен."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Форматът не е в каталожния запис."
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Корекцията не е одобрена."
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Одобрено"
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Очаква одобрение"
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "Изисква се код за наличност на продукта."
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "Трябва да се избере код на състава на продукта."
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Код - стойност"
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "Тип ONIX код"
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "Изисква се идентификационен код."
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Права за продажба"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Код - стойност"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Тип права за продажба"
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Останалият свят?"
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr ""
+"Вече има дефиниран тип продажби \"Останалия свят\" за този формат на "
+"публикация."
+
+msgid "grid.catalogEntry.countries"
+msgstr "Държави"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Региони"
+
+msgid "grid.catalogEntry.included"
+msgstr "Включително"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "С изключение"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Пазарни територии"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Територия"
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr "Изисква се представителна роля."
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "Изисква се формат на датата."
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Дата"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Роля"
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Формат на дата"
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Представители"
+
+msgid "grid.catalogEntry.representativeType"
+msgstr "Тип представителство"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Агенти"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Доставчици"
+
+msgid "grid.catalogEntry.agent"
+msgstr "Агент"
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Доставчик"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Изберете роля:"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Роля"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Име"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Телефон"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "Имейл"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Уебсайт"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "Идентификатор на представителя"
+
+msgid "grid.action.addRepresentative"
+msgstr "Добавяне на представител"
+
+msgid "grid.action.editRepresentative"
+msgstr "Редакция на този представител"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Изтриване на този представител"
+
+msgid "spotlight"
+msgstr "Прожектор"
+
+msgid "spotlight.spotlights"
+msgstr "Прожектори"
+
+msgid "spotlight.noneExist"
+msgstr "Няма актуални прожектори."
+
+msgid "spotlight.title.homePage"
+msgstr "В светлината на прожекторите"
+
+msgid "spotlight.author"
+msgstr "Автор, "
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "Елемент под прожектора (в центъра на вниманието)"
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "Начална страница"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "Локация на прожектора"
+
+msgid "grid.content.spotlights.form.title"
+msgstr "Заглавие под прожектора"
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Книга"
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "Изисква се елемент."
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "Изисква се заглавие на прожектора."
+
+msgid "grid.action.editSpotlight"
+msgstr "Редактиране на този прожектор"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Изтриване на този прожектор"
+
+msgid "grid.action.addSpotlight"
+msgstr "Добавяне на прожектор"
+
+msgid "manager.series.open"
+msgstr "Отваряне на изпратените материали"
+
+msgid "manager.series.indexed"
+msgstr "Индексирани"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Файлове"
+
+msgid "grid.action.catalogEntry"
+msgstr "Преглед на каталожната форма"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "Форматът се появява в записа в каталога"
+
+msgid "grid.action.editFormat"
+msgstr "Редактиране на този формат"
+
+msgid "grid.action.deleteFormat"
+msgstr "Изтриване на този формат"
+
+msgid "grid.action.pageProofApproved"
+msgstr "Файлът с коректурата е готов за публикуване"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "Нов запис в каталога"
+
+msgid "grid.action.publicCatalog"
+msgstr "Преглед на този елемент в каталога"
+
+msgid "grid.action.feature"
+msgstr "Посочване на дисплея с препоръчани"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Маркиране на изпратения материал като 'ново издание'"
+
+msgid "grid.action.manageCategories"
+msgstr "Конфигуриране на категориите в това издателство"
+
+msgid "grid.action.manageSeries"
+msgstr "Конфигуриране на серии (поредици) за това издателство"
+
+msgid "grid.action.addCode"
+msgstr "Добавяне на код"
+
+msgid "grid.action.deleteCode"
+msgstr "Изтриване на този код"
+
+msgid "grid.action.deleteRights"
+msgstr "Изтриване на тези права"
+
+msgid "grid.action.addMarket"
+msgstr "Добавяне на пазар"
+
+msgid "grid.action.editMarket"
+msgstr "Редактиране на този пазар"
+
+msgid "grid.action.deleteMarket"
+msgstr "Изтриване на този пазар"
+
+msgid "grid.action.editDate"
+msgstr "Редактиране на тази дата"
+
+msgid "grid.action.deleteDate"
+msgstr "Изтриване на тази дата"
+
+msgid "grid.action.createContext"
+msgstr "Създаване на ново издателство"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Към страницата със съобщения на издателството"
+
+msgid "grid.action.submissionEmail"
+msgstr "Кликнете, за да прочетете този имейл"
+
+msgid "grid.action.approveProofs"
+msgstr "Преглед на коректурите (одобренията)"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Одобрение/Неодобрение на този формат"
+
+msgid "grid.reviewAttachments.add"
+msgstr "Добавяне на прикачен файл към рецензията"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Достъпни файлове"
+
+msgid "series.series"
+msgstr "Серии (колекции)"
+
+msgid "catalog.manage.series"
+msgstr "Серии (колекции)"
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "series.path"
+msgstr "Път"
+
+msgid "catalog.manage"
+msgstr "Управление на каталога"
+
+msgid "catalog.manage.newReleases"
+msgstr "Нови заглавия"
+
+msgid "catalog.manage.category"
+msgstr "Категория"
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Моля, въведете валиден ISSN."
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "Онлайн и печатен ISSN не трябва да са еднакви."
+
+msgid "catalog.manage.series.printIssn"
+msgstr "Печатен ISSN"
+
+msgid "catalog.selectSeries"
+msgstr "Избиране на серия (колекция)"
+
+msgid "catalog.selectCategory"
+msgstr "Избиране на категория"
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "Превъртащ се дисплей"
+
+msgid "catalog.manage.newRelease"
+msgstr "Издание (заглавие)"
+
+msgid "navigation.newReleases"
+msgstr "Нови заглавия"
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Нови заглавия"
+
+msgid "section.section"
+msgstr "Серии (колекции)"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr "<p>Посочете, че метаданните за този формат не са одобрени.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p>Направете този формат <em>достъпен за читателите</em>. Файловете за "
+"изтегляне и всички други дистрибуции ще се показват в записа в каталога на "
+"книгата.</p>"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr ""
+"Изисква се дата, като стойността трябва да съответства на избрания формат на "
+"датата."
+
+msgid "grid.action.approveProof"
+msgstr "Одобряване на коректурата за индексиране и включване в каталога"
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Серии (колекции)"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"Можете да посочите агент, който да ви представлява в тази определена "
+"територия. Не е задължително."
+
+msgid "grid.action.featureMonograph"
+msgstr "Препоръчване на това в страницата с каталога"
+
+msgid "navigation.catalog.administration.series"
+msgstr "Серии (колекции)"
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Тип идентификатор на представителя (препоръчва се GLN)"
+
+msgid "grid.action.editCode"
+msgstr "Редактиране на този код"
+
+msgid "series.featured.description"
+msgstr "Тази серия (колекция) ще се появи в главната навигация"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+"Можете да оставите следния раздел празен, ако предоставяте собствени услуги "
+"на клиентите си."
+
+msgid "grid.action.addRights"
+msgstr "Добавяне на права за продажба"
+
+msgid "grid.content.spotlights.form.item"
+msgstr "Въведете заглавие което да бъде под прожектора (автоматично довършване)"
+
+msgid "grid.action.editRights"
+msgstr "Редактиране на тези права"
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "Управление на каталога"
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Моля, изберете място за този прожектор."
+
+msgid "grid.action.addDate"
+msgstr "Добавяне да публикационна дата"
+
+msgid "catalog.newReleases"
+msgstr "Нови заглавия"
+
+msgid "grid.action.addFormat"
+msgstr "Добавяне на публикационен формат"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Показване на раздела за формат на публикация"
+
+msgid "grid.action.proofApproved"
+msgstr "Форматът премина коректура (одобрение)"
+
+msgid "grid.action.formatAvailable"
+msgstr "Включване и изключване на наличността на този формат"
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "Онлайн ISSN"
+
+msgid "catalog.manage.categoryDescription"
+msgstr ""
+"Кликнете върху „Препоръчани“, след това върху звездата, за да изберете "
+"препоръчана книга за тази категория; плъзнете и пуснете, за да промените "
+"подредбата."
+
+msgid "catalog.manage.seriesDescription"
+msgstr ""
+"Кликнете върху „Препоръчани“, след това върху звездата, за да изберете "
+"представена книга за тази серия (колекция); плъзнете и пуснете, за да "
+"промените подредбата.. Сериите се идентифицират с редактор(и) и заглавие на "
+"серия, в рамките на категория или независимо."
+
+msgid "catalog.manage.homepageDescription"
+msgstr ""
+"Изображението на корицата на избраните книги се появява в горната част на "
+"началната страница като набор с възможност за превъртане. Кликнете върху "
+"„Препоръчани“, след това върху звездата, за да добавите книга към "
+"превъртащия се дисплей; щракнете върху удивителния знак, за да я представите "
+"като нова версия; плъзнете и пуснете, за да промените подредбата."
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p>Този формат ще е <em>недостъпен за читателите</em>. Всички файлове за "
+"изтегляне или други дистрибуции вече няма да се показват в записа в каталога "
+"на книгата.</p>"
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "Изисква се размер на файла за цифрови формати."
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Изисква се стойност."
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+"Поставете отметка в това квадратче, за да използвате този запис за права за "
+"продажба като общ за вашия формат. В този случай не е необходимо да се "
+"избират държави и региони."
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Дати на публикуване"
+
+msgid "catalog.manage.manageSeries"
+msgstr "Управление на серии (колекции)"
+
+msgid "catalog.manage.manageCategories"
+msgstr "Управление на категории"
+
+msgid "catalog.manage.noMonographs"
+msgstr "Няма асоциирани монографии."
+
+msgid "catalog.manage.featured"
+msgstr "Препоръчани"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "Препоръчани в категорията"
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "Препоръчани в серията (колекцията)"
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "Монографията е препоръчана."
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "Монографията не е препоръчана."
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "Монографията е отбелязана като ново издание."
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "Монографията е с премахнато отбелязване като ново издание."
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "Ново издание"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "Ново издание в категорията"
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Ново издание в серията (колекцията)"
+
+msgid "catalog.manage.nonOrderable"
+msgstr "Тази монография не може да бъде подреждана, докато е препоръчана."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Търсене по заглавие или автор"
+
+msgid "catalog.manage.isNotFeatured"
+msgstr "Тази монография не е препоръчана. Добавяне към препоръчани."
+
+msgid "catalog.manage.isNewRelease"
+msgstr "Тази монография е ново издание. Премахване от нови издания."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Няма избрани материали за добавяне към каталога."
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Едно или повече от подадените материали не можаха да бъдат намерени."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Намерете монографии, които да добавите към каталога"
+
+msgid "catalog.noTitlesNew"
+msgstr "В момента няма налични нови издания."
+
+msgid "catalog.feature"
+msgstr "Препоръчано"
+
+msgid "catalog.featured"
+msgstr "Препоръчани"
+
+msgid "catalog.featuredBooks"
+msgstr "Препоръчани книги"
+
+msgid "catalog.foundTitleSearch"
+msgstr ""
+"Намерено е едно заглавие, което съответства на вашето търсене за "
+"„{$searchQuery}“."
+
+msgid "catalog.category.heading"
+msgstr "Всички книги"
+
+msgid "catalog.dateAdded"
+msgstr "Добавени"
+
+msgid "catalog.publicationInfo"
+msgstr "Информация за публикацията"
+
+msgid "catalog.published"
+msgstr "Публикувано"
+
+msgid "catalog.forthcoming"
+msgstr "Предстоящо"
+
+msgid "catalog.categories"
+msgstr "Категории"
+
+msgid "catalog.parentCategory"
+msgstr "Родителска (по-горна) категория"
+
+msgid "catalog.category.subcategories"
+msgstr "Подкатегории"
+
+msgid "catalog.aboutTheAuthor"
+msgstr "Относно {$roleName}"
+
+msgid "catalog.sortBy"
+msgstr "Подредба на монографии"
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr "Изберете как да подредите книгите в този каталог."
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr "Изберете как да подредите книгите в тази серия (колекция)."
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr "Позиция в серията (колекцията) - (първо най-ниската)"
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr "Позиция в серията (колекцията) - (първо най-високата)"
+
+msgid "catalog.viewableFile.return"
+msgstr "Връщане към подробностите за {$monographTitle}"
+
+msgid "submission.search"
+msgstr "Търсене на книги"
+
+msgid "common.publication"
+msgstr "Монография"
+
+msgid "common.publications"
+msgstr "Монографии"
+
+msgid "common.prefix"
+msgstr "Префикс"
+
+msgid "common.preview"
+msgstr "Преглед"
+
+msgid "common.feature"
+msgstr "Препоръчано"
+
+msgid "common.moreInfo"
+msgstr "Повече информация"
+
+msgid "common.listbuilder.completeForm"
+msgstr "Моля, попълнете формуляра изцяло."
+
+msgid "common.listbuilder.itemExists"
+msgstr "Не можете да добавяте един и същ елемент два пъти."
+
+msgid "common.software"
+msgstr "Open Monograph Press"
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "common.homePageHeader.altText"
+msgstr "Заглавна част (header) на началната страница"
+
+msgid "navigation.catalog"
+msgstr "Каталог"
+
+msgid "navigation.catalog.allMonographs"
+msgstr "Всички монографии"
+
+msgid "navigation.catalog.manage"
+msgstr "Управление"
+
+msgid "navigation.catalog.administration.short"
+msgstr "Администриране"
+
+msgid "navigation.catalog.administration.categories"
+msgstr "Категории"
+
+msgid "navigation.infoForAuthors"
+msgstr "За автори"
+
+msgid "navigation.infoForLibrarians"
+msgstr "За библиотекари"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Информация за автори"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Информация за библиотекари"
+
+msgid "navigation.published"
+msgstr "Публикувано"
+
+msgid "navigation.wizard"
+msgstr "Гид"
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Връзка към вашия каталог."
+
+msgid "navigation.skip.spotlights"
+msgstr "Прескачане към прожектора"
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Категория"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Връзка към категория."
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Връзка към вашите нови издания."
+
+msgid "context.contexts"
+msgstr "Издателства"
+
+msgid "context.context"
+msgstr "Издателство"
+
+msgid "context.current"
+msgstr "Текущо издателство:"
+
+msgid "user.authorization.representationNotFound"
+msgstr "Исканият формат на публикация не може да бъде намерен."
+
+msgid "user.noRoles.submitMonograph"
+msgstr "Изпращане на предложение"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr ""
+"Изпращане на монография: Регистрацията на автори в момента е деактивирана."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Регистриране като рецензент"
+
+msgid "user.reviewerPrompt"
+msgstr ""
+"Бихте ли искали да прегледате (рецензирате ) изпратените материали до това "
+"издателство?"
+
+msgid "user.register.contextsPrompt"
+msgstr "В кои издателства на този сайт бихте искали да се регистрирате?"
+
+msgid "user.register.otherContextRoles"
+msgstr "Поискване на следните роли."
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+"Ако сте поискали да бъдете рецензент за издателство, моля, въведете вашите "
+"интереси."
+
+msgid "user.role.manager"
+msgstr "Ръководител (мениджър) на издателство"
+
+msgid "user.role.pressEditor"
+msgstr "Редактор на издателство"
+
+msgid "user.role.subEditor"
+msgstr "Редактор на серии (колекции)"
+
+msgid "user.role.proofreader"
+msgstr "Коректор"
+
+msgid "user.role.productionEditor"
+msgstr "Редактор на продукцията"
+
+msgid "user.role.managers"
+msgstr "Мениджъри на издателството"
+
+msgid "user.role.editors"
+msgstr "Редактори"
+
+msgid "user.role.proofreaders"
+msgstr "Коректори"
+
+msgid "user.role.productionEditors"
+msgstr "Редактори на продукцията"
+
+msgid "user.register.noContexts"
+msgstr "Няма издателства, към които можете да се регистрирате на този сайт."
+
+msgid "user.register.privacyStatement"
+msgstr "Декларация за поверителност"
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "Паролата, която сте въвели не е достатъчно дълга."
+
+msgid "user.register.readerDescription"
+msgstr "Уведомление по имейл при публикуване на монография."
+
+msgid "user.register.reviewerDescription"
+msgstr ""
+"Готовност да извършват преглед (рецензия) на изпратени материали към сайта."
+
+msgid "user.register.reviewerInterests"
+msgstr ""
+"Идентифицирайте рецензиращите интереси (съществени области и изследователски "
+"методи):"
+
+msgid "user.register.form.userGroupRequired"
+msgstr "Трябва да изберете поне една роля"
+
+msgid "site.noPresses"
+msgstr "Няма налични издателства."
+
+msgid "site.pressView"
+msgstr "Преглед на сайта на издателство"
+
+msgid "about.pressContact"
+msgstr "Контакт с издателството"
+
+msgid "about.aboutContext"
+msgstr "Относно издателството"
+
+msgid "about.editorialTeam"
+msgstr "Редакционен екип"
+
+msgid "about.editorialPolicies"
+msgstr "Редакционни политики"
+
+msgid "about.focusAndScope"
+msgstr "Фокус и обхват"
+
+msgid "about.submissions"
+msgstr "Изпращане на материали"
+
+msgid "about.onlineSubmissions"
+msgstr "Онлайн изпращане на материали"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Вход"
+
+msgid "about.onlineSubmissions.register"
+msgstr "Регистриране"
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} или {$viewSubmissions}."
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Ново изпращане на материали"
+
+msgid "about.authorGuidelines"
+msgstr "Насоки за автора"
+
+msgid "about.copyrightNotice"
+msgstr "Известие за авторски права"
+
+msgid "about.privacyStatement"
+msgstr "Декларация за поверителност"
+
+msgid "about.reviewPolicy"
+msgstr "Процес по преглед (рецензиране)"
+
+msgid "about.publicationFrequency"
+msgstr "Честота на публикуване (периодичност)"
+
+msgid "about.openAccessPolicy"
+msgstr "Политика за отворен достъп"
+
+msgid "about.pressSponsorship"
+msgstr "Спонсорство на издателството"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr ""
+"Повече информация за системата за публикуване, платформата и работния процес "
+"от OMP/PKP."
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "Процес на редакция и публикуване чрез OMP"
+
+msgid "about.aboutSoftware"
+msgstr "Относно Open Monograph Press"
+
+msgid "help.searchReturnResults"
+msgstr "Обратно към резултатите от търсенето"
+
+msgid "help.goToEditPage"
+msgstr "Отваряне на нова страница, за редакция на тази информация"
+
+msgid "installer.appInstallation"
+msgstr "OMP инсталация"
+
+msgid "installer.ompUpgrade"
+msgstr "OMP актуализация"
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "Стъпки преди инсталиране"
+
+msgid "payment.directSales.catalog"
+msgstr "Каталог"
+
+msgid "catalog.manage.isFeatured"
+msgstr "Тази монография е препоръчана. Премахване от препоръчани."
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr ""
+"Регистриране като рецензент: Регистрацията на рецензент в момента е "
+"деактивирана."
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr "Тази монография не е ново издание. Добавяне към нови издания."
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Да, желая ролята {$userGroup}."
+
+msgid "catalog.noTitles"
+msgstr "Все още няма публикувани заглавия."
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+"Да, бих искал да се свързват с мен с искания за преглед (рецензия) на "
+"новопостъпили материали в това издателство."
+
+msgid "catalog.noTitlesSearch"
+msgstr ""
+"Не бяха намерени заглавия, които да съответстват на вашето търсене за "
+"„{$searchQuery}“."
+
+msgid "catalog.foundTitlesSearch"
+msgstr ""
+"Бяха намерени {$number} заглавия, които отговарят на вашето търсене за "
+"„{$searchQuery}“."
+
+msgid "user.role.copyeditor"
+msgstr "Редактор на оформление"
+
+msgid "user.role.subEditors"
+msgstr "Редактори на серии (колекции)"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr ""
+"Моля, обърнете внимание: За да закупите артикули, първо трябва да влезете в "
+"системата. Избирането на артикул за покупка ще ви насочи към страницата за "
+"вход. Всеки елемент, маркиран с икона за отворен достъп, може да бъде "
+"изтеглен безплатно, без да е необходимо да влизате в системата."
+
+msgid "user.role.copyeditors"
+msgstr "Редактори на оформление"
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr "Изберете как да подредите книгите в тази категория."
+
+msgid "user.register.selectContext"
+msgstr "Изберете издателство към което да се регистрирате:"
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Да, съгласен съм данните ми да бъдат събирани и съхранявани съгласно <a href="
+"\"{$privacyUrl}\" target=\"_blank\">декларацията за поверителност</a> на "
+"това издателство."
+
+msgid "catalog.viewableFile.title"
+msgstr "{$type} изглед на файла {$title}"
+
+msgid "user.register.registrationDisabled"
+msgstr "В момента това издателство не приема потребителски регистрации."
+
+msgid "common.searchCatalog"
+msgstr "Търсене в каталога"
+
+msgid "user.register.authorDescription"
+msgstr "Възможност за изпращане на материали до издателството."
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "Моля, изберете валидна опция от списъка."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr ""
+"Готовност да извършват преглед (рецензия) на изпратени материали към "
+"издателството."
+
+msgid "navigation.competingInterestPolicy"
+msgstr "Политика за конкурентни интереси"
+
+msgid "navigation.catalog.administration"
+msgstr "Администриране на каталог"
+
+msgid "about.seriesPolicies"
+msgstr "Политики за серии (колекции) и категории"
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "Изберете {$login} или {$register}, за да изпратите материали."
+
+msgid "navigation.linksAndMedia"
+msgstr "Връзки и социални медии"
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "прегледайте чакащите си заявки"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Връзка към серии (колекции)."
+
+msgid "about.submissionPreparationChecklist"
+msgstr "Контролен списък за подготовка на подаването на материали"
+
+msgid "context.select"
+msgstr "Превключване към друго издателство:"
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr ""
+"Като част от процеса по изпращане на материали, авторите са длъжни да "
+"проверят съответствието на своите материали с всички изброени по-долу "
+"елементи и изпратените материали могат да бъдат върнати на автори, които не "
+"се придържат към тези насоки."
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "Включване на потребители без роли в това издателство."
+
+msgid "about.aboutOMPPress"
+msgstr ""
+"Това издателство използва Open Monograph Press {$ompVersion}, който е "
+"софтуер за публикуване и управление на публикации, създаден с отворен код, "
+"разработен, поддържан и свободно разпространяван от Public Knowledge Project "
+"под GNU General Public License. Посетете уебсайта на PKP, за да <a href="
+"\"https://pkp.sfu.ca/\">научите повече за софтуера</a>. Моля, <a href=\""
+"{$contactUrl}\">свържете се директно с издателството</a> с въпроси относно "
+"издателството или публикуване в него."
+
+msgid "about.aboutOMPSite"
+msgstr ""
+"Това издателство използва Open Monograph Press {$ompVersion}, който е "
+"софтуер за публикуване и управление на публикации, създаден с отворен код, "
+"разработен, поддържан и свободно разпространяван от Public Knowledge Project "
+"под GNU General Public License. Посетете уебсайта на PKP, за да <a href="
+"\"https://pkp.sfu.ca/\">научите повече за софтуера</a>. Моля, свържете се "
+"директно със сайта с въпроси относно издателствата публикуващи чрез него и "
+"изпращания на материали до тях."
+
+msgid "installer.installApplication"
+msgstr "Инсталиране на Open Monograph Press"
+
+msgid "installer.updatingInstructions"
+msgstr ""
+"Ако актуализирате (надграждате) съществуваща инсталация на OMP, <a href=\""
+"{$upgradeUrl}\">щракнете тук</a>, за да продължите."
+
+msgid "installer.installationInstructions"
+msgstr ""
+"<p>Благодарим ви, че изтеглихте <strong>Open Monograph Press {$version}</"
+"strong> на Public Knowledge Project. Преди да продължите, моля, прочетете "
+"файла <a href=\"{$baseUrl}/docs/README.md\">README</a>, включен в този "
+"софтуер. За повече информация относно проекта Public Knowledge и неговите "
+"софтуерни проекти, моля, посетете <a href=\"https://pkp.sfu.ca/\" target="
+"\"_blank\">уеб сайта на PKP</a>. Ако имате доклади за грешки или запитвания "
+"за техническа поддръжка относно Open Monograph Press, вижте <a href=\"https"
+"://forum.pkp.sfu.ca\" target=\"_blank\">форума за поддръжка</a> или посетете "
+"PKP онлайн <a href=\"https://github.com/pkp/pkp-lib/issues/\" target=\"_blank"
+"\">система за докладване на грешки</a>. Въпреки че форумът за поддръжка е "
+"предпочитаният метод за контакт, можете също да изпратите имейл на екипа на "
+"<a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>"
+
+msgid "installer.preInstallationInstructions"
+msgstr ""
+"<p>1. Следните файлове и директории (и тяхното съдържание) трябва да бъдат "
+"направени записваеми:</p>\n"
+"<ul>\n"
+"\t<li><tt>config.inc.php</tt> може да се записва (по избор): "
+"{$writable_config}</li>\n"
+"\t<li><tt>public/</tt> може да се записва: {$writable_public}</li>\n"
+"\t<li><tt>cache/</tt> може да се записва: {$writable_cache}</li>\n"
+"\t<li><tt>cache/t_cache/</tt> може да се записва: "
+"{$writable_templates_cache}</li>\n"
+"\t<li><tt>cache/t_compile/</tt> може да се записва: "
+"{$writable_templates_compile}</li>\n"
+"\t<li><tt>cache/_db</tt> може да се записва: {$writable_db_cache}</li>\n"
+"</ul>\n"
+"\n"
+"<p>2. Трябва да се създаде директория за съхраняване на качени файлове и да "
+"се направи записваема (вижте „Настройки на файлове“ по-долу).</p>"
+
+msgid "installer.allowFileUploads"
+msgstr ""
+"Вашият сървър в момента позволява качване на файлове: "
+"<strong>{$allowFileUploads}</strong>"
+
+msgid "installer.maxFileUploadSize"
+msgstr ""
+"Вашият сървър в момента позволява максимален размер на файла за качване от: "
+"<strong>{$maxFileUploadSize}</strong>"
+
+msgid "installer.databaseSettingsInstructions"
+msgstr ""
+"OMP изисква достъп до SQL база данни, за да съхранява своите данни. Вижте "
+"системните изисквания по-горе за списък на поддържаните бази данни. В "
+"полетата по-долу въведете настройките, които да се използват за свързване "
+"към базата данни."
+
+msgid "installer.upgradeApplication"
+msgstr "Актуализиране на Open Monograph Press"
+
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>ВАЖНО!</h4>\n"
+"<p>Инсталаторът не можа автоматично да презапише конфигурационния файл. "
+"Преди да се опитате да използвате системата, моля, отворете <tt>config.inc."
+"php</tt> в подходящ текстов редактор и заменете съдържанието му със "
+"съдържанието на текстовото поле по-долу.</p>"
+
+msgid "log.review.reviewDueDateSet"
+msgstr ""
+"Крайният срок за кръга {$round} преглед (рецензия) на изпратени материали "
+"{$submissionId} от {$reviewerName} е зададен на {$dueDate}."
+
+msgid "log.review.reviewDeclined"
+msgstr ""
+"{$reviewerName} отказа поканата за кръг {$round} преглед (рецензия) на "
+"изпратени материали {$submissionId}."
+
+msgid "log.review.reviewAccepted"
+msgstr ""
+"{$reviewerName} прие поканата за кръг {$round} преглед (рецензия) на "
+"изпратени материали {$submissionId}."
+
+msgid "log.editor.decision"
+msgstr ""
+"Редакторско решение ({$decision}) за монография {$submissionId} е записано "
+"от {$editorName}."
+
+msgid "log.editor.archived"
+msgstr "Изпратените материали {$submissionId} са архивирани."
+
+msgid "log.editor.restored"
+msgstr "Изпратените материали {$submissionId} са възстановени в опашката."
+
+msgid "installer.upgradeInstructions"
+msgstr ""
+"<h4>OMP версия {$version}</h4>\n"
+"\n"
+"<p>Благодарим ви, че изтеглихте <strong>Open Monograph Press</strong> на "
+"Public Knowledge Project. Преди да продължите, моля, прочетете <a href=\""
+"{$baseUrl}/docs/README.md\">README</a> и <a href=\"{$baseUrl}/docs/UPGRADE."
+"md\">UPGRADE</a > файлове, включени в този софтуер. За повече информация "
+"относно проекта Public Knowledge и неговите софтуерни проекти, моля, "
+"посетете <a href=\"https://pkp.sfu.ca/\" target=\"_blank\">уеб сайта на PKP</"
+"a>. Ако имате доклади за грешки или запитвания за техническа поддръжка "
+"относно Open Monograph Press, вижте <a href=\"https://forum.pkp.sfu.ca\" "
+"target=\"_blank\">форума за поддръжка</a> или посетете PKP онлайн <a href="
+"\"https://github.com/pkp/pkp-lib/issues\" target=\"_blank\">система за "
+"докладване на грешки</a>. Въпреки че форумът за поддръжка е предпочитаният "
+"метод за контакт, можете също да изпратите имейл на екипа на <a href=\"mailto"
+":pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>\n"
+"<p><strong>Силно се препоръчва</strong> да направите резервно копие на "
+"вашата база данни, директория с файлове и инсталационна директория на OMP, "
+"преди да продължите.</p>"
+
+msgid "installer.localeSettingsInstructions"
+msgstr ""
+"За пълна поддръжка на Unicode PHP трябва да бъде компилиран с поддръжка за "
+"библиотеката <a href=\"https://www.php.net/mbstring\" target=\"_blank\""
+">mbstring</a> (активирана по подразбиране в най-новите PHP инсталации ). "
+"Може да срещнете проблеми при използването на разширени набори от символи, "
+"ако вашият сървър не отговаря на тези изисквания.\n"
+"<br /><br />\n"
+"Вашият сървър в момента поддържа mbstring: "
+"<strong>{$supportsMBString}</strong>"
+
+msgid "installer.localeInstructions"
+msgstr ""
+"Основният език, който да се използва за тази система. Моля, консултирайте се "
+"с документацията на OMP, ако се интересувате от поддръжка за езици, които не "
+"са изброени тук."
+
+msgid "installer.additionalLocalesInstructions"
+msgstr ""
+"Изберете допълнителни езици, които да поддържате в тази система. Тези езици "
+"ще бъдат достъпни за използване от издателства, хоствани на сайта. "
+"Допълнителни езици също могат да бъдат инсталирани по всяко време от "
+"интерфейса за администриране на сайта. Поддържаните езикови преводи, "
+"маркирани със *, може да са непълни."
+
+msgid "installer.filesDirInstructions"
+msgstr ""
+"Въведете пълния път до съществуваща директория, където да се съхраняват "
+"качените файлове. Тази директория не трябва да бъде директно достъпна в "
+"мрежата. <strong>Моля, уверете се, че тази директория съществува и в нея "
+"може да се записва преди инсталирането.</strong> Имената на пътищата в "
+"Windows трябва да използват наклонени черти, напр. \"C:/mypress/files\"."
+
+msgid "installer.installationComplete"
+msgstr ""
+"<p>Инсталирането на OMP завърши успешно.</p>\n"
+"<p>За да започнете да използвате системата, <a href=\"{$loginUrl}\">влезте</"
+"a> с потребителското име и паролата, въведени на предишната страница.</p>\n"
+"<p>Посетете нашия <a href=\"https://forum.pkp.sfu.ca\" target=\"_new\">форум "
+"на общността</a> или се регистрирайте в нашия <a href=\"https://pkp. sfu.ca/"
+"developer-newsletter\" target=\"_new\">бюлетин за разработчици</a>, за да "
+"получавате известия за сигурност и актуализации за предстоящи версии, нови "
+"плъгини и планирани функции.</p>"
+
+msgid "installer.upgradeComplete"
+msgstr ""
+"<p>Актуализацията на OMP до версия {$version} завърши успешно.</p>\n"
+"<p>Не забравяйте да зададете настройката „installed“ във вашия "
+"конфигурационен файл <tt>config.inc.php</tt> обратно на <em>On</em>.</p>\n"
+"<p>Посетете нашия <a href=\"https://forum.pkp.sfu.ca\" target=\"_new\">форум "
+"на общността</a> или се регистрирайте в нашия <a href=\"https://pkp. sfu.ca/"
+"developer-newsletter\" target=\"_new\">бюлетин за разработчици</a>, за да "
+"получавате известия за сигурност и актуализации за предстоящи версии, нови "
+"плъгини и планирани функции.</p>"
+
+msgid "log.review.reviewUnconsidered"
+msgstr ""
+"{$editorName} маркира прегледа (рецензията) на кръга {$round} за изпратени "
+"материали {$submissionId} като неразгледан."
+
+msgid "log.editor.recommendation"
+msgstr ""
+"Редакторска препоръка ({$decision}) за монография {$submissionId} е записана "
+"от {$editorName}."
+
+msgid "log.editor.editorAssigned"
+msgstr ""
+"{$editorName} е асоцииран като редактор на изпратените материали "
+"{$submissionId}."
+
+msgid "log.proofread.assign"
+msgstr ""
+"{$assignerName} асоциира {$proofreaderName} като коректор към изпратените "
+"материали {$submissionId}."
+
+msgid "log.proofread.complete"
+msgstr ""
+"{$proofreaderName} изпрати {$submissionId} за планиране на публикацията."
+
+msgid "log.imported"
+msgstr "{$userName} импортира монография {$submissionId}."
+
+msgid "notification.addedIdentificationCode"
+msgstr "Добавен е идентификационен код."
+
+msgid "notification.editedIdentificationCode"
+msgstr "Редактиран е идентификационен код."
+
+msgid "notification.removedIdentificationCode"
+msgstr "Премахнат е идентификационен код."
+
+msgid "notification.addedPublicationDate"
+msgstr "Добавена е публикационна дата."
+
+msgid "notification.editedPublicationDate"
+msgstr "Редактирана е публикационна дата."
+
+msgid "notification.removedPublicationDate"
+msgstr "Премахната е публикационна дата."
+
+msgid "notification.addedPublicationFormat"
+msgstr "Добавен е публикационен формат."
+
+msgid "notification.editedPublicationFormat"
+msgstr "Редактиран е публикационен формат."
+
+msgid "notification.removedPublicationFormat"
+msgstr "Премахнат е публикационен формат."
+
+msgid "notification.addedSalesRights"
+msgstr "Добавени са права за продажба."
+
+msgid "notification.editedSalesRights"
+msgstr "Редактирани са права за продажба."
+
+msgid "notification.removedSalesRights"
+msgstr "Премахнати са права за продажба."
+
+msgid "notification.addedRepresentative"
+msgstr "Добавен е представител."
+
+msgid "notification.removedRepresentative"
+msgstr "Премахнат е представител."
+
+msgid "notification.addedMarket"
+msgstr "Добавен е пазар."
+
+msgid "notification.editedMarket"
+msgstr "Редактиран е пазар."
+
+msgid "notification.removedMarket"
+msgstr "Премахнат е пазар."
+
+msgid "notification.addedSpotlight"
+msgstr "Добавен е прожектор."
+
+msgid "notification.removedSpotlight"
+msgstr "Премахнат е прожектор."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "Метаданните за каталога са записани."
+
+msgid "notification.proofsApproved"
+msgstr "Коректурите са одобрени."
+
+msgid "notification.removedSubmission"
+msgstr "Изпратените материали са изтрити."
+
+msgid "notification.type.submissionSubmitted"
+msgstr "Изпратена е нова монография, „{$title}“."
+
+msgid "notification.type.editing"
+msgstr "Редакционни събития"
+
+msgid "notification.type.reviewing"
+msgstr "Рецензионни събития"
+
+msgid "notification.type.site"
+msgstr "Събития към сайта"
+
+msgid "notification.type.userComment"
+msgstr "Читател е направил коментар за „{$title}“."
+
+msgid "notification.type.public"
+msgstr "Публични съобщения"
+
+msgid "notification.type.copyeditorRequest"
+msgstr "Бяхте помолени да прегледате оформлението за „{$file}“."
+
+msgid "notification.type.layouteditorRequest"
+msgstr "Бяхте помолени да прегледате типографията за „{$file}“."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "Процесът на вътрешен преглед (рецензиране) започна."
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "Изчаква одобрение."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+"Монографията няма да бъде включена в каталога, докато не бъде публикувана. "
+"За да добавите тази книга към каталога, щракнете върху раздела Публикация."
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "Няма конфигуриран начин на плащане."
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr ""
+"Отказан ви е достъп, защото изглежда, че не сте асоцииран като рецензент за "
+"тази монография."
+
+msgid "user.authorization.monographAuthor"
+msgstr ""
+"Отказан ви е достъп, защото не изглежда да сте асоцииран като автор на тази "
+"монография."
+
+msgid "user.authorization.monographReviewer"
+msgstr ""
+"Отказан ви е достъп, защото не изглежда да сте асоцииран като рецензент на "
+"тази монография."
+
+msgid "user.authorization.monographFile"
+msgstr "Отказан ви е достъп до посочения файл с монография."
+
+msgid "user.authorization.invalidMonograph"
+msgstr "Невалидна монография или не е заявена монография!"
+
+msgid "user.authorization.seriesAssignment"
+msgstr ""
+"Опитвате се да получите достъп до монография, която не е част от вашата "
+"серия (колекция)."
+
+msgid "payment.directSales"
+msgstr "Изтегляне от уебсайта на издателството"
+
+msgid "payment.directSales.price"
+msgstr "Цена"
+
+msgid "payment.directSales.availability"
+msgstr "Достъпност"
+
+msgid "payment.directSales.approved"
+msgstr "Одобрено"
+
+msgid "payment.directSales.priceCurrency"
+msgstr "Цена ({$currency})"
+
+msgid "payment.directSales.numericOnly"
+msgstr "Цените трябва да са само числови. Не включвайте валутни символи."
+
+msgid "payment.directSales.amount"
+msgstr "{$amount} ({$currency})"
+
+msgid "payment.directSales.notAvailable"
+msgstr "Не е достъпно"
+
+msgid "payment.directSales.notSet"
+msgstr "Не е настроено"
+
+msgid "payment.directSales.openAccess"
+msgstr "Отворен достъп"
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "Изисква се валидно число за цена."
+
+msgid "payment.directSales.purchase"
+msgstr "Покупка {$format} ({$amount} {$currency})"
+
+msgid "payment.directSales.download"
+msgstr "Сваляне {$format}"
+
+msgid "payment.directSales.monograph.name"
+msgstr "Покупка на монография или изтегляне на глава"
+
+msgid "debug.notes.helpMappingLoad"
+msgstr ""
+"Презареден XML помощен файл за картографиране {$filename} в търсене на {$id}."
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Книга"
+
+msgid "submission.pdf.download"
+msgstr "Изтегляне на този PDF файл"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "Регистриране в други издателства"
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "Скриване на други издателства"
+
+msgid "submission.round"
+msgstr "Кръг&nbsp;{$round}"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "Посочено е невалидно публикувано изпращане на материали."
+
+msgid "catalog.coverImageTitle"
+msgstr "Корица"
+
+msgid "grid.catalogEntry.chapters"
+msgstr "Раздели"
+
+msgid "search.results.orderBy.article"
+msgstr "Заглавие на елемента"
+
+msgid "search.results.orderBy.author"
+msgstr "Автор"
+
+msgid "search.results.orderBy.monograph"
+msgstr "Заглавие на монографията"
+
+msgid "search.results.orderBy.press"
+msgstr "Наименование на издателството"
+
+msgid "search.results.orderBy.popularityMonth"
+msgstr "Популярност (последния месец)"
+
+msgid "search.results.orderBy.relevance"
+msgstr "Релевантност"
+
+msgid "search.results.orderDir.asc"
+msgstr "Възходящо"
+
+msgid "search.results.orderDir.desc"
+msgstr "Низходящо"
+
+msgid "search.cli.rebuildIndex.indexing"
+msgstr "Индексиране на \"{$pressName}\""
+
+msgid "search.cli.rebuildIndex.indexingByPressNotSupported"
+msgstr ""
+"Това изпълнение на търсачката не позволява повторно индексиране спрямо "
+"издателство."
+
+msgid "search.cli.rebuildIndex.unknownPress"
+msgstr "Даденият път за издателство \"{$pressPath}\" не може да бъде открит."
+
+msgid "notification.editedRepresentative"
+msgstr "Редактиран е представител."
+
+msgid "notification.editedSpotlight"
+msgstr "Редактиран е прожектор."
+
+msgid "notification.type.submissions"
+msgstr "Събития към изпратени материали"
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "Метаданните за публикационния формат са записани."
+
+msgid "notification.type.editorAssignmentTask"
+msgstr ""
+"Изпратена е нова монография, на която трябва да бъде асоцииран редактор."
+
+msgid "notification.type.indexRequest"
+msgstr "Бяхте помолени да интексирате „{$file}“."
+
+msgid "notification.type.approveSubmission"
+msgstr ""
+"Този материал в момента чака одобрение в инструмента за въвеждане на "
+"каталога, преди да се появи в публичния каталог."
+
+msgid "notification.type.configurePaymentMethod"
+msgstr ""
+"Необходим е конфигуриран метод на плащане, преди да можете да дефинирате "
+"настройките за електронна търговия."
+
+msgid "notification.type.visitCatalog"
+msgstr ""
+"Монографията е одобрена. Моля, посетете Маркетинг и публикации, за да "
+"управлявате подробностите за неговия каталог, като използвате връзките "
+"по-горе."
+
+msgid "user.authorization.noContext"
+msgstr "Не беше намерено издателство, което да отговаря на вашата заявка."
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr "Достъпът е отказан! Не сте асоциирани към този етап от работния процес."
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+"Достъпът е отказан! Потребителската група, към която участвате в момента, не "
+"е асоциирана към този етап от работния процес. Моля, проверете настройките "
+"на издателството."
+
+msgid "payment.directSales.directSales"
+msgstr "Директни продажби"
+
+msgid "payment.directSales.price.description"
+msgstr ""
+"Файловите формати могат да бъдат предоставени за изтегляне от уебсайта на "
+"издателството чрез отворен достъп без разходи за читателите или директни "
+"продажби (с помощта на процесор за онлайн плащане, както е конфигуриран в "
+"раздел Разпространение). За този файл посочете типа достъп."
+
+msgid "payment.directSales.monograph.description"
+msgstr ""
+"Тази транзакция е за закупуване на директно изтегляне на една монография или "
+"глава от монография."
+
+msgid "search.results.orderBy.date"
+msgstr "Публикационна дата"
+
+msgid "search.results.orderBy.popularityAll"
+msgstr "Популярност (Без ограничение в период)"

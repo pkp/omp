@@ -1,21 +1,21 @@
 # Niels Erik Frederiksen <nef@kb.dk>, 2021.
-# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022, 2023.
+# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022, 2023, 2024.
 # Jesper B. Thestrup <jbt@kb.dk>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:05-08:00\n"
-"PO-Revision-Date: 2023-02-04 05:17+0000\n"
+"PO-Revision-Date: 2024-08-23 14:46+0000\n"
 "Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/submission/"
-"da_DK/>\n"
-"Language: da_DK\n"
+"da/>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "submission.upload.selectComponent"
 msgstr "Vælg komponent"
@@ -286,8 +286,7 @@ msgstr ""
 
 msgid "submission.event.publicationFormatUnpublished"
 msgstr ""
-"Publikationsformatet \"{$publicationFormatName}\" er ikke længere "
-"tilgængeligt."
+"Publikationsformatet \"{$publicationFormatName}\" er ikke længere publiceret."
 
 msgid "submission.event.catalogMetadataUpdated"
 msgstr "Katalog-metadata blev opdateret."
@@ -680,3 +679,7 @@ msgstr ""
 
 #~ msgid "submission.submit.titleAndSummary"
 #~ msgstr "Titel og resume"
+
+msgid "publication.chapter.landingPage.doi.description"
+msgstr ""
+"(Dette kapitel vil altid blive vist på sin egen side, da det har en DOI.)"

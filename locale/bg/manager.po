@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-06-30 15:40+0000\n"
+"PO-Revision-Date: 2024-08-17 18:11+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "bg/>\n"
@@ -15,3 +15,47 @@ msgstr ""
 msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr ""
 "Това ще замени всички специфични езикови настройки (локал) за издателството"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Нови заглавия"
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Избиране на категория"
+
+msgid "manager.series.open"
+msgstr "Отваряне на изпратените материали"
+
+msgid "manager.series.indexed"
+msgstr "Индексирани"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>ПРИМЕРНИ HTML ДАННИ</strong>"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "За библиотекари"
+
+msgid "manager.setup.files"
+msgstr "Файлове"
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "DOI префикс"
+
+msgid "manager.setup.editorialTeam"
+msgstr "Редакционен екип"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr ""
+"Списък на редактори, управляващи директори и други лица, свързани с "
+"издателството."
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Файлове"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "Префиксът DOI е задължителен и трябва да бъде във формата 10.xxxx."
+
+msgid "manager.setup.focusScope"
+msgstr "Фокус и обхват"
+
+msgid "manager.setup.information.forAuthors"
+msgstr "За автори"
