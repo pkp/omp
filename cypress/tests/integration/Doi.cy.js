@@ -11,6 +11,7 @@ describe('DOI tests', function() {
 	const submissionId = 14;
 	const publicationId = 14;
 	const chapterId = 54;
+	const chapterIdDisabled = 55;
 	const publicationFormatId = 3;
 	const submissionFileId = 113;
 	const unpublishedSubmissionId = 4;
@@ -46,6 +47,7 @@ describe('DOI tests', function() {
 		cy.get(`#list-item-submission-${submissionId} button.expander`).click();
 		cy.checkDoiAssignment(`${submissionId}-monograph-${publicationId}`);
 		cy.checkDoiAssignment(`${submissionId}-chapter-${chapterId}`);
+		cy.checkDisabledDoiAssignment(`${submissionId}-chapter-${chapterIdDisabled}`);
 		cy.checkDoiAssignment(`${submissionId}-representation-${publicationFormatId}`);
 		cy.checkDoiAssignment(`${submissionId}-file-${submissionFileId}`);
 
@@ -61,6 +63,10 @@ describe('DOI tests', function() {
 		cy.get('div.item.chapters ul')
 			.find('li:first-child')
 			.contains('https://doi.org/10.1234/');
+		// No chapter DOI
+		cy.get('div.item.chapters ul>li')
+		.eq(1)
+		.should('not.contain', 'https://doi.org/10.1234/')
 		// PublicationFormat DOI
 		cy.get(
 			`div.item.publication_format div.sub_item.pubid.${publicationFormatId} div.value`

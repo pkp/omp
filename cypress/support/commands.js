@@ -51,6 +51,15 @@ Cypress.Commands.add('addChapters', (chapters) => {
 			cy.get('div:contains("Your changes have been saved.")');
 		}
 
+		// Landing page
+		if ('landingPage' in chapter) {
+			cy.get('div[id="chaptersGridContainer"] a:contains("' + Cypress.$.escapeSelector(chapter.title) + '")').click();
+			cy.flushNotifications();
+			cy.get('form[id="editChapterForm"] input[id="isPageEnabled"]').click();
+			cy.get('form[id="editChapterForm"] button:contains("Save")').click();
+			cy.get('div:contains("Your changes have been saved.")');
+		}
+
 		cy.get('div[id^="component-grid-users-chapter-chaptergrid-"] a.pkp_linkaction_editChapter:contains("' + Cypress.$.escapeSelector(chapter.title) + '")');
 	});
 });

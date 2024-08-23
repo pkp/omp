@@ -82,7 +82,7 @@ class Repository extends \PKP\submission\Repository
             /** @var ChapterDAO $chapterDao */
             $chapterDao = DAORegistry::getDAO('ChapterDAO');
             foreach ($chapters as $chapter) {
-                if (empty($chapter->getData('doiId'))) {
+                if (empty($chapter->getData('doiId')) && $chapter->isPageEnabled()) {
                     try {
                         $doiId = Repo::doi()->mintChapterDoi($chapter, $submission, $context);
                         $chapter->setData('doiId', $doiId);
