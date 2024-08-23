@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-08-17 18:11+0000\n"
+"PO-Revision-Date: 2024-08-24 01:51+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "bg/>\n"
@@ -59,3 +59,91 @@ msgstr "Фокус и обхват"
 
 msgid "manager.setup.information.forAuthors"
 msgstr "За автори"
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Моля, уверете се, че е отметнато поне едно квадратче за всяка асоциация на "
+"редактора на серии (колекции)."
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Добавете редактор на серии (колекции) към тази серия (колекция) от наличните "
+"редактори. Веднъж добавен, посочете дали редакторът на сериите (колекциите) "
+"ще наблюдава ПРЕГЛЕДА (РЕЦЕНЗИЯТА) и/или РЕДАКТИРАНЕТО (редактиране, "
+"оформление и коректура) на изпратените материали към тази серия (колекция) . "
+"Редакторите на серия (колекция) се създават чрез щракване върху <a href=\""
+"{$seriesEditorsUrl}\">Редактори на серия (колекция) </a> в раздел Роли в "
+"управлението на издателството."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Няма да бъдат включено в индексирането на издателството"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Изпратени материали към тази серия (колекция)"
+
+msgid "manager.series.create"
+msgstr "Създаване на серии (колекции)"
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"За съжаление няма налични допълнителни езици. Свържете се с администратора "
+"на вашия сайт, ако искате да използвате допълнителни езици за това "
+"издателство."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Това ще бъде езикът по подразбиране за издателството."
+
+msgid "manager.series.form.reviewFormId"
+msgstr ""
+"Моля, уверете се, че сте избрали валиден формуляр за преглед (рецензия)."
+
+msgid "manager.series.editorRestriction"
+msgstr ""
+"Материали могат да се изпращат само от редактори и редактори на серии "
+"(колекции)."
+
+msgid "manager.series.confirmDelete"
+msgstr ""
+"Сигурни ли сте, че искате да изтриете тези серии (колекции) за постоянно?"
+
+msgid "manager.series.readingTools"
+msgstr "Инструменти за четене"
+
+msgid "manager.series.submissionReview"
+msgstr "Няма да бъде рецензирано"
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Не се изискват резюмета"
+
+msgid "manager.series.disableComments"
+msgstr "Деактивиране на коментарите на читатели за тази серия (колекция)."
+
+msgid "manager.series.book"
+msgstr "Серии (колекции) от книги"
+
+msgid "manager.series.policy"
+msgstr "Описание на серии (колекции)"
+
+msgid "manager.series.assigned"
+msgstr "Редактори за тези серии (колекции)"
+
+msgid "manager.series.hideAbout"
+msgstr "Пропуснете тази серия (колекция) от раздела „За издателството“."
+
+msgid "manager.series.unassigned"
+msgstr "Достъпни редактори на серии (колекции)"
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "За серията (колекцията) е необходимо съкратено заглавие."
+
+msgid "manager.series.form.titleRequired"
+msgstr "За серията (колекцията) е необходимо заглавие."
+
+msgid "manager.series.noneCreated"
+msgstr "Няма създадени серии (колекции)."
+
+msgid "manager.series.existingUsers"
+msgstr "Съществуващи потребители"
+
+msgid "manager.series.seriesTitle"
+msgstr "Заглавие на серия (колекция)"
