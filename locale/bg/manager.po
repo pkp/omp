@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-08-24 01:51+0000\n"
+"PO-Revision-Date: 2024-08-24 08:13+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "bg/>\n"
@@ -147,3 +147,767 @@ msgstr "Съществуващи потребители"
 
 msgid "manager.series.seriesTitle"
 msgstr "Заглавие на серия (колекция)"
+
+msgid "manager.settings.location"
+msgstr "Географско местоположение"
+
+msgid "manager.settings.publisherCode"
+msgstr "Издателски код"
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Тип издателски код"
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Това не е валиден издателски код."
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Изтегляне на файл с монография"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Изгледи на страници с резюме на монография"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Изглед на основна страница на серия (колекция)"
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Изглед на основна страница на издателство"
+
+msgid "manager.tools"
+msgstr "Инструменти"
+
+msgid "manager.users.availableRoles"
+msgstr "Налични роли"
+
+msgid "manager.users.currentRoles"
+msgstr "Текущи роли"
+
+msgid "manager.users.selectRole"
+msgstr "Избиране на роля"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Потребители включени към това издателство"
+
+msgid "manager.people.allPresses"
+msgstr "Всички издателства"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Включване на потребител от този сайт в това издателство"
+
+msgid "manager.people.allUsers"
+msgstr "Всички включени потребители"
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Включване на съществуващ потребител"
+
+msgid "manager.people.enrollSyncPress"
+msgstr "В издателството"
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Изберете потребител, на когото да се припишат авторството на предишния "
+"потребител, редактирането и т.н."
+
+msgid "manager.system.archiving"
+msgstr "Архивиране"
+
+msgid "manager.system.reviewForms"
+msgstr "Форми за рецензиране"
+
+msgid "manager.system.readingTools"
+msgstr "Инструменти за четене"
+
+msgid "manager.system.payments"
+msgstr "Плащания"
+
+msgid "user.authorization.pluginLevel"
+msgstr "Нямате достатъчно права за управление на този плъгин."
+
+msgid "manager.pressManagement"
+msgstr "Управление на издателство"
+
+msgid "manager.setup"
+msgstr "Конфигуриране"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Съдържание"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Добавяне на информация в раздел Относно"
+
+msgid "manager.setup.addItem"
+msgstr "Добавяне на елемент"
+
+msgid "manager.setup.addNavItem"
+msgstr "Добавяне на елемент"
+
+msgid "manager.setup.addSponsor"
+msgstr "Добавяне на финансираща организация (спонсор)"
+
+msgid "manager.setup.announcements"
+msgstr "Анонси"
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Допълнителна информация"
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+"Въведете допълнителна информация, която трябва да се показва на читателите "
+"на страницата с анонси."
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Да се появи в Относно издателството) "
+
+msgid "manager.setup.contextAbout"
+msgstr "Относно издателството"
+
+msgid "manager.setup.contextSummary"
+msgstr "Резюме на издателството"
+
+msgid "manager.setup.copyediting"
+msgstr "Редактори на оформление"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Ръководство за оформление"
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Известие за авторските права"
+
+msgid "manager.setup.coverage"
+msgstr "Покритие (корица)"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Максимална височина на изображението на корицата"
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Максимална ширина на изображението на корицата"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Изображенията ще бъдат намалени, когато са по-големи от този размер, но "
+"никога няма да бъдат увеличени или разтегнати, за да паснат на тези размери."
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Стъпка 5. Персонализиране на външния вид"
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Персонализирани HTML тагове за заглавка, които да се вмъкват в заглавката на "
+"всяка страница (напр. META тагове)."
+
+msgid "manager.setup.customTags"
+msgstr "Персонализирани тагове (етикети)"
+
+msgid "manager.setup.details"
+msgstr "Детайли"
+
+msgid "manager.setup.discipline"
+msgstr "Академични дисциплини и поддисциплини"
+
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Полезно, когато издателството преминава дисциплинарни граници и/или авторите "
+"представят мултидисциплинарни ръкописи."
+
+msgid "manager.setup.disciplineExamples"
+msgstr ""
+"(Напр. история; образование; социология; психология; културни изследвания; "
+"право)"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Добавете съдържанието на текущата монография (ако е налично)."
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Съдържание на началната страница"
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Показване на препоръчани книги на началната страница"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Препоръчани книги"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Прожектор"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Показване на новите заглавия на началната страница"
+
+msgid "doi.manager.settings.doiCreationTime.copyedit"
+msgstr "При достигане на етапа на оформление"
+
+msgid "manager.dois.formatIdentifier.file"
+msgstr "Формат / {$format}"
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"Всички недоставени имейли ще доведат до съобщение за грешка на този адрес."
+
+msgid "manager.setup.emails"
+msgstr "Имейл идентификация"
+
+msgid "manager.setup.identity"
+msgstr "Идентичност на издателството"
+
+msgid "manager.setup.reviewForms"
+msgstr "Форми за рецензиране"
+
+msgid "manager.setup.roleType"
+msgstr "Тип на ролята"
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Адрес за отхвърляне на имейли"
+
+msgid "manager.setup.emailSignature"
+msgstr "Подпис"
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"Имейлите, изпратени автоматично от името на издателството, ще имат следния "
+"добавен подпис."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Включване на анонсите"
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Показване на началната страница"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Колко съобщения да се показват на началната страница. Оставете това празно, "
+"за да не се показва нищо."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Разрешаване това издателство да се показва публично на сайта"
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+"Персонализираните идентификатори ще се използват за идентифициране на "
+"типографски файлове (напр. HTML или PDF файлове) за публикувани елементи."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Фокус и обхват на издателството"
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "За авторите да индексират работата си"
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "Изисква се имейл за основния контакт."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "Изисква се имейл за поддръжка."
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Изисква се име за поддръжка."
+
+msgid "manager.setup.generalInformation"
+msgstr "Обща информация"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Стъпка 1. Запознаване с подробностите"
+
+msgid "manager.setup.information"
+msgstr "Информация"
+
+msgid "manager.setup.information.forReaders"
+msgstr "За читатели"
+
+msgid "manager.setup.information.success"
+msgstr "Информацията за това издателство беше актуализирана."
+
+msgid "manager.setup.institution"
+msgstr "Институция"
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Елементи на страница"
+
+msgid "manager.setup.keyInfo"
+msgstr "Ключова информация"
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Предоставете кратко описание на вашето издателство и идентифицирайте "
+"редакторите, управляващите директори и другите членове на вашия редакторски "
+"екип."
+
+msgid "manager.setup.labelName"
+msgstr "Име на етикет"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Редактори на оформлението"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Инструкции за оформление"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Оформителски шаблони"
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Файл шаблон"
+
+msgid "manager.setup.lists"
+msgstr "Списъци"
+
+msgid "manager.setup.lists.success"
+msgstr "Настройките на списъка са актуализирани."
+
+msgid "manager.setup.look"
+msgstr "Изглед"
+
+msgid "manager.setup.settings"
+msgstr "Настройки"
+
+msgid "manager.setup.management.description"
+msgstr ""
+"Достъп и сигурност, планиране, съобщения, редактиране, оформление и корекция."
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Управление на основните редакционни стъпки"
+
+msgid "manager.setup.managingThePress"
+msgstr "Стъпка 4. Управление на настройките"
+
+msgid "manager.setup.masthead.success"
+msgstr "Подробностите за заглавката на това издателство са актуализирани."
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Няма качен файл със стилове."
+
+msgid "manager.setup.note"
+msgstr "Бележка"
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr ""
+"Редактирането на оформление ще бъде извършено от редактор или редактор на "
+"раздел, асоцииран към подадените материали."
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Достъп до съдържанието на издателството"
+
+msgid "manager.setup.onlineIssn"
+msgstr "Онлайн ISSN"
+
+msgid "manager.setup.policies"
+msgstr "Политики"
+
+msgid "manager.setup.policies.description"
+msgstr ""
+"Фокус, рецензиране, секции, поверителност, сигурност и допълнителни елементи."
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "Декларацията за поверителност е актуализирана."
+
+msgid "manager.setup.pressDescription"
+msgstr "Резюме на издателството"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "Кратко описание на вашето издателство."
+
+msgid "manager.setup.pressArchiving"
+msgstr "Архивиране на публикуваните материали от издателството"
+
+msgid "manager.setup.homepageContent"
+msgstr "Съдържание на началната страница на издателството"
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Съдържание на началната страница на издателството"
+
+msgid "manager.setup.contextInitials"
+msgstr "Инициали на издателството"
+
+msgid "manager.setup.selectCountry"
+msgstr ""
+"Изберете държавата, в която се намира това издателство, или държавата на "
+"пощенския адрес на издателството или издателя."
+
+msgid "manager.setup.layout"
+msgstr "Оформление на страницата на издателството"
+
+msgid "manager.setup.pageHeader"
+msgstr "Горен колонтитул на страницата на издателството"
+
+msgid "manager.setup.pressPolicies"
+msgstr "Стъпка 2. Политики на издателството"
+
+msgid "manager.setup.pressSetup"
+msgstr "Настройки на издателство"
+
+msgid "manager.setup.pressTheme"
+msgstr "Оформителска тема на издателството"
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Миниатюра на издателството"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr ""
+"Малко лого или представяне на издателството, което може да се използва в "
+"списъци с повече издателства."
+
+msgid "manager.setup.contextTitle"
+msgstr "Наименование на издателство"
+
+msgid "manager.setup.printIssn"
+msgstr "Печатен ISSN"
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Осигурете на редакторите на оформлението инструкции."
+
+msgid "manager.setup.publisher"
+msgstr "Издател"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Мениджърски роли"
+
+msgid "manager.setup.availableRoles"
+msgstr "Налични роли"
+
+msgid "manager.setup.currentRoles"
+msgstr "Текущи роли"
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Всички настройки, специфични за процеса на разпространение (уведомяване, "
+"индексиране, архивиране, плащане, инструменти за четене)."
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Да се деактивира ли този потребител? Това ще попречи на потребителя да влезе "
+"в системата.\n"
+"\n"
+"По избор можете да предоставите на потребителя причина за деактивирането на "
+"акаунта му."
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr ""
+"Изберете типовете произведения, публикувани от това издателство, на които "
+"трябва да бъдат присвоени DOI. Повечето издателства присвояват DOI на "
+"монографии/глави, но може да пожелаете да присвоите DOI на всички "
+"публикувани елементи."
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Резюме на монография и сваляния"
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"За съжаление нямате администраторски права над този потребител. Това може да "
+"се дължи на:\n"
+"\t\t<ul>\n"
+"\t\t\t<li>Потребителят е администратор на сайта</li>\n"
+"\t\t\t<li>Потребителят е активен в издателства, които не управлявате</li>\n"
+"\t\t</ul>\n"
+"\tТази задача трябва да бъде изпълнена от администратор на сайта.\n"
+"\t"
+
+msgid "manager.dois.disabledChaptersDescription"
+msgstr "Глави без целева (заглавна) страница не могат да имат DOI."
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Всички инструменти, специфични за импортиране и експортиране на данни ("
+"издателства, монографии, потребители)"
+
+msgid "manager.setup.authorRoles"
+msgstr "Роли на автор"
+
+msgid "manager.setup.editorDecision"
+msgstr "Решение на редактора"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Инструменти за генериране на отчети, свързани със статистически данни за "
+"използването (изглед на страница с индекс на каталог, изгледи на страници с "
+"резюме на монография, изтегляне на файлове с монография)"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Добавяне на елемент от контролния списък"
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"За да изпраща недоставени имейли до адрес за отхвърляне, администраторът на "
+"сайта трябва да активира опцията <code>allow_envelope_sender</code> в "
+"конфигурационния файл на сайта. Може да се изисква конфигурация на сървъра, "
+"както е посочено в документацията на OMP."
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Премахване на този потребител от това издателство? Това действие ще "
+"дерегистрира потребителя от всички роли в това издателство."
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Добавяне на елемент за да се появи в „Относно издателството“"
+
+msgid "manager.setup.announcements.success"
+msgstr "Настройките за анонси са актуализирани."
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Могат да се публикуват анонси (съобщения), за да информират читателите за "
+"новини и събития. Публикуваните съобщения ще се показват на страницата с "
+"анонси."
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Изберете потребител, който да обедините в друг потребителски акаунт (напр. "
+"когато някой има два потребителски акаунта). Избраният пръв акаунт ще бъде "
+"изтрит и неговите подавания, задания и т.н. ще бъдат приписани на втория "
+"акаунт."
+
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Могат да се публикуват анонси (съобщения), за да информират читателите за "
+"новини и събития свързани с издателството. Публикуваните съобщения ще се "
+"показват на страницата за анонси."
+
+msgid "manager.setup.aboutPress"
+msgstr "Относно издателството"
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr ""
+"Персонализираните идентификатори ще се използват за идентифициране на "
+"публикувани елементи."
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Включете всяка информация за вашето издателство, която може да представлява "
+"интерес за читатели, автори или рецензенти. Това може да включва вашата "
+"политика за свободен достъп, фокуса и обхвата на издателството, разкриване "
+"на информация за спонсорство и история на издателството."
+
+msgid "manager.setup.enableUserRegistration"
+msgstr "Посетителите могат да регистрират потребителски акаунт в издателството."
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+"Ръководството за оформление ще бъде предоставено на редакторите на "
+"оформление, авторите и редакторите на секции в етапа на редактиране на "
+"подадените материали. По-долу е набор от инструкции по подразбиране в HTML, "
+"които могат да бъдат модифицирани или заменени от редактора на издателството "
+"по всяко време (в HTML или обикновен текст)."
+
+msgid "manager.setup.details.description"
+msgstr "Име на издателството, контакти, спонсори и търсачки."
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+"Мениджърът на издателство ще регистрира всички потребителски акаунти. "
+"Редакторите или редакторите на секции могат да регистрират потребителски "
+"акаунти за рецензенти."
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr "Дайте примери за подходящи академични дисциплини за това издателство"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr ""
+"Опишете за автори, читатели и библиотекари гамата от монографии и други "
+"материали, които издателство ще публикува."
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Показване на книги в рамките на прожектора на началната страница"
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"OMP се придържа към протокола <a href=\"https://www.openarchives.org\" "
+"target=\"_blank\">Open Archives Initiative</a> за събиране на метаданни, "
+"който е нововъзникващият стандарт за предоставяне на добре индексиран достъп "
+"до електронни изследователски ресурси в глобален мащаб. Авторите ще "
+"използват подобен шаблон, за да предоставят метаданни за тяхното изпращане "
+"на ръкопис. Мениджърът на издателството трябва да избере категориите за "
+"индексиране и да представи на авторите подходящи примери, за да им помогне "
+"при индексирането на тяхната работа, разделяйки термините с точка и запетая ("
+"напр. термин1; термин2). Записите трябва да бъдат въведени като примери с "
+"помощта на „Напр.“ или „Например“."
+
+msgid "manager.setup.enableDois.description"
+msgstr ""
+"Разрешаване на присвояване на идентификатори на цифрови обекти (DOI) към "
+"работа, публикувана от това издателство."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Изисква се име за основния контакт."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Изисква се броят рецензенти за изпратен материал."
+
+msgid "manager.setup.information.description"
+msgstr ""
+"Кратки описания на издателството за библиотекари и бъдещи автори и читатели. "
+"Те стават достъпни в страничната лента на сайта, когато бъде добавен "
+"информационният блок."
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Ограничете броя на елементите (например изпращания, потребители или задания "
+"за редактиране), които да се показват в списък, преди да покажете следващите "
+"елементи на друга страница."
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"Инструкциите за оформление могат да бъдат подготвени за форматиране на "
+"публикувани елементи в издателството и да бъдат въведени по-долу в HTML или "
+"обикновен текст. Те ще бъдат предоставени на редактора на оформлението и "
+"редактора на секции на страницата за редактиране на всяко изпращане. (Тъй "
+"като всяко издателство може да използва свои собствени файлови формати, "
+"библиографски стандарти, таблици със стилове и т.н., не се предоставя набор "
+"от инструкции по подразбиране.)"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"Шаблоните могат да бъдат качени, за да се показват в оформлението на всеки "
+"от стандартните формати, публикувани в издателството (напр. монография, "
+"рецензия на книга и т.н.), като се използва всеки файлов формат (напр. pdf, "
+"doc и т.н.) с добавени анотации, указващи шрифт, размер , полета и т.н., за "
+"да служи като ръководство за редактори на оформление и коректори."
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Заглавие"
+
+msgid "manager.setup.look.description"
+msgstr ""
+"Горен колонтитул на началната страница, съдържание, горен колонтитул на "
+"издателството, долен колонтитул, лента за навигация и стилове."
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Настройка за управление и публикуване"
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Няма качен файл с изображение."
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+"Когато използвате имейла за известяване на автора, включете имейл адресите "
+"на всички съавтори за изпратените материали, а не само на изпращащия "
+"потребител."
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Ограничаване броя на връзките за показване към следващите страници в списъка."
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+"Различни компоненти на външния вид на издателството могат да бъдат "
+"конфигурирани от тази страница, включително елементи на горен и долен "
+"колонтитул, стил и тема на издателството и как списъците с информация се "
+"представят на потребителите."
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+"Включете всяка информация за вашето издателство, която може да представлява "
+"интерес за читатели, автори или рецензенти. Това може да включва вашата "
+"политика за отворен достъп, фокуса и обхвата на издателството, известие за "
+"авторски права, разкриване на спонсорство, история на издателството и "
+"декларация за поверителност."
+
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+"Началната страница на издателството се състои от връзки за навигация по "
+"подразбиране. Допълнително съдържание на началната страница може да бъде "
+"добавено чрез използване на една или всички от следните опции, които ще се "
+"появят в показания ред."
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr ""
+"Началната страница на издателството се състои от връзки за навигация по "
+"подразбиране. Допълнително съдържание на началната страница може да бъде "
+"добавено чрез използване на една или всички от следните опции, които ще се "
+"появят в показания ред."
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Вашите настройки на издателството бяха актуализирани."
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Невалиден формат на файл със стилове. Приема се .css."
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr ""
+"Инструкциите за коректура ще бъдат предоставени на коректори, автори, "
+"редактори на оформление и редактори на секции в етапа на редактиране на "
+"подадените материали. По-долу има набор от инструкции по подразбиране в "
+"HTML, които могат да бъдат редактирани или заменени от редактора на "
+"издателство по всяко време (в HTML или обикновен текст)."
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr ""
+"Материалите от издателството могат да бъдат публикувани колективно като част "
+"от монография със собствено съдържание. Алтернативно, отделни елементи могат "
+"да бъдат публикувани веднага щом са готови, като ги добавите към "
+"съдържанието на „текущия“ том. Предоставете на читателите в раздела \"Относно"
+" издателството\" изявление за системата и процеса на публикуване от това "
+"издателство, както и очакваната честота на публикуване."
+
+msgid "manager.series.restricted"
+msgstr ""
+"Не позволявайте на авторите да изпращат директно към тази серия (колекция)."
+
+msgid "manager.sections.alertDelete"
+msgstr ""
+"Преди тази серия (колекция) да може да бъде изтрита, трябва да преместите "
+"свързаните материали от нея в друга серия (колекция)."
+
+msgid "manager.payment.generalOptions"
+msgstr "Общи възможности"
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Плащанията ще бъдат активирани за това издателство. Имайте предвид, че "
+"потребителите ще трябва да влязат в системата, за да извършват плащания."
+
+msgid "manager.payment.success"
+msgstr "Настройките за плащане са актуализирани."
+
+msgid "manager.settings"
+msgstr "Настройки"
+
+msgid "manager.settings.pressSettings"
+msgstr "Настройки на издателството"
+
+msgid "manager.settings.press"
+msgstr "Издателство"
+
+msgid "manager.settings.publisher.identity"
+msgstr "Идентификация на издател"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Тези полета са задължителни за публикуване на валидни <a href=\"https://en."
+"wikipedia.org/wiki/ONIX_for_Books\">ONIX метаданни</a>."
+
+msgid "manager.settings.publisher"
+msgstr "Име на издателството"
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"Синхронизирането на включени потребители ще запише всички потребители, с "
+"определената роля от указаното издателство със същата роля в това "
+"издателство. Тази функция позволява общ набор от потребители (напр. "
+"рецензенти) да бъдат синхронизирани между издателствата."
+
+msgid "manager.system"
+msgstr "Настройки на системата"
+
+msgid "doi.manager.settings.doiSuffixLegacy"
+msgstr ""
+"Използвайте шаблони по подразбиране.<br />%p.%m за монографии<br />%p.%m.c%c "
+"за глави<br />%p.%m.%f за формати на публикации<br />%p.%m.%f.%s за файлове."
+
+msgid "manager.setup.guidelines"
+msgstr "Насоки"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Стъпка 3. Подготовка на работния процес"
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+"Редактор или редактор на секции, асоцииран към подадените материали ще "
+"подготви HTML, PDF и др. файлове."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr ""
+"Редактор или редактор на секции, асоцииран към подадените материали ще "
+"провери типографските файлове."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Връзки към страници"
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Инструкции за коректура"
+
+msgid "manager.setup.proofreading"
+msgstr "Коректори"
