@@ -7,8 +7,8 @@
 ;
 ; config.TEMPLATE.inc.php
 ;
-; Copyright (c) 2014-2021 Simon Fraser University
-; Copyright (c) 2003-2021 John Willinsky
+; Copyright (c) 2014-2024 Simon Fraser University
+; Copyright (c) 2003-2024 John Willinsky
 ; Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
 ;
 ; OMP Configuration settings.
@@ -103,7 +103,7 @@ restful_urls = Off
 ; See docs/README.md for more details. The list should be JSON-formatted.
 ; An empty string indicates that all hosts should be trusted (not recommended!)
 ; Example:
-; allowed_hosts = '["myjournal.tld", "anotherjournal.tld", "mylibrary.tld"]'
+; allowed_hosts = '["mypress.tld", "anotherpress.tld", "mylibrary.tld"]'
 allowed_hosts = ''
 
 ; Allow the X_FORWARDED_FOR header to override the REMOTE_ADDR as the source IP
@@ -112,14 +112,22 @@ allowed_hosts = ''
 ; Warning: This defaults to "On" if unset for backwards compatibility.
 trust_x_forwarded_for = Off
 
-; Set the following parameter to off if you want to work with the uncompiled
-; (non-minified) JavaScript source for debugging or if you are working off a
-; development branch without compiled JavaScript.
+; Display a message on the site admin and press manager user home pages if there is an upgrade available
+show_upgrade_warning = On
+
+; Set the following parameter to off if you want to work with the uncompiled (non-minified) JavaScript
+; source for debugging or if you are working off a development branch without compiled JavaScript.
 enable_minified = On
 
 ; Provide a unique site ID and OAI base URL to PKP for statistics and security
 ; alert purposes only.
 enable_beacon = On
+
+; Set this to "On" if you would like to only have a single, site-wide Privacy
+; Statement, rather than a separate Privacy Statement for each press. Setting
+; this to "Off" will allow you to enter a site-wide Privacy Statement as well
+; as separate Privacy Statements for each press.
+sitewide_privacy_statement = Off
 
 
 ;;;;;;;;;;;;;;;;;;;;;
@@ -155,7 +163,6 @@ debug = Off
 ; - file: Use file-based caching; configured below
 ; - none: Use no caching. This may be extremely slow.
 ; This setting affects locale data, press settings, and plugin settings.
-
 cache = file
 
 ; Enable memcache support
@@ -281,21 +288,20 @@ allowed_html = "a[href|target|title],em,strong,cite,code,ul,ol,li[class],dl,dt,d
 
 ;Implicit Auth Header Variables
 
-;implicit_auth_header_first_name = HTTP_TDL_GIVENNAME
-;implicit_auth_header_last_name = HTTP_TDL_SN
-;implicit_auth_header_email = HTTP_TDL_MAIL
-;implicit_auth_header_phone = HTTP_TDL_TELEPHONENUMBER
-;implicit_auth_header_initials = HTTP_TDL_METADATA_INITIALS
-;implicit_auth_header_mailing_address = HTTP_TDL_METADATA_TDLHOMEPOSTALADDRESS
-;implicit_auth_header_uin = HTTP_TDL_TDLUID
+;implicit_auth_header_first_name = HTTP_GIVENNAME
+;implicit_auth_header_last_name = HTTP_SN
+;implicit_auth_header_email = HTTP_MAIL
+;implicit_auth_header_phone = HTTP_TELEPHONENUMBER
+;implicit_auth_header_initials = HTTP_METADATA_INITIALS
+;implicit_auth_header_mailing_address = HTTP_METADATA_HOMEPOSTALADDRESS
+;implicit_auth_header_uin = HTTP_UID
 
 ; A space delimited list of uins to make admin
-;implicit_auth_admin_list = "100000040@tdl.org 85B7FA892DAA90F7@utexas.edu 100000012@tdl.org"
+;implicit_auth_admin_list = "jdoe@email.ca jshmo@email.ca"
 
 ; URL of the implicit auth 'Way Finder' page. See pages/login/LoginHandler.inc.php for usage.
 
 ;implicit_auth_wayf_url = "/Shibboleth.sso/wayf"
-
 
 
 ;;;;;;;;;;;;;;;;;;
@@ -390,9 +396,6 @@ min_word_length = 3
 ; are fetched and merged to provide results for searches with several keywords.
 results_per_keyword = 500
 
-; The number of hours for which keyword search results are cached.
-result_cache_hours = 1
-
 ; Paths to helper programs for indexing non-text files.
 ; Programs are assumed to output the converted text to stdout, and "%s" is
 ; replaced by the file argument.
@@ -427,6 +430,9 @@ oai = On
 ; Changing this setting may affect existing clients and is not recommended.
 repository_id = omp.pkp.sfu.ca
 
+; Maximum number of records per request to serve via OAI
+oai_max_records = 100
+
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ; Interface Settings ;
@@ -435,7 +441,7 @@ repository_id = omp.pkp.sfu.ca
 [interface]
 
 ; Number of items to display per page; can be overridden on a per-press basis
-items_per_page = 50
+items_per_page = 25
 
 ; Number of page links to display; can be overridden on a per-press basis
 page_links = 10
@@ -451,10 +457,10 @@ page_links = 10
 recaptcha = off
 
 ; Public key for reCaptcha (see http://www.google.com/recaptcha)
-; recaptcha_public_key = your_public_key
+recaptcha_public_key = your_public_key
 
 ; Private key for reCaptcha (see http://www.google.com/recaptcha)
-; recaptcha_private_key = your_private_key
+recaptcha_private_key = your_private_key
 
 ; Whether or not to use Captcha on user registration
 captcha_on_register = on
@@ -476,17 +482,11 @@ recaptcha_enforce_hostname = Off
 ; tar (used in backup plugin, translation packaging)
 tar = /bin/tar
 
-; egrep (used in copyAccessLogFileTool)
-egrep = /bin/egrep
-
-; gzip (used in FileManager)
-gzip = /bin/gzip
-
-; On systems that do not have PHP4's Sablotron/xsl or PHP5's libxsl/xslt
-; libraries installed, or for those who require a specific XSLT processor,
-; you may enter the complete path to the XSLT renderer tool, with any
-; required arguments. Use %xsl to substitute the location of the XSL
-; stylesheet file, and %xml for the location of the XML source file; eg:
+; On systems that do not have libxsl/xslt libraries installed, or for those who
+; require a specific XSLT processor, you may enter the complete path to the
+; XSLT renderer tool, with any required arguments. Use %xsl to substitute the
+; location of the XSL stylesheet file, and %xml for the location of the XML
+; source file; eg:
 ; /usr/bin/java -jar ~/java/xalan.jar -IN %xml -XSL %xsl %params
 ; See xslt_parameter_option below for information on the %params token.
 xslt_command = ""
