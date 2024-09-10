@@ -143,7 +143,7 @@ class ManualPaymentPlugin extends PaymethodPlugin
         }
 
         $paymentForm = new Form($this->getTemplateResource('paymentForm.tpl'));
-        $paymentManager = Application::getPaymentManager($context);
+        $paymentManager = Application::get()->getPaymentManager($context);
         $paymentForm->setData([
             'itemName' => $paymentManager->getPaymentName($queuedPayment),
             'itemAmount' => $queuedPayment->getAmount() > 0 ? $queuedPayment->getAmount() : null,
@@ -170,7 +170,7 @@ class ManualPaymentPlugin extends PaymethodPlugin
 
         $queuedPaymentDao = DAORegistry::getDAO('QueuedPaymentDAO'); /** @var QueuedPaymentDAO $queuedPaymentDao */
         $queuedPayment = $queuedPaymentDao->getById($queuedPaymentId);
-        $paymentManager = Application::getPaymentManager($context);
+        $paymentManager = Application::get()->getPaymentManager($context);
         // if the queued payment doesn't exist, redirect away from payments
         if (!$queuedPayment) {
             $request->redirect(null, 'index');

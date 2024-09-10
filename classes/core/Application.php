@@ -20,9 +20,11 @@
 namespace APP\core;
 
 use APP\payment\omp\OMPPaymentManager;
-use APP\press\Press;
 use APP\press\PressDAO;
 use APP\publicationFormat\PublicationFormatDAO;
+use APP\search\MonographSearchDAO;
+use APP\search\MonographSearchIndex;
+use PKP\context\Context;
 use PKP\core\PKPApplication;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
@@ -75,20 +77,16 @@ class Application extends PKPApplication
 
     /**
      * Get the symbolic name of this application
-     *
-     * @return string
      */
-    public static function getName()
+    public static function getName(): string
     {
         return 'omp';
     }
 
     /**
      * Get the locale key for the name of this application.
-     *
-     * @return string
      */
-    public function getNameKey()
+    public function getNameKey(): string
     {
         return('common.software');
     }
@@ -96,20 +94,16 @@ class Application extends PKPApplication
     /**
      * Get the URL to the XML descriptor for the current version of this
      * application.
-     *
-     * @return string
      */
-    public function getVersionDescriptorUrl()
+    public function getVersionDescriptorUrl(): string
     {
         return 'https://pkp.sfu.ca/omp/xml/omp-version.xml';
     }
 
     /**
      * Get the map of DAOName => full.class.Path for this application.
-     *
-     * @return array
      */
-    public function getDAOMap()
+    public function getDAOMap(): array
     {
         return array_merge(parent::getDAOMap(), [
             'ChapterDAO' => 'APP\monograph\ChapterDAO',
@@ -140,10 +134,8 @@ class Application extends PKPApplication
 
     /**
      * Get the list of plugin categories for this application.
-     *
-     * @return array
      */
-    public function getPluginCategories()
+    public function getPluginCategories(): array
     {
         return [
             // NB: Meta-data plug-ins are first in the list as this
@@ -169,9 +161,7 @@ class Application extends PKPApplication
      */
     public static function getContextDAO(): PressDAO
     {
-        /** @var PressDAO */
-        $dao = DAORegistry::getDAO('PressDAO');
-        return $dao;
+        return DAORegistry::getDAO('PressDAO');
     }
 
     /**
@@ -181,23 +171,21 @@ class Application extends PKPApplication
      */
     public static function getRepresentationDAO(): RepresentationDAOInterface
     {
-        /** @var PublicationFormatDAO|RepresentationDAOInterface */
-        $dao = DAORegistry::getDAO('PublicationFormatDAO');
-        return $dao;
+        return DAORegistry::getDAO('PublicationFormatDAO');
     }
 
     /**
      * Get a SubmissionSearchIndex instance.
      */
-    public static function getSubmissionSearchIndex()
+    public static function getSubmissionSearchIndex(): MonographSearchIndex
     {
-        return new \APP\search\MonographSearchIndex();
+        return new MonographSearchIndex();
     }
 
     /**
      * Get a SubmissionSearchDAO instance.
      */
-    public static function getSubmissionSearchDAO()
+    public static function getSubmissionSearchDAO(): MonographSearchDAO
     {
         return DAORegistry::getDAO('MonographSearchDAO');
     }
@@ -205,7 +193,7 @@ class Application extends PKPApplication
     /**
      * Get the stages used by the application.
      */
-    public static function getApplicationStages()
+    public static function getApplicationStages(): array
     {
         // We leave out WORKFLOW_STAGE_ID_PUBLISHED since it technically is not a 'stage'.
         return [
@@ -220,7 +208,7 @@ class Application extends PKPApplication
     /**
      * Get the file directory array map used by the application.
      */
-    public static function getFileDirectories()
+    public static function getFileDirectories(): array
     {
         return ['context' => '/presses/', 'submission' => '/monographs/'];
     }
@@ -228,19 +216,15 @@ class Application extends PKPApplication
     /**
      * Returns the context type for this application.
      */
-    public static function getContextAssocType()
+    public static function getContextAssocType(): int
     {
         return self::ASSOC_TYPE_PRESS;
     }
 
     /**
      * Get the payment manager.
-     *
-     * @param Press $context
-     *
-     * @return OMPPaymentManager
      */
-    public static function getPaymentManager($context)
+    public function getPaymentManager(Context $context): OMPPaymentManager
     {
         return new OMPPaymentManager($context);
     }

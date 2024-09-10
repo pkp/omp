@@ -132,7 +132,3 @@ class PressDAO extends ContextDAO
         return false;
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\press\PressDAO', '\PressDAO');
-}

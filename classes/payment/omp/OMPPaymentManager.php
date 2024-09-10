@@ -180,8 +180,3 @@ class OMPPaymentManager extends PaymentManager
         }
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\payment\omp\OMPPaymentManager', '\OMPPaymentManager');
-    define('PAYMENT_TYPE_PURCHASE_FILE', OMPPaymentManager::PAYMENT_TYPE_PURCHASE_FILE);
-}

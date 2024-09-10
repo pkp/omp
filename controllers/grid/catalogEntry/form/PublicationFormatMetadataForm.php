@@ -118,7 +118,7 @@ class PublicationFormatMetadataForm extends Form
         $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
 
         // Check if e-commerce is available
-        $paymentManager = Application::getPaymentManager($context);
+        $paymentManager = Application::get()->getPaymentManager($context);
         if ($paymentManager->isConfigured()) {
             $templateMgr->assign('paymentConfigured', true);
             $templateMgr->assign('currency', $context->getSetting('currency'));

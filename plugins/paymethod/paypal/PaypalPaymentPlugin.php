@@ -220,7 +220,7 @@ class PaypalPaymentPlugin extends PaymethodPlugin
                 throw new Exception('Amounts (' . $transaction['amount']['total'] . ' ' . $transaction['amount']['currency'] . ' vs ' . $queuedPayment->getAmount() . ' ' . $queuedPayment->getCurrencyCode() . ') don\'t match!');
             }
 
-            $paymentManager = Application::getPaymentManager($context);
+            $paymentManager = Application::get()->getPaymentManager($context);
             $paymentManager->fulfillQueuedPayment($request, $queuedPayment, $this->getName());
             $request->redirectUrl($queuedPayment->getRequestUrl());
         } catch (Exception $e) {

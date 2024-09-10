@@ -53,7 +53,3 @@ class Press extends Context
         return DAORegistry::getDAO('PressDAO');
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\press\Press', '\Press');
-}
