@@ -18,8 +18,9 @@ describe('Statistics Tests', function() {
 
 	it('Check statistics', function() {
 		cy.login('dbarnes', null, 'publicknowledge');
-		cy.get('nav div[data-pc-section="header"] a span').contains('Statistics').click();
-		cy.get('nav div[data-pc-section="itemcontent"] a span').contains('Monographs').click({ force: true });
+		cy.get('nav').contains('Statistics').click();
+		// Ensure submenu item click despite animation
+		cy.get('nav').contains('Monographs').click({ force: true });
 		cy.checkGraph(
 			'Total catalog views by date',
 			'Abstract Views',

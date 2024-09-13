@@ -22,7 +22,7 @@ describe('DOI tests', function() {
 	};
 
 	const goToDoiPage = () => {
-		cy.get('nav div[data-pc-section="header"] a span').contains('DOIs').click();
+		cy.get('nav').contains('DOIs').click();
 		cy.get('button#submission-doi-management-button').click();
 	};
 

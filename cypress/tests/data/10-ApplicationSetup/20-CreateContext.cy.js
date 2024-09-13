@@ -60,7 +60,7 @@ describe('Data suite tests', function() {
 		cy.login('admin', 'admin');
 		cy.get('a').contains('admin').click();
 		cy.get('a').contains('Dashboard').click();
-		cy.get('nav div[data-pc-section="header"] a span').contains('Administration').click();
+		cy.get('nav').contains('Administration').click();
 		cy.get('a').contains('Hosted Presses').click();
 		cy.get('a[class=show_extras]').click();
 		cy.contains('Settings wizard').click();
@@ -93,8 +93,9 @@ describe('Data suite tests', function() {
 		cy.login('admin', 'admin');
 		cy.get('a').contains('admin').click();
 		cy.get('a').contains('Dashboard').click();
-		cy.get('nav div[data-pc-section="header"] a span').contains('Settings').click();
-		cy.get('nav div[data-pc-section="itemcontent"] a span').contains('Press').click({ force: true });
+		cy.get('nav').contains('Settings').click();
+		// Ensure submenu item click despite animation
+		cy.get('nav').contains('Press').click({ force: true });
 
 		cy.get('div[id=masthead]').find('button').contains('Save').click();
 		cy.get('#masthead [role="status"]').contains('Saved');
@@ -104,8 +105,9 @@ describe('Data suite tests', function() {
 		cy.login('admin', 'admin');
 		cy.get('a').contains('admin').click();
 		cy.get('a').contains('Dashboard').click();
-		cy.get('nav div[data-pc-section="header"] a span').contains('Settings').click();
-		cy.get('nav div[data-pc-section="itemcontent"] a span').contains('Press').click({ force: true });
+		cy.get('nav').contains('Settings').click();
+		// Ensure submenu item click despite animation
+		cy.get('nav').contains('Press').click({ force: true });
 		cy.get('button[id="contact-button"]').click();
 
 		// Submit the form with required fields missing.
@@ -128,8 +130,9 @@ describe('Data suite tests', function() {
 
 	it('Tests role settings', function() {
 		cy.login('admin', 'admin', 'publicknowledge');
-		cy.get('nav div[data-pc-section="header"] a span').contains('Settings').click();
-		cy.get('nav div[data-pc-section="itemcontent"] a span').contains('Users & Roles').click({ force: true });
+		cy.get('nav').contains('Settings').click();
+		// Ensure submenu item click despite animation
+		cy.get('nav').contains('Users & Roles').click({ force: true });
 		cy.get('button').contains('Roles').click();
 
 		// "Edit" link below "Volume editor" role
