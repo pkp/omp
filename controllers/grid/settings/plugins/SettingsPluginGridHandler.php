@@ -21,6 +21,7 @@ use APP\press\PressDAO;
 use PKP\controllers\grid\plugins\PluginGridHandler;
 use PKP\controllers\grid\plugins\PluginGridRow;
 use PKP\db\DAORegistry;
+use PKP\security\authorization\CanAccessSettingsPolicy;
 use PKP\security\authorization\ContextAccessPolicy;
 use PKP\security\authorization\PluginAccessPolicy;
 use PKP\security\Role;
@@ -110,6 +111,7 @@ class SettingsPluginGridHandler extends PluginGridHandler
         } else {
             $this->addPolicy(new ContextAccessPolicy($request, $roleAssignments));
         }
+        $this->addPolicy(new CanAccessSettingsPolicy());
         return parent::authorize($request, $args, $roleAssignments);
     }
 }
