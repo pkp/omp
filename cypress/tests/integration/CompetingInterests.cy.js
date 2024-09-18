@@ -55,7 +55,9 @@ describe('Data suite tests', function() {
 	it('Tests with Competing Interests enabled', function() {
 		// Set the CI requirement setting
 		cy.login('dbarnes', null, 'publicknowledge');
-		cy.get('.app__nav a').contains('Workflow').click();
+		cy.get('nav').contains('Settings').click();
+		// Ensure submenu item click despite animation
+		cy.get('nav').contains('Workflow').click({ force: true });
 		cy.get('button[id="review-button"]').click();
 		cy.get('button[id="reviewerGuidance-button"]').click();
 		cy.setTinyMceContent('reviewerGuidance-competingInterests-control-en', 'Reviewer competing interests disclosure');
@@ -104,7 +106,9 @@ describe('Data suite tests', function() {
 
 		// Disable the CI requirement again
 		cy.login('dbarnes', null, 'publicknowledge');
-		cy.get('.app__nav a').contains('Workflow').click();
+		cy.get('nav').contains('Settings').click();
+		// Ensure submenu item click despite animation
+		cy.get('nav').contains('Workflow').click({ force: true });
 		cy.get('button[id="review-button"]').click();
 		cy.get('button[id="reviewerGuidance-button"]').click();
 		cy.setTinyMceContent('reviewerGuidance-competingInterests-control-en', '');

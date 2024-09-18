@@ -372,7 +372,9 @@ describe('Monograph View Metadata - DC Plugin', function() {
 		cy.get('a').contains('Dashboard').click();
 
 		// Enable metadata settings
-		cy.get('.app__nav a').contains('Press').click();
+		cy.get('nav').contains('Settings').click();
+		// Ensure submenu item click despite animation
+		cy.get('nav').contains('Press').click({ force: true });
 		cy.get('button#sections-button').click();
 		cy.get('tr[id^="component-grid-settings-series-seriesgrid-row-"]:contains("Political Economy") > .first_column > .show_extras').click();
 		cy.get('tr[id^="component-grid-settings-series-seriesgrid-row-"]:contains("Political Economy") + tr a:contains("Edit")').click();
@@ -384,7 +386,9 @@ describe('Monograph View Metadata - DC Plugin', function() {
 		cy.get('div:contains("Your changes have been saved.")');
 
 		// Enable metadata settings
-		cy.get('.app__nav a').contains('Workflow').click();
+		cy.get('nav').contains('Settings').click();
+		// Ensure submenu item click despite animation
+		cy.get('nav').contains('Workflow').click({ force: true });
 		cy.get('button').contains('Metadata').click();
 		cy.get('span').contains('Enable coverage metadata').prev('input[type="checkbox"]').check();
 		cy.get('span').contains('Enable type metadata').prev('input[type="checkbox"]').check();
@@ -398,7 +402,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 		cy.checkDoiConfig(['publication', 'chapter', 'representation', 'file']);
 
 		// After configuration, go to submissions
-		cy.get('.app__nav a').contains('Submissions').click();
+		cy.get('nav').contains('Submissions').click();
 
 		// Create a new submission
 		cy.getCsrfToken();

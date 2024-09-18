@@ -83,7 +83,7 @@ Cypress.Commands.add('createSubmissionWithApi', (data, csrfToken) => {
 
 		})
 		.then(() => {
-			cy.get('.pkpSteps__step__label:contains("Details")').click();
+			cy.get('.pkpSteps__step__label:contains("Details")').click({force: true});
 		})
 		.addSubmissionAuthorsWithApi(api, data, csrfToken)
 		.addChapters(data.chapters);

@@ -268,7 +268,7 @@ describe('Data suite tests', function() {
 		cy.get('a').contains(submission.title).click();
 
 		// Go back to Details step and add chapters
-		cy.get('.pkpSteps__step__label:contains("Details")').click();
+		cy.get('.pkpSteps__step__label:contains("Details")').click({force: true});
 		cy.addChapters(submission.chapters);
 
 		cy.get('.submissionWizard__footer button').contains('Continue').click();

@@ -12,7 +12,9 @@
 describe('Payments', function() {
     it('Enable Payment', function() {
         cy.login('dbarnes', null, 'publicknowledge');
-        cy.get('.app__nav a:contains("Distribution")').click();
+        cy.get('nav').contains('Settings').click();
+        // Ensure submenu item click despite animation
+        cy.get('nav').contains('Distribution').click({ force: true });
         cy.get('button[id="payments-button"]').click();
         cy.get('input[type="checkbox"][name="paymentsEnabled"]:first').click();
         cy.get('select[id="paymentSettings-currency-control"]').select('US Dollar');
@@ -24,7 +26,7 @@ describe('Payments', function() {
 
     it('Add a direct sales on Submission chapter', function () {
         cy.login('dbarnes', null, 'publicknowledge');
-        cy.get('.app__nav a:contains("Submissions")').click();
+        cy.get('nav').contains('Submissions').click();
         cy.get('button[id="archive-button"]').click();
 
         var submissionElement = cy.get('#archive .listPanel__item').contains('Bomb Canada and Other Unkind Remarks in the American Media').parents('.listPanel__item');
