@@ -71,6 +71,7 @@
  * @uses $licenseUrl string The URL which provides license information.
  * @uses $ccLicenseBadge string An HTML string containing a CC license image and
  *       text. Only appears when license URL matches a known CC license.
+ * @uses $pubLocaleData array Array of formatted publication locale metadata: titles, abstracts, keywords,
  *}
 <div class="obj_monograph_full">
 
@@ -93,8 +94,8 @@
 		</div>
 	{/if}
 
-	<h1 class="title">
-		{$publication->getLocalizedFullTitle(null, 'html')|strip_unsafe_html}
+	<h1 class="title" lang="{$pubLocaleData.primaryLocale|replace:"_":"-"}">
+		{$pubLocaleData.fullTitle.text[$pubLocaleData.primaryLocale]|strip_unsafe_html}
 	</h1>
 
 	<div class="row">
@@ -119,30 +120,57 @@
 				</div>
 			{/if}
 
-			{* Keywords *}
-			{if !empty($publication->getLocalizedData('keywords'))}
-				<div class="item keywords">
-					<h2 class="label">
-						{capture assign=translatedKeywords}{translate key="common.keywords"}{/capture}
-						{translate key="semicolon" label=$translatedKeywords}
+			{*
+			 * Show article keywords and abstract in ui, or submission, language by default.
+			 * Show optional multilingual metadata: titles, keywords, abstracts.
+			 *}
+			{foreach from=$pubLocaleData.languages item=lang}
+				<div class="metadata">
+				{assign "hLvl" "2"}
+				{* Multilingual metadata title *}
+				{if $lang !== $pubLocaleData.primaryLocale}
+					{assign "hLvl" "3"}
+					<h2 class="label page_metadata_title" lang={$lang|replace:"_":"-"}>
+						{translate key="plugins.themes.default.submissionMetadataInLanguage" locale=$lang}
 					</h2>
-					<span class="value">
-					{foreach name="keywords" from=$publication->getLocalizedData('keywords') item=keyword}
-						{$keyword|escape}{if !$smarty.foreach.keywords.last}, {/if}
-					{/foreach}
-				</span>
-				</div>
-			{/if}
+					{* Titles in other language *}
+					{if isset($pubLocaleData.fullTitle.text[$lang])}
+						<div class="item page_locale_title">
+							<h{$hLvl} class="label" lang="{$pubLocaleData.fullTitle.headingLang[$lang]|replace:"_":"-"}">
+								{translate key="submission.title" locale=$pubLocaleData.fullTitle.headingLang[$lang]}
+							</h{$hLvl}>
+							<p lang="{$lang|replace:"_":"-"}">
+								{$pubLocaleData.fullTitle.text[$lang]|strip_tags}
+							</p>
+						</div>
+					{/if}
+				{/if}
 
-			{* Abstract *}
-			<div class="item abstract">
-				<h2 class="label">
-					{translate key="submission.synopsis"}
-				</h2>
-				<div class="value">
-					{$publication->getLocalizedData('abstract')|strip_unsafe_html}
+				{* Keywords *}
+				{if isset($pubLocaleData.keywords.text[$lang])}
+					<div class="item keywords">
+						<h{$hLvl} class="label" lang="{$pubLocaleData.keywords.headingLang[$lang]|replace:"_":"-"}">
+							{translate key="common.keywords" locale=$pubLocaleData.keywords.headingLang[$lang]}
+						</h{$hLvl}>
+						<p class="value" lang="{$lang|replace:"_":"-"}">
+						{foreach from=$pubLocaleData.keywords.text[$lang] item="keyword"}
+							{$keyword|escape}{if !$keyword@last}{translate key="common.commaListSeparator" locale=$pubLocaleData.keywords.headingLang[$lang]}{/if}
+						{/foreach}
+						</p>
+					</div>
+				{/if}
+
+				{* Abstract *}
+				{if isset($pubLocaleData.abstract.text[$lang])}
+					<div class="item abstract">
+						<h{$hLvl} class="label" lang="{$pubLocaleData.abstract.headingLang[$lang]|replace:"_":"-"}">
+							{translate key="submission.synopsis" locale=$pubLocaleData.abstract.headingLang[$lang]}
+						</h{$hLvl}>
+						<p lang="{$lang|replace:"_":"-"}">{$pubLocaleData.abstract.text[$lang]|strip_tags}</p>
+					</div>
+				{/if}
 				</div>
-			</div>
+			{/foreach}
 
 			{* Chapters *}
 			{if $chapters|@count}
