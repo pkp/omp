@@ -29,7 +29,6 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		parent::__construct($filterGroup);
 	}
 
-
 	//
 	// Implement template methods from PersistableFilter
 	//
@@ -251,7 +250,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$pubLocale = $publication->getData('locale');
 
 		if ($publication->isCCLicense()) {
-			AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION); // For CC License Names
+			PKPLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, $pubLocale); // For CC License Names
 			$licenseOpts = Application::getCCLicenseOptions();
 			$licenseUrl = $publication->getData('licenseUrl');
 			if (array_key_exists($licenseUrl, $licenseOpts)) {
@@ -323,16 +322,16 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 
 		$productTitleDetailNode->appendChild($titleElementNode);
 
-		if (!$publication->getLocalizedData('prefix', $pubLocale) || !$publication->getLocalizedData('title', $pubLocale)) {
-			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim($publication->getLocalizedData('prefix', $pubLocale) ?? $publication->getLocalizedTitle($pubLocale))));
+		if (!$publication->getData('prefix', $pubLocale) || !$publication->getData('title', $pubLocale)) {
+			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim($publication->getData('prefix', $pubLocale) ?? $publication->getData('title', $pubLocale))));
 		} else {
-			if ($publication->getLocalizedData('prefix', $pubLocale)) {
-				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $publication->getLocalizedData('prefix', $pubLocale)));
+			if ($publication->getData('prefix', $pubLocale)) {
+				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $publication->getData('prefix', $pubLocale)));
 			} else {
 				$titleElementNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'NoPrefix'));
 			}
 
-			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $publication->getLocalizedTitle($pubLocale)));
+			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $publication->getData('title', $pubLocale)));
 		}
 
 		if ($publication->getData('subtitle', $pubLocale)) {
@@ -494,7 +493,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$collateralDetailNode = $doc->createElementNS($deployment->getNamespace(), 'CollateralDetail');
 		$productNode->appendChild($collateralDetailNode);
 
-		$abstract = strip_tags($publication->getLocalizedData('abstract', $pubLocale));
+		$abstract = strip_tags($publication->getData('abstract', $pubLocale));
 
 		$textContentNode = $doc->createElementNS($deployment->getNamespace(), 'TextContent');
 		$collateralDetailNode->appendChild($textContentNode);
