@@ -18,6 +18,7 @@ namespace APP\pages\reviewer;
 
 use APP\core\Request;
 use APP\facades\Repo;
+use PKP\invitation\core\enums\InvitationAction;
 use PKP\pages\reviewer\PKPReviewerHandler;
 use PKP\security\authorization\SubmissionAccessPolicy;
 use PKP\security\Role;
@@ -55,7 +56,9 @@ class ReviewerHandler extends PKPReviewerHandler
                 $invitation = Repo::invitation()->getByKey($accessKeyCode);
 
                 if (isset($invitation)) {
-                    $invitation->acceptHandle($request);
+                    $invitationHandler = $invitation->getInvitationActionRedirectController();
+                    $invitationHandler->preRedirectActions(InvitationAction::ACCEPT);
+                    $invitationHandler->acceptHandle($request);
                 }
             }
         }
