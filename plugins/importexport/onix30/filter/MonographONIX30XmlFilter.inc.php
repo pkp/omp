@@ -291,19 +291,25 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 				$titleElementNode->appendChild($this->_buildTextNode($doc, 'PartNumber', $submission->getCurrentPublication()->getData('seriesPosition')));
 			}
 
-			if ($series->getPrefix($pubLocale) == '' || $series->getTitle($pubLocale, false) == '') {
-				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim(join(' ', array($series->getPrefix($pubLocale), $series->getTitle($pubLocale, false))))));
+			$seriesLocale = $pubLocale;
+			// If the series title doesn't exist in the submission locale, use the press locale
+			if ($series->getTitle($seriesLocale, false) == '') {
+				$seriesLocale = $context->getPrimaryLocale();
+			}
+
+			if ($series->getPrefix($seriesLocale) == '' || $series->getTitle($seriesLocale, false) == '') {
+				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim(join(' ', array($series->getPrefix($seriesLocale), $series->getTitle($seriesLocale, false))))));
 			} else {
-				if ($series->getPrefix($pubLocale) != '') {
-					$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $series->getPrefix($pubLocale)));
+				if ($series->getPrefix($seriesLocale) != '') {
+					$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $series->getPrefix($seriesLocale)));
 				} else {
 					$titleElementNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'NoPrefix'));
 				}
-				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $series->getTitle($pubLocale, false)));
+				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $series->getTitle($seriesLocale, false)));
 			}
 
-			if ($series->getSubtitle($pubLocale) != '') {
-				$titleElementNode->appendChild($this->_buildTextNode($doc, 'Subtitle', $series->getSubtitle($pubLocale)));
+			if ($series->getSubtitle($seriesLocale) != '') {
+				$titleElementNode->appendChild($this->_buildTextNode($doc, 'Subtitle', $series->getSubtitle($seriesLocale)));
 			}
 		} else {
 			$seriesCollectionNode = $doc->createElementNS($deployment->getNamespace(), 'NoCollection');
@@ -355,13 +361,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 			$role = array_key_exists($nameKey, $userGroupOnixMap) ? $userGroupOnixMap[$nameKey] : 'Z99'; // Z99 - unknown contributor type.
 
 			$contributorNode->appendChild($this->_buildTextNode($doc, 'ContributorRole', $role));
-			$contributorNode->appendChild($this->_buildTextNode($doc, 'PersonName', $author->getFullName(false, false, $pubLocale)));
-			$contributorNode->appendChild($this->_buildTextNode($doc, 'PersonNameInverted', $author->getFullName(false, true, $pubLocale)));
+			$contributorNode->appendChild($this->_buildTextNode($doc, 'PersonName', $author->getFullName(false, false, null, $pubLocale)));
+			$contributorNode->appendChild($this->_buildTextNode($doc, 'PersonNameInverted', $author->getFullName(false, true, null, $pubLocale)));
 			$contributorNode->appendChild($this->_buildTextNode($doc, 'NamesBeforeKey', $author->getGivenName($pubLocale)));
 			if ($author->getFamilyName($pubLocale) != '') {
 				$contributorNode->appendChild($this->_buildTextNode($doc, 'KeyNames', $author->getFamilyName($pubLocale)));
 			} else {
-				$contributorNode->appendChild($this->_buildTextNode($doc, 'KeyNames', $author->getFullName(false, false, $pubLocale)));
+				$contributorNode->appendChild($this->_buildTextNode($doc, 'KeyNames', $author->getFullName(false, false, null, $pubLocale)));
 			}
 
 			if ($author->getBiography($pubLocale) != '') {
@@ -517,7 +523,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$resourceVersionNode = $doc->createElementNS($deployment->getNamespace(), 'ResourceVersion');
 		$supportingResourceNode->appendChild($resourceVersionNode);
 		$resourceVersionNode->appendChild($this->_buildTextNode($doc, 'ResourceForm', '01')); // Linkable resource
-		$resourceVersionNode->appendChild($this->_buildTextNode($doc, 'ResourceLink', $publication->getLocalizedCoverImageUrl($context->getId(), $pubLocale)));
+		$resourceVersionNode->appendChild($this->_buildTextNode($doc, 'ResourceLink', $publication->getCoverImageUrl($context->getId(), $pubLocale)));
 
 		/* --- Publishing Detail --- */
 
