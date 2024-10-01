@@ -32,6 +32,18 @@ class CompileSubmissionGeoDailyMetricsTest extends PKPTestCase
     END;
 
     /**
+     * @see PKPTestCase::getMockedDAOs()
+     */
+    protected function getMockedDAOs(): array
+    {
+        return [
+            ...parent::getMockedDAOs(),
+            'TemporaryTotalsDAO',
+            'TemporaryTitleInvestigationsDAO',
+        ];
+    }
+
+    /**
      * Test job is a proper instance
      */
     public function testUnserializationGetProperDepositIssueJobInstance(): void
