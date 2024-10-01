@@ -37,6 +37,30 @@ class Publication extends PKPPublication {
 	}
 
 	/**
+	 * Get the URL to a cover image
+	 *
+	 * @param int $contextId
+	 * @param string $preferredLocale Return the cover image in a specified locale.
+	 * @return string
+	 */
+	public function getCoverImageUrl($contextId, $preferredLocale = null) {
+		$coverImage = $this->getData('coverImage', $preferredLocale);
+
+		if (!$coverImage) {
+			return Application::get()->getRequest()->getBaseUrl() . '/templates/images/book-default.png';
+		}
+
+		import('classes.file.PublicFileManager');
+		$publicFileManager = new PublicFileManager();
+
+		return join('/', [
+			Application::get()->getRequest()->getBaseUrl(),
+			$publicFileManager->getContextFilesPath($contextId),
+			$coverImage['uploadName'],
+		]);
+	}
+
+	/**
 	 * Get the URL to a localized cover image
 	 *
 	 * @param int $contextId
