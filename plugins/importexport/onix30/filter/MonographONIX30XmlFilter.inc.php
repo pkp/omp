@@ -250,7 +250,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$pubLocale = $publication->getData('locale');
 
 		if ($publication->isCCLicense()) {
-			PKPLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, $pubLocale); // For CC License Names
+			AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, $pubLocale); // For CC License Names
 			$licenseOpts = Application::getCCLicenseOptions();
 			$licenseUrl = $publication->getData('licenseUrl');
 			if (array_key_exists($licenseUrl, $licenseOpts)) {
