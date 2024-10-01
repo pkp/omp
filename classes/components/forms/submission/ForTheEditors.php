@@ -39,7 +39,10 @@ class ForTheEditors extends \PKP\components\forms\submission\ForTheEditors
         if (empty($series)) {
             return;
         }
-        $seriesOptions = [];
+        $seriesOptions[] = [
+            'value' => '',
+            'label' => __('common.none'),
+        ];
         /** @var Section $iSeries */
         foreach ($series as $iSeries) {
             $seriesOptions[] = [
