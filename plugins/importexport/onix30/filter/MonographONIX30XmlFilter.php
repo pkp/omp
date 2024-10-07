@@ -3,8 +3,8 @@
 /**
  * @file plugins/importexport/onix30/filter/MonographONIX30XmlFilter.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2000-2024 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class MonographONIX30XmlFilter
@@ -128,7 +128,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         $senderNode->appendChild($senderIdentifierNode);
 
         // Assemble SenderName element.
-        $senderNode->appendChild($this->_buildTextNode($doc, 'SenderName', $context->getLocalizedName()));
+        $senderNode->appendChild($this->_buildTextNode($doc, 'SenderName', $context->getName($context->getPrimaryLocale())));
         $senderNode->appendChild($this->_buildTextNode($doc, 'ContactName', $context->getContactName()));
         $senderNode->appendChild($this->_buildTextNode($doc, 'EmailAddress', $context->getContactEmail()));
 
@@ -254,12 +254,13 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         /* --- License information --- */
 
         $publication = $submission->getCurrentPublication();
+        $pubLocale = $publication->getData('locale');
 
         if ($publication->isCCLicense()) {
             $licenseOpts = Application::getCCLicenseOptions();
             $licenseUrl = $publication->getData('licenseUrl');
             if (array_key_exists($licenseUrl, $licenseOpts)) {
-                $licenseName = (__($licenseOpts[$licenseUrl], [], $publication->getData('locale')));
+                $licenseName = (__($licenseOpts[$licenseUrl], [], $pubLocale));
 
                 $epubLicenseNode = $doc->createElementNS($deployment->getNamespace(), 'EpubLicense');
                 $descDetailNode->appendChild($epubLicenseNode);
@@ -294,20 +295,26 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
                 $titleElementNode->appendChild($this->_buildTextNode($doc, 'PartNumber', $submission->getCurrentPublication()->getData('seriesPosition')));
             }
 
-            if ($series->getLocalizedPrefix() == '' || $series->getLocalizedTitle(false) == '') {
-                $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim(join(' ', [$series->getLocalizedPrefix(), $series->getLocalizedTitle(false)]))));
+            $seriesLocale = $pubLocale;
+            // If the series title doesn't exist in the submission locale, use the press locale
+            if ($series->getTitle($seriesLocale, false) == '') {
+                $seriesLocale = $context->getPrimaryLocale();
+            }
+
+            if ($series->getPrefix($seriesLocale) == '' || $series->getTitle($seriesLocale, false) == '') {
+                $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim(join(' ', [$series->getPrefix($seriesLocale), $series->getTitle($seriesLocale, false)]))));
             } else {
-                if ($series->getLocalizedPrefix() != '') {
-                    $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $series->getLocalizedPrefix()));
+                if ($series->getPrefix($seriesLocale) != '') {
+                    $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $series->getPrefix($seriesLocale)));
                 } else {
                     $titleElementNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'NoPrefix'));
                 }
 
-                $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $series->getLocalizedTitle(false)));
+                $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $series->getTitle($seriesLocale, false)));
             }
 
-            if ($series->getLocalizedSubtitle() != '') {
-                $titleElementNode->appendChild($this->_buildTextNode($doc, 'Subtitle', $series->getLocalizedSubtitle()));
+            if ($series->getSubtitle($seriesLocale) != '') {
+                $titleElementNode->appendChild($this->_buildTextNode($doc, 'Subtitle', $series->getSubtitle($seriesLocale)));
             }
         } else {
             $seriesCollectionNode = $doc->createElementNS($deployment->getNamespace(), 'NoCollection');
@@ -325,19 +332,19 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
 
         $productTitleDetailNode->appendChild($titleElementNode);
 
-        if (!$publication->getLocalizedData('prefix') || !$publication->getLocalizedData('title')) {
-            $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim($publication->getLocalizedData('prefix') ?? $publication->getLocalizedTitle())));
+        if (!$publication->getData('prefix', $pubLocale) || !$publication->getData('title', $pubLocale)) {
+            $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim($publication->getData('prefix', $pubLocale) ?? $publication->getData('title', $pubLocale))));
         } else {
-            if ($publication->getLocalizedData('prefix')) {
-                $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $publication->getLocalizedData('prefix')));
+            if ($publication->getData('prefix', $pubLocale)) {
+                $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $publication->getData('prefix', $pubLocale)));
             } else {
                 $titleElementNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'NoPrefix'));
             }
 
-            $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', strip_tags($publication->getLocalizedData('title'))));
+            $titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', strip_tags($publication->getData('title', $pubLocale))));
         }
 
-        if ($subTitle = $publication->getLocalizedSubTitle($publication->getData('locale'))) {
+        if ($subTitle = $publication->getData('subtitle', $pubLocale)) {
             $titleElementNode->appendChild($this->_buildTextNode($doc, 'Subtitle', $subTitle));
         }
 
@@ -357,17 +364,17 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
             $role = array_key_exists($nameKey, $userGroupOnixMap) ? $userGroupOnixMap[$nameKey] : 'Z99'; // Z99 - unknown contributor type.
 
             $contributorNode->appendChild($this->_buildTextNode($doc, 'ContributorRole', $role));
-            $contributorNode->appendChild($this->_buildTextNode($doc, 'PersonName', $author->getFullName(false)));
-            $contributorNode->appendChild($this->_buildTextNode($doc, 'PersonNameInverted', $author->getFullName(false, true)));
-            $contributorNode->appendChild($this->_buildTextNode($doc, 'NamesBeforeKey', $author->getLocalizedGivenName()));
-            if ($author->getLocalizedFamilyName() != '') {
-                $contributorNode->appendChild($this->_buildTextNode($doc, 'KeyNames', $author->getLocalizedFamilyName()));
+            $contributorNode->appendChild($this->_buildTextNode($doc, 'PersonName', $author->getFullName(false, false, $pubLocale)));
+            $contributorNode->appendChild($this->_buildTextNode($doc, 'PersonNameInverted', $author->getFullName(false, true, $pubLocale)));
+            $contributorNode->appendChild($this->_buildTextNode($doc, 'NamesBeforeKey', $author->getGivenName($pubLocale)));
+            if ($author->getFamilyName($pubLocale) != '') {
+                $contributorNode->appendChild($this->_buildTextNode($doc, 'KeyNames', $author->getFamilyName($pubLocale)));
             } else {
-                $contributorNode->appendChild($this->_buildTextNode($doc, 'KeyNames', $author->getFullName(false)));
+                $contributorNode->appendChild($this->_buildTextNode($doc, 'KeyNames', $author->getFullName(false, false, $pubLocale)));
             }
 
-            if ($author->getLocalizedBiography() != '') {
-                $contributorNode->appendChild($this->_buildTextNode($doc, 'BiographicalNote', $author->getLocalizedBiography()));
+            if ($author->getBiography($pubLocale) != '') {
+                $contributorNode->appendChild($this->_buildTextNode($doc, 'BiographicalNote', $author->getBiography($pubLocale)));
             }
 
             if ($author->getCountry() != '') {
@@ -443,13 +450,13 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
             $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeIdentifier', '12')); // 12 is BIC subject category code list.
             $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeVersion', '2')); // Version 2 of ^^
 
-            $allSubjects = ($publication->getData('subjects')[$publication->getData('locale')]);
+            $allSubjects = ($publication->getData('subjects')[$pubLocale]);
             $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectCode', trim(join(', ', $allSubjects))));
             $descDetailNode->appendChild($subjectNode);
         }
 
         if ($publication->getData('keywords')) {
-            $allKeywords = ($publication->getData('keywords')[$publication->getData('locale')]);
+            $allKeywords = ($publication->getData('keywords')[$pubLocale]);
             $keywordNode = $doc->createElementNS($deployment->getNamespace(), 'Subject');
             $keywordNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeIdentifier', '20')); // Keywords
             $keywordNode->appendChild($this->_buildTextNode($doc, 'SubjectHeadingText', trim(join(', ', $allKeywords))));
@@ -493,7 +500,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         $collateralDetailNode = $doc->createElementNS($deployment->getNamespace(), 'CollateralDetail');
         $productNode->appendChild($collateralDetailNode);
 
-        $abstract = strip_tags($publication->getLocalizedData('abstract'));
+        $abstract = strip_tags($publication->getData('abstract', $pubLocale));
 
         $textContentNode = $doc->createElementNS($deployment->getNamespace(), 'TextContent');
         $collateralDetailNode->appendChild($textContentNode);
@@ -517,7 +524,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         $resourceVersionNode = $doc->createElementNS($deployment->getNamespace(), 'ResourceVersion');
         $supportingResourceNode->appendChild($resourceVersionNode);
         $resourceVersionNode->appendChild($this->_buildTextNode($doc, 'ResourceForm', '01')); // Linkable resource
-        $resourceVersionNode->appendChild($this->_buildTextNode($doc, 'ResourceLink', $publication->getLocalizedCoverImageUrl($context->getId(), $publication->getData('locale'))));
+        $resourceVersionNode->appendChild($this->_buildTextNode($doc, 'ResourceLink', $publication->getCoverImageUrl($context->getId(), $pubLocale)));
 
         /* --- Publishing Detail --- */
 
@@ -726,15 +733,15 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
             $supplyDetailNode = $doc->createElementNS($deployment->getNamespace(), 'SupplyDetail');
             $productSupplyNode->appendChild($supplyDetailNode);
 
+            $supplierNode = $doc->createElementNS($deployment->getNamespace(), 'Supplier');
+            $supplyDetailNode->appendChild($supplierNode);
             if (isset($supplier)) {
-                $supplierNode = $doc->createElementNS($deployment->getNamespace(), 'Supplier');
-                $supplyDetailNode->appendChild($supplierNode);
-
                 $supplierNode->appendChild($this->_buildTextNode($doc, 'SupplierRole', $supplier->getRole()));
                 $supplierNode->appendChild($this->_buildTextNode($doc, 'SupplierName', $supplier->getName()));
                 if ($supplier->getPhone()) {
                     $supplierNode->appendChild($this->_buildTextNode($doc, 'TelephoneNumber', $supplier->getPhone()));
                 }
+
                 if ($supplier->getEmail()) {
                     $supplierNode->appendChild($this->_buildTextNode($doc, 'EmailAddress', $supplier->getEmail()));
                 }
@@ -754,11 +761,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
 
                 $supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteRole', '29')); // 29 -> Web page for full content
                 $supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', $submissionBestId)));
-
-                unset($supplierNode);
             } else { // No suppliers specified, use the Press settings instead.
-                $supplierNode = $doc->createElementNS($deployment->getNamespace(), 'Supplier');
-                $supplyDetailNode->appendChild($supplierNode);
 
                 $supplierNode->appendChild($this->_buildTextNode($doc, 'SupplierRole', '09')); // Publisher supplying to end customers
                 $supplierNode->appendChild($this->_buildTextNode($doc, 'SupplierName', $context->getData('publisher')));
@@ -772,10 +775,9 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
 
                 $supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteRole', '18')); // 18 -> Public website
                 $supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath())));
-
-                unset($supplierNode);
-                unset($supplierWebsiteNode);
             }
+            unset($supplierNode);
+            unset($supplierWebsiteNode);
 
             if ($publicationFormat->getReturnableIndicatorCode() != '') {
                 $returnsNode = $doc->createElementNS($deployment->getNamespace(), 'ReturnsConditions');
