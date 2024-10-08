@@ -307,6 +307,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 				continue;
 			}
 
+			$pressSeriesId = null;
 			if ($data->seriesPath) {
 				$pressSeriesId = $this->_getCachedSerieId($data->seriesPath, $press->getId());
 				if (!$pressSeriesId) {
@@ -398,7 +399,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 				continue;
 			}
 
-			$publication = $this->_processPublication($submission, $data, $press);
+			$publication = $this->_processPublication($submission, $data, $press, $pressSeriesId);
 			$publicationId = $publication->getId();
 			$this->_processAuthors($data, $press->getContactEmail(), $submissionId, $publication, $userGroupId);
 
