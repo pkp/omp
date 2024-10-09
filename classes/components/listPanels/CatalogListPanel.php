@@ -2,8 +2,8 @@
 /**
  * @file components/listPanels/CatalogListPanel.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2000-2024 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class CatalogListPanel
@@ -19,10 +19,11 @@ use APP\core\Application;
 use APP\facades\Repo;
 use APP\submission\Collector;
 use APP\template\TemplateManager;
+use PKP\components\listPanels\ListPanel;
 use PKP\core\PKPApplication;
 use PKP\submission\PKPSubmission;
 
-class CatalogListPanel extends \PKP\components\listPanels\ListPanel
+class CatalogListPanel extends ListPanel
 {
     /** @var string URL to the API endpoint where items can be retrieved */
     public $apiUrl = '';
@@ -122,7 +123,7 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
         }
 
         // Attach a CSRF token for post requests
-        $config['csrfToken'] = $request->getSession()->getCSRFToken();
+        $config['csrfToken'] = $request->getSession()->token();
 
         // Get the form to add a new entry
         $addEntryApiUrl = $request->getDispatcher()->url(
