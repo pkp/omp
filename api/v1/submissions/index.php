@@ -24,5 +24,5 @@ $requestPath = Application::get()->getRequest()->getRequestPath();
 if (strpos($requestPath, '/files')) {
     return new \PKP\handler\APIHandler(new \PKP\API\v1\submissions\PKPSubmissionFileController());
 } else {
-    return new \PKP\handler\APIHandler(new \PKP\API\v1\submissions\PKPSubmissionController());
+    return new \PKP\handler\APIHandler(new \APP\API\v1\submissions\SubmissionController());
 }
