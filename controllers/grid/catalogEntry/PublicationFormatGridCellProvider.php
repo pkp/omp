@@ -172,7 +172,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                                     'publicationId' => $data->getData('publicationId'),
                                 ]
                             ),
-                            'modal_approve'
+                            $data->getIsAvailable() ? 'negative' : 'primary'
                         ),
                         $data->getIsAvailable() ? __('grid.catalogEntry.isAvailable') : __('grid.catalogEntry.isNotAvailable'),
                         $data->getIsAvailable() ? 'complete' : 'incomplete',

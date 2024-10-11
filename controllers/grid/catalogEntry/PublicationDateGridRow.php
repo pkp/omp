@@ -91,7 +91,7 @@ class PublicationDateGridRow extends GridRow
                         __('common.confirmDelete'),
                         __('common.delete'),
                         $router->url($request, null, null, 'deleteDate', null, $actionArgs),
-                        'modal_delete'
+                        'negative'
                     ),
                     __('grid.action.delete'),
                     'delete'

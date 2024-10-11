@@ -87,7 +87,7 @@ class ChapterGridCategoryRow extends GridCategoryRow
                             __('common.confirmDelete'),
                             __('common.delete'),
                             $router->url($request, null, null, 'deleteChapter', null, $actionArgs),
-                            'modal_delete'
+                            'negative'
                         ),
                         __('common.delete'),
                         'delete'
