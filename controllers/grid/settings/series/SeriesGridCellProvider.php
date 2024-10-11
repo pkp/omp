@@ -70,7 +70,8 @@ class SeriesGridCellProvider extends GridCellProvider
                                 'activateSeries',
                                 null,
                                 ['seriesKey' => $row->getId()]
-                            )
+                            ),
+                            'primary'
                         )
                     )];
                 } else {
@@ -87,7 +88,8 @@ class SeriesGridCellProvider extends GridCellProvider
                                 'deactivateSeries',
                                 null,
                                 ['seriesKey' => $row->getId()]
-                            )
+                            ),
+                            'negative'
                         )
                     )];
                 }
