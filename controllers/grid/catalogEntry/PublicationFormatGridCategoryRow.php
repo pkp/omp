@@ -97,7 +97,7 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow
                     new AjaxModal(
                         $router->url($request, null, null, 'editFormat', null, $actionArgs),
                         __('grid.action.edit'),
-                        'modal_edit'
+                        'side-modal'
                     ),
                     __('grid.action.edit'),
                     'edit'

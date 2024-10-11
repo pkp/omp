@@ -73,7 +73,7 @@ class IdentificationCodeGridRow extends GridRow
                     new AjaxModal(
                         $router->url($request, null, null, 'editCode', null, $actionArgs),
                         __('grid.action.edit'),
-                        'modal_edit'
+                        'side-modal'
                     ),
                     __('grid.action.edit'),
                     'edit'

@@ -190,7 +190,7 @@ class PublicationDateGridHandler extends GridHandler
                 new AjaxModal(
                     $router->url($request, null, null, 'addDate', null, $actionArgs),
                     __('grid.action.addDate'),
-                    'modal_add_item'
+                    'side-modal'
                 ),
                 __('grid.action.addDate'),
                 'add_item'

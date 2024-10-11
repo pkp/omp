@@ -69,7 +69,7 @@ class PublicationFormatGridRow extends SubmissionFilesGridRow
                         ]
                     )),
                     __('submission.dependentFiles'),
-                    'modal_edit'
+                    'side-modal'
                 ),
                 __('submission.dependentFiles'),
                 'edit'
