@@ -11,12 +11,19 @@
  *
  * @see XMLParser
  *
- * @brief This parser extracts a specific xs:simpleType based on a name attribute
- * representing a code list within it. It returns the xs:enumeration values
- * within it along with the xs:documentation elements which serve as textual
- * descriptions of the Codelist values.
+ * @brief This parser extracts a specific CodeList based on a CodeListNumber.
+ * It returns the CodeValue and CodeDescription elements within it, and
+ * if the code value has been deprecated in ONIX (when applicable).
  *
- * Example:  <xs:simpleType name="List30">...</xs:simpleType>
+ * Example:
+ *         <CodeList>
+ *             <CodeListNumber>28</CodeListNumber>
+ *             <Code>
+ *                 <CodeValue>01</CodeValue>
+ *                 <CodeDescription>General / adult</CodeDescription>
+ *                 <DeprecatedNumber/>
+ *             </Code>
+ *             [...]
  */
 
 namespace APP\codelist;
@@ -28,19 +35,28 @@ use XMLParser;
 
 class ONIXParserDOMHandler extends XMLParserDOMHandler
 {
-    /** @var The list being searched for */
-    public string $_listName;
+    /** @var string The list being searched for */
+    public string $listName;
 
-    public bool $_foundRequestedList = false;
+    public bool $foundRequestedList = false;
 
-    /** @var List of items the parser eventually returns */
-    public ?array $_listItems = [];
+    /** @var ?array List of items the parser eventually returns */
+    public ?array $listItems = [];
 
-    /** @var string to store the current character data  */
-    public ?string $_currentValue = null;
+    /** @var ?string to store the current character data  */
+    public ?string $currentValue = null;
 
-    /** @var bool currently inside an xs:documentation element */
-    public bool $_insideDocumentation = false;
+    /** @var bool currently inside a CodeListNumber element */
+    public bool $inCodeListNumber = false;
+
+    /** @var bool currently inside a CodeValue element */
+    public bool $inCodeValue = false;
+
+    /** @var bool currently inside a CodeDescription element */
+    public bool $inDescription = false;
+
+    /** @var bool currently inside a DeprecatedNumber element */
+    public bool $inDeprecated = false;
 
     /**
      * Constructor.
@@ -48,7 +64,7 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler
     public function __construct(string $listName)
     {
         parent::__construct();
-        $this->_listName = $listName;
+        $this->listName = $listName;
     }
 
     /**
@@ -59,20 +75,22 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler
         $this->currentData = null;
 
         switch ($tag) {
-            case 'xs:simpleType':
-                if ($attributes['name'] == $this->_listName) {
-                    $this->_foundRequestedList = true;
+            case 'CodeListNumber':
+                $this->inCodeListNumber = true;
+                break;
+            case 'CodeValue':
+                if ($this->foundRequestedList) {
+                    $this->inCodeValue = true;
                 }
                 break;
-            case 'xs:enumeration':
-                if ($this->_foundRequestedList) {
-                    $this->_currentValue = $attributes['value'];
-                    $this->_listItems[$this->_currentValue] = []; // initialize the array cell
+            case 'CodeDescription':
+                if ($this->foundRequestedList) {
+                    $this->inDescription = true;
                 }
                 break;
-            case 'xs:documentation':
-                if ($this->_foundRequestedList) {
-                    $this->_insideDocumentation = true;
+            case 'DeprecatedNumber':
+                if ($this->foundRequestedList) {
+                    $this->inDeprecated = true;
                 }
                 break;
         }
@@ -92,30 +110,53 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler
     /**
      * Callback function to act as the character data handler.
      */
-    public function characterData(PKPXMLParser|XMLParser $parser, string $data)
+    public function characterData(PKPXMLParser|XMLParser $parser, string $data): void
     {
-        if ($this->_insideDocumentation) {
-            if (count($this->_listItems[$this->_currentValue]) == 1) {
-                $this->_listItems[$this->_currentValue][0] .= $data;
+        if ($this->inCodeListNumber && $this->listName = $data) {
+            $this->foundRequestedList = true;
+        }
+
+        if ($this->inCodeValue) {
+            $this->currentValue = $data;
+            $this->listItems[$data] = []; // initialize the array cell
+        }
+
+        if ($this->inDescription) {
+            if (count($this->listItems[$this->currentValue]) == 1) {
+                $this->listItems[$this->currentValue][0] .= $data;
             } else {
-                $this->_listItems[$this->_currentValue][0] = $data;
+                $this->listItems[$this->currentValue][0] = $data;
             }
+        }
+
+        if ($this->inDeprecated) {
+            $this->listItems[$this->currentValue]['deprecated'] = 1;
         }
     }
 
     /**
      * Callback function to act as the end element handler.
      */
-    public function endElement(PKPXMLParser|XMLParser $parser, string $tag)
+    public function endElement(PKPXMLParser|XMLParser $parser, string $tag): void
     {
         switch ($tag) {
-            case 'xs:simpleType':
-                $this->_foundRequestedList = false;
+            case 'CodeListNumber':
+                $this->inCodeListNumber = false;
                 break;
-            case 'xs:documentation':
-                $this->_insideDocumentation = false;
+            case 'CodeValue':
+                $this->inCodeValue = false;
+                break;
+            case 'CodeDescription':
+                $this->inDescription = false;
+                break;
+            case 'DeprecatedNumber':
+                $this->inDeprecated = false;
                 break;
         }
+
+        $this->currentNode->setValue($this->currentData);
+        $this->currentNode = & $this->currentNode->getParent();
+        $this->currentData = null;
     }
 
     /**
@@ -123,7 +164,7 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler
      */
     public function getResult(): mixed
     {
-        return [$this->_listName => $this->_listItems];
+        return [$this->listName => $this->listItems];
     }
 }
 

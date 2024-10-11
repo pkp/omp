@@ -64,7 +64,7 @@ class PublicationDateForm extends Form
                 if (!$dateFormat) {
                     return false;
                 }
-                $dateFormats = $onixCodelistItemDao->getCodes('List55');
+                $dateFormats = $onixCodelistItemDao->getCodes('55');
                 $format = $dateFormats[$dateFormat];
                 if (stristr($format, 'string') && $date != '') {
                     return true;
@@ -201,11 +201,11 @@ class PublicationDateForm extends Form
                 $assignedRoles = array_diff($assignedRoles, [$publicationDate->getRole()]);
             } // allow existing roles to keep their value
             $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
-            $roles = $onixCodelistItemDao->getCodes('List163', $assignedRoles); // ONIX list for these
+            $roles = $onixCodelistItemDao->getCodes('163', $assignedRoles); // ONIX list for these
             $templateMgr->assign('publicationDateRoles', $roles);
 
             //load our date formats
-            $dateFormats = $onixCodelistItemDao->getCodes('List55');
+            $dateFormats = $onixCodelistItemDao->getCodes('55');
             $templateMgr->assign('publicationDateFormats', $dateFormats);
         } else {
             throw new Exception('Format not in authorized submission');

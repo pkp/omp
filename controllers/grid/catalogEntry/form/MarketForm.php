@@ -162,15 +162,15 @@ class MarketForm extends Form
         $market = $this->getMarket();
         $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
         $templateMgr->assign([
-            'countryCodes' => $onixCodelistItemDao->getCodes('List91'), // countries (CA, US, GB, etc)
-            'regionCodes' => $onixCodelistItemDao->getCodes('List49'), // regions (British Columbia, England, etc)
-            'publicationDateFormats' => $onixCodelistItemDao->getCodes('List55'), // YYYYMMDD, YYMMDD, etc
-            'publicationDateRoles' => $onixCodelistItemDao->getCodes('List163'),
-            'currencyCodes' => $onixCodelistItemDao->getCodes('List96'), // GBP, USD, CAD, etc
-            'priceTypeCodes' => $onixCodelistItemDao->getCodes('List58'), // without tax, with tax, etc
-            'extentTypeCodes' => $onixCodelistItemDao->getCodes('List23'), // word count, FM page count, BM page count, main page count, etc
-            'taxRateCodes' => $onixCodelistItemDao->getCodes('List62'), // higher rate, standard rate, zero rate
-            'taxTypeCodes' => $onixCodelistItemDao->getCodes('List171'), // VAT, GST
+            'countryCodes' => $onixCodelistItemDao->getCodes('91'), // countries (CA, US, GB, etc)
+            'regionCodes' => $onixCodelistItemDao->getCodes('49'), // regions (British Columbia, England, etc)
+            'publicationDateFormats' => $onixCodelistItemDao->getCodes('55'), // YYYYMMDD, YYMMDD, etc
+            'publicationDateRoles' => $onixCodelistItemDao->getCodes('163'),
+            'currencyCodes' => $onixCodelistItemDao->getCodes('96'), // GBP, USD, CAD, etc
+            'priceTypeCodes' => $onixCodelistItemDao->getCodes('58'), // without tax, with tax, etc
+            'extentTypeCodes' => $onixCodelistItemDao->getCodes('23'), // word count, FM page count, BM page count, main page count, etc
+            'taxRateCodes' => $onixCodelistItemDao->getCodes('62'), // higher rate, standard rate, zero rate
+            'taxTypeCodes' => $onixCodelistItemDao->getCodes('171'), // VAT, GST
         ]);
 
         /** @var RepresentativeDAO */

@@ -38,15 +38,15 @@ class Representative extends \PKP\core\DataObject
      *
      * @param int $monographId
      */
-    public function setMonographId($monographId)
+    public function setMonographId($monographId): void
     {
-        return $this->setData('monographId', $monographId);
+        $this->setData('monographId', $monographId);
     }
 
     /**
      * Set the ONIX code for this representative role (List93 for Suppliers, List69 for Agents)
      */
-    public function setRole($role)
+    public function setRole($role): void
     {
         $this->setData('role', $role);
     }
@@ -62,7 +62,7 @@ class Representative extends \PKP\core\DataObject
     }
 
     /**
-     * Get the human readable name for this ONIX code
+     * Get the human-readable name for this ONIX code
      *
      * @return string
      */
@@ -70,11 +70,11 @@ class Representative extends \PKP\core\DataObject
     {
         $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
         if ($this->getIsSupplier()) {
-            $listName = 'List93'; // List93 -> Publisher to retailers, Wholesaler, etc
+            $listName = '93'; // List 93 -> Supplier role
         } else {
-            $listName = 'List69'; // List93 -> Local Publisher, Sales Agent, etc
+            $listName = '69'; // List 69 -> Agent role
         }
-        $codes = & $onixCodelistItemDao->getCodes($listName);
+        $codes = $onixCodelistItemDao->getCodes($listName);
         return $codes[$this->getRole()];
     }
 

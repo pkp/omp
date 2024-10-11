@@ -173,7 +173,7 @@ class PublicationFormatForm extends Form
     {
         $templateMgr = TemplateManager::getManager($request);
         $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
-        $templateMgr->assign('entryKeys', $onixCodelistItemDao->getCodes('List7')); // List7 is for object formats
+        $templateMgr->assign('entryKeys', $onixCodelistItemDao->getCodes('150')); // List150 is for object formats
 
         $monograph = $this->getMonograph();
         $templateMgr->assign('submissionId', $monograph->getId());

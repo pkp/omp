@@ -3,8 +3,8 @@
 /**
  * @file classes/publicationFormat/PublicationFormat.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2003-2024 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationFormat
@@ -54,9 +54,9 @@ class PublicationFormat extends Representation
      *
      * @param bool $physicalFormat
      */
-    public function setPhysicalFormat($physicalFormat)
+    public function setPhysicalFormat($physicalFormat): void
     {
-        return $this->setData('physicalFormat', $physicalFormat);
+        $this->setData('physicalFormat', $physicalFormat);
     }
 
     /**
@@ -78,14 +78,14 @@ class PublicationFormat extends Representation
     }
 
     /**
-     * Get the human readable name for this ONIX code
+     * Get the human-readable name for this ONIX code
      *
      * @return string
      */
     public function getNameForONIXCode()
     {
         $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
-        $codes = $onixCodelistItemDao->getCodes('List7'); // List7 is for object formats
+        $codes = $onixCodelistItemDao->getCodes('150'); // List 150 is for product forms
         return $codes[$this->getEntryKey()];
     }
 
@@ -104,9 +104,9 @@ class PublicationFormat extends Representation
      *
      * @param string $countryManufactureCode
      */
-    public function setCountryManufactureCode($countryManufactureCode)
+    public function setCountryManufactureCode($countryManufactureCode): void
     {
-        return $this->setData('countryManufactureCode', $countryManufactureCode);
+        $this->setData('countryManufactureCode', $countryManufactureCode);
     }
 
     /**
@@ -124,9 +124,9 @@ class PublicationFormat extends Representation
      *
      * @param string $productAvailabilityCode
      */
-    public function setProductAvailabilityCode($productAvailabilityCode)
+    public function setProductAvailabilityCode($productAvailabilityCode): void
     {
-        return $this->setData('productAvailabilityCode', $productAvailabilityCode);
+        $this->setData('productAvailabilityCode', $productAvailabilityCode);
     }
 
     /**
@@ -144,9 +144,9 @@ class PublicationFormat extends Representation
      *
      * @param string $height
      */
-    public function setHeight($height)
+    public function setHeight($height): void
     {
-        return $this->setData('height', $height);
+        $this->setData('height', $height);
     }
 
     /**
@@ -164,9 +164,9 @@ class PublicationFormat extends Representation
      *
      * @param string $heightUnitCode
      */
-    public function setHeightUnitCode($heightUnitCode)
+    public function setHeightUnitCode($heightUnitCode): void
     {
-        return $this->setData('heightUnitCode', $heightUnitCode);
+        $this->setData('heightUnitCode', $heightUnitCode);
     }
 
     /**
@@ -184,9 +184,9 @@ class PublicationFormat extends Representation
      *
      * @param string $width
      */
-    public function setWidth($width)
+    public function setWidth($width): void
     {
-        return $this->setData('width', $width);
+        $this->setData('width', $width);
     }
 
     /**
@@ -204,9 +204,9 @@ class PublicationFormat extends Representation
      *
      * @param string $widthUnitCode
      */
-    public function setWidthUnitCode($widthUnitCode)
+    public function setWidthUnitCode($widthUnitCode): void
     {
-        return $this->setData('widthUnitCode', $widthUnitCode);
+        $this->setData('widthUnitCode', $widthUnitCode);
     }
 
     /**
@@ -224,9 +224,9 @@ class PublicationFormat extends Representation
      *
      * @param string $thickness
      */
-    public function setThickness($thickness)
+    public function setThickness($thickness): void
     {
-        return $this->setData('thickness', $thickness);
+        $this->setData('thickness', $thickness);
     }
 
     /**
@@ -244,9 +244,9 @@ class PublicationFormat extends Representation
      *
      * @param string $thicknessUnitCode
      */
-    public function setThicknessUnitCode($thicknessUnitCode)
+    public function setThicknessUnitCode($thicknessUnitCode): void
     {
-        return $this->setData('thicknessUnitCode', $thicknessUnitCode);
+        $this->setData('thicknessUnitCode', $thicknessUnitCode);
     }
 
     /**
@@ -264,13 +264,13 @@ class PublicationFormat extends Representation
      *
      * @param string $weight
      */
-    public function setWeight($weight)
+    public function setWeight($weight): void
     {
-        return $this->setData('weight', $weight);
+        $this->setData('weight', $weight);
     }
 
     /**
-     * Get the weight unit code (ONIX value) of the monograph format (List95).
+     * Get the weight unit code (ONIX value) of the monograph format (List50).
      *
      * @return string
      */
@@ -284,9 +284,9 @@ class PublicationFormat extends Representation
      *
      * @param string $weightUnitCode
      */
-    public function setWeightUnitCode($weightUnitCode)
+    public function setWeightUnitCode($weightUnitCode): void
     {
-        return $this->setData('weightUnitCode', $weightUnitCode);
+        $this->setData('weightUnitCode', $weightUnitCode);
     }
 
     /**
@@ -333,9 +333,9 @@ class PublicationFormat extends Representation
      *
      * @param string $fileSize
      */
-    public function setFileSize($fileSize)
+    public function setFileSize($fileSize): void
     {
-        return $this->setData('fileSize', $fileSize);
+        $this->setData('fileSize', $fileSize);
     }
 
     /**
@@ -397,9 +397,9 @@ class PublicationFormat extends Representation
      *
      * @param string $productFormDetailCode
      */
-    public function setProductFormDetailCode($productFormDetailCode)
+    public function setProductFormDetailCode($productFormDetailCode): void
     {
-        return $this->setData('productFormDetailCode', $productFormDetailCode);
+        $this->setData('productFormDetailCode', $productFormDetailCode);
     }
 
     /**
@@ -417,9 +417,9 @@ class PublicationFormat extends Representation
      *
      * @param string $productCompositionCode
      */
-    public function setProductCompositionCode($productCompositionCode)
+    public function setProductCompositionCode($productCompositionCode): void
     {
-        return $this->setData('productCompositionCode', $productCompositionCode);
+        $this->setData('productCompositionCode', $productCompositionCode);
     }
 
     /**
@@ -437,9 +437,9 @@ class PublicationFormat extends Representation
      *
      * @param string $frontMatter
      */
-    public function setFrontMatter($frontMatter)
+    public function setFrontMatter($frontMatter): void
     {
-        return $this->setData('frontMatter', $frontMatter);
+        $this->setData('frontMatter', $frontMatter);
     }
 
     /**
@@ -457,9 +457,9 @@ class PublicationFormat extends Representation
      *
      * @param string $backMatter
      */
-    public function setBackMatter($backMatter)
+    public function setBackMatter($backMatter): void
     {
-        return $this->setData('backMatter', $backMatter);
+        $this->setData('backMatter', $backMatter);
     }
 
     /**
@@ -477,9 +477,9 @@ class PublicationFormat extends Representation
      *
      * @param string $imprint
      */
-    public function setImprint($imprint)
+    public function setImprint($imprint): void
     {
-        return $this->setData('imprint', $imprint);
+        $this->setData('imprint', $imprint);
     }
 
     /**
@@ -497,9 +497,9 @@ class PublicationFormat extends Representation
      *
      * @param string $technicalProtectionCode
      */
-    public function setTechnicalProtectionCode($technicalProtectionCode)
+    public function setTechnicalProtectionCode($technicalProtectionCode): void
     {
-        return $this->setData('technicalProtectionCode', $technicalProtectionCode);
+        $this->setData('technicalProtectionCode', $technicalProtectionCode);
     }
 
     /**
@@ -517,13 +517,13 @@ class PublicationFormat extends Representation
      *
      * @param string $returnableIndicatorCode
      */
-    public function setReturnableIndicatorCode($returnableIndicatorCode)
+    public function setReturnableIndicatorCode($returnableIndicatorCode): void
     {
-        return $this->setData('returnableIndicatorCode', $returnableIndicatorCode);
+        $this->setData('returnableIndicatorCode', $returnableIndicatorCode);
     }
 
     /**
-     * Get whether or not this format is available in the catalog.
+     * Get whether this format is available in the catalog.
      *
      * @return int
      */
@@ -533,13 +533,13 @@ class PublicationFormat extends Representation
     }
 
     /**
-     * Set whether or not this format is available in the catalog.
+     * Set whether this format is available in the catalog.
      *
      * @param int $isAvailable
      */
-    public function setIsAvailable($isAvailable)
+    public function setIsAvailable($isAvailable): void
     {
-        return $this->setData('isAvailable', $isAvailable);
+        $this->setData('isAvailable', $isAvailable);
     }
 
     /**
@@ -575,7 +575,10 @@ class PublicationFormat extends Representation
      */
     public function _checkRequiredFieldsAssigned()
     {
-        $requiredFields = ['productCompositionCode' => 'grid.catalogEntry.codeRequired', 'productAvailabilityCode' => 'grid.catalogEntry.productAvailabilityRequired'];
+        $requiredFields = [
+            'productCompositionCode' => 'grid.catalogEntry.codeRequired',
+            'productAvailabilityCode' => 'grid.catalogEntry.productAvailabilityRequired'
+        ];
 
         $errors = [];
 

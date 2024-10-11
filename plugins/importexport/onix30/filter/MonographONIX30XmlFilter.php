@@ -398,7 +398,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
 
         $languageNode = $doc->createElementNS($deployment->getNamespace(), 'Language');
         $languageNode->appendChild($this->_buildTextNode($doc, 'LanguageRole', '01'));
-        $onixLanguageCode = $onixCodelistItemDao->getCodeFromValue($submission->getData('locale'), 'List74');
+        $onixLanguageCode = $onixCodelistItemDao->getCodeFromValue($submission->getData('locale'), '74');
         if ($onixLanguageCode != '') {
             $languageNode->appendChild($this->_buildTextNode($doc, 'LanguageCode', $onixLanguageCode));
             $descDetailNode->appendChild($languageNode);

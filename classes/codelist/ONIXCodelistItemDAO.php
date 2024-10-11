@@ -19,6 +19,7 @@ namespace APP\codelist;
 
 use Illuminate\Support\Facades\Cache;
 use PKP\core\Registry;
+use PKP\db\DAO;
 use PKP\db\XMLDAO;
 use PKP\facades\Locale;
 use PKP\file\FileManager;
@@ -27,7 +28,7 @@ use PKP\i18n\interfaces\LocaleInterface;
 use PKP\plugins\Hook;
 use PKP\xslt\XSLTransformer;
 
-class ONIXCodelistItemDAO extends \PKP\db\DAO
+class ONIXCodelistItemDAO extends DAO
 {
     /** @var string The name of the codelist we are interested in */
     public string $_list;
@@ -45,8 +46,7 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
 
             // Reload locale registry file
             $xmlDao = new XMLDAO();
-            $listName = $this->getListName(); // i.e., 'List30'
-            $handler = new ONIXParserDOMHandler($listName);
+            $listName = $this->getListName(); // i.e., '30'
 
             $temporaryFileManager = new TemporaryFileManager();
             $fileManager = new FileManager();
@@ -63,7 +63,13 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
             $xslTransformer->setRegisterPHPFunctions(true);
 
             $xslFile = 'lib/pkp/xml/onixFilter.xsl';
-            $filteredXml = $xslTransformer->transform($filename, XSLTransformer::XSL_TRANSFORMER_DOCTYPE_FILE, $xslFile, XSLTransformer::XSL_TRANSFORMER_DOCTYPE_FILE, XSLTransformer::XSL_TRANSFORMER_DOCTYPE_STRING);
+            $filteredXml = $xslTransformer->transform(
+                $filename,
+                XSLTransformer::XSL_TRANSFORMER_DOCTYPE_FILE,
+                $xslFile,
+                XSLTransformer::XSL_TRANSFORMER_DOCTYPE_FILE,
+                XSLTransformer::XSL_TRANSFORMER_DOCTYPE_STRING
+            );
             if (!$filteredXml) {
                 throw new \Exception('Unable to generate filtered XML!');
             }
@@ -74,6 +80,7 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
                 $fp = fopen($tmpName, 'wb');
                 fwrite($fp, $filteredXml);
                 fclose($fp);
+                $handler = new ONIXParserDOMHandler($listName);
                 $data = $xmlDao->parseWithHandler($tmpName, $handler);
                 $fileManager->deleteByPath($tmpName);
             } else {
@@ -101,13 +108,13 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
     public function getFilename(string $locale): string
     {
         $masterLocale = LocaleInterface::DEFAULT_LOCALE;
-        $localizedFile = "locale/{$locale}/ONIX_BookProduct_CodeLists.xsd";
+        $localizedFile = "locale/{$locale}/ONIX_BookProduct_Codelists.xml";
         if (Locale::isLocaleValid($locale) && file_exists($localizedFile)) {
             return $localizedFile;
         }
 
         // Fall back on the version for the master locale.
-        return "locale/{$masterLocale}/ONIX_BookProduct_CodeLists.xsd";
+        return "locale/{$masterLocale}/ONIX_BookProduct_Codelists.xml";
     }
 
     /**
@@ -156,13 +163,18 @@ class ONIXCodelistItemDAO extends \PKP\db\DAO
         $this->setListName($list);
         $cachedData = $this->_getCache($locale);
         $returner = [];
+        $deprecated = __('monograph.publicationFormat.onixDeprecated');
         if ($codesFilter = trim($codesFilter ?? '')) {
             $codesFilter = '/' . implode('|', array_map(fn ($term) => preg_quote($term, '/'), preg_split('/\s+/', $codesFilter))) . '/i';
         }
         foreach ($cachedData as $code => $entry) {
             if ($code != '') {
                 if (!in_array($code, $codesToExclude) && (!$codesFilter || preg_match($codesFilter, $entry[0]))) {
-                    $returner[$code] = $entry[0];
+                    if (array_key_exists('deprecated', $entry)) {
+                        $returner[$code] = $entry[0] . $deprecated;
+                    } else {
+                        $returner[$code] = $entry[0];
+                    }
                 }
             }
         }
