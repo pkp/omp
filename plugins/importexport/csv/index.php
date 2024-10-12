@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup plugins_importexport_csv Data in tab delimited format import/export plugin
+ * @defgroup plugins_importexport_csv Data in CSV format import/export plugin
  */
 
 /**
@@ -12,7 +12,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @ingroup plugins_importexport_csv
- * @brief Wrapper for tab delimited data import/export plugin.
+ * @brief Wrapper for CSV data import/export plugin.
  *
  */
 
