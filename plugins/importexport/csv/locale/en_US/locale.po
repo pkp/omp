@@ -12,10 +12,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "plugins.importexport.csv.displayName"
-msgstr "Tab Delimited Content Import Plugin"
+msgstr "CSV Content Import Plugin"
 
 msgid "plugins.importexport.csv.description"
-msgstr "Import submissions into presses from tab delimited data."
+msgstr "Import submissions into presses from CSV data."
 
 msgid "plugins.importexport.csv.cliOnly"
 msgstr ""
@@ -100,5 +100,5 @@ msgid "plugin.importexport.csv.errorWhileSavingSubmissionFile"
 msgstr "An error ocurred while saving the Submission file."
 
 msgid "plugin.importexport.csv.seriesPathNotFound"
-msgstr "Could not found a serie by path \"{$seriesPath}\"."
+msgstr "Could not found a series by path \"{$seriesPath}\"."
 
