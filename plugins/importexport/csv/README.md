@@ -1,5 +1,5 @@
 # CSV Import Plugin for OMP
-This application will convert a CSV file into a list of OMP publications/submissions. If the user has book cover images, as well as submission PDFs, these files should be stored in the `coverImages` and `submissionPdfs`, respectively, for your correct usage.
+This application will convert a CSV file into a list of OMP publications/submissions. All book cover images and submission PDFs should be kept in the same path as the CSV file. It makes the management easier for the user.
 
 > Note: This is NOT a comprehensive CSV converter, and many fields are left out.
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup plugins_importexport_csv Data in tab delimited format import/export plugin
+ * @defgroup plugins_importexport_csv Data in CSV format import/export plugin
  */
 
 /**
