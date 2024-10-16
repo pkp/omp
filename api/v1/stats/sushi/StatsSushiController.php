@@ -22,6 +22,7 @@ use APP\sushi\TR_B3;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class StatsSushiController extends \PKP\API\v1\stats\sushi\PKPStatsSushiController
 {
@@ -44,7 +45,7 @@ class StatsSushiController extends \PKP\API\v1\stats\sushi\PKPStatsSushiControll
      * A customizable report detailing activity at the press level
      * that allows the user to apply filters and select other configuration options for the report.
      */
-    public function getReportsTR(Request $illuminateRequest): JsonResponse
+    public function getReportsTR(Request $illuminateRequest): JsonResponse|StreamedResponse
     {
         return $this->getReportResponse(new TR(), $illuminateRequest);
     }
@@ -53,7 +54,7 @@ class StatsSushiController extends \PKP\API\v1\stats\sushi\PKPStatsSushiControll
      * COUNTER 'Book Usage by Access Type' [TR_B3].
      * This is a Standard View of Title Master Report that reports on book usage showing all applicable Metric_Types broken down by Access_Type.
      */
-    public function getReportsTRB3(Request $illuminateRequest): JsonResponse
+    public function getReportsTRB3(Request $illuminateRequest): JsonResponse|StreamedResponse
     {
         return $this->getReportResponse(new TR_B3(), $illuminateRequest);
     }

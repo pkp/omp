@@ -67,7 +67,8 @@ class PR_P1 extends PR
             'customer_id',
             'begin_date',
             'end_date',
-            'platform'
+            'platform',
+            '_', // for ajax requests
         ];
     }
 
@@ -113,5 +114,11 @@ class PR_P1 extends PR
     public function setAttributes(array $attributes): void
     {
         $this->attributes = [];
+    }
+
+    /** Get report specific form fields */
+    public static function getReportSettingsFormFields(): array
+    {
+        return parent::getCommonReportSettingsFormFields();
     }
 }

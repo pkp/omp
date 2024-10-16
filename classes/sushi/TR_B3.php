@@ -56,7 +56,13 @@ class TR_B3 extends TR
      */
     public function getSupportedParams(): array
     {
-        return ['customer_id', 'begin_date', 'end_date', 'platform'];
+        return [
+            'customer_id',
+            'begin_date',
+            'end_date',
+            'platform',
+            '_', // for ajax requests
+        ];
     }
 
     /**
@@ -105,5 +111,11 @@ class TR_B3 extends TR
     public function setAttributes(array $attributes): void
     {
         $this->attributes = [];
+    }
+
+    /** Get report specific form fields */
+    public static function getReportSettingsFormFields(): array
+    {
+        return parent::getCommonReportSettingsFormFields();
     }
 }
