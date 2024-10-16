@@ -317,7 +317,8 @@
 				<div class="item date_published">
 					<div class="sub_item">
 						<h2 class="label">
-							{if $publication->getData('datePublished')|date_format:$dateFormatShort > $smarty.now|date_format:$dateFormatShort}
+							{* Use Y-m-d to compare dates instead of customizable date formats (pkp-lib#10169) *}
+							{if $publication->getData('datePublished')|date_format:"Y-m-d" > $smarty.now|date_format:"Y-m-d"}
 								{translate key="catalog.forthcoming"}
 							{else}
 								{translate key="catalog.published"}
