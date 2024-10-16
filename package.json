@@ -70,7 +70,10 @@
     "singleQuote": true,
     "useTabs": true,
     "htmlWhitespaceSensitivity": "ignore",
-    "proseWrap": "never"
+    "proseWrap": "never",
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ]
   },
   "postcss": {
     "plugins": {
