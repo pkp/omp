@@ -134,16 +134,23 @@ describe('Data suite tests', function() {
 		cy.assignParticipant('Press editor', 'Daniel Barnes');
 		// Assign a recommendOnly section editor
 		cy.assignParticipant('Series editor', 'Minoti Inoue', true);
+
 		cy.logout();
 		// Find the submission as the section editor
 		cy.login('minoue', null, 'publicknowledge'),
-		cy.get('#myQueue').find('a').contains('View Bernnard').click({force: true});
+		cy.findSubmissionAsEditor('minoue', null, 'Bernnard', null, 'Assigned to me');
+
+		
 		// Recommend
 		cy.clickDecision('Recommend Accept');
 		cy.recordRecommendation('Recommend Accept', ['Daniel Barnes', 'David Buskins']);
 		cy.logout();
+
 		// Log in as editor and see the existing recommendation
 		cy.findSubmissionAsEditor('dbarnes', null, 'Bernnard');
-		cy.get('div.pkp_workflow_recommendations:contains("Recommendations: Accept Submission")');
+		cy.get('[data-cy="workflow-secondary-items"] h2').contains("Recommendation");
+		// FIX ME correct label should come with 
+		//cy.get('[data-cy="workflow-actions"] p').contains("Accept Submission");
+		cy.get('[data-cy="workflow-secondary-items"] p').contains("Recommend Accept");
 	});
 });

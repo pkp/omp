@@ -142,8 +142,7 @@ describe('Data suite tests', function() {
 		cy.assignParticipant('Proofreader', 'Catherine Turner');
 
 		// Add a publication format
-		cy.get('button[id="publication-button"]').click();
-		cy.get('button[id="publicationFormats-button"]').click();
+		cy.openWorkflowMenu('Publication Formats');
 		cy.get('*[id^="component-grid-catalogentry-publicationformatgrid-addFormat-button-"]').click();
 		cy.wait(1000); // Avoid occasional failure due to form init taking time
 		cy.get('input[id^="name-en-"]').type('PDF', {delay: 0});
@@ -180,11 +179,11 @@ describe('Data suite tests', function() {
 	});
 
 	it('Book is not available when unpublished', function() {
-		cy.findSubmissionAsEditor('dbarnes', null, 'Allan');
-		cy.get('#publication-button').click();
+		cy.findSubmissionAsEditor('dbarnes', null, 'Allan', null, 'Published');
+		cy.openWorkflowMenu('Title & Abstract');
 		cy.get('button').contains('Unpublish').click();
 		cy.contains('Are you sure you don\'t want this to be published?');
-		cy.get('div[role=dialog] button').contains('Unpublish').click();
+		cy.get('[data-cy="dialog"] button').contains('Unpublish').click();
 		cy.wait(1000);
 		cy.visit('index.php/publicknowledge/catalog');
 		cy.contains('Bomb Canada and Other Unkind Remarks in the American Media').should('not.exist');
@@ -199,8 +198,8 @@ describe('Data suite tests', function() {
 
 		// Re-publish it
 		cy.findSubmissionAsEditor('dbarnes', null, 'Allan');
-		cy.get('#publication-button').click();
-		cy.get('.pkpPublication button').contains('Publish').click();
+		cy.openWorkflowMenu('Title & Abstract');
+		cy.get('button').contains('Publish').click();
 		cy.contains('All publication requirements have been met.');
 		cy.get('.pkpWorkflow__publishModal button').contains('Publish').click();
 	});

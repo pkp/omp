@@ -330,7 +330,7 @@ describe('Data suite tests', function() {
 		cy.get('a').contains('Create a new submission');
 		cy.get('a').contains('Return to your dashboard');
 		cy.get('a').contains('Review this submission').click();
-		cy.get('h1:contains("' + submission.title + '")');
+		cy.get('p:contains("' + submission.title + '")');
 		cy.logout();
 
 		cy.findSubmissionAsEditor('dbarnes', null, 'Finkel');

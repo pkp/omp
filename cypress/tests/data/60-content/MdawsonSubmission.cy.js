@@ -164,8 +164,7 @@ describe('Data suite tests', function() {
 		cy.assignParticipant('Proofreader', 'Sabine Kumar');
 
 		// Add a publication format
-		cy.get('button[id="publication-button"]').click();
-		cy.get('button[id="publicationFormats-button"]').click();
+		cy.openWorkflowMenu('Publication Formats');
 		cy.get('*[id^="component-grid-catalogentry-publicationformatgrid-addFormat-button-"]').click();
 		cy.wait(1000); // Avoid occasional failure due to form init taking time
 		cy.get('input[id^="name-en-"]').type('PDF', {delay: 0});
