@@ -8,7 +8,7 @@
  */
 
 import Api from '../../lib/pkp/cypress/support/api.js';
-import '../../lib/pkp/cypress/support/commands';
+import '../../lib/pkp/cypress/support/commands_new_workflow.js';
 
 Cypress.Commands.add('addToCatalog', function() {
 	cy.get('button:contains("Publish")').click();

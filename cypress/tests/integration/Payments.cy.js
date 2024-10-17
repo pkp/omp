@@ -26,26 +26,22 @@ describe('Payments', function() {
 
     it('Add a direct sales on Submission chapter', function () {
         cy.login('dbarnes', null, 'publicknowledge');
-        cy.get('nav').contains('Submissions').click();
-        cy.get('button[id="archive-button"]').click();
 
-        var submissionElement = cy.get('#archive .listPanel__item').contains('Bomb Canada and Other Unkind Remarks in the American Media').parents('.listPanel__item');
-        submissionElement.within(() => {
-            cy.get('.listPanel__itemActions .pkpButton').click();
-          })
-        cy.get('button[id="publication-button"]').click();
+        cy.get('nav').contains('Published').click();
+        cy.openSubmission('Bomb Canada and Other Unkind Remarks in the American Media');
+		cy.openWorkflowMenu('Title & Abstract');
         cy.get('button').contains('Unpublish').click();
-        cy.get('[role=dialog] button').contains('Unpublish').should('be.visible').click();
+        cy.get('[data-cy="dialog"] button').contains('Unpublish').should('be.visible').click();
         cy.waitJQuery();
-        cy.get('#publicationFormats-button').click();
+		cy.openWorkflowMenu('Publication Formats');
         cy.get('.pkp_linkaction_editApprovedProof').click();
         cy.wait(1000);
-        cy.get('[role="dialog"] #directSales').click();
-        cy.get('[role="dialog"] input[type="text"][name="price"]').type('9.99');
-        cy.get('[role="dialog"] .formButtons .submitFormButton').click();
-        cy.get('#publication .pkpButton').contains('Publish').click();
-        cy.get('[role="dialog"] .pkpButton').contains('Publish').click();
-        cy.get('.pkpPublication__versionPublished').should('be.visible');
+        cy.get('#directSales').click();
+        cy.get('input[type="text"][name="price"]').type('9.99');
+        cy.get('.formButtons .submitFormButton').click();
+        cy.get('button').contains('Publish').click();
+        cy.get('[data-cy="active-modal"] button').contains('Publish').click();
+		cy.contains('This version has been published and can not be edited.');
         cy.logout();
     });
 

@@ -25,7 +25,7 @@ describe('Data suite tests', function() {
 
 		// Submit review with no competing interests
 		cy.login('agallego', null, 'publicknowledge');
-		cy.get('a:contains("View Lost Tracks")').click({force: true});
+		cy.openReviewAssignment('Lost Tracks');
 
 		cy.get('form#reviewStep1Form');
 		cy.get('label[for="noCompetingInterests"]').should('not.exist');
@@ -44,8 +44,9 @@ describe('Data suite tests', function() {
 
 		// Find and view the review
 		cy.findSubmissionAsEditor('dbarnes', null, 'Brower');
-		cy.waitJQuery();
-		cy.get('span:contains("Adela Gallego")').parent().parent().find('a:contains("Read Review")').click();
+		cy.contains('table tr', 'Adela Gallego').within(() => {
+			cy.get('button').contains("Read Review").click()
+		})
 
 		// There should not be a visible CI statement.
 		cy.get('h3:contains("Reviewer Comments")');
@@ -73,7 +74,8 @@ describe('Data suite tests', function() {
 		// Submit review with competing interests
 		const competingInterests = 'I work for a competing company';
 		cy.login('alzacharia', null, 'publicknowledge');
-		cy.get('a:contains("View Lost Tracks")').click({force: true});
+		cy.openReviewAssignment('Lost Tracks');
+
 
 		cy.get('input#hasCompetingInterests').click();
 		cy.wait(2000); // Give TinyMCE control time to load
@@ -95,7 +97,9 @@ describe('Data suite tests', function() {
 		// Find and view the review
 		cy.findSubmissionAsEditor('dbarnes', null, 'Brower');
 		cy.waitJQuery();
-		cy.get('span:contains("Al Zacharia")').parent().parent().find('a:contains("Read Review")').click();
+		cy.contains('table tr', 'Al Zacharia').within(() => {
+			cy.get('button').contains("Read Review").click()
+		})
 
 		// There should be a visible CI statement.
 		cy.get('h3:contains("Reviewer Comments")');
@@ -119,7 +123,9 @@ describe('Data suite tests', function() {
 		// The CI statement entered previously should still be visible.
 		cy.findSubmissionAsEditor('dbarnes', null, 'Brower');
 		cy.waitJQuery();
-		cy.get('span:contains("Al Zacharia")').parent().parent().find('a:contains("Read Review")').click();
+		cy.contains('table tr', 'Al Zacharia').within(() => {
+			cy.get('button').contains("Read Review").click()
+		})
 		cy.get('h3:contains("Reviewer Comments")');
 		cy.get('p').contains(competingInterests);
 	});

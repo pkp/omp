@@ -402,7 +402,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 		cy.checkDoiConfig(['publication', 'chapter', 'representation', 'file']);
 
 		// After configuration, go to submissions
-		cy.get('nav').contains('Submissions').click();
+		cy.get('nav').contains('Dashboards').click();
 
 		// Create a new submission
 		cy.getCsrfToken();
@@ -414,32 +414,33 @@ describe('Monograph View Metadata - DC Plugin', function() {
 				return cy.submitSubmissionWithApi(submission.id, this.csrfToken);
 			})
 			.then(xhr => {
-				cy.visit('/index.php/publicknowledge/en/workflow/index/' + submission.id + '/1');
+				cy.visit('/index.php/publicknowledge/workflow/access/' + submission.id);
 			});
 
 
 		// Go to publication tabs
-		cy.get('#publication-button').click();
+		cy.openWorkflowMenu('Title & Abstract');
 
 		// Open multilanguage inputs and add data to fr_CA inputs
-		cy.get('div#titleAbstract button').contains('French').click();
+		cy.get('.pkpFormLocales button').contains('French').click();
 
-		cy.get('#titleAbstract input[name=prefix-en]').type(submission.prefix, {delay: 0});
-		cy.get('#titleAbstract input[name=prefix-en]').click({force: true});
+		cy.get('input[name=prefix-en]').type(submission.prefix, {delay: 0});
+		cy.get('input[name=prefix-en]').click({force: true});
 		cy.setTinyMceContent('titleAbstract-subtitle-control-en', submission.subtitle);
 
 		cy.setTinyMceContent('titleAbstract-title-control-fr_CA', submission.localeTitles.fr_CA.title);
-		cy.get('#titleAbstract input[name=prefix-fr_CA]').type(submission.localeTitles.fr_CA.prefix, {delay: 0});
+		cy.get('input[name=prefix-fr_CA]').type(submission.localeTitles.fr_CA.prefix, {delay: 0});
 		cy.setTinyMceContent('titleAbstract-subtitle-control-fr_CA', submission.localeTitles.fr_CA.subtitle);
 		cy.setTinyMceContent('titleAbstract-abstract-control-fr_CA', submission.localeTitles.fr_CA.abstract);
 		cy.get('#titleAbstract-title-control-fr_CA').click({force: true}); // Ensure blur event is fired
 		cy.get('#titleAbstract-subtitle-control-fr_CA').click({force: true});
-		cy.get('#titleAbstract button').contains('Save').click();
-		cy.get('#titleAbstract [role="status"]').contains('Saved');
+		cy.get('button').contains('Save').click();
+		cy.get('[role="status"]').contains('Saved');
 
 		// Go to metadata
-		cy.get('#metadata-button').click();
-		cy.get('div#metadata button').contains('French').click();
+		cy.openWorkflowMenu('Metadata');
+		cy.wait(500);
+		cy.get('.pkpFormLocales button').contains('French').click();
 
 		// Add the metadata to the submission
 		submission.localeMetadata.forEach((locale) => {
@@ -461,20 +462,21 @@ describe('Monograph View Metadata - DC Plugin', function() {
 			});
 		});
 
-		cy.get('#metadata button').contains('Save').click();
-		cy.get('#metadata [role="status"]').contains('Saved');
+		cy.get('button').contains('Save').click();
+		cy.get('[role="status"]').contains('Saved');
 
 		// Permissions & Disclosure
-		cy.get('#license-button').click();
-		cy.get('#license [name="licenseUrl"]').type(submission.licenceUrl, {delay: 0});
-		cy.get('#license button').contains('Save').click();
-		cy.get('#license [role="status"]').contains('Saved');
+		cy.openWorkflowMenu('Permissions & Disclosure');
+
+		cy.get('[name="licenseUrl"]').type(submission.licenceUrl, {delay: 0});
+		cy.get('button').contains('Save').click();
+		cy.get('[role="status"]').contains('Saved');
 
 		// Add a publication format
 		submission.publicationFormats.forEach((publicationFormat) => {
-			cy.get('button[id="publicationFormats-button"]').click();
+			cy.openWorkflowMenu('Publication Formats');
 			cy.wait(1500); // Wait for the form to settle
-			cy.get('div#representations-grid a').contains('Add publication format').click();
+			cy.get('[data-cy="publication-format-manager"] a').contains('Add publication format').click();
 			cy.wait(1500); // Wait for the form to settle
 			cy.get('input[id^="name-en-"]').type(publicationFormat.name, {delay: 0});
 			cy.get('[role="dialog"] h1:contains("Add publication format")').click();
@@ -507,21 +509,21 @@ describe('Monograph View Metadata - DC Plugin', function() {
 		});
 
 		// Catalog Entry
-		cy.get('#catalogEntry-button').click();
-		cy.get('#catalogEntry [name="seriesId"]').select(submission.seriesData.title);
-		cy.get('#catalogEntry [name="seriesPosition"]').type(submission.seriesPosition, {delay: 0});
-		cy.get('#catalogEntry [name="urlPath"]').type(submission.urlPath);
-		cy.get('#catalogEntry button').contains('Save').click();
-		cy.get('#catalogEntry [role="status"]').contains('Saved');
+		cy.openWorkflowMenu('Catalog Entry')
+		cy.get('[name="seriesId"]').select(submission.seriesData.title);
+		cy.get('[name="seriesPosition"]').type(submission.seriesPosition, {delay: 0});
+		cy.get('[name="urlPath"]').type(submission.urlPath);
+		cy.get('button').contains('Save').click();
+		cy.get('[role="status"]').contains('Saved');
 
 		// Go to workflow to send the submission to Copyediting stage
-		cy.get('#workflow-button').click();
+		cy.openWorkflowMenu('Submission')
 		cy.clickDecision('Accept and Skip Review');
 		cy.recordDecision('and has been sent to the copyediting stage');
 		cy.isActiveStageTab('Copyediting');
 
 		// Add to catalog - Publish the submission
-		cy.get('#publication-button').click();
+		cy.openWorkflowMenu('Title & Abstract');
 		cy.addToCatalog();
 	});
 
