@@ -170,7 +170,6 @@ class PublicationFormatGridHandler extends CategoryGridHandler
                         new AjaxModal(
                             $router->url($request, null, null, 'addFormat', null, $actionArgs),
                             __('grid.action.addFormat'),
-                            'side-modal'
                         ),
                         __('grid.action.addFormat'),
                         'add_item'

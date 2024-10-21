@@ -46,7 +46,6 @@ class SeriesGridRow extends GridRow
                     new AjaxModal(
                         $router->url($request, null, null, 'editSeries', null, ['seriesId' => $seriesId]),
                         __('grid.action.edit'),
-                        'side-modal',
                         true
                     ),
                     __('grid.action.edit'),

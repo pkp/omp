@@ -127,7 +127,6 @@ class RepresentativesGridHandler extends CategoryGridHandler
                 new AjaxModal(
                     $router->url($request, null, null, 'addRepresentative', null, $actionArgs),
                     __('grid.action.addRepresentative'),
-                    'side-modal'
                 ),
                 __('grid.action.addRepresentative'),
                 'add_item'

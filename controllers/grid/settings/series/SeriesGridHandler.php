@@ -128,7 +128,6 @@ class SeriesGridHandler extends SetupGridHandler
                 new AjaxModal(
                     $router->url($request, null, null, 'addSeries', null, ['gridId' => $this->getId()]),
                     __('grid.action.addSeries'),
-                    'side-modal'
                 ),
                 __('grid.action.addSeries'),
                 'add_category'

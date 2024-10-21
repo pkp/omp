@@ -230,7 +230,6 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                                 ]
                             ),
                             __('grid.catalogEntry.approvedRepresentation.title'),
-                            'side-modal'
                         ),
                         $data->getIsApproved() ? __('submission.complete') : __('submission.incomplete'),
                         $data->getIsApproved() ? 'complete' : 'incomplete',
@@ -261,7 +260,6 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                                 'representationId' => $submissionFile->getData('assocId'),
                             ]),
                             __('editor.monograph.approvedProofs.edit'),
-                            'side-modal'
                         ),
                         __($salesTypeString),
                         $salesType
@@ -288,7 +286,6 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                                 ]
                             ),
                             $title,
-                            'side-modal'
                         ),
                         $submissionFile->getViewable() ? __('grid.catalogEntry.availableRepresentation.approved') : __('grid.catalogEntry.availableRepresentation.notApproved'),
                         $submissionFile->getViewable() ? 'complete' : 'incomplete',

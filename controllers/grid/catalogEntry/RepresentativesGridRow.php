@@ -68,7 +68,6 @@ class RepresentativesGridRow extends GridRow
                     new AjaxModal(
                         $router->url($request, null, null, 'editRepresentative', null, $actionArgs),
                         __('grid.action.edit'),
-                        'side-modal'
                     ),
                     __('grid.action.edit'),
                     'edit'

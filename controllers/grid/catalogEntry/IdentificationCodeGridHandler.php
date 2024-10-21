@@ -190,7 +190,6 @@ class IdentificationCodeGridHandler extends GridHandler
                 new AjaxModal(
                     $router->url($request, null, null, 'addCode', null, $actionArgs),
                     __('grid.action.addCode'),
-                    'side-modal'
                 ),
                 __('grid.action.addCode'),
                 'add_item'

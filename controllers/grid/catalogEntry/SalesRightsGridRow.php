@@ -68,7 +68,6 @@ class SalesRightsGridRow extends GridRow
                     new AjaxModal(
                         $router->url($request, null, null, 'editRights', null, $actionArgs),
                         __('grid.action.edit'),
-                        'side-modal'
                     ),
                     __('grid.action.edit'),
                     'edit'
