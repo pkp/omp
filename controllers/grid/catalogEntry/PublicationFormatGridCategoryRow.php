@@ -97,7 +97,6 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow
                     new AjaxModal(
                         $router->url($request, null, null, 'editFormat', null, $actionArgs),
                         __('grid.action.edit'),
-                        'modal_edit'
                     ),
                     __('grid.action.edit'),
                     'edit'
@@ -112,7 +111,7 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow
                         __('common.confirmDelete'),
                         __('common.delete'),
                         $router->url($request, null, null, 'deleteFormat', null, $actionArgs),
-                        'modal_delete'
+                        'negative'
                     ),
                     __('grid.action.delete'),
                     'delete'

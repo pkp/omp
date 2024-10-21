@@ -172,7 +172,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                                     'publicationId' => $data->getData('publicationId'),
                                 ]
                             ),
-                            'modal_approve'
+                            $data->getIsAvailable() ? 'negative' : 'primary'
                         ),
                         $data->getIsAvailable() ? __('grid.catalogEntry.isAvailable') : __('grid.catalogEntry.isNotAvailable'),
                         $data->getIsAvailable() ? 'complete' : 'incomplete',
@@ -230,7 +230,6 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                                 ]
                             ),
                             __('grid.catalogEntry.approvedRepresentation.title'),
-                            'modal_approve'
                         ),
                         $data->getIsApproved() ? __('submission.complete') : __('submission.incomplete'),
                         $data->getIsApproved() ? 'complete' : 'incomplete',
@@ -261,7 +260,6 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                                 'representationId' => $submissionFile->getData('assocId'),
                             ]),
                             __('editor.monograph.approvedProofs.edit'),
-                            'edit'
                         ),
                         __($salesTypeString),
                         $salesType
@@ -288,7 +286,6 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                                 ]
                             ),
                             $title,
-                            'modal_approve'
                         ),
                         $submissionFile->getViewable() ? __('grid.catalogEntry.availableRepresentation.approved') : __('grid.catalogEntry.availableRepresentation.notApproved'),
                         $submissionFile->getViewable() ? 'complete' : 'incomplete',

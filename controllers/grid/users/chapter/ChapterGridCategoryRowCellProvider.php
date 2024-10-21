@@ -49,7 +49,6 @@ class ChapterGridCategoryRowCellProvider extends GridCellProvider
                 new AjaxModal(
                     $router->url($request, null, null, 'editChapter', null, $actionArgs),
                     __('submission.chapter.editChapter'),
-                    'modal_edit'
                 ),
                 htmlspecialchars($chapter->getLocalizedTitle())
             )

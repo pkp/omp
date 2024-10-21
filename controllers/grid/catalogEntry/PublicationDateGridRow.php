@@ -76,7 +76,6 @@ class PublicationDateGridRow extends GridRow
                     new AjaxModal(
                         $router->url($request, null, null, 'editDate', null, $actionArgs),
                         __('grid.action.edit'),
-                        'modal_edit'
                     ),
                     __('grid.action.edit'),
                     'edit'
@@ -91,7 +90,7 @@ class PublicationDateGridRow extends GridRow
                         __('common.confirmDelete'),
                         __('common.delete'),
                         $router->url($request, null, null, 'deleteDate', null, $actionArgs),
-                        'modal_delete'
+                        'negative'
                     ),
                     __('grid.action.delete'),
                     'delete'
