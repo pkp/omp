@@ -101,3 +101,12 @@ msgstr "Next slide"
 
 msgid "plugins.themes.default.prevSlide"
 msgstr "Previous slide"
+
+msgid "plugins.themes.default.option.metadata.label"
+msgstr "Show book metadata on the book landing page"
+
+msgid "plugins.themes.default.option.metadata.description"
+msgstr "Select the book metadata to show in other languages."
+
+msgid "plugins.themes.default.ariaDescription.languageSwitcher"
+msgstr "Selects a language to show the metadata in."

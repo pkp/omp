@@ -29,17 +29,36 @@
 	{if $authors|@count < 5}
 		{foreach from=$authors item=author}
 			<div class="sub_item">
-				<div class="label">
+				<div class="label name">
 					{if $identifyAsEditors}
 						{translate key="submission.editorName" editorName=$author->getFullName()|escape}
 					{else}
 						{$author->getFullName()|escape}
 					{/if}
+					{if isset($pubLocaleData.opts.author)}
+						<span class="collapse-switcher" data-pkp-switcher-target="author{$author@index}" aria-description="{translate key="plugins.themes.default.ariaDescription.languageSwitcher"}"></span>
+					{/if}
 				</div>
-				{if $author->getLocalizedAffiliation()}
-					<div class="value">
-						{$author->getLocalizedAffiliation()|escape}
-					</div>
+				{if $author->getData('affiliation')}
+					<span class="affiliation">
+						<span id="publication-author{$author@index}" data-pkp-switcher-text="author{$author@index}">
+							{$authorAffiliations=$author->getData('affiliation')}
+							{$first=true}
+							{foreach from=$pubLocaleData.localeOrder item=$localeKey}
+								{if !isset($authorAffiliations[$localeKey])}{continue}{/if}
+								<span
+									class="collapse-text{if $first} show-text{/if}"
+									lang="{$pubLocaleData.langTags[$localeKey]}"
+									data-pkp-locale="{$localeKey}"
+									data-pkp-locale-name="{$pubLocaleData.langTags[$localeKey]}"
+								>
+									{$authorAffiliations[$localeKey]|escape}
+								</span>
+								{if !isset($pubLocaleData.opts.author)}{break}{/if}
+								{$first=false}
+							{/foreach}
+						</span>
+					</span>
 				{/if}
 				{if $author->getOrcid()}
 					<span class="orcid">
@@ -53,24 +72,41 @@
 
 		{* Show long author lists on one line *}
 	{else}
-		{foreach name="authors" from=$authors item=author}
-			{* strip removes excess white-space which creates gaps between separators *}
-			{strip}
-				{if $author->getLocalizedAffiliation()}
-					{if $identifyAsEditors}
-						{capture assign="authorName"}<span class="label">{translate key="submission.editorName" editorName=$author->getFullName()|escape}</span>{/capture}
+		<span id="publication-authors" data-pkp-switcher-text="authors">
+		{$first=true}
+		{foreach from=$pubLocaleData.localeOrder item=$localeKey}
+			<span 
+				class="collapse-text{if $first} show-text{/if}"
+				data-pkp-locale="{$localeKey}"
+				data-pkp-locale-name="{$pubLocaleData.langTags[$localeKey]}"
+			>
+			{foreach from=$authors item=author}
+				{* strip removes excess white-space which creates gaps between separators *}
+				{strip}
+					{$authorAffiliations=$author->getData('affiliation')}
+					{if isset($authorAffiliations[$localeKey])}
+						{if $identifyAsEditors}
+							{capture assign="authorName"}<span class="label">{translate key="submission.editorName" editorName=$author->getFullName()|escape}</span>{/capture}
+						{else}
+							{capture assign="authorName"}<span class="label">{$author->getFullName()|escape}</span>{/capture}
+						{/if}
+						{capture assign="authorAffiliation"}<span class="value" lang="{$pubLocaleData.langTags[$localeKey]}">{$authorAffiliations[$localeKey]|escape}</span>{/capture}
+						{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
 					{else}
-						{capture assign="authorName"}<span class="label">{$author->getFullName()|escape}</span>{/capture}
+						<span class="label">{$author->getFullName()|escape}</span>
 					{/if}
-					{capture assign="authorAffiliation"}<span class="value">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
-					{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
-				{else}
-					<span class="label">{$author->getFullName()|escape}</span>
-				{/if}
-				{if !$smarty.foreach.authors.last}
-					{translate key="submission.authorListSeparator"}
-				{/if}
-			{/strip}
+					{if !$author@last}
+						{translate key="submission.authorListSeparator"}
+					{/if}
+				{/strip}
+			{/foreach}
+			</span>
+			{if !isset($pubLocaleData.opts.author)}{break}{/if}
+			{$first=false}
 		{/foreach}
+		{if isset($pubLocaleData.opts.author)}
+			<span class="collapse-switcher" data-pkp-switcher-target="authors" aria-description="{translate key="plugins.themes.default.ariaDescription.languageSwitcher"}"></span>
+		{/if}
+		</span>
 	{/if}
 </div>

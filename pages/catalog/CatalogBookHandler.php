@@ -305,6 +305,12 @@ class CatalogBookHandler extends Handler
             $templateMgr->addHeader('canonical', '<link rel="canonical" href="' . $url . '">');
         }
 
+        $templateMgr->assign('pubLocaleData', $this->getMultilingualMetadataOpts(
+            $publication,
+            $templateMgr->getTemplateVars('currentLocale'),
+            $templateMgr->getTemplateVars('activeTheme')->getOption('showMultilingualMetadata') ?: [],
+        ));
+
         // Display
         if (!Hook::call('CatalogBookHandler::book', [&$request, &$submission, &$this->publication, &$this->chapter])) {
             $templateMgr->display('frontend/pages/book.tpl');
@@ -615,5 +621,27 @@ class CatalogBookHandler extends Handler
         }
 
         return null;
+    }
+
+    /**
+     * Multilingual publication metadata for template:
+     * showMultilingualMetadataOpts - Show metadata in other languages: title (+ subtitle), keywords, abstract, etc.
+     */
+    protected function getMultilingualMetadataOpts(Publication $publication, string $currentUILocale, array $showMultilingualMetadataOpts): array
+    {
+        $langNames = collect($publication->getLanguageNames())
+            ->sortKeys();
+        $langs = $langNames->keys();
+        return [
+            'opts' => array_flip($showMultilingualMetadataOpts),
+            'localeNames' => $langNames,
+            'langTags' => $langNames->map(fn ($_, $l) => preg_replace(['/@.+$/', '/_/'], ['', '-'], $l))->toArray() /* remove @ and text after */,
+            'localeOrder' => collect($publication->getLocalePrecedence())
+                ->intersect($langs) /* remove locales not in publication's languages */
+                ->concat($langs)
+                ->unique()
+                ->values()
+                ->toArray(),
+        ];
     }
 }
