@@ -216,19 +216,17 @@ class FeatureDAO extends \PKP\db\DAO
         );
 
         $returner = [];
-        $i = 2;
-        foreach ($result as $row) {
+        foreach ($result as $key => $value) {
             $this->update(
                 'UPDATE features SET seq = ? WHERE submission_id = ? AND assoc_type = ? AND assoc_id = ?',
                 [
-                    $i,
-                    $row->submission_id,
+                    $key + 1,
+                    $value->submission_id,
                     (int) $assocType,
                     (int) $assocId
                 ]
             );
-            $returner[$row->submission_id] = $i;
-            $i += 2;
+            $returner[$value->submission_id] = $key;
         }
         return $returner;
     }
