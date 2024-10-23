@@ -135,6 +135,7 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler {
 		if (!empty($params['featured'])) {
 			foreach($params['featured'] as $feature) {
 				$featureDao->insertFeature($submissionId, $feature['assoc_type'], $feature['assoc_id'], $feature['seq']);
+				$featureDao->resequenceByAssoc($feature['assoc_type'], $feature['assoc_id']);
 			}
 		}
 
@@ -183,10 +184,9 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler {
 		}
 
 		$featureDao = \DAORegistry::getDAO('FeatureDAO');
-		$featureDao->deleteByAssoc($assocType, $assocId);
 		if (!empty($params['featured'])) {
 			foreach($params['featured'] as $feature) {
-				$featureDao->insertFeature($feature['id'], $assocType, $assocId, $feature['seq']);
+				$featureDao->setSequencePosition($feature['id'], $assocType, $assocId, $feature['seq']);
 			}
 		}
 
