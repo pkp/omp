@@ -32,7 +32,7 @@ class MastheadForm extends PKPMastheadForm
 
         /** @var ONIXCodelistItemDAO */
         $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
-        $codeTypes = $onixCodelistItemDao->getCodes('List44');
+        $codeTypes = $onixCodelistItemDao->getCodes('44');
         $codeTypeOptions = array_map(function ($code, $name) {
             return ['value' => $code, 'label' => $name];
         }, array_keys($codeTypes), $codeTypes);

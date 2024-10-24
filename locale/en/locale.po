@@ -165,6 +165,9 @@ msgstr "Missing an identification code."
 msgid "monograph.publicationFormat.missingONIXFields"
 msgstr "Missing some metadata fields."
 
+msgid "monograph.publicationFormat.onixDeprecated"
+msgstr " (Discontinued)"
+
 msgid "monograph.publicationFormat.formatDoesNotExist"
 msgstr "<p>The publication format you have chosen no longer exists for this monograph.</p>"
 
@@ -253,7 +256,7 @@ msgid "grid.catalogEntry.availableRepresentation.notApproved"
 msgstr "Awaiting Approval"
 
 msgid "grid.catalogEntry.fileSizeRequired"
-msgstr "A file size for digital formats required."
+msgstr "A file size for digital formats is required."
 
 msgid "grid.catalogEntry.productAvailabilityRequired"
 msgstr "A product availability code is required."
@@ -346,7 +349,7 @@ msgid "grid.catalogEntry.agent"
 msgstr "Agent"
 
 msgid "grid.catalogEntry.agentTip"
-msgstr "You may assign an agent to represent you in this defined territory.  It is not required."
+msgstr "You may assign an agent to represent you in this defined territory. It is not required."
 
 msgid "grid.catalogEntry.supplier"
 msgstr "Supplier"

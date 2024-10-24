@@ -169,8 +169,8 @@ class SalesRightsForm extends Form
         $templateMgr->assign('publicationId', $this->getPublication()->getId());
         $salesRights = $this->getSalesRights();
         $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
-        $templateMgr->assign('countryCodes', $onixCodelistItemDao->getCodes('List91')); // countries (CA, US, GB, etc)
-        $templateMgr->assign('regionCodes', $onixCodelistItemDao->getCodes('List49')); // regions (British Columbia, England, etc)
+        $templateMgr->assign('countryCodes', $onixCodelistItemDao->getCodes('91')); // countries (CA, US, GB, etc)
+        $templateMgr->assign('regionCodes', $onixCodelistItemDao->getCodes('49')); // regions (British Columbia, England, etc)
 
         if ($salesRights) {
             $templateMgr->assign('salesRightsId', $salesRights->getId());
@@ -199,7 +199,7 @@ class SalesRightsForm extends Form
                 $assignedTypes = array_diff($assignedTypes, [$salesRights->getType()]);
             } // allow existing codes to keep their value
 
-            $types = $onixCodelistItemDao->getCodes('List46', $assignedTypes); // ONIX list for these
+            $types = $onixCodelistItemDao->getCodes('46', $assignedTypes); // ONIX list for these
             $templateMgr->assign('salesRights', $types);
         } else {
             throw new Exception('Format not in authorized submission');

@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/catalogEntry/form/PublicationFormatMetadataForm.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2003-2024 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationFormatMetadataForm
@@ -26,6 +26,10 @@ use APP\template\TemplateManager;
 use Exception;
 use PKP\db\DAORegistry;
 use PKP\form\Form;
+use PKP\form\validation\FormValidator;
+use PKP\form\validation\FormValidatorCSRF;
+use PKP\form\validation\FormValidatorPost;
+use PKP\form\validation\FormValidatorRegExp;
 use PKP\notification\Notification;
 use PKP\plugins\PKPPubIdPluginHelper;
 use PKP\plugins\PluginRegistry;
@@ -86,11 +90,11 @@ class PublicationFormatMetadataForm extends Form
         $this->_remoteURL = $remoteURL;
         $this->_formParams = $formParams;
 
-        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'productAvailabilityCode', 'required', 'grid.catalogEntry.productAvailabilityRequired'));
-        $this->addCheck(new \PKP\form\validation\FormValidatorRegExp($this, 'directSalesPrice', 'optional', 'grid.catalogEntry.validPriceRequired', '/^[0-9]*(\.[0-9]+)?$/'));
-        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'productCompositionCode', 'required', 'grid.catalogEntry.productCompositionRequired'));
-        $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
-        $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
+        $this->addCheck(new FormValidator($this, 'productAvailabilityCode', 'required', 'grid.catalogEntry.productAvailabilityRequired'));
+        $this->addCheck(new FormValidatorRegExp($this, 'directSalesPrice', 'optional', 'grid.catalogEntry.validPriceRequired', '/^[0-9]*(\.[0-9]+)?$/'));
+        $this->addCheck(new FormValidator($this, 'productCompositionCode', 'required', 'grid.catalogEntry.productCompositionRequired'));
+        $this->addCheck(new FormValidatorPost($this));
+        $this->addCheck(new FormValidatorCSRF($this));
     }
 
     /**
@@ -126,15 +130,15 @@ class PublicationFormatMetadataForm extends Form
 
         // get the lists associated with the select elements on these publication format forms.
         $codes = [
-            'productCompositionCodes' => 'List2', // single item, multiple item, trade-only, etc
-            'measurementUnitCodes' => 'List50', // grams, inches, millimeters
-            'weightUnitCodes' => 'List95', // pounds, grams, ounces
-            'measurementTypeCodes' => 'List48', // height, width, depth
-            'productFormDetailCodes' => 'List175', // refinement of product form (SACD, Mass market (rack) paperback, etc)
-            'productAvailabilityCodes' => 'List65', // Available, In Stock, Print On Demand, Not Yet Available, etc
-            'technicalProtectionCodes' => 'List144', // None, DRM, Apple DRM, etc
-            'returnableIndicatorCodes' => 'List66', // No, not returnable, Yes, full copies only, (required for physical items only)
-            'countriesIncludedCodes' => 'List91', // country region codes
+            'productCompositionCodes' => '2', // single item, multiple item, trade-only, etc
+            'measurementUnitCodes' => '50', // grams, inches, millimeters
+            'weightUnitCodes' => '50', // pounds, grams, ounces
+            'measurementTypeCodes' => '48', // height, width, depth
+            'productFormDetailCodes' => '175', // refinement of product form (SACD, Mass market (rack) paperback, etc)
+            'productAvailabilityCodes' => '65', // Available, In Stock, Print On Demand, Not Yet Available, etc
+            'technicalProtectionCodes' => '144', // None, DRM, Apple DRM, etc
+            'returnableIndicatorCodes' => '66', // No, not returnable, Yes, full copies only, (required for physical items only)
+            'countriesIncludedCodes' => '91', // country region codes
         ];
 
         foreach ($codes as $templateVarName => $list) {
@@ -166,7 +170,7 @@ class PublicationFormatMetadataForm extends Form
 
         $this->_data = [
             'fileSize' => (bool) $publicationFormat->getFileSize() ? $publicationFormat->getFileSize() : $publicationFormat->getCalculatedFileSize(),
-            'override' => (bool) $publicationFormat->getData('fileSize') ? true : false,
+            'override' => (bool) $publicationFormat->getData('fileSize'),
             'frontMatter' => $publicationFormat->getFrontMatter(),
             'backMatter' => $publicationFormat->getBackMatter(),
             'height' => $publicationFormat->getHeight(),

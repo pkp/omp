@@ -39,7 +39,7 @@ class IdentificationCode extends DataObject
      */
     public function setPublicationFormatId($publicationFormatId)
     {
-        return $this->setData('publicationFormatId', $publicationFormatId);
+        $this->setData('publicationFormatId', $publicationFormatId);
     }
 
     /**
@@ -63,14 +63,14 @@ class IdentificationCode extends DataObject
     }
 
     /**
-     * Get the human readable name for this ONIX code
+     * Get the human-readable name for this ONIX code
      *
      * @return string
      */
     public function getNameForONIXCode()
     {
         $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
-        $codes = & $onixCodelistItemDao->getCodes('List5'); // List5 is for ISBN, GTIN-13, etc.
+        $codes = $onixCodelistItemDao->getCodes('5'); // List 5 is for product identifier type
         return $codes[$this->getCode()];
     }
 

@@ -189,7 +189,7 @@ class ContextService extends \PKP\services\PKPContextService
         if (!empty($props['codeType'])) {
             /** @var ONIXCodelistItemDAO */
             $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
-            if (!$onixCodelistItemDao->codeExistsInList($props['codeType'], 'List44')) {
+            if (!$onixCodelistItemDao->codeExistsInList($props['codeType'], '44')) {
                 $errors['codeType'] = [__('manager.settings.publisherCodeType.invalid')];
             }
         }

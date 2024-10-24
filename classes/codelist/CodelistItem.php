@@ -42,7 +42,7 @@ abstract class CodelistItem extends DataObject
      */
     public function setText(string $text): void
     {
-        return $this->setData('text', $text);
+        $this->setData('text', $text);
     }
 
     /**
@@ -56,9 +56,9 @@ abstract class CodelistItem extends DataObject
     /**
      * Set codelist code.
      */
-    public function setCode(string $code)
+    public function setCode(string $code): void
     {
-        return $this->setData('code', $code);
+        $this->setData('code', $code);
     }
 
     /**

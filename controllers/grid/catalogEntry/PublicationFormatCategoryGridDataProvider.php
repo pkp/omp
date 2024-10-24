@@ -111,7 +111,7 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
      */
     public function loadCategoryData($request, $categoryDataElement, $filter = null, $reviewRound = null)
     {
-        assert(is_a($categoryDataElement, 'Representation'));
+        assert($categoryDataElement instanceof Representation);
 
         // Retrieve all submission files for the given file stage.
         /** @var Representation $categoryDataElement */

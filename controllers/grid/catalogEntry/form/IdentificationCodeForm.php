@@ -181,7 +181,7 @@ class IdentificationCodeForm extends Form
             if ($context->areDoisEnabled()) {
                 $assignedCodes[] = '06'; // 06 is DOI in ONIX-speak.
             }
-            $codes = $onixCodelistItemDao->getCodes('List5', $assignedCodes); // ONIX list for these
+            $codes = $onixCodelistItemDao->getCodes('5', $assignedCodes); // ONIX list for these
             $templateMgr->assign('identificationCodes', $codes);
         } else {
             throw new \Exception('Format not in authorized submission');

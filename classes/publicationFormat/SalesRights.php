@@ -38,7 +38,7 @@ class SalesRights extends \PKP\core\DataObject
      */
     public function setPublicationFormatId($publicationFormatId)
     {
-        return $this->setData('publicationFormatId', $publicationFormatId);
+        $this->setData('publicationFormatId', $publicationFormatId);
     }
 
     /**
@@ -62,14 +62,14 @@ class SalesRights extends \PKP\core\DataObject
     }
 
     /**
-     * Get the human readable name for this ONIX code
+     * Get the human-readable name for this ONIX code
      *
      * @return string
      */
     public function getNameForONIXCode()
     {
         $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
-        $codes = & $onixCodelistItemDao->getCodes('List46'); // List46 is for things like 'unrestricted sale with exclusive rights', etc.
+        $codes = $onixCodelistItemDao->getCodes('46'); // List 46 is for sales rights types
         return $codes[$this->getType()];
     }
 
@@ -184,7 +184,7 @@ class SalesRights extends \PKP\core\DataObject
      */
     public function _removeEmptyElements($value)
     {
-        return (trim($value) != '') ? true : false;
+        return trim($value) != '';
     }
 }
 

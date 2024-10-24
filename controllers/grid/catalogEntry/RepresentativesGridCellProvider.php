@@ -19,6 +19,7 @@ namespace APP\controllers\grid\catalogEntry;
 use PKP\controllers\grid\DataObjectGridCellProvider;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridRow;
+use PKP\core\DataObject;
 use PKP\submission\Representation;
 
 class RepresentativesGridCellProvider extends DataObjectGridCellProvider
@@ -40,7 +41,7 @@ class RepresentativesGridCellProvider extends DataObjectGridCellProvider
         $element = $row->getData();
 
         $columnId = $column->getId();
-        assert(is_a($element, 'DataObject') && !empty($columnId));
+        assert($element instanceof DataObject && !empty($columnId));
         /** @var Representation $element */
         switch ($columnId) {
             case 'role':

@@ -35,7 +35,7 @@ class PublicationDate extends DataObject
     public function __construct()
     {
         $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
-        $this->dateFormats = & $onixCodelistItemDao->getCodes('List55');
+        $this->dateFormats = $onixCodelistItemDao->getCodes('55');
 
         parent::__construct();
     }
@@ -101,14 +101,14 @@ class PublicationDate extends DataObject
     }
 
     /**
-     * Get the human readable name for this ONIX code
+     * Get the human-readable name for this ONIX code
      *
      * @return string
      */
     public function getNameForONIXCode()
     {
         $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
-        $codes = & $onixCodelistItemDao->getCodes('List163'); // List163 is for Publication date, Embargo date, Announcement date, etc
+        $codes = $onixCodelistItemDao->getCodes('163'); // List 163 is for publishing date role
         return $codes[$this->getRole()];
     }
 
@@ -206,7 +206,7 @@ class PublicationDate extends DataObject
                 $separator = '-';
                 $containsMonth = false;
 
-                for ($i = 0 ; $i < count($formatCharacters) ; $i ++) {
+                for ($i = 0 ; $i < count($formatCharacters) ; $i++) {
                     switch ($formatCharacters[$i]) {
                         // if there is a Time included, change the separator.
                         // Do not include the number, add a space instead.

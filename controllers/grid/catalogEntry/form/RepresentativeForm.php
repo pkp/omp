@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/catalogEntry/form/RepresentativeForm.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2003-2024 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class RepresentativeForm
@@ -54,7 +54,7 @@ class RepresentativeForm extends Form
                 $agentRole = $request->getUserVar('agentRole');
                 $supplierRole = $request->getUserVar('supplierRole');
                 $onixDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixDao */
-                return (!$isSupplier && $onixDao->codeExistsInList($agentRole, 'List69')) || ($isSupplier && $onixDao->codeExistsInList($supplierRole, 'List93'));
+                return (!$isSupplier && $onixDao->codeExistsInList($agentRole, '69')) || ($isSupplier && $onixDao->codeExistsInList($supplierRole, '93'));
             }
         ));
         $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
@@ -144,9 +144,9 @@ class RepresentativeForm extends Form
         $representative = $this->getRepresentative();
         $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
         $templateMgr->assign([
-            'idTypeCodes' => $onixCodelistItemDao->getCodes('List92'), // GLN, etc
-            'agentRoleCodes' => $onixCodelistItemDao->getCodes('List69'), // Sales Agent, etc
-            'supplierRoleCodes' => $onixCodelistItemDao->getCodes('List93'), // wholesaler, publisher to retailer, etc
+            'idTypeCodes' => $onixCodelistItemDao->getCodes('92'), // GLN, etc
+            'agentRoleCodes' => $onixCodelistItemDao->getCodes('69'), // Sales Agent, etc
+            'supplierRoleCodes' => $onixCodelistItemDao->getCodes('93'), // wholesaler, publisher to retailer, etc
             'isSupplier' => true,
         ]); // default to 'supplier' on the form.
 
@@ -160,7 +160,7 @@ class RepresentativeForm extends Form
                 'phone' => $representative->getPhone(),
                 'email' => $representative->getEmail(),
                 'url' => $representative->getUrl(),
-                'isSupplier' => $representative->getIsSupplier() ? true : false,
+                'isSupplier' => (bool)$representative->getIsSupplier(),
             ]);
         } else {
             $templateMgr->assign('representativeIdType', '06');
@@ -225,7 +225,7 @@ class RepresentativeForm extends Form
         $representative->setPhone($this->getData('phone'));
         $representative->setEmail($this->getData('email'));
         $representative->setUrl($this->getData('url'));
-        $representative->setIsSupplier($this->getData('isSupplier') ? true : false);
+        $representative->setIsSupplier((bool)$this->getData('isSupplier'));
 
         if ($existingRepresentative) {
             $representativeDao->updateObject($representative);

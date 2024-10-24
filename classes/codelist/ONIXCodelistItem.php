@@ -40,9 +40,9 @@ class ONIXCodelistItem extends DataObject
      *
      * @param string $text
      */
-    public function setText($text)
+    public function setText($text): void
     {
-        return $this->setData('text', $text);
+        $this->setData('text', $text);
     }
 
     /**
@@ -60,9 +60,9 @@ class ONIXCodelistItem extends DataObject
      *
      * @param string $code
      */
-    public function setCode($code)
+    public function setCode($code): void
     {
-        return $this->setData('code', $code);
+        $this->setData('code', $code);
     }
 }
 
