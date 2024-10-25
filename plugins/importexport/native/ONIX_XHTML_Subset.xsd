@@ -14,12 +14,12 @@
 	*          Recent revisions: Graham Bell         *
 	*                                                *
 	*                  Release 3.0                   *
-	*                  Revision 1                    *
+	*                  Revision 2                    *
 	*                Status: RELEASED                *
 	*            Release date: 2009-04-09            *
-	*              Revised: 2012-01-27               *
+	*              Revised: 2014-01-24               *
 	*                                                *
-	*             (c) 2000-2011 EDItEUR              *
+	*             (c) 2000-2014 EDItEUR              *
 	*             http://www.editeur.org/            *
 	*                                                *
 	**************************************************
@@ -27,7 +27,7 @@
 
 	NOTE - THIS MODULE CORRESPONDS TO A SUBSET OF W3C XHTML 1.1. IT ONLY INCLUDES
 	ELEMENTS AND ASSOCIATED ATTRIBUTES THAT ARE VALID INSIDE THE XHTML ELEMENT 
-	'body', AND EXCLUDES ELEMENTS FOR XHTML FORMS AND SCRIPTS AND 
+	'body', AND EXCLUDES ELEMENTS FOR XHTML EMBEDDED OBJECTS, FORMS AND SCRIPTS AND 
 	ATTRIBUTES THAT DEFINE BEHAVIOUR. SOME PARAMETER ENTITIES HAVE BEEN RENAMED 
 	TO AVOID CLASHES WITH ONIX PARAMETER ENTITY NAMES.
 
@@ -62,6 +62,8 @@
 
 	SCHEMA REVISION HISTORY (IN REVERSE CHRONOLOGICAL ORDER)
 
+	2014-01-24: removed <object> and <param> element definitions
+
 	2012-01-27: added XHTML 1.1 <ruby> and associated <rb>, <rp>, <rt>, <rbc> and <rtc> tags
 
 	2009-04-09: initial release
@@ -81,7 +83,8 @@
 	%HTMLspecial;
 -->
 <!-- ================== Imported Names ==================================== -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xml="http://www.w3.org/XML/1998/namespace" elementFormDefault="qualified">
 	<xs:simpleType name="XHTMLContentType">
 		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
@@ -104,11 +107,11 @@
 		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
 	<!-- one or more digits -->
+	<!-- space-separated list of link types -->
+	<!-- single or comma-separated list of media descriptors -->
 	<xs:simpleType name="LinkTypes">
 		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
-	<!-- space-separated list of link types -->
-	<!-- single or comma-separated list of media descriptors -->
 	<xs:simpleType name="URI">
 		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
@@ -196,41 +199,20 @@
 	<xs:element name="special" abstract="true" substitutionGroup="inline"/>
 	<xs:element name="fontstyle" abstract="true" substitutionGroup="inline"/>
 	<xs:element name="phrase" abstract="true" substitutionGroup="inline"/>
-	<xs:element name="gloss" abstract="true" substitutionGroup="inline">
-		<xs:complexType>
-			<xs:choice>
-				<xs:sequence>
-					<xs:element ref="rb"/>
-					<xs:choice>
-						<xs:element ref="rt"/>
-						<xs:sequence>
-							<xs:element ref="rp"/>
-							<xs:element ref="rt"/>
-							<xs:element ref="rp"/>
-						</xs:sequence>
-					</xs:choice>
-				</xs:sequence>
-				<xs:sequence>
-					<xs:element ref="rbc"/>
-					<xs:element ref="rtc"/>
-					<xs:element minOccurs="0" ref="rtc"/>
-				</xs:sequence>
-			</xs:choice>
-			<xs:attributeGroup ref="ruby.attlist"/>
-		</xs:complexType>
-	</xs:element>
+	<xs:element name="gloss" abstract="true" substitutionGroup="inline"/>
+
 	<xs:element name="inline" abstract="true"/>
 	<!-- %Inline; covers inline or "text-level" elements -->
-	<xs:complexType name="Inline" mixed="true">
-		<xs:sequence>
-			<xs:element minOccurs="0" maxOccurs="unbounded" ref="inline"/>
-		</xs:sequence>
-	</xs:complexType>
 	<!-- ================== Block level elements ============================== -->
 	<xs:element name="heading" abstract="true" substitutionGroup="block"/>
 	<xs:element name="lists" abstract="true" substitutionGroup="block"/>
 	<xs:element name="blocktext" abstract="true" substitutionGroup="block"/>
 	<xs:element name="block" abstract="true"/>
+	<xs:complexType name="Inline" mixed="true">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" ref="inline"/>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="Block">
 		<xs:sequence>
 			<xs:element minOccurs="0" maxOccurs="unbounded" ref="block"/>
@@ -508,6 +490,20 @@
 		<xs:attributeGroup ref="attrs"/>
 		<xs:attribute name="cite" type="URI"/>
 	</xs:attributeGroup>
+	<!-- =================== Text alignment =================================== -->
+	<!-- could be included, but not allowed in XHTML 1.0 Strict -->
+	<!-- <xs:element name="center">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Flow">
+					<xs:attributeGroup ref="center.attlist"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="center.attlist">
+		<xs:attributeGroup ref="attrs"/>
+	</xs:attributeGroup> -->
 	<!-- ================== The Anchor Element ================================ -->
 	<!-- content is %Inline; except that anchors shouldn't be nested -->
 	<xs:element name="a" substitutionGroup="inline">
@@ -823,7 +819,7 @@
 		can also be expressed as attribute/value pairs on the
 		object element itself when brevity is desired.
 	-->
-	<xs:element name="object" substitutionGroup="special">
+	<!-- <xs:element name="object" substitutionGroup="special">
 		<xs:complexType mixed="true">
 			<xs:choice minOccurs="0" maxOccurs="unbounded">
 				<xs:element ref="param"/>
@@ -854,14 +850,14 @@
 		<xs:attribute name="usemap" type="URI"/>
 		<xs:attribute name="name" type="xs:NMTOKEN"/>
 		<xs:attribute name="tabindex" type="XHTMLNumber"/>
-	</xs:attributeGroup>
+	</xs:attributeGroup> -->
 	<!--
 		param is used to supply a named property value.
 		In XML it would seem natural to follow RDF and support an
 		abbreviated syntax where the param elements are replaced
 		by attribute value pairs on the object start tag.
 	-->
-	<xs:element name="param">
+	<!-- <xs:element name="param">
 		<xs:complexType>
 			<xs:attributeGroup ref="param.attlist"/>
 		</xs:complexType>
@@ -880,7 +876,7 @@
 			</xs:simpleType>
 		</xs:attribute>
 		<xs:attribute name="type" type="XHTMLContentType"/>
-	</xs:attributeGroup>
+	</xs:attributeGroup> -->
 	<!-- =================== Images =========================================== -->
 	<!--
 		To avoid accessibility problems for people who aren't
@@ -1229,7 +1225,29 @@
 	</xs:attributeGroup>
 	<!-- =================== Ruby Elements ==================================== -->
 	<!-- simple or complex ruby, XHTML 1.1 only -->
-	<xs:element name="ruby" substitutionGroup="gloss"/>
+	<xs:element name="ruby" substitutionGroup="gloss">
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="rb"/>
+					<xs:choice>
+						<xs:element ref="rt"/>
+						<xs:sequence>
+							<xs:element ref="rp"/>
+							<xs:element ref="rt"/>
+							<xs:element ref="rp"/>
+						</xs:sequence>
+					</xs:choice>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element ref="rbc"/>
+					<xs:element ref="rtc"/>
+					<xs:element minOccurs="0" ref="rtc"/>
+				</xs:sequence>
+			</xs:choice>
+			<xs:attributeGroup ref="ruby.attlist"/>
+		</xs:complexType>
+	</xs:element>
 	<xs:attributeGroup name="ruby.attlist">
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>

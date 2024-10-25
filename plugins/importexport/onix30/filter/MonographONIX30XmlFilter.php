@@ -418,11 +418,11 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
             unset($languageNode);
         }
 
-        /* --- add Extents for 00 (main content), 04 (back matter), 08 for digital works ---*/
+        /* --- add Extents for 03 (front matter), 04 (back matter), 22 for digital works ---*/
 
         if ($publicationFormat->getFrontMatter() > 0) {
             // 03 - Pages
-            $extentNode = $this->_createExtentNode($doc, $deployment, '00', $publicationFormat->getFrontMatter(), '03');
+            $extentNode = $this->_createExtentNode($doc, $deployment, '03', $publicationFormat->getFrontMatter(), '03');
             $descDetailNode->appendChild($extentNode);
             unset($extentNode);
         }
@@ -435,7 +435,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
 
         if (!$publicationFormat->getPhysicalFormat()) { // EBooks and digital content have extent information about file sizes
             $fileSize = $publicationFormat->getFileSize() ? $publicationFormat->getFileSize() : $publicationFormat->getCalculatedFileSize();
-            $extentNode = $this->_createExtentNode($doc, $deployment, '08', $fileSize, '05');
+            $extentNode = $this->_createExtentNode($doc, $deployment, '22', $fileSize, '19'); // 22 -> Filesize, 19 -> Mbytes
             $descDetailNode->appendChild($extentNode);
             unset($extentNode);
         }
