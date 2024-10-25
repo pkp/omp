@@ -53,7 +53,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 		$representationNode->setAttribute('url_path', $representation->getData('urlPath'));
 		$representationNode->setAttribute('entry_key', $representation->getData('entryKey'));
 
-		// If all nexessary press settings exist, export ONIX metadata
+		// If all necessary press settings exist, export ONIX metadata
 		$context = $this->getDeployment()->getContext();
 		if ($context->getContactName() && $context->getContactEmail() && $context->getData('publisher') && $context->getData('location') && $context->getData('codeType') && $context->getData('codeValue')) {
 			$publication = $this->getDeployment()->getPublication();

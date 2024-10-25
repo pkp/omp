@@ -9,16 +9,16 @@
 	*           CODE LIST DATA TYPES MODULE          *
 	*               XML SCHEMA VERSION               *
 	*                                                *
-	*                    ISSUE: 17                   *
+	*                    ISSUE: 24                   *
 	*                                                *
 	*                 Status: RELEASED               *
-	*            Release date: 2012-04-20            *
+	*            Release date: 2014-04-14            *
 	*                                                *
 	*  Orig filename ONIX_BookProduct_CodeLists.XSD  *
 	*                                                *
 	*          Original author: Francis Cave         *
 	*                                                *
-	*              (c) 2003-2012 EDItEUR             *
+	*              (c) 2003-2014 EDItEUR             *
 	*             http://www.editeur.org/            *
 	*                                                *
 	**************************************************
@@ -54,6 +54,30 @@
 
 
 	MODULE REVISION HISTORY (IN REVERSE CHRONOLOGICAL ORDER)
+
+	2014-04-14: Module for public release based upon the ONIX International 
+	            Code lists Issue 25 (April 2014)
+
+	2014-01-30: Module for public release based upon the ONIX International 
+	            Code lists Issue 24 (January 2014)
+
+	2013-10-15: Module for public release based upon the ONIX International 
+	            Code lists Issue 23 (October 2013)
+
+	2013-07-19: Module for public release based upon the ONIX International 
+	            Code lists Issue 22 (July 2013)
+
+	2013-04-19: Module for public release based upon the ONIX International 
+	            Code lists Issue 21 (April 2013)
+
+	2013-01-21: Module for public release based upon the ONIX International 
+	            Code lists Issue 20 (January 2013)
+
+	2012-10-22: Module for public release based upon the ONIX International 
+	            Code lists Issue 19 (October 2012)
+
+	2012-08-14: Module for public release based upon the ONIX International 
+	            Code lists Issue 18 (August 2012)
 
 	2012-04-20: Module for public release based upon the ONIX International 
 	            Code lists Issue 17 (April 2012)
@@ -117,7 +141,7 @@
 
 -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-		<xs:simpleType name="List1">
+	<xs:simpleType name="List1">
 		<xs:annotation>
 			<xs:documentation source="ONIX Code List 1">Notification or update type code</xs:documentation>
 		</xs:annotation>
@@ -219,6 +243,12 @@
 					<xs:documentation>Carrying multiple copies for retailing as separate items, eg shrink-wrapped trade pack, filled dumpbin, filled counterpack.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="31">
+				<xs:annotation>
+					<xs:documentation>Multiple-item pack</xs:documentation>
+					<xs:documentation>Carrying multiple copies, primarily for retailing as separate items. The pack may be split and retailed as separate items OR retailed as a single item. Use instead of Multiple item trade pack (code 30) only if the data provider specifically wishes to make explicit that the pack may optionally be retailed as a whole.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="List3">
@@ -253,7 +283,7 @@
 			<xs:enumeration value="04">
 				<xs:annotation>
 					<xs:documentation>Bibliographic agency</xs:documentation>
-					<xs:documentation/>
+					<xs:documentation>Bibliographic data aggregator.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="05">
@@ -278,6 +308,18 @@
 				<xs:annotation>
 					<xs:documentation>Conversion service provider</xs:documentation>
 					<xs:documentation>Downstream provider of e-publication format conversion service (who might also be a distributor or retailer of the converted e-publication), supplying metadata on behalf of the publisher. The assigned ISBN is taken from the service provider’s prefix (whether or not the service provider dedicates that prefix to a particular publisher).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="09">
+				<xs:annotation>
+					<xs:documentation>ISBN Registration Agency</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>ISTC Registration Agency</xs:documentation>
+					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -380,7 +422,19 @@
 			<xs:enumeration value="27">
 				<xs:annotation>
 					<xs:documentation>JP e-code</xs:documentation>
-					<xs:documentation>E-publication identifier controlled by JPOIID's Committee for Research and Management of Electronic Publishing Codes.</xs:documentation>
+					<xs:documentation>E-publication identifier controlled by JPOIID’s Committee for Research and Management of Electronic Publishing Codes.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="28">
+				<xs:annotation>
+					<xs:documentation>OLCC number</xs:documentation>
+					<xs:documentation>Unique number assigned by the Chinese Online Library Cataloging Center (see http://olcc.nlc.gov.cn).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="29">
+				<xs:annotation>
+					<xs:documentation>JP Magazine ID</xs:documentation>
+					<xs:documentation>Japanese magazine identifier, similar in scope to ISSN but identifying a specific issue of a serial publication. Five digits to identify the periodical, plus a hyphen and two digits to identify the issue.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -704,13 +758,13 @@
 			</xs:enumeration>
 			<xs:enumeration value="52">
 				<xs:annotation>
-					<xs:documentation>EAN13+5 on outer sleeve/back (US dollar price encoded)</xs:documentation>
+					<xs:documentation>EAN13 on outer sleeve/back</xs:documentation>
 					<xs:documentation>To be used only on products packaged in outer sleeves.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="53">
 				<xs:annotation>
-					<xs:documentation>EAN13+5 on outer sleeve/back</xs:documentation>
+					<xs:documentation>EAN13+5 on outer sleeve/back (US dollar price encoded)</xs:documentation>
 					<xs:documentation>To be used only on products packaged in outer sleeves.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
@@ -842,7 +896,7 @@
 			</xs:enumeration>
 			<xs:enumeration value="75">
 				<xs:annotation>
-					<xs:documentation>EAN13 on outer sleeve/back (CAN dollar price encoded)</xs:documentation>
+					<xs:documentation>EAN13+5 on outer sleeve/back (CAN dollar price encoded)</xs:documentation>
 					<xs:documentation>To be used only on products packaged in outer sleeves.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
@@ -874,7 +928,7 @@
 			<xs:enumeration value="AC">
 				<xs:annotation>
 					<xs:documentation>CD-Audio</xs:documentation>
-					<xs:documentation>Audio compact disc, in any recording format: use coding in Product Form Detail to specify the format, if required.</xs:documentation>
+					<xs:documentation>Audio compact disc, in any recording format: use for ‘red book’ (conventional audio CD) and SACD, and use coding in Product Form Detail to specify the format, if required.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="AD">
@@ -886,13 +940,13 @@
 			<xs:enumeration value="AE">
 				<xs:annotation>
 					<xs:documentation>Audio disc</xs:documentation>
-					<xs:documentation>Audio disc (excluding CD).</xs:documentation>
+					<xs:documentation>Audio disc (excluding CD-Audio).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="AF">
 				<xs:annotation>
 					<xs:documentation>Audio tape</xs:documentation>
-					<xs:documentation>Audio tape (open reel tape).</xs:documentation>
+					<xs:documentation>Audio tape (analogue open reel tape).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="AG">
@@ -904,7 +958,7 @@
 			<xs:enumeration value="AH">
 				<xs:annotation>
 					<xs:documentation>CD-Extra</xs:documentation>
-					<xs:documentation>Audio compact disc with part CD-ROM content.</xs:documentation>
+					<xs:documentation>Audio compact disc with part CD-ROM content, also termed CD-Plus or Enhanced-CD: use for ‘blue book’ and ‘yellow/red book’ two-session discs.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="AI">
@@ -1090,7 +1144,7 @@
 			<xs:enumeration value="DC">
 				<xs:annotation>
 					<xs:documentation>CD-I</xs:documentation>
-					<xs:documentation>CD interactive.</xs:documentation>
+					<xs:documentation>CD interactive, use for ‘green book’ discs.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="DD">
@@ -1156,7 +1210,13 @@
 			<xs:enumeration value="DN">
 				<xs:annotation>
 					<xs:documentation>Double-sided CD/DVD</xs:documentation>
-					<xs:documentation>Double-sided disc, one side Audio CD/CD-ROM, other side DVD.</xs:documentation>
+					<xs:documentation>Double-sided disc, one side CD-Audio/CD-ROM, other side DVD-Audio/DVD-Video/DVD-ROM (at least one side must be -ROM).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DO">
+				<xs:annotation>
+					<xs:documentation>Digital product license key</xs:documentation>
+					<xs:documentation>Digital product license delivered through the retail supply chain as a physical “key”, typically a card or booklet containing a code enabling the purchaser to download or activate the associated product.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="DZ">
@@ -1462,7 +1522,7 @@
 			<xs:enumeration value="WW">
 				<xs:annotation>
 					<xs:documentation>Mixed media product</xs:documentation>
-					<xs:documentation>A product consisting of two or more items in different media, eg book and CD-ROM, book and toy etc.</xs:documentation>
+					<xs:documentation>A product consisting of two or more items in different media or different product forms, eg book and CD-ROM, book and toy, hardback book and e-book, etc.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="WX">
@@ -1585,10 +1645,40 @@
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="ZG">
+				<xs:annotation>
+					<xs:documentation>E-book reader</xs:documentation>
+					<xs:documentation>Dedicated e-book reading device, typically with mono screen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZH">
+				<xs:annotation>
+					<xs:documentation>Tablet computer</xs:documentation>
+					<xs:documentation>General purpose tablet computer, typically with color screen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZI">
+				<xs:annotation>
+					<xs:documentation>Audiobook player</xs:documentation>
+					<xs:documentation>Dedicated audiobook player device, typically including book-related features like bookmarking.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZJ">
+				<xs:annotation>
+					<xs:documentation>Jigsaw</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZY">
+				<xs:annotation>
+					<xs:documentation>Oher apparel</xs:documentation>
+					<xs:documentation>Other apparel items not specified by ZB to ZJ, including promotional or branded scarves, caps, aprons etc.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="ZZ">
 				<xs:annotation>
 					<xs:documentation>Other merchandise</xs:documentation>
-					<xs:documentation>Other merchandise not specified by ZB to ZF.</xs:documentation>
+					<xs:documentation>Other merchandise not specified by ZB to ZY.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -1698,7 +1788,19 @@
 			<xs:enumeration value="09">
 				<xs:annotation>
 					<xs:documentation>CPA</xs:documentation>
-					<xs:documentation>Statistical Classification of Products by Activity in the European Economic Community, see http://ec.europa.eu/eurostat/ramon/nomenclatures/index.cfm?TargetUrl=LST_NOM_DTL&amp;StrNom=CPA_2008. Up to six digits, with one or two periods. For example, printed children’s books are “58.11.13”.</xs:documentation>
+					<xs:documentation>Statistical Classification of Products by Activity in the European Economic Community, see http://ec.europa.eu/eurostat/ramon/nomenclatures/index.cfm?TargetUrl=LST_NOM_DTL&amp;StrNom=CPA_2008. Up to six digits, with one or two periods. For example, printed children’s books are “58.11.13”, but the periods are normally ommited in ONIX.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>NCM</xs:documentation>
+					<xs:documentation>Mercosur/Mercosul Common Nomenclature, based on the Harmonised System.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="50">
+				<xs:annotation>
+					<xs:documentation>Electre genre</xs:documentation>
+					<xs:documentation>Typologie de marché géré par Electre (Market segment code maintained by Electre).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -1975,13 +2077,25 @@
 			<xs:enumeration value="044">
 				<xs:annotation>
 					<xs:documentation>iBook</xs:documentation>
-					<xs:documentation>Apple's iBook format (a proprietary extension of EPUB), can only be read on Apple iOS devices.</xs:documentation>
+					<xs:documentation>Apple’s iBook format (a proprietary extension of EPUB), can only be read on Apple iOS devices.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="045">
 				<xs:annotation>
 					<xs:documentation>ePIB</xs:documentation>
 					<xs:documentation>Proprietary format used by Barnes and Noble, readable on NOOK devices and Nook reader software.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="046">
+				<xs:annotation>
+					<xs:documentation>SCORM</xs:documentation>
+					<xs:documentation>Sharable Content Object Reference Model, standard content and packaging format for e-learning objects.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="047">
+				<xs:annotation>
+					<xs:documentation>EBP</xs:documentation>
+					<xs:documentation>E-book Plus (proprietary Norwegian e-book format based on HTML5 documents packaged within a zipped .ebp file).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="098">
@@ -2209,6 +2323,12 @@
 					<xs:documentation>Uniform Resource Name.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="29">
+				<xs:annotation>
+					<xs:documentation>Identifiant BNF des publications en série</xs:documentation>
+					<xs:documentation>French National Bibliography series ID, maintained by the Bibliothèque Nationale de France.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="List14">
@@ -2323,6 +2443,12 @@
 				<xs:annotation>
 					<xs:documentation>Expanded title</xs:documentation>
 					<xs:documentation>An expanded form of the title, eg the title of a school text book with grade and type and other details added to make the title meaningful, where otherwise it would comprise only the curriculum subject. This title type is required for submissions to the Spanish ISBN Agency.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>Alternative title</xs:documentation>
+					<xs:documentation>An alternative title that the book is widely known by, whether it appears on the book or not.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -2795,6 +2921,18 @@
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="B27">
+				<xs:annotation>
+					<xs:documentation>Thesis advisor or supervisor</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="B28">
+				<xs:annotation>
+					<xs:documentation>Thesis examiner</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="B99">
 				<xs:annotation>
 					<xs:documentation>Other adaptation by</xs:documentation>
@@ -2906,6 +3044,12 @@
 			<xs:enumeration value="F01">
 				<xs:annotation>
 					<xs:documentation>Filmed/photographed by</xs:documentation>
+					<xs:documentation>Cinematographer, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="F02">
+				<xs:annotation>
+					<xs:documentation>Editor (film or video)</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -2919,6 +3063,12 @@
 				<xs:annotation>
 					<xs:documentation>Assisted by</xs:documentation>
 					<xs:documentation>May be associated with any contributor role, and placement should therefore be controlled by contributor sequence numbering.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Z98">
+				<xs:annotation>
+					<xs:documentation>(Various roles)</xs:documentation>
+					<xs:documentation>For use ONLY with ‘et al’ or ‘Various’ within &lt;UnnamedPersons&gt;, where the roles of the multiple contributors vary.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="Z99">
@@ -3307,7 +3457,7 @@
 			<xs:enumeration value="00">
 				<xs:annotation>
 					<xs:documentation>Main content page count</xs:documentation>
-					<xs:documentation>The highest-numbered page in a single numbered sequence of main content, usually the highest Arabic-numbered page in a book; or, for books without page numbers or (rarely) with multiple numbered sequences of main content, the total number of pages that carry the main content of the book. Note that this may include numbered but otherwise blank pages (eg pages inserted to ensure chapters start on a recto page) and may exclude unnumbered (but contentful) pages such as those in inserts/plate sections. Either this or the Content Page count is the preferred page count for most books for the general reader. For books with substantial front and/or back matter, include also Front matter and Back matter page counts, or Total numbered pages. For books with inserts (plate sections), also include Total unnumbered insert page count whenever possible.</xs:documentation>
+					<xs:documentation>The highest-numbered page in a single numbered sequence of main content, usually the highest Arabic-numbered page in a book; or, for books without page numbers or (rarely) with multiple numbered sequences of main content, the total number of pages that carry the main content of the book. Note that this may include numbered but otherwise blank pages (eg pages inserted to ensure chapters start on a recto page) and may exclude unnumbered (but contentful) pages such as those in inserts/plate sections. It should exclude pages of back matter (eg any index) even when their numbering sequence continues from the main content. Either this or the Content Page count is the preferred page count for most books for the general reader. For books with substantial front and/or back matter, include also Front matter (03) and Back matter (04) page counts, or Total numbered pages (05). For books with inserts (plate sections), also include Total unnumbered insert page count whenever possible.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="02">
@@ -3325,13 +3475,13 @@
 			<xs:enumeration value="04">
 				<xs:annotation>
 					<xs:documentation>Back matter page count</xs:documentation>
-					<xs:documentation>The total number of numbered (usually Roman-numbered) pages that follow the main content of a book. This usually consists of an afterword, appendices, endnotes, index, etc. It excludes blank (or advertising) pages that are present only for convenience of printing and binding.</xs:documentation>
+					<xs:documentation>The total number of numbered (often Roman-numbered) pages that follow the main content of a book. This usually consists of an afterword, appendices, endnotes, index, etc. It excludes blank (or advertising) pages that are present only for convenience of printing and binding.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="05">
 				<xs:annotation>
 					<xs:documentation>Total numbered pages</xs:documentation>
-					<xs:documentation>The sum of all Roman- and Arabic-numbered pages. Note that this may include numbered but otherwise blank pages (eg pages inserted to ensure chapters start on a recto page) and may exclude unnumbered (but contentful) pages such as those in inserts/plate sections.</xs:documentation>
+					<xs:documentation>The sum of all Roman- and Arabic-numbered pages. Note that this may include numbered but otherwise blank pages (eg pages inserted to ensure chapters start on a recto page) and may exclude unnumbered (but contentful) pages such as those in inserts/plate sections. It is the sum of the main content (00), front matter (03) and back matter (04) page counts.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="06">
@@ -3355,7 +3505,7 @@
 			<xs:enumeration value="09">
 				<xs:annotation>
 					<xs:documentation>Duration</xs:documentation>
-					<xs:documentation>Duration in time, expressed in the specified extent unit.</xs:documentation>
+					<xs:documentation>Total duration in time, expressed in the specified extent unit. This is the ‘running time’ equivalent of codes 05 or 11.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="10">
@@ -3374,6 +3524,18 @@
 				<xs:annotation>
 					<xs:documentation>Total unnumbered insert page count</xs:documentation>
 					<xs:documentation>The total number of unnumbered pages with content inserted within the main content of a book – for example inserts/plate sections that are not numbered.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="13">
+				<xs:annotation>
+					<xs:documentation>Duration of introductory matter</xs:documentation>
+					<xs:documentation>Duration in time, expressed in the specified extent units, of introductory matter. This is the ‘running time’ equivalent of code 03, and comprises any significant amount of running time represented by announcements, titles, introduction or other material prefacing the main content.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>Duration of main content</xs:documentation>
+					<xs:documentation>Duration in time, expressed in the specified extent units, of the main content. This is the ‘running time’ equivalent of code 00, and excludes time represented by announcements, titles, introduction or other prefatory material or ‘back matter’.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="22">
@@ -3417,6 +3579,12 @@
 				<xs:annotation>
 					<xs:documentation>Seconds (integer only)</xs:documentation>
 					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Tracks</xs:documentation>
+					<xs:documentation>Of an audiobook on CD (or a similarly divided selection of audio files). Conventionally, each track is 3–6 minutes of running time, and track counts are misleading and inappropriate if the average track duration is significantly more or less than this. Note that track breaks are not necessarily aligned with structural breaks in the text (eg chapter breaks).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="14">
@@ -3700,7 +3868,7 @@
 			<xs:enumeration value="10">
 				<xs:annotation>
 					<xs:documentation>BISAC Subject Heading</xs:documentation>
-					<xs:documentation>BISAC Subject Headings are used in the North American market to categorize books based on topical content. They serve as a guideline for shelving books in physical stores and browsing books in online stores. See ‘http://www.bisg.org/what-we-do-cat-20-classification-schemes.php’.</xs:documentation>
+					<xs:documentation>BISAC Subject Headings are used in the North American market to categorize books based on topical content. They serve as a guideline for shelving books in physical stores and browsing books in online stores. See 'https://www.bisg.org/complete-bisac-subject-headings-2013-edition'.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="11">
@@ -3802,7 +3970,7 @@
 			<xs:enumeration value="27">
 				<xs:annotation>
 					<xs:documentation>SWD</xs:documentation>
-					<xs:documentation>Schlagwortnormdatei – Subject Headings Authority File in the German-speaking countries. See http://www.d-nb.de/standardisierung/normdateien/swd.htm (in German) and http://www.d-nb.de/eng/standardisierung/normdateien/swd.htm (English).</xs:documentation>
+					<xs:documentation>Schlagwortnormdatei – Subject Headings Authority File in the German-speaking countries. See http://www.d-nb.de/standardisierung/normdateien/swd.htm (in German) and http://www.d-nb.de/eng/standardisierung/normdateien/swd.htm (English). DEPRECATED in favour of the GND.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="28">
@@ -3814,7 +3982,7 @@
 			<xs:enumeration value="29">
 				<xs:annotation>
 					<xs:documentation>CLIL</xs:documentation>
-					<xs:documentation>France, see Appendix in http://www.clil.org/information/telechargementDoc.html?action=ouvrir&amp;id=313 (in French).</xs:documentation>
+					<xs:documentation>France. A four-digit number, see http://www.clil.org/information/documentation.html (in French). The first digit identifies the version of the scheme.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="30">
@@ -3958,7 +4126,7 @@
 			<xs:enumeration value="53">
 				<xs:annotation>
 					<xs:documentation>Soggetto CCE</xs:documentation>
-					<xs:documentation>Classificazione commerciale editoriale (Italian book trade subject category based on BIC).</xs:documentation>
+					<xs:documentation>Classificazione commerciale editoriale (Italian book trade subject category based on BIC). CCE documentation available at ‘http://www.ie-online.it/CCE2_2.0.pdf’.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="54">
@@ -4141,6 +4309,84 @@
 					<xs:documentation>Used for classification of academic and specialist publication in German-speaking countries. See http://www.newbooks-services.com/de/top/unternehmensportrait/klassifikation-und-mapping.html (German) and http://www.newbooks-services.com/en/top/about-newbooks/classification-mapping.html (English).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="91">
+				<xs:annotation>
+					<xs:documentation>GND</xs:documentation>
+					<xs:documentation>Gemeinsame Normdatei – Joint Authority File in the German-speaking countries. See http://www.dnb.de/EN/Standardisierung/Normdaten/GND/gnd_node.html (English). Combines the PND, SWD and GKD into a single authority file, and should be used in preference to the older codes.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="92">
+				<xs:annotation>
+					<xs:documentation>BIC UKSLC</xs:documentation>
+					<xs:documentation>UK Standard Library Categories, the successor to BIC’s E4L classification scheme.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="93">
+				<xs:annotation>
+					<xs:documentation>Thema subject category</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="94">
+				<xs:annotation>
+					<xs:documentation>Thema geographical qualifier</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="95">
+				<xs:annotation>
+					<xs:documentation>Thema language qualifier</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="96">
+				<xs:annotation>
+					<xs:documentation>Thema time period qualifier</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="97">
+				<xs:annotation>
+					<xs:documentation>Thema educational purpose qualifier</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Thema interest age / special interest qualifier</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Thema style qualifier</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="A2">
+				<xs:annotation>
+					<xs:documentation>Ämnesord</xs:documentation>
+					<xs:documentation>Swedish subject categories maintained by Bokrondellen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="A3">
+				<xs:annotation>
+					<xs:documentation>Statystyka Książek Papierowych, Mówionych I Elektronicznych</xs:documentation>
+					<xs:documentation>Polish Statistical Book and E-book Classification.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="A5">
+				<xs:annotation>
+					<xs:documentation>Rameau</xs:documentation>
+					<xs:documentation>French library classification.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="A6">
+				<xs:annotation>
+					<xs:documentation>Nomenclature discipline scolaire</xs:documentation>
+					<xs:documentation>French educational subject classification, used for example on WizWiz.fr. See ‘http://www.kiosque-edu.com/html/onix/Nomenclature_disciplines.csv’.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="List27">
@@ -4205,7 +4451,7 @@
 			<xs:enumeration value="10">
 				<xs:annotation>
 					<xs:documentation>BISAC Subject Heading</xs:documentation>
-					<xs:documentation>BISAC Subject Headings are used in the North American market to categorize books based on topical content. They serve as a guideline for shelving books in physical stores and browsing books in online stores. See ‘http://www.bisg.org/what-we-do-cat-20-classification-schemes.php’.</xs:documentation>
+					<xs:documentation>BISAC Subject Headings are used in the North American market to categorize books based on topical content. They serve as a guideline for shelving books in physical stores and browsing books in online stores. See ‘https://www.bisg.org/complete-bisac-subject-headings-2013-edition’.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="11">
@@ -4307,7 +4553,7 @@
 			<xs:enumeration value="27">
 				<xs:annotation>
 					<xs:documentation>SWD</xs:documentation>
-					<xs:documentation>Schlagwortnormdatei – Subject Headings Authority File in the German-speaking countries. See http://www.d-nb.de/standardisierung/normdateien/swd.htm (in German) and http://www.d-nb.de/eng/standardisierung/normdateien/swd.htm (English).</xs:documentation>
+					<xs:documentation>Schlagwortnormdatei – Subject Headings Authority File in the German-speaking countries. See http://www.d-nb.de/standardisierung/normdateien/swd.htm (in German) and http://www.d-nb.de/eng/standardisierung/normdateien/swd.htm (English). DEPRECATED in favour of the GND.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="28">
@@ -4319,7 +4565,7 @@
 			<xs:enumeration value="29">
 				<xs:annotation>
 					<xs:documentation>CLIL</xs:documentation>
-					<xs:documentation>France, see Appendix in http://www.clil.org/information/telechargementDoc.html?action=ouvrir&amp;id=313 (in French).</xs:documentation>
+					<xs:documentation>France. A four-digit number, see http://www.clil.org/information/documentation.html (in French). The first digit identifies the version of the scheme.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="30">
@@ -4682,6 +4928,90 @@
 					<xs:documentation>Subject classification for Books, Audiovisual products and E-publications formulated by China National Technical Committee 505.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="90">
+				<xs:annotation>
+					<xs:documentation>Season and Event Indicator</xs:documentation>
+					<xs:documentation>German code scheme indicating association with seasons, holidays, events (eg Autumn, Back to School, Easter).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="91">
+				<xs:annotation>
+					<xs:documentation>GND</xs:documentation>
+					<xs:documentation>Gemeinsame Normdatei – Joint Authority File in the German-speaking countries. See http://www.dnb.de/EN/Standardisierung/Normdaten/GND/gnd_node.html (English). Combines the PND, SWD and GKD into a single authority file, and should be used in preference to the older codes.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="92">
+				<xs:annotation>
+					<xs:documentation>BIC UKSLC</xs:documentation>
+					<xs:documentation>UK Standard Library Categories, the successor to BIC’s E4L classification scheme.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="93">
+				<xs:annotation>
+					<xs:documentation>Thema subject category</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="94">
+				<xs:annotation>
+					<xs:documentation>Thema geographical qualifier</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="95">
+				<xs:annotation>
+					<xs:documentation>Thema language qualifier</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="96">
+				<xs:annotation>
+					<xs:documentation>Thema time period qualifier</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="97">
+				<xs:annotation>
+					<xs:documentation>Thema educational purpose qualifier</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Thema interest age / special interest qualifier</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>Thema style qualifier</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="A2">
+				<xs:annotation>
+					<xs:documentation>Ämnesord</xs:documentation>
+					<xs:documentation>Swedish subject categories maintained by Bokrondellen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="A3">
+				<xs:annotation>
+					<xs:documentation>Statystyka Książek Papierowych, Mówionych I Elektronicznych</xs:documentation>
+					<xs:documentation>Polish Statistical Book and E-book Classification.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="A5">
+				<xs:annotation>
+					<xs:documentation>Rameau</xs:documentation>
+					<xs:documentation>French library classification.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="A6">
+				<xs:annotation>
+					<xs:documentation>Nomenclature discipline scolaire</xs:documentation>
+					<xs:documentation>French educational subject classification, used for example on WizWiz.fr. See ‘http://www.kiosque-edu.com/html/onix/Nomenclature_disciplines.csv’.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="List28">
@@ -4747,7 +5077,7 @@
 			<xs:enumeration value="01">
 				<xs:annotation>
 					<xs:documentation>ONIX audience codes</xs:documentation>
-					<xs:documentation>Using List 28.</xs:documentation>
+					<xs:documentation>Using a code from List 28.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="02">
@@ -4855,13 +5185,61 @@
 			<xs:enumeration value="19">
 				<xs:annotation>
 					<xs:documentation>Lexile measure</xs:documentation>
-					<xs:documentation>Lexile measure (the measure in &lt;ComplexityCode&gt; may optionally be prefixed by the Lexile code). Examples might be ‘880L’, ‘AD0L’ or ‘HL600L’.</xs:documentation>
+					<xs:documentation>Lexile measure (the Lexile measure in &lt;AudienceCodeValue&gt; may optionally be prefixed by the Lexile code). Examples might be ‘880L’, ‘AD0L’ or ‘HL600L’. Deprecated – use &lt;Complexity&gt; instead.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="20">
 				<xs:annotation>
 					<xs:documentation>Fry Readability score</xs:documentation>
-					<xs:documentation>Fry readability metric based on number of sentences and syllables per 100 words. Expressed as a number from 1 to 15 in &lt;AudienceCodeValue&gt;.</xs:documentation>
+					<xs:documentation>Fry readability metric based on number of sentences and syllables per 100 words. Expressed as a number from 1 to 15 in &lt;AudienceCodeValue&gt;. Deprecated – use &lt;Complexity&gt; instead.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="21">
+				<xs:annotation>
+					<xs:documentation>Japanese Children’s audience code</xs:documentation>
+					<xs:documentation>Children’s audience code (対象読者), two-digit encoding of intended target readership from 0–2 years up to High School level.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="22">
+				<xs:annotation>
+					<xs:documentation>ONIX Adult audience rating</xs:documentation>
+					<xs:documentation>Publisher’s rating indicating suitability for an particular adult audience, using a code from List 203.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>Common European Framework for Language Learning</xs:documentation>
+					<xs:documentation>Codes A1 to C2 indicating standardised level of language learning or teaching material, from beginner to advanced, used in EU.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="24">
+				<xs:annotation>
+					<xs:documentation>Korean Publication Ethics Commission rating</xs:documentation>
+					<xs:documentation>Rating used in Korea to control selling of books and e-books to minors. Current values are 0 (suitable for all) and 19 (only for sale to ages 19+). See ‘http://www.kpec.or.kr/english/’.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>IoE Book Band</xs:documentation>
+					<xs:documentation>UK Institute of Education Book Bands for Guided Reading scheme (see http://www.ioe.ac.uk/research/4664.html). &lt;AudienceCodeValue&gt; is a colour, eg ‘Pink A’ or ‘Copper’. Deprecated – use &lt;Complexity&gt; instead.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="26">
+				<xs:annotation>
+					<xs:documentation>FSK Lehr-/Infoprogramm</xs:documentation>
+					<xs:documentation>Used for German videos/DVDs with educational or informative content; value for &lt;AudienceCodeValue&gt; must be either ‘Infoprogramm gemäß § 14 JuSchG’ or ‘Lehrprogramm gemäß § 14 JuSchG’.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation>Intended audience language</xs:documentation>
+					<xs:documentation>Where this is different from the language of the text of the book recorded in &lt;Language&gt;. &lt;AudienceCodeValue&gt; should be a value from List 74.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="28">
+				<xs:annotation>
+					<xs:documentation>PEGI rating</xs:documentation>
+					<xs:documentation>Pan European Game Information rating used primarily for video games.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -4973,6 +5351,12 @@
 					<xs:documentation>Values are P, K, 1–17 (including college-level audiences).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="30">
+				<xs:annotation>
+					<xs:documentation>Nomenclature niveaux</xs:documentation>
+					<xs:documentation>French educational level classification, used for example on WizWiz.fr. See http://www.kiosque-edu.com/html/onix/Nomenclature_niveaux.csv’.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="List31">
@@ -5008,19 +5392,43 @@
 			<xs:enumeration value="01">
 				<xs:annotation>
 					<xs:documentation>Lexile code</xs:documentation>
-					<xs:documentation>DEPRECATED in ONIX 3 – use &lt;Audience&gt; instead.</xs:documentation>
+					<xs:documentation>For example AD or HL. DEPRECATED in ONIX 3 – use code 06 instead.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="02">
 				<xs:annotation>
 					<xs:documentation>Lexile number</xs:documentation>
-					<xs:documentation>DEPRECATED in ONIX 3 – use &lt;Audience&gt; instead.</xs:documentation>
+					<xs:documentation>For example 880L. DEPRECATED in ONIX 3 – use code 06 instead.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="03">
 				<xs:annotation>
 					<xs:documentation>Fry Readability score</xs:documentation>
-					<xs:documentation>DEPRECATED in ONIX 3 – Use &lt;Audience&gt; instead. Fry readability metric based on number of sentences and syllables per 100 words. Expressed as a number from 1 to 15 in &lt;ComplexityCode&gt;.</xs:documentation>
+					<xs:documentation>Fry readability metric based on number of sentences and syllables per 100 words. Expressed as a number from 1 to 15 in &lt;ComplexityCode&gt;.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="04">
+				<xs:annotation>
+					<xs:documentation>IoE Book Band</xs:documentation>
+					<xs:documentation>UK Institute of Education Book Bands for Guided Reading scheme (see http://www.ioe.ac.uk/research/4664.html). &lt;ComplexityCode&gt; is a colour, eg ‘Pink A’ or ‘Copper’.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="05">
+				<xs:annotation>
+					<xs:documentation>Fountas and Pinnell Text Level Gradient</xs:documentation>
+					<xs:documentation>&lt;ComplexityCode&gt; is a code from ‘A’ to Z+’.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="06">
+				<xs:annotation>
+					<xs:documentation>Lexile measure</xs:documentation>
+					<xs:documentation>The Lexile measure in &lt;ComplexityCode&gt; combines the Lexile number (for example 620L or 880L) and optionally the Lexile code (for example AD or HL). Examples might be ‘880L’, ‘AD0L’ or ‘HL600L’.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="07">
+				<xs:annotation>
+					<xs:documentation>ATOS for Books</xs:documentation>
+					<xs:documentation>Advantage-TASA Open Standard book readability score, used for example within the Accelerated Reader scheme. &lt;ComplexityCode&gt; is a real number between 0 and 17.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -5262,6 +5670,30 @@
 				<xs:annotation>
 					<xs:documentation>Long description for series or set</xs:documentation>
 					<xs:documentation>(of which the product is a part.)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="45">
+				<xs:annotation>
+					<xs:documentation>Contributor event schedule</xs:documentation>
+					<xs:documentation>Link to a schedule in iCalendar format.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="46">
+				<xs:annotation>
+					<xs:documentation>License</xs:documentation>
+					<xs:documentation>Link to a license covering permitted usage of the product content.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="47">
+				<xs:annotation>
+					<xs:documentation>Open access statement</xs:documentation>
+					<xs:documentation>Short summary statement of open access status and any related conditions (eg “Open access – no commercial use”), primarily for marketing purposes. Should always be accompanied by a link to the complete license (see code 46).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="98">
+				<xs:annotation>
+					<xs:documentation>Master brand name</xs:documentation>
+					<xs:documentation>A master brand name or title, where the use of the brand spans multiple sets, series and product forms, and possibly multiple imprints and publishers. Used only for branded media properties such as children’s character properties. (This functionality is provided as a workaround in ONIX 2.1 only. ONIX 3.0 has specific provision for master brands as title elements.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="99">
@@ -5557,6 +5989,12 @@
 					<xs:documentation>Use only for a logo which is specific to an individual product.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="16">
+				<xs:annotation>
+					<xs:documentation>Image: Master brand logo</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="17">
 				<xs:annotation>
 					<xs:documentation>Image: publisher logo</xs:documentation>
@@ -5584,7 +6022,7 @@
 			<xs:enumeration value="24">
 				<xs:annotation>
 					<xs:documentation>Image: back cover</xs:documentation>
-					<xs:documentation>Quality unspecified: if sending both a standard quality and a high quality image, use 24 for standard quality and 26 for high quality.</xs:documentation>
+					<xs:documentation>Quality unspecified: if sending both a standard quality and a high quality image, use 24 for standard quality and 25 for high quality.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="25">
@@ -5765,7 +6203,7 @@
 			<xs:enumeration value="07">
 				<xs:annotation>
 					<xs:documentation>MP3</xs:documentation>
-					<xs:documentation>MPEG-1/2 Audio Layer III file.</xs:documentation>
+					<xs:documentation>MPEG-1/2 Audio Layer III file (.mp3).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="08">
@@ -5783,49 +6221,49 @@
 			<xs:enumeration value="10">
 				<xs:annotation>
 					<xs:documentation>WMA</xs:documentation>
-					<xs:documentation>Windows Media Audio format.</xs:documentation>
+					<xs:documentation>Windows Media Audio format (.wma).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="11">
 				<xs:annotation>
 					<xs:documentation>AAC</xs:documentation>
-					<xs:documentation>Advanced Audio Codec format.</xs:documentation>
+					<xs:documentation>Advanced Audio Codec format (.aac).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="12">
 				<xs:annotation>
 					<xs:documentation>WAV</xs:documentation>
-					<xs:documentation>Waveform audio file.</xs:documentation>
+					<xs:documentation>Waveform audio file (.wav).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="13">
 				<xs:annotation>
 					<xs:documentation>AIFF</xs:documentation>
-					<xs:documentation>Audio Interchange File Format.</xs:documentation>
+					<xs:documentation>Audio Interchange File Format (.aiff).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="14">
 				<xs:annotation>
 					<xs:documentation>WMV</xs:documentation>
-					<xs:documentation>Windows Media Video format.</xs:documentation>
+					<xs:documentation>Windows Media Video format (.wmv).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="15">
 				<xs:annotation>
 					<xs:documentation>OGG</xs:documentation>
-					<xs:documentation>Ogg container format.</xs:documentation>
+					<xs:documentation>Ogg container format (.ogg).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="16">
 				<xs:annotation>
 					<xs:documentation>AVI</xs:documentation>
-					<xs:documentation>Audio Video Interleaved container format.</xs:documentation>
+					<xs:documentation>Audio Video Interleaved container format (.avi).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="17">
 				<xs:annotation>
 					<xs:documentation>MOV</xs:documentation>
-					<xs:documentation>Quicktime container format.</xs:documentation>
+					<xs:documentation>Quicktime container format (.mov).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="18">
@@ -5911,25 +6349,31 @@
 			<xs:enumeration value="03">
 				<xs:annotation>
 					<xs:documentation>Commended</xs:documentation>
-					<xs:documentation/>
+					<xs:documentation>Cited as being worthy of special attention at the final stage of the judging process, but not named specifically as winner or runner-up. Possible terminology used by a particular prize includes ‘specially commended’ or ‘honored’.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="04">
 				<xs:annotation>
 					<xs:documentation>Short-listed</xs:documentation>
-					<xs:documentation>Nominated by the judging process to be one of the final ‘short-list’ from which the winner is selected.</xs:documentation>
+					<xs:documentation>Title named by the judging process to be one of the final list of candidates, such as a ‘short-list’ from which the winner is selected, or a title named as ‘finalist’.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="05">
 				<xs:annotation>
 					<xs:documentation>Long-listed</xs:documentation>
-					<xs:documentation>Nominated by the judging process to be one of the preliminary ‘long-list’ from which first a short-list and then the winner is selected.</xs:documentation>
+					<xs:documentation>Title named by the judging process to be one of the preliminary list of candidates, such as a ‘long-list’ from which first a shorter list or set of finalists is selected, and then the winner is announced.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="06">
 				<xs:annotation>
 					<xs:documentation>Joint winner</xs:documentation>
 					<xs:documentation>Or co-winner.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="07">
+				<xs:annotation>
+					<xs:documentation>Nominated</xs:documentation>
+					<xs:documentation>Selected by judging panel or an official nominating process for final consideration for a prize, award or honour for which no “short-list” or “long list” exists.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -6072,10 +6516,16 @@
 					<xs:documentation>For serial items only.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>ISTC</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="15">
 				<xs:annotation>
 					<xs:documentation>ISBN-13</xs:documentation>
-					<xs:documentation>(unhyphenated).</xs:documentation>
+					<xs:documentation>(Unhyphenated).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -6154,7 +6604,7 @@
 			<xs:enumeration value="17">
 				<xs:annotation>
 					<xs:documentation>PND</xs:documentation>
-					<xs:documentation>Personennamendatei – person name authority file used by Deutsche Nationalbibliothek and in other German-speaking countries. See http://www.d-nb.de/standardisierung/normdateien/pnd.htm (German) or http://www.d-nb.de/eng/standardisierung/normdateien/pnd.htm (English).</xs:documentation>
+					<xs:documentation>Personennamendatei – person name authority file used by Deutsche Nationalbibliothek and in other German-speaking countries. See http://www.d-nb.de/standardisierung/normdateien/pnd.htm (German) or http://www.d-nb.de/eng/standardisierung/normdateien/pnd.htm (English). DEPRECATED in favour of the GND.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="18">
@@ -6172,7 +6622,7 @@
 			<xs:enumeration value="20">
 				<xs:annotation>
 					<xs:documentation>GKD</xs:documentation>
-					<xs:documentation>Gemeinsame Körperschaftsdatei – Corporate Body Authority File in the German-speaking countries. See http://www.d-nb.de/standardisierung/normdateien/gkd.htm (German) or http://www.d-nb.de/eng/standardisierung/normdateien/gkd.htm (English).</xs:documentation>
+					<xs:documentation>Gemeinsame Körperschaftsdatei – Corporate Body Authority File in the German-speaking countries. See http://www.d-nb.de/standardisierung/normdateien/gkd.htm (German) or http://www.d-nb.de/eng/standardisierung/normdateien/gkd.htm (English). DEPRECATED in favour of the GND.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="21">
@@ -6190,13 +6640,43 @@
 			<xs:enumeration value="23">
 				<xs:annotation>
 					<xs:documentation>VAT Identity Number</xs:documentation>
-					<xs:documentation>Identifier for a business organization for VAT purposes, eg within the EU's VIES system. See http://ec.europa.eu/taxation_customs/vies/faqvies.do for EU VAT ID formats, which vary from country to country. Generally these consist of a two-letter country code followed by the 8–12 digits of the national VAT ID. Some countries include one or two letters within their VAT ID. See http://en.wikipedia.org/wiki/VAT_identification_number for non-EU countries that maintain similar identifiers. Spaces, dashes etc should be omitted.</xs:documentation>
+					<xs:documentation>Identifier for a business organization for VAT purposes, eg within the EU’s VIES system. See http://ec.europa.eu/taxation_customs/vies/faqvies.do for EU VAT ID formats, which vary from country to country. Generally these consist of a two-letter country code followed by the 8–12 digits of the national VAT ID. Some countries include one or two letters within their VAT ID. See http://en.wikipedia.org/wiki/VAT_identification_number for non-EU countries that maintain similar identifiers. Spaces, dashes etc should be omitted.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="24">
 				<xs:annotation>
 					<xs:documentation>JP Distribution Identifier</xs:documentation>
 					<xs:documentation>4-digit business organization identifier controlled by the Japanese Publication Wholesalers Association.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>GND</xs:documentation>
+					<xs:documentation>Gemeinsame Normdatei – Joint Authority File in the German-speaking countries. See http://www.dnb.de/EN/Standardisierung/Normdaten/GND/gnd_node.html (English). Combines the PND, SWD and GKD into a single authority file, and should be used in preference.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="26">
+				<xs:annotation>
+					<xs:documentation>DUNS</xs:documentation>
+					<xs:documentation>Dunn and Bradstreet Universal Numbering System, see ‘www.dnb.co.uk/dandb-duns-number’.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation>Ringgold ID</xs:documentation>
+					<xs:documentation>Ringgold organizational identifier, see ‘http://www.ringgold.com/pages/identify.html’.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="28">
+				<xs:annotation>
+					<xs:documentation>Identifiant Editeur Electre</xs:documentation>
+					<xs:documentation>French Electre publisher identifier.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="30">
+				<xs:annotation>
+					<xs:documentation>Identifiant Marque Electre</xs:documentation>
+					<xs:documentation>French Electre imprint Identifier.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -6215,7 +6695,7 @@
 			<xs:enumeration value="02">
 				<xs:annotation>
 					<xs:documentation>Co-publisher</xs:documentation>
-					<xs:documentation/>
+					<xs:documentation>Use where two or more publishers co-publish the exact same product, either under a single ISBN (in which case both publishers are co-publishers), or under different ISBNs (in which case the publisher of THIS ISBN is the publisher and the publishers of OTHER ISBNs are co-publishers. Note this is different from publication of ‘co-editions’.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="03">
@@ -6284,6 +6764,36 @@
 					<xs:documentation>When ownership of a product or title is transferred from one publisher to another (complement of code 09).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>Publication funder</xs:documentation>
+					<xs:documentation>Body funding publication fees, if different from the body funding the underlying research. For use with open access publications.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="15">
+				<xs:annotation>
+					<xs:documentation>Research funder</xs:documentation>
+					<xs:documentation>Body funding the research on which publication is based, if different from the body funding the publication. For use with open access publications.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="16">
+				<xs:annotation>
+					<xs:documentation>Funding body</xs:documentation>
+					<xs:documentation>Body funding research and publication. For use with open access publications.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="17">
+				<xs:annotation>
+					<xs:documentation>Printer</xs:documentation>
+					<xs:documentation>Organisation responsible for printing a printed product. Supplied primarily to meet legal deposit requirements, and may apply only to the first impression. The organisation may also be responsible for binding, when a separate binder is not specified.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="18">
+				<xs:annotation>
+					<xs:documentation>Binder</xs:documentation>
+					<xs:documentation>Organisation responsible for binding a printed product (where distinct from the printer). Supplied primarily to meet legal deposit requirements, and may apply only to the first impression.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="List46">
@@ -6299,13 +6809,13 @@
 			</xs:enumeration>
 			<xs:enumeration value="01">
 				<xs:annotation>
-					<xs:documentation>For unrestricted sale with exclusive rights in the specified countries or territories</xs:documentation>
+					<xs:documentation>For sale with exclusive rights in the specified countries or territories</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="02">
 				<xs:annotation>
-					<xs:documentation>For unrestricted sale with non-exclusive rights in the specified countries or territories</xs:documentation>
+					<xs:documentation>For sale with non-exclusive rights in the specified countries or territories</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -6336,13 +6846,13 @@
 			<xs:enumeration value="07">
 				<xs:annotation>
 					<xs:documentation>For sale with exclusive rights in the specified countries or territories (sales restriction applies)</xs:documentation>
-					<xs:documentation>Only for use with ONIX 3.</xs:documentation>
+					<xs:documentation>Only for use with ONIX 3. Deprecated.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="08">
 				<xs:annotation>
 					<xs:documentation>For sale with non-exclusive rights in the specified countries or territories (sales restriction applies)</xs:documentation>
-					<xs:documentation>Only for use with ONIX 3.</xs:documentation>
+					<xs:documentation>Only for use with ONIX 3. Deprecated.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -6639,6 +7149,1170 @@
 			<xs:enumeration value="GB-WLS">
 				<xs:annotation>
 					<xs:documentation>Wales</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IE-AIR">
+				<xs:annotation>
+					<xs:documentation>Ireland airside</xs:documentation>
+					<xs:documentation>Airside outlets at Irish international airports only.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-AG">
+				<xs:annotation>
+					<xs:documentation>Agrigento</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-AL">
+				<xs:annotation>
+					<xs:documentation>Alessandria</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-AN">
+				<xs:annotation>
+					<xs:documentation>Ancona</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-AO">
+				<xs:annotation>
+					<xs:documentation>Aosta</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-AR">
+				<xs:annotation>
+					<xs:documentation>Arezzo</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-AP">
+				<xs:annotation>
+					<xs:documentation>Ascoli Piceno</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-AT">
+				<xs:annotation>
+					<xs:documentation>Asti</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-AV">
+				<xs:annotation>
+					<xs:documentation>Avellino</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-BA">
+				<xs:annotation>
+					<xs:documentation>Bari</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-BT">
+				<xs:annotation>
+					<xs:documentation>Barletta-Andria-Trani</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-BL">
+				<xs:annotation>
+					<xs:documentation>Belluno</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-BN">
+				<xs:annotation>
+					<xs:documentation>Benevento</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-BG">
+				<xs:annotation>
+					<xs:documentation>Bergamo</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-BI">
+				<xs:annotation>
+					<xs:documentation>Biella</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-BO">
+				<xs:annotation>
+					<xs:documentation>Bologna</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-BZ">
+				<xs:annotation>
+					<xs:documentation>Bolzano</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-BS">
+				<xs:annotation>
+					<xs:documentation>Brescia</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-BR">
+				<xs:annotation>
+					<xs:documentation>Brindisi</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-CA">
+				<xs:annotation>
+					<xs:documentation>Cagliari</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-CL">
+				<xs:annotation>
+					<xs:documentation>Caltanissetta</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-CB">
+				<xs:annotation>
+					<xs:documentation>Campobasso</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-CI">
+				<xs:annotation>
+					<xs:documentation>Carbonia-Iglesias</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-CE">
+				<xs:annotation>
+					<xs:documentation>Caserta</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-CT">
+				<xs:annotation>
+					<xs:documentation>Catania</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-CZ">
+				<xs:annotation>
+					<xs:documentation>Catanzaro</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-CH">
+				<xs:annotation>
+					<xs:documentation>Chieti</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-CO">
+				<xs:annotation>
+					<xs:documentation>Como</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-CS">
+				<xs:annotation>
+					<xs:documentation>Cosenza</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-CR">
+				<xs:annotation>
+					<xs:documentation>Cremona</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-KR">
+				<xs:annotation>
+					<xs:documentation>Crotone</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-CN">
+				<xs:annotation>
+					<xs:documentation>Cuneo</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-EN">
+				<xs:annotation>
+					<xs:documentation>Enna</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-FM">
+				<xs:annotation>
+					<xs:documentation>Fermo</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-FE">
+				<xs:annotation>
+					<xs:documentation>Ferrara</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-FI">
+				<xs:annotation>
+					<xs:documentation>Firenze</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-FG">
+				<xs:annotation>
+					<xs:documentation>Foggia</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-FC">
+				<xs:annotation>
+					<xs:documentation>Forlì-Cesena</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-FR">
+				<xs:annotation>
+					<xs:documentation>Frosinone</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-GE">
+				<xs:annotation>
+					<xs:documentation>Genova</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-GO">
+				<xs:annotation>
+					<xs:documentation>Gorizia</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-GR">
+				<xs:annotation>
+					<xs:documentation>Grosseto</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-IM">
+				<xs:annotation>
+					<xs:documentation>Imperia</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-IS">
+				<xs:annotation>
+					<xs:documentation>Isernia</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-SP">
+				<xs:annotation>
+					<xs:documentation>La Spezia</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-AQ">
+				<xs:annotation>
+					<xs:documentation>L’Aquila</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-LT">
+				<xs:annotation>
+					<xs:documentation>Latina</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-LE">
+				<xs:annotation>
+					<xs:documentation>Lecce</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-LC">
+				<xs:annotation>
+					<xs:documentation>Lecco</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-LI">
+				<xs:annotation>
+					<xs:documentation>Livorno</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-LO">
+				<xs:annotation>
+					<xs:documentation>Lodi</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-LU">
+				<xs:annotation>
+					<xs:documentation>Lucca</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-MC">
+				<xs:annotation>
+					<xs:documentation>Macerata</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-MN">
+				<xs:annotation>
+					<xs:documentation>Mantova</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-MS">
+				<xs:annotation>
+					<xs:documentation>Massa-Carrara</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-MT">
+				<xs:annotation>
+					<xs:documentation>Matera</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-VS">
+				<xs:annotation>
+					<xs:documentation>Medio Campidano</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-ME">
+				<xs:annotation>
+					<xs:documentation>Messina</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-MI">
+				<xs:annotation>
+					<xs:documentation>Milano</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-MO">
+				<xs:annotation>
+					<xs:documentation>Modena</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-MB">
+				<xs:annotation>
+					<xs:documentation>Monza e Brianza</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-NA">
+				<xs:annotation>
+					<xs:documentation>Napoli</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-NO">
+				<xs:annotation>
+					<xs:documentation>Novara</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-NU">
+				<xs:annotation>
+					<xs:documentation>Nuoro</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-OG">
+				<xs:annotation>
+					<xs:documentation>Ogliastra</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-OT">
+				<xs:annotation>
+					<xs:documentation>Olbia-Tempio</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-OR">
+				<xs:annotation>
+					<xs:documentation>Oristano</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-PD">
+				<xs:annotation>
+					<xs:documentation>Padova</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-PA">
+				<xs:annotation>
+					<xs:documentation>Palermo</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-PR">
+				<xs:annotation>
+					<xs:documentation>Parma</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-PV">
+				<xs:annotation>
+					<xs:documentation>Pavia</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-PG">
+				<xs:annotation>
+					<xs:documentation>Perugia</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-PU">
+				<xs:annotation>
+					<xs:documentation>Pesaro e Urbino</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-PE">
+				<xs:annotation>
+					<xs:documentation>Pescara</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-PC">
+				<xs:annotation>
+					<xs:documentation>Piacenza</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-PI">
+				<xs:annotation>
+					<xs:documentation>Pisa</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-PT">
+				<xs:annotation>
+					<xs:documentation>Pistoia</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-PN">
+				<xs:annotation>
+					<xs:documentation>Pordenone</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-PZ">
+				<xs:annotation>
+					<xs:documentation>Potenza</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-PO">
+				<xs:annotation>
+					<xs:documentation>Prato</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-RG">
+				<xs:annotation>
+					<xs:documentation>Ragusa</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-RA">
+				<xs:annotation>
+					<xs:documentation>Ravenna</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-RC">
+				<xs:annotation>
+					<xs:documentation>Reggio Calabria</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-RE">
+				<xs:annotation>
+					<xs:documentation>Reggio Emilia</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-RI">
+				<xs:annotation>
+					<xs:documentation>Rieti</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-RN">
+				<xs:annotation>
+					<xs:documentation>Rimini</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-RM">
+				<xs:annotation>
+					<xs:documentation>Roma</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-RO">
+				<xs:annotation>
+					<xs:documentation>Rovigo</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-SA">
+				<xs:annotation>
+					<xs:documentation>Salerno</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-SS">
+				<xs:annotation>
+					<xs:documentation>Sassari</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-SV">
+				<xs:annotation>
+					<xs:documentation>Savona</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-SI">
+				<xs:annotation>
+					<xs:documentation>Siena</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-SR">
+				<xs:annotation>
+					<xs:documentation>Siracusa</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-SO">
+				<xs:annotation>
+					<xs:documentation>Sondrio</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-TA">
+				<xs:annotation>
+					<xs:documentation>Taranto</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-TE">
+				<xs:annotation>
+					<xs:documentation>Teramo</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-TR">
+				<xs:annotation>
+					<xs:documentation>Terni</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-TO">
+				<xs:annotation>
+					<xs:documentation>Torino</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-TP">
+				<xs:annotation>
+					<xs:documentation>Trapani</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-TN">
+				<xs:annotation>
+					<xs:documentation>Trento</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-TV">
+				<xs:annotation>
+					<xs:documentation>Treviso</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-TS">
+				<xs:annotation>
+					<xs:documentation>Trieste</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-UD">
+				<xs:annotation>
+					<xs:documentation>Udine</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-VA">
+				<xs:annotation>
+					<xs:documentation>Varese</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-VE">
+				<xs:annotation>
+					<xs:documentation>Venezia</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-VB">
+				<xs:annotation>
+					<xs:documentation>Verbano-Cusio-Ossola</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-VC">
+				<xs:annotation>
+					<xs:documentation>Vercelli</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-VR">
+				<xs:annotation>
+					<xs:documentation>Verona</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-VV">
+				<xs:annotation>
+					<xs:documentation>Vibo Valentia</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-VI">
+				<xs:annotation>
+					<xs:documentation>Vicenza</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT-VT">
+				<xs:annotation>
+					<xs:documentation>Viterbo</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-AD">
+				<xs:annotation>
+					<xs:documentation>Republic of Adygeya</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-AL">
+				<xs:annotation>
+					<xs:documentation>Republic of Altay</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-BA">
+				<xs:annotation>
+					<xs:documentation>Republic of Bashkortostan</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-BU">
+				<xs:annotation>
+					<xs:documentation>Republic of Buryatiya</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-CE">
+				<xs:annotation>
+					<xs:documentation>Chechenskaya Republic</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-CU">
+				<xs:annotation>
+					<xs:documentation>Chuvashskaya Republic</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-DA">
+				<xs:annotation>
+					<xs:documentation>Republic of Dagestan</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-IN">
+				<xs:annotation>
+					<xs:documentation>Republic of Ingushetiya</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KB">
+				<xs:annotation>
+					<xs:documentation>Kabardino-Balkarskaya Republic</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KL">
+				<xs:annotation>
+					<xs:documentation>Republic of Kalmykiya</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KC">
+				<xs:annotation>
+					<xs:documentation>Karachayevo-Cherkesskaya Republic</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KR">
+				<xs:annotation>
+					<xs:documentation>Republic of Kareliya</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KK">
+				<xs:annotation>
+					<xs:documentation>Republic of Khakasiya</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KO">
+				<xs:annotation>
+					<xs:documentation>Republic of Komi</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-ME">
+				<xs:annotation>
+					<xs:documentation>Republic of Mariy El</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-MO">
+				<xs:annotation>
+					<xs:documentation>Republic of Mordoviya</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-SA">
+				<xs:annotation>
+					<xs:documentation>Republic of Sakha (Yakutiya)</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-SE">
+				<xs:annotation>
+					<xs:documentation>Republic of Severnaya Osetiya-Alaniya</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-TA">
+				<xs:annotation>
+					<xs:documentation>Republic of Tatarstan</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-TY">
+				<xs:annotation>
+					<xs:documentation>Republic of Tyva (Tuva)</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-UD">
+				<xs:annotation>
+					<xs:documentation>Udmurtskaya Republic</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-ALT">
+				<xs:annotation>
+					<xs:documentation>Altayskiy Administrative Territory</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KAM">
+				<xs:annotation>
+					<xs:documentation>Kamchatskiy Administrative Territory</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KHA">
+				<xs:annotation>
+					<xs:documentation>Khabarovskiy Administrative Territory</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KDA">
+				<xs:annotation>
+					<xs:documentation>Krasnodarskiy Administrative Territory</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KYA">
+				<xs:annotation>
+					<xs:documentation>Krasnoyarskiy Administrative Territory</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-PER">
+				<xs:annotation>
+					<xs:documentation>Permskiy Administrative Territory</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-PRI">
+				<xs:annotation>
+					<xs:documentation>Primorskiy Administrative Territory</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-STA">
+				<xs:annotation>
+					<xs:documentation>Stavropol’skiy Administrative Territory</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-ZAB">
+				<xs:annotation>
+					<xs:documentation>Zabaykal’skiy Administrative Territory</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-AMU">
+				<xs:annotation>
+					<xs:documentation>Amurskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-ARK">
+				<xs:annotation>
+					<xs:documentation>Arkhangel’skaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-AST">
+				<xs:annotation>
+					<xs:documentation>Astrakhanskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-BEL">
+				<xs:annotation>
+					<xs:documentation>Belgorodskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-BRY">
+				<xs:annotation>
+					<xs:documentation>Bryanskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-CHE">
+				<xs:annotation>
+					<xs:documentation>Chelyabinskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-IRK">
+				<xs:annotation>
+					<xs:documentation>Irkutskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-IVA">
+				<xs:annotation>
+					<xs:documentation>Ivanovskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KGD">
+				<xs:annotation>
+					<xs:documentation>Kaliningradskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KLU">
+				<xs:annotation>
+					<xs:documentation>Kaluzhskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KEM">
+				<xs:annotation>
+					<xs:documentation>Kemerovskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KIR">
+				<xs:annotation>
+					<xs:documentation>Kirovskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KOS">
+				<xs:annotation>
+					<xs:documentation>Kostromskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KGN">
+				<xs:annotation>
+					<xs:documentation>Kurganskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KRS">
+				<xs:annotation>
+					<xs:documentation>Kurskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-LEN">
+				<xs:annotation>
+					<xs:documentation>Leningradskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-LIP">
+				<xs:annotation>
+					<xs:documentation>Lipetskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-MAG">
+				<xs:annotation>
+					<xs:documentation>Magadanskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-MOS">
+				<xs:annotation>
+					<xs:documentation>Moskovskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-MUR">
+				<xs:annotation>
+					<xs:documentation>Murmanskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-NIZ">
+				<xs:annotation>
+					<xs:documentation>Nizhegorodskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-NGR">
+				<xs:annotation>
+					<xs:documentation>Novgorodskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-NVS">
+				<xs:annotation>
+					<xs:documentation>Novosibirskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-OMS">
+				<xs:annotation>
+					<xs:documentation>Omskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-ORE">
+				<xs:annotation>
+					<xs:documentation>Orenburgskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-ORL">
+				<xs:annotation>
+					<xs:documentation>Orlovskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-PNZ">
+				<xs:annotation>
+					<xs:documentation>Penzenskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-PSK">
+				<xs:annotation>
+					<xs:documentation>Pskovskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-ROS">
+				<xs:annotation>
+					<xs:documentation>Rostovskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-RYA">
+				<xs:annotation>
+					<xs:documentation>Ryazanskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-SAK">
+				<xs:annotation>
+					<xs:documentation>Sakhalinskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-SAM">
+				<xs:annotation>
+					<xs:documentation>Samarskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-SAR">
+				<xs:annotation>
+					<xs:documentation>Saratovskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-SMO">
+				<xs:annotation>
+					<xs:documentation>Smolenskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-SVE">
+				<xs:annotation>
+					<xs:documentation>Sverdlovskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-TAM">
+				<xs:annotation>
+					<xs:documentation>Tambovskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-TOM">
+				<xs:annotation>
+					<xs:documentation>Tomskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-TUL">
+				<xs:annotation>
+					<xs:documentation>Tul’skaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-TVE">
+				<xs:annotation>
+					<xs:documentation>Tverskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-TYU">
+				<xs:annotation>
+					<xs:documentation>Tyumenskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-ULY">
+				<xs:annotation>
+					<xs:documentation>Ul’yanovskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-VLA">
+				<xs:annotation>
+					<xs:documentation>Vladimirskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-VGG">
+				<xs:annotation>
+					<xs:documentation>Volgogradskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-VLG">
+				<xs:annotation>
+					<xs:documentation>Vologodskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-VOR">
+				<xs:annotation>
+					<xs:documentation>Voronezhskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-YAR">
+				<xs:annotation>
+					<xs:documentation>Yaroslavskaya Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-MOW">
+				<xs:annotation>
+					<xs:documentation>Moskva City</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-SPE">
+				<xs:annotation>
+					<xs:documentation>Sankt-Peterburg City</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-YEV">
+				<xs:annotation>
+					<xs:documentation>Yevreyskaya Autonomous Administrative Region</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-CHU">
+				<xs:annotation>
+					<xs:documentation>Chukotskiy Autonomous District</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-KHM">
+				<xs:annotation>
+					<xs:documentation>Khanty-Mansiyskiy Autonomous District</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-NEN">
+				<xs:annotation>
+					<xs:documentation>Nenetskiy Autonomous District</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU-YAN">
+				<xs:annotation>
+					<xs:documentation>Yamalo-Nenetskiy Autonomous District</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -6951,7 +8625,7 @@
 			<xs:enumeration value="ECZ">
 				<xs:annotation>
 					<xs:documentation>Eurozone</xs:documentation>
-					<xs:documentation>Countries geographically within continental Europe which use the Euro as their sole currency. At the time of writing, this is a synonym for “AT BE CY EE FI FR DE ES GR IE IT LU MT NL PT SI SK” (the official Eurozone 17), plus “AD MC SM VA ME” (other Euro-using countries in continental Europe). Note some other territories using the Euro, but outside continental Europe are excluded from this list, and may need to be specified separately. Only valid in ONIX 3, and only within Block 6.</xs:documentation>
+					<xs:documentation>Countries geographically within continental Europe which use the Euro as their sole currency. At the time of writing, this is a synonym for “AT BE CY EE FI FR DE ES GR IE IT LU LV MT NL PT SI SK” (the official Eurozone 18), plus “AD MC SM VA ME” (other Euro-using countries in continental Europe). Note some other territories using the Euro, but outside continental Europe are excluded from this list, and may need to be specified separately. Only valid in ONIX 3, and only within P.26. Use of an explicit list of countries instead of ECZ is strongly encouraged.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="ROW">
@@ -6994,7 +8668,7 @@
 			<xs:enumeration value="kg">
 				<xs:annotation>
 					<xs:documentation>Kilograms</xs:documentation>
-					<xs:documentation/>
+					<xs:documentation>Grams are the preferred metric unit of weight.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="lb">
@@ -7208,6 +8882,36 @@
 					<xs:documentation>&lt;RelatedProduct&gt; and &lt;Product&gt; are part of the same collection (eg two products in same series or set).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="31">
+				<xs:annotation>
+					<xs:documentation>Has alternative in a different market sector</xs:documentation>
+					<xs:documentation>&lt;RelatedProduct&gt; is an alternative product in another sector (of the same geographical market). Indicates an alternative that carries the same content, but available to a different set of customers, as one or both products are retailer-, channel- or market sector-specific.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="32">
+				<xs:annotation>
+					<xs:documentation>Has equivalent intended for a different market</xs:documentation>
+					<xs:documentation>&lt;RelatedProduct&gt; is an equivalent product, often intended for another (geographical) market. Indicates an alternative that carries essentially the same content, though slightly adapted for local circumstances (as opposed to a translation – use code 11).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="33">
+				<xs:annotation>
+					<xs:documentation>Has alternative intended for different market</xs:documentation>
+					<xs:documentation>&lt;RelatedProduct&gt; is an alternative product, often intended for another (geographical) market. Indicates the content of the alternative is identical in all respects.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="34">
+				<xs:annotation>
+					<xs:documentation>Cites</xs:documentation>
+					<xs:documentation>&lt;Product&gt; cites &lt;RelatedProduct&gt;.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="35">
+				<xs:annotation>
+					<xs:documentation>Is cited by</xs:documentation>
+					<xs:documentation>&lt;Product&gt; is the object of a citation in &lt;RelatedProduct&gt;.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="List52">
@@ -7237,19 +8941,25 @@
 			<xs:enumeration value="01">
 				<xs:annotation>
 					<xs:documentation>French book trade returns conditions code</xs:documentation>
-					<xs:documentation>Maintained by CLIL (Commission Interprofessionnel du Livre).</xs:documentation>
+					<xs:documentation>Maintained by CLIL (Commission Interprofessionnel du Livre). Returns conditions values in &lt;ReturnsCode&gt; should be taken from the CLIL list.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="02">
 				<xs:annotation>
 					<xs:documentation>BISAC Returnable Indicator code</xs:documentation>
-					<xs:documentation>Maintained by BISAC: see List 66.</xs:documentation>
+					<xs:documentation>Maintained by BISAC: Returns conditions values in &lt;ReturnsCode&gt; should be taken from List 66.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="03">
 				<xs:annotation>
 					<xs:documentation>UK book trade returns conditions code</xs:documentation>
 					<xs:documentation>NOT CURRENTLY USED – BIC has decided that it will not maintain a code list for this purpose, since returns conditions are usually at least partly based on the trading relationship.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="04">
+				<xs:annotation>
+					<xs:documentation>ONIX Returns conditions code</xs:documentation>
+					<xs:documentation>Returns conditions values in &lt;ReturnsCode&gt; should be taken from List 204.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -7485,13 +9195,13 @@
 			<xs:enumeration value="13">
 				<xs:annotation>
 					<xs:documentation>YYYYMMDDThhmm</xs:documentation>
-					<xs:documentation>Exact time. Use ONLY when exact times with hour/minute precision are relevant. By default, time is local to the sender. Alternatively, the time may be suffixed with an optional ‘Z’ for UTC times, or with ‘+’ or ‘-’ and an hhmm timezone offset from UTC.</xs:documentation>
+					<xs:documentation>Exact time. Use ONLY when exact times with hour/minute precision are relevant. By default, time is local. Alternatively, the time may be suffixed with an optional ‘Z’ for UTC times, or with ‘+’ or ‘-’ and an hhmm timezone offset from UTC. Times without a timezone are ‘rolling’ local times, times qualified with a timezone (using Z, + or -) specify a particular instant in time.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="14">
 				<xs:annotation>
 					<xs:documentation>YYYYMMDDThhmmss</xs:documentation>
-					<xs:documentation>Exact time. Use ONLY when exact times with second precision are relevant. By default, time is local to the sender. Alternatively, the time may be suffixed with an optional ‘Z’ for UTC times, or with ‘+’ or ‘-’ and an hhmm timezone offset from UTC.</xs:documentation>
+					<xs:documentation>Exact time. Use ONLY when exact times with second precision are relevant. By default, time is local. Alternatively, the time may be suffixed with an optional ‘Z’ for UTC times, or with ‘+’ or ‘-’ and an hhmm timezone offset from UTC. Times without a timezone are ‘rolling’ local times, times qualified with a timezone (using Z, + or -) specify a particular instant in time.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="20">
@@ -7638,7 +9348,7 @@
 			<xs:enumeration value="11">
 				<xs:annotation>
 					<xs:documentation>Special sale RRP excluding tax</xs:documentation>
-					<xs:documentation>Special sale RRP excluding any sales tax or value-added tax. Note 'special sales' are sales where terms and conditions are different from normal trade sales, when for example products that are normally sold on a sale-or-return basis are sold on firm-sale terms, or where a particular product is tailored for a specific retail outlet (often termed a ‘premium’ product). Further details of the modified terms and conditioins should be given in &lt;PriceTypeDescription&gt;.</xs:documentation>
+					<xs:documentation>Special sale RRP excluding any sales tax or value-added tax. Note ‘special sales’ are sales where terms and conditions are different from normal trade sales, when for example products that are normally sold on a sale-or-return basis are sold on firm-sale terms, where a particular product is tailored for a specific retail outlet (often termed a ‘premium’ product), or where other specific conditions or qualiifications apply. Further details of the modified terms and conditions should be given in &lt;PriceTypeDescription&gt;.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="12">
@@ -7738,6 +9448,12 @@
 			<xs:documentation source="ONIX Code List 59">Price type qualifier</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
+			<xs:enumeration value="00">
+				<xs:annotation>
+					<xs:documentation>Unqualified price</xs:documentation>
+					<xs:documentation>Price applies to all customers that do not fall within any other group with a specified group-specific qualified price.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="01">
 				<xs:annotation>
 					<xs:documentation>Member/subscriber price</xs:documentation>
@@ -7784,6 +9500,12 @@
 				<xs:annotation>
 					<xs:documentation>Promotional offer price</xs:documentation>
 					<xs:documentation>Temporary ‘Special offer’ price. Must be accompanied by &lt;PriceEffectiveFrom&gt; and &lt;PriceEffectiveUntil&gt; dates (or equivalent &lt;PriceDate&gt; composites in ONIX 3), and may also be accompanied by a ‘normal’ price.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="09">
+				<xs:annotation>
+					<xs:documentation>Linked price</xs:documentation>
+					<xs:documentation>Price requires purchase with, or proof of ownership of another product. Further details of purchase or ownership requirements must be given in &lt;PriceTypeDescription&gt;.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -7968,6 +9690,12 @@
 				<xs:annotation>
 					<xs:documentation>Temporarily withdrawn from sale</xs:documentation>
 					<xs:documentation>Withdrawn temporarily, typically for quality or technical reasons. In ONIX 3.0, must be accompanied by expected availability date coded ‘22’ within the &lt;PublishingDate&gt; composite, except in exceptional circumstances where no date is known.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="17">
+				<xs:annotation>
+					<xs:documentation>Permanently withdrawn from sale</xs:documentation>
+					<xs:documentation>Withdrawn permanently from the market. Effectively synonymous with ‘Out of print’ (code 07), but specific to downloadable and online digital products (where no ‘stock’ would remain in the supply chain).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -8433,6 +10161,12 @@
 					<xs:documentation>For editions sold only through newsstands/newsagents.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Retailer exception</xs:documentation>
+					<xs:documentation>Not for sale through designated retailer. Retailer must be identified or named in an instance of the &lt;SalesOutlet&gt; composite.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="List72">
@@ -8719,13 +10453,13 @@
 			</xs:enumeration>
 			<xs:enumeration value="42">
 				<xs:annotation>
-					<xs:documentation>Author's social networking URL</xs:documentation>
+					<xs:documentation>Author’s social networking URL</xs:documentation>
 					<xs:documentation>For example, a Facebook, Google+ or Twitter page.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="43">
 				<xs:annotation>
-					<xs:documentation>Publisher's social networking URL</xs:documentation>
+					<xs:documentation>Publisher’s social networking URL</xs:documentation>
 					<xs:documentation>For example, a Facebook, Google+ or Twitter page.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
@@ -10857,13 +12591,19 @@
 			<xs:enumeration value="qar">
 				<xs:annotation>
 					<xs:documentation>Aranés</xs:documentation>
-					<xs:documentation>ONIX local code.</xs:documentation>
+					<xs:documentation>ONIX local code, distinct dialect of Occitan (not distinguished from oci by ISO 639-3).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="qav">
 				<xs:annotation>
 					<xs:documentation>Valencian</xs:documentation>
-					<xs:documentation>ONIX local code.</xs:documentation>
+					<xs:documentation>ONIX local code, distinct dialect of Catalan (not distinguished from cat by ISO 639-3).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fkv">
+				<xs:annotation>
+					<xs:documentation>Kvensk</xs:documentation>
+					<xs:documentation>ONIX local code, equivalent to fkv in ISO 639-3.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="que">
@@ -12250,6 +13990,12 @@
 					<xs:documentation>Japanese B-series size, 364x257mm.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="B131">
+				<xs:annotation>
+					<xs:documentation>Paperback (DE)</xs:documentation>
+					<xs:documentation>German paperback format, greater than 205mm high, with flaps. Use with Product form code BC.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="B201">
 				<xs:annotation>
 					<xs:documentation>Coloring / join-the-dot book</xs:documentation>
@@ -12580,6 +14326,12 @@
 					<xs:documentation>With edge trimming such that the front edge is ragged, not neatly and squarely trimmed: AKA deckle edge, feather edge, uncut edge, rough cut.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="B511">
+				<xs:annotation>
+					<xs:documentation>With foldout</xs:documentation>
+					<xs:documentation>With one or more gatefold or foldout sections bound in.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="B601">
 				<xs:annotation>
 					<xs:documentation>Turn-around book</xs:documentation>
@@ -12590,6 +14342,12 @@
 				<xs:annotation>
 					<xs:documentation>Unflipped manga format</xs:documentation>
 					<xs:documentation>Manga with pages and panels in the sequence of the original Japanese, but with Western text.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="B610">
+				<xs:annotation>
+					<xs:documentation>Syllabification</xs:documentation>
+					<xs:documentation>Text shows syllable breaks.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="B701">
@@ -12637,7 +14395,7 @@
 			<xs:enumeration value="D101">
 				<xs:annotation>
 					<xs:documentation>Real Video format</xs:documentation>
-					<xs:documentation/>
+					<xs:documentation>Includes RealVideo packaged within a .rm RealMedia container.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="D102">
@@ -12824,6 +14582,54 @@
 				<xs:annotation>
 					<xs:documentation>Requires network connection</xs:documentation>
 					<xs:documentation>E-publication requires a network connection to access some resources (eg an enhanced e-book where video clips are not stored within the e-publication ‘package’ itself, but are delivered via an internet connection).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E204">
+				<xs:annotation>
+					<xs:documentation>Content removed</xs:documentation>
+					<xs:documentation>Resources (eg images) present in other editions have been removed from this product, eg due to rights issues.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E210">
+				<xs:annotation>
+					<xs:documentation>Landscape</xs:documentation>
+					<xs:documentation>Use for fixed-format e-books optimised for landscape display. Also include an indication of the optimal screen aspect ratio.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E211">
+				<xs:annotation>
+					<xs:documentation>Portrait</xs:documentation>
+					<xs:documentation>Use for fixed-format e-books optimised for portrait display. Also include an indication of the optimal screen aspect ratio.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E221">
+				<xs:annotation>
+					<xs:documentation>5:4</xs:documentation>
+					<xs:documentation>Use for fixed-format e-books optimised for displays with a 5:4 aspect ratio (eg 1280x1024 pixels etc, assuming square pixels). Note that aspect ratio codes are NOT specific to actual screen dimensions or pixel counts, but to the ratios between two dimensions or two pixel counts.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E222">
+				<xs:annotation>
+					<xs:documentation>4:3</xs:documentation>
+					<xs:documentation>Use for fixed-format e-books optimised for displays with a 4:3 aspect ratio (eg 800x600, 1024x768, 2048x1536 pixels etc).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E223">
+				<xs:annotation>
+					<xs:documentation>3:2</xs:documentation>
+					<xs:documentation>Use for fixed-format e-books optimised for displays with a 3:2 aspect ratio (eg 960x640, 3072x2048 pixels etc).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E224">
+				<xs:annotation>
+					<xs:documentation>16:10</xs:documentation>
+					<xs:documentation>Use for fixed-format e-books optimised for displays with a 16:10 aspect ratio (eg 1440x900, 2560x1600 pixels etc).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E225">
+				<xs:annotation>
+					<xs:documentation>16:9</xs:documentation>
+					<xs:documentation>Use for fixed-format e-books optimised for displays with a 16:9 aspect ratio (eg 1024x576, 1920x1080, 2048x1152 pixels etc).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="L101">
@@ -13022,7 +14828,7 @@
 			<xs:enumeration value="10">
 				<xs:annotation>
 					<xs:documentation>E-publication format version</xs:documentation>
-					<xs:documentation>For versioned e-book file format (or in some cases, device) – for example EPUB 2 and EPUB 3. &lt;ProductFormFeatureValue&gt; should contain the version number. Use only with ONIX 3.0 – in ONIX 2.1, use &lt;EpubTypeVersion&gt; instead.</xs:documentation>
+					<xs:documentation>For versioned e-book file formats (or in some cases, devices). &lt;ProductFormFeatureValue&gt; should contain the version number as a period-separated list of numbers (eg ‘7’, ‘1.5’ or ‘3.10.7’). Use only with ONIX 3.0 – in ONIX 2.1, use &lt;EpubTypeVersion&gt; instead. For the most common file formats, code 15 and List 220 is strongly preferred.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="11">
@@ -13039,8 +14845,20 @@
 			</xs:enumeration>
 			<xs:enumeration value="13">
 				<xs:annotation>
-					<xs:documentation>EU Toy Safety Hazard Warning</xs:documentation>
-					<xs:documentation>Product carries hazard warning required by EU Toy Safety Directive. The Product Form Feature value is a code from List 184, and (for some codes) the exact wording of the warning may be given in Product Form Feature Description.</xs:documentation>
+					<xs:documentation>EU Toy Safety Hazard warning</xs:documentation>
+					<xs:documentation>Product carries hazard warning required by EU Toy Safety Directive. The Product Form Feature Value is a code from List 184, and (for some codes) the exact wording of the warning may be given in Product Form Feature Description.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>IATA Dangerous Goods warning</xs:documentation>
+					<xs:documentation>Product Form Feature Description must give further details of the warning.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="15">
+				<xs:annotation>
+					<xs:documentation>E-publication format version code</xs:documentation>
+					<xs:documentation>For common versioned e-book formats (or in some cases, devices) – for example EPUB 2.0.1 or EPUB 3.0. &lt;ProductFormFeatureValue&gt; is a code from list 220. Use in ONIX 3.0 only.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="30">
@@ -13113,7 +14931,7 @@
 			<xs:enumeration value="01">
 				<xs:annotation>
 					<xs:documentation>Slip-sleeve</xs:documentation>
-					<xs:documentation>Thin card sleeve, much less rigid than a slip case.</xs:documentation>
+					<xs:documentation>Thin card or soft plastic sleeve, much less rigid than a slip case.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="02">
@@ -13132,6 +14950,12 @@
 				<xs:annotation>
 					<xs:documentation>Jewel case</xs:documentation>
 					<xs:documentation>Typical CD-style packaging.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="06">
+				<xs:annotation>
+					<xs:documentation>Digipak</xs:documentation>
+					<xs:documentation>Common CD-style packaging, a card folder with one or more panels incorporating a tray, hub or pocket to hold the disc(s).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="09">
@@ -14568,7 +16392,7 @@
 			</xs:enumeration>
 			<xs:enumeration value="BQ">
 				<xs:annotation>
-					<xs:documentation>Bonaire, Sint Eustatius, Saba</xs:documentation>
+					<xs:documentation>Bonaire, Sint Eustatius and Saba</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -14652,7 +16476,7 @@
 			</xs:enumeration>
 			<xs:enumeration value="CI">
 				<xs:annotation>
-					<xs:documentation>Cote D’Ivoire</xs:documentation>
+					<xs:documentation>Cote d’Ivoire</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -15210,7 +17034,7 @@
 			</xs:enumeration>
 			<xs:enumeration value="LY">
 				<xs:annotation>
-					<xs:documentation>Libyan Arab Jamahiriya</xs:documentation>
+					<xs:documentation>Libya</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -15228,7 +17052,7 @@
 			</xs:enumeration>
 			<xs:enumeration value="MD">
 				<xs:annotation>
-					<xs:documentation>Moldova</xs:documentation>
+					<xs:documentation>Moldova, Repubic of</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -15240,7 +17064,7 @@
 			</xs:enumeration>
 			<xs:enumeration value="MF">
 				<xs:annotation>
-					<xs:documentation>Saint Martin, French part</xs:documentation>
+					<xs:documentation>Saint Martin (French part)</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -15492,7 +17316,7 @@
 			</xs:enumeration>
 			<xs:enumeration value="PS">
 				<xs:annotation>
-					<xs:documentation>Palestinian Territory, Occupied</xs:documentation>
+					<xs:documentation>Palestine, State of</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -15588,7 +17412,7 @@
 			</xs:enumeration>
 			<xs:enumeration value="SH">
 				<xs:annotation>
-					<xs:documentation>Saint Helena, Ascension, Tristan da Cunha</xs:documentation>
+					<xs:documentation>Saint Helena, Ascension and Tristan da Cunha</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -15956,7 +17780,7 @@
 			<xs:enumeration value="23">
 				<xs:annotation>
 					<xs:documentation>VAT Identity Number</xs:documentation>
-					<xs:documentation>Identifier for a business organization for VAT purposes, eg within the EU's VIES system. See http://ec.europa.eu/taxation_customs/vies/faqvies.do for EU VAT ID formats, which vary from country to country. Generally these consist of a two-letter country code followed by the 8–12 digits of the national VAT ID. Some countries include one or two letters within their VAT ID. See http://en.wikipedia.org/wiki/VAT_identification_number for non-EU countries that maintain similar identifiers. Spaces, dashes etc should be omitted.</xs:documentation>
+					<xs:documentation>Identifier for a business organization for VAT purposes, eg within the EU’s VIES system. See http://ec.europa.eu/taxation_customs/vies/faqvies.do for EU VAT ID formats, which vary from country to country. Generally these consist of a two-letter country code followed by the 8–12 digits of the national VAT ID. Some countries include one or two letters within their VAT ID. See http://en.wikipedia.org/wiki/VAT_identification_number for non-EU countries that maintain similar identifiers. Spaces, dashes etc should be omitted.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -16446,7 +18270,7 @@
 			<xs:enumeration value="GBP">
 				<xs:annotation>
 					<xs:documentation>Pound Sterling</xs:documentation>
-					<xs:documentation>United Kingdom, Isle of Man, Channel Islands, South Georgia, South Sandwich Islands, Brisish Indian Ocean Territory.</xs:documentation>
+					<xs:documentation>United Kingdom, Isle of Man, Channel Islands, South Georgia, South Sandwich Islands, British Indian Ocean Territory.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="GEL">
@@ -16704,7 +18528,7 @@
 			<xs:enumeration value="LVL">
 				<xs:annotation>
 					<xs:documentation>Latvian Lats</xs:documentation>
-					<xs:documentation>Latvia.</xs:documentation>
+					<xs:documentation>Now replaced by the Euro (EUR): use only for historical prices that pre-date the introduction of the Euro.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="LYD">
@@ -17021,7 +18845,7 @@
 			</xs:enumeration>
 			<xs:enumeration value="SRD">
 				<xs:annotation>
-					<xs:documentation>Suriname Guilder</xs:documentation>
+					<xs:documentation>Surinam Dollar</xs:documentation>
 					<xs:documentation>Suriname.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
@@ -17232,13 +19056,19 @@
 			<xs:enumeration value="ZMK">
 				<xs:annotation>
 					<xs:documentation>Kwacha</xs:documentation>
-					<xs:documentation>Zambia.</xs:documentation>
+					<xs:documentation>Deprecated, replaced with ZMW.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="ZWD">
 				<xs:annotation>
 					<xs:documentation>Zimbabwe Dollar</xs:documentation>
 					<xs:documentation>Deprecated, replaced with ZWL.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZMW">
+				<xs:annotation>
+					<xs:documentation>Zambian Kwacha</xs:documentation>
+					<xs:documentation>Zambia.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="ZWL">
@@ -17363,6 +19193,12 @@
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="SKY">
+				<xs:annotation>
+					<xs:documentation>Sky/Pale blue</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="SLV">
 				<xs:annotation>
 					<xs:documentation>Silver</xs:documentation>
@@ -17371,7 +19207,13 @@
 			</xs:enumeration>
 			<xs:enumeration value="TAN">
 				<xs:annotation>
-					<xs:documentation>Tan</xs:documentation>
+					<xs:documentation>Tan/Light brown</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TEA">
+				<xs:annotation>
+					<xs:documentation>Teal/Turquoise green</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -17603,13 +19445,25 @@
 			<xs:enumeration value="02">
 				<xs:annotation>
 					<xs:documentation>PND</xs:documentation>
-					<xs:documentation>Personennamendatei – person name authority file used by Deutsche Nationalbibliothek and in other German-speaking countries. See http://www.d-nb.de/standardisierung/normdateien/pnd.htm (German) or http://www.d-nb.de/eng/standardisierung/normdateien/pnd.htm (English).</xs:documentation>
+					<xs:documentation>Personennamendatei – person name authority file used by Deutsche Nationalbibliothek and in other German-speaking countries. See http://www.d-nb.de/standardisierung/normdateien/pnd.htm (German) or http://www.d-nb.de/eng/standardisierung/normdateien/pnd.htm (English). DEPRECATED in favour of the GND.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="04">
+				<xs:annotation>
+					<xs:documentation>LCCN</xs:documentation>
+					<xs:documentation>Library of Congress control number assigned to a Library of Congress Name Authority record.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="16">
 				<xs:annotation>
 					<xs:documentation>ISNI</xs:documentation>
 					<xs:documentation>International Standard Name Identifier. See ‘http://www.isni.org/’.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>GND</xs:documentation>
+					<xs:documentation>Gemeinsame Normdatei – Joint Authority File in the German-speaking countries. See http://www.dnb.de/EN/Standardisierung/Normdaten/GND/gnd_node.html (English). Combines the PND, SWD and GKD into a single authority file, and should be used in preference.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -18692,7 +20546,7 @@
 			</xs:enumeration>
 			<xs:enumeration value="APC">
 				<xs:annotation>
-					<xs:documentation>Apple Computer stores</xs:documentation>
+					<xs:documentation>Apple</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -18792,9 +20646,21 @@
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="CDL">
+				<xs:annotation>
+					<xs:documentation>Casa del Libro</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="CHD">
 				<xs:annotation>
 					<xs:documentation>Christianbook.com</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="COP">
+				<xs:annotation>
+					<xs:documentation>Copia</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -18813,6 +20679,12 @@
 			<xs:enumeration value="CVS">
 				<xs:annotation>
 					<xs:documentation>CVS Drug Stores</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CYB">
+				<xs:annotation>
+					<xs:documentation>Cyberlibris</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -18852,6 +20724,18 @@
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="ECI">
+				<xs:annotation>
+					<xs:documentation>El Corte Inglés</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ELE">
+				<xs:annotation>
+					<xs:documentation>Electre</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="ELB">
 				<xs:annotation>
 					<xs:documentation>Elib.se</xs:documentation>
@@ -18867,6 +20751,12 @@
 			<xs:enumeration value="ENH">
 				<xs:annotation>
 					<xs:documentation>English Heritage</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FDB">
+				<xs:annotation>
+					<xs:documentation>FeedBooks</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -18896,8 +20786,8 @@
 			</xs:enumeration>
 			<xs:enumeration value="GOS">
 				<xs:annotation>
-					<xs:documentation>GoSpoken</xs:documentation>
-					<xs:documentation/>
+					<xs:documentation>Blinkbox</xs:documentation>
+					<xs:documentation>Formerly GoSpoken/Mobcast</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="HST">
@@ -18918,9 +20808,21 @@
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="IMM">
+				<xs:annotation>
+					<xs:documentation>Immatériel.fr</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="IND">
 				<xs:annotation>
 					<xs:documentation>Indigo-Chapters</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IZN">
+				<xs:annotation>
+					<xs:documentation>Izneo</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -19008,9 +20910,21 @@
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="MYB">
+				<xs:annotation>
+					<xs:documentation>MyBoox</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="NTR">
 				<xs:annotation>
 					<xs:documentation>National Trust</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NUM">
+				<xs:annotation>
+					<xs:documentation>Numilog</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -19062,6 +20976,12 @@
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="RDB">
+				<xs:annotation>
+					<xs:documentation>Readbooks</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="RCL">
 				<xs:annotation>
 					<xs:documentation>ReadCloud</xs:documentation>
@@ -19104,6 +21024,12 @@
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="SKB">
+				<xs:annotation>
+					<xs:documentation>Skoobe</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="SNY">
 				<xs:annotation>
 					<xs:documentation>Sony</xs:documentation>
@@ -19113,6 +21039,12 @@
 			<xs:enumeration value="STP">
 				<xs:annotation>
 					<xs:documentation>Staples</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TEA">
+				<xs:annotation>
+					<xs:documentation>The Ebook Alternative</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -19137,6 +21069,12 @@
 			<xs:enumeration value="TSO">
 				<xs:annotation>
 					<xs:documentation>TSO (The Stationery Office)</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TXR">
+				<xs:annotation>
+					<xs:documentation>Txtr</xs:documentation>
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
@@ -19622,6 +21560,18 @@
 					<xs:documentation>Maximum time period in days.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="13">
+				<xs:annotation>
+					<xs:documentation>Weeks</xs:documentation>
+					<xs:documentation>Maximum time period in weeks.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>Months</xs:documentation>
+					<xs:documentation>Maximum time period in months.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="10">
 				<xs:annotation>
 					<xs:documentation>Times</xs:documentation>
@@ -19696,6 +21646,12 @@
 					<xs:documentation>The title element refers to a content item within a product, eg a work included in a combined or ‘omnibus’ edition, or a chapter in a book.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="05">
+				<xs:annotation>
+					<xs:documentation>Master brand</xs:documentation>
+					<xs:documentation>The title element names a master brand where the use of the brand spans multiple collections and product forms, and possibly multiple imprints and publishers. Used only for branded media properties such as children’s character properties.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="List150">
@@ -19724,7 +21680,7 @@
 			<xs:enumeration value="AC">
 				<xs:annotation>
 					<xs:documentation>CD-Audio</xs:documentation>
-					<xs:documentation>Audio compact disc, in any recording format: use coding in Product Form Detail to specify the format, if required.</xs:documentation>
+					<xs:documentation>Audio compact disc, in any recording format: use for ‘red book’ (conventional audio CD) and SACD, and use coding in Product Form Detail to specify the format, if required.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="AD">
@@ -19736,13 +21692,13 @@
 			<xs:enumeration value="AE">
 				<xs:annotation>
 					<xs:documentation>Audio disc</xs:documentation>
-					<xs:documentation>Audio disc (excluding CD).</xs:documentation>
+					<xs:documentation>Audio disc (excluding CD-Audio).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="AF">
 				<xs:annotation>
 					<xs:documentation>Audio tape</xs:documentation>
-					<xs:documentation>Audio tape (reel tape).</xs:documentation>
+					<xs:documentation>Audio tape (analogue open reel tape).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="AG">
@@ -19754,7 +21710,7 @@
 			<xs:enumeration value="AH">
 				<xs:annotation>
 					<xs:documentation>CD-Extra</xs:documentation>
-					<xs:documentation>Audio compact disc with part CD-ROM content.</xs:documentation>
+					<xs:documentation>Audio compact disc with part CD-ROM content, also termed CD-Plus or Enhanced-CD: use for ‘blue book’ and ‘yellow/red book’ two-session discs.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="AI">
@@ -19940,7 +21896,7 @@
 			<xs:enumeration value="DC">
 				<xs:annotation>
 					<xs:documentation>CD-I</xs:documentation>
-					<xs:documentation>CD interactive.</xs:documentation>
+					<xs:documentation>CD interactive: use for ‘green book’ discs.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="DE">
@@ -20276,19 +22232,19 @@
 			<xs:enumeration value="VI">
 				<xs:annotation>
 					<xs:documentation>DVD video</xs:documentation>
-					<xs:documentation>DVD video: specify TV standard in List 78.</xs:documentation>
+					<xs:documentation>DVD video: specify TV standard in List 175.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VJ">
 				<xs:annotation>
 					<xs:documentation>VHS video</xs:documentation>
-					<xs:documentation>VHS videotape: specify TV standard in List 78.</xs:documentation>
+					<xs:documentation>VHS videotape: specify TV standard in List 175.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VK">
 				<xs:annotation>
 					<xs:documentation>Betamax video</xs:documentation>
-					<xs:documentation>Betamax videotape: specify TV standard in List 78.</xs:documentation>
+					<xs:documentation>Betamax videotape: specify TV standard in List 175.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VL">
@@ -20319,6 +22275,12 @@
 				<xs:annotation>
 					<xs:documentation>UMD Video</xs:documentation>
 					<xs:documentation>Sony Universal Media disc.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VQ">
+				<xs:annotation>
+					<xs:documentation>CBHD</xs:documentation>
+					<xs:documentation>China Blue High-Definition, derivative of HD-DVD.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VZ">
@@ -20441,10 +22403,40 @@
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="ZG">
+				<xs:annotation>
+					<xs:documentation>E-book reader</xs:documentation>
+					<xs:documentation>Dedicated e-book reading device, typically with mono screen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZH">
+				<xs:annotation>
+					<xs:documentation>Tablet computer</xs:documentation>
+					<xs:documentation>General purpose tablet computer, typically with color screen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZI">
+				<xs:annotation>
+					<xs:documentation>Audiobook player</xs:documentation>
+					<xs:documentation>Dedicated audiobook player device, typically including book-related features like bookmarking.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZJ">
+				<xs:annotation>
+					<xs:documentation>Jigsaw</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZY">
+				<xs:annotation>
+					<xs:documentation>Other apparel</xs:documentation>
+					<xs:documentation>Other apparel items not specified by ZB to ZJ, including promotional or branded scarves, caps, aprons etc.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="ZZ">
 				<xs:annotation>
 					<xs:documentation>Other merchandise</xs:documentation>
-					<xs:documentation>Other merchandise not specified by ZB to ZF.</xs:documentation>
+					<xs:documentation>Other merchandise not specified by ZB to ZY.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -20494,6 +22486,12 @@
 				<xs:annotation>
 					<xs:documentation>Flourished in</xs:documentation>
 					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="08">
+				<xs:annotation>
+					<xs:documentation>Citizen of</xs:documentation>
+					<xs:documentation>Or nationality. For use with country codes only.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -20585,7 +22583,7 @@
 			<xs:enumeration value="11">
 				<xs:annotation>
 					<xs:documentation>Feature</xs:documentation>
-					<xs:documentation>Text describing a feature of a product to which the publisher wishes to draw attention for promotional purposes.</xs:documentation>
+					<xs:documentation>Text describing a feature of a product to which the publisher wishes to draw attention for promotional purposes. Each separate feature should be described by a separate repeat, so that formatting can be applied at the discretion of the receiver of the ONIX record, or multiple features can be described using appropriate XHTML markup.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="12">
@@ -20622,6 +22620,24 @@
 				<xs:annotation>
 					<xs:documentation>Description for collection</xs:documentation>
 					<xs:documentation>(of which the product is a part.) Length unrestricted.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="18">
+				<xs:annotation>
+					<xs:documentation>New feature</xs:documentation>
+					<xs:documentation>As code 11 but used for a new feature of this edition or version.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="19">
+				<xs:annotation>
+					<xs:documentation>Version history</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="20">
+				<xs:annotation>
+					<xs:documentation>Open access statement</xs:documentation>
+					<xs:documentation>Short summary statement of open access status and any related conditions (eg “Open access – no commercial use”), primarily for marketing purposes. Should always be accompanied by a link to the complete license (see &lt;EpubLicense&gt; or code 99 in List 158).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -20726,6 +22742,18 @@
 				<xs:annotation>
 					<xs:documentation>From… until date</xs:documentation>
 					<xs:documentation>Combines From date and Until date to define a period (both dates are inclusive). Use with for example dateformat 06.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation>Available from</xs:documentation>
+					<xs:documentation>Date from which a supporting resource is available for download. Note that this date also implies that it can be immediately displayed to the intended audience, unless a From date (code 14) is also supplied and is later than the Available from date.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="28">
+				<xs:annotation>
+					<xs:documentation>Available until</xs:documentation>
+					<xs:documentation>Date until which a supporting resource is available for download. Note that this date does not imply it must be removed from display to the intended audience on this date – for this, use Until date (code 15).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -20971,6 +22999,18 @@
 					<xs:documentation>Includes cover, back cover, spine and – where appropriate – any flaps.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="30">
+				<xs:annotation>
+					<xs:documentation>Master brand logo</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="99">
+				<xs:annotation>
+					<xs:documentation>License</xs:documentation>
+					<xs:documentation>Link to a license covering permitted usage of the product content. Deprecated in favor of &lt;EpubLicense&gt;. This was a workaround in ONIX 3.0, and use of &lt;EpubLicense&gt; is strongly preferred.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="List159">
@@ -21165,7 +23205,7 @@
 			<xs:enumeration value="13">
 				<xs:annotation>
 					<xs:documentation>Out-of-print / deletion date</xs:documentation>
-					<xs:documentation>Date when a product was declared out-of-print or deleted.</xs:documentation>
+					<xs:documentation>Date when a product was (or will be) declared out-of-print or deleted.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="16">
@@ -21204,6 +23244,24 @@
 					<xs:documentation>Date from which reviews of a product may be published eg in newspapers and magazines or online. Provided to the book trade for information only: newspapers and magazines are not expected to be recipients of ONIX metadata.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>Publisher’s reservation order deadline</xs:documentation>
+					<xs:documentation>Latest date on which an order may be placed with the publisher for guaranteed delivery prior to the publication date. May or may not be linked to a special reservation or pre-publication price.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="26">
+				<xs:annotation>
+					<xs:documentation>Forthcoming reprint date</xs:documentation>
+					<xs:documentation>Date when a product will be reprinted.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation>Preorder embargo date</xs:documentation>
+					<xs:documentation>Earliest date a retail ‘preorder’ can be placed (where this is distinct from the public announcement date).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="List164">
@@ -21220,13 +23278,13 @@
 			<xs:enumeration value="02">
 				<xs:annotation>
 					<xs:documentation>Derived from</xs:documentation>
-					<xs:documentation>Product X is or includes a manifestation of a work derived from related work Y in one or more of the ways specified in ISTC rules. This relation type is intended to enable products with a common ‘parent’ work to be linked without specifying the precise nature of their derivation.</xs:documentation>
+					<xs:documentation>Product X is or includes a manifestation of a work derived (directly) from related work Y in one or more of the ways specified in ISTC rules. This relation type is intended to enable products with a common ‘parent’ work to be linked without specifying the precise nature of their derivation.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="03">
 				<xs:annotation>
 					<xs:documentation>Related work is derived from this</xs:documentation>
-					<xs:documentation>Product X is a manifestation of a work from which related work Y is derived in one or more of the ways specified in ISTC rules (reciprocal of code 02).</xs:documentation>
+					<xs:documentation>Product X is a manifestation of a work from which related work Y is (directly) derived in one or more of the ways specified in ISTC rules (reciprocal of code 02).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="04">
@@ -21288,7 +23346,7 @@
 			<xs:enumeration value="08">
 				<xs:annotation>
 					<xs:documentation>Expected availability date</xs:documentation>
-					<xs:documentation>The date on which physical stock is expected to be available to be shipped to retailers, or a digital product is expected to be released.</xs:documentation>
+					<xs:documentation>The date on which physical stock is expected to be available to be shipped to retailers, or a digital product is expected to be released by the publisher or digital asset distributor to retailers or their retail platform providers.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="18">
@@ -21310,6 +23368,12 @@
 			<xs:documentation source="ONIX Code List 167">Price condition type</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
+			<xs:enumeration value="00">
+				<xs:annotation>
+					<xs:documentation>No conditions</xs:documentation>
+					<xs:documentation>Allows positive indication that there are no conditions.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="01">
 				<xs:annotation>
 					<xs:documentation>Includes updates</xs:documentation>
@@ -21326,6 +23390,30 @@
 				<xs:annotation>
 					<xs:documentation>Updates available</xs:documentation>
 					<xs:documentation>Updates may be purchased separately, no minimum commitment required.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="05">
+				<xs:annotation>
+					<xs:documentation>Linked prior purchase price</xs:documentation>
+					<xs:documentation>Purchase at this price requires prior purchase of other product.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="06">
+				<xs:annotation>
+					<xs:documentation>Linked price</xs:documentation>
+					<xs:documentation>Purchase at this price requires simultaneous purchase of other product.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Rental duration</xs:documentation>
+					<xs:documentation>The duration of the rental to which the price applies.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="11">
+				<xs:annotation>
+					<xs:documentation>Rental to purchase</xs:documentation>
+					<xs:documentation>Purchase at this price requires prior rental of the product. &lt;PriceConditionQuantity&gt; gives minimum prior rental period, and &lt;ProductIdentifier&gt; may be used if rental uses a different product identifier.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -21360,6 +23448,12 @@
 					<xs:documentation>The quantity refers to a unit implied by the quantity type.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="07">
+				<xs:annotation>
+					<xs:documentation>Days</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="08">
 				<xs:annotation>
 					<xs:documentation>Weeks</xs:documentation>
@@ -21372,13 +23466,44 @@
 					<xs:documentation/>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>Years</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="List170">
 		<xs:annotation>
 			<xs:documentation source="ONIX Code List 170">Discount type</xs:documentation>
 		</xs:annotation>
-		<xs:restriction base="xs:string"/>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="01">
+				<xs:annotation>
+					<xs:documentation>Rising discount</xs:documentation>
+					<xs:documentation>Discount applied to all units in a qualifying order.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="02">
+				<xs:annotation>
+					<xs:documentation>Rising discount (cumulative)</xs:documentation>
+					<xs:documentation>Additional discount may be applied retrospectively, based on number of units ordered over a specific period.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="03">
+				<xs:annotation>
+					<xs:documentation>Progressive discount</xs:documentation>
+					<xs:documentation>Discount applied to marginal units in a qualifying order.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="04">
+				<xs:annotation>
+					<xs:documentation>Progressive discount (cumulative)</xs:documentation>
+					<xs:documentation>Previous orders within a specific time period are counted when calculating a progressive discount.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="List171">
 		<xs:annotation>
@@ -21595,7 +23720,7 @@
 			</xs:enumeration>
 			<xs:enumeration value="A211">
 				<xs:annotation>
-					<xs:documentation>DAISY 3: full textwith navigation and partial audio</xs:documentation>
+					<xs:documentation>DAISY 3: full text with navigation and partial audio</xs:documentation>
 					<xs:documentation>Reading systems may provide full audio via text-to-speech.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
@@ -21807,6 +23932,12 @@
 				<xs:annotation>
 					<xs:documentation>JIS B4 size</xs:documentation>
 					<xs:documentation>Japanese B-series size, 257x364mm.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="B131">
+				<xs:annotation>
+					<xs:documentation>Paperback (DE)</xs:documentation>
+					<xs:documentation>German paperback format, greater than 205mm high, with flaps. Use with Product form code BC.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="B201">
@@ -22115,6 +24246,12 @@
 					<xs:documentation>With edge trimming such that the front edge is ragged, not neatly and squarely trimmed: AKA deckle edge, feather edge, uncut edge, rough cut.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="B511">
+				<xs:annotation>
+					<xs:documentation>Foldout</xs:documentation>
+					<xs:documentation>With one or more gatefold or foldout sections bound in.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="B601">
 				<xs:annotation>
 					<xs:documentation>Turn-around book</xs:documentation>
@@ -22125,6 +24262,12 @@
 				<xs:annotation>
 					<xs:documentation>Unflipped manga format</xs:documentation>
 					<xs:documentation>Manga with pages and panels in the sequence of the original Japanese, but with Western text.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="B610">
+				<xs:annotation>
+					<xs:documentation>Syllabification</xs:documentation>
+					<xs:documentation>Text shows syllable breaks.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="B701">
@@ -22172,7 +24315,7 @@
 			<xs:enumeration value="D101">
 				<xs:annotation>
 					<xs:documentation>Real Video format</xs:documentation>
-					<xs:documentation/>
+					<xs:documentation>Proprietary RealNetworks format. Includes Real Video packaged within a .rm RealMedia container.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="D102">
@@ -22562,25 +24705,37 @@
 			<xs:enumeration value="E139">
 				<xs:annotation>
 					<xs:documentation>CEB</xs:documentation>
-					<xs:documentation>Founder Apabi's proprietary basic e-book format.</xs:documentation>
+					<xs:documentation>Founder Apabi’s proprietary basic e-book format.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="E140">
 				<xs:annotation>
 					<xs:documentation>CEBX</xs:documentation>
-					<xs:documentation>Founder Apabi's proprietary XML e-book format.</xs:documentation>
+					<xs:documentation>Founder Apabi’s proprietary XML e-book format.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="E141">
 				<xs:annotation>
 					<xs:documentation>iBook</xs:documentation>
-					<xs:documentation>Apple's iBook format (a proprietary extension of EPUB), can only be read on Apple iOS devices.</xs:documentation>
+					<xs:documentation>Apple’s iBook format (a proprietary extension of EPUB), can only be read on Apple iOS devices.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="E142">
 				<xs:annotation>
 					<xs:documentation>ePIB</xs:documentation>
 					<xs:documentation>Proprietary format used by Barnes and Noble, readable on NOOK devices and Nook reader software.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E143">
+				<xs:annotation>
+					<xs:documentation>SCORM</xs:documentation>
+					<xs:documentation>Sharable Content Object Reference Model, standard content and packaging format for e-learning objects.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E144">
+				<xs:annotation>
+					<xs:documentation>EBP</xs:documentation>
+					<xs:documentation>E-book Plus (proprietary Norwegian e-book format).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="E200">
@@ -22605,6 +24760,54 @@
 				<xs:annotation>
 					<xs:documentation>Requires network connection</xs:documentation>
 					<xs:documentation>E-publication requires a network connection to access some resources (eg an enhanced e-book where video clips are not stored within the e-publication package itself, but are delivered via an internet connection).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E204">
+				<xs:annotation>
+					<xs:documentation>Content removed</xs:documentation>
+					<xs:documentation>Resources (eg images) present in other editions have been removed from this product, eg due to rights issues.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E210">
+				<xs:annotation>
+					<xs:documentation>Landscape</xs:documentation>
+					<xs:documentation>Use for fixed-format e-books optimised for landscape display. Also include an indication of the optimal screen aspect ratio.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E211">
+				<xs:annotation>
+					<xs:documentation>Portrait</xs:documentation>
+					<xs:documentation>Use for fixed-format e-books optimised for portrait display. Also include an indication of the optimal screen aspect ratio.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E221">
+				<xs:annotation>
+					<xs:documentation>5:4</xs:documentation>
+					<xs:documentation>Use for fixed-format e-books optimised for displays with a 5:4 aspect ratio (eg 1280x1024 pixels etc, assuming square pixels). Note that aspect ratio codes are NOT specific to actual screen dimensions or pixel counts, but to the ratios between two dimensions or two pixel counts.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E222">
+				<xs:annotation>
+					<xs:documentation>4:3</xs:documentation>
+					<xs:documentation>Use for fixed-format e-books optimised for displays with a 4:3 aspect ratio (eg 800x600, 1024x768, 2048x1536 pixels etc).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E223">
+				<xs:annotation>
+					<xs:documentation>3:2</xs:documentation>
+					<xs:documentation>Use for fixed-format e-books optimised for displays with a 3:2 aspect ratio (eg 960x640, 3072x2048 pixels etc).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E224">
+				<xs:annotation>
+					<xs:documentation>16:10</xs:documentation>
+					<xs:documentation>Use for fixed-format e-books optimised for displays with a 16:10 aspect ratio (eg 1440x900, 2560x1600 pixels etc).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E225">
+				<xs:annotation>
+					<xs:documentation>16:9</xs:documentation>
+					<xs:documentation>Use for fixed-format e-books optimised for displays with a 16:9 aspect ratio (eg 1024x576, 1920x1080, 2048x1152 pixels etc).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="L101">
@@ -22895,7 +25098,7 @@
 			<xs:enumeration value="D101">
 				<xs:annotation>
 					<xs:documentation>Real Video</xs:documentation>
-					<xs:documentation>Proprietary RealNetworks format.</xs:documentation>
+					<xs:documentation>Proprietary RealNetworks format. Includes Real Video packaged within a .rm RealMedia container.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="D102">
@@ -23006,6 +25209,24 @@
 					<xs:documentation>XML Paper Specification.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="E116">
+				<xs:annotation>
+					<xs:documentation>Amazon Kindle</xs:documentation>
+					<xs:documentation>A format proprietary to Amazon for use with its Kindle reading devices or software readers [File extensions .azw, .mobi, .prc].</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E139">
+				<xs:annotation>
+					<xs:documentation>CEB</xs:documentation>
+					<xs:documentation>Founder Apabi’s proprietary basic e-book format.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E140">
+				<xs:annotation>
+					<xs:documentation>CEBX</xs:documentation>
+					<xs:documentation>Founder Apabi’s proprietary XML e-book format.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="List179">
@@ -23023,6 +25244,12 @@
 				<xs:annotation>
 					<xs:documentation>Finnish Pocket Book price code</xs:documentation>
 					<xs:documentation>Price Code scheme for Finnish Pocket Books (Pokkareiden hintaryhmä). Price codes expressed as letters A–J in &lt;PriceCode&gt;.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="03">
+				<xs:annotation>
+					<xs:documentation>Finnish Miki Book price code</xs:documentation>
+					<xs:documentation>Price Code scheme for Finnish Miki Books (Miki-kirjojen hintaryhmä). Price codes expressed as an integer 1–n in &lt;PriceCode&gt;.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -23159,6 +25386,36 @@
 					<xs:documentation>Text-synchronised pre-recorded audio narration (natural or synthesised voice) is included for substantially all textual matter, including all alternative descriptions.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="21">
+				<xs:annotation>
+					<xs:documentation>Text-to-speech hinting provided</xs:documentation>
+					<xs:documentation>Text-to-speech has been optimised through provision of PLS lexicons, SSML or CSS Speech synthesis hints.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="22">
+				<xs:annotation>
+					<xs:documentation>Language tagging provided</xs:documentation>
+					<xs:documentation>The language of the text has been specified (eg via the HTML or XML lang attribute) to optimise text-to-speech (and other alternative renderings), both at whole document level and, where appropriate, for individual words, phrases or passages in a different language.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="94">
+				<xs:annotation>
+					<xs:documentation>Compliance web page for detailed accessibility information</xs:documentation>
+					<xs:documentation>&lt;ProductFormFeatureDescription&gt; carries the URL of a web page giving further detailed description of the accessibility features, compatibility, testing etc. The web page should be maintained by an independent compliance scheme or testing organization.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="95">
+				<xs:annotation>
+					<xs:documentation>Trusted intermediary’s web page for detailed accessibility information</xs:documentation>
+					<xs:documentation>&lt;ProductFormFeatureDescription&gt; carries the URL of a web page giving further detailed description of the accessibility features, compatibility, testing etc. The web page should be provided by a trusted intermediary or third party nominated by the publisher.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="96">
+				<xs:annotation>
+					<xs:documentation>Publisher’s web page for detailed accessibility information</xs:documentation>
+					<xs:documentation>&lt;ProductFormFeatureDescription&gt; carries the URL of a web page giving further detailed description of the accessibility features, compatibility, testing etc. The web page should be provided by the publisher.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="97">
 				<xs:annotation>
 					<xs:documentation>Compatibility tested</xs:documentation>
@@ -23231,6 +25488,302 @@
 				<xs:annotation>
 					<xs:documentation>Promotional contact</xs:documentation>
 					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="List203">
+		<xs:annotation>
+			<xs:documentation source="ONIX Code List 203">ONIX Adult Audience rating</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="00">
+				<xs:annotation>
+					<xs:documentation>Unrated</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="01">
+				<xs:annotation>
+					<xs:documentation>Any adult audience</xs:documentation>
+					<xs:documentation>The publisher states that the product is suitable for any adult audience.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="02">
+				<xs:annotation>
+					<xs:documentation>Content warning</xs:documentation>
+					<xs:documentation>The publisher warns the content may offend parts of the adult audience (for any reason).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="03">
+				<xs:annotation>
+					<xs:documentation>Content warning (sex)</xs:documentation>
+					<xs:documentation>The publisher warns the product includes content of an explicit sexual nature.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="04">
+				<xs:annotation>
+					<xs:documentation>Content warning (violence)</xs:documentation>
+					<xs:documentation>The publisher warns the product includes content of a violent nature.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="05">
+				<xs:annotation>
+					<xs:documentation>Content warning (drug-taking)</xs:documentation>
+					<xs:documentation>The publisher warns the product includes content involving misuse of drugs.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="06">
+				<xs:annotation>
+					<xs:documentation>Content warning (language)</xs:documentation>
+					<xs:documentation>The publisher warns the product includes extreme / offensive / explicit language.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="07">
+				<xs:annotation>
+					<xs:documentation>Content warning (intolerance)</xs:documentation>
+					<xs:documentation>The publisher warns the product includes content involving intolerance of particular groups (eg religious, ethnic, racial, social).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="List204">
+		<xs:annotation>
+			<xs:documentation source="ONIX Code List 204">ONIX Returns conditions code</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="00">
+				<xs:annotation>
+					<xs:documentation>Unspecified</xs:documentation>
+					<xs:documentation>Unspecified, contact supplier for details.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="01">
+				<xs:annotation>
+					<xs:documentation>Consignment</xs:documentation>
+					<xs:documentation>The retailer pays for goods only after they are sold by the retailer, and may return excess unsold inventory to the supplier at any time. The goods remain the property of the supplier until they are paid for, even while they are physically located at the retailer.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="02">
+				<xs:annotation>
+					<xs:documentation>Firm sale</xs:documentation>
+					<xs:documentation>The retailer is invoiced and pays immediately as in the sale or return model, but any excess unsold inventory cannot be returned to the supplier.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="03">
+				<xs:annotation>
+					<xs:documentation>Sale or return</xs:documentation>
+					<xs:documentation>Contact supplier for applicable returns authorization process. The retailer is invoiced immediately for the goods and pays within the specified credit period, but can return excess unsold inventory to the supplier for full credit at a later date (some kind of returns authorisation process is normally required, and returns of stripped covers or proof of destruction may be allowed instead).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="List215">
+		<xs:annotation>
+			<xs:documentation source="ONIX Code List 215">Proximity</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="01">
+				<xs:annotation>
+					<xs:documentation>Less than</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="02">
+				<xs:annotation>
+					<xs:documentation>Not more than</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="03">
+				<xs:annotation>
+					<xs:documentation>Exactly</xs:documentation>
+					<xs:documentation>The supplier’s true figure, or at least a best estimate expected to be within 10% of the true figure (ie a quoted figure of 100 could in fact be anything between 91 and 111).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="04">
+				<xs:annotation>
+					<xs:documentation>Approximately</xs:documentation>
+					<xs:documentation>Generally interpreted as within 25% of the true figure (ie a quoted figure of 100 could in fact be anything between 80 and 133). The supplier may introduce a deliberate approximation to reduce the commercial sensitivity of the figure.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="05">
+				<xs:annotation>
+					<xs:documentation>About</xs:documentation>
+					<xs:documentation>Generally interpreted as within a factor of two of the true figure (ie a quoted figure of 100 could in fact be anything between 50 and 200). The supplier may introduce a deliberate approximation to reduce the commercial sensitivity of the figure.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="06">
+				<xs:annotation>
+					<xs:documentation>Not less than</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="07">
+				<xs:annotation>
+					<xs:documentation>More than</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="List216">
+		<xs:annotation>
+			<xs:documentation source="ONIX Code List 216">Velocity</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="01">
+				<xs:annotation>
+					<xs:documentation>Mean daily sale</xs:documentation>
+					<xs:documentation>Typically measured over most recent 1 month period.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="02">
+				<xs:annotation>
+					<xs:documentation>Maximum daily sale</xs:documentation>
+					<xs:documentation>Typically measured over most recent 1 month period.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="03">
+				<xs:annotation>
+					<xs:documentation>Minimum daily sale</xs:documentation>
+					<xs:documentation>Typically measured over most recent 1 month period.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="04">
+				<xs:annotation>
+					<xs:documentation>Mean weekly sale</xs:documentation>
+					<xs:documentation>Typically measured over most recent rolling 12 week period.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="05">
+				<xs:annotation>
+					<xs:documentation>Maximum weekly sale</xs:documentation>
+					<xs:documentation>Typically measured over most recent rolling 12 week period.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="06">
+				<xs:annotation>
+					<xs:documentation>Minimum weekly sale</xs:documentation>
+					<xs:documentation>Typically measured over most recent rolling 12 week period.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="07">
+				<xs:annotation>
+					<xs:documentation>Mean monthly sale</xs:documentation>
+					<xs:documentation>Typically measured over most recent rolling 6 month period.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="08">
+				<xs:annotation>
+					<xs:documentation>Maximum monthly sale</xs:documentation>
+					<xs:documentation>Typically measured over the most recent rolling 6 month period.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="09">
+				<xs:annotation>
+					<xs:documentation>Minimum monthly sale</xs:documentation>
+					<xs:documentation>Typically measured over the most recent rolling 6 month period.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="List217">
+		<xs:annotation>
+			<xs:documentation source="ONIX Code List 217">Price identifier type code</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="01">
+				<xs:annotation>
+					<xs:documentation>Proprietary</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="List218">
+		<xs:annotation>
+			<xs:documentation source="ONIX Code List 218">License expression type code</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="01">
+				<xs:annotation>
+					<xs:documentation>Human readable</xs:documentation>
+					<xs:documentation>Document (eg Word file, PDF or web page) Intended for the lay reader.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="02">
+				<xs:annotation>
+					<xs:documentation>Professional readable</xs:documentation>
+					<xs:documentation>Document (eg Word file, PDF or web page) Intended for the legal specialist reader.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="10">
+				<xs:annotation>
+					<xs:documentation>ONIX-PL</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="List219">
+		<xs:annotation>
+			<xs:documentation source="ONIX Code List 219">Rights type code</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="C">
+				<xs:annotation>
+					<xs:documentation>Copyright</xs:documentation>
+					<xs:documentation>Text or image copyright (normally indicated by the © symbol).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="P">
+				<xs:annotation>
+					<xs:documentation>Phonogram right</xs:documentation>
+					<xs:documentation>Phonogram copyright or neighbouring right (normally indicated by the ℗ symbol).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="D">
+				<xs:annotation>
+					<xs:documentation>Database right</xs:documentation>
+					<xs:documentation>Sui generis database right.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="List220">
+		<xs:annotation>
+			<xs:documentation source="ONIX Code List 220">E-publication version number</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="101A">
+				<xs:annotation>
+					<xs:documentation>EPUB 2.0.1</xs:documentation>
+					<xs:documentation>Use only with &lt;ProductFormDetail&gt; codes E101 or E102.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="101B">
+				<xs:annotation>
+					<xs:documentation>EPUB 3.0</xs:documentation>
+					<xs:documentation>Use only with &lt;ProductFormDetail&gt; code E101.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="101C">
+				<xs:annotation>
+					<xs:documentation>EPUB 3.0.1</xs:documentation>
+					<xs:documentation>Use only with &lt;ProductFormDetail&gt; code E101.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="116A">
+				<xs:annotation>
+					<xs:documentation>Kindle mobi 7</xs:documentation>
+					<xs:documentation>Use only with &lt;ProductFormDetail&gt; codes E116 or E127.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="116B">
+				<xs:annotation>
+					<xs:documentation>Kindle KF8</xs:documentation>
+					<xs:documentation>Use only with &lt;ProductFormDetail&gt; code E116.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
