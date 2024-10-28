@@ -72,7 +72,6 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		if ($node->getAttribute('physical_format') == 'true') $representation->setPhysicalFormat(true);
 		if ($node->getAttribute('entry_key')) $representation->setEntryKey($node->getAttribute('entry_key'));
 
-
 		$representationDao = Application::getRepresentationDAO();
 		$representationDao->insertObject($representation);
 
@@ -110,7 +109,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 	}
 
 	/**
-	 * Process the Product node found inside the publication_format node.  There may be many of these.
+	 * Process the Product node found inside the publication_format node. There may be many of these.
 	 * @param $node DOMElement
 	 * @param $deployment PKPImportExportDeployment
 	 * @param $representation PublicationFormat
@@ -308,11 +307,11 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 						$market->setTaxRateCode($this->_extractTextFromNode($priceNode, $onixDeployment, 'TaxRateCode'));
 						$market->setCurrencyCode($this->_extractTextFromNode($priceNode, $onixDeployment, 'CurrencyCode'));
 					}
-				}
 
-				// Extract Pricing information for this format.
-				$representation->setReturnableIndicatorCode($this->_extractTextFromNode($supplierNode, $onixDeployment, 'ReturnsCode'));
-				$representation->getProductAvailabilityCode($this->_extractTextFromNode($supplierNode, $onixDeployment, 'ProductAvailability'));
+					// Extract Pricing information for this format.
+					$representation->setReturnableIndicatorCode($this->_extractTextFromNode($supplierNode, $onixDeployment, 'ReturnsCode'));
+					$representation->setProductAvailabilityCode($this->_extractTextFromNode($supplierNode, $onixDeployment, 'ProductAvailability'));
+				}
 
 				$marketDao->insertObject($market);
 			}
@@ -324,7 +323,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 	 * @param $node DOMElement
 	 * @param $onixDeployment Onix30ExportDeployment
 	 * @param $nodeName String the name of the node.
-	 * @return String
+	 * @return String|null
 	 */
 	function _extractTextFromNode($node, $onixDeployment, $nodeName) {
 		$nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), $nodeName);
@@ -346,18 +345,18 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 
 		for ($i = 0 ; $i < $nodeList->length ; $i++) {
 			$n = $nodeList->item($i);
-			$extentType = $this->_extractTextFromNode($node, $onixDeployment, 'ExtentType');
-			$extentValue = $this->_extractTextFromNode($node, $onixDeployment, 'ExtentValue');
+			$extentType = $this->_extractTextFromNode($n, $onixDeployment, 'ExtentType');
+			$extentValue = $this->_extractTextFromNode($n, $onixDeployment, 'ExtentValue');
 
 			switch ($extentType) {
-				case '08': // Digital
-					$representation->setFileSize($extentValue);
-					break;
-				case '00': // Physical, front matter.
+				case '03': // Physical, front matter.
 					$representation->setFrontMatter($extentValue);
 					break;
 				case '04': // Physical, back matter.
 					$representation->setBackMatter($extentValue);
+					break;
+				case '22': // Digital, filesize.
+					$representation->setFileSize($extentValue);
 					break;
 			}
 		}
@@ -373,9 +372,9 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		$nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'Measure');
 		for ($i = 0 ; $i < $nodeList->length ; $i++) {
 			$n = $nodeList->item($i);
-			$measureType = $this->_extractTextFromNode($node, $onixDeployment, 'MeasureType');
-			$measurement = $this->_extractTextFromNode($node, $onixDeployment, 'Measurement');
-			$measureUnitCode = $this->_extractTextFromNode($node, $onixDeployment, 'MeasureUnitCode');
+			$measureType = $this->_extractTextFromNode($n, $onixDeployment, 'MeasureType');
+			$measurement = $this->_extractTextFromNode($n, $onixDeployment, 'Measurement');
+			$measureUnitCode = $this->_extractTextFromNode($n, $onixDeployment, 'MeasureUnitCode');
 
 			// '01' => 'Height', '02' => 'Width', '03' => 'Thickness', '08' => 'Weight'
 			switch ($measureType) {
@@ -401,7 +400,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 
 	/**
 	 * Extracts the AudienceRange elements, which vary depending on whether
-	 * a submission defines a specific range, or a to/from pair.
+	 * a submission defines a specific range, or a from/to pair.
 	 * @param $node DOMElement
 	 * @param $onixDeployment Onix30ExportDeployment
 	 * @param Submission $submission
@@ -411,24 +410,28 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		for ($i = 0 ; $i < $nodeList->length ; $i++) {
 			$n = $nodeList->item($i);
 			$audienceRangePrecision = 0;
-			for ($o = $n->firstChild; $o !== null; $o=$o->nextSibling) if (is_a($o, 'DOMElement')) switch($o->tagName) {
-				case 'AudienceRangePrecision': $audienceRangePrevision = $o->textContent; break;
-				case 'AudienceRangeValue':
-					switch ($audienceRangePrecision) {
-						case '01':
-							$submission->setData('audienceRangeExact', $o->textContent);
+			for ($o = $n->firstChild; $o !== null; $o = $o->nextSibling) {
+				if (is_a($o, 'DOMElement')) {
+					switch ($o->tagName) {
+						case 'onix:AudienceRangePrecision':
+							$audienceRangePrecision = $o->textContent;
 							break;
-						case '03':
-							$submission->setData('audienceRangeTo', $o->textContent);
-							break;
-						case '04':
-							$submission->setData('audienceRangeFrom', $o->textContent);
+						case 'onix:AudienceRangeValue':
+							switch ($audienceRangePrecision) {
+								case '01':
+									$submission->setData('audienceRangeExact', $o->textContent);
+									break;
+								case '03':
+									$submission->setData('audienceRangeFrom', $o->textContent);
+									break;
+								case '04':
+									$submission->setData('audienceRangeTo', $o->textContent);
+									break;
+							}
 							break;
 					}
-					break;
+				}
 			}
 		}
 	}
 }
-
-
