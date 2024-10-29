@@ -14,6 +14,7 @@
 namespace APP\author;
 
 use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Query\JoinClause;
 
 class Collector extends \PKP\author\Collector
 {
@@ -41,14 +42,16 @@ class Collector extends \PKP\author\Collector
     {
         $q = parent::getQueryBuilder();
 
-        $q->when($this->chapterIds !== null, function ($query) {
-            $query->whereIn('author_id', function ($query) {
-                return $query->select('author_id')
-                    ->from('submission_chapter_authors')
-                    ->whereIn('chapter_id', $this->chapterIds);
+        $q->when($this->chapterIds !== null, function (Builder $query) {
+            $query->join('submission_chapter_authors as sca', function (JoinClause $join) {
+                $join->whereIn('sca.chapter_id', $this->chapterIds)
+                    ->whereColumn('a.author_id', 'sca.author_id');
             });
+            // Use the order specified by the submission_chapter_authors table,
+            // to ensure that the order of authors reflects the order from the manually sorted chapters grid
+            $query->orders = null;
+            $query->orderBy('sca.seq');
         });
-
         return $q;
     }
 }
