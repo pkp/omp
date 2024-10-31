@@ -84,9 +84,9 @@ describe('Data suite tests', function() {
 		cy.get('#indexing button').contains('Save').click();
 		cy.get('#indexing [role="status"]').contains('Saved');
 
-		cy.get('label[for="searchIndexing-searchDescription-control-en"] ~ button.tooltipButton').click();
+		cy.get('label[for="searchIndexing-searchDescription-control-en"] ~ span.tooltipButton').click();
 		cy.get('div').contains('Provide a brief description');
-		cy.get('label[for="searchIndexing-searchDescription-control-en"] ~ button.tooltipButton').click();
+		cy.get('label[for="searchIndexing-searchDescription-control-en"] ~ span.tooltipButton').click();
 	});
 
 	it('Tests context settings form', function() {
