@@ -218,7 +218,7 @@ class Repository extends \PKP\publication\Repository
             // old one. We then map the old chapter author associations to the new
             // authors.
             $oldChapterAuthors = Repo::author()->getCollector()
-                ->filterByChapterIds([$oldChapter->getId()])
+                ->filterByChapterId($oldChapter->getId())
                 ->filterByPublicationIds([$oldPublicationId])
                 ->getMany();
 
