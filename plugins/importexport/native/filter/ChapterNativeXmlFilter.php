@@ -97,7 +97,7 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
 
         // Add authors
         $chapterAuthors = Repo::author()->getCollector()
-            ->filterByChapterIds([$chapter->getId()])
+            ->filterByChapterId($chapter->getId())
             ->filterByPublicationIds([$chapter->getData('publicationId')])
             ->getMany();
 
