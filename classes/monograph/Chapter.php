@@ -128,7 +128,7 @@ class Chapter extends \PKP\core\DataObject
     public function getAuthors(): LazyCollection
     {
         return Repo::author()->getCollector()
-            ->filterByChapterIds([$this->getId()])
+            ->filterByChapterId($this->getId())
             ->filterByPublicationIds([$this->getData('publicationId')])
             ->getMany();
     }

@@ -589,7 +589,7 @@ class ChapterGridHandler extends CategoryGridHandler
             'title' => $chapter->getLocalizedFullTitle(),
             'authors' => Repo::author()
                 ->getCollector()
-                ->filterByChapterIds([$chapter->getId()])
+                ->filterByChapterId($chapter->getId())
                 ->filterByPublicationIds([$publication->getId()])
                 ->getMany()
                 ->map(fn (Author $author) => $author->getFullName())

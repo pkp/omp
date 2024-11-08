@@ -14,11 +14,11 @@
 namespace APP\author;
 
 use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Query\JoinClause;
 
 class Collector extends \PKP\author\Collector
 {
-    /** @var array|null */
-    public $chapterIds = null;
+    public ?int $chapterId = null;
 
     public function __construct(DAO $dao)
     {
@@ -28,9 +28,9 @@ class Collector extends \PKP\author\Collector
     /**
      * Limit results to authors assigned to this chapter by chapterId
      */
-    public function filterByChapterIds(?array $chapterIds): self
+    public function filterByChapterId(?int $chapterId): self
     {
-        $this->chapterIds = $chapterIds;
+        $this->chapterId = $chapterId;
         return $this;
     }
 
@@ -41,14 +41,16 @@ class Collector extends \PKP\author\Collector
     {
         $q = parent::getQueryBuilder();
 
-        $q->when($this->chapterIds !== null, function ($query) {
-            $query->whereIn('author_id', function ($query) {
-                return $query->select('author_id')
-                    ->from('submission_chapter_authors')
-                    ->whereIn('chapter_id', $this->chapterIds);
+        $q->when($this->chapterId !== null, function (Builder $query) {
+            $query->join('submission_chapter_authors as sca', function (JoinClause $join) {
+                $join->on('a.author_id', '=', 'sca.author_id')
+                    ->where('sca.chapter_id', '=', $this->chapterId);
             });
+            // Use the order specified by the submission_chapter_authors table,
+            // to ensure that the order of authors reflects the order from the manually sorted chapters grid
+            $query->orders = null;
+            $query->orderBy('sca.seq');
         });
-
         return $q;
     }
 }

@@ -36,7 +36,7 @@ class Schema extends \PKP\publication\maps\Schema
                 } else {
                     $data['authors'] = Repo::author()
                         ->getCollector()
-                        ->filterByChapterIds([$chapter->getId()])
+                        ->filterByChapterId($chapter->getId())
                         ->filterByPublicationIds([$publication->getId()])
                         ->getMany()
                         ->map(function ($chapterAuthor) {
