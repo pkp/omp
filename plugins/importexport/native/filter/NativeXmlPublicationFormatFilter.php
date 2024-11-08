@@ -27,6 +27,7 @@ use APP\submission\Submission;
 use DOMElement;
 use PKP\core\PKPApplication;
 use PKP\db\DAORegistry;
+use PKP\plugins\importexport\PKPImportExportDeployment;
 
 class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\filter\NativeXmlRepresentationFilter
 {
@@ -90,9 +91,11 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
         for ($n = $node->firstChild; $n !== null; $n = $n->nextSibling) {
             if ($n instanceof DOMElement) {
                 switch ($n->tagName) {
-                    case 'Product': $this->_processProductNode($n, $this->getDeployment(), $representation);
+                    case 'Product':
+                        $this->_processProductNode($n, $this->getDeployment(), $representation);
                         break;
-                    case 'submission_file_ref': $this->_processFileRef($n, $deployment, $representation);
+                    case 'submission_file_ref':
+                        $this->_processFileRef($n, $deployment, $representation);
                         break;
                     default:
                 }
@@ -109,8 +112,8 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
      * Process the self_file_ref node found inside the publication_format node.
      *
      * @param DOMElement $node
-     * @param \APP\plugins\importexport\onix30\Onix30ExportDeployment $deployment
-     * @param \APP\publicationFormat\PublicationFormat $representation
+     * @param Onix30ExportDeployment $deployment
+     * @param PublicationFormat $representation
      */
     public function _processFileRef($node, $deployment, &$representation)
     {
@@ -130,11 +133,11 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
     }
 
     /**
-     * Process the Product node found inside the publication_format node.  There may be many of these.
+     * Process the Product node found inside the publication_format node. There may be many of these.
      *
      * @param DOMElement $node
-     * @param \PKP\plugins\importexport\PKPImportExportDeployment $deployment
-     * @param \APP\publicationFormat\PublicationFormat $representation
+     * @param PKPImportExportDeployment $deployment
+     * @param PublicationFormat $representation
      */
     public function _processProductNode($node, $deployment, &$representation)
     {
@@ -167,16 +170,18 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
 
         if ($nodeList->length > 0) {
             $identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /** @var IdentificationCodeDAO $identificationCodeDao */
-            for ($i = 0 ; $i < $nodeList->length ; $i++) {
+            for ($i = 0; $i < $nodeList->length; $i++) {
                 $n = $nodeList->item($i);
                 $identificationCode = $identificationCodeDao->newDataObject();
                 $identificationCode->setPublicationFormatId($representation->getId());
                 for ($o = $n->firstChild; $o !== null; $o = $o->nextSibling) {
                     if ($o instanceof DOMElement) {
                         switch ($o->tagName) {
-                            case 'onix:ProductIDType': $identificationCode->setCode($o->textContent);
+                            case 'onix:ProductIDType':
+                                $identificationCode->setCode($o->textContent);
                                 break;
-                            case 'onix:IDValue': $identificationCode->setValue($o->textContent);
+                            case 'onix:IDValue':
+                                $identificationCode->setValue($o->textContent);
                                 break;
                         }
                     }
@@ -197,14 +202,15 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
 
         if ($nodeList->length > 0) {
             $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /** @var PublicationDateDAO $publicationDateDao */
-            for ($i = 0 ; $i < $nodeList->length ; $i++) {
+            for ($i = 0; $i < $nodeList->length; $i++) {
                 $n = $nodeList->item($i);
                 $date = $publicationDateDao->newDataObject();
                 $date->setPublicationFormatId($representation->getId());
                 for ($o = $n->firstChild; $o !== null; $o = $o->nextSibling) {
                     if ($o instanceof DOMElement) {
                         switch ($o->tagName) {
-                            case 'onix:PublishingDateRole': $date->setRole($o->textContent);
+                            case 'onix:PublishingDateRole':
+                                $date->setRole($o->textContent);
                                 break;
                             case 'onix:Date':
                                 $date->setDate($o->textContent);
@@ -223,7 +229,7 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
         $nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'SalesRights');
         if ($nodeList->length > 0) {
             $salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /** @var SalesRightsDAO $salesRightsDao */
-            for ($i = 0 ; $i < $nodeList->length ; $i ++) {
+            for ($i = 0; $i < $nodeList->length; $i++) {
                 $salesRights = $salesRightsDao->newDataObject();
                 $salesRights->setPublicationFormatId($representation->getId());
                 /** @var DOMElement */
@@ -242,13 +248,17 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
                     for ($o = $territoryNode->firstChild; $o !== null; $o = $o->nextSibling) {
                         if ($o instanceof DOMElement) {
                             switch ($o->tagName) {
-                                case 'onix:RegionsIncluded': $salesRights->setRegionsIncluded(preg_split('/\s+/', $o->textContent));
+                                case 'onix:RegionsIncluded':
+                                    $salesRights->setRegionsIncluded(preg_split('/\s+/', $o->textContent));
                                     break;
-                                case 'onix:CountriesIncluded': $salesRights->setCountriesIncluded(preg_split('/\s+/', $o->textContent));
+                                case 'onix:CountriesIncluded':
+                                    $salesRights->setCountriesIncluded(preg_split('/\s+/', $o->textContent));
                                     break;
-                                case 'onix:RegionsExcluded': $salesRights->setRegionsExcluded(preg_split('/\s+/', $o->textContent));
+                                case 'onix:RegionsExcluded':
+                                    $salesRights->setRegionsExcluded(preg_split('/\s+/', $o->textContent));
                                     break;
-                                case 'onix:CountriesExcluded': $salesRights->setCountriesExcluded(preg_split('/\s+/', $o->textContent));
+                                case 'onix:CountriesExcluded':
+                                    $salesRights->setCountriesExcluded(preg_split('/\s+/', $o->textContent));
                                     break;
                             }
                         }
@@ -265,7 +275,7 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
             $marketDao = DAORegistry::getDAO('MarketDAO'); /** @var MarketDAO $marketDao */
             $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /** @var RepresentativeDAO $representativeDao */
 
-            for ($i = 0 ; $i < $nodeList->length ; $i ++) {
+            for ($i = 0; $i < $nodeList->length; $i++) {
                 /** @var DOMElement */
                 $productSupplyNode = $nodeList->item($i);
                 $market = $marketDao->newDataObject();
@@ -277,13 +287,17 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
                 for ($o = $territoryNode->firstChild; $o !== null; $o = $o->nextSibling) {
                     if ($o instanceof DOMElement) {
                         switch ($o->tagName) {
-                            case 'onix:RegionsIncluded': $market->setRegionsIncluded(preg_split('/\s+/', $o->textContent));
+                            case 'onix:RegionsIncluded':
+                                $market->setRegionsIncluded(preg_split('/\s+/', $o->textContent));
                                 break;
-                            case 'onix:CountriesIncluded': $market->setCountriesIncluded(preg_split('/\s+/', $o->textContent));
+                            case 'onix:CountriesIncluded':
+                                $market->setCountriesIncluded(preg_split('/\s+/', $o->textContent));
                                 break;
-                            case 'onix:RegionsExcluded': $market->setRegionsExcluded(preg_split('/\s+/', $o->textContent));
+                            case 'onix:RegionsExcluded':
+                                $market->setRegionsExcluded(preg_split('/\s+/', $o->textContent));
                                 break;
-                            case 'onix:CountriesExcluded': $market->setCountriesExcluded(preg_split('/\s+/', $o->textContent));
+                            case 'onix:CountriesExcluded':
+                                $market->setCountriesExcluded(preg_split('/\s+/', $o->textContent));
                                 break;
                         }
                     }
@@ -358,11 +372,11 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
                         $market->setTaxRateCode($this->_extractTextFromNode($priceNode, $onixDeployment, 'TaxRateCode'));
                         $market->setCurrencyCode($this->_extractTextFromNode($priceNode, $onixDeployment, 'CurrencyCode'));
                     }
-                }
 
-                // Extract Pricing information for this format.
-                $representation->setReturnableIndicatorCode($this->_extractTextFromNode($supplierNode, $onixDeployment, 'ReturnsCode'));
-                $representation->setProductAvailabilityCode($this->_extractTextFromNode($supplierNode, $onixDeployment, 'ProductAvailability'));
+                    // Extract Pricing information for this format.
+                    $representation->setReturnableIndicatorCode($this->_extractTextFromNode($supplierNode, $onixDeployment, 'ReturnsCode'));
+                    $representation->setProductAvailabilityCode($this->_extractTextFromNode($supplierNode, $onixDeployment, 'ProductAvailability'));
+                }
 
                 $marketDao->insertObject($market);
             }
@@ -373,10 +387,10 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
      * Extracts the text content from a node.
      *
      * @param DOMElement $node
-     * @param \APP\plugins\importexport\onix30\Onix30ExportDeployment $onixDeployment
+     * @param Onix30ExportDeployment $onixDeployment
      * @param string $nodeName the name of the node.
      *
-     * @return string
+     * @return null|string
      */
     public function _extractTextFromNode($node, $onixDeployment, $nodeName)
     {
@@ -393,27 +407,27 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
      * Extracts the elements of the Extent nodes.
      *
      * @param DOMElement $node
-     * @param \APP\plugins\importexport\onix30\Onix30ExportDeployment $onixDeployment
-     * @param \APP\publicationFormat\PublicationFormat $representation
+     * @param Onix30ExportDeployment $onixDeployment
+     * @param PublicationFormat $representation
      */
     public function _extractExtentContent($node, $onixDeployment, &$representation)
     {
         $nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'Extent');
 
-        for ($i = 0 ; $i < $nodeList->length ; $i++) {
+        for ($i = 0; $i < $nodeList->length; $i++) {
             $n = $nodeList->item($i);
-            $extentType = $this->_extractTextFromNode($node, $onixDeployment, 'ExtentType');
-            $extentValue = $this->_extractTextFromNode($node, $onixDeployment, 'ExtentValue');
+            $extentType = $this->_extractTextFromNode($n, $onixDeployment, 'ExtentType');
+            $extentValue = $this->_extractTextFromNode($n, $onixDeployment, 'ExtentValue');
 
             switch ($extentType) {
-                case '08': // Digital
-                    $representation->setFileSize($extentValue);
-                    break;
-                case '00': // Physical, front matter.
+                case '03': // Physical, front matter.
                     $representation->setFrontMatter($extentValue);
                     break;
                 case '04': // Physical, back matter.
                     $representation->setBackMatter($extentValue);
+                    break;
+                case '22': // Digital, filesize.
+                    $representation->setFileSize($extentValue);
                     break;
             }
         }
@@ -423,17 +437,17 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
      * Extracts the elements of the Measure nodes.
      *
      * @param DOMElement $node
-     * @param \APP\plugins\importexport\onix30\Onix30ExportDeployment $onixDeployment
-     * @param \APP\publicationFormat\PublicationFormat $representation
+     * @param Onix30ExportDeployment $onixDeployment
+     * @param PublicationFormat $representation
      */
     public function _extractMeasureContent($node, $onixDeployment, &$representation)
     {
         $nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'Measure');
-        for ($i = 0 ; $i < $nodeList->length ; $i++) {
+        for ($i = 0; $i < $nodeList->length; $i++) {
             $n = $nodeList->item($i);
-            $measureType = $this->_extractTextFromNode($node, $onixDeployment, 'MeasureType');
-            $measurement = $this->_extractTextFromNode($node, $onixDeployment, 'Measurement');
-            $measureUnitCode = $this->_extractTextFromNode($node, $onixDeployment, 'MeasureUnitCode');
+            $measureType = $this->_extractTextFromNode($n, $onixDeployment, 'MeasureType');
+            $measurement = $this->_extractTextFromNode($n, $onixDeployment, 'Measurement');
+            $measureUnitCode = $this->_extractTextFromNode($n, $onixDeployment, 'MeasureUnitCode');
 
             // '01' => 'Height', '02' => 'Width', '03' => 'Thickness', '08' => 'Weight'
             switch ($measureType) {
@@ -459,33 +473,34 @@ class NativeXmlPublicationFormatFilter extends \PKP\plugins\importexport\native\
 
     /**
      * Extracts the AudienceRange elements, which vary depending on whether
-     * a submission defines a specific range, or a to/from pair.
+     * a submission defines a specific range, or a from/to pair.
      *
      * @param DOMElement $node
-     * @param \APP\plugins\importexport\onix30\Onix30ExportDeployment $onixDeployment
-     * @param \APP\submission\Submission $submission
+     * @param Onix30ExportDeployment $onixDeployment
+     * @param Submission $submission
      */
     public function _extractAudienceRangeContent($node, $onixDeployment, &$submission)
     {
         $nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'AudienceRange');
-        for ($i = 0 ; $i < $nodeList->length ; $i++) {
+        for ($i = 0; $i < $nodeList->length; $i++) {
             $n = $nodeList->item($i);
             $audienceRangePrecision = 0;
             for ($o = $n->firstChild; $o !== null; $o = $o->nextSibling) {
                 if ($o instanceof DOMElement) {
                     switch ($o->tagName) {
-                        case 'AudienceRangePrecision': $audienceRangePrevision = $o->textContent;
+                        case 'onix:AudienceRangePrecision':
+                            $audienceRangePrecision = $o->textContent;
                             break;
-                        case 'AudienceRangeValue':
+                        case 'onix:AudienceRangeValue':
                             switch ($audienceRangePrecision) {
                                 case '01':
                                     $submission->setData('audienceRangeExact', $o->textContent);
                                     break;
                                 case '03':
-                                    $submission->setData('audienceRangeTo', $o->textContent);
+                                    $submission->setData('audienceRangeFrom', $o->textContent);
                                     break;
                                 case '04':
-                                    $submission->setData('audienceRangeFrom', $o->textContent);
+                                    $submission->setData('audienceRangeTo', $o->textContent);
                                     break;
                             }
                             break;

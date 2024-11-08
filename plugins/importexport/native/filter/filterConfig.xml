@@ -4,8 +4,8 @@
 <!--
   * filterConfig.xml
   *
-  * Copyright (c) 2014-2021 Simon Fraser University
-  * Copyright (c) 2003-2021 John Willinsky
+  * Copyright (c) 2014-2024 Simon Fraser University
+  * Copyright (c) 2003-2024 John Willinsky
   * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
   *
   * Filter Configuration.
@@ -73,7 +73,7 @@
 			displayName="plugins.importexport.onix30.displayName"
 			description="plugins.importexport.onix30.description"
 			inputType="class::classes.submission.Submission"
-			outputType="xml::schema(plugins/importexport/native/ONIX_BookProduct_3.0_reference_notstrict.xsd)" />
+			outputType="xml::schema(plugins/importexport/onix30/ONIX_BookProduct_3.0_reference.xsd)" />
 		<filterGroup
 			symbolic="publication=>native-xml"
 			displayName="plugins.importexport.native.displayName"
