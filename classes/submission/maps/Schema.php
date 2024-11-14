@@ -152,6 +152,7 @@ class Schema extends \PKP\submission\maps\Schema
 
         $reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /** @var ReviewRoundDAO $reviewRoundDao */
         $reviewRound = $reviewRoundDao->getLastReviewRoundBySubmissionId($submission->getId(), $stageId);
+        $reviewRoundId = $reviewRound ? $reviewRound->getId() : null;
 
         $isOnlyRecommending = $permissions['isOnlyRecommending'];
 
@@ -180,7 +181,7 @@ class Schema extends \PKP\submission\maps\Schema
                     ];
                     $cancelInternalReviewRound = new CancelInternalReviewRound();
 
-                    if ($cancelInternalReviewRound->canRetract($submission, $reviewRound->getId())) {
+                    if ($cancelInternalReviewRound->canRetract($submission, $reviewRoundId)) {
                         $decisionTypes[] = $cancelInternalReviewRound;
                     }
 
@@ -197,7 +198,7 @@ class Schema extends \PKP\submission\maps\Schema
                     ];
 
                     $cancelReviewRound = new CancelReviewRound();
-                    if ($cancelReviewRound->canRetract($submission, $reviewRound->getId())) {
+                    if ($cancelReviewRound->canRetract($submission, $reviewRoundId)) {
                         $decisionTypes[] = $cancelReviewRound;
                     }
                     if ($submission->getData('status') === Submission::STATUS_DECLINED) {
