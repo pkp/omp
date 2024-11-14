@@ -18,7 +18,9 @@ use APP\core\Application;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\plugins\importexport\onix30\Onix30ExportDeployment;
+use APP\publication\Publication;
 use DOMDocument;
+use DOMElement;
 use Exception;
 use PKP\context\Context;
 use PKP\db\DAORegistry;
@@ -31,10 +33,10 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
     /**
      * Populate the submission object from the node
      *
-     * @param \APP\publication\Publication $publication
-     * @param \DOMElement $node
+     * @param Publication $publication
+     * @param DOMElement $node
      *
-     * @return \APP\publication\Publication
+     * @return Publication
      */
     public function populateObject($publication, $node)
     {
@@ -47,28 +49,21 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
     /**
      * Handle an element whose parent is the submission element.
      *
-     * @param \DOMElement $n
-     * @param \APP\publication\Publication $publication
+     * @param DOMElement $n
+     * @param Publication $publication
      */
     public function handleChildElement($n, $publication)
     {
-        switch ($n->tagName) {
-            case 'publication_format':
-                $this->parsePublicationFormat($n, $publication);
-                break;
-            case 'chapters':
-                $this->parseChapters($n, $publication);
-                break;
-            case 'covers':
-                $nativeFilterHelper = new PKPNativeFilterHelper();
-                $nativeFilterHelper->parsePublicationCovers($this, $n, $publication);
-                break;
-            case 'series':
-                $this->parseSeries($this, $n, $publication);
-                break;
-            default:
-                parent::handleChildElement($n, $publication);
-        }
+        match ($n->tagName) {
+            'publication_format' => $this->parsePublicationFormat($n, $publication),
+            'chapters' => $this->parseChapters($n, $publication),
+            'covers' => [
+                $nativeFilterHelper = new PKPNativeFilterHelper(),
+                $nativeFilterHelper->parsePublicationCovers($this, $n, $publication),
+            ],
+            'series' => $this->parseSeries($this, $n, $publication),
+            default => parent::handleChildElement($n, $publication)
+        };
     }
 
     /**
@@ -83,16 +78,13 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
         $deployment = $this->getDeployment();
         $publication = $deployment->getPublication();
         $importClass = null;
-        switch ($elementName) {
-            case 'publication_format':
-                $importClass = 'PublicationFormat';
-                break;
-            case 'chapter':
-                $importClass = 'Chapter';
-                break;
-            default:
-                $deployment->addError(Application::ASSOC_TYPE_PUBLICATION, $publication->getId(), __('plugins.importexport.common.error.unknownElement', ['param' => $elementName]));
-        }
+
+        match ($elementName) {
+            'publication_format' => $importClass = 'PublicationFormat',
+            'chapter' => $importClass = 'Chapter',
+            default => $deployment->addError(Application::ASSOC_TYPE_PUBLICATION, $publication->getId(), __('plugins.importexport.common.error.unknownElement', ['param' => $elementName]))
+        };
+
         // Caps on class name for consistency with imports, whose filter
         // group names are generated implicitly.
 
@@ -105,8 +97,8 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
     /**
      * Parse a publication format and add it to the submission.
      *
-     * @param \DOMElement $n
-     * @param \APP\publication\Publication $publication
+     * @param DOMElement $n
+     * @param Publication $publication
      */
     public function parsePublicationFormat($n, $publication)
     {
@@ -128,7 +120,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
     /**
      * Parse a publication format and add it to the submission.
      *
-     * @param \APP\publication\Publication $publication
+     * @param Publication $publication
      */
     public function parseChapters($node, $publication)
     {
@@ -137,7 +129,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
         $chapters = [];
 
         for ($n = $node->firstChild; $n !== null; $n = $n->nextSibling) {
-            if ($n instanceof \DOMElement) {
+            if ($n instanceof DOMElement) {
                 switch ($n->tagName) {
                     case 'chapter':
                         $chapter = $this->parseChapter($n, $publication);
@@ -155,8 +147,8 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
     /**
      * Parse a publication format and add it to the submission.
      *
-     * @param \DOMElement $n
-     * @param \APP\publication\Publication $publication
+     * @param DOMElement $n
+     * @param Publication $publication
      */
     public function parseChapter($n, $publication)
     {
@@ -175,8 +167,8 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
      * Parse out the object covers.
      *
      * @param \PKP\plugins\importexport\native\filter\NativeExportFilter $filter
-     * @param \DOMElement $node
-     * @param \APP\publication\Publication $object
+     * @param DOMElement $node
+     * @param Publication $object
      */
     public function parsePublicationCovers($filter, $node, $object)
     {
@@ -185,7 +177,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
         $coverImages = [];
 
         for ($n = $node->firstChild; $n !== null; $n = $n->nextSibling) {
-            if ($n instanceof \DOMElement) {
+            if ($n instanceof DOMElement) {
                 switch ($n->tagName) {
                     case 'cover':
                         $coverImage = $this->parsePublicationCover($filter, $n, $object);
@@ -204,8 +196,8 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
      * Parse out the cover and store it in the object.
      *
      * @param \PKP\plugins\importexport\native\filter\NativeExportFilter $filter
-     * @param \DOMElement $node
-     * @param \APP\publication\Publication $object
+     * @param DOMElement $node
+     * @param Publication $object
      */
     public function parsePublicationCover($filter, $node, $object)
     {
@@ -222,7 +214,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
         $coverImage = [];
 
         for ($n = $node->firstChild; $n !== null; $n = $n->nextSibling) {
-            if ($n instanceof \DOMElement) {
+            if ($n instanceof DOMElement) {
                 switch ($n->tagName) {
                     case 'cover_image':
                         $coverImage['uploadName'] = uniqid() . '-' . basename(preg_replace(
@@ -269,8 +261,8 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
      * Parse out the cover and store it in the object.
      *
      * @param NativeXmlPublicationFilter $filter
-     * @param \DOMElement $node
-     * @param \APP\publication\Publication $object
+     * @param DOMElement $node
+     * @param Publication $object
      */
     public function parseSeries($filter, $node, $object)
     {
@@ -281,7 +273,7 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
         $series = Repo::section()->newDataObject();
         $seriesPath = null;
         for ($n = $node->firstChild; $n !== null; $n = $n->nextSibling) {
-            if ($n instanceof \DOMElement) {
+            if ($n instanceof DOMElement) {
                 switch ($n->tagName) {
                     case 'path':
                         $seriesPath = $n->textContent;

@@ -18,9 +18,10 @@ use APP\core\Application;
 use APP\submission\Submission;
 use DOMElement;
 use PKP\filter\Filter;
+use PKP\plugins\importexport\native\filter\NativeXmlSubmissionFilter;
 use PKP\plugins\importexport\PKPImportExportFilter;
 
-class NativeXmlMonographFilter extends \PKP\plugins\importexport\native\filter\NativeXmlSubmissionFilter
+class NativeXmlMonographFilter extends NativeXmlSubmissionFilter
 {
     /**
      * Populate the submission object from the node
@@ -50,19 +51,13 @@ class NativeXmlMonographFilter extends \PKP\plugins\importexport\native\filter\N
         $deployment = $this->getDeployment();
         $submission = $deployment->getSubmission();
         $importClass = null; // Scrutinizer
-        switch ($elementName) {
-            case 'submission_file':
-                $importClass = 'SubmissionFile';
-                break;
-            case 'publication':
-                $importClass = 'Publication';
-                break;
-            default:
-                $deployment->addError(Application::ASSOC_TYPE_SUBMISSION, $submission->getId(), __('plugins.importexport.common.error.unknownElement', ['param' => $elementName]));
-        }
+        match ($elementName) {
+            'submission_file' => $importClass = 'SubmissionFile',
+            'publication' => $importClass = 'Publication',
+            default => $deployment->addError(Application::ASSOC_TYPE_SUBMISSION, $submission->getId(), __('plugins.importexport.common.error.unknownElement', ['param' => $elementName])),
+        };
         // Caps on class name for consistency with imports, whose filter
         // group names are generated implicitly.
-        $currentFilter = PKPImportExportFilter::getFilter('native-xml=>' . $importClass, $this->getDeployment());
-        return $currentFilter;
+        return PKPImportExportFilter::getFilter('native-xml=>' . $importClass, $this->getDeployment());
     }
 }

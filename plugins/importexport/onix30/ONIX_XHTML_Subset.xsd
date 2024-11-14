@@ -17,9 +17,9 @@
 	*                  Revision 2                    *
 	*                Status: RELEASED                *
 	*            Release date: 2009-04-09            *
-	*              Revised: 2014-01-24               *
+	*              Revised: 2019-10-31               *
 	*                                                *
-	*             (c) 2000-2014 EDItEUR              *
+	*             (c) 2000-2019 EDItEUR              *
 	*             http://www.editeur.org/            *
 	*                                                *
 	**************************************************
@@ -49,6 +49,9 @@
 	and comment on your proposed use, in the interest of securing an orderly 
 	development of the Schema for the benefit of other users.
 
+	A full licence agreement (DOI: 10.4400/nwgj) that governs use of EDItEUR’s ONIX
+	documentation, DTDs and schemas is available on the EDItEUR website.
+
 	If you do not accept these terms, you must not use any version of the ONIX Product 
 	Information Message Schema.
 
@@ -62,7 +65,12 @@
 
 	SCHEMA REVISION HISTORY (IN REVERSE CHRONOLOGICAL ORDER)
 
-	2014-01-24: removed <object> and <param> element definitions
+	2019-07-28: Added HTML start and type attributes to <ol> tag for use in complex TOCs
+
+	2014-06-29: Added explicit mixed="true" to elements which are extended from Flow and Inline
+	            to avoid problems with some XML parsers
+
+	2014-01-24: removed <object> and <param> element definitions from subset
 
 	2012-01-27: added XHTML 1.1 <ruby> and associated <rb>, <rp>, <rt>, <rbc> and <rtc> tags
 
@@ -261,7 +269,7 @@
 	</xs:complexType>
 	<!-- =================== Document Body ==================================== -->
 	<xs:element name="div" substitutionGroup="block">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Flow">
 					<xs:attributeGroup ref="div.attlist"/>
@@ -275,7 +283,7 @@
 	</xs:attributeGroup>
 	<!-- =================== Paragraphs ======================================= -->
 	<xs:element name="p" substitutionGroup="block">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="p.attlist"/>
@@ -292,7 +300,7 @@
 		to h6 (the least important).
 	-->
 	<xs:element name="h1" substitutionGroup="heading">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="h1.attlist"/>
@@ -304,7 +312,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="h2" substitutionGroup="heading">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="h2.attlist"/>
@@ -316,7 +324,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="h3" substitutionGroup="heading">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="h3.attlist"/>
@@ -328,7 +336,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="h4" substitutionGroup="heading">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="h4.attlist"/>
@@ -340,7 +348,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="h5" substitutionGroup="heading">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="h5.attlist"/>
@@ -352,7 +360,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="h6" substitutionGroup="heading">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="h6.attlist"/>
@@ -387,10 +395,24 @@
 	</xs:element>
 	<xs:attributeGroup name="ol.attlist">
 		<xs:attributeGroup ref="attrs"/>
+		<!-- added attributes for ol -->
+		<xs:attribute name="type">
+			<xs:simpleType>
+				<xs:restriction base="xs:token">
+					<xs:enumeration value="1"/>
+					<xs:enumeration value="A"/>
+					<xs:enumeration value="a"/>
+					<xs:enumeration value="I"/>
+					<xs:enumeration value="i"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="start" type="xs:int"/>
+		<!-- - - - - - - - -->
 	</xs:attributeGroup>
 	<!-- list item -->
 	<xs:element name="li">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Flow">
 					<xs:attributeGroup ref="li.attlist"/>
@@ -415,7 +437,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="dt">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="dt.attlist"/>
@@ -427,7 +449,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="dd">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Flow">
 					<xs:attributeGroup ref="dd.attlist"/>
@@ -441,7 +463,7 @@
 	<!-- =================== Address ========================================== -->
 	<!-- information on author -->
 	<xs:element name="address" substitutionGroup="blocktext">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="address.attlist"/>
@@ -464,7 +486,7 @@
 	<!-- =================== Preformatted Text ================================ -->
 	<!-- content is %Inline; excluding "img|object|big|small|sub|sup" -->
 	<xs:element name="pre" substitutionGroup="blocktext">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="pre.content">
 					<xs:attributeGroup ref="pre.attlist"/>
@@ -493,7 +515,7 @@
 	<!-- =================== Text alignment =================================== -->
 	<!-- could be included, but not allowed in XHTML 1.0 Strict -->
 	<!-- <xs:element name="center">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Flow">
 					<xs:attributeGroup ref="center.attlist"/>
@@ -507,7 +529,7 @@
 	<!-- ================== The Anchor Element ================================ -->
 	<!-- content is %Inline; except that anchors shouldn't be nested -->
 	<xs:element name="a" substitutionGroup="inline">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="a.content">
 					<xs:attributeGroup ref="a.attlist"/>
@@ -533,7 +555,7 @@
 	</xs:attributeGroup>
 	<!-- ===================== Inline Elements ================================ -->
 	<xs:element name="span" substitutionGroup="special">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="span.attlist"/>
@@ -546,7 +568,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="bdo" substitutionGroup="special">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="bdo.attlist"/>
@@ -578,7 +600,7 @@
 		<xs:attributeGroup ref="coreattrs"/>
 	</xs:attributeGroup>
 	<xs:element name="em" substitutionGroup="phrase">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="em.attlist"/>
@@ -591,7 +613,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="strong" substitutionGroup="phrase">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="strong.attlist"/>
@@ -604,7 +626,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="dfn" substitutionGroup="phrase">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="dfn.attlist"/>
@@ -617,7 +639,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="code" substitutionGroup="phrase">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="code.attlist"/>
@@ -630,7 +652,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="samp" substitutionGroup="phrase">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="samp.attlist"/>
@@ -643,7 +665,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="kbd" substitutionGroup="phrase">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="kbd.attlist"/>
@@ -656,7 +678,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="var" substitutionGroup="phrase">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="var.attlist"/>
@@ -669,7 +691,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="cite" substitutionGroup="phrase">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="cite.attlist"/>
@@ -682,7 +704,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="abbr" substitutionGroup="phrase">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="abbr.attlist"/>
@@ -695,7 +717,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="acronym" substitutionGroup="phrase">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="acronym.attlist"/>
@@ -708,7 +730,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="q" substitutionGroup="phrase">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="q.attlist"/>
@@ -722,7 +744,7 @@
 		<xs:attribute name="cite" type="URI"/>
 	</xs:attributeGroup>
 	<xs:element name="sub" substitutionGroup="phrase">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="sub.attlist"/>
@@ -735,7 +757,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="sup" substitutionGroup="phrase">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="sup.attlist"/>
@@ -748,7 +770,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="tt" substitutionGroup="fontstyle">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="tt.attlist"/>
@@ -761,7 +783,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="i" substitutionGroup="fontstyle">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="i.attlist"/>
@@ -774,7 +796,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="b" substitutionGroup="fontstyle">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="b.attlist"/>
@@ -787,7 +809,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="big" substitutionGroup="fontstyle">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="big.attlist"/>
@@ -800,7 +822,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="small" substitutionGroup="fontstyle">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="small.attlist"/>
@@ -1044,7 +1066,7 @@
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="caption">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Inline">
 					<xs:attributeGroup ref="caption.attlist"/>
@@ -1099,7 +1121,7 @@
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="th">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Flow">
 					<xs:attributeGroup ref="th.attlist"/>
@@ -1108,7 +1130,7 @@
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="td">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="Flow">
 					<xs:attributeGroup ref="td.attlist"/>
@@ -1274,7 +1296,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="rb">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="ruby.content">
 					<xs:attributeGroup ref="rb.attlist"/>
@@ -1294,7 +1316,7 @@
 		<xs:attributeGroup ref="attrs"/>
 	</xs:attributeGroup>
 	<xs:element name="rt">
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:complexContent>
 				<xs:extension base="ruby.content">
 					<xs:attributeGroup ref="rt.attlist"/>
