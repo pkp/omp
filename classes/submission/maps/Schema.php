@@ -166,11 +166,13 @@ class Schema extends \PKP\submission\maps\Schema
                     ];
 
                     if ($submission->getData('status') === Submission::STATUS_DECLINED) {
-                        $decisionTypes[] = new RevertInitialDecline();
+                        // when the submission is declined, allow only reverting declined status
+                        $decisionTypes = [new RevertInitialDecline()];
                     } elseif ($submission->getData('status') === Submission::STATUS_QUEUED) {
                         $decisionTypes[] = new InitialDecline();
+                        $decisionTypes[] = new SendInternalReview();
+
                     }
-                    $decisionTypes[] = new SendInternalReview();
                     break;
                 case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
                     $decisionTypes = [
@@ -185,7 +187,8 @@ class Schema extends \PKP\submission\maps\Schema
                     }
 
                     if ($submission->getData('status') === Submission::STATUS_DECLINED) {
-                        $decisionTypes[] = new RevertDeclineInternal();
+                        // when the submission is declined, allow only reverting declined status
+                        $decisionTypes = [new RevertDeclineInternal()];
                     } elseif ($submission->getData('status') === Submission::STATUS_QUEUED) {
                         $decisionTypes[] = new DeclineInternal();
                     }
@@ -201,7 +204,8 @@ class Schema extends \PKP\submission\maps\Schema
                         $decisionTypes[] = $cancelReviewRound;
                     }
                     if ($submission->getData('status') === Submission::STATUS_DECLINED) {
-                        $decisionTypes[] = new RevertDecline();
+                        // when the submission is declined, allow only reverting declined status
+                        $decisionTypes = [new RevertDecline()];
                     } elseif ($submission->getData('status') === Submission::STATUS_QUEUED) {
                         $decisionTypes[] = new Decline();
                     }
