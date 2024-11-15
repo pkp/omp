@@ -29,8 +29,9 @@ use DOMException;
 use Exception;
 use PKP\db\DAORegistry;
 use PKP\filter\FilterGroup;
+use PKP\plugins\importexport\native\filter\NativeExportFilter;
 
-class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\NativeExportFilter
+class MonographONIX30XmlFilter extends NativeExportFilter
 {
     /**  */
     public DOMDocument $doc;
@@ -101,9 +102,19 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
     {
         $publicationFormats = $submission->getCurrentPublication()->getData('publicationFormats');
 
+        // Collect identifiers for all publication formats to connect related products
+        $identificationCodes = [];
+        foreach ($publicationFormats as $publicationFormat) {
+            $pubIdentificationCodes = $publicationFormat->getIdentificationCodes();
+            $pubId = $publicationFormat->getId();
+            while ($code = $pubIdentificationCodes->next()) {
+                $identificationCodes[$pubId][$code->getCode()] = $code->getValue();
+            }
+        }
+
         // Append all publication formats as Product nodes.
         foreach ($publicationFormats as $publicationFormat) {
-            $rootNode->appendChild($this->createProductNode($doc, $submission, $publicationFormat));
+            $rootNode->appendChild($this->createProductNode($doc, $submission, $publicationFormat, $identificationCodes));
         }
     }
 
@@ -154,7 +165,7 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
      * @throws DOMException
      * @throws Exception
      */
-    public function createProductNode(DOMDocument $doc, Submission $submission, PublicationFormat $publicationFormat): DOMElement
+    public function createProductNode(DOMDocument $doc, Submission $submission, PublicationFormat $publicationFormat, array $identificationCodes): DOMElement
     {
         /** @var Onix30ExportDeployment $deployment */
         $deployment = $this->getDeployment();
@@ -178,18 +189,18 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
 
         $identifierGiven = false;
 
-        $identificationCodes = $publicationFormat->getIdentificationCodes();
+        if (array_key_exists($publicationFormat->getId(), $identificationCodes)) {
+            foreach ($identificationCodes[$publicationFormat->getId()] as $code => $value) {
+                $productIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'ProductIdentifier');
+                $productIdentifierNode->appendChild($this->buildTextNode($doc, 'ProductIDType', $code));
+                $productIdentifierNode->appendChild($this->buildTextNode($doc, 'IDValue', $value));
+                $productNode->appendChild($productIdentifierNode);
 
-        while ($code = $identificationCodes->next()) {
-            $productIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'ProductIdentifier');
-            $productIdentifierNode->appendChild($this->buildTextNode($doc, 'ProductIDType', $code->getCode()));
-            $productIdentifierNode->appendChild($this->buildTextNode($doc, 'IDValue', $code->getValue()));
-            $productNode->appendChild($productIdentifierNode);
+                unset($productIdentifierNode);
+                unset($code);
 
-            unset($productIdentifierNode);
-            unset($code);
-
-            $identifierGiven = true;
+                $identifierGiven = true;
+            }
         }
 
         // Deal with the possibility of a DOI pubId.
@@ -639,6 +650,29 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         }
         if ($salesRightsROW != null) {
             $publishingDetailNode->appendChild($this->buildTextNode($doc, 'ROWSalesRightsType', $salesRightsROW->getType()));
+        }
+
+        /* --- Related Material --- */
+
+        unset($identificationCodes[$publicationFormat->getId()]);  // remove identifiers for the current publication format
+
+        if (count($identificationCodes) > 0) {
+            $relatedMaterialNode = $doc->createElementNS($deployment->getNamespace(), 'RelatedMaterial');
+
+            $relatedProductNode = $doc->createElementNS($deployment->getNamespace(), 'RelatedProduct');
+            $relatedProductNode->appendChild($this->buildTextNode($doc, 'ProductRelationCode', '06')); // alternative format
+
+            foreach ($identificationCodes as $pubId => $idCodes) {
+                foreach ($idCodes as $code => $value) {
+                    $productIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'ProductIdentifier');
+                    $productIdentifierNode->appendChild($this->buildTextNode($doc, 'ProductIDType', $code));
+                    $productIdentifierNode->appendChild($this->buildTextNode($doc, 'IDValue', $value));
+                    $relatedProductNode->appendChild($productIdentifierNode);
+                    unset($productIdentifierNode);
+                }
+            }
+            $relatedMaterialNode->appendChild($relatedProductNode);
+            $productNode->appendChild($relatedMaterialNode);
         }
 
         /* --- Product Supply. We create one of these per defined Market. --- */
