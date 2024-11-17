@@ -151,7 +151,6 @@ class ChapterGridHandler extends CategoryGridHandler
                     new AjaxModal(
                         $router->url($request, null, null, 'addChapter', null, $actionArgs),
                         __('submission.chapter.addChapter'),
-                        'modal_add_item'
                     ),
                     __('submission.chapter.addChapter'),
                     'add_item'

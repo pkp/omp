@@ -68,7 +68,6 @@ class SalesRightsGridRow extends GridRow
                     new AjaxModal(
                         $router->url($request, null, null, 'editRights', null, $actionArgs),
                         __('grid.action.edit'),
-                        'modal_edit'
                     ),
                     __('grid.action.edit'),
                     'edit'
@@ -83,7 +82,7 @@ class SalesRightsGridRow extends GridRow
                         __('common.confirmDelete'),
                         __('common.delete'),
                         $router->url($request, null, null, 'deleteRights', null, $actionArgs),
-                        'modal_delete'
+                        'negative'
                     ),
                     __('grid.action.delete'),
                     'delete'
