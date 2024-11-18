@@ -65,7 +65,7 @@ class BrowseBlockPlugin extends BlockPlugin
                     'settings',
                     new AjaxModal(
                         $router->url($request, null, null, 'manage', null, array_merge($actionArgs, ['verb' => 'settings'])),
-                        $this->getDisplayName()
+                        $this->getDisplayName(),
                     ),
                     __('manager.plugins.settings'),
                     null
