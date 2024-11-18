@@ -18,6 +18,7 @@ use APP\core\Application;
 use APP\template\TemplateManager;
 use PKP\citation\CitationDAO;
 use PKP\db\DAORegistry;
+use PKP\i18n\LocaleConversion;
 use PKP\plugins\GenericPlugin;
 use PKP\plugins\Hook;
 
@@ -126,7 +127,7 @@ class GoogleScholarPlugin extends GenericPlugin
         if ($subjects = $publication->getData('subjects')) {
             foreach ($subjects as $locale => $localeSubjects) {
                 foreach ($localeSubjects as $i => $subject) {
-                    $templateMgr->addHeader('googleScholarSubject' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($subject) . '"/>');
+                    $templateMgr->addHeader('googleScholarSubject' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(LocaleConversion::getIso1FromLocale($locale)) . '" content="' . htmlspecialchars($subject) . '"/>');
                 }
             }
         }
@@ -135,7 +136,7 @@ class GoogleScholarPlugin extends GenericPlugin
         if ($keywords = $publication->getData('keywords')) {
             foreach ($keywords as $locale => $localeKeywords) {
                 foreach ($localeKeywords as $i => $keyword) {
-                    $templateMgr->addHeader('googleScholarKeyword' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($keyword) . '"/>');
+                    $templateMgr->addHeader('googleScholarKeyword' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(LocaleConversion::getIso1FromLocale($locale)) . '" content="' . htmlspecialchars($keyword) . '"/>');
                 }
             }
         }
