@@ -7,8 +7,8 @@
 ;
 ; config.TEMPLATE.inc.php
 ;
-; Copyright (c) 2014-2021 Simon Fraser University
-; Copyright (c) 2003-2021 John Willinsky
+; Copyright (c) 2014-2024 Simon Fraser University
+; Copyright (c) 2003-2024 John Willinsky
 ; Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
 ;
 ; OMP Configuration settings.
@@ -24,9 +24,9 @@
 
 [general]
 
-; An application specific key that is required for the app to run
+; An application-specific key that is required for the app to run
 ; Internally this is used for any encryption (specifically cookie encryption if enabled)
-app_key = 
+app_key =
 
 ; Set this to On once the system has been installed
 ; (This is generally done automatically by the installer)
@@ -86,7 +86,7 @@ allow_url_fopen = Off
 ; Example3: URLs that map to a subdomain.
 ;    Example3: base_url[myOtherPress] = http://myOtherPress.example.com
 
-; Generate RESTful URLs using mod_rewrite.  This requires the
+; Generate RESTful URLs using mod_rewrite. This requires the
 ; rewrite directive to be enabled in your .htaccess or httpd.conf.
 ; See FAQ for more details.
 restful_urls = Off
@@ -95,27 +95,36 @@ restful_urls = Off
 ; See docs/README.md for more details. The list should be JSON-formatted.
 ; An empty string indicates that all hosts should be trusted (not recommended!)
 ; Example:
-; allowed_hosts = '["myjournal.tld", "anotherjournal.tld", "mylibrary.tld"]'
+; allowed_hosts = '["mypress.tld", "anotherpress.tld", "mylibrary.tld"]'
 allowed_hosts = ''
 
 ; Allow the X_FORWARDED_FOR header to override the REMOTE_ADDR as the source IP
-; Set this to "On" if you are behind a reverse proxy and you control the X_FORWARDED_FOR
+; Set this to "On" if you are behind a reverse proxy and you control the
+; X_FORWARDED_FOR header.
 ; Warning: This defaults to "On" if unset for backwards compatibility.
 trust_x_forwarded_for = Off
 
-; Set the following parameter to off if you want to work with the uncompiled
-; (non-minified) JavaScript source for debugging or if you are working off a
-; development branch without compiled JavaScript.
+; Display a message on the site admin and press manager user home pages if there is an upgrade available
+show_upgrade_warning = On
+
+; Set the following parameter to off if you want to work with the uncompiled (non-minified) JavaScript
+; source for debugging or if you are working off a development branch without compiled JavaScript.
 enable_minified = Off
 
 ; Provide a unique site ID and OAI base URL to PKP for statistics and security
 ; alert purposes only.
 enable_beacon = On
 
-; The number of days a new user has to validate their account
-; A new user account will be expired and removed if this many days have passed since the user registered
-; their account, and they have not validated their account or logged in. If the user_validation_period is set to
-; 0, unvalidated accounts will never be removed. Use this setting to automatically remove bot registrations.
+; Set this to "On" if you would like to only have a single, site-wide Privacy
+; Statement, rather than a separate Privacy Statement for each press. Setting
+; this to "Off" will allow you to enter a site-wide Privacy Statement as well
+; as separate Privacy Statements for each press.
+sitewide_privacy_statement = Off
+
+; The number of days a new user has to validate their account.
+; A new user account will be removed if this many days have passed since the user registered
+; their account, and they have not validated their account or logged in. If set to 0,
+; unvalidated accounts will never be removed. Use this setting to automatically remove bot registrations.
 user_validation_period = 28
 
 ; Turn sandbox mode to On in order to prevent the software from interacting with outside systems.
@@ -145,6 +154,7 @@ name = omp
 ; Enable database debug output (very verbose!)
 debug = Off
 
+
 ;;;;;;;;;;;;;;;;;;
 ; Cache Settings ;
 ;;;;;;;;;;;;;;;;;;
@@ -156,7 +166,6 @@ debug = Off
 ; - file: Use file-based caching; configured below
 ; - none: Use no caching. This may be extremely slow.
 ; This setting affects locale data, press settings, and plugin settings.
-
 cache = file
 
 ; Enable memcache support
@@ -176,7 +185,7 @@ memcache_port = 11211
 ;
 ; When using web_cache, configure a tool to periodically clear out cache files
 ; such as CRON. For example, configure it to run the following command:
-; find .../ojs/cache -maxdepth 1 -name wc-\*.html -mtime +1 -exec rm "{}" ";"
+; find .../omp/cache -maxdepth 1 -name wc-\*.html -mtime +1 -exec rm "{}" ";"
 web_cache = Off
 web_cache_hours = 1
 
@@ -221,10 +230,6 @@ public_user_dir_size = 5000
 ; Permissions mask for created files and directories
 umask = 0022
 
-; The minimum percentage similarity between filenames that should be considered
-; a possible revision
-filename_revision_match = 70
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Fileinfo (MIME) Settings ;
@@ -240,12 +245,12 @@ filename_revision_match = 70
 
 [security]
 
-; Specific cipher algorithm used to generate app key and encryption purpose
-; Valid and available algorithms are `aes-128-cbc`, `aes-256-cbc`, `aes-128-gcm` and `aes-256-gcm`
-; cipher = 'aes-256-cbc'
+; Cipher algorithm used to generate the app key and encryption purpose
+; Available options: aes-128-cbc, aes-128-gcm, aes-256-cbc, aes-256-gcm
+; cipher = aes-256-cbc
 
-; Define should the cookie at user's end need to be encrypted
-; Enabling/Disabling will force all user to re-login
+; Whether cookies will be encrypted.
+; Changing this setting will log out all users.
 ; cookie_encryption = On
 
 ; Force SSL connections site-wide and also sets the "Secure" flag for session cookies
@@ -256,9 +261,10 @@ force_ssl = Off
 force_login_ssl = Off
 
 ; This check will invalidate a session if the user's IP address changes.
-; Enabling this option provides some amount of additional security, but may
-; cause problems for users behind a proxy farm (e.g., AOL).
-session_check_ip = Off
+; Enabling this option provides some additional security, but may cause
+; login problems for some users (e.g. if a user IP is changed frequently
+; by a server or network configuration).
+session_check_ip = On
 
 ; The encryption (hashing) algorithm to use for encrypting user passwords
 ; Valid values are: md5, sha1
@@ -286,6 +292,7 @@ allowed_html = "a[href|target|title],em,strong,cite,code,ul,ol,li[class],dl,dt,d
 allowed_title_html = "b,i,u,sup,sub"
 
 ;N.b.: The implicit_auth parameter has been removed in favor of plugin implementations such as shibboleth
+
 
 ;;;;;;;;;;;;;;;;;;
 ; Email Settings ;
@@ -349,7 +356,7 @@ sendmail_path = "/usr/sbin/sendmail -bs"
 ; If enabled, email addresses must be validated before login is possible.
 require_validation = Off
 
-; Maximum number of days before an unvalidated account expires and is deleted
+; The number of days a user has to validate their account before their access key expires.
 validation_timeout = 14
 
 
@@ -365,9 +372,6 @@ min_word_length = 3
 ; The maximum number of search results fetched per keyword. These results
 ; are fetched and merged to provide results for searches with several keywords.
 results_per_keyword = 500
-
-; The number of hours for which keyword search results are cached.
-result_cache_hours = 1
 
 ; Paths to helper programs for indexing non-text files.
 ; Programs are assumed to output the converted text to stdout, and "%s" is
@@ -403,6 +407,9 @@ oai = On
 ; Changing this setting may affect existing clients and is not recommended.
 repository_id = omp.pkp.sfu.ca
 
+; Maximum number of records per request to serve via OAI
+oai_max_records = 100
+
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ; Interface Settings ;
@@ -411,7 +418,7 @@ repository_id = omp.pkp.sfu.ca
 [interface]
 
 ; Number of items to display per page; can be overridden on a per-press basis
-items_per_page = 50
+items_per_page = 25
 
 ; Number of page links to display; can be overridden on a per-press basis
 page_links = 10
@@ -427,10 +434,10 @@ page_links = 10
 recaptcha = off
 
 ; Public key for reCaptcha (see http://www.google.com/recaptcha)
-; recaptcha_public_key = your_public_key
+recaptcha_public_key = your_public_key
 
 ; Private key for reCaptcha (see http://www.google.com/recaptcha)
-; recaptcha_private_key = your_private_key
+recaptcha_private_key = your_private_key
 
 ; Whether or not to use Captcha on user registration
 captcha_on_register = on
@@ -441,6 +448,7 @@ captcha_on_login = on
 ; Validate the hostname in the ReCaptcha response
 recaptcha_enforce_hostname = Off
 
+
 ;;;;;;;;;;;;;;;;;;;;;
 ; External Commands ;
 ;;;;;;;;;;;;;;;;;;;;;
@@ -449,23 +457,16 @@ recaptcha_enforce_hostname = Off
 
 ; These are paths to (optional) external binaries used in
 ; certain plug-ins or advanced program features.
-
 ; Using full paths to the binaries is recommended.
 
 ; tar (used in backup plugin, translation packaging)
 tar = /bin/tar
 
-; egrep (used in copyAccessLogFileTool)
-egrep = /bin/egrep
-
-; gzip (used in FileManager)
-gzip = /bin/gzip
-
-; On systems that do not have PHP4's Sablotron/xsl or PHP5's libxsl/xslt
-; libraries installed, or for those who require a specific XSLT processor,
-; you may enter the complete path to the XSLT renderer tool, with any
-; required arguments. Use %xsl to substitute the location of the XSL
-; stylesheet file, and %xml for the location of the XML source file; eg:
+; On systems that do not have libxsl/xslt libraries installed, or for those who
+; require a specific XSLT processor, you may enter the complete path to the
+; XSLT renderer tool, with any required arguments. Use %xsl to substitute the
+; location of the XSL stylesheet file, and %xml for the location of the XML
+; source file; eg:
 ; /usr/bin/java -jar ~/java/xalan.jar -IN %xml -XSL %xsl %params
 ; See xslt_parameter_option below for information on the %params token.
 xslt_command = ""
@@ -509,11 +510,6 @@ deprecation_warnings = Off
 ; Log web service request information for debugging
 log_web_service_info = Off
 
-; declare a cainfo path if a certificate other than PHP's default should be used for curl calls.
-; This setting overrides the 'curl.cainfo' parameter of the php.ini configuration file.
-[curl]
-; cainfo = ""
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ; Job Queues Settings ;
@@ -527,17 +523,13 @@ default_connection = "database"
 ; Default queue to use when a job is added to the queue
 default_queue = "queue"
 
-; Whether or not to turn on the built-in job runner
-;
+; Whether or not to turn on the built-in job runner.
 ; When enabled, jobs will be processed at the end of each web
 ; request to the application.
-;
 ; Use of the built-in job runner is highly discouraged for high-volume
 ; sites. Instead, a worker daemon or cron job should be configured
 ; to process jobs off the application's main thread.
-;
-; See: https://docs.pkp.sfu.ca/admin-guide/en/advanced-jobs
-;
+; See: https://docs.pkp.sfu.ca/admin-guide/en/deploy-jobs
 job_runner = On
 
 ; The maximum number of jobs to run in a single request when using
@@ -546,22 +538,18 @@ job_runner_max_jobs = 30
 
 ; The maximum number of seconds the built-in job runner should spend
 ; running jobs in a single request.
-;
 ; This should be less than the max_execution_time the server has
 ; configured for PHP.
-;
 ; Lower this setting if jobs are failing due to timeouts.
 job_runner_max_execution_time = 30
 
-; The maximum consumerable memory that should be spent by the built-in
+; The maximum consumable memory that should be spent by the built-in
 ; job runner when running jobs.
 ;
 ; Set as a percentage, such as 80%:
-;
 ; job_runner_max_memory = 80
 ;
 ; Or set as a fixed value in megabytes:
-;
 ; job_runner_max_memory = 128M
 ;
 ; When setting a fixed value in megabytes, this should be less than the
@@ -578,42 +566,47 @@ process_jobs_at_task_scheduler = Off
 delete_failed_jobs_after = 180
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;
-; Schedule Task Settings ;
-;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Scheduled Task Settings ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [schedule]
 
-; Whether or not to turn on the built-in schedule task runner
-;
-; When enabled, schedule tasks will be processed at the end of each web
+; Whether or not to turn on the built-in scheduled task runner.
+; When enabled, scheduled tasks will be processed at the end of each web
 ; request to the application.
-;
-; Use of the built-in schedule task runner is highly discouraged for high-volume 
-; sites. Use your operational system's task scheduler instead, and configure 
+; Use of the built-in scheduled task runner is strongly discouraged for high-volume
+; sites. Use your operating system's task scheduler instead, and configure
 ; it to run the task scheduler every minute.
-; Sample for the *nix crontab
+;
+; Sample for the *nix crontab:
 ; * * * * * php lib/pkp/tools/scheduler.php run >> /dev/null 2>&1
 ;
 ; See: <link-to-documentation>
 task_runner = On
 
-; How often should the built-in schedule task runner run scheduled tasks at the
+; How often the built-in scheduled task runner should run at the
 ; end of web request life cycle (value defined in seconds).
-; 
-; This configuration will only have effect for the build-it task runner, it doesn't apply
-; to the system crontab configuration. 
-;
-; The default value is set to 60 seconds, a value smaller than that might affect the
-; application performance negatively.
+; This configuration will only affect the built-in task runner, it doesn't apply
+; to the system crontab configuration.
+; The default value is 60 seconds (a value smaller than that might affect the
+; application performance negatively).
 task_runner_interval = 60
 
-; When enabled, an email with the scheduled task result will be sent only when an error
+; When enabled, an email with the scheduled task result will only be sent when an error
 ; has occurred. Otherwise, all tasks will generate a notification.
 scheduled_tasks_report_error_only = On
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+; Invitations Settings  ;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
 [invitations]
+
+; The number of days a user has to accept an invitation before it expires.
 expiration_days = 3
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ; New Features Settings ;
