@@ -2,7 +2,7 @@
 # Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-11-19 10:50+0000\n"
+"PO-Revision-Date: 2024-11-19 21:44+0000\n"
 "Last-Translator: Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>\n"
 "Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "id/>\n"
@@ -462,7 +462,7 @@ msgid "grid.action.addSpotlight"
 msgstr "Tambah Sorotan"
 
 msgid "manager.series.open"
-msgstr "Buka Submisi"
+msgstr "Submisi Dibuka"
 
 msgid "manager.series.indexed"
 msgstr "Terindeks"
@@ -1192,89 +1192,183 @@ msgstr "Langkah Pra-Instalasi"
 
 msgid "installer.preInstallationInstructions"
 msgstr ""
+"<p>1. File dan direktori berikut (dan isinya) harus dibuat dapat ditulis:</p>"
+"\n"
+"<ul>\n"
+"\t<li><tt>config.inc.php</tt> dapat ditulis (opsional): "
+"{$writable_config}</li>\n"
+"\t<li><tt>public/</tt> dapat ditulis: {$writable_public}</li>\n"
+"\t<li><tt>cache/</tt> dapat ditulis: {$writable_cache}</li>\n"
+"\t<li><tt>cache/t_cache/</tt> dapat ditulis: {$writable_templates_cache}</li>"
+"\n"
+"\t<li><tt>cache/t_compile/</tt> dapat ditulis: "
+"{$writable_templates_compile}</li>\n"
+"\t<li><tt>cache/_db</tt> dapat ditulis: {$writable_db_cache}</li>\n"
+"</ul>\n"
+"\n"
+"<p>2. Direktori untuk menyimpan file yang diunggah harus dibuat dan dibuat "
+"dapat ditulis (lihat \"Pengaturan File\" di bawah).</p>"
 
 msgid "installer.upgradeInstructions"
 msgstr ""
+"<h4>OMP Versi {$version}</h4>\n"
+"\n"
+"<p> Terima kasih telah mengunduh <strong>Open Monograph Press</strong>. "
+"Sebelum melanjutkan, harap baca file <a href=\"{$baseUrl}/docs/README.md\""
+">BACA SAYA</a> and <a href=\"{$baseUrl}/docs/UPGRADE.md\">PENINGKATAN</a> "
+"yang disertakan dalam perangkat lunak ini. Untuk informasi lebih lanjut "
+"tentang Public Knowledge Project dan proyek perangkat lunaknya, silakan "
+"kunjungi <a href=\"https://pkp.sfu.ca/\" target=\"_blank\">situs web PKP</"
+"a>. Jika Anda memiliki laporan bug atau pertanyaan dukungan teknis tentang "
+"Open Monograph Press, lihat <a href=\"https://forum.pkp.sfu.ca\" target="
+"\"_blank\">forum dukungan</a> atau kunjungi <a href=\"https://github.com/pkp/"
+"pkp-lib/issues\" target=\"_blank\"> sistem pelaporan bug </a> daring PKP. "
+"Meskipun forum dukungan adalah metode kontak yang lebih disukai, Anda juga "
+"dapat mengirim email ke tim di <a href=\"mailto:pkp.contact@gmail.com\">pkp."
+"contact@gmail.com</a>.</p>\n"
+"<p><strong>Sangat disarankan</strong> agar Anda mencadangkan basis data, "
+"direktori file, dan direktori instalasi OMP sebelum melanjutkan.</p>"
 
 msgid "installer.localeSettingsInstructions"
 msgstr ""
+"Untuk dukungan Unicode yang lengkap, PHP harus dikompilasi dengan dukungan "
+"untuk pustaka <a href=\"https://www.php.net/mbstring\" target=\"_blank\""
+">mbstring</a> (diaktifkan secara default di sebagian besar instalasi PHP "
+"terkini). Anda mungkin mengalami masalah saat menggunakan set karakter yang "
+"diperluas jika server Anda tidak memenuhi persyaratan ini.\n"
+"<br /><br />\n"
+"Server Anda saat ini mendukung mbstring: <strong>{$supportsMBString}</strong>"
 
 msgid "installer.allowFileUploads"
 msgstr ""
+"Server Anda saat ini mengizinkan pengunggahan file: "
+"<strong>{$allowFileUploads}</strong>"
 
 msgid "installer.maxFileUploadSize"
 msgstr ""
+"Server Anda saat ini mengizinkan ukuran unggahan file maksimum: "
+"<strong>{$maxFileUploadSize}</strong>"
 
 msgid "installer.localeInstructions"
 msgstr ""
+"Bahasa utama yang digunakan untuk sistem ini. Silakan lihat dokumentasi OMP "
+"jika Anda tertarik dengan dukungan untuk bahasa yang tidak tercantum di sini."
 
 msgid "installer.additionalLocalesInstructions"
 msgstr ""
+"Pilih bahasa tambahan apa pun yang ingin didukung dalam sistem ini. Bahasa-"
+"bahasa ini akan tersedia untuk digunakan oleh penerbit yang dihosting di "
+"situs ini. Bahasa tambahan juga dapat diinstal kapan saja dari antarmuka "
+"administrasi situs. Lokalisasi yang ditandai * mungkin tidak lengkap."
 
 msgid "installer.filesDirInstructions"
 msgstr ""
+"Masukkan nama jalur berkas lengkap ke direktori yang sudah ada tempat file "
+"yang diunggah akan disimpan. Direktori ini tidak boleh dapat diakses "
+"langsung melalui web. <strong>Pastikan direktori ini ada dan dapat ditulis "
+"sebelum instalasi.</strong> Nama jalur Windows harus menggunakan garis "
+"miring, misalnya \"C:/mypress/files\"."
 
 msgid "installer.databaseSettingsInstructions"
 msgstr ""
+"OMP memerlukan akses ke basis data SQL untuk menyimpan datanya. Lihat "
+"persyaratan sistem di atas untuk daftar basis data yang didukung. Di kolom "
+"di bawah, berikan pengaturan yang akan digunakan untuk terhubung ke basis "
+"data."
 
 msgid "installer.upgradeApplication"
-msgstr ""
+msgstr "Tingkatkan Open Monograph Press"
 
 msgid "installer.overwriteConfigFileInstructions"
 msgstr ""
+"<h4>PENTING!</h4>\n"
+"<p>Penginstal tidak dapat secara otomatis menimpa berkas konfigurasi. "
+"Sebelum mencoba menggunakan sistem, harap buka <tt>config.inc.php</tt> di "
+"penyunting teks yang sesuai dan ganti isinya dengan isi kolom teks di bawah "
+"ini.</p>"
 
-#, fuzzy
 msgid "installer.installationComplete"
 msgstr ""
+"<p>Pemasangan OMP telah berhasil diselesaikan.</p>\n"
+"<p>Untuk mulai menggunakan sistem, <a href=\"{$loginUrl}\">masuk</a> dengan "
+"nama pengguna dan kata sandi yang dimasukkan pada halaman sebelumnya.</p>\n"
+"<p>Kunjungi <a href=\"https://forum.pkp.sfu.ca\" target=\"_new\">forum "
+"komunitas</a> kami atau daftar ke <a href=\"https://pkp.sfu.ca/developer-"
+"newsletter\" target=\"_new\">buletin pengembang</a> kami untuk menerima "
+"pemberitahuan keamanan, dan pembaruan tentang rilis mendatang, plugin baru, "
+"dan fitur yang direncanakan.</p>"
 
-#, fuzzy
 msgid "installer.upgradeComplete"
 msgstr ""
+"<p>Peningkatan OMP ke versi {$version} telah berhasil diselesaikan.</p>\n"
+"<p>Jangan lupa untuk menyetel kembali pengaturan \"installed\" di berkas "
+"konfigurasi <tt>config.inc.php</tt> Anda ke <em>Aktif</em>.</p>\n"
+"<p>Kunjungi <a href=\"https://forum.pkp.sfu.ca\" target=\"_new\">forum "
+"komunitas</a> kami atau daftar ke <a href=\"https://pkp.sfu.ca/developer-"
+"newsletter\" target=\"_new\">buletin pengembang</a> kami untuk menerima "
+"pemberitahuan keamanan, dan pembaruan tentang rilis mendatang, plugin baru, "
+"dan fitur yang direncanakan.</p>"
 
 msgid "log.review.reviewDueDateSet"
 msgstr ""
+"Batas waktu untuk tinjauan tahap {$round} atas kiriman {$submissionId} oleh "
+"{$reviewerName} telah ditetapkan ke {$dueDate}."
 
 msgid "log.review.reviewDeclined"
 msgstr ""
+"{$reviewerName} telah menolak tahap peninjauan {$round} untuk submisi "
+"{$submissionId}."
 
 msgid "log.review.reviewAccepted"
 msgstr ""
+"{$reviewerName} telah menerima tahap peninjauan {$round} untuk submisi "
+"{$submissionId}."
 
 msgid "log.review.reviewUnconsidered"
 msgstr ""
+"{$editorName} telah menandai tahao peninjauan {$round} untuk submisi "
+"{$submissionId} sebagai belum dipertimbangkan."
 
 msgid "log.editor.decision"
 msgstr ""
+"Keputusan penyunting ({$decision}) untuk monograf {$submissionId} dicatat "
+"oleh {$editorName}."
 
 msgid "log.editor.recommendation"
 msgstr ""
+"Rekomendasi penyunting ({$decision}) untuk monograf {$submissionId} dicatat "
+"oleh {$editorName}."
 
 msgid "log.editor.archived"
-msgstr ""
+msgstr "Submisi {$submissionId} telah diarsipkan."
 
 msgid "log.editor.restored"
-msgstr ""
+msgstr "Submisi {$submissionId} telah dikembalikan ke antrean."
 
 msgid "log.editor.editorAssigned"
 msgstr ""
+"{$editorName} telah ditetapkan sebagai oenyunting untuk kiriman "
+"{$submissionId}."
 
 msgid "log.proofread.assign"
 msgstr ""
+"{$assignerName} telah menugaskan {$proofreaderName} untuk melakukan "
+"proofread untuk submisi {$submissionId}."
 
 msgid "log.proofread.complete"
-msgstr ""
+msgstr "{$proofreaderName} telah mengirimkan {$submissionId} untuk penjadwalan."
 
 msgid "log.imported"
-msgstr ""
+msgstr "{$userName} telah mengimpor monograf {$submissionId}."
 
 msgid "notification.addedIdentificationCode"
-msgstr ""
+msgstr "Kode Identifikasi ditambahkan."
 
 msgid "notification.editedIdentificationCode"
-msgstr ""
+msgstr "Kode Identifikasi disunting."
 
 msgid "notification.removedIdentificationCode"
-msgstr ""
+msgstr "Kode Identifikasi dihapus."
 
 msgid "notification.addedPublicationDate"
 msgstr "Tanggal Terbit ditambahkan."
@@ -1295,94 +1389,96 @@ msgid "notification.removedPublicationFormat"
 msgstr "Format Terbitan dihapus."
 
 msgid "notification.addedSalesRights"
-msgstr ""
+msgstr "Hak Penjualan ditambahkan."
 
 msgid "notification.editedSalesRights"
-msgstr ""
+msgstr "Hak Penjualan disunting."
 
 msgid "notification.removedSalesRights"
-msgstr ""
+msgstr "Hak Penjualan dihapus."
 
 msgid "notification.addedRepresentative"
-msgstr ""
+msgstr "Perwakilan ditambahkan."
 
 msgid "notification.editedRepresentative"
-msgstr ""
+msgstr "Perwakilan diubah."
 
 msgid "notification.removedRepresentative"
-msgstr ""
+msgstr "Perwakilan diubah."
 
 msgid "notification.addedMarket"
-msgstr ""
+msgstr "Pasar ditambahkan."
 
 msgid "notification.editedMarket"
-msgstr ""
+msgstr "Pasar diubah."
 
 msgid "notification.removedMarket"
-msgstr ""
+msgstr "Pasar dihapus."
 
 msgid "notification.addedSpotlight"
-msgstr ""
+msgstr "Sorotan ditambahkan."
 
 msgid "notification.editedSpotlight"
-msgstr ""
+msgstr "Sorotan diubah."
 
 msgid "notification.removedSpotlight"
-msgstr ""
+msgstr "Sorotan dihapus."
 
 msgid "notification.savedCatalogMetadata"
-msgstr ""
+msgstr "Metadata katalog disimpan."
 
 msgid "notification.savedPublicationFormatMetadata"
 msgstr "Metadata format terbitan disimpan."
 
 msgid "notification.proofsApproved"
-msgstr ""
+msgstr "Proof disetujui."
 
 msgid "notification.removedSubmission"
-msgstr ""
+msgstr "Submisi dihapus."
 
 msgid "notification.type.submissionSubmitted"
-msgstr ""
+msgstr "Monograf baru, \"{$title},\" telah dikirimkan."
 
 msgid "notification.type.editing"
-msgstr ""
+msgstr "Event Penyuntingan"
 
 msgid "notification.type.reviewing"
-msgstr ""
+msgstr "Event Peninjauan"
 
 msgid "notification.type.site"
-msgstr ""
+msgstr "Event Situs"
 
 msgid "notification.type.submissions"
-msgstr ""
+msgstr "Event Submisi"
 
 msgid "notification.type.userComment"
-msgstr ""
+msgstr "Pembaca telah memberikan komentar pada \"{$title}\"."
 
 msgid "notification.type.public"
-msgstr ""
+msgstr "Pengumuman Publik"
 
 msgid "notification.type.editorAssignmentTask"
-msgstr ""
+msgstr "Monograf baru telah diserahkan dan perlu menunjuk editor."
 
 msgid "notification.type.copyeditorRequest"
-msgstr ""
+msgstr "Anda telah diminta untuk meninjau copyedit untuk \"{$file}\"."
 
 msgid "notification.type.layouteditorRequest"
-msgstr ""
+msgstr "Anda telah diminta untuk meninjau tata letak untuk \"{$title}\"."
 
 msgid "notification.type.indexRequest"
-msgstr ""
+msgstr "Anda telah diminta untuk membuat indeks untuk \"{$title}\"."
 
 msgid "notification.type.editorDecisionInternalReview"
-msgstr ""
+msgstr "Proses peninjauan internal dimulai."
 
 msgid "notification.type.approveSubmission"
 msgstr ""
+"Pengajuan ini saat ini sedang menunggu persetujuan di alat Entri Katalog "
+"sebelum muncul di katalog publik."
 
 msgid "notification.type.approveSubmissionTitle"
-msgstr ""
+msgstr "Menunggu persetujuan."
 
 msgid "notification.type.formatNeedsApprovedSubmission"
 msgstr ""
@@ -1390,13 +1486,15 @@ msgstr ""
 "Untuk menambahkan buku ini ke katalog, klik pada tab Publikasi."
 
 msgid "notification.type.configurePaymentMethod.title"
-msgstr ""
+msgstr "Tidak ada metode pembayaran yang diatur."
 
 msgid "notification.type.configurePaymentMethod"
 msgstr ""
+"Metode pembayaran yang dikonfigurasi diperlukan sebelum Anda dapat "
+"menentukan pengaturan e-commerce."
 
 msgid "notification.type.visitCatalogTitle"
-msgstr ""
+msgstr "Manajemen Katalog"
 
 msgid "notification.type.visitCatalog"
 msgstr ""
@@ -1405,141 +1503,183 @@ msgstr ""
 
 msgid "user.authorization.invalidReviewAssignment"
 msgstr ""
+"Akses Anda ditolak karena Anda tampaknya bukan peninjau yang valid untuk "
+"monograf ini."
 
 msgid "user.authorization.monographAuthor"
-msgstr ""
+msgstr "Akses Anda ditolak karena Anda tampaknya bukan penulis monograf ini."
 
 msgid "user.authorization.monographReviewer"
 msgstr ""
+"Akses Anda ditolak karena Anda tampaknya bukan peninjau yang ditugaskan "
+"untuk monograf ini."
 
 msgid "user.authorization.monographFile"
-msgstr ""
+msgstr "Anda telah ditolak akses ke berkas monograf yang ditentukan."
 
 msgid "user.authorization.invalidMonograph"
-msgstr ""
+msgstr "Monograf tidak valid atau tidak ada monograf yang diminta!"
 
 msgid "user.authorization.noContext"
-msgstr ""
+msgstr "Tidak ditemukan penerbit yang sesuai dengan permintaan Anda."
 
 msgid "user.authorization.seriesAssignment"
-msgstr ""
+msgstr "Anda mencoba mengakses monograf yang bukan bagian dari seri Anda."
 
 msgid "user.authorization.workflowStageAssignmentMissing"
-msgstr ""
+msgstr "Akses ditolak! Anda belum ditugaskan ke tahap alur kerja ini."
 
 msgid "user.authorization.workflowStageSettingMissing"
 msgstr ""
+"Akses ditolak! Grup pengguna yang saat ini Anda gunakan belum ditetapkan ke "
+"tahap alur kerja ini. Harap periksa pengaturan penerbit Anda."
 
 msgid "payment.directSales"
-msgstr ""
+msgstr "Unduh Dari Situs Web Penerbit"
 
 msgid "payment.directSales.price"
-msgstr ""
+msgstr "Harga"
 
 msgid "payment.directSales.availability"
-msgstr ""
+msgstr "Ketersediaan"
 
 msgid "payment.directSales.catalog"
-msgstr ""
+msgstr "Katalog"
 
 msgid "payment.directSales.approved"
-msgstr ""
+msgstr "Disetujui"
 
 msgid "payment.directSales.priceCurrency"
-msgstr ""
+msgstr "Harga ({$currency})"
 
 msgid "payment.directSales.numericOnly"
-msgstr ""
+msgstr "Harga harus berupa angka saja. Jangan sertakan simbol mata uang."
 
 msgid "payment.directSales.directSales"
-msgstr ""
+msgstr "Penjualan Langsung"
 
 msgid "payment.directSales.amount"
-msgstr ""
+msgstr "{$amount} ({$currency})"
 
 msgid "payment.directSales.notAvailable"
-msgstr ""
+msgstr "Tidak Tersedia"
 
 msgid "payment.directSales.notSet"
-msgstr ""
+msgstr "Belum Diatur"
 
 msgid "payment.directSales.openAccess"
-msgstr ""
+msgstr "Akses Terbuka"
 
 msgid "payment.directSales.price.description"
 msgstr ""
+"Format berkas dapat disediakan untuk diunduh dari situs web penerbit melalui "
+"akses terbuka tanpa biaya bagi pembaca atau penjualan langsung (menggunakan "
+"pemroses pembayaran daring, sebagaimana dikonfigurasi dalam Distribusi). "
+"Untuk berkas ini, tunjukkan dasar aksesnya."
 
 msgid "payment.directSales.validPriceRequired"
-msgstr ""
+msgstr "Diperlukan harga numerik yang valid."
 
 msgid "payment.directSales.purchase"
-msgstr ""
+msgstr "Beli {$format} ({$currency} {$amount})"
 
 msgid "payment.directSales.download"
-msgstr ""
+msgstr "Unduh {$format}"
 
 msgid "payment.directSales.monograph.name"
-msgstr ""
+msgstr "Beli Monograf atau Unduh Bab"
 
 msgid "payment.directSales.monograph.description"
 msgstr ""
+"Transaksi ini untuk pembelian unduhan langsung satu monograf atau satu bab "
+"monograf."
 
 msgid "debug.notes.helpMappingLoad"
 msgstr ""
+"Memuat ulang file pemetaan bantuan XML {$filename} dalam pencarian {$id}."
 
 msgid "rt.metadata.pkp.dctype"
-msgstr ""
+msgstr "Buku"
 
 msgid "submission.pdf.download"
-msgstr ""
+msgstr "Unduh file PDF ini"
 
 msgid "user.profile.form.showOtherContexts"
-msgstr ""
+msgstr "Daftar dengan penerbit lain"
 
 msgid "user.profile.form.hideOtherContexts"
-msgstr ""
+msgstr "Sembunyikan penerbit lainnya"
 
 msgid "submission.round"
-msgstr ""
+msgstr "Tahap&nbsp;{$round}"
 
 msgid "user.authorization.invalidPublishedSubmission"
-msgstr ""
+msgstr "Submisi tidak valid yang diterbitkan telah ditentukan."
 
 msgid "catalog.coverImageTitle"
-msgstr ""
+msgstr "Gambar Sampul"
 
 msgid "grid.catalogEntry.chapters"
-msgstr ""
+msgstr "Bab"
 
 msgid "search.results.orderBy.article"
-msgstr ""
+msgstr "Judul Artikel"
 
 msgid "search.results.orderBy.author"
-msgstr ""
+msgstr "Penulis"
 
 msgid "search.results.orderBy.date"
 msgstr "Tanggat Terbit"
 
 msgid "search.results.orderBy.monograph"
-msgstr ""
+msgstr "Judul Monograf"
 
 msgid "search.results.orderBy.press"
-msgstr ""
+msgstr "Judul Penerbit"
 
 msgid "search.results.orderBy.popularityAll"
-msgstr ""
+msgstr "Popularitas (Semua Waktu)"
 
 msgid "search.results.orderBy.popularityMonth"
-msgstr ""
+msgstr "Popularitas (Bulan Lalu)"
 
 msgid "search.results.orderBy.relevance"
-msgstr ""
+msgstr "Relevansi"
 
 msgid "search.results.orderDir.asc"
-msgstr ""
+msgstr "Menaik"
 
 msgid "search.results.orderDir.desc"
-msgstr ""
+msgstr "Menurun"
 
 msgid "section.section"
+msgstr "Seri"
+
+msgid "search.cli.rebuildIndex.indexing"
+msgstr "Mengindeks \"{$pressName}\""
+
+msgid "search.cli.rebuildIndex.indexingByPressNotSupported"
 msgstr ""
+"Implementasi penelusuran ini tidak mengizinkan pengindeksan ulang per "
+"penerbit."
+
+msgid "search.cli.rebuildIndex.unknownPress"
+msgstr ""
+"Jalur berkas penerbit yang diberikan \"{$pressPath}\" tidak dapat "
+"diselesaikan menjadi penerbit."
+
+msgid "site.upgradeAvailable.manager"
+msgstr ""
+"Tersedia versi baru OMP! Saat ini Anda menggunakan OMP {$currentVersion}. "
+"Versi terbaru adalah OMP {$latestVersion}. Silakan hubungi Administrator "
+"Situs Anda ({$siteAdminName}, <a href=\"mailto:{$siteAdminEmail}\""
+">{$siteAdminEmail}</a>) untuk memberi tahu mereka tentang rilis baru ini. "
+"Informasi selengkapnya dapat ditemukan <a href=\"https://pkp.sfu.ca/"
+"omp_download/\" target=\"_new\">di situs web PKP</a>."
+
+msgid "site.upgradeAvailable.admin"
+msgstr ""
+"Tersedia versi baru OMP! Saat ini Anda menggunakan OMP {$currentVersion}. "
+"Versi terbaru adalah OMP {$latestVersion}. Silakan kunjungi <a href=\"https"
+"://pkp.sfu.ca/omp_download\" target=\"_new\">situs web PKP</a> untuk "
+"mengunduh versi terbaru dan menemukan petunjuk pemutakhiran."
