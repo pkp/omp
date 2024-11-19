@@ -10,7 +10,7 @@
   * Installation descriptor file.
   -->
 
-<install version="3.5.0.0">
+<install version="3.6.0.0">
 	<code function="checkPhpVersion" />
 
 	<code function="createDirectories" />
@@ -49,6 +49,7 @@
 	<migration class="APP\migration\install\MetricsMigration" />
 
 	<migration class="APP\migration\install\SeriesCategoriesMigration" />
+	<migration class="PKP\migration\install\EmailTemplateUserGroupAccessMigration"/>
 
 	<code function="createData" />
 	<code function="createConfig" />

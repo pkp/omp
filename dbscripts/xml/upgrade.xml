@@ -10,7 +10,7 @@
   * Upgrade descriptor file.
   -->
 
-<install version="3.5.0.0">
+<install version="3.6.0.0">
 	<code function="checkPhpVersion" />
 
 	<upgrade minversion="0.9.9.0" maxversion="3.2.9.9">
@@ -144,6 +144,10 @@
 		<migration class="APP\migration\upgrade\v3_5_0\I10511_RemoveSeriesMenuItems"/>
 	</upgrade>
 
+	<upgrade minversion="3.5.0.0" maxversion="3.5.9.9">
+		<migration class="PKP\migration\upgrade\v3_6_0\PreflightCheckMigration" fallback="3.5.9.9" />
+		<migration class="PKP\migration\upgrade\v3_6_0\I10403_EmailTemplateUserGroupAccess"/>
+	</upgrade>
 	<!-- Update plugin configuration - should be done as the final upgrade task -->
 	<code function="addPluginVersions" />
 </install>
