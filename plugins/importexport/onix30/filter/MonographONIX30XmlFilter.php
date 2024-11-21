@@ -169,7 +169,14 @@ class MonographONIX30XmlFilter extends \PKP\plugins\importexport\native\filter\N
         $productNode = $doc->createElementNS($deployment->getNamespace(), 'Product');
 
         $request = Application::get()->getRequest();
-        $productNode->appendChild($this->_buildTextNode($doc, 'RecordReference', $request->url($context->getPath(), 'monograph', 'view', [$submission->getId()])));
+
+        // Create the RecordReference
+        $host = $request->getServerHost(null, false);
+        $path = $context->getPath();
+        $pubId = $publicationFormat->getId();
+        $recordReference = $host . '.' . $path . '.' . $pubId;
+
+        $productNode->appendChild($this->_buildTextNode($doc, 'RecordReference', $recordReference));
         $productNode->appendChild($this->_buildTextNode($doc, 'NotificationType', '03'));
         $productNode->appendChild($this->_buildTextNode($doc, 'RecordSourceType', '04')); // Bibliographic agency
 
