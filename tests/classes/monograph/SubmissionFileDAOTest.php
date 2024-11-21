@@ -135,7 +135,6 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $submissionDao->update($submission);
 
         $submissionDao = $this->getMockBuilder(\APP\submission\DAO::class)
-            ->setProxyTarget(Repo::submission()->dao)
             ->disableOriginalConstructor()
             ->onlyMethods(['get'])
             ->getMock();
