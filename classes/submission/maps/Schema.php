@@ -17,6 +17,7 @@ use APP\core\Application;
 use APP\decision\types\AcceptFromInternal;
 use APP\decision\types\CancelInternalReviewRound;
 use APP\decision\types\DeclineInternal;
+use APP\decision\types\NewInternalReviewRound;
 use APP\decision\types\RequestRevisionsInternal;
 use APP\decision\types\RevertDeclineInternal;
 use APP\decision\types\SendExternalReview;
@@ -35,7 +36,9 @@ use PKP\decision\types\BackFromProduction;
 use PKP\decision\types\CancelReviewRound;
 use PKP\decision\types\Decline;
 use PKP\decision\types\InitialDecline;
+use PKP\decision\types\NewExternalReviewRound;
 use PKP\decision\types\RequestRevisions;
+use PKP\decision\types\Resubmit;
 use PKP\decision\types\RevertDecline;
 use PKP\decision\types\RevertInitialDecline;
 use PKP\decision\types\SendToProduction;
@@ -179,6 +182,8 @@ class Schema extends \PKP\submission\maps\Schema
                         new RequestRevisionsInternal(),
                         new SendExternalReview(),
                         new AcceptFromInternal(),
+                        new NewInternalReviewRound()
+
                     ];
                     $cancelInternalReviewRound = new CancelInternalReviewRound();
 
@@ -196,7 +201,10 @@ class Schema extends \PKP\submission\maps\Schema
                 case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
                     $decisionTypes = [
                         new RequestRevisions(),
+                        new Resubmit(),
                         new Accept(),
+                        new NewExternalReviewRound()
+
                     ];
 
                     $cancelReviewRound = new CancelReviewRound();
