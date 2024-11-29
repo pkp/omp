@@ -32,6 +32,10 @@ class I10511_RemoveSeriesMenuItems extends Migration
                 $query->select('series_id')->from('series');
             })->pluck('navigation_menu_item_id');
 
+        if (!$invalidNavigationMenuItemIds->count()) {
+            return;
+        }
+
         DB::table('navigation_menu_item_assignments')
             ->whereIn('parent_id', $invalidNavigationMenuItemIds)
             ->update(['parent_id' => null]);
