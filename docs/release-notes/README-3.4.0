@@ -1,8 +1,8 @@
 OMP 3.4.0 Release Notes
-Git tag: 3_4_0-7
+Git tag: 3_4_0-8
 
-Release date: August 23, 2024
-=============================
+Release date: November 29, 2024
+===============================
 
 Configuration Changes
 ---------------------
@@ -46,10 +46,30 @@ New config.inc.php parameters added for emails:
     - default (default value: sendmail), being the default mailer driver to be used for email delivery
     - sendmail_path (default value: "/usr/sbin/sendmail -bs"), being the path to the sendmail program on the server
 
+3.4.0-8 Build
+-------------
+   #10632: VirtualArrayIterator __construct references $this->theArray before it's initialised
+   #10526: [OMP] Chapter authors are not returned in the correct sequence
+   #10451: Long affiliations should be wrapped in backend (bad UI/UX)
+   #10423: [OJS 3.3 3.4] error 500 when creating a reviewer with keywords very similar (collation issue)
+   #10414: Fatal error when making a new submission with certain editor configurations
+   #10402: Discussion board notifications cannot handle disabled users
+   #10385: [OJS3.4] Opening a new discussion with a participant who has disabled new discussion notifications does not work
+   #10376: Editorial Reminder: miscalculation for inactiveDays (I think)
+   #10373: "Enroll existing user" as reviewer no longer finds users outside the current journal
+   #10372: Category pages show double-escaped entities in category title landing page breadcrumbs
+   #10350: COUNTER R5 form field customer_id is not provided correctly to the API endpoint
+   #10341: Cannot upgrade to OJS 3.4.0-7 (from 3.4.0.3)
+   #10272: For installed plugins, display the version that is currently installed
+   #10050: Error handling in SubmissionWizard crashes
+   #9991: Re-add sent review request email data into the email log
+   #9443: [OMP] The series field is optional, but it's not possible to revert the selection
+   #9303: Date format isn't properly localized in OJS 3.4
+
 3.4.0-7 Build
 -------------
     #10327: fulfillQueuedPayment fails when no user session is set such as in payment gateway callbacks
-    #9468: It's possible to assign DOIs to chapters without own landing page 
+    #9468: It's possible to assign DOIs to chapters without own landing page
     #10321: Fix ConvertApacheAccessLogFile CLI tool
     #10244: Upgrade fails if there are no files in usageEventLogs
 
