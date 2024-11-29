@@ -1,8 +1,9 @@
 # elpinowindy <elpinowindy@proton.me>, 2023.
+# Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-08-02 17:58+0000\n"
-"Last-Translator: elpinowindy <elpinowindy@proton.me>\n"
+"PO-Revision-Date: 2024-11-19 21:44+0000\n"
+"Last-Translator: Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>\n"
 "Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "id/>\n"
 "Language: id\n"
@@ -10,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "manager.system.readingTools"
 msgstr "Alat Baca"
@@ -40,3 +41,1655 @@ msgstr ""
 
 msgid "manager.system.reviewForms"
 msgstr "Form Tinjauan"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Pengumuman dapat dipublikasikan untuk memberi tahu pembaca tentang berita "
+"dan acara. Pengumuman yang dipublikasikan akan muncul di halaman Pengumuman."
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Berapa banyak pengumuman yang akan ditampilkan di beranda. Kosongkan untuk "
+"tidak menampilkan apa pun."
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr ""
+"Pengenal khusus akan digunakan untuk mengidentifikasi item yang diterbitkan."
+
+msgid "manager.settings.press"
+msgstr "Penerbit"
+
+msgid "manager.settings.publisher.identity"
+msgstr "Identitas Penerbit"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Bidang ini diperlukan untuk menerbitkan <a href=\"https://en.wikipedia.org/"
+"wiki/ONIX_for_Books\">metadata ONIX</a> yang valid."
+
+msgid "manager.settings.publisher"
+msgstr "Nama Penerbit"
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Ini bukan Jenis Kode Penerbit yang valid."
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Semua pengaturan khusus untuk proses distribusi (pemberitahuan, "
+"pengindeksan, pengarsipan, pembayaran, alat baca)."
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Unduhan file monograf"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Tampilan halaman abstrak monograf"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Abstrak monograf dan unduhan"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Tampilan halaman utama seri"
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Tekan tampilan halaman utama"
+
+msgid "manager.tools"
+msgstr "Alat"
+
+msgid "manager.users.availableRoles"
+msgstr "Peran yang Tersedia"
+
+msgid "manager.users.currentRoles"
+msgstr "Peran Saat Ini"
+
+msgid "manager.users.selectRole"
+msgstr "Pilih Peran"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Pengguna Terdaftar di Penerbit ini"
+
+msgid "manager.people.allPresses"
+msgstr "Semua Penerbit"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Daftarkan Pengguna dari Situs di Penerbit ini"
+
+msgid "manager.people.allUsers"
+msgstr "Semua Pengguna Terdaftar"
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Hapus pengguna ini dari pers ini? Tindakan ini akan membatalkan pendaftaran "
+"pengguna dari semua peran dalam pers ini."
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Daftarkan Pengguna yang Sudah Ada"
+
+msgid "manager.system.archiving"
+msgstr "Pengarsipan"
+
+msgid "user.authorization.pluginLevel"
+msgstr "Anda tidak memiliki hak istimewa yang cukup untuk mengelola plugin ini."
+
+msgid "manager.setup"
+msgstr "Pengaturan"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Tambahkan Tentang Item"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Tambahkan Item Daftar Periksa"
+
+msgid "manager.setup.addItem"
+msgstr "Tambah Item"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Tambahkan Item untuk Ditampilkan di \"Tentang Penerbit\""
+
+msgid "manager.setup.addNavItem"
+msgstr "Tambah Item"
+
+msgid "manager.setup.addSponsor"
+msgstr "Tambahkan Organisasi Sponsor"
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+"Masukkan informasi tambahan yang ingin ditampilkan kepada pembaca di halaman "
+"Pengumuman."
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Akan muncul di Tentang Penerbit) "
+
+msgid "manager.setup.contextAbout"
+msgstr "Tentang Penerbit"
+
+msgid "manager.setup.contextSummary"
+msgstr "Ringkasan Penerbit"
+
+msgid "manager.setup.copyediting"
+msgstr "Copyeditor"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Instruksi Copyedit"
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Pemberitahuan hak cipta"
+
+msgid "manager.setup.coverage"
+msgstr "Cakupan"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Tinggi Maksimum Gambar Sampul"
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Lebar Maksimum Gambar Sampul"
+
+msgid "manager.setup.details.description"
+msgstr "Nama penerbit, kontak, sponsor, dan mesin pencari."
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+"Manajer Penerbitan akan mendaftarkan semua akun pengguna. Editor atau Editor "
+"Bagian dapat mendaftarkan akun pengguna untuk pengulas."
+
+msgid "manager.setup.discipline"
+msgstr "Disiplin dan Sub-Disiplin Akademik"
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Konten Beranda"
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Tampikan buku unggulan di beranda"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Buku Unggulan"
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Menampilkan buku dalam sorotan di beranda"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Sorotan"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Menampilkan terbitan baru di beranda"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Terbitan Baru"
+
+msgid "manager.setup.enableDois.description"
+msgstr ""
+"Izinkan Digital Objek Identifier (DOI) ditetapkan pada karya yang "
+"diterbitkan oleh pers ini."
+
+msgid "doi.manager.settings.doiCreationTime.copyedit"
+msgstr "Saat mencapai tahap copyediting"
+
+msgid "manager.setup.editorDecision"
+msgstr "Keputusan Penyunting"
+
+msgid "manager.setup.focusAndScope"
+msgstr "Fokus dan Cakupan Penerbit"
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "Email kontak utama diperlukan."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Nama kontak utama diperlukan."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Tautan halaman"
+
+msgid "manager.setup.policies.description"
+msgstr ""
+"Fokus, tinjauan sejawat, bagian, privasi, keamanan, dan tambahan tentang "
+"item."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Pedoman Tinjauan Eksternal"
+
+msgid "manager.setup.workflow"
+msgstr "Alur Kerja"
+
+msgid "manager.setup.currentRoles"
+msgstr "Peran Saat Ini"
+
+msgid "manager.publication.library"
+msgstr "Pustaka Penerbit"
+
+msgid "emailTemplate.variable.context.contextName"
+msgstr "Nama penerbit"
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "DOI {$pubId} telah ditetapkan."
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Semua alat khusus untuk mengimpor dan mengekspor data (penerbit, monograf, "
+"pengguna)"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Alat untuk menghasilkan laporan terkait statistik penggunaan (tampilan "
+"halaman indeks katalog, tampilan halaman abstrak monograf, unduhan file "
+"monograf)"
+
+msgid "manager.series.editorRestriction"
+msgstr "Artikel hanya dapat diserahkan oleh Penyunting dan Penyunting Seri."
+
+msgid "manager.series.disableComments"
+msgstr "Nonaktifkan komentar pembaca untuk seri ini."
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Maaf, Anda tidak memiliki hak administratif atas pengguna ini. Hal ini "
+"mungkin disebabkan oleh:\n"
+"\t\t<ul>\n"
+"\t\t\t<li>Pengguna adalah administrator situs</li>\n"
+"\t\t\t<li>Pengguna aktif di media yang tidak Anda kelola</li>\n"
+"\t\t</ul>\n"
+"\tTugas ini harus dilakukan oleh administrator situs.\n"
+"\t"
+
+msgid "doi.manager.settings.doiSuffixLegacy"
+msgstr ""
+"Gunakan pola default.<br />%p.%m untuk monograf<br />%p.%m.c%c untuk bab<br /"
+">%p.%m.%f untuk format publikasi<br />%p.%m.%f.%s untuk file."
+
+msgid "manager.dois.disabledChaptersDescription"
+msgstr "Bab tanpa halaman arahan tidak dapat memiliki DOI."
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"Email yang dikirim secara otomatis atas nama pers akan ditambahkan tanda "
+"tangan berikut."
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Peran Peninjau Internal"
+
+msgid "manager.setup.securitySettings.note"
+msgstr ""
+"Pilihan lain yang terkait dengan keamanan dan akses dapat dikonfigurasi dari "
+"halaman <a href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\"action"
+"\">Akses dan Keamanan</a>."
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+"Penyunting Tata Letak akan ditugaskan untuk menyiapkan file HTML, PDF, dll., "
+"untuk publikasi elektronik."
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Format harus dipilih."
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"Untuk membuat genre baru, isi formulir di bawah ini dan klik tombol 'Buat'."
+
+msgid "manager.setup.editorialTeam.description"
+msgstr ""
+"Daftar penyunting, direktur pelaksana, dan individu lain yang terkait dengan "
+"penerbit."
+
+msgid "manager.files.note"
+msgstr ""
+"Catatan: Peramban Berkas merupakan fitur lanjutan yang memungkinkan berkas "
+"dan direktori yang terkait dengan pers untuk dilihat dan dimanipulasi secara "
+"langsung."
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "format terbitan"
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "Gagal mengurai format publikasi"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "Mata uang jumlah pembayaran, seperti USD"
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"Anda tidak dapat membuat DOI karena satu atau beberapa bagian pola DOI "
+"kehilangan data."
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Sufiks DOI yang diberikan sudah digunakan untuk item terbitan lain. Harap "
+"masukkan sufiks DOI yang unik untuk setiap item."
+
+msgid "doi.editor.assignDoi"
+msgstr "Tetapkan DOI {$pubId} ke {$pubObjectType} ini"
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr "DOI tidak dapat ditetapkan karena sufiks khusus tidak ada."
+
+msgid "doi.editor.preview.publication"
+msgstr "DOI untuk publikasi ini adalah {$doi}."
+
+msgid "mailable.statisticsReportNotify.description"
+msgstr ""
+"Email ini secara otomatis dikirim setiap bulan kepada penyunting dan manajer "
+"penerbitan untuk memberi gambaran umum kesehatan sistem."
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
+msgstr ""
+"Email ini memberitahukan penulis bahwa kirimannya sedang dikirim ke tahap "
+"peninjauan internal."
+
+msgid "doi.description"
+msgstr ""
+"Plugin ini memungkinkan penetapan Digital Object Identifier ke monograf, "
+"bab, format publikasi, dan file dalam OMP."
+
+msgid "mailable.publicationVersionNotify.name"
+msgstr "Versi Baru Dibuat"
+
+msgid "mailable.submissionNeedsEditor.description"
+msgstr ""
+"Email ini dikirimkan kepada manajer penerbitan saat ada kiriman baru dan "
+"tidak ada penyunting yang ditugaskan."
+
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+"Halaman beranda penerbit secara default terdiri dari tautan navigasi. Konten "
+"halaman beranda tambahan dapat ditambahkan dengan menggunakan satu atau "
+"semua opsi berikut, yang akan muncul dalam urutan yang ditampilkan."
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Format lembar kerja tidak valid. Format yang diterima adalah .css."
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Format"
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Anda harus menetapkan nama untuk format ini."
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Mencegah pengguna mengirimkan artikel baru ke media. Pengiriman dapat "
+"dinonaktifkan untuk seri penerbit individual pada halaman pengaturan <a href="
+"\"{$url}\">seri penerbit</a>."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Penerbit ini tidak menerima kiriman saat ini. Kunjungi pengaturan alur kerja "
+"untuk mengizinkan kiriman."
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"Ini akan mengganti pengaturan penerbit khusus lokal yang Anda miliki untuk "
+"lokalisasi ini"
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Maaf, tidak ada bahasa tambahan yang tersedia. Hubungi administrator situs "
+"Anda jika Anda ingin menggunakan bahasa tambahan dengan penerbit ini."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Ini akan menjadi bahasa default untuk situs pers."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Pastikan setidaknya satu kotak centang yang dicentang untuk setiap penugasan "
+"Penyunting Seri."
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Pastikan Anda telah memilih formulir ulasan yang valid."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Tidak akan dimasukkan dalam pengindeksan penerbit"
+
+msgid "manager.series.confirmDelete"
+msgstr "Apakah Anda yakin ingin menghapus seri ini secara permanen?"
+
+msgid "manager.series.indexed"
+msgstr "Terindeks"
+
+msgid "manager.series.open"
+msgstr "Submisi Dibuka"
+
+msgid "manager.series.readingTools"
+msgstr "Alat Baca"
+
+msgid "manager.series.submissionReview"
+msgstr "Tidak akan ditinjau sejawat"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Pengajuan yang dibuat untuk seri ini"
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Tidak memerlukan abstrak"
+
+msgid "manager.series.book"
+msgstr "Buku Seri"
+
+msgid "manager.series.create"
+msgstr "Buat Seri"
+
+msgid "manager.series.policy"
+msgstr "Deskripsi seri"
+
+msgid "manager.series.assigned"
+msgstr "Penyunting untuk Seri Ini"
+
+msgid "manager.series.hideAbout"
+msgstr "Hilangkan seri ini dari Tentang Penerbit."
+
+msgid "manager.series.unassigned"
+msgstr "Penyunting Seri yang Tersedia"
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "Judul yang disingkat diperlukan untuk seri ini."
+
+msgid "manager.series.form.titleRequired"
+msgstr "Judul diperlukan untuk seri ini."
+
+msgid "manager.series.noneCreated"
+msgstr "Tidak ada seri yang dibuat."
+
+msgid "manager.payment.success"
+msgstr "Pengaturan pembayaran telah diperbarui."
+
+msgid "manager.settings"
+msgstr "Pengaturan"
+
+msgid "manager.settings.pressSettings"
+msgstr "Pengaturan Penerbit"
+
+msgid "manager.series.existingUsers"
+msgstr "Pengguna yang sudah ada"
+
+msgid "manager.series.seriesTitle"
+msgstr "Judul Seri"
+
+msgid "manager.series.restricted"
+msgstr "Jangan izinkan penulis mengirimkan langsung ke seri ini."
+
+msgid "manager.sections.alertDelete"
+msgstr ""
+"Sebelum seri ini dapat dihapus, Anda harus memindahkan submisi yang terkait "
+"dengan seri ini ke seri lainnya."
+
+msgid "manager.payment.generalOptions"
+msgstr "Opsi Umum"
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Pembayaran akan diaktifkan untuk penerbit ini. Harap diperhatikan bahwa "
+"pengguna akan diminta untuk masuk untuk melakukan pembayaran."
+
+msgid "manager.settings.location"
+msgstr "Lokasi Geografis"
+
+msgid "manager.settings.publisherCode"
+msgstr "Kode Penerbit"
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Jenis Kode Penerbit"
+
+msgid "manager.system"
+msgstr "Pengaturan Sistem"
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Nonaktifkan pengguna ini? Tindakan ini akan mencegah pengguna untuk masuk ke "
+"sistem.\n"
+"\n"
+"Anda dapat memberikan alasan kepada pengguna untuk menonaktifkan akunnya."
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Dengan penerbit"
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Pilih pengguna yang akan digabungkan ke akun pengguna lain (misalnya, jika "
+"seseorang memiliki dua akun pengguna). Akun yang dipilih pertama akan "
+"dihapus dan kiriman, penugasan, dll. akan diatribusikan ke akun kedua."
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Pilih pengguna yang ingin dikaitkan dengan kepengarangan pengguna "
+"sebelumnya, tugas penyuntingan, dsb."
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"Sinkronisasi pendaftaran akan mendaftarkan semua pengguna yang terdaftar "
+"dalam peran tertentu dalam pers tertentu ke dalam peran yang sama dalam pers "
+"ini. Fungsi ini memungkinkan sekumpulan pengguna umum (misalnya, Peninjau) "
+"untuk disinkronkan antar penerbit."
+
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Pengumuman dapat diterbitkan untuk memberi tahu pembaca tentang berita dan "
+"acara penerbit. Pengumuman yang diterbitkan akan muncul di halaman "
+"Pengumuman."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Informasi Tambahan"
+
+msgid "manager.setup.newGenre"
+msgstr "Genre Monograf Baru"
+
+msgid "manager.setup.customTags"
+msgstr "Tag khusus"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Gambar akan diperkecil apabila lebih besar dari ukuran ini, tetapi tidak "
+"akan pernah diperbesar atau dilebarkan agar sesuai dengan dimensi ini."
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Tahap 5. Menyesuaikan Tampilan & Nuansa"
+
+msgid "manager.setup.details"
+msgstr "Detail"
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Tag header HTML khusus yang akan disisipkan di header setiap halaman ("
+"misalnya, tag META)."
+
+msgid "manager.setup.disciplineExamples"
+msgstr ""
+"(Misalnya, Sejarah; Pendidikan; Sosiologi; Psikologi; Studi Budaya; Hukum)"
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr "Berikan contoh disiplin akademis yang relevan untuk penerbit ini"
+
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Berguna ketika penerbit melintasi batas-batas disiplin dan/atau penulis "
+"mengirimkan item multidisiplin."
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Kembalikan Pengaturan Default"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Tambahkan daftar isi untuk monograf saat ini (jika tersedia)."
+
+msgid "manager.setup.prospectus"
+msgstr "Panduan Prospektus"
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr ""
+"Pilih jenis karya yang diterbitkan oleh penerbit ini yang harus diberi DOI. "
+"Sebagian besar penerbit memberikan DOI untuk monograf/bab, tetapi Anda "
+"mungkin ingin memberikan DOI untuk semua item yang diterbitkan."
+
+msgid "manager.dois.formatIdentifier.file"
+msgstr "Format / {$format}"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>CONTOH DATA HTML</strong>"
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Bagi Penulis untuk Mengindeks Karya Mereka"
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"OMP mematuhi Protokol <a href=\"https://www.openarchives.org\" target="
+"\"_blank\">Open Archives Initiative</a> untuk Pengumpulan Metadata, yang "
+"merupakan standar baru untuk menyediakan akses yang terindeks dengan baik ke "
+"sumber daya penelitian elektronik dalam skala global. Penulis akan "
+"menggunakan templat serupa untuk menyediakan metadata untuk pengajuan "
+"mereka. Manajer Pers harus memilih kategori untuk pengindeksan dan "
+"memberikan contoh yang relevan kepada penulis untuk membantu mereka dalam "
+"mengindeks karya mereka, memisahkan istilah dengan titik koma (misalnya, "
+"istilah1; istilah2). Entri harus diperkenalkan sebagai contoh dengan "
+"menggunakan \"Misalnya,\" atau \"Sebagai contoh,\"."
+
+msgid "manager.setup.guidelines"
+msgstr "Pedoman"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Tahap 3. Mempersiapkan alur kerja"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Tahap 1. Mendapatkan Detail"
+
+msgid "manager.setup.identity"
+msgstr "Identitas Penerbit"
+
+msgid "manager.setup.information"
+msgstr "Informasi"
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Untuk Penulis"
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Batasi jumlah item (misalnya, kiriman, pengguna, atau tugas penyuntingan) "
+"untuk ditampilkan dalam daftar sebelum menampilkan item berikutnya di "
+"halaman lain."
+
+msgid "manager.setup.keyInfo"
+msgstr "Informasi Kunci"
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Manajemen Tahap Editorial Dasar"
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "Pernyataan privasi telah diperbarui."
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Gambar Kecil Penerbit"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr ""
+"Logo kecil atau representasi penerbit dapat digunakan dalam daftar penerbit."
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Pedoman Tinjauan Internal"
+
+msgid "manager.setup.reviewOptions"
+msgstr "Opsi Tinjauan"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Pengingat Peninjau"
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Kebijakan Peninjauan"
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Berikan deskripsi singkat (50-300 karakter) tentang penerbit yang dapat "
+"ditampilkan oleh mesin pencari saat mencantumkan penerbit tersebut dalam "
+"hasil pencarian."
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Pencarian Pengindeksan"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Jenis (Metode/Pendekatan)"
+
+msgid "manager.setup.typeProvideExamples"
+msgstr ""
+"Berikan contoh jenis penelitian, metode, dan pendekatan yang relevan untuk "
+"bidang ini"
+
+msgid "manager.setup.useCopyeditors"
+msgstr "Seorang Copyeditor akan ditugaskan untuk menangani setiap kiriman."
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "Editorial/tinjauan akan digunakan oleh penerbit."
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Lembar gaya penerbit"
+
+msgid "manager.setup.useImageTitle"
+msgstr "Judul Gambar"
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+"Seorang Proofreader akan ditugaskan untuk memeriksa (bersama dengan penulis) "
+"galley sebelum diterbitkan."
+
+msgid "manager.setup.submitToCategories"
+msgstr "Izinkan pengiriman kategori"
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr "Silakan pilih seri yang ingin Anda tautkan dengan item menu ini."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Pilih Seri"
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Pilih Kategori"
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr "Silakan pilih kategori yang ingin Anda tautkan dengan item menu ini."
+
+msgid "grid.series.urlWillBe"
+msgstr "URL seri akan menjadi: {$sampleUrl}"
+
+msgid "stats.contextStats"
+msgstr "Statistik Penerbit"
+
+msgid "stats.context.tooltip.text"
+msgstr "Jumlah pengunjung yang melihat penerbit dan halaman indeks katalog."
+
+msgid "stats.publications.downloadReport.description"
+msgstr ""
+"Unduh lembar kerja CSV/Excel dengan statistik penggunaan untuk monograf yang "
+"sesuai dengan parameter berikut."
+
+msgid "stats.publications.downloadReport.downloadSubmissions"
+msgstr "Unduh Monograf"
+
+msgid "stats.publicationStats"
+msgstr "Statistik Monograf"
+
+msgid "stats.publications.details"
+msgstr "Detail Monograf"
+
+msgid "stats.publications.none"
+msgstr ""
+"Tidak ada monograf yang ditemukan dengan statistik penggunaan yang cocok "
+"dengan parameter ini."
+
+msgid "emailTemplate.variable.context.mailingAddress"
+msgstr "Alamat surat-menyurat penerbit"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "Nama jenis pembayaran"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "Prefiks DOI wajib diisi dan harus dalam format 10.xxxx."
+
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Masukkan pola sufiks khusus untuk setiap jenis publikasi. Pola sufiks khusus "
+"dapat menggunakan simbol berikut untuk menghasilkan sufiks:<br><br> "
+"<code>%p</code> Inisial Penerbit<br> <code>%m</code> ID Monograf<br> "
+"<code>%c</code> ID Bab<br> <code>%f</code> ID Format Publikasi<br> <code>%s</"
+"code> ID Berkas<br> <code>%x</code> Pengidentifikasi Khusus<br><br> "
+"Waspadalah bahwa pola sufiks khusus sering kali menyebabkan masalah dalam "
+"menghasilkan dan menyimpan DOI. Saat menggunakan pola sufiks khusus, uji "
+"dengan saksama bahwa penyunting dapat menghasilkan DOI dan menyimpannya ke "
+"lembaga pendaftaran seperti Crossref. "
+
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr "Misalnya, press%ppub%r dapat membuat DOI seperti 10.1234/pressESPpub100"
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "untuk monograf"
+
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "untuk bab"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "untuk format publikasi"
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "untuk file"
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Silakan masukkan pola sufiks DOI untuk format publikasi."
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Harap masukkan pola sufiks DOI untuk file."
+
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Harap masukkan pola sufiks DOI untuk bab."
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr ""
+"Jika Anda mengubah konfigurasi DOI, DOI yang telah ditetapkan tidak akan "
+"terpengaruh. Setelah konfigurasi DOI disimpan, gunakan tombol ini untuk "
+"menghapus semua DOI yang ada sehingga pengaturan baru akan berlaku pada "
+"semua objek yang ada."
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Apakah Anda yakin ingin menghapus semua DOI yang ada?"
+
+msgid "doi.editor.doi"
+msgstr "DOI"
+
+msgid "doi.editor.doi.description"
+msgstr "DOI harus dimulai dengan {$prefix}."
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Tetapkan"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "mmonograf"
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Kosongkan"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Apakah Anda yakin ingin menghapus DOI yang ada?"
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Alamat Pantulan"
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"Setiap email yang tidak terkirim akan mengakibatkan pesan kesalahan pada "
+"alamat ini."
+
+msgid "manager.setup.emails"
+msgstr "Identifikasi Email"
+
+msgid "manager.setup.emailSignature"
+msgstr "Tanda Tangan"
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Aktifkan pengumuman"
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Tampilan di Beranda"
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Aktifkan penerbit ini untuk tampil secara publik di situs"
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+"Pengenal khusus akan digunakan untuk mengidentifikasi galeri (misalnya "
+"berkas HTML atau PDF) untuk item yang diterbitkan."
+
+msgid "manager.setup.enableUserRegistration"
+msgstr "Pengunjung dapat mendaftar akun pengguna pada penerbit."
+
+msgid "manager.setup.focusAndScope.description"
+msgstr ""
+"Jelaskan kepada penulis, pembaca, dan pustakawan tentang berbagai monograf "
+"dan item lain yang akan diterbitkan oleh penerbit."
+
+msgid "manager.setup.focusScope"
+msgstr "Fokus dan Cakupan"
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Jumlah peninjau per kiriman diperlukan."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "Email dukungan diperlukan."
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Nama dukungan wajib diisi."
+
+msgid "manager.setup.generalInformation"
+msgstr "Informasi Umum"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Untuk Pustakawan"
+
+msgid "manager.setup.information.success"
+msgstr "Informasi untuk penerbit ini telah diperbarui."
+
+msgid "manager.setup.institution"
+msgstr "Institusi"
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Item per halaman"
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Berikan deskripsi singkat tentang penerbit Anda dan identifikasi penyunting, "
+"direktur pelaksana, dan anggota tim editorial lainnya."
+
+msgid "manager.setup.labelName"
+msgstr "Nama Label"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Penyunting Tata Letak"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Instruksi Tata Letak"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Templat Layout"
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Templat File"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Judul"
+
+msgid "manager.setup.lists"
+msgstr "Daftar"
+
+msgid "manager.setup.lists.success"
+msgstr "Pengaturan daftar telah diperbarui."
+
+msgid "manager.setup.look"
+msgstr "Tampilan dan Nuansa"
+
+msgid "manager.setup.look.description"
+msgstr ""
+"Header beranda, konten, header penerbit, footer, bilah navigasi, dan lembar "
+"gaya."
+
+msgid "manager.setup.settings"
+msgstr "Pengaturan"
+
+msgid "manager.setup.management.description"
+msgstr ""
+"Akses dan keamanan, penjadwalan, pengumuman, copyediting, tata letak, dan "
+"proofreading."
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Pengaturan Manajemen dan Penerbitan"
+
+msgid "manager.setup.managingThePress"
+msgstr "Tahap 4. Mengelola Pengaturan"
+
+msgid "manager.setup.masthead.success"
+msgstr "Rincian masthead untuk penerbit ini telah diperbarui."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Tidak ada gambar diunggah."
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Tidak ada lembar gaya diunggah."
+
+msgid "manager.setup.note"
+msgstr "Catatan"
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+"Bila menggunakan email Pemberitahuan Penulis, sertakan alamat email semua "
+"rekan penulis untuk kiriman yang melibatkan banyak penulis, dan bukan hanya "
+"pengguna yang melakukan submisi."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr ""
+"Copyediting akan dilakukan oleh Penyunting atau Penyunting Bagian yang "
+"ditunjuk pada naskah yang diserahkan."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+"Penyunting atau Penyunting Bagian yang ditugaskan pada kiriman akan "
+"menyiapkan file HTML, PDF, dll."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr ""
+"Peyunting atau Penyunting Bagian yang ditugaskan pada kiriman akan memeriksa "
+"galley."
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Batasi jumlah tautan yang akan ditampilkan ke halaman berikutnya dalam "
+"daftar."
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Akses ke Konten Penerbit"
+
+msgid "manager.setup.onlineIssn"
+msgstr "ISSN Daring"
+
+msgid "manager.setup.policies"
+msgstr "Kebijakan"
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+"Berbagai komponen tampilan penerbit dapat dikonfigurasi dari halaman ini, "
+"termasuk elemen header dan footer, gaya dan tema penerbit, dan bagaimana "
+"daftar informasi disajikan kepada pengguna."
+
+msgid "manager.setup.pressDescription"
+msgstr "Ringkasan Penerbit"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "Deskripsi singkat tentang penerbit Anda."
+
+msgid "manager.setup.aboutPress"
+msgstr "Tentang Penerbit"
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+"Sertakan informasi apa pun tentang penerbit Anda yang mungkin menarik bagi "
+"pembaca, penulis, atau peninjau. Ini dapat mencakup kebijakan akses terbuka, "
+"fokus dan cakupan penerbit, pemberitahuan hak cipta, pengungkapan sponsor, "
+"sejarah media, dan pernyataan privasi."
+
+msgid "manager.setup.pressArchiving"
+msgstr "Arsip Penerbit"
+
+msgid "manager.setup.homepageContent"
+msgstr "Konten Beranda Penerbit"
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Konten Beranda Penerbit"
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr ""
+"Halaman beranda penerbit secara default terdiri dari tautan navigasi. Konten "
+"halaman beranda tambahan dapat ditambahkan dengan menggunakan satu atau "
+"semua opsi berikut, yang akan muncul dalam urutan yang ditampilkan."
+
+msgid "manager.setup.contextInitials"
+msgstr "Inisial Penerbit"
+
+msgid "manager.setup.selectCountry"
+msgstr ""
+"Pilih negara tempat penerbit ini berada, atau negara alamat surat-menyurat "
+"untuk penerbit."
+
+msgid "manager.setup.layout"
+msgstr "Tata Letak Penerbit"
+
+msgid "manager.setup.pageHeader"
+msgstr "Header Halaman Penerbit"
+
+msgid "manager.setup.pressPolicies"
+msgstr "Tahap 2. Kebijakan Pers"
+
+msgid "manager.setup.pressSetup"
+msgstr "Pengaturan Penerbit"
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Pengaturan penerbit Anda telah diperbarui."
+
+msgid "manager.setup.pressTheme"
+msgstr "Tema Penerbit"
+
+msgid "manager.setup.contextTitle"
+msgstr "Nama Penerbit"
+
+msgid "manager.setup.printIssn"
+msgstr "ISSN Cetak"
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Instruksi Proofing"
+
+msgid "manager.setup.proofreading"
+msgstr "Proofreader"
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Memberikan instruksi kepada Penyunting Tata Letak."
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr ""
+"Item penerbit dapat diterbitkan secara kolektif, sebagai bagian dari "
+"monograf dengan Daftar Isi tersendiri. Atau, item individual dapat "
+"diterbitkan segera setelah siap, dengan menambahkannya ke Daftar Isi volume "
+"\"saat ini\". Berikan pernyataan kepada pembaca, di Tentang Penerbit, "
+"tentang sistem yang akan digunakan penerbit ini dan frekuensi penerbitan "
+"yang diharapkan."
+
+msgid "manager.setup.publisher"
+msgstr "Penerbit"
+
+msgid "manager.setup.publisherDescription"
+msgstr ""
+"Nama organisasi yang menerbitkan penerbit akan muncul di Tentang Penerbit."
+
+msgid "manager.setup.referenceLinking"
+msgstr "Referensi Tautan"
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Petunjuk Tata Letak untuk Referensi Tautan"
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr "Pengguna harus terdaftar dan masuk untuk melihat konten akses terbuka."
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr "Pengguna harus terdaftar dan masuk untuk melihat situs penerbit."
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr ""
+"Memberikan kriteria kepada peninjau eksternal untuk menilai kesesuaian "
+"kiriman untuk dipublikasikan di media, yang dapat mencakup petunjuk untuk "
+"menyiapkan ulasan yang efektif dan bermanfaat. Para pengulas akan memiliki "
+"kesempatan untuk memberikan komentar yang ditujukan kepada penulis dan "
+"penyunting, serta komentar terpisah hanya untuk penyunting."
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Email Pengingat Otomatis"
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr ""
+"Untuk mengaktifkan opsi ini, administrator situs harus mengaktifkan opsi "
+"<tt>scheduled_tasks</tt> dalam berkas konfigurasi OMP. Konfigurasi server "
+"tambahan mungkin diperlukan untuk mendukung fungsi ini (yang mungkin tidak "
+"dapat dilakukan di semua server), seperti yang ditunjukkan dalam dokumentasi "
+"OMP."
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr ""
+"Penyunting akan menilai pengulas pada skala kualitas lima poin setelah "
+"setiap ulasan."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Batasi Akses File"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr ""
+"Peninjau akan memiliki akses ke berkas kiriman hanya setelah menyetujui "
+"untuk meninjaunya."
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Akses Peninjau"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Akses Peninjau Satu Klik"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr "Sertakan tautan aman dalam undangan email kepada peninjau."
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Peringkat Peninjau"
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr ""
+"Bantu mesin pencari seperti Google menemukan dan menampilkan situs Anda. "
+"Anda dianjurkan untuk mengirimkan <a href=\"{$sitemapUrl}\" target=\"_blank\""
+">peta situs</a> Anda."
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr "Pengaturan indeks mesin pencari telah diperbarui."
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Bagian dan Penyunting Bagian"
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr ""
+"(Jika bagian tidak ditambahkan, maka item dikirimkan ke bagian Monograf "
+"secara default.)"
+
+msgid "manager.setup.securitySettings"
+msgstr "Pengaturan Akses dan Keamanan"
+
+msgid "manager.setup.selectEditorDescription"
+msgstr "Penyunting penerbit yang akan melihatnya melalui proses editorial."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr "Seri penerbit di mana item tersebut akan dipertimbangkan."
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr "Selalu tampilkan tautan galeri dan tunjukkan akses terbatas."
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Akses Situs"
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Lihat Konten Monograf"
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Lima Tahap Membuat Situs Web Penerbit"
+
+msgid "manager.setup.subjectExamples"
+msgstr ""
+"(Contohnya, Fotosintesis; Lubang Hitam; Masalah Peta Empat Warna; Teori "
+"Bayesian)"
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Kata Kunci"
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr "Berikan contoh kata kunci atau topik sebagai panduan bagi penulis"
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Pedoman Pengajuan"
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "Item daftar periksa wajib diisi."
+
+msgid "manager.setup.submissions.description"
+msgstr "Pedoman penulis, hak cipta, dan pengindeksan (termasuk pendaftaran)."
+
+msgid "manager.setup.typeExamples"
+msgstr ""
+"(Misalnya, Penyelidikan Sejarah; Eksperimen Kuasi; Analisis Sastra; Survei/"
+"Wawancara)"
+
+msgid "manager.setup.userRegistration"
+msgstr "Registrasi Pengguna"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Judul teks"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Volume per tahun"
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Apakah ini format fisik (non-digital)?"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+"Karena format publikasi ini saat ini digunakan oleh monograf di penerbit "
+"Anda, format ini tidak dapat dihapus."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Format Publikasi Baru"
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+"Untuk membuat format publikasi baru, isi formulir di bawah ini dan klik "
+"tombol 'Buat'."
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Genre ini digunakan untuk tujuan penamaan berkas dan ditampilkan dalam menu "
+"tarik-turun saat mengunggah berkas. Genre yang diberi tanda ## memungkinkan "
+"pengguna untuk mengaitkan berkas dengan keseluruhan buku 99Z atau bab "
+"tertentu berdasarkan nomor (misalnya, 02)."
+
+msgid "manager.setup.genres"
+msgstr "Genre"
+
+msgid "manager.setup.deleteSelected"
+msgstr "Hapus yang Dipilih"
+
+msgid "manager.setup.submitToSeries"
+msgstr "Izinkan pengiriman seri"
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"ISSN (International Standard Serial Number) adalah nomor delapan digit yang "
+"mengidentifikasi terbitan berkala termasuk terbitan berseri elektronik. "
+"Nomor tersebut dapat diperoleh dari <a href=\"https://www.issn.org\" target="
+"\"_blank\">Pusat Internasional ISSN</a>."
+
+msgid "manager.setup.currentFormats"
+msgstr "Format Saat Ini"
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Kategori dan Seri"
+
+msgid "manager.setup.series.description"
+msgstr ""
+"Anda dapat membuat sejumlah seri untuk membantu mengatur terbitan Anda. Seri "
+"merupakan kumpulan buku khusus yang ditujukan untuk tema atau topik yang "
+"diajukan seseorang, biasanya satu atau dua anggota fakultas, dan kemudian "
+"diawasi. Pengunjung akan dapat mencari dan menelusuri penerbit berdasarkan "
+"seri."
+
+msgid "manager.setup.reviewForms"
+msgstr "Formulir Tinjauan"
+
+msgid "manager.setup.roleType"
+msgstr "Jenis Peran"
+
+msgid "manager.setup.authorRoles"
+msgstr "Peran Penulis"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Peran Manajerial"
+
+msgid "manager.setup.availableRoles"
+msgstr "Peran yang Tersedia"
+
+msgid "manager.setup.editorialTeam"
+msgstr "Tim Editorial"
+
+msgid "manager.setup.files"
+msgstr "File"
+
+msgid "manager.setup.productionTemplates"
+msgstr "Templat Produksi"
+
+msgid "manager.setup.basicEditorialStepsDescription"
+msgstr ""
+"Tahap: Antrean Submisi &gt; Tinjauan Submisi &gt; Penyuntingan Submisi &gt; "
+"Daftar Isi.<br /><br />\n"
+"Pilih model untuk menangani aspek-aspek proses editorial ini. (Untuk "
+"menunjuk Penyunting Pengelola dan Penyunting Seri, buka Penyunting dalam "
+"Manajemen Penerbit.)"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Setel Ulang Izin Monograf"
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr ""
+"Apakah Anda yakin ingin mengatur ulang data izin yang sudah dilampirkan ke "
+"monograf?"
+
+msgid "manager.setup.resetPermissions.description"
+msgstr ""
+"Pernyataan hak cipta dan informasi lisensi akan dilampirkan secara permanen "
+"ke konten yang dipublikasikan, memastikan bahwa data ini tidak akan berubah "
+"jika pers mengubah kebijakan untuk kiriman baru. Untuk mengatur ulang "
+"informasi izin tersimpan yang telah dilampirkan ke konten yang "
+"dipublikasikan, gunakan tombol di bawah ini."
+
+msgid "manager.setup.resetPermissions.success"
+msgstr "Izin monograf berhasil diatur ulang."
+
+msgid "grid.genres.title.short"
+msgstr "Komponen"
+
+msgid "grid.genres.title"
+msgstr "Komponen Monograf"
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr ""
+"Kirim salinan ke kontak utama yang diidentifikasi di Pengaturan Penerbit."
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr "Jalur seri harus terdiri dari huruf dan angka saja."
+
+msgid "grid.series.pathExists"
+msgstr "Jalur seri sudah ada. Harap masukkan jalur yang unik."
+
+msgid "stats.context.tooltip.label"
+msgstr "Statistik tentang penerbit"
+
+msgid "manager.setup.masthead"
+msgstr "Kop Surat"
+
+msgid "stats.context.downloadReport.description"
+msgstr ""
+"Unduh lembar kerja CSV/Excel dengan statistik penggunaan penerbit ini yang "
+"sesuai dengan parameter berikut."
+
+msgid "stats.context.downloadReport.downloadContext.description"
+msgstr "Jumlah tampilan halaman penerbit dan katalog indeks."
+
+msgid "stats.context.downloadReport.downloadContext"
+msgstr "Unduh Penerbit"
+
+msgid "stats.publications.downloadReport.downloadSubmissions.description"
+msgstr "Jumlah tampilan abstrak dan unduhan berkas untuk setiap monograf."
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Total tampilan katalog berdasarkan tanggal"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Total tampilan file berdasarkan tanggal"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$count} dari {$total} monograf"
+
+msgid "stats.publications.abstracts"
+msgstr "Entri Katalog"
+
+msgid "plugins.importexport.common.error.salesRightRequiresTerritory"
+msgstr ""
+"Catatan hak penjualan telah dilewati karena tidak memiliki negara atau "
+"wilayah yang ditetapkan."
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Tidak ada objek yang dipilih."
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Tidak dapat mengonversi objek yang dipilih."
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "XML tidak valid:"
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Ekspor Submisi"
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr "Kirimkan salinan email pengakuan submisi ke kontak utama penerbit ini."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"Tidak ada kontak utama yang ditetapkan untuk penerbit ini. Anda dapat "
+"memasukkan kontak utama di <a href=\"{$url}\">pengaturan penerbit</a>."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Objek yang ditentukan tidak dapat ditemukan."
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "Pengguna yang ditentukan, \"{$userName}\", tidak ada."
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "Gagal mengurai bab"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "URL ke beranda penerbit"
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "Nama kontak utama penerbit"
+
+msgid "emailTemplate.variable.context.contextAcronym"
+msgstr "Inisial penerbit"
+
+msgid "emailTemplate.variable.context.contextSignature"
+msgstr "Tanda tangan email penerbit untuk email otomatis"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "Alamat email kontak utama penerbit"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "Jumlah pembayaran"
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr "Nama situs web ketika lebih dari satu penerbit dihosting"
+
+msgid "emailTemplate.variable.statisticsReportNotify.publicationStatsLink"
+msgstr "Tautan ke halaman statistik buku"
+
+msgid "mailable.validateEmailContext.name"
+msgstr "Validasi Email (Registrasi Penerbit)"
+
+msgid "mailable.validateEmailContext.description"
+msgstr ""
+"Email ini secara otomatis dikirimkan ke pengguna baru saat mereka mendaftar "
+"di penerbit ketika pengaturan mengharuskan alamat email divalidasi."
+
+msgid "doi.displayName"
+msgstr "DOI"
+
+msgid "doi.manager.displayName"
+msgstr "DOI"
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "doi.manager.settings.description"
+msgstr ""
+"Harap konfigurasikan plug-in DOI agar mengelola dan menggunakan DOI di OMP:"
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "bab"
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "file"
+
+msgid "doi.editor.customSuffixMissing"
+msgstr "DOI tidak dapat ditetapkan karena sufiks khusus tidak ada."
+
+msgid "doi.editor.patternNotResolved"
+msgstr ""
+"DOI tidak dapat ditetapkan karena mengandung pola yang belum terselesaikan."
+
+msgid "doi.editor.canBeAssigned"
+msgstr ""
+"Yang Anda lihat adalah pratinjau DOI. Pilih kotak centang dan simpan "
+"formulir untuk menetapkan DOI."
+
+msgid "doi.editor.assigned"
+msgstr "DOI ditetapkan pada {$pubObjectType} ini."
+
+msgid "doi.manager.settings.explainDois"
+msgstr ""
+"Silakan pilih objek terbitan yang akan diberi Digital Object Identifier "
+"(DOI):"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Monograf"
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Bab"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Format Terbitan"
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "File"
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "Prefiks DOI"
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Harap masukkan pola sufiks DOI untuk monograf."
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "Tetapkan ulang DOI"
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr ""
+"DOI {$pubId} tidak dapat ditetapkan karena mengandung pola yang belum "
+"terselesaikan."
+
+msgid "doi.editor.missingPrefix"
+msgstr "DOI harus dimulai dengan {$doiPrefix}."
+
+msgid "doi.editor.preview.publication.none"
+msgstr "DOI belum ditetapkan untuk publikasi ini."
+
+msgid "doi.editor.preview.chapters"
+msgstr "Bab: {$title}"
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Format Publikasi: {$title}"
+
+msgid "doi.editor.preview.files"
+msgstr "File: {$title}"
+
+msgid "doi.editor.preview.objects"
+msgstr "Item"
+
+msgid "doi.manager.submissionDois"
+msgstr "DOI Monograf"
+
+msgid "mailable.decision.initialDecline.notifyAuthor.description"
+msgstr ""
+"Email ini memberitahukan penulis bahwa kirimannya ditolak, sebelum dikirim "
+"untuk ditinjau, karena kirimannya tidak memenuhi persyaratan untuk "
+"dipublikasikan di penerbit."
+
+msgid "manager.institutions.noContext"
+msgstr "Lembaga penerbit ini tidak dapat ditemukan."
+
+msgid "manager.manageEmails.description"
+msgstr "Ubah pesan yang dikirim dalam email dari penerbit ini."
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
+msgstr "Kirim ke Peninjau Internal"
+
+msgid "mailable.indexRequest.name"
+msgstr "Indeks Diminta"
+
+msgid "mailable.indexComplete.name"
+msgstr "Indeks Selesai"
+
+msgid "mailable.layoutComplete.name"
+msgstr "Galley Selesai"
+
+msgid "mailable.publicationVersionNotify.description"
+msgstr ""
+"Email ini secara otomatis memberitahukan penyunting yang ditugaskan ketika "
+"versi baru kiriman telah dibuat."
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Sertakan informasi apa pun tentang penerbit Anda yang mungkin menarik bagi "
+"pembaca, penulis, atau pengulas. Ini dapat mencakup kebijakan akses terbuka, "
+"fokus dan cakupan media, pengungkapan sponsor, dan sejarah media."
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+"Petunjuk Copyedit akan tersedia bagi Copyeditor, Penulis, dan Penyunting "
+"Bagian dalam tahap Penyuntingan Naskah. Berikut ini adalah serangkaian "
+"petunjuk standar dalam HTML, yang dapat dimodifikasi atau diganti oleh "
+"Manajer Pers kapan saja (dalam HTML atau teks biasa)."
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Untuk mengirim email yang tidak terkirim ke alamat yang tidak terkirim, "
+"administrator situs harus mengaktifkan opsi <code>allow_envelope_sender</"
+"code> dalam file konfigurasi situs. Konfigurasi server mungkin diperlukan, "
+"seperti yang ditunjukkan dalam dokumentasi OMP."
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"Instruksi Tata Letak dapat disiapkan untuk memformat item terbitan di "
+"penerbit dan dimasukkan di bawah ini dalam HTML atau teks biasa. Petunjuk "
+"tersebut akan tersedia bagi Penyunting Tata Letak dan Penyunting Bagian di "
+"halaman Penyuntingan setiap kiriman. (Karena setiap media cetak dapat "
+"menggunakan format berkas, standar bibliografi, lembar gaya, dll., "
+"serangkaian petunjuk standar tidak disediakan.)"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"Templat dapat diunggah agar muncul dalam Tata Letak untuk setiap format "
+"standar yang diterbitkan di media (misalnya, monograf, book review, dll.) "
+"menggunakan format berkas apa pun (misalnya, pdf, doc, dll.) dengan anotasi "
+"tambahan yang menentukan font, ukuran, margin, dll. untuk dijadikan panduan "
+"bagi Penyunting Tata Letak dan Proofreader."
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr ""
+"Petunjuk Proofreading akan tersedia bagi Proofreader, Penulis, Penyunting "
+"Tata Letak, dan Penyunting Bagian dalam tahap Penyuntingan Naskah. Berikut "
+"ini adalah serangkaian petunjuk standar dalam HTML, yang dapat diedit atau "
+"diganti oleh Manajer Penerbitan kapan saja (dalam HTML atau teks biasa)."
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"Panduan prospektus adalah dokumen yang disiapkan oleh penerbit yang membantu "
+"penulis menjelaskan materi yang diserahkan dengan cara yang memungkinkan "
+"penerbit menentukan nilai dari penyerahan tersebut. Prospektus dapat "
+"mencakup banyak hal, mulai dari potensi pemasaran hingga nilai teoretis; "
+"dalam hal apa pun, pers harus membuat panduan prospektus yang melengkapi "
+"agenda penerbitan mereka."
+
+msgid "manager.setup.categories.description"
+msgstr ""
+"Anda dapat membuat daftar kategori untuk membantu mengatur terbitan Anda. "
+"Kategori adalah pengelompokan buku menurut pokok bahasan, misalnya Ekonomi; "
+"Sastra; Puisi; dan seterusnya. Kategori dapat disarangkan dalam kategori "
+"\"induk\": misalnya, kategori induk Ekonomi dapat mencakup kategori Ekonomi "
+"Mikro dan Ekonomi Makro. Pengunjung akan dapat mencari dan menelusuri "
+"penerbit berdasarkan kategori."
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Tambahkan Editor Seri ke seri ini dari Editor Seri yang tersedia. Setelah "
+"ditambahkan, tentukan apakah Penyunting Seri akan mengawasi TINJAUAN ("
+"tinjauan sejawat) dan/atau PENYUNTINGAN (penyuntingan naskah, tata letak, "
+"dan pemeriksaan akhir) kiriman ke seri ini. Penyunting Seri dibuat dengan "
+"mengeklik <a href=\"{$seriesEditorsUrl}\">Penyunting Seri</a> di bawah Peran "
+"dalam Manajemen Penerbit."
+
+msgid "manager.setup.referenceLinkingDescription"
+msgstr ""
+"<p>Agar pembaca dapat menemukan versi daring dari karya yang dikutip oleh "
+"seorang penulis, tersedia opsi berikut.</p>\n"
+"\n"
+"<ol>\n"
+"\t<li><strong>Tambahkan Alat Baca</strong><p>Manajer Penerbitan dapat "
+"menambahkan \"Temukan Referensi\" ke Alat Baca yang menyertai item yang "
+"diterbitkan, yang memungkinkan pembaca untuk menempelkan judul referensi dan "
+"kemudian mencari basis data ilmiah yang telah dipilih sebelumnya untuk karya "
+"yang dikutip.</p></li>\n"
+"\t<li><strong>Sematkan Tautan di Referensi</strong><p>Penyunting Tata Letak "
+"dapat menambahkan tautan ke referensi yang dapat ditemukan daring dengan "
+"menggunakan petunjuk berikut (yang dapat diubah).</p></li>\n"
+"</ol>"
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+"<h3>Pemberitahuan Hak Cipta Creative Commons yang Diusulkan</h3>\n"
+"<h4>Kebijakan yang Diusulkan untuk Penerbit yang Menawarkan Akses "
+"Terbuka</h4>\n"
+"Penulis yang menerbitkan karya dengan pers ini setuju dengan ketentuan "
+"berikut:\n"
+"<ol type=\"a\">\n"
+"\t<li>Penulis memegang hak cipta dan memberikan hak pers untuk penerbitan "
+"pertama dengan karya yang dilisensikan secara bersamaan di bawah <a target="
+"\"_blank\" href=\"https://creativecommons.org/licenses/by/3.0\">Lisensi "
+"Atribusi Creative Commons</a> yang memungkinkan orang lain untuk membagikan "
+"karya tersebut dengan pengakuan atas kepengarangan karya dan penerbitan awal "
+"di penerbit ini.</li>\n"
+"\t<li>Penulis dapat membuat seri kontrak tambahan yang terpisah untuk "
+"distribusi non-eksklusif dari versi karya yang diterbitkan oleh penerbit ("
+"misalnya, mempostingnya ke repositori institusional atau menerbitkannya "
+"dalam sebuah buku), dengan pengakuan atas penerbitan awalnya di penerbit "
+"ini.</li>\n"
+"\t<li>Penulis diizinkan dan didorong untuk memposting karya mereka secara "
+"daring (misalnya, di repositori institusional atau di situs web mereka) "
+"sebelum dan selama proses pengiriman, karena dapat mengarah pada pertukaran "
+"yang produktif, serta kutipan yang lebih awal dan lebih banyak dari karya "
+"yang diterbitkan (Lihat <a target=\"_blank\" href=\"https://web-archive."
+"southampton.ac.uk/opcit.eprints.org/oacitation-biblio.html\">Dampak Akses "
+"Terbuka</a>).</li>\n"
+"\n"
+"</ol>\n"
+"\n"
+"<h4>Kebijakan yang Diusulkan untuk Pers yang Menawarkan Akses Terbuka "
+"Tertunda</h4>\n"
+"Penulis yang menerbitkan dengan pers ini setuju dengan ketentuan berikut:\n"
+"<ol type=\"a\">\n"
+"\t<li>Penulis memegang hak cipta dan memberikan hak pers untuk penerbitan "
+"pertama, dengan karya [TENTUKAN JANGKA WAKTU] setelah penerbitan "
+"dilisensikan secara bersamaan di bawah <a target=\"_blank\" href=\"https"
+"://creativecommons.org/licenses/by/3.0\">Lisensi Atribusi Creative Commons</"
+"a> yang memungkinkan orang lain untuk berbagi karya dengan pengakuan "
+"kepengarangan karya dan penerbitan awal di pers ini.</li>\n"
+"\t<li>Penulis dapat membuat rangkaian kontrak tambahan yang terpisah untuk "
+"distribusi non-eksklusif dari versi karya yang diterbitkan oleh pers ("
+"misalnya, mengunggahnya ke repositori institusional atau menerbitkannya "
+"dalam bentuk buku), dengan pengakuan atas penerbitan awalnya di pers "
+"ini.</li>\n"
+"\t<li>Penulis diizinkan dan didorong untuk mengunggah karya mereka secara "
+"daring (misalnya, di repositori institusional atau di situs web mereka) "
+"sebelum dan selama proses penyerahan, karena hal ini dapat mengarah pada "
+"pertukaran yang produktif, serta kutipan yang lebih awal dan lebih banyak "
+"dari karya yang diterbitkan (Lihat <a target=\"_blank\" href=\"https://web-"
+"archive.southampton.ac.uk/opcit.eprints.org/oacitation-biblio.html\"> "
+"Pengaruh Akses Terbuka</a>).</li>\n"
+"\n"
+"</ol>"

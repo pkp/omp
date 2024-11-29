@@ -1,7 +1,7 @@
-# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023.
+# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-05-25 09:42+0000\n"
+"PO-Revision-Date: 2024-09-06 16:19+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/manager/cs/>\n"
 "Language: cs\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr ""
@@ -1678,3 +1678,6 @@ msgstr ""
 
 msgid "emailTemplate.variable.context.contextAcronym"
 msgstr "Iniciály vydavatelství"
+
+msgid "manager.dois.disabledChaptersDescription"
+msgstr "Kapitoly bez cílové stránky nemohou mít DOI."
