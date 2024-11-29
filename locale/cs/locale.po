@@ -1,7 +1,7 @@
-# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023.
+# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-11-27 15:26+0000\n"
+"PO-Revision-Date: 2024-09-06 16:19+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/locale/cs/>\n"
 "Language: cs\n"
@@ -1660,3 +1660,19 @@ msgstr "Zadanou cestu k tisku \"{$pressPath}\" se nepodařilo převést na tisk.
 
 msgid "search.cli.rebuildIndex.indexing"
 msgstr "Indexace \"{$pressName}\""
+
+msgid "site.upgradeAvailable.admin"
+msgstr ""
+"K dispozici je nová verze OMP! V současné době používáte OMP "
+"{$currentVersion}. Navštivte <a href=\"https://pkp.sfu.ca/omp_download\" "
+"target=\"_new\">webové stránky PKP</a>, kde si stáhnete nejnovější verzi a "
+"najdete pokyny k aktualizaci."
+
+msgid "site.upgradeAvailable.manager"
+msgstr ""
+"K dispozici je nová verze OMP! V současné době používáte OMP "
+"{$currentVersion}. Nejnovější verze je OMP {$latestVersion}. Kontaktujte, "
+"prosím, svého správce webu ({$siteAdminName}, <a href=\"mailto"
+":{$siteAdminEmail}\">{$siteAdminEmail}</a>) a informujte ho o této nové "
+"verzi. Více informací najdete <a href=\"https://pkp.sfu.ca/omp_download/\" "
+"target=\"_new\">na webových stránkách PKP</a>."

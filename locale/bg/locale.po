@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-08-20 10:04+0000\n"
+"PO-Revision-Date: 2024-08-29 15:40+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/locale/bg/"
 ">\n"
@@ -1691,3 +1691,19 @@ msgstr "Публикационна дата"
 
 msgid "search.results.orderBy.popularityAll"
 msgstr "Популярност (Без ограничение в период)"
+
+msgid "site.upgradeAvailable.admin"
+msgstr ""
+"Има налична нова версия на OMP! В момента използвате OMP {$currentVersion}. "
+"Най-новата версия е OMP {$latestVersion}. Моля, посетете <a href=\"https"
+"://pkp.sfu.ca/omp_download\" target=\"_new\">уебсайта на PKP</a>, за да "
+"изтеглите най-новата версия и да намерите инструкции за надстройка."
+
+msgid "site.upgradeAvailable.manager"
+msgstr ""
+"Има налична нова версия на OMP! В момента използвате OMP {$currentVersion}. "
+"Най-новата версия е OMP {$latestVersion}. Моля, свържете се с вашия "
+"администратор на сайта ({$siteAdminName}, <a href=\"mailto:{$siteAdminEmail}"
+"\">{$siteAdminEmail}</a>), за да го уведомите за тази нова версия. Повече "
+"информация можете да намерите <a href=\"https://pkp.sfu.ca/omp_download/\" "
+"target=\"_new\">на уебсайта на PKP</a>."

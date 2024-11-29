@@ -1,11 +1,11 @@
 # Carla Marques <carla.marques@usdb.uminho.pt>, 2021, 2022.
-# José Carvalho <jcarvalho@keep.pt>, 2022.
+# José Carvalho <jcarvalho@keep.pt>, 2022, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-22 20:40+0000\n"
-"PO-Revision-Date: 2022-12-27 10:02+0000\n"
+"PO-Revision-Date: 2024-09-03 08:40+0000\n"
 "Last-Translator: José Carvalho <jcarvalho@keep.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/submission/pt_PT/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "submission.upload.selectComponent"
 msgstr "Selecionar Componente"
@@ -633,3 +633,7 @@ msgstr ""
 "Forneça todos os capítulos desta submissão. Se estiver a submete um volume "
 "editado, certifique-se de que em cada capítulo indica os colaboradores desse "
 "mesmo capítulo."
+
+msgid "publication.chapter.landingPage.doi.description"
+msgstr ""
+"(Este capítulo será sempre apresentado na sua página porque possui um DOI.)"
