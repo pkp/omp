@@ -18,6 +18,7 @@ use APP\core\Application;
 use APP\template\TemplateManager;
 use PKP\citation\CitationDAO;
 use PKP\db\DAORegistry;
+use PKP\i18n\LocaleConversion;
 use PKP\plugins\GenericPlugin;
 use PKP\plugins\Hook;
 
@@ -90,7 +91,7 @@ class GoogleScholarPlugin extends GenericPlugin
         $templateMgr->addHeader('googleScholarTitle', '<meta name="citation_title" content="' . htmlspecialchars($title) . '"/>');
 
         // Language
-        $templateMgr->addHeader('googleScholarLanguage', '<meta name="citation_language" content="' . htmlspecialchars(substr($publicationLocale, 0, 2)) . '"/>');
+        $templateMgr->addHeader('googleScholarLanguage', '<meta name="citation_language" content="' . htmlspecialchars(str_replace(['_', '@'], '-', $publicationLocale)) . '"/>');
 
         // Publication date
         $datePublished = $isChapterRequest
@@ -114,7 +115,7 @@ class GoogleScholarPlugin extends GenericPlugin
         // Abstract
         $abstract = $isChapterRequest ? $chapter->getLocalizedData('abstract', $publicationLocale) : $publication->getLocalizedData('abstract', $publicationLocale);
         if ($abstract != '') {
-            $templateMgr->addHeader('googleScholarAbstract', '<meta name="citation_abstract" xml:lang="' . htmlspecialchars(substr($publicationLocale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
+            $templateMgr->addHeader('googleScholarAbstract', '<meta name="citation_abstract" xml:lang="' . htmlspecialchars(str_replace(['_', '@'], '-', $publicationLocale)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
         }
 
         // Publication DOI
@@ -126,7 +127,7 @@ class GoogleScholarPlugin extends GenericPlugin
         if ($subjects = $publication->getData('subjects')) {
             foreach ($subjects as $locale => $localeSubjects) {
                 foreach ($localeSubjects as $i => $subject) {
-                    $templateMgr->addHeader('googleScholarSubject' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($subject) . '"/>');
+                    $templateMgr->addHeader('googleScholarSubject' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(str_replace(['_', '@'], '-', $locale)) . '" content="' . htmlspecialchars($subject) . '"/>');
                 }
             }
         }
@@ -135,7 +136,7 @@ class GoogleScholarPlugin extends GenericPlugin
         if ($keywords = $publication->getData('keywords')) {
             foreach ($keywords as $locale => $localeKeywords) {
                 foreach ($localeKeywords as $i => $keyword) {
-                    $templateMgr->addHeader('googleScholarKeyword' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($keyword) . '"/>');
+                    $templateMgr->addHeader('googleScholarKeyword' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(str_replace(['_', '@'], '-', $locale)) . '" content="' . htmlspecialchars($keyword) . '"/>');
                 }
             }
         }

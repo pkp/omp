@@ -191,7 +191,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 							]
 						},
 						{
-							locale: 'fr',
+							locale: 'fr-CA',
 							contents: [
 								submission.localeMetadata
 									.find(element => element.locale == 'fr_CA')
@@ -212,7 +212,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 							]
 						},
 						{
-							locale: 'fr',
+							locale: 'fr-CA',
 							contents: [
 								submission.localeTitles.fr_CA.abstract
 							]
@@ -223,7 +223,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 					element: 'DC.Title.Alternative',
 					values: [
 						{
-							locale: 'fr',
+							locale: 'fr-CA',
 							contents: [
 								submission.localeTitles.fr_CA.prefix + ' ' + submission.localeTitles.fr_CA.title + ': ' + submission.localeTitles.fr_CA.subtitle
 							]
@@ -246,7 +246,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 
 						},
 						{
-							locale: 'fr',
+							locale: 'fr-CA',
 							contents: [
 								submission.localeMetadata
 									.find(element => element.locale == 'fr_CA')
@@ -276,7 +276,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 								)
 						},
 						{
-							locale: 'fr',
+							locale: 'fr-CA',
 							contents: submission.localeMetadata
 								.find(element => element.locale == 'fr_CA')
 								.manyValues
@@ -345,7 +345,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 			withScheme: [
 				{
 					element: 'DC.Language',
-					scheme: 'ISO639-1',
+					scheme: 'rfc5646',
 					content: 'en'
 				},
 				{
