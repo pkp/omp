@@ -79,7 +79,7 @@ class BackendSubmissionsController extends \PKP\API\v1\_submissions\PKPBackendSu
 
         if (isset($queryParams['seriesIds'])) {
             $collector->filterBySeriesIds(
-                array_map('intval', paramToArray($queryParams['seriesIds']))
+                array_map(intval(...), paramToArray($queryParams['seriesIds']))
             );
         }
 
@@ -167,7 +167,7 @@ class BackendSubmissionsController extends \PKP\API\v1\_submissions\PKPBackendSu
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        $submissionIds = array_map('intval', (array) $params['submissionIds']);
+        $submissionIds = array_map(intval(...), (array) $params['submissionIds']);
 
         if (empty($submissionIds)) {
             return response()->json([

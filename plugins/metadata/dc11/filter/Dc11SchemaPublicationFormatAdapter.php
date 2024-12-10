@@ -124,7 +124,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $contributors = $monograph->getData('sponsor');
         if (is_array($contributors)) {
             foreach ($contributors as $locale => $contributor) {
-                $contributors[$locale] = array_map('trim', explode(';', $contributor));
+                $contributors[$locale] = array_map(trim(...), explode(';', $contributor));
             }
             $this->_addLocalizedElements($dc11Description, 'dc:contributor', $contributors);
         }

@@ -70,6 +70,8 @@ class MonographSearchIndex extends SubmissionSearchIndex
      * @param int $monographId
      * @param int $type
      * @param SubmissionFile $submissionFile
+     *
+     * @hook MonographSearchIndex::submissionFileChanged [[$monographId, $type, $submissionFile->getId()]]
      */
     public function submissionFileChanged($monographId, $type, $submissionFile)
     {
@@ -121,6 +123,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
      * @param Submission $submission
      *
      * @hook MonographSearchIndex::submissionMetadataChanged [[$submission]]
+     * @hook MonographSearchIndex::monographMetadataChanged [[$submission]]
      */
     public function submissionMetadataChanged($submission)
     {
@@ -139,8 +142,8 @@ class MonographSearchIndex extends SubmissionSearchIndex
                 array_values((array) $author->getData('givenName')),
                 array_values((array) $author->getData('familyName')),
                 array_values((array) $author->getData('preferredPublicName')),
-                array_values(array_map('strip_tags', (array) $author->getData('affiliation'))),
-                array_values(array_map('strip_tags', (array) $author->getData('biography')))
+                array_values(array_map(strip_tags(...), (array) $author->getData('affiliation'))),
+                array_values(array_map(strip_tags(...), (array) $author->getData('biography')))
             );
         }
 
@@ -227,6 +230,8 @@ class MonographSearchIndex extends SubmissionSearchIndex
      *
      * @param int $type optional
      * @param int $assocId optional
+     *
+     * @hook MonographSearchIndex::submissionFileDeleted [[$monographId, $type, $assocId]]
      */
     public function submissionFileDeleted($monographId, $type = null, $assocId = null)
     {
