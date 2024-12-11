@@ -2,7 +2,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-05-31 17:17+0000\n"
+"PO-Revision-Date: 2024-12-12 02:58+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "fr_FR/>\n"
@@ -642,3 +642,7 @@ msgstr ""
 "Veuillez fournir tous les chapitres de cette soumission. Si vous soumettez "
 "un ouvrage collectif, veillez à ce que chaque chapitre indique ses "
 "contributeurs et/ou contributrices."
+
+msgid "publication.chapter.landingPage.doi.description"
+msgstr ""
+"(Ce chapitre sera toujours affiché sur sa propre page parce qu'il a un DOI)."
