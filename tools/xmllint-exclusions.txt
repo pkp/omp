@@ -15,4 +15,4 @@
 ./locale/es/ONIX_BookProduct_Codelists.xml
 ./locale/fi/ONIX_BookProduct_Codelists.xml
 ./locale/it/ONIX_BookProduct_Codelists.xml
-./locale/nb/ONIX_BookProduct_Codelists.xml
+./locale/nb_NO/ONIX_BookProduct_Codelists.xml

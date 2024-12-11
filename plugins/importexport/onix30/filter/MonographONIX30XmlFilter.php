@@ -29,6 +29,7 @@ use DOMException;
 use Exception;
 use PKP\db\DAORegistry;
 use PKP\filter\FilterGroup;
+use PKP\i18n\LocaleConversion;
 use PKP\plugins\importexport\native\filter\NativeExportFilter;
 
 class MonographONIX30XmlFilter extends NativeExportFilter
@@ -425,7 +426,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
 
         $languageNode = $doc->createElementNS($deployment->getNamespace(), 'Language');
         $languageNode->appendChild($this->buildTextNode($doc, 'LanguageRole', '01'));
-        $onixLanguageCode = $onixCodelistItemDao->getCodeFromValue($submission->getData('locale'), '74');
+        $onixLanguageCode = $onixCodelistItemDao->getCodeFromValue(LocaleConversion::get3LetterIsoFromLocale($submission->getData('locale')), '74');
         if ($onixLanguageCode != '') {
             $languageNode->appendChild($this->buildTextNode($doc, 'LanguageCode', $onixLanguageCode));
             $descDetailNode->appendChild($languageNode);
