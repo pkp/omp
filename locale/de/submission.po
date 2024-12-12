@@ -482,6 +482,9 @@ msgstr "Diskussion zur Herstellung"
 msgid "publication.chapter.landingPage"
 msgstr "Kapitelseite"
 
+msgid "publication.chapter.landingPage.doi.description"
+msgstr "(Dieses Kapitel wird immer auf einer eigenen Seite angezeigt, da es eine DOI hat)."
+
 msgid "publication.chapter.hasLandingPage"
 msgstr ""
 "Dieses Kapitel auf einer eigenen Seite anzeigen, auf die vom "
