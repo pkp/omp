@@ -622,3 +622,9 @@ msgstr ""
 
 msgid "submission.dashboard.view.reviewInternal"
 msgstr "All in internal review"
+
+msgid "submission.stage.externalReviewWithRound"
+msgstr "External Review (Round {$round})"
+
+msgid "submission.stage.internalReviewWithRound"
+msgstr "Internal Review (Round {$round})"
