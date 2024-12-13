@@ -286,7 +286,6 @@ class Chapter extends \PKP\core\DataObject
     public function isPageEnabled(): ?bool
     {
         return $this->getData('isPageEnabled') || !empty($this->getDoi());
-        ;
     }
 
     /**

@@ -44,6 +44,7 @@ use PKP\submission\Genre;
 use PKP\submission\GenreDAO;
 use PKP\submission\PKPSubmission;
 use PKP\submissionFile\SubmissionFile;
+use PKP\userGroup\UserGroup;
 
 class CatalogBookHandler extends Handler
 {
@@ -175,9 +176,7 @@ class CatalogBookHandler extends Handler
             return empty($a) || strtotime((string) $b->getData('datePublished')) < strtotime((string) $a->getData('datePublished')) ? $b : $a;
         }, 0);
 
-        $userGroups = Repo::userGroup()->getCollector()
-            ->filterByContextIds([$submission->getData('contextId')])
-            ->getMany();
+        $userGroups = UserGroup::withContextIds([$submission->getData('contextId')])->get();
 
         $templateMgr->assign([
             'isChapterRequest' => $this->isChapterRequest,

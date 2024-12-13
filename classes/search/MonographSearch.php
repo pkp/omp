@@ -26,6 +26,7 @@ use APP\press\Press;
 use PKP\db\DAORegistry;
 use PKP\plugins\Hook;
 use PKP\search\SubmissionSearch;
+use PKP\userGroup\UserGroup;
 
 class MonographSearch extends SubmissionSearch
 {
@@ -75,7 +76,8 @@ class MonographSearch extends SubmissionSearch
         }
 
         $i = 0; // Used to prevent ties from clobbering each other
-        $authorUserGroups = Repo::userGroup()->getCollector()->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])->getMany();
+        $authorUserGroups = UserGroup::withRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])
+            ->get();
         foreach ($unorderedResults as $submissionId => $data) {
             // Exclude unwanted IDs.
             if (in_array($submissionId, $exclude)) {

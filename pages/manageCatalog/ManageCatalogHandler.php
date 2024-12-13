@@ -27,6 +27,7 @@ use PKP\db\DAORegistry;
 use PKP\security\authorization\PKPSiteAccessPolicy;
 use PKP\security\Role;
 use PKP\submission\GenreDAO;
+use PKP\userGroup\UserGroup;
 
 class ManageCatalogHandler extends Handler
 {
@@ -124,9 +125,7 @@ class ManageCatalogHandler extends Handler
         $total = $collector->getCount();
         $submissions = $collector->limit($catalogList->count)->getMany();
 
-        $userGroups = Repo::userGroup()->getCollector()
-            ->filterByContextIds([$context->getId()])
-            ->getMany();
+        $userGroups = UserGroup::withContextIds([$context->getId()])->get();
 
         /** @var GenreDAO $genreDao */
         $genreDao = DAORegistry::getDAO('GenreDAO');

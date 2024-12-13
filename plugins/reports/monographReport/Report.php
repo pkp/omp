@@ -294,9 +294,11 @@ class Report implements IteratorAggregate
      */
     private function getEditorUserGroups(): Collection
     {
-        return $this->editorUserGroups ??= collect(Repo::userGroup()->getCollector()->filterByContextIds([$this->press->getId()])->getMany())
-            ->filter(fn (UserGroup $userGroup) => in_array($userGroup->getRoleId(), [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR]))
-            ->mapWithKeys(fn (UserGroup $userGroup) => [$userGroup->getId() => true]);
+        $userGroups = UserGroup::withContextIds([$this->press->getId()])->get();
+
+        return $this->editorUserGroups ??= $userGroups
+            ->filter(fn (UserGroup $userGroup) => in_array($userGroup->roleId, [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR]))
+            ->mapWithKeys(fn (UserGroup $userGroup) => [$userGroup->id => true]);
     }
 
     /**

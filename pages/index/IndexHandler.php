@@ -30,6 +30,7 @@ use PKP\db\DAORegistry;
 use PKP\pages\index\PKPIndexHandler;
 use PKP\security\Validation;
 use PKP\site\Site;
+use PKP\userGroup\UserGroup;
 
 class IndexHandler extends PKPIndexHandler
 {
@@ -129,7 +130,9 @@ class IndexHandler extends PKPIndexHandler
             'homepageImage' => $press->getLocalizedSetting('homepageImage'),
             'pageTitleTranslated' => $press->getLocalizedSetting('name'),
             'displayCreativeCommons' => $press->getSetting('includeCreativeCommons'),
-            'authorUserGroups' => Repo::userGroup()->getCollector()->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])->filterByContextIds([$press->getId()])->getMany()->remember(),
+            'authorUserGroups' => UserGroup::withRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])
+                ->withContextIds([$press->getId()])
+                ->get(),
         ]);
 
         $this->_setupAnnouncements($press, $templateMgr);
