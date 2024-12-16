@@ -13,7 +13,7 @@
 	<ul>	
 	{foreach from=$userGroups->toArray() item=userGroup}
 		<li>
-		{$userGroup->getLocalizedName()|escape}
+		{$userGroup->getLocalizedData('name')|escape}
 		</li>
 	{/foreach}
 	</ul>

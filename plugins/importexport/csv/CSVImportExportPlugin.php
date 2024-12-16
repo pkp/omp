@@ -28,6 +28,7 @@ use PKP\security\Role;
 use PKP\submission\GenreDAO;
 use PKP\submission\PKPSubmission;
 use PKP\submissionFile\SubmissionFile;
+use PKP\userGroup\UserGroup;
 
 class CSVImportExportPlugin extends ImportExportPlugin
 {
@@ -162,11 +163,11 @@ class CSVImportExportPlugin extends ImportExportPlugin
                 continue;
             }
 
-            $authorGroup = Repo::userGroup()->getCollector()
-                ->filterByContextIds([$press->getId()])
-                ->filterByRoleIds([Role::ROLE_ID_AUTHOR])
-                ->filterByIsDefault(true)
-                ->getMany()
+            $authorGroup = UserGroup::withContextIds([$press->getId()])
+                ->withContextIds([$press->getId()])
+                ->withRoleIds([Role::ROLE_ID_AUTHOR])
+                ->isDefault(true)
+                ->get()
                 ->first();
             if (!$authorGroup) {
                 echo __('plugins.importexport.csv.noAuthorGroup', ['press' => $pressPath]) . "\n";
@@ -217,7 +218,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                 $author = Repo::author()->newDataObject();
                 $author->setData('publicationId', $publicationId);
                 $author->setSubmissionId($submissionId);
-                $author->setUserGroupId($authorGroup->getId());
+                $author->setUserGroupId($authorGroup->id);
                 $author->setGivenName($givenName, $locale);
                 $author->setFamilyName($familyName, $locale);
                 $author->setEmail($emailAddress);

@@ -21,7 +21,6 @@ use APP\components\forms\publication\CatalogEntryForm;
 use APP\components\forms\publication\PublicationLicenseForm;
 use APP\components\forms\submission\AudienceForm;
 use APP\components\forms\submission\PublicationDatesForm;
-use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\publication\Publication;
 use APP\submission\Submission;
@@ -33,6 +32,7 @@ use PKP\API\v1\submissions\PKPSubmissionController;
 use PKP\context\Context;
 use PKP\core\PKPApplication;
 use PKP\security\Role;
+use PKP\userGroup\UserGroup;
 
 class SubmissionController extends PKPSubmissionController
 {
@@ -150,7 +150,9 @@ class SubmissionController extends PKPSubmissionController
         $publicationApiUrl = $data['publicationApiUrl']; /** @var String $publicationApiUrl */
 
         $locales = $this->getPublicationFormLocales($context, $submission);
-        $authorUserGroups = Repo::userGroup()->getByRoleIds([Role::ROLE_ID_AUTHOR], $submission->getData('contextId'));
+        $authorUserGroups = UserGroup::withRoleIds([Role::ROLE_ID_AUTHOR])
+            ->withContextIds([$submission->getData('contextId')])
+            ->get();
 
         $publicationLicenseForm = new PublicationLicenseForm($publicationApiUrl, $locales, $publication, $context, $authorUserGroups);
         $submissionLocale = $submission->getData('locale');

@@ -17,10 +17,10 @@
 namespace APP\pages\search;
 
 use APP\core\Request;
-use APP\facades\Repo;
 use APP\handler\Handler;
 use APP\search\MonographSearch;
 use APP\template\TemplateManager;
+use PKP\userGroup\UserGroup;
 
 class SearchHandler extends Handler
 {
@@ -57,10 +57,9 @@ class SearchHandler extends Handler
         $templateMgr->assign([
             'results' => $monographSearch->retrieveResults($request, $press, [null => $query], $error, null, null, $rangeInfo),
             'searchQuery' => $query,
-            'authorUserGroups' => Repo::userGroup()->getCollector()
-                ->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])
-                ->filterByContextIds($press ? [$press->getId()] : null)
-                ->getMany()->remember(),
+            'authorUserGroups' => UserGroup::withRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])
+                ->withContextIds($press ? [$press->getId()] : null)
+                ->get(),
         ]);
 
         // Display
