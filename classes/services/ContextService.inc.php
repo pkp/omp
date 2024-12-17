@@ -185,7 +185,7 @@ class ContextService extends \PKP\Services\PKPContextService {
 			\DAORegistry::getDAO('SeriesDAO'),
 			\DAORegistry::getDAO('SubmissionDAO'),
 		];
-		foreach ($objectDaos as $objectDao) {
+		foreach ($objectDaos as $objectDao) { /** @var CategoryDAO|SeriesDAO|SubmissionDAO $objectDao */
 			$objects = $objectDao->getByContextId($context->getId());
 			while ($object = $objects->next()) {
 				if (is_a($object, 'Submission')) {
@@ -243,29 +243,18 @@ class ContextService extends \PKP\Services\PKPContextService {
 					}
 
 					imagedestroy($thumbnail);
-					if (is_a($object, 'Submission')) {
-						$object->setCoverImage(array(
-							'name' => $cover['name'],
-							'width' => $cover['width'],
-							'height' => $cover['height'],
-							'thumbnailName' => $cover['thumbnailName'],
-							'thumbnailWidth' => $thumbnailWidth,
-							'thumbnailHeight' => $thumbnailHeight,
-							'uploadName' => $cover['uploadName'],
-							'dateUploaded' => $cover['dateUploaded'],
-						));
-					} else {
-						$object->setImage(array(
-							'name' => $cover['name'],
-							'width' => $cover['width'],
-							'height' => $cover['height'],
-							'thumbnailName' => $cover['thumbnailName'],
-							'thumbnailWidth' => $thumbnailWidth,
-							'thumbnailHeight' => $thumbnailHeight,
-							'uploadName' => $cover['uploadName'],
-							'dateUploaded' => $cover['dateUploaded'],
-						));
-					}
+					
+					$object->setImage(array(
+						'name' => $cover['name'],
+						'width' => $cover['width'],
+						'height' => $cover['height'],
+						'thumbnailName' => $cover['thumbnailName'],
+						'thumbnailWidth' => $thumbnailWidth,
+						'thumbnailHeight' => $thumbnailHeight,
+						'uploadName' => $cover['uploadName'],
+						'dateUploaded' => $cover['dateUploaded'],
+					));
+
 					// Update category object to store new thumbnail information.
 					$objectDao->updateObject($object);
 				}
