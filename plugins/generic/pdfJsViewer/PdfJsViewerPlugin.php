@@ -81,6 +81,9 @@ class PdfJsViewerPlugin extends GenericPlugin
         $publicationFormat = & $args[2];
         $submissionFile = & $args[3];
 
+        $request = $this->getRequest();
+		$dispatcher = $request->getDispatcher();
+
         if ($submissionFile->getData('mimetype') == 'application/pdf') {
             /** @var ?Publication */
             $filePublication = null;
@@ -96,6 +99,7 @@ class PdfJsViewerPlugin extends GenericPlugin
                 'pluginUrl' => $request->getBaseUrl() . '/' . $this->getPluginPath(),
                 'isLatestPublication' => $submission->getData('currentPublicationId') === $publicationFormat->getData('publicationId'),
                 'filePublication' => $filePublication,
+                'downloadUrl' => $dispatcher->url($request, ROUTE_PAGE, null, null, 'download', array($submission->getBestId(), $publicationFormat->getBestId(), $submissionFile->getBestId()), array('inline' => true)),
             ]);
 
             $templateMgr->display($this->getTemplateResource('display.tpl'));
