@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/submission/Collector.php
  *
@@ -183,5 +184,36 @@ class Collector extends \PKP\submission\Collector
     protected function getReviewStages(): array
     {
         return [WORKFLOW_STAGE_ID_EXTERNAL_REVIEW, WORKFLOW_STAGE_ID_INTERNAL_REVIEW];
+    }
+
+    /** @copydoc PKP/classes/submission/Collector::addFilterByAssociatedDoiIdsToQuery() */
+    protected function addFilterByAssociatedDoiIdsToQuery(Builder $q)
+    {
+        $q->whereIn('s.submission_id', function (Builder $query) {
+            $query->select('p.submission_id')
+                ->from('publications AS p')
+                ->join('dois AS d', 'p.doi_id', '=', 'd.doi_id')
+                ->whereLike('d.doi', "{$this->searchPhrase}%")
+                ->union(function (Builder $query) {
+                    $query->select('p.submission_id')
+                        ->from('submission_chapters AS sc')
+                        ->join('dois AS d', 'sc.doi_id', '=', 'd.doi_id')
+                        ->join('publications AS p', 'sc.publication_id', '=', 'p.publication_id')
+                        ->whereLike('d.doi', "{$this->searchPhrase}%");
+                })
+                ->union(function (Builder $query) {
+                    $query->select('p.submission_id')
+                        ->from('publication_formats AS pf')
+                        ->join('dois AS d', 'pf.doi_id', '=', 'd.doi_id')
+                        ->join('publications AS p', 'pf.publication_id', '=', 'p.publication_id')
+                        ->whereLike('d.doi', "{$this->searchPhrase}%");
+                })
+                ->union(function (Builder $query) {
+                    $query->select('sf.submission_id')
+                        ->from('submission_files AS sf')
+                        ->join('dois AS d', 'sf.doi_id', '=', 'd.doi_id')
+                        ->whereLike('d.doi', "{$this->searchPhrase}%");
+                });
+        });
     }
 }
