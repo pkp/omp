@@ -14,6 +14,7 @@
  * @brief CLI tool to remove user interests that are not referenced by any user accounts.
  */
 
+use APP\core\Application;
 use APP\facades\Repo;
 use Illuminate\Support\Collection;
 use PKP\cliTool\CommandLineTool;
@@ -91,8 +92,8 @@ class ReviewerInterestsDeletionTool extends CommandLineTool
     {
         $controlledVocab = Repo::controlledVocab()->build(
             UserInterest::CONTROLLED_VOCAB_INTEREST,
-            UserInterest::CONTROLLED_VOCAB_INTEREST_ASSOC_TYPE,
-            UserInterest::CONTROLLED_VOCAB_INTEREST_ASSOC_ID
+            Application::ASSOC_TYPE_SITE,
+            Application::SITE_CONTEXT_ID,
         );
 
         return ControlledVocabEntry::query()
