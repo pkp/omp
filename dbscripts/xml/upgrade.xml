@@ -144,6 +144,7 @@
 		<migration class="APP\migration\upgrade\v3_5_0\I10511_RemoveSeriesMenuItems"/>
 		<migration class="PKP\migration\upgrade\v3_5_0\I9707_WeblateUILocales"/>
 		<migration class="PKP\migration\upgrade\v3_5_0\I10738_RemoveInvalidUserGroups"/>
+		<migration class="PKP\migration\upgrade\v3_5_0\I10362_EventLogEditorNames"/>
 	</upgrade>
 
 	<!-- Update plugin configuration - should be done as the final upgrade task -->
