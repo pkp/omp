@@ -14,11 +14,12 @@
  * @brief CLI tool to remove user interests that are not referenced by any user accounts.
  */
 
+use APP\core\Application;
+use APP\facades\Repo;
+use Illuminate\Support\Collection;
 use PKP\cliTool\CommandLineTool;
-use PKP\controlledVocab\ControlledVocabDAO;
-use PKP\controlledVocab\ControlledVocabEntryDAO;
-use PKP\db\DAORegistry;
-use PKP\user\InterestDAO;
+use PKP\controlledVocab\ControlledVocabEntry;
+use PKP\user\interest\UserInterest;
 
 require(dirname(__FILE__) . '/bootstrap.php');
 
@@ -60,7 +61,7 @@ class ReviewerInterestsDeletionTool extends CommandLineTool
     public function execute()
     {
         $orphans = $this->_getOrphanVocabInterests();
-        if (!count($orphans)) {
+        if ($orphans->count() === 0) {
             echo "No user interests to remove.\n";
             exit(0);
         }
@@ -68,20 +69,13 @@ class ReviewerInterestsDeletionTool extends CommandLineTool
         $command = $this->parameters[0];
         switch ($command) {
             case '--show':
-                $interests = array_map(function ($entry) {
-                    return $entry->getData(InterestDAO::CONTROLLED_VOCAB_INTEREST);
-                }, $orphans);
+                $interests = $orphans->pluck(UserInterest::CONTROLLED_VOCAB_INTEREST)->toArray();
                 echo "Below are the user interests that are not referenced by any user account.\n";
                 echo "\t" . join("\n\t", $interests) . "\n";
                 break;
 
             case '--remove':
-                /** @var ControlledVocabEntryDAO */
-                $vocabEntryDao = DAORegistry::getDAO('ControlledVocabEntryDAO');
-                foreach ($orphans as $orphanVocab) {
-                    $vocabEntryDao->deleteObject($orphanVocab);
-                }
-                echo count($orphans) . " entries deleted\n";
+                echo $orphans->toQuery()->delete() . " entries deleted\n";
                 break;
 
             default:
@@ -93,50 +87,19 @@ class ReviewerInterestsDeletionTool extends CommandLineTool
 
     /**
      * Returns user interests that are not referenced
-     *
-     * @return array array of ControlledVocabEntry object
      */
-    protected function _getOrphanVocabInterests()
+    protected function _getOrphanVocabInterests(): Collection
     {
-        /** @var InterestDAO */
-        $interestDao = DAORegistry::getDAO('InterestDAO');
-        /** @var ControlledVocabDAO */
-        $vocabDao = DAORegistry::getDAO('ControlledVocabDAO');
-        /** @var ControlledVocabEntryDAO */
-        $vocabEntryDao = DAORegistry::getDAO('ControlledVocabEntryDAO');
-
-        $interestVocab = $vocabDao->getBySymbolic(InterestDAO::CONTROLLED_VOCAB_INTEREST);
-        $vocabEntryIterator = $vocabEntryDao->getByControlledVocabId($interestVocab->getId());
-        $vocabEntryList = $vocabEntryIterator->toArray();
-
-        // list of vocab interests in db
-        $allInterestVocabIds = array_map(
-            function ($entry) {
-                return $entry->getId();
-            },
-            $vocabEntryList
+        $controlledVocab = Repo::controlledVocab()->build(
+            UserInterest::CONTROLLED_VOCAB_INTEREST,
+            Application::ASSOC_TYPE_SITE,
+            Application::SITE_CONTEXT_ID,
         );
 
-        // list of vocabs associated to users
-        $interests = $interestDao->getAllInterests();
-        $userInterestVocabIds = array_map(
-            function ($interest) {
-                return $interest->getId();
-            },
-            $interests->toArray()
-        );
-
-        // get the difference
-        $diff = array_diff($allInterestVocabIds, $userInterestVocabIds);
-
-        $orphans = array_filter(
-            $vocabEntryList,
-            function ($entry) use ($diff) {
-                return in_array($entry->getId(), $diff);
-            }
-        );
-
-        return $orphans;
+        return ControlledVocabEntry::query()
+            ->withControlledVocabId($controlledVocab->id)
+            ->whereDoesntHave('userInterest')
+            ->get();
     }
 }
 
