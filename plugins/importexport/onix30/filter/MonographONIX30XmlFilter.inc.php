@@ -307,16 +307,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 				$seriesLocale = $context->getPrimaryLocale();
 			}
 
-			if ($series->getPrefix($seriesLocale) == '' || $series->getTitle($seriesLocale, false) == '') {
-				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim(join(' ', array($series->getPrefix($seriesLocale), $series->getTitle($seriesLocale, false))))));
+			if ($series->getPrefix($seriesLocale) != '') {
+				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $series->getPrefix($seriesLocale)));
 			} else {
-				if ($series->getPrefix($seriesLocale) != '') {
-					$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $series->getPrefix($seriesLocale)));
-				} else {
-					$titleElementNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'NoPrefix'));
-				}
-				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $series->getTitle($seriesLocale, false)));
+				$titleElementNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'NoPrefix'));
 			}
+
+			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $series->getTitle($seriesLocale, false)));
 
 			if ($series->getSubtitle($seriesLocale) != '') {
 				$titleElementNode->appendChild($this->_buildTextNode($doc, 'Subtitle', $series->getSubtitle($seriesLocale)));
@@ -338,17 +335,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 
 		$productTitleDetailNode->appendChild($titleElementNode);
 
-		if (!$publication->getData('prefix', $pubLocale) || !$publication->getData('title', $pubLocale)) {
-			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim($publication->getData('prefix', $pubLocale) ?? $publication->getData('title', $pubLocale))));
+		if ($publication->getData('prefix', $pubLocale)) {
+			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $publication->getData('prefix', $pubLocale)));
 		} else {
-			if ($publication->getData('prefix', $pubLocale)) {
-				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $publication->getData('prefix', $pubLocale)));
-			} else {
-				$titleElementNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'NoPrefix'));
-			}
-
-			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $publication->getData('title', $pubLocale)));
+			$titleElementNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'NoPrefix'));
 		}
+
+		$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $publication->getData('title', $pubLocale)));
 
 		if ($publication->getData('subtitle', $pubLocale)) {
 			$titleElementNode->appendChild($this->_buildTextNode($doc, 'Subtitle', $publication->getData('subtitle', $pubLocale)));
@@ -365,7 +358,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 			$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 			$userGroup = $userGroupDao->getById($author->getUserGroupId(), $submission->getContextId());
 
-			$userGroupOnixMap = array('default.groups.name.author' => 'A01', 'default.groups.name.volumeEditor' => 'B01', 'default.groups.name.chapterAuthor' => 'A01', 'default.groups.name.translator' => 'B06', 'default.groups.name.editor' => 'B21'); // From List17, ContributorRole types.
+			$userGroupOnixMap = [
+				'default.groups.name.author' => 'A01',
+				'default.groups.name.volumeEditor' => 'B01',
+				'default.groups.name.chapterAuthor' => 'A01',
+				'default.groups.name.translator' => 'B06',
+				'default.groups.name.editor' => 'B21',
+			]; // From List17, ContributorRole types.
 
 			$nameKey = $userGroup->getData('nameLocaleKey');
 			$role = array_key_exists($nameKey, $userGroupOnixMap) ? $userGroupOnixMap[$nameKey] : 'Z99'; // Z99 - unknown contributor type.
@@ -405,25 +404,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 			$descDetailNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'NoContributor')); // empty state of fact.
 		}
 
-		/* --- Add Language elements --- */
+		/* --- Add Language element --- */
 
-		$submissionLanguageDao = DAORegistry::getDAO('SubmissionLanguageDAO'); /* @var $submissionLanguageDao SubmissionLanguageDAO */
-		$allLanguages = $submissionLanguageDao->getLanguages($publication->getId(), array_keys(AppLocale::getSupportedFormLocales()));
-		$uniqueLanguages = array();
-		foreach ($allLanguages as $locale => $languages) {
-			$uniqueLanguages = array_merge($uniqueLanguages, $languages);
-		}
-
-		foreach ($uniqueLanguages as $language) {
+		if ($onixCodelistItemDao->codeExistsInList(AppLocale::get3LetterIsoFromLocale($pubLocale), 'List74')) {
 			$languageNode = $doc->createElementNS($deployment->getNamespace(), 'Language');
-
 			$languageNode->appendChild($this->_buildTextNode($doc, 'LanguageRole', '01'));
-			$onixLanguageCode = $onixCodelistItemDao->getCodeFromValue($language, 'List74');
-			if ($onixLanguageCode != '') {
-				$languageNode->appendChild($this->_buildTextNode($doc, 'LanguageCode', $onixLanguageCode));
-				$descDetailNode->appendChild($languageNode);
-			}
-			unset($languageNode);
+			$languageNode->appendChild($this->_buildTextNode($doc, 'LanguageCode', AppLocale::get3LetterIsoFromLocale($pubLocale)));
+			$descDetailNode->appendChild($languageNode);
 		}
 
 		/* --- add Extents for 03 (front matter), 04 (back matter), 22 for digital works ---*/
