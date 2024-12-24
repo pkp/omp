@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/submission/Collector.php
  *
@@ -183,5 +184,51 @@ class Collector extends \PKP\submission\Collector
     protected function getReviewStages(): array
     {
         return [WORKFLOW_STAGE_ID_EXTERNAL_REVIEW, WORKFLOW_STAGE_ID_INTERNAL_REVIEW];
+    }
+
+    /** @copydoc PKP/classes/submission/Collector::addFilterByAssociatedDoiIdsToQuery() */
+    protected function addFilterByAssociatedDoiIdsToQuery(Builder $q)
+    {
+        $q->whereIn('s.submission_id', function (Builder $query) {
+            $context = Application::get()->getRequest()->getContext();
+
+            // Does two things:
+            // 1 - Defaults to empty result when no DOIs are enabled.
+            // 2 - Ensures that the union clause can be safely used if a query with a union clause is the only one that is executed.
+            $query->selectRaw('NULL AS submission_id')->whereRaw('1 = 0');
+
+            $query->when($context->isDoiTypeEnabled(Repo::doi()::TYPE_PUBLICATION), function (Builder $publicationQuery) {
+                $publicationQuery->select('p.submission_id')
+                    ->from('publications AS p')
+                    ->join('dois AS d', 'p.doi_id', '=', 'd.doi_id')
+                    ->whereLike('d.doi', "{$this->searchPhrase}%");
+            })
+                ->when($context->isDoiTypeEnabled(Repo::doi()::TYPE_CHAPTER), function (Builder $builder) {
+                    $builder->union(function (Builder $chapterQuery) {
+                        $chapterQuery->select('p.submission_id')
+                            ->from('submission_chapters AS sc')
+                            ->join('dois AS d', 'sc.doi_id', '=', 'd.doi_id')
+                            ->join('publications AS p', 'sc.publication_id', '=', 'p.publication_id')
+                            ->whereLike('d.doi', "{$this->searchPhrase}%");
+                    });
+                })
+                ->when($context->isDoiTypeEnabled(Repo::doi()::TYPE_REPRESENTATION), function (Builder $builder) {
+                    $builder->union(function (Builder $formatsQuery) {
+                        $formatsQuery->select('p.submission_id')
+                            ->from('publication_formats AS pf')
+                            ->join('dois AS d', 'pf.doi_id', '=', 'd.doi_id')
+                            ->join('publications AS p', 'pf.publication_id', '=', 'p.publication_id')
+                            ->whereLike('d.doi', "{$this->searchPhrase}%");
+                    });
+                })
+                ->when($context->isDoiTypeEnabled(Repo::doi()::TYPE_SUBMISSION_FILE), function (Builder $builder) {
+                    $builder->union(function (Builder $filesQuery) {
+                        $filesQuery->select('sf.submission_id')
+                            ->from('submission_files AS sf')
+                            ->join('dois AS d', 'sf.doi_id', '=', 'd.doi_id')
+                            ->whereLike('d.doi', "{$this->searchPhrase}%");
+                    });
+                });
+        });
     }
 }
