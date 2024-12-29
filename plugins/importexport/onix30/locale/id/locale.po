@@ -1,3 +1,78 @@
 # Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>, 2024.
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2024-12-30 02:50+0000\n"
+"Last-Translator: Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>\n"
+"Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-onix30/id/>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "plugins.importexport.onix30.displayName"
+msgstr "Plugin Ekspor Monograf ONIX 3.0"
+
+msgid "plugins.importexport.onix30.description"
+msgstr "Ekspor metadata monograf dalam format ONIX 3.0"
+
+msgid "plugins.importexport.onix30.cliUsage"
+msgstr ""
+"Penggunaan: {$scriptName} {$pluginName} [xmlFileName] [pressPath] "
+"[monographId] "
+
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr "Tidak dapat menulis ke file \"{$fileName}\"."
+
+msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgstr ""
+"Tidak ada monograf yang cocok dengan ID monograf yang ditentukan \""
+"{$monographId}\"."
+
+msgid "plugins.importexport.onix30.validityStatus"
+msgstr "Status ONIX"
+
+msgid "plugins.importexport.onix30.cliError"
+msgstr "GALAT:"
+
+msgid "plugins.importexport.onix30.error.unknownPress"
+msgstr "Jalur berkas penerbit yang ditentukan, \"{$contextPath},\" tidak ada."
+
+msgid "plugins.importexport.onix30.noFormats"
+msgstr "Monograf tanpa format publikasi tidak ditampilkan."
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Pilih monograf untuk diekspor"
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr "Pilih monograf untuk diekspor:"
+
+msgid "plugins.importexport.onix30.exportButton"
+msgstr "Eksport"
+
+msgid "plugins.importexport.onix30.exportFormats"
+msgstr "Format yang Tersedia"
+
+msgid "plugins.importexport.onix30.unavailable"
+msgstr "Tidak Tersedia"
+
+msgid "plugins.importexport.onix30.formatValid"
+msgstr "Valid"
+
+msgid "plugins.importexport.onix30.formatInvalid"
+msgstr "Tidak Valid"
+
+msgid "plugins.importexport.onix30.form.addresseeField"
+msgstr "Penerima (alamat) untuk ekspor ini"
+
+msgid "plugins.importexport.onix30.pressMissingFields"
+msgstr ""
+"Penerbit ini tidak memiliki beberapa informasi yang dibutuhkan. Silakan buka "
+"<a href=\"{$url}\">Pengaturan Penerbit</a> dan isi detail yang kurang."
+
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
+msgstr ""
+"Anda dapat membiarkan kolom ini kosong dan membuat ekspor umum. Ini akan "
+"menghasilkan ekspor ONIX yang tidak memiliki &lt;Addressee&gt;. gabungan. "
