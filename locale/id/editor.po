@@ -1,3 +1,96 @@
 # Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>, 2025.
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2025-01-01 14:00+0000\n"
+"Last-Translator: Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>\n"
+"Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/omp/editor/"
+"id/>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Tindakan dan opsi khusus untuk file individual."
+
+msgid "editor.monograph.cancelReview"
+msgstr "Batalkan Permintaan"
+
+msgid "editor.monograph.clearReview"
+msgstr "Hapus Peninjau"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Masukkan Rekomendasi"
+
+msgid "editor.monograph.recommendation"
+msgstr "Rekomendasi"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr ""
+"Pilih peninjau di atas dan tekan tombol 'Pilih Peninjau' untuk melanjutkan."
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Ganti Peninjau"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Editor untuk memasukkan rekomendasi/komentar untuk peninjau"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Unggah tinjauan"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Opsi Tinjauan Sejawat"
+
+msgid "editor.monograph.internalReview"
+msgstr "Memulai Tinjauan Internal"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr "Pilih file di bawah untuk mengirimnya ke tahap peninjauan internal."
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "File Draf Akhir Saat Ini"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "File Saat Ini"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Pesan untuk pengguna"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Tindakan Submisi"
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Tindakan Bagian"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr ""
+"Pilihan khusus untuk bagian tertentu, misalnya mengunggah file atau "
+"menambahkan pengguna."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Tindakan Item"
+
+msgid "editor.submissionArchive"
+msgstr "Arsip Submisi"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Masukkan Rekomendasi Peninjau"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "File Proofreading"
+
+msgid "editor.monograph.externalReview"
+msgstr "Memulai Tinjauan Eksternal"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Pilih File Draf Akhir"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Tindakan dan pilihan penyerahan secara keseluruhan."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr ""
+"Melihat dan mengelola entri katalog pengiriman, termasuk metadata dan format "
+"terbitan"
