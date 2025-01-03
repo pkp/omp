@@ -48,7 +48,7 @@
 		{/fbvFormSection}
 	{/if}
 
-	{if $submissionWorkType === 1}
+	{if $submissionWorkType === APP\submission\Submission::WORK_TYPE_EDITED_VOLUME}
 		{fbvFormSection title="publication.chapter.licenseUrl" for="customExtras"}
 		<div class="pkpFormField__description">{$chapterLicenseUrlDescription}</div>
 		{fbvElement type="text" id="licenseUrl" value=$licenseUrl inline=true size=$fbvStyles.size.LARGE}
