@@ -31,6 +31,7 @@ use PKP\db\DAORegistry;
 use PKP\filter\FilterGroup;
 use PKP\i18n\LocaleConversion;
 use PKP\plugins\importexport\native\filter\NativeExportFilter;
+use PKP\userGroup\UserGroup;
 
 class MonographONIX30XmlFilter extends NativeExportFilter
 {
@@ -326,17 +327,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter
                 $seriesLocale = $context->getPrimaryLocale();
             }
 
-            if ($series->getPrefix($seriesLocale) == '' || $series->getTitle($seriesLocale, false) == '') {
-                $titleElementNode->appendChild($this->buildTextNode($doc, 'TitleText', trim(join(' ', [$series->getPrefix($seriesLocale), $series->getTitle($seriesLocale, false)]))));
+            if ($series->getPrefix($seriesLocale) != '') {
+                $titleElementNode->appendChild($this->buildTextNode($doc, 'TitlePrefix', $series->getPrefix($seriesLocale)));
             } else {
-                if ($series->getPrefix($seriesLocale) != '') {
-                    $titleElementNode->appendChild($this->buildTextNode($doc, 'TitlePrefix', $series->getPrefix($seriesLocale)));
-                } else {
-                    $titleElementNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'NoPrefix'));
-                }
-
-                $titleElementNode->appendChild($this->buildTextNode($doc, 'TitleWithoutPrefix', $series->getTitle($seriesLocale, false)));
+                $titleElementNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'NoPrefix'));
             }
+
+            $titleElementNode->appendChild($this->buildTextNode($doc, 'TitleWithoutPrefix', $series->getTitle($seriesLocale, false)));
 
             if ($series->getSubtitle($seriesLocale) != '') {
                 $titleElementNode->appendChild($this->buildTextNode($doc, 'Subtitle', $series->getSubtitle($seriesLocale)));
@@ -357,17 +354,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter
 
         $productTitleDetailNode->appendChild($titleElementNode);
 
-        if (!$publication->getData('prefix', $pubLocale) || !$publication->getData('title', $pubLocale)) {
-            $titleElementNode->appendChild($this->buildTextNode($doc, 'TitleText', trim($publication->getData('prefix', $pubLocale) ?? $publication->getData('title', $pubLocale))));
+        if ($publication->getData('prefix', $pubLocale)) {
+            $titleElementNode->appendChild($this->buildTextNode($doc, 'TitlePrefix', $publication->getData('prefix', $pubLocale)));
         } else {
-            if ($publication->getData('prefix', $pubLocale)) {
-                $titleElementNode->appendChild($this->buildTextNode($doc, 'TitlePrefix', $publication->getData('prefix', $pubLocale)));
-            } else {
-                $titleElementNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'NoPrefix'));
-            }
-
-            $titleElementNode->appendChild($this->buildTextNode($doc, 'TitleWithoutPrefix', strip_tags($publication->getData('title', $pubLocale))));
+            $titleElementNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'NoPrefix'));
         }
+
+        $titleElementNode->appendChild($this->buildTextNode($doc, 'TitleWithoutPrefix', $publication->getData('title', $pubLocale)));
 
         if ($subTitle = $publication->getData('subtitle', $pubLocale)) {
             $titleElementNode->appendChild($this->buildTextNode($doc, 'Subtitle', $subTitle));
@@ -381,11 +374,17 @@ class MonographONIX30XmlFilter extends NativeExportFilter
             $contributorNode = $doc->createElementNS($deployment->getNamespace(), 'Contributor');
             $contributorNode->appendChild($this->buildTextNode($doc, 'SequenceNumber', $sequence));
 
-            $userGroup = Repo::userGroup()->get($author->getUserGroupId());
+            $userGroup = UserGroup::find($author->getUserGroupId());
 
-            $userGroupOnixMap = ['default.groups.name.author' => 'A01', 'default.groups.name.volumeEditor' => 'B01', 'default.groups.name.chapterAuthor' => 'A01', 'default.groups.name.translator' => 'B06', 'default.groups.name.editor' => 'B21']; // From List17, ContributorRole types.
+            $userGroupOnixMap = [
+                'default.groups.name.author' => 'A01',
+                'default.groups.name.volumeEditor' => 'B01',
+                'default.groups.name.chapterAuthor' => 'A01',
+                'default.groups.name.translator' => 'B06',
+                'default.groups.name.editor' => 'B21'
+            ]; // From List17, ContributorRole types.
 
-            $nameKey = $userGroup->getData('nameLocaleKey');
+            $nameKey = $userGroup->nameLocaleKey;
             $role = array_key_exists($nameKey, $userGroupOnixMap) ? $userGroupOnixMap[$nameKey] : 'Z99'; // Z99 - unknown contributor type.
 
             $contributorNode->appendChild($this->buildTextNode($doc, 'ContributorRole', $role));
@@ -424,11 +423,10 @@ class MonographONIX30XmlFilter extends NativeExportFilter
 
         /* --- Add Language element --- */
 
-        $languageNode = $doc->createElementNS($deployment->getNamespace(), 'Language');
-        $languageNode->appendChild($this->buildTextNode($doc, 'LanguageRole', '01'));
-        $onixLanguageCode = $onixCodelistItemDao->getCodeFromValue(LocaleConversion::get3LetterIsoFromLocale($submission->getData('locale')), '74');
-        if ($onixLanguageCode != '') {
-            $languageNode->appendChild($this->buildTextNode($doc, 'LanguageCode', $onixLanguageCode));
+        if ($onixCodelistItemDao->codeExistsInList(LocaleConversion::get3LetterIsoFromLocale($pubLocale), '74')) {
+            $languageNode = $doc->createElementNS($deployment->getNamespace(), 'Language');
+            $languageNode->appendChild($this->buildTextNode($doc, 'LanguageRole', '01'));
+            $languageNode->appendChild($this->buildTextNode($doc, 'LanguageCode', LocaleConversion::get3LetterIsoFromLocale($pubLocale)));
             $descDetailNode->appendChild($languageNode);
         }
 
