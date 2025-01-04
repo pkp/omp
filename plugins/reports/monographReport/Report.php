@@ -32,14 +32,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\LazyCollection;
 use IteratorAggregate;
 use PKP\category\Category;
-use PKP\db\DAORegistry;
+use PKP\controlledVocab\ControlledVocab;
 use PKP\facades\Locale;
 use PKP\security\Role;
 use PKP\stageAssignment\StageAssignment;
-use PKP\submission\SubmissionAgencyDAO;
-use PKP\submission\SubmissionDisciplineDAO;
-use PKP\submission\SubmissionKeywordDAO;
-use PKP\submission\SubmissionSubjectDAO;
 use PKP\user\User;
 use PKP\userGroup\UserGroup;
 use Traversable;
@@ -368,9 +364,13 @@ class Report implements IteratorAggregate
      */
     private function getKeywords(): string
     {
-        /** @var SubmissionKeywordDAO */
-        $submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
-        return $this->flattenKeywords($submissionKeywordDao->getKeywords($this->publication->getId()));
+        return $this->flattenKeywords(
+            Repo::controlledVocab()->getBySymbolic(
+                ControlledVocab::CONTROLLED_VOCAB_SUBMISSION_KEYWORD,
+                Application::ASSOC_TYPE_PUBLICATION,
+                $this->publication->getId()
+            )
+        );
     }
 
     /**
@@ -378,9 +378,13 @@ class Report implements IteratorAggregate
      */
     private function getSubjects(): string
     {
-        /** @var SubmissionSubjectDAO */
-        $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
-        return $this->flattenKeywords($submissionSubjectDao->getSubjects($this->publication->getId()));
+        return $this->flattenKeywords(
+            Repo::controlledVocab()->getBySymbolic(
+                ControlledVocab::CONTROLLED_VOCAB_SUBMISSION_SUBJECT,
+                Application::ASSOC_TYPE_PUBLICATION,
+                $this->publication->getId()
+            )
+        );
     }
 
     /**
@@ -388,9 +392,13 @@ class Report implements IteratorAggregate
      */
     private function getDisciplines(): string
     {
-        /** @var SubmissionDisciplineDAO */
-        $submissionDisciplineDao = DAORegistry::getDAO('SubmissionDisciplineDAO');
-        return $this->flattenKeywords($submissionDisciplineDao->getDisciplines($this->publication->getId()));
+        return $this->flattenKeywords(
+            Repo::controlledVocab()->getBySymbolic(
+                ControlledVocab::CONTROLLED_VOCAB_SUBMISSION_DISCIPLINE,
+                Application::ASSOC_TYPE_PUBLICATION,
+                $this->publication->getId()
+            )
+        );
     }
 
     /**
@@ -398,9 +406,13 @@ class Report implements IteratorAggregate
      */
     private function getAgencies(): string
     {
-        /** @var SubmissionAgencyDAO */
-        $submissionAgencyDao = DAORegistry::getDAO('SubmissionAgencyDAO');
-        return $this->flattenKeywords($submissionAgencyDao->getAgencies($this->publication->getId()));
+        return $this->flattenKeywords(
+            Repo::controlledVocab()->getBySymbolic(
+                ControlledVocab::CONTROLLED_VOCAB_SUBMISSION_AGENCY,
+                Application::ASSOC_TYPE_PUBLICATION,
+                $this->publication->getId()
+            )
+        );
     }
 
     /**
