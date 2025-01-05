@@ -707,7 +707,7 @@ msgid "catalog.foundTitlesSearch"
 msgstr ""
 "Zu Ihrer Suche nach \"{$searchQuery}\" wurden {$number} Titel gefunden."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Alle Bücher"
 
 msgid "catalog.newReleases"
