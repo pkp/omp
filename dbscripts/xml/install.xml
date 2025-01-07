@@ -51,6 +51,7 @@
 	<migration class="APP\migration\install\SeriesCategoriesMigration" />
 	<migration class="PKP\migration\install\AffiliationsMigration" />
 	<migration class="PKP\migration\install\RorsMigration" />
+	<migration class="PKP\migration\install\ReviewAssignmentSettings" />
 
 	<code function="createData" />
 	<code function="createConfig" />
