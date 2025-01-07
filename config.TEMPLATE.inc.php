@@ -161,16 +161,12 @@ debug = Off
 
 [cache]
 
-; The type of data caching to use. Options are:
-; - memcache: Use the memcache server configured below
-; - file: Use file-based caching; configured below
-; - none: Use no caching. This may be extremely slow.
-; This setting affects locale data, press settings, and plugin settings.
-cache = file
+; Default driver for Laravel-based caching. Currently supports opcache and file drivers.
+; By default, the opcache is used.
+; default = opcache
 
-; Enable memcache support
-memcache_hostname = localhost
-memcache_port = 11211
+; Path to store cache contents for file or opcode based caches.
+; path = cache/opcache
 
 ; For site visitors who are not logged in, many pages are often entirely
 ; static (e.g. About, the home page, etc). If the option below is enabled,
