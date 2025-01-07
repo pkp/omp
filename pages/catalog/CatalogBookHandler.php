@@ -101,7 +101,7 @@ class CatalogBookHandler extends Handler
 
         // Serve 404 if no submission available OR submission is unpublished and no user is logged in OR submission is unpublished and we have a user logged in but the user does not have access to preview
         if (!$submission || ($submission->getData('status') !== PKPSubmission::STATUS_PUBLISHED && !$user) || ($submission->getData('status') !== PKPSubmission::STATUS_PUBLISHED && $user && !Repo::submission()->canPreview($user, $submission))) {
-            $request->getDispatcher()->handle404();
+            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
         }
 
         // Get the requested publication or default to the current publication
@@ -120,7 +120,7 @@ class CatalogBookHandler extends Handler
         }
 
         if (!$this->publication || ($this->publication->getData('status') !== PKPSubmission::STATUS_PUBLISHED && !Repo::submission()->canPreview($user, $submission))) {
-            $request->getDispatcher()->handle404();
+            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
         }
 
         // If the publication has been reached through an outdated
@@ -143,7 +143,7 @@ class CatalogBookHandler extends Handler
 
         if ($this->isChapterRequest) {
             if (!$this->chapter->isPageEnabled()) {
-                $request->getDispatcher()->handle404();
+                throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
             }
             $chapterAuthors = $this->chapter->getAuthors();
             $chapterAuthors = $chapterAuthors->toArray();
@@ -360,7 +360,7 @@ class CatalogBookHandler extends Handler
 
         $publicationFormat = Application::get()->getRepresentationDAO()->getByBestId($representationId, $publicationId);
         if (!$publicationFormat || !$publicationFormat->getIsAvailable() || $publicationFormat->getData('urlRemote')) {
-            $dispatcher->handle404();
+            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
         }
 
         $publication = null;
@@ -374,7 +374,7 @@ class CatalogBookHandler extends Handler
         if (empty($publication)
                 || $publication->getData('status') !== PKPSubmission::STATUS_PUBLISHED
                 || $publicationFormat->getData('publicationId') !== $publication->getId()) {
-            $dispatcher->handle404();
+            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
         }
 
         $submissionFile = Repo::submissionFile()
@@ -384,7 +384,7 @@ class CatalogBookHandler extends Handler
                 $submission->getId()
             );
         if (!$submissionFile) {
-            $dispatcher->handle404();
+            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
         }
 
         $path = $submissionFile->getData('path');
@@ -392,17 +392,17 @@ class CatalogBookHandler extends Handler
         switch ($submissionFile->getData('assocType')) {
             case Application::ASSOC_TYPE_PUBLICATION_FORMAT: // Publication format file
                 if ($submissionFile->getData('assocId') != $publicationFormat->getId() || $submissionFile->getDirectSalesPrice() === null) {
-                    $dispatcher->handle404();
+                    throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
                 }
                 break;
             case Application::ASSOC_TYPE_SUBMISSION_FILE: // Dependent file
                 $genreDao = DAORegistry::getDAO('GenreDAO'); /** @var GenreDAO $genreDao */
                 $genre = $genreDao->getById($submissionFile->getGenreId());
                 if (!$genre->getDependent()) {
-                    $dispatcher->handle404();
+                    throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
                 }
                 return app()->get('file')->download($submissionFile->getData('fileId'), $filename);
-            default: $dispatcher->handle404();
+            default: throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
         }
 
         $urlPath = [$submission->getBestId()];
@@ -534,7 +534,7 @@ class CatalogBookHandler extends Handler
             }
 
             if (null === $this->chapter) {
-                $request->getDispatcher()->handle404();
+                throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
             }
         }
     }

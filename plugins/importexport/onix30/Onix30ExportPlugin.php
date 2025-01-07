@@ -153,14 +153,12 @@ class Onix30ExportPlugin extends ImportExportPlugin
                 $downloadSuccess = $this->downloadExportedFile($exportedFileContentNamePart, $exportedFileDatePart, $this->getDeployment());
 
                 if (!$downloadSuccess) {
-                    $dispatcher = $request->getDispatcher();
-                    $dispatcher->handle404();
+                    throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
                 }
 
                 break;
             default:
-                $dispatcher = $request->getDispatcher();
-                $dispatcher->handle404();
+                throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
         }
     }
 

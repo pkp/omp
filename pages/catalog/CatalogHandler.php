@@ -69,7 +69,7 @@ class CatalogHandler extends PKPCatalogHandler
         }
 
         if (!$isFirstPage && (empty($page) || $page < 2)) {
-            $request->getDispatcher()->handle404();
+            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
         }
 
         $templateMgr = TemplateManager::getManager($request);
