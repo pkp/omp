@@ -16,6 +16,7 @@
 switch ($op) {
     case 'index':
     case 'saved':
+    case 'cancelled':
     case 'wizard': // @deprecated 3.4
         return new APP\pages\submission\SubmissionHandler();
 }
