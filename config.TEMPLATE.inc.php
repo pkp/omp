@@ -631,8 +631,4 @@ expiration_days = 3
 
 [features]
 
-<<<<<<< HEAD
 enable_new_submission_listing = On
-=======
-enable_new_submission_listing = Off
->>>>>>> fa972878b... Add ALTCHA support on config.inc.php
