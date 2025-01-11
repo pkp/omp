@@ -1,0 +1,64 @@
+# Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>, 2025.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2025-01-01 14:00+0000\n"
+"Last-Translator: Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>\n"
+"Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-native/id/>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "plugins.importexport.native.error.unknownSeries"
+msgstr "Seri tidak diketahui {$param}"
+
+msgid "plugins.importexport.common.error.invalidFileExtension"
+msgstr "Gambar sampul dengan ekstensi file yang tidak valid telah ditentukan."
+
+msgid "plugins.importexport.common.error.coverImageNameUnspecified"
+msgstr "Gambar sampul disematkan tanpa menyebutkan nama."
+
+msgid "plugins.importexport.native.cliUsage"
+msgstr ""
+"Penggunaan: {$scriptName} {$pluginName} [perintah] ...\n"
+"Perintah:\n"
+"impor [namaFilexml] [jalur_penerbit] [nama_pengguna] ...\n"
+"ekspor [namaFilexml] [jalur_penerbit] monograf [id_monografi1] "
+"[id_monografi2] ...\n"
+"ekspor [namaFilexml] [jalur_penerbit] monograf [id_monografi]\n"
+
+msgid "plugins.importexport.native.displayName"
+msgstr "Plugin Native XML"
+
+msgid "plugins.importexport.native.import"
+msgstr "Impor"
+
+msgid "plugins.importexport.native.import.instructions"
+msgstr "Unggah file XML untuk impor"
+
+msgid "plugins.importexport.native.export"
+msgstr "Ekspor"
+
+msgid "plugins.importexport.native.results"
+msgstr "Hasil"
+
+msgid "plugins.importexport.native.importComplete"
+msgstr "Impor berhasil diselesaikan. Berikut item yang diimpor:"
+
+msgid "plugins.importexport.native.description"
+msgstr "Impor dan ekspor buku dalam format native XML OMP."
+
+msgid "plugins.importexport.native.exportSubmissionsSelect"
+msgstr "Pilih monograf untuk ekspor"
+
+msgid "plugins.inportexport.native.uploadFile"
+msgstr "Harap unggah file pada \"Impor\" untuk melanjutkan."
+
+msgid "plugins.importexport.native.onix30.pressMissingFields"
+msgstr ""
+"Penerbit ini tidak memiliki beberapa informasi yang diperlukan untuk "
+"metadata ONIX yang digunakan dalam ekspor ini. Silakan buka <a href=\"{$url}"
+"\">Pengaturan Penerbit</a> dan isi detail yang hilang."

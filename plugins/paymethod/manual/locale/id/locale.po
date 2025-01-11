@@ -1,0 +1,45 @@
+# Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>, 2025.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2025-01-01 14:00+0000\n"
+"Last-Translator: Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>\n"
+"Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/omp/"
+"paymethod-manual/id/>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "plugins.paymethod.manual"
+msgstr "Pembayaran Manual"
+
+msgid "plugins.paymethod.manual.settings"
+msgstr "Petunjuk Pembayaran Manual"
+
+msgid "plugins.paymethod.manual.purchase.title"
+msgstr "Judul"
+
+msgid "plugins.paymethod.manual.purchase.fee"
+msgstr "Biaya"
+
+msgid "plugins.paymethod.manual.displayName"
+msgstr "Pembayaran Manual"
+
+msgid "plugins.paymethod.manual.sendNotificationOfPayment"
+msgstr "Kirim pemberitahuan pembayaran"
+
+msgid "plugins.paymethod.manual.paymentNotification"
+msgstr "Pemberitahuan Pembayaran"
+
+msgid "plugins.paymethod.manual.notificationSent"
+msgstr "Pemberitahuan pembayaran dikirim"
+
+msgid "plugins.paymethod.manual.manualPaymentNotify.name"
+msgstr "Pemberitahuan Pembayaran Manual"
+
+msgid "plugins.paymethod.manual.description"
+msgstr ""
+"Manajer akan secara manual mencatat penerimaan pembayaran pengguna (di luar "
+"perangkat lunak ini)."

@@ -3,7 +3,7 @@
 # Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-05-31 17:17+0000\n"
+"PO-Revision-Date: 2024-12-12 02:58+0000\n"
 "Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "fr_FR/>\n"
@@ -1760,3 +1760,7 @@ msgstr "La signature mail de la maison d’édition pour les mails automatiques"
 msgid "doi.editor.assignDoi.emptySuffix"
 msgstr ""
 "Le DOI ne peut pas être attribué car le suffixe personnalisé est manquant."
+
+msgid "manager.dois.disabledChaptersDescription"
+msgstr ""
+"Les chapitres qui n'ont pas de page de renvoi ne peuvent pas avoir de DOI."
