@@ -77,7 +77,7 @@
 	{* Indicate if this is only a preview *}
 	{if $publication->getData('status') !== \PKP\submission\PKPSubmission::STATUS_PUBLISHED}
 		<div class="cmp_notification notice">
-			{capture assign="submissionUrl"}{url page="workflow" op="access" path=$monograph->getId()}{/capture}
+			{capture assign="submissionUrl"}{url page="dashboard" op="editorial" workflowSubmissionId=$monograph->getId()}{/capture}
 			{translate key="submission.viewingPreview" url=$submissionUrl}
 		</div>
 	{/if}
