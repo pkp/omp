@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/publicationFormat/PublicationFormatDAO.php
  *
@@ -493,6 +494,7 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
             ->join('publications AS p', 'p.publication_id', '=', 'pf.publication_id')
             ->join('submissions AS s', 's.submission_id', '=', 'p.submission_id')
             ->where('pft.setting_name', '=', "pub-id::{$pubIdType}")
+            ->where('pft.setting_value', '=', $pubId)
             ->where('pf.publication_format_id', '<>', $excludePubObjectId)
             ->where('s.context_id', '=', $contextId)
             ->count() > 0;

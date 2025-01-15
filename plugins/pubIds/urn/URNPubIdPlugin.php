@@ -286,7 +286,7 @@ class URNPubIdPlugin extends PubIdPlugin
         if (strpos($props['pub-id::other::urn'], $urnPrefix) !== 0) {
             $urnErrors[] = __('plugins.pubIds.urn.editor.missingPrefix', ['urnPrefix' => $urnPrefix]);
         }
-        if (!$this->checkDuplicate($props['pub-id::other::urn'], 'Publication', $submission->getId(), $contextId)) {
+        if (!$this->checkDuplicate($props['pub-id::other::urn'], $publication, $contextId)) {
             $urnErrors[] = $this->getNotUniqueErrorMsg();
         }
         if (!empty($urnErrors)) {
