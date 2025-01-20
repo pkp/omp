@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/press/PressDAO.php
  *
@@ -106,7 +107,7 @@ class PressDAO extends ContextDAO
         $forSameType = false
     ) {
         $pubObjectDaos = [
-            Application::ASSOC_TYPE_SUBMISSION => Repo::submission()->dao,
+            Application::ASSOC_TYPE_PUBLICATION => Repo::publication()->dao,
             Application::ASSOC_TYPE_CHAPTER => DAORegistry::getDAO('ChapterDAO'),
             Application::ASSOC_TYPE_REPRESENTATION => Application::getRepresentationDAO(),
             Application::ASSOC_TYPE_SUBMISSION_FILE => Repo::submissionFile()->dao,

@@ -318,7 +318,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
         return DB::table('submission_chapter_settings AS scs')
             ->join('submission_chapters AS sc', 'scs.chapter_id', '=', 'sc.chapter_id')
             ->join('publications AS p', 'sc.publication_id', '=', 'p.publication_id')
-            ->join('submissions AS s', 'p.submission_id', '=', 's.submisison_id')
+            ->join('submissions AS s', 'p.submission_id', '=', 's.submission_id')
             ->where('scs.setting_name', '=', "pub-id::{$pubIdType}")
             ->where('scs.setting_value', '=', $pubId)
             ->where('sc.chapter_id', '<>', $excludePubObjectId)
