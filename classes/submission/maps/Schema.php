@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/submission/maps/Schema.php
  *
@@ -159,7 +160,7 @@ class Schema extends \PKP\submission\maps\Schema
         $isOnlyRecommending = $permissions['isOnlyRecommending'];
 
         if ($isOnlyRecommending && $stageId === WORKFLOW_STAGE_ID_SUBMISSION) {
-            $decisionTypes[] = Repo::decision()->getDecisionTypesMadeByRecommendingUsers($stageId);
+            $decisionTypes = Repo::decision()->getDecisionTypesMadeByRecommendingUsers($stageId);
         } else {
             switch ($stageId) {
                 case WORKFLOW_STAGE_ID_SUBMISSION:
