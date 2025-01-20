@@ -66,13 +66,15 @@ class ManageCatalogHandler extends Handler
 
     /**
      * @copydoc PKPHandler::initialize()
+     *
+     * @param null|mixed $args
      */
-    public function initialize($request)
+    public function initialize($request, $args = null)
     {
         $this->setupTemplate($request);
 
         // Call parent method.
-        parent::initialize($request);
+        parent::initialize($request, $args);
     }
 
 
