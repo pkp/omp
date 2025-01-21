@@ -295,6 +295,7 @@ class CatalogBookHandler extends Handler
         // Add Orcid icon
         $templateMgr->assign([
             'orcidIcon' => OrcidManager::getIcon(),
+            'orcidUnauthenticatedIcon' => OrcidManager::getUnauthenticatedIcon(),
         ]);
 
         // Ask robots not to index outdated versions and point to the canonical url for the latest version
