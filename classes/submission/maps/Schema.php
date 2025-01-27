@@ -74,7 +74,7 @@ class Schema extends \PKP\submission\maps\Schema
             $locales[] = $submissionLocale;
         }
 
-        $reviewRounds = $this->getReviewRoundsFromSubmission($submission);
+        $reviewRounds = $this->getGroupedReviewRoundsFromSubmission($submission);
         $currentReviewRound = $reviewRounds->flatten()->sort()->last(); /** @var ReviewRound|null $currentReviewRound */
 
         foreach ($props as $prop) {
@@ -123,8 +123,10 @@ class Schema extends \PKP\submission\maps\Schema
         return $this->withExtensions($output, $submission);
     }
 
-    /** @copydoc \PKP\submission\maps\Schema::getReviewRoundsFromSubmission*/
-    protected function getReviewRoundsFromSubmission(Submission $submission): Collection
+    /**
+     * @return Collection<Collection<ReviewRound>> grouped list of review rounds related to particular submission
+     */
+    protected function getGroupedReviewRoundsFromSubmission(Submission $submission): Collection
     {
         $reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /** @var ReviewRoundDAO $reviewRoundDao */
         return collect($reviewRoundDao->getBySubmissionId($submission->getId())->toIterator())
