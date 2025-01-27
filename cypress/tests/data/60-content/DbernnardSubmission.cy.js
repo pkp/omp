@@ -149,8 +149,6 @@ describe('Data suite tests', function() {
 		// Log in as editor and see the existing recommendation
 		cy.findSubmissionAsEditor('dbarnes', null, 'Bernnard');
 		cy.get('[data-cy="workflow-secondary-items"] h2').contains("Recommendation");
-		// FIX ME correct label should come with 
-		//cy.get('[data-cy="workflow-actions"] p').contains("Accept Submission");
-		cy.get('[data-cy="workflow-secondary-items"] p').contains("Recommend Accept");
+		cy.get('[data-cy="workflow-secondary-items"] p').contains("Accept Submission");
 	});
 });
