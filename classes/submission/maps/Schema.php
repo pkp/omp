@@ -74,8 +74,8 @@ class Schema extends \PKP\submission\maps\Schema
             $locales[] = $submissionLocale;
         }
 
-        $reviewRounds = $this->getGroupedReviewRoundsFromSubmission($submission);
-        $currentReviewRound = $reviewRounds->flatten()->sort()->last(); /** @var ReviewRound|null $currentReviewRound */
+        $reviewRounds = $this->getReviewRoundsFromSubmission($submission);
+        $currentReviewRound = $reviewRounds->last(); /** @var ReviewRound|null $currentReviewRound */
 
         foreach ($props as $prop) {
             switch ($prop) {
@@ -86,7 +86,7 @@ class Schema extends \PKP\submission\maps\Schema
                     $output[$prop] = $currentReviewRound && $this->reviewAssignments->count() >= intval($this->context->getData('numReviewersPerSubmission'));
                     break;
                 case 'reviewRounds':
-                    $output[$prop] = $this->getPropertyReviewRounds($reviewRounds->flatten());
+                    $output[$prop] = $this->getPropertyReviewRounds($reviewRounds);
                     break;
                 case 'revisionsRequested':
                     $output[$prop] = $currentReviewRound && $currentReviewRound->getData('status') == ReviewRound::REVIEW_ROUND_STATUS_REVISIONS_REQUESTED;
@@ -124,13 +124,13 @@ class Schema extends \PKP\submission\maps\Schema
     }
 
     /**
-     * @return Collection<Collection<ReviewRound>> grouped list of review rounds related to particular submission
+     * @return Collection<ReviewRound> list of review rounds related to particular submission. Sorted by stage and round number.
      */
-    protected function getGroupedReviewRoundsFromSubmission(Submission $submission): Collection
+    protected function getReviewRoundsFromSubmission(Submission $submission): Collection
     {
         $reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /** @var ReviewRoundDAO $reviewRoundDao */
         return collect($reviewRoundDao->getBySubmissionId($submission->getId())->toIterator())
-            ->groupBy(fn (ReviewRound $reviewRound) => $reviewRound->getData('round'));
+            ->sortBy(fn ($item) => [$item->getData('stageId'), $item->getData('round')]);
     }
 
     /**
