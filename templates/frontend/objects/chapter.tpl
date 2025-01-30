@@ -109,10 +109,10 @@
 						{if $author->getLocalizedBiography()}
 							<div class="sub_item">
 								<div class="label">
-									{if $author->getLocalizedAffiliation()}
+									{if $author->getLocalizedAffiliationNamesAsString()}
 										{capture assign="authorName"}{$author->getFullName()|escape}{/capture}
-										{capture assign="authorAffiliation"}<span class="affiliation">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
-										{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
+										{capture assign="authorAffiliations"}<span class="affiliation">{$author->getLocalizedAffiliationNamesAsString(null, ', ')|escape}</span>{/capture}
+										{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliations}
 									{else}
 										{$author->getFullName()|escape}
 									{/if}

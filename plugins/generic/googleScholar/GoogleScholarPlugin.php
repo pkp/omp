@@ -18,7 +18,6 @@ use APP\core\Application;
 use APP\template\TemplateManager;
 use PKP\citation\CitationDAO;
 use PKP\db\DAORegistry;
-use PKP\i18n\LocaleConversion;
 use PKP\plugins\GenericPlugin;
 use PKP\plugins\Hook;
 
@@ -107,8 +106,11 @@ class GoogleScholarPlugin extends GenericPlugin
         $authors = $isChapterRequest ? $templateMgr->getTemplateVars('chapterAuthors') : $publication->getData('authors');
         foreach ($authors as $i => $author) {
             $templateMgr->addHeader('googleScholarAuthor' . $i++, '<meta name="citation_author" content="' . htmlspecialchars($author->getFullName(false, false, $publicationLocale)) . '"/>');
-            if ($affiliation = htmlspecialchars($author->getLocalizedData('affiliation', $publicationLocale))) {
-                $templateMgr->addHeader('googleScholarAuthor' . $i++ . 'Affiliation', '<meta name="citation_author_institution" content="' . $affiliation . '"/>');
+            foreach ($author->getAffiliations() as $affiliation) {
+                $templateMgr->addHeader(
+                    'googleScholarAuthor' . $i++ . 'Affiliation' . $affiliation->getId(),
+                    '<meta name="citation_author_institution" content="' . htmlspecialchars($affiliation->getLocalizedName($publicationLocale)) . '"/>'
+                );
             }
         }
 

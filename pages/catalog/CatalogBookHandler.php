@@ -31,6 +31,7 @@ use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\citation\CitationDAO;
+use PKP\core\Core;
 use PKP\core\PKPApplication;
 use PKP\core\PKPRequest;
 use PKP\db\DAORegistry;
@@ -297,6 +298,10 @@ class CatalogBookHandler extends Handler
             'orcidIcon' => OrcidManager::getIcon(),
             'orcidUnauthenticatedIcon' => OrcidManager::getUnauthenticatedIcon(),
         ]);
+
+        $rorIconPath = Core::getBaseDir() . '/' . PKP_LIB_PATH . '/templates/images/ror.svg';
+        $rorIdIcon = file_exists($rorIconPath) ? file_get_contents($rorIconPath) : '';
+        $templateMgr->assign('rorIdIcon', $rorIdIcon);
 
         // Ask robots not to index outdated versions and point to the canonical url for the latest version
         if ($this->publication->getId() != $submission->getData('currentPublicationId')) {

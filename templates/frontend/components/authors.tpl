@@ -36,9 +36,13 @@
 						{$author->getFullName()|escape}
 					{/if}
 				</div>
-				{if $author->getLocalizedAffiliation()}
+				{if count($author->getAffiliations()) > 0}
 					<div class="value">
-						{$author->getLocalizedAffiliation()|escape}
+						{foreach name="affiliations" from=$author->getAffiliations() item="affiliation"}
+							{$affiliation->getLocalizedName()|escape}
+							{if $affiliation->getRor()}<a href="{$affiliation->getRor()|escape}">{$rorIdIcon}</a>{/if}
+							{if !$smarty.foreach.affiliations.last}{translate key="common.commaListSeparator"}{/if}
+						{/foreach}
 					</div>
 				{/if}
 				{if $author->getOrcid()}
@@ -67,7 +71,7 @@
 					{else}
 						{capture assign="authorName"}<span class="label">{$author->getFullName()|escape}</span>{/capture}
 					{/if}
-					{capture assign="authorAffiliation"}<span class="value">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
+					{capture assign="authorAffiliations"}<span class="value">{$author->getLocalizedAffiliationNamesAsString(null, ', ')|escape}</span>{/capture}
 					{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
 				{else}
 					<span class="label">{$author->getFullName()|escape}</span>

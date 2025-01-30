@@ -16,6 +16,7 @@
 
 namespace APP\plugins\importexport\onix30\filter;
 
+use APP\author\Author;
 use APP\codelist\ONIXCodelistItemDAO;
 use APP\core\Application;
 use APP\facades\Repo;
@@ -371,6 +372,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
         $authors = $publication->getData('authors'); // sorts by sequence.
         $sequence = 1;
         foreach ($authors as $author) {
+            /** @var Author $author */
             $contributorNode = $doc->createElementNS($deployment->getNamespace(), 'Contributor');
             $contributorNode->appendChild($this->buildTextNode($doc, 'SequenceNumber', $sequence));
 
@@ -395,6 +397,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter
                 $contributorNode->appendChild($this->buildTextNode($doc, 'KeyNames', $author->getFamilyName($pubLocale)));
             } else {
                 $contributorNode->appendChild($this->buildTextNode($doc, 'KeyNames', $author->getFullName(false, false, $pubLocale)));
+            }
+
+            foreach ($author->getAffiliations() as $affiliation) {
+                $affiliationName = $affiliation->getLocalizedName($pubLocale);
+                $professionalAffiliationNode = $doc->createElementNS($deployment->getNamespace(), 'ProfessionalAffiliation');
+                $professionalAffiliationNode->appendChild($this->buildTextNode($doc, 'Affiliation', $affiliationName));
+                $contributorNode->appendChild($professionalAffiliationNode);
             }
 
             if ($author->getBiography($pubLocale) != '') {
