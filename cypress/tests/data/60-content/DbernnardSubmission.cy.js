@@ -1,8 +1,8 @@
 /**
  * @file cypress/tests/data/60-content/DbernnardSubmission.cy.js
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2000-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @ingroup tests_data
@@ -35,7 +35,11 @@ describe('Data suite tests', function() {
 					'givenName': {en: 'Greg'},
 					'familyName': {en: 'Bobish'},
 					'country': 'US',
-					'affiliation': {en: 'SUNY'},
+					'affiliations': [
+						{
+							'name': {en: 'SUNY'}
+						}
+					],
 					'email': 'gbobish@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
@@ -43,7 +47,11 @@ describe('Data suite tests', function() {
 					'givenName': {en: 'Daryl'},
 					'familyName': {en: 'Bullis'},
 					'country': 'US',
-					'affiliation': {en: 'SUNY'},
+					'affiliations': [
+						{
+							'name': {en: 'SUNY'}
+						}
+					],
 					'email': 'dbullis@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
@@ -51,7 +59,11 @@ describe('Data suite tests', function() {
 					'givenName': {en: 'Jenna'},
 					'familyName': {en: 'Hecker'},
 					'country': 'US',
-					'affiliation': {en: 'SUNY'},
+					'affiliations': [
+						{
+							'name': {en: 'SUNY'}
+						}
+					],
 					'email': 'jhecker@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
@@ -140,7 +152,7 @@ describe('Data suite tests', function() {
 		cy.login('minoue', null, 'publicknowledge'),
 		cy.findSubmissionAsEditor('minoue', null, 'Bernnard', null, 'Assigned to me');
 
-		
+
 		// Recommend
 		cy.clickDecision('Recommend Accept');
 		cy.recordRecommendation('Recommend Accept', ['Daniel Barnes', 'David Buskins']);
