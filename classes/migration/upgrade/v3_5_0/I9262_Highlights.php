@@ -48,7 +48,7 @@ class I9262_Highlights extends \PKP\migration\upgrade\v3_5_0\I9262_Highlights
             ->each(function ($row) use ($request, $dispatcher, $validAssocTypes, $contextRows, $contextLocales) {
 
                 if (!$validAssocTypes->contains($row->assoc_type)) {
-                    $this->_installer->log(`Unable to upgrade spotlight {$row->spotlight_id} to a highlight because the assoc_type {$row->assoc_type} is not recognized.`);
+                    $this->_installer->log("Unable to upgrade spotlight {$row->spotlight_id} to a highlight because the assoc_type {$row->assoc_type} is not recognized.");
                     return;
                 }
 
@@ -60,7 +60,7 @@ class I9262_Highlights extends \PKP\migration\upgrade\v3_5_0\I9262_Highlights
                         ->first();
 
                     if (!$seriesRow) {
-                        $this->_installer->log(`Unable to upgrade spotlight {$row->spotlight_id} to a highlight because the series {$row->assoc_id} does not exist in the press {$row->press_id}.`);
+                        $this->_installer->log("Unable to upgrade spotlight {$row->spotlight_id} to a highlight because the series {$row->assoc_id} does not exist in the press {$row->press_id}.");
                         return;
                     }
 
@@ -107,7 +107,7 @@ class I9262_Highlights extends \PKP\migration\upgrade\v3_5_0\I9262_Highlights
                         ->first();
 
                     if (!$submissionRow) {
-                        $this->_installer->log(`Unable to upgrade spotlight {$row->spotlight_id} to a highlight because the submission {$row->assoc_id} does not exist in the press {$row->press_id}.`);
+                        $this->_installer->log("Unable to upgrade spotlight {$row->spotlight_id} to a highlight because the submission {$row->assoc_id} does not exist in the press {$row->press_id}.");
                         return;
                     }
 
@@ -117,7 +117,7 @@ class I9262_Highlights extends \PKP\migration\upgrade\v3_5_0\I9262_Highlights
                         ->first();
 
                     if (!$publicationRow) {
-                        $this->_installer->log(`Unable to upgrade spotlight {$row->spotlight_id} to a highlight because the publication {$submissionRow->current_publication_id} does not exist.`);
+                        $this->_installer->log("Unable to upgrade spotlight {$row->spotlight_id} to a highlight because the publication {$submissionRow->current_publication_id} does not exist.");
                         return;
                     }
 
@@ -195,7 +195,7 @@ class I9262_Highlights extends \PKP\migration\upgrade\v3_5_0\I9262_Highlights
     }
 
     /**
-     * Get the rows of the `presses` table with the Collection keys
+     * Get the rows of the "presses" table with the Collection keys
      * mapped to the press id
      */
     protected function getContextRows(): Collection
@@ -238,7 +238,7 @@ class I9262_Highlights extends \PKP\migration\upgrade\v3_5_0\I9262_Highlights
         );
 
         if (!$result) {
-            $this->_installer->log(`Unable to copy image {$fileName} in the public files directory when migrating a spotlight to highlight id {$highlightId}.`);
+            $this->_installer->log("Unable to copy image {$fileName} in the public files directory when migrating a spotlight to highlight id {$highlightId}.");
         }
 
         return $newFilename;
@@ -267,7 +267,7 @@ class I9262_Highlights extends \PKP\migration\upgrade\v3_5_0\I9262_Highlights
         );
 
         if (!$result) {
-            $this->_installer->log(`Unable to copy image {$imagePath} to the public files directory when migrating a spotlight to highlight id {$highlightId}.`);
+            $this->_installer->log("Unable to copy image {$imagePath} to the public files directory when migrating a spotlight to highlight id {$highlightId}.");
         }
 
         return $newFilename;
