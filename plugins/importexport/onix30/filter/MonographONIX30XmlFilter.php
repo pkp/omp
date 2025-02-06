@@ -3,8 +3,8 @@
 /**
  * @file plugins/importexport/onix30/filter/MonographONIX30XmlFilter.php
  *
- * Copyright (c) 2014-2024 Simon Fraser University
- * Copyright (c) 2000-2024 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2000-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class MonographONIX30XmlFilter
@@ -16,6 +16,7 @@
 
 namespace APP\plugins\importexport\onix30\filter;
 
+use APP\author\Author;
 use APP\codelist\ONIXCodelistItemDAO;
 use APP\core\Application;
 use APP\facades\Repo;
@@ -371,6 +372,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
         $authors = $publication->getData('authors'); // sorts by sequence.
         $sequence = 1;
         foreach ($authors as $author) {
+            /** @var Author $author */
             $contributorNode = $doc->createElementNS($deployment->getNamespace(), 'Contributor');
             $contributorNode->appendChild($this->buildTextNode($doc, 'SequenceNumber', $sequence));
 
@@ -395,6 +397,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter
                 $contributorNode->appendChild($this->buildTextNode($doc, 'KeyNames', $author->getFamilyName($pubLocale)));
             } else {
                 $contributorNode->appendChild($this->buildTextNode($doc, 'KeyNames', $author->getFullName(false, false, $pubLocale)));
+            }
+
+            foreach ($author->getAffiliations() as $affiliation) {
+                $affiliationName = $affiliation->getLocalizedName($pubLocale);
+                $professionalAffiliationNode = $doc->createElementNS($deployment->getNamespace(), 'ProfessionalAffiliation');
+                $professionalAffiliationNode->appendChild($this->buildTextNode($doc, 'Affiliation', $affiliationName));
+                $contributorNode->appendChild($professionalAffiliationNode);
             }
 
             if ($author->getBiography($pubLocale) != '') {

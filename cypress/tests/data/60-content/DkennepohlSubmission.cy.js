@@ -33,7 +33,11 @@ describe('Data suite tests', function() {
 					'givenName': {en: 'Terry'},
 					'familyName': {en: 'Anderson'},
 					'country': 'CA',
-					'affiliation': {en: 'University of Calgary'},
+					'affiliations': [
+						{
+							'name': {en: 'University of Calgary'}
+						}
+					],
 					'email': 'tanderson@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
@@ -41,7 +45,11 @@ describe('Data suite tests', function() {
 					'givenName': {en: 'Paul'},
 					'familyName': {en: 'Gorsky'},
 					'country': 'CA',
-					'affiliation': {en: 'University of Alberta'},
+					'affiliations': [
+						{
+							'name': {en: 'University of Alberta'}
+						}
+					],
 					'email': 'pgorsky@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
@@ -49,7 +57,11 @@ describe('Data suite tests', function() {
 					'givenName': {en: 'Gale'},
 					'familyName': {en: 'Parchoma'},
 					'country': 'CA',
-					'affiliation': {en: 'Athabasca University'},
+					'affiliations': [
+						{
+							'name': {en: 'Athabasca University'}
+						}
+					],
 					'email': 'gparchoma@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
@@ -57,7 +69,11 @@ describe('Data suite tests', function() {
 					'givenName': {en: 'Stuart'},
 					'familyName': {en: 'Palmer'},
 					'country': 'CA',
-					'affiliation': {en: 'University of Alberta'},
+					'affiliations': [
+						{
+							'name': {en: 'University of Alberta'}
+						}
+					],
 					'email': 'spalmer@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},

@@ -3,8 +3,8 @@
 /**
  * @file plugins/metadata/dc11/filter/Dc11SchemaPublicationFormatAdapter.php
  *
- * Copyright (c) 2014-2024 Simon Fraser University
- * Copyright (c) 2000-2024 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2000-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Dc11SchemaPublicationFormatAdapter
@@ -86,15 +86,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
 
         // Creator
         foreach ($publication->getData('authors') as $author) {
-            $authorNames = $author->getFullNames(false, true);
-            foreach ($authorNames as $locale => &$authorName) {
-                $affiliation = $author->getAffiliation($locale);
-                if (!empty($affiliation)) {
-                    $authorName .= '; ' . $affiliation;
-                }
-            }
-            $this->_addLocalizedElements($dc11Description, 'dc:creator', $authorNames);
-            unset($authorName);
+            $this->_addLocalizedElements($dc11Description, 'dc:creator', $author->getFullNames(false, true));
         }
 
         // Subject

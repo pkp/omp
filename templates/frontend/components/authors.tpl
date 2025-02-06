@@ -1,8 +1,8 @@
 {**
  * templates/frontend/components/authors.tpl
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2003-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Display authors of book or chapter
@@ -36,9 +36,13 @@
 						{$author->getFullName()|escape}
 					{/if}
 				</div>
-				{if $author->getLocalizedAffiliation()}
+				{if count($author->getAffiliations()) > 0}
 					<div class="value">
-						{$author->getLocalizedAffiliation()|escape}
+						{foreach name="affiliations" from=$author->getAffiliations() item="affiliation"}
+							{$affiliation->getLocalizedName()|escape}
+							{if $affiliation->getRor()}<a href="{$affiliation->getRor()|escape}">{$rorIdIcon}</a>{/if}
+							{if !$smarty.foreach.affiliations.last}{translate key="common.commaListSeparator"}{/if}
+						{/foreach}
 					</div>
 				{/if}
 				{if $author->getOrcid()}
@@ -67,7 +71,7 @@
 					{else}
 						{capture assign="authorName"}<span class="label">{$author->getFullName()|escape}</span>{/capture}
 					{/if}
-					{capture assign="authorAffiliation"}<span class="value">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
+					{capture assign="authorAffiliations"}<span class="value">{$author->getLocalizedAffiliationNamesAsString(null, ', ')|escape}</span>{/capture}
 					{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
 				{else}
 					<span class="label">{$author->getFullName()|escape}</span>

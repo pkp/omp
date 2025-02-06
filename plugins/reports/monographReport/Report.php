@@ -3,8 +3,8 @@
 /**
  * @file plugins/reports/monographReport/Report.php
  *
- * Copyright (c) 2014-2022 Simon Fraser University
- * Copyright (c) 2003-2022 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2003-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Report
@@ -186,7 +186,7 @@ class Report implements IteratorAggregate
                     $authorHeader(__('user.familyName'), $i) => fn () => $this->getAuthor($i)?->getLocalizedFamilyName(),
                     $authorHeader(__('user.orcid'), $i) => fn () => $this->getAuthor($i)?->getData('orcid'),
                     $authorHeader(__('common.country'), $i) => fn () => $this->getAuthor($i)?->getData('country'),
-                    $authorHeader(__('user.affiliation'), $i) => fn () => $this->getAuthor($i)?->getLocalizedData('affiliation'),
+                    $authorHeader(__('user.affiliation'), $i) => fn () => $this->getAuthor($i)?->getLocalizedAffiliationNamesAsString(),
                     $authorHeader(__('user.email'), $i) => fn () => $this->getAuthor($i)?->getData('email'),
                     $authorHeader(__('user.url'), $i) => fn () => $this->getAuthor($i)?->getData('url'),
                     $authorHeader(__('user.biography'), $i) => fn () => $this->toPlainText($this->getAuthor($i)?->getLocalizedData('biography'))

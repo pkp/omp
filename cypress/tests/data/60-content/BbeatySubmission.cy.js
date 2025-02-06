@@ -1,8 +1,8 @@
 /**
  * @file cypress/tests/data/60-content/BbeatySubmission.cy.js
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2000-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @ingroup tests_data
@@ -34,7 +34,11 @@ describe('Data suite tests', function() {
 					'givenName': {en: 'Toby'},
 					'familyName': {en: 'Miller'},
 					'country': 'CA',
-					'affiliation': {en: 'University of Alberta'},
+					'affiliations': [
+						{
+							'name': {en: 'University of Alberta'}
+						}
+					],
 					'email': 'tmiller@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
@@ -42,7 +46,11 @@ describe('Data suite tests', function() {
 					'givenName': {en: 'Ira'},
 					'familyName': {en: 'Wagman'},
 					'country': 'CA',
-					'affiliation': {en: 'Athabasca University'},
+					'affiliations': [
+						{
+							'name': {en: 'Athabasca University'}
+						}
+					],
 					'email': 'awagman@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
@@ -50,7 +58,11 @@ describe('Data suite tests', function() {
 					'givenName': {en: 'Will'},
 					'familyName': {en: 'Straw'},
 					'country': 'CA',
-					'affiliation': {en: 'University of Calgary'},
+					'affiliations': [
+						{
+							'name': {en: 'University of Calgary'}
+						}
+					],
 					'email': 'wstraw@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},

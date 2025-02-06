@@ -1,8 +1,8 @@
 {**
  * templates/frontend/objects/monograph_full.tpl
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2003-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Display a full view of a monograph. Expected to be primary object on
@@ -253,10 +253,10 @@
 						{if $author->getLocalizedBiography()}
 							<div class="sub_item">
 								<div class="label">
-									{if $author->getLocalizedAffiliation()}
+									{if $author->getLocalizedAffiliationNamesAsString()}
 										{capture assign="authorName"}{$author->getFullName()|escape}{/capture}
-										{capture assign="authorAffiliation"}<span class="affiliation">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
-										{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
+										{capture assign="authorAffiliations"} {$author->getLocalizedAffiliationNamesAsString(null, ', ')|escape} {/capture}
+										{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliations}
 									{else}
 										{$author->getFullName()|escape}
 									{/if}

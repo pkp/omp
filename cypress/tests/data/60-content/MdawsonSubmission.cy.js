@@ -1,8 +1,8 @@
 /**
  * @file cypress/tests/data/60-content/MdawsonSubmission.cy.js
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2000-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @ingroup tests_data
@@ -34,7 +34,11 @@ describe('Data suite tests', function() {
 					'givenName': {en: 'Brian'},
 					'familyName': {en: 'Dupuis'},
 					'country': 'CA',
-					'affiliation': {en: 'Athabasca University'},
+					'affiliations': [
+						{
+							'name': {en: 'Athabasca University'}
+						}
+					],
 					'email': 'bdupuis@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				},
@@ -42,7 +46,11 @@ describe('Data suite tests', function() {
 					'givenName': {en: 'Michael'},
 					'familyName': {en: 'Wilson'},
 					'country': 'CA',
-					'affiliation': {en: 'University of Calgary'},
+					'affiliations': [
+						{
+							'name': {en: 'University of Calgary'}
+						}
+					],
 					'email': 'mwilson@mailinator.com',
 					userGroupId: Cypress.env('authorUserGroupId')
 				}
