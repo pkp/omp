@@ -320,7 +320,7 @@ class MetricsMigration extends \PKP\migration\Migration
             $table->string('city', 255)->default('');
             $table->string('load_id', 50);
 
-            $table->index(['load_id', 'context_id', 'ip'], 'ust_load_id_context_id_ip');
+            $table->index(['load_id', 'context_id', 'ip', 'user_agent', 'canonical_url'], 'ust_load_id_context_id_ip_ua_url');
         });
 
         // Usage stats unique book and chapter item investigations temporary records
@@ -361,7 +361,7 @@ class MetricsMigration extends \PKP\migration\Migration
             $table->string('city', 255)->default('');
             $table->string('load_id', 50);
 
-            $table->index(['load_id', 'context_id', 'ip'], 'usii_load_id_context_id_ip');
+            $table->index(['load_id', 'context_id', 'ip', 'user_agent'], 'usii_load_id_context_id_ip_ua');
         });
 
         // Usage stats unique book and chapter item requests temporary records
@@ -402,7 +402,7 @@ class MetricsMigration extends \PKP\migration\Migration
             $table->string('city', 255)->default('');
             $table->string('load_id', 50);
 
-            $table->index(['load_id', 'context_id', 'ip'], 'usir_load_id_context_id_ip');
+            $table->index(['load_id', 'context_id', 'ip', 'user_agent'], 'usir_load_id_context_id_ip_ua');
         });
 
         // Usage stats unique title investigations temporary records
@@ -442,7 +442,7 @@ class MetricsMigration extends \PKP\migration\Migration
             $table->string('city', 255)->default('');
             $table->string('load_id', 50);
 
-            $table->index(['load_id', 'context_id', 'ip'], 'usti_load_id_context_id_ip');
+            $table->index(['load_id', 'context_id', 'ip', 'user_agent'], 'usti_load_id_context_id_ip_ua');
         });
 
         // Usage stats unique title requests temporary records
@@ -483,7 +483,7 @@ class MetricsMigration extends \PKP\migration\Migration
             $table->string('city', 255)->default('');
             $table->string('load_id', 50);
 
-            $table->index(['load_id', 'context_id', 'ip'], 'ustr_load_id_context_id_ip');
+            $table->index(['load_id', 'context_id', 'ip', 'user_agent'], 'ustr_load_id_context_id_ip_ua');
         });
 
         // Usage stats institution temporary records
