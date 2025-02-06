@@ -208,6 +208,7 @@
 	<upgrade minversion="3.4.0.0" maxversion="3.4.0.5">
 		<!-- Only new 3.4 installations need this fix -->
 		<migration class="PKP\migration\upgrade\v3_4_0\I8592_SiteNotificationSubscriptions"/>
+		<migration class="APP\migration\upgrade\v3_4_0\I9822_ChangeUsageStatsTemporaryTablesIndexes"/>
 	</upgrade>
 
 	<!-- Update plugin configuration - should be done as the final upgrade task -->
