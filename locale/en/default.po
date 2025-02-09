@@ -153,3 +153,12 @@ msgstr "External Reviewers"
 
 msgid "default.groups.abbrev.externalReviewer"
 msgstr "ER"
+
+msgid "default.submission.step.reviewerSuggestions"
+msgstr ""
+"<p>When submitting your article, you have the option to suggest 2/3 potential "
+"reviewers. This can help streamline the review process and provide valueable "
+"input for the editorial team. Please choose reviewers who are expert in your "
+"field and have no conflict of interest with your work. This feature aims to "
+"enhance the review process and and support a more efficient experience for both "
+"authors and presses.</p>"
