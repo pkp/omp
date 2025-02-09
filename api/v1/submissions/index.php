@@ -23,6 +23,8 @@ $requestPath = Application::get()->getRequest()->getRequestPath();
 
 if (strpos($requestPath, '/files')) {
     return new \PKP\handler\APIHandler(new \PKP\API\v1\submissions\PKPSubmissionFileController());
+} elseif (strpos($requestPath, '/suggestions')) {
+    return new \PKP\handler\APIHandler(new PKP\API\v1\reviewers\suggestions\ReviewerSuggestionController());
 } else {
     return new \PKP\handler\APIHandler(new \APP\API\v1\submissions\SubmissionController());
 }
