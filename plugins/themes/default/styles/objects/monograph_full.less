@@ -38,6 +38,12 @@
 			font-size: @font-base;
 			font-weight: @bold;
 		}
+
+		.keywords .label,
+		.abstract .label {
+			display: inline-flex;
+			font-size: @font-base;
+		}
 	}
 
 	.sub_item {
@@ -232,6 +238,71 @@
 
 			&.pdf:before {
 				content: @fa-var-file-pdf-o;
+			}
+		}
+	}
+
+	/**
+	 * Language switcher
+	 */
+
+	.pkpBadge {
+		padding: 0.25em 1em;
+		font-size: @font-tiny;
+		font-weight: @normal;
+		line-height: 1.5em;
+		border: 1px solid @bg-border-color-light;
+		border-radius: 1.2em;
+		color: @text;
+	}
+
+	.pkpBadge--button {
+		background: inherit;
+		text-decoration: none;
+		cursor: pointer;
+	
+		&:hover {
+			border-color: @text;
+			outline: 0;
+		}
+		&:disabled,
+		&:disabled:hover {
+			color: #fff;
+			background: @bg-dark;
+			border-color: @bg-dark;
+			cursor: not-allowed;
+		}
+	}
+
+	[data-pkp-switcher] [tabindex="0"] {
+		font-weight: @bold;
+	}
+
+	[data-pkp-switcher],
+	[data-pkp-switcher] * {
+		display: inline-flex;
+	}
+
+	[data-pkp-switcher] [aria-hidden="true"] {
+		display: none;
+	}
+
+	[data-pkp-switcher] [aria-hidden="false"] {
+		animation: fadeIn 0.7s ease-in-out;
+
+		@keyframes fadeIn {
+			0% {
+				display: none;
+				opacity: 0;
+			}
+		
+			1% {
+				display: inline-flex;
+				opacity: 0;
+			}
+		
+			100% {
+				opacity: 1;
 			}
 		}
 	}
