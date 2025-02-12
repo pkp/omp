@@ -37,9 +37,9 @@
 					{/if}
 				</div>
 				{if count($author->getAffiliations()) > 0}
-					<div class="value">
+					<div class="value affiliation">
 						{foreach name="affiliations" from=$author->getAffiliations() item="affiliation"}
-							{$affiliation->getLocalizedName()|escape}
+							<span>{$affiliation->getLocalizedName()|escape}</span>
 							{if $affiliation->getRor()}<a href="{$affiliation->getRor()|escape}">{$rorIdIcon}</a>{/if}
 							{if !$smarty.foreach.affiliations.last}{translate key="common.commaListSeparator"}{/if}
 						{/foreach}
