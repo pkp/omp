@@ -95,19 +95,9 @@ class MonographONIX30XmlFilter extends NativeExportFilter
     {
         $publicationFormats = $submission->getCurrentPublication()->getData('publicationFormats');
 
-        // Collect identifiers for all publication formats to connect related products
-        $identificationCodes = [];
-        foreach ($publicationFormats as $publicationFormat) {
-            $pubIdentificationCodes = $publicationFormat->getIdentificationCodes();
-            $pubId = $publicationFormat->getId();
-            while ($code = $pubIdentificationCodes->next()) {
-                $identificationCodes[$pubId][$code->getCode()] = $code->getValue();
-            }
-        }
-
         // Append all publication formats as Product nodes.
         foreach ($publicationFormats as $publicationFormat) {
-            $rootNode->appendChild($this->createProductNode($doc, $submission, $publicationFormat, $identificationCodes));
+            $rootNode->appendChild($this->createProductNode($doc, $submission, $publicationFormat));
         }
     }
 
@@ -158,7 +148,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
      *
      * @return \DOMElement
      */
-    public function createProductNode($doc, $submission, $publicationFormat, $identificationCodes)
+    public function createProductNode($doc, $submission, $publicationFormat)
     {
         /** @var Onix30ExportDeployment */
         $deployment = $this->getDeployment();
@@ -180,6 +170,19 @@ class MonographONIX30XmlFilter extends NativeExportFilter
         $productNode->appendChild($this->_buildTextNode($doc, 'RecordSourceType', '04')); // Bibliographic agency
 
         $identifierGiven = false;
+
+        $publication = $submission->getCurrentPublication();
+        $publicationFormats = $publication->getData('publicationFormats');
+
+        // Collect identifiers for all publication formats to connect related products (see Related Material)
+        $identificationCodes = [];
+        foreach ($publicationFormats as $pubFormat) {
+            $pubIdentificationCodes = $pubFormat->getIdentificationCodes();
+            $pubId = $pubFormat->getId();
+            while ($code = $pubIdentificationCodes->next()) {
+                $identificationCodes[$pubId][$code->getCode()] = $code->getValue();
+            }
+        }
 
         if (array_key_exists($publicationFormat->getId(), $identificationCodes)) {
             foreach ($identificationCodes[$publicationFormat->getId()] as $code => $value) {
@@ -269,7 +272,6 @@ class MonographONIX30XmlFilter extends NativeExportFilter
 
         /* --- License information --- */
 
-        $publication = $submission->getCurrentPublication();
         $pubLocale = $publication->getData('locale');
 
         if ($publication->isCCLicense()) {
