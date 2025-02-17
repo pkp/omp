@@ -23,6 +23,8 @@ use PKP\jobs\BaseJob;
 
 class CompileUniqueRequests extends BaseJob
 {
+    public int $timeout = 600;
+
     /**
      * Create a new job instance.
      *
