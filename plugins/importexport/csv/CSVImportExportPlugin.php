@@ -3,11 +3,13 @@
 /**
  * @file plugins/importexport/csv/CSVImportExportPlugin.php
  *
- * Copyright (c) 2013-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2013-2025 Simon Fraser University
+ * Copyright (c) 2003-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class CSVImportExportPlugin
+ *
+ * @ingroup plugins_importexport_csv
  *
  * @brief CSV import/export plugin
  */
@@ -15,23 +17,65 @@
 namespace APP\plugins\importexport\csv;
 
 use APP\core\Application;
-use APP\core\Request;
 use APP\facades\Repo;
-use APP\publicationFormat\PublicationDateDAO;
-use APP\publicationFormat\PublicationFormatDAO;
-use APP\submission\Submission;
+use APP\file\PublicFileManager;
+use APP\plugins\importexport\csv\classes\caches\CachedDaos;
+use APP\plugins\importexport\csv\classes\caches\CachedEntities;
+use APP\plugins\importexport\csv\classes\handlers\CSVFileHandler;
+use APP\plugins\importexport\csv\classes\processors\AuthorsProcessor;
+use APP\plugins\importexport\csv\classes\processors\KeywordsProcessor;
+use APP\plugins\importexport\csv\classes\processors\PublicationDateProcessor;
+use APP\plugins\importexport\csv\classes\processors\PublicationFileProcessor;
+use APP\plugins\importexport\csv\classes\processors\PublicationFormatProcessor;
+use APP\plugins\importexport\csv\classes\processors\PublicationProcessor;
+use APP\plugins\importexport\csv\classes\processors\SubjectsProcessor;
+use APP\plugins\importexport\csv\classes\processors\SubmissionProcessor;
+use APP\plugins\importexport\csv\classes\validations\CategoryValidations;
+use APP\plugins\importexport\csv\classes\validations\InvalidRowValidations;
+use APP\plugins\importexport\csv\classes\validations\SubmissionHeadersValidation;
+use APP\publication\Repository as PublicationService;
 use APP\template\TemplateManager;
-use PKP\db\DAORegistry;
+use Exception;
+use PKP\core\PKPRequest;
 use PKP\file\FileManager;
 use PKP\plugins\ImportExportPlugin;
-use PKP\security\Role;
-use PKP\submission\GenreDAO;
-use PKP\submission\PKPSubmission;
-use PKP\submissionFile\SubmissionFile;
-use PKP\userGroup\UserGroup;
+use PKP\services\PKPFileService;
+use SplFileObject;
 
 class CSVImportExportPlugin extends ImportExportPlugin
 {
+    /**
+     * The file directory array map used by the application.
+     *
+     * @var string[]
+     */
+    private array $dirNames;
+
+    /** The default format for the publication file path */
+    private string $format;
+
+    private FileManager $fileManager;
+
+    private PublicFileManager $publicFileManager;
+
+    private PKPFileService $fileService;
+
+    private PublicationService $publicationService;
+
+    private SplFileObject $invalidRowsFile;
+
+    private int $failedRowsCount;
+
+    private int $processedRowsCount;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     /**
      * @copydoc Plugin::register()
      *
@@ -48,18 +92,24 @@ class CSVImportExportPlugin extends ImportExportPlugin
      * Get the name of this plugin. The name must be unique within
      * its category.
      *
-     * @return string name of plugin
+     * @return String name of plugin
      */
     public function getName()
     {
         return 'CSVImportExportPlugin';
     }
 
+    /**
+     * @copydoc Plugin::getDisplayName()
+     */
     public function getDisplayName()
     {
         return __('plugins.importexport.csv.displayName');
     }
 
+    /**
+     * @copydoc Plugin::getDescription()
+     */
     public function getDescription()
     {
         return __('plugins.importexport.csv.description');
@@ -77,7 +127,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
      * Display the plugin.
      *
      * @param array $args
-     * @param Request $request
+     * @param PKPRequest $request
      */
     public function display($args, $request)
     {
@@ -92,214 +142,269 @@ class CSVImportExportPlugin extends ImportExportPlugin
     }
 
     /**
-     * Execute import/export tasks using the command-line interface.
-     *
-     * @param array $args Parameters to the plugin
-     */
+     * @copydoc ImportExportPlugin::executeCLI()
+    */
     public function executeCLI($scriptName, &$args)
     {
-        $filename = array_shift($args);
-        $username = array_shift($args);
+        $startTime = microtime(true);
 
-        if (!$filename || !$username) {
-            $this->usage($scriptName);
-            exit;
-        }
+        [$filename, $username, $basePath] = $this->parseCommandLineArguments($scriptName, $args);
 
-        if (!file_exists($filename)) {
-            echo __('plugins.importexport.csv.fileDoesNotExist', ['filename' => $filename]) . "\n";
-            exit;
-        }
+        $this->validateUser($username);
+        $file = CSVFileHandler::createAndValidateCSVFile($filename);
 
-        $user = Repo::user()->getByUsername($username);
-        if (!$user) {
-            echo __('plugins.importexport.csv.unknownUser', ['username' => $username]) . "\n";
-            exit;
-        }
+        $basename = $file->getBasename();
 
-        $pressDao = Application::getContextDAO();
-        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var PublicationFormatDAO $publicationFormatDao */
-        $genreDao = DAORegistry::getDAO('GenreDAO'); /** @var GenreDAO $genreDao */
-        $publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /** @var PublicationDateDAO $publicationDateDao */
+        $csvForInvalidRowsName = "{$basePath}/invalid_{$basename}";
+        $this->invalidRowsFile = CSVFileHandler::createInvalidCSVFile($csvForInvalidRowsName);
 
-        $file = new \SplFileObject($filename, 'r');
-        // Press Path, Author string, title, series path (optional), year, is_edited_volume, locale, URL to PDF, doi (optional)
-        $expectedHeaders = ['pressPath', 'authorString', 'title', 'abstract', 'seriesPath', 'year', 'isEditedVolume', 'locale', 'filename', 'doi'];
-        $header = $file->fgetcsv() ?: [];
-        if (count(array_intersect($expectedHeaders, $header)) !== count($expectedHeaders)) {
-            echo __('plugins.importexport.csv.invalidHeader') . "\n";
-            exit;
-        }
+        $this->processedRowsCount = 0;
+        $this->failedRowsCount = 0;
 
-        while (($row = $file->fgetcsv()) !== false) {
-            if (trim(implode('', $row)) === '') {
+        foreach ($file as $index => $fields) {
+            if (!$index) {
+                continue; // Skip headers
+            }
+
+            if (empty(array_filter($fields))) {
+                continue; // End of file
+            }
+
+            ++$this->processedRowsCount;
+
+            $reason = InvalidRowValidations::validateRowContainAllFields($fields);
+            if ($reason) {
+                CSVFileHandler::processInvalidRows($fields, $reason, $this->invalidRowsFile, $this->failedRowsCount);
                 continue;
             }
 
-            $pressPath = $authorString = $title = $seriesPath = $year = $isEditedVolume = $locale = $filename = $doi = $abstract = null;
-            foreach ($header as $index => $field) {
-                $$field = $row[$index];
-            }
+            $fieldsList = array_pad(array_map('trim', $fields), count(SubmissionHeadersValidation::$expectedHeaders), null);
+            $data = (object) array_combine(SubmissionHeadersValidation::$expectedHeaders, $fieldsList);
 
-            $press = $pressDao->getByPath($pressPath);
-            if (!$press) {
-                echo __('plugins.importexport.csv.unknownPress', ['contextPath' => $pressPath]) . "\n";
+            $reason = InvalidRowValidations::validateRowHasAllRequiredFields($data);
+            if ($reason) {
+                CSVFileHandler::processInvalidRows($fields, $reason, $this->invalidRowsFile, $this->failedRowsCount);
                 continue;
             }
 
-            $supportedLocales = $press->getSupportedSubmissionLocales();
-            if (!is_array($supportedLocales) || count($supportedLocales) < 1) {
-                $supportedLocales = [$press->getPrimaryLocale()];
-            }
-            if (!in_array($locale, $supportedLocales)) {
-                echo __('plugins.importexport.csv.unknownLocale', ['locale' => $locale]) . "\n";
+            $press = CachedEntities::getCachedPress($data->pressPath);
+
+            $reason = InvalidRowValidations::validatePresIsValid($data->pressPath, $press);
+            if ($reason) {
+                CSVFileHandler::processInvalidRows($fieldsList, $reason, $this->invalidRowsFile, $this->failedRowsCount);
                 continue;
             }
+
+            $reason = InvalidRowValidations::validatePressLocales($data->locale, $press);
+            if ($reason) {
+                CSVFileHandler::processInvalidRows($fieldsList, $reason, $this->invalidRowsFile, $this->failedRowsCount);
+                continue;
+            }
+
+            $pressId = $press->getId();
 
             // we need a Genre for the files.  Assume a key of MANUSCRIPT as a default.
-            $genre = $genreDao->getByKey('MANUSCRIPT', $press->getId());
-            if (!$genre) {
-                echo __('plugins.importexport.csv.noGenre') . "\n";
+            $genreName = mb_strtoupper($data->genreName ?? 'MANUSCRIPT');
+            $genreId = CachedEntities::getCachedGenreId($pressId, $genreName);
+
+            $reason = InvalidRowValidations::validateGenreIsValid($genreId, $genreName);
+            if ($reason) {
+                CSVFileHandler::processInvalidRows($fieldsList, $reason, $this->invalidRowsFile, $this->failedRowsCount);
                 continue;
             }
 
-            $authorGroup = UserGroup::withContextIds([$press->getId()])
-                ->withContextIds([$press->getId()])
-                ->withRoleIds([Role::ROLE_ID_AUTHOR])
-                ->isDefault(true)
-                ->get()
-                ->first();
-            if (!$authorGroup) {
-                echo __('plugins.importexport.csv.noAuthorGroup', ['press' => $pressPath]) . "\n";
+            $userGroupId = CachedEntities::getCachedUserGroupId($pressId, $data->pressPath);
+
+            $reason = InvalidRowValidations::validateUserGroupId($userGroupId, $data->pressPath);
+            if ($reason) {
+                CSVFileHandler::processInvalidRows($fieldsList, $reason, $this->invalidRowsFile, $this->failedRowsCount);
                 continue;
             }
 
-            $submission = Repo::submission()->newDataObject();
-            $submission->setData('contextId', $press->getId());
+            $filePath = "{$basePath}/{$data->filename}";
 
-            $publication = Repo::publication()->newDataObject();
-            $submissionId = Repo::submission()->add($submission, $publication, $press);
-            $submission = Repo::submission()->get($submissionId);
-            $publication = $submission->getCurrentPublication();
-            $publicationId = $publication->getId();
-
-            $submission->stampLastActivity();
-            $submission->setData('status', PKPSubmission::STATUS_PUBLISHED);
-            $submission->setData('workType', $isEditedVolume == 1 ? Submission::WORK_TYPE_EDITED_VOLUME : Submission::WORK_TYPE_AUTHORED_WORK);
-            $publication->setData('copyrightNotice', $press->getLocalizedSetting('copyrightNotice'), $locale);
-            $submission->setData('locale', $locale);
-            $submission->setData('stageId', WORKFLOW_STAGE_ID_PRODUCTION);
-            $publication->setData('abstract', $abstract, $locale);
-            $submission->setData('submissionProgress', '');
-
-            $series = $seriesPath ? Repo::section()->getByPath($seriesPath, $press->getId()) : null;
-            if ($series) {
-                $publication->setData('seriesId', $series->getId());
+            $reason = InvalidRowValidations::validateAssetFile($filePath, $data->title);
+            if ($reason) {
+                CSVFileHandler::processInvalidRows($fieldsList, $reason, $this->invalidRowsFile, $this->failedRowsCount);
+                continue;
             }
 
-            $contactEmail = $press->getContactEmail();
-            $authorString = trim($authorString, '"'); // remove double quotes if present.
-            $authors = preg_split('/\s*;\s*/', $authorString);
-            $firstAuthor = true;
-            foreach ($authors as $authorString) {
-                // Examine the author string. Best case is: Given1 Family1 <email@address.com>, Given2 Family2 <email@address.com>, etc
-                // But default to press email address based on press path if not present.
-                $givenName = $familyName = $emailAddress = null;
-                $authorString = trim($authorString); // whitespace.
-                if (!preg_match('/^(\w+)([\w\s]+)?(<([^>]+)>)?$/', $authorString, $matches)) {
-                    echo __('plugins.importexport.csv.invalidAuthor', ['author' => $authorString]) . "\n";
+            $pressSeriesId = null;
+            if ($data->seriesPath) {
+                $pressSeriesId = CachedEntities::getCachedSeriesId($data->seriesPath, $pressId);
+
+                $reason = InvalidRowValidations::validateSeriesId($pressSeriesId, $data->seriesPath);
+                if ($reason) {
+                    CSVFileHandler::processInvalidRows($fieldsList, $reason, $this->invalidRowsFile, $this->failedRowsCount);
                     continue;
                 }
-                $givenName = trim($matches[1]); // Mandatory
-                if (isset($matches[2])) {
-                    $familyName = trim($matches[2]);
-                }
-                $emailAddress = $matches[4] ?? $contactEmail;
-                $author = Repo::author()->newDataObject();
-                $author->setData('publicationId', $publicationId);
-                $author->setSubmissionId($submissionId);
-                $author->setUserGroupId($authorGroup->id);
-                $author->setGivenName($givenName, $locale);
-                $author->setFamilyName($familyName, $locale);
-                $author->setEmail($emailAddress);
-                if ($firstAuthor) {
-                    $author->setPrimaryContact(1);
-                    $firstAuthor = false;
-                }
-                Repo::author()->add($author);
-            } // Authors done.
-
-            $publication->setData('title', $title, $locale);
-            Repo::publication()->edit($publication, []);
-            Repo::submission()->edit($submission, []);
-
-            // Submission is done.  Create a publication format for it.
-            $publicationFormat = $publicationFormatDao->newDataObject();
-            $publicationFormat->setData('publicationId', $publicationId);
-            $publicationFormat->setPhysicalFormat(false);
-            $publicationFormat->setIsApproved(true);
-            $publicationFormat->setIsAvailable(true);
-            $publicationFormat->setProductAvailabilityCode('20'); // ONIX code for Available.
-            $publicationFormat->setEntryKey('DA'); // ONIX code for Digital
-            $publicationFormat->setData('name', 'PDF', $submission->getData('locale'));
-            $publicationFormat->setSequence(REALLY_BIG_NUMBER);
-            $publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
-
-            if ($doi) {
-                $publicationFormat->setStoredPubId('doi', $doi);
             }
 
-            $publicationFormatDao->updateObject($publicationFormat);
+            $this->initializeStaticVariables();
 
-            // Create a publication format date for this publication format.
-            $publicationDate = $publicationDateDao->newDataObject();
-            $publicationDate->setDateFormat('05'); // List55, YYYY
-            $publicationDate->setRole('01'); // List163, Publication Date
-            $publicationDate->setDate($year);
-            $publicationDate->setPublicationFormatId($publicationFormatId);
-            $publicationDateDao->insertObject($publicationDate);
+            if ($data->bookCoverImage) {
+                $reason = InvalidRowValidations::validateBookCoverImageInRightFormat($data->bookCoverImage);
+                if ($reason) {
+                    CSVFileHandler::processInvalidRows($fieldsList, $reason, $this->invalidRowsFile, $this->failedRowsCount);
+                    continue;
+                }
+
+                $srcFilePath = "{$basePath}/{$data->bookCoverImage}";
+
+                $reason = InvalidRowValidations::validateBookCoverImageIsReadable($srcFilePath, $data->title);
+                if ($reason) {
+                    CSVFileHandler::processInvalidRows($fieldsList, $reason, $this->invalidRowsFile, $this->failedRowsCount);
+                    continue;
+                }
+
+                $sanitizedCoverImageName = str_replace([' ', '_', ':'], '-', mb_strtolower($data->bookCoverImage));
+                $sanitizedCoverImageName = preg_replace('/[^a-z0-9\.\-]+/', '', $sanitizedCoverImageName);
+                $sanitizedCoverImageName = basename($sanitizedCoverImageName);
+
+                $coverImageUploadName = uniqid() . '-' . $sanitizedCoverImageName;
+
+                $destFilePath = $this->publicFileManager->getContextFilesPath($pressId) . '/' . $coverImageUploadName;
+                $bookCoverImageSaved = $this->fileManager->copyFile($srcFilePath, $destFilePath);
+
+                if (!$bookCoverImageSaved) {
+                    $reason = __('plugin.importexport.csv.erroWhileSavingBookCoverImage');
+                    CSVFileHandler::processInvalidRows($fieldsList, $reason, $this->invalidRowsFile, $this->failedRowsCount);
+
+                    continue;
+                }
+
+                // Try to create the book cover image thumbnail. If it fails for some reason, add this row as an invalid
+                // and the book cover image will be deleted before jump for the next CSV row.
+                try {
+                    $this->publicationService->makeThumbnail(
+                        $destFilePath,
+                        $this->publicationService->getThumbnailFileName($coverImageUploadName),
+                        $press->getData('coverThumbnailsMaxWidth'),
+                        $press->getData('coverThumbnailsMaxHeight')
+                    );
+                } catch (Exception $exception) {
+                    $reason = __('plugin.importexport.csv.errorWhileSavingThumbnail');
+                    CSVFileHandler::processInvalidRows($fieldsList, $reason, $this->invalidRowsFile, $this->failedRowsCount);
+
+                    unlink($destFilePath);
+
+                    continue;
+                }
+            }
+
+            $dbCategoryIds = CategoryValidations::getCategoryDataForValidRow($data->categories, $pressId, $data->locale);
+
+            $reason = InvalidRowValidations::validateAllCategoriesExists($dbCategoryIds);
+            if ($reason) {
+                CSVFileHandler::processInvalidRows($fieldsList, $reason, $this->invalidRowsFile, $this->failedRowsCount);
+                continue;
+            }
+
+            // All requirements passed. Start processing from here.
+            $submission = SubmissionProcessor::process($data, $pressId);
+            $submissionId = $submission->getId();
+
+            // Copy Submission file. If an error occured, save this row as invalid, delete the saved submission and continue the loop.
+            try {
+                $extension = $this->fileManager->parseFileExtension($data->filename);
+                $submissionDir = sprintf($this->format, $pressId, $submissionId);
+                $fileId = $this->fileService->add($filePath, $submissionDir . '/' . uniqid() . '.' . $extension);
+            } catch (Exception $exception) {
+                $reason = __('plugin.importexport.csv.errorWhileSavingSubmissionFile');
+                CSVFileHandler::processInvalidRows($fieldsList, $reason, $this->invalidRowsFile, $this->failedRowsCount);
+
+                $submissionDao = CachedDaos::getSubmissionDao();
+                $submissionDao->deleteById($submissionId);
+
+                continue;
+            }
+
+            $publication = PublicationProcessor::process($submission, $data, $press, $pressSeriesId);
+            $publicationId = $publication->getId();
+            AuthorsProcessor::process($data, $press->getContactEmail(), $submissionId, $publication, $userGroupId);
+
+            // Submission is done.  Create a publication format for it.
+            $publicationFormatId = PublicationFormatProcessor::process($submissionId, $publicationId, $extension, $data);
+
+            PublicationDateProcessor::process($data->year, $publicationFormatId);
 
             // Submission File.
-            $fileManager = new FileManager();
-            $extension = $fileManager->parseFileExtension($filename);
-            $submissionDir = Repo::submissionFile()->getSubmissionDir($press->getId(), $submissionId);
-            /** @var \PKP\services\PKPFileService */
-            $fileService = app()->get('file');
-            $fileId = $fileService->add(
-                $filename,
-                $submissionDir . '/' . uniqid() . '.' . $extension
-            );
+            PublicationFileProcessor::process($data, $submissionId, $filePath, $publicationFormatId, $genreId, $fileId);
 
-            $submissionFile = Repo::submissionFile()->newDataObject();
-            $submissionFile->setData('submissionId', $submissionId);
-            $submissionFile->setData('uploaderUserId', $user->getId());
-            $submissionFile->setSubmissionLocale($submission->getData('locale'));
-            $submissionFile->setGenreId($genre->getId());
-            $submissionFile->setFileStage(SubmissionFile::SUBMISSION_FILE_PROOF);
-            $submissionFile->setAssocType(Application::ASSOC_TYPE_REPRESENTATION);
-            $submissionFile->setData('assocId', $publicationFormatId);
-            $submissionFile->setData('mimetype', 'application/pdf');
-            $submissionFile->setData('fileId', $fileId);
+            KeywordsProcessor::process($data, $publicationId);
+            SubjectsProcessor::process($data, $publicationId);
 
-            // Assume open access, no price.
-            $submissionFile->setDirectSalesPrice(0);
-            $submissionFile->setSalesType('openAccess');
+            if ($data->bookCoverImage) {
+                PublicationProcessor::updateBookCoverImage($publication, $coverImageUploadName, $data);
+            }
 
-            Repo::submissionFile()->add($submissionFile);
+            PublicationProcessor::assignCategoriesToPublication($publicationId, $dbCategoryIds);
 
-            echo __('plugins.importexport.csv.import.submission', ['title' => $title]) . "\n";
+            echo __('plugins.importexport.csv.import.submission', ['title' => $data->title]) . "\n";
         }
-        $file = null;
+
+        if ($this->failedRowsCount === 0) {
+            echo __('plugin.importexport.csv.allDataSuccessfullyImported', ['processedRows' => $this->processedRowsCount]) . "\n\n";
+            unlink($csvForInvalidRowsName);
+        } else {
+            echo __('plugin.importexport.csv.seeInvalidRowsFile', ['processedRows' => $this->processedRowsCount - $this->failedRowsCount, 'failedRows' => $this->failedRowsCount]) . "\n\n";
+        }
+
+        $endTime = microtime(true);
+        $executionTime = $endTime - $startTime;
+
+        $hours = floor($executionTime / 3600);
+        $minutes = floor(($executionTime % 3600) / 60);
+        $seconds = floor($executionTime % 60);
+
+        echo sprintf("Execution time: %dH:%dmin:%dsec\n", $hours, $minutes, $seconds);
     }
 
-    /**
-     * Display the command-line usage information
-     */
+    /** Display the command-line usage information */
     public function usage($scriptName)
     {
         echo __('plugins.importexport.csv.cliUsage', [
             'scriptName' => $scriptName,
             'pluginName' => $this->getName()
         ]) . "\n";
+    }
+
+    /**
+     * Parse and validate initial command args
+     *
+     * @return string[]
+     */
+    private function parseCommandLineArguments(string $scriptName, array $args): array
+    {
+        $filename = array_shift($args);
+        $username = array_shift($args);
+        $basePath = dirname($filename);
+
+        if (!$filename || !$username) {
+            $this->usage($scriptName);
+            exit(1);
+        }
+
+        return [$filename, $username, $basePath];
+    }
+
+    /** Retrieve and validate the User by username */
+    private function validateUser(string $username): void
+    {
+        if (!CachedEntities::getCachedUser($username)) {
+            echo __('plugins.importexport.csv.unknownUser', ['username' => $username]) . "\n";
+            exit(1);
+        }
+    }
+
+    /** Insert static data that will be used for the submission processing */
+    private function initializeStaticVariables(): void
+    {
+        $this->dirNames ??= Application::getFileDirectories();
+        $this->format ??= trim($this->dirNames['context'], '/') . '/%d/' . trim($this->dirNames['submission'], '/') . '/%d';
+        $this->fileManager ??= new FileManager();
+        $this->publicFileManager ??= new PublicFileManager();
+        $this->fileService ??= app()->get('file');
+        $this->publicationService ??= Repo::publication();
     }
 }

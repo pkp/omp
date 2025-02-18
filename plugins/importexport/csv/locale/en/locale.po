@@ -12,10 +12,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "plugins.importexport.csv.displayName"
-msgstr "Tab Delimited Content Import Plugin"
+msgstr "CSV Content Import Plugin"
 
 msgid "plugins.importexport.csv.description"
-msgstr "Import submissions into presses from tab delimited data."
+msgstr "Import submissions into presses from CSV data."
 
 msgid "plugins.importexport.csv.cliOnly"
 msgstr ""
@@ -28,11 +28,18 @@ msgstr ""
 
 msgid "plugins.importexport.csv.cliUsage"
 msgstr ""
-"Command-line tool for importing CSV data into OMP\n"
-"\t\t\tUsage:\n"
-"\t\t\t{$scriptName} [--dry-run] fileName.csv username\n"
-"\t\t\tThe --dry-run option can be used to test without making changes.\n"
-"\t\t\tSpecify the username you wish to assign the submissions to.\n"
+"Command-line tool for importing CSV data into OMP.\n"
+"\n"
+"Usage:\n"
+"  php {$scriptName} {$pluginName} [path_to_csv_file] [username]\n"
+"\n"
+"Details:\n"
+"  - [path_to_csv_file]: The path to the CSV file containing submission data.\n"
+"  - [username]: The username to assign the imported submissions.\n"
+"Both parameters are required.\n"
+"\n"
+"Example:\n"
+"  php {$scriptName} {$pluginName} /home/user/submissions.csv johndoe\n"
 
 msgid "plugins.importexport.csv.fileDoesNotExist"
 msgstr "The file \"{$filename}\" does not exist.  Exiting."
@@ -47,7 +54,7 @@ msgid "plugins.importexport.csv.unknownPress"
 msgstr "Unknown Press: \"{$contextPath}\".  Skipping."
 
 msgid "plugins.importexport.csv.noGenre"
-msgstr "There is no manuscript genre.  Exiting."
+msgstr "There is no {$manuscript} genre."
 
 msgid "plugins.importexport.csv.noAuthorGroup"
 msgstr ""
@@ -60,14 +67,44 @@ msgstr ""
 "submission."
 
 msgid "plugins.importexport.csv.import.submission"
-msgstr "Submission: '{$title}' successfully imported."
+msgstr "Submission: \"{$title}\" successfully imported."
 
 msgid "plugins.importexport.csv.import.success.description"
 msgstr ""
 "The import was successful. Successfully-imported items are listed below."
 
-msgid "plugins.importexport.csv.invalidHeader"
-msgstr "The CSV file is either missing or has an invalid header, please take a look at the sample file \"sample.csv\" present at the plugin folder."
+msgid "plugins.importexport.csv.allCategoriesMustExists"
+msgstr "All CSV categories must be already existing on OMP. Please create it manually and retry."
 
-msgid "plugins.importexport.csv.invalidAuthor"
-msgstr "The author \"{$author}\" has an invalid format and was skipped."
+msgid "plugins.importexport.csv.invalidAssetFilename"
+msgstr "Invalid asset name for submission \"{$title}\"."
+
+msgid "plugins.importexport.csv.invalidCoverImageFilename"
+msgstr "Invalid cover image filename for submission \"{$title}\""
+
+msgid "plugins.importexport.csv.requiredFieldsMissing"
+msgstr "Required fields missing. Please verify the required fields for this row."
+
+msgid "plugins.importexport.csv.csvDoesntContainAllFields"
+msgstr "This row doesn't contain all fields."
+
+msgid "plugin.importexport.csv.seeInvalidRowsFile"
+msgstr "{$processedRows} submissions were imported. {$failedRows} failed. Please see the file \"invalid_rows.csv\" at the same directory as the CSV file."
+
+msgid "plugin.importexport.csv.allDataSuccessfullyImported"
+msgstr "{$processedRows} submissions were successfully imported."
+
+msgid "pugin.importexport.csv.missingHeadersOnCsv"
+msgstr "The following headers are missing on your CSV file: \"{$missingHeaders}\". Please update it as shown on file sample.csv."
+
+msgid "plugin.importexport.csv.erroWhileSavingBookCoverImage"
+msgstr "An error occurred while copying the book cover image."
+
+msgid "plugin.importexport.csv.errorWhileSavingThumbnail"
+msgstr "An error occurred while saving book cover image thumbnail."
+
+msgid "plugin.importexport.csv.errorWhileSavingSubmissionFile"
+msgstr "An error ocurred while saving the Submission file."
+
+msgid "plugin.importexport.csv.seriesPathNotFound"
+msgstr "Could not found a series by path \"{$seriesPath}\"."
