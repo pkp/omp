@@ -57,14 +57,14 @@ class SeriesForm extends PKPSectionForm
         $this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'printIssn', 'optional', 'catalog.manage.series.issn.equalValidation', function ($printIssn) use ($form) {
             return !($form->getData('onlineIssn') != '' && $form->getData('onlineIssn') == $printIssn);
         }));
-        $this->addCheck(new \PKP\form\validation\FormValidatorRegExp($this, 'path', 'required', 'grid.series.pathAlphaNumeric', '/^[a-zA-Z0-9\/._-]+$/'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorRegExp($this, 'urlPath', 'required', 'grid.series.pathAlphaNumeric', '/^[a-zA-Z0-9\/._-]+$/'));
         $this->addCheck(new \PKP\form\validation\FormValidatorCustom(
             $this,
-            'path',
+            'urlPath',
             'required',
             'grid.series.pathExists',
-            function ($path) use ($form, $pressId) {
-                return !Repo::section()->getByPath($path, $pressId) || ($form->getData('oldPath') != null && $form->getData('oldPath') == $path);
+            function ($urlPath) use ($form, $pressId) {
+                return !Repo::section()->getCollector()->filterByUrlPaths([$urlPath])->filterByContextIds([$pressId])->getMany()->first() || ($form->getData('oldPath') != null && $form->getData('oldPath') == $urlPath);
             }
         ));
     }
@@ -102,7 +102,7 @@ class SeriesForm extends PKPSectionForm
                 'seriesId' => $this->getSeries()->getId(),
                 'title' => $this->getSeries()->getTitle(null, false),
                 'featured' => $this->getSeries()->getFeatured(),
-                'path' => $this->getSeries()->getPath(),
+                'urlPath' => $this->getSeries()->getUrlPath(),
                 'description' => $this->getSeries()->getDescription(null),
                 'prefix' => $this->getSeries()->getPrefix(null),
                 'subtitle' => $this->getSeries()->getSubtitle(null),
@@ -189,11 +189,11 @@ class SeriesForm extends PKPSectionForm
     public function readInputData()
     {
         parent::readInputData();
-        $this->readUserVars(['seriesId', 'path', 'featured', 'editorRestricted', 'description', 'categories', 'prefix', 'subtitle', 'temporaryFileId', 'onlineIssn', 'printIssn', 'sortOption', 'isInactive']);
-        // For path duplicate checking; excuse the current path.
+        $this->readUserVars(['seriesId', 'urlPath', 'featured', 'editorRestricted', 'description', 'categories', 'prefix', 'subtitle', 'temporaryFileId', 'onlineIssn', 'printIssn', 'sortOption', 'isInactive']);
+        // For path duplicate checking; excuse the current urlPath.
         if ($seriesId = $this->getSeriesId()) {
             $series = Repo::section()->get($seriesId, $this->_pressId);
-            $this->setData('oldPath', $series->getPath());
+            $this->setData('oldPath', $series->getUrlPath());
         }
     }
 
@@ -215,7 +215,7 @@ class SeriesForm extends PKPSectionForm
         }
 
         // Populate/update the series object from the form
-        $series->setPath($this->getData('path'));
+        $series->setPath($this->getData('urlPath'));
         $series->setFeatured($this->getData('featured') ? 1 : 0);
         $series->setTitle($this->getData('title'), null); // Localized
         $series->setDescription($this->getData('description'), null); // Localized
