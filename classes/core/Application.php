@@ -206,6 +206,17 @@ class Application extends PKPApplication
     }
 
     /**
+     * Get the review workflow stages used by this application.
+     */
+    public function getReviewStages(): array
+    {
+        return [
+            WORKFLOW_STAGE_ID_EXTERNAL_REVIEW,
+            WORKFLOW_STAGE_ID_INTERNAL_REVIEW
+        ];
+    }
+
+    /**
      * Get the file directory array map used by the application.
      */
     public static function getFileDirectories(): array
