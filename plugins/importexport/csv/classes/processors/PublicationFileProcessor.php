@@ -25,30 +25,30 @@ use PKP\submissionFile\SubmissionFile;
 class PublicationFileProcessor
 {
     /** Process data for the PublicationFile */
-	public static function process(object $data, int $submissionId, string $filePath, int $publicationFormatId, int $genreId, int $fileId): void
+    public static function process(object $data, int $submissionId, string $filePath, int $publicationFormatId, int $genreId, int $fileId): void
     {
-		$mimeType = PKPString::mime_content_type($filePath);
+        $mimeType = PKPString::mime_content_type($filePath);
 
-		$submissionFileDao = CachedDaos::getSubmissionFileDao();
+        $submissionFileDao = CachedDaos::getSubmissionFileDao();
 
-		$submissionFile = $submissionFileDao->newDataObject();
-		$submissionFile->setData('submissionId', $submissionId);
-		$submissionFile->setData('uploaderUserId', CachedEntities::getCachedUser()->getId());
-		$submissionFile->setSubmissionLocale($data->locale);
-		$submissionFile->setGenreId($genreId);
-		$submissionFile->setFileStage(SubmissionFile::SUBMISSION_FILE_PROOF);
-		$submissionFile->setAssocType(Application::ASSOC_TYPE_REPRESENTATION);
-		$submissionFile->setData('assocId', $publicationFormatId);
-		$submissionFile->setData('createdAt', Core::getCurrentDate());
-		$submissionFile->setDateModified(Core::getCurrentDate());
-		$submissionFile->setData('mimetype', $mimeType);
-		$submissionFile->setData('fileId', $fileId);
-		$submissionFile->setData('name', pathinfo($filePath, PATHINFO_FILENAME));
+        $submissionFile = $submissionFileDao->newDataObject();
+        $submissionFile->setData('submissionId', $submissionId);
+        $submissionFile->setData('uploaderUserId', CachedEntities::getCachedUser()->getId());
+        $submissionFile->setSubmissionLocale($data->locale);
+        $submissionFile->setGenreId($genreId);
+        $submissionFile->setFileStage(SubmissionFile::SUBMISSION_FILE_PROOF);
+        $submissionFile->setAssocType(Application::ASSOC_TYPE_REPRESENTATION);
+        $submissionFile->setData('assocId', $publicationFormatId);
+        $submissionFile->setData('createdAt', Core::getCurrentDate());
+        $submissionFile->setDateModified(Core::getCurrentDate());
+        $submissionFile->setData('mimetype', $mimeType);
+        $submissionFile->setData('fileId', $fileId);
+        $submissionFile->setData('name', pathinfo($filePath, PATHINFO_FILENAME), $data->locale);
 
-		// Assume open access, no price.
-		$submissionFile->setDirectSalesPrice(0);
-		$submissionFile->setSalesType('openAccess');
+        // Assume open access, no price.
+        $submissionFile->setDirectSalesPrice(0);
+        $submissionFile->setSalesType('openAccess');
 
-		$submissionFileDao->insert($submissionFile);
-	}
+        $submissionFileDao->insert($submissionFile);
+    }
 }

@@ -20,13 +20,13 @@ use APP\plugins\importexport\csv\classes\caches\CachedDaos;
 class SubjectsProcessor
 {
     /** Process data for Subjects */
-	public static function process(object $data, int $publicationId): void
+    public static function process(object $data, int $publicationId): void
     {
-		$subjectsList = [$data->locale => array_map('trim', explode(';', $data->subjects))];
+        $subjectsList = [$data->locale => array_map('trim', explode(';', $data->subjects))];
 
-		if (count($subjectsList[$data->locale]) > 0) {
-			$submissionSubjectDao = CachedDaos::getSubmissionSubjectDao();
-			$submissionSubjectDao->insertSubjects($subjectsList, $publicationId);
-		}
-	}
+        if (count($subjectsList[$data->locale]) > 0) {
+            $submissionSubjectDao = CachedDaos::getSubmissionSubjectDao();
+            $submissionSubjectDao->insertSubjects($subjectsList, $publicationId);
+        }
+    }
 }

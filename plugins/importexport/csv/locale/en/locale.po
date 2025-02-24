@@ -57,54 +57,49 @@ msgid "plugins.importexport.csv.noGenre"
 msgstr "There is no {$manuscript} genre."
 
 msgid "plugins.importexport.csv.noAuthorGroup"
-msgstr ""
-"There is no default author group in the press {$press}.  Skipping this "
-"submission."
+msgstr "There is no default author group in the press {$press}. Skipping this submission."
 
 msgid "plugins.importexport.csv.noSeries"
-msgstr ""
-"The series path {$seriesPath} does not exist.  Unable to add it to this "
-"submission."
+msgstr "The series path {$seriesPath} does not exist. Unable to add it to this submission."
 
 msgid "plugins.importexport.csv.import.submission"
 msgstr "Submission: \"{$title}\" successfully imported."
 
 msgid "plugins.importexport.csv.import.success.description"
-msgstr ""
-"The import was successful. Successfully-imported items are listed below."
+msgstr "The import was successful. Successfully imported items are listed below."
 
 msgid "plugins.importexport.csv.allCategoriesMustExists"
-msgstr "All CSV categories must be already existing on OMP. Please create it manually and retry."
+msgstr "All CSV categories must exist in OMP. Please create the missing category and retry."
 
 msgid "plugins.importexport.csv.invalidAssetFilename"
 msgstr "Invalid asset name for submission \"{$title}\"."
 
 msgid "plugins.importexport.csv.invalidCoverImageFilename"
-msgstr "Invalid cover image filename for submission \"{$title}\""
+msgstr "Invalid cover image filename for submission \"{$title}\"."
 
 msgid "plugins.importexport.csv.requiredFieldsMissing"
-msgstr "Required fields missing. Please verify the required fields for this row."
+msgstr "Required fields are missing. Please verify the required fields for this row."
 
 msgid "plugins.importexport.csv.csvDoesntContainAllFields"
 msgstr "This row doesn't contain all fields."
 
 msgid "plugin.importexport.csv.seeInvalidRowsFile"
-msgstr "{$processedRows} submissions were imported. {$failedRows} failed. Please see the file \"invalid_rows.csv\" at the same directory as the CSV file."
+msgstr "{$processedRows} submissions were imported. {$failedRows} failed. Please check the file \"invalid_rows.csv\" in the same directory as the CSV file."
 
 msgid "plugin.importexport.csv.allDataSuccessfullyImported"
 msgstr "{$processedRows} submissions were successfully imported."
 
 msgid "pugin.importexport.csv.missingHeadersOnCsv"
-msgstr "The following headers are missing on your CSV file: \"{$missingHeaders}\". Please update it as shown on file sample.csv."
+msgstr "The following headers are missing in your CSV file: \"{$missingHeaders}\". Please update it as shown in the sample.csv file."
 
 msgid "plugin.importexport.csv.erroWhileSavingBookCoverImage"
 msgstr "An error occurred while copying the book cover image."
 
 msgid "plugin.importexport.csv.errorWhileSavingThumbnail"
-msgstr "An error occurred while saving book cover image thumbnail."
+msgstr "An error occurred while saving the book cover image thumbnail."
 
 msgid "plugin.importexport.csv.errorWhileSavingSubmissionFile"
-msgstr "An error ocurred while saving the Submission file."
+msgstr "An error occurred while saving the submission file."
 
 msgid "plugin.importexport.csv.seriesPathNotFound"
-msgstr "Could not found a series by path \"{$seriesPath}\"."
+msgstr "Could not find a series by path \"{$seriesPath}\"."

@@ -20,15 +20,15 @@ use APP\plugins\importexport\csv\classes\caches\CachedDaos;
 class PublicationDateProcessor
 {
     /** Process data for the PublicationDate */
-	public static function process(int $year, int $publicationFormatId): void
+    public static function process(int $year, int $publicationFormatId): void
     {
-		$publicationDateDao = CachedDaos::getPublicationDateDao();
+        $publicationDateDao = CachedDaos::getPublicationDateDao();
 
-		$publicationDate = $publicationDateDao->newDataObject();
-		$publicationDate->setDateFormat('05'); // List55, YYYY
-		$publicationDate->setRole('01'); // List163, Publication Date
-		$publicationDate->setDate($year);
-		$publicationDate->setPublicationFormatId($publicationFormatId);
-		$publicationDateDao->insertObject($publicationDate);
-	}
+        $publicationDate = $publicationDateDao->newDataObject();
+        $publicationDate->setDateFormat('05'); // List55, YYYY
+        $publicationDate->setRole('01'); // List163, Publication Date
+        $publicationDate->setDate($year);
+        $publicationDate->setPublicationFormatId($publicationFormatId);
+        $publicationDateDao->insertObject($publicationDate);
+    }
 }

@@ -20,27 +20,27 @@ use APP\plugins\importexport\csv\classes\caches\CachedDaos;
 class PublicationFormatProcessor
 {
     /** Process data for the PublicationFormat */
-	public static function process(int $submissionId, int $publicationId, string $extension, object $data): int
+    public static function process(int $submissionId, int $publicationId, string $extension, object $data): int
     {
-		$publicationFormatDao = CachedDaos::getPublicationFormatDao();
+        $publicationFormatDao = CachedDaos::getPublicationFormatDao();
 
-		$publicationFormat = $publicationFormatDao->newDataObject();
-		$publicationFormat->setData('submissionId', $submissionId);
-		$publicationFormat->setData('publicationId', $publicationId);
-		$publicationFormat->setPhysicalFormat(false);
-		$publicationFormat->setIsApproved(true);
-		$publicationFormat->setIsAvailable(true);
-		$publicationFormat->setProductAvailabilityCode('20'); // ONIX code for Available.
-		$publicationFormat->setEntryKey('DA'); // ONIX code for Digital
-		$publicationFormat->setData('name', mb_strtoupper($extension), $data->locale);
-		$publicationFormat->setSequence(REALLY_BIG_NUMBER);
+        $publicationFormat = $publicationFormatDao->newDataObject();
+        $publicationFormat->setData('submissionId', $submissionId);
+        $publicationFormat->setData('publicationId', $publicationId);
+        $publicationFormat->setPhysicalFormat(false);
+        $publicationFormat->setIsApproved(true);
+        $publicationFormat->setIsAvailable(true);
+        $publicationFormat->setProductAvailabilityCode('20'); // ONIX code for Available.
+        $publicationFormat->setEntryKey('DA'); // ONIX code for Digital
+        $publicationFormat->setData('name', mb_strtoupper($extension), $data->locale);
+        $publicationFormat->setSequence(REALLY_BIG_NUMBER);
 
-		$publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
+        $publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
 
-		if ($data->doi) {
-			$publicationFormatDao->changePubId($publicationFormatId, 'doi', $data->doi);
-		}
+        if ($data->doi) {
+            $publicationFormatDao->changePubId($publicationFormatId, 'doi', $data->doi);
+        }
 
-		return $publicationFormat->getId();
-	}
+        return $publicationFormat->getId();
+    }
 }

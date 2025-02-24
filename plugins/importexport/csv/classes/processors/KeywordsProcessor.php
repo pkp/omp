@@ -20,13 +20,13 @@ use APP\plugins\importexport\csv\classes\caches\CachedDaos;
 class KeywordsProcessor
 {
     /** Process data for Keywords */
-	public static function process(object $data, int $publicationId): void
+    public static function process(object $data, int $publicationId): void
     {
-		$keywordsList = [$data->locale => array_map('trim', explode(';', $data->keywords))];
+        $keywordsList = [$data->locale => array_map('trim', explode(';', $data->keywords))];
 
-		if (count($keywordsList[$data->locale]) > 0) {
-			$submissionKeywordDao = CachedDaos::getSubmissionKeywordDao();
-			$submissionKeywordDao->insertKeywords($keywordsList, $publicationId);
-		}
-	}
+        if (count($keywordsList[$data->locale]) > 0) {
+            $submissionKeywordDao = CachedDaos::getSubmissionKeywordDao();
+            $submissionKeywordDao->insertKeywords($keywordsList, $publicationId);
+        }
+    }
 }

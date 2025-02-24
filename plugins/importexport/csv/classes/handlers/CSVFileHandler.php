@@ -21,52 +21,50 @@ use Exception;
 class CSVFileHandler {
 
     /**
-	 * The expected headers coming from the CSV file, in their respective order
-	 *
-	 * @var string[]
-	 */
-	private static $expectedHeaders = [
-		'pressPath',
-		'authorString',
-		'title',
-		'abstract',
-		'seriesPath',
-		'year',
-		'isEditedVolume',
-		'locale',
-		'filename',
-		'doi',
-		'keywords',
-		'subjects',
-		'bookCoverImage',
-		'bookCoverImageAltText',
-		'categories',
-		'genreName',
-	];
+     * The expected headers coming from the CSV file, in their respective order
+     *
+     * @var string[]
+     */
+    private static $expectedHeaders = [
+        'pressPath',
+        'authorString',
+        'title',
+        'abstract',
+        'seriesPath',
+        'year',
+        'isEditedVolume',
+        'locale',
+        'filename',
+        'doi',
+        'keywords',
+        'subjects',
+        'bookCoverImage',
+        'bookCoverImageAltText',
+        'categories',
+        'genreName',
+    ];
 
     /**
-	 * The expected size for a valid Submission row on CSV file
-	 */
-	private static int $expectedRowSize;
+     * The expected size for a valid Submission row on CSV file
+     */
+    private static int $expectedRowSize;
 
-	public static function createAndValidateCSVFile(string $filename): SplFileObject
+    public static function createAndValidateCSVFile(string $filename): SplFileObject
     {
-		$file = self::createNewFile($filename, 'r');
-		$file->setFlags(SplFileObject::READ_CSV);
+        $file = self::createNewFile($filename, 'r');
+        $file->setFlags(SplFileObject::READ_CSV);
 
+        $headers = $file->fgetcsv();
 
+        $missingHeaders = array_diff(self::$expectedHeaders, $headers);
 
-		$headers = $file->fgetcsv();
+        if (count($missingHeaders)) {
+            echo __('plugin.importexport.csv.missingHeadersOnCsv', ['missingHeaders' => $missingHeaders]);
+            exit(1);
+        }
 
-		$missingHeaders = array_diff(self::$expectedHeaders, $headers);
-
-		if (count($missingHeaders)) {
-			echo __('plugin.importexport.csv.missingHeadersOnCsv', ['missingHeaders' => $missingHeaders]);
-			exit(1);
-		}
-
-		return $file;
-	}
+        return $file;
+    }
 
     public static function createInvalidCSVFile(string $csvForInvalidRowsName): SplFileObject
     {
@@ -82,14 +80,13 @@ class CSVFileHandler {
         $failedRowsCount++;
     }
 
-
-	private static function createNewFile(string $filename, string $mode): SplFileObject
+    private static function createNewFile(string $filename, string $mode): SplFileObject
     {
-		try {
-			return new SplFileObject($filename, $mode);
-		} catch (Exception $e) {
-			echo $e->getMessage();
-			exit(1);
-		}
-	}
+        try {
+            return new SplFileObject($filename, $mode);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit(1);
+        }
+    }
 }

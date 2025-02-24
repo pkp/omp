@@ -18,28 +18,28 @@ namespace APP\plugins\importexport\csv\classes\validations;
 class SubmissionHeadersValidation
 {
     /**
-	 * The expected headers coming from the CSV file, in their respective order
-	 *
-	 * @var string[]
-	 */
-	public static $expectedHeaders = [
-		'pressPath',
-		'authorString',
-		'title',
-		'abstract',
-		'seriesPath',
-		'year',
-		'isEditedVolume',
-		'locale',
-		'filename',
-		'doi',
-		'keywords',
-		'subjects',
-		'bookCoverImage',
-		'bookCoverImageAltText',
-		'categories',
-		'genreName',
-	];
+     * The expected headers coming from the CSV file, in their respective order
+     *
+     * @var string[]
+     */
+    public static $expectedHeaders = [
+        'pressPath',
+        'authorString',
+        'title',
+        'abstract',
+        'seriesPath',
+        'year',
+        'isEditedVolume',
+        'locale',
+        'filename',
+        'doi',
+        'keywords',
+        'subjects',
+        'bookCoverImage',
+        'bookCoverImageAltText',
+        'categories',
+        'genreName',
+    ];
 
     public static $requiredHeaders = [
         'pressPath',
@@ -50,4 +50,3 @@ class SubmissionHeadersValidation
         'filename',
     ];
 }
-

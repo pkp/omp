@@ -21,24 +21,24 @@ use APP\submission\Submission;
 class SubmissionProcessor
 {
     /**
-	 * Process initial data for Submission
-	 */
-	public static function process(object $data, int $pressId): Submission
+     * Process initial data for Submission
+     */
+    public static function process(object $data, int $pressId): Submission
     {
-		$submissionDao = CachedDaos::getSubmissionDao();
+        $submissionDao = CachedDaos::getSubmissionDao();
 
-		$submission = $submissionDao->newDataObject();
-		$submission->setData('contextId', $pressId);
-		$submission->stampLastActivity();
-		$submission->stampModified();
-		$submission->setData('status', Submission::STATUS_PUBLISHED);
-		$submission->setData('workType', $data->isEditedVolume == 1 ? WORK_TYPE_EDITED_VOLUME : WORK_TYPE_AUTHORED_WORK);
-		$submission->setData('locale', $data->locale);
-		$submission->setData('stageId', WORKFLOW_STAGE_ID_PRODUCTION);
-		$submission->setData('submissionProgress', 0);
-		$submission->setData('abstract', $data->abstract, $data->locale);
-		$submissionDao->insert($submission);
+        $submission = $submissionDao->newDataObject();
+        $submission->setData('contextId', $pressId);
+        $submission->stampLastActivity();
+        $submission->stampModified();
+        $submission->setData('status', Submission::STATUS_PUBLISHED);
+        $submission->setData('workType', $data->isEditedVolume == 1 ? WORK_TYPE_EDITED_VOLUME : WORK_TYPE_AUTHORED_WORK);
+        $submission->setData('locale', $data->locale);
+        $submission->setData('stageId', WORKFLOW_STAGE_ID_PRODUCTION);
+        $submission->setData('submissionProgress', 0);
+        $submission->setData('abstract', $data->abstract, $data->locale);
+        $submissionDao->insert($submission);
 
-		return $submission;
-	}
+        return $submission;
+    }
 }

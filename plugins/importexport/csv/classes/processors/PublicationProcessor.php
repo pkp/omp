@@ -25,35 +25,35 @@ use PKP\core\PKPString;
 class PublicationProcessor
 {
     /** Process initial data for Publication */
-	public static function process(Submission $submission, object $data, Press $press, ?int $pressSeriesId = null): Publication
+    public static function process(Submission $submission, object $data, Press $press, ?int $pressSeriesId = null): Publication
     {
-		$publicationDao = CachedDaos::getPublicationDao();
-		$sanitizedAbstract = PKPString::stripUnsafeHtml($data->abstract);
-		$locale = $data->locale;
+        $publicationDao = CachedDaos::getPublicationDao();
+        $sanitizedAbstract = PKPString::stripUnsafeHtml($data->abstract);
+        $locale = $data->locale;
 
-		$publication = $publicationDao->newDataObject();
-		$publication->setData('submissionId', $submission->getId());
-		$publication->setData('version', 1);
-		$publication->setData('status', Submission::STATUS_PUBLISHED);
-		$publication->setData('datePublished', Core::getCurrentDate());
-		$publication->setData('abstract', $sanitizedAbstract, $locale);
-		$publication->setData('title', $data->title, $locale);
-		$publication->setData('copyrightNotice', $press->getLocalizedData('copyrightNotice', $locale), $locale);
+        $publication = $publicationDao->newDataObject();
+        $publication->setData('submissionId', $submission->getId());
+        $publication->setData('version', 1);
+        $publication->setData('status', Submission::STATUS_PUBLISHED);
+        $publication->setData('datePublished', Core::getCurrentDate());
+        $publication->setData('abstract', $sanitizedAbstract, $locale);
+        $publication->setData('title', $data->title, $locale);
+        $publication->setData('copyrightNotice', $press->getLocalizedData('copyrightNotice', $locale), $locale);
 
-		if ($data->seriesPath) {
-			$publication->setData('seriesId', $pressSeriesId);
-		}
+        if ($data->seriesPath) {
+            $publication->setData('seriesId', $pressSeriesId);
+        }
 
-		$publicationDao->insert($publication);
+        $publicationDao->insert($publication);
 
-		// Add this publication as the current one, now that we have its ID
-		$submission->setData('currentPublicationId', $publication->getId());
+        // Add this publication as the current one, now that we have its ID
+        $submission->setData('currentPublicationId', $publication->getId());
 
-		$submissionDao = CachedDaos::getSubmissionDao();
-		$submissionDao->update($submission);
+        $submissionDao = CachedDaos::getSubmissionDao();
+        $submissionDao->update($submission);
 
-		return $publication;
-	}
+        return $publication;
+    }
 
     public static function updatePrimaryContact(Publication $publication, int $authorId): void
     {
@@ -64,13 +64,10 @@ class PublicationProcessor
     public static function updateBookCoverImage(Publication $publication, string $uploadName, object $data): void
     {
         $coverImage = [];
-
-		$coverImage['uploadName'] = $uploadName;
-		$coverImage['altText'] = $data->bookCoverImageAltText ?? '';
-
-		$publication->setData('coverImage', [$data->locale => $coverImage]);
-
-		CachedDaos::getPublicationDao()->update($publication);
+        $coverImage['uploadName'] = $uploadName;
+        $coverImage['altText'] = $data->bookCoverImageAltText ?? '';
+        $publication->setData('coverImage', [$data->locale => $coverImage]);
+        CachedDaos::getPublicationDao()->update($publication);
     }
 }
 

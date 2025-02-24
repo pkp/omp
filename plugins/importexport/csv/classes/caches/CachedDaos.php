@@ -36,9 +36,9 @@ use PKP\userGroup\DAO as UserGroupDAO;
 class CachedDaos
 {
     /**
-	 * @var DAO[] Array for caching already initialized DAOs.
-	 */
-	private static array $daos = [];
+     * @var DAO[] Array for caching already initialized DAOs.
+     */
+    private static array $daos = [];
 
     public static function getCategoryDao(): CategoryDAO
     {
