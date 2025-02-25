@@ -110,7 +110,7 @@ class InvalidRowValidations
             : null;
     }
 
-    public static function validateAllCategoriesExists(array|null $categories): ?string
+    public static function validateAllCategoriesExists(?array $categories): ?string
     {
         return !$categories
             ? __('plugins.importexport.csv.allCategoriesMustExists')
