@@ -704,7 +704,7 @@ msgstr ""
 "Chaidh tiotalan a lorg ({$number} dhiubh) a fhreagair air na lorg thu "
 "({$searchQuery})."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "A h-uile leabhar"
 
 msgid "catalog.newReleases"

@@ -689,7 +689,7 @@ msgstr ""
 msgid "catalog.foundTitlesSearch"
 msgstr ""
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr ""
 
 msgid "catalog.newReleases"
