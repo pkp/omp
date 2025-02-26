@@ -25,12 +25,12 @@ class KeywordsProcessor
     /** Process data for Keywords */
     public static function process(object $data, int $publicationId): void
     {
-        $keywordsList = [$data->locale => array_map('trim', explode(';', $data->keywords))];
+        $keywordsList = array_map('trim', explode(';', $data->keywords));
 
-        if (count($keywordsList[$data->locale]) > 0) {
+        if (count($keywordsList) > 0) {
             Repo::controlledVocab()->insertBySymbolic(
                 ControlledVocab::CONTROLLED_VOCAB_SUBMISSION_KEYWORD,
-                $keywordsList[$data->locale],
+                [$data->locale => $keywordsList],
                 Application::ASSOC_TYPE_PUBLICATION,
                 $publicationId
             );
