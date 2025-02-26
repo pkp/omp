@@ -126,6 +126,7 @@ class ManageCatalogHandler extends Handler
             ->orderByFeatured();
         $total = $collector->getCount();
         $submissions = $collector->limit($catalogList->count)->getMany();
+        $userRoles = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_USER_ROLES);
 
         $userGroups = UserGroup::withContextIds([$context->getId()])->get();
 
@@ -134,7 +135,7 @@ class ManageCatalogHandler extends Handler
         $genres = $genreDao->getByContextId($context->getId())->toArray();
 
         $items = Repo::submission()->getSchemaMap()
-            ->mapManyToSubmissionsList($submissions, $userGroups, $genres)
+            ->mapManyToSubmissionsList($submissions, $userGroups, $genres, $userRoles)
             ->values();
 
         $catalogList->set([
