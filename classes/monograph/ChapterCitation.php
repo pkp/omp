@@ -28,7 +28,10 @@ class ChapterCitation extends \PKP\core\DataObject
     public function __construct(?string $rawCitation = null)
     {
         parent::__construct();
-        $this->setRawCitation($rawCitation);
+
+        if ($rawCitation) {
+            $this->setRawCitation($rawCitation);
+        }
     }
 
     /**
