@@ -68,9 +68,8 @@ class ChapterCitationDAO extends DAO
 
         foreach ($citationStrings as $seq => $citationString) {
             if (!empty(trim($citationString))) {
-                $chapterCitation = new ChapterCitation();
+                $chapterCitation = new ChapterCitation($citationString);
                 $chapterCitation->setChapterId($chapterId);
-                $chapterCitation->setRawCitation($citationString);
                 $chapterCitation->setSequence($seq + 1);
 
                 $this->insertObject($chapterCitation);

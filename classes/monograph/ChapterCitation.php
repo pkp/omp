@@ -18,8 +18,6 @@
 
 namespace APP\monograph;
 
-use PKP\core\PKPString;
-
 class ChapterCitation extends \PKP\core\DataObject
 {
     /**
@@ -92,7 +90,7 @@ class ChapterCitation extends \PKP\core\DataObject
     private function cleanCitationString($citationString)
     {
         $citationString = trim(stripslashes($citationString));
-        $citationString = PKPString::regexp_replace('/[\s]+/', ' ', $citationString);
+        $citationString = preg_replace('/[\s]+/u', ' ', $citationString);
 
         return $citationString;
     }

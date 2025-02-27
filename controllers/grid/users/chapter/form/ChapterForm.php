@@ -20,6 +20,7 @@ namespace APP\controllers\grid\users\chapter\form;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\monograph\Chapter;
+use APP\monograph\ChapterCitationDAO;
 use APP\monograph\ChapterDAO;
 use APP\publication\Publication;
 use APP\submission\Submission;
@@ -196,6 +197,7 @@ class ChapterForm extends Form
             $this->setData('datePublished', $chapter->getDatePublished());
             $this->setData('isPageEnabled', $chapter->isPageEnabled());
             $this->setData('pages', $chapter->getPages());
+            $this->setData('chapterCitationsRaw', $chapter->getData('chapterCitationsRaw'));
             $this->setData('licenseUrl', $chapter->getLicenseUrl());
         } else {
             $this->setData('title', null);
@@ -204,6 +206,7 @@ class ChapterForm extends Form
             $this->setData('datePublished', null);
             $this->setData('isPageEnabled', null);
             $this->setData('pages', null);
+            $this->setData('chapterCitationsRaw', null);
             $this->setData('licenseUrl', null);
         }
     }
@@ -291,7 +294,18 @@ class ChapterForm extends Form
      */
     public function readInputData()
     {
-        $this->readUserVars(['title', 'subtitle', 'authors', 'files','abstract','datePublished','pages','isPageEnabled','licenseUrl']);
+        $this->readUserVars([
+            'title',
+            'subtitle',
+            'authors',
+            'files',
+            'abstract',
+            'datePublished',
+            'pages',
+            'chapterCitationsRaw',
+            'isPageEnabled',
+            'licenseUrl'
+        ]);
     }
 
     /**
@@ -305,13 +319,16 @@ class ChapterForm extends Form
 
         $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
         $chapter = $this->getChapter();
+        $oldChapterCitationsRaw = null;
 
         if ($chapter) {
+            $oldChapterCitationsRaw = $chapter->getData('chapterCitationsRaw');
             $chapter->setTitle($this->getData('title'), null); //Localized
             $chapter->setSubtitle($this->getData('subtitle'), null); //Localized
             $chapter->setAbstract($this->getData('abstract'), null); //Localized
             $chapter->setDatePublished($this->getData('datePublished'));
             $chapter->setPages($this->getData('pages'));
+            $chapter->setData('chapterCitationsRaw', $this->getData('chapterCitationsRaw'));
             $chapter->setPageEnabled($this->getData('isPageEnabled'));
             $chapter->setLicenseUrl($this->getData('licenseUrl'));
             $chapterDao->updateObject($chapter);
@@ -323,6 +340,7 @@ class ChapterForm extends Form
             $chapter->setAbstract($this->getData('abstract'), null); //Localized
             $chapter->setDatePublished($this->getData('datePublished'));
             $chapter->setPages($this->getData('pages'));
+            $chapter->setData('chapterCitationsRaw', $this->getData('chapterCitationsRaw'));
             $chapter->setPageEnabled($this->getData('isPageEnabled'));
             $chapter->setLicenseUrl($this->getData('licenseUrl'));
             $chapter->setSequence(REALLY_BIG_NUMBER);
@@ -331,6 +349,12 @@ class ChapterForm extends Form
         }
 
         $this->setChapter($chapter);
+
+        // Save the chapter references
+        if ($oldChapterCitationsRaw != $chapter->getData('chapterCitationsRaw')) {
+            $chapterCitationDao = new ChapterCitationDAO();
+            $chapterCitationDao->importChapterCitations($chapter->getId(), $chapter->getData('chapterCitationsRaw'));
+        }
 
         // Save the chapter author associations
         Repo::author()->removeChapterAuthors($this->getChapter());
