@@ -19,7 +19,7 @@
     "@lk77/vue3-color": "^3.0.6",
     "@tinymce/tinymce-vue": "^6.1.0",
     "@vue-a11y/announcer": "^3.1.5",
-    "@vueuse/core": "10.5",
+    "@vueuse/core": "10.11.1",
     "altcha": "^1.0.7",
     "chart.js": "^4.4.3",
     "clone-deep": "^4.0.1",
