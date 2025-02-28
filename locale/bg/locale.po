@@ -1202,7 +1202,7 @@ msgid "installer.installationInstructions"
 msgstr ""
 "<p>Благодарим ви, че изтеглихте <strong>Open Monograph Press {$version}</"
 "strong> на Public Knowledge Project. Преди да продължите, моля, прочетете "
-"файла <a href=\"{$baseUrl}/docs/README.md\">README</a>, включен в този "
+"файла <a href=\"{$baseUrl}/README.md\">README</a>, включен в този "
 "софтуер. За повече информация относно проекта Public Knowledge и неговите "
 "софтуерни проекти, моля, посетете <a href=\"https://pkp.sfu.ca/\" target="
 "\"_blank\">уеб сайта на PKP</a>. Ако имате доклади за грешки или запитвания "
@@ -1286,6 +1286,7 @@ msgstr "Изпратените материали {$submissionId} са архи�
 msgid "log.editor.restored"
 msgstr "Изпратените материали {$submissionId} са възстановени в опашката."
 
+#, fuzzy
 msgid "installer.upgradeInstructions"
 msgstr ""
 "<h4>OMP версия {$version}</h4>\n"
