@@ -1,7 +1,7 @@
-# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023, 2024.
+# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023, 2024, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-09-06 16:19+0000\n"
+"PO-Revision-Date: 2025-03-01 13:10+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/locale/cs/>\n"
 "Language: cs\n"
@@ -361,7 +361,8 @@ msgstr "Zástupce"
 
 msgid "grid.catalogEntry.agentTip"
 msgstr ""
-"Můžete vybrat prodejce, který vás bude zastupovat na daném území (volitelné)."
+"Můžete pověřit zástupce, aby vás na tomto vymezeném území zastupoval. Není "
+"to povinné."
 
 msgid "grid.catalogEntry.supplier"
 msgstr "Dodavatel"
@@ -1141,7 +1142,6 @@ msgstr ""
 "<p>2. Adresář pro ukládání nahraných souborů musí být vytvořen a nastaven "
 "jako zapisovatelný (viz \"Nastavení souborů\" níže).</p>"
 
-#, fuzzy
 msgid "installer.upgradeInstructions"
 msgstr ""
 "<h4>Verze OMP {$version}</h4>\n"
@@ -1157,8 +1157,8 @@ msgstr ""
 "sfu.ca\" target=\"_blank\">fórum podpory</a> nebo navštivte online <a href="
 "\"https://github.com/pkp/pkp-lib/issues\" target=\"_blank\">systém hlášení "
 "chyb</a> PKP. Ačkoli je fórum podpory preferovaným způsobem kontaktu, můžete "
-"také poslat e-mail týmu na adresu <a href=\"mailto:pkp.contact@gmail.com"
-"\">pkp.contact@gmail.com</a>.</p>\n"
+"také poslat e-mail týmu na adresu <a href=\"mailto:pkp.contact@gmail.com\""
+">pkp.contact@gmail.com</a>.</p>\n"
 "<p>Je <strong>důrazně doporučeno</strong>, abyste před pokračováním "
 "zálohovali databázi, adresář se soubory a instalační adresář OMP.</p>"
 
@@ -1611,3 +1611,6 @@ msgstr ""
 ":{$siteAdminEmail}\">{$siteAdminEmail}</a>) a informujte ho o této nové "
 "verzi. Více informací najdete <a href=\"https://pkp.sfu.ca/omp_download/\" "
 "target=\"_new\">na webových stránkách PKP</a>."
+
+msgid "monograph.publicationFormat.onixDeprecated"
+msgstr " (Přerušeno)"
