@@ -5,7 +5,7 @@ on:
   pull_request:
     branches:
       ['main']
-name: omp
+name: omp-main
 jobs:
   omp:
     runs-on: ubuntu-latest
