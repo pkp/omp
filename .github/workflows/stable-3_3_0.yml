@@ -5,7 +5,7 @@ on:
   pull_request:
     branches:
       ['stable-3_3_0']
-name: omp
+name: omp-stable-3_3_0
 jobs:
   omp:
     runs-on: ubuntu-latest
