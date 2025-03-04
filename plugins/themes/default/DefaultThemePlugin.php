@@ -3,8 +3,8 @@
 /**
  * @file plugins/themes/default/DefaultThemePlugin.php
  *
- * Copyright (c) 2014-2022 Simon Fraser University
- * Copyright (c) 2003-2022 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2003-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class DefaultThemePlugin
@@ -124,6 +124,30 @@ class DefaultThemePlugin extends ThemePlugin
                 ],
             ],
             'default' => 'none',
+        ]);
+
+        $this->addOption('showMultilingualMetadata', 'FieldOptions', [
+            'label' => __('plugins.themes.default.option.metadata.label'),
+            'description' => __('plugins.themes.default.option.metadata.description'),
+            'options' => [
+                [
+                    'value' => 'title',
+                    'label' => __('submission.title'),
+                ],
+                [
+                    'value' => 'keywords',
+                    'label' => __('common.keywords'),
+                ],
+                [
+                    'value' => 'abstract',
+                    'label' => __('submission.synopsis'),
+                ],
+                [
+                    'value' => 'author',
+                    'label' => __('default.groups.name.author'),
+                ],
+            ],
+            'default' => [],
         ]);
 
         // Load primary stylesheet
