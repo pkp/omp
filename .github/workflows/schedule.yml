@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '5 5  * * *'
+    - cron: '5 5 * * *'
 name: schedule
 jobs:
   omp-main:
@@ -29,7 +29,7 @@ jobs:
             SAVE_BUILD: 'save_build'
             upgrade: 'upgrade'
             upgrade_test: 'stable-3_3_0,stable-3_4_0,stable-3_5_0'
-    name: omp-main-schedule
+    name: omp-main
     steps:
       - uses: pkp/pkp-github-actions@v1
         with:
@@ -38,7 +38,7 @@ jobs:
           DATASETS_ACCESS_KEY:  ${{secrets.DATASETS_ACCESS_KEY}}
           DEBUG_IN_TMATE: false
 
-  omp-main:
+  omp-stable-3_5_0:
     if: github.repository == 'pkp/omp'
     runs-on: ubuntu-latest
     strategy:
@@ -53,12 +53,10 @@ jobs:
             upgrade: 'upgrade'
             upgrade_test: 'stable-3_3_0,stable-3_4_0'
           - php-version: 8.2
-            validate: 'validate'
             database: mariadb
             test: 'test'
             SAVE_BUILD: 'save_build'
           - php-version: 8.2
-            validate: 'validate'
             database: mysql
             test: 'test'
             SAVE_BUILD: 'save_build'
@@ -69,8 +67,8 @@ jobs:
       - uses: pkp/pkp-github-actions@v1
         with:
           node_version: 20
-          dataset_branch: 'omp-stable-3_5_0'
-          DATASETS_ACCESS_KEY:  ${{secrets.DATASETS_ACCESS_KEY}}
+          dataset_branch: 'stable-3_5_0'
+          DATASETS_ACCESS_KEY: ${{secrets.DATASETS_ACCESS_KEY}}
           DEBUG_IN_TMATE: false
 
   omp-stable-3_4_0:
@@ -85,6 +83,8 @@ jobs:
             database: pgsql
             test: 'test'
             SAVE_BUILD: 'save_build'
+            upgrade: 'upgrade'
+            upgrade_test: 'stable-3_3_0'
           - php-version: 8.1
             database: mariadb
             test: 'test'
@@ -95,7 +95,7 @@ jobs:
             test: 'test'
             SAVE_BUILD: 'save_build'
             upgrade: 'upgrade'
-            upgrade_test: '3.1.0,3.1.1-2,3.1.2,stable-3_2_0,stable-3_2_1,stable-3_3_0'
+            upgrade_test: 'stable-3_3_0'
     name: omp-stable-3_4_0
     steps:
       - uses: pkp/pkp-github-actions@v1
