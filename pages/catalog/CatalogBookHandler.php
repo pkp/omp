@@ -324,7 +324,7 @@ class CatalogBookHandler extends Handler
         $templateMgr->registerPlugin('modifier', 'useFilters', fn (...$args) => $this->smartyUseFilters($templateMgr, ...$args));
         $templateMgr->registerPlugin('modifier', 'getAuthorFullNames', $this->smartyGetAuthorFullNames(...));
         $templateMgr->registerPlugin('modifier', 'getAffiliationNamesWithRors', $this->smartyGetAffiliationNamesWithRors(...));
-        $templateMgr->registerPlugin('modifier', 'getAuthorsFullNamesWithAffiliations', $this->smartyGetAuthorsFullNamesWithAffiliations(...));
+        $templateMgr->registerPlugin('modifier', 'getAuthorsFullNamesWithAffiliations', fn (...$args) => $this->smartyGetAuthorsFullNamesWithAffiliations($templateMgr, ...$args));
 
         // Display
         if (!Hook::call('CatalogBookHandler::book', [&$request, &$submission, &$this->publication, &$this->chapter])) {
@@ -681,7 +681,7 @@ class CatalogBookHandler extends Handler
             'switcher' => $switcher,
             'data' => collect($data)
                 ->map(
-                    fn ($value): string => collect(Arr::wrap($value))
+                    fn ($val): string => collect(Arr::wrap($val))
                         ->when($filters, fn ($value) => $value->map(fn ($v) => $this->smartyUseFilters($templateMgr, $v, $filters)))
                         ->when($separator, fn ($value): string => $value->join($separator), fn ($value): string => $value->first())
                 )
@@ -747,9 +747,10 @@ class CatalogBookHandler extends Handler
      * Smarty template: Get authors' full names to multilingual array including multilingual prop and affiliation languages as default localized name,
      * and affiliations with rors
      */
-    protected function smartyGetAuthorsFullNamesWithAffiliations(LazyCollection $authors): array
+    protected function smartyGetAuthorsFullNamesWithAffiliations(TemplateManager $templateMgr, LazyCollection $authors): array
     {
-        $findRor = fn (array $affs): ?array => Arr::first($affs, fn (array $aff) => $aff['ror']);
+        $localeOrder = $templateMgr->getTemplateVars('pubLocaleData')['localeOrder'];
+        $getAffiliations = fn (array $affs, string $locale): ?array => $affs[$locale] ?? Arr::first($localeOrder, fn (string $l) => isset($affs[$l]['ror']));
         $locales = $authors
             ->map(fn (Author $author): array => $this->getAuthorLocales($author))
             ->flatten()
@@ -764,7 +765,7 @@ class CatalogBookHandler extends Handler
                 fn ($_, $locale): array => $authors
                     ->map(fn (Author $author, $id): array => [
                         'name' => $author->getFullName(preferredLocale: $locale),
-                        'affiliations' => [$locale => $affiliations->get($id)[$locale] ?? $findRor($affiliations->get($id))],
+                        'affiliations' => [$locale => $getAffiliations($affiliations->get($id), $locale)],
                     ])
                     ->toArray()
             )
