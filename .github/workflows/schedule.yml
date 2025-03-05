@@ -24,6 +24,8 @@ jobs:
             database: mariadb
             test: 'test'
             SAVE_BUILD: 'save_build'
+            upgrade: 'upgrade'
+            upgrade_test: 'stable-3_4_0,stable-3_5_0'
           - php-version: 8.2
             validate: 'validate'
             database: mysql
@@ -64,7 +66,7 @@ jobs:
             SAVE_BUILD: 'save_build'
             upgrade: 'upgrade'
             upgrade_test: 'stable-3_3_0,stable-3_4_0'
-    name: omp-stable-3_5_0-schedule
+    name: omp-stable-3_5_0
     steps:
       - uses: pkp/pkp-github-actions@v1
         with:
