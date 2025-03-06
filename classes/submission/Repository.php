@@ -143,6 +143,8 @@ class Repository extends \PKP\submission\Repository
     {
         $views = parent::mapDashboardViews($types, $context, $user, $canAccessUnassignedSubmission, $selectedRoleIds);
 
+        $assignedWithRoles = $canAccessUnassignedSubmission ? null : $selectedRoleIds;
+
         $collector = Repo::submission()->getCollector()
             ->filterByContextIds([$context->getId()])
             ->filterByStageIds([WORKFLOW_STAGE_ID_INTERNAL_REVIEW])
@@ -152,7 +154,7 @@ class Repository extends \PKP\submission\Repository
             DashboardView::TYPE_REVIEW_INTERNAL,
             __('submission.dashboard.view.reviewInternal'),
             [Role::ROLE_ID_SITE_ADMIN, Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT],
-            $canAccessUnassignedSubmission ? $collector : $collector->assignedTo([$user->getId()]),
+            $canAccessUnassignedSubmission ? $collector : $collector->assignedTo([$user->getId()], $assignedWithRoles),
             $canAccessUnassignedSubmission ? null : 'assigned',
             ['stageIds' => [WORKFLOW_STAGE_ID_INTERNAL_REVIEW], 'status' => [PKPSubmission::STATUS_QUEUED]]
         ));
