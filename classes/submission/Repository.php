@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/submission/Repository.php
  *
@@ -138,9 +139,9 @@ class Repository extends \PKP\submission\Repository
         return $doiCreationFailures;
     }
 
-    protected function mapDashboardViews($types, Context $context, User $user, bool $canAccessUnassignedSubmission): Collection
+    protected function mapDashboardViews(Collection $types, Context $context, User $user, bool $canAccessUnassignedSubmission, $selectedRoleIds): Collection
     {
-        $views = parent::mapDashboardViews($types, $context, $user, $canAccessUnassignedSubmission);
+        $views = parent::mapDashboardViews($types, $context, $user, $canAccessUnassignedSubmission, $selectedRoleIds);
 
         $collector = Repo::submission()->getCollector()
             ->filterByContextIds([$context->getId()])
