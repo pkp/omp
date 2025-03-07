@@ -14,7 +14,6 @@
 
 namespace APP\migration\upgrade\v3_5_0;
 
-use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 use PKP\install\DowngradeNotSupportedException;
 use PKP\migration\Migration;
@@ -26,11 +25,13 @@ class I10511_RemoveSeriesMenuItems extends Migration
      */
     public function up(): void
     {
+        $seriesIds = DB::table('series')
+            ->select(DB::raw('CAST(series_id AS CHAR(20))'));
+
         $invalidNavigationMenuItemIds = DB::table('navigation_menu_items')
             ->where('type', 'NMI_TYPE_SERIES')
-            ->whereNotIn('path', function (Builder $query) {
-                $query->select('series_id')->from('series');
-            })->pluck('navigation_menu_item_id');
+            ->whereNotIn('path', $seriesIds)
+            ->pluck('navigation_menu_item_id');
 
         if (!$invalidNavigationMenuItemIds->count()) {
             return;
