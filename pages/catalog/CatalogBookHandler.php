@@ -22,6 +22,7 @@ use APP\core\Request;
 use APP\facades\Repo;
 use APP\handler\Handler;
 use APP\monograph\Chapter;
+use APP\monograph\ChapterCitationDAO;
 use APP\monograph\ChapterDAO;
 use APP\observers\events\UsageEvent;
 use APP\payment\omp\OMPCompletedPaymentDAO;
@@ -149,6 +150,11 @@ class CatalogBookHandler extends Handler
             $chapterAuthors = $this->chapter->getAuthors();
             $chapterAuthors = $chapterAuthors->toArray();
 
+            if ($this->chapter->getData('chapterCitationsRaw')) {
+                $chapterCitationDao = new ChapterCitationDAO();
+                $chapterCitations = $chapterCitationDao->getByChapterId($this->chapter->getId());
+            }
+
             $datePublished = $submission->getEnableChapterPublicationDates() && $this->chapter->getDatePublished()
                 ? $this->chapter->getDatePublished()
                 : $this->publication->getData('datePublished');
@@ -165,6 +171,7 @@ class CatalogBookHandler extends Handler
             $templateMgr->assign([
                 'chapter' => $this->chapter,
                 'chapterAuthors' => $chapterAuthors,
+                'chapterCitations' => $chapterCitations,
                 'sourceChapter' => $sourceChapter,
                 'firstDatePublished' => $firstDatePublished ?: $datePublished,
                 'datePublished' => $datePublished,
