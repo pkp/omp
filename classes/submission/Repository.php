@@ -139,7 +139,7 @@ class Repository extends \PKP\submission\Repository
         return $doiCreationFailures;
     }
 
-    protected function mapDashboardViews(Collection $types, Context $context, User $user, bool $canAccessUnassignedSubmission, $selectedRoleIds): Collection
+    protected function mapDashboardViews(Collection $types, Context $context, User $user, bool $canAccessUnassignedSubmission, array $selectedRoleIds = []): Collection
     {
         $views = parent::mapDashboardViews($types, $context, $user, $canAccessUnassignedSubmission, $selectedRoleIds);
 
