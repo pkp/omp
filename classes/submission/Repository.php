@@ -141,22 +141,22 @@ class Repository extends \PKP\submission\Repository
 
     protected function mapDashboardViews(Collection $types, Context $context, User $user, bool $canAccessUnassignedSubmission, array $selectedRoleIds = []): Collection
     {
-        $views = parent::mapDashboardViews($types, $context, $user, $canAccessUnassignedSubmission, $selectedRoleIds);
+        $views = parent::mapDashboardViews($types->except([DashboardView::TYPE_REVIEW_EXTERNAL]), $context, $user, $canAccessUnassignedSubmission, $selectedRoleIds);
 
         $assignedWithRoles = $canAccessUnassignedSubmission ? null : $selectedRoleIds;
 
         $collector = Repo::submission()->getCollector()
             ->filterByContextIds([$context->getId()])
-            ->filterByStageIds([WORKFLOW_STAGE_ID_INTERNAL_REVIEW])
+            ->filterByStageIds([WORKFLOW_STAGE_ID_INTERNAL_REVIEW, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW])
             ->filterByStatus([PKPSubmission::STATUS_QUEUED]);
 
-        return $views->put(DashboardView::TYPE_REVIEW_INTERNAL, new DashboardView(
-            DashboardView::TYPE_REVIEW_INTERNAL,
-            __('submission.dashboard.view.reviewInternal'),
+        return $views->put(DashboardView::TYPE_REVIEW_ALL, new DashboardView(
+            DashboardView::TYPE_REVIEW_ALL,
+            __('submission.dashboard.view.reviewAll'),
             [Role::ROLE_ID_SITE_ADMIN, Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT],
             $canAccessUnassignedSubmission ? $collector : $collector->assignedTo([$user->getId()], $assignedWithRoles),
             $canAccessUnassignedSubmission ? null : 'assigned',
-            ['stageIds' => [WORKFLOW_STAGE_ID_INTERNAL_REVIEW], 'status' => [PKPSubmission::STATUS_QUEUED]]
+            ['stageIds' => [WORKFLOW_STAGE_ID_INTERNAL_REVIEW, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW], 'status' => [PKPSubmission::STATUS_QUEUED]]
         ));
     }
 }
