@@ -21,7 +21,6 @@ namespace APP\template;
 use APP\core\Application;
 use APP\core\Request;
 use APP\file\PublicFileManager;
-use PKP\config\Config;
 use PKP\context\Context;
 use PKP\core\PKPSessionGuard;
 use PKP\facades\Locale;
@@ -140,17 +139,16 @@ class TemplateManager extends PKPTemplateManager
             ];
 
             $index = false;
-            if (Config::getVar('features', 'enable_new_submission_listing')) {
-                $reviewAssignmentsIndex = array_search('reviewAssignments', array_keys($menu));
-                $mySubmissionsIndex = array_search('mySubmissions', array_keys($menu));
-                if ($mySubmissionsIndex !== false) {
-                    $index = $mySubmissionsIndex;
-                } elseif ($reviewAssignmentsIndex !== false) {
-                    $index = $reviewAssignmentsIndex;
-                } else {
-                    $index = array_search('dashboards', array_keys($menu));
-                }
+            $reviewAssignmentsIndex = array_search('reviewAssignments', array_keys($menu));
+            $mySubmissionsIndex = array_search('mySubmissions', array_keys($menu));
+            if ($mySubmissionsIndex !== false) {
+                $index = $mySubmissionsIndex;
+            } elseif ($reviewAssignmentsIndex !== false) {
+                $index = $reviewAssignmentsIndex;
+            } else {
+                $index = array_search('dashboards', array_keys($menu));
             }
+
             if ($index === false || count($menu) <= $index + 1) {
                 $menu['catalog'] = $catalogLink;
             } else {
