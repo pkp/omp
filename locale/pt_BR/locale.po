@@ -1,10 +1,10 @@
-# Diego José Macêdo <diegojmacedo@gmail.com>, 2021, 2022, 2023, 2024.
+# Diego José Macêdo <diegojmacedo@gmail.com>, 2021, 2022, 2023, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T12:00:53-07:00\n"
-"PO-Revision-Date: 2024-09-05 17:40+0000\n"
+"PO-Revision-Date: 2025-03-12 20:23+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "locale/pt_BR/>\n"
@@ -1676,3 +1676,6 @@ msgstr ""
 "{$currentVersion}. A versão mais recente é o OMP {$latestVersion}. Visite <a "
 "href=\"https://pkp.sfu.ca/omp_download\" target=\"_new\">o site do PKP</a> "
 "para baixar a versão mais recente e encontrar instruções de atualização."
+
+msgid "monograph.publicationFormat.onixDeprecated"
+msgstr " (Descontinuado)"
