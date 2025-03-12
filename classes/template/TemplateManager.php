@@ -138,7 +138,17 @@ class TemplateManager extends PKPTemplateManager
                 'icon' => 'Catalog'
             ];
 
-            $index = array_search('submissions', array_keys($menu));
+            $index = false;
+            $reviewAssignmentsIndex = array_search('reviewAssignments', array_keys($menu));
+            $mySubmissionsIndex = array_search('mySubmissions', array_keys($menu));
+            if ($mySubmissionsIndex !== false) {
+                $index = $mySubmissionsIndex;
+            } elseif ($reviewAssignmentsIndex !== false) {
+                $index = $reviewAssignmentsIndex;
+            } else {
+                $index = array_search('dashboards', array_keys($menu));
+            }
+
             if ($index === false || count($menu) <= $index + 1) {
                 $menu['catalog'] = $catalogLink;
             } else {
