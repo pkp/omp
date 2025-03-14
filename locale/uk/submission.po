@@ -1,7 +1,7 @@
-# Petro Bilous <petrobilous@ukr.net>, 2022, 2023, 2024.
+# Petro Bilous <petrobilous@ukr.net>, 2022, 2023, 2024, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-09-04 03:35+0000\n"
+"PO-Revision-Date: 2025-03-03 19:43+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/uk/>\n"
@@ -676,3 +676,12 @@ msgid "publication.chapter.landingPage.doi.description"
 msgstr ""
 "(Ця глава буде завжди показуватися на її особистій сторінці через наявність "
 "у неї DOI.)"
+
+msgid "submission.dashboard.view.reviewInternal"
+msgstr "Все на внутрішньому рецензуванні"
+
+msgid "submission.stage.internalReviewWithRound"
+msgstr "Внутрішнє рецензування (раунд {$round})"
+
+msgid "submission.stage.externalReviewWithRound"
+msgstr "Зовнішнє рецензування (раунд {$round})"
