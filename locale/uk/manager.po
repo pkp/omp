@@ -1,7 +1,7 @@
-# Petro Bilous <petrobilous@ukr.net>, 2022, 2023, 2024.
+# Petro Bilous <petrobilous@ukr.net>, 2022, 2023, 2024, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-09-04 03:35+0000\n"
+"PO-Revision-Date: 2025-03-03 19:43+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "uk/>\n"
@@ -1740,3 +1740,8 @@ msgstr "Абревіатура е-видавництва"
 
 msgid "manager.dois.disabledChaptersDescription"
 msgstr "Глави без посадкової сторінки не можуть мати DOI."
+
+msgid "manager.setup.contextSummary.description"
+msgstr ""
+"Запропонуйте короткий опис вашого е-видання, щоб зрозуміти її зміст і "
+"призначення."

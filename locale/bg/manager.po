@@ -1,7 +1,7 @@
-# Cyril Kamburov <cc@intermedia.bg>, 2024.
+# Cyril Kamburov <cc@intermedia.bg>, 2024, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-08-25 16:40+0000\n"
+"PO-Revision-Date: 2025-03-06 15:26+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "bg/>\n"
@@ -1743,3 +1743,8 @@ msgstr "Монографии"
 
 msgid "doi.editor.preview.chapters"
 msgstr "Раздел / глава: {$title}"
+
+msgid "manager.setup.contextSummary.description"
+msgstr ""
+"Предложете кратко описание на вашето издателство, за да разберерат "
+"читателите неговото съдържание и цел."

@@ -1,7 +1,7 @@
-# Cyril Kamburov <cc@intermedia.bg>, 2023.
+# Cyril Kamburov <cc@intermedia.bg>, 2023, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-11-20 07:38+0000\n"
+"PO-Revision-Date: 2025-03-06 15:26+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/bg/>\n"
@@ -104,3 +104,9 @@ msgstr ""
 
 msgid "plugins.themes.default.displayStats.monthInitials"
 msgstr "Яну Фев Мар Апр Май Юни Юли Авг Сеп Окт Ное Дек"
+
+msgid "plugins.themes.default.nextSlide"
+msgstr "Следващ слайд"
+
+msgid "plugins.themes.default.prevSlide"
+msgstr "Предишен слайд"
