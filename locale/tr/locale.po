@@ -1,16 +1,17 @@
 # Hüseyin Körpeoğlu <yoruyenturk@hotmail.com>, 2021.
+# "Dr. Uğur Koçak" <ugurkocak@hotmail.com>, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-11-21 22:23+0000\n"
-"Last-Translator: Hüseyin Körpeoğlu <yoruyenturk@hotmail.com>\n"
-"Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/omp/locale/"
-"tr_TR/>\n"
-"Language: tr_TR\n"
+"PO-Revision-Date: 2025-03-17 17:50+0000\n"
+"Last-Translator: \"Dr. Uğur Koçak\" <ugurkocak@hotmail.com>\n"
+"Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/omp/locale/tr/>"
+"\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "common.payments"
 msgstr "Ödemeler"
@@ -1556,13 +1557,13 @@ msgid "grid.catalogEntry.chapters"
 msgstr "Kısımlar"
 
 msgid "search.results.orderBy.article"
-msgstr ""
+msgstr "Makale Başlığı"
 
 msgid "search.results.orderBy.author"
-msgstr ""
+msgstr "Yazar"
 
 msgid "search.results.orderBy.date"
-msgstr ""
+msgstr "Yayınlanma Tarihi"
 
 msgid "search.results.orderBy.monograph"
 msgstr ""
@@ -1577,13 +1578,13 @@ msgid "search.results.orderBy.popularityMonth"
 msgstr ""
 
 msgid "search.results.orderBy.relevance"
-msgstr ""
+msgstr "Uygunluk"
 
 msgid "search.results.orderDir.asc"
-msgstr ""
+msgstr "Artan Sıralama"
 
 msgid "search.results.orderDir.desc"
-msgstr ""
+msgstr "Azalan Sıralama"
 
 msgid "section.section"
 msgstr "Dizi"
