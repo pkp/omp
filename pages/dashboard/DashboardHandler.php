@@ -1,12 +1,13 @@
 <?php
+
 /**
- * @file pages/dashboard/DashboardHandlerNext.php
+ * @file pages/dashboard/DashboardHandler.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class DashboardHandlerNext
+ * @class DashboardHandler
  *
  * @ingroup pages_dashboard
  *
@@ -21,10 +22,10 @@ use APP\facades\Repo;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\decision\Decision;
-use PKP\pages\dashboard\PKPDashboardHandlerNext;
+use PKP\pages\dashboard\PKPDashboardHandler;
 use PKP\submissionFile\SubmissionFile;
 
-class DashboardHandlerNext extends PKPDashboardHandlerNext
+class DashboardHandler extends PKPDashboardHandler
 {
     /**
      * Setup variables for the template
