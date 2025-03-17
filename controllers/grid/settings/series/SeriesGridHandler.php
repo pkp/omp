@@ -282,13 +282,13 @@ class SeriesGridHandler extends SetupGridHandler
         $series = Repo::section()->get($request->getUserVar('seriesId'), $press->getId());
 
         if (!$series) {
-            return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
+            return $this->sendErrorToUser($request->getUser()->getId(), 'manager.setup.errorDeletingItem');
         }
 
         // Validate if it can be deleted
         $seriesEmpty = Repo::section()->isEmpty($series->getId(), $press->getId());
         if (!$seriesEmpty) {
-            return new JSONMessage(false, __('manager.sections.alertDelete'));
+            return $this->sendErrorToUser($request->getUser()->getId(), 'manager.sections.alertDelete', $series->getId());
         }
 
         Repo::section()->delete($series);
@@ -361,5 +361,17 @@ class SeriesGridHandler extends SetupGridHandler
         }
 
         return new JSONMessage(false);
+    }
+
+    private function sendErrorToUser(int $userId, string $errorKey, ?int $elementId = null): JSONMessage
+    {
+        $notificationMgr = new NotificationManager();
+        $notificationMgr->createTrivialNotification(
+            $userId,
+            Notification::NOTIFICATION_TYPE_ERROR,
+            ['contents' => __($errorKey)]
+        );
+
+        return DAO::getDataChangedEvent($elementId);
     }
 }
