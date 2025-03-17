@@ -630,5 +630,3 @@ expiration_days = 3
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [features]
-
-enable_new_submission_listing = On
