@@ -266,7 +266,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
             $templateMgr->addHeader('dublinCorePages', '<meta name="DC.Identifier.pageNumber" content="' . htmlspecialchars($pages) . '"/>');
         }
 
-        $doi = $submissionFile->getDoi() ?? $chapter ? $chapter->getDoi() : $publication->getDoi();
+        $doi = $submissionFile->getDoi() ?? ($chapter ? $chapter->getDoi() : $publication->getDoi());
         if ($doi) {
             $templateMgr->addHeader('dublinCorePubIdDOI', '<meta name="DC.Identifier.DOI" content="' . htmlspecialchars($doi) . '"/>');
         }
