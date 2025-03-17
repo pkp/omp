@@ -420,7 +420,8 @@ class CatalogBookHandler extends Handler
         $urlPath[] = $submissionFile->getBestId();
 
         $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
-        $chapter = $chapterDao->getChapter($submissionFile->getData('chapterId'));
+        $chapterId = $submissionFile->getData('chapterId');
+        $chapter = $chapterId ? $chapterDao->getChapter((int) $chapterId) : null;
         $templateMgr = TemplateManager::getManager($request);
         $templateMgr->assign([
             'publishedSubmission' => $submission,
