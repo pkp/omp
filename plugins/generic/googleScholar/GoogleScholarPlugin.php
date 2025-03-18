@@ -18,6 +18,7 @@ use APP\core\Application;
 use APP\template\TemplateManager;
 use PKP\citation\CitationDAO;
 use PKP\db\DAORegistry;
+use PKP\i18n\LocaleConversion;
 use PKP\plugins\GenericPlugin;
 use PKP\plugins\Hook;
 
