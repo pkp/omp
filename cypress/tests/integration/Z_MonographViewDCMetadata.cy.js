@@ -402,7 +402,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 		cy.checkDoiConfig(['publication', 'chapter', 'representation', 'file']);
 
 		// After configuration, go to submissions
-		cy.get('nav').contains('Dashboards').click();
+		cy.get('nav').contains('Editor Dashboard').click();
 
 		// Create a new submission
 		cy.getCsrfToken();
