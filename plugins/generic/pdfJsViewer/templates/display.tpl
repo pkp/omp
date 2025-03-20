@@ -29,7 +29,7 @@
 
 		<a href="{$submissionUrl}" class="return">
 			<span class="pkp_screen_reader">
-				{translate key="catalog.viewableFile.return" monographTitle=$publishedSubmission->getCurrentPublication()->getLocalizedTitle()|escape}
+				{translate key="catalog.viewableFile.return" monographTitle=$publication->getLocalizedTitle()|escape}
 			</span>
 		</a>
 
