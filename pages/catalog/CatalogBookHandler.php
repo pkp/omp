@@ -46,23 +46,15 @@ use PKP\submission\GenreDAO;
 use PKP\submission\PKPSubmission;
 use PKP\submissionFile\SubmissionFile;
 use PKP\userGroup\UserGroup;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CatalogBookHandler extends Handler
 {
-    /** @var Publication The requested publication */
-    public $publication;
-
-    /** @var null|Chapter The requested chapter */
-    public $chapter = null;
-
-    /** @var array this array contains ids of all publications, those contain the requested chapter */
-    public $chapterPublicationIds = [];
-
-    /** @var bool Is this a request for a specific version */
-    public $isVersionRequest = false;
-
-    /** @var bool Is this a request for a chapter */
-    public $isChapterRequest = false;
+    public Publication $publication;
+    public ?Chapter $chapter = null;
+    public array $chapterPublicationIds = [];
+    public bool $isVersionRequest = false;
+    public bool $isChapterRequest = false;
 
     //
     // Overridden functions from PKPHandler
@@ -100,9 +92,15 @@ class CatalogBookHandler extends Handler
         $user = $request->getUser();
         $this->setupTemplate($request, $submission);
 
-        // Serve 404 if no submission available OR submission is unpublished and no user is logged in OR submission is unpublished and we have a user logged in but the user does not have access to preview
-        if (!$submission || ($submission->getData('status') !== PKPSubmission::STATUS_PUBLISHED && !$user) || ($submission->getData('status') !== PKPSubmission::STATUS_PUBLISHED && $user && !Repo::submission()->canPreview($user, $submission))) {
-            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+        // Serve 404 if no submission available
+        // OR submission is unpublished and no user is logged in
+        // OR submission is unpublished, and we have a user logged in but the user does not have access to preview
+        if (
+            !$submission ||
+            ($submission->getData('status') !== PKPSubmission::STATUS_PUBLISHED && !$user) ||
+            ($submission->getData('status') !== PKPSubmission::STATUS_PUBLISHED && $user && !Repo::submission()->canPreview($user, $submission))
+        ) {
+            throw new NotFoundHttpException();
         }
 
         // Get the requested publication or default to the current publication
@@ -121,7 +119,7 @@ class CatalogBookHandler extends Handler
         }
 
         if (!$this->publication || ($this->publication->getData('status') !== PKPSubmission::STATUS_PUBLISHED && !Repo::submission()->canPreview($user, $submission))) {
-            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+            throw new NotFoundHttpException();
         }
 
         // If the publication has been reached through an outdated
@@ -144,7 +142,7 @@ class CatalogBookHandler extends Handler
 
         if ($this->isChapterRequest) {
             if (!$this->chapter->isPageEnabled()) {
-                throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+                throw new NotFoundHttpException();
             }
             $chapterAuthors = $this->chapter->getAuthors();
             $chapterAuthors = $chapterAuthors->toArray();
@@ -205,7 +203,7 @@ class CatalogBookHandler extends Handler
         ]);
 
         // Assign chapters (if they exist)
-        /** @var ChapterDAO */
+        /** @var ChapterDAO $chapterDao */
         $chapterDao = DAORegistry::getDAO('ChapterDAO');
         $templateMgr->assign('chapters', $chapterDao->getByPublicationId($this->publication->getId())->toAssociativeArray());
 
@@ -230,7 +228,7 @@ class CatalogBookHandler extends Handler
 
         // Citations
         if ($this->publication->getData('citationsRaw')) {
-            /** @var CitationDAO */
+            /** @var CitationDAO $citationDao */
             $citationDao = DAORegistry::getDAO('CitationDAO');
             $parsedCitations = $citationDao->getByPublicationId($this->publication->getId());
             $templateMgr->assign([
@@ -299,6 +297,7 @@ class CatalogBookHandler extends Handler
             'orcidUnauthenticatedIcon' => OrcidManager::getUnauthenticatedIcon(),
         ]);
 
+        // Add ROR icon
         $rorIconPath = Core::getBaseDir() . '/' . PKP_LIB_PATH . '/templates/images/ror.svg';
         $rorIdIcon = file_exists($rorIconPath) ? file_get_contents($rorIconPath) : '';
         $templateMgr->assign('rorIdIcon', $rorIdIcon);
@@ -306,7 +305,7 @@ class CatalogBookHandler extends Handler
         // Ask robots not to index outdated versions and point to the canonical url for the latest version
         if ($this->publication->getId() != $submission->getData('currentPublicationId')) {
             $templateMgr->addHeader('noindex', '<meta name="robots" content="noindex">');
-            $url = $request->getDispatcher()->url($request, PKPApplication::ROUTE_PAGE, null, 'catalog', 'book', $submission->getBestId());
+            $url = $request->getDispatcher()->url($request, PKPApplication::ROUTE_PAGE, null, 'catalog', 'book', [$submission->getBestId()]);
             $templateMgr->addHeader('canonical', '<link rel="canonical" href="' . $url . '">');
         }
 
@@ -348,6 +347,7 @@ class CatalogBookHandler extends Handler
     public function download($args, $request, $view = false)
     {
         $dispatcher = $request->getDispatcher();
+        /* @var Submission $submission */
         $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
         $this->setupTemplate($request, $submission);
         $press = $request->getPress();
@@ -357,16 +357,15 @@ class CatalogBookHandler extends Handler
         if ($subPath === 'version') {
             $publicationId = array_shift($args);
             $representationId = array_shift($args);
-            $bestFileId = array_shift($args);
         } else {
             $publicationId = $submission->getCurrentPublication()->getId();
             $representationId = $subPath;
-            $bestFileId = array_shift($args);
         }
+        $bestFileId = array_shift($args);
 
         $publicationFormat = Application::get()->getRepresentationDAO()->getByBestId($representationId, $publicationId);
         if (!$publicationFormat || !$publicationFormat->getIsAvailable() || $publicationFormat->getData('urlRemote')) {
-            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+            throw new NotFoundHttpException();
         }
 
         $publication = null;
@@ -377,10 +376,12 @@ class CatalogBookHandler extends Handler
             }
         }
 
-        if (empty($publication)
-                || $publication->getData('status') !== PKPSubmission::STATUS_PUBLISHED
-                || $publicationFormat->getData('publicationId') !== $publication->getId()) {
-            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+        if (
+            empty($publication) ||
+            $publication->getData('status') !== PKPSubmission::STATUS_PUBLISHED ||
+            $publicationFormat->getData('publicationId') !== $publication->getId()
+        ) {
+            throw new NotFoundHttpException();
         }
 
         $submissionFile = Repo::submissionFile()
@@ -390,7 +391,7 @@ class CatalogBookHandler extends Handler
                 $submission->getId()
             );
         if (!$submissionFile) {
-            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+            throw new NotFoundHttpException();
         }
 
         $path = $submissionFile->getData('path');
@@ -398,17 +399,18 @@ class CatalogBookHandler extends Handler
         switch ($submissionFile->getData('assocType')) {
             case Application::ASSOC_TYPE_PUBLICATION_FORMAT: // Publication format file
                 if ($submissionFile->getData('assocId') != $publicationFormat->getId() || $submissionFile->getDirectSalesPrice() === null) {
-                    throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+                    throw new NotFoundHttpException();
                 }
                 break;
             case Application::ASSOC_TYPE_SUBMISSION_FILE: // Dependent file
                 $genreDao = DAORegistry::getDAO('GenreDAO'); /** @var GenreDAO $genreDao */
-                $genre = $genreDao->getById($submissionFile->getGenreId());
+                $genre = $genreDao->getById($submissionFile->getData('genreId'));
                 if (!$genre->getDependent()) {
-                    throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+                    throw new NotFoundHttpException();
                 }
                 return app()->get('file')->download($submissionFile->getData('fileId'), $filename);
-            default: throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+            default:
+                throw new NotFoundHttpException();
         }
 
         $urlPath = [$submission->getBestId()];
@@ -425,6 +427,7 @@ class CatalogBookHandler extends Handler
         $templateMgr = TemplateManager::getManager($request);
         $templateMgr->assign([
             'publishedSubmission' => $submission,
+            'publication' => $publication,
             'publicationFormat' => $publicationFormat,
             'submissionFile' => $submissionFile,
             'chapter' => $chapter,
@@ -449,16 +452,17 @@ class CatalogBookHandler extends Handler
 
             // Inline viewer not available, or viewing not wanted.
             // Download or show the file.
-            $inline = $request->getUserVar('inline') ? true : false;
+            $inline = (bool)$request->getUserVar('inline');
             if (Hook::call('CatalogBookHandler::download', [&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline])) {
                 // If the plugin handled the hook, prevent further default activity.
                 exit;
             }
 
-            // if the file is a publication format file (i.e. not a dependent file e.g. CSS or images), fire an usage event.
+            // if the file is a publication format file (i.e. not a dependent file e.g. CSS or images),
+            // fire a usage event.
             if ($submissionFile->getData('assocId') == $publicationFormat->getId()) {
                 $assocType = Application::ASSOC_TYPE_SUBMISSION_FILE;
-                /** @var GenreDAO */
+                /** @var GenreDAO $genreDao */
                 $genreDao = DAORegistry::getDAO('GenreDAO');
                 $genre = $genreDao->getById($submissionFile->getData('genreId'));
                 // TO-DO: is this correct ?
@@ -523,7 +527,7 @@ class CatalogBookHandler extends Handler
     {
         if ($chapterId > 0) {
             $this->isChapterRequest = true;
-            /** @var ChapterDAO */
+            /** @var ChapterDAO $chapterDao */
             $chapterDao = DAORegistry::getDAO('ChapterDAO');
             $chapters = $chapterDao->getBySourceChapterId($chapterId);
             $chapters = $chapters->toAssociativeArray();
@@ -541,7 +545,7 @@ class CatalogBookHandler extends Handler
             }
 
             if (null === $this->chapter) {
-                throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+                throw new NotFoundHttpException();
             }
         }
     }
@@ -552,7 +556,7 @@ class CatalogBookHandler extends Handler
     protected function setChapterPublicationIds(): void
     {
         if ($this->chapter && $this->isChapterRequest) {
-            /** @var ChapterDAO */
+            /** @var ChapterDAO $chapterDao */
             $chapterDao = DAORegistry::getDAO('ChapterDAO');
             $chapters = $chapterDao->getBySourceChapterId($this->chapter->getSourceChapterId());
             $chapters = $chapters->toAssociativeArray();
@@ -574,7 +578,7 @@ class CatalogBookHandler extends Handler
      */
     protected function getSourceChapter(Submission $submission): ?Chapter
     {
-        /** @var ChapterDAO */
+        /** @var ChapterDAO $chapterDao */
         $chapterDao = DAORegistry::getDAO('ChapterDAO');
         $chapters = $chapterDao->getBySourceChapterId($this->chapter->getSourceChapterId());
         $chapters = $chapters->toAssociativeArray();
