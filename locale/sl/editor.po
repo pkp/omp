@@ -48,7 +48,7 @@ msgid "editor.monograph.uploadReviewForReviewer"
 msgstr "Naloži recenzijo"
 
 msgid "editor.monograph.peerReviewOptions"
-msgstr "Nastavitve recenzije"
+msgstr "Nastavitve recenzij"
 
 msgid "editor.monograph.selectProofreadingFiles"
 msgstr "Korekturna datoteka"
