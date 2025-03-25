@@ -1,2 +1,2 @@
-pressPath,authorString,title,abstract,seriesPath,year,isEditedVolume,locale,filename,doi
-publicknowledge,Author1 Surname1<author@pkp.sfu.ca>;Author2 Surname2<author2@sfu.pkp.ca>,Title text,Abstract text,,2024,1,en,submission.pdf,https://doi.org/10.1111/hex.12487
+pressPath,authorString,title,abstract,seriesPath,year,isEditedVolume,locale,filename,doi,keywords,subjects,bookCoverImage,bookCoverImageAltText,categories,genreName
+leo,"Given1,Family1,given1.family1@example.com;Name,,name@emailprovider.net;Jean-Luc,,;O'Reilly,,;Juan Pablo,Montoya da Silva,juanpablo@racing.com;Фёдор,Достоевский,fyodor@literature.ru;محمد,علي,muhammad.ali@boxing.sa;John D.,Whatever-Name,john.d@whatevername.com",Title text,Abstract text,,2024,1,en,submission.pdf,10.1111/hex.12487,keyword1;keyword2;keyword3,subject1;subject2,coverImage.png,"Alt text, with commas",Category 1;Category 2;Category 3,MANUSCRIPT
