@@ -1,12 +1,12 @@
 # Niels Erik Frederiksen <nef@kb.dk>, 2021.
-# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022, 2023, 2024.
+# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022, 2023, 2024, 2025.
 # Jesper B. Thestrup <jbt@kb.dk>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2024-08-29 15:40+0000\n"
+"PO-Revision-Date: 2025-03-26 07:24+0000\n"
 "Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/locale/da/>\n"
 "Language: da\n"
@@ -269,7 +269,7 @@ msgid "grid.catalogEntry.availableRepresentation.notApproved"
 msgstr "Afventer godkendelse"
 
 msgid "grid.catalogEntry.fileSizeRequired"
-msgstr "En filstørrelse til digitale formater er påkrævet."
+msgstr "Der kræves en filstørrelse på digitale formater."
 
 msgid "grid.catalogEntry.productAvailabilityRequired"
 msgstr "En produkttilgængelighedskode er påkrævet."
@@ -369,7 +369,7 @@ msgstr "Agent"
 msgid "grid.catalogEntry.agentTip"
 msgstr ""
 "Du kan vælge en agent til at repræsentere dig i dette prædefinerede område. "
-"Det kræves ikke."
+"Det er ikke påkrævet."
 
 msgid "grid.catalogEntry.supplier"
 msgstr "Leverandør"
@@ -1655,3 +1655,6 @@ msgstr ""
 ":{$siteAdminEmail}\">{$siteAdminEmail}</a>) for at gøre vedkommende "
 "opmærksom på den nye version. Få mere information på <a href=\"https://pkp."
 "sfu.ca/ojs/ojs_download/\" target=\"_new\">PKP's hjemmeside</a>."
+
+msgid "monograph.publicationFormat.onixDeprecated"
+msgstr " (Afbrudt)"
