@@ -273,7 +273,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
             $submissionFile = Repo::submissionFile()->newDataObject();
             $submissionFile->setData('submissionId', $submissionId);
             $submissionFile->setData('uploaderUserId', $user->getId());
-            $submissionFile->setSubmissionLocale($submission->getData('locale'));
+            $submissionFile->setData('submissionLocale', $submission->getData('locale'));
             $submissionFile->setGenreId($genre->getId());
             $submissionFile->setFileStage(SubmissionFile::SUBMISSION_FILE_PROOF);
             $submissionFile->setAssocType(Application::ASSOC_TYPE_REPRESENTATION);
