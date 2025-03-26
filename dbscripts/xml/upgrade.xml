@@ -166,6 +166,9 @@
 		<note file="docs/release-notes/README-3.5.0" />
 	</upgrade>
 
+	<upgrade minversion="3.4.0.0" maxversion="3.4.9.9">
+		<migration class="APP\migration\upgrade\v3_4_0\I11125_UpdateEmailTemplateVariables"/>
+	</upgrade>
 	<!-- Update plugin configuration - should be done as the final upgrade task -->
 	<code function="addPluginVersions" />
 </install>
