@@ -1395,9 +1395,6 @@ msgstr "Genel Duyurular"
 msgid "notification.type.editorAssignmentTask"
 msgstr "Bir editörün atanması gereken yeni bir yazı gönderildi."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "\"{$file}\" için sayfa düzenini gözden geçirmeniz istendi."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "“{$title}” için mizanpaj düzenini gözden geçirmeniz istendi."
 

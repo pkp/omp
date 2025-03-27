@@ -26,8 +26,6 @@ class I7264_UpdateEmailTemplates extends \PKP\migration\upgrade\v3_4_0\I7264_Upd
                 $newVariable = 'pressUrl';
             } elseif ($newVariable === 'contextSignature') {
                 $newVariable = 'pressSignature';
-            } elseif ($newVariable === 'contextAcronym') {
-                $newVariable = 'pressAcronym';
             }
         });
 

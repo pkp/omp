@@ -1429,9 +1429,6 @@ msgstr "Nyilvános értesítések"
 msgid "notification.type.editorAssignmentTask"
 msgstr "Új kiadványt küldtek be, amelyhez szerkesztőt kell hozzárendelni."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "Felkérték a(z) \"{$file}\" olvasószerkesztői átekintésére."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Felkérték a(z) \"{$cím}\" tördelőszerkesztői áttekintésére."
 

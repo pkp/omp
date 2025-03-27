@@ -1334,9 +1334,6 @@ msgstr "یک خواننده برای عنوان {$title} نظر ارسال نم�
 msgid "notification.type.public"
 msgstr "اعلانات عمومی"
 
-msgid "notification.type.copyeditorRequest"
-msgstr "از شما برای بررسی فایل {$file} درخواست شده است."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "از شما برای بررسی ویراستاری عنوان \"{$file}\" درخواست شده است."
 

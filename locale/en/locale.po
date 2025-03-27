@@ -1297,9 +1297,6 @@ msgstr "Public Announcements"
 msgid "notification.type.editorAssignmentTask"
 msgstr "A new monograph has been submitted to which an editor needs to be assigned."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "You have been asked to review copyedits for \"{$file}\"."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "You have been asked to review layouts for \"{$title}\"."
 

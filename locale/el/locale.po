@@ -1406,9 +1406,6 @@ msgstr ""
 "Μία νέα μονογραφία έχει υποβληθεί και έιναι απαραίτητο να ανατεθεί σε έναν "
 "επιμελητή."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "Έχετε κληθεί να θεωρήσετε την επιμέλεια κειμένων για το \"{$file}\"."
-
 msgid "notification.type.layouteditorRequest"
 msgstr ""
 "Έχετε κληθεί να θεωρήσετε την επιμέλεια σελιδοποίησης για το \"{$title}\"."
