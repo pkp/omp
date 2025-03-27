@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:10-08:00\n"
-"PO-Revision-Date: 2025-03-26 14:15+0000\n"
+"PO-Revision-Date: 2025-03-27 11:18+0000\n"
 "Last-Translator: Matevž Rudolf <matevz.rudolf@uni-lj.si>\n"
 "Language-Team: Slovenian <http://translate.pkp.sfu.ca/projects/omp/locale/sl/"
 ">\n"
@@ -200,13 +200,13 @@ msgid "grid.catalogEntry.remoteURL"
 msgstr "URL do vsebine na daljavo"
 
 msgid "grid.catalogEntry.isbn"
-msgstr ""
+msgstr "ISBN"
 
 msgid "grid.catalogEntry.isbn13.description"
-msgstr ""
+msgstr "13-mestna ISBN številka, kot je 978-951-98548-9-2."
 
 msgid "grid.catalogEntry.isbn10.description"
-msgstr ""
+msgstr "10-mestna ISBN koda, kot je 951-98548-9-4."
 
 msgid "grid.catalogEntry.monographRequired"
 msgstr "ID monografske publikacije je obvezen."
@@ -231,6 +231,8 @@ msgstr "Odobritev formata"
 
 msgid "grid.catalogEntry.approvedRepresentation.message"
 msgstr ""
+"<p>Odobrite metapodatke za ta format. Metapodatke lahko preverite v razdelku "
+"za urejanje vsakega formata.</p>"
 
 msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
 msgstr "<p>Označite, da metapodatki za ta format niso bili odobreni.</p>"
@@ -1581,3 +1583,6 @@ msgstr ""
 
 msgid "section.section"
 msgstr "Zbirka"
+
+msgid "monograph.publicationFormat.onixDeprecated"
+msgstr " (Prekinjeno)"
