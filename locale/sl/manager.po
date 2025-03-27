@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:10-08:00\n"
-"PO-Revision-Date: 2025-03-27 11:01+0000\n"
+"PO-Revision-Date: 2025-03-27 11:18+0000\n"
 "Last-Translator: Matevž Rudolf <matevz.rudolf@uni-lj.si>\n"
 "Language-Team: Slovenian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "sl/>\n"
@@ -457,6 +457,10 @@ msgstr ""
 
 msgid "manager.setup.emailBounceAddress.disabled"
 msgstr ""
+"Za pošiljanje neustreznih e-poštnih sporočil na naslov za odboj, mora "
+"skrbnik strani omogočiti možnost <code>allow_envelope_sender</code> v "
+"konfiguracijski datoteki strani. Morda bo potrebna tudi konfiguracija "
+"strežnika, kot je navedeno v dokumentaciji OMP."
 
 msgid "manager.setup.emails"
 msgstr "Identifikacija e-poštnega naslova"
@@ -466,18 +470,24 @@ msgstr "Podpis"
 
 msgid "manager.setup.emailSignature.description"
 msgstr ""
+"E-poštna sporočila, samodejno poslana v imenu založbe, bodo imela dodan "
+"naslednji podpis."
 
 msgid "manager.setup.enableAnnouncements.enable"
 msgstr "Omogoči obvestila"
 
 msgid "manager.setup.enableAnnouncements.description"
 msgstr ""
+"Obvestila se lahko objavijo, da obvestijo bralce o novicah in dogodkih. "
+"Objavljena obvestila bodo prikazana na strani Obvestila."
 
 msgid "manager.setup.numAnnouncementsHomepage"
-msgstr ""
+msgstr "Prikaži na osnovni (domači) strani"
 
 msgid "manager.setup.numAnnouncementsHomepage.description"
 msgstr ""
+"Koliko obvestil naj se prikaže na domači strani? Pustite prazno, če ne "
+"želite prikazovati nobenega."
 
 msgid "manager.setup.enablePressInstructions"
 msgstr "Omogoči, da se publikacija pojavlja javno na spletišču"
@@ -552,10 +562,10 @@ msgid "manager.setup.preparingWorkflow"
 msgstr "3. korak Priprava poteka dela"
 
 msgid "manager.setup.identity"
-msgstr ""
+msgstr "Identiteta založbe"
 
 msgid "manager.setup.information"
-msgstr ""
+msgstr "Informacije"
 
 msgid "manager.setup.information.description"
 msgstr ""
@@ -572,13 +582,13 @@ msgid "manager.setup.information.forReaders"
 msgstr "Za bralce"
 
 msgid "manager.setup.information.success"
-msgstr ""
+msgstr "Informacije o tej založbi so bile posodobljene."
 
 msgid "manager.setup.institution"
 msgstr "Institucija"
 
 msgid "manager.setup.itemsPerPage"
-msgstr ""
+msgstr "Število elementov na stran"
 
 msgid "manager.setup.itemsPerPage.description"
 msgstr ""
@@ -1092,7 +1102,7 @@ msgstr "Dovoli prispevke v to zbirko"
 
 msgid "manager.setup.issnDescription"
 msgstr ""
-"ISSN je mednarodna standardna 8-mestna serijska številka publikacije, ki  "
+"ISSN je mednarodna standardna 8-mestna serijska številka publikacije, ki "
 "omogoča identifikacijo periodičnih publikacij, tudi elektronskih. Številko "
 "ISSN je mogoče pridobiti na <a href=\"http://www.issn.org\" target=\"_blank\""
 ">uradna stran ISSN</a>."
