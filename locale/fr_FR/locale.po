@@ -1552,9 +1552,6 @@ msgstr "Événements du site"
 msgid "notification.type.public"
 msgstr "Annonces publiques"
 
-msgid "notification.type.copyeditorRequest"
-msgstr "On vous a demandé de réviser les corrections dans « {$file} »."
-
 msgid "notification.type.layouteditorRequest"
 msgstr ""
 "Vous avez été invité à réviser la mise en page pour le titre « {$title} »."
