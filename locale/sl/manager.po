@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:10-08:00\n"
-"PO-Revision-Date: 2025-03-27 10:58+0000\n"
+"PO-Revision-Date: 2025-03-27 11:01+0000\n"
 "Last-Translator: Matevž Rudolf <matevz.rudolf@uni-lj.si>\n"
 "Language-Team: Slovenian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "sl/>\n"
@@ -365,6 +365,8 @@ msgstr "Največja širina slike naslovnice"
 
 msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
 msgstr ""
+"Slike bodo zmanjšane, če bodo večje od te velikosti, vendar se ne bodo "
+"povečale ali raztegnile, da bi ustrezale tem dimenzijam."
 
 msgid "manager.setup.customizingTheLook"
 msgstr "5. korak Prilagajanje izgleda"
@@ -414,16 +416,18 @@ msgid "manager.setup.displayFeaturedBooks"
 msgstr "Na domači strani prikaži predstavljene knjige"
 
 msgid "manager.setup.displayFeaturedBooks.label"
-msgstr ""
+msgstr "Izpostavljene knjige"
 
 msgid "manager.setup.displayNewReleases"
 msgstr "Prikaži novosti na domači strani"
 
 msgid "manager.setup.displayNewReleases.label"
-msgstr ""
+msgstr "Nove izdaje"
 
 msgid "manager.setup.enableDois.description"
 msgstr ""
+"Dovolite dodelitev digitalnih identifikatorjev objektov (DOI) delom, ki jih "
+"je izdala ta založba."
 
 #, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
@@ -431,12 +435,14 @@ msgstr "Izberite objekte, ki jim boste dodelili DOI."
 
 msgid "doi.manager.settings.doiSuffixLegacy"
 msgstr ""
+"Uporabite privzete vzorce.<br />%p.%m za monografije<br />%p.%m.c%c za "
+"poglavja<br />%p.%m.%f za publikacijske formate<br />%p.%m.%f.%s za datoteke."
 
 msgid "doi.manager.settings.doiCreationTime.copyedit"
-msgstr ""
+msgstr "Ko dosežete fazo lektoriranja"
 
 msgid "manager.dois.formatIdentifier.file"
-msgstr ""
+msgstr "Format / {$format}"
 
 msgid "manager.setup.editorDecision"
 msgstr "Uredniška odločitev"
@@ -1627,3 +1633,6 @@ msgstr ""
 msgid "manager.setup.contextSummary.description"
 msgstr ""
 "Ponudite kratek opis vaše založbe, da predstavite njeno vsebino in namen."
+
+msgid "manager.dois.disabledChaptersDescription"
+msgstr "Poglavja brez svoje samostojne strani ne morejo imeti DOI."
