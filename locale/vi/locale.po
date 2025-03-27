@@ -1207,9 +1207,6 @@ msgstr ""
 msgid "notification.type.editorAssignmentTask"
 msgstr ""
 
-msgid "notification.type.copyeditorRequest"
-msgstr ""
-
 msgid "notification.type.layouteditorRequest"
 msgstr ""
 
