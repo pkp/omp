@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:10-08:00\n"
-"PO-Revision-Date: 2025-03-27 11:20+0000\n"
+"PO-Revision-Date: 2025-03-27 11:31+0000\n"
 "Last-Translator: Matevž Rudolf <matevz.rudolf@uni-lj.si>\n"
 "Language-Team: Slovenian <http://translate.pkp.sfu.ca/projects/omp/locale/sl/"
 ">\n"
@@ -654,10 +654,10 @@ msgid "catalog.manage.noSubmissionsSelected"
 msgstr "Noben prispevek ni bil izbran za dodajanje v katalog."
 
 msgid "catalog.manage.submissionsNotFound"
-msgstr ""
+msgstr "Enega ali več prispevkov ni bilo mogoče najti."
 
 msgid "catalog.manage.findSubmissions"
-msgstr ""
+msgstr "Poiščite monografije, ki jih želite dodati v katalog"
 
 msgid "catalog.noTitles"
 msgstr "Zaenkrat še ni objavljenih naslovov."
@@ -701,7 +701,7 @@ msgid "catalog.published"
 msgstr "Izdano"
 
 msgid "catalog.forthcoming"
-msgstr ""
+msgstr "Napovedujemo"
 
 msgid "catalog.categories"
 msgstr "Kategorije"
@@ -746,13 +746,13 @@ msgid "catalog.viewableFile.return"
 msgstr "Vrni se na pregled podrobnosti o {$monographTitle}"
 
 msgid "submission.search"
-msgstr ""
+msgstr "Iskanje knjig"
 
 msgid "common.publication"
-msgstr ""
+msgstr "Monografija"
 
 msgid "common.publications"
-msgstr ""
+msgstr "Monografije"
 
 msgid "common.prefix"
 msgstr "Predpona"
@@ -794,7 +794,7 @@ msgid "navigation.competingInterestPolicy"
 msgstr "Politika konflikta interesov"
 
 msgid "navigation.catalog.allMonographs"
-msgstr ""
+msgstr "Vse monografije"
 
 msgid "navigation.catalog.manage"
 msgstr "Upravljaj"
@@ -836,25 +836,25 @@ msgid "navigation.linksAndMedia"
 msgstr "Povezave in družabna omrežja"
 
 msgid "navigation.navigationMenus.catalog.description"
-msgstr ""
+msgstr "Povezava do vašega kataloga."
 
 msgid "navigation.navigationMenus.series.generic"
-msgstr ""
+msgstr "Zbirke"
 
 msgid "navigation.navigationMenus.series.description"
-msgstr ""
+msgstr "Povezava do zbirk."
 
 msgid "navigation.navigationMenus.category.generic"
-msgstr ""
+msgstr "Kategorija"
 
 msgid "navigation.navigationMenus.category.description"
-msgstr ""
+msgstr "Povezava do kategorije."
 
 msgid "navigation.navigationMenus.newRelease"
-msgstr ""
+msgstr "Nove izdaje"
 
 msgid "navigation.navigationMenus.newRelease.description"
-msgstr ""
+msgstr "Povezava do vaših novih izdaj."
 
 msgid "context.contexts"
 msgstr "Založbe"
@@ -869,7 +869,7 @@ msgid "context.select"
 msgstr "Preklopite na drugo založbo:"
 
 msgid "user.authorization.representationNotFound"
-msgstr ""
+msgstr "Zahtevani format za publikacije ni bil najden."
 
 msgid "user.noRoles.selectUsersWithoutRoles"
 msgstr "V založbo vključi uporabnike brez vloge."
@@ -897,6 +897,7 @@ msgstr "Da, zahtevaj vlogo {$userGroup}."
 
 msgid "user.reviewerPrompt.optin"
 msgstr ""
+"Da, želim biti obveščen z zahtevami za recenziranje publikacij za to založbo."
 
 msgid "user.register.contextsPrompt"
 msgstr "Pri katerih založbah na spletišču bi se radi registrirali?"
@@ -981,6 +982,8 @@ msgstr "Izbrati morate vsaj eno vlogo"
 
 msgid "user.register.form.privacyConsentThisContext"
 msgstr ""
+"Da, soglašam, da se moji podatki zbirajo in shranijo v skladu s <a href=\""
+"{$privacyUrl}\" target=\"_blank\">izjavo o zasebnosti</a> te založbe."
 
 msgid "site.noPresses"
 msgstr ""
