@@ -1400,9 +1400,6 @@ msgstr "Публічні оголошення"
 msgid "notification.type.editorAssignmentTask"
 msgstr "Було подано нову монографію, для якої потрібно призначити редактора."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "Вас попросили виконати літературне редагування \"{$file}\"."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Вас попросили виконати верстання \"{$title}\"."
 

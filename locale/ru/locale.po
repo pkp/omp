@@ -1418,9 +1418,6 @@ msgstr "Публичные объявления"
 msgid "notification.type.editorAssignmentTask"
 msgstr "Была отправлена новая книга, которой нужно назначить редактора."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "Вас попросили выполнить литературное редактирование для «{$file}»."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Вас попросили выполнить верстку для «{$title}»."
 

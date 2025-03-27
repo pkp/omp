@@ -1397,9 +1397,6 @@ msgstr "Oppslag"
 msgid "notification.type.editorAssignmentTask"
 msgstr "En ny monografi har blitt levert inn. Opprett en redaktør for den."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "Du har blitt bedt om å se over språvasken av «{$title}»."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Du har blitt bedt om å se over layouten av «{$title}»."
 
