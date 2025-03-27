@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:10-08:00\n"
-"PO-Revision-Date: 2025-03-08 03:38+0000\n"
+"PO-Revision-Date: 2025-03-26 14:15+0000\n"
 "Last-Translator: Matevž Rudolf <matevz.rudolf@uni-lj.si>\n"
 "Language-Team: Slovenian <http://translate.pkp.sfu.ca/projects/omp/locale/sl/"
 ">\n"
@@ -405,7 +405,7 @@ msgid "grid.action.deleteRepresentative"
 msgstr "Izbriši tega zastopnika"
 
 msgid "manager.series.open"
-msgstr "Odpri oddajo prispevkov"
+msgstr "Odprti prispevki"
 
 msgid "manager.series.indexed"
 msgstr "Indeksirano"
@@ -507,7 +507,7 @@ msgid "grid.action.approveProofs"
 msgstr "Oglej si mrežo vzorcev"
 
 msgid "grid.action.proofApproved"
-msgstr "Format je  popravljen"
+msgstr "Format je popravljen"
 
 msgid "grid.action.availableRepresentation"
 msgstr "Odobri/zavrni format"
@@ -549,7 +549,7 @@ msgid "catalog.manage.series.issn.validation"
 msgstr "Vnesite veljavno številko ISSN."
 
 msgid "catalog.manage.series.issn.equalValidation"
-msgstr "Številki ISSN tiskane  in spletne izdaje ne smeta biti enaki."
+msgstr "Številki ISSN tiskane in spletne izdaje ne smeta biti enaki."
 
 msgid "catalog.manage.series.onlineIssn"
 msgstr "E-ISSN"
@@ -786,7 +786,7 @@ msgid "navigation.catalog"
 msgstr "Katalog"
 
 msgid "navigation.competingInterestPolicy"
-msgstr "Politika  konflikta interesov"
+msgstr "Politika konflikta interesov"
 
 msgid "navigation.catalog.allMonographs"
 msgstr ""
@@ -901,7 +901,7 @@ msgstr "Zahtevaj naslednje vloge."
 
 msgid "user.register.noContextReviewerInterests"
 msgstr ""
-"Če ste zahtevali vlogo revizorja pri kateri koli založbi,  vnesite predmetne "
+"Če ste zahtevali vlogo revizorja pri kateri koli založbi, vnesite predmetne "
 "interese."
 
 msgid "user.role.manager"
@@ -1052,7 +1052,8 @@ msgid "about.pressSponsorship"
 msgstr "Sponzorstvo založbe"
 
 msgid "about.aboutThisPublishingSystem"
-msgstr "O postopku objave"
+msgstr ""
+"Več informacij o tej spletnem portalu, platformi in delovnem procesu OMP/PKP."
 
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "Uredniški postopek in postopek objave OMP"

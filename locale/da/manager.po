@@ -1,12 +1,12 @@
 # Niels Erik Frederiksen <nef@kb.dk>, 2021.
-# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022, 2023, 2024.
+# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022, 2023, 2024, 2025.
 # Jesper B. Thestrup <jbt@kb.dk>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2024-08-23 14:46+0000\n"
+"PO-Revision-Date: 2025-03-25 06:50+0000\n"
 "Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/manager/da/>"
 "\n"
@@ -1720,3 +1720,8 @@ msgstr "Udgiverens initialer"
 
 msgid "manager.dois.disabledChaptersDescription"
 msgstr "Kapitler uden en landing page kan ikke have en DOI."
+
+msgid "manager.setup.contextSummary.description"
+msgstr ""
+"Giv en kort beskrivelse af din udgiver for at give indsigt i indhold og "
+"formål."
