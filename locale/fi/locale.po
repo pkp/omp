@@ -1405,11 +1405,6 @@ msgstr "Julkiset ilmoitukset"
 msgid "notification.type.editorAssignmentTask"
 msgstr "Uusi kirja on lähetetty ja sille tulee valita toimittaja."
 
-msgid "notification.type.copyeditorRequest"
-msgstr ""
-"Sinua on pyydetty arvioimaan tiedoston \"{$file}\" teknisesti toimitetut "
-"tiedostot."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Sinua on pyydetty arvioimaan nimekkeen \"{$title}\" taitot."
 

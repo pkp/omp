@@ -1418,9 +1418,6 @@ msgstr ""
 "Une nouvelle monographie a été soumise. On doit lui assigner un rédacteur en "
 "chef."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "On vous a demandé de réviser les corrections dans \"{$file}\"."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "On vous a demandé de réviser la mise en page de \"{$title}\"."
 

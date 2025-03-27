@@ -1421,9 +1421,6 @@ msgstr ""
 "Se ha realizado una propuesta de una monografía para la cuál es necesario "
 "asignar un Editor."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "Le pedimos que revise las correcciones para \"{$file}\"."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Le pedimos que revise la maquetación para \"{$title}\"."
 
