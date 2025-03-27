@@ -1445,9 +1445,6 @@ msgstr "Javne objave"
 msgid "notification.type.editorAssignmentTask"
 msgstr "Prijavljena je nova monografija kojoj je potrebno odrediti urednika."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "Zamoljeni ste da pregledate kopije za \"{$file}\"."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Zamoljeni ste da pregledate izglede za \"{$title}\"."
 

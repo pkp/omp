@@ -1508,11 +1508,6 @@ msgstr "Fiosan-naidheachd poblach"
 msgid "notification.type.editorAssignmentTask"
 msgstr "Chaidh monograf ùr a chur agus tha e feumach air deasaiche."
 
-msgid "notification.type.copyeditorRequest"
-msgstr ""
-"Chaidh iarraidh ort lèirmheas a dhèanamh air a’ ghrinn-deasachadh a rinneadh "
-"air “{$title}”."
-
 msgid "notification.type.layouteditorRequest"
 msgstr ""
 "Chaidh iarraidh ort lèirmheas a dhèanamh air a’ cho-dhealbhachd aig "

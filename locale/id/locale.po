@@ -1460,9 +1460,6 @@ msgstr "Pengumuman Publik"
 msgid "notification.type.editorAssignmentTask"
 msgstr "Monograf baru telah diserahkan dan perlu menunjuk editor."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "Anda telah diminta untuk meninjau copyedit untuk \"{$file}\"."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Anda telah diminta untuk meninjau tata letak untuk \"{$title}\"."
 

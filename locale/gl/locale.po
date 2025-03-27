@@ -1470,9 +1470,6 @@ msgstr "Anuncios públicos"
 msgid "notification.type.editorAssignmentTask"
 msgstr "Enviouse unha nova monografía á que hai que asignar un editor/a."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "Pedíronche que revises as correccións de \"{$file}\"."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Pedíronche que revises os deseños de \"{$title}\"."
 

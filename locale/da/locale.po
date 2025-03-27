@@ -1468,11 +1468,6 @@ msgstr "Offentlige meddelelser"
 msgid "notification.type.editorAssignmentTask"
 msgstr "Der er indsendt en ny monografi, som en redaktør skal tilknyttes."
 
-msgid "notification.type.copyeditorRequest"
-msgstr ""
-"Du er blevet bedt om at gennemgå det tilrettede i forbindelse med "
-"\"{$file}\"."
-
 msgid "notification.type.layouteditorRequest"
 msgstr ""
 "Du er blevet bedt om at gennemgå layout i forbindelse med \"{$title}\"."
