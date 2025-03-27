@@ -1374,10 +1374,6 @@ msgid "notification.type.editorAssignmentTask"
 msgstr ""
 "Nova monografska publikacija je bila dodana, ki ji je treba dodeliti "
 "urednika."
-
-msgid "notification.type.copyeditorRequest"
-msgstr "Prosili so vas za pregled korektur za \"{$file}\"."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Prosili so vas za pregled postavitev za \"{$title}\"."
 
