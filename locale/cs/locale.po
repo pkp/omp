@@ -1450,9 +1450,6 @@ msgstr "Veřejná oznámení"
 msgid "notification.type.editorAssignmentTask"
 msgstr "Byl předložen nový rukopis, k němuž je třeba přiřadit editora."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "Byl/a jste požádán/a, abyste schválil/a korektury souboru \"{$file}\"."
-
 msgid "notification.type.layouteditorRequest"
 msgstr ""
 "Byl/a jste požádán/a, abyste schválil/a grafické návrhy titulu \"{$title}\"."

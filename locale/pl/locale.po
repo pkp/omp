@@ -1464,9 +1464,6 @@ msgstr "Ogłoszenia publiczne"
 msgid "notification.type.editorAssignmentTask"
 msgstr "Zgłoszono nową monografię, do której należy przypisać redaktora."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "Zostałeś poproszony o sprawdzenie redakcji \"{$file}\"."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Zostałeś poproszony o recenzję składu \"{$title}\"."
 
