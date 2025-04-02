@@ -1,12 +1,12 @@
 # Niels Erik Frederiksen <nef@kb.dk>, 2021.
-# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022, 2023, 2024.
+# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022, 2023, 2024, 2025.
 # Jesper B. Thestrup <jbt@kb.dk>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:05-08:00\n"
-"PO-Revision-Date: 2024-11-13 03:18+0000\n"
+"PO-Revision-Date: 2025-04-02 14:06+0000\n"
 "Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "da/>\n"
@@ -683,3 +683,12 @@ msgstr ""
 msgid "publication.chapter.landingPage.doi.description"
 msgstr ""
 "(Dette kapitel vil altid blive vist på sin egen side, da det har en DOI.)"
+
+msgid "submission.stage.externalReviewWithRound"
+msgstr "Ekstern bedømmelse (Runde {$round})"
+
+msgid "submission.stage.internalReviewWithRound"
+msgstr "Intern bedømmelse (Runde {$round})"
+
+msgid "submission.dashboard.view.reviewInternal"
+msgstr "Alle i intern bedømmelse"
