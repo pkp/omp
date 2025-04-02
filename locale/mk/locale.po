@@ -1,9 +1,9 @@
 # Teodora Fildishevska <t.fildishevska@gmail.com>, 2022.
 # Ana Vucurevic <ana.vucurevic97@yahoo.com>, 2023.
-# Mirko Spiroski <mspiroski@id-press.eu>, 2023, 2024.
+# Mirko Spiroski <mspiroski@id-press.eu>, 2023, 2024, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-11-16 21:40+0000\n"
+"PO-Revision-Date: 2025-04-02 14:06+0000\n"
 "Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "mk/>\n"
@@ -1182,8 +1182,8 @@ msgstr ""
 "или посетете го PKP на Интернет <href= \"http://pkp.sfu.ca/bugzilla/\" "
 "target = \"_ blank\"> систем за пријавување на грешки </a>. Иако форумот за "
 "поддршка е префериран метод за контакт, можете исто така да го испратите "
-"тимот по е-пошта на <a href=\"mailto:pkp.contact@gmail.com\"> pkp."
-"contact@gmail.com </a>. </p>\n"
+"тимот по е-пошта на <a href=\"mailto:pkp.contact@gmail.com\"> pkp.contact@"
+"gmail.com </a>. </p>\n"
 "<p> <strong> Силно се препорачува </strong> да направите резервна копија од "
 "вашата база на податоци, директориумот со датотеки и директориумот за "
 "инсталација на OMP пред да продолжите. </p>\n"
@@ -1650,3 +1650,6 @@ msgstr ""
 ">{$siteAdminEmail}</a>) за да го известите за ова ново издание. Повеќе "
 "информации може да најдете <a href=\"https://pkp.sfu.ca/omp_download/\" "
 "target=\"_new\">на веб-локацијата на PKP</a>."
+
+msgid "monograph.publicationFormat.onixDeprecated"
+msgstr " (Дисконктинуирано)"
