@@ -47,6 +47,7 @@
  * plugins using the hooks provided:
  *
  * @hook Templates::Catalog::Book::Main []
+ * @hook Templates::Catalog::Book::Details::Reference []
  * @hook Templates::Catalog::Book::Details []
  *
  * @uses $currentPress Press The press currently being viewed
@@ -271,7 +272,7 @@
 			{/if}
 
 			{* References *}
-			{if $citations || $publication->getData('citationsRaw')}
+			{if $citations || $rawCitations}
 				<div class="item references">
 					<h2 class="label">
 						{translate key="submission.citations"}
@@ -279,10 +280,10 @@
 					<div class="value">
 						{if $citations}
 							{foreach from=$citations item=$citation}
-								<p>{$citation->getCitationWithLinks()|strip_unsafe_html}</p>
+								<p>{$citation->getRawCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Catalog::Book::Details::Reference" citation=$citation}</p>
 							{/foreach}
 						{else}
-							{$publication->getData('citationsRaw')|escape|nl2br}
+							{$rawCitations|escape|nl2br}
 						{/if}
 					</div>
 				</div>
