@@ -73,7 +73,7 @@ class I9262_Highlights extends \PKP\migration\upgrade\v3_5_0\I9262_Highlights
                             $contextRows->get($seriesRow->press_id)->path,
                             'catalog',
                             'series',
-                            $seriesRow->path
+                            [$seriesRow->path]
                         ),
                     ], 'highlight_id');
 
@@ -131,8 +131,8 @@ class I9262_Highlights extends \PKP\migration\upgrade\v3_5_0\I9262_Highlights
                             'catalog',
                             'book',
                             $publicationRow && $publicationRow->url_path
-                                ? $publicationRow->url_path
-                                : $submissionRow->submission_id
+                                ? [$publicationRow->url_path]
+                                : [$submissionRow->submission_id]
                         ),
                     ], 'highlight_id');
 
