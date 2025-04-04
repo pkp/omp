@@ -68,11 +68,13 @@
 		{/foreach}
 	{/fbvFormSection}
 
-	{fbvFormSection list=true title="submission.files"}
-		{foreach from=$chapterFileOptions item="chapterFile" key="id"}
-			{fbvElement type="checkbox" id="files[]" value=$id checked=in_array($id, $selectedChapterFiles) label=$chapterFile|escape translate=false}
-		{/foreach}
-	{/fbvFormSection}
+	{if $chapterFileOptions}
+		{fbvFormSection list=true title="submission.files"}
+			{foreach from=$chapterFileOptions item="chapterFile" key="id"}
+				{fbvElement type="checkbox" id="files[]" value=$id checked=in_array($id, $selectedChapterFiles) label=$chapterFile|escape translate=false}
+			{/foreach}
+		{/fbvFormSection}
+	{/if}
 
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 	{fbvFormButtons submitText="common.save"}
