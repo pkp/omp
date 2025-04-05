@@ -1,8 +1,8 @@
-# Mirko Spiroski <mspiroski@id-press.eu>, 2021, 2023, 2024.
+# Mirko Spiroski <mspiroski@id-press.eu>, 2021, 2023, 2024, 2025.
 # Ana Vucurevic <ana.vucurevic97@yahoo.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-11-11 11:40+0000\n"
+"PO-Revision-Date: 2025-04-02 14:06+0000\n"
 "Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "mk/>\n"
@@ -1715,3 +1715,8 @@ msgstr "Иницијали на прес"
 
 msgid "manager.dois.disabledChaptersDescription"
 msgstr "Поглавја без почетна страница не може да имаат ДОИ."
+
+msgid "manager.setup.contextSummary.description"
+msgstr ""
+"Понуди краток опис на вашиот прес за да се овозможи увид во содржина и "
+"намера."
