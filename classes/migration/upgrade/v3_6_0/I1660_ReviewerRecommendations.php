@@ -43,11 +43,10 @@ class I1660_ReviewerRecommendations extends \PKP\migration\Migration
      */
     public function down(): void
     {
-        Schema::disableForeignKeyConstraints();
         Schema::table('review_assignments', function (Blueprint $table) {
+            $table->dropForeign('review_assignments_reviewer_recommendation_id_foreign');
             $table->dropColumn(['reviewer_recommendation_id']);
             $table->smallInteger('recommendation')->nullable()->after('reviewer_id');
         });
-        Schema::enableForeignKeyConstraints();
     }
 }
