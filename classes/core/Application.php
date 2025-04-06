@@ -244,4 +244,12 @@ class Application extends PKPApplication
     {
         return 'seriesId';
     }
+
+    /**
+     * Define if the application support customizable reviewer recommendation functionality
+     */
+    public function hasCustomizableReviewerRecommendation(): bool
+    {
+        return false;
+    }
 }
