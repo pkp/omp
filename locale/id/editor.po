@@ -1,8 +1,9 @@
 # Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>, 2025.
+# Maria Lamury <marialamury@gmail.com>, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-01-01 14:00+0000\n"
-"Last-Translator: Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>\n"
+"PO-Revision-Date: 2025-04-08 18:42+0000\n"
+"Last-Translator: Maria Lamury <marialamury@gmail.com>\n"
 "Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/omp/editor/"
 "id/>\n"
 "Language: id\n"
@@ -94,3 +95,46 @@ msgid "editor.monograph.legend.catalogEntry"
 msgstr ""
 "Melihat dan mengelola entri katalog pengiriman, termasuk metadata dan format "
 "terbitan"
+
+msgid "editor.monograph.legend.participants"
+msgstr ""
+"Lihat dan kelola peserta pengiriman naskah: penulis, editor, desainer, dan "
+"lain-lain"
+
+msgid "editor.monograph.legend.add"
+msgstr "Unggah file ke bagian ini"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Tambahkan pengguna ke bagian ini"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Informasi lebih lanjut, catatan file, pilihan notifikasi, dan sejarah"
+
+msgid "editor.monograph.legend.notes"
+msgstr ""
+"Informasi file: catatan, pilihan notifikasi, dan sejarah (Catatan tersedia)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr ""
+"Informasi file: catatan, pilihan notifikasi, dan sejarah (Catatan baru "
+"ditambahkan sejak kunjungan terakhir)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Mengedit item"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Menghapus item"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr ""
+"Lihat dan kelola metadata pengiriman naskah, catatan, notifikasi, dan sejarah"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr ""
+"Informasi file: catatan, pilihan notifikasi, dan sejarah (Belum ada catatan "
+"yang ditambahkan)"
+
+msgid "editor.monograph.legend.settings"
+msgstr ""
+"Lihat dan akses pengaturan item, seperti informasi dan pilihan untuk "
+"menghapus"
