@@ -2,7 +2,7 @@
 # Maria Lamury <marialamury@gmail.com>, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-04-08 18:42+0000\n"
+"PO-Revision-Date: 2025-04-09 17:28+0000\n"
 "Last-Translator: Maria Lamury <marialamury@gmail.com>\n"
 "Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/omp/editor/"
 "id/>\n"
@@ -138,3 +138,18 @@ msgid "editor.monograph.legend.settings"
 msgstr ""
 "Lihat dan akses pengaturan item, seperti informasi dan pilihan untuk "
 "menghapus"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Sedang dikerjakan atau belum selesai"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Kegiatan sudah selesai"
+
+msgid "editor.submission.introduction"
+msgstr ""
+"Pada Pengiriman Naskah, editor, sesudah mengkonsultasikan naskah yang "
+"dikirim, memilih langkah yang tepat (termasuk memberitahu penulis): "
+"Mengirimkan ke Review Internal (memerlukan memilih file untuk Review "
+"Internal); Mengirimkan ke Review Eksternal (memerlukan memilih file untuk "
+"Review Eksternal); Menerima Naskah (memerlukan memilih file untuk tahap "
+"Editorial); atau Menolak Naskah (menyimpan naskah)."
