@@ -342,7 +342,6 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
      */
     public function deletePubId(int $pubObjectId, string $pubIdType): int
     {
-        $this->flushCache();
         return DB::table('submission_chapter_settings')
             ->where('setting_name', '=', "pub-id::{$pubIdType}")
             ->where('chapter_id', '=', $pubObjectId)
