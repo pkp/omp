@@ -24,6 +24,7 @@ use APP\plugins\pubIds\urn\classes\form\FieldTextUrn;
 use APP\plugins\pubIds\urn\classes\form\URNSettingsForm;
 use APP\publicationFormat\PublicationFormat;
 use APP\template\TemplateManager;
+use Illuminate\Support\Str;
 use PKP\components\forms\FormComponent;
 use PKP\components\forms\publication\PKPPublicationIdentifiersForm;
 use PKP\linkAction\LinkAction;
@@ -326,7 +327,7 @@ class URNPubIdPlugin extends PubIdPlugin
                 'value' => $form->publication->getData('pub-id::other::urn'),
                 'prefix' => $prefix,
                 'pattern' => $pattern,
-                'contextInitials' => $form->submissionContext->getData('acronym', $form->submissionContext->getData('primaryLocale')) ?? '',
+                'contextInitials' => preg_replace('/[^-._;()\/A-Za-z0-9]/', '', Str::lower($form->submissionContext->getData('acronym', $form->submissionContext->getData('primaryLocale')) ?? '')),
                 'isPForPress' => true,
                 'submissionId' => $form->publication->getData('submissionId'),
                 'assignIdLabel' => __('plugins.pubIds.urn.editor.urn.assignUrn'),
