@@ -244,4 +244,12 @@ class Application extends PKPApplication
     {
         return 'seriesId';
     }
+
+    /**
+     * Get the help URL of this application
+     */
+    public static function getHelpUrl(): string
+    {
+        return 'https://docs.pkp.sfu.ca/learning-omp/en/';
+    }
 }
