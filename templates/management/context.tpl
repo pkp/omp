@@ -45,7 +45,6 @@
 			{load_url_in_div id="seriesGridContainer" url=$seriesGridUrl}
 		</tab>
 		<tab id="categories" label="{translate key="grid.category.categories"}">
-			{help file="settings/context-settings" class="pkp_help_tab"}
 			<pkp-category-manager v-bind="components.{PKP\components\CategoryManager::COMPONENT_CATEGORY}"></pkp-category-manager>
 		</tab>
 	</tabs>
