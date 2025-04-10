@@ -2,7 +2,7 @@
 # Maria Lamury <marialamury@gmail.com>, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-04-09 20:12+0000\n"
+"PO-Revision-Date: 2025-04-10 14:18+0000\n"
 "Last-Translator: Maria Lamury <marialamury@gmail.com>\n"
 "Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/omp/editor/"
 "id/>\n"
@@ -163,3 +163,27 @@ msgstr ""
 "diunggah pada Format Publikasi di bawah ini. Anda dapat menggunakan kisi "
 "format publikasi berikut sebagai checklist untuk apa yang perlu dikerjakan "
 "untuk menerbitkan format publikasi."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr ""
+"Tambahkan format penerbitan (mis., digital, cetak) dimana layout editor "
+"menyiapkan halaman untuk proofreading. <em>Halaman Proof</em>harus diperiksa "
+"untuk disetujui dan entri <em>Katalog</em> untuk formatnya perlu dicek "
+"seperti yang tertera di entri katalog buku, sebelum format dibuat "
+"<em>Tersedia</em> (yaitu, terbit)."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Tetapkan Ketentuan untuk Mengunduh"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Tetapkan Ketentuan"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Tambahkan respon"
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr ""
+"File yang telah diunggah pada tahap pengiriman naskah dapat ditambahkan ke "
+"File Proof yang terdaftar dengan mencentang checkbox di bawah ini dan "
+"mengklik Search: semua file yang tersedia akan dimasukkan dalam daftar dan "
+"dapat dipilih untuk disertakan."
