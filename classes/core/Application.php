@@ -21,11 +21,11 @@ namespace APP\core;
 
 use APP\payment\omp\OMPPaymentManager;
 use APP\press\PressDAO;
-use APP\publicationFormat\PublicationFormatDAO;
 use APP\search\MonographSearchDAO;
 use APP\search\MonographSearchIndex;
 use PKP\context\Context;
 use PKP\core\PKPApplication;
+use PKP\db\DAO;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\submission\RepresentationDAOInterface;
@@ -166,10 +166,8 @@ class Application extends PKPApplication
 
     /**
      * Get the representation DAO.
-     *
-     * @return PublicationFormatDAO|RepresentationDAOInterface
      */
-    public static function getRepresentationDAO(): RepresentationDAOInterface
+    public static function getRepresentationDAO(): DAO|RepresentationDAOInterface
     {
         return DAORegistry::getDAO('PublicationFormatDAO');
     }
