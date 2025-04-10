@@ -45,8 +45,8 @@
 			{load_url_in_div id="seriesGridContainer" url=$seriesGridUrl}
 		</tab>
 		<tab id="categories" label="{translate key="grid.category.categories"}">
-			{capture assign=categoriesUrl}{url router=PKP\core\PKPApplication::ROUTE_COMPONENT component="grid.settings.category.CategoryCategoryGridHandler" op="fetchGrid" escape=false}{/capture}
-			{load_url_in_div id="categoriesContainer" url=$categoriesUrl}
+			{help file="settings/context-settings" class="pkp_help_tab"}
+			<pkp-category-manager v-bind="components.{PKP\components\CategoryManager::COMPONENT_CATEGORY}"></pkp-category-manager>
 		</tab>
 	</tabs>
 {/block}
