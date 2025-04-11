@@ -29,26 +29,22 @@
 
 	<tabs :track-history="true">
 		<tab id="masthead" label="{translate key="manager.setup.masthead"}">
-			{help file="settings/context-settings" class="pkp_help_tab"}
 			<pkp-form
 				v-bind="components.{PKP\components\forms\context\PKPMastheadForm::FORM_MASTHEAD}"
 				@set="set"
 			/>
 		</tab>
 		<tab id="contact" label="{translate key="about.contact"}">
-			{help file="settings/context-settings" class="pkp_help_tab"}
 			<pkp-form
 				v-bind="components.{PKP\components\forms\context\PKPContactForm::FORM_CONTACT}"
 				@set="set"
 			/>
 		</tab>
 		<tab id="sections" label="{translate key="series.series"}">
-			{help file="settings/context-settings" class="pkp_help_tab"}
 			{capture assign=seriesGridUrl}{url router=PKP\core\PKPApplication::ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="fetchGrid" escape=false}{/capture}
 			{load_url_in_div id="seriesGridContainer" url=$seriesGridUrl}
 		</tab>
 		<tab id="categories" label="{translate key="grid.category.categories"}">
-			{help file="settings/context-settings" class="pkp_help_tab"}
 			{capture assign=categoriesUrl}{url router=PKP\core\PKPApplication::ROUTE_COMPONENT component="grid.settings.category.CategoryCategoryGridHandler" op="fetchGrid" escape=false}{/capture}
 			{load_url_in_div id="categoriesContainer" url=$categoriesUrl}
 		</tab>
