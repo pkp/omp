@@ -20,3 +20,4 @@ cypress/screenshots/
 .php_cs.cache
 .php-cs-fixer.cache
 /plugins/themes/default/js/lib/swiper/
+registry/uiLocaleKeysBackend.json
