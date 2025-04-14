@@ -4,6 +4,8 @@
 
 Open Monograph Press (OMP) is open source software developed by the [Public Knowledge Project](https://pkp.sfu.ca/) to manage scholarly presses. [Learn More](https://pkp.sfu.ca/software/omp/)
 
+This project is tested with [BrowserStack](https://www.browserstack.com).
+
 ## Usage
 
 Read one of these guides to get started using OMP:
