@@ -16,8 +16,6 @@ namespace APP\plugins\generic\googleScholar;
 
 use APP\core\Application;
 use APP\template\TemplateManager;
-use PKP\citation\CitationDAO;
-use PKP\db\DAORegistry;
 use PKP\i18n\LocaleConversion;
 use PKP\plugins\GenericPlugin;
 use PKP\plugins\Hook;
@@ -177,16 +175,10 @@ class GoogleScholarPlugin extends GenericPlugin
         }
 
         // Citations
-        $outputReferences = [];
-        $citationDao = DAORegistry::getDAO('CitationDAO'); /** @var CitationDAO $citationDao */
-        $parsedCitations = $citationDao->getByPublicationId($publication->getId());
-        while ($citation = $parsedCitations->next()) {
-            $outputReferences[] = $citation->getRawCitation();
-        }
-        Hook::call('GoogleScholarPlugin::references', [&$outputReferences, $submission->getId()]);
-
-        foreach ($outputReferences as $i => $outputReference) {
-            $templateMgr->addHeader('googleScholarReference' . $i++, '<meta name="citation_reference" content="' . htmlspecialchars($outputReference) . '"/>');
+        $citations = $publication->getData('citations') ?? [];
+        Hook::call('GoogleScholarPlugin::references', [&$citations, $submission->getId()]);
+        foreach ($citations as $i => $citation) {
+            $templateMgr->addHeader('googleScholarReference' . $i++, '<meta name="citation_reference" content="' . htmlspecialchars($citation->getRawCitation()) . '"/>');
         }
 
         return false;
