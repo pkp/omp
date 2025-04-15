@@ -30,7 +30,6 @@ use APP\publication\Publication;
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
-use PKP\citation\CitationDAO;
 use PKP\core\Core;
 use PKP\core\PKPApplication;
 use PKP\core\PKPRequest;
@@ -227,15 +226,11 @@ class CatalogBookHandler extends Handler
         ]);
 
         // Citations
-        if ($this->publication->getData('citationsRaw')) {
-            /** @var CitationDAO $citationDao */
-            $citationDao = DAORegistry::getDAO('CitationDAO');
-            $parsedCitations = $citationDao->getByPublicationId($this->publication->getId());
-            $templateMgr->assign([
-                'citations' => $parsedCitations->toArray(),
-                'parsedCitations' => $parsedCitations, // compatible with older themes
-            ]);
-        }
+        $parsedCitations = $this->publication->getData('citations');
+        $templateMgr->assign([
+            'citations' => $parsedCitations,
+            'parsedCitations' => $parsedCitations, // compatible with older themes
+        ]);
 
         // Retrieve editors for an edited volume
         $editors = [];
