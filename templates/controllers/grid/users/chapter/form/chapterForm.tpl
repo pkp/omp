@@ -62,11 +62,13 @@
 	{/if}
 	{/fbvFormSection}
 
-	{fbvFormSection list=true title="submission.submit.addAuthor"}
+	{if $chapterAuthorOptions}
+		{fbvFormSection list=true title="submission.submit.addAuthor"}
 		{foreach from=$chapterAuthorOptions item="chapterAuthor" key="id"}
 			{fbvElement type="checkbox" id="authors[]" value=$id checked=in_array($id, $selectedChapterAuthors) label=$chapterAuthor|escape translate=false}
 		{/foreach}
-	{/fbvFormSection}
+		{/fbvFormSection}
+	{/if}
 
 	{if $chapterFileOptions}
 		{fbvFormSection list=true title="submission.files"}
