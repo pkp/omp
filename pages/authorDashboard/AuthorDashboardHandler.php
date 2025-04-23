@@ -96,7 +96,7 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler
     {
         switch ($currentStage) {
             case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
-                return SubmissionFile::SUBMISSION_FILE_REVIEW_REVISION;
+                return SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_REVISION;
             default:
                 return parent::_fileStageFromWorkflowStage($currentStage);
         }
