@@ -16,15 +16,18 @@ namespace APP\migration\upgrade\v3_4_0;
 
 class I11125_UpdateEmailTemplateVariables extends \PKP\migration\upgrade\v3_4_0\I11125_UpdateEmailTemplateVariables
 {
-    protected function oldToNewVariablesMap(): array
+    /**
+     * @copydoc I11125_UpdateEmailTemplateVariables::oldToNewVariablesMap()
+     */
+    public function oldToNewVariablesMap(): array
     {
-        $oldNewVariablesMap = parent::oldToNewVariablesMap();
-        array_walk_recursive($oldNewVariablesMap, function (&$newVariable, $oldVariable) {
-            if ($newVariable === 'contextAcronym') {
-                $newVariable = 'pressAcronym';
-            }
-        });
-
-        return $oldNewVariablesMap;
+        return [
+            'COPYEDIT_REQUEST' => [
+                'pressAcronym' => 'contextAcronym',
+            ],
+            'LAYOUT_REQUEST' => [
+                'pressAcronym' => 'contextAcronym',
+            ],
+        ];
     }
 }
