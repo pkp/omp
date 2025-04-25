@@ -1491,9 +1491,6 @@ msgstr "Avisos públics"
 msgid "notification.type.editorAssignmentTask"
 msgstr "S'ha enviat una nova monografia a la qual s'ha d'assignar un editor/a."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "Se us ha demanat revisar els continguts per a «{$file}»."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Se us ha demanat revisar la maquetació per a «{$title}»."
 

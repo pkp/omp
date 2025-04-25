@@ -1487,9 +1487,6 @@ msgstr "Јавни соопштенија"
 msgid "notification.type.editorAssignmentTask"
 msgstr "Доставена е нова монографија на која треба да и биде доделен уредник."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "Од вас е побарано да прегледате копии за „{$file}“."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Од вас е побарано да ги прегледате распоредите за „{$title}“."
 

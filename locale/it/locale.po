@@ -1487,9 +1487,6 @@ msgid "notification.type.editorAssignmentTask"
 msgstr ""
 "È stata proposta una nuova Monografia, a cui occorre assegnare un editor."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "Sei stato sollecitato a fare il copyediting per \"{$file}\"."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Sei stato sollecitato a rivedere il layout per \"{$title}\"."
 

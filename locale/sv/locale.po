@@ -1347,9 +1347,6 @@ msgstr "Offentliga meddelanden"
 msgid "notification.type.editorAssignmentTask"
 msgstr "En ny bok har skickats in och behöver tilldelas en redaktör."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "Du har ombetts att granska det redigerade manuset för \"{$file}\"."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Du har ombetts att granska layouter för \"{$title}\"."
 

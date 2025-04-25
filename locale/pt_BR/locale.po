@@ -1467,9 +1467,6 @@ msgstr "Notícias Públicas"
 msgid "notification.type.editorAssignmentTask"
 msgstr "Um editor precisa ser designado à nova monografia submetida."
 
-msgid "notification.type.copyeditorRequest"
-msgstr "Solicitação de edição de texto de \"{$file}\"."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Solicitação de revisão dos layouts de \"{$title}\"."
 
