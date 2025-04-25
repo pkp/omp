@@ -138,11 +138,10 @@ class ChapterGridHandler extends CategoryGridHandler
 
         if ($this->getPublication()->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
             $userRoles = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_USER_ROLES);
-            if (
-                !in_array(Role::ROLE_ID_SITE_ADMIN, $userRoles)
-                && !in_array(Role::ROLE_ID_MANAGER, $userRoles)
-                && !in_array(Role::ROLE_ID_SUB_EDITOR, $userRoles)
-            ) {
+            if (!array_intersect(
+                [Role::ROLE_ID_SITE_ADMIN, Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT],
+                $userRoles
+            )) {
                 // set readOnly to true for everyone else
                 $this->setReadOnly(true);
             }
@@ -247,10 +246,10 @@ class ChapterGridHandler extends CategoryGridHandler
         // if it is published, allow managers or sub-editors
         if ($publication->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
             // allow these roles to edit galleys even if published
-            if (
-                in_array(Role::ROLE_ID_MANAGER, $userRoles) ||
-                in_array(Role::ROLE_ID_SUB_EDITOR, $userRoles)
-            ) {
+            if (array_intersect(
+                [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT],
+                $userRoles
+            )) {
                 return true;
             }
             // otherwise block
