@@ -42,7 +42,8 @@ use PKP\plugins\ImportExportPlugin;
 use PKP\services\PKPFileService;
 use SplFileObject;
 
-class CSVImportExportPlugin extends ImportExportPlugin {
+class CSVImportExportPlugin extends ImportExportPlugin
+{
     /**
      * The file directory array map used by the application.
      *
