@@ -36,6 +36,7 @@ use APP\plugins\importexport\csv\classes\validations\SubmissionHeadersValidation
 use APP\publication\Repository as PublicationService;
 use APP\template\TemplateManager;
 use Exception;
+use PKP\core\PKPRequest;
 use PKP\core\PKPString;
 use PKP\file\FileManager;
 use PKP\plugins\ImportExportPlugin;
