@@ -1473,9 +1473,6 @@ msgstr "Читател е направил коментар за „{$title}“.
 msgid "notification.type.public"
 msgstr "Публични съобщения"
 
-msgid "notification.type.copyeditorRequest"
-msgstr "Бяхте помолени да прегледате оформлението за „{$file}“."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Бяхте помолени да прегледате типографията за „{$file}“."
 

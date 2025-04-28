@@ -1445,12 +1445,6 @@ msgid "notification.type.editorAssignmentTask"
 msgstr ""
 "Eine neue Monographie wurde eingereicht. Sie muss noch einem Herausgeber/"
 "einer Herausgeberin zugewiesen werden."
-
-msgid "notification.type.copyeditorRequest"
-msgstr ""
-"Sie wurden um die Durchsicht der lektorierten Manuskripte \"{$file}\" "
-"gebeten."
-
 msgid "notification.type.layouteditorRequest"
 msgstr "Sie wurden um die Durchsicht der Layout-Dateien \"{$title}\" gebeten."
 

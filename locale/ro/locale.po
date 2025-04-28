@@ -1672,10 +1672,6 @@ msgid "payment.directSales.monograph.description"
 msgstr ""
 "Această tranzacție este pentru achiziționarea unei descărcări directe a unei "
 "singure monografii sau a capitolului unei monografii."
-
-msgid "notification.type.copyeditorRequest"
-msgstr "Vă rugăm revizuiți corecturile pentru „{$file}”."
-
 msgid "user.authorization.monographAuthor"
 msgstr ""
 "Accesul dumneavoastră a fost respins pentru că se pare că nu sunteți autorul "
