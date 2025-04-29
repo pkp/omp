@@ -1,8 +1,9 @@
 # Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>, 2025.
+# Maria Lamury <marialamury@gmail.com>, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-01-01 14:00+0000\n"
-"Last-Translator: Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>\n"
+"PO-Revision-Date: 2025-04-10 14:18+0000\n"
+"Last-Translator: Maria Lamury <marialamury@gmail.com>\n"
 "Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/omp/editor/"
 "id/>\n"
 "Language: id\n"
@@ -94,3 +95,95 @@ msgid "editor.monograph.legend.catalogEntry"
 msgstr ""
 "Melihat dan mengelola entri katalog pengiriman, termasuk metadata dan format "
 "terbitan"
+
+msgid "editor.monograph.legend.participants"
+msgstr ""
+"Lihat dan kelola peserta pengiriman naskah: penulis, editor, desainer, dan "
+"lain-lain"
+
+msgid "editor.monograph.legend.add"
+msgstr "Unggah file ke bagian ini"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Tambahkan pengguna ke bagian ini"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Informasi lebih lanjut, catatan file, pilihan notifikasi, dan sejarah"
+
+msgid "editor.monograph.legend.notes"
+msgstr ""
+"Informasi file: catatan, pilihan notifikasi, dan sejarah (Catatan tersedia)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr ""
+"Informasi file: catatan, pilihan notifikasi, dan sejarah (Catatan baru "
+"ditambahkan sejak kunjungan terakhir)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Mengedit item"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Menghapus item"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr ""
+"Lihat dan kelola metadata pengiriman naskah, catatan, notifikasi, dan sejarah"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr ""
+"Informasi file: catatan, pilihan notifikasi, dan sejarah (Belum ada catatan "
+"yang ditambahkan)"
+
+msgid "editor.monograph.legend.settings"
+msgstr ""
+"Lihat dan akses pengaturan item, seperti informasi dan pilihan untuk "
+"menghapus"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Sedang dikerjakan atau belum selesai"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Kegiatan sudah selesai"
+
+msgid "editor.submission.introduction"
+msgstr ""
+"Pada Pengiriman Naskah, editor, sesudah mengkonsultasikan naskah yang "
+"dikirim, memilih langkah yang tepat (termasuk memberitahu penulis): "
+"Mengirimkan ke Review Internal (memerlukan memilih file untuk Review "
+"Internal); Mengirimkan ke Review Eksternal (memerlukan memilih file untuk "
+"Review Eksternal); Menerima Naskah (memerlukan memilih file untuk tahap "
+"Editorial); atau Menolak Naskah (menyimpan naskah)."
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Persetujuan dan Penerbitan"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr ""
+"Format publikasi lain, seperti hardcover, softcover dan digital, dapat "
+"diunggah pada Format Publikasi di bawah ini. Anda dapat menggunakan kisi "
+"format publikasi berikut sebagai checklist untuk apa yang perlu dikerjakan "
+"untuk menerbitkan format publikasi."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr ""
+"Tambahkan format penerbitan (mis., digital, cetak) dimana layout editor "
+"menyiapkan halaman untuk proofreading. <em>Halaman Proof</em>harus diperiksa "
+"untuk disetujui dan entri <em>Katalog</em> untuk formatnya perlu dicek "
+"seperti yang tertera di entri katalog buku, sebelum format dibuat "
+"<em>Tersedia</em> (yaitu, terbit)."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Tetapkan Ketentuan untuk Mengunduh"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Tetapkan Ketentuan"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Tambahkan respon"
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr ""
+"File yang telah diunggah pada tahap pengiriman naskah dapat ditambahkan ke "
+"File Proof yang terdaftar dengan mencentang checkbox di bawah ini dan "
+"mengklik Search: semua file yang tersedia akan dimasukkan dalam daftar dan "
+"dapat dipilih untuk disertakan."
