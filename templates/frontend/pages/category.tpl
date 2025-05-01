@@ -1,11 +1,11 @@
 {**
- * templates/frontend/pages/catalogCategory.tpl
+ * templates/frontend/pages/category.tpl
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @brief Display the page to view a category of the catalog.
+ * @brief Display the page to view a category.
  *
  * @uses $category Category Current category being viewed
  * @uses $publishedSubmissions array List of published submissions in this category
@@ -23,7 +23,7 @@
  *}
 {include file="frontend/components/header.tpl" pageTitleTranslated=$category->getLocalizedTitle()|escape}
 
-<div class="page page_catalog_category">
+<div class="page page_category">
 
 	{* Breadcrumb *}
 	{include file="frontend/components/breadcrumbs_catalog.tpl" type="category" parent=$parentCategory currentTitle=$category->getLocalizedTitle()}
@@ -51,7 +51,7 @@
 	{if $subcategories|@count}
 	<nav class="subcategories" role="navigation">
 		<h2>
-			{translate key="catalog.category.subcategories"}
+			{translate key="category.subcategories"}
 		</h2>
 		<ul>
 			{foreach from=$subcategories item=subcategory}
@@ -68,7 +68,7 @@
 	{* No published titles in this category *}
 	{if empty($publishedSubmissions)}
 		<h2>
-			{translate key="catalog.category.heading"}
+			{translate key="category.heading"}
 		</h2>
 		<p>{translate key="catalog.noTitles"}</p>
 
@@ -80,7 +80,7 @@
 		{/if}
 
 		{* All monographs *}
-		{include file="frontend/components/monographList.tpl" monographs=$publishedSubmissions featured=$featuredMonographIds titleKey="catalog.category.heading"}
+		{include file="frontend/components/monographList.tpl" monographs=$publishedSubmissions featured=$featuredMonographIds titleKey="category.heading"}
 
 		{* Pagination *}
 		{if $prevPage > 1}

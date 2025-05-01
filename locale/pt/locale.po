@@ -686,7 +686,7 @@ msgstr "Encontrada uma correspondência à sua pesquisa \"{$searchQuery}\"."
 msgid "catalog.foundTitlesSearch"
 msgstr "{$number} títulos correspondem à sua pesquisa por \"{$searchQuery}\"."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Todos os Livros"
 
 msgid "catalog.newReleases"

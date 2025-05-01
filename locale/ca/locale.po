@@ -695,7 +695,7 @@ msgstr ""
 "S'han trobat {$number} títols que coincideixen amb la cerca "
 "\"{$searchQuery}\"."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Tots els llibres"
 
 msgid "catalog.newReleases"

@@ -654,7 +654,7 @@ msgstr "One title was found which matched your search for \"{$searchQuery}\"."
 msgid "catalog.foundTitlesSearch"
 msgstr "{$number} titles were found which matched your search for \"{$searchQuery}\"."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "All Books"
 
 msgid "catalog.newReleases"

@@ -697,7 +697,7 @@ msgstr ""
 "Пронајдени се наслови од {$number} кои одговараат на вашето пребарување за "
 "\"{$searchQuery}\"."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Сите книги"
 
 msgid "catalog.newReleases"
