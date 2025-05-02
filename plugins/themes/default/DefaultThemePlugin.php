@@ -77,6 +77,16 @@ class DefaultThemePlugin extends ThemePlugin
             ],
             'default' => 'notoSans',
         ]);
+        $this->addOption('showDescriptionInPressIndex', 'FieldOptions', [
+            'label' => __('manager.setup.contextSummary'),
+            'options' => [
+                [
+                    'value' => true,
+                    'label' => __('plugins.themes.default.option.showDescriptionInPressIndex.option'),
+                ],
+            ],
+            'default' => false,
+        ]);
         $this->addOption('useHomepageImageAsHeader', 'FieldOptions', [
             'label' => __('plugins.themes.default.option.useHomepageImageAsHeader.label'),
             'description' => __('plugins.themes.default.option.useHomepageImageAsHeader.description'),
