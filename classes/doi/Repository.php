@@ -44,7 +44,7 @@ class Repository extends \PKP\doi\Repository
     public const TYPE_CHAPTER = 'chapter';
 
     public const CUSTOM_CHAPTER_PATTERN = 'doiChapterSuffixPattern';
-    public const CUSTOM_FILE_PATTERN = 'doiFileSuffixPattern';
+    public const CUSTOM_FILE_PATTERN = 'doiSubmissionFileSuffixPattern';
 
     public function __construct(DAO $dao, Request $request, PKPSchemaService $schemaService)
     {
