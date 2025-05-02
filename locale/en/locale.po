@@ -822,6 +822,9 @@ msgstr "New Releases"
 msgid "navigation.navigationMenus.newRelease.description"
 msgstr "Link to your New Releases."
 
+msgid "navigation.skip.about"
+msgstr "Skip to about the press"
+
 msgid "context.contexts"
 msgstr "Presses"
 
