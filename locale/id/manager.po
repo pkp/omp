@@ -1,9 +1,10 @@
 # elpinowindy <elpinowindy@proton.me>, 2023.
 # Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>, 2024.
+# Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-11-19 21:44+0000\n"
-"Last-Translator: Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>\n"
+"PO-Revision-Date: 2025-05-03 14:57+0000\n"
+"Last-Translator: Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>\n"
 "Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "id/>\n"
 "Language: id\n"
@@ -1693,3 +1694,8 @@ msgstr ""
 "Pengaruh Akses Terbuka</a>).</li>\n"
 "\n"
 "</ol>"
+
+msgid "manager.setup.contextSummary.description"
+msgstr ""
+"Berikan deskripsi singkat tentang pers Anda untuk memberikan wawasan tentang "
+"konten dan tujuannya."
