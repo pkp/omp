@@ -53,7 +53,6 @@ class OMPMigration extends \PKP\migration\Migration
 
             $table->smallInteger('status')->default(1);
             $table->string('url_path', 64)->nullable();
-            $table->bigInteger('version')->nullable();
 
             $table->bigInteger('doi_id')->nullable();
             $table->foreign('doi_id')->references('doi_id')->on('dois')->nullOnDelete();
