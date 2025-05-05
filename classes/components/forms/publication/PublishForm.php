@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/components/form/publication/PublishForm.php
  *
@@ -16,9 +17,11 @@
 
 namespace APP\components\forms\publication;
 
+use APP\facades\Repo;
 use APP\publication\Publication;
 use PKP\components\forms\FieldHTML;
 use PKP\components\forms\FormComponent;
+use PKP\publication\enums\VersionStage;
 
 class PublishForm extends FormComponent
 {
@@ -60,6 +63,22 @@ class PublishForm extends FormComponent
                     'label' => __('publication.publish'),
                 ],
             ]);
+
+            // If publication does not have a version stage assigned
+            $publicationVersion = $publication->getVersion();
+            if (!isset($publicationVersion)) {
+                $submission = Repo::submission()->get($publication->getData('submissionId'));
+                $nextVersion = Repo::submission()->getNextAvailableVersion($submission, VersionStage::VERSION_OF_RECORD, false);
+
+                $msg .= '<p>' . __('publication.required.versionStage') . '</p>';
+                $msg .= '<p>' . __('publication.required.versionStage.assignment', [
+                    'versionString' => $nextVersion
+                ]) . '</p>';
+            } else {
+                $msg .= '<p>' . __('publication.required.versionStage.alreadyAssignment', [
+                    'versionString' => $publicationVersion
+                ]) . '</p>';
+            }
         } else {
             $msg = '<p>' . __('publication.publish.requirements') . '</p>';
             $msg .= '<ul>';
