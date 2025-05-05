@@ -29,6 +29,15 @@
 		<img src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}" alt="{$homepageImageAltText|escape}">
 	{/if}
 
+	{* Press Description *}
+	{if $activeTheme->getOption('showDescriptionInPressIndex')}
+		<section class="homepage_about">
+			<a id="homepageAbout"></a>
+			<h2>{translate key="about.aboutContext"}</h2>
+			{$currentContext->getLocalizedData('description')}
+		</section>
+	{/if}
+
 	{* Featured *}
 	{if !empty($featuredMonographs)}
 		{include file="frontend/components/monographList.tpl" monographs=$featuredMonographs titleKey="catalog.featured" authorUserGroups=$authorUserGroups}

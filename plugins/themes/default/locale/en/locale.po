@@ -58,6 +58,9 @@ msgstr "Colour"
 msgid "plugins.themes.default.option.colour.description"
 msgstr "Choose a colour for the header."
 
+msgid "plugins.themes.default.option.showDescriptionInPressIndex.option"
+msgstr "Show the press summary on the homepage."
+
 msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
 msgstr "Header Background Image"
 
