@@ -33,6 +33,7 @@ use PKP\db\DAORegistry;
 use PKP\notification\Notification;
 use PKP\plugins\Hook;
 use PKP\publication\Collector;
+use PKP\publication\enums\VersionStage;
 use PKP\submission\PKPSubmission;
 use PKP\submissionFile\SubmissionFile;
 
@@ -99,7 +100,7 @@ class Repository extends \PKP\publication\Repository
     }
 
     /** @copydoc \PKP\publication\Repository::version() */
-    public function version(Publication $publication): int
+    public function version(Publication $publication, ?VersionStage $versionStage = null, bool $isMinorVersion = true): int
     {
         // Get some data about the publication being versioned before any changes are made
         $oldPublicationFormats = $publication->getData('publicationFormats');
@@ -112,7 +113,7 @@ class Repository extends \PKP\publication\Repository
         $oldPublicationId = $publication->getId();
         $submissionId = $publication->getData('submissionId');
 
-        $newId = parent::version($publication);
+        $newId = parent::version($publication, $versionStage, $isMinorVersion);
 
         $newPublication = $this->get($newId);
 
