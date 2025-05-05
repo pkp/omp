@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022, 2023, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-03-03 19:43+0000\n"
+"PO-Revision-Date: 2025-05-05 20:55+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/uk/>\n"
@@ -105,3 +105,6 @@ msgstr "Попередній слайд"
 
 msgid "plugins.themes.default.nextSlide"
 msgstr "Наступний слайд"
+
+msgid "plugins.themes.default.option.showDescriptionInPressIndex.option"
+msgstr "Показати загальну інформацію про е-видавництво на головній сторінці."
