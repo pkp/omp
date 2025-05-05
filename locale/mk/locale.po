@@ -3,7 +3,7 @@
 # Mirko Spiroski <mspiroski@id-press.eu>, 2023, 2024, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-04-02 14:06+0000\n"
+"PO-Revision-Date: 2025-05-05 20:55+0000\n"
 "Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "mk/>\n"
@@ -1653,3 +1653,6 @@ msgstr ""
 
 msgid "monograph.publicationFormat.onixDeprecated"
 msgstr " (Дисконктинуирано)"
+
+msgid "navigation.skip.about"
+msgstr "Прескокнете на за печатот"
