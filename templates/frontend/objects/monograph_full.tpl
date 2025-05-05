@@ -68,6 +68,7 @@
  * @uses $sharingCode string Code snippet for a social sharing widget
  * @uses $blocks array List of HTML snippets to display block elements
  * @uses $currency Currency The Currency object representing the press's currency, if configured.
+ * @uses $licenseTerms string License terms.
  * @uses $licenseUrl string The URL which provides license information.
  * @uses $ccLicenseBadge string An HTML string containing a CC license image and
  *       text. Only appears when license URL matches a known CC license.
@@ -500,7 +501,7 @@
 			{/if}
 
 			{* License *}
-			{if $publication->getData('licenseUrl')}
+			{if $currentContext->getLocalizedData('licenseTerms') || $publication->getData('licenseUrl')}
 				<div class="item license">
 					<h2 class="label">
 						{translate key="submission.license"}
@@ -512,6 +513,7 @@
 							{translate key="submission.license"}
 						</a>
 					{/if}
+					{$currentContext->getLocalizedData('licenseTerms')}
 				</div>
 			{/if}
 
