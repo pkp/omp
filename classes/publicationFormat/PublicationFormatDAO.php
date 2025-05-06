@@ -516,7 +516,6 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
      */
     public function deletePubId(int $pubObjectId, string $pubIdType): int
     {
-        $this->flushCache();
         return DB::table('publication_format_settings')
             ->where('setting_name', '=', "pub-id::{$pubIdType}")
             ->where('publication_format_id', '=', $pubObjectId)
@@ -529,7 +528,6 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
     public function deleteAllPubIds(int $contextId, string $pubIdType): int
     {
         $formats = $this->getByContextId($contextId);
-        $this->flushCache();
         $affectedRows = 0;
         while ($format = $formats->next()) {
             $affectedRows += $this->deletePubId($format->getId(), $pubIdType);
