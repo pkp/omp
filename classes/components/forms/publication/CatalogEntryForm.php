@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/components/form/publication/CatalogEntryForm.php
  *
@@ -82,23 +83,22 @@ class CatalogEntryForm extends FormComponent
         $categoryOptions = [];
         $categories = Repo::category()->getCollector()
             ->filterByContextIds([$submission->getData('contextId')])
-            ->getMany()
-            ->toArray();
+            ->getMany();
 
-        foreach ($categories as $category) {
-            $label = $category->getLocalizedTitle();
-            if ($category->getParentId()) {
-                $label = $categories[$category->getParentId()]->getLocalizedTitle() . ' > ' . $label;
-            }
+        $categoriesBreadcrumb = Repo::category()->getBreadcrumbs($categories);
+        foreach ($categoriesBreadcrumb as $categoryId => $breadcrumb) {
             $categoryOptions[] = [
-                'value' => (int) $category->getId(),
-                'label' => $label,
+                'value' => $categoryId,
+                'label' => $breadcrumb,
             ];
         }
+
+        $hasAllBreadcrumbs = count($categories) === $categoriesBreadcrumb->count();
         if (!empty($categoryOptions)) {
             $this->addField(new FieldOptions('categoryIds', [
                 'label' => __('submission.submit.placement.categories'),
                 'value' => (array) $publication->getData('categoryIds'),
+                'description' => $hasAllBreadcrumbs ? '' : __('submission.categories.circularReferenceWarning'),
                 'options' => $categoryOptions,
             ]));
         }
