@@ -65,7 +65,7 @@
 		{foreach name="authors" from=$authors item=author}
 			{* strip removes excess white-space which creates gaps between separators *}
 			{strip}
-				{if $author->getLocalizedAffiliation()}
+				{if $author->getLocalizedAffiliationNamesAsString()}
 					{if $identifyAsEditors}
 						{capture assign="authorName"}<span class="label">{translate key="submission.editorName" editorName=$author->getFullName()|escape}</span>{/capture}
 					{else}
