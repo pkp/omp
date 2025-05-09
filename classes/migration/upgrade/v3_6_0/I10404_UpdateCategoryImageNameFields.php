@@ -20,4 +20,14 @@ class I10404_UpdateCategoryImageNameFields extends \PKP\migration\upgrade\v3_6_0
     {
         return 'presses';
     }
+
+    protected function getContextTable(): string
+    {
+        return 'presses';
+    }
+
+    protected function getContextIdColumn(): string
+    {
+        return 'press_id';
+    }
 }

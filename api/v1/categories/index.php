@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * @defgroup api_v1_categories Categories API requests
  */
@@ -16,4 +15,5 @@
  *
  * @brief Handle API requests for categories.
  */
+
 return new \PKP\handler\APIHandler(new \PKP\API\v1\categories\CategoryCategoryController());
