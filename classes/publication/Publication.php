@@ -25,6 +25,8 @@ use PKP\publication\PKPPublication;
 
 class Publication extends PKPPublication
 {
+    public const DEFAULT_VERSION_STAGE = VersionStage::VERSION_OF_RECORD;
+
     /**
      * Get a string indicating all editors of an edited volume
      *
