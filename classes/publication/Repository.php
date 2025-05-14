@@ -19,6 +19,7 @@ use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\monograph\ChapterDAO;
 use APP\notification\NotificationManager;
+use APP\publication\enums\VersionStage;
 use APP\publicationFormat\IdentificationCodeDAO;
 use APP\publicationFormat\MarketDAO;
 use APP\publicationFormat\PublicationDateDAO;
@@ -33,7 +34,6 @@ use PKP\db\DAORegistry;
 use PKP\notification\Notification;
 use PKP\plugins\Hook;
 use PKP\publication\Collector;
-use PKP\publication\enums\VersionStage;
 use PKP\submission\PKPSubmission;
 use PKP\submissionFile\SubmissionFile;
 
