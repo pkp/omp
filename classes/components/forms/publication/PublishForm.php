@@ -21,7 +21,6 @@ use APP\facades\Repo;
 use APP\publication\Publication;
 use PKP\components\forms\FieldHTML;
 use PKP\components\forms\FormComponent;
-use PKP\publication\enums\VersionStage;
 
 class PublishForm extends FormComponent
 {
@@ -68,7 +67,7 @@ class PublishForm extends FormComponent
             $publicationVersion = $publication->getVersion();
             if (!isset($publicationVersion)) {
                 $submission = Repo::submission()->get($publication->getData('submissionId'));
-                $nextVersion = Repo::submission()->getNextAvailableVersion($submission, VersionStage::VERSION_OF_RECORD, false);
+                $nextVersion = Repo::submission()->getNextAvailableVersion($submission, Publication::DEFAULT_VERSION_STAGE, false);
 
                 $msg .= '<p>' . __('publication.required.versionStage') . '</p>';
                 $msg .= '<p>' . __('publication.required.versionStage.assignment', [

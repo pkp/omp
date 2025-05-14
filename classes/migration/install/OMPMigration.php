@@ -14,9 +14,9 @@
 
 namespace APP\migration\install;
 
+use APP\publication\enums\VersionStage;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use PKP\publication\enums\VersionStage;
 
 class OMPMigration extends \PKP\migration\Migration
 {
