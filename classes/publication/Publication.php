@@ -21,6 +21,7 @@ namespace APP\publication;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
+use APP\publication\enums\VersionStage;
 use PKP\publication\PKPPublication;
 
 class Publication extends PKPPublication
