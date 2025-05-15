@@ -628,3 +628,18 @@ msgstr "External Review (Round {$round})"
 
 msgid "submission.stage.internalReviewWithRound"
 msgstr "Internal Review (Round {$round})"
+
+msgid "publication.versionStage.authorOriginal"
+msgstr "Author Original"
+
+msgid "publication.versionStage.acceptedManuscript"
+msgstr "Accepted Manuscript"
+
+msgid "publication.versionStage.submittedManuscript"
+msgstr "Submitted Manuscript"
+
+msgid "publication.versionStage.proof"
+msgstr "Proof"
+
+msgid "publication.versionStage.versionOfRecord"
+msgstr "Version of Record"

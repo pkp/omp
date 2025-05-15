@@ -212,7 +212,7 @@
 								{capture assign="versionCounter"}{count($monograph->getPublishedPublications())}{/capture}
 								{capture assign="chapterCounter"}{count($chapterPublicationIds)}{/capture}
 								{foreach from=array_reverse($monograph->getPublishedPublications()) item=iPublication}
-									{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatShort version=$iPublication->getData('version')}{/capture}
+									{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatShort version=$iPublication->getData('versionString')}{/capture}
 									<li>
 										{capture}{$versionCounter--}{/capture}
 										{if $iPublication->getId()|in_array:$chapterPublicationIds}
