@@ -190,7 +190,7 @@ class ManualPaymentPlugin extends PaymethodPlugin
                 Mail::send($mailable);
 
                 $templateMgr->assign([
-                    'currentUrl' => $request->url(null, null, 'payment', 'plugin', ['notify', $queuedPaymentId]),
+                    'currentUrl' => $request->url(null, null, 'payment', ['plugin'], ['notify', $queuedPaymentId]),
                     'pageTitle' => 'plugins.paymethod.manual.paymentNotification',
                     'message' => 'plugins.paymethod.manual.notificationSent',
                     'backLink' => $queuedPayment->getRequestUrl(),
