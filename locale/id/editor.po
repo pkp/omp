@@ -1,9 +1,10 @@
 # Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>, 2025.
 # Maria Lamury <marialamury@gmail.com>, 2025.
+# Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-04-10 14:18+0000\n"
-"Last-Translator: Maria Lamury <marialamury@gmail.com>\n"
+"PO-Revision-Date: 2025-05-03 05:59+0000\n"
+"Last-Translator: Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>\n"
 "Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/omp/editor/"
 "id/>\n"
 "Language: id\n"
@@ -187,3 +188,21 @@ msgstr ""
 "File Proof yang terdaftar dengan mencentang checkbox di bawah ini dan "
 "mengklik Search: semua file yang tersedia akan dimasukkan dalam daftar dan "
 "dapat dipilih untuk disertakan."
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Berkas diunggah berdasarkan peran di judul kolom grid"
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Salinan yang Adil"
+
+msgid "editor.monograph.proofs"
+msgstr "Bukti"
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr ""
+"Pengidentifikasi publik '{$publicIdentifier}' sudah ada untuk objek lain "
+"dengan tipe yang sama. Harap pilih pengidentifikasi unik untuk objek dengan "
+"tipe yang sama dalam pers Anda."
+
+msgid "editor.submissions.assignedTo"
+msgstr "Ditugaskan ke Penyunting"
