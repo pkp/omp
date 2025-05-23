@@ -1,11 +1,12 @@
 # Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>, 2024.
+# Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-11-19 21:44+0000\n"
-"PO-Revision-Date: 2024-11-27 08:41+0000\n"
-"Last-Translator: Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>\n"
+"PO-Revision-Date: 2025-05-03 14:57+0000\n"
+"Last-Translator: Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>\n"
 "Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/id/>\n"
 "Language: id\n"
@@ -58,7 +59,7 @@ msgid "submission.published"
 msgstr "Siap Produksi"
 
 msgid "submission.fairCopy"
-msgstr "Fair Copy"
+msgstr "Salinan yang Adil"
 
 msgid "submission.authorListSeparator"
 msgstr "; "
@@ -82,7 +83,7 @@ msgid "submission.chapter.pages"
 msgstr "Halaman"
 
 msgid "submission.copyedit"
-msgstr "Copyedit"
+msgstr "Penyuntingan salinan"
 
 msgid "submission.publicationFormats"
 msgstr "Format Publikasi"
@@ -625,3 +626,12 @@ msgstr ""
 msgid "publication.chapter.landingPage.doi.description"
 msgstr ""
 "(Bab ini akan selalu ditampilkan di halamannya sendiri karena memiliki DOI.)"
+
+msgid "submission.dashboard.view.reviewInternal"
+msgstr "Semua dalam tinjauan internal"
+
+msgid "submission.stage.externalReviewWithRound"
+msgstr "Tinjauan Eksternal (Putaran {$round})"
+
+msgid "submission.stage.internalReviewWithRound"
+msgstr "Tinjauan Internal (Putaran {$round})"

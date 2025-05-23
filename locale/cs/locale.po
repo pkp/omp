@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023, 2024, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-03-01 13:10+0000\n"
+"PO-Revision-Date: 2025-05-05 20:55+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/locale/cs/>\n"
 "Language: cs\n"
@@ -1614,3 +1614,6 @@ msgstr ""
 
 msgid "monograph.publicationFormat.onixDeprecated"
 msgstr " (Přerušeno)"
+
+msgid "navigation.skip.about"
+msgstr "Vynechat informace o vydavatelství"

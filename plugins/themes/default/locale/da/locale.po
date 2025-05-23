@@ -1,7 +1,7 @@
 # Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-03-25 06:50+0000\n"
+"PO-Revision-Date: 2025-05-06 07:23+0000\n"
 "Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/da/>\n"
@@ -102,3 +102,6 @@ msgstr "Næste slide/side"
 
 msgid "plugins.themes.default.prevSlide"
 msgstr "Forrige slide/side"
+
+msgid "plugins.themes.default.option.showDescriptionInPressIndex.option"
+msgstr "Vis udgiverens resumé på hjemmesiden."
