@@ -25,12 +25,12 @@
 	{/if}
 
 	{* Homepage Image *}
-	{if !$activeTheme->getOption('useHomepageImageAsHeader') && $homepageImage}
+	{if $activeTheme && !$activeTheme->getOption('useHomepageImageAsHeader') && $homepageImage}
 		<img src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}" alt="{$homepageImageAltText|escape}">
 	{/if}
 
 	{* Press Description *}
-	{if $activeTheme->getOption('showDescriptionInPressIndex')}
+	{if $activeTheme && $activeTheme->getOption('showDescriptionInPressIndex')}
 		<section class="homepage_about">
 			<a id="homepageAbout"></a>
 			<h2>{translate key="about.aboutContext"}</h2>
