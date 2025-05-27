@@ -26,7 +26,7 @@
 	</div>
 
 	{* Series List *}
-	{if $activeTheme->getOption('showCatalogSeriesListing') && $contextSeries|@count > 1}
+	{if $activeTheme && $activeTheme->getOption('showCatalogSeriesListing') && $contextSeries|@count > 1}
 		<nav class="pkp_series_nav_menu" role="navigation" aria-label="{translate key="series.series"}">
 			<h2>{translate key="series.series"}:</h2>
 			<ul>
