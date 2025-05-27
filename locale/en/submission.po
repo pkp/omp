@@ -623,6 +623,9 @@ msgstr ""
 msgid "submission.dashboard.view.reviewInternal"
 msgstr "All in internal review"
 
+msgid "dashboard.reviewAssignment.statusReceived.description"
+msgstr "The review was completed on {$date}"
+
 msgid "submission.stage.externalReviewWithRound"
 msgstr "External Review (Round {$round})"
 
