@@ -445,19 +445,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
         }
 
         /* --- Add Subject elements --- */
-
-        if ($publication->getData('subjects')) {
-            $subjectNode = $doc->createElementNS($deployment->getNamespace(), 'Subject');
-            $mainSubjectNode = $doc->createElementNS($deployment->getNamespace(), 'MainSubject'); // Always empty as per 3.0 spec.
-
-            $subjectNode->appendChild($mainSubjectNode);
-            $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeIdentifier', '12')); // 12 is BIC subject category code list.
-            $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeVersion', '2')); // Version 2 of ^^
-
-            $allSubjects = ($publication->getData('subjects')[$pubLocale]);
-            $subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectCode', trim(join(', ', $allSubjects))));
-            $descDetailNode->appendChild($subjectNode);
-        }
+        // Subjects metadata is not included because a controlled vocabulary (BIC/Thema) is not enforced (pkp/pkp-lib#10621)
 
         if ($publication->getData('keywords')) {
             $allKeywords = ($publication->getData('keywords')[$pubLocale]);
