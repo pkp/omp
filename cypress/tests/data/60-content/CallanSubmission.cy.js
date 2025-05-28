@@ -142,7 +142,7 @@ describe('Data suite tests', function() {
 		cy.assignParticipant('Proofreader', 'Catherine Turner');
 
 		// Add a publication format
-		cy.openWorkflowMenu('Publication Formats');
+		cy.openWorkflowMenu('Unassigned version', 'Publication Formats');
 		cy.get('*[id^="component-grid-catalogentry-publicationformatgrid-addFormat-button-"]').click();
 		cy.wait(1000); // Avoid occasional failure due to form init taking time
 		cy.get('input[id^="name-en-"]').type('PDF', {delay: 0});
@@ -180,7 +180,7 @@ describe('Data suite tests', function() {
 
 	it('Book is not available when unpublished', function() {
 		cy.findSubmissionAsEditor('dbarnes', null, 'Allan', null, 'Published');
-		cy.openWorkflowMenu('Title & Abstract');
+		cy.openWorkflowMenu('Version of Record 1.0', 'Title & Abstract');
 		cy.get('button').contains('Unpublish').click();
 		cy.contains('Are you sure you don\'t want this to be published?');
 		cy.get('[data-cy="dialog"] button').contains('Unpublish').click();
@@ -198,7 +198,7 @@ describe('Data suite tests', function() {
 
 		// Re-publish it
 		cy.findSubmissionAsEditor('dbarnes', null, 'Allan');
-		cy.openWorkflowMenu('Title & Abstract');
+		cy.openWorkflowMenu('Version of Record 1.0', 'Title & Abstract');
 		cy.get('button').contains('Publish').click();
 		cy.contains('All publication requirements have been met.');
 		cy.get('.pkpWorkflow__publishModal button').contains('Publish').click();

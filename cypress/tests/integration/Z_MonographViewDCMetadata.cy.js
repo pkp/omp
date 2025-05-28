@@ -419,7 +419,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 
 
 		// Go to publication tabs
-		cy.openWorkflowMenu('Title & Abstract');
+		cy.openWorkflowMenu('Unassigned version', 'Title & Abstract');
 
 		// Open multilanguage inputs and add data to fr_CA inputs
 		cy.get('.pkpFormLocales button').contains('French').click();
@@ -438,7 +438,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 		cy.get('[role="status"]').contains('Saved');
 
 		// Go to metadata
-		cy.openWorkflowMenu('Metadata');
+		cy.openWorkflowMenu('Unassigned version', 'Metadata');
 		cy.wait(500);
 		cy.get('.pkpFormLocales button').contains('French').click();
 
@@ -466,7 +466,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 		cy.get('[role="status"]').contains('Saved');
 
 		// Permissions & Disclosure
-		cy.openWorkflowMenu('Permissions & Disclosure');
+		cy.openWorkflowMenu('Unassigned version', 'Permissions & Disclosure');
 
 		cy.get('[name="licenseUrl"]').type(submission.licenceUrl, {delay: 0});
 		cy.get('button').contains('Save').click();
@@ -474,7 +474,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 
 		// Add a publication format
 		submission.publicationFormats.forEach((publicationFormat) => {
-			cy.openWorkflowMenu('Publication Formats');
+			cy.openWorkflowMenu('Unassigned version', 'Publication Formats');
 			cy.wait(1500); // Wait for the form to settle
 			cy.get('[data-cy="publication-format-manager"] a').contains('Add publication format').click();
 			cy.wait(1500); // Wait for the form to settle
@@ -509,7 +509,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 		});
 
 		// Catalog Entry
-		cy.openWorkflowMenu('Catalog Entry')
+		cy.openWorkflowMenu('Unassigned version', 'Catalog Entry')
 		cy.get('[name="seriesId"]').select(submission.seriesData.title);
 		cy.get('[name="seriesPosition"]').type(submission.seriesPosition, {delay: 0});
 		cy.get('[name="urlPath"]').type(submission.urlPath);
@@ -523,7 +523,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 		cy.isActiveStageTab('Copyediting');
 
 		// Add to catalog - Publish the submission
-		cy.openWorkflowMenu('Title & Abstract');
+		cy.openWorkflowMenu('Unassigned version', 'Title & Abstract');
 		cy.addToCatalog();
 	});
 
