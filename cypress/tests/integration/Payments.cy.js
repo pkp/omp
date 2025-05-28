@@ -29,11 +29,11 @@ describe('Payments', function() {
 
         cy.get('nav').contains('Published').click();
         cy.openSubmission('Bomb Canada and Other Unkind Remarks in the American Media');
-		cy.openWorkflowMenu('Title & Abstract');
+		cy.openWorkflowMenu('Version of Record 1.0', 'Title & Abstract');
         cy.get('button').contains('Unpublish').click();
         cy.get('[data-cy="dialog"] button').contains('Unpublish').should('be.visible').click();
         cy.waitJQuery();
-		cy.openWorkflowMenu('Publication Formats');
+		cy.openWorkflowMenu('Version of Record 1.0', 'Publication Formats');
         cy.get('.pkp_linkaction_editApprovedProof').click();
         cy.wait(1000);
         cy.get('#directSales').click();
