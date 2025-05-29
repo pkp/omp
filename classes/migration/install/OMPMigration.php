@@ -61,7 +61,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->enum('version_stage', array_column(VersionStage::cases(), 'value'))->nullable();
             $table->integer('version_minor')->nullable();
             $table->integer('version_major')->nullable();
-            $table->datetime('created_at');
+            $table->datetime('created_at')->useCurrent();
 
             $table->bigInteger('source_publication_id')->nullable();
             $table->foreign('source_publication_id', 'publications_source_publication_id')
