@@ -53,8 +53,9 @@
 	<migration class="APP\migration\install\SeriesCategoriesMigration" />
 	<migration class="PKP\migration\install\AffiliationsMigration" />
 	<migration class="PKP\migration\install\RorsMigration" />
-	<migration class="PKP\migration\install\ReviewAssignmentSettings" />
+	<migration class="PKP\migration\install\ReviewAssignmentSettingsMigration"/>
 	<migration class="PKP\migration\install\EmailTemplateUserGroupAccessMigration"/>
+	<migration class="PKP\migration\install\UserCommentsMigration"/>
 
 	<code function="createData" />
 	<code function="createConfig" />
