@@ -392,6 +392,14 @@ class MonographONIX30XmlFilter extends NativeExportFilter
             $role = array_key_exists($nameKey, $userGroupOnixMap) ? $userGroupOnixMap[$nameKey] : 'Z99'; // Z99 - unknown contributor type.
 
             $contributorNode->appendChild($this->buildTextNode($doc, 'ContributorRole', $role));
+
+            if ($author->getOrcid() && $author->hasVerifiedOrcid()) {
+                $nameIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'NameIdentifier');
+                $nameIdentifierNode->appendChild($this->buildTextNode($doc, 'NameIDType', '21')); // 21 - orcid
+                $nameIdentifierNode->appendChild($this->buildTextNode($doc, 'IDValue', $author->getOrcid()));
+                $contributorNode->appendChild($nameIdentifierNode);
+            }
+
             $contributorNode->appendChild($this->buildTextNode($doc, 'PersonName', $author->getFullName(false, false, $pubLocale)));
             $contributorNode->appendChild($this->buildTextNode($doc, 'PersonNameInverted', $author->getFullName(false, true, $pubLocale)));
             $contributorNode->appendChild($this->buildTextNode($doc, 'NamesBeforeKey', $author->getGivenName($pubLocale)));
