@@ -156,7 +156,7 @@ describe('Data suite tests', function() {
 		cy.assignParticipant('Layout Editor', 'Graham Cox');
 
 		// Add a publication format with ISBNs
-		cy.openWorkflowMenu('Publication Formats');
+		cy.openWorkflowMenu('Unassigned version', 'Publication Formats');
 		cy.get('*[id^="component-grid-catalogentry-publicationformatgrid-addFormat-button-"]').click();
 		cy.wait(1000); // Avoid occasional failure due to form init taking time
 		cy.get('input[id^="name-en-"]').type('PDF', {delay: 0});
