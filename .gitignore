@@ -12,6 +12,7 @@ temp
 te_ST/
 node_modules
 js/build.js
+js/build_frontend.js
 js/hot-updates
 styles/build.css
 cypress.env.json
