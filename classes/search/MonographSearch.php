@@ -26,6 +26,7 @@ use APP\press\Press;
 use PKP\db\DAORegistry;
 use PKP\plugins\Hook;
 use PKP\search\SubmissionSearch;
+use PKP\user\User;
 use PKP\userGroup\UserGroup;
 
 class MonographSearch extends SubmissionSearch
@@ -152,11 +153,9 @@ class MonographSearch extends SubmissionSearch
     /**
      * Retrieve the search filters from the request.
      *
-     * @param Request $request
-     *
      * @return array All search filters (empty and active)
      */
-    public function getSearchFilters($request)
+    public function getSearchFilters(Request $request): array
     {
         $searchFilters = [
             'query' => $request->getUserVar('query'),
@@ -170,7 +169,9 @@ class MonographSearch extends SubmissionSearch
             'subject' => $request->getUserVar('subject'),
             'type' => $request->getUserVar('type'),
             'coverage' => $request->getUserVar('coverage'),
-            'indexTerms' => $request->getUserVar('indexTerms')
+            'indexTerms' => $request->getUserVar('indexTerms'),
+            'categoryIds' => $request->getUserVar('categoryIds'),
+            'sectionIds' => $request->getUserVar('sectionIds'),
         ];
 
         // Is this a simplified query from the navigation
@@ -224,7 +225,7 @@ class MonographSearch extends SubmissionSearch
      *
      * @return array Keyword array as required by SubmissionSearch::retrieveResults()
      */
-    public function getKeywordsFromSearchFilters($searchFilters)
+    public function getKeywordsFromSearchFilters(array $searchFilters): array
     {
         $indexFieldMap = $this->getIndexFieldMap();
         $indexFieldMap[SubmissionSearch::SUBMISSION_SEARCH_INDEX_TERMS] = 'indexTerms';
@@ -242,10 +243,8 @@ class MonographSearch extends SubmissionSearch
 
     /**
      * @copydoc SubmissionSearch::formatResults()
-     *
-     * @param null|mixed $user
      */
-    public function formatResults($results, $user = null)
+    public function formatResults(array $results, ?User $user = null): array
     {
         $contextDao = Application::getContextDAO();
 
@@ -290,7 +289,7 @@ class MonographSearch extends SubmissionSearch
         return $returner;
     }
 
-    public function getIndexFieldMap()
+    public function getIndexFieldMap(): array
     {
         return [
             SubmissionSearch::SUBMISSION_SEARCH_AUTHOR => 'authors',
@@ -342,7 +341,7 @@ class MonographSearch extends SubmissionSearch
     /**
      * See SubmissionSearch::getDefaultOrderDir()
      */
-    public function getDefaultOrderDir($orderBy)
+    public function getDefaultOrderDir($orderBy): string
     {
         $orderDir = 'asc';
         if (in_array($orderBy, ['score', 'publicationDate', 'popularityAll', 'popularityMonth'])) {
