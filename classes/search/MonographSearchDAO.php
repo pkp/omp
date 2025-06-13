@@ -18,6 +18,7 @@
 
 namespace APP\search;
 
+use PKP\context\Context;
 use PKP\search\SubmissionSearchDAO;
 use PKP\submission\PKPSubmission;
 
@@ -33,8 +34,17 @@ class MonographSearchDAO extends SubmissionSearchDAO
      *
      * @return array of results (associative arrays)
      */
-    public function getPhraseResults($press, $phrase, $publishedFrom = null, $publishedTo = null, $type = null, $limit = 500, $cacheHours = 24)
-    {
+    public function getPhraseResults(
+        Context $context,
+        array $phrase,
+        ?string $publishedFrom = null,
+        ?string $publishedTo = null,
+        ?array $categoryIds = null,
+        ?array $sectionIds = null,
+        ?int $type = null,
+        int $limit = 500,
+        int $cacheHours = 24
+    ): array {
         if (empty($phrase)) {
             return [];
         }
@@ -61,14 +71,22 @@ class MonographSearchDAO extends SubmissionSearchDAO
             $params[] = $phrase[$i];
         }
 
+        if (is_array($categoryIds)) {
+            $sqlWhere .= ' AND p.publication_id IN (SELECT publication_id FROM publication_categories WHERE category_id IN (' . implode(',', array_map(intval(...), $categoryIds)) . '))';
+        }
+
+        if (is_array($sectionIds)) {
+            $sqlWhere .= ' AND p.series_id IN (' . implode(',', array_map(intval(...), $sectionIds)) . ')';
+        }
+
         if (!empty($type)) {
             $sqlWhere .= ' AND (o.type & ?) != 0';
             $params[] = $type;
         }
 
-        if (!empty($press)) {
+        if (!empty($context)) {
             $sqlWhere .= ' AND s.context_id = ?';
-            $params[] = $press->getId();
+            $params[] = $context->getId();
         }
 
         $params[] = PKPSubmission::STATUS_PUBLISHED;

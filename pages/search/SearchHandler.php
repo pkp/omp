@@ -55,7 +55,17 @@ class SearchHandler extends Handler
         $error = null;
         $query = $request->getUserVar('query');
         $templateMgr->assign([
-            'results' => $monographSearch->retrieveResults($request, $press, [null => $query], $error, null, null, $rangeInfo),
+            'results' => $monographSearch->retrieveResults(
+                request: $request,
+                context: $press,
+                keywords: [null => $query],
+                error: $error,
+                publishedFrom: null,
+                publishedTo: null,
+                categoryIds: $request->getUserVar('categoryIds') ?? null,
+                sectionIds: $request->getUserVar('seriesIds') ?? null,
+                rangeInfo: $rangeInfo
+            ),
             'searchQuery' => $query,
             'authorUserGroups' => UserGroup::withRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])
                 ->withContextIds($press ? [$press->getId()] : null)
