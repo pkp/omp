@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @defgroup api_v1_announcements Email templates API requests
  */
@@ -8,7 +9,7 @@
  *
  * Copyright (c) 2023 Simon Fraser University
  * Copyright (c) 2023 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @ingroup api_v1_announcements
  *
