@@ -36,19 +36,3 @@ class SubmissionEventLogEntry extends PKPSubmissionEventLogEntry
     public const SUBMISSION_LOG_PUBLICATION_FORMAT_AVAILABLE = 268435476;
     public const SUBMISSION_LOG_PUBLICATION_FORMAT_UNAVAILABLE = 268435477;
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\log\event\SubmissionEventLogEntry', '\SubmissionEventLogEntry');
-    foreach ([
-        'SUBMISSION_LOG_PUBLICATION_FORMAT_PUBLISH',
-        'SUBMISSION_LOG_PUBLICATION_FORMAT_UNPUBLISH',
-        'SUBMISSION_LOG_CATALOG_METADATA_UPDATE',
-        'SUBMISSION_LOG_PUBLICATION_FORMAT_METADATA_UPDATE',
-        'SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE',
-        'SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE',
-        'SUBMISSION_LOG_PUBLICATION_FORMAT_AVAILABLE',
-        'SUBMISSION_LOG_PUBLICATION_FORMAT_UNAVAILABLE',
-    ] as $constantName) {
-        define($constantName, constant('\SubmissionEventLogEntry::' . $constantName));
-    }
-}

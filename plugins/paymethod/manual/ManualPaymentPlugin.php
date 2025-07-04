@@ -237,7 +237,3 @@ class ManualPaymentPlugin extends PaymethodPlugin
         return false;
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\plugins\paymethod\manual\ManualPaymentPlugin', '\ManualPaymentPlugin');
-}

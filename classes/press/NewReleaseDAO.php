@@ -174,7 +174,3 @@ class NewReleaseDAO extends \PKP\db\DAO
         return $newRelease;
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\press\NewReleaseDAO', '\NewReleaseDAO');
-}

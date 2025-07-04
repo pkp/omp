@@ -239,7 +239,3 @@ class PaypalPaymentPlugin extends PaymethodPlugin
         return parent::getTemplatePath($inCore) . 'templates/';
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\plugins\paymethod\paypal\PaypalPaymentPlugin', '\PaypalPaymentPlugin');
-}

@@ -47,7 +47,6 @@ class Application extends PKPApplication
         parent::__construct();
         if (!PKP_STRICT_MODE) {
             foreach ([
-                'REQUIRES_XSL',
                 'ASSOC_TYPE_MONOGRAPH',
                 'ASSOC_TYPE_PUBLICATION_FORMAT',
                 'ASSOC_TYPE_PRESS',

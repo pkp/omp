@@ -65,7 +65,3 @@ class ONIXCodelistItem extends DataObject
         $this->setData('code', $code);
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\codelist\ONIXCodelistItem', '\ONIXCodelistItem');
-}

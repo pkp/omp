@@ -139,7 +139,3 @@ abstract class CodelistItemDAO extends DAO
         return $codelistItem;
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\codelist\CodelistItemDAO', '\CodelistItemDAO');
-}

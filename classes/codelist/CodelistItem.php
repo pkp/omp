@@ -66,7 +66,3 @@ abstract class CodelistItem extends DataObject
      */
     abstract public function getOnixSubjectSchemeIdentifier(): int;
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\codelist\CodelistItem', '\CodelistItem');
-}

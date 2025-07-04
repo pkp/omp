@@ -211,7 +211,3 @@ class OMPCompletedPaymentDAO extends DAO
         return $payment;
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\payment\omp\OMPCompletedPaymentDAO', '\OMPCompletedPaymentDAO');
-}

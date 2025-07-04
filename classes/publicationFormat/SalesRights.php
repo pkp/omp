@@ -187,7 +187,3 @@ class SalesRights extends \PKP\core\DataObject
         return trim($value) != '';
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\publicationFormat\SalesRights', '\SalesRights');
-}

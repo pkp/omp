@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/monograph/Representative.php
  *
@@ -217,8 +218,4 @@ class Representative extends \PKP\core\DataObject
     {
         $this->setData('isSupplier', $isSupplier);
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\monograph\Representative', '\Representative');
 }

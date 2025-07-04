@@ -200,7 +200,3 @@ class SalesRightsDAO extends \PKP\db\DAO
             ->delete();
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\publicationFormat\SalesRightsDAO', '\SalesRightsDAO');
-}

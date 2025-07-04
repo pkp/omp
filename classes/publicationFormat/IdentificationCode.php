@@ -94,7 +94,3 @@ class IdentificationCode extends DataObject
         return $this->getData('value');
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\publicationFormat\IdentificationCode', '\IdentificationCode');
-}
