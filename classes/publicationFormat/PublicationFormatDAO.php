@@ -535,7 +535,3 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
         return $affectedRows;
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\publicationFormat\PublicationFormatDAO', '\PublicationFormatDAO');
-}

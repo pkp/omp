@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/security/authorization/OmpPublishedSubmissionRequiredPolicy.php
  *
@@ -94,8 +95,4 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy
 
         return false;
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\security\authorization\OmpPublishedSubmissionRequiredPolicy', '\OmpPublishedSubmissionRequiredPolicy');
 }

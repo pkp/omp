@@ -167,7 +167,3 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler
         return [$this->listName => $this->listItems];
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\codelist\ONIXParserDOMHandler', '\ONIXParserDOMHandler');
-}

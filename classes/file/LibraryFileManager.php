@@ -77,7 +77,3 @@ class LibraryFileManager extends PKPLibraryFileManager
         return $map;
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\file\LibraryFileManager', '\LibraryFileManager');
-}

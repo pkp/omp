@@ -265,7 +265,3 @@ class PublicationDate extends DataObject
         return null;
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\publicationFormat\PublicationDate', '\PublicationDate');
-}

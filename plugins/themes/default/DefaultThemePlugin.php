@@ -281,7 +281,3 @@ class DefaultThemePlugin extends ThemePlugin
         ]);
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\plugins\themes\default\DefaultThemePlugin', '\DefaultThemePlugin');
-}

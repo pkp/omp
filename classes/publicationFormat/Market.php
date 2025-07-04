@@ -396,7 +396,3 @@ class Market extends DataObject
         return (trim($value) != '') ? true : false;
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\publicationFormat\Market', '\Market');
-}

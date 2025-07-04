@@ -19,7 +19,3 @@ use PKP\notification\form\PKPNotificationSettingsForm;
 class NotificationSettingsForm extends PKPNotificationSettingsForm
 {
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\notification\form\NotificationSettingsForm', '\NotificationSettingsForm');
-}
