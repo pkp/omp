@@ -293,7 +293,3 @@ class OAIDAO extends PKPOAIDAO
             ->orderBy(DB::raw($orderBy));
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\oai\omp\OAIDAO', '\OAIDAO');
-}

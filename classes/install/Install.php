@@ -69,7 +69,3 @@ class Install extends PKPInstall
         return $createData;
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\install\Install', '\Install');
-}

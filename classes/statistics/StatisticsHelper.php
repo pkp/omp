@@ -52,7 +52,3 @@ class StatisticsHelper extends PKPStatisticsHelper
         ];
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\statistics\StatisticsHelper', '\StatisticsHelper');
-}

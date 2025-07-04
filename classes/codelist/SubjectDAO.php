@@ -50,7 +50,3 @@ class SubjectDAO extends CodelistItemDAO
         return new Subject();
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\codelist\SubjectDAO', '\SubjectDAO');
-}

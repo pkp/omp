@@ -36,7 +36,3 @@ class Subject extends CodelistItem
         return $this->_onixSubjectSchemeIdentifier;
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\codelist\Subject', '\Subject');
-}

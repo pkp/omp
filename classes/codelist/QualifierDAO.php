@@ -50,7 +50,3 @@ class QualifierDAO extends CodelistItemDAO
         return new Qualifier();
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\codelist\QualifierDAO', '\QualifierDAO');
-}
