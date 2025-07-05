@@ -112,3 +112,7 @@ class Publication extends PKPPublication
         ]);
     }
 }
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\publication\Publication', '\Publication');
+}
