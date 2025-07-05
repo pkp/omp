@@ -115,7 +115,7 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
 
         // Retrieve all submission files for the given file stage.
         /** @var Representation $categoryDataElement */
-        assert(is_a($categoryDataElement, 'Representation'));
+        assert($categoryDataElement instanceof \PKP\submission\Representation);
 
         $submissionFiles = Repo::submissionFile()
             ->getCollector()
