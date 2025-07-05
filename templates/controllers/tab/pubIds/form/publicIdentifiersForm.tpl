@@ -18,7 +18,7 @@
 		);
 	{rdelim});
 </script>
-{if $pubObject instanceof Monograph}
+{if $pubObject instanceof \APP\submission\Submission}
 	<form class="pkp_form" id="publicIdentifiersForm" method="post" action="{url router=PKP\core\PKPApplication::ROUTE_COMPONENT op="updateIdentifiers"}">
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="publicationIdentifiersFormFieldsNotification"}
 		<input type="hidden" name="submissionId" value="{$pubObject->getId()|escape}" />
@@ -27,21 +27,21 @@
 		<input type="hidden" name="displayedInContainer" value="{$formParams.displayedInContainer|escape}" />
 		<input type="hidden" name="tab" value="identifiers" />
 
-{elseif $pubObject instanceof Chapter}
+{elseif $pubObject instanceof \APP\monograph\Chapter}
 	<form class="pkp_form" id="publicIdentifiersForm" method="post" action="{url router=PKP\core\PKPApplication::ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateIdentifiers"}">
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="representationIdentifiersFormFieldsNotification"}
 		<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 		<input type="hidden" name="publicationId" value="{$pubObject->getData('publicationId')|escape}" />
 		<input type="hidden" name="chapterId" value="{$pubObject->getId()|escape}" />
 
-{elseif $pubObject instanceof Representation}
+{elseif $pubObject instanceof \PKP\submission\Representation}
 	<form class="pkp_form" id="publicIdentifiersForm" method="post" action="{url router=PKP\core\PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="updateIdentifiers"}">
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="representationIdentifiersFormFieldsNotification"}
 		<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 		<input type="hidden" name="publicationId" value="{$pubObject->getData('publicationId')|escape}" />
 		<input type="hidden" name="representationId" value="{$pubObject->getId()|escape}" />
 
-{elseif $pubObject instanceof SubmissionFile}
+{elseif $pubObject instanceof \PKP\submissionFile\SubmissionFile}
 	<form class="pkp_form" id="publicIdentifiersForm" method="post" action="{url component="api.file.ManageFileApiHandler" op="updateIdentifiers" escape=false}">
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="fileIdentifiersFormFieldsNotification"}
 		<input type="hidden" name="submissionFileId" value="{$pubObject->getId()|escape}" />

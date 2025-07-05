@@ -74,7 +74,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin
         $chapter = ($pubObjectType == 'Chapter' ? $pubObject : null);
 
         // Retrieve the submission.
-        if (is_a($pubObject, 'Chapter') || is_a($pubObject, 'Representation')) {
+        if ($pubObject instanceof \APP\monograph\Chapter || $pubObject instanceof \PKP\submission\Representation) {
             $publication = Repo::publication()->get($pubObject->getData('publicationId'));
             $submission = Repo::submission()->get($publication->getData('submissionId'));
         } else { // Publication or SubmissionFile

@@ -325,7 +325,7 @@ class MonographSearch extends SubmissionSearch
 
         // Only show the "press title" option if we have several presses.
         $context = $request->getContext();
-        if (!is_a($context, 'Context')) {
+        if ($context) {
             $resultSetOrderingOptions['pressTitle'] = __('search.results.orderBy.press');
         }
 

@@ -34,9 +34,9 @@ class PublicIdentifiersForm extends PKPPublicIdentifiersForm
         $templateMgr = TemplateManager::getManager($request);
         $enablePublisherId = (array) $request->getContext()->getData('enablePublisherId');
         $templateMgr->assign([
-            'enablePublisherId' => (is_a($this->getPubObject(), 'Chapter') && in_array('chapter', $enablePublisherId)) ||
-                    (is_a($this->getPubObject(), 'Representation') && in_array('representation', $enablePublisherId)) ||
-                    (is_a($this->getPubObject(), 'SubmissionFile') && in_array('file', $enablePublisherId)),
+            'enablePublisherId' => ($this->getPubObject() instanceof \APP\monograph\Chapter && in_array('chapter', $enablePublisherId)) ||
+                    ($this->getPubObject() instanceof \PKP\submission\Representation && in_array('representation', $enablePublisherId)) ||
+                    ($this->getPubObject() instanceof \PKP\submissionFile\SubmissionFile && in_array('file', $enablePublisherId)),
         ]);
 
         return parent::fetch($request, $template, $display);
@@ -49,7 +49,7 @@ class PublicIdentifiersForm extends PKPPublicIdentifiersForm
     {
         parent::execute(...$functionArgs);
         $pubObject = $this->getPubObject();
-        if (is_a($pubObject, 'Chapter')) {
+        if ($pubObject instanceof \APP\monograph\Chapter) {
             $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
             $chapterDao->updateObject($pubObject);
         }
@@ -60,7 +60,7 @@ class PublicIdentifiersForm extends PKPPublicIdentifiersForm
      */
     public function getAssocType($pubObject)
     {
-        if (is_a($pubObject, 'Chapter')) {
+        if ($pubObject instanceof \APP\monograph\Chapter) {
             return Application::ASSOC_TYPE_CHAPTER;
         }
         return parent::getAssocType($pubObject);
