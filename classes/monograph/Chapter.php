@@ -321,7 +321,3 @@ class Chapter extends \PKP\core\DataObject
         $this->setData('licenseUrl', $licenseUrl);
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\monograph\Chapter', '\Chapter');
-}

@@ -7,5 +7,5 @@
  *
  * Template which adds the chapters grid to the submission wizard
  *}
-{capture assign=chaptersGridUrl}{url router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" submissionId=$submission->getId() publicationId=$submission->getCurrentPublication()->getId() escape=false}{/capture}
+{capture assign=chaptersGridUrl}{url router=PKP\core\PKPApplication::ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" submissionId=$submission->getId() publicationId=$submission->getCurrentPublication()->getId() escape=false}{/capture}
 {load_url_in_div id="chaptersGridContainer" url=$chaptersGridUrl inVueEl=true}

@@ -361,7 +361,3 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
         return $affectedRows;
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\monograph\ChapterDAO', '\ChapterDAO');
-}

@@ -68,10 +68,6 @@
 			{page_links anchor="results" iterator=$results name="search" query=$searchQuery}
 		</div>
 	{/if}
-
-	<a name="search-form"></a>
-	{include file="frontend/components/searchForm_simple.tpl"}
-
 </div><!-- .page -->
 
 {include file="frontend/components/footer.tpl"}

@@ -211,7 +211,3 @@ class RepresentativeDAO extends \PKP\db\DAO
             ->delete();
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\monograph\RepresentativeDAO', '\RepresentativeDAO');
-}

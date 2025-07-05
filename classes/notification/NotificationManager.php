@@ -84,7 +84,7 @@ class NotificationManager extends PKPNotificationManager
     {
         switch ($notificationType) {
             case Notification::NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW:
-                if($assocType != Application::ASSOC_TYPE_SUBMISSION) {
+                if ($assocType != Application::ASSOC_TYPE_SUBMISSION) {
                     throw new \Exception('Unexpected assoc type!');
                 }
                 return new EditorAssignmentNotificationManager($notificationType);
@@ -94,14 +94,14 @@ class NotificationManager extends PKPNotificationManager
                 }
                 return new EditorDecisionNotificationManager($notificationType);
             case Notification::NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
-                if($assocType != Application::ASSOC_TYPE_SUBMISSION) {
+                if ($assocType != Application::ASSOC_TYPE_SUBMISSION) {
                     throw new \Exception('Unexpected assoc type!');
                 }
                 return new PendingRevisionsNotificationManager($notificationType);
             case Notification::NOTIFICATION_TYPE_APPROVE_SUBMISSION:
             case Notification::NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
             case Notification::NOTIFICATION_TYPE_VISIT_CATALOG:
-                if($assocType != Application::ASSOC_TYPE_SUBMISSION) {
+                if ($assocType != Application::ASSOC_TYPE_SUBMISSION) {
                     throw new \Exception('Unexpected assoc type!');
                 }
                 return new ApproveSubmissionNotificationManager($notificationType);
@@ -118,8 +118,4 @@ class NotificationManager extends PKPNotificationManager
             default => parent::getNotificationTypeByEditorDecision($decision)
         };
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\notification\NotificationManager', '\NotificationManager');
 }

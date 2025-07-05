@@ -216,14 +216,3 @@ class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
         }
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    foreach ([
-        'NMI_TYPE_CATALOG',
-        'NMI_TYPE_SERIES',
-        'NMI_TYPE_CATEGORY',
-        'NMI_TYPE_NEW_RELEASE',
-    ] as $constantName) {
-        define($constantName, constant('\APP\services\NavigationMenuService::' . $constantName));
-    }
-}

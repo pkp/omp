@@ -220,7 +220,3 @@ class ONIXCodelistItemDAO extends DAO
         return $codelistItem;
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\codelist\ONIXCodelistItemDAO', '\ONIXCodelistItemDAO');
-}

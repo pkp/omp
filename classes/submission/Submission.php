@@ -128,6 +128,4 @@ class Submission extends PKPSubmission
 
 if (!PKP_STRICT_MODE) {
     class_alias('\APP\submission\Submission', '\Submission');
-    define('WORK_TYPE_EDITED_VOLUME', Submission::WORK_TYPE_EDITED_VOLUME);
-    define('WORK_TYPE_AUTHORED_WORK', Submission::WORK_TYPE_AUTHORED_WORK);
 }

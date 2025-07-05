@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/security/authorization/OmpPublishedSubmissionAccessPolicy.php
  *
@@ -35,8 +36,4 @@ class OmpPublishedSubmissionAccessPolicy extends ContextPolicy
         // Require published submissions
         $this->addPolicy(new OmpPublishedSubmissionRequiredPolicy($request, $args, $submissionParameterName));
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\security\authorization\OmpPublishedSubmissionAccessPolicy', '\OmpPublishedSubmissionAccessPolicy');
 }

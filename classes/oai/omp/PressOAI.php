@@ -274,7 +274,3 @@ class PressOAI extends OAI
         return 'oai:' . $this->config->repositoryId . ':' . 'publicationFormat/';
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\oai\omp\PressOAI', '\PressOAI');
-}

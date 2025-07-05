@@ -664,7 +664,3 @@ class PublicationFormat extends Representation
         }
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\publicationFormat\PublicationFormat', '\PublicationFormat');
-}
