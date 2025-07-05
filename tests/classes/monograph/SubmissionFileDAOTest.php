@@ -178,7 +178,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $submissionFileDao = Repo::submissionFile()->dao;
         $submissionFile1Id = $submissionFileDao->insert($submissionFile1);
         $submissionFile1 = $submissionFileDao->get($submissionFile1Id);
-        static::assertTrue(is_a($submissionFile1, 'SubmissionFile'));
+        static::assertTrue($submissionFile1 instanceof \PKP\submissionFile\SubmissionFile);
         static::assertEquals($submissionFile1->getData('assocType'), null);
         static::assertEquals($submissionFile1->getData('assocId'), null);
         static::assertEquals($submissionFile1->getData('fileStage'), SubmissionFile::SUBMISSION_FILE_SUBMISSION);
@@ -190,7 +190,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
 
         $submissionFile2Id = $submissionFileDao->insert($submissionFile2);
         $submissionFile2 = $submissionFileDao->get($submissionFile2Id);
-        static::assertTrue(is_a($submissionFile2, 'SubmissionFile'));
+        static::assertTrue($submissionFile2 instanceof \PKP\submissionFile\SubmissionFile);
         static::assertEquals($submissionFile2->getData('assocType'), Application::ASSOC_TYPE_REPRESENTATION);
         static::assertEquals($submissionFile2->getData('assocId'), 1);
         static::assertEquals($submissionFile2->getData('fileStage'), SubmissionFile::SUBMISSION_FILE_PROOF);

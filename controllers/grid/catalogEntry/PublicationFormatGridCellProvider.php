@@ -97,7 +97,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
     {
         $data = $row->getData();
 
-        if (is_a($data, 'Representation')) {
+        if ($data instanceof \PKP\submission\Representation) {
             /** @var Representation $data */
             switch ($column->getId()) {
                 case 'indent': return [];
@@ -150,7 +150,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
     {
         $data = $row->getData();
         $router = $request->getRouter();
-        if (is_a($data, 'Representation')) {
+        if ($data instanceof \PKP\submission\Representation) {
             switch ($column->getId()) {
                 case 'isAvailable':
                     return [new LinkAction(

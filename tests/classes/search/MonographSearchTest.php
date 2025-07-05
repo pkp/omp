@@ -21,6 +21,8 @@ use APP\press\PressDAO;
 use APP\search\MonographSearch;
 use APP\search\MonographSearchDAO;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PKP\core\ItemIterator;
+use PKP\core\VirtualArrayIterator;
 use PKP\db\DAORegistry;
 use PKP\plugins\Hook;
 use PKP\tests\PKPTestCase;
@@ -90,7 +92,7 @@ class MonographSearchTest extends PKPTestCase
         $searchResult = $monographSearch->retrieveResults($request, $press, $keywords, $error);
 
         // Test whether the result from the mocked DAOs is being returned.
-        self::assertInstanceOf('ItemIterator', $searchResult);
+        self::assertInstanceOf(ItemIterator::class, $searchResult);
         $firstResult = $searchResult->next();
         self::assertArrayHasKey('monograph', $firstResult);
         self::assertEquals(self::SUBMISSION_SEARCH_TEST_DEFAULT_MONOGRAPH, $firstResult['monograph']->getId());
@@ -141,7 +143,7 @@ class MonographSearchTest extends PKPTestCase
             self::assertCount(1, array_filter($calledHooks, fn ($hook) => $hook[0] === 'SubmissionSearch::retrieveResults'));
 
             // Test whether the result from the hook is being returned.
-            self::assertInstanceOf('VirtualArrayIterator', $searchResult);
+            self::assertInstanceOf(VirtualArrayIterator::class, $searchResult);
 
             // Test the total count.
             self::assertEquals(3, $searchResult->getCount());
