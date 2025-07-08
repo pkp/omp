@@ -317,7 +317,7 @@ class MonographSearchIndexTest extends PKPTestCase
         self::assertEquals('MonographSearchIndex::monographMetadataChanged', $hook);
 
         [$monograph] = $params;
-        self::assertInstanceOf('Submission', $monograph);
+        self::assertInstanceOf(Submission::class, $monograph);
 
         // Returning "true" is required so that the default submissionMetadataChanged()
         // code won't run.
@@ -335,7 +335,7 @@ class MonographSearchIndexTest extends PKPTestCase
         self::assertEquals('MonographSearchIndex::submissionFilesChanged', $hook);
 
         [$monograph] = $params;
-        self::assertInstanceOf('Submission', $monograph);
+        self::assertInstanceOf(Submission::class, $monograph);
 
         // Returning "true" is required so that the default submissionMetadataChanged()
         // code won't run.
