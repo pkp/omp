@@ -12,6 +12,7 @@
  * @uses $editors Array List of editors for this monograph if this is an edited
  *       volume. Otherwise empty.
  * @uses $isChapterRequest bool Is true, if a chapter landing page is requested and not a monograph landing page
+ * @uses $creditRoleTerms Array of translated credit role terms: roles and degrees
  *}
 
 <div class="item authors">
@@ -55,6 +56,21 @@
 						<a href="{$author->getOrcid()|escape}" target="_blank">
 							{$author->getOrcidDisplayValue()|escape}
 						</a>
+					</span>
+				{/if}
+				{if $author->getData('creditRoles')}
+					<span class="credit_roles">
+					{strip}
+					{foreach $author->getData('creditRoles') as $credit}
+						<span class="value">
+							{$creditRoleTerms.roles[$credit.role]|escape}
+							{if $creditRoleTerms.degrees[$credit.degree]}
+								&nbsp;({$creditRoleTerms.degrees[$credit.degree]|escape})
+							{/if}
+						</span>
+						{if !$credit@last}{translate key="common.commaListSeparator"}{/if}
+					{/foreach}
+					{/strip}
 					</span>
 				{/if}
 			</div>
