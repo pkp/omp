@@ -297,6 +297,11 @@ class CatalogBookHandler extends Handler
         $rorIdIcon = file_exists($rorIconPath) ? file_get_contents($rorIconPath) : '';
         $templateMgr->assign('rorIdIcon', $rorIdIcon);
 
+        // Credit Role Terms
+        $templateMgr->assign([
+            'creditRoleTerms' => Repo::CreditRole()->getTerms(),
+        ]);
+
         // Ask robots not to index outdated versions and point to the canonical url for the latest version
         if ($this->publication->getId() != $submission->getData('currentPublicationId')) {
             $templateMgr->addHeader('noindex', '<meta name="robots" content="noindex">');
