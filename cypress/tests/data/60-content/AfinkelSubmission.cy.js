@@ -273,7 +273,6 @@ describe('Data suite tests', function() {
 
 		cy.get('.submissionWizard__footer button').contains('Continue').click();
 		cy.get('.submissionWizard__footer button').contains('Continue').click();
-		cy.get('.submissionWizard__footer button').contains('Continue').click();
 
 		// For the Editors
 		cy.contains('Make a Submission: For the Editors');
