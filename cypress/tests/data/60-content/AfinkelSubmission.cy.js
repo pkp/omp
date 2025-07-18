@@ -157,12 +157,12 @@ describe('Data suite tests', function() {
 		cy.contains('Begin Submission').click();
 
 		// The submission wizard has loaded
-		cy.contains('Make a Submission: Details');
+		cy.contains('Make a Submission: Upload Files');
 		cy.get('.submissionWizard__submissionDetails').contains('Finkel');
 		cy.get('.submissionWizard__submissionDetails').contains(submission.title);
 		cy.contains('Submitting an Edited Volume in English');
-		cy.get('.pkpSteps__step__label--current').contains('Details');
-		cy.get('.pkpSteps__step__label').contains('Upload Files');
+		cy.get('.pkpSteps__step__label--current').contains('Upload Files');
+		cy.get('.pkpSteps__step__label').contains('Details');
 		cy.get('.pkpSteps__step__label').contains('Contributors');
 		cy.get('.pkpSteps__step__label').contains('For the Editors');
 		cy.get('.pkpSteps__step__label').contains('Review');
@@ -172,14 +172,6 @@ describe('Data suite tests', function() {
 			.then(search => {
 				submission.id = parseInt(search.split('=')[1]);
 			});
-
-		// Enter details
-		cy.get('.pkpSteps__step__label--current').contains('Details');
-		cy.get('h2').contains('Submission Details');
-		cy.setTinyMceContent('titleAbstract-abstract-control-en', submission.abstract);
-		cy.get('#titleAbstract-title-control-en').click({force: true}); // Ensure blur event is fired
-
-		cy.get('.submissionWizard__footer button').contains('Continue').click();
 
 		// Upload files and set file genres
 		cy.contains('Make a Submission: Upload Files');
@@ -197,6 +189,14 @@ describe('Data suite tests', function() {
 		cy.get('.listPanel__item:contains("delete-this-file.pdf")').find('button').contains('Remove').click();
 		cy.get('div[role=dialog]:contains("Are you sure you want to remove this file?")').find('button').contains('Yes').click();
 		cy.get('.listPanel__item:contains("delete-this-file.pdf")').should('not.exist');
+
+		cy.get('.submissionWizard__footer button').contains('Continue').click();
+
+		// Enter details
+		cy.get('.pkpSteps__step__label--current').contains('Details');
+		cy.get('h2').contains('Submission Details');
+		cy.setTinyMceContent('titleAbstract-abstract-control-en', submission.abstract);
+		cy.get('#titleAbstract-title-control-en').click({force: true}); // Ensure blur event is fired
 
 		cy.get('.submissionWizard__footer button').contains('Continue').click();
 
@@ -271,7 +271,6 @@ describe('Data suite tests', function() {
 		cy.get('.pkpSteps__step__label:contains("Details")').click({force: true});
 		cy.addChapters(submission.chapters);
 
-		cy.get('.submissionWizard__footer button').contains('Continue').click();
 		cy.get('.submissionWizard__footer button').contains('Continue').click();
 		cy.get('.submissionWizard__footer button').contains('Continue').click();
 
