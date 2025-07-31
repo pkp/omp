@@ -21,8 +21,6 @@ namespace APP\core;
 
 use APP\payment\omp\OMPPaymentManager;
 use APP\press\PressDAO;
-use APP\search\MonographSearchDAO;
-use APP\search\MonographSearchIndex;
 use PKP\context\Context;
 use PKP\core\PKPApplication;
 use PKP\db\DAO;
@@ -110,7 +108,6 @@ class Application extends PKPApplication
             'IdentificationCodeDAO' => 'APP\publicationFormat\IdentificationCodeDAO',
             'LayoutAssignmentDAO' => 'submission\layoutAssignment\LayoutAssignmentDAO',
             'MarketDAO' => 'APP\publicationFormat\MarketDAO',
-            'MonographSearchDAO' => 'APP\search\MonographSearchDAO',
             'NewReleaseDAO' => 'APP\press\NewReleaseDAO',
             'OAIDAO' => 'APP\oai\omp\OAIDAO',
             'OMPCompletedPaymentDAO' => 'APP\payment\omp\OMPCompletedPaymentDAO',
@@ -169,22 +166,6 @@ class Application extends PKPApplication
     public static function getRepresentationDAO(): DAO|RepresentationDAOInterface
     {
         return DAORegistry::getDAO('PublicationFormatDAO');
-    }
-
-    /**
-     * Get a SubmissionSearchIndex instance.
-     */
-    public static function getSubmissionSearchIndex(): MonographSearchIndex
-    {
-        return new MonographSearchIndex();
-    }
-
-    /**
-     * Get a SubmissionSearchDAO instance.
-     */
-    public static function getSubmissionSearchDAO(): MonographSearchDAO
-    {
-        return DAORegistry::getDAO('MonographSearchDAO');
     }
 
     /**

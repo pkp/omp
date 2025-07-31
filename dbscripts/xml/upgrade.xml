@@ -182,6 +182,8 @@
 		<migration class="PKP\migration\upgrade\v3_6_0\I4860_MigratePublicationVersionSourcePublicationId"/>
 		<migration class="PKP\migration\upgrade\v3_6_0\I11326_UserComments"/>
 		<migration class="PKP\migration\upgrade\v3_6_0\I857_CreditRoles"/>
+		<migration class="PKP\migration\upgrade\v3_6_0\I8920_ReplaceSearchEngine"/>
+		<code function="rebuildSearchIndex" />
 		<note file="docs/release-notes/README-3.6.0" />
 	</upgrade>
 
