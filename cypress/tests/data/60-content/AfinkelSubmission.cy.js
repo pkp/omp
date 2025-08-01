@@ -212,7 +212,7 @@ describe('Data suite tests', function() {
 		cy.get('#contributor-country-error').contains('This field is required.');
 		cy.get('.pkpFormField:contains("Given Name")').find('input[name*="givenName-en"]').type(submission.authors[0].givenName);
 		cy.get('.pkpFormField:contains("Family Name")').find('input[name*="familyName-en"]').type(submission.authors[0].familyName);
-		cy.get('label').contains(submission.authors[0].role).parent().find('input').click();
+		cy.get('label').contains(submission.authors[0].role).click();
 		cy.get('.pkpFormField:contains("Country")').find('select').select(submission.authors[0].country)
 		cy.get('.pkpFormField:contains("Email")').find('input').type('notanemail');
 		cy.get('div[role=dialog]:contains("Add Contributor")').find('button').contains('Save').click();
@@ -243,7 +243,7 @@ describe('Data suite tests', function() {
 			cy.get('div[role=dialog]:contains("Add Contributor")').find('button').contains('Save').click();
 			cy.get('.pkpFormField:contains("Given Name")').find('input[name*="givenName-en"]').type(author.givenName);
 			cy.get('.pkpFormField:contains("Family Name")').find('input[name*="familyName-en"]').type(author.familyName);
-			cy.get('label').contains(author.role).parent().find('input').click();
+			cy.get('label').contains(author.role).click();
 			cy.get('.pkpFormField:contains("Country")').find('select').select(author.country)
 			cy.get('.pkpFormField:contains("Email")').find('input').type(author.email);
 			cy.get('div[role=dialog]:contains("Add Contributor")').find('button').contains('Save').click();
