@@ -910,6 +910,18 @@ msgstr "Cotes des évaluateurs"
 msgid "manager.setup.reviewOptions.reviewerReminders"
 msgstr "Rappels aux évaluateurs"
 
+msgid "manager.setup.reviewOptions.occurrencesForInvite"
+msgstr "Number of occurrences for the response reminder"
+
+msgid "manager.setup.reviewOptions.occurrencesForInvite.description"
+msgstr "Leave the field empty to avoid limiting the number of occurrences"
+
+msgid "manager.setup.reviewOptions.occurrencesForSubmit"
+msgstr "Number of occurrences for the review reminder"
+
+msgid "manager.setup.reviewOptions.occurrencesForSubmit.description"
+msgstr "Leave the field empty to avoid limiting the number of occurrences"
+
 msgid "manager.setup.reviewPolicy"
 msgstr "Politique concernant l'évaluation"
 
