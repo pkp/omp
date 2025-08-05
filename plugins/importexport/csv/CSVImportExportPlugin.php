@@ -206,7 +206,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                 // But default to press email address based on press path if not present.
                 $givenName = $familyName = $emailAddress = null;
                 $authorString = trim($authorString); // whitespace.
-                if (!preg_match('/^(\w+)([\w\s]+)?(<([^>]+)>)?$/', $authorString, $matches)) {
+                if (!preg_match('/^([\w.\s]+)\s+([\w\s-]+)?\s*(<([^>]+)>)?$/', $authorString, $matches)) {
                     echo __('plugins.importexport.csv.invalidAuthor', ['author' => $authorString]) . "\n";
                     continue;
                 }
