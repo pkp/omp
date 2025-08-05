@@ -699,7 +699,7 @@ msgstr ""
 "Se han encontrado {$number} resultados que coinciden con su búsqueda "
 "\"{$searchQuery}\"."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Todos los libros"
 
 msgid "catalog.newReleases"
