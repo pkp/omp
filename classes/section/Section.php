@@ -141,7 +141,7 @@ class Section extends \PKP\section\PKPSection
     /**
      * Get the image.
      */
-    public function getImage(): array
+    public function getImage(): ?array
     {
         return $this->getData('image');
     }
