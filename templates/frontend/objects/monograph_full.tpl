@@ -145,6 +145,18 @@
 				</div>
 			</div>
 
+			{* Plain language summary *}
+			{if $publication->getLocalizedData('plainLanguageSummary')}
+				<div class="item abstract">
+					<h2 class="label">
+						{translate key="submission.plainLanguageSummary"}
+					</h2>
+					<div class="value">
+						{$publication->getLocalizedData('plainLanguageSummary')|strip_unsafe_html}
+					</div>
+				</div>
+			{/if}
+
 			{* Chapters *}
 			{if $chapters|@count}
 				<div class="item chapters">
