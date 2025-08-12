@@ -534,4 +534,36 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
         }
         return $affectedRows;
     }
+
+    /**
+     * Get publication formats of all minor versions of the same submission, that are
+     * with the same version stage, version major and DOI ID
+     * as the given publication format
+     *
+     * @return array<int,PublicationFormat>
+     */
+    public function getMinorVersionsWithSameDoi(PublicationFormat $publicationFormat): array
+    {
+        $publication = Repo::publication()->get($publicationFormat->getData('publicationId'));
+        if (!$publication) {
+            return [];
+        }
+
+        $allMinorVersionIds = Repo::publication()->getCollector()
+            ->filterBySubmissionIds([$publication->getData('submissionId')])
+            ->filterByVersionStage($publication->getData('versionStage'))
+            ->filterByVersionMajor($publication->getData('versionMajor'))
+            ->getIds();
+        $rows = DB::table('publication_formats')
+            ->select('*')
+            ->whereIn('publication_id', $allMinorVersionIds)
+            ->where('doi_id', '=', $publicationFormat->getData('doiId'))
+            ->get();
+
+        $publicationFormats = [];
+        foreach ($rows as $row) {
+            $publicationFormats[] = $this->_fromRow((array) $row);
+        }
+        return $publicationFormats;
+    }
 }

@@ -360,4 +360,37 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
         }
         return $affectedRows;
     }
+
+    /**
+     * Get chapters of all minor versions of the same submission, that are
+     * with the same version stage, version major and DOI ID
+     * as the given chpater
+     *
+     * @return array<int,Chapter>
+     */
+    public function getMinorVersionsWithSameDoi(Chapter $chapter): array
+    {
+        $publication = Repo::publication()->get($chapter->getData('publicationId'));
+        if (!$publication) {
+            return [];
+        }
+
+        $allMinorVersionIds = Repo::publication()->getCollector()
+            ->filterBySubmissionIds([$publication->getData('submissionId')])
+            ->filterByVersionStage($publication->getData('versionStage'))
+            ->filterByVersionMajor($publication->getData('versionMajor'))
+            ->getIds();
+        $rows = DB::table('submission_chapters')
+            ->select('*')
+            ->whereIn('publication_id', $allMinorVersionIds)
+            ->where('source_chapter_id', '=', $chapter->getData('sourceChapterId'))
+            ->where('doi_id', '=', $chapter->getData('doiId'))
+            ->get();
+
+        $chapters = [];
+        foreach ($rows as $row) {
+            $chapters[] = $this->_fromRow((array) $row);
+        }
+        return $chapters;
+    }
 }
