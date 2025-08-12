@@ -389,6 +389,17 @@ msgstr "Use default patterns.<br />%p.%m for monographs<br />%p.%m.c%c for chapt
 msgid "doi.manager.settings.doiCreationTime.copyedit"
 msgstr "Upon reaching the copyediting stage"
 
+msgid "doi.manager.settings.doiVersioning.description"
+msgstr ""
+"Assign a new DOI to each publication version? Most users will "
+"want to use the default option (no), as it was until now."
+
+msgid "doi.manager.settings.doiVersioning.yes"
+msgstr "Yes, assign a unique DOI to every version of a monograph/chpater."
+
+msgid "doi.manager.settings.doiVersioning.no"
+msgstr "No, all versions of a monograph/chpater should have the same DOI."
+
 msgid "manager.dois.disabledChaptersDescription"
 msgstr "Chapters without a landing page cannot have a DOI."
 
