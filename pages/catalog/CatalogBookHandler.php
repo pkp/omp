@@ -30,6 +30,7 @@ use APP\publication\Publication;
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
+use PKP\context\Context;
 use PKP\core\Core;
 use PKP\core\PKPApplication;
 use PKP\core\PKPRequest;
@@ -90,6 +91,7 @@ class CatalogBookHandler extends Handler
         $templateMgr = TemplateManager::getManager($request);
         $submission = $this->getAuthorizedContextObject(PKPApplication::ASSOC_TYPE_SUBMISSION);
         $user = $request->getUser();
+        $context = $request->getContext();
         $this->setupTemplate($request, $submission);
 
         // Serve 404 if no submission available
@@ -131,6 +133,21 @@ class CatalogBookHandler extends Handler
             $request->redirect(null, $request->getRequestedPage(), $request->getRequestedOp(), $newArgs);
         }
 
+        $monographDoiObject = $this->publication->getData('doiObject');
+        if (!$monographDoiObject) {
+            if ($context->getData(Context::SETTING_DOI_VERSIONING)) {
+                // get DOI from a sibling minor version
+                $monographDoiObject = Repo::publication()->getMinorVersionsDoi($this->publication);
+            } else {
+                if ($this->publication->getId() !== $submission->getCurrentPublication()->getId()) {
+                    $monographDoiObject = $submission->getCurrentPublication()->getData('doiObject');
+                }
+            }
+        }
+        $templateMgr->assign([
+            'monographDoiObject' => $monographDoiObject,
+        ]);
+
         // If a chapter is requested, set this chapter
         if ($subPath === 'chapter') {
             $chapterId = empty($args) ? 0 : (int) array_shift($args);
@@ -139,6 +156,9 @@ class CatalogBookHandler extends Handler
             $chapterId = isset($args[1]) ? (int) $args[1] : 0;
             $this->setChapter($chapterId, $request);
         }
+
+        /** @var ChapterDAO $chapterDao */
+        $chapterDao = DAORegistry::getDAO('ChapterDAO');
 
         if ($this->isChapterRequest) {
             if (!$this->chapter->isPageEnabled()) {
@@ -160,6 +180,17 @@ class CatalogBookHandler extends Handler
                 $firstDatePublished = $datePublished;
             }
 
+            $chapterDoiObject = $this->chapter->getData('doiObject');
+            if (!$chapterDoiObject) {
+                if ($context->getData(Context::SETTING_DOI_VERSIONING)) {
+                    // get DOI from a sibling minor version
+                    $chapterDoiObject = $chapterDao->getMinorVersionsDoi($this->publication, $this->chapter);
+                } else {
+                    if ($this->publication->getId() !== $submission->getCurrentPublication()->getId()) {
+                        $chapterDoiObject = $chapterDao->getCurrentPublicationChapterDoi($submission->getCurrentPublication(), $this->chapter);
+                    }
+                }
+            }
             $templateMgr->assign([
                 'chapter' => $this->chapter,
                 'chapterAuthors' => $chapterAuthors,
@@ -167,6 +198,7 @@ class CatalogBookHandler extends Handler
                 'firstDatePublished' => $firstDatePublished ?: $datePublished,
                 'datePublished' => $datePublished,
                 'chapterPublicationIds' => $this->chapterPublicationIds,
+                'chapterDoiObject' => $chapterDoiObject,
             ]);
         }
 
@@ -203,9 +235,14 @@ class CatalogBookHandler extends Handler
         ]);
 
         // Assign chapters (if they exist)
-        /** @var ChapterDAO $chapterDao */
-        $chapterDao = DAORegistry::getDAO('ChapterDAO');
-        $templateMgr->assign('chapters', $chapterDao->getByPublicationId($this->publication->getId())->toAssociativeArray());
+        $publicationChapters = $chapterDao->getByPublicationId($this->publication->getId())->toAssociativeArray();
+        $templateMgr->assign('chapters', $publicationChapters);
+        foreach ($publicationChapters as &$publicationChapter) {
+            if (!$publicationChapter->getData('doiObject')) {
+                $publicationChapterDoi = $chapterDao->getMinorVersionsDoi($this->publication, $publicationChapter);
+                $publicationChapter->setData('doiObject', $publicationChapterDoi);
+            }
+        }
 
         $pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
         if ($this->isChapterRequest && $this->chapter->getData('licenseUrl')) {

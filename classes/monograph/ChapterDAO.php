@@ -20,8 +20,10 @@
 namespace APP\monograph;
 
 use APP\facades\Repo;
+use APP\publication\Publication;
 use Illuminate\Support\Facades\DB;
 use PKP\db\DAOResultFactory;
+use PKP\doi\Doi;
 use PKP\plugins\Hook;
 use PKP\plugins\PKPPubIdPluginDAO;
 
@@ -392,5 +394,52 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
             $chapters[] = $this->_fromRow((array) $row);
         }
         return $chapters;
+    }
+
+    /**
+     * Get the first DOI object found for the same chapter (with the same source_chapter_id)
+     * in a minor version of the same submission,
+     * within the same version stage and version major.
+     */
+    public function getMinorVersionsDoi(Publication $publication, Chapter $chapter): ?Doi
+    {
+        // Get all minor versions IDs with the same version stage and version major
+        $publicationIds = Repo::publication()
+            ->getCollector()
+            ->filterBySubmissionIds([$publication->getData('submissionId')])
+            ->filterByVersionStage($publication->getData('versionStage'))
+            ->filterByVersionMajor($publication->getData('versionMajor'))
+            ->getIds()
+            ->filter(function ($element) use ($publication) {
+                return $element != $publication->getId();
+            });
+
+        if (empty($publicationIds)) {
+            return null;
+        }
+
+        $doiId = DB::table('submission_chapters')
+            ->select('doi_id')
+            ->whereIn('publication_id', $publicationIds)
+            ->where('source_chapter_id', '=', $chapter->getData('sourceChapterId'))
+            ->whereNotNull('doi_id')
+            ->first()?->doi_id;
+
+        return $doiId ? Repo::doi()->get((int) $doiId) : null;
+    }
+
+    /**
+     * Get the DOI object found for the same chapter (with the same source_chapter_id)
+     * in the current publication.
+     */
+    public function getCurrentPublicationChapterDoi(Publication $currentPublication, Chapter $chapter): ?Doi
+    {
+        $doiId = DB::table('submission_chapters')
+            ->select('doi_id')
+            ->whereIn('publication_id', $currentPublication->getId())
+            ->where('source_chapter_id', '=', $chapter->getData('sourceChapterId'))
+            ->get();
+
+        return $doiId ? Repo::doi()->get((int) $doiId) : null;
     }
 }
