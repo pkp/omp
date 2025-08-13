@@ -32,14 +32,14 @@ class Scheduler extends PKPScheduler
         $this
             ->schedule
             ->call(fn () => (new ReviewReminder())->execute())
-            ->hourly()
+            ->daily()
             ->name(ReviewReminder::class)
             ->withoutOverlapping();
 
         $this
             ->schedule
             ->call(fn () => (new EditorialReminders())->execute())
-            ->daily()
+            ->monthlyOn(1)
             ->name(EditorialReminders::class)
             ->withoutOverlapping();
 
