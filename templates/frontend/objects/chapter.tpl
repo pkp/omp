@@ -62,9 +62,8 @@
 			{include file="frontend/components/authors.tpl" authors=$chapterAuthors}
 
 			{* DOIs *}
-			{assign var=doiObject value=$chapter->getData('doiObject')}
-			{if $doiObject}
-				{assign var="doiUrl" value=$doiObject->getData('resolvingUrl')|escape}
+			{if $chapterDoiObject}
+				{assign var="doiUrl" value=$chapterDoiObject->getData('resolvingUrl')|escape}
 				<div class="item doi">
 					<span class="label">
 						{translate key="doi.readerDisplayName"}
