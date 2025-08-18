@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/publication/maps/Schema.php
  *
@@ -60,7 +61,7 @@ class Schema extends \PKP\publication\maps\Schema
 
             /** @var GenreDAO $genreDao */
             $genreDao = DAORegistry::getDAO('GenreDAO');
-            $genres = $genreDao->getByContextId($this->submission->getData('contextId'))->toArray();
+            $genres = $genreDao->getByContextId($this->submission->getData('contextId'))->toAssociativeArray();
 
             $publicationFormats = array_map(
                 function ($publicationFormat) use ($submissionFiles, $genres) {
@@ -75,7 +76,7 @@ class Schema extends \PKP\publication\maps\Schema
                         return $publicationFormat->getId() === $submissionFile->getData('assocId');
                     });
                     return array_merge($data, [
-                        'submissionFiles' => Repo::submissionFile()->getSchemaMap()->mapMany($formatSpecificFiles, $genres)->values()->toArray()
+                        'submissionFiles' => Repo::submissionFile()->getSchemaMap($this->submission, $genres)->mapMany($formatSpecificFiles)->values()->toArray()
                     ]);
                 },
                 $publication->getData('publicationFormats')

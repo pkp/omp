@@ -21,9 +21,9 @@ use PKP\submissionFile\SubmissionFile;
 class Schema extends BaseSchema
 {
     /** @copydoc \PKP\submissionFile\maps\Schema::mapByProperties() */
-    protected function mapByProperties(array $props, SubmissionFile $item): array
+    protected function mapByProperties(array $props, SubmissionFile $item, array $uploaderUsernames): array
     {
-        $output = parent::mapByProperties($props, $item);
+        $output = parent::mapByProperties($props, $item, $uploaderUsernames);
 
         if (in_array('doiObject', $props)) {
             if ($item->getData('doiId')) {

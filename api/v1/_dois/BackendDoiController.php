@@ -169,10 +169,10 @@ class BackendDoiController extends \PKP\API\v1\_dois\PKPBackendDoiController
 
         /** @var GenreDAO */
         $genreDao = DAORegistry::getDAO('GenreDAO');
-        $genres = $genreDao->getByContextId($submission->getData('contextId'))->toArray();
+        $genres = $genreDao->getByContextId($submission->getData('contextId'))->toArrayAssociative();
 
         return response()->json(
-            Repo::submissionFile()->getSchemaMap()->map($submissionFile, $genres),
+            Repo::submissionFile()->getSchemaMap($submission, $genres)->map($submissionFile),
             Response::HTTP_OK
         );
     }
