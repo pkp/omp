@@ -272,7 +272,7 @@
 			{/if}
 
 			{* References *}
-			{if $citations || $publication->getData('citationsRaw')}
+			{if $citations || (string) $publication->getData('citationsRaw')}
 				<div class="item references">
 					<h2 class="label">
 						{translate key="submission.citations"}
