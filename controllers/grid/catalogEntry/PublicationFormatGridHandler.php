@@ -46,6 +46,7 @@ use PKP\linkAction\request\AjaxModal;
 use PKP\log\event\SubmissionFileEventLogEntry;
 use PKP\notification\Notification;
 use PKP\plugins\PluginRegistry;
+use PKP\publication\PKPPublication;
 use PKP\security\authorization\internal\RepresentationRequiredPolicy;
 use PKP\security\authorization\PublicationAccessPolicy;
 use PKP\security\Role;
@@ -157,7 +158,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
 
         $this->setTitle('monograph.publicationFormats');
 
-        if ($this->getPublication()->getData('status') !== PKPSubmission::STATUS_PUBLISHED) {
+        if ($this->getPublication()->getData('status') !== PKPPublication::STATUS_PUBLISHED) {
             // Grid actions
             $router = $request->getRouter();
             $actionArgs = $this->getRequestArgs();

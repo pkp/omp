@@ -18,6 +18,7 @@
 namespace APP\API\v1\_submissions;
 
 use APP\core\Application;
+use APP\publication\Publication;
 use APP\facades\Repo;
 use APP\press\FeatureDAO;
 use APP\press\NewReleaseDAO;
@@ -189,7 +190,7 @@ class BackendSubmissionsController extends \PKP\API\v1\_submissions\PKPBackendSu
 
             $publication = $submission->getCurrentPublication();
 
-            if ($publication->getData('status') === Submission::STATUS_PUBLISHED) {
+            if ($publication->getData('status') === Publication::STATUS_PUBLISHED) {
                 continue;
             }
             $allowedLocales = $submission->getPublicationLanguages($supportedMetadataLocales);

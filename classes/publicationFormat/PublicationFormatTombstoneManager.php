@@ -24,6 +24,7 @@ use APP\submission\Submission;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
 use PKP\plugins\Hook;
+use PKP\publication\PKPPublication;
 use PKP\submission\PKPSubmission;
 use PKP\tombstone\DataObjectTombstone;
 use PKP\tombstone\DataObjectTombstoneDAO;
@@ -112,7 +113,7 @@ class PublicationFormatTombstoneManager
 
         foreach ($submissions as $submission) {
             foreach ($submission->getData('publications') as $publication) {
-                if ($publication->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
+                if ($publication->getData('status') === PKPPublication::STATUS_PUBLISHED) {
                     $this->insertTombstonesByPublicationId($publication->getId(), $press);
                 }
             }
