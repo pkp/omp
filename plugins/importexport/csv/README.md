@@ -46,6 +46,7 @@ The CSV file should have the following structure and fields:
 | title                   | Title of the submission                                      | Yes      | Title text                                     |
 | abstract                | Summary or abstract of the submission                        | Yes      | Abstract text                                  |
 | seriesPath              | Series identifier (optional if not applicable)               | No       | (leave empty if not applicable)                |
+| datePublished           | Publication date in YYYY-MM-DD format                       | Yes      | 2024-03-15                                     |
 | year                    | Year of the submission                                       | No      | 2024 (leave empty if not applicable)                                           |
 | isEditedVolume          | Flag indicating if it's an edited volume (1 = Yes, 0 = No)     | Yes      | 1 (leave empty if not applicable)                                               |
 | locale                  | Locale code (e.g., en)                                         | Yes      | en                                             |
@@ -66,12 +67,12 @@ The CSV must contain exactly the following headers in the specified order:
 
 **Expected Headers:**
 ```
-pressPath,authorString,title,abstract,seriesPath,year,isEditedVolume,locale,filename,doi,keywords,subjects,bookCoverImage,bookCoverImageAltText,categories,genreName
+pressPath,authorString,title,abstract,seriesPath,datePublished,year,isEditedVolume,locale,filename,doi,keywords,subjects,bookCoverImage,bookCoverImageAltText,categories,genreName
 ```
 
 **Required Headers (mandatory):**
 ```
-pressPath,authorString,title,abstract,locale,filename
+pressPath,authorString,datePublished,title,abstract,locale,filename
 ```
 
 **Warning:** The CSV header order must match exactly as provided in sample.csv. Any deviation, such as additional headers, missing headers, or reordering, will cause the CLI command to crash.
@@ -110,8 +111,8 @@ All submissions imported. 2 successes, 0 failures.
 
 ### Sample CSV File Snippet
 ```
-pressPath,authorString,title,abstract,seriesPath,year,isEditedVolume,locale,filename,doi,keywords,subjects,bookCoverImage,bookCoverImageAltText,categories,genreName
-leo,"Given1,Family1,given1@example.com;John,Doe,john@example.com",Title text,Abstract text,,2024,1,en,submission.pdf,10.1111/hex.12487,keyword1;keyword2,subject1;subject2,coverImage.png,"Alt text, with commas",Category 1;Category 2,MANUSCRIPT
+pressPath,authorString,title,abstract,seriesPath,datePublished,year,isEditedVolume,locale,filename,doi,keywords,subjects,bookCoverImage,bookCoverImageAltText,categories,genreName
+leo,"Given1,Family1,given1@example.com;John,Doe,john@example.com",Title text,Abstract text,,2024-03-15,2024,1,en,submission.pdf,10.1111/hex.12487,keyword1;keyword2,subject1;subject2,coverImage.png,"Alt text, with commas",Category 1;Category 2,MANUSCRIPT
 ```
 
 ## Common Use Cases

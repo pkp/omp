@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class InvalidRowValidations
+ *
  * @ingroup plugins_importexport_csv
  *
  * @brief A class with static methods for validating invalid rows.
@@ -115,5 +116,26 @@ class InvalidRowValidations
         return !$categories
             ? __('plugins.importexport.csv.allCategoriesMustExists')
             : null;
+    }
+
+    /**
+     * Validates whether the datePublished field is in the correct format (YYYY-MM-DD).
+     * Returns the reason if an error occurred, or null if everything is correct.
+     */
+    public static function validateDatePublishedFormat(string $datePublished): ?string
+    {
+        $datePattern = '/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/';
+        if (!preg_match($datePattern, $datePublished)) {
+            return __('plugins.importexport.csv.invalidDateFormat', ['date' => $datePublished]);
+        }
+
+        $dateParts = explode('-', $datePublished);
+        [$year, $month, $day] = $dateParts;
+
+        if (!checkdate((int)$month, (int)$day, (int)$year)) {
+            return __('plugins.importexport.csv.invalidDate', ['date' => $datePublished]);
+        }
+
+        return null;
     }
 }

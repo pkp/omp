@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class CSVFileHandler
+ *
  * @ingroup plugins_importexport_csv
  *
  * @brief A CSV file handler with static methods for working with CSV files.
@@ -15,11 +16,11 @@
 
 namespace APP\plugins\importexport\csv\classes\handlers;
 
-use SplFileObject;
 use Exception;
+use SplFileObject;
 
-class CSVFileHandler {
-
+class CSVFileHandler
+{
     /**
      * The expected headers coming from the CSV file, in their respective order
      *
@@ -31,6 +32,7 @@ class CSVFileHandler {
         'title',
         'abstract',
         'seriesPath',
+        'datePublished',
         'year',
         'isEditedVolume',
         'locale',

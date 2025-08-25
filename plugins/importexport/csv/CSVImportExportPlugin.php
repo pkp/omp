@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class CSVImportExportPlugin
+ *
  * @ingroup plugins_importexport_csv
  *
  * @brief CSV import/export plugin
@@ -72,14 +73,18 @@ class CSVImportExportPlugin extends ImportExportPlugin
     /**
      * Constructor
      */
-    function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
     /**
      * @copydoc Plugin::register()
+     *
+     * @param null|mixed $mainContextId
      */
-    function register($category, $path, $mainContextId = null) {
+    public function register($category, $path, $mainContextId = null)
+    {
         $success = parent::register($category, $path, $mainContextId);
         $this->addLocaleData();
         return $success;
@@ -88,39 +93,46 @@ class CSVImportExportPlugin extends ImportExportPlugin
     /**
      * Get the name of this plugin. The name must be unique within
      * its category.
+     *
      * @return String name of plugin
      */
-    function getName() {
+    public function getName()
+    {
         return 'CSVImportExportPlugin';
     }
 
     /**
      * @copydoc Plugin::getDisplayName()
      */
-    function getDisplayName() {
+    public function getDisplayName()
+    {
         return __('plugins.importexport.csv.displayName');
     }
 
     /**
      * @copydoc Plugin::getDescription()
      */
-    function getDescription() {
+    public function getDescription()
+    {
         return __('plugins.importexport.csv.description');
     }
 
     /**
      * @copydoc Plugin::getActions()
      */
-    function getActions($request, $actionArgs) {
+    public function getActions($request, $actionArgs)
+    {
         return []; // Not available via the web interface
     }
 
     /**
      * Display the plugin.
+     *
      * @param $args array
      * @param $request PKPRequest
      */
-    function display($args, $request) {
+    public function display($args, $request)
+    {
         $templateMgr = TemplateManager::getManager($request);
         parent::display($args, $request);
         switch (array_shift($args)) {
@@ -134,7 +146,8 @@ class CSVImportExportPlugin extends ImportExportPlugin
     /**
      * @copydoc ImportExportPlugin::executeCLI()
     */
-    function executeCLI($scriptName, &$args) {
+    public function executeCLI($scriptName, &$args)
+    {
         [$filename, $username, $basePath] = $this->parseCommandLineArguments($scriptName, $args);
 
         $this->validateUser($username);
@@ -169,6 +182,12 @@ class CSVImportExportPlugin extends ImportExportPlugin
             $reason = InvalidRowValidations::validateRowHasAllRequiredFields($data);
             if ($reason) {
                 CSVFileHandler::processInvalidRows($fields, $reason, $this->invalidRowsFile, $this->failedRowsCount);
+                continue;
+            }
+
+            $reason = InvalidRowValidations::validateDatePublishedFormat($data->datePublished);
+            if ($reason) {
+                CSVFileHandler::processInvalidRows($fieldsList, $reason, $this->invalidRowsFile, $this->failedRowsCount);
                 continue;
             }
 
@@ -249,7 +268,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                 $coverImageUploadName = uniqid() . '-' . $sanitizedCoverImageName;
 
                 $destFilePath = $this->publicFileManager->getContextFilesPath($pressId) . '/' . $coverImageUploadName;
-                $bookCoverImageSaved =  $this->fileManager->copyFile($srcFilePath, $destFilePath);
+                $bookCoverImageSaved = $this->fileManager->copyFile($srcFilePath, $destFilePath);
 
                 if (!$bookCoverImageSaved) {
                     $reason = __('plugin.importexport.csv.erroWhileSavingBookCoverImage');
@@ -340,7 +359,8 @@ class CSVImportExportPlugin extends ImportExportPlugin
     }
 
     /** Display the command-line usage information */
-    function usage($scriptName) {
+    public function usage($scriptName)
+    {
         echo __('plugins.importexport.csv.cliUsage', [
             'scriptName' => $scriptName,
             'pluginName' => $this->getName()

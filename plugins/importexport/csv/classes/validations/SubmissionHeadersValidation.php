@@ -8,6 +8,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SubmissionHeadersValidation
+ *
  * @ingroup plugins_importexport_csv
  *
  * @brief A class to validate headers in the submission CSV files.
@@ -28,6 +29,7 @@ class SubmissionHeadersValidation
         'title',
         'abstract',
         'seriesPath',
+        'datePublished',
         'year',
         'isEditedVolume',
         'locale',
@@ -44,6 +46,7 @@ class SubmissionHeadersValidation
     public static $requiredHeaders = [
         'pressPath',
         'authorString',
+        'datePublished',
         'title',
         'abstract',
         'locale',
