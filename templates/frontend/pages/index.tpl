@@ -22,7 +22,7 @@
 <div class="page page_homepage">
 
 	{* Homepage Image *}
-	{if !$activeTheme->getOption('useHomepageImageAsHeader') && $homepageImage}
+	{if $activeTheme && !$activeTheme->getOption('useHomepageImageAsHeader') && $homepageImage}
 		<img src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}" alt="{$homepageImageAltText|escape}">
 	{/if}
 
