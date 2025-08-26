@@ -83,7 +83,7 @@ class Schema extends \PKP\submission\maps\Schema
                     $output[$prop] = $currentReviewRound ? $this->areRecommendationsIn($currentReviewRound, $this->stageAssignments) : null;
                     break;
                 case 'reviewersNotAssigned':
-                    $output[$prop] = $currentReviewRound && $this->reviewAssignments->count() >= intval($this->context->getData('numReviewersPerSubmission'));
+                    $output[$prop] = $currentReviewRound && $this->reviewAssignments?->count() >= intval($this->context->getData('numReviewersPerSubmission'));
                     break;
                 case 'reviewRounds':
                     $output[$prop] = $this->getPropertyReviewRounds($reviewRounds);
