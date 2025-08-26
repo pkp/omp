@@ -224,44 +224,24 @@ class Section extends \PKP\section\PKPSection
      * Get section path.
      *
      * @return string
+     *
+     * @deprecated 3.6
      */
     public function getPath()
     {
-        return $this->getData('path');
+        return $this->getData('urlPath');
     }
 
     /**
      * Set section path.
      *
      * @param string $path
+     *
+     * @deprecated 3.6
      */
     public function setPath($path)
     {
-        return $this->setData('path', $path);
-    }
-
-    /**
-     * Get localized series description.
-     */
-    public function getLocalizedDescription(): ?string
-    {
-        return $this->getLocalizedData('description');
-    }
-
-    /**
-     * Get series description.
-     */
-    public function getDescription(?string $locale): string|array|null
-    {
-        return $this->getData('description', $locale);
-    }
-
-    /**
-     * Set series description.
-     */
-    public function setDescription(string|array $description, ?string $locale = null): void
-    {
-        $this->setData('description', $description, $locale);
+        return $this->setData('urlPath', $path);
     }
 
     /**

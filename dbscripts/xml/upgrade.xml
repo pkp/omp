@@ -59,6 +59,7 @@
 		<migration class="APP\migration\upgrade\v3_4_0\I6782_CleanOldMetrics" />
 		<migration class="APP\migration\upgrade\v3_4_0\I6782_RemovePlugins" />
 		<migration class="PKP\migration\upgrade\v3_4_0\I7286_BatchesMigration"/>
+
 		<migration class="APP\migration\upgrade\v3_4_0\I8151_ExtendSettingValues"/>
 		<migration class="PKP\migration\upgrade\v3_4_0\I8151_ExtendSettingValues"/>
 		<migration class="PKP\migration\upgrade\v3_4_0\I7366_UpdateUserAPIKeySettings"/>
@@ -90,6 +91,7 @@
 		<migration class="APP\migration\upgrade\v3_4_0\I8933_EventLogLocalized"/>
 		<migration class="APP\migration\upgrade\v3_4_0\I9094_FixSortSetting"/>
 		<data file="dbscripts/xml/upgrade/3.4.0_preupdate_email_templates.xml" />
+		<migration class="APP\migration\upgrade\v3_4_0\I5932_RenameAndGenerateSeriesUrlPaths" />
 		<note file="docs/release-notes/README-3.4.0" />
 	</upgrade>
 

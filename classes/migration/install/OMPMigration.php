@@ -267,11 +267,10 @@ class OMPMigration extends \PKP\migration\Migration
         Schema::create('series', function (Blueprint $table) {
             $table->comment('A list of press series, into which submissions can be organized.');
             $table->bigInteger('series_id')->autoIncrement();
-
             $table->bigInteger('press_id');
             $table->foreign('press_id', 'series_press_id')->references('press_id')->on('presses')->onDelete('cascade');
             $table->index(['press_id'], 'series_press_id');
-
+            $table->string('url_path', 255);
             $table->bigInteger('review_form_id')->nullable();
             $table->foreign('review_form_id', 'series_review_form_id')->references('review_form_id')->on('review_forms')->onDelete('set null');
             $table->index(['review_form_id'], 'series_review_form_id');
@@ -281,11 +280,9 @@ class OMPMigration extends \PKP\migration\Migration
 
             $table->smallInteger('featured')->default(0);
             $table->smallInteger('editor_restricted')->default(0);
-            $table->string('path', 255);
             $table->text('image')->nullable();
             $table->smallInteger('is_inactive')->default(0);
-
-            $table->unique(['press_id', 'path'], 'series_path');
+            $table->unique(['press_id', 'url_path'], 'series_path');
         });
         Schema::table('publications', function (Blueprint $table) {
             $table->foreign('series_id', 'publications_series_id')->references('series_id')->on('series')->onDelete('set null');

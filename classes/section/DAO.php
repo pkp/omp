@@ -19,7 +19,6 @@
 namespace APP\section;
 
 use APP\facades\Repo;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Enumerable;
 use Illuminate\Support\Facades\DB;
 use PKP\services\PKPSchemaService;
@@ -46,7 +45,7 @@ class DAO extends \PKP\section\DAO
         'sequence' => 'seq',
         'featured' => 'featured',
         'editorRestricted' => 'editor_restricted',
-        'path' => 'path',
+        'urlPath' => 'url_path',
         'image' => 'image',
         'isInactive' => 'is_inactive'
     ];
@@ -57,18 +56,6 @@ class DAO extends \PKP\section\DAO
     public function getParentColumn(): string
     {
         return 'press_id';
-    }
-
-    /**
-     * Retrieve a series by path.
-     */
-    public function getByPath(string $path, ?int $pressId = null): ?Section
-    {
-        $row = DB::table($this->table)
-            ->where('path', $path)
-            ->when($pressId !== null, fn (Builder $query) => $query->where($this->getParentColumn(), $pressId))
-            ->first();
-        return $row ? $this->fromRow($row) : null;
     }
 
     /**
