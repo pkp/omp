@@ -3,8 +3,8 @@
 /**
  * @file pages/catalog/CatalogHandler.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2003-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class CatalogHandler
@@ -53,7 +53,7 @@ class CatalogHandler extends PKPCatalogHandler
      *
      * @param array $args [
      *
-     *		@option int Page number if available
+     *        @option int Page number if available
      * ]
      *
      * @param Request $request
@@ -86,7 +86,7 @@ class CatalogHandler extends PKPCatalogHandler
             ->getCollector()
             ->filterByContextIds([$context->getId()])
             ->filterByStatus([Submission::STATUS_PUBLISHED])
-            ->orderBy($orderBy, $orderDir == \PKP\db\DAO::SORT_DIRECTION_ASC ? 'ASC' : 'DESC')
+            ->orderBy($orderBy, $orderDir)
             ->orderByFeatured();
 
         $total = $collector->getCount();
@@ -118,7 +118,7 @@ class CatalogHandler extends PKPCatalogHandler
     }
 
     /**
-     * Show the catalog new releases.
+     * Show the catalog of new releases.
      *
      * @param array $args
      * @param Request $request
@@ -148,8 +148,8 @@ class CatalogHandler extends PKPCatalogHandler
      *
      * @param array $args [
      *
-     *		@option string Series path
-     *		@option int Page number if available
+     *        @option string Series path
+     *        @option int Page number if available
      * ]
      *
      * @param Request $request
@@ -181,7 +181,7 @@ class CatalogHandler extends PKPCatalogHandler
             ->filterByContextIds([$context->getId()])
             ->filterBySeriesIds([$series->getId()])
             ->filterByStatus([Submission::STATUS_PUBLISHED])
-            ->orderBy($orderBy, $orderDir == \PKP\db\DAO::SORT_DIRECTION_ASC ? 'ASC' : 'DESC')
+            ->orderBy($orderBy, $orderDir)
             ->orderByFeatured();
 
         $total = $collector->getCount();
