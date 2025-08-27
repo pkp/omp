@@ -85,7 +85,7 @@ class CatalogHandler extends PKPCatalogHandler
             ->getCollector()
             ->filterByContextIds([$context->getId()])
             ->filterByStatus([Submission::STATUS_PUBLISHED])
-            ->orderBy($orderBy, $orderDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC')
+            ->orderBy($orderBy, $orderDir)
             ->orderByFeatured();
 
         $total = $collector->getCount();
@@ -176,7 +176,7 @@ class CatalogHandler extends PKPCatalogHandler
             ->filterByContextIds([$context->getId()])
             ->filterBySeriesIds([$series->getId()])
             ->filterByStatus([Submission::STATUS_PUBLISHED])
-            ->orderBy($orderBy, $orderDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC')
+            ->orderBy($orderBy, $orderDir)
             ->orderByFeatured();
 
         $total = $collector->getCount();
