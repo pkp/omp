@@ -1,10 +1,10 @@
-# Antti-Jussi Nygård <ajnyga@gmail.com>, 2023.
+# Antti-Jussi Nygård <ajnyga@gmail.com>, 2023, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
-"PO-Revision-Date: 2023-05-23 20:49+0000\n"
+"PO-Revision-Date: 2025-08-23 16:03+0000\n"
 "Last-Translator: Antti-Jussi Nygård <ajnyga@gmail.com>\n"
 "Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "fi/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "submission.upload.selectComponent"
 msgstr "Valitse osa"
@@ -619,3 +619,15 @@ msgstr ""
 #~ msgid "submission.submit.placement.categoriesDescription"
 #~ msgstr ""
 #~ "Valitse painon kategorioista se, jonne tämä työ lähetetään käsiteltäväksi."
+
+msgid "publication.chapter.landingPage.doi.description"
+msgstr "(Tämä luku näytetään aina omalla sivullaan, koska sillä on DOI.)"
+
+msgid "submission.dashboard.view.reviewInternal"
+msgstr "Kaikki sisäisessä arvioinnissa"
+
+msgid "submission.stage.externalReviewWithRound"
+msgstr "Ulkoinen arviointi (kierros {$round})"
+
+msgid "submission.stage.internalReviewWithRound"
+msgstr "Sisäinen arviointi (kierros {$round})"

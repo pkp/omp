@@ -1,10 +1,10 @@
-# Antti-Jussi Nygård <ajnyga@gmail.com>, 2023.
+# Antti-Jussi Nygård <ajnyga@gmail.com>, 2023, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
-"PO-Revision-Date: 2023-05-25 09:42+0000\n"
+"PO-Revision-Date: 2025-08-23 16:03+0000\n"
 "Last-Translator: Antti-Jussi Nygård <ajnyga@gmail.com>\n"
 "Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/manager/fi/>"
 "\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr ""
@@ -335,7 +335,7 @@ msgstr ""
 "toimintaperiaatteet, tukijat ja julkaisijan historia."
 
 msgid "manager.setup.contextSummary"
-msgstr "Julkaisijan yhteenveto"
+msgstr "Julkaisijan lyhyt esittely"
 
 msgid "manager.setup.copyediting"
 msgstr "Tekniset toimittajat"
@@ -729,7 +729,7 @@ msgstr ""
 "tieto esitetään käyttäjille."
 
 msgid "manager.setup.pressDescription"
-msgstr "Julkaisija lyhyesti"
+msgstr "Julkaisijan lyhyt esittely"
 
 msgid "manager.setup.pressDescription.description"
 msgstr "Lyhyt kuvaus julkaisijasta."
@@ -1899,3 +1899,11 @@ msgstr ""
 
 msgid "emailTemplate.variable.context.contextAcronym"
 msgstr "Julkaisijan alkukirjaimet"
+
+msgid "manager.dois.disabledChaptersDescription"
+msgstr "Luvuilla, joilla ei ole laskeutumissivua, ei voi olla DOI-tunnusta."
+
+msgid "manager.setup.contextSummary.description"
+msgstr ""
+"Kirjoita julkaisijan lyhyt kuvaus, joka antaa käsityksen sen sisällöstä ja "
+"tarkoituksesta."
