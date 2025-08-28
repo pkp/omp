@@ -37,6 +37,7 @@ use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\plugins\PluginRegistry;
+use PKP\publication\PKPPublication;
 use PKP\security\authorization\PublicationAccessPolicy;
 use PKP\security\Role;
 use PKP\submission\PKPSubmission;
@@ -136,7 +137,7 @@ class ChapterGridHandler extends CategoryGridHandler
 
         $this->setTitle('submission.chapters');
 
-        if ($this->getPublication()->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
+        if ($this->getPublication()->getData('status') === PKPPublication::STATUS_PUBLISHED) {
             $this->setReadOnly(true);
         }
 
@@ -232,7 +233,7 @@ class ChapterGridHandler extends CategoryGridHandler
         $publication = $this->getPublication();
         $userRoles = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_USER_ROLES);
 
-        if ($publication->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
+        if ($publication->getData('status') === PKPPublication::STATUS_PUBLISHED) {
             return false;
         }
 
