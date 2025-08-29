@@ -80,10 +80,10 @@ class Schema extends \PKP\submission\maps\Schema
         foreach ($props as $prop) {
             switch ($prop) {
                 case 'recommendationsIn':
-                    $output[$prop] = $currentReviewRound ? $this->areRecommendationsIn($currentReviewRound, $this->stageAssignments) : null;
+                    $output[$prop] = $currentReviewRound && $this->stageAssignments ? $this->areRecommendationsIn($currentReviewRound, $this->stageAssignments) : null;
                     break;
                 case 'reviewersNotAssigned':
-                    $output[$prop] = $currentReviewRound && $this->reviewAssignments->count() >= intval($this->context->getData('numReviewersPerSubmission'));
+                    $output[$prop] = $currentReviewRound && $this->reviewAssignments && $this->reviewAssignments->count() >= intval($this->context->getData('numReviewersPerSubmission'));
                     break;
                 case 'reviewRounds':
                     $output[$prop] = $this->getPropertyReviewRounds($reviewRounds->flatten());
