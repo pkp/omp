@@ -281,7 +281,7 @@ class TR extends CounterR5Report
                     $item = [
                         'Title' => $itemTitle,
                         'Platform' => $this->platformName,
-                        'Publisher' => $this->context->getData('publisherInstitution'),
+                        'Publisher' => $this->context->getData('publisher'),
                     ];
                     $item['Item_ID'][] = [
                         'Type' => 'Proprietary',
@@ -377,7 +377,7 @@ class TR extends CounterR5Report
                 $item = [
                     'Title' => $itemTitle,
                     'Platform' => $this->platformName,
-                    'Publisher' => $this->context->getData('publisherInstitution'),
+                    'Publisher' => $this->context->getData('publisher'),
                 ];
                 $item['Item_ID'][] = [
                     'Type' => 'Proprietary',
@@ -580,7 +580,7 @@ class TR extends CounterR5Report
                             // construct the result row
                             $resultRow = [
                                 $itemTitle, // Title
-                                $this->context->getData('publisherInstitution'), // Publisher
+                                $this->context->getData('publisher'), // Publisher
                                 '', // Publisher ID
                                 $this->platformName, // Platform
                                 $doi ?? '', // DOI
@@ -687,7 +687,7 @@ class TR extends CounterR5Report
                         // construct the result row
                         $resultRow = [
                             $itemTitle, // Title
-                            $this->context->getData('publisherInstitution'), // Publisher
+                            $this->context->getData('publisher'), // Publisher
                             '', // Publisher ID
                             $this->platformName, // Platform
                             $doi ?? '', // DOI
