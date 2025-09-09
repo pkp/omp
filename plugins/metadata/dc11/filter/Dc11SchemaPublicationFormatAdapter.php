@@ -108,9 +108,9 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $this->_addLocalizedElements($dc11Description, 'dc:description', $publication->getData('abstract'));
 
         // Publisher
-        $publisherInstitution = $press->getSetting('publisherInstitution');
-        if (!empty($publisherInstitution)) {
-            $publishers = [$press->getPrimaryLocale() => $publisherInstitution];
+        $publisher = $press->getSetting('publisher');
+        if (!empty($publisher)) {
+            $publishers = [$press->getPrimaryLocale() => $publisher];
         } else {
             $publishers = $press->getName(null); // Default
         }
