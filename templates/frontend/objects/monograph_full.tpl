@@ -347,27 +347,25 @@
 							{/if}
 						</div>
 					</div>
-					{if count($monograph->getPublishedPublications()) > 1}
-						<div class="sub_item versions">
-							<h2 class="label">
-								{translate key="submission.versions"}
-							</h2>
-							<ul class="value">
-								{foreach from=array_reverse($monograph->getPublishedPublications()) item=iPublication}
-									{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatShort version=$iPublication->getData('version')}{/capture}
-									<li>
-										{if $iPublication->getId() === $publication->getId()}
-											{$name}
-										{elseif $iPublication->getId() === $currentPublication->getId()}
-											<a href="{url page="catalog" op="book" path=$monograph->getBestId()}">{$name}</a>
-										{else}
-											<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"version":$iPublication->getId()}">{$name}</a>
-										{/if}
-									</li>
-								{/foreach}
-							</ul>
-						</div>
-					{/if}
+					<div class="sub_item versions">
+						<h2 class="label">
+							{translate key="submission.versions"}
+						</h2>
+						<ul class="value">
+							{foreach from=array_reverse($monograph->getPublishedPublications()) item=iPublication}
+								{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatShort version=$iPublication->getData('version')}{/capture}
+								<li>
+									{if $iPublication->getId() === $publication->getId()}
+										{$name}
+									{elseif $iPublication->getId() === $currentPublication->getId()}
+										<a href="{url page="catalog" op="book" path=$monograph->getBestId()}">{$name}</a>
+									{else}
+										<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"version":$iPublication->getId()}">{$name}</a>
+									{/if}
+								</li>
+							{/foreach}
+						</ul>
+					</div>
 				</div>
 			{/if}
 
