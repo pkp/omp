@@ -38,6 +38,7 @@ use PKP\facades\Locale;
 use PKP\orcid\OrcidManager;
 use PKP\plugins\Hook;
 use PKP\plugins\PluginRegistry;
+use PKP\publication\PKPPublication;
 use PKP\security\authorization\ContextRequiredPolicy;
 use PKP\security\Validation;
 use PKP\submission\Genre;
@@ -117,7 +118,7 @@ class CatalogBookHandler extends Handler
             $this->publication = $submission->getCurrentPublication();
         }
 
-        if (!$this->publication || ($this->publication->getData('status') !== PKPSubmission::STATUS_PUBLISHED && !Repo::submission()->canPreview($user, $submission))) {
+        if (!$this->publication || ($this->publication->getData('status') !== PKPPublication::STATUS_PUBLISHED && !Repo::submission()->canPreview($user, $submission))) {
             throw new NotFoundHttpException();
         }
 
@@ -378,7 +379,7 @@ class CatalogBookHandler extends Handler
 
         if (
             empty($publication) ||
-            $publication->getData('status') !== PKPSubmission::STATUS_PUBLISHED ||
+            $publication->getData('status') !== PKPPublication::STATUS_PUBLISHED ||
             $publicationFormat->getData('publicationId') !== $publication->getId()
         ) {
             throw new NotFoundHttpException();

@@ -24,7 +24,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use PKP\context\Context;
 use PKP\doi\Doi;
-use PKP\submission\PKPSubmission;
+use PKP\publication\PKPPublication;
 use PKP\submissionFile\SubmissionFile;
 
 class DAO extends \PKP\doi\DAO
@@ -52,7 +52,7 @@ class DAO extends \PKP\doi\DAO
                             ->leftJoin('submissions as s', 'p.publication_id', '=', 's.current_publication_id')
                             ->whereColumn('p.publication_id', '=', 's.current_publication_id')
                             ->whereNotNull('p.doi_id')
-                            ->where('p.status', '=', PKPSubmission::STATUS_PUBLISHED);
+                            ->where('p.status', '=', PKPPublication::STATUS_PUBLISHED);
                     });
                 });
                 // Chapter DOIs
@@ -64,7 +64,7 @@ class DAO extends \PKP\doi\DAO
                             ->leftJoin('submissions as s', 'p.publication_id', '=', 's.current_publication_id')
                             ->whereColumn('p.publication_id', '=', 's.current_publication_id')
                             ->whereNotNull('spc.doi_id')
-                            ->where('p.status', '=', PKPSubmission::STATUS_PUBLISHED);
+                            ->where('p.status', '=', PKPPublication::STATUS_PUBLISHED);
                     });
                 });
                 // Publication format DOIs
@@ -76,7 +76,7 @@ class DAO extends \PKP\doi\DAO
                             ->leftJoin('submissions as s', 'p.publication_id', '=', 's.current_publication_id')
                             ->whereColumn('p.publication_id', '=', 's.current_publication_id')
                             ->whereNotNull('pf.doi_id')
-                            ->where('p.status', '=', PKPSubmission::STATUS_PUBLISHED);
+                            ->where('p.status', '=', PKPPublication::STATUS_PUBLISHED);
                     });
                 });
                 // Submission file DOIs
@@ -89,7 +89,7 @@ class DAO extends \PKP\doi\DAO
                             ->whereColumn('p.publication_id', '=', 's.current_publication_id')
                             ->where('sf.file_stage', '=', SubmissionFile::SUBMISSION_FILE_PROOF)
                             ->whereNotNull('sf.doi_id')
-                            ->where('p.status', '=', PKPSubmission::STATUS_PUBLISHED);
+                            ->where('p.status', '=', PKPPublication::STATUS_PUBLISHED);
                     });
                 });
             })

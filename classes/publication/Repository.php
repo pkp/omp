@@ -34,7 +34,7 @@ use PKP\db\DAORegistry;
 use PKP\notification\Notification;
 use PKP\plugins\Hook;
 use PKP\publication\Collector;
-use PKP\submission\PKPSubmission;
+use PKP\publication\PKPPublication;
 use PKP\submissionFile\SubmissionFile;
 
 class Repository extends \PKP\publication\Repository
@@ -311,7 +311,7 @@ class Repository extends \PKP\publication\Repository
 
             // Create publication format tombstones for any other published versions
             foreach ($submission->getData('publications') as $iPublication) {
-                if ($iPublication->getId() !== $publication->getId() && $iPublication->getData('status') === Submission::STATUS_PUBLISHED) {
+                if ($iPublication->getId() !== $publication->getId() && $iPublication->getData('status') === Publication::STATUS_PUBLISHED) {
                     $publicationFormatTombstoneMgr->insertTombstonesByPublicationId($iPublication->getId(), $context);
                 }
             }
@@ -334,9 +334,9 @@ class Repository extends \PKP\publication\Repository
         // If the publish date is in the future, set the status to scheduled
         $datePublished = $publication->getData('datePublished');
         if ($datePublished && strtotime($datePublished) > strtotime(Core::getCurrentDate())) {
-            $publication->setData('status', Submission::STATUS_SCHEDULED);
+            $publication->setData('status', Publication::STATUS_SCHEDULED);
         } else {
-            $publication->setData('status', Submission::STATUS_PUBLISHED);
+            $publication->setData('status', Publication::STATUS_PUBLISHED);
         }
 
         // If there is no publish date, set it
@@ -365,7 +365,7 @@ class Repository extends \PKP\publication\Repository
                 break;
             }
         }
-        if ($currentPublication && $currentPublication->getData('status') === Submission::STATUS_PUBLISHED) {
+        if ($currentPublication && $currentPublication->getData('status') === Publication::STATUS_PUBLISHED) {
             $publicationFormatTombstoneMgr->deleteTombstonesByPublicationId($currentPublication->getId());
         }
 
@@ -488,7 +488,7 @@ class Repository extends \PKP\publication\Repository
     {
         $newPublication = $params[0];
         $publication = $params[1];
-        $itsPublished = ($newPublication->getData('status') === PKPSubmission::STATUS_PUBLISHED);
+        $itsPublished = ($newPublication->getData('status') === PKPPublication::STATUS_PUBLISHED);
         $submission = Repo::submission()->get($publication->getData('submissionId'));
 
         if ($itsPublished && $submission->getData('workType') === Submission::WORK_TYPE_EDITED_VOLUME) {
