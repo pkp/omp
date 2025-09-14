@@ -21,6 +21,7 @@ use APP\facades\Repo;
 use APP\handler\Handler;
 use APP\template\TemplateManager;
 use Laravel\Scout\Builder;
+use PKP\plugins\Hook;
 use PKP\search\SubmissionSearchResult;
 use PKP\userGroup\UserGroup;
 
@@ -39,6 +40,8 @@ class SearchHandler extends Handler
 
     /**
      * View the results of a search operation.
+     *
+     * @hook SearchHandler::search::builder ['builder' => $builder, 'request' => $request]
      */
     public function search(array $args, Request $request)
     {
@@ -53,16 +56,21 @@ class SearchHandler extends Handler
 
         $rangeInfo = $this->getRangeInfo($request, 'search');
 
+        $builder = new Builder(new SubmissionSearchResult(), $query);
         // Retrieve results.
-        $results = (new Builder(new SubmissionSearchResult(), $query))
+        $builder
             ->where('contextId', $contextId)
             ->where('publishedFrom', $dateFrom)
             ->where('publishedTo', $dateTo)
             ->whereIn('categoryIds', $request->getUserVar('categoryIds'))
             ->whereIn('sectionIds', $request->getUserVar('sectionIds'))
             ->whereIn('keywords', $request->getUserVar('keywords'))
-            ->whereIn('subjects', $request->getUserVar('subjects'))
-            ->paginate($rangeInfo->getCount(), 'submissions', $rangeInfo->getPage());
+            ->whereIn('subjects', $request->getUserVar('subjects'));
+
+        // Allow hook registrants to adjust the builder before querying
+        Hook::run('SearchHandler::search::builder', ['builder' => $builder, 'request' => $request]);
+
+        $results = $builder->paginate($rangeInfo->getCount(), 'submissions', $rangeInfo->getPage());
 
         $this->setupTemplate($request);
 
