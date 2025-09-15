@@ -30,9 +30,9 @@
 		<description>{$description|strip|escape:"html"}</description>
 
 		{* optional elements *}
-		{assign var="publisherInstitution" value=$currentPress->getSetting('publisherInstitution')}
-		{if $publisherInstitution}
-			<dc:publisher>{$publisherInstitution|strip|escape:"html"}</dc:publisher>
+		{assign var="publisher" value=$currentPress->getSetting('publisher')}
+		{if $publisher}
+			<dc:publisher>{$publisher|strip|escape:"html"}</dc:publisher>
 		{/if}
 
 		{if $currentPress->getPrimaryLocale()}
@@ -91,4 +91,3 @@
 {/foreach}{* submissions *}
 
 </rdf:RDF>
-
