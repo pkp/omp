@@ -3,8 +3,8 @@
 /**
  * @file plugins/importexport/onix30/Onix30ExportPlugin.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2003-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Onix30ExportPlugin
@@ -20,8 +20,12 @@ use APP\core\Application;
 use APP\core\Request;
 use APP\template\TemplateManager;
 use BadMethodCallException;
+use Illuminate\Database\Query\JoinClause;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use PKP\core\PKPApplication;
 use PKP\plugins\ImportExportPlugin;
+use PKP\plugins\PluginRegistry;
 use stdClass;
 
 class Onix30ExportPlugin extends ImportExportPlugin
@@ -197,5 +201,30 @@ class Onix30ExportPlugin extends ImportExportPlugin
     public function getAppSpecificDeployment($context, $user)
     {
         return new Onix30ExportDeployment($context, $user);
+    }
+
+    /**
+     * Helper function to retrieve funding data when available.
+     */
+    public function getFundingData(int $contextId, int $submissionId): Collection|false
+    {
+        if (!PluginRegistry::getPlugin('generic', 'FundingPlugin')) {
+            return false;
+        }
+
+        $fundingData = DB::table('funders AS f')
+            ->select('f.funder_id', 'f.funder_identification', 'fs.setting_value as funder_name', 'fa.funder_award_id', 'fa.funder_award_number')
+            ->where('submission_id', $submissionId)
+            ->where('context_id', $contextId)
+            ->leftJoin(
+                'funder_settings AS fs',
+                fn (JoinClause $j) => $j->on('f.funder_id', '=', 'fs.funder_id')
+                    ->where('fs.setting_name', '=', 'funderName')
+            )
+            ->leftjoin('funder_awards AS fa', 'f.funder_id', '=', 'fa.funder_id')
+            ->get()
+            ->groupBy('funder_id');
+
+        return $fundingData ?? false;
     }
 }
