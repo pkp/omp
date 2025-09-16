@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/submissionFile/Repository.php
  *
@@ -13,9 +14,12 @@
 
 namespace APP\submissionFile;
 
+use APP\core\Application;
 use APP\core\Request;
+use APP\facades\Repo;
 use APP\submissionFile\maps\Schema;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 use PKP\plugins\Hook;
 use PKP\services\PKPSchemaService;
 use PKP\submissionFile\Collector;
@@ -71,5 +75,47 @@ class Repository extends SubmissionFileRepository
         Hook::call('SubmissionFile::fileStages', [&$stages]);
 
         return $stages;
+    }
+
+    /**
+     * Get submission files of all minor versions of the same submission, that are
+     * with the same version stage, version major and DOI ID
+     * as the given submission file.
+     *
+     * @return array<int,T>
+     */
+    public function getMinorVersionsWithSameDoi(SubmissionFile $submissionFile): array
+    {
+        if ($submissionFile->getData('assocType') != Application::ASSOC_TYPE_PUBLICATION_FORMAT) {
+            return [];
+        }
+        $publicationFormatId = $submissionFile->getData('assocId');
+        $publicationId = DB::table('publication_formats')
+            ->where('publication_format_id', '=', $publicationFormatId)
+            ->select('publication_id')
+            ->first()?->publication_id;
+        $publication = Repo::publication()->get($publicationId);
+        if (!$publication) {
+            return [];
+        }
+
+        $allMinorVersionIds = Repo::publication()->getCollector()
+            ->filterBySubmissionIds([$publication->getData('submissionId')])
+            ->filterByVersionStage($publication->getData('versionStage'))
+            ->filterByVersionMajor($publication->getData('versionMajor'))
+            ->getIds()
+            ->values()
+            ->toArray();
+        $publicationFormatIds = DB::table('publication_formats')
+            ->whereIn('publication_id', $allMinorVersionIds)
+            ->select('publication_format_id')
+            ->pluck('publication_format_id')
+            ->toArray();
+        return $this->getCollector()
+            ->filterBySubmissionIds([$submissionFile->getData('submissionId')])
+            ->filterByAssoc(Application::ASSOC_TYPE_PUBLICATION_FORMAT, $publicationFormatIds)
+            ->filterByDoiIds([$submissionFile->getData('doiId')])
+            ->getMany()
+            ->all();
     }
 }

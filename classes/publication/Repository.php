@@ -17,12 +17,17 @@ namespace APP\publication;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
+use APP\monograph\Chapter;
 use APP\monograph\ChapterDAO;
 use APP\notification\NotificationManager;
+use APP\press\Press;
+use APP\press\PressDAO;
 use APP\publication\enums\VersionStage;
 use APP\publicationFormat\IdentificationCodeDAO;
 use APP\publicationFormat\MarketDAO;
 use APP\publicationFormat\PublicationDateDAO;
+use APP\publicationFormat\PublicationFormat;
+use APP\publicationFormat\PublicationFormatDAO;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\publicationFormat\SalesRightsDAO;
 use APP\submission\Submission;
@@ -31,6 +36,7 @@ use Illuminate\Support\Facades\App;
 use PKP\context\Context;
 use PKP\core\Core;
 use PKP\db\DAORegistry;
+use PKP\doi\exceptions\DoiException;
 use PKP\notification\Notification;
 use PKP\plugins\Hook;
 use PKP\publication\Collector;
@@ -127,7 +133,7 @@ class Repository extends \PKP\publication\Repository
             $newPublicationFormat = clone $oldPublicationFormat;
             $newPublicationFormat->setData('id', null);
             $newPublicationFormat->setData('publicationId', $newPublication->getId());
-            if ($isDoiVersioningEnabled) {
+            if ($isDoiVersioningEnabled && !$isMinorVersion) {
                 $newPublicationFormat->setData('doiId', null);
             }
             Application::getRepresentationDAO()->insertObject($newPublicationFormat);
@@ -161,7 +167,7 @@ class Repository extends \PKP\publication\Repository
                 $newSubmissionFile = clone $submissionFile;
                 $newSubmissionFile->setData('id', null);
                 $newSubmissionFile->setData('assocId', $newPublicationFormat->getId());
-                if ($isDoiVersioningEnabled) {
+                if ($isDoiVersioningEnabled && !$isMinorVersion) {
                     $newSubmissionFile->setData('doiId', null);
                 }
                 $newSubmissionFileId = Repo::submissionFile()->add($newSubmissionFile);
@@ -196,7 +202,7 @@ class Repository extends \PKP\publication\Repository
             $newChapter = clone $oldChapter;
             $newChapter->setData('id', null);
             $newChapter->setData('publicationId', $newPublication->getId());
-            if ($isDoiVersioningEnabled) {
+            if ($isDoiVersioningEnabled && !$isMinorVersion) {
                 $newChapter->setData('doiId', null);
             }
             $newChapterId = $chapterDao->insertChapter($newChapter);
@@ -369,7 +375,6 @@ class Repository extends \PKP\publication\Repository
             $publicationFormatTombstoneMgr->deleteTombstonesByPublicationId($currentPublication->getId());
         }
 
-
         // Update notification
         $notificationMgr = new NotificationManager();
         $notificationMgr->updateNotification(
@@ -473,15 +478,88 @@ class Repository extends \PKP\publication\Repository
         imagedestroy($thumb);
     }
 
-    /**
-     * Create all DOIs associated with the publication
-     *
-     * @return mixed
-     */
-    protected function createDois(Publication $newPublication): void
+    /** @copydoc \PKP\publication\Repository::createDois() */
+    public function createDois(Publication $publication): array
     {
-        $submission = Repo::submission()->get($newPublication->getData('submissionId'));
-        Repo::submission()->createDois($submission);
+        $submission = Repo::submission()->get($publication->getData('submissionId'));
+
+        /** @var PressDAO $contextDao */
+        $contextDao = Application::getContextDAO();
+        /** @var Press $context */
+        $context = $contextDao->getById($submission->getData('contextId'));
+
+        $doiCreationFailures = [];
+
+        if ($context->isDoiTypeEnabled(Repo::doi()::TYPE_PUBLICATION) && empty($publication->getData('doiId'))) {
+            try {
+                $doiId = Repo::doi()->mintPublicationDoi($publication, $submission, $context);
+                Repo::publication()->edit($publication, ['doiId' => $doiId]);
+            } catch (DoiException $exception) {
+                $doiCreationFailures[] = $exception;
+            }
+        }
+
+        // Chapters
+        /** @var Chapter[] $chapters */
+        $chapters = $publication->getData('chapters');
+        if ($context->isDoiTypeEnabled(Repo::doi()::TYPE_CHAPTER) && !empty($chapters)) {
+            /** @var ChapterDAO $chapterDao */
+            $chapterDao = DAORegistry::getDAO('ChapterDAO');
+            foreach ($chapters as $chapter) {
+                if (empty($chapter->getData('doiId')) && $chapter->isPageEnabled()) {
+                    try {
+                        $doiId = Repo::doi()->mintChapterDoi($chapter, $submission, $context);
+                        $chapter->setData('doiId', $doiId);
+                        $chapterDao->updateObject($chapter);
+                    } catch (DoiException $exception) {
+                        $doiCreationFailures[] = $exception;
+                    }
+                }
+            }
+        }
+
+        // Publication formats
+        $publicationFormats = $publication->getData('publicationFormats');
+        if ($context->isDoiTypeEnabled(Repo::doi()::TYPE_REPRESENTATION) && !empty($publicationFormats)) {
+            /** @var PublicationFormatDAO $publicationFormatDao */
+            $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+            /** @var PublicationFormat $publicationFormat */
+            foreach ($publicationFormats as $publicationFormat) {
+                if (empty($publicationFormat->getData('doiId'))) {
+                    try {
+                        $doiId = Repo::doi()->mintPublicationFormatDoi($publicationFormat, $submission, $context);
+                        $publicationFormat->setData('doiId', $doiId);
+                        $publicationFormatDao->updateObject($publicationFormat);
+                    } catch (DoiException $exception) {
+                        $doiCreationFailures[] = $exception;
+                    }
+                }
+            }
+        }
+
+        // Submission files
+        if ($context->isDoiTypeEnabled(Repo::doi()::TYPE_SUBMISSION_FILE)) {
+            // Get all submission files assigned to a publication format
+            $submissionFiles = Repo::submissionFile()
+                ->getCollector()
+                ->filterBySubmissionIds([$publication->getData('submissionId')])
+                ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
+                ->getMany();
+
+            /** @var SubmissionFile $submissionFile */
+            foreach ($submissionFiles as $submissionFile) {
+                if (empty($submissionFile->getData('doiId'))) {
+                    try {
+                        $doiId = Repo::doi()->mintSubmissionFileDoi($submissionFile, $submission, $context);
+                        Repo::submissionFile()->edit($submissionFile, ['doiId' => $doiId]);
+                    } catch (DoiException $exception) {
+                        $doiCreationFailures[] = $exception;
+                    }
+                }
+            }
+        }
+
+        return $doiCreationFailures;
     }
 
     public function addChapterLicense(string $hookName, array $params): bool

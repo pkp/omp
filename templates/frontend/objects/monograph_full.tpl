@@ -105,7 +105,6 @@
 			{include file="frontend/components/authors.tpl" authors=$publication->getData('authors')}
 
 			{* DOIs *}
-			{assign var=monographDoiObject value=$monograph->getCurrentPublication()->getData('doiObject')}
 			{if $monographDoiObject}
 				{assign var="doiUrl" value=$monographDoiObject->getData('resolvingUrl')|escape}
 				<div class="item doi">
