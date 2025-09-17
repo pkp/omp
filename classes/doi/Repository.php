@@ -172,6 +172,66 @@ class Repository extends \PKP\doi\Repository
     }
 
     /**
+     * Gets all DOI IDs related to a publication
+     *
+     * @return array<int> DOI IDs
+     */
+    public function getDoisForPublication(Publication $publication): array
+    {
+        $doiIds = Collection::make();
+
+        $submission = Repo::submission()->get($publication->getData('submissionId'));
+
+        /** @var PressDAO $contextDao */
+        $contextDao = Application::getContextDAO();
+        /** @var Press */
+        $context = $contextDao->getById($submission->getData('contextId'));
+
+        $publicationDoiId = $publication->getData('doiId');
+        if (!empty($publicationDoiId) && $context->isDoiTypeEnabled(self::TYPE_PUBLICATION)) {
+            $doiIds->add($publicationDoiId);
+        }
+
+        // Chapters
+        $chapters = $publication->getData('chapters');
+        foreach ($chapters as $chapter) {
+            $chapterDoiId = $chapter->getData('doiId');
+            if (!empty($chapterDoiId) && $context->isDoiTypeEnabled(self::TYPE_CHAPTER)) {
+                $doiIds->add($chapterDoiId);
+            }
+        }
+
+        // Publication formats
+        $publicationFormats = $publication->getData('publicationFormats');
+        foreach ($publicationFormats as $publicationFormat) {
+            $publicationFormatDoiId
+                = $publicationFormat->getData('doiId');
+            if (!empty($publicationFormatDoiId) && $context->isDoiTypeEnabled(self::TYPE_REPRESENTATION)) {
+                $doiIds->add($publicationFormatDoiId);
+            }
+        }
+
+        // Submission files
+        if ($context->isDoiTypeEnabled(self::TYPE_SUBMISSION_FILE)) {
+            $submissionFiles = Repo::submissionFile()
+                ->getCollector()
+                ->filterBySubmissionIds([$publication->getData('submissionId')])
+                ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
+                ->getMany();
+
+            /** @var SubmissionFile $submissionFile */
+            foreach ($submissionFiles as $submissionFile) {
+                $submissionFileDoiId = $submissionFile->getData('doiId');
+                if (!empty($submissionFileDoiId)) {
+                    $doiIds->add($submissionFileDoiId);
+                }
+            }
+        }
+
+        return $doiIds->unique()->toArray();
+    }
+
+    /**
      * Generate a suffix using a provided pattern type
      *
      * @param string $patternType Repo::doi()::CUSTOM_SUFFIX_* constants
