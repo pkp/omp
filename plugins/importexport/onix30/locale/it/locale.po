@@ -1,3 +1,80 @@
 # Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>, 2025.
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2025-09-24 13:47+0000\n"
+"Last-Translator: Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>\n"
+"Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-onix30/it/>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "plugins.importexport.onix30.cliError"
+msgstr "ERRORE:"
+
+msgid "plugins.importexport.onix30.error.unknownPress"
+msgstr ""
+"Il percorso della press che è stato specificato, \\\"{$contextPath},\\\" non "
+"esiste."
+
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr "Impossibile scrivere sul file \\\"{$fileName}\\\"."
+
+msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgstr ""
+"Nessuna monografia corrisponde all'ID monografia specificato \\\""
+"{$monographId}\\\"."
+
+msgid "plugins.importexport.onix30.description"
+msgstr "Esporta i metadati delle monografie nel formato ONIX 3.0"
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr "Seleziona una monografia da esportare:"
+
+msgid "plugins.importexport.onix30.exportButton"
+msgstr "Esporta"
+
+msgid "plugins.importexport.onix30.exportFormats"
+msgstr "Formati disponibili"
+
+msgid "plugins.importexport.onix30.unavailable"
+msgstr "Non disponibile"
+
+msgid "plugins.importexport.onix30.validityStatus"
+msgstr "Stato ONIX"
+
+msgid "plugins.importexport.onix30.formatValid"
+msgstr "Valido"
+
+msgid "plugins.importexport.onix30.formatInvalid"
+msgstr "Non valido"
+
+msgid "plugins.importexport.onix30.pressMissingFields"
+msgstr ""
+"A questa press mancano alcune informazioni obbligatorie. Vai in <a href=\""
+"{$url}\">Impostazioni</a> e indica i dettagli mancanti."
+
+msgid "plugins.importexport.onix30.form.addresseeField"
+msgstr "Chi deve ricevere (destinatario) questa esportazione"
+
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
+msgstr ""
+"È possibile lasciare questo campo vuoto e creare un'esportazione generica. "
+"Questo comporterà che l'esportazione ONIX non avrà alcun &lt;Destinatario&gt;"
+" composito. "
+
+msgid "plugins.importexport.onix30.displayName"
+msgstr "Plugin di esportazione in ONIX 3.0 delle monografie"
+
+msgid "plugins.importexport.onix30.cliUsage"
+msgstr ""
+"Uso: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId] "
+
+msgid "plugins.importexport.onix30.noFormats"
+msgstr "Le monografie senza formato di pubblicazione non vengono visualizzate."
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Seleziona le monografie da esportare"
