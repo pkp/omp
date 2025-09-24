@@ -1,5 +1,5 @@
 # Alfredo Cosco <alfredo.cosco@gmail.com>, 2021.
-# Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>, 2022.
+# Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>, 2022, 2025.
 # Fulvio Delle Donne <fulviodelledonne@libero.it>, 2022.
 # Michele Tutone <tutone@francoangeli.it>, 2023.
 msgid ""
@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-22T21:00:19+00:00\n"
-"PO-Revision-Date: 2023-04-05 08:48+0000\n"
-"Last-Translator: Michele Tutone <tutone@francoangeli.it>\n"
+"PO-Revision-Date: 2025-09-24 13:47+0000\n"
+"Last-Translator: Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "it/>\n"
 "Language: it\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "submission.upload.selectComponent"
 msgstr "Seleziona un componente"
@@ -504,9 +504,11 @@ msgstr "{$editorName} ha inviato questa proposta alla revisione interna."
 msgid "editor.submission.decision.sendInternalReview.completed"
 msgstr "Inviata alla revisione interna"
 
-#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.completed.description"
-msgstr "La proposta, {$title}, è stata inviata alla fase di revisione interna."
+msgstr ""
+"La proposta, {$title}, è stata inviata alla fase di revisione interna. L'"
+"autore/autrice è stato informato/a, a meno che tu non abbia scelto di "
+"ignorare quell'e-mail."
 
 msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
 msgstr ""
@@ -683,3 +685,17 @@ msgstr ""
 
 #~ msgid "metadata.property.displayName.date"
 #~ msgstr "Data di pubblicazione"
+
+msgid "publication.chapter.landingPage.doi.description"
+msgstr ""
+"(Questo capitolo sarà sempre visualizzato su una pagina separata perché ha "
+"un DOI.)"
+
+msgid "submission.dashboard.view.reviewInternal"
+msgstr "Tutto in revisione interna"
+
+msgid "submission.stage.externalReviewWithRound"
+msgstr "Revisione Esterna (Round {$round})"
+
+msgid "submission.stage.internalReviewWithRound"
+msgstr "Revisione interna (Round {$round})"
