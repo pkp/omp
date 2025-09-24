@@ -1,7 +1,7 @@
 # Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-09-24 13:47+0000\n"
+"PO-Revision-Date: 2025-09-24 17:27+0000\n"
 "Last-Translator: Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/manager/it/>"
 "\n"
@@ -24,3 +24,37 @@ msgstr ""
 
 msgid "manager.languages.primaryLocaleInstructions"
 msgstr "Questa sarà la lingua predefinita per il sito della press."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Assicurati che almeno una casella di controllo sia selezionata per ogni "
+"incarico come redattore/redattrice di collana."
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Assicurati di aver selezionato un modulo di revisione valido."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Non sarà incluso nell'indicizzazione della stampa"
+
+msgid "manager.series.editorRestriction"
+msgstr ""
+"Gli oggetti possono essere proposti solo dagli editor e dagli/dalle editor "
+"di collana."
+
+msgid "manager.series.confirmDelete"
+msgstr "Sei sicuro di voler eliminare definitivamente questa serie?"
+
+msgid "manager.series.indexed"
+msgstr "Indicizzato"
+
+msgid "manager.series.open"
+msgstr "Proposte aperte"
+
+msgid "manager.series.readingTools"
+msgstr "Strumenti di lettura"
+
+msgid "manager.series.submissionReview"
+msgstr "Non sarà oggetto di peer review"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Proposte inviate a questa collana"
