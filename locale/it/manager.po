@@ -1,7 +1,7 @@
 # Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-09-24 17:27+0000\n"
+"PO-Revision-Date: 2025-09-26 04:11+0000\n"
 "Last-Translator: Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/manager/it/>"
 "\n"
@@ -58,3 +58,299 @@ msgstr "Non sarà oggetto di peer review"
 
 msgid "manager.series.submissionsToThisSection"
 msgstr "Proposte inviate a questa collana"
+
+msgid "manager.settings"
+msgstr "Impostazioni"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Questi campi sono necessari per pubblicare <a href=\"https://en.wikipedia."
+"org/wiki/ONIX_for_Books\">metadati ONIX</a> validi."
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Questo non è un tipo di codice editore valido."
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Strumenti per generare report relativi alle statistiche di utilizzo ("
+"visualizzazioni della pagina dell'indice del catalogo, visualizzazioni delle "
+"pagine degli abstract delle monografie, download dei file delle monografie)"
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Tutte le impostazioni specifiche del processo di distribuzione (notifica, "
+"indicizzazione, archiviazione, pagamento, strumenti di lettura)."
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Selezionare un/una utente da unire a un/una altro/altra account utente (ad "
+"esempio, quando qualcuno/qualcuna ha due account utente). L'account "
+"selezionato per primo verrà eliminato e le sue proposte, compiti, ecc. "
+"saranno attribuite al secondo account."
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"La sincronizzazione delle iscrizioni iscriverà tutti gli utenti iscritti al "
+"ruolo specificato nella press specificata allo stesso ruolo in questa press. "
+"Questa funzione consente di sincronizzare un insieme comune di utenti (ad "
+"esempio, i revisori) tra le press."
+
+msgid "manager.setup.addAboutItem"
+msgstr "Aggiungi un elemento dell'About"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Aggiungi elemento da visualizzare in “Informazioni sulla press”"
+
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Gli annunci possono essere pubblicati per informare i lettori sulle notizie "
+"e gli eventi relativi alla press. Gli annunci pubblicati appariranno nella "
+"pagina Annunci."
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Includi tutte le informazioni sulla tua press che potrebbero essere di "
+"interesse per lettori, autori o recensori. Queste potrebbero includere la "
+"tua politica di open access, l'orientamento e l'ambito della press, "
+"l'informativa sulle sponsorizzazioni e la storia della press."
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Aggiungi voce alla lista di controllo"
+
+msgid "manager.setup.addItem"
+msgstr "Aggiungi elemento"
+
+msgid "manager.setup.addNavItem"
+msgstr "Aggiungi elemento"
+
+msgid "manager.setup.addSponsor"
+msgstr "Aggiungi uno sponsor"
+
+msgid "manager.setup.announcements"
+msgstr "Annunci"
+
+msgid "manager.setup.announcements.success"
+msgstr "Le impostazioni degli annunci sono state aggiornate."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Informazioni aggiuntive"
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+"Inserisci eventuali informazioni aggiuntive che devono essere visualizzate "
+"dai lettori nella pagina Annunci."
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Da pubblicare in “Informazioni sulla press”) "
+
+msgid "manager.setup.contextAbout"
+msgstr "Informazioni sulla press"
+
+msgid "manager.setup.contextSummary"
+msgstr "Sommario della press"
+
+msgid "manager.setup.contextSummary.description"
+msgstr ""
+"Fornisci una breve descrizione della tua press per dare un'idea del suo "
+"contenuto e scopo."
+
+msgid "manager.setup.copyediting"
+msgstr "Copyeditor"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Istruzioni per il copyedit"
+
+msgid "manager.settings.pressSettings"
+msgstr "Impostazioni della press"
+
+msgid "manager.settings.press"
+msgstr "Press"
+
+msgid "manager.settings.publisher.identity"
+msgstr "Identità dell'editore"
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Non richiede abstract"
+
+msgid "manager.series.disableComments"
+msgstr "Disattiva i commenti dei lettori per questa serie."
+
+msgid "manager.series.book"
+msgstr "Collane"
+
+msgid "manager.series.create"
+msgstr "Crea collana"
+
+msgid "manager.series.policy"
+msgstr "Descrizione della collana"
+
+msgid "manager.series.assigned"
+msgstr "Editor della collana"
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Aggiungi un/una editor di collana a questa collana tra gli/le editor di "
+"collana disponibili. Una volta aggiunto, specifica se l'editor di collana "
+"supervisionerà la REVISIONE (peer review) e/o la MODIFICA (correzione di "
+"bozze, impaginazione e correzione di bozze) dei contributi inviati a questa "
+"collana. Gli/le editor di collana vengono creati/create cliccando su <a href="
+"\"{$seriesEditorsUrl}\">Editor di collana</a> sotto Ruoli in Gestione della "
+"press."
+
+msgid "manager.series.hideAbout"
+msgstr "Escludi questa collana dall'About."
+
+msgid "manager.series.unassigned"
+msgstr "Editor di collana disponibili"
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "È necessario un titolo abbreviato per la collana."
+
+msgid "manager.series.form.titleRequired"
+msgstr "È necessario un titolo per la collana."
+
+msgid "manager.series.noneCreated"
+msgstr "Non è stata creata nessuna serie."
+
+msgid "manager.series.existingUsers"
+msgstr "Utenti esistenti"
+
+msgid "manager.series.seriesTitle"
+msgstr "Titolo di collana"
+
+msgid "manager.series.restricted"
+msgstr ""
+"Non consentire agli autori di sottomettere direttamente a questa collana."
+
+msgid "manager.sections.alertDelete"
+msgstr ""
+"Prima di poter eliminare questa collana, è necessario spostare i contributi "
+"ad essa associati in altre collane."
+
+msgid "manager.payment.generalOptions"
+msgstr "Opzioni generali"
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"I pagamenti saranno abilitati per questa press. Si noti che gli utenti "
+"dovranno effettuare il login per poter effettuare i pagamenti."
+
+msgid "manager.payment.success"
+msgstr "Le impostazioni di pagamento sono state aggiornate."
+
+msgid "manager.settings.publisher"
+msgstr "Nome dell'editore"
+
+msgid "manager.settings.location"
+msgstr "Posizione geografica"
+
+msgid "manager.settings.publisherCode"
+msgstr "Codice editore"
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Tipo di codice editore"
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Download dei file della monografia"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Visualizzazioni della pagina con l'abstract della monografia"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Abstract della monografia e download"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Visualizzazioni della pagina principale della collana"
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Visualizzazioni della pagina principale della press"
+
+msgid "manager.tools"
+msgstr "Strumenti"
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Tutti gli strumenti specifici per l'importazione e l'esportazione dei dati ("
+"stampa, monografie, utenti)"
+
+msgid "manager.users.availableRoles"
+msgstr "Ruoli disponibili"
+
+msgid "manager.users.currentRoles"
+msgstr "Ruoli correnti"
+
+msgid "manager.users.selectRole"
+msgstr "Seleziona un ruolo"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Utenti iscritti a questa press"
+
+msgid "manager.people.allPresses"
+msgstr "Tutte le press"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Registra un utente di questo sito in questa press"
+
+msgid "manager.people.allUsers"
+msgstr "Tutti gli utenti iscritti"
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Rimuovere questo utente da questa press? Questa azione cancellerà l'utente "
+"da tutti i ruoli all'interno di questa press."
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Iscrivi un utente esistente"
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Nella press"
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Selezionare un/una utente a cui attribuire i ruoli da autore/autrice, gli "
+"incarichi da editor, ecc. dell'utente precedente."
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Disabilitare questo utente? Ciò impedirà all'utente di accedere al sistema.\n"
+"\n"
+"È possibile fornire all'utente un motivo per la disattivazione del suo "
+"account."
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Spiacenti, non disponi dei diritti amministrativi su questo utente. Ciò "
+"potrebbe essere dovuto a:\n"
+"\t\t<ul>\n"
+"\t\t\t<li>L'utente amministra il sito</li>\n"
+"\t\t\t<li>L'utente è attivo in press che non gestisci</li>\n"
+"\t\t</ul>\n"
+"\tQuesta operazione deve essere eseguita da un amministratore del sito.\n"
+"\t"
+
+msgid "manager.system"
+msgstr "Impostazioni di sistema"
+
+msgid "manager.system.archiving"
+msgstr "Archiviazione"
+
+msgid "manager.system.reviewForms"
+msgstr "Form di revisione"
+
+msgid "manager.system.readingTools"
+msgstr "Strumenti di lettura"
+
+msgid "manager.system.payments"
+msgstr "Pagamenti"
+
+msgid "user.authorization.pluginLevel"
+msgstr "Non disponi dei privilegi sufficienti per gestire questo plugin."
+
+msgid "manager.pressManagement"
+msgstr "Gestione della press"
+
+msgid "manager.setup"
+msgstr "Setup"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Contenuto"
