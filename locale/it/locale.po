@@ -1,13 +1,14 @@
 # Fulvio Delle Donne <fulviodelledonne@libero.it>, 2022.
 # Stefan Schneider <mail@stefan-schneider.at>, 2023.
 # Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>, 2025.
+# Gabriele Raimondi <gabriele.raimondi5@unibo.it>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-22T21:00:04+00:00\n"
-"PO-Revision-Date: 2025-09-24 17:27+0000\n"
-"Last-Translator: Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>\n"
+"PO-Revision-Date: 2025-09-25 10:47+0000\n"
+"Last-Translator: Gabriele Raimondi <gabriele.raimondi5@unibo.it>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/locale/it/>"
 "\n"
 "Language: it\n"
@@ -1045,7 +1046,7 @@ msgstr "Registra"
 msgid "about.onlineSubmissions.registrationRequired"
 msgstr ""
 "È necessario autenticarsi per proporre testi per la pubblicazione e seguirne "
-"il successivo iter. {$loginUrl} un account esistente o {$register} uno nuovo."
+"il successivo iter. {$login} un account esistente o {$register} uno nuovo."
 
 msgid "about.onlineSubmissions.submissionActions"
 msgstr "{$newSubmission} o {$viewSubmissions}."
