@@ -1,17 +1,18 @@
 # Dorota Siwecka <dorota.k.siwecka@gmail.com>, 2022.
+# Piotr Pielach <piotr@pielach.net>, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-08-09 10:00+0000\n"
-"Last-Translator: Dorota Siwecka <dorota.k.siwecka@gmail.com>\n"
+"PO-Revision-Date: 2025-09-20 19:35+0000\n"
+"Last-Translator: Piotr Pielach <piotr@pielach.net>\n"
 "Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/submission/"
-"pl_PL/>\n"
-"Language: pl_PL\n"
+"pl/>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "submission.upload.selectComponent"
 msgstr "Wybierz komponent"
@@ -47,7 +48,7 @@ msgid "submission.workflowType.change"
 msgstr "Zmień"
 
 msgid "submission.editorName"
-msgstr "{$editorName} (ed)"
+msgstr "{$editorName} (red.)"
 
 msgid "submission.monograph"
 msgstr "Monografia"
@@ -134,7 +135,7 @@ msgid "submission.submit.upload"
 msgstr "Wprowadź zgłoszenie"
 
 msgid "author.volumeEditor"
-msgstr ""
+msgstr "Redaktor tomu"
 
 msgid "author.isVolumeEditor"
 msgstr "Dobierz współautora jako redaktora tego tomu."
@@ -494,10 +495,10 @@ msgstr "{$editorName} przesłał to zgłoszenie do etapu recenzji wewnętrznej."
 msgid "editor.submission.decision.sendInternalReview.completed"
 msgstr "Wyślij do recenzji wewnętrznej"
 
-#, fuzzy
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr ""
-"To zgłoszenie, {$title}, zostało przesłane do etapu recenzji wewnętrznej."
+"To zgłoszenie, {$title}, zostało przesłane do etapu recenzji wewnętrznej. "
+"Autor został powiadomiony, chyba że pominąłeś ten e-mail."
 
 msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
 msgstr ""
@@ -567,39 +568,69 @@ msgstr ""
 
 msgid "doi.submission.incorrectContext"
 msgstr ""
+"Nie udało się utworzyć DOI dla następującego zgłoszenia: {$pubObjectTitle}. "
+"Nie istnieje ono w bieżącym kontekście wydawnictwa."
 
 msgid "publication.chapter.licenseUrl"
-msgstr ""
+msgstr "URL licencji"
 
 msgid "publication.chapterDefaultLicenseURL"
-msgstr ""
+msgstr "Domyślny URL licencji dla rozdziału"
 
 msgid "submission.copyright.description"
 msgstr ""
+"Prosimy o zapoznanie się z warunkami praw autorskich dotyczącymi materiałów "
+"nadsyłanych do wydawnictwa."
 
 msgid "submission.wizard.notAllowed.description"
 msgstr ""
+"Nie możesz przesyłać materiałów do tego wydawnictwa, ponieważ autorzy muszą "
+"być zarejestrowani przez redakcję. Jeśli uważasz, że to błąd, skontaktuj się "
+"z <a href='mailto:{$email}'>{$name}</a>."
 
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
+"{$contextName} nie przyjmuje zgłoszeń do serii {$section}. Jeśli "
+"potrzebujesz pomocy w odzyskaniu zgłoszenia, skontaktuj się z <a "
+"href='mailto:{$email}'>{$name}</a>."
 
 msgid "submission.sectionNotFound"
-msgstr ""
+msgstr "Nie można znaleźć serii odpowiadającej temu zgłoszeniu."
 
 msgid "submission.sectionRestrictedToEditors"
-msgstr ""
+msgstr "Tylko członkowie redakcji mają prawo nadsyłać teksty do tej serii."
 
 msgid "submission.wizard.submitting.monograph"
-msgstr ""
+msgstr "Przesyłanie <strong>monografii</strong>."
 
 msgid "submission.wizard.submitting.monographInLanguage"
 msgstr ""
+"Przesyłanie <strong>monografii</strong> w języku <strong>{$language</strong>."
 
 msgid "submission.wizard.submitting.editedVolume"
-msgstr ""
+msgstr "Przesyłanie <strong>tomu pod redakcją</strong>."
 
 msgid "submission.wizard.submitting.editedVolumeInLanguage"
 msgstr ""
+"Przesyłanie <strong>Tomu pod redakcją</strong> w języku "
+"<strong>{$language}</strong>."
 
 msgid "submission.wizard.chapters.description"
 msgstr ""
+"Prosimy o podanie wszystkich rozdziałów tego zgłoszenia. Jeśli przesyłasz "
+"tom pod redakcją, upewnij się, że każdy rozdział zawiera listę autorów, "
+"którzy go opracowali."
+
+msgid "publication.chapter.landingPage.doi.description"
+msgstr ""
+"(Ten rozdział będzie zawsze wyświetlany na osobnej stronie, ponieważ posiada "
+"DOI.)"
+
+msgid "submission.dashboard.view.reviewInternal"
+msgstr "Wszystkie w recenzji wewnętrznej"
+
+msgid "submission.stage.externalReviewWithRound"
+msgstr "Recenzja zewnętrzna (Runda {$round})"
+
+msgid "submission.stage.internalReviewWithRound"
+msgstr "Recenzja wewnętrzna (Runda {$round})"

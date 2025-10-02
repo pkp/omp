@@ -1,17 +1,18 @@
 # Alfredo Cosco <alfredo.cosco@gmail.com>, 2021.
 # Fulvio Delle Donne <fulviodelledonne@libero.it>, 2022.
+# Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-08-08 09:16+0000\n"
-"Last-Translator: Fulvio Delle Donne <fulviodelledonne@libero.it>\n"
-"Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/themes-"
-"default/it_IT/>\n"
-"Language: it_IT\n"
+"PO-Revision-Date: 2025-09-24 13:47+0000\n"
+"Last-Translator: Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>\n"
+"Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/"
+"themes-default/it/>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "plugins.themes.default.name"
 msgstr "Tema predefinito"
@@ -107,3 +108,12 @@ msgstr "Download"
 
 msgid "plugins.themes.default.displayStats.noStats"
 msgstr "Il download dei dati non è ancora disponibile."
+
+msgid "plugins.themes.default.option.showDescriptionInPressIndex.option"
+msgstr "Mostra il sommario della press sulla homepage."
+
+msgid "plugins.themes.default.nextSlide"
+msgstr "Slide successiva"
+
+msgid "plugins.themes.default.prevSlide"
+msgstr "Slide precedente"

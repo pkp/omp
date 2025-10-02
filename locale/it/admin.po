@@ -2,7 +2,7 @@
 # Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-08-07 13:48+0000\n"
+"PO-Revision-Date: 2025-09-24 13:47+0000\n"
 "Last-Translator: Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/admin/it/>\n"
 "Language: it\n"
@@ -143,9 +143,8 @@ msgstr ""
 "nella configurazione iniziale (setting wizard) nella sezione <a href=\""
 "{$hostedContextsUrl}\">Press registrate</a>."
 
-#, fuzzy
 msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
-msgstr "Indica il sito come piattaforma per tutte le riviste."
+msgstr "Indica il sito come piattaforma per tutte le press."
 
 msgid "admin.siteManagement.description"
 msgstr ""
