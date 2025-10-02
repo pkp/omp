@@ -291,7 +291,7 @@
 					<div class="value">
 						{if $citations}
 							{foreach from=$citations item=$citation}
-								<p>{$citation->getCitationWithLinks()|strip_unsafe_html}</p>
+								<p>{$citation->getRawCitationWithLinks()|strip_unsafe_html}</p>
 							{/foreach}
 						{else}
 							{$publication->getData('citationsRaw')|escape|nl2br}
