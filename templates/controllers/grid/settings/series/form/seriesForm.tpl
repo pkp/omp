@@ -100,6 +100,9 @@
 
 		{if count($allCategories)}
 			{fbvFormSection list=true title="grid.category.categories"}
+                {if !$hasAllBreadcrumbs}
+                    {translate key="submission.categories.circularReferenceWarning"}
+                {/if}
 				{foreach from=$allCategories item="category" key="id"}
 					{fbvElement type="checkbox" id="categories[]" value=$id checked=in_array($id, $selectedCategories) label=$category|escape translate=false}
 				{/foreach}
