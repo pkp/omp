@@ -685,7 +685,7 @@ msgstr ""
 "{$number} število najdenih naslovov se je ujemalo z vašo iskalno zahtevo "
 "\"{$searchQuery}\"."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Vse knjige"
 
 msgid "catalog.newReleases"

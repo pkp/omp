@@ -677,7 +677,7 @@ msgstr "\"{$searchQuery}\" aramanızla eşleşen bir başlık bulundu."
 msgid "catalog.foundTitlesSearch"
 msgstr "\"{$searchQuery}\" aramanızla eşleşen {$number} başlık bulundu."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Tüm Kitaplar"
 
 msgid "catalog.newReleases"

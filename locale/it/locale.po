@@ -705,7 +705,7 @@ msgstr ""
 "Sono stati trovati {$number} titoli corrispondenti alla ricerca: "
 "\"{$searchQuery}\"."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Tutti i volumi"
 
 msgid "catalog.newReleases"

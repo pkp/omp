@@ -57,7 +57,7 @@
 	{* No published titles in this category *}
 	{if empty($publishedSubmissions)}
 		<h2>
-			{translate key="catalog.category.heading"}
+			{translate key="category.heading"}
 		</h2>
 		<p>{translate key="catalog.noTitles"}</p>
 
@@ -69,7 +69,7 @@
 		{/if}
 
 		{* All monographs *}
-		{include file="frontend/components/monographList.tpl" monographs=$publishedSubmissions featured=$featuredMonographIds titleKey="catalog.category.heading" authorUserGroups=$authorUserGroups}
+		{include file="frontend/components/monographList.tpl" monographs=$publishedSubmissions featured=$featuredMonographIds titleKey="category.heading" authorUserGroups=$authorUserGroups}
 
 		{* Pagination *}
 		{if $prevPage > 1}

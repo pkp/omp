@@ -702,7 +702,7 @@ msgstr ""
 "{$number} olyan címet találtunk, amely megfelel a(z) \"{$searchQuery}\" "
 "keresésnek."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Összes könyv"
 
 msgid "catalog.newReleases"

@@ -681,7 +681,7 @@ msgstr "Byla nalezena jedna publikace odpovídající dotazu \"{$searchQuery}\".
 msgid "catalog.foundTitlesSearch"
 msgstr "{$number} publikací bylo nalezeno pro dotaz \"{$searchQuery}\"."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Všechny knihy"
 
 msgid "catalog.newReleases"

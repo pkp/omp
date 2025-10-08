@@ -62,6 +62,10 @@
 			{fbvElement type="text" multilingual=true name="subtitle" id="subtitle" value=$subtitle maxlength="255"}
 		{/fbvFormSection}
 
+		{fbvFormSection title="series.path" required=true for="urlPath"}
+			{fbvElement type="text" id="urlPath" label=$instruct subLabelTranslate=false value=$urlPath maxlength="32"}
+		{/fbvFormSection}
+
 		{fbvFormSection title="common.description" for="description"}
 		 	{fbvElement type="textarea" multilingual=true id="description" value=$description rich=true}
 		{/fbvFormSection}
@@ -106,13 +110,6 @@
 			{/fbvFormSection}
 		{/if}
 
-		{capture assign="instruct"}
-			{capture assign="sampleUrl"}{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="series" path="Path"}{/capture}
-			{translate key="grid.series.urlWillBe" sampleUrl=$sampleUrl}
-		{/capture}
-		{fbvFormSection title="series.path" required=true for="path"}
-			{fbvElement type="text" id="path" label=$instruct subLabelTranslate=false value=$path maxlength="32"}
-		{/fbvFormSection}
 	{/fbvFormArea}
 
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>

@@ -742,7 +742,7 @@ msgstr ""
 "{$number} judul ditemukan yang sesuai dengan pencarian anda untuk \""
 "{$searchQuery}\"."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Semua Buku"
 
 msgid "catalog.newReleases"

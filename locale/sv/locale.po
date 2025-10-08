@@ -668,7 +668,7 @@ msgstr "En titel matchade ditt sökord \"{$searchQuery}\"."
 msgid "catalog.foundTitlesSearch"
 msgstr "{$number} titlar hittades för sökfrågan \"{$searchQuery}\"."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Alla böcker"
 
 msgid "catalog.newReleases"

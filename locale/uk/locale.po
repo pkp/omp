@@ -688,7 +688,7 @@ msgstr "Один запис знайдено за вашим запитом \"{$
 msgid "catalog.foundTitlesSearch"
 msgstr "{$number} назв знайдено за вашим запитом \"{$searchQuery}\"."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Усі книги"
 
 msgid "catalog.newReleases"

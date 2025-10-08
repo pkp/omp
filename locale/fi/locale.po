@@ -687,7 +687,7 @@ msgstr "Haullasi \"{$searchQuery}\" löytyi yksi (1) nimeke."
 msgid "catalog.foundTitlesSearch"
 msgstr "Haullasi \"{$searchQuery}\" löytyi {$number} nimekettä."
 
-msgid "catalog.category.heading"
+msgid "category.heading"
 msgstr "Kaikki kirjat"
 
 msgid "catalog.newReleases"
