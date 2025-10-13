@@ -162,20 +162,19 @@ class SeriesForm extends PKPSectionForm
         $allCategories = [];
         $categories = Repo::category()->getCollector()
             ->filterByContextIds([$context->getId()])
-            ->getMany()
-            ->toArray();
+            ->getMany();
 
-        foreach ($categories as $category) {
-            $title = $category->getLocalizedTitle();
-            if ($category->getParentId()) {
-                $title = $categories[$category->getParentId()]->getLocalizedTitle() . ' > ' . $title;
-            }
-            $allCategories[(int) $category->getId()] = $title;
+        $categoriesBreadcrumb = Repo::category()->getBreadcrumbs($categories);
+        $hasAllBreadcrumbs = count($categories) === $categoriesBreadcrumb->count();
+
+        foreach ($categoriesBreadcrumb as $categoryId => $breadcrumb) {
+            $allCategories[(int) $categoryId] = $breadcrumb;
         }
 
         $templateMgr->assign([
             'allCategories' => $allCategories,
             'selectedCategories' => $this->getData('categories')?->values()?->all() ?? [],
+            'hasAllBreadcrumbs' => $hasAllBreadcrumbs,
         ]);
 
         return parent::fetch($request, $template, $display);
