@@ -129,33 +129,18 @@ class TemplateManager extends PKPTemplateManager
 
         $menu = (array) $this->getState('menu');
 
-        // Add catalog after submissions items
+        // Add catalog under content menu
         if (count(array_intersect([Role::ROLE_ID_MANAGER, Role::ROLE_ID_SITE_ADMIN], $userRoles))) {
             $catalogLink = [
                 'name' => __('navigation.catalog'),
                 'url' => $router->url($request, null, 'manageCatalog'),
-                'isCurrent' => $request->getRequestedPage() === 'manageCatalog',
-                'icon' => 'Catalog'
+                'isCurrent' => $request->getRequestedPage() === 'manageCatalog'
             ];
 
-            $index = false;
-            $reviewAssignmentsIndex = array_search('reviewAssignments', array_keys($menu));
-            $mySubmissionsIndex = array_search('mySubmissions', array_keys($menu));
-            if ($mySubmissionsIndex !== false) {
-                $index = $mySubmissionsIndex;
-            } elseif ($reviewAssignmentsIndex !== false) {
-                $index = $reviewAssignmentsIndex;
-            } else {
-                $index = array_search('dashboards', array_keys($menu));
-            }
-
-            if ($index === false || count($menu) <= $index + 1) {
-                $menu['catalog'] = $catalogLink;
-            } else {
-                $menu = array_slice($menu, 0, $index + 1, true)
-                    + ['catalog' => $catalogLink]
-                    + array_slice($menu, $index + 1, null, true);
-            }
+            $contentCommentsIndex = array_search('userComments', array_keys($menu['content']));
+            $menu['content']['submenu'] = array_slice($menu['content']['submenu'], 0, $contentCommentsIndex + 1, true) +
+                ['catalog' => $catalogLink] +
+                array_slice($menu['content']['submenu'], $contentCommentsIndex + 1, null, true);
         }
 
         $this->setState(['menu' => $menu]);
