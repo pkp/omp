@@ -1,8 +1,9 @@
 # Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>, 2025.
+# Gabriele Raimondi <gabriele.raimondi5@unibo.it>, 2025.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-09-26 04:11+0000\n"
-"Last-Translator: Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>\n"
+"PO-Revision-Date: 2025-10-16 13:24+0000\n"
+"Last-Translator: Gabriele Raimondi <gabriele.raimondi5@unibo.it>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/manager/it/>"
 "\n"
 "Language: it\n"
@@ -354,3 +355,6 @@ msgstr "Setup"
 
 msgid "manager.setup.aboutItemContent"
 msgstr "Contenuto"
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
