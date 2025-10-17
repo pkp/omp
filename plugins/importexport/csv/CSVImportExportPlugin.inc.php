@@ -413,7 +413,10 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 			// Submission is done.  Create a publication format for it.
 			$publicationFormatId = $this->_processPublicationFormat($submissionId, $publicationId, $extension, $data);
 
-			$this->_processPublicationDate($data->year, $publicationFormatId);
+			// The year field is related to the publication date.
+			if ($data->year) {
+				$this->_processPublicationDate($data->year, $publicationFormatId);
+			}
 
 			// Submission File.
 			$this->_processPublicationFile($data, $submissionId, $filePath, $publicationFormatId, $genreId, $fileId);
