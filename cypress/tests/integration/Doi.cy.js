@@ -79,7 +79,7 @@ describe('DOI tests', function() {
 	it('Check filters and mark registered', function() {
 		cy.log('Check Submission Filter Behaviour (pre-deposit)');
 		loginAndGoToDoiPage();
-		cy.checkDoiFilterResults('Needs DOI', 'Allan — Bomb Canada and Other Unkind Remarks in the American Media', 2);
+		cy.checkDoiFilterResults('Needs DOI', 'Allan — Bomb Canada and Other Unkind Remarks in the American Media', 6);
 		cy.checkDoiFilterResults('DOI Assigned', 'Dawson et al. — From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots', 1);
 		clearFilter();
 		cy.checkDoiFilterResults('Unregistered', 'Dawson et al. — From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots', 1);
