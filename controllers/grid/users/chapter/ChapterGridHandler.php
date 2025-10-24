@@ -136,8 +136,15 @@ class ChapterGridHandler extends CategoryGridHandler
 
         $this->setTitle('submission.chapters');
 
-        if ($this->getPublication()->getData('status') === PKPPublication::STATUS_PUBLISHED) {
-            $this->setReadOnly(true);
+        if ($this->getPublication()->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
+            $userRoles = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_USER_ROLES);
+            if (!array_intersect(
+                [Role::ROLE_ID_SITE_ADMIN, Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT],
+                $userRoles
+            )) {
+                // set readOnly to true for everyone else
+                $this->setReadOnly(true);
+            }
         }
 
         if (!$this->getReadOnly()) {
@@ -232,12 +239,21 @@ class ChapterGridHandler extends CategoryGridHandler
         $publication = $this->getPublication();
         $userRoles = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_USER_ROLES);
 
-        if ($publication->getData('status') === PKPPublication::STATUS_PUBLISHED) {
-            return false;
-        }
-
         if (in_array(Role::ROLE_ID_SITE_ADMIN, $userRoles)) {
             return true;
+        }
+
+        // if it is published, allow managers or sub-editors
+        if ($publication->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
+            // allow these roles to edit galleys even if published
+            if (array_intersect(
+                [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT],
+                $userRoles
+            )) {
+                return true;
+            }
+            // otherwise block
+            return false;
         }
 
         // Incomplete submissions can be edited. (Presumably author.)
