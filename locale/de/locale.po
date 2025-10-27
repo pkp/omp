@@ -1,12 +1,12 @@
 # Pia Piontkowitz <pia.piontkowitz@rub.de>, 2021, 2022, 2023, 2025.
-# Renate Voget <renate.voget@hbz-nrw.de>, 2024.
+# Renate Voget <renate.voget@hbz-nrw.de>, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
 "PO-Revision-Date: 2025-10-28 11:51+0000\n"
-"Last-Translator: Pia Piontkowitz <pia.piontkowitz@rub.de>\n"
+"Last-Translator: Renate Voget <renate.voget@hbz-nrw.de>\n"
 "Language-Team: German <http://translate.pkp.sfu.ca/projects/omp/locale/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1717,3 +1717,6 @@ msgstr ""
 "href=\"mailto:{$siteAdminEmail}\">{$siteAdminEmail}</a>), um sie/ihn über "
 "dieses neue Release zu informieren. Mehr Informationen können <a href=\"https"
 "://pkp.sfu.ca/omp_download/\" target=\"_new\">hier</a> gefunden werden."
+
+msgid "search.cli.rebuildIndex.indexingByPressNotSupported"
+msgstr "Diese Suchfunktion erlaubt keine verlagsspezifische Neuindexierung."
