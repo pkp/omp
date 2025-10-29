@@ -26,8 +26,10 @@ use PKP\controllers\grid\feature\OrderGridItemsFeature;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\settings\SetupGridHandler;
 use PKP\core\JSONMessage;
+use PKP\core\PKPRequest;
 use PKP\db\DAO;
 use PKP\db\DAORegistry;
+use PKP\file\ContextFileManager;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\notification\Notification;
@@ -44,7 +46,18 @@ class SeriesGridHandler extends SetupGridHandler
         parent::__construct();
         $this->addRoleAssignment(
             [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SITE_ADMIN],
-            ['fetchGrid', 'fetchRow', 'addSeries', 'editSeries', 'updateSeries', 'deleteSeries', 'saveSequence', 'deactivateSeries','activateSeries']
+            [
+                'fetchGrid',
+                'fetchRow',
+                'addSeries',
+                'editSeries',
+                'updateSeries',
+                'deleteSeries',
+                'saveSequence',
+                'deactivateSeries',
+                'activateSeries',
+                'deleteImage'
+            ]
         );
     }
 
@@ -373,5 +386,49 @@ class SeriesGridHandler extends SetupGridHandler
         );
 
         return DAO::getDataChangedEvent($elementId);
+    }
+
+    /**
+     * Handle file deletion for cover images for series.
+     *
+     * @param array $args
+     *    `name` string Filename of the cover image to be deleted.
+     *    `thumbnailName` string Filename of the cover image thumbnail to be deleted.
+     *    `seriesId` int ID of the series this cover image is attached to.
+     *
+     * @throws \Exception
+     */
+    public function deleteImage(array $args, PKPRequest $request): JSONMessage
+    {
+        if (empty($args['name']) || empty($args['thumbnailName']) || empty($args['seriesId'])) {
+            throw new \Exception('File name, thumbnail name, or series ID not provided');
+        }
+
+        // Check that the series exists and is in the current context.
+        $series = Repo::section()->get((int) $args['seriesId']);
+        $context = $request->getContext();
+        if ($series->getContextId() != $context->getId()) {
+            return new JSONMessage(false, __('manager.categories.form.removeCoverImageOnDifferentContextNowAllowed'));
+        }
+
+        // Remove the image from the series.
+        $series->setImage([]);
+        Repo::section()->edit($series, []);
+
+        // Remove the image files.
+        $contextFileManager = new ContextFileManager($series->getContextId());
+        $basePath = $contextFileManager->getBasePath() . '/series/';
+        $name = $args['name'];
+        $thumbnailName = $args['thumbnailName'];
+        if (
+            $contextFileManager->deleteByPath($basePath . $thumbnailName) &&
+            $contextFileManager->deleteByPath($basePath . $name)
+        ) {
+            $json = new JSONMessage(true);
+            $json->setEvent('fileDeleted');
+            return $json;
+        } else {
+            return new JSONMessage(false, __('manager.categories.form.removeCoverImageFileNotFound'));
+        }
     }
 }
