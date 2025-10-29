@@ -54,6 +54,7 @@ describe('Data suite tests', function() {
 
 		// Wait for it to finish up before moving on
 		cy.contains('Settings Wizard', {timeout: 30000});
+		cy.logout();
 	});
 
 	it('Tests the settings wizard', function() {
@@ -87,6 +88,7 @@ describe('Data suite tests', function() {
 		cy.get('label[for="searchIndexing-searchDescription-control-en"] ~ span.tooltipButton').click();
 		cy.get('div').contains('Provide a brief description');
 		cy.get('label[for="searchIndexing-searchDescription-control-en"] ~ span.tooltipButton').click();
+		cy.logout();
 	});
 
 	it('Tests context settings form', function() {
@@ -99,6 +101,7 @@ describe('Data suite tests', function() {
 
 		cy.get('div[id=masthead]').find('button').contains('Save').click();
 		cy.get('#masthead [role="status"]').contains('Saved');
+		cy.logout();
 	});
 
 	it('Tests contact settings form', function() {
@@ -126,6 +129,7 @@ describe('Data suite tests', function() {
 		cy.get('input[name=supportEmail').clear().type('rvaca@mailinator.com');
 		cy.get('div[id=contact').find('button').contains('Save').click();
 		cy.get('#contact [role="status"]').contains('Saved');
+		cy.logout();
 	});
 
 	it('Tests role settings', function() {
@@ -143,5 +147,6 @@ describe('Data suite tests', function() {
 		cy.get('input#permitSelfRegistration').click();
 		cy.get('form#userGroupForm button:contains("OK")').click();
 		cy.get('div:contains("Your changes have been saved.")');
+		cy.logout();
 	});
 })
