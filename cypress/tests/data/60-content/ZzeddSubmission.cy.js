@@ -393,9 +393,9 @@ describe('Data suite tests', function() {
 
         cy.findSubmissionAsEditor('dbarnes', null, 'Zedd');
         cy.get('h3:contains("Reviewers Suggested by Author")').should('have.length', 0);
-        cy.logout();
 
         cy.enableReviewerSuggestion();
+        cy.logout();
     });
 
     it('Send submission to internal review stage where reviewer suggestion option is unavailable', function () {
@@ -413,6 +413,7 @@ describe('Data suite tests', function() {
         cy.get('button:contains("Cancel Review Round")').click();
         cy.wait(2000);
         cy.get('button:contains("Record Decision")').click();
+        cy.logout();
     });
 
     it('Send submission to external review stage with visible reviewer suggestion', function () {
@@ -430,6 +431,7 @@ describe('Data suite tests', function() {
         cy.get('[data-cy="reviewer-suggestion-manager"]')
             .find('button[aria-label*=" More Actions"]')
             .should('have.length', suggestions.length);
+        cy.logout();
     });
 
     it('Add non exist suggested reviewer from reviewer suggestion manager panel', function () {
@@ -457,6 +459,7 @@ describe('Data suite tests', function() {
         cy.get('[data-cy="reviewer-suggestion-manager"]')
             .find('div:contains("'+suggestions[0].fullname+'")')
             .should('have.length', 0);
+        cy.logout();
     });
 
     it('Add non exist suggested reviewer from Add Reviewer list', function () {
@@ -495,6 +498,7 @@ describe('Data suite tests', function() {
         cy.get('[data-cy="reviewer-suggestion-manager"]')
             .find('div:contains("'+suggestions[1].fullname+'")')
             .should('have.length', 0);
+        cy.logout();
     });
 
     it('Add reviewer from suggestion with existed reviewer role from reviewer suggestion manager panel', function () {
@@ -518,6 +522,8 @@ describe('Data suite tests', function() {
         cy.get('[data-cy="reviewer-suggestion-manager"]')
             .find('div:contains("'+suggestions[3].fullname+'")')
             .should('have.length', 0);
+ 
+        cy.logout();
     });
 
     it('Add reviewer from suggestion with existed reviewer role from Add Reviewer list', function () {
@@ -546,6 +552,7 @@ describe('Data suite tests', function() {
         cy.get('[data-cy="reviewer-suggestion-manager"]')
             .find('div:contains("'+suggestions[4].fullname+'")')
             .should('have.length', 0);
+        cy.logout();
     });
 
     it('Add reviewer from suggestion with existed user but no reviewer role from reviewer suggestion manager panel', function () {
@@ -569,6 +576,7 @@ describe('Data suite tests', function() {
         cy.get('[data-cy="reviewer-suggestion-manager"]')
             .find('div:contains("'+suggestions[5].fullname+'")')
             .should('have.length', 0);
+        cy.logout();
     });
 
     it('Add reviewer from suggestion with existed user but no reviewer role from Add Reviewer list', function () {
@@ -603,6 +611,7 @@ describe('Data suite tests', function() {
         cy.get('[data-cy="reviewer-suggestion-manager"]')
             .find('div:contains("'+suggestions[6].fullname+'")')
             .should('have.length', 0);
+        cy.logout();
     });
 
     it('Create new user with reviewer role which match reviewer suggestion from Add Reviewer list', function () {
@@ -648,6 +657,7 @@ describe('Data suite tests', function() {
         cy.get('[data-cy="reviewer-suggestion-manager"]')
             .find('div:contains("'+suggestions[2].fullname+'")')
             .should('have.length', 0);
+        cy.logout();
     });
 
     it('Enroll an existing user who match with a suggested revirwer', function () {
@@ -686,6 +696,7 @@ describe('Data suite tests', function() {
         cy.get('[data-cy="reviewer-suggestion-manager"]')
             .find('div:contains("'+suggestions[7].fullname+'")')
             .should('have.length', 0);    
+        cy.logout();
     });
 
     it('Add Reviewer from pre existing list that match a suggested reviewer', function () {
@@ -713,6 +724,7 @@ describe('Data suite tests', function() {
 
         cy.get('[data-cy="reviewer-manager"]').contains(suggestions[8].fullname);
         cy.get('[data-cy="reviewer-suggestion-manager"]').should('not.exist');
+        cy.logout();
     });
 
     after(function() {
