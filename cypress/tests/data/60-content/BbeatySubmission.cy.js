@@ -167,5 +167,6 @@ describe('Data suite tests', function() {
 		cy.get('[role="dialog"] h1:contains("Add publication format")').click(); // FIXME: Focus problem with multilingual input
 		cy.get('button:contains("OK")').click();
 
+		cy.logout();
 	});
 });
