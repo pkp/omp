@@ -149,7 +149,6 @@ describe('Data suite tests', function() {
 
 		cy.logout();
 		// Find the submission as the section editor
-		cy.login('minoue', null, 'publicknowledge'),
 		cy.findSubmissionAsEditor('minoue', null, 'Bernnard', null, 'Assigned to me');
 
 
