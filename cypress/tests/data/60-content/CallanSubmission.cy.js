@@ -177,6 +177,7 @@ describe('Data suite tests', function() {
 
 		// Add to catalog
 		cy.addToCatalog();
+		cy.logout();
 	});
 
 	it('Book is not available when unpublished', function() {
@@ -203,5 +204,6 @@ describe('Data suite tests', function() {
 		cy.get('.pkpPublication button').contains('Publish').click();
 		cy.contains('All publication requirements have been met.');
 		cy.get('.pkpWorkflow__publishModal button').contains('Publish').click();
+		cy.logout();
 	});
 });
