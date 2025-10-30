@@ -1,12 +1,12 @@
-# Pia Piontkowitz <pia.piontkowitz@rub.de>, 2021, 2022, 2023.
+# Pia Piontkowitz <pia.piontkowitz@rub.de>, 2021, 2022, 2023, 2025.
 # Renate Voget <renate.voget@hbz-nrw.de>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
-"PO-Revision-Date: 2024-08-13 21:23+0000\n"
-"Last-Translator: Renate Voget <renate.voget@hbz-nrw.de>\n"
+"PO-Revision-Date: 2025-10-28 11:51+0000\n"
+"Last-Translator: Pia Piontkowitz <pia.piontkowitz@rub.de>\n"
 "Language-Team: German <http://translate.pkp.sfu.ca/projects/omp/manager/de/>"
 "\n"
 "Language: de\n"
@@ -1013,7 +1013,7 @@ msgstr ""
 "Leitende/r Herausgeber/in zur Betreuung des gesamten Publikationsprozesses."
 
 msgid "manager.setup.selectSectionDescription"
-msgstr "Verlagssektion, für die der Titel vorgesehen ist."
+msgstr "Verlagsreihe, für die der Titel vorgesehen ist."
 
 msgid "manager.setup.showGalleyLinksDescription"
 msgstr ""
@@ -1034,7 +1034,7 @@ msgstr ""
 "Wahrscheinlichkeitsbegriff)"
 
 msgid "manager.setup.subjectKeywordTopic"
-msgstr "Schlüsselwörter"
+msgstr "Schlagwörter"
 
 msgid "manager.setup.subjectProvideExamples"
 msgstr ""
@@ -1794,3 +1794,11 @@ msgstr ""
 
 msgid "emailTemplate.variable.context.contextAcronym"
 msgstr "Initialen des Verlages"
+
+msgid "manager.setup.contextSummary.description"
+msgstr ""
+"Geben Sie eine kurze Beschreibung Ihrer OMP Press an, um einen Einblick in "
+"deren Inhalte und Zweck zu gewähren."
+
+msgid "manager.dois.disabledChaptersDescription"
+msgstr "Kapitel ohne Landing Page können keine DOI haben."

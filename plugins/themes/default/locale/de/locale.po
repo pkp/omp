@@ -1,10 +1,10 @@
-# Pia Piontkowitz <pia.piontkowitz@rub.de>, 2021, 2023.
+# Pia Piontkowitz <pia.piontkowitz@rub.de>, 2021, 2023, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T07:09:54-07:00\n"
-"PO-Revision-Date: 2023-05-01 15:49+0000\n"
+"PO-Revision-Date: 2025-10-28 11:51+0000\n"
 "Last-Translator: Pia Piontkowitz <pia.piontkowitz@rub.de>\n"
 "Language-Team: German <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/de/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "plugins.themes.default.name"
 msgstr "Standard-Thema"
@@ -102,3 +102,12 @@ msgstr "Downloads"
 
 msgid "plugins.themes.default.displayStats.noStats"
 msgstr "Download-Daten sind noch nicht verfügbar."
+
+msgid "plugins.themes.default.option.showDescriptionInPressIndex.option"
+msgstr "Die Beschreibung des Verlags auf der Homepage anzeigen."
+
+msgid "plugins.themes.default.prevSlide"
+msgstr "Vorheriger Eintrag im Slider"
+
+msgid "plugins.themes.default.nextSlide"
+msgstr "Nächster Eintrag im Slider"
