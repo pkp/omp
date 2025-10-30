@@ -55,5 +55,6 @@ describe('Data suite tests', function() {
 		cy.findSubmissionAsEditor('dbarnes', null, 'Locke Hart');
 		cy.recordEditorialDecision('Accept Submission');
 		cy.get('li.ui-state-active a:contains("Copyediting")');
+		cy.logout();
 	});
 });
