@@ -162,5 +162,6 @@ describe('Data suite tests', function() {
 		cy.findSubmissionAsEditor('dbarnes', null, 'Bernnard');
 		cy.get('[data-cy="workflow-secondary-items"] h2').contains("Recommendation");
 		cy.get('[data-cy="workflow-secondary-items"] p').contains("Accept Submission");
+		cy.logout();
 	});
 });

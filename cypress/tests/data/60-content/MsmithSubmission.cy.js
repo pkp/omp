@@ -183,5 +183,6 @@ describe('Data suite tests', function() {
 		cy.isActiveStageTab('Internal Review');
 		cy.assignReviewer('Julie Janssen');
 		cy.assignReviewer('Paul Hudson');
+		cy.logout();
 	});
 });
