@@ -1,8 +1,8 @@
 {**
  * templates/controllers/grid/settings/series/form/seriesForm.tpl
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2003-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Series form under press management.
@@ -16,6 +16,7 @@
 			{ldelim}
 				publishChangeEvents: ['updateSidebar'],
 				$uploader: $('#plupload'),
+				$preview: $('#coverImagePreview'),
 				uploaderOptions: {ldelim}
 					uploadUrl: {url|json_encode op="uploadImage" escape=false},
 					baseUrl: {$baseUrl|json_encode},
@@ -35,18 +36,29 @@
 	<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="seriesFormNotification"}
 
-	{fbvFormArea id="file"}
-		{fbvFormSection title="monograph.coverImage"}
+	{fbvFormArea id="coverImage" title="monograph.coverImage"}
+		{fbvFormSection}
 			{include file="controllers/fileUploadContainer.tpl" id="plupload"}
+			<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
+		{/fbvFormSection}
+
+		{fbvFormSection id="coverImagePreview"}
+		{if !empty($image)}
+			<div class="pkp_form_file_view pkp_form_image_view">
+				{capture assign="altTitle"}{translate key="submission.currentCoverImage"}{/capture}
+				<div class="img">
+					<img class="pkp_helpers_container_center" height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" src="{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="thumbnail" type="series" id=$seriesId}" alt="{$altTitle|escape}" />
+				</div>
+
+				<div class="data">
+					<div id="{$deleteCoverImageLinkAction->getId()}" class="actions">
+						{include file="linkAction/linkAction.tpl" action=$deleteCoverImageLinkAction contextId="seriesForm"}
+					</div>
+				</div>
+			</div>
+		{/if}
 		{/fbvFormSection}
 	{/fbvFormArea}
-	{* Container for uploaded file *}
-	<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
-
-	{if $image}
-		{capture assign="altTitle"}{translate key="submission.currentCoverImage"}{/capture}
-		<img class="pkp_helpers_container_center" height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" src="{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="thumbnail" type="series" id=$seriesId}" alt="{$altTitle|escape}" />
-	{/if}
 
 	{fbvFormArea id="seriesInfo"}
 		<div class="pkp_helpers_clear">
