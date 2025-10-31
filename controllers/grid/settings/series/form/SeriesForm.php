@@ -181,7 +181,7 @@ class SeriesForm extends PKPSectionForm
         ]);
 
         // Cover image delete link action
-        $series = Repo::section()->get($this->getSeriesId(), $context->getId());
+        $series = $this->getSeriesId() ? Repo::section()->get($this->getSeriesId(), $context->getId()) : null;
         if ($series && $coverImage = $series->getImage()) {
             $templateMgr->assign(
                 'deleteCoverImageLinkAction',

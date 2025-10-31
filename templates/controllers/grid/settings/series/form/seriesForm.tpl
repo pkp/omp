@@ -43,7 +43,7 @@
 		{/fbvFormSection}
 
 		{fbvFormSection id="coverImagePreview"}
-		{if $image != ''}
+		{if !empty($image)}
 			<div class="pkp_form_file_view pkp_form_image_view">
 				{capture assign="altTitle"}{translate key="submission.currentCoverImage"}{/capture}
 				<div class="img">

@@ -407,7 +407,7 @@ class SeriesGridHandler extends SetupGridHandler
         // Check that the series exists and is in the current context.
         $series = Repo::section()->get((int) $args['seriesId']);
         $context = $request->getContext();
-        if ($series->getContextId() != $context->getId()) {
+        if (!$series || ($series->getContextId() != $context->getId())) {
             return new JSONMessage(false, __('manager.categories.form.removeCoverImageOnDifferentContextNowAllowed'));
         }
 
