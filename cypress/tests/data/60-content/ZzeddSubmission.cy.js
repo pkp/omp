@@ -393,7 +393,6 @@ describe('Data suite tests', function() {
         cy.get('h3:contains("Reviewers Suggested by Author")').should('have.length', 0);
 
         cy.enableReviewerSuggestion();
-        cy.logout();
     });
 
     it('Send submission to internal review stage where reviewer suggestion option is unavailable', function () {
