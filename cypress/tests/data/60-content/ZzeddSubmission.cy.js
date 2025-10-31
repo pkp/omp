@@ -391,6 +391,7 @@ describe('Data suite tests', function() {
 
         cy.findSubmissionAsEditor('dbarnes', null, 'Zedd');
         cy.get('h3:contains("Reviewers Suggested by Author")').should('have.length', 0);
+        cy.logout();
 
         cy.enableReviewerSuggestion();
         cy.logout();
