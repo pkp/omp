@@ -17,6 +17,7 @@ describe('ORCID tests', function() {
 		cy.visit(
 			'index.php/publicknowledge/en/dashboard/editorial?currentViewId=assigned-to-me'
 		);
+		cy.logout();
 
 		// Select a submission in submission list
 		cy.findSubmissionAsEditor('dbarnes', null, 'Bernnard');
