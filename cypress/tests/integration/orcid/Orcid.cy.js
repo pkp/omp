@@ -17,6 +17,7 @@ describe('ORCID tests', function() {
 		cy.visit(
 			'index.php/publicknowledge/en/dashboard/editorial?currentViewId=assigned-to-me'
 		);
+		cy.logout();
 
 		// Select a submission in submission list
 		cy.findSubmissionAsEditor('dbarnes', null, 'Bernnard');
@@ -40,5 +41,6 @@ describe('ORCID tests', function() {
 					'ORCID Verification has been requested! Resend Verification Email'
 				).should('be.visible');
 			});
+		cy.logout();
 	});
 });
