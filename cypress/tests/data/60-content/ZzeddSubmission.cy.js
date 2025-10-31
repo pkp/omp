@@ -147,7 +147,6 @@ describe('Data suite tests', function() {
         ];
 
         cy.enableReviewerSuggestion();
-        cy.logout();
 	});
 
 	it('Registers as author and create submission with several suggested reviewer', function() {
