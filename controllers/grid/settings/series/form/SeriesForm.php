@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/settings/series/form/SeriesForm.php
  *
- * Copyright (c) 2014-2024 Simon Fraser University
- * Copyright (c) 2003-2024 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2003-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SeriesForm
@@ -28,6 +28,8 @@ use PKP\db\DAORegistry;
 use PKP\file\ContextFileManager;
 use PKP\file\TemporaryFileDAO;
 use PKP\file\TemporaryFileManager;
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\RemoteActionConfirmationModal;
 
 class SeriesForm extends PKPSectionForm
 {
@@ -177,6 +179,37 @@ class SeriesForm extends PKPSectionForm
             'allCategories' => $allCategories,
             'selectedCategories' => $this->getData('categories')?->values()?->all() ?? [],
         ]);
+
+        // Cover image delete link action
+        $series = $this->getSeriesId() ? Repo::section()->get($this->getSeriesId(), $context->getId()) : null;
+        if ($series && $coverImage = $series->getImage()) {
+            $templateMgr->assign(
+                'deleteCoverImageLinkAction',
+                new LinkAction(
+                    'deleteCoverImage',
+                    new RemoteActionConfirmationModal(
+                        $request->getSession(),
+                        __('common.confirmDelete'),
+                        null,
+                        $request->getRouter()->url(
+                            $request,
+                            null,
+                            null,
+                            'deleteImage',
+                            null,
+                            [
+                                'name' => $coverImage['name'] ?? null,
+                                'thumbnailName' => $coverImage['thumbnailName'] ?? null,
+                                'seriesId' => $this->getSeriesId(),
+                            ]
+                        ),
+                        'negative'
+                    ),
+                    __('common.delete'),
+                    null
+                )
+            );
+        }
 
         return parent::fetch($request, $template, $display);
     }
