@@ -28,15 +28,18 @@ use DOMDocument;
 use DOMElement;
 use DOMException;
 use Exception;
+use Illuminate\Database\Query\JoinClause;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use PKP\db\DAORegistry;
 use PKP\filter\FilterGroup;
 use PKP\i18n\LocaleConversion;
 use PKP\plugins\importexport\native\filter\NativeExportFilter;
+use PKP\plugins\PluginRegistry;
 use PKP\userGroup\UserGroup;
 
 class MonographONIX30XmlFilter extends NativeExportFilter
 {
-    /**  */
     public DOMDocument $doc;
 
     /**
@@ -153,7 +156,6 @@ class MonographONIX30XmlFilter extends NativeExportFilter
 
     /**
      * Create and return a node representing the ONIX Product metadata for this submission.
-     *
      *
      * @throws DOMException
      * @throws Exception
@@ -563,9 +565,6 @@ class MonographONIX30XmlFilter extends NativeExportFilter
 
         $publisherNode->appendChild($this->buildTextNode($doc, 'PublishingRole', '01')); // Publisher
         $publisherNode->appendChild($this->buildTextNode($doc, 'PublisherName', $context->getData('publisher')));
-        if ($context->getData('location') != '') {
-            $publishingDetailNode->appendChild($this->buildTextNode($doc, 'CityOfPublication', $context->getData('location')));
-        }
 
         $websiteNode = $doc->createElementNS($deployment->getNamespace(), 'Website');
         $publisherNode->appendChild($websiteNode);
@@ -585,6 +584,36 @@ class MonographONIX30XmlFilter extends NativeExportFilter
         }
 
         $websiteNode->appendChild($this->buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', [$submissionBestId])));
+
+        /* --- Funders and awards --- */
+        $fundingData = $this->getFundingData($context->getId(), $publication->getData('submissionId'));
+        if (!$fundingData->isEmpty()) {
+            foreach ($fundingData as $funder) {
+                $publisherNode = $doc->createElementNS($deployment->getNamespace(), 'Publisher');
+                $publisherNode->appendChild($this->buildTextNode($doc, 'PublishingRole', '16')); // 16 -> Funding body
+                $publisherIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'PublisherIdentifier');
+                $publisherIdentifierNode->appendChild($this->buildTextNode($doc, 'PublisherIDType', '32')); // 32 -> FundRef DOI
+                $publisherIdentifierNode->appendChild($this->buildTextNode($doc, 'IDValue', $funder[0]->funder_identification));
+                $publisherNode->appendChild($publisherIdentifierNode);
+                $publisherNode->appendChild($this->buildTextNode($doc, 'PublisherName', $funder[0]->funder_name));
+                foreach ($funder as $awards) {
+                    if (isset($awards->funder_award_number)) {
+                        $fundingNode = $doc->createElementNS($deployment->getNamespace(), 'Funding');
+                        $fundingIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'FundingIdentifier');
+                        $fundingIdentifierNode->appendChild($this->buildTextNode($doc, 'FundingIDType', '01')); // 01 -> proprietary
+                        $fundingIdentifierNode->appendChild($this->buildTextNode($doc, 'IDTypeName', 'Award/Grant Number'));
+                        $fundingIdentifierNode->appendChild($this->buildTextNode($doc, 'IDValue', $awards->funder_award_number));
+                        $fundingNode->appendChild($fundingIdentifierNode);
+                        $publisherNode->appendChild($fundingNode);
+                    }
+                }
+                $publishingDetailNode->appendChild($publisherNode);
+            }
+        }
+
+        if ($context->getData('location') != '') {
+            $publishingDetailNode->appendChild($this->buildTextNode($doc, 'CityOfPublication', $context->getData('location')));
+        }
 
         /* --- Publishing Dates --- */
 
@@ -807,7 +836,6 @@ class MonographONIX30XmlFilter extends NativeExportFilter
                 $supplierWebsiteNode->appendChild($this->buildTextNode($doc, 'WebsiteRole', '29')); // 29 -> Web page for full content
                 $supplierWebsiteNode->appendChild($this->buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', [$submissionBestId])));
             } else { // No suppliers specified, use the Press settings instead.
-
                 $supplierNode->appendChild($this->buildTextNode($doc, 'SupplierRole', '09')); // Publisher supplying to end customers
                 $supplierNode->appendChild($this->buildTextNode($doc, 'SupplierName', $context->getData('publisher')));
 
@@ -955,5 +983,36 @@ class MonographONIX30XmlFilter extends NativeExportFilter
         $node = $doc->createElementNS($deployment->getNamespace(), $nodeName);
         $node->appendChild($doc->createTextNode($textContent));
         return $node;
+    }
+
+    /**
+     * Helper function to retrieve funding data when available.
+     */
+    public function getFundingData(int $contextId, int $submissionId): Collection|false
+    {
+        if (!PluginRegistry::getPlugin('generic', 'FundingPlugin')) {
+            return false;
+        }
+
+        $fundingData = DB::table('funders AS f')
+            ->select(
+                'f.funder_id',
+                'f.funder_identification',
+                'fs.setting_value as funder_name',
+                'fa.funder_award_id',
+                'fa.funder_award_number'
+            )
+            ->where('f.submission_id', $submissionId)
+            ->where('f.context_id', $contextId)
+            ->leftJoin(
+                'funder_settings AS fs',
+                fn (JoinClause $j) => $j->on('f.funder_id', '=', 'fs.funder_id')
+                    ->where('fs.setting_name', '=', 'funderName')
+            )
+            ->leftjoin('funder_awards AS fa', 'f.funder_id', '=', 'fa.funder_id')
+            ->get()
+            ->groupBy('funder_id');
+
+        return $fundingData ?? false;
     }
 }
