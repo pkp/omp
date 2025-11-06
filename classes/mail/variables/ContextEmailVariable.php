@@ -20,9 +20,6 @@ use PKP\mail\variables\ContextEmailVariable as PKPContextEmailVariable;
 
 class ContextEmailVariable extends PKPContextEmailVariable
 {
-    public const CONTEXT_NAME = 'pressName';
-    public const CONTEXT_URL = 'pressUrl';
-    public const CONTEXT_SIGNATURE = 'pressSignature';
     public const CONTEXT_ACRONYM = 'contextAcronym';
 
     /**
