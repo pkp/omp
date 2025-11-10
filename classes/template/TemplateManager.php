@@ -129,18 +129,39 @@ class TemplateManager extends PKPTemplateManager
 
         $menu = (array) $this->getState('menu');
 
-        // Add catalog under content menu
+        // Add content before statistics menu
         if (count(array_intersect([Role::ROLE_ID_MANAGER, Role::ROLE_ID_SITE_ADMIN], $userRoles))) {
-            $catalogLink = [
+            $contentSubmenu = [];
+
+            if ($request->getContext()->getData('enablePublicComments')) {
+                $contentSubmenu['userComments'] = [
+                    'name' => __('manager.userComment.comments'),
+                    'url' => $router->url($request, null, 'management', 'settings', ['userComments']),
+                    'isCurrent' => $router->getRequestedPage($request) === 'management' && in_array('userComments', (array) $router->getRequestedArgs($request)),
+                ];
+            }
+
+            $contentSubmenu['catalog'] = [
                 'name' => __('navigation.catalog'),
                 'url' => $router->url($request, null, 'manageCatalog'),
                 'isCurrent' => $request->getRequestedPage() === 'manageCatalog'
             ];
 
-            $contentCommentsIndex = array_search('userComments', array_keys($menu['content'] ?? []));
-            $menu['content']['submenu'] = array_slice($menu['content']['submenu'] ?? [], 0, $contentCommentsIndex + 1, true) +
-                ['catalog' => $catalogLink] +
-                array_slice($menu['content']['submenu'] ?? [], $contentCommentsIndex + 1, null, true);
+            $contentLink = [
+                'name' => __('navigation.content'),
+                'icon' => 'Content',
+                'submenu' => $contentSubmenu
+            ];
+
+            $index = false;
+            $index = array_search('statistics', array_keys($menu));
+            if ($index === false || $index === count($menu) - 1) {
+                $menu['content'] = $contentLink;
+            } else {
+                $menu = array_slice($menu, 0, $index, true) +
+                    ['content' => $contentLink] +
+                    array_slice($menu, $index, null, true);
+            }
         }
 
         $this->setState(['menu' => $menu]);
