@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/components/form/context/ReviewGuidanceForm.php
  *
@@ -29,8 +30,6 @@ class ReviewGuidanceForm extends PKPReviewGuidanceForm
 
         $this->addField(new FieldRichTextarea('internalReviewGuidelines', [
             'label' => __('manager.setup.internalReviewGuidelines'),
-            'helpTopic' => 'settings',
-            'helpSection' => 'workflow-review-guidelines',
             'value' => $context->getData('internalReviewGuidelines'),
             'isMultilingual' => true,
         ]), [FIELD_POSITION_BEFORE, 'reviewGuidelines']);
