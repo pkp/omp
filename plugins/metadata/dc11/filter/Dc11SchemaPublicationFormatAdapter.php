@@ -28,7 +28,6 @@ use APP\press\Press;
 use APP\publicationFormat\PublicationFormat;
 use APP\section\Section;
 use APP\submission\Submission;
-use PKP\controlledVocab\ControlledVocab;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\i18n\LocaleConversion;
@@ -91,16 +90,20 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
 
         // Subject
         $subjects = array_merge_recursive(
-            Repo::controlledVocab()->getBySymbolic(
-                ControlledVocab::CONTROLLED_VOCAB_SUBMISSION_KEYWORD,
-                Application::ASSOC_TYPE_PUBLICATION,
-                $publication->getId()
-            ),
-            Repo::controlledVocab()->getBySymbolic(
-                ControlledVocab::CONTROLLED_VOCAB_SUBMISSION_SUBJECT,
-                Application::ASSOC_TYPE_PUBLICATION,
-                $publication->getId()
-            )
+            collect($publication->getData('keywords'))
+                ->map(
+                    fn (array $items): array => collect($items)
+                        ->pluck('name')
+                        ->all()
+                )
+                ->all(),
+            collect($publication->getData('subjects'))
+                ->map(
+                    fn (array $items): array => collect($items)
+                        ->pluck('name')
+                        ->all()
+                )
+                ->all()
         );
         $this->_addLocalizedElements($dc11Description, 'dc:subject', $subjects);
 
