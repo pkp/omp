@@ -14,7 +14,7 @@
 	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="plugins.paymethod.manual"}
 	<h1>{translate key="plugins.paymethod.manual"}</h1>
 
-	<p>{$manualInstructions|nl2br}</p>
+	<p>{$manualInstructions|strip_unsafe_html|nl2br}</p>
 
 	<table class="data" width="100%">
 		<tr>
