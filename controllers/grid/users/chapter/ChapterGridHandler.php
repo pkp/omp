@@ -37,9 +37,9 @@ use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\plugins\PluginRegistry;
-use PKP\publication\PKPPublication;
 use PKP\security\authorization\PublicationAccessPolicy;
 use PKP\security\Role;
+use PKP\submission\PKPSubmission;
 use PKP\user\User;
 
 class ChapterGridHandler extends CategoryGridHandler

@@ -41,11 +41,7 @@ describe('Payments', function() {
         cy.get('.formButtons .submitFormButton').click();
         cy.get('button').contains('Publish').click();
         cy.get('[data-cy="active-modal"] button').contains('Publish').click();
-<<<<<<< HEAD
-		cy.contains('This version has been published. Editing it may impact the published content.');
-=======
         cy.contains('Warning: This version has been published. Editing it may impact the published content.');
->>>>>>> 4774d4e42... pkp/pkp-lib#10263 Relax editing metadata on published/posted materials
         cy.logout();
     });
 
