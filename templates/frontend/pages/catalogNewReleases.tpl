@@ -27,7 +27,7 @@
 		<p>{translate key="catalog.noTitlesNew"}</p>
 
 	{else}
-		{include file="frontend/components/monographList.tpl" monographs=$publishedSubmissions authorUserGroups=$authorUserGroups}
+		{include file="frontend/components/monographList.tpl" monographs=$publishedSubmissions}
 
 	{/if}
 

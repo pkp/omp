@@ -29,7 +29,8 @@ describe('Data suite tests', function() {
 					'country': 'Canada',
 					// 'affiliation': '',
 					'email': 'scarter@mailinator.com',
-					'role': 'Volume editor',
+					contributorRoles: [Cypress.env('contributorRoleVolumeEditor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': 'Peter',
@@ -37,7 +38,8 @@ describe('Data suite tests', function() {
 					'country': 'Canada',
 					// 'affiliation': '',
 					'email': 'pfortna@mailinator.com',
-					'role': 'Volume editor',
+					contributorRoles: [Cypress.env('contributorRoleVolumeEditor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': 'Gerald',
@@ -45,7 +47,8 @@ describe('Data suite tests', function() {
 					'country': 'Canada',
 					// 'affiliation': '',
 					'email': 'gfriesen@mailinator.com',
-					'role': 'Chapter Author',
+					contributorRoles: [Cypress.env('contributorRoleChapterAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': 'Lyle',
@@ -53,7 +56,8 @@ describe('Data suite tests', function() {
 					'country': 'Canada',
 					// 'affiliation': '',
 					'email': 'ldick@mailinator.com',
-					'role': 'Chapter Author',
+					contributorRoles: [Cypress.env('contributorRoleChapterAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': 'Winona',
@@ -61,7 +65,8 @@ describe('Data suite tests', function() {
 					'country': 'Canada',
 					// 'affiliation': '',
 					'email': 'wwheeler@mailinator.com',
-					'role': 'Chapter Author',
+					contributorRoles: [Cypress.env('contributorRoleChapterAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': 'Matt',
@@ -69,7 +74,8 @@ describe('Data suite tests', function() {
 					'country': 'Canada',
 					// 'affiliation': '',
 					'email': 'mdyce@mailinator.com',
-					'role': 'Chapter Author',
+					contributorRoles: [Cypress.env('contributorRoleChapterAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': 'James',
@@ -77,7 +83,8 @@ describe('Data suite tests', function() {
 					'country': 'Canada',
 					// 'affiliation': '',
 					'email': 'jopp@mailinator.com',
-					'role': 'Chapter Author',
+					contributorRoles: [Cypress.env('contributorRoleChapterAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				}
 			],
 			files: [
@@ -212,7 +219,7 @@ describe('Data suite tests', function() {
 		cy.get('#contributor-country-error').contains('This field is required.');
 		cy.get('.pkpFormField:contains("Given Name")').find('input[name*="givenName-en"]').type(submission.authors[0].givenName);
 		cy.get('.pkpFormField:contains("Family Name")').find('input[name*="familyName-en"]').type(submission.authors[0].familyName);
-		cy.get('label').contains(submission.authors[0].role).click();
+		cy.get(`input[name=contributorRoles][value="${submission.authors[0].contributorRoles[0]}"]`).check();
 		cy.get('.pkpFormField:contains("Country")').find('select').select(submission.authors[0].country)
 		cy.get('.pkpFormField:contains("Email")').find('input').type('notanemail');
 		cy.get('div[role=dialog]:contains("Add Contributor")').find('button').contains('Save').click();
@@ -243,7 +250,7 @@ describe('Data suite tests', function() {
 			cy.get('div[role=dialog]:contains("Add Contributor")').find('button').contains('Save').click();
 			cy.get('.pkpFormField:contains("Given Name")').find('input[name*="givenName-en"]').type(author.givenName);
 			cy.get('.pkpFormField:contains("Family Name")').find('input[name*="familyName-en"]').type(author.familyName);
-			cy.get('label').contains(author.role).click();
+			cy.get(`input[name=contributorRoles][value="${author.contributorRoles[0]}"]`).check();
 			cy.get('.pkpFormField:contains("Country")').find('select').select(author.country)
 			cy.get('.pkpFormField:contains("Email")').find('input').type(author.email);
 			cy.get('div[role=dialog]:contains("Add Contributor")').find('button').contains('Save').click();
@@ -254,6 +261,7 @@ describe('Data suite tests', function() {
 		cy.get('.pkpFormField:contains("Given Name")').find('input[name*="givenName-en"]').type('Fake Author Name');
 		cy.get('.pkpFormField:contains("Email")').find('input').type('delete@mailinator.com');
 		cy.get('.pkpFormField:contains("Country")').find('select').select('Barbados');
+		cy.get(`input[name=contributorRoles][value="${Cypress.env('contributorRoleAuthor')}"]`).check();
 		cy.get('div[role=dialog]:contains("Add Contributor")').find('button').contains('Save').click();
 		cy.get('.listPanel__item:contains("Fake Author Name")').find('button').contains('Delete').click();
 		cy.get('div[role=dialog]:contains("Are you sure you want to remove Fake Author Name as a contributor?")').find('button').contains('Delete Contributor').click();

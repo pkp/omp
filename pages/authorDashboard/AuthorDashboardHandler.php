@@ -16,13 +16,13 @@
 
 namespace APP\pages\authorDashboard;
 
-use APP\components\listPanels\ContributorsListPanel;
 use APP\core\Application;
 use APP\core\Request;
 use APP\publication\Publication;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\components\forms\publication\TitleAbstractForm;
+use PKP\components\listPanels\ContributorsListPanel;
 use PKP\context\Context;
 use PKP\core\PKPApplication;
 use PKP\db\DAORegistry;

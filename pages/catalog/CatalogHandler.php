@@ -30,7 +30,6 @@ use PKP\config\Config;
 use PKP\db\DAORegistry;
 use PKP\file\ContextFileManager;
 use PKP\pages\catalog\PKPCatalogHandler;
-use PKP\userGroup\UserGroup;
 
 class CatalogHandler extends PKPCatalogHandler
 {
@@ -105,9 +104,6 @@ class CatalogHandler extends PKPCatalogHandler
 
         $templateMgr->assign([
             'publishedSubmissions' => $submissions->toArray(),
-            'authorUserGroups' => UserGroup::withRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])
-                ->withContextIds([$context->getId()])
-                ->get(),
             'featuredMonographIds' => $featuredMonographIds,
             'contextSeries' => $seriesIterator->toArray(),
         ]);
@@ -134,9 +130,6 @@ class CatalogHandler extends PKPCatalogHandler
         $newReleases = $newReleaseDao->getMonographsByAssoc(Application::ASSOC_TYPE_PRESS, $press->getId());
         $templateMgr->assign([
             'publishedSubmissions' => $newReleases,
-            'authorUserGroups' => UserGroup::withRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])
-                ->withContextIds([$press->getId()])
-                ->get(),
         ]);
 
         // Display
@@ -204,9 +197,6 @@ class CatalogHandler extends PKPCatalogHandler
             'publishedSubmissions' => $submissions->toArray(),
             'featuredMonographIds' => $featuredMonographIds,
             'newReleasesMonographs' => $newReleases,
-            'authorUserGroups' => UserGroup::withRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])
-                ->withContextIds([$context->getId()])
-                ->get(),
         ]);
 
         $templateMgr->display('frontend/pages/catalogSeries.tpl');

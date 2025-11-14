@@ -136,12 +136,6 @@ msgstr "Uusi käsikirjoitus"
 msgid "submission.submit.upload"
 msgstr "Lataa käsikirjoitus"
 
-msgid "author.volumeEditor"
-msgstr "Niteen toimittaja"
-
-msgid "author.isVolumeEditor"
-msgstr "Merkitse tämä tekijä teoksen toimittajaksi."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Sijoitus sarjassa"
 

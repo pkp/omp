@@ -135,12 +135,6 @@ msgstr "Comença una tramesa nova a {$contextName}"
 msgid "submission.submit.upload"
 msgstr "Carregar tramesa"
 
-msgid "author.volumeEditor"
-msgstr ""
-
-msgid "author.isVolumeEditor"
-msgstr "Identificar aquest contribuïdor/a com l'editor/a d'aquest volum."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Posició dins aquesta sèrie (p. ex. Llibre 2 o Volum 2)"
 

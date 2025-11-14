@@ -76,7 +76,7 @@
 
 		{* New releases *}
 		{if !empty($newReleasesMonographs)}
-			{include file="frontend/components/monographList.tpl" monographs=$newReleasesMonographs titleKey="catalog.newReleases" authorUserGroups=$authorUserGroups}
+			{include file="frontend/components/monographList.tpl" monographs=$newReleasesMonographs titleKey="catalog.newReleases"}
 		{/if}
 
 		{* All monographs *}

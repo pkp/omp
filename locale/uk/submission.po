@@ -133,12 +133,6 @@ msgstr "Нове подання"
 msgid "submission.submit.upload"
 msgstr "Вивантажити подання"
 
-msgid "author.volumeEditor"
-msgstr "Редактор тому"
-
-msgid "author.isVolumeEditor"
-msgstr "Позначити цього автора як редактора цього тому."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Позиція серії"
 

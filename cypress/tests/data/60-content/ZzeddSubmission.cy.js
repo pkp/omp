@@ -33,7 +33,8 @@ describe('Data suite tests', function() {
 					email: 'nparvin@mailinator.com',
 					country: 'Bangladesh',
 					affiliation: 'Public Knowledge Project',
-                    role: 'Volume editor',
+                    contributorRoles: [Cypress.env('contributorRoleVolumeEditor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				}
 			],
 			files: [
@@ -210,6 +211,7 @@ describe('Data suite tests', function() {
 		cy.get('.pkpFormField:contains("Family Name")').find('input[name*="-en"]').type(submission.authors[0].familyName);
 		cy.get('.pkpFormField:contains("Country")').find('select').select(submission.authors[0].country)
         cy.get('.pkpFormField:contains("Email")').find('input').type(submission.authors[0].email);
+        cy.get(`input[name=contributorRoles][value="${submission.authors[0].contributorRoles[0]}"]`).check();
 		cy.get('div[role=dialog]:contains("Add Contributor")').find('button').contains('Save').click();
 		cy.wait(3000);
         cy.get('.submissionWizard__footer button').contains('Continue').click();

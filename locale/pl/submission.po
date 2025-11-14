@@ -134,12 +134,6 @@ msgstr "Nowe zgłoszenie"
 msgid "submission.submit.upload"
 msgstr "Wprowadź zgłoszenie"
 
-msgid "author.volumeEditor"
-msgstr "Redaktor tomu"
-
-msgid "author.isVolumeEditor"
-msgstr "Dobierz współautora jako redaktora tego tomu."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Pozycja w serii"
 

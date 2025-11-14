@@ -24,7 +24,6 @@ namespace APP\submission;
 
 use APP\publication\Publication;
 use PKP\submission\PKPSubmission;
-use PKP\userGroup\UserGroup;
 
 class Submission extends PKPSubmission
 {
@@ -68,11 +67,7 @@ class Submission extends PKPSubmission
                             $publication = $this->getCurrentPublication();
                         }
 
-                        $authorUserGroups = UserGroup::withRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])
-                            ->withContextIds([$context->getId()])
-                            ->get();
-
-                        $fieldValue = [$context->getPrimaryLocale() => $publication->getAuthorString($authorUserGroups)];
+                        $fieldValue = [$context->getPrimaryLocale() => $publication->getAuthorString()];
                         break;
                     case 'context':
                     case null:

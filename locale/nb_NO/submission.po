@@ -132,12 +132,6 @@ msgstr "Ny innlevering"
 msgid "submission.submit.upload"
 msgstr "Last opp innlevering"
 
-msgid "author.volumeEditor"
-msgstr ""
-
-msgid "author.isVolumeEditor"
-msgstr "Sett denne bidragsyteren som redaktør for dette bindet."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Posisjon i serien"
 
