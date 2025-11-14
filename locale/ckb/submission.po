@@ -115,12 +115,6 @@ msgstr ""
 msgid "submission.submit.upload"
 msgstr ""
 
-msgid "author.volumeEditor"
-msgstr ""
-
-msgid "author.isVolumeEditor"
-msgstr ""
-
 msgid "submission.submit.seriesPosition"
 msgstr ""
 

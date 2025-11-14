@@ -31,12 +31,13 @@ use Exception;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use PKP\author\contributorRole\ContributorRole;
+use PKP\author\contributorRole\ContributorRoleIdentifier;
 use PKP\db\DAORegistry;
 use PKP\filter\FilterGroup;
 use PKP\i18n\LocaleConversion;
 use PKP\plugins\importexport\native\filter\NativeExportFilter;
 use PKP\plugins\PluginRegistry;
-use PKP\userGroup\UserGroup;
 
 class MonographONIX30XmlFilter extends NativeExportFilter
 {
@@ -380,20 +381,25 @@ class MonographONIX30XmlFilter extends NativeExportFilter
             $contributorNode = $doc->createElementNS($deployment->getNamespace(), 'Contributor');
             $contributorNode->appendChild($this->buildTextNode($doc, 'SequenceNumber', $sequence));
 
-            $userGroup = UserGroup::find($author->getUserGroupId());
-
-            $userGroupOnixMap = [
-                'default.groups.name.author' => 'A01',
-                'default.groups.name.volumeEditor' => 'B01',
-                'default.groups.name.chapterAuthor' => 'A01',
-                'default.groups.name.translator' => 'B06',
-                'default.groups.name.editor' => 'B21'
-            ]; // From List17, ContributorRole types.
-
-            $nameKey = $userGroup->nameLocaleKey;
-            $role = array_key_exists($nameKey, $userGroupOnixMap) ? $userGroupOnixMap[$nameKey] : 'Z99'; // Z99 - unknown contributor type.
-
-            $contributorNode->appendChild($this->buildTextNode($doc, 'ContributorRole', $role));
+            $isEditedVolume = $submission->getData('workType') == $submission::WORK_TYPE_EDITED_VOLUME;
+            collect($author->getContributorRoles())
+                ->map(function (ContributorRole $contributorRole) use ($isEditedVolume): string {
+                    $contributorRoleIdentifier = $contributorRole->getAttribute('contributor_role_identifier');
+                    $editor = $contributorRoleIdentifier === ContributorRoleIdentifier::EDITOR->getName();
+                    // From List17, ContributorRole types.
+                    return match (true) {
+                        $contributorRoleIdentifier === ContributorRoleIdentifier::AUTHOR->getName() => 'A01',
+                        $editor && $isEditedVolume => 'B01' /* Volume editor */,
+                        $contributorRoleIdentifier === ContributorRoleIdentifier::TRANSLATOR->getName() => 'B06',
+                        $editor => 'B21',
+                        default => 'Z99' /* Z99 - unknown contributor role type. */
+                    };
+                })
+                ->unique()
+                ->each(
+                    fn (string $role) =>
+                    $contributorNode->appendChild($this->buildTextNode($doc, 'ContributorRole', $role))
+                );
 
             if ($author->getOrcid() && $author->hasVerifiedOrcid()) {
                 $nameIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'NameIdentifier');
@@ -434,7 +440,6 @@ class MonographONIX30XmlFilter extends NativeExportFilter
             $descDetailNode->appendChild($contributorNode);
 
             unset($contributorNode);
-            unset($userGroup);
             unset($author);
         }
 

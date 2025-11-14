@@ -34,7 +34,8 @@ describe('Data suite tests', function() {
 					'country': 'CA',
 					// 'affiliation': '',
 					'email': 'lelder@mailinator.com',
-					userGroupId: Cypress.env('volumeEditorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleVolumeEditor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': {en: 'Frank'},
@@ -42,7 +43,8 @@ describe('Data suite tests', function() {
 					'country': 'CA',
 					// 'affiliation': '',
 					'email': 'ftulus@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': {en: 'Raymond'},
@@ -50,7 +52,8 @@ describe('Data suite tests', function() {
 					'country': 'AR',
 					// 'affiliation': '',
 					'email': 'rhyma@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': {en: 'John'},
@@ -58,7 +61,8 @@ describe('Data suite tests', function() {
 					'country': 'CA',
 					// 'affiliation': '',
 					'email': 'jvalk@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': {en: 'Khaled'},
@@ -66,7 +70,8 @@ describe('Data suite tests', function() {
 					'country': 'CA',
 					// 'affiliation': '',
 					'email': 'fkourati@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': {en: 'Jeremy'},
@@ -74,7 +79,8 @@ describe('Data suite tests', function() {
 					'country': 'CA',
 					// 'affiliation': '',
 					'email': 'jdebeer@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': {en: 'Sara'},
@@ -82,7 +88,8 @@ describe('Data suite tests', function() {
 					'country': 'CA',
 					// 'affiliation': '',
 					'email': 'sbannerman@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				}
 			],
 			'chapters': [

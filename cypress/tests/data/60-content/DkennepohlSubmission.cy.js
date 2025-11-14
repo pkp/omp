@@ -39,7 +39,8 @@ describe('Data suite tests', function() {
 						}
 					],
 					'email': 'tanderson@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': {en: 'Paul'},
@@ -51,7 +52,8 @@ describe('Data suite tests', function() {
 						}
 					],
 					'email': 'pgorsky@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': {en: 'Gale'},
@@ -63,7 +65,8 @@ describe('Data suite tests', function() {
 						}
 					],
 					'email': 'gparchoma@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': {en: 'Stuart'},
@@ -75,7 +78,8 @@ describe('Data suite tests', function() {
 						}
 					],
 					'email': 'spalmer@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 			],
 			'chapters': [

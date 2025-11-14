@@ -136,12 +136,6 @@ msgstr "Submisi Baru"
 msgid "submission.submit.upload"
 msgstr "Unggah Submisi"
 
-msgid "author.volumeEditor"
-msgstr "Penyunting Volume"
-
-msgid "author.isVolumeEditor"
-msgstr "Identifikasi kontributor sebagai penyunting volume ini."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Posisi Seri"
 

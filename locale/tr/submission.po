@@ -132,12 +132,6 @@ msgstr "Yeni Gönderi"
 msgid "submission.submit.upload"
 msgstr "Gönderi yükle"
 
-msgid "author.volumeEditor"
-msgstr ""
-
-msgid "author.isVolumeEditor"
-msgstr "Bu katılımcıyı bu cildin editörü olarak tanımlayın."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Dizi Konumu"
 

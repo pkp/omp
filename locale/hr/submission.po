@@ -273,12 +273,6 @@ msgstr "U postupku recenzije"
 msgid "submission.submit.upload"
 msgstr "Učitaj prijavu"
 
-msgid "author.volumeEditor"
-msgstr "Urednik sveska"
-
-msgid "author.isVolumeEditor"
-msgstr "Označi ovog autora kao urednika sveska."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Položaj serije"
 

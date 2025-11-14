@@ -131,12 +131,6 @@ msgstr "Commencer une nouvelle soumission"
 msgid "submission.submit.upload"
 msgstr "Télécharger"
 
-msgid "author.volumeEditor"
-msgstr ""
-
-msgid "author.isVolumeEditor"
-msgstr ""
-
 msgid "submission.submit.seriesPosition"
 msgstr "Position dans cette série (ex: livre 2 ou Volume 2)"
 

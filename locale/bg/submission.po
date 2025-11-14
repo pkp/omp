@@ -170,12 +170,6 @@ msgstr "Ново изпращане"
 msgid "submission.submit.upload"
 msgstr "Качване на материали"
 
-msgid "author.volumeEditor"
-msgstr "Редактор на том"
-
-msgid "author.isVolumeEditor"
-msgstr "Идентифициране този сътрудник като редактор на този том."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Позиция в тази серия (колекция)"
 

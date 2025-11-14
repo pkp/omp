@@ -135,12 +135,6 @@ msgstr "Novo envio"
 msgid "submission.submit.upload"
 msgstr "Enviar"
 
-msgid "author.volumeEditor"
-msgstr "Editor de Volume"
-
-msgid "author.isVolumeEditor"
-msgstr "Identifique esse colaborador como o editor deste volume."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Posição na série (ex.: Livro 2, ou Volume 2)"
 

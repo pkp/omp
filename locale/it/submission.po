@@ -141,12 +141,6 @@ msgstr "Nuova proposta"
 msgid "submission.submit.upload"
 msgstr "Carica"
 
-msgid "author.volumeEditor"
-msgstr "Curatore"
-
-msgid "author.isVolumeEditor"
-msgstr "Identifica questo contributore come il curatore del volume."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Posizione occupata nella collana (ad es. Libro 2, o Volume 2)"
 

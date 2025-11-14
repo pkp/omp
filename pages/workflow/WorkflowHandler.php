@@ -16,15 +16,14 @@
 
 namespace APP\pages\workflow;
 
-use APP\components\listPanels\ContributorsListPanel;
 use APP\core\Application;
 use APP\core\Request;
-use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\publication\Publication;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\components\forms\publication\TitleAbstractForm;
+use PKP\components\listPanels\ContributorsListPanel;
 use PKP\context\Context;
 use PKP\core\PKPApplication;
 use PKP\notification\Notification;
@@ -117,9 +116,7 @@ class WorkflowHandler extends PKPWorkflowHandler
         $catalogEntryForm = new \APP\components\forms\publication\CatalogEntryForm($latestPublicationApiUrl, $locales, $latestPublication, $submission, $baseUrl, $temporaryFileApiUrl);
         $publicationDatesForm = new \APP\components\forms\submission\PublicationDatesForm($submissionApiUrl, $submission);
 
-
-        $authorUserGroups = Repo::userGroup()->getByRoleIds([Role::ROLE_ID_AUTHOR], $submission->getData('contextId'));
-        $publicationLicenseForm = new \APP\components\forms\publication\PublicationLicenseForm($latestPublicationApiUrl, $locales, $latestPublication, $submissionContext, $authorUserGroups);
+        $publicationLicenseForm = new \APP\components\forms\publication\PublicationLicenseForm($latestPublicationApiUrl, $locales, $latestPublication, $submissionContext);
 
         $templateMgr->setConstants([
             'FORM_AUDIENCE' => $audienceForm::FORM_AUDIENCE,

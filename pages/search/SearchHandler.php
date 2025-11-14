@@ -23,7 +23,6 @@ use APP\template\TemplateManager;
 use Laravel\Scout\Builder;
 use PKP\plugins\Hook;
 use PKP\search\SubmissionSearchResult;
-use PKP\userGroup\UserGroup;
 
 class SearchHandler extends Handler
 {
@@ -91,9 +90,6 @@ class SearchHandler extends Handler
             'dateTo' => $dateTo ? date('Y-m-d H:i:s', $dateTo) : null,
             'yearStart' => $yearStart,
             'yearEnd' => $yearEnd,
-            'authorUserGroups' => UserGroup::withRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])
-                ->withContextIds($contextId ? [$contextId] : null)
-                ->get(),
         ]);
 
         if (!$request->getContext()) {
