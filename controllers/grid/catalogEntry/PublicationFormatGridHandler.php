@@ -157,25 +157,29 @@ class PublicationFormatGridHandler extends CategoryGridHandler
 
         $this->setTitle('monograph.publicationFormats');
 
-        if ($this->getPublication()->getData('status') !== PKPPublication::STATUS_PUBLISHED) {
-            // Grid actions
-            $router = $request->getRouter();
-            $actionArgs = $this->getRequestArgs();
-            $userRoles = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_USER_ROLES);
-            $this->_canManage = 0 != count(array_intersect($userRoles, [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SITE_ADMIN, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT]));
-            if ($this->_canManage) {
-                $this->addAction(
-                    new LinkAction(
-                        'addFormat',
-                        new AjaxModal(
-                            $router->url($request, null, null, 'addFormat', null, $actionArgs),
-                            __('grid.action.addFormat'),
-                        ),
+
+        // Let managers or sub editors always have `_canManage`
+        $router = $request->getRouter();
+        $actionArgs = $this->getRequestArgs();
+        $userRoles = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_USER_ROLES);
+        $this->_canManage = (bool) array_intersect(
+            $userRoles,
+            [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SITE_ADMIN, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT]
+        );
+
+        // if `_canManage` is true, add the "Add Format" button
+        if ($this->_canManage) {
+            $this->addAction(
+                new LinkAction(
+                    'addFormat',
+                    new AjaxModal(
+                        $router->url($request, null, null, 'addFormat', null, $actionArgs),
                         __('grid.action.addFormat'),
-                        'add_item'
-                    )
-                );
-            }
+                    ),
+                    __('grid.action.addFormat'),
+                    'add_item'
+                )
+            );
         }
 
         // Columns

@@ -165,12 +165,12 @@ describe('Data suite tests', function() {
 		cy.waitJQuery();
 
 		// File completion
-		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("epilogue.pdf") a[id*="-isComplete-not_approved-button-"]').click();
+		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"]').contains('tr', 'epilogue.pdf').find('a[id*="-isComplete-"]').scrollIntoView().click();
 		cy.get('form[id="assignPublicIdentifierForm"] button[id^="submitFormButton-"]').click();
 		cy.waitJQuery();
 
 		// File availability
-		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("epilogue.pdf") a[id*="-isAvailable-editApprovedProof-button-"]').click();
+		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"]').contains('tr', 'epilogue.pdf').find('a[id*="-isAvailable-"]').scrollIntoView().click();
 		cy.get('input[id="openAccess"]').click();
 		cy.get('form#approvedProofForm button.submitFormButton').click();
 
