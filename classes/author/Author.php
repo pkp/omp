@@ -18,26 +18,22 @@
 
 namespace APP\author;
 
+use Illuminate\Support\Arr;
+use PKP\author\contributorRole\ContributorRole;
+use PKP\author\contributorRole\ContributorRoleIdentifier;
+
 class Author extends \PKP\author\Author
 {
     /**
-     * Get whether or not this author should be displayed as a volume editor
-     *
-     * @return bool
+     * Get whether or not this author should be displayed as an editor
      */
-    public function getIsVolumeEditor()
+    public function getIsEditor(): bool
     {
-        return $this->getData('isVolumeEditor');
-    }
-
-    /**
-     * Set whether or not this author should be displayed as a volume editor
-     *
-     * @param bool $isVolumeEditor
-     */
-    public function setIsVolumeEditor($isVolumeEditor)
-    {
-        $this->setData('isVolumeEditor', $isVolumeEditor);
+        return !!Arr::first(
+            $this->getContributorRoles(),
+            fn (ContributorRole $cr): bool =>
+            $cr->getAttribute('contributor_role_identifier') === ContributorRoleIdentifier::EDITOR->getName()
+        );
     }
 }
 

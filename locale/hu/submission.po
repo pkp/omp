@@ -133,12 +133,6 @@ msgstr "Új beküldés"
 msgid "submission.submit.upload"
 msgstr "Beküldés feltöltése"
 
-msgid "author.volumeEditor"
-msgstr ""
-
-msgid "author.isVolumeEditor"
-msgstr "Ez a közreműködő a kötet szerkesztője."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Sorozati pozíció"
 

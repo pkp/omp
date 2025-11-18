@@ -38,7 +38,7 @@ class Publication extends PKPPublication
         $authors = $this->getData('authors');
         $editorNames = [];
         foreach ($authors as $author) {
-            if ($author->getIsVolumeEditor()) {
+            if ($author->getIsEditor()) {
                 $editorNames[] = __('submission.editorName', ['editorName' => $author->getFullName()]);
             }
         }

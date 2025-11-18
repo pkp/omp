@@ -121,12 +121,6 @@ msgstr "Înregistrare nouă"
 msgid "submission.submit.upload"
 msgstr "Încărcați înregistrarea"
 
-msgid "author.volumeEditor"
-msgstr "Editor de volum"
-
-msgid "author.isVolumeEditor"
-msgstr "Identificați acest colaborator drept editor al acestui volum."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Poziția în serie"
 

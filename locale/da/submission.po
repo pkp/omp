@@ -138,12 +138,6 @@ msgstr "Ny indsendelse"
 msgid "submission.submit.upload"
 msgstr "Upload indsendelse"
 
-msgid "author.volumeEditor"
-msgstr "Bindredaktør"
-
-msgid "author.isVolumeEditor"
-msgstr "Definér denne bidragyder som værende redaktør af dette bind."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Seriens position"
 

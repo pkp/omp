@@ -46,6 +46,16 @@
 						{/foreach}
 					</div>
 				{/if}
+				<span class="contributor_roles">
+					{foreach $author->getLocalizedContributorRoleNames() as $contributorRoleName}
+						{strip}
+						<span class="value">
+							{$contributorRoleName|escape}
+						</span>
+						{if !$contributorRoleName@last}{translate key="common.commaListSeparator"}{/if}
+						{strip}
+					{/foreach}
+				</span>
 				{if $author->getOrcid()}
 					<span class="orcid">
 						{if $author->hasVerifiedOrcid()}

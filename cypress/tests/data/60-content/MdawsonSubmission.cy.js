@@ -40,7 +40,8 @@ describe('Data suite tests', function() {
 						}
 					],
 					'email': 'bdupuis@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': {en: 'Michael'},
@@ -52,7 +53,8 @@ describe('Data suite tests', function() {
 						}
 					],
 					'email': 'mwilson@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				}
 			],
 			files: [

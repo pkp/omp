@@ -132,12 +132,6 @@ msgstr "Nový příspěvek"
 msgid "submission.submit.upload"
 msgstr "Nahrát příspěvek"
 
-msgid "author.volumeEditor"
-msgstr "Redaktor svazku"
-
-msgid "author.isVolumeEditor"
-msgstr "Určit připěvatele jako editora sborníku."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Číslo svazku v edici"
 

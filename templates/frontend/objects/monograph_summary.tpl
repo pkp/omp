@@ -8,7 +8,6 @@
  * @brief Display a summary view of a monograph for display in lists
  *
  * @uses $monograph Monograph The monograph to be displayed
- * @uses $authorUserGroups Traversible The set of author user groups
  * @uses $isFeatured bool Is this a featured monograph?
  *}
 <div class="obj_monograph_summary{if $isFeatured} is_featured{/if}">
@@ -31,7 +30,7 @@
 			</a>
 		</{$heading}>
 		<div class="author">
-			{$currentPublication->getAuthorString($authorUserGroups, true)|escape}
+			{$currentPublication->getAuthorString(true)|escape}
 		</div>
 		<div class="date">
 			{$currentPublication->getData('datePublished')|date_format:$dateFormatLong}

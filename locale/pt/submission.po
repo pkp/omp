@@ -138,12 +138,6 @@ msgstr "Nova Submissão"
 msgid "submission.submit.upload"
 msgstr "Upload Submissão"
 
-msgid "author.volumeEditor"
-msgstr "Editor de Volume"
-
-msgid "author.isVolumeEditor"
-msgstr "Identificar este autor como editor do livro."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Posição na Série"
 

@@ -21,10 +21,8 @@ use APP\facades\Repo;
 use APP\press\Press;
 use APP\publication\Publication;
 use APP\submission\Submission;
-use Illuminate\Support\Enumerable;
 use PKP\components\forms\FieldText;
 use PKP\components\forms\publication\PKPPublicationLicenseForm;
-use PKP\userGroup\UserGroup;
 
 class PublicationLicenseForm extends PKPPublicationLicenseForm
 {
@@ -35,11 +33,10 @@ class PublicationLicenseForm extends PKPPublicationLicenseForm
      * @param array $locales Supported locales
      * @param Publication $publication The publication to change settings for
      * @param Press $context The publication's context
-     * @param Enumerable<UserGroup> $userGroups User groups in this context
      */
-    public function __construct($action, $locales, $publication, $context, $userGroups)
+    public function __construct($action, $locales, $publication, $context)
     {
-        parent::__construct($action, $locales, $publication, $context, $userGroups);
+        parent::__construct($action, $locales, $publication, $context);
 
         $submission = Repo::submission()->get($publication->getData('submissionId'));
         if ($submission->getData('workType') === Submission::WORK_TYPE_EDITED_VOLUME) {

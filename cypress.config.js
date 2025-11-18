@@ -16,8 +16,11 @@ module.exports = defineConfig({
       en: 'PKP',
     },
     defaultGenre: 'Book Manuscript',
-    authorUserGroupId: 13,
-    volumeEditorUserGroupId: 14,
+    contributorTypePerson: 'PERSON',
+    contributorRoleAuthor: 1,
+    contributorRoleTranslator: 2,
+    contributorRoleChapterAuthor: 3,
+    contributorRoleVolumeEditor: 4,
     dataAvailabilityTest: {
       submission: {
         title: 'The West and Beyond: New Perspectives on an Imagined Region',

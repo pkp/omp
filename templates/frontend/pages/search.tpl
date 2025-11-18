@@ -52,7 +52,7 @@
 				{if $counter is odd by 1}
 					<div class="row">
 				{/if}
-					{include file="frontend/objects/monograph_summary.tpl" monograph=$result.submission press=$result.context heading="h2" authorUserGroups=$authorUserGroups}
+					{include file="frontend/objects/monograph_summary.tpl" monograph=$result.submission press=$result.context heading="h2"}
 				{if $counter is even by 1}
 					</div>
 				{/if}

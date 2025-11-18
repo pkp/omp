@@ -132,12 +132,6 @@ msgstr "Новая подача"
 msgid "submission.submit.upload"
 msgstr "Загрузить подачу"
 
-msgid "author.volumeEditor"
-msgstr ""
-
-msgid "author.isVolumeEditor"
-msgstr "Обозначьте этого автора как редактора этого издания."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Место серии"
 

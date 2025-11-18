@@ -37,7 +37,8 @@ describe('Data suite tests', function() {
 					'country': 'GB',
 					// 'affiliation': '',
 					'email': 'rmansell@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': {en: 'Hernan'},
@@ -45,7 +46,8 @@ describe('Data suite tests', function() {
 					'country': 'AR',
 					// 'affiliation': '',
 					'email': 'hgalperin@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': {en: 'Pablo'},
@@ -53,7 +55,8 @@ describe('Data suite tests', function() {
 					'country': 'CL',
 					// 'affiliation': '',
 					'email': 'pbello@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': {en: 'Eleonora'},
@@ -61,7 +64,8 @@ describe('Data suite tests', function() {
 					'country': 'AR',
 					// 'affiliation': '',
 					'email': 'erabinovich@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 			],
 			'chapters': [

@@ -46,7 +46,6 @@ use PKP\submission\Genre;
 use PKP\submission\GenreDAO;
 use PKP\submission\PKPSubmission;
 use PKP\submissionFile\SubmissionFile;
-use PKP\userGroup\UserGroup;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CatalogBookHandler extends Handler
@@ -207,15 +206,13 @@ class CatalogBookHandler extends Handler
             return empty($a) || strtotime((string) $b->getData('datePublished')) < strtotime((string) $a->getData('datePublished')) ? $b : $a;
         }, 0);
 
-        $userGroups = UserGroup::withContextIds([$submission->getData('contextId')])->get();
-
         $templateMgr->assign([
             'isChapterRequest' => $this->isChapterRequest,
             'publishedSubmission' => $submission,
             'publication' => $this->publication,
             'firstPublication' => $firstPublication,
             'currentPublication' => $submission->getCurrentPublication(),
-            'authorString' => $this->publication->getAuthorString($userGroups),
+            'authorString' => $this->publication->getAuthorString(),
         ]);
 
         // Provide the publication formats to the template
@@ -274,7 +271,7 @@ class CatalogBookHandler extends Handler
         $editors = [];
         if ($submission->getData('workType') == $submission::WORK_TYPE_EDITED_VOLUME) {
             foreach ($this->publication->getData('authors') as $author) {
-                if ($author->getIsVolumeEditor()) {
+                if ($author->getIsEditor()) {
                     $editors[] = $author;
                 }
             }
