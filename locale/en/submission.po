@@ -131,12 +131,6 @@ msgstr "New Submission"
 msgid "submission.submit.upload"
 msgstr "Upload Submission"
 
-msgid "author.volumeEditor"
-msgstr "Volume Editor"
-
-msgid "author.isVolumeEditor"
-msgstr "Identify this contributor as the editor of this volume."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Series Position"
 

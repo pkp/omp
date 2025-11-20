@@ -133,12 +133,6 @@ msgstr "Нов поднесок"
 msgid "submission.submit.upload"
 msgstr "Прикачи поднесок"
 
-msgid "author.volumeEditor"
-msgstr "Уредник на том"
-
-msgid "author.isVolumeEditor"
-msgstr "Идентификувајте го овој соработник како уредник на овој том."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Позиција на серијалот"
 

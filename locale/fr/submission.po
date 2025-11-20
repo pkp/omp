@@ -29,9 +29,6 @@ msgstr "Modifier le chapitre"
 msgid "submission.supportingAgencies"
 msgstr "Organismes de soutien"
 
-msgid "author.volumeEditor"
-msgstr "Directeur·rice d’ouvrage"
-
 msgid "submission.submit.coverNote"
 msgstr "Note de présentation pour l’éditeur"
 
@@ -231,11 +228,6 @@ msgstr "Nouvelle soumission"
 
 msgid "submissions.queuedReview"
 msgstr "En évaluation"
-
-msgid "author.isVolumeEditor"
-msgstr ""
-"Identifier ce contributeur ou cette contributrice comme responsable du "
-"volume."
 
 msgid "submission.submit.seriesPosition"
 msgstr "Position dans cette collection (ex : livre 2 ou Volume 2)"

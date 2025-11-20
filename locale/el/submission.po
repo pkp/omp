@@ -132,12 +132,6 @@ msgstr ""
 msgid "submission.submit.upload"
 msgstr "Μεταφόρτωση"
 
-msgid "author.volumeEditor"
-msgstr ""
-
-msgid "author.isVolumeEditor"
-msgstr ""
-
 msgid "submission.submit.seriesPosition"
 msgstr "Θέση σε αυτή τη Σειρά (πχ. Βιβλίο 2, ή Τόμος 2)"
 

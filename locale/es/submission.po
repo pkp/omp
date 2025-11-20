@@ -136,12 +136,6 @@ msgstr "Nuevo Envío"
 msgid "submission.submit.upload"
 msgstr "Cargar envío"
 
-msgid "author.volumeEditor"
-msgstr "Editor/a del volumen"
-
-msgid "author.isVolumeEditor"
-msgstr "Identificar a este contribuidor/a como editor/a de este volumen."
-
 msgid "submission.submit.seriesPosition"
 msgstr ""
 "Lugar que ocupa dentro de esta serie, colección, ... (por ejemplo, Libro 2, "

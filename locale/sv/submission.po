@@ -132,12 +132,6 @@ msgstr "Nytt bidrag"
 msgid "submission.submit.upload"
 msgstr "Ladda upp bidrag"
 
-msgid "author.volumeEditor"
-msgstr ""
-
-msgid "author.isVolumeEditor"
-msgstr "Markera denna person som redaktör för volymen."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Position i serien"
 

@@ -33,7 +33,8 @@ describe('Data suite tests', function() {
 					'country': 'GB',
 					// 'affiliation': '',
 					'email': 'jtraxler@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': {en: 'Marguerite'},
@@ -41,7 +42,8 @@ describe('Data suite tests', function() {
 					'country': 'CA',
 					// 'affiliation': '',
 					'email': 'mkoole@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 				{
 					'givenName': {en: 'Torstein'},
@@ -49,7 +51,8 @@ describe('Data suite tests', function() {
 					'country': 'NO',
 					// 'affiliation': '',
 					'email': 'trekkedal@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson'),
 				},
 			],
 			'chapters': [

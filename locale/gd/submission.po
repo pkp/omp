@@ -134,12 +134,6 @@ msgstr "Tagradh ùr"
 msgid "submission.submit.upload"
 msgstr "Luchdaich an tagradh suas"
 
-msgid "author.volumeEditor"
-msgstr ""
-
-msgid "author.isVolumeEditor"
-msgstr "Comharraich an com-pàirtiche seo mar dheasaiche an iom-leabhair seo."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Ionad san t-sreath"
 

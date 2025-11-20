@@ -73,7 +73,8 @@ describe('Monograph View Metadata - DC Plugin', function() {
 					country: 'US',
 					affiliation: {en: 'Stanford University'},
 					email: 'nameauthor1Test@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson')
 				},
 				{
 					givenName: {en: 'Name 2'},
@@ -81,7 +82,8 @@ describe('Monograph View Metadata - DC Plugin', function() {
 					country: 'US',
 					affiliation: {en: 'Stanford University'},
 					email: 'nameauthor2Test@mailinator.com',
-					userGroupId: Cypress.env('authorUserGroupId')
+					contributorRoles: [Cypress.env('contributorRoleAuthor')],
+					contributorType: Cypress.env('contributorTypePerson')
 				}
 			],
 			localeTitles: {

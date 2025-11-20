@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/services/ContextService.php
  *
@@ -25,6 +26,9 @@ use APP\press\NewReleaseDAO;
 use APP\press\Press;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\submission\Submission;
+use Illuminate\Support\Arr;
+use PKP\author\contributorRole\ContributorRole;
+use PKP\author\contributorRole\ContributorRoleIdentifier;
 use PKP\config\Config;
 use PKP\db\DAORegistry;
 use PKP\file\ContextFileManager;
@@ -48,10 +52,37 @@ class ContextService extends \PKP\services\PKPContextService
             Config::getVar('files', 'public_files_dir') . '/%s/%d',
         ];
 
+        Hook::add('Context::add', $this->afterAddContext(...));
         Hook::add('Context::edit', [$this, 'afterEditContext']);
         Hook::add('Context::delete::before', [$this, 'beforeDeleteContext']);
         Hook::add('Context::delete', [$this, 'afterDeleteContext']);
         Hook::add('Context::validate', [$this, 'validateContext']);
+    }
+
+    /**
+     * Take additional actions after a new context has been added
+     *
+     * $args [
+     *
+     *		@option Press The new context
+     *		@option Request
+     * ]
+     */
+    public function afterAddContext(string $hookName, array $args): void
+    {
+        $context = $args[0]; /** @var \PKP\context\Context $context */
+        $supportedFormLocales = $context->getSupportedFormLocales();
+
+        // Add contributor roles
+        collect([
+            'default.groups.name.chapterAuthor' => ContributorRoleIdentifier::AUTHOR->getName(),
+            'default.groups.name.volumeEditor' => ContributorRoleIdentifier::EDITOR->getName(),
+        ])
+            ->each(fn (string $identifier, string $nameLocaleKey) => ContributorRole::add([
+                'name' => Arr::mapWithKeys($supportedFormLocales, fn (string $l) => [$l => __($nameLocaleKey, locale: $l)]),
+                'contributorRoleIdentifier' => $identifier,
+                'contextId' => $context->getId(),
+            ]));
     }
 
     /**

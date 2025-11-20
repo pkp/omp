@@ -137,12 +137,6 @@ msgstr "Neue Einreichung"
 msgid "submission.submit.upload"
 msgstr "Einreichung hochladen"
 
-msgid "author.volumeEditor"
-msgstr "Band Herausgeber/in"
-
-msgid "author.isVolumeEditor"
-msgstr "Diese Person als Herausgeber/in des Bandes identifizieren."
-
 msgid "submission.submit.seriesPosition"
 msgstr "Position innerhalb der Reihe (z.B. Band 2)"
 

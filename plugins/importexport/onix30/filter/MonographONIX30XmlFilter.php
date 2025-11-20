@@ -31,12 +31,12 @@ use Exception;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use PKP\author\contributorRole\ContributorRoleIdentifier;
 use PKP\db\DAORegistry;
 use PKP\filter\FilterGroup;
 use PKP\i18n\LocaleConversion;
 use PKP\plugins\importexport\native\filter\NativeExportFilter;
 use PKP\plugins\PluginRegistry;
-use PKP\userGroup\UserGroup;
 
 class MonographONIX30XmlFilter extends NativeExportFilter
 {
@@ -380,20 +380,22 @@ class MonographONIX30XmlFilter extends NativeExportFilter
             $contributorNode = $doc->createElementNS($deployment->getNamespace(), 'Contributor');
             $contributorNode->appendChild($this->buildTextNode($doc, 'SequenceNumber', $sequence));
 
-            $userGroup = UserGroup::find($author->getUserGroupId());
-
-            $userGroupOnixMap = [
-                'default.groups.name.author' => 'A01',
-                'default.groups.name.volumeEditor' => 'B01',
-                'default.groups.name.chapterAuthor' => 'A01',
-                'default.groups.name.translator' => 'B06',
-                'default.groups.name.editor' => 'B21'
-            ]; // From List17, ContributorRole types.
-
-            $nameKey = $userGroup->nameLocaleKey;
-            $role = array_key_exists($nameKey, $userGroupOnixMap) ? $userGroupOnixMap[$nameKey] : 'Z99'; // Z99 - unknown contributor type.
-
-            $contributorNode->appendChild($this->buildTextNode($doc, 'ContributorRole', $role));
+            collect($author->getContributorRoleIdentifiers())
+                ->map(
+                    fn (string $contributorRoleIdentifier): string =>
+                    // From List17, ContributorRole types.
+                    match ($contributorRoleIdentifier) {
+                        ContributorRoleIdentifier::AUTHOR->getName() => 'A01',
+                        ContributorRoleIdentifier::EDITOR->getName() => 'B01',
+                        ContributorRoleIdentifier::TRANSLATOR->getName() => 'B06',
+                        default => 'Z99' /* Z99 - unknown contributor role type. */
+                    }
+                )
+                ->unique()
+                ->each(
+                    fn (string $role) =>
+                    $contributorNode->appendChild($this->buildTextNode($doc, 'ContributorRole', $role))
+                );
 
             if ($author->getOrcid() && $author->hasVerifiedOrcid()) {
                 $nameIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'NameIdentifier');
@@ -434,7 +436,6 @@ class MonographONIX30XmlFilter extends NativeExportFilter
             $descDetailNode->appendChild($contributorNode);
 
             unset($contributorNode);
-            unset($userGroup);
             unset($author);
         }
 

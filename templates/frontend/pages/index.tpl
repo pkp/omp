@@ -40,7 +40,7 @@
 
 	{* Featured *}
 	{if !empty($featuredMonographs)}
-		{include file="frontend/components/monographList.tpl" monographs=$featuredMonographs titleKey="catalog.featured" authorUserGroups=$authorUserGroups}
+		{include file="frontend/components/monographList.tpl" monographs=$featuredMonographs titleKey="catalog.featured"}
 	{/if}
 
 	{* New releases *}

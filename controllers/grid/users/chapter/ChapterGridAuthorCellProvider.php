@@ -55,7 +55,7 @@ class ChapterGridAuthorCellProvider extends DataObjectGridCellProvider
             case 'name':
                 return ['label' => $element->getFullName()];
             case 'role':
-                return ['label' => $element->getLocalizedUserGroupName()];
+                return ['label' => implode(__('common.commaListSeparator'), $element->getLocalizedContributorRoleNames())];
             case 'email':
                 return parent::getTemplateVarsFromRowColumn($row, $column);
         }

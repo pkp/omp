@@ -136,12 +136,6 @@ msgstr "Nov prispevek"
 msgid "submission.submit.upload"
 msgstr "Naloži prispevek"
 
-msgid "author.volumeEditor"
-msgstr ""
-
-msgid "author.isVolumeEditor"
-msgstr ""
-
 msgid "submission.submit.seriesPosition"
 msgstr "Mesto nove zbirke"
 
