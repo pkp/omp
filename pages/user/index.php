@@ -23,7 +23,6 @@ switch ($op) {
     //
     case 'index':
     case 'authorizationDenied':
-    case 'getInterests':
     case 'toggleHelp':
         return new APP\pages\user\UserHandler();
     default:
