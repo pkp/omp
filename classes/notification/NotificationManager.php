@@ -80,7 +80,7 @@ class NotificationManager extends PKPNotificationManager
     /**
      * @copydoc PKPNotificationManager::getMgrDelegate()
      */
-    protected function getMgrDelegate(int $notificationType, int $assocType, int $assocId): ?NotificationManagerDelegate
+    protected function getMgrDelegate(int $notificationType, ?int $assocType, ?int $assocId): ?NotificationManagerDelegate
     {
         switch ($notificationType) {
             case Notification::NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW:
