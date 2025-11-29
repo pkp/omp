@@ -1,8 +1,8 @@
 OMP 3.4.0 Release Notes
-Git tag: 3_4_0-9
+Git tag: 3_4_0-10
 
-Release date: May 23, 2025
-==========================
+Release date: November 21, 2025
+===============================
 
 Configuration Changes
 ---------------------
@@ -45,6 +45,35 @@ New config.inc.php section for queues is added, with the following parameters:
 New config.inc.php parameters added for emails:
     - default (default value: sendmail), being the default mailer driver to be used for email delivery
     - sendmail_path (default value: "/usr/sbin/sendmail -bs"), being the path to the sendmail program on the server
+
+3.4.0-10 Build
+--------------
+    #11793: Plugins should always register hooks and check getEnabled(context) in the hook functions
+    #12002: Make a new submission - When a user doesn't have a role in a journal they are unable to make a new submission
+    #11743: [OMP Settings] | Catalog - Sorting for ascending order not working
+    #11658: Create Submission - New Submission, Chinese locale fails validation
+    #11496: Fix PHP warning about missing locale key {$loggedInUsername}
+    #11568: [Notifications] | Disable email notification for editor assignment for new submissions
+    #11303: [Queue Jobs] | Mail translation does not correspond to the defined locale using queue worker
+    #11396: PHP fatal error after upgrade when the current theme plugin is missing
+    #11703: [Native XML Import] | Can't import article without author
+    #11722: Series grid - Page, OMP missing names of automatically assigned editors in Series Grid
+    #11862: Administration - View Failed Jobs, Payload data is incorrect
+    #11886: When distribution for DOIs is set to never assign DOIs and DOI versioning is set to Yes it is being overridden
+    #11893: DOI management - books published already in copyediting stage do not show up in the DOI page
+    #11451: Exception when calling PKP\submission\DAO::getByPubId()
+    #10361: Migration from 3.1.2 to 3.4.0.6 : lost decision in activity log
+    #12039: Permit hrefs only for command-line based imports
+    #12022: Properly escape payment instructions
+    #11978: Log in form is missing a CSRF check
+    #11977: Properly escape keyword search contents in institution collector
+    #11974: Validate base colour setting in default theme
+    #11795: OMP Metadata export - Incorrect field used for publisher name
+    #11305: Add a Hook for PKPReviewerReviewStep3Form::saveForLater
+    #10941: Section policies are shown for inactive sections on Submissions page (3.3)
+    #10621: Subjects are incorrectly labelled as BIC in ONIX exports
+    #10139: By Author search pulls in keywords too
+    #6569: Metadata Keyword displaced causing tip box information permanently open
 
 3.4.0-9 Build
 -------------
