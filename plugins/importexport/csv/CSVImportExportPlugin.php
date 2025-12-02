@@ -164,7 +164,6 @@ class CSVImportExportPlugin extends ImportExportPlugin
             }
 
             $authorGroup = UserGroup::withContextIds([$press->getId()])
-                ->withContextIds([$press->getId()])
                 ->withRoleIds([Role::ROLE_ID_AUTHOR])
                 ->isDefault(true)
                 ->get()
