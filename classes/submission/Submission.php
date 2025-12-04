@@ -120,7 +120,3 @@ class Submission extends PKPSubmission
         $this->setData('enableChapterPublicationDates', $enableChapterPublicationDates);
     }
 }
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\submission\Submission', '\Submission');
-}
