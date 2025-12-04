@@ -17,7 +17,7 @@
 			symbolic="publicationFormat=>dc11"
 			displayName="plugins.metadata.dc11.publicationFormatAdapter.displayName"
 			description="plugins.metadata.dc11.publicationFormatAdapter.description"
-			inputType="class::classes.publicationFormat.PublicationFormat"
+			inputType="class::APP\publicationFormat\PublicationFormat"
 			outputType="metadata::APP\plugins\metadata\dc11\schema\Dc11Schema(PUBLICATION_FORMAT)" />
 	</filterGroups>
 	<filters>
