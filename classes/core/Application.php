@@ -43,21 +43,15 @@ class Application extends PKPApplication
     public function __construct()
     {
         parent::__construct();
-        if (!PKP_STRICT_MODE) {
-            foreach ([
+
+        if (!app()->getApplicationStrictModeStatus()) {
+            app()->registerGlobalConstants(static::class, [
                 'ASSOC_TYPE_MONOGRAPH',
                 'ASSOC_TYPE_PUBLICATION_FORMAT',
                 'ASSOC_TYPE_PRESS',
                 'ASSOC_TYPE_SERIES',
                 'ASSOC_TYPE_CHAPTER',
-            ] as $constantName) {
-                if (!defined($constantName)) {
-                    define($constantName, constant('self::' . $constantName));
-                }
-            }
-            if (!class_exists('\Application')) {
-                class_alias('\APP\core\Application', '\Application');
-            }
+            ]);
         }
 
         // Add application locales
