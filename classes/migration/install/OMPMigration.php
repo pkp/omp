@@ -83,6 +83,10 @@ class OMPMigration extends \PKP\migration\Migration
             $table->foreign('publication_id')->references('publication_id')->on('publications');
             $table->index(['publication_id'], 'review_rounds_publication_id');
         });
+        Schema::table('edit_decisions', function (Blueprint $table) {
+            $table->foreign('publication_id', 'edit_decisions_publication_id')->references('publication_id')->on('publications')->onDelete('cascade');
+            $table->index(['publication_id'], 'edit_decisions_publication_id');
+        });
 
         // Publication formats assigned to published submissions
         Schema::create('publication_formats', function (Blueprint $table) {
