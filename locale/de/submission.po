@@ -25,7 +25,7 @@ msgid "submission.select"
 msgstr "Wählen Sie ein Manuskript aus"
 
 msgid "submission.synopsis"
-msgstr "Über dieses Buch"
+msgstr "Synopsis"
 
 msgid "submission.workflowType"
 msgstr "Art des Buches"
