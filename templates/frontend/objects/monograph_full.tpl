@@ -352,7 +352,7 @@
 						</h2>
 						<ul class="value">
 							{foreach from=array_reverse($monograph->getPublishedPublications()) item=iPublication}
-								{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatShort version=$iPublication->getData('version')}{/capture}
+								{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatShort version=$iPublication->getData('versionString')}{/capture}
 								<li>
 									{if $iPublication->getId() === $publication->getId()}
 										{$name}
