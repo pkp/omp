@@ -53,7 +53,7 @@
 							{$contributorRoleName|escape}
 						</span>
 						{if !$contributorRoleName@last}{translate key="common.commaListSeparator"}{/if}
-						{strip}
+						{/strip}
 					{/foreach}
 				</span>
 				{if $author->getOrcid()}
