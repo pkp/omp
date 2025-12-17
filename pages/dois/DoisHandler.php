@@ -40,7 +40,7 @@ class DoisHandler extends PKPDoisHandler
                     [
                         'apiUrl' => $request->getDispatcher()->url($request, PKPApplication::ROUTE_API, $context->getPath(), 'submissions'),
                         'getParams' => [
-                            'stageIds' => [WORKFLOW_STAGE_ID_PUBLISHED, WORKFLOW_STAGE_ID_PRODUCTION, WORKFLOW_STAGE_ID_EDITING],
+                            'onDoiPage' => true,
                         ],
                         'itemType' => 'submission'
                     ]
