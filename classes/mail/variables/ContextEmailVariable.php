@@ -20,24 +20,6 @@ use PKP\mail\variables\ContextEmailVariable as PKPContextEmailVariable;
 
 class ContextEmailVariable extends PKPContextEmailVariable
 {
-    public const CONTEXT_NAME = 'pressName';
-    public const CONTEXT_URL = 'pressUrl';
-    public const CONTEXT_SIGNATURE = 'pressSignature';
-    public const CONTEXT_ACRONYM = 'contextAcronym';
-
-    /**
-     * @copydoc Variable::descriptions()
-     */
-    public static function descriptions(): array
-    {
-        return array_merge(
-            parent::descriptions(),
-            [
-                static::CONTEXT_ACRONYM => __('emailTemplate.variable.context.contextAcronym'),
-            ]
-        );
-    }
-
     /**
      * @copydoc Variable::values()
      */
@@ -48,8 +30,6 @@ class ContextEmailVariable extends PKPContextEmailVariable
         // Pass the values into the context signature so variables
         // used in the signature can be rendered.
         $values[static::CONTEXT_SIGNATURE] = $this->getContextSignature($values);
-        $values[static::CONTEXT_ACRONYM] = htmlspecialchars($this->context->getLocalizedData('acronym'));
-
         return $values;
     }
 }
