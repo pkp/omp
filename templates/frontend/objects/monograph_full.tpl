@@ -424,6 +424,14 @@
 				</div>
 			{/if}
 
+			{* Funding Statement *}
+			{if $publication->getLocalizedData('fundingStatement')}
+				<div class="item fundingStatement"">
+					<h2 class="label">{translate key="submission.fundingStatement"}</h2>
+					{$publication->getLocalizedData('fundingStatement')|strip_unsafe_html}
+				</div>
+			{/if}
+
 			{* Copyright statement *}
 			{if $publication->getData('copyrightYear') && $publication->getLocalizedData('copyrightHolder')}
 				<div class="item copyright">
