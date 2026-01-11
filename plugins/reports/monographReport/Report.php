@@ -32,7 +32,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\LazyCollection;
 use IteratorAggregate;
 use PKP\category\Category;
-use PKP\controlledVocab\ControlledVocab;
 use PKP\facades\Locale;
 use PKP\security\Role;
 use PKP\stageAssignment\StageAssignment;
@@ -365,11 +364,13 @@ class Report implements IteratorAggregate
     private function getKeywords(): string
     {
         return $this->flattenKeywords(
-            Repo::controlledVocab()->getBySymbolic(
-                ControlledVocab::CONTROLLED_VOCAB_SUBMISSION_KEYWORD,
-                Application::ASSOC_TYPE_PUBLICATION,
-                $this->publication->getId()
-            )
+            collect($this->publication->getData('keywords') ?? [])
+                ->map(
+                    fn (array $items): array => collect($items)
+                        ->pluck('name')
+                        ->all()
+                )
+                ->all()
         );
     }
 
@@ -379,11 +380,13 @@ class Report implements IteratorAggregate
     private function getSubjects(): string
     {
         return $this->flattenKeywords(
-            Repo::controlledVocab()->getBySymbolic(
-                ControlledVocab::CONTROLLED_VOCAB_SUBMISSION_SUBJECT,
-                Application::ASSOC_TYPE_PUBLICATION,
-                $this->publication->getId()
-            )
+            collect($this->publication->getData('subjects') ?? [])
+                ->map(
+                    fn (array $items): array => collect($items)
+                        ->pluck('name')
+                        ->all()
+                )
+                ->all()
         );
     }
 
@@ -393,11 +396,13 @@ class Report implements IteratorAggregate
     private function getDisciplines(): string
     {
         return $this->flattenKeywords(
-            Repo::controlledVocab()->getBySymbolic(
-                ControlledVocab::CONTROLLED_VOCAB_SUBMISSION_DISCIPLINE,
-                Application::ASSOC_TYPE_PUBLICATION,
-                $this->publication->getId()
-            )
+            collect($this->publication->getData('disciplines') ?? [])
+                ->map(
+                    fn (array $items): array => collect($items)
+                        ->pluck('name')
+                        ->all()
+                )
+                ->all()
         );
     }
 
@@ -407,11 +412,13 @@ class Report implements IteratorAggregate
     private function getAgencies(): string
     {
         return $this->flattenKeywords(
-            Repo::controlledVocab()->getBySymbolic(
-                ControlledVocab::CONTROLLED_VOCAB_SUBMISSION_AGENCY,
-                Application::ASSOC_TYPE_PUBLICATION,
-                $this->publication->getId()
-            )
+            collect($this->publication->getData('supportingAgencies') ?? [])
+                ->map(
+                    fn (array $items): array => collect($items)
+                        ->pluck('name')
+                        ->all()
+                )
+                ->all()
         );
     }
 
