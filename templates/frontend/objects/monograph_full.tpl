@@ -129,7 +129,7 @@
 					</h2>
 					<span class="value">
 					{foreach name="keywords" from=$publication->getLocalizedData('keywords') item=keyword}
-						{$keyword|escape}{if !$smarty.foreach.keywords.last}, {/if}
+						{$keyword.name|escape}{if !$smarty.foreach.keywords.last}{translate key="common.commaListSeparator"}{/if}						
 					{/foreach}
 				</span>
 				</div>

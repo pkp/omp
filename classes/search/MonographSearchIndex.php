@@ -345,12 +345,16 @@ class MonographSearchIndex extends SubmissionSearchIndex
     protected function _flattenLocalizedArray($arrayWithLocales)
     {
         $flattenedArray = [];
+
         foreach ($arrayWithLocales as $localeArray) {
-            $flattenedArray = array_merge(
-                $flattenedArray,
+            $names = array_map(
+                static fn ($item) => $item['name'],
                 $localeArray
             );
+
+            $flattenedArray = array_merge($flattenedArray, $names);
         }
+
         return $flattenedArray;
     }
 }
