@@ -7,7 +7,7 @@
  *
  * @brief Display a list of monographs.
  *
- * @uses $monographs array List of monographs to display
+ * @uses $monographs array List to display -- either monographs or SubmissionSearchResult data
  * @uses $featured array Optional list of monograph IDs to feature in the list
  * @uses $titleKey string Optional translation key for a title for the list
  * @uses $heading string HTML heading element, default: h2
@@ -36,6 +36,11 @@
 
 	{assign var=counter value=1}
 	{foreach name="monographListLoop" from=$monographs item=monograph}
+		{* Accept either a list of monographs or data from SubmissionSearchResult. *}
+		{if is_array($monograph)}
+			{assign var=monograph value=$monograph.submission}{* Unpack SubmissionSearchResult *}
+		{/if}
+
 		{if is_array($featured) && array_key_exists($monograph->getId(), $featured)}
 			{assign var="isFeatured" value=true}
 		{else}
