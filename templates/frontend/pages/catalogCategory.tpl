@@ -8,7 +8,7 @@
  * @brief Display the page to view a category of the catalog.
  *
  * @uses $category Category Current category being viewed
- * @uses $publishedSubmissions array List of published submissions in this category
+ * @uses $results Object List of published submissions in this category
  * @uses $featuredMonographIds array List of featured monograph IDs in this category
  * @uses $newReleasesMonographs array List of new monographs in this category
  * @uses $parentCategory Category Parent category if one exists
@@ -19,7 +19,6 @@
  * @uses $nextPage int The next page number
  * @uses $showingStart int The number of the first item on this page
  * @uses $showingEnd int The number of the last item on this page
- * @uses $total int Count of all published submissions in this category
  *}
 {include file="frontend/components/header.tpl" pageTitleTranslated=$category->getLocalizedTitle()|escape}
 
@@ -31,7 +30,7 @@
 
 	{* Count of monographs in this category *}
 	<div class="monograph_count">
-		{translate key="catalog.browseTitles" numTitles=$total}
+		{translate key="catalog.browseTitles" numTitles=$results->total()}
 	</div>
 
 	{* Image and description *}
@@ -66,7 +65,7 @@
 	{/if}
 
 	{* No published titles in this category *}
-	{if empty($publishedSubmissions)}
+	{if empty($results)}
 		<h2>
 			{translate key="catalog.category.heading"}
 		</h2>
@@ -80,7 +79,7 @@
 		{/if}
 
 		{* All monographs *}
-		{include file="frontend/components/monographList.tpl" monographs=$publishedSubmissions featured=$featuredMonographIds titleKey="catalog.category.heading"}
+		{include file="frontend/components/monographList.tpl" monographs=$results featured=$featuredMonographIds titleKey="catalog.category.heading"}
 
 		{* Pagination *}
 		{if $prevPage > 1}
