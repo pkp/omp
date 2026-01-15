@@ -9,6 +9,8 @@
  *
  * @uses $results array List of search results
  * @uses $query string The search query, if one was just made
+ * @uses $orderBy string Order option
+ * @uses $orderDir string When set, either 'asc' or 'desc'
  *}
 {include file="frontend/components/header.tpl" pageTitle="common.search"}
 
@@ -17,9 +19,6 @@
 	{* Breadcrumb *}
 	{include file="frontend/components/breadcrumbs.tpl" type="category" currentTitleKey="common.search"}
 	<h1>{translate key="common.search"}</h1>
-	<div class="monograph_count">
-		{translate key="catalog.browseTitles" numTitles=$results->count()}
-	</div>
 
 	{* No query - this may happen because of a screen reader, so don't show an
 	   error, just leave them with the search form *}
@@ -36,9 +35,13 @@
 
 	{* Monograph List *}
 	{else}
+		<div class="monograph_count">
+			{translate key="catalog.browseTitles" numTitles=$results->total()}
+		</div>
+
 		<div class="search_results" role="status">
 			{if $results->count() > 1}
-				{translate key="catalog.foundTitlesSearch" searchQuery=$query|escape number=$results->count()}
+				{translate key="catalog.foundTitlesSearch" searchQuery=$query|escape number=$results->total()}
 			{else}
 				{translate key="catalog.foundTitleSearch" searchQuery=$query|escape}
 			{/if}
@@ -65,7 +68,7 @@
 		</div>
 		<div class="cmp_pagination">
 			{page_info iterator=$results}
-			{page_links anchor="results" iterator=$results name="search" query=$query}
+			{page_links anchor="results" iterator=$results name="search" query=$query searchContext=$searchContext authors=$authors dateFromMonth=$dateFromMonth dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateToMonth=$dateToMonth dateToDay=$dateToDay dateToYear=$dateToYear orderBy=$orderBy orderDir=$orderDir}
 		</div>
 	{/if}
 
