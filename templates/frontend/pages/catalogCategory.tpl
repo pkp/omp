@@ -15,10 +15,8 @@
  * @uses $subcategories array List of subcategories if they exist
  * @uses $alreadyShown array Array of monograph IDs which have already been
  *       displayed. These IDs are excluded from later sections.
- * @uses $prevPage int The previous page number
- * @uses $nextPage int The next page number
- * @uses $showingStart int The number of the first item on this page
- * @uses $showingEnd int The number of the last item on this page
+ * @uses $orderBy string Order option
+ * @uses $orderDir string When set, either 'asc' or 'desc'
  *}
 {include file="frontend/components/header.tpl" pageTitleTranslated=$category->getLocalizedTitle()|escape}
 
