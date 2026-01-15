@@ -201,18 +201,6 @@ class CatalogHandler extends PKPCatalogHandler
 
         $templateMgr->display('frontend/pages/catalogSeries.tpl');
         event(new UsageEvent(Application::ASSOC_TYPE_SERIES, $context, null, null, null, null, $series));
-        return;
-    }
-
-    /**
-     * @deprecated Since OMP 3.2.1, use pages/search instead.
-     *
-     * @param array $args
-     * @param Request $request
-     */
-    public function results($args, $request)
-    {
-        $request->redirect(null, 'search');
     }
 
     /**
