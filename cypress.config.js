@@ -1,6 +1,7 @@
 const { defineConfig } = require('cypress')
 
 module.exports = defineConfig({
+  chromeWebSecurity: false,
   env: {
     contextTitles: {
       en: 'Public Knowledge Press',
