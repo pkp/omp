@@ -57,6 +57,7 @@
 	<migration class="PKP\migration\install\EmailTemplateUserGroupAccessMigration"/>
 	<migration class="PKP\migration\install\UserCommentsMigration"/>
 	<migration class="PKP\migration\install\SubmissionSearchMigration" />
+	<migration class="PKP\migration\install\ReviewRoundAuthorResponse" />
 
 	<code function="createData" />
 	<code function="createConfig" />
