@@ -50,6 +50,8 @@ class OAIHandler extends Handler
      */
     public function index($args, $request)
     {
+        // Work around https://github.com/php/php-src/issues/20469
+        $junk1 = \APP\submission\Submission::STATUS_PUBLISHED;
         PluginRegistry::loadCategory('oaiMetadataFormats', true);
 
         $oai = new PressOAI(new OAIConfig($request->url(null, 'oai'), Config::getVar('oai', 'repository_id')));
