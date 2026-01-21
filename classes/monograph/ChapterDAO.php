@@ -170,6 +170,7 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
         $additionalFields[] = 'pub-id::publisher-id';
         $additionalFields[] = 'datePublished';
         $additionalFields[] = 'pages';
+        $additionalFields[] = 'chapterCitationsRaw';
         $additionalFields[] = 'isPageEnabled';
         $additionalFields[] = 'licenseUrl';
         return $additionalFields;

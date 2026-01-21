@@ -375,6 +375,40 @@ class OMPMigration extends \PKP\migration\Migration
             $table->unique(['author_id', 'chapter_id'], 'chapter_authors_pkey');
         });
 
+        Schema::create('chapter_citations', function (Blueprint $table) {
+            $table->comment('The citations associated with each submission chapter.');
+
+            $table->bigInteger('chapter_citation_id')->autoIncrement();
+            $table->bigInteger('chapter_id');
+            $table->text('raw_citation');
+            $table->bigInteger('seq')->default(0);
+
+            $table->foreign('chapter_id', 'citations_chapter')
+                ->references('chapter_id')
+                ->on('submission_chapters')
+                ->onDelete('cascade');
+            $table->index(['chapter_id'], 'citations_chapter');
+            $table->unique(['chapter_id', 'seq'], 'citations_chapter_seq');
+        });
+
+        Schema::create('chapter_citation_settings', function (Blueprint $table) {
+            $table->comment('Additional data about chapter citations, including localized content.');
+
+            $table->bigIncrements('chapter_citation_setting_id');
+            $table->bigInteger('chapter_citation_id');
+            $table->string('locale', 28)->default('');
+            $table->string('setting_name', 255);
+            $table->mediumText('setting_value')->nullable();
+            $table->string('setting_type', 6);
+
+            $table->foreign('chapter_citation_id', 'chapter_citation_settings_citation_id')
+                ->references('chapter_citation_id')
+                ->on('chapter_citations')
+                ->onDelete('cascade');
+            $table->index(['chapter_citation_id'], 'chapter_citation_settings_citation_id');
+            $table->unique(['chapter_citation_id', 'locale', 'setting_name'], 'chapter_citation_settings_unique');
+        });
+
         // Add doi_id to submission files
         Schema::table('submission_files', function (Blueprint $table) {
             $table->bigInteger('doi_id')->nullable();
