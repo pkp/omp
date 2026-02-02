@@ -47,7 +47,6 @@ use PKP\decision\types\SkipExternalReview;
 use PKP\plugins\Hook;
 use PKP\security\Role;
 use PKP\submission\reviewRound\ReviewRound;
-use PKP\submission\reviewRound\ReviewRoundDAO;
 
 class Schema extends \PKP\submission\maps\Schema
 {
@@ -93,10 +92,10 @@ class Schema extends \PKP\submission\maps\Schema
                     $output[$prop] = $this->getPropertyReviewRounds($reviewRounds);
                     break;
                 case 'revisionsRequested':
-                    $output[$prop] = $currentReviewRound && $currentReviewRound->getData('status') == ReviewRound::REVIEW_ROUND_STATUS_REVISIONS_REQUESTED;
+                    $output[$prop] = $currentReviewRound && $currentReviewRound->status == ReviewRound::REVIEW_ROUND_STATUS_REVISIONS_REQUESTED;
                     break;
                 case 'revisionsSubmitted':
-                    $output[$prop] = $currentReviewRound && $currentReviewRound->getData('status') == ReviewRound::REVIEW_ROUND_STATUS_REVISIONS_SUBMITTED;
+                    $output[$prop] = $currentReviewRound && $currentReviewRound->status == ReviewRound::REVIEW_ROUND_STATUS_REVISIONS_SUBMITTED;
                     break;
                 case 'featured':
                     $featureDao = DAORegistry::getDAO('FeatureDAO'); /** @var FeatureDAO $featureDao */
@@ -132,9 +131,9 @@ class Schema extends \PKP\submission\maps\Schema
      */
     protected function getReviewRoundsFromSubmission(Submission $submission): Collection
     {
-        $reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /** @var ReviewRoundDAO $reviewRoundDao */
-        return collect($reviewRoundDao->getBySubmissionId($submission->getId())->toIterator())
-            ->sortBy(fn ($item) => [$item->getData('stageId'), $item->getData('round')]);
+        return ReviewRound::withSubmissionIds([$submission->getId()])
+            ->get()
+            ->sortBy(fn (ReviewRound $item) => [$item->stageId, $item->round]);
     }
 
     /**
@@ -160,8 +159,7 @@ class Schema extends \PKP\submission\maps\Schema
 
         $decisionTypes = []; /** @var DecisionType[] $decisionTypes */
 
-        $reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /** @var ReviewRoundDAO $reviewRoundDao */
-        $reviewRound = $reviewRoundDao->getLastReviewRoundBySubmissionId($submission->getId(), $stageId);
+        $reviewRound = Repo::reviewRound()->getLastReviewRoundBySubmissionId($submission->getId(), $stageId);
 
         $isOnlyRecommending = $permissions['isOnlyRecommending'];
 
@@ -194,7 +192,7 @@ class Schema extends \PKP\submission\maps\Schema
                     ];
                     $cancelInternalReviewRound = new CancelInternalReviewRound();
 
-                    if ($cancelInternalReviewRound->canRetract($submission, $reviewRound->getId())) {
+                    if ($cancelInternalReviewRound->canRetract($submission, $reviewRound->id)) {
                         $decisionTypes[] = $cancelInternalReviewRound;
                     }
 
@@ -215,7 +213,7 @@ class Schema extends \PKP\submission\maps\Schema
                     ];
 
                     $cancelReviewRound = new CancelReviewRound();
-                    if ($cancelReviewRound->canRetract($submission, $reviewRound->getId())) {
+                    if ($cancelReviewRound->canRetract($submission, $reviewRound->id)) {
                         $decisionTypes[] = $cancelReviewRound;
                     }
                     if ($submission->getData('status') === Submission::STATUS_DECLINED) {

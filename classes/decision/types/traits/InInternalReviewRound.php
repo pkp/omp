@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/decision/types/traits/InInternalReviewRound.php
  *
@@ -78,7 +79,7 @@ trait InInternalReviewRound
 
         if ($reviewRound) {
             $reviewAssignments = Repo::reviewAssignment()->getCollector()
-                ->filterByReviewRoundIds([$reviewRound->getId()])
+                ->filterByReviewRoundIds([$reviewRound->id])
                 ->getMany()
                 ->toArray();
             $reviewerFiles = [];
