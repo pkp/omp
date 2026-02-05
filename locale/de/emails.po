@@ -1,9 +1,9 @@
 # Ljiljana Brkić <ljilja96@outlook.com>, 2023.
-# Pia Piontkowitz <pia.piontkowitz@rub.de>, 2023, 2025.
+# Pia Piontkowitz <pia.piontkowitz@rub.de>, 2023, 2025, 2026.
 # Renate Voget <renate.voget@hbz-nrw.de>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-12-24 18:15+0000\n"
+"PO-Revision-Date: 2026-02-05 20:26+0000\n"
 "Last-Translator: Pia Piontkowitz <pia.piontkowitz@rub.de>\n"
 "Language-Team: German <http://translate.pkp.sfu.ca/projects/omp/emails/de/>\n"
 "Language: de\n"
@@ -118,7 +118,7 @@ msgstr ""
 
 msgid "emails.editorAssign.body"
 msgstr ""
-"<p> Guten Tag {$recipientName},</p><p> der folgende Beitrag wurde Ihnen zur "
+"<p>Guten Tag {$recipientName},</p><p> der folgende Beitrag wurde Ihnen zur "
 "Durchführung des redaktionellen Prozesses zugewiesen.</p><p><a href=\""
 "{$submissionUrl}\">{$submissionTitle}</a><br "
 "/>{$authors}</p><p><b>Abstract</b></p>{$submissionAbstract}<p> Wenn Sie den "
@@ -321,7 +321,7 @@ msgstr "Ihre Einreichung wurde in das Lektorat geschickt"
 
 msgid "emails.editorDecisionSkipReview.body"
 msgstr ""
-"<p>Guten Tag{$recipientName},</p>\n"
+"<p>Guten Tag {$recipientName},</p>\n"
 "<p>ich freue mich, Ihnen mitteilen zu können, dass wir uns zur Annahme Ihrer "
 "Einreichung ohne weitere Begutachtung entschieden haben. Ihre Einreichung "
 "{$submissionTitle} hat unsere Erwartungen erfüllt und benötigt diesen daher "
