@@ -1,3 +1,1627 @@
 # Gantulga <cybermon@gmail.com>, 2026.
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2026-02-08 07:52+0000\n"
+"Last-Translator: Gantulga <cybermon@gmail.com>\n"
+"Language-Team: Mongolian <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"mn/>\n"
+"Language: mn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "manager.setup.announcements.success"
+msgstr "Зарлалын тохиргоог шинэчиллээ."
+
+msgid "manager.setup.coverage"
+msgstr "Хамрах хүрээ"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Эх бэлтгэлийн загварууд (Templates)"
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Хэвлэлийн газрын агуулгад хандах эрх"
+
+msgid "manager.setup.pressDescription"
+msgstr "Хэвлэлийн газрын хураангуй"
+
+msgid "manager.setup.useImageTitle"
+msgstr "Гарчиг зураг"
+
+msgid "manager.setup.genres"
+msgstr "Жанр (Төрөл)"
+
+msgid "manager.setup.newGenre"
+msgstr "Шинэ бүтээлийн жанр"
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Ангилал ба Цуврал"
+
+msgid "manager.setup.files"
+msgstr "Файлууд"
+
+msgid "manager.setup.productionTemplates"
+msgstr "Эх бэлтгэлийн загварууд"
+
+msgid "doi.displayName"
+msgstr "DOI"
+
+msgid "doi.editor.doiObjectTypeSubmissionFile"
+msgstr "файл"
+
+msgid "mailable.layoutComplete.name"
+msgstr "Эх бэлтгэл дууслаа"
+
+msgid "mailable.publicationVersionNotify.name"
+msgstr "Шинэ хувилбар үүсгэгдлээ"
+
+msgid "mailable.publicationVersionNotify.description"
+msgstr ""
+"Илгээлтийн шинэ хувилбар үүсэх үед томилогдсон редакторуудад автоматаар "
+"мэдэгдэх имэйл."
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"Энэ нь тухайн хэлэнд зориулж өмнө нь хийсэн хэвлэлийн газрын тусгай "
+"тохиргоог дарж бичих болно"
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Уучлаарай, нэмэлт хэл байхгүй байна. Хэрэв та энэ хэвлэлийн газарт нэмэлт "
+"хэл ашиглахыг хүсвэл сайтын администратортой холбогдоно уу."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Энэ нь хэвлэлийн газрын вэб сайтын үндсэн хэл байх болно."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Цувралын редакторын оноолт бүрт дор хаяж нэг чагтыг чагталсан эсэхийг "
+"шалгана уу."
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Хүчинтэй хяналтын маягт сонгосон эсэхээ шалгана уу."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Хэвлэлийн газрын индексжүүлэлтэд орохгүй"
+
+msgid "manager.series.editorRestriction"
+msgstr ""
+"Бичлэгийг зөвхөн Ерөнхий редактор болон Цувралын редакторууд илгээх "
+"боломжтой."
+
+msgid "manager.series.confirmDelete"
+msgstr "Та энэ цувралыг бүрмөсөн устгахдаа итгэлтэй байна уу?"
+
+msgid "manager.series.indexed"
+msgstr "Индексжүүлсэн"
+
+msgid "manager.series.open"
+msgstr "Илгээлтэд нээлттэй"
+
+msgid "manager.series.readingTools"
+msgstr "Унших хэрэгсэл"
+
+msgid "manager.series.submissionReview"
+msgstr "Хөндлөнгийн хяналт хийгдэхгүй"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Энэ цувралд ирсэн илгээлтүүд"
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Хураангуй шаардахгүй"
+
+msgid "manager.series.disableComments"
+msgstr "Энэ цувралын бүтээлүүдэд уншигчийн сэтгэгдэл үлдээхийг идэвхгүй болгох."
+
+msgid "manager.series.book"
+msgstr "Номын цуврал"
+
+msgid "manager.series.create"
+msgstr "Цуврал үүсгэх"
+
+msgid "manager.series.policy"
+msgstr "Цувралын тайлбар"
+
+msgid "manager.series.assigned"
+msgstr "Энэ цувралын редакторууд"
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Боломжит цувралын редакторуудаас энэ цувралд редактор нэмнэ үү. Нэмснийхээ "
+"дараа тухайн редактор энэ цувралд ирэх илгээлтийн ХЯНАЛТ (peer review) болон/"
+"эсвэл ЗАСВАРЛАХ (хянан тохиолдуулга, эх бэлтгэл, үсгийн алдаа шалгах) үйл "
+"явцыг хариуцах эсэхийг зааж өгнө үү. Цувралын редакторыг Хэвлэлийн газрын "
+"удирдлага доторх Үүрэг хэсгийн <a href=\"{$seriesEditorsUrl}\">Цувралын "
+"редакторууд</a> дээр дарж үүсгэж болно."
+
+msgid "manager.series.hideAbout"
+msgstr "Энэ цувралыг 'Хэвлэлийн газрын тухай' хэсгээс хасах."
+
+msgid "manager.series.unassigned"
+msgstr "Боломжит цувралын редакторууд"
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "Цувралын товчилсон нэр шаардлагатай."
+
+msgid "manager.series.form.titleRequired"
+msgstr "Цувралын гарчиг шаардлагатай."
+
+msgid "manager.series.noneCreated"
+msgstr "Цуврал үүсгээгүй байна."
+
+msgid "manager.series.existingUsers"
+msgstr "Одоо байгаа хэрэглэгчид"
+
+msgid "manager.series.seriesTitle"
+msgstr "Цувралын гарчиг"
+
+msgid "manager.series.restricted"
+msgstr "Зохиогчид энэ цуврал руу шууд илгээлт хийхийг зөвшөөрөхгүй."
+
+msgid "manager.sections.alertDelete"
+msgstr ""
+"Энэ цувралыг устгахын өмнө үүнтэй холбоотой илгээлтүүдийг өөр цуврал руу "
+"шилжүүлэх ёстой."
+
+msgid "manager.payment.generalOptions"
+msgstr "Ерөнхий сонголтууд"
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Энэ хэвлэлийн газрын төлбөрийг идэвхжүүлнэ. Төлбөр хийхийн тулд хэрэглэгчид "
+"нэвтэрсэн байх шаардлагатайг анхаарна уу."
+
+msgid "manager.payment.success"
+msgstr "Төлбөрийн тохиргоо шинэчлэгдлээ."
+
+msgid "manager.settings"
+msgstr "Тохиргоо"
+
+msgid "manager.settings.pressSettings"
+msgstr "Хэвлэлийн газрын тохиргоо"
+
+msgid "manager.settings.press"
+msgstr "Хэвлэлийн газар"
+
+msgid "manager.settings.publisher.identity"
+msgstr "Хэвлэн нийтлэгчийн таних мэдээлэл"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Хүчинтэй <a href=\"https://en.wikipedia.org/wiki/ONIX_for_Books\">ONIX мета "
+"өгөгдөл</a> нийтлэхийн тулд эдгээр талбарууд шаардлагатай."
+
+msgid "manager.settings.publisher"
+msgstr "Хэвлэлийн газрын нэр"
+
+msgid "manager.settings.location"
+msgstr "Газарзүйн байршил"
+
+msgid "manager.settings.publisherCode"
+msgstr "Хэвлэн нийтлэгчийн код"
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Хэвлэн нийтлэгчийн кодын төрөл"
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Энэ нь хүчинтэй хэвлэн нийтлэгчийн кодын төрөл биш байна."
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Түгээх үйл явцтай холбоотой бүх тохиргоо (мэдэгдэл, индексжүүлэлт, архивлах, "
+"төлбөр тооцоо, унших хэрэгсэл)."
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Нэг сэдэвт бүтээлийн файл татсан тоо"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Нэг сэдэвт бүтээлийн хураангуй үзсэн тоо"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Нэг сэдэвт бүтээлийн хураангуй үзсэн болон татсан тоо"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Цувралын нүүр хуудас үзсэн тоо"
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Хэвлэлийн газрын нүүр хуудас үзсэн тоо"
+
+msgid "manager.tools"
+msgstr "Хэрэгслүүд"
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Өгөгдөл импортлох, экспортлох бүх хэрэгслүүд (хэвлэлийн газрууд, нэг сэдэвт "
+"бүтээлүүд, хэрэглэгчид)"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Ашиглалтын статистиктай холбоотой тайлан гаргах хэрэгслүүд (каталогийн "
+"индекс хуудас, бүтээлийн хураангуй үзсэн тоо, файл татсан тоо)"
+
+msgid "manager.users.availableRoles"
+msgstr "Боломжит үүрэгүүд"
+
+msgid "manager.users.currentRoles"
+msgstr "Одоогийн үүрэгүүд"
+
+msgid "manager.users.selectRole"
+msgstr "Үүрэг сонгох"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Энэ хэвлэлийн газарт бүртгэлтэй хэрэглэгчид"
+
+msgid "manager.people.allPresses"
+msgstr "Бүх хэвлэлийн газрууд"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Энэ сайтын хэрэглэгчийг энэ хэвлэлийн газарт бүртгэх"
+
+msgid "manager.people.allUsers"
+msgstr "Бүх бүртгэлтэй хэрэглэгчид"
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Энэ хэрэглэгчийг хэвлэлийн газраас хасах уу? Энэ үйлдэл нь хэрэглэгчийг энэ "
+"хэвлэлийн газар дахь бүх үүргээс нь чөлөөлөх болно."
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Системд байгаа хэрэглэгчийг бүртгэх"
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Дараах хэвлэлийн газраас"
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Өөр хэрэглэгчийн данстай нэгтгэх хэрэглэгчийг сонгоно уу (жишээ нь нэг хүн "
+"хоёр данстай болсон үед). Эхний сонгосон данс устаж, түүний илгээлт, "
+"даалгаврууд нь хоёр дахь дансанд шилжих болно."
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Өмнөх хэрэглэгчийн зохиогчийн эрх, засварлах даалгавар зэргийг шилжүүлэн "
+"авах хэрэглэгчийг сонгоно уу."
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"Бүртгэл синхрончлох нь заасан хэвлэлийн газрын заасан үүрэг бүхий бүх "
+"хэрэглэгчдийг энэ хэвлэлийн газрын ижил үүрэгт бүртгэх болно. Энэ функц нь "
+"хянагч нарын нэгдсэн санг хэвлэлийн газруудын хооронд ижилсүүлэх боломжийг "
+"олгодог."
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Энэ хэрэглэгчийг идэвхгүй болгох уу? Энэ нь хэрэглэгчийг системд нэвтрэх "
+"боломжгүй болгоно.\n"
+"\n"
+"Та хэрэглэгчид бүртгэлийг нь идэвхгүй болгосон шалтгааныг тайлбарлаж болно."
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Уучлаарай, танд энэ хэрэглэгчийг удирдах захиргааны эрх байхгүй байна. "
+"Шалтгаан нь:\n"
+"\t\t<ul>\n"
+"\t\t\t<li>Хэрэглэгч нь сайтын администратор байна</li>\n"
+"\t\t\t<li>Хэрэглэгч таны удирддаггүй өөр хэвлэлийн газруудад идэвхтэй "
+"байна</li>\n"
+"\t\t</ul>\n"
+"\tЭнэ даалгаврыг сайтын администратор гүйцэтгэх ёстой.\n"
+"\t"
+
+msgid "manager.system"
+msgstr "Системийн тохиргоо"
+
+msgid "manager.system.archiving"
+msgstr "Архивлах"
+
+msgid "manager.system.reviewForms"
+msgstr "Хяналтын маягтууд"
+
+msgid "manager.system.readingTools"
+msgstr "Унших хэрэгсэл"
+
+msgid "manager.system.payments"
+msgstr "Төлбөрүүд"
+
+msgid "user.authorization.pluginLevel"
+msgstr "Танд энэ нэмэгдлийг (plugin) удирдах хангалттай эрх байхгүй байна."
+
+msgid "manager.pressManagement"
+msgstr "Хэвлэлийн газрын удирдлага"
+
+msgid "manager.setup"
+msgstr "Тохиргоо"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Агуулга"
+
+msgid "manager.setup.addAboutItem"
+msgstr "About-д зүйл нэмэх"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Хяналтын хуудасны зүйл нэмэх"
+
+msgid "manager.setup.addItem"
+msgstr "Зүйл нэмэх"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "\"Хэвлэлийн газрын тухай\" хэсэгт харагдах зүйл нэмэх"
+
+msgid "manager.setup.addNavItem"
+msgstr "Цэсний зүйл нэмэх"
+
+msgid "manager.setup.addSponsor"
+msgstr "Ивээн тэтгэгч байгууллага нэмэх"
+
+msgid "manager.setup.announcements"
+msgstr "Зарлал"
+
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Хэвлэлийн газрын мэдээ, үйл явдлыг уншигчдад мэдээлэх зорилгоор зарлал "
+"нийтэлж болно. Нийтлэгдсэн зарлалууд 'Зарлал' хуудсан дээр харагдана."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Нэмэлт мэдээлэл"
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr "Зарлалын хуудсан дээр уншигчдад харуулах нэмэлт мэдээллийг оруулна уу."
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Хэвлэлийн газрын тухай хэсэгт харагдах) "
+
+msgid "manager.setup.contextAbout"
+msgstr "Хэвлэлийн газрын тухай"
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Уншигчид, зохиогчид эсвэл хянагч нарын сонирхлыг татаж болох хэвлэлийн "
+"газрынхаа талаарх бүх мэдээллийг оруулна уу. Үүнд нээлттэй хандалтын "
+"бодлого, зорилго, хамрах хүрээ, ивээн тэтгэлэг, түүх зэргийг багтааж болно."
+
+msgid "manager.setup.contextSummary"
+msgstr "Хэвлэлийн газрын хураангуй"
+
+msgid "manager.setup.contextSummary.description"
+msgstr "Хэвлэлийн газрынхаа агуулга, зорилгын талаар товч тайлбар оруулна уу."
+
+msgid "manager.setup.copyediting"
+msgstr "Хянан тохиолдуулагчид"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Хянан тохиолдуулах заавар"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+"Хянан тохиолдуулах зааварчилгаа нь илгээлтийг засварлах шатанд хянан "
+"тохиолдуулагч, зохиогч, цувралын редакторуудад харагдах болно. Доорх нь HTML "
+"форматтай үндсэн зааварчилгаа бөгөөд үүнийг Хэвлэлийн газрын менежер хүссэн "
+"үедээ өөрчилж эсвэл сольж болно."
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Зохиогчийн эрхийн мэдэгдэл"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Нүүр зургийн дээд өндөр"
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Нүүр зургийн дээд өргөн"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Зураг нь энэ хэмжээнээс том байвал жижигрүүлж харуулах боловч хэзээ ч эдгээр "
+"хэмжээс рүү сунгаж томруулахгүй."
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Алхам 5. Харагдах байдлыг тохируулах"
+
+msgid "manager.setup.customTags"
+msgstr "Тусгай тагууд (Custom tags)"
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Хуудас бүрийн толгой хэсэгт (header) оруулах тусгай HTML тагууд (жишээ нь: "
+"META тагууд)."
+
+msgid "manager.setup.details"
+msgstr "Дэлгэрэнгүй"
+
+msgid "manager.setup.details.description"
+msgstr ""
+"Хэвлэлийн газрын нэр, холбоо барих мэдээлэл, ивээн тэтгэгч, хайлтын систем."
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+"Хэвлэлийн газрын менежер бүх хэрэглэгчдийг бүртгэнэ. Редакторууд эсвэл "
+"цувралын редакторууд хянагч нарын бүртгэлийг үүсгэж болно."
+
+msgid "manager.setup.discipline"
+msgstr "Эрдэм шинжилгээний салбар ба дэд салбарууд"
+
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Хэвлэлийн газар олон салбарыг хамардаг эсвэл зохиогчид салбар дундын бүтээл "
+"илгээдэг тохиолдолд хэрэгтэй."
+
+msgid "manager.setup.disciplineExamples"
+msgstr "(Ж.нь: Түүх; Боловсрол; Социологи; Сэтгэл судлал; Соёл судлал; Хууль)"
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr ""
+"Энэ хэвлэлийн газарт хамаарах эрдэм шинжилгээний салбаруудын жишээг оруулна "
+"уу"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr ""
+"Одоогийн нэг сэдэвт бүтээлийн гарчгийн жагсаалтыг нэмэх (хэрэв боломжтой "
+"бол)."
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Нүүр хуудасны агуулга"
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Нүүр хуудсан дээр онцлох номуудыг харуулах"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Онцлох номууд"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Нүүр хуудсан дээр шинэ бүтээлүүдийг харуулах"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Шинэ бүтээлүүд"
+
+msgid "manager.setup.enableDois.description"
+msgstr ""
+"Энэ хэвлэлийн газраас нийтлэгдэж буй бүтээлүүдэд Дижитал Объект Танигч (DOI) "
+"оноохыг зөвшөөрөх."
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr ""
+"Энэ хэвлэлийн газраас нийтлэгдэж буй бүтээлүүдийн DOI оноох төрлүүдийг "
+"сонгоно уу. Ихэнхдээ нэг сэдэвт бүтээл/бүлэгт DOI оноодог боловч та "
+"нийтлэгдсэн бүх бичлэгт оноохоор сонгож болно."
+
+msgid "doi.manager.settings.doiSuffixLegacy"
+msgstr ""
+"Үндсэн загваруудыг ашиглах.<br />Нэг сэдэвт бүтээлд: %p.%m<br />Бүлэгт: "
+"%p.%m.c%c<br />Нийтлэх форматад: %p.%m.%f<br />Файлд: %p.%m.%f.%s."
+
+msgid "doi.manager.settings.doiCreationTime.copyedit"
+msgstr "Хянан тохиолдуулах шатанд хүрэх үед"
+
+msgid "manager.dois.disabledChaptersDescription"
+msgstr "Тусдаа нүүр хуудасгүй (landing page) бүлгүүдэд DOI оноох боломжгүй."
+
+msgid "manager.dois.formatIdentifier.file"
+msgstr "Формат / {$format}"
+
+msgid "manager.setup.editorDecision"
+msgstr "Редакторын шийдвэр"
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Буцаах хаяг (Bounce Address)"
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr "Хүргэгдээгүй имэйлүүдийн алдааны мэдэгдэл энэ хаяг руу очих болно."
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Хүргэгдээгүй имэйлийг буцаах хаяг руу илгээхийн тулд сайтын администратор "
+"сайтын тохиргооны файлд <code>allow_envelope_sender</code> сонголтыг "
+"идэвхжүүлсэн байх ёстой. OMP баримт бичигт заасны дагуу серверийн тохиргоо "
+"шаардлагатай байж болно."
+
+msgid "manager.setup.emails"
+msgstr "Имэйлийн таних мэдээлэл"
+
+msgid "manager.setup.emailSignature"
+msgstr "Гарын үсэг"
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"Хэвлэлийн газрын нэрийн өмнөөс автоматаар илгээгдэх имэйлүүдийн төгсгөлд "
+"дараах гарын үсэг нэмэгдэнэ."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Зарлалыг идэвхжүүлэх"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Уншигчдад мэдээ, үйл явдлыг мэдээлэх зорилгоор зарлал нийтэлж болно. "
+"Нийтлэгдсэн зарлалууд Зарлалын хуудсан дээр харагдана."
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Нүүр хуудсан дээр харуулах"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Нүүр хуудсан дээр хэдэн зарлал харуулах вэ. Харуулахгүй бол хоосон үлдээнэ "
+"үү."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Энэ хэвлэлийн газрыг сайт дээр нээлттэй харагдуулахыг зөвшөөрөх"
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr ""
+"Нийтлэгдсэн бүтээлүүдийг танихад тусгай танигч (custom identifier) ашиглана."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+"Нийтлэгдсэн бүтээлүүдийн эх бэлтгэлийг (жишээ нь HTML эсвэл PDF файл) "
+"танихад тусгай танигч ашиглана."
+
+msgid "manager.setup.enableUserRegistration"
+msgstr "Зочид хэвлэлийн газарт хэрэглэгчийн бүртгэл үүсгэх боломжтой."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Хэвлэлийн газрын зорилго ба хамрах хүрээ"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr ""
+"Зохиогч, уншигч, номын санчдад зориулж хэвлэлийн газрын нийтлэх нэг сэдэвт "
+"бүтээл болон бусад материалын хүрээг тайлбарлана уу."
+
+msgid "manager.setup.focusScope"
+msgstr "Зорилго ба Хамрах хүрээ"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>ЖИШЭЭ HTML ӨГӨГДӨЛ</strong>"
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Зохиогчид бүтээлээ индексжүүлэхэд зориулав"
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"OMP нь электрон судалгааны нөөцүүдэд дэлхийн хэмжээнд сайн индексжүүлсэн "
+"хандалтыг олгох шинэ стандарт болох <a href=\"https://www.openarchives.org\" "
+"target=\"_blank\">Open Archives Initiative</a> Мета өгөгдөл цуглуулах "
+"протоколыг дагаж мөрддөг. Зохиогчид бүтээлээ илгээхдээ ижил төстэй загварыг "
+"ашиглан мета өгөгдөл оруулна. Хэвлэлийн газрын менежер индексжүүлэх ангиллыг "
+"сонгож, зохиогчдод бүтээлээ индексжүүлэхэд нь туслах холбогдох жишээнүүдийг "
+"оруулж, нэр томьёог цэгтэй таслалаар тусгаарлана (ж.нь: term1; term2). "
+"Бичлэгүүдийг \"Ж.нь,\" эсвэл \"Жишээ нь,\" гэж эхлүүлэн оруулах хэрэгтэй."
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "Үндсэн холбоо барих имэйл хаяг шаардлагатай."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Үндсэн холбоо барих хүний нэр шаардлагатай."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Илгээлт бүрт оноох хянагчийн тоо шаардлагатай."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "Техник дэмжлэгийн имэйл хаяг шаардлагатай."
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Техник дэмжлэгийн хүний нэр шаардлагатай."
+
+msgid "manager.setup.generalInformation"
+msgstr "Ерөнхий мэдээлэл"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Алхам 1. Дэлгэрэнгүй мэдээлэл оруулах"
+
+msgid "manager.setup.guidelines"
+msgstr "Удирдамж"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Алхам 3. Ажлын урсгалыг бэлтгэх"
+
+msgid "manager.setup.identity"
+msgstr "Хэвлэлийн газрын тодорхойлолт"
+
+msgid "manager.setup.information"
+msgstr "Мэдээлэл"
+
+msgid "manager.setup.information.description"
+msgstr ""
+"Номын санчид, ирээдүйн зохиогчид болон уншигчдад зориулсан хэвлэлийн газрын "
+"товч тайлбар. Эдгээр нь 'Мэдээлэл' блок нэмэгдсэн үед сайтын хажуугийн "
+"хэсэгт харагдана."
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Зохиогчдод"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Номын санчдад"
+
+msgid "manager.setup.information.forReaders"
+msgstr "Уншигчдад"
+
+msgid "manager.setup.information.success"
+msgstr "Энэ хэвлэлийн газрын мэдээллийг шинэчиллээ."
+
+msgid "manager.setup.institution"
+msgstr "Байгууллага"
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Хуудас дахь зүйлийн тоо"
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Жагсаалтад нэг хуудсанд харуулах зүйлсийн (илгээлт, хэрэглэгч, эсвэл "
+"засварлах даалгавар) тоог хязгаарлах."
+
+msgid "manager.setup.labelName"
+msgstr "Шошгоны нэр"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Эх бэлтгэлийн редакторууд"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Эх бэлтгэлийн заавар"
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"Эх бэлтгэлийн зааварчилгааг хэвлэлийн газрын нийтлэх бичлэгүүдийн "
+"хэлбэржүүлэлтэд зориулан бэлтгэж, доор HTML эсвэл энгийн текстээр оруулж "
+"болно. Эдгээр нь илгээлт бүрийн засварлах хуудсан дээр Эх бэлтгэлийн "
+"редактор болон Цувралын редакторт харагдах болно. (Хэвлэлийн газар бүр "
+"өөрийн гэсэн файлын формат, ном зүйн стандарт, загварын файл зэргийг ашиглаж "
+"болох тул үндсэн зааварчилгаа байхгүй болно.)"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"Хэвлэлийн газарт нийтлэгддэг стандарт форматууд (ж.нь: нэг сэдэвт бүтээл, "
+"номын шүүмж г.м) бүрт зориулсан загвар файлыг дурын форматтайгаар (ж.нь: "
+"pdf, doc г.м) хуулж болно. Эдгээр загварт үсгийн маяг, хэмжээ, захын зай "
+"зэргийг зааж өгснөөр Эх бэлтгэлийн редактор болон Үсгийн алдаа шалгагч нарт "
+"заавар болно."
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Загвар файл"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Гарчиг"
+
+msgid "manager.setup.lists"
+msgstr "Жагсаалтууд"
+
+msgid "manager.setup.lists.success"
+msgstr "Жагсаалтын тохиргоог шинэчиллээ."
+
+msgid "manager.setup.look"
+msgstr "Харагдах байдал"
+
+msgid "manager.setup.look.description"
+msgstr ""
+"Нүүр хуудасны толгой, агуулга, хэвлэлийн газрын толгой, хөл, навигацийн цэс, "
+"загварын файл."
+
+msgid "manager.setup.settings"
+msgstr "Тохиргоо"
+
+msgid "manager.setup.management.description"
+msgstr ""
+"Хандалт ба аюулгүй байдал, төлөвлөлт, зарлал, хянан тохиолдуулах, эх "
+"бэлтгэл, үсгийн алдаа шалгах."
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Редакцийн үндсэн алхмуудын удирдлага"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Удирдлага болон нийтлэх тохиргоо"
+
+msgid "manager.setup.managingThePress"
+msgstr "Алхам 4. Тохиргоог удирдах"
+
+msgid "manager.setup.masthead.success"
+msgstr "Энэ хэвлэлийн газрын бүрэлдэхүүний мэдээллийг шинэчиллээ."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Зургийн файл хуулаагүй байна."
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Загварын файл хуулаагүй байна."
+
+msgid "manager.setup.note"
+msgstr "Тэмдэглэл"
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+"Зохиогчид мэдэгдэх имэйлийг ашиглахдаа зөвхөн илгээлт хийсэн хэрэглэгч биш, "
+"олон зохиогчтой илгээлтийн бүх хамтран зохиогчдын имэйл хаягийг багтаана."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr ""
+"Хянан тохиолдуулах ажлыг тухайн илгээлтэд оноогдсон Редактор эсвэл Цувралын "
+"редактор гүйцэтгэнэ."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+"Тухайн илгээлтэд оноогдсон Редактор эсвэл Цувралын редактор HTML, PDF зэрэг "
+"файлуудыг бэлтгэнэ."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr ""
+"Тухайн илгээлтэд оноогдсон Редактор эсвэл Цувралын редактор эх бэлтгэлийг "
+"шалгана."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Хуудасны холбоосууд"
+
+msgid "manager.setup.numPageLinks.description"
+msgstr "Жагсаалтад харуулах дараагийн хуудасны холбоосын тоог хязгаарлах."
+
+msgid "manager.setup.onlineIssn"
+msgstr "Онлайн ISSN"
+
+msgid "manager.setup.policies"
+msgstr "Бодлогууд"
+
+msgid "manager.setup.policies.description"
+msgstr ""
+"Зорилго, хөндлөнгийн хяналт, салбар хэсгүүд, нууцлал, аюулгүй байдал, нэмэлт "
+"мэдээлэл."
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "Нууцлалын мэдэгдлийг шинэчиллээ."
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+"Хэвлэлийн газрын харагдах байдлын янз бүрийн бүрэлдэхүүн хэсгүүдийг энэ "
+"хуудаснаас тохируулж болно. Үүнд толгой ба хөл хэсэг, загвар, сэдэв, "
+"хэрэглэгчдэд мэдээллийн жагсаалтыг хэрхэн харуулах зэрэг багтана."
+
+msgid "manager.setup.pressDescription.description"
+msgstr "Танай хэвлэлийн газрын товч тайлбар."
+
+msgid "manager.setup.aboutPress"
+msgstr "Хэвлэлийн газрын тухай"
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+"Уншигчид, зохиогчид эсвэл хянагч нарын сонирхлыг татаж болох хэвлэлийн "
+"газрынхаа талаарх бүх мэдээллийг оруулна уу. Үүнд нээлттэй хандалтын "
+"бодлого, зорилго ба хамрах хүрээ, зохиогчийн эрхийн мэдэгдэл, ивээн "
+"тэтгэлэг, түүх, нууцлалын мэдэгдэл зэргийг багтааж болно."
+
+msgid "manager.setup.pressArchiving"
+msgstr "Архивлах"
+
+msgid "manager.setup.homepageContent"
+msgstr "Хэвлэлийн газрын нүүр хуудасны агуулга"
+
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+"Хэвлэлийн газрын нүүр хуудас үндсэн тохиргоогоор навигацийн холбоосуудаас "
+"бүрддэг. Доорх сонголтуудын аль нэгийг эсвэл бүгдийг нь ашиглан нэмэлт "
+"агуулгыг заасан дарааллаар оруулж болно."
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Хэвлэлийн газрын нүүр хуудасны агуулга"
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr ""
+"Хэвлэлийн газрын нүүр хуудас үндсэн тохиргоогоор навигацийн холбоосуудаас "
+"бүрддэг. Доорх сонголтуудын аль нэгийг эсвэл бүгдийг нь ашиглан нэмэлт "
+"агуулгыг заасан дарааллаар оруулж болно."
+
+msgid "manager.setup.contextInitials"
+msgstr "Товчилсон нэр"
+
+msgid "manager.setup.selectCountry"
+msgstr ""
+"Хэвлэлийн газар байрлаж буй улс эсвэл хэвлэн нийтлэгчийн шуудангийн хаяг "
+"хамаарах улсыг сонгоно уу."
+
+msgid "manager.setup.layout"
+msgstr "Бүтэц (Layout)"
+
+msgid "manager.setup.pageHeader"
+msgstr "Хуудасны толгой"
+
+msgid "manager.setup.pressPolicies"
+msgstr "Алхам 2. Бодлогууд"
+
+msgid "manager.setup.pressSetup"
+msgstr "Тохиргоо"
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Хэвлэлийн газрын тохиргоо шинэчлэгдлээ."
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Загварын файлын формат хүчингүй байна. Зөвхөн .css зөвшөөрөгдөнө."
+
+msgid "manager.setup.pressTheme"
+msgstr "Загвар (Theme)"
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Жижиг зураг (Thumbnail)"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr "Хэвлэлийн газруудын жагсаалтад ашиглагдах жижиг лого эсвэл дүрслэл."
+
+msgid "manager.setup.contextTitle"
+msgstr "Хэвлэлийн газрын нэр"
+
+msgid "manager.setup.printIssn"
+msgstr "Хэвлэмэл ISSN"
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Үсгийн алдаа шалгах заавар"
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr ""
+"Үсгийн алдаа шалгах зааварчилгаа нь илгээлтийг засварлах шатанд үсгийн алдаа "
+"шалгагч, зохиогч, эх бэлтгэлийн редактор, цувралын редакторуудад харагдах "
+"болно. Доорх нь HTML форматтай үндсэн зааварчилгаа бөгөөд үүнийг Хэвлэлийн "
+"газрын менежер хүссэн үедээ өөрчилж эсвэл сольж болно."
+
+msgid "manager.setup.proofreading"
+msgstr "Үсгийн алдаа шалгагчид"
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Эх бэлтгэлийн редакторуудад зааварчилгаа өгөх."
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr ""
+"Хэвлэлийн газрын бичлэгүүдийг нэг сэдэвт бүтээл болгон багцаар нь нийтлэх, "
+"эсвэл бэлэн болмогц нь 'одоогийн' ботийн гарчгийн жагсаалтад нэмж шууд "
+"нийтлэх боломжтой. Сэтгүүлийн тухай хэсэгт энэ хэвлэлийн газрын ашиглах "
+"систем болон нийтлэх давтамжийн талаар мэдээлнэ үү."
+
+msgid "manager.setup.publisher"
+msgstr "Хэвлэн нийтлэгч"
+
+msgid "manager.setup.publisherDescription"
+msgstr ""
+"Хэвлэлийн газрыг эрхлэн гаргаж буй байгууллагын нэр 'Хэвлэлийн газрын тухай' "
+"хэсэгт харагдах болно."
+
+msgid "manager.setup.referenceLinking"
+msgstr "Ишлэл холбох"
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Ишлэл холбоход зориулсан эх бэлтгэлийн зааварчилгаа"
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr ""
+"Нээлттэй хандалтын агуулгыг үзэхийн тулд хэрэглэгчид бүртгүүлж, нэвтрэх "
+"ёстой."
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr ""
+"Хэвлэлийн газрын вэб сайтыг үзэхийн тулд хэрэглэгчид бүртгүүлж, нэвтрэх "
+"ёстой."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Хөндлөнгийн хяналтын удирдамж"
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr ""
+"Хөндлөнгийн хянагч нарт тухайн илгээлт нийтлэгдэхэд тохиромжтой эсэхийг "
+"үнэлэх шалгууруудыг өгөх бөгөөд үүнд үр дүнтэй хяналт бэлтгэх зааварчилгааг "
+"багтааж болно. Хянагч нарт зохиогч болон редакторт зориулсан сэтгэгдэл, мөн "
+"зөвхөн редакторт зориулсан тусдаа сэтгэгдэл бичих боломж олгоно."
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Дотоод хяналтын удирдамж"
+
+msgid "manager.setup.reviewOptions"
+msgstr "Хяналтын сонголтууд"
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Автомат имэйл сануулга"
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr "Редакторууд хяналт бүрийн дараа хянагч нарыг таван оноогоор үнэлнэ."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Файл хандалтыг хязгаарлах"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr ""
+"Хянагч хяналтыг хийхийг зөвшөөрөх хүртэл илгээх файл руу хандах эрх өгөхгүй."
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Хянагчийн хандалт"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Нэг товшилтоор хандах (One-click Access)"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr "Хянагч нарт илгээх имэйл урилгад аюулгүй холбоос багтаах."
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Хянагчийн үнэлгээ"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Хянагчийн сануулга"
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Хяналтын бодлого"
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Хайлтын системүүд илэрцэд харуулах боломжтой хэвлэлийн газрын товч тайлбар "
+"(50-300 тэмдэгт)."
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Хайлтын системийн индексжүүлэлт"
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr ""
+"Google зэрэг хайлтын системүүдэд танай сайтыг олоход туслах. Та өөрийн <a "
+"href=\"{$sitemapUrl}\" target=\"_blank\">sitemap</a>-аа илгээхийг зөвлөж "
+"байна."
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr "Хайлтын системийн индексжүүлэлтийн тохиргоог шинэчиллээ."
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Салбар хэсгүүд болон редакторууд"
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr ""
+"(Хэрэв салбар хэсэг нэмээгүй бол бичлэгүүд үндсэн 'Нэг сэдэвт бүтээл' хэсэгт "
+"илгээгдэнэ.)"
+
+msgid "manager.setup.securitySettings"
+msgstr "Хандалт ба Аюулгүй байдлын тохиргоо"
+
+msgid "manager.setup.securitySettings.note"
+msgstr ""
+"Аюулгүй байдал болон хандалттай холбоотой бусад сонголтуудыг <a href=\""
+"{$accessAndSecurityUrl}\" target=\"_blank\" class=\"action\">Хандалт ба "
+"Аюулгүй байдал</a> хуудсаас тохируулж болно."
+
+msgid "manager.setup.selectEditorDescription"
+msgstr "Редакцийн үйл явцыг хариуцан ажиллах редактор."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr "Бичлэгийг хамааруулан үзэх цуврал."
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr ""
+"Эх бэлтгэлийн холбоосуудыг үргэлж харуулж, хязгаарлагдмал хандалтыг заах."
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Сайтын хандалт"
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Бүтээлийн агуулгыг үзэх"
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Хэвлэлийн газрын вэб сайт үүсгэх таван алхам"
+
+msgid "manager.setup.subjectExamples"
+msgstr ""
+"(Ж.нь: Фотосинтез; Хар нүх; Дөрвөн өнгөт газрын зургийн асуудал; Байесын "
+"онол)"
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Түлхүүр үгс"
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr "Зохиогчдод заавар болгож түлхүүр үг эсвэл сэдвүүдийн жишээ оруулна уу"
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Илгээлт хийх удирдамж"
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "Хяналтын хуудасны зүйл шаардлагатай."
+
+msgid "manager.setup.workflow"
+msgstr "Ажлын урсгал"
+
+msgid "manager.setup.submissions.description"
+msgstr "Зохиогчийн удирдамж, зохиогчийн эрх, индексжүүлэлт."
+
+msgid "manager.setup.typeExamples"
+msgstr ""
+"(Ж.нь: Түүхэн судалгаа; Туршилт; Уран зохиолын дүн шинжилгээ; "
+"Судалгаа/Ярилцлага)"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Төрөл (Арга зүй/Хандлага)"
+
+msgid "manager.setup.typeProvideExamples"
+msgstr "Энэ салбарын судалгааны төрөл, арга зүй, хандлагын жишээг оруулна уу"
+
+msgid "manager.setup.useCopyeditors"
+msgstr "Илгээлт бүр дээр Хянан тохиолдуулагч томилж ажиллуулна."
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "Хэвлэлийн газар редакцийн/хяналтын зөвлөлтэй байна."
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Хэвлэлийн газрын загварын файл (CSS)"
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+"Бичлэгийг цахим хэлбэрээр нийтлэхэд HTML, PDF зэрэг файлуудыг бэлтгэх Эх "
+"бэлтгэлийн редактор томилно."
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+"Нийтлэхийн өмнө эх бэлтгэлийг шалгах (зохиогчийн хамт) Үсгийн алдаа шалгагч "
+"томилно."
+
+msgid "manager.setup.userRegistration"
+msgstr "Хэрэглэгчийн бүртгэл"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Гарчиг текст"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Жилд гарах боть"
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Формат"
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Формат сонгох ёстой."
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Энэ форматад нэр оноох ёстой."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Энэ нь биет (дижитал бус) формат уу?"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+"Энэ нийтлэх форматыг одоогоор аль нэг бүтээлд ашиглаж байгаа тул устгах "
+"боломжгүй."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Шинэ нийтлэх формат"
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+"Шинэ нийтлэх формат үүсгэхийн тулд доорх маягтыг бөглөөд 'Үүсгэх' товчийг "
+"дарна уу."
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Эдгээр жанрыг (төрөл) файл нэрлэхэд ашигладаг бөгөөд файл хуулах үед сонгох "
+"цэсэнд харагдана. ## тэмдэгтэй жанрууд нь хэрэглэгчид тухайн файлыг номыг "
+"бүхэлд нь (99Z) эсвэл тодорхой нэг бүлэгтэй (ж.нь 02) холбох боломж олгоно."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Энэ хэвлэлийн газар одоогоор илгээлт хүлээн авахгүй байна. Илгээлт хийхийг "
+"зөвшөөрөхийн тулд ажлын урсгалын тохиргоо руу орно уу."
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Хэрэглэгчдийг шинэ бүтээл илгээхийг зогсоох. Илгээлтийг цуврал бүрээр <a "
+"href=\"{$url}\">цувралын тохиргоо</a> хуудсан дээр идэвхгүй болгож болно."
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"Шинэ жанр үүсгэхийн тулд доорх маягтыг бөглөөд 'Үүсгэх' товчийг дарна уу."
+
+msgid "manager.setup.deleteSelected"
+msgstr "Сонгосныг устгах"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Үндсэн тохиргоог сэргээх"
+
+msgid "manager.setup.prospectus"
+msgstr "Төлөвлөгөөний заавар (Prospectus Guide)"
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"Төлөвлөгөөний зааварчилгаа нь зохиогчдод өөрсдийн ирүүлж буй материалыг "
+"хэвлэлийн газарт үнэ цэнийг нь тодорхойлоход туслах зорилготой баримт бичиг "
+"юм. Үүнд зах зээлийн боломжоос эхлээд онолын ач холбогдол хүртэл олон "
+"зүйлийг багтааж болно. Хэвлэлийн газар өөрийн нийтлэх чиглэлд нийцсэн "
+"зааварчилгааг үүсгэх хэрэгтэй."
+
+msgid "manager.setup.submitToCategories"
+msgstr "Ангиллаар илгээхийг зөвшөөрөх"
+
+msgid "manager.setup.submitToSeries"
+msgstr "Цувралаар илгээхийг зөвшөөрөх"
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"ISSN (International Standard Serial Number) нь цахим цуврал зэрэг тогтмол "
+"хэвлэлийг танихад ашигладаг найман оронтой тоо юм. Дугаарыг <a href=\"https"
+"://www.issn.org\" target=\"_blank\">ISSN олон улсын төвөөс</a> авч болно."
+
+msgid "manager.setup.currentFormats"
+msgstr "Одоогийн форматууд"
+
+msgid "manager.setup.categories.description"
+msgstr ""
+"Та өөрийн нийтлэлүүдийг цэгцлэхэд туслах зорилгоор ангиллын жагсаалт үүсгэж "
+"болно. Ангилал гэдэг нь номуудыг сэдвээр нь бүлэглэх бөгөөд жишээ нь: Эдийн "
+"засаг; Уран зохиол; Яруу найраг гэх мэт. Ангилалуудыг 'эцэг' ангилал дотор "
+"багтааж болно: жишээ нь Эдийн засаг ангилал дотор Микро эдийн засаг, Макро "
+"эдийн засаг гэсэн дэд ангиллууд байж болно. Зочид ангиллаар нь хайлт хийх, "
+"шүүж үзэх боломжтой."
+
+msgid "manager.setup.series.description"
+msgstr ""
+"Нийтлэлүүдээ цэгцлэхэд туслах зорилгоор дурын тооны цуврал үүсгэж болно. "
+"Цуврал нь тодорхой нэг сэдэв эсвэл асуудалд зориулагдсан багц номыг төлөөлөх "
+"бөгөөд үүнийг ихэвчлэн нэг эсвэл хоёр багш, судлаач хариуцан ажилладаг. "
+"Зочид цувралаар нь хайлт хийх, шүүж үзэх боломжтой."
+
+msgid "manager.setup.reviewForms"
+msgstr "Хяналтын маягтууд"
+
+msgid "manager.setup.roleType"
+msgstr "Үүргийн төрөл"
+
+msgid "manager.setup.authorRoles"
+msgstr "Зохиогчийн үүрэгүүд"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Удирдлагын үүрэгүүд"
+
+msgid "manager.setup.availableRoles"
+msgstr "Боломжит үүрэгүүд"
+
+msgid "manager.setup.currentRoles"
+msgstr "Одоогийн үүрэгүүд"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Дотоод хяналтын үүрэгүүд"
+
+msgid "manager.files.note"
+msgstr ""
+"Тэмдэглэл: Файл хөтөч (Files Browser) нь хэвлэлийн газартай холбоотой файл, "
+"хавтаснуудыг шууд харах, удирдах боломжийг олгодог ахисан түвшний функц юм."
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+"<h3>Санал болгож буй Creative Commons зохиогчийн эрхийн мэдэгдэл</h3>\n"
+"<h4>Нээлттэй хандалт санал болгодог хэвлэлийн газруудад зориулсан "
+"бодлого</h4>\n"
+"Энэхүү хэвлэлийн газарт бүтээлээ нийтлүүлсэн зохиогчид дараах нөхцөлийг "
+"зөвшөөрнө:\n"
+"<ol type=\"a\">\n"
+"\t<li>Зохиогчид зохиогчийн эрхийг өөртөө үлдээх бөгөөд бүтээлийг анх нийтлэх "
+"эрхийг хэвлэлийн газарт олгоно. Үүний зэрэгцээ бүтээл нь <a target=\"_blank\""
+" href=\"https://creativecommons.org/licenses/by/3.0\">Creative Commons "
+"Attribution License</a> лицензээр хамгаалагдах бөгөөд энэ нь бусад хүмүүст "
+"бүтээлийг зохиогч болон энэ хэвлэлийн газарт анх нийтлэгдсэн болохыг дурдах "
+"нөхцөлтэйгээр хуваалцах боломжийг олгоно.</li>\n"
+"\t<li>Зохиогчид хэвлэлийн газарт нийтлэгдсэн хувилбарыг (жишээ нь: "
+"байгууллагын санд байршуулах эсвэл номонд хэвлэх) энэ хэвлэлийн газарт анх "
+"нийтлэгдсэнийг дурдах замаар тусад нь, нэмэлт гэрээний үндсэн дээр түгээх "
+"боломжтой.</li>\n"
+"\t<li>Зохиогчид бүтээлээ илгээхээс өмнө болон илгээх явцад онлайнаар (жишээ "
+"нь: байгууллагын санд эсвэл өөрийн вэб сайт дээр) байршуулахыг зөвшөөрөх "
+"бөгөөд энэ нь үр дүнтэй хэлэлцүүлэг өрнүүлэх, ишлэлийн тоог нэмэгдүүлэхэд "
+"тустай (<a target=\"_blank\" href=\"https://web-archive.southampton.ac.uk/"
+"opcit.eprints.org/oacitation-biblio.html\">Нээлттэй хандалтын нөлөө</a> үзнэ "
+"үү).</li>\n"
+"</ol>\n"
+"\n"
+"<h4>Хойшлогдсон нээлттэй хандалт санал болгодог хэвлэлийн газруудад "
+"зориулсан бодлого</h4>\n"
+"Энэхүү хэвлэлийн газарт бүтээлээ нийтлүүлсэн зохиогчид дараах нөхцөлийг "
+"зөвшөөрнө:\n"
+"<ol type=\"a\">\n"
+"\t<li>Зохиогчид зохиогчийн эрхийг өөртөө үлдээх бөгөөд бүтээлийг анх нийтлэх "
+"эрхийг хэвлэлийн газарт олгоно. Нийтлэгдсэнээс [ХУГАЦААГ ЗААХ] дараа бүтээл "
+"нь <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by/3.0\""
+">Creative Commons Attribution License</a> лицензээр хамгаалагдах бөгөөд энэ "
+"нь бусад хүмүүст бүтээлийг зохиогч болон энэ хэвлэлийн газарт анх "
+"нийтлэгдсэн болохыг дурдах нөхцөлтэйгээр хуваалцах боломжийг олгоно.</li>\n"
+"\t <li>Зохиогчид хэвлэлийн газарт нийтлэгдсэн хувилбарыг тусад нь түгээх "
+"боломжтой.</li>\n"
+"\t <li>Зохиогчид бүтээлээ илгээхээс өмнө болон илгээх явцад онлайнаар "
+"байршуулахыг зөвшөөрнө.</li>\n"
+"</ol>"
+
+msgid "manager.setup.basicEditorialStepsDescription"
+msgstr ""
+"Алхмууд: Илгээлтийн дараалал &gt; Хяналтын шат &gt; Засварлах шат &gt; "
+"Гарчиг (Table of Contents).<br /><br />\n"
+"Редакцийн үйл явцыг удирдах загвараа сонгоно уу. (Ерөнхий редактор болон "
+"цувралын редакторуудыг томилох бол Хэвлэлийн газрын удирдлага дахь "
+"Редакторууд хэсэг рүү орно уу.)"
+
+msgid "manager.setup.referenceLinkingDescription"
+msgstr ""
+"<p>Уншигчдад зохиогчийн иш татсан бүтээлийн онлайн хувилбарыг олоход "
+"туслахын тулд дараах сонголтууд байдаг.</p>\n"
+"\n"
+"<ol>\n"
+"\t<li><strong>Унших хэрэгсэл нэмэх</strong><p>Хэвлэлийн газрын менежер "
+"нийтлэгдсэн бүтээлд дагалддаг Унших хэрэгсэлд \"Ишлэл хайх\" (Find "
+"References) функцийг нэмж болно. Энэ нь уншигчдад ишлэлийн гарчгийг хуулж "
+"тавиад судалгааны өгөгдлийн сангуудаас хайх боломжийг олгодог.</p></li>\n"
+"\t<li><strong>Ишлэлд холбоос оруулах</strong><p>Эх бэлтгэлийн редактор "
+"онлайнаар олдох боломжтой ишлэлүүдэд (засварлах боломжтой) дараах "
+"зааварчилгааны дагуу холбоос нэмж болно.</p></li>\n"
+"</ol>"
+
+msgid "manager.publication.library"
+msgstr "Хэвлэлийн газрын сан"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Бүтээлийн зөвшөөрлүүдийг шинэчлэх (Reset)"
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr ""
+"Та нэг сэдэвт бүтээлүүдэд аль хэдийн хавсаргасан зөвшөөрлийн өгөгдлийг "
+"шинэчлэхдээ итгэлтэй байна уу?"
+
+msgid "manager.setup.resetPermissions.description"
+msgstr ""
+"Зохиогчийн эрхийн мэдэгдэл болон лицензийн мэдээлэл нийтлэгдсэн агуулгад "
+"бүрмөсөн хавсаргагдах бөгөөд ингэснээр хэвлэлийн газар шинэ илгээлтүүдийн "
+"бодлогоо өөрчилсөн тохиолдолд эдгээр өгөгдөл өөрчлөгдөхгүй байх баталгаа "
+"болдог. Нийтлэгдсэн агуулгад аль хэдийн хавсаргасан зөвшөөрлийн мэдээллийг "
+"шинэчлэхийн тулд доорх товчийг ашиглана уу."
+
+msgid "manager.setup.resetPermissions.success"
+msgstr "Нэг сэдэвт бүтээлийн зөвшөөрлүүдийг амжилттай шинэчиллээ."
+
+msgid "grid.genres.title.short"
+msgstr "Бүрэлдэхүүн хэсэг"
+
+msgid "grid.genres.title"
+msgstr "Нэг сэдэвт бүтээлийн бүрэлдэхүүн хэсгүүд"
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr ""
+"Хэвлэлийн газрын тохиргоонд заасан үндсэн холбоо барих хүн рүү хуулбарыг "
+"илгээх."
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr "Цувралын зам (path) нь зөвхөн үсэг, тооноос бүрдэх ёстой."
+
+msgid "grid.series.pathExists"
+msgstr "Цувралын зам аль хэдийн байна. Давхцахгүй зам оруулна уу."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Цуврал сонгох"
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr "Энэ цэсний зүйл холбогдох цувралыг сонгоно уу."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Ангилал сонгох"
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr "Энэ цэсний зүйл холбогдох ангиллыг сонгоно уу."
+
+msgid "grid.series.urlWillBe"
+msgstr "Цувралын URL хаяг {$sampleUrl} байх болно"
+
+msgid "stats.contextStats"
+msgstr "Хэвлэлийн газрын статистик"
+
+msgid "stats.context.tooltip.text"
+msgstr "Хэвлэлийн газрын болон каталогийн нүүр хуудсыг үзсэн зочдын тоо."
+
+msgid "stats.context.tooltip.label"
+msgstr "Хэвлэлийн газрын статистикийн тухай"
+
+msgid "stats.context.downloadReport.description"
+msgstr ""
+"Дараах үзүүлэлтүүдэд тохирох хэвлэлийн газрын ашиглалтын статистикийг CSV/"
+"Excel файлаар татах."
+
+msgid "stats.context.downloadReport.downloadContext.description"
+msgstr "Хэвлэлийн газрын болон каталогийн нүүр хуудсыг үзсэн тоо."
+
+msgid "stats.context.downloadReport.downloadContext"
+msgstr "Хэвлэлийн газрын статистикийг татах"
+
+msgid "stats.publications.downloadReport.description"
+msgstr ""
+"Дараах үзүүлэлтүүдэд тохирох нэг сэдэвт бүтээлүүдийн ашиглалтын статистикийг "
+"CSV/Excel файлаар татах."
+
+msgid "stats.publications.downloadReport.downloadSubmissions"
+msgstr "Нэг сэдэвт бүтээлүүдийг татах"
+
+msgid "stats.publications.downloadReport.downloadSubmissions.description"
+msgstr "Бүтээл бүрийн хураангуйг үзсэн болон файл татсан тоо."
+
+msgid "stats.publicationStats"
+msgstr "Нэг сэдэвт бүтээлийн статистик"
+
+msgid "stats.publications.details"
+msgstr "Бүтээлийн дэлгэрэнгүй"
+
+msgid "stats.publications.none"
+msgstr "Эдгээр үзүүлэлтэд тохирох статистик бүхий бүтээл олдсонгүй."
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Огноогоорх нийт каталог үзсэн тоо"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Огноогоорх нийт файл үзсэн тоо"
+
+msgid "stats.publications.countOfTotal"
+msgstr "Нийт {$total} бүтээлээс {$count}"
+
+msgid "stats.publications.abstracts"
+msgstr "Каталогийн бүртгэлүүд"
+
+msgid "plugins.importexport.common.error.salesRightRequiresTerritory"
+msgstr "Борлуулах эрхийн бичлэгт улс эсвэл бүс оноогоогүй тул алгаслаа."
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Объект сонгоогүй байна."
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Сонгосон объектуудыг хөрвүүлж чадсангүй."
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "Хүчингүй XML:"
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Илгээлтүүдийг экспортлох"
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Илгээлтийг хүлээн авсан тухай баталгаажуулах имэйлийн хуулбарыг энэ "
+"хэвлэлийн газрын үндсэн холбоо барих хүн рүү илгээх."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"Энэ хэвлэлийн газарт үндсэн холбоо барих хүн тодорхойлоогүй байна. <a href=\""
+"{$url}\">Хэвлэлийн газрын тохиргоо</a> хэсэгт оруулна уу."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Заасан объектууд олдсонгүй."
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "Заасан хэрэглэгч \"{$userName}\" байхгүй байна."
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "Нийтлэх форматыг задлан шинжлэх (parse) явц амжилтгүй боллоо"
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "Бүлгүүдийг задлан шинжлэх явц амжилтгүй боллоо"
+
+msgid "emailTemplate.variable.context.contextName"
+msgstr "Хэвлэлийн газрын нэр"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "Хэвлэлийн газрын нүүр хуудасны URL"
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "Хэвлэлийн газрын үндсэн холбоо барих хүний нэр"
+
+msgid "emailTemplate.variable.context.contextAcronym"
+msgstr "Хэвлэлийн газрын товчлол"
+
+msgid "emailTemplate.variable.context.contextSignature"
+msgstr "Автомат имэйлд зориулсан хэвлэлийн газрын имэйл гарын үсэг"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "Хэвлэлийн газрын үндсэн холбоо барих хүний имэйл"
+
+msgid "emailTemplate.variable.context.mailingAddress"
+msgstr "Хэвлэлийн газрын шуудангийн хаяг"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "Төлбөрийн төрлийн нэр"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "Төлбөрийн дүн"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "Төлбөрийн валютын код, жишээ нь USD"
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr "Олон хэвлэлийн газар байршуулсан үеийн вэб сайтын нэр"
+
+msgid "emailTemplate.variable.statisticsReportNotify.publicationStatsLink"
+msgstr "Номын статистик хуудасны холбоос"
+
+msgid "mailable.statisticsReportNotify.description"
+msgstr ""
+"Системийн ерөнхий төлөвийг мэдээлэх зорилгоор редактор болон хэвлэлийн "
+"газрын менежерүүдэд сар бүр автоматаар илгээгддэг имэйл."
+
+msgid "mailable.validateEmailContext.name"
+msgstr "Имэйл баталгаажуулах (Бүртгэл)"
+
+msgid "mailable.validateEmailContext.description"
+msgstr ""
+"Тохиргоонд имэйл хаягийг баталгаажуулах шаардлагатай гэж заасан үед шинэ "
+"хэрэглэгч бүртгүүлэхэд автоматаар илгээгддэг имэйл."
+
+msgid "doi.manager.displayName"
+msgstr "DOI-нууд"
+
+msgid "doi.description"
+msgstr ""
+"Энэ нэмэгдэл нь OMP дахь нэг сэдэвт бүтээл, бүлэг, нийтлэх формат болон "
+"файлуудад Дижитал Объект Танигч (DOI) оноох боломжийг олгоно."
+
+msgid "doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "doi.manager.settings.description"
+msgstr "OMP-д DOI-г удирдах, ашиглахын тулд нэмэгдлийг тохируулна уу:"
+
+msgid "doi.manager.settings.explainDois"
+msgstr "Дижитал Объект Танигч (DOI) оноох объектуудыг сонгоно уу:"
+
+msgid "doi.manager.settings.enablePublicationDoi"
+msgstr "Нэг сэдэвт бүтээлүүд"
+
+msgid "doi.manager.settings.enableChapterDoi"
+msgstr "Бүлгүүд"
+
+msgid "doi.manager.settings.enableRepresentationDoi"
+msgstr "Нийтлэх форматууд"
+
+msgid "doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Файлууд"
+
+msgid "doi.manager.settings.doiPrefix"
+msgstr "DOI префикс"
+
+msgid "doi.manager.settings.doiPrefixPattern"
+msgstr "DOI префикс заавал байх ёстой бөгөөд 10.xxxx хэлбэртэй байна."
+
+msgid "doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Нийтлэлийн төрөл бүрт зориулсан тусгай дагавар (suffix) загварыг оруулна уу. "
+"Дараах тэмдэгтүүдийг ашиглаж болно:<br><br> <code>%p</code> Хэвлэлийн газрын "
+"товчлол<br> <code>%m</code> Бүтээлийн ID<br> <code>%c</code> Бүлгийн ID<br> "
+"<code>%f</code> Нийтлэх форматын ID<br> <code>%s</code> Файлын ID<br> "
+"<code>%x</code> Тусгай танигч<br><br> Анхаар: Тусгай дагаврын загвар ашиглах "
+"нь DOI үүсгэх болон бүртгэхэд заримдаа асуудал үүсгэдэг. Үүнийг ашиглахдаа "
+"редакторууд DOI-г зөв үүсгэж, Crossref зэрэг агентлагуудад амжилттай "
+"бүртгүүлж чадаж байгааг сайтар шалгаарай. "
+
+msgid "doi.manager.settings.doiSuffixPattern.example"
+msgstr ""
+"Жишээ нь: press%ppub%r гэвэл 10.1234/pressESPpub100 гэсэн DOI үүсгэж болно"
+
+msgid "doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "нэг сэдэвт бүтээлд зориулсан"
+
+msgid "doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "бүлгүүдэд зориулсан"
+
+msgid "doi.manager.settings.doiSuffixPattern.representations"
+msgstr "нийтлэх форматуудад зориулсан"
+
+msgid "doi.manager.settings.doiSuffixPattern.files"
+msgstr "файлуудад зориулсан"
+
+msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Нэг сэдэвт бүтээлийн DOI дагаврын загварыг оруулна уу."
+
+msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Бүлгийн DOI дагаврын загварыг оруулна уу."
+
+msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Нийтлэх форматын DOI дагаврын загварыг оруулна уу."
+
+msgid "doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Файлын DOI дагаврын загварыг оруулна уу."
+
+msgid "doi.manager.settings.doiReassign"
+msgstr "DOI-нуудыг дахин оноох"
+
+msgid "doi.manager.settings.doiReassign.description"
+msgstr ""
+"DOI тохиргоогоо өөрчилбөл өмнө нь оноосон DOI-нуудад нөлөөлөхгүй. Шинэ "
+"тохиргоог одоо байгаа бүх объектуудад хэрэгжүүлэхийн тулд энэ товчийг "
+"ашиглан хуучин DOI-нуудыг цэвэрлэж болно."
+
+msgid "doi.manager.settings.doiReassign.confirm"
+msgstr "Та бүх DOI-г устгахдаа итгэлтэй байна уу?"
+
+msgid "doi.editor.doi"
+msgstr "DOI"
+
+msgid "doi.editor.doi.description"
+msgstr "DOI нь {$prefix}-ээр эхлэх ёстой."
+
+msgid "doi.editor.doi.assignDoi"
+msgstr "Оноох"
+
+msgid "doi.editor.doiObjectTypeSubmission"
+msgstr "нэг сэдэвт бүтээл"
+
+msgid "doi.editor.doiObjectTypeChapter"
+msgstr "бүлэг"
+
+msgid "doi.editor.doiObjectTypeRepresentation"
+msgstr "нийтлэх формат"
+
+msgid "doi.editor.customSuffixMissing"
+msgstr "Тусгай дагавар байхгүй тул DOI оноох боломжгүй."
+
+msgid "doi.editor.missingParts"
+msgstr ""
+"DOI загварын зарим хэсэгт өгөгдөл дутуу байгаа тул DOI үүсгэж чадсангүй."
+
+msgid "doi.editor.patternNotResolved"
+msgstr "DOI нь шийдэгдээгүй загвар агуулсан тул оноох боломжгүй."
+
+msgid "doi.editor.canBeAssigned"
+msgstr ""
+"Таны харж буй зүйл бол DOI-ийн урьдчилан харалт юм. Чагтыг чагталж, маягтыг "
+"хадгалснаар DOI оноогдоно."
+
+msgid "doi.editor.assigned"
+msgstr "DOI энэ {$pubObjectType}-д оноогдсон байна."
+
+msgid "doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Өгөгдсөн DOI дагавар өөр бичлэгт аль хэдийн ашиглагдсан байна. Бичлэг бүрт "
+"үл давхцах дагавар оруулна уу."
+
+msgid "doi.editor.clearObjectsDoi"
+msgstr "Цэвэрлэх"
+
+msgid "doi.editor.clearObjectsDoi.confirm"
+msgstr "Та одоо байгаа DOI-г устгахдаа итгэлтэй байна уу?"
+
+msgid "doi.editor.assignDoi"
+msgstr "{$pubObjectType}-д {$pubId} DOI-г оноох"
+
+msgid "doi.editor.assignDoi.emptySuffix"
+msgstr "Тусгай дагавар байхгүй тул DOI оноох боломжгүй."
+
+msgid "doi.editor.assignDoi.pattern"
+msgstr "{$pubId} DOI нь шийдэгдээгүй загвар агуулсан тул оноох боломжгүй."
+
+msgid "doi.editor.assignDoi.assigned"
+msgstr "{$pubId} DOI оноогдлоо."
+
+msgid "doi.editor.missingPrefix"
+msgstr "DOI нь {$doiPrefix}-ээр эхлэх ёстой."
+
+msgid "doi.editor.preview.publication"
+msgstr "Энэ нийтлэлийн DOI нь {$doi} байх болно."
+
+msgid "doi.editor.preview.publication.none"
+msgstr "Энэ нийтлэлд DOI оноогоогүй байна."
+
+msgid "doi.editor.preview.chapters"
+msgstr "Бүлэг: {$title}"
+
+msgid "doi.editor.preview.publicationFormats"
+msgstr "Нийтлэх формат: {$title}"
+
+msgid "doi.editor.preview.files"
+msgstr "Файл: {$title}"
+
+msgid "doi.editor.preview.objects"
+msgstr "Бичлэг"
+
+msgid "doi.manager.submissionDois"
+msgstr "Нэг сэдэвт бүтээлийн DOI-нууд"
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
+msgstr ""
+"Илгээлтийг дотоод хяналтын шат руу шилжүүлж буйг зохиогчид мэдэгдэх имэйл."
+
+msgid "mailable.decision.initialDecline.notifyAuthor.description"
+msgstr ""
+"Илгээлт нь хэвлэлийн газрын шаардлага хангахгүй байгаа тул хяналтын шатнаас "
+"өмнө татгалзаж буйг зохиогчид мэдэгдэх имэйл."
+
+msgid "manager.institutions.noContext"
+msgstr "Энэ байгууллагын хэвлэлийн газар олдсонгүй."
+
+msgid "manager.manageEmails.description"
+msgstr "Энэ хэвлэлийн газраас илгээгдэх имэйл мессежүүдийг засварлах."
+
+msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
+msgstr "Дотоод хяналтад илгээлээ"
+
+msgid "mailable.indexRequest.name"
+msgstr "Индекс үүсгэх хүсэлт"
+
+msgid "mailable.indexComplete.name"
+msgstr "Индекс үүсгэж дууслаа"
+
+msgid "mailable.submissionNeedsEditor.description"
+msgstr ""
+"Шинэ илгээлт ирсэн боловч редактор оноогоогүй үед хэвлэлийн газрын "
+"менежерүүдэд илгээгдэх имэйл."
