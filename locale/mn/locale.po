@@ -1,3 +1,1525 @@
 # Gantulga <cybermon@gmail.com>, 2026.
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2026-02-08 07:52+0000\n"
+"Last-Translator: Gantulga <cybermon@gmail.com>\n"
+"Language-Team: Mongolian <http://translate.pkp.sfu.ca/projects/omp/locale/mn/"
+">\n"
+"Language: mn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "Хүчинтэй үнэ шаардлагатай."
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Форматын дэлгэрэнгүй"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "Имэйл хаяг"
+
+msgid "catalog.feature"
+msgstr "Онцлох"
+
+msgid "navigation.catalog"
+msgstr "Каталог"
+
+msgid "installer.installApplication"
+msgstr "Open Monograph Press-ийг суурилуулах"
+
+msgid "installer.maxFileUploadSize"
+msgstr ""
+"Серверийн зөвшөөрөх файлын дээд хэмжээ: <strong>{$maxFileUploadSize}</strong>"
+
+msgid "search.cli.rebuildIndex.indexingByPressNotSupported"
+msgstr ""
+"Энэхүү хайлтын систем нь хэвлэлийн газраар тусад нь дахин индексжүүлэхийг "
+"дэмжихгүй."
+
+msgid "common.payments"
+msgstr "Төлбөрүүд"
+
+msgid "monograph.audience"
+msgstr "Зорилтот уншигчид"
+
+msgid "monograph.audience.success"
+msgstr "Уншигчдын мэдээллийг шинэчиллээ."
+
+msgid "monograph.coverImage"
+msgstr "Нүүр зураг"
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Насны ангиллын тодорхойлолт"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Насны ангилал (доод)"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Насны ангилал (дээд)"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Насны ангилал (яг)"
+
+msgid "monograph.languages"
+msgstr "Хэл (Монгол, Англи, Орос)"
+
+msgid "monograph.publicationFormats"
+msgstr "Нийтлэх форматууд"
+
+msgid "monograph.publicationFormat"
+msgstr "Формат"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "Боломжит нийтлэх форматын дэлгэрэнгүй: {$format}"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Энэхүү нэг сэдэвт бүтээлийн дэлгэрэнгүй мэдээлэл"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Форматууд:"
+
+msgid "submission.pageProofs"
+msgstr "Хяналтын хувь (Page Proofs)"
+
+msgid "monograph.proofReadingDescription"
+msgstr ""
+"Эх бэлтгэлийн редактор хэвлэхэд бэлэн болсон файлуудыг энд хуулна. "
+"<em>+Томилох</em> хэсгийг ашиглан зохиогч болон бусад хүмүүсийг хяналтын "
+"хувийг хянуулахаар оноож, засварласан файлуудыг нийтлэхээс өмнө "
+"баталгаажуулахаар хуулна."
+
+msgid "monograph.task.addNote"
+msgstr "Даалгаварт нэмэх"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Нээлттэй хандалт"
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "Импринт (Брэндийн нэр)"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Хуудасны тоо"
+
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Өмнөх хэсэг (Front Matter)"
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Төгсгөл хэсэг (Back Matter)"
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Бүтээгдэхүүний бүтэц"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Бүтээгдэхүүний дэлгэрэнгүй код (шаардлагагүй)"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Бүтээгдэхүүний танигч"
+
+msgid "monograph.publicationFormat.price"
+msgstr "Үнэ"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "Үнэ оруулах шаардлагатай."
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "Үнийн төрөл"
+
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Хөнгөлөлтийн хувь (хэрэв байгаа бол)"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Бүтээгдэхүүний бэлэн байдал"
+
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Буцаах нөхцөл"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Дижитал мэдээлэл"
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Биет хэмжээс"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "Файлын хэмжээ (MB)"
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Файлын хэмжээг гараар оруулах уу?"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Өндөр"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Зузаан"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Жин"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Өргөн"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Үйлдвэрлэсэн улс"
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Дижитал техникийн хамгаалалт"
+
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Бүтээгдэхүүн түгээх бүс"
+
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Татварын хувь"
+
+msgid "monograph.publicationFormat.taxType"
+msgstr "Татварын төрөл"
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr "Энэхүү форматын мета өгөгдлийг номын каталогийн бүртгэлд багтаах."
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Зах зээл болон үнийн мэдээлэл дутуу байна."
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Таних код дутуу байна."
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Зарим мета өгөгдлийн талбарууд дутуу байна."
+
+msgid "monograph.publicationFormat.onixDeprecated"
+msgstr " (Ашиглахаа больсон)"
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr "<p>Таны сонгосон нийтлэх формат энэ бүтээлд байхгүй байна.</p>"
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "Нийтлэх форматын цонхыг нээх."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Нийтлэх формат"
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "Нэр шаардлагатай."
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Биет формат"
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Энэ формат нь тусдаа вэб сайтад байршина"
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr "Алсаас байршуулсан агуулгын URL"
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "13 оронтой ISBN код (жишээ нь: 978-951-98548-9-2)."
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "10 оронтой ISBN код (жишээ нь: 951-98548-9-4)."
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "Бүтээлийн ID шаардлагатай."
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Нийтлэх форматыг сонгох ёстой."
+
+msgid "grid.catalogEntry.availability"
+msgstr "Бэлэн байдал"
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Бэлэн"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Бэлэн бус"
+
+msgid "grid.catalogEntry.proof"
+msgstr "Хяналтын хувь (Proof)"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Форматыг батлах"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p>Энэхүү форматын мета өгөгдлийг батлах. Мета өгөгдлийг формат бүрийн "
+"засварлах хэсгээс шалгаж болно.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr "<p>Энэхүү форматын мета өгөгдлийг батлагдаагүй гэж тэмдэглэх.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Форматын бэлэн байдал"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p>Энэхүү форматыг <em>уншигчдад нээлттэй</em> болгох. Татах боломжтой "
+"файлууд болон бусад түгээлтүүд номын каталогийн бүртгэлд харагдах болно.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p>Энэхүү форматыг <em>уншигчдад хаалттай</em> болгох. Татах боломжтой "
+"файлууд каталогийн бүртгэлээс хасагдах болно.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Каталогийн бүртгэл батлагдаагүй байна."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Формат каталогийн бүртгэлд ороогүй байна."
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Хяналтын хувь батлагдаагүй байна."
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Батлагдсан"
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Батлахыг хүлээж байна"
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "Дижитал форматын хувьд файлын хэмжээг оруулах шаардлагатай."
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "Бүтээгдэхүүний бэлэн байдлын код шаардлагатай."
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "Бүтээгдэхүүний бүтцийн кодыг сонгох ёстой."
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Кодын утга"
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "ONIX кодын төрөл"
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "Таних код шаардлагатай."
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Утга шаардлагатай."
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Борлуулах эрх"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Кодын утга"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Борлуулах эрхийн төрөл"
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Дэлхийн бусад хэсэгт (ROW)?"
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+"Энэ форматын борлуулах эрхийг дэлхий даяар хүчинтэйд тооцох бол энэ нүдийг "
+"чагтална уу. Энэ тохиолдолд улс болон бүс сонгох шаардлагагүй."
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr ""
+"Энэ форматын хувьд ROW төрлийн борлуулалт аль хэдийн тодорхойлогдсон байна."
+
+msgid "grid.catalogEntry.countries"
+msgstr "Улс орнууд"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Бүс нутгууд"
+
+msgid "grid.catalogEntry.included"
+msgstr "Багтсан"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "Хасагдсан"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Зах зээлийн нутаг дэвсгэр"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Нутаг дэвсгэр"
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Нийтлэх огноонууд"
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr "Төлөөлөгчийн үүрэг шаардлагатай."
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "Огнооны формат шаардлагатай."
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Огноо"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Үүрэг"
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Огнооны формат"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr "Огноо шаардлагатай бөгөөд утга нь сонгосон форматтай таарах ёстой."
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Төлөөлөгчид"
+
+msgid "grid.catalogEntry.representativeType"
+msgstr "Төлөөлөгчийн төрөл"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Агентууд"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Нийлүүлэгчид"
+
+msgid "grid.catalogEntry.agent"
+msgstr "Агент"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"Та энэхүү нутаг дэвсгэрт өөрийгөө төлөөлөх агент томилж болно. Энэ нь заавал "
+"биш."
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Нийлүүлэгч"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Үүрэг сонгох:"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Үүрэг"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Нэр"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Утас"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Вэб сайт"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "Төлөөлөгчийн ID"
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Төлөөлөгчийн ID төрөл (GLN зөвлөж байна)"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+"Хэрэв та хэрэглэгчиддээ өөрөө үйлчилгээ үзүүлдэг бол дараах хэсгийг хоосон "
+"үлдээж болно."
+
+msgid "grid.action.addRepresentative"
+msgstr "Төлөөлөгч нэмэх"
+
+msgid "grid.action.editRepresentative"
+msgstr "Төлөөлөгчийг засварлах"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Төлөөлөгчийг устгах"
+
+msgid "manager.series.open"
+msgstr "Илгээлтэд нээлттэй"
+
+msgid "manager.series.indexed"
+msgstr "Индексжүүлсэн"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Файлууд"
+
+msgid "grid.action.catalogEntry"
+msgstr "Каталогийн бүртгэлийн маягтыг үзэх"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "Формат каталогийн бүртгэлд харагдаж байна"
+
+msgid "grid.action.editFormat"
+msgstr "Энэ форматыг засварлах"
+
+msgid "grid.action.deleteFormat"
+msgstr "Энэ форматыг устгах"
+
+msgid "grid.action.addFormat"
+msgstr "Нийтлэх формат нэмэх"
+
+msgid "grid.action.approveProof"
+msgstr "Индексжүүлэх болон каталогид оруулах хяналтын хувийг батлах"
+
+msgid "grid.action.pageProofApproved"
+msgstr "Хяналтын хувь нийтлэхэд бэлэн боллоо"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "Шинэ каталогийн бүртгэл"
+
+msgid "grid.action.publicCatalog"
+msgstr "Энэ бичлэгийг каталогид харах"
+
+msgid "grid.action.feature"
+msgstr "Онцлох байдлыг солих"
+
+msgid "grid.action.featureMonograph"
+msgstr "Каталогийн карусель-д онцлох"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Энэ илгээлтийг 'шинэ бүтээл' гэж тэмдэглэх"
+
+msgid "grid.action.manageCategories"
+msgstr "Энэ хэвлэлийн газрын ангиллыг тохируулах"
+
+msgid "grid.action.manageSeries"
+msgstr "Энэ хэвлэлийн газрын цувралыг тохируулах"
+
+msgid "grid.action.addCode"
+msgstr "Код нэмэх"
+
+msgid "grid.action.editCode"
+msgstr "Энэ кодыг засварлах"
+
+msgid "grid.action.deleteCode"
+msgstr "Энэ кодыг устгах"
+
+msgid "grid.action.addRights"
+msgstr "Борлуулах эрх нэмэх"
+
+msgid "grid.action.editRights"
+msgstr "Эдгээр эрхийг засварлах"
+
+msgid "grid.action.deleteRights"
+msgstr "Эдгээр эрхийг устгах"
+
+msgid "grid.action.addMarket"
+msgstr "Зах зээл нэмэх"
+
+msgid "grid.action.editMarket"
+msgstr "Энэ зах зээлийг засварлах"
+
+msgid "grid.action.deleteMarket"
+msgstr "Энэ зах зээлийг устгах"
+
+msgid "grid.action.addDate"
+msgstr "Нийтлэх огноо нэмэх"
+
+msgid "grid.action.editDate"
+msgstr "Энэ огноог засварлах"
+
+msgid "grid.action.deleteDate"
+msgstr "Энэ огноог устгах"
+
+msgid "grid.action.createContext"
+msgstr "Шинэ хэвлэлийн газар үүсгэх"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Нийтлэх форматын цонхыг харуулах"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Хэвлэлийн газрын зарлалын хуудас руу очих"
+
+msgid "grid.action.submissionEmail"
+msgstr "Имэйлийг уншихын тулд дарна уу"
+
+msgid "grid.action.approveProofs"
+msgstr "Хяналтын хувийн хүснэгтийг үзэх"
+
+msgid "grid.action.proofApproved"
+msgstr "Форматыг хянаж дууссан"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Энэ форматыг батлах/татгалзах"
+
+msgid "grid.action.formatAvailable"
+msgstr "Энэ форматын бэлэн байдлыг солих"
+
+msgid "grid.reviewAttachments.add"
+msgstr "Хяналтад хавсралт нэмэх"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Боломжит файлууд"
+
+msgid "series.series"
+msgstr "Цуврал"
+
+msgid "series.featured.description"
+msgstr "Энэ цуврал үндсэн цэсэнд харагдана"
+
+msgid "series.path"
+msgstr "Зам (Path)"
+
+msgid "catalog.manage"
+msgstr "Каталогийн удирдлага"
+
+msgid "catalog.manage.newReleases"
+msgstr "Шинэ бүтээлүүд"
+
+msgid "catalog.manage.category"
+msgstr "Ангилал"
+
+msgid "catalog.manage.series"
+msgstr "Цуврал"
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Хүчинтэй ISSN оруулна уу."
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "Онлайн болон хэвлэмэл ISSN ижил байж болохгүй."
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "Онлайн ISSN"
+
+msgid "catalog.manage.series.printIssn"
+msgstr "Хэвлэмэл ISSN"
+
+msgid "catalog.selectSeries"
+msgstr "Цуврал сонгох"
+
+msgid "catalog.selectCategory"
+msgstr "Ангилал сонгох"
+
+msgid "catalog.manage.homepageDescription"
+msgstr ""
+"Сонгосон номын нүүр зураг нүүр хуудасны дээд хэсэгт гүйдэг жагсаалт "
+"хэлбэрээр харагдана. 'Онцлох' дээр дараад одыг дарж карусель-д нэмнэ; "
+"анхаарлын тэмдэг дээр дарж шинэ бүтээлээр онцолно; чирж эрэмбэлнэ үү."
+
+msgid "catalog.manage.categoryDescription"
+msgstr ""
+"'Онцлох' дээр дараад одыг дарж энэ ангиллын онцлох номыг сонгоно; чирж "
+"эрэмбэлнэ үү."
+
+msgid "catalog.manage.seriesDescription"
+msgstr ""
+"'Онцлох' дээр дараад одыг дарж энэ цувралын онцлох номыг сонгоно; чирж "
+"эрэмбэлнэ үү."
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "Карусель"
+
+msgid "catalog.manage.newRelease"
+msgstr "Нийтлэл"
+
+msgid "catalog.manage.manageSeries"
+msgstr "Цувралыг удирдах"
+
+msgid "catalog.manage.manageCategories"
+msgstr "Ангиллыг удирдах"
+
+msgid "catalog.manage.noMonographs"
+msgstr "Оноосон нэг сэдэвт бүтээл алга."
+
+msgid "catalog.manage.featured"
+msgstr "Онцлох"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "Ангилалд онцолсон"
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "Цувралд онцолсон"
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "Бүтээлийг онцоллоо."
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "Бүтээлийг онцлохоос болилоо."
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "Бүтээлийг шинэ бүтээлээр тэмдэглэлээ."
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "Бүтээлийг шинэ бүтээлээс хаслаа."
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "Шинэ бүтээл"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "Ангилал дахь шинэ бүтээл"
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Цуврал дахь шинэ бүтээл"
+
+msgid "catalog.manage.nonOrderable"
+msgstr "Энэ бүтээлийг онцлох хүртэл эрэмбэлэх боломжгүй."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Гарчиг эсвэл зохиогчоор хайх"
+
+msgid "catalog.manage.isFeatured"
+msgstr "Энэ бүтээлийг онцолсон байна. Онцлохоос болиулах."
+
+msgid "catalog.manage.isNotFeatured"
+msgstr "Энэ бүтээлийг онцлоогүй байна. Онцлох."
+
+msgid "catalog.manage.isNewRelease"
+msgstr "Энэ бүтээл шинэ бүтээлээр тэмдэглэгдсэн. Тэмдэглэгээг арилгах."
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr "Энэ бүтээл шинэ бүтээлээр тэмдэглэгдээгүй. Тэмдэглэх."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Каталогид нэмэх илгээлт сонгоогүй байна."
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Нэг эсвэл түүнээс дээш илгээлт олдсонгүй."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Каталогид нэмэх бүтээлүүдийг хайх"
+
+msgid "catalog.noTitles"
+msgstr "Хараахан бүтээл нийтлэгдээгүй байна."
+
+msgid "catalog.noTitlesNew"
+msgstr "Одоогоор шинэ бүтээл алга."
+
+msgid "catalog.noTitlesSearch"
+msgstr "\"{$searchQuery}\" хайлтад тохирох бүтээл олдсонгүй."
+
+msgid "catalog.featured"
+msgstr "Онцлох"
+
+msgid "catalog.featuredBooks"
+msgstr "Онцлох номууд"
+
+msgid "catalog.foundTitleSearch"
+msgstr "\"{$searchQuery}\" хайлтад 1 бүтээл олдлоо."
+
+msgid "catalog.foundTitlesSearch"
+msgstr "\"{$searchQuery}\" хайлтад {$number} бүтээл олдлоо."
+
+msgid "catalog.category.heading"
+msgstr "Бүх ном"
+
+msgid "catalog.newReleases"
+msgstr "Шинэ бүтээлүүд"
+
+msgid "catalog.dateAdded"
+msgstr "Нэмэгдсэн"
+
+msgid "catalog.publicationInfo"
+msgstr "Нийтлэлийн мэдээлэл"
+
+msgid "catalog.published"
+msgstr "Нийтлэгдсэн"
+
+msgid "catalog.forthcoming"
+msgstr "Удахгүй гарах"
+
+msgid "catalog.categories"
+msgstr "Ангилалууд"
+
+msgid "catalog.parentCategory"
+msgstr "Эцэг ангилал"
+
+msgid "catalog.category.subcategories"
+msgstr "Дэд ангилалууд"
+
+msgid "catalog.aboutTheAuthor"
+msgstr "{$roleName}-ийн тухай"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr ""
+"Тэмдэглэл: Бүтээл худалдаж авахын тулд та эхлээд нэвтрэх шаардлагатай. "
+"Нээлттэй хандалтын (Open Access) тэмдэгтэй бүтээлүүдийг нэвтрэхгүйгээр "
+"үнэгүй татаж авах боломжтой."
+
+msgid "catalog.sortBy"
+msgstr "Бүтээлүүдийн эрэмбэ"
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr "Энэ цуврал дахь номуудыг хэрхэн эрэмбэлэхийг сонгоно уу."
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr "Энэ ангилал дахь номуудыг хэрхэн эрэмбэлэхийг сонгоно уу."
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr "Каталог дахь номуудыг хэрхэн эрэмбэлэхийг сонгоно уу."
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr "Цувралын дараалал (багаас их рүү)"
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr "Цувралын дараалал (ихээс бага руу)"
+
+msgid "catalog.viewableFile.title"
+msgstr "{$title} файлыг {$type} хэлбэрээр харах"
+
+msgid "catalog.viewableFile.return"
+msgstr "{$monographTitle}-ийн дэлгэрэнгүй рүү буцах"
+
+msgid "submission.search"
+msgstr "Ном хайх"
+
+msgid "common.publication"
+msgstr "Нэг сэдэвт бүтээл"
+
+msgid "common.publications"
+msgstr "Нэг сэдэвт бүтээлүүд"
+
+msgid "common.prefix"
+msgstr "Угтвар"
+
+msgid "common.preview"
+msgstr "Урьдчилан харах"
+
+msgid "common.feature"
+msgstr "Онцлох"
+
+msgid "common.searchCatalog"
+msgstr "Каталогиос хайх"
+
+msgid "common.moreInfo"
+msgstr "Дэлгэрэнгүй"
+
+msgid "common.listbuilder.completeForm"
+msgstr "Маягтыг бүрэн бөглөнө үү."
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "Жагсаалтаас хүчинтэй сонголт сонгоно уу."
+
+msgid "common.listbuilder.itemExists"
+msgstr "Нэг зүйлийг хоёр удаа нэмэх боломжгүй."
+
+msgid "common.software"
+msgstr "Open Monograph Press"
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "common.homePageHeader.altText"
+msgstr "Нүүр хуудасны толгой"
+
+msgid "navigation.competingInterestPolicy"
+msgstr "Ашиг сонирхлын зөрчлийн бодлого"
+
+msgid "navigation.catalog.allMonographs"
+msgstr "Бүх бүтээлүүд"
+
+msgid "navigation.catalog.manage"
+msgstr "Удирдах"
+
+msgid "navigation.catalog.administration.short"
+msgstr "Удирдлага"
+
+msgid "navigation.catalog.administration"
+msgstr "Каталогийн удирдлага"
+
+msgid "navigation.catalog.administration.categories"
+msgstr "Ангилалууд"
+
+msgid "navigation.catalog.administration.series"
+msgstr "Цуврал"
+
+msgid "navigation.infoForAuthors"
+msgstr "Зохиогчдод"
+
+msgid "navigation.infoForLibrarians"
+msgstr "Номын санчдад"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Зохиогчдод зориулсан мэдээлэл"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Номын санчдад зориулсан мэдээлэл"
+
+msgid "navigation.newReleases"
+msgstr "Шинэ бүтээлүүд"
+
+msgid "navigation.published"
+msgstr "Нийтлэгдсэн"
+
+msgid "navigation.wizard"
+msgstr "Туслах (Wizard)"
+
+msgid "navigation.linksAndMedia"
+msgstr "Холбоос болон Сошиал медиа"
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Каталог руу очих холбоос."
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Цуврал"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Цуврал руу очих холбоос."
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Ангилал"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Ангилал руу очих холбоос."
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Шинэ бүтээлүүд"
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Шинэ бүтээлүүд рүү очих холбоос."
+
+msgid "navigation.skip.about"
+msgstr "Хэвлэлийн газрын тухай хэсэг рүү алгасах"
+
+msgid "context.contexts"
+msgstr "Хэвлэлийн газрууд"
+
+msgid "context.context"
+msgstr "Хэвлэлийн газар"
+
+msgid "context.current"
+msgstr "Одоогийн хэвлэлийн газар:"
+
+msgid "context.select"
+msgstr "Өөр хэвлэлийн газар руу шилжих:"
+
+msgid "user.authorization.representationNotFound"
+msgstr "Хүссэн нийтлэх формат олдсонгүй."
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "Энэ хэвлэлийн газарт үүрэггүй хэрэглэгчдийг багтаах."
+
+msgid "user.noRoles.submitMonograph"
+msgstr "Санал ирүүлэх"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr "Бүтээл илгээх: Зохиогчийн бүртгэл одоогоор хаалттай байна."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Хянагчаар бүртгүүлэх"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr "Хянагчаар бүртгүүлэх: Хянагчийн бүртгэл одоогоор хаалттай байна."
+
+msgid "user.reviewerPrompt"
+msgstr "Та энэхүү хэвлэлийн газарт ирсэн илгээлтүүдийг хянахад бэлэн үү?"
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Тийм, {$userGroup} үүргийг хүсэж байна."
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+"Тийм, энэ хэвлэлийн газрын илгээлтүүдийг хянах хүсэлт авахад бэлэн байна."
+
+msgid "user.register.contextsPrompt"
+msgstr "Та энэ сайтын аль хэвлэлийн газруудад бүртгүүлэх хүсэлтэй байна вэ?"
+
+msgid "user.register.otherContextRoles"
+msgstr "Дараах үүрэгүүдийг хүсэх."
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+"Хэрэв та аль нэг хэвлэлийн газарт хянагчаар бүртгүүлэх хүсэлт гаргасан бол "
+"сонирхож буй сэдвүүдээ оруулна уу."
+
+msgid "user.role.manager"
+msgstr "Хэвлэлийн газрын менежер"
+
+msgid "user.role.pressEditor"
+msgstr "Хэвлэлийн газрын редактор"
+
+msgid "user.role.subEditor"
+msgstr "Цувралын редактор"
+
+msgid "user.role.copyeditor"
+msgstr "Хянан тохиолдуулагч"
+
+msgid "user.role.proofreader"
+msgstr "Үсгийн алдаа шалгагч"
+
+msgid "user.role.productionEditor"
+msgstr "Эх бэлтгэлийн редактор"
+
+msgid "user.role.managers"
+msgstr "Хэвлэлийн газрын менежерүүд"
+
+msgid "user.role.subEditors"
+msgstr "Цувралын редакторууд"
+
+msgid "user.role.editors"
+msgstr "Редакторууд"
+
+msgid "user.role.copyeditors"
+msgstr "Хянан тохиолдуулагчид"
+
+msgid "user.role.proofreaders"
+msgstr "Үсгийн алдаа шалгагчид"
+
+msgid "user.role.productionEditors"
+msgstr "Эх бэлтгэлийн редакторууд"
+
+msgid "user.register.selectContext"
+msgstr "Бүртгүүлэх хэвлэлийн газраа сонгоно уу:"
+
+msgid "user.register.noContexts"
+msgstr "Энэ сайт дээр таны бүртгүүлж болох хэвлэлийн газар алга байна."
+
+msgid "user.register.privacyStatement"
+msgstr "Нууцлалын мэдэгдэл"
+
+msgid "user.register.registrationDisabled"
+msgstr "Энэ хэвлэлийн газар одоогоор хэрэглэгчийн бүртгэл хүлээн авахгүй байна."
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "Таны оруулсан нууц үг хангалттай урт биш байна."
+
+msgid "user.register.readerDescription"
+msgstr "Бүтээл нийтлэгдэх үед имэйлээр мэдэгдэл хүлээн авна."
+
+msgid "user.register.authorDescription"
+msgstr "Хэвлэлийн газарт бүтээл илгээх боломжтой."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr "Илгээлтүүдэд хөндлөнгийн хяналт хийх хүсэлтэй."
+
+msgid "user.register.reviewerDescription"
+msgstr "Энэ сайтын илгээлтүүдэд хөндлөнгийн хяналт хийх хүсэлтэй."
+
+msgid "user.register.reviewerInterests"
+msgstr "Хянан үзэх сонирхдог чиглэлүүд (салбар, судалгааны аргууд):"
+
+msgid "user.register.form.userGroupRequired"
+msgstr "Та дор хаяж нэг үүрэг сонгох ёстой"
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Тиймээ, миний өгөгдлийг энэхүү хэвлэлийн газрын <a href=\"{$privacyUrl}\" "
+"target=\"_blank\">нууцлалын мэдэгдлийн</a> дагуу цуглуулж, хадгалахыг "
+"зөвшөөрч байна."
+
+msgid "site.noPresses"
+msgstr "Боломжит хэвлэлийн газар алга байна."
+
+msgid "site.pressView"
+msgstr "Хэвлэлийн газрын вэб сайтыг үзэх"
+
+msgid "about.pressContact"
+msgstr "Холбоо барих"
+
+msgid "about.aboutContext"
+msgstr "Хэвлэлийн газрын тухай"
+
+msgid "about.editorialPolicies"
+msgstr "Редакцийн бодлого"
+
+msgid "about.focusAndScope"
+msgstr "Зорилго ба Хамрах хүрээ"
+
+msgid "about.seriesPolicies"
+msgstr "Цуврал болон Ангиллын бодлого"
+
+msgid "about.submissions"
+msgstr "Илгээлтүүд"
+
+msgid "about.onlineSubmissions"
+msgstr "Цахим илгээлт"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Нэвтрэх"
+
+msgid "about.onlineSubmissions.register"
+msgstr "Бүртгүүлэх"
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "Илгээлт хийхийн тулд {$login} эсвэл {$register} хийнэ үү."
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} эсвэл {$viewSubmissions}."
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Шинэ илгээлт хийх"
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "хянагдаж буй илгээлтүүдээ харах"
+
+msgid "about.authorGuidelines"
+msgstr "Зохиогчид зориулсан удирдамж"
+
+msgid "about.submissionPreparationChecklist"
+msgstr "Илгээлт бэлтгэх хяналтын хуудас"
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr ""
+"Илгээлтийн үйл явцын хүрээнд зохиогчид өөрийн илгээлт нь дараах бүх зүйлсийг "
+"хангаж буй эсэхийг шалгах шаардлагатай бөгөөд эдгээр удирдамжийг дагаж "
+"мөрдөөгүй илгээлтийг зохиогчид буцааж болно."
+
+msgid "about.copyrightNotice"
+msgstr "Зохиогчийн эрхийн мэдэгдэл"
+
+msgid "about.privacyStatement"
+msgstr "Нууцлалын мэдэгдэл"
+
+msgid "about.reviewPolicy"
+msgstr "Хөндлөнгийн хяналтын үйл явц"
+
+msgid "about.publicationFrequency"
+msgstr "Нийтлэлийн давтамж"
+
+msgid "about.openAccessPolicy"
+msgstr "Нээлттэй хандалтын бодлого"
+
+msgid "about.pressSponsorship"
+msgstr "Ивээн тэтгэлэг"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr ""
+"OMP/PKP-ийн хэвлэлийн систем, платформ болон ажлын урсгалын талаарх "
+"дэлгэрэнгүй мэдээлэл."
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "OMP Редакцийн болон хэвлэлийн үйл явц"
+
+msgid "about.aboutSoftware"
+msgstr "Open Monograph Press-ийн тухай"
+
+msgid "about.aboutOMPPress"
+msgstr ""
+"Энэхүү хэвлэлийн газар нь Public Knowledge Project-ээс GNU General Public "
+"License-ийн дагуу хөгжүүлсэн, нээлттэй эх бүхий Open Monograph Press "
+"{$ompVersion}-ийг ашигладаг."
+
+msgid "about.aboutOMPSite"
+msgstr ""
+"Энэхүү сайт нь Public Knowledge Project-ээс GNU General Public License-ийн "
+"дагуу хөгжүүлсэн, нээлттэй эх бүхий Open Monograph Press {$ompVersion}-ийг "
+"ашигладаг."
+
+msgid "help.searchReturnResults"
+msgstr "Хайлтын үр дүн рүү буцах"
+
+msgid "help.goToEditPage"
+msgstr "Энэ мэдээллийг засварлахын тулд шинэ хуудас нээх"
+
+msgid "installer.appInstallation"
+msgstr "OMP Суурилуулалт"
+
+msgid "installer.ompUpgrade"
+msgstr "OMP Шинэчлэлт"
+
+msgid "installer.updatingInstructions"
+msgstr ""
+"Хэрэв та одоо байгаа OMP-ийг шинэчилж байгаа бол үргэлжлүүлэхийн тулд <a "
+"href=\"{$upgradeUrl}\">энд дарна уу</a>."
+
+msgid "installer.installationInstructions"
+msgstr ""
+"<p>Public Knowledge Project-ийн <strong>Open Monograph Press "
+"{$version}</strong>-ийг татан авсанд баярлалаа. Үргэлжлүүлэхийн өмнө энэ "
+"програмтай хамт ирсэн <a href=\"{$baseUrl}/README.md\">README</a> файлыг "
+"уншина уу.</p>"
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "Суурилуулалтын өмнөх алхмууд"
+
+msgid "installer.preInstallationInstructions"
+msgstr ""
+"<p>1. Дараах файл, хавтаснууд бичих эрхтэй (writable) байх ёстой:</p>\n"
+"<ul>\n"
+"\t<li><tt>config.inc.php</tt>: {$writable_config}</li>\n"
+"\t<li><tt>public/</tt>: {$writable_public}</li>\n"
+"\t<li><tt>cache/</tt>: {$writable_cache}</li>\n"
+"</ul>"
+
+msgid "installer.upgradeInstructions"
+msgstr ""
+"<h4>OMP Хувилбар {$version}</h4>\n"
+"<p>Үргэлжлүүлэхийн өмнө өгөгдлийн сан болон файлын хавтасны <strong>нөөц "
+"хуулбарыг (backup) заавал авахыг</strong> зөвлөж байна.</p>"
+
+msgid "installer.localeSettingsInstructions"
+msgstr ""
+"Юникодын бүрэн дэмжлэг авахын тулд PHP нь <a href=\"https://www.php.net/"
+"mbstring\" target=\"_blank\">mbstring</a> санг дэмждэг байх ёстой.\n"
+"<br /><br />\n"
+"Таны сервер одоогоор mbstring дэмжиж байна: "
+"<strong>{$supportsMBString}</strong>"
+
+msgid "installer.allowFileUploads"
+msgstr ""
+"Таны сервер файл хуулахыг зөвшөөрч байна: "
+"<strong>{$allowFileUploads}</strong>"
+
+msgid "installer.localeInstructions"
+msgstr "Энэ системд ашиглах үндсэн хэл."
+
+msgid "installer.additionalLocalesInstructions"
+msgstr "Энэ системд дэмжих нэмэлт хэлнүүдийг сонгоно уу."
+
+msgid "installer.filesDirInstructions"
+msgstr ""
+"Хуулсан файлуудыг хадгалах хавтасны бүтэн замыг оруулна уу. Энэ хавтас нь "
+"вэбээс шууд хандах боломжгүй байх ёстой."
+
+msgid "installer.databaseSettingsInstructions"
+msgstr "OMP өгөгдлөө хадгалахын тулд SQL өгөгдлийн санд хандах шаардлагатай."
+
+msgid "installer.upgradeApplication"
+msgstr "Open Monograph Press-ийг шинэчлэх"
+
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>ЧУХАЛ!</h4>\n"
+"<p>Суурилуулагч тохиргооны файлыг автоматаар дарж бичиж чадсангүй. Системийг "
+"ашиглахаас өмнө <tt>config.inc.php</tt> файлыг засварлагчаар нээж, агуулгыг "
+"нь доорх текстээр солино уу.</p>"
+
+msgid "installer.installationComplete"
+msgstr ""
+"<p>OMP-ийг суурилуулж дууслаа.</p>\n"
+"<p>Системийг ашиглаж эхлэхийн тулд <a href=\"{$loginUrl}\">нэвтэрнэ "
+"үү</a>.</p>"
+
+msgid "installer.upgradeComplete"
+msgstr "<p>OMP-ийг {$version} хувилбар руу шинэчилж дууслаа.</p>"
+
+msgid "log.review.reviewDueDateSet"
+msgstr ""
+"{$submissionId} илгээлтийн {$reviewerName} хянагчийн {$round}-р үеийн "
+"хяналтын дуусах хугацааг {$dueDate} болгож тохирууллаа."
+
+msgid "log.review.reviewDeclined"
+msgstr ""
+"{$reviewerName} хянагч {$submissionId} илгээлтийн {$round}-р үеийн хяналтыг "
+"хийхээс татгалзлаа."
+
+msgid "log.review.reviewAccepted"
+msgstr ""
+"{$reviewerName} хянагч {$submissionId} илгээлтийн {$round}-р үеийн хяналтыг "
+"хийхийг зөвшөөрлөө."
+
+msgid "log.review.reviewUnconsidered"
+msgstr ""
+"Редактор {$editorName} {$submissionId} илгээлтийн {$round}-р үеийн хяналтыг "
+"анхааралдаа авахгүйгээр тэмдэглэлээ."
+
+msgid "log.editor.decision"
+msgstr ""
+"{$submissionId} бүтээлд зориулсан редакторын шийдвэрийг ({$decision}) "
+"редактор {$editorName} бүртгэлээ."
+
+msgid "log.editor.recommendation"
+msgstr ""
+"{$submissionId} бүтээлд зориулсан редакторын зөвлөмжийг ({$decision}) "
+"редактор {$editorName} бүртгэлээ."
+
+msgid "log.editor.archived"
+msgstr "{$submissionId} илгээлтийг архивлалаа."
+
+msgid "log.editor.restored"
+msgstr "{$submissionId} илгээлтийг дараалал руу буцаалаа."
+
+msgid "log.editor.editorAssigned"
+msgstr "{$submissionId} илгээлтэд редактороор {$editorName} томилогдлоо."
+
+msgid "log.proofread.assign"
+msgstr ""
+"{$assignerName} нь {$submissionId} илгээлтийн үсгийн алдааг шалгуулахаар "
+"{$proofreaderName}-ийг томиллоо."
+
+msgid "log.proofread.complete"
+msgstr ""
+"Үсгийн алдаа шалгагч {$proofreaderName} {$submissionId} илгээлтийг "
+"төлөвлөлтөд шилжүүлэв."
+
+msgid "log.imported"
+msgstr "{$userName} хэрэглэгч {$submissionId} бүтээлийг импортлон орууллаа."
+
+msgid "notification.addedIdentificationCode"
+msgstr "Таних код нэмэгдлээ."
+
+msgid "notification.editedIdentificationCode"
+msgstr "Таних кодыг засварлалаа."
+
+msgid "notification.removedIdentificationCode"
+msgstr "Таних кодыг устгалаа."
+
+msgid "notification.addedPublicationDate"
+msgstr "Нийтлэх огноо нэмэгдлээ."
+
+msgid "notification.editedPublicationDate"
+msgstr "Нийтлэх огноог засварлалаа."
+
+msgid "notification.removedPublicationDate"
+msgstr "Нийтлэх огноог устгалаа."
+
+msgid "notification.addedPublicationFormat"
+msgstr "Нийтлэх формат нэмэгдлээ."
+
+msgid "notification.editedPublicationFormat"
+msgstr "Нийтлэх форматыг засварлалаа."
+
+msgid "notification.removedPublicationFormat"
+msgstr "Нийтлэх форматыг устгалаа."
+
+msgid "notification.addedSalesRights"
+msgstr "Борлуулах эрх нэмэгдлээ."
+
+msgid "notification.editedSalesRights"
+msgstr "Борлуулах эрхийг засварлалаа."
+
+msgid "notification.removedSalesRights"
+msgstr "Борлуулах эрхийг устгалаа."
+
+msgid "notification.addedRepresentative"
+msgstr "Төлөөлөгч нэмэгдлээ."
+
+msgid "notification.editedRepresentative"
+msgstr "Төлөөлөгчийг засварлалаа."
+
+msgid "notification.removedRepresentative"
+msgstr "Төлөөлөгчийг устгалаа."
+
+msgid "notification.addedMarket"
+msgstr "Зах зээл нэмэгдлээ."
+
+msgid "notification.editedMarket"
+msgstr "Зах зээлийг засварлалаа."
+
+msgid "notification.removedMarket"
+msgstr "Зах зээлийг устгалаа."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "Каталогийн мета өгөгдлийг хадгаллаа."
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "Нийтлэх форматын мета өгөгдлийг хадгаллаа."
+
+msgid "notification.proofsApproved"
+msgstr "Хяналтын хувийг (Proofs) баталлаа."
+
+msgid "notification.removedSubmission"
+msgstr "Илгээлтийг устгалаа."
+
+msgid "notification.type.submissionSubmitted"
+msgstr "Шинэ бүтээл \"{$title}\" ирлээ."
+
+msgid "notification.type.editing"
+msgstr "Засварлах үеийн үйл явдлууд"
+
+msgid "notification.type.reviewing"
+msgstr "Хяналтын үеийн үйл явдлууд"
+
+msgid "notification.type.site"
+msgstr "Сайтын үйл явдлууд"
+
+msgid "notification.type.submissions"
+msgstr "Илгээлтийн үйл явдлууд"
+
+msgid "notification.type.userComment"
+msgstr "Уншигч \"{$title}\" бүтээлд тайлбар үлдээлээ."
+
+msgid "notification.type.public"
+msgstr "Нийтийн зарлалууд"
+
+msgid "notification.type.editorAssignmentTask"
+msgstr "Редактор томилох шаардлагатай шинэ бүтээл ирлээ."
+
+msgid "notification.type.layouteditorRequest"
+msgstr "Танд \"{$title}\" бүтээлийн эх бэлтгэлийг хянах хүсэлт ирлээ."
+
+msgid "notification.type.indexRequest"
+msgstr "Танд \"{$title}\" бүтээлд индекс үүсгэх хүсэлт ирлээ."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "Дотоод хяналтын үйл явц эхэллээ."
+
+msgid "notification.type.approveSubmission"
+msgstr ""
+"Энэ илгээлт нийтийн каталогид харагдахаас өмнө каталогийн бүртгэлийн хэсэгт "
+"батлагдахыг хүлээж байна."
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "Батлахыг хүлээж байна."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+"Бүтээл нийтлэгдэх хүртэл каталогид харагдахгүй. Каталогид нэмэхийн тулд "
+"'Нийтлэл' (Publication) цонх дээр дарна уу."
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "Төлбөрийн хэрэгсэл тохируулаагүй байна."
+
+msgid "notification.type.configurePaymentMethod"
+msgstr ""
+"Төлбөрийн тохиргоог хийхийн өмнө төлбөрийн хэрэгслийг тохируулах "
+"шаардлагатай."
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "Каталогийн удирдлага"
+
+msgid "notification.type.visitCatalog"
+msgstr ""
+"Бүтээлийг баталлаа. Дээрх холбоосыг ашиглан Маркетинг болон Нийтлэх хэсгээс "
+"каталогийн мэдээллийг удирдана уу."
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr "Та энэ бүтээлийн хүчинтэй хянагч биш тул хандалт татгалзав."
+
+msgid "user.authorization.monographAuthor"
+msgstr "Та энэ бүтээлийн зохиогч биш тул хандалт татгалзав."
+
+msgid "user.authorization.monographReviewer"
+msgstr "Та энэ бүтээлийн оноогдсон хянагч биш тул хандалт татгалзав."
+
+msgid "user.authorization.monographFile"
+msgstr "Заасан бүтээлийн файл руу хандах эрх татгалзав."
+
+msgid "user.authorization.invalidMonograph"
+msgstr "Хүчингүй бүтээл эсвэл бүтээл хүсээгүй байна!"
+
+msgid "user.authorization.noContext"
+msgstr "Таны хүсэлтэд тохирох хэвлэлийн газар олдсонгүй."
+
+msgid "user.authorization.seriesAssignment"
+msgstr "Та өөрийн цувралд хамааралгүй бүтээлд хандахыг оролдож байна."
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr "Хандалт татгалзав! Та ажлын урсгалын энэ шатанд томилогдоогүй байна."
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+"Хандалт татгалзав! Таны одоогийн хэрэглэгчийн бүлэг ажлын урсгалын энэ "
+"шатанд томилогдоогүй байна."
+
+msgid "payment.directSales"
+msgstr "Вэб сайтаас татаж авах"
+
+msgid "payment.directSales.price"
+msgstr "Үнэ"
+
+msgid "payment.directSales.availability"
+msgstr "Бэлэн байдал"
+
+msgid "payment.directSales.catalog"
+msgstr "Каталог"
+
+msgid "payment.directSales.approved"
+msgstr "Батлагдсан"
+
+msgid "payment.directSales.priceCurrency"
+msgstr "Үнэ ({$currency})"
+
+msgid "payment.directSales.numericOnly"
+msgstr "Үнэ нь зөвхөн тоон утга байх ёстой. Валютын тэмдэгт оруулахгүй."
+
+msgid "payment.directSales.directSales"
+msgstr "Шууд борлуулалт"
+
+msgid "payment.directSales.amount"
+msgstr "{$amount} ({$currency})"
+
+msgid "payment.directSales.notAvailable"
+msgstr "Бэлэн бус"
+
+msgid "payment.directSales.notSet"
+msgstr "Тохируулаагүй"
+
+msgid "payment.directSales.openAccess"
+msgstr "Нээлттэй хандалт"
+
+msgid "payment.directSales.price.description"
+msgstr ""
+"Файлын форматуудыг үнэгүй (Нээлттэй хандалт) эсвэл төлбөртэй (Шууд "
+"борлуулалт) татаж авахаар тохируулж болно."
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "Хүчинтэй тоон үнэ шаардлагатай."
+
+msgid "payment.directSales.purchase"
+msgstr "Худалдан авах {$format} ({$amount} {$currency})"
+
+msgid "payment.directSales.download"
+msgstr "Татах {$format}"
+
+msgid "payment.directSales.monograph.name"
+msgstr "Бүтээл эсвэл Бүлгийг татаж авахаар худалдаж авах"
+
+msgid "payment.directSales.monograph.description"
+msgstr ""
+"Энэхүү гүйлгээ нь нэг бүтээл эсвэл бүлгийг шууд татаж авахад зориулагдсан "
+"болно."
+
+msgid "debug.notes.helpMappingLoad"
+msgstr ""
+"{$id}-ийг хайх явцад {$filename} тусламжийн зураглалын XML файлыг дахин "
+"ачааллаа."
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Ном"
+
+msgid "submission.pdf.download"
+msgstr "Энэ PDF файлыг татах"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "Бусад хэвлэлийн газруудад бүртгүүлэх"
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "Бусад хэвлэлийн газруудыг нуух"
+
+msgid "submission.round"
+msgstr "{$round}-р үе"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "Хүчингүй нийтлэгдсэн илгээлт заасан байна."
+
+msgid "catalog.coverImageTitle"
+msgstr "Нүүр зураг"
+
+msgid "grid.catalogEntry.chapters"
+msgstr "Бүлгүүд"
+
+msgid "search.results.orderBy.article"
+msgstr "Өгүүллийн гарчиг"
+
+msgid "search.results.orderBy.author"
+msgstr "Зохиогч"
+
+msgid "search.results.orderBy.date"
+msgstr "Нийтэлсэн огноо"
+
+msgid "search.results.orderBy.monograph"
+msgstr "Бүтээлийн гарчиг"
+
+msgid "search.results.orderBy.press"
+msgstr "Хэвлэлийн газрын нэр"
+
+msgid "search.results.orderBy.popularityAll"
+msgstr "Хамгийн их үзсэн (Бүх цаг үеийн)"
+
+msgid "search.results.orderBy.popularityMonth"
+msgstr "Хамгийн их үзсэн (Сүүлийн сар)"
+
+msgid "search.results.orderBy.relevance"
+msgstr "Хамаарал"
+
+msgid "search.results.orderDir.asc"
+msgstr "Өсөхөөр"
+
+msgid "search.results.orderDir.desc"
+msgstr "Буурахаар"
+
+msgid "section.section"
+msgstr "Цуврал"
+
+msgid "search.cli.rebuildIndex.indexing"
+msgstr "\"{$pressName}\"-ийг индексжүүлж байна"
+
+msgid "search.cli.rebuildIndex.unknownPress"
+msgstr "Заасан \"{$pressPath}\" замаар хэвлэлийн газар олдохгүй байна."
+
+msgid "site.upgradeAvailable.admin"
+msgstr ""
+"OMP-ийн шинэ хувилбар гарсан байна! Та одоо OMP {$currentVersion} ашиглаж "
+"байна. Хамгийн сүүлийн хувилбар нь OMP {$latestVersion} юм. Шинэ хувилбарыг "
+"татаж авах болон шинэчлэх зааврыг <a href=\"https://pkp.sfu.ca/omp_download\""
+" target=\"_new\">PKP вэб сайтаас</a> үзнэ үү."
+
+msgid "site.upgradeAvailable.manager"
+msgstr ""
+"OMP-ийн шинэ хувилбар гарсан байна! Та одоо OMP {$currentVersion} ашиглаж "
+"байна. Хамгийн сүүлийн хувилбар нь OMP {$latestVersion} юм. Шинэ хувилбарын "
+"талаар Сайтын Администраторт ({$siteAdminName}, <a href=\"mailto"
+":{$siteAdminEmail}\">{$siteAdminEmail}</a>) мэдэгдэнэ үү. Дэлгэрэнгүй "
+"мэдээллийг <a href=\"https://pkp.sfu.ca/omp_download/\" target=\"_new\">PKP "
+"вэб сайтаас</a> авч болно."
+
+msgid "monograph.type"
+msgstr "Бүтээл илгээх төрөл"
