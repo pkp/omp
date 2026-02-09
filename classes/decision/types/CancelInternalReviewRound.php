@@ -20,11 +20,10 @@ namespace APP\decision\types;
 use APP\decision\Decision;
 use APP\decision\types\traits\InInternalReviewRound;
 use APP\submission\Submission;
-use PKP\db\DAORegistry;
 use PKP\decision\types\CancelReviewRound as PKPCancelReviewRound;
 use PKP\decision\types\traits\NotifyAuthors;
 use PKP\decision\types\traits\NotifyReviewers;
-use PKP\submission\reviewRound\ReviewRoundDAO;
+use PKP\submission\reviewRound\ReviewRound;
 
 class CancelInternalReviewRound extends PKPCancelReviewRound
 {
@@ -50,10 +49,11 @@ class CancelInternalReviewRound extends PKPCancelReviewRound
      */
     public function getNewStageId(Submission $submission, ?int $reviewRoundId): ?int
     {
-        /** @var ReviewRoundDAO $reviewRoundDao */
-        $reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
+        $submissionReviewRoundCount = ReviewRound::withSubmissionIds([$submission->getId()])
+            ->withStageId(WORKFLOW_STAGE_ID_INTERNAL_REVIEW)
+            ->count();
 
-        if ($reviewRoundDao->getReviewRoundCountBySubmissionId($submission->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW) > 1) {
+        if ($submissionReviewRoundCount > 1) {
             return WORKFLOW_STAGE_ID_INTERNAL_REVIEW;
         }
 
