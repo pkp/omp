@@ -42,6 +42,8 @@ class Repository extends \PKP\doi\Repository
 {
     public const TYPE_SUBMISSION_FILE = 'file';
     public const TYPE_CHAPTER = 'chapter';
+    public const TYPE_PEER_REVIEW = 'peerReview';
+    public const TYPE_AUTHOR_RESPONSE = 'authorResponse';
 
     public const CUSTOM_CHAPTER_PATTERN = 'doiChapterSuffixPattern';
     public const CUSTOM_FILE_PATTERN = 'doiSubmissionFileSuffixPattern';
