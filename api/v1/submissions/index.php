@@ -27,6 +27,8 @@ if (strpos($requestPath, '/files')) {
     return new \PKP\handler\APIHandler(new PKP\API\v1\reviewers\suggestions\ReviewerSuggestionController());
 } elseif (strpos($requestPath, '/tasks')) {
     return new \PKP\handler\APIHandler(new \PKP\API\v1\submissions\tasks\EditorialTaskController());
+} elseif (strpos($requestPath, '/mediaFiles')) {
+    return new \PKP\handler\APIHandler(new \PKP\API\v1\submissions\MediaFilesController());
 } else {
     return new \PKP\handler\APIHandler(new \APP\API\v1\submissions\SubmissionController());
 }
