@@ -29,7 +29,7 @@
 	<genre key="PHOTO" category="2" dependent="0" supplementary="1" localeKey="default.genres.photo" />
 	<genre key="ILLUSTRATION" category="2" dependent="0" supplementary="1" localeKey="default.genres.illustration" />
 	<genre key="OTHER" category="3" dependent="0" supplementary="1" localeKey="default.genres.other" />
-	<genre key="IMAGE" category="2" dependent="1" supplementary="0" localeKey="default.genres.image" />
+	<genre key="IMAGE" category="2" dependent="1" supplementary="0" supportsFileVariants="1" localeKey="default.genres.image" />
 	<genre key="STYLE" category="1" dependent="1" supplementary="0" localeKey="default.genres.styleSheet" />
 	<genre key="OTHER" category="3" dependent="0" supplementary="1" localeKey="default.genres.other" />
 </genres>
