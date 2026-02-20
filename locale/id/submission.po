@@ -1,12 +1,12 @@
-# Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>, 2024.
+# Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>, 2024, 2026.
 # Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-11-19 21:44+0000\n"
-"PO-Revision-Date: 2025-05-03 14:57+0000\n"
-"Last-Translator: Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>\n"
+"PO-Revision-Date: 2026-02-21 03:54+0000\n"
+"Last-Translator: Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>\n"
 "Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/id/>\n"
 "Language: id\n"
@@ -34,14 +34,15 @@ msgstr "Jenis Submisi"
 msgid "submission.workflowType.description"
 msgstr ""
 "Monograf adalah karya yang seluruhnya ditulis oleh satu penulis atau lebih. "
-"Volume yang disunting memiliki penulis yang berbeda untuk setiap bab (dengan "
-"rincian bab dimasukkan kemudian dalam proses ini.)"
+"Bunga rampai (edited volume) memiliki penulis yang berbeda untuk setiap bab ("
+"dengan rincian bab dimasukkan kemudian dalam proses ini.)"
 
 msgid "submission.workflowType.editedVolume.label"
-msgstr "Volume yang Disunting"
+msgstr "Bunga Rampai (Edited Volume)"
 
 msgid "submission.workflowType.editedVolume"
-msgstr "Volume yang Diedit: Penulis dikaitkan dengan bab mereka sendiri."
+msgstr ""
+"Bunga Rampai (Edited Volume): Penulis dikaitkan dengan bab mereka sendiri."
 
 msgid "submission.workflowType.authoredWork"
 msgstr "Monograf: Penulis dikaitkan dengan buku secara keseluruhan."
@@ -59,7 +60,7 @@ msgid "submission.published"
 msgstr "Siap Produksi"
 
 msgid "submission.fairCopy"
-msgstr "Salinan yang Adil"
+msgstr "Naskah Final"
 
 msgid "submission.authorListSeparator"
 msgstr "; "
@@ -83,19 +84,19 @@ msgid "submission.chapter.pages"
 msgstr "Halaman"
 
 msgid "submission.copyedit"
-msgstr "Penyuntingan salinan"
+msgstr "Penyuntingan Naskah"
 
 msgid "submission.publicationFormats"
 msgstr "Format Publikasi"
 
 msgid "submission.proofs"
-msgstr "Proof"
+msgstr "Naskah Pratayang"
 
 msgid "submission.download"
 msgstr "Unduh"
 
 msgid "submission.sharing"
-msgstr "Bagikan Ini"
+msgstr "Bagikan"
 
 msgid "manuscript.submission"
 msgstr "Submisi Naskah"
@@ -140,7 +141,7 @@ msgid "author.volumeEditor"
 msgstr "Penyunting Volume"
 
 msgid "author.isVolumeEditor"
-msgstr "Identifikasi kontributor sebagai penyunting volume ini."
+msgstr "Identifikasi kontributor sebagai penyunting bunga rampai ini."
 
 msgid "submission.submit.seriesPosition"
 msgstr "Posisi Seri"
@@ -176,7 +177,7 @@ msgid "submission.submit.nextSteps"
 msgstr "Tahap Berikutnya"
 
 msgid "submission.submit.coverNote"
-msgstr "Cover Note untuk Penyunting"
+msgstr "Catatan Pengantar untuk Penyunting"
 
 msgid "submission.submit.generalInformation"
 msgstr "Informasi Umum"
@@ -205,7 +206,7 @@ msgid "grid.chapters.title"
 msgstr "Bab"
 
 msgid "grid.copyediting.deleteCopyeditorResponse"
-msgstr "Hapus Unggahan Copyeditor"
+msgstr "Hapus Unggahan Penyunting Naskah"
 
 msgid "submission.complete"
 msgstr "Disetujui"
@@ -301,7 +302,7 @@ msgid "submission.upload.fileContents"
 msgstr "Komponen Submisi"
 
 msgid "submission.dependentFiles"
-msgstr "Dependent File"
+msgstr "File Tambahan"
 
 msgid "submission.metadataDescription"
 msgstr ""
@@ -321,7 +322,7 @@ msgid "submission.list.itemsOfTotalMonographs"
 msgstr "{$count} dari {$total} monograf"
 
 msgid "submission.list.orderFeatures"
-msgstr "Susun Unggulan"
+msgstr "Atur Unggulan"
 
 msgid "submission.list.orderingFeatures"
 msgstr ""
@@ -337,7 +338,7 @@ msgid "submission.list.saveFeatureOrder"
 msgstr "Simpan Urutan"
 
 msgid "submission.list.viewEntry"
-msgstr "LIhat Entri"
+msgstr "Lihat Entri"
 
 msgid "catalog.browseTitles"
 msgstr "{$numTitles} Judul"
@@ -388,15 +389,16 @@ msgstr "Publikasi"
 
 msgid "publication.copyrightYearBasis.issueDescription"
 msgstr ""
-"Tahunhak cipta akan ditetapkan secara otomatis jika naskah ini diterbitkan "
+"Tahun hak cipta akan ditetapkan secara otomatis jika naskah ini diterbitkan "
 "pada satu nomor terbitan."
 
 msgid "publication.copyrightYearBasis.submissionDescription"
 msgstr ""
-"Tahunhak cipta akan ditetapkan secara otomatis berdasarkan tanggal publikasi."
+"Tahun hak cipta akan ditetapkan secara otomatis berdasarkan tanggal "
+"publikasi."
 
 msgid "publication.datePublished"
-msgstr "Tanggal DIterbitkan"
+msgstr "Tanggal Diterbitkan"
 
 msgid "publication.editDisabled"
 msgstr "Versi ini telah diterbitkan dan tidak dapat disunting."
@@ -433,7 +435,7 @@ msgstr "Naskah yang ditolak tidak bisa diterbitkan."
 
 msgid "publication.required.reviewStage"
 msgstr ""
-"Naskah harus melewati tahap Copyediting atau Produksi sebelum dapat "
+"Naskah harus melewati tahap Penyuntingan Naskah atau Produksi sebelum dapat "
 "diterbitkan."
 
 msgid "submission.license.description"
@@ -459,7 +461,7 @@ msgid "publication.unschedule.confirm"
 msgstr "Yakin tidak ingin menjadwalkan naskah ini untuk diterbitkan?"
 
 msgid "publication.version.details"
-msgstr "PRincian publikasi naskah versi {$version}"
+msgstr "Perincian publikasi naskah versi {$version}"
 
 msgid "submission.queries.production"
 msgstr "Diskusi Produksi"
@@ -497,7 +499,7 @@ msgid "editor.submission.decision.sendInternalReview.log"
 msgstr "{$editorName} mengirimkan submisi ini ke tahap peninjauan internal."
 
 msgid "editor.submission.decision.sendInternalReview.completed"
-msgstr "Dikirim untuk Tinjauan Internal"
+msgstr "Dikirim untuk Peninjauan Internal"
 
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr ""
@@ -518,13 +520,13 @@ msgid "editor.submission.decision.sendExternalReview.log"
 msgstr "{$editorName} mengirimkan submisi ini ke tahap peninjauan eksternal."
 
 msgid "editor.submission.decision.sendExternalReview.completed"
-msgstr "Dikirim untuk Tinjauan Eksternal"
+msgstr "Dikirim untuk Peninjauan Eksternal"
 
 msgid "editor.submission.decision.sendExternalReview.completed.description"
 msgstr "Submisi, {$title}, telah dikirim ke tahap peninjauan eksternal."
 
 msgid "editor.submission.decision.backToReview"
-msgstr "Kembali ke Tinjauan"
+msgstr "Kembali ke Peninjauan"
 
 msgid "editor.submission.decision.backToReview.description"
 msgstr ""
@@ -551,7 +553,7 @@ msgstr ""
 msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
 msgstr ""
 "Kirim email kepada penulis untuk memberi tahu mereka bahwa kiriman ini akan "
-"dikirim untuk ditinjau sejawat. Jika memungkinkan, berikan petunjuk kepada "
+"dikirim untuk peninjauan sejawat. Jika memungkinkan, berikan petunjuk kepada "
 "penulis tentang berapa lama proses peninjauan sejawat akan berlangsung dan "
 "kapan mereka akan mendapat kabar dari penyunting lagi."
 
@@ -559,7 +561,7 @@ msgid "editor.submission.decision.promoteFiles.externalReview"
 msgstr "Pilih file yang harus dikirim ke tahap peninjauan."
 
 msgid "editor.submission.recommend.sendExternalReview"
-msgstr "Rekomendasikan Kirim ke Tinjauan Eksternal"
+msgstr "Rekomendasikan Kirim ke Peninjauan Eksternal"
 
 msgid "editor.submission.recommend.sendExternalReview.description"
 msgstr "Rekomendasikan agar kiriman ini dikirim ke tahap peninjauan eksternal."
@@ -610,28 +612,28 @@ msgstr ""
 "Mengirimkan <strong>Monograf</strong> dalam <strong>{$language}</strong>."
 
 msgid "submission.wizard.submitting.editedVolume"
-msgstr "Mengirimkan <strong>Volume yang Disunting</strong>."
+msgstr "Mengirimkan <strong>Bunga Rampai (Edited Volume)</strong>."
 
 msgid "submission.wizard.submitting.editedVolumeInLanguage"
 msgstr ""
-"Mengirimkan <strong>Volume yang Sunting</strong> dalam "
+"Mengirimkan <strong>Bunga Rampai (Edited Volume)</strong> dalam "
 "<strong>{$language}</strong>."
 
 msgid "submission.wizard.chapters.description"
 msgstr ""
-"Harap cantumkan semua bab dari kiriman ini. Jika Anda mengirimkan volume "
-"yang disunting, pastikan setiap bab mencantumkan kontributor untuk bab "
-"tersebut."
+"Harap cantumkan semua bab dari kiriman ini. Jika Anda mengirimkan bunga "
+"rampai (edited volume), pastikan setiap bab mencantumkan kontributor untuk "
+"bab tersebut."
 
 msgid "publication.chapter.landingPage.doi.description"
 msgstr ""
 "(Bab ini akan selalu ditampilkan di halamannya sendiri karena memiliki DOI.)"
 
 msgid "submission.dashboard.view.reviewInternal"
-msgstr "Semua dalam tinjauan internal"
+msgstr "Semua dalam peninjauan internal"
 
 msgid "submission.stage.externalReviewWithRound"
-msgstr "Tinjauan Eksternal (Putaran {$round})"
+msgstr "Peninjauan Eksternal (Putaran {$round})"
 
 msgid "submission.stage.internalReviewWithRound"
-msgstr "Tinjauan Internal (Putaran {$round})"
+msgstr "Peninjauan Internal (Putaran {$round})"
