@@ -460,6 +460,7 @@ msgstr ""
 msgid "publication.version.details"
 msgstr "Publikationsoplysninger i forbindelse med version {$version}"
 
+#, fuzzy
 msgid "submission.queries.production"
 msgstr "Drøftelser under produktion"
 
