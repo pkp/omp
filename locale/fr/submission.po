@@ -491,6 +491,7 @@ msgid "publication.unschedule.confirm"
 msgstr ""
 "Avez-vous la certitude de ne pas vouloir programmer ceci pour publication ?"
 
+#, fuzzy
 msgid "submission.queries.production"
 msgstr "Discussions sur la production"
 

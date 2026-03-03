@@ -451,6 +451,7 @@ msgstr "Na pewno chcesz zdjąć te pozycje z planu publikacji?"
 msgid "publication.version.details"
 msgstr "Szczegóły publikacji dla wersji {$version}"
 
+#, fuzzy
 msgid "submission.queries.production"
 msgstr "Dyskusja w trakcie realizacji"
 

@@ -453,6 +453,7 @@ msgstr ""
 msgid "publication.version.details"
 msgstr "A {$verzió} verzió kiadvány adatai"
 
+#, fuzzy
 msgid "submission.queries.production"
 msgstr "Előkészítéssel kapcsolatos megbeszélések"
 

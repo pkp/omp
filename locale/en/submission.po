@@ -446,7 +446,7 @@ msgid "publication.version.details"
 msgstr "Publication details for version {$version}"
 
 msgid "submission.queries.production"
-msgstr "Production Discussions"
+msgstr "Production Tasks & Discussions"
 
 msgid "publication.chapter.landingPage"
 msgstr "Chapter Page"
