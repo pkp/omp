@@ -14,7 +14,7 @@
  * @see PublicationFormat
  * @see PKPDc11Schema
  *
- * @brief Adapter that injects/extracts Dublin Core schema compliant meta-data
+ * @brief Adapter that injects/extracts Dublin Core schema compliant metadata
  * into/from a PublicationFormat object.
  */
 
@@ -69,7 +69,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         // Retrieve data that belongs to the publication format.
         // FIXME: Retrieve this data from the respective entity DAOs rather than
         // from the OAIDAO once we've migrated all OAI providers to the
-        // meta-data framework. We're using the OAIDAO here because it
+        // metadata framework. We're using the OAIDAO here because it
         // contains cached entities and avoids extra database access if this
         // adapter is called from an OAI context.
         $oaiDao = DAORegistry::getDAO('OAIDAO'); /** @var OAIDAO $oaiDao */
