@@ -85,7 +85,7 @@ msgid "plugins.pubIds.urn.manager.settings.urnSuffixDefault.description"
 msgstr "%p.%m for monographs<br />%p.%m.c%c for chapters<br />%p.%m.%f for publication formats<br />%p.%m.%f.%s for files."
 
 msgid "plugins.pubIds.urn.manager.settings.urnSuffixCustomIdentifier"
-msgstr "Enter an individual URN suffix for each published item. You'll find an additional URN input field on each item's meta-data page."
+msgstr "Enter an individual URN suffix for each published item. You'll find an additional URN input field on each item's metadata page."
 
 msgid "plugins.pubIds.urn.manager.settings.urnPublicationSuffixPatternRequired"
 msgstr "Please enter the URN suffix pattern for monographs."
