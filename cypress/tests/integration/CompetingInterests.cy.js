@@ -29,7 +29,7 @@ describe('Data suite tests', function() {
 
 		cy.get('form#reviewStep1Form');
 		cy.get('label[for="noCompetingInterests"]').should('not.exist');
-		cy.get('input[id="privacyConsent"]').click();
+		cy.get('input[name="privacyConsent"]').click();
 		cy.get('button:contains("Accept Review, Continue to Step #2")').click();
 		cy.get('button:contains("Continue to Step #3")').click();
 		cy.wait(2000); // Give TinyMCE control time to load
@@ -82,7 +82,7 @@ describe('Data suite tests', function() {
 		cy.get('textarea[id^="reviewerCompetingInterests-"]').then(node => {
 			cy.setTinyMceContent(node.attr('id'), competingInterests);
 		});
-		cy.get('input[id="privacyConsent"]').click();
+		cy.get('input[name="privacyConsent"]').click();
 		cy.get('button:contains("Accept Review, Continue to Step #2")').click();
 		cy.get('button:contains("Continue to Step #3")').click();
 		cy.wait(2000); // Give TinyMCE control time to load
