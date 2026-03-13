@@ -1,0 +1,43 @@
+# Gantulga <cybermon@gmail.com>, 2026.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2026-02-08 07:52+0000\n"
+"Last-Translator: Gantulga <cybermon@gmail.com>\n"
+"Language-Team: Mongolian <http://translate.pkp.sfu.ca/projects/omp/api/mn/>\n"
+"Language: mn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "api.submissions.400.submissionIdsRequired"
+msgstr ""
+"Каталогт нэмэхийн тулд нэг буюу хэд хэдэн илгээлтийн ID оруулах шаардлагатай."
+
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "Таны заасан илгээлтүүдийн нэг буюу хэд хэдэн илгээлт олдсонгүй."
+
+msgid "api.submissions.400.wrongContext"
+msgstr "Таны хүсэлт гаргасан илгээлт энэ хэвлэлийн газарт байхгүй байна."
+
+msgid "api.emails.403.disabled"
+msgstr ""
+"Энэ хэвлэлийн газрын хувьд имэйл мэдэгдлийн функцийг идэвхжүүлээгүй байна."
+
+msgid "api.emailTemplates.403.notAllowedChangeContext"
+msgstr ""
+"Танд энэ имэйл загварыг өөр хэвлэлийн газар руу шилжүүлэх зөвшөөрөл байхгүй "
+"байна."
+
+msgid "api.publications.403.contextsDidNotMatch"
+msgstr "Таны хүсэлт гаргасан нийтлэл энэ хэвлэлийн газрын хэсэг биш байна."
+
+msgid "api.publications.403.submissionsDidNotMatch"
+msgstr "Таны хүсэлт гаргасан нийтлэл энэ илгээлтийн хэсэг биш байна."
+
+msgid "api.submissions.403.cantChangeContext"
+msgstr "Та илгээмжийн харьяалагдах хэвлэлийн газрыг өөрчлөх боломжгүй."
+
+msgid "api.submission.400.inactiveSection"
+msgstr "Энэ салбар хэсэг илгээмж хүлээн авахаа зогсоосон байна."

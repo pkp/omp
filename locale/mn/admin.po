@@ -1,3 +1,191 @@
 # Gantulga <cybermon@gmail.com>, 2026.
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2026-02-08 07:51+0000\n"
+"Last-Translator: Gantulga <cybermon@gmail.com>\n"
+"Language-Team: Mongolian <http://translate.pkp.sfu.ca/projects/omp/admin/mn/>"
+"\n"
+"Language: mn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Шилжүүлэг хийхгүй"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr ""
+"Энэ нь сайт болон байршуулсан хэвлэлийн газруудын үндсэн хэл байх болно."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr ""
+"Сайт дээр дэмжих бүх локалуудыг (хэл) сонгоно уу. Сонгосон локалууд нь сайт "
+"дээрх бүх хэвлэлийн газруудад ашиглах боломжтой болох бөгөөд хуудас бүрийн "
+"хэл сонгох цэсэнд харагдах болно (үүнийг хэвлэлийн газар тус бүрийн "
+"тохиргоон дээр өөрчилж болно). Хэрэв олон локал сонгохгүй бол хэл солих цэс "
+"харагдахгүй бөгөөд хэлний өргөтгөсөн тохиргоо хэвлэлийн газруудад боломжгүй "
+"болно."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Тэмдэглэсэн локалууд дутуу байж магадгүй."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"Та энэ локалыг устгахдаа итгэлтэй байна уу? Энэ нь уг локалыг ашиглаж буй "
+"байршуулсан хэвлэлийн газруудад нөлөөлж болзошгүй."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Энэ системд суулгах нэмэлт локалуудыг сонгоно уу. Хэвлэлийн газрууд "
+"ашиглахаас өмнө локалуудыг суулгасан байх ёстой. Шинэ хэл нэмэх талаарх "
+"мэдээллийг OMP баримт бичгээс үзнэ үү."
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Та энэ локалыг идэвхгүй болгохдоо итгэлтэй байна уу? Энэ нь одоо уг локалыг "
+"ашиглаж буй байршуулсан хэвлэлийн газруудад нөлөөлж болзошгүй."
+
+msgid "admin.systemConfiguration"
+msgstr "OMP тохиргоо"
+
+msgid "admin.presses.pressSettings"
+msgstr "Хэвлэлийн газрын тохиргоо"
+
+msgid "admin.presses.noneCreated"
+msgstr "Ямар ч хэвлэлийн газар үүсгээгүй байна."
+
+msgid "admin.contexts.create"
+msgstr "Хэвлэлийн газар үүсгэх"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Гарчиг шаардлагатай."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Зам (path) шаардлагатай."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"Зам нь зөвхөн үсэг, тоо болон _ ба - тэмдэгтүүдийг агуулж болно. Мөн үсэг "
+"эсвэл тоогоор эхэлж, төгсөх ёстой."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Таны оруулсан зам өөр хэвлэлийн газар дээр ашиглагдаж байна."
+
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr "Үндсэн локал нь хэвлэлийн газрын дэмжигдсэн локалуудын нэг байх ёстой."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} амжилттай үүсгэгдлээ."
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} амжилттай засварлагдлаа."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Хэвлэлийн газрын тайлбар"
+
+msgid "admin.presses.addPress"
+msgstr "Хэвлэлийн газар нэмэх"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>АНХААР!</h4>\n"
+"<p>Систем тохиргооны файлыг автоматаар дарж бичиж чадсангүй. Тохиргооны "
+"өөрчлөлтийг хэрэгжүүлэхийн тулд та <tt>config.inc.php</tt> файлыг текст "
+"засварлагчаар нээж, агуулгыг нь доорх текстийн талбарт байгаа текстээр солих "
+"шаардлагатай.</p>"
+
+msgid "admin.settings.enableBulkEmails.description"
+msgstr ""
+"Олноор имэйл илгээхийг зөвшөөрөх байршуулсан хэвлэлийн газруудыг сонгоно уу. "
+"Энэ функц идэвхжсэн үед хэвлэлийн газрын менежер өөрийн газар бүртгэлтэй бүх "
+"хэрэглэгчдэд имэйл илгээх боломжтой болно.<br><br>Энэ функцийг хүсээгүй "
+"имэйл (спам) илгээхэд ашиглах нь зарим улс орны спам эсэргүүцэх хуулийг "
+"зөрчиж, танай серверийн имэйлүүд блоклогдоход хүргэж болзошгүй. Энэ функцийг "
+"идэвхжүүлэхээс өмнө техникийн зөвлөгөө авч, менежерүүдтэй зөвлөлдөнө "
+"үү.<br><br>Энэ функцийн нэмэлт хязгаарлалтыг <a href=\"{$hostedContextsUrl}\""
+">Байршуулсан хэвлэлийн газрууд</a> жагсаалт дахь хэвлэлийн газар бүрийн "
+"тохиргооны хэсгээс хийж болно."
+
+msgid "admin.settings.disableBulkEmailRoles.description"
+msgstr ""
+"Хэвлэлийн газрын менежер доор сонгосон үүрэгт (роль) хамаарах хэрэглэгчид "
+"рүү олноор имэйл илгээх боломжгүй болно. Имэйл мэдэгдлийн функцийг зүй "
+"бусаар ашиглахаас сэргийлэхийн тулд энэ тохиргоог ашиглана уу. Жишээлбэл, "
+"ийм имэйл хүлээн авахыг зөвшөөрөөгүй уншигчид, зохиогчид эсвэл бусад том "
+"хэрэглэгчийн бүлгүүд рүү олноор имэйл илгээхийг идэвхгүй болгох нь илүү "
+"аюулгүй байж магадгүй юм.<br><br>Олноор имэйл илгээх функцийг энэ хэвлэлийн "
+"газрын хувьд <a href=\"{$siteSettingsUrl}\">Админ > Сайтын тохиргоо</a> "
+"хэсгээс бүрмөсөн идэвхгүй болгож болно."
+
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgstr ""
+"Энэ хэвлэлийн газрын хувьд олноор имэйл илгээх функцийг идэвхгүй болгосон "
+"байна. Энэ функцийг <a href=\"{$siteSettingsUrl}\">Админ > Сайтын тохиргоо</"
+"a> хэсгээс идэвхжүүлнэ үү."
+
+msgid "admin.siteManagement.description"
+msgstr ""
+"Энэ сайтаас хэвлэлийн газар нэмэх, засварлах эсвэл хасах, мөн сайтын "
+"хэмжээний тохиргоог удирдах."
+
+msgid "admin.job.processLogFile.invalidLogEntry.chapterId"
+msgstr "Бүлгийн (Chapter) ID нь бүхэл тоо биш байна"
+
+msgid "admin.job.processLogFile.invalidLogEntry.seriesId"
+msgstr "Цувралын (Series) ID нь бүхэл тоо биш байна"
+
+msgid "admin.settings.statistics.geo.description"
+msgstr ""
+"Энэ сайт дээрх хэвлэлийн газруудын цуглуулж болох газарзүйн ашиглалтын "
+"статистикийн төрлийг сонгоно уу. Илүү нарийвчилсан газарзүйн статистик нь "
+"таны өгөгдлийн сангийн хэмжээг мэдэгдэхүйц нэмэгдүүлж, зарим ховор "
+"тохиолдолд зочдын нууцлалд нөлөөлж болзошгүй. Хэвлэлийн газар бүр энэ "
+"тохиргоог өөрөөр тохируулж болох боловч энд тохируулснаас илүү нарийвчилсан "
+"мэдээлэл цуглуулах боломжгүй. Жишээлбэл, хэрэв сайт зөвхөн улс болон бүсийг "
+"дэмждэг бол хэвлэлийн газар нь улс болон бүс, эсвэл зөвхөн улсыг сонгож "
+"болно. Улс, бүс, хотыг хянах боломжгүй болно."
+
+msgid "admin.settings.statistics.institutions.description"
+msgstr ""
+"Хэрэв та энэ сайт дээрх хэвлэлийн газруудыг байгууллагаар нь ашиглалтын "
+"статистик цуглуулах боломжтой болгохыг хүсвэл байгууллагын статистикийг "
+"идэвхжүүлнэ үү. Үүний тулд байгууллага болон түүний IP мужийг нэмэх "
+"шаардлагатай болно. Байгууллагын статистикийг идэвхжүүлэх нь өгөгдлийн "
+"сангийн хэмжээг мэдэгдэхүйц нэмэгдүүлж болзошгүй."
+
+msgid "admin.settings.statistics.sushi.public.description"
+msgstr ""
+"SUSHI API хандалтын цэгүүдийг энэ сайтын бүх хэвлэлийн газруудад нээлттэй "
+"болгох эсэхийг сонгоно уу. Хэрэв та нээлттэй API-г идэвхжүүлбэл хэвлэлийн "
+"газар бүр өөрийн статистикийг нууцлахын тулд энэ тохиргоог өөрчилж болно. "
+"Гэсэн хэдий ч, хэрэв та нээлттэй API-г идэвхгүй болговол хэвлэлийн газрууд "
+"өөрсдийн API-г нээлттэй болгох боломжгүй."
+
+msgid "admin.settings.statistics.sushiPlatform.isSiteSushiPlatform"
+msgstr "Сайтыг бүх хэвлэлийн газруудын платформ болгон ашиглах."
+
+msgid "admin.hostedContexts"
+msgstr "Байршуулсан хэвлэлийн газрууд"
+
+msgid "admin.settings.appearance.success"
+msgstr "Сайтын харагдах байдлын тохиргоог амжилттай шинэчиллээ."
+
+msgid "admin.settings.config.success"
+msgstr "Сайтын тохиргооны үзүүлэлтүүдийг амжилттай шинэчиллээ."
+
+msgid "admin.settings.info.success"
+msgstr "Сайтын мэдээллийг амжилттай шинэчиллээ."
+
+msgid "admin.settings.redirect"
+msgstr "Хэвлэлийн газар руу шилжүүлэх (Redirect)"
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Үндсэн сайт руу ирсэн хүсэлтүүдийг энэ хэвлэлийн газар руу шууд шилжүүлэх "
+"болно. Энэ нь жишээлбэл, сайт зөвхөн ганц хэвлэлийн газар байршуулж байгаа "
+"тохиолдолд хэрэгтэй байж болох юм."
+
+msgid "admin.systemVersion"
+msgstr "OMP хувилбар"

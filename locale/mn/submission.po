@@ -1,0 +1,620 @@
+# Gantulga <cybermon@gmail.com>, 2026.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2026-02-08 07:52+0000\n"
+"Last-Translator: Gantulga <cybermon@gmail.com>\n"
+"Language-Team: Mongolian <http://translate.pkp.sfu.ca/projects/omp/"
+"submission/mn/>\n"
+"Language: mn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "chapter.volume"
+msgstr "Боть"
+
+msgid "chapter.pages"
+msgstr "Хуудаснууд"
+
+msgid "publication.chapter.licenseUrl"
+msgstr "Лицензийн URL"
+
+msgid "submission.wizard.notAllowed.description"
+msgstr ""
+"Зохиогчид редакцийн ажилтнуудаар бүртгэгдэх ёстой тул танд энэ хэвлэлийн "
+"газарт илгээлт хийх эрх байхгүй байна. Хэрэв алдаа гарсан гэж үзвэл <a "
+"href='mailto:{$email}'>{$name}</a> хаягаар холбогдоно уу."
+
+msgid "submission.wizard.sectionClosed.message"
+msgstr ""
+"{$contextName} хэвлэлийн газрын {$section} цуврал илгээлт хүлээн авахгүй "
+"байна. Хэрэв танд илгээлтээ сэргээхэд тусламж хэрэгтэй бол <a "
+"href='mailto:{$email}'>{$name}</a> хаягаар холбогдоно уу."
+
+msgid "submission.sectionNotFound"
+msgstr "Энэхүү илгээлтэд харгалзах цуврал олдсонгүй."
+
+msgid "submission.upload.selectComponent"
+msgstr "Бүрэлдэхүүн хэсгийг сонгоно уу"
+
+msgid "submission.title"
+msgstr "Номын гарчиг"
+
+msgid "submission.select"
+msgstr "Илгээлтийг сонгох"
+
+msgid "submission.synopsis"
+msgstr "Товч агуулга (Synopsis)"
+
+msgid "submission.workflowType"
+msgstr "Илгээлтийн төрөл"
+
+msgid "submission.workflowType.description"
+msgstr ""
+"Нэг сэдэвт бүтээл (monograph) нь нэг буюу хэд хэдэн зохиогчийн бүрэн бичсэн "
+"бүтээл юм. Эмхэтгэл боть (edited volume) нь бүлэг бүр өөр өөр зохиогчтой "
+"байхыг хэлнэ (бүлгийн дэлгэрэнгүйг энэ үйл явцын дараагийн шатанд оруулна)."
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Эмхэтгэл боть"
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Эмхэтгэл боть: Зохиогчид нь өөрсдийн бичсэн бүлэгтэй холбогдоно."
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Нэг сэдэвт бүтээл: Зохиогчид нь номыг бүхэлд нь хариуцна."
+
+msgid "submission.workflowType.change"
+msgstr "Өөрчлөх"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (ред)"
+
+msgid "submission.monograph"
+msgstr "Нэг сэдэвт бүтээл"
+
+msgid "submission.published"
+msgstr "Хэвлэлд бэлэн"
+
+msgid "submission.fairCopy"
+msgstr "Цэвэр хуулбар (Fair Copy)"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.artwork.permissions"
+msgstr "Зөвшөөрлүүд"
+
+msgid "submission.chapter"
+msgstr "Бүлэг"
+
+msgid "submission.chapters"
+msgstr "Бүлгүүд"
+
+msgid "submission.chapter.addChapter"
+msgstr "Бүлэг нэмэх"
+
+msgid "submission.chapter.editChapter"
+msgstr "Бүлэг засварлах"
+
+msgid "submission.chapter.pages"
+msgstr "Хуудаснууд"
+
+msgid "submission.copyedit"
+msgstr "Хянан тохиолдуулах"
+
+msgid "submission.publicationFormats"
+msgstr "Нийтлэх форматууд"
+
+msgid "submission.proofs"
+msgstr "Хяналтын хувь (Proofs)"
+
+msgid "submission.download"
+msgstr "Татах"
+
+msgid "submission.sharing"
+msgstr "Хуваалцах"
+
+msgid "manuscript.submission"
+msgstr "Гар бичмэл илгээх"
+
+msgid "submission.round"
+msgstr "{$round}-р үе"
+
+msgid "submissions.queuedReview"
+msgstr "Хянагдаж буй"
+
+msgid "manuscript.submissions"
+msgstr "Илгээсэн гар бичмэлүүд"
+
+msgid "submission.metadata"
+msgstr "Мета өгөгдөл"
+
+msgid "submission.supportingAgencies"
+msgstr "Дэмжигч байгууллагууд"
+
+msgid "grid.action.addChapter"
+msgstr "Шинэ бүлэг үүсгэх"
+
+msgid "grid.action.editChapter"
+msgstr "Энэ бүлгийг засварлах"
+
+msgid "grid.action.deleteChapter"
+msgstr "Энэ бүлгийг устгах"
+
+msgid "submission.submit"
+msgstr "Номын шинэ илгээлт эхлүүлэх"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Шинэ илгээлт"
+
+msgid "submission.submit.upload"
+msgstr "Илгээлт хуулах"
+
+msgid "author.volumeEditor"
+msgstr "Ботийн редактор"
+
+msgid "author.isVolumeEditor"
+msgstr "Энэ оролцогчийг тухайн ботийн редактороор тодорхойлох."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Цуврал дахь байрлал"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Жишээ нь: 2-р ном, 2-р боть"
+
+msgid "submission.submit.privacyStatement"
+msgstr "Нууцлалын мэдэгдэл"
+
+msgid "submission.submit.contributorRole"
+msgstr "Оролцогчийн үүрэг"
+
+msgid "submission.submit.submissionFile"
+msgstr "Илгээх файл"
+
+msgid "submission.submit.prepare"
+msgstr "Бэлтгэх"
+
+msgid "submission.submit.catalog"
+msgstr "Каталог"
+
+msgid "submission.submit.metadata"
+msgstr "Мета өгөгдөл"
+
+msgid "submission.submit.finishingUp"
+msgstr "Дуусгах"
+
+msgid "submission.submit.confirmation"
+msgstr "Баталгаажуулалт"
+
+msgid "submission.submit.nextSteps"
+msgstr "Дараагийн алхмууд"
+
+msgid "submission.submit.coverNote"
+msgstr "Редакторт зориулсан тайлбар"
+
+msgid "submission.submit.generalInformation"
+msgstr "Ерөнхий мэдээлэл"
+
+msgid "submission.submit.whatNext.description"
+msgstr ""
+"Таны илгээлтийн талаар хэвлэлийн газарт мэдэгдсэн бөгөөд таны бүртгэлд "
+"баталгаажуулалт имэйлээр очсон болно. Редактор илгээлтийг хянаж дуусаад "
+"тантай холбогдох болно."
+
+msgid "submission.submit.checklistErrors"
+msgstr ""
+"Илгээлтийн хяналтын хуудасны зүйлсийг уншиж, чагтална уу. Чагтлаагүй "
+"{$itemsRemaining} зүйл үлдсэн байна."
+
+msgid "submission.submit.placement"
+msgstr "Илгээлтийн харьяалал"
+
+msgid "submission.submit.userGroup"
+msgstr "Дараах үүргээр илгээх..."
+
+msgid "submission.submit.noContext"
+msgstr "Энэхүү илгээлтэд харгалзах хэвлэлийн газар олдсонгүй."
+
+msgid "grid.chapters.title"
+msgstr "Бүлгүүд"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Хянан тохиолдуулагчийн хуулсан файлыг устгах"
+
+msgid "submission.complete"
+msgstr "Батлагдсан"
+
+msgid "submission.incomplete"
+msgstr "Батлахыг хүлээж буй"
+
+msgid "submission.editCatalogEntry"
+msgstr "Бүртгэл"
+
+msgid "submission.catalogEntry.new"
+msgstr "Бүртгэл нэмэх"
+
+msgid "submission.catalogEntry.add"
+msgstr "Сонгосныг каталогид нэмэх"
+
+msgid "submission.catalogEntry.select"
+msgstr "Каталогид нэмэх нэг сэдэвт бүтээлүүдийг сонгоно уу"
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Энэ номыг нийтийн каталогид нэмэх"
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Илгээлт каталогид ороход бэлэн болсон эсэхийг баталгаажуулна уу."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Энэхүү нэг сэдэвт бүтээл нийтийн каталогид ороход бэлэн боллоо."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Илгээлтийг үзэх"
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Нийтлэх огноонууд"
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Бүх бүлгүүд нэг сэдэвт бүтээлийн нийтлэх огноог ашиглана."
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Бүлэг бүр өөрийн гэсэн нийтлэх огноотой байж болно."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Нэг сэдэвт бүтээл"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Каталог"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Нийтлэх формат"
+
+msgid "submission.event.metadataPublished"
+msgstr "Нэг сэдэвт бүтээлийн мета өгөгдлийг нийтлэхээр баталлаа."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Нэг сэдэвт бүтээлийн мета өгөгдлийг нийтлэлээс хаслаа."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "Нийтлэх формат \"{$publicationFormatName}\" нээлттэй боллоо."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "Нийтлэх формат \"{$publicationFormatName}\" хаалттай боллоо."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr "Нийтлэх формат \"{$publicationFormatName}\" нийтлэгдэхээр батлагдлаа."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "Нийтлэх формат \"{$publicationFormatName}\" нийтлэлээс хасагдлаа."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Каталогийн мета өгөгдөл шинэчлэгдлээ."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "\"{$formatName}\" форматын нийтлэх мета өгөгдөл шинэчлэгдлээ."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Нийтлэх формат \"{$formatName}\" үүсгэгдлээ."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Нийтлэх формат \"{$formatName}\" устгагдлаа."
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Хөндлөнгийн хяналт руу илгээх"
+
+msgid "workflow.review.externalReview"
+msgstr "Хөндлөнгийн хяналт"
+
+msgid "submission.upload.fileContents"
+msgstr "Илгээлтийн бүрэлдэхүүн хэсэг"
+
+msgid "submission.dependentFiles"
+msgstr "Хамааралтай файлууд"
+
+msgid "submission.metadataDescription"
+msgstr ""
+"Эдгээр тодорхойлолтууд нь хэвлэлийн агуулгыг тодорхойлоход ашигладаг олон "
+"улсын стандарт болох Dublin Core мета өгөгдлийн багц дээр суурилсан болно."
+
+msgid "section.any"
+msgstr "Дурын цуврал"
+
+msgid "submission.list.monographs"
+msgstr "Нэг сэдэвт бүтээлүүд"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} нэг сэдэвт бүтээл"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "Нийт {$total} бүтээлээс {$count}"
+
+msgid "submission.list.orderFeatures"
+msgstr "Онцлох бүтээлүүдийн эрэмбэ"
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Нүүр хуудсан дээрх онцлох бүтээлүүдийн дарааллыг өөрчлөхийн тулд чирж зөөх "
+"эсвэл дээш доош сумыг ашиглана уу."
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"{$title} доторх онцлох бүтээлүүдийн дарааллыг өөрчлөхийн тулд чирж зөөх "
+"эсвэл дээш доош сумыг ашиглана уу."
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Эрэмбэ хадгалах"
+
+msgid "submission.list.viewEntry"
+msgstr "Бүртгэл үзэх"
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} бүтээл"
+
+msgid "publication.catalogEntry"
+msgstr "Каталогийн бүртгэл"
+
+msgid "publication.catalogEntry.success"
+msgstr "Каталогийн бүртгэлийн мэдээллийг шинэчиллээ."
+
+msgid "publication.invalidSeries"
+msgstr "Энэхүү нийтлэлд харгалзах цуврал олдсонгүй."
+
+msgid "publication.inactiveSeries"
+msgstr "{$series} (Идэвхгүй)"
+
+msgid "publication.required.issue"
+msgstr "Нийтлэхийн өмнө илгээлтийг аль нэг дугаарт оноосон байх ёстой."
+
+msgid "publication.publishedIn"
+msgstr "<a href=\"{$issueUrl}\">{$issueName}</a> дугаарт нийтлэгдсэн."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Нийтлэх бүх шаардлага хангагдлаа. Энэхүү каталогийн бүртгэлийг нийтэд "
+"нээлттэй болгохдоо итгэлтэй байна уу?"
+
+msgid "publication.scheduledIn"
+msgstr ""
+"<a href=\"{$issueUrl}\">{$issueName}</a> дугаарт нийтлэгдэхээр төлөвлөгдсөн."
+
+msgid "submission.publication"
+msgstr "Нийтлэл"
+
+msgid "publication.status.published"
+msgstr "Нийтлэгдсэн"
+
+msgid "submission.status.scheduled"
+msgstr "Төлөвлөгдсөн"
+
+msgid "publication.status.unscheduled"
+msgstr "Төлөвлөгдөөгүй"
+
+msgid "submission.publications"
+msgstr "Нийтлэлүүд"
+
+msgid "publication.copyrightYearBasis.issueDescription"
+msgstr ""
+"Үүнийг дугаарт нийтлэх үед зохиогчийн эрхийн он автоматаар тохируулагдана."
+
+msgid "publication.copyrightYearBasis.submissionDescription"
+msgstr ""
+"Зохиогчийн эрхийн оныг нийтэлсэн огноон дээр үндэслэн автоматаар тохируулна."
+
+msgid "publication.datePublished"
+msgstr "Нийтэлсэн огноо"
+
+msgid "publication.editDisabled"
+msgstr "Энэ хувилбар нийтлэгдсэн тул засварлах боломжгүй."
+
+msgid "publication.event.published"
+msgstr "Илгээлтийг нийтэллээ."
+
+msgid "publication.event.scheduled"
+msgstr "Илгээлтийг нийтлэхээр төлөвлөлөө."
+
+msgid "publication.event.unpublished"
+msgstr "Илгээлтийг нийтлэлээс хаслаа."
+
+msgid "publication.event.versionPublished"
+msgstr "Шинэ хувилбар нийтлэгдлээ."
+
+msgid "publication.event.versionScheduled"
+msgstr "Шинэ хувилбарыг нийтлэхээр төлөвлөлөө."
+
+msgid "publication.event.versionUnpublished"
+msgstr "Хувилбарыг нийтлэлээс хаслаа."
+
+msgid "publication.invalidSubmission"
+msgstr "Энэхүү нийтлэлд харгалзах илгээлт олдсонгүй."
+
+msgid "publication.publish"
+msgstr "Нийтлэх"
+
+msgid "publication.publish.requirements"
+msgstr "Нийтлэхийн өмнө дараах шаардлагуудыг хангасан байх ёстой."
+
+msgid "publication.required.declined"
+msgstr "Татгалзсан илгээлтийг нийтлэх боломжгүй."
+
+msgid "publication.required.reviewStage"
+msgstr ""
+"Нийтлэхийн өмнө илгээлт Хянан тохиолдуулах (Copyediting) эсвэл Хэвлэлийн "
+"бэлтгэл (Production) шатанд байх ёстой."
+
+msgid "submission.license.description"
+msgstr ""
+"Нийтлэх үед лицензийг автоматаар <a href='{$licenseUrl}' "
+"target='_blank'>{$licenseName}</a> болгож тохируулна."
+
+msgid "submission.copyrightHolder.description"
+msgstr "Нийтлэх үед зохиогчийн эрхийг автоматаар {$copyright}-д онооно."
+
+msgid "submission.copyrightOther.description"
+msgstr "Нийтлэгдсэн илгээлтийн зохиогчийн эрхийг дараах талд оноох."
+
+msgid "publication.unpublish"
+msgstr "Нийтлэхээс буцаах"
+
+msgid "publication.unpublish.confirm"
+msgstr "Та үүнийг нийтлэхээс буцаахдаа итгэлтэй байна уу?"
+
+msgid "publication.unschedule.confirm"
+msgstr "Та үүнийг нийтлэх хуваариас хасахдаа итгэлтэй байна уу?"
+
+msgid "publication.version.details"
+msgstr "{$version} хувилбарын нийтлэх мэдээлэл"
+
+msgid "submission.queries.production"
+msgstr "Хэвлэлийн бэлтгэлийн хэлэлцүүлэг"
+
+msgid "publication.chapter.landingPage"
+msgstr "Бүлгийн хуудас"
+
+msgid "publication.chapter.landingPage.doi.description"
+msgstr "(Энэ бүлэг DOI-той тул үргэлж өөрийн хуудсан дээр харагдах болно.)"
+
+msgid "publication.chapter.hasLandingPage"
+msgstr ""
+"Энэ бүлгийг тусдаа хуудсан дээр харуулж, номын гарчгийн жагсаалтаас тухайн "
+"хуудас руу холбох."
+
+msgid "publication.publish.success"
+msgstr "Нийтлэх төлөвийг амжилттай өөрчиллөө."
+
+msgid "submission.withoutChapter"
+msgstr "{$name} — Энэ бүлэггүйгээр"
+
+msgid "submission.chapterCreated"
+msgstr " — Бүлэг үүсгэгдлээ"
+
+msgid "editor.submission.decision.sendInternalReview"
+msgstr "Дотоод хяналт руу илгээх"
+
+msgid "editor.submission.decision.sendInternalReview.description"
+msgstr "Энэхүү илгээлт дотоод хяналтад ороход бэлэн боллоо."
+
+msgid "editor.submission.decision.sendInternalReview.log"
+msgstr "{$editorName} энэ илгээлтийг дотоод хяналтын шатанд шилжүүллээ."
+
+msgid "editor.submission.decision.sendInternalReview.completed"
+msgstr "Дотоод хяналтад илгээлээ"
+
+msgid "editor.submission.decision.sendInternalReview.completed.description"
+msgstr ""
+"{$title} илгээлт дотоод хяналтын шатанд шилжлээ. Хэрэв та имэйл илгээхээс "
+"татгалзаагүй бол зохиогчид мэдэгдэл хүргүүлсэн."
+
+msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
+msgstr ""
+"Энэхүү илгээлтийг дотоод хяналт руу илгээж буйг зохиогчид мэдэгдэх имэйл "
+"илгээнэ үү. Боломжтой бол хяналтын үйл явц хэр удаан үргэлжлэх, хэзээ хариу "
+"өгөх талаар мэдээлэл өгнө үү."
+
+msgid "editor.submission.decision.promoteFiles.internalReview"
+msgstr "Дотоод хяналтын шат руу илгээх файлуудыг сонгоно уу."
+
+msgid "editor.submission.decision.sendExternalReview.log"
+msgstr "{$editorName} энэ илгээлтийг хөндлөнгийн хяналтын шатанд шилжүүллээ."
+
+msgid "editor.submission.decision.sendExternalReview.completed"
+msgstr "Хөндлөнгийн хяналтад илгээлээ"
+
+msgid "editor.submission.decision.sendExternalReview.completed.description"
+msgstr "{$title} илгээлт хөндлөнгийн хяналтын шатанд шилжлээ."
+
+msgid "editor.submission.decision.backToReview"
+msgstr "Хяналт руу буцаах"
+
+msgid "editor.submission.decision.backToReview.description"
+msgstr "Энэ илгээлтийг хүлээн авах шийдвэрийг цуцалж, хяналтын шат руу буцаах."
+
+msgid "editor.submission.decision.backToReview.log"
+msgstr ""
+"{$editorName} илгээлтийг хүлээн авах шийдвэрийг цуцалж, хяналтын шат руу "
+"буцаалаа."
+
+msgid "editor.submission.decision.backToReview.completed"
+msgstr "Хяналт руу буцаалаа"
+
+msgid "editor.submission.decision.backToReview.completed.description"
+msgstr "{$title} илгээлтийг хяналтын шат руу буцаалаа."
+
+msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
+msgstr ""
+"Зохиогчдод тэдний илгээлтийг хяналтын шат руу буцааж байгаа талаар имэйл "
+"илгээнэ үү. Яагаад ийм шийдвэр гаргасан, цаашид ямар хяналт хийгдэх талаар "
+"тайлбарлана уу."
+
+msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
+msgstr ""
+"Зохиогчдод энэхүү илгээлтийг хөндлөнгийн хяналтад (peer review) илгээж буй "
+"талаар имэйл илгээнэ үү. Боломжтой бол хяналтын үйл явц хэр удаан үргэлжлэх, "
+"хэзээ хариу өгөх талаар мэдээлэл өгнө үү."
+
+msgid "editor.submission.decision.promoteFiles.externalReview"
+msgstr "Хяналтын шат руу илгээх файлуудыг сонгоно уу."
+
+msgid "editor.submission.recommend.sendExternalReview"
+msgstr "Хөндлөнгийн хяналт руу илгээхийг зөвлөх"
+
+msgid "editor.submission.recommend.sendExternalReview.description"
+msgstr "Энэхүү илгээлтийг хөндлөнгийн хяналтын шатанд шилжүүлэх санал гаргах."
+
+msgid "editor.submission.recommend.sendExternalReview.log"
+msgstr ""
+"{$editorName} энэ илгээлтийг хөндлөнгийн хяналтын шатанд шилжүүлэхийг зөвлөв."
+
+msgid "doi.submission.incorrectContext"
+msgstr ""
+"Дараах илгээлтэд DOI үүсгэж чадсангүй: {$pubObjectTitle}. Энэ нь одоогийн "
+"хэвлэлийн газрын хүрээнд байхгүй байна."
+
+msgid "publication.chapterDefaultLicenseURL"
+msgstr "Бүлгийн үндсэн лицензийн URL"
+
+msgid "submission.copyright.description"
+msgstr ""
+"Энэхүү хэвлэлийн газарт илгээх бүтээлийн зохиогчийн эрхийн нөхцөлийг уншиж "
+"танилцана уу."
+
+msgid "submission.sectionRestrictedToEditors"
+msgstr "Энэ цувралд зөвхөн редакцийн ажилтнууд илгээлт хийх боломжтой."
+
+msgid "submission.wizard.submitting.monograph"
+msgstr "<strong>Нэг сэдэвт бүтээл</strong> илгээж байна."
+
+msgid "submission.wizard.submitting.monographInLanguage"
+msgstr ""
+"<strong>{$language}</strong> хэлээр <strong>Нэг сэдэвт бүтээл</strong> "
+"илгээж байна."
+
+msgid "submission.wizard.submitting.editedVolume"
+msgstr "<strong>Эмхэтгэл боть</strong> илгээж байна."
+
+msgid "submission.wizard.submitting.editedVolumeInLanguage"
+msgstr ""
+"<strong>{$language}</strong> хэлээр <strong>Эмхэтгэл боть</strong> илгээж "
+"байна."
+
+msgid "submission.wizard.chapters.description"
+msgstr ""
+"Энэхүү илгээлтийн бүх бүлгийг оруулна уу. Хэрэв та эмхэтгэл боть илгээж "
+"байгаа бол бүлэг бүрт харгалзах оролцогчдыг зааж өгсөн эсэхээ шалгана уу."
+
+msgid "submission.dashboard.view.reviewInternal"
+msgstr "Бүх дотоод хяналтад байгаа илгээлтүүд"
+
+msgid "submission.stage.externalReviewWithRound"
+msgstr "Хөндлөнгийн хяналт ({$round}-р үе)"
+
+msgid "submission.stage.internalReviewWithRound"
+msgstr "Дотоод хяналт ({$round}-р үе)"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Дараах хэсэгт шинэ бүтээлээ илгээхийг эхлүүлэх"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr "Каталогид нэмэхийн тулд дор хаяж нэг сэдэвт бүтээл сонгох ёстой."
