@@ -1,0 +1,206 @@
+# Gantulga <cybermon@gmail.com>, 2026.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2026-02-08 07:52+0000\n"
+"Last-Translator: Gantulga <cybermon@gmail.com>\n"
+"Language-Team: Mongolian <http://translate.pkp.sfu.ca/projects/omp/editor/mn/"
+">\n"
+"Language: mn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Хариу нэмэх"
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr ""
+"Илгээлтийн аль ч шатанд аль хэдийн хуулагдсан файлуудыг доорх 'Багтаах' "
+"нүдийг чагталж, 'Хайх' товчийг дарснаар Хяналтын файлын жагсаалтад нэмэх "
+"боломжтой: бүх боломжит файлуудыг жагсааж, багтаахаар сонгож болно."
+
+msgid "editor.submissionArchive"
+msgstr "Илгээлтийн архив"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Хүсэлтийг цуцлах"
+
+msgid "editor.monograph.clearReview"
+msgstr "Хянагчийг цэвэрлэх"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Зөвлөмж оруулах"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Хянагчийн зөвлөмжийг оруулах"
+
+msgid "editor.monograph.recommendation"
+msgstr "Зөвлөмж"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr ""
+"Дээрх жагсаалтаас хянагчийг сонгоод 'Хянагч сонгох' товчийг дарж "
+"үргэлжлүүлнэ үү."
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Хянагчийг солих"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Хянагчид зориулсан зөвлөмж/сэтгэгдлийг редакторын зүгээс оруулах"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Хяналтыг хуулах"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Хөндлөнгийн хяналтын сонголтууд"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Үсгийн алдаа шалгах файлууд"
+
+msgid "editor.monograph.internalReview"
+msgstr "Дотоод хяналтыг эхлүүлэх"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr "Дотоод хяналтын шат руу илгээх файлуудыг доороос сонгоно уу."
+
+msgid "editor.monograph.externalReview"
+msgstr "Хөндлөнгийн хяналтыг эхлүүлэх"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Эцсийн ноорог файлуудыг сонгох"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Одоогийн эцсийн ноорог файлууд"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Одоогийн файлууд"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Хэрэглэгчид илгээх мессеж"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Илгээлтийн үйлдлүүд"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Илгээлтийн ерөнхий үйлдлүүд болон сонголтууд."
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Салбар хэсгийн үйлдлүүд"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr ""
+"Тухайн салбар хэсэгт хамаарах сонголтууд (жишээ нь: файл хуулах эсвэл "
+"хэрэглэгч нэмэх)."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Бичлэгийн үйлдлүүд"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Тухайн нэг файлд хамаарах үйлдлүүд болон сонголтууд."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr ""
+"Илгээлтийн каталогийн бүртгэлийг үзэх болон удирдах (мета өгөгдөл болон "
+"нийтлэх форматууд багтана)"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr ""
+"Илгээлтийн мета өгөгдөл, тэмдэглэл, мэдэгдэл болон түүхийг үзэх, удирдах"
+
+msgid "editor.monograph.legend.participants"
+msgstr ""
+"Энэхүү илгээлтийн оролцогчдыг үзэх болон удирдах: зохиогчид, редакторууд, "
+"дизайнерууд болон бусад"
+
+msgid "editor.monograph.legend.add"
+msgstr "Салбар хэсэгт файл хуулах"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Салбар хэсэгт хэрэглэгч нэмэх"
+
+msgid "editor.monograph.legend.settings"
+msgstr ""
+"Бичлэгийн тохиргоог үзэх болон хандах (мэдээлэл болон устгах сонголтууд)"
+
+msgid "editor.monograph.legend.more_info"
+msgstr ""
+"Дэлгэрэнгүй мэдээлэл: файлын тэмдэглэл, мэдэгдлийн сонголтууд болон түүх"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr ""
+"Файлын мэдээлэл: тэмдэглэл, мэдэгдлийн сонголтууд болон түүх (Одоогоор "
+"тэмдэглэл нэмээгүй байна)"
+
+msgid "editor.monograph.legend.notes"
+msgstr ""
+"Файлын мэдээлэл: тэмдэглэл, мэдэгдлийн сонголтууд болон түүх (Тэмдэглэлүүд "
+"бэлэн байна)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr ""
+"Файлын мэдээлэл: тэмдэглэл, мэдэгдлийн сонголтууд болон түүх (Сүүлийн "
+"зочлолтоос хойш шинэ тэмдэглэл нэмэгдсэн)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Бичлэгийг засварлах"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Бичлэгийг устгах"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Үйлдэл хийгдэж байна эсвэл дуусаагүй байна"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Үйлдэл дууссан"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Хүснэгтийн баганын толгой дахь үүрэг бүхий хэрэглэгчийн хуулсан файл"
+
+msgid "editor.submission.introduction"
+msgstr ""
+"Илгээлтийн шатанд редактор ирүүлсэн файлуудтай танилцсаны дараа зохих "
+"үйлдлийг (үүнд зохиогчид мэдэгдэх үйлдэл багтана) сонгоно: Дотоод хяналт руу "
+"илгээх (файлуудыг сонгоно); Хөндлөнгийн хяналт руу илгээх (файлуудыг "
+"сонгоно); Илгээлтийг хүлээн авах (Редакцийн шат руу шилжүүлэх файлуудыг "
+"сонгоно); эсвэл Илгээлтээс татгалзах (илгээлтийг архивлах)."
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Цэвэр хуулбар (Fair Copy)"
+
+msgid "editor.monograph.proofs"
+msgstr "Хяналтын хувь (Proofs)"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Батлах болон Нийтлэх"
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Татах нөхцөлийг тохируулах"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Нөхцөл тохируулах"
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr ""
+"Нийтийн таних тэмдэг '{$publicIdentifier}' ижил төрлийн өөр объектод аль "
+"хэдийн байна. Сэтгүүл доторх ижил төрлийн объектуудад давхцахгүй таних "
+"тэмдэг сонгоно уу."
+
+msgid "editor.submissions.assignedTo"
+msgstr "Редакторт оноосон"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr ""
+"Хатуу хавтастай, зөөлөн хавтастай, дижитал гэх мэт янз бүрийн хэвлэлийн "
+"форматыг доорх Хэвлэлтийн форматын хэсэгт байршуулж болно. Та доорх "
+"хэвлэлийн форматын хүснэгтийг хэвлэлийн форматыг нийтлэхийн тулд юу хийх "
+"шаардлагатай байгаа талаарх шалгах жагсаалт болгон ашиглаж болно."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr ""
+"Хэвлэлийн дизайн хариуцсан хүн хэвлэлтийн сүүлийн шатанд төрлийг форматыг("
+"жишээ нь, дижитал, зөөлөн хавтастай) нэмнэ үү. Хэвлэгдэх форматыг "
+"<em>боломжтой</em> болгохоос (өөрөөр хэлбэл, хэвлэгдсэн) өмнө <em>Сүүлийн "
+"хувилбарыг</em> батлагдсан гэж шалгаж, форматын <em>Каталог</em> оруулгыг "
+"номын каталогийн оруулгад байршуулсны дагуу шалгах шаардлагатай."

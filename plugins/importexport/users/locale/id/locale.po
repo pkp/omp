@@ -1,0 +1,116 @@
+# Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>, 2026.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2026-02-21 03:54+0000\n"
+"Last-Translator: Muhammad Ihlasul Amal <ihlasulamal26@gmail.com>\n"
+"Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-users/id/>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "plugins.importexport.users.displayName"
+msgstr "Plugin XML Pengguna"
+
+msgid "plugins.importexport.users.description"
+msgstr "Impor dan ekspor pengguna"
+
+msgid "plugins.importexport.users.import.dataFile"
+msgstr "File data pengguna"
+
+msgid "plugins.importexport.users.import.errorsOccurred"
+msgstr "Terjadi kesalahan selama proses impor"
+
+msgid "plugins.importexport.users.import.usersWereImported"
+msgstr "Pengguna berikut berhasil diimpor ke dalam sistem"
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "Peringatan"
+
+msgid "plugins.importexport.users.export.exportUsers"
+msgstr "Ekspor Pengguna"
+
+msgid "plugins.importexport.users.export.exportByRole"
+msgstr "Ekspor Berdasarkan Peran"
+
+msgid "plugins.importexport.users.export.exportAllUsers"
+msgstr "Ekspor Semua"
+
+msgid "plugins.importexport.users.export.errorsOccurred"
+msgstr "Galat ditemukan selama proses ekspor"
+
+msgid "plugins.importexport.users.results"
+msgstr "Hasil"
+
+msgid "plugins.importexport.users.uploadFile"
+msgstr "Silakan unggah file di bagian \"Impor\" untuk melanjutkan."
+
+msgid "plugins.importexport.users.import.importUsers"
+msgstr "Impor Pengguna"
+
+msgid "plugins.importexport.users.import.sendNotify"
+msgstr ""
+"Kirim email pemberitahuan kepada setiap pengguna yang diimpor yang berisi "
+"nama pengguna dan kata sandi pengguna."
+
+msgid "plugins.importexport.users.import.continueOnError"
+msgstr "Lanjutkan mengimpor pengguna lain jika terjadi kegagalan."
+
+msgid "plugins.importexport.users.import.confirmUsers"
+msgstr ""
+"Konfirmasikan bahwa ini adalah pengguna yang ingin Anda impor ke dalam sistem"
+
+msgid "plugins.importexport.users.unknownPress"
+msgstr "Path penerbit yang tidak dikenal \"{$contextPath}\" telah ditentukan."
+
+msgid "plugins.importexport.users.importComplete"
+msgstr ""
+"Proses impor berhasil diselesaikan. Pengguna dengan nama pengguna dan alamat "
+"email yang belum digunakan telah diimpor, beserta grup pengguna yang terkait."
+
+msgid "plugins.importexport.users.import.instructions"
+msgstr ""
+"Pilih file data XML yang berisi informasi pengguna untuk diimpor ke dalam "
+"press ini. Lihat bantuan pada penerbit untuk rincian mengenai format file "
+"ini.<br /><br />Perlu diperhatikan bahwa jika berkas yang diimpor memuat "
+"nama pengguna atau alamat email yang sudah ada dalam sistem, data pengguna "
+"tersebut tidak akan diimpor dan setiap peran baru yang dibuat akan "
+"ditetapkan kepada pengguna yang sudah ada."
+
+msgid "plugins.importexport.users.cliUsage"
+msgstr ""
+"Penggunaan: {$scriptName} {$pluginName} [command] ...\n"
+"Perintah:\n"
+"\timport [xmlFileName] [press_path] [optional flags]\n"
+"\texport [xmlFileName] [press_path]\n"
+"\texport [xmlFileName] [press_path] [role_path1] [role_path2] ...\n"
+"\n"
+"Optional flags:\n"
+"\tcontinue_on_error: Jika ditentukan, jangan hentikan impor pengguna jika "
+"terjadi kesalahan.\n"
+"\n"
+"\tsend_notify: Jika ditentukan, kirim email pemberitahuan yang berisi nama\n"
+"\t\tdan kata sandi untuk pengguna yang diimpor.\n"
+"\n"
+"Contoh:\n"
+"\tImpor pengguna ke penerbit Saya dari myImportFile.xml, lanjutkan pada "
+"galat:\n"
+"\t{$scriptName} {$pluginName} impor myImportFile.xml penerbit Saya "
+"continue_on_error\n"
+"\n"
+"\tEkspor semua pengguna dari penerbit Saya:\n"
+"\t{$scriptName} {$pluginName} ekspor myExportFile.xml penerbit Saya\n"
+"\n"
+"\tExport all users registered as reviewers, along with their reviewer roles "
+"only:\n"
+"\t{$scriptName} {$pluginName} ekspor myExportFile.xml peninjau penerbit "
+"Saya\n"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr ""
+"Tidak dapat menggunakan kata sandi yang di-hash dengan {$importHash}; OMP "
+"dikonfigurasi untuk menggunakan {$ompHash}. Jika Anda melanjutkan, Anda "
+"perlu mengatur ulang kata sandi pengguna yang diimpor."
