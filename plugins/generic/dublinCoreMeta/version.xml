@@ -17,4 +17,7 @@
 	<date>2017-03-01</date>
 	<lazy-load>1</lazy-load>
 	<class>DublinCoreMetaPlugin</class>
+  <compatibility application="omp">
+	  <release>~3.6.0.0</release>
+	</compatibility>
 </version>
