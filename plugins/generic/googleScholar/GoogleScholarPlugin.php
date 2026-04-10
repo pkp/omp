@@ -125,20 +125,22 @@ class GoogleScholarPlugin extends GenericPlugin
         }
 
         // Subjects
-        if ($subjects = $publication->getData('subjects')) {
-            foreach ($subjects as $locale => $localeSubjects) {
-                foreach ($localeSubjects as $i => $subject) {
-                    $templateMgr->addHeader('googleScholarSubject' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($subject) . '"/>');
-                }
+        if ($subjects = $publication->getData('subjects', $publicationLocale)) {
+            foreach ($subjects as $i => $subject) {
+                $templateMgr->addHeader(
+                    'googleScholarSubject' . $i,
+                    '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($publicationLocale)) . '" content="' . htmlspecialchars($subject['name']) . '"/>'
+                );
             }
         }
 
         // Keywords
-        if ($keywords = $publication->getData('keywords')) {
-            foreach ($keywords as $locale => $localeKeywords) {
-                foreach ($localeKeywords as $i => $keyword) {
-                    $templateMgr->addHeader('googleScholarKeyword' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($keyword) . '"/>');
-                }
+        if ($keywords = $publication->getData('keywords', $publicationLocale)) {
+            foreach ($keywords as $i => $keyword) {
+                $templateMgr->addHeader(
+                    'googleScholarKeyword' . $i,
+                    '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($publicationLocale)) . '" content="' . htmlspecialchars($keyword['name']) . '"/>'
+                );
             }
         }
 
