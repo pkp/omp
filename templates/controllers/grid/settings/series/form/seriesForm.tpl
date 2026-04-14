@@ -1,8 +1,8 @@
 {**
  * templates/controllers/grid/settings/series/form/seriesForm.tpl
  *
- * Copyright (c) 2014-2025 Simon Fraser University
- * Copyright (c) 2003-2025 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2003-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Series form under press management.
@@ -79,7 +79,7 @@
 		{/fbvFormSection}
 
 		{fbvFormSection list="true"}
-			{fbvElement type="checkbox" id="isInactive" value=1 checked=$isInactive label="manager.sections.form.deactivateSection"}
+			{fbvElement type="checkbox" id="isInactive" value=1 checked=$isInactive label="manager.series.form.deactivateSeries"}
 			{fbvElement type="checkbox" id="editorRestricted" value=1 label="manager.series.restricted" checked=$editorRestricted}
 		{/fbvFormSection}
 
@@ -93,7 +93,7 @@
 		{/fbvFormSection}
 
 		{fbvFormSection list=true title="manager.sections.form.assignEditors"}
-		<div>{translate key="manager.sections.form.assignEditors.description"}</div>
+		<div>{translate key="manager.series.form.assignEditors.description"}</div>
 		{foreach from=$assignableUserGroups item="assignableUserGroup"}
 			{assign var="role" value=$assignableUserGroup.userGroup->getLocalizedData('name')}
 			{assign var="userGroupId" value=$assignableUserGroup.userGroup->id}

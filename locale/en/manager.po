@@ -33,6 +33,12 @@ msgstr "Please ensure that at least one checkbox is checked for each Series Edit
 msgid "manager.series.form.reviewFormId"
 msgstr "Please ensure that you have chosen a valid review form."
 
+msgid "manager.series.form.deactivateSeries"
+msgstr "Mark this series as inactive and do not allow new submissions to be made to it."
+
+msgid "manager.series.form.assignEditors.description"
+msgstr "Select the editorial users who should be assigned automatically to all new submissions to this series."
+
 msgid "manager.series.submissionIndexing"
 msgstr "Will not be included in the indexing of the press"
 
