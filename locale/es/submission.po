@@ -1,11 +1,11 @@
 # pep sanso <pep.sanso@uab.cat>, 2023.
-# Jordi LC <jordi.lacruz@uab.cat>, 2023, 2024, 2025.
+# Jordi LC <jordi.lacruz@uab.cat>, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2025-04-09 17:28+0000\n"
+"PO-Revision-Date: 2026-04-15 11:30+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "es/>\n"
@@ -113,7 +113,7 @@ msgid "submission.metadata"
 msgstr "Metadatos"
 
 msgid "submission.supportingAgencies"
-msgstr "Agencias de apoyo"
+msgstr "Agencias de financiación"
 
 msgid "grid.action.addChapter"
 msgstr "Crear un nuevo capítulo"
