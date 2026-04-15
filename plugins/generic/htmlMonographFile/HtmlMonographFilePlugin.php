@@ -140,7 +140,8 @@ class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
                 Hook::call('HtmlMonographFilePlugin::monographDownloadFinished', [&$returner]);
 
                 $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
-                $chapter = $chapterDao->getChapter($submissionFile->getData('chapterId'));
+                $chapterId = $submissionFile->getData('chapterId');
+                $chapter = $chapterId ? $chapterDao->getChapter((int) $chapterId) : null;
                 event(new UsageEvent(Application::ASSOC_TYPE_SUBMISSION_FILE, $request->getContext(), $submission, $publicationFormat, $submissionFile, $chapter));
                 return true;
             }
