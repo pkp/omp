@@ -1,12 +1,12 @@
 # Niels Erik Frederiksen <nef@kb.dk>, 2021.
-# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022, 2023, 2024, 2025.
+# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2022, 2023, 2024, 2025, 2026.
 # Jesper B. Thestrup <jbt@kb.dk>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2025-04-08 02:03+0000\n"
+"PO-Revision-Date: 2026-04-16 06:18+0000\n"
 "Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/manager/da/>"
 "\n"
@@ -1725,3 +1725,13 @@ msgid "manager.setup.contextSummary.description"
 msgstr ""
 "Giv en kort beskrivelse af din udgiver for at give indsigt i indhold og "
 "formål."
+
+msgid "manager.series.form.deactivateSeries"
+msgstr ""
+"Marker denne serie som inaktiv og tillad ikke, at der indsendes nye bidrag "
+"til den."
+
+msgid "manager.series.form.assignEditors.description"
+msgstr ""
+"Vælg de redaktionelle brugere, der automatisk skal tildeles alle nye indlæg "
+"til denne serie."
