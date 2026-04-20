@@ -78,14 +78,16 @@
 			{/if}
 
 			{* Abstract *}
-			<div class="item abstract">
-				<h2 class="label">
-					{translate key="submission.synopsis"}
-				</h2>
-				<div class="value">
-					{$chapter->getLocalizedData('abstract')|strip_unsafe_html}
+			{if $chapter->getLocalizedData('abstract')}
+				<div class="item abstract">
+					<h2 class="label">
+						{translate key="submission.synopsis"}
+					</h2>
+					<div class="value">
+						{$chapter->getLocalizedData('abstract')|strip_unsafe_html}
+					</div>
 				</div>
-			</div>
+			{/if}
 
 			{call_hook name="Templates::Catalog::Chapter::Main"}
 
