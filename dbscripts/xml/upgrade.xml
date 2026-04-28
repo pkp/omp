@@ -172,6 +172,7 @@
 		<migration class="PKP\migration\upgrade\v3_5_0\I11603_AddMissingUserRoleAssignmentInvitationEmail"/>
 		<migration class="PKP\migration\upgrade\v3_5_0\I11673_AddMissingApprovalToReviewerSuggestion"/>
 		<migration class="PKP\migration\upgrade\v3_5_0\I11800_AddUserRoleMastheadUpdateEmail"/>
+		<migration class="APP\migration\upgrade\v3_5_0\I12357_FixDecisionConstantsMissedStageId"/>
 	</upgrade>
 
 	<upgrade minversion="3.3.0.0" maxversion="3.5.9.9">
