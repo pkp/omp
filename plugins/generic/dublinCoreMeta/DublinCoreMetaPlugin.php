@@ -3,8 +3,8 @@
 /**
  * @file plugins/generic/dublinCoreMeta/DublinCoreMetaPlugin.php
  *
- * Copyright (c) 2014-2022 Simon Fraser University
- * Copyright (c) 2003-2022 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2003-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class DublinCoreMetaPlugin
@@ -14,11 +14,15 @@
 
 namespace APP\plugins\generic\dublinCoreMeta;
 
+use APP\author\Author;
 use APP\core\Application;
+use APP\publicationFormat\PublicationFormat;
+use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\i18n\LocaleConversion;
 use PKP\plugins\GenericPlugin;
 use PKP\plugins\Hook;
+use PKP\submissionFile\SubmissionFile;
 
 class DublinCoreMetaPlugin extends GenericPlugin
 {
@@ -42,23 +46,19 @@ class DublinCoreMetaPlugin extends GenericPlugin
     /**
      * Get the name of the settings file to be installed on new context
      * creation.
-     *
-     * @return string
      */
-    public function getContextSpecificPluginSettingsFile()
+    public function getContextSpecificPluginSettingsFile(): string
     {
         return $this->getPluginPath() . '/settings.xml';
     }
 
     /**
-     * Inject Dublin Core metadata into monograph view
+     * Inject Dublin Core metadata into the monograph view
      *
      * @param string $hookName
      * @param array $args
-     *
-     * @return bool
      */
-    public function monographView($hookName, $args)
+    public function monographView($hookName, $args): bool
     {
         $request = $args[0];
         $monograph = $args[1];
@@ -84,7 +84,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
         if ($supportingAgencies = $publication->getData('supportingAgencies')) {
             foreach ($supportingAgencies as $locale => $localeSupportingAgencies) {
                 foreach ($localeSupportingAgencies as $i => $supportingAgency) {
-                    $templateMgr->addHeader('dublinCoreSponsor' . $locale . $i++, '<meta name="DC.Contributor.Sponsor" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($supportingAgency) . '"/>');
+                    $templateMgr->addHeader('dublinCoreSponsor' . $locale . $i, '<meta name="DC.Contributor.Sponsor" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($supportingAgency['name']) . '"/>');
                 }
             }
         }
@@ -98,8 +98,8 @@ class DublinCoreMetaPlugin extends GenericPlugin
         }
 
         $authors = $isChapterRequest ? $templateMgr->getTemplateVars('chapterAuthors') : $publication->getData('authors');
-        foreach ($authors as $i => $author) {
-            $templateMgr->addHeader('dublinCoreAuthor' . $i++, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName(false, false, $publicationLocale)) . '"/>');
+        foreach ($authors as $i => $author) { /** @var Author $author */
+            $templateMgr->addHeader('dublinCoreAuthor' . $i, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName(false, false, $publicationLocale)) . '"/>');
         }
 
         $datePublished = $isChapterRequest
@@ -151,14 +151,14 @@ class DublinCoreMetaPlugin extends GenericPlugin
         if ($subjects = $publication->getData('subjects')) {
             foreach ($subjects as $locale => $localeSubjects) {
                 foreach ($localeSubjects as $i => $subject) {
-                    $templateMgr->addHeader('dublinCoreSubject' . $locale . $i++, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($subject['name']) . '"/>');
+                    $templateMgr->addHeader('dublinCoreSubject' . $locale . $i, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($subject['name']) . '"/>');
                 }
             }
         }
         if ($keywords = $publication->getData('keywords')) {
             foreach ($keywords as $locale => $localeKeywords) {
                 foreach ($localeKeywords as $i => $keyword) {
-                    $templateMgr->addHeader('dublinCoreKeyword' . $locale . $i++, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($keyword['name']) . '"/>');
+                    $templateMgr->addHeader('dublinCoreKeyword' . $locale . $i, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($keyword['name']) . '"/>');
                 }
             }
         }
@@ -185,7 +185,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
     }
 
     /**
-     * Inject Dublin Core metadata into monograph file view
+     * Inject Dublin Core metadata into the monograph file view
      *
      * @param string $hookName
      * @param array $args
@@ -194,8 +194,13 @@ class DublinCoreMetaPlugin extends GenericPlugin
      */
     public function monographFileView($hookName, $args)
     {
+        /** @var Submission $monograph */
         $monograph = $args[1];
+
+        /** @var PublicationFormat $publicationFormat */
         $publicationFormat = $args[2];
+
+        /** @var SubmissionFile $submissionFile */
         $submissionFile = $args[3];
 
         $publication = $monograph->getCurrentPublication();
@@ -221,7 +226,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
         if ($supportingAgencies = $publication->getData('supportingAgencies')) {
             foreach ($supportingAgencies as $locale => $localeSupportingAgencies) {
                 foreach ($localeSupportingAgencies as $i => $supportingAgency) {
-                    $templateMgr->addHeader('dublinCoreSponsor' . $locale . $i++, '<meta name="DC.Contributor.Sponsor" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($supportingAgency) . '"/>');
+                    $templateMgr->addHeader('dublinCoreSponsor' . $locale . $i, '<meta name="DC.Contributor.Sponsor" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($supportingAgency) . '"/>');
                 }
             }
         }
@@ -235,8 +240,8 @@ class DublinCoreMetaPlugin extends GenericPlugin
         }
 
         $authors = $chapter ? $chapter->getAuthors()->toArray() : $publication->getData('authors');
-        foreach ($authors as $i => $author) {
-            $templateMgr->addHeader('dublinCoreAuthor' . $i++, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName(false, false, $publicationLocale)) . '"/>');
+        foreach ($authors as $i => $author) { /** @var Author $author */
+            $templateMgr->addHeader('dublinCoreAuthor' . $i, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName(false, false, $publicationLocale)) . '"/>');
         }
 
         $datePublished = $chapter
@@ -247,7 +252,9 @@ class DublinCoreMetaPlugin extends GenericPlugin
         if ($datePublished) {
             $templateMgr->addHeader('dublinCoreDateCreated', '<meta name="DC.Date.created" scheme="ISO8601" content="' . date('Y-m-d', strtotime($datePublished)) . '"/>');
         }
+
         $templateMgr->addHeader('dublinCoreDateSubmitted', '<meta name="DC.Date.dateSubmitted" scheme="ISO8601" content="' . date('Y-m-d', strtotime($monograph->getData('dateSubmitted'))) . '"/>');
+
         if ($dateModified = $publication->getData('lastModified')) {
             $templateMgr->addHeader('dublinCoreDateModified', '<meta name="DC.Date.modified" scheme="ISO8601" content="' . date('Y-m-d', strtotime($dateModified)) . '"/>');
         }
@@ -298,14 +305,14 @@ class DublinCoreMetaPlugin extends GenericPlugin
         if ($subjects = $publication->getData('subjects')) {
             foreach ($subjects as $locale => $localeSubjects) {
                 foreach ($localeSubjects as $i => $subject) {
-                    $templateMgr->addHeader('dublinCoreSubject' . $locale . $i++, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($subject) . '"/>');
+                    $templateMgr->addHeader('dublinCoreSubject' . $locale . $i, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($subject) . '"/>');
                 }
             }
         }
         if ($keywords = $publication->getData('keywords')) {
             foreach ($keywords as $locale => $localeKeywords) {
                 foreach ($localeKeywords as $i => $keyword) {
-                    $templateMgr->addHeader('dublinCoreKeyword' . $locale . $i++, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($keyword) . '"/>');
+                    $templateMgr->addHeader('dublinCoreKeyword' . $locale . $i, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($keyword) . '"/>');
                 }
             }
         }
@@ -334,20 +341,16 @@ class DublinCoreMetaPlugin extends GenericPlugin
 
     /**
      * Get the display name of this plugin
-     *
-     * @return string
      */
-    public function getDisplayName()
+    public function getDisplayName(): string
     {
         return __('plugins.generic.dublinCoreMeta.name');
     }
 
     /**
      * Get the description of this plugin
-     *
-     * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return __('plugins.generic.dublinCoreMeta.description');
     }
