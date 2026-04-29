@@ -23,6 +23,7 @@ use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\decision\Decision;
 use PKP\pages\dashboard\PKPDashboardHandler;
+use PKP\publication\enums\UpdateType;
 use PKP\submissionFile\SubmissionFile;
 
 class DashboardHandler extends PKPDashboardHandler
@@ -41,6 +42,18 @@ class DashboardHandler extends PKPDashboardHandler
         $templateMgr->assign([
             'pageComponent' => 'Page',
         ]);
+
+        $updateTypeOptions = [];
+        foreach (UpdateType::cases() as $updateType) {
+            $updateTypeOptions[] = [
+                'label' => $updateType->label(),
+                'value' => $updateType->value,
+            ];
+        }
+        $pageInitConfig = $templateMgr->getState('pageInitConfig');
+        $pageInitConfig['componentForms']['updateTypeOptions'] = $updateTypeOptions;
+        $pageInitConfig['componentForms']['defaultUpdateType'] = UpdateType::NEW_VERSION->value;
+        $templateMgr->setState(['pageInitConfig' => $pageInitConfig]);
 
         $templateMgr->setConstants([
             'DECISION_INTERNAL_REVIEW' => Decision::INTERNAL_REVIEW,
