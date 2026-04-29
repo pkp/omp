@@ -387,6 +387,15 @@ msgstr ""
 msgid "publication.datePublished"
 msgstr "Date Published"
 
+msgid "publication.datePublished.description"
+msgstr ""
+"The publication date will be set automatically when the catalog entry is "
+"published. Do not enter a publication date unless this work was previously "
+"published elsewhere and you need to backdate it."
+
+msgid "publication.series.description"
+msgstr "Choose the series where this publication will appear."
+
 msgid "publication.editDisabled"
 msgstr "This version has been published and can not be edited."
 
