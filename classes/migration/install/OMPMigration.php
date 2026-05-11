@@ -17,6 +17,7 @@ namespace APP\migration\install;
 use APP\publication\enums\VersionStage;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use PKP\publication\enums\UpdateType;
 
 class OMPMigration extends \PKP\migration\Migration
 {
@@ -61,6 +62,7 @@ class OMPMigration extends \PKP\migration\Migration
             $table->enum('version_stage', array_column(VersionStage::cases(), 'value'))->nullable();
             $table->integer('version_minor')->nullable();
             $table->integer('version_major')->nullable();
+            $table->enum('update_type', array_column(UpdateType::cases(), 'value'))->nullable();
             $table->datetime('created_at')->useCurrent();
 
             $table->bigInteger('source_publication_id')->nullable();
