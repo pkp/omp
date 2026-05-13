@@ -1,11 +1,11 @@
-# Diego José Macêdo <diegojmacedo@gmail.com>, 2021, 2022, 2023, 2024, 2025.
+# Diego José Macêdo <diegojmacedo@gmail.com>, 2021, 2022, 2023, 2024, 2025, 2026.
 # cicilia conceiçao de maria <ccmaria@uem.br>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T12:00:53-07:00\n"
-"PO-Revision-Date: 2025-05-21 13:07+0000\n"
+"PO-Revision-Date: 2026-05-13 19:33+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "manager/pt_BR/>\n"
@@ -1915,3 +1915,13 @@ msgid "manager.setup.contextSummary.description"
 msgstr ""
 "Ofereça uma breve descrição da sua editora para fornecer informações sobre "
 "seu conteúdo e propósito."
+
+msgid "manager.series.form.deactivateSeries"
+msgstr ""
+"Marque esta série como inativa e não permita o envio de novas submissões "
+"para ela."
+
+msgid "manager.series.form.assignEditors.description"
+msgstr ""
+"Selecione os usuários da equipe editorial que devem ser atribuídos "
+"automaticamente a todas as novas submissões desta série."
