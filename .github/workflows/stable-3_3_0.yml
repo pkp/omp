@@ -15,6 +15,7 @@ jobs:
         include:
           - php-version: 8.0
             validate: 'validate'
+            phpstan: 'true'
           - php-version: 7.3
             database: pgsql
             test: 'test'
