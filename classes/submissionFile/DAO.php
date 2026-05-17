@@ -35,6 +35,8 @@ class DAO extends BaseDAO
         'submissionId' => 'submission_id',
         'updatedAt' => 'updated_at',
         'uploaderUserId' => 'uploader_user_id',
+        'variantGroupId' => 'variant_group_id',
+        'variantType' => 'variant_type',
         'viewable' => 'viewable',
         'doiId' => 'doi_id'
     ];
