@@ -26,6 +26,7 @@ use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
 use PKP\plugins\Hook;
+use PKP\submissionFile\enums\MediaVariantType;
 use PKP\submissionFile\SubmissionFile;
 
 class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
@@ -165,7 +166,8 @@ class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
     {
         $contents = app()->get('file')->fs->read($submissionFile->getData('path'));
 
-        // Replace media file references
+        // Collect embeddable files (proof, dependent and publication-level
+        // media) whose references are rewritten to download URLs below.
         $proofCollector = Repo::submissionFile()
             ->getCollector()
             ->filterBySubmissionIds([$monograph->getId()])
@@ -180,9 +182,25 @@ class HtmlMonographFilePlugin extends \PKP\plugins\GenericPlugin
                 [$submissionFile->getId()]
             );
 
+        // Publication-level media files can be referenced from any HTML file of
+        // the same publication. Embed only the web variant; high-resolution
+        // variants are reserved for download/export use cases.
+        $mediaFiles = Repo::submissionFile()
+            ->getCollector()
+            ->filterByAssoc(
+                Application::ASSOC_TYPE_PUBLICATION,
+                [$publicationFormat->getData('publicationId')]
+            )
+            ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_MEDIA])
+            ->filterByMediaVariantTypes([MediaVariantType::WEB])
+            ->getMany();
+
+        // Media is appended last so that an explicitly-bound proof/dependent
+        // file wins over a publication-level media file of the same name.
         $embeddableFiles = array_merge(
             $proofCollector->getMany()->toArray(),
-            $dependentCollector->getMany()->toArray()
+            $dependentCollector->getMany()->toArray(),
+            $mediaFiles->toArray()
         );
 
         foreach ($embeddableFiles as $embeddableFile) {
