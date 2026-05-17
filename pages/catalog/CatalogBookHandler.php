@@ -444,6 +444,14 @@ class CatalogBookHandler extends Handler
                     throw new NotFoundHttpException();
                 }
                 return app()->get('file')->download($submissionFile->getData('fileId'), $filename);
+            case Application::ASSOC_TYPE_PUBLICATION: // Publication-level media file
+                if (
+                    $submissionFile->getData('assocId') != $publication->getId()
+                    || $submissionFile->getData('fileStage') != SubmissionFile::SUBMISSION_FILE_MEDIA
+                ) {
+                    throw new NotFoundHttpException();
+                }
+                return app()->get('file')->download($submissionFile->getData('fileId'), $filename);
             default:
                 throw new NotFoundHttpException();
         }
