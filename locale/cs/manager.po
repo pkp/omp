@@ -1,7 +1,7 @@
-# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023, 2024, 2025.
+# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-03-01 13:10+0000\n"
+"PO-Revision-Date: 2026-04-15 11:30+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/manager/cs/>\n"
 "Language: cs\n"
@@ -1685,3 +1685,13 @@ msgstr "Kapitoly bez cílové stránky nemohou mít DOI."
 msgid "manager.setup.contextSummary.description"
 msgstr ""
 "Nabídněte stručný popis tisku, abyste seznámili s jeho obsahem a účelem."
+
+msgid "manager.series.form.deactivateSeries"
+msgstr ""
+"Označte tuto sérii jako neaktivní a zablokujte možnost přidávat do ní nové "
+"příspěvky."
+
+msgid "manager.series.form.assignEditors.description"
+msgstr ""
+"Vyberte redaktory, kteří by měli být automaticky přiřazeni ke všem novým "
+"příspěvkům v této sérii."

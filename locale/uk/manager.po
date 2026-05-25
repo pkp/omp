@@ -1,7 +1,7 @@
-# Petro Bilous <petrobilous@ukr.net>, 2022, 2023, 2024, 2025.
+# Petro Bilous <petrobilous@ukr.net>, 2022, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-03-03 19:43+0000\n"
+"PO-Revision-Date: 2026-04-15 11:30+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "uk/>\n"
@@ -1745,3 +1745,13 @@ msgid "manager.setup.contextSummary.description"
 msgstr ""
 "Запропонуйте короткий опис вашого е-видання, щоб зрозуміти її зміст і "
 "призначення."
+
+msgid "manager.series.form.deactivateSeries"
+msgstr ""
+"Позначити цю серію як неактивну й не дозволити надсилання до неї нових "
+"матеріалів."
+
+msgid "manager.series.form.assignEditors.description"
+msgstr ""
+"Виберіть користувачів-редакторів, яким слід автоматично призначати доступ до "
+"всіх нових матеріалів цієї серії."
