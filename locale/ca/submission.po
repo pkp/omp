@@ -1,10 +1,10 @@
-# Jordi LC <jordi.lacruz@uab.cat>, 2024.
+# Jordi LC <jordi.lacruz@uab.cat>, 2024, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2024-04-26 12:34+0000\n"
+"PO-Revision-Date: 2026-04-15 11:30+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Catalan <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "ca/>\n"
@@ -112,7 +112,7 @@ msgid "submission.metadata"
 msgstr "Metadades"
 
 msgid "submission.supportingAgencies"
-msgstr "Agències de suport"
+msgstr "Agències de finançament"
 
 msgid "grid.action.addChapter"
 msgstr "Creació d'un capítol nou"
