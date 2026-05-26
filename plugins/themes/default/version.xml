@@ -18,4 +18,7 @@
 	<date>2013-09-16</date>
 	<lazy-load>1</lazy-load>
 	<class>DefaultThemePlugin</class>
+  <compatibility application="omp">
+	  <release>~3.6.0.0</release>
+	</compatibility>
 </version>

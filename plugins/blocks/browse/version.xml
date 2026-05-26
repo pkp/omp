@@ -17,4 +17,7 @@
 	<date>2011-10-24</date>
 	<lazy-load>1</lazy-load>
 	<class>\APP\plugins\blocks\browse\BrowseBlockPlugin</class>
+  <compatibility application="omp">
+	  <release>~3.6.0.0</release>
+	</compatibility>
 </version>
