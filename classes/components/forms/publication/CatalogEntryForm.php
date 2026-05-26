@@ -84,6 +84,7 @@ class CatalogEntryForm extends FormComponent
             ->addField(new FieldSelect('seriesId', [
                 'groupId' => self::GROUP_PLACEMENT,
                 'label' => __('series.series'),
+                'description' => __('publication.series.description'),
                 'value' => $publication->getData('seriesId'),
                 'options' => $seriesOptions,
             ]))
@@ -117,7 +118,7 @@ class CatalogEntryForm extends FormComponent
                 'groupId' => self::GROUP_PLACEMENT,
                 'label' => __('submission.submit.placement.categories'),
                 'value' => (array) $publication->getData('categoryIds'),
-                'description' => $hasAllBreadcrumbs ? '' : __('submission.categories.circularReferenceWarning'),
+                'description' => __('publication.categories.description') . ($hasAllBreadcrumbs ? '' : ' ' . __('submission.categories.circularReferenceWarning')),
                 'options' => $categoryOptions,
                 'vocabularies' => [
                     [
@@ -133,6 +134,7 @@ class CatalogEntryForm extends FormComponent
             ->addField(new FieldText('datePublished', [
                 'groupId' => self::GROUP_PUBLICATION_TIMING,
                 'label' => __('publication.datePublished'),
+                'description' => __('publication.datePublished.description'),
                 'value' => $publication->getData('datePublished'),
             ]))
             ->addField(new FieldSelect('updateType', [
@@ -156,6 +158,7 @@ class CatalogEntryForm extends FormComponent
             ->addField(new FieldUploadImage('coverImage', [
                 'groupId' => self::GROUP_DISPLAY,
                 'label' => __('monograph.coverImage'),
+                'description' => __('publication.coverImage.description'),
                 'value' => $publication->getData('coverImage'),
                 'isMultilingual' => true,
                 'baseUrl' => $baseUrl,
