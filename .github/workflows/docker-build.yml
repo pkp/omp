@@ -23,4 +23,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: amirul78800/omp:latest
+          tags: amirul123/omp
