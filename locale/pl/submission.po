@@ -528,12 +528,15 @@ msgstr ""
 "{$editorName} cofnął decyzję o przyjęciu tego zgłoszenia i skierował je z "
 "powrotem do etapu recenzji."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed"
 msgstr "Wyślij z powrotem do recenzji"
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed.description"
 msgstr "Zgłoszenie, {$title}, zostało przesłane z powrotem do etapu recenzji."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
 msgstr ""
 "Wyślij e-mail do autorów, aby poinformować ich, że ich zgłoszenie jest "

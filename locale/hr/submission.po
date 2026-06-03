@@ -533,12 +533,15 @@ msgstr ""
 "{$editorName} poništio je odluku o prihvaćanju ovog podneska i vratio ga u "
 "fazu pregleda."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed"
 msgstr "Poslano natrag na pregled"
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed.description"
 msgstr "Podnesak, {$title}, poslan je natrag u fazu pregleda."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
 msgstr ""
 "Pošaljite e-mail autorima da ih obavijestite da se njihov podnesak vraća u "

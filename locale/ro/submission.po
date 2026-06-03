@@ -474,9 +474,11 @@ msgstr ""
 "Schimbați decizia de a accepta această înregistrare și trimiteți-o înapoi la "
 "etapa de verificare."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed"
 msgstr "Trimisă înapoi la verificare"
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed.description"
 msgstr "Înregistrarea, {$title}, a fost trimisă înapoi la etapa de verificare."
 
@@ -605,6 +607,7 @@ msgstr ""
 "Anul drepturilor de autor va fi setat automat atunci când acesta este "
 "publicat într-un număr."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
 msgstr ""
 "Trimiteți un e-mail autorilor pentru a le informa că înregistrarea lor este "

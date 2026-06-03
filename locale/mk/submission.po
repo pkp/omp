@@ -531,12 +531,15 @@ msgstr ""
 "{$editorName} ја вратил одлуката за прифаќање на овој поднесок и го вратил "
 "во фаза на ревизија."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed"
 msgstr "Вратено за Ревизија"
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed.description"
 msgstr "Поднесокот, {$title}, е вратен во фазата на ревизија."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
 msgstr ""
 "Испратете емаил до авторите за да ги известите дека нивниот поднесок се "

@@ -100,9 +100,11 @@ msgstr ""
 "Envoi d’un <strong>ouvrage collectif</strong> en "
 "<strong>{$language}</strong>."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed.description"
 msgstr "La soumission, « {$title} », a été renvoyée à l’étape d’évaluation."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
 msgstr ""
 "Envoyer un message aux auteur·e·s pour les faire savoir que leur soumission "
@@ -559,6 +561,7 @@ msgstr ""
 "{$editorName} a annulé la décision d’accepter cette soumission et l’a "
 "renvoyée à l’étape d’évaluation."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed"
 msgstr "Renvoyer en évaluation"
 
