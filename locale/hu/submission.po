@@ -537,13 +537,16 @@ msgstr ""
 "{$editorName} visszavonta a beküldött anyag elfogadásáról szóló döntést, és "
 "visszaküldte azt a szakmai lektorálás szakaszba."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed"
 msgstr "Vissza küldve szakmai lektorálásra"
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed.description"
 msgstr ""
 "A(z) {$title} című beküldést visszaküldték a szakmai lektorálás szakaszba."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
 msgstr ""
 "Küldjön egy e-mailt a szerzőknek, hogy tudassa velük, hogy a beadványukat "

@@ -538,12 +538,15 @@ msgstr ""
 "{$editorName} ha annullato la decisione di accettare questa proposta e l'ha "
 "rimandata alla fase di revisione."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed"
 msgstr "Rimandato alla revisione"
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed.description"
 msgstr "La proposta, {$title}, è stata rimandata alla fase di revisione."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
 msgstr ""
 "Invia un'email agli autori per informarli che il loro lavoro è stato "

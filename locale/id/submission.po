@@ -539,12 +539,15 @@ msgstr ""
 "{$editorName} membatalkan keputusan untuk menerima kiriman ini dan "
 "mengirimkannya kembali ke tahap peninjauan."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed"
 msgstr "Dikirim Kembali untuk Ditinjau"
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed.description"
 msgstr "Submisi, {$title}, dikirim kembali ke tahap peninjauan."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
 msgstr ""
 "Kirim email kepada penulis untuk memberi tahu mereka bahwa kiriman mereka "

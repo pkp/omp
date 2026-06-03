@@ -529,12 +529,15 @@ msgstr ""
 "{$editorName} скасував(ла) рішення про прийняття цього подання і "
 "направив(ла) його знову на стадію рецензування."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed"
 msgstr "Знову направлено на рецензування"
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.completed.description"
 msgstr "Подання \"{$title}\" було знову направлено на стадію рецензування."
 
+#, fuzzy
 msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
 msgstr ""
 "Надішліть авторам електронного листа, щоби повідомити їх, що їхнє подання "
