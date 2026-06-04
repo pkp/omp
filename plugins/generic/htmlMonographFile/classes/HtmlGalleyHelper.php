@@ -70,13 +70,15 @@ class HtmlGalleyHelper
             ->filterByMediaVariantTypes([MediaVariantType::WEB])
             ->getMany();
 
-        // Media is appended last so that an explicitly-bound proof/dependent
-        // file wins over a publication-level media file of the same name.
-        $embeddableFiles = array_merge(
-            $proofCollector->getMany()->toArray(),
-            $dependentCollector->getMany()->toArray(),
-            $mediaFiles->toArray()
-        );
+        // Dedupe by filename in increasing precedence (media < dependent < proof), so the
+        // highest-precedence file wins. collect() makes keyBy() dedupe eagerly; toArray()
+        // yields a plain array.
+        $embeddableFiles = $mediaFiles
+            ->concat($dependentCollector->getMany())
+            ->concat($proofCollector->getMany())
+            ->collect()
+            ->keyBy(fn ($file) => $file->getLocalizedData('name'))
+            ->toArray();
 
         foreach ($embeddableFiles as $embeddableFile) {
             $fileUrl = $request->url(null, 'catalog', 'download', [$monograph->getBestId(), 'version', $publicationFormat->getData('publicationId'), $publicationFormat->getBestId(), $embeddableFile->getBestId()], ['inline' => true]);
