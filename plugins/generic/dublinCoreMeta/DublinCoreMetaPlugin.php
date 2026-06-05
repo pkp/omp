@@ -16,6 +16,7 @@ namespace APP\plugins\generic\dublinCoreMeta;
 
 use APP\author\Author;
 use APP\core\Application;
+use APP\publicationFormat\IdentificationCode;
 use APP\publicationFormat\PublicationFormat;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
@@ -226,7 +227,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
         if ($supportingAgencies = $publication->getData('supportingAgencies')) {
             foreach ($supportingAgencies as $locale => $localeSupportingAgencies) {
                 foreach ($localeSupportingAgencies as $i => $supportingAgency) {
-                    $templateMgr->addHeader('dublinCoreSponsor' . $locale . $i, '<meta name="DC.Contributor.Sponsor" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($supportingAgency) . '"/>');
+                    $templateMgr->addHeader('dublinCoreSponsor' . $locale . $i, '<meta name="DC.Contributor.Sponsor" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($supportingAgency['name']) . '"/>');
                 }
             }
         }
@@ -278,6 +279,16 @@ class DublinCoreMetaPlugin extends GenericPlugin
             $templateMgr->addHeader('dublinCorePubIdDOI', '<meta name="DC.Identifier.DOI" content="' . htmlspecialchars($doi) . '"/>');
         }
 
+        $identificationCodes = $publicationFormat->getIdentificationCodes();
+        while ($code = $identificationCodes->next()) { /** @var IdentificationCode $code */
+            if ($code->getCode() == '15' || $code->getCode() == '02') { // 15 = ISBN-13, 02 = ISBN-10
+                $templateMgr->addHeader(
+                    'dublinCoreIdentifierISBN' . $code->getValue(),
+                    '<meta name="DC.Identifier.ISBN" content="' . htmlspecialchars($code->getValue()) . '"/>'
+                );
+            }
+        }
+
         foreach ((array) $templateMgr->getTemplateVars('pubIdPlugins') as $pubIdPlugin) {
             if ($pubId = $submissionFile->getStoredPubId($pubIdPlugin->getPubIdType()) ?? $chapter ? $chapter->getDoi() : $publication->getStoredPubId($pubIdPlugin->getPubIdType())) {
                 $templateMgr->addHeader('dublinCorePubId' . $pubIdPlugin->getPubIdDisplayType(), '<meta name="DC.Identifier.' . htmlspecialchars($pubIdPlugin->getPubIdDisplayType()) . '" content="' . htmlspecialchars($pubId) . '"/>');
@@ -305,18 +316,17 @@ class DublinCoreMetaPlugin extends GenericPlugin
         if ($subjects = $publication->getData('subjects')) {
             foreach ($subjects as $locale => $localeSubjects) {
                 foreach ($localeSubjects as $i => $subject) {
-                    $templateMgr->addHeader('dublinCoreSubject' . $locale . $i, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($subject) . '"/>');
+                    $templateMgr->addHeader('dublinCoreSubject' . $locale . $i, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($subject['name']) . '"/>');
                 }
             }
         }
         if ($keywords = $publication->getData('keywords')) {
             foreach ($keywords as $locale => $localeKeywords) {
                 foreach ($localeKeywords as $i => $keyword) {
-                    $templateMgr->addHeader('dublinCoreKeyword' . $locale . $i, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($keyword) . '"/>');
+                    $templateMgr->addHeader('dublinCoreKeyword' . $locale . $i, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(LocaleConversion::toBcp47($locale)) . '" content="' . htmlspecialchars($keyword['name']) . '"/>');
                 }
             }
         }
-
 
         $title = $chapter ? $chapter->getLocalizedFullTitle($publicationLocale) : $publication->getLocalizedFullTitle($publicationLocale);
         $templateMgr->addHeader('dublinCoreTitle', '<meta name="DC.Title" content="' . htmlspecialchars($title) . '"/>');
