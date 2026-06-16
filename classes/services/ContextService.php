@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/services/ContextService.php
  *
@@ -26,6 +27,7 @@ use APP\press\Press;
 use APP\publicationFormat\PublicationFormatTombstoneManager;
 use APP\submission\Submission;
 use PKP\config\Config;
+use PKP\context\Context;
 use PKP\db\DAORegistry;
 use PKP\file\ContextFileManager;
 use PKP\file\FileManager;
@@ -191,6 +193,37 @@ class ContextService extends \PKP\services\PKPContextService
             $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
             if (!$onixCodelistItemDao->codeExistsInList($props['codeType'], '44')) {
                 $errors['codeType'] = [__('manager.settings.publisherCodeType.invalid')];
+            }
+        }
+
+        // Disallow empty custom DOI suffix patterns when the custom pattern type is selected
+        if (
+            isset($props[Context::SETTING_DOI_SUFFIX_TYPE]) ||
+            isset($props[Context::SETTING_ENABLED_DOI_TYPES]) ||
+            isset($props[Repo::doi()::CUSTOM_CHAPTER_PATTERN]) ||
+            isset($props[Repo::doi()::CUSTOM_FILE_PATTERN])
+        ) {
+            $context = Application::get()->getRequest()->getContext();
+            $suffixType = $props[Context::SETTING_DOI_SUFFIX_TYPE]
+                ?? $context?->getData(Context::SETTING_DOI_SUFFIX_TYPE);
+            $enabledTypes = $props[Context::SETTING_ENABLED_DOI_TYPES]
+                ?? $context?->getData(Context::SETTING_ENABLED_DOI_TYPES)
+                ?? [];
+
+            if (
+                $suffixType === Repo::doi()::SUFFIX_CUSTOM_PATTERN &&
+                in_array(Repo::doi()::TYPE_CHAPTER, $enabledTypes) &&
+                empty($props[Repo::doi()::CUSTOM_CHAPTER_PATTERN])
+            ) {
+                $errors[Repo::doi()::CUSTOM_CHAPTER_PATTERN] = [__('doi.manager.settings.doiSuffixPattern.required')];
+            }
+
+            if (
+                $suffixType === Repo::doi()::SUFFIX_CUSTOM_PATTERN &&
+                in_array(Repo::doi()::TYPE_SUBMISSION_FILE, $enabledTypes) &&
+                empty($props[Repo::doi()::CUSTOM_FILE_PATTERN])
+            ) {
+                $errors[Repo::doi()::CUSTOM_FILE_PATTERN] = [__('doi.manager.settings.doiSuffixPattern.required')];
             }
         }
     }
