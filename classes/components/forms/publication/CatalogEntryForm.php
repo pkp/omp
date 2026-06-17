@@ -17,15 +17,19 @@
 
 namespace APP\components\forms\publication;
 
+use APP\codelist\ONIXCodelistItemDAO;
 use APP\facades\Repo;
+use APP\press\Press;
 use APP\publication\Publication;
 use APP\submission\Submission;
 use PKP\components\forms\FieldAutosuggestPreset;
+use PKP\components\forms\FieldHTML;
 use PKP\components\forms\FieldRichTextarea;
 use PKP\components\forms\FieldSelect;
 use PKP\components\forms\FieldText;
 use PKP\components\forms\FieldUploadImage;
 use PKP\components\forms\FormComponent;
+use PKP\db\DAORegistry;
 use PKP\publication\enums\UpdateType;
 
 class CatalogEntryForm extends FormComponent
@@ -37,6 +41,7 @@ class CatalogEntryForm extends FormComponent
     public const GROUP_VERSION_AND_UPDATES = 'versionAndUpdates';
     public const GROUP_DISPLAY = 'display';
     public const GROUP_ACCESS = 'access';
+    public const GROUP_PRESS_IDENTITY = 'pressIdentity';
 
     public $id = self::FORM_CATALOG_ENTRY;
     public $method = 'PUT';
@@ -53,8 +58,9 @@ class CatalogEntryForm extends FormComponent
      * @param Submission $submission The submission of this publication
      * @param string $baseUrl Site's base URL. Used for image previews.
      * @param string $temporaryFileApiUrl The url to upload the cover image
+     * @param Press $press The press this publication belongs to
      */
-    public function __construct($action, $locales, $publication, $submission, $baseUrl, $temporaryFileApiUrl)
+    public function __construct($action, $locales, $publication, $submission, $baseUrl, $temporaryFileApiUrl, ?Press $press = null)
     {
         $this->action = $action;
         $this->successMessage = __('publication.catalogEntry.success');
@@ -172,5 +178,61 @@ class CatalogEntryForm extends FormComponent
                 'description' => __('publication.urlPath.description'),
                 'value' => $publication->getData('urlPath'),
             ]));
+
+        if ($press) {
+            $this->addStampedIdentityField($publication, $press);
+        }
+    }
+
+    /**
+     * Add the press identity stamped at publication as a read-only list.
+     * Nothing is added for a publication without a stamp.
+     */
+    protected function addStampedIdentityField(Publication $publication, Press $press): void
+    {
+        $parts = [];
+
+        if ($publication->hasContextIdentity()) {
+            $parts[] = '<li><strong>' . htmlspecialchars(__('semicolon', ['label' => __('manager.setup.contextTitle')])) . '</strong> '
+                . htmlspecialchars($publication->getPrimaryContextName($press)) . '</li>';
+        }
+        // Presses have no abbreviation setting, so the press initials are stamped as abbreviation
+        if ($publication->getData('contextAbbreviation') && ($abbreviation = $publication->getPrimaryContextAbbreviation($press))) {
+            $parts[] = '<li><strong>' . htmlspecialchars(__('semicolon', ['label' => __('manager.setup.contextInitials')])) . '</strong> '
+                . htmlspecialchars($abbreviation) . '</li>';
+        }
+        if ($publisher = $publication->getData('publisher')) {
+            $parts[] = '<li><strong>' . htmlspecialchars(__('semicolon', ['label' => __('manager.setup.publisher')])) . '</strong> '
+                . htmlspecialchars($publisher) . '</li>';
+        }
+        if ($publisherLocation = $publication->getData('publisherLocation')) {
+            $parts[] = '<li><strong>' . htmlspecialchars(__('semicolon', ['label' => __('manager.setup.publisherLocation')])) . '</strong> '
+                . htmlspecialchars($publisherLocation) . '</li>';
+        }
+        if ($codeType = $publication->getData('codeType')) {
+            /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
+            $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+            $codeTypeName = $onixCodelistItemDao->getCodes('44')[$codeType] ?? $codeType;
+            $parts[] = '<li><strong>' . htmlspecialchars(__('semicolon', ['label' => __('manager.settings.publisherCodeType')])) . '</strong> '
+                . htmlspecialchars($codeTypeName) . '</li>';
+        }
+        if ($codeValue = $publication->getData('codeValue')) {
+            $parts[] = '<li><strong>' . htmlspecialchars(__('semicolon', ['label' => __('manager.settings.publisherCode')])) . '</strong> '
+                . htmlspecialchars($codeValue) . '</li>';
+        }
+
+        if (empty($parts)) {
+            return;
+        }
+
+        $this->addGroup(
+            ['id' => self::GROUP_PRESS_IDENTITY, 'label' => __('publication.identity')]
+        );
+        $this->addField(new FieldHTML('pressIdentity', [
+            'groupId' => self::GROUP_PRESS_IDENTITY,
+            'label' => __('publication.pressIdentity'),
+            'description' => __('publication.identityAtPublication.description')
+                . '<ul>' . implode('', $parts) . '</ul>',
+        ]));
     }
 }

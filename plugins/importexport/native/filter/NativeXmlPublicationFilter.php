@@ -62,6 +62,9 @@ class NativeXmlPublicationFilter extends \PKP\plugins\importexport\native\filter
                 $nativeFilterHelper->parsePublicationCovers($this, $n, $publication),
             ],
             'series' => $this->parseSeries($this, $n, $publication),
+            'publisher' => $publication->setData('publisher', $n->textContent),
+            'codeType' => $publication->setData('codeType', $n->textContent),
+            'codeValue' => $publication->setData('codeValue', $n->textContent),
             default => parent::handleChildElement($n, $publication)
         };
     }
