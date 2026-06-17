@@ -112,11 +112,11 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $this->addLocalizedElements($dc11Description, 'dc:description', $publication->getData('abstract'));
 
         // Publisher
-        $publisher = $press->getData('publisher');
+        $publisher = $publication->getPublisher($press);
         if (!empty($publisher)) {
             $publishers = [$press->getPrimaryLocale() => $publisher];
         } else {
-            $publishers = $press->getName(null); // Default
+            $publishers = $publication->getData('contextName', null) ?: $press->getName(null); // Default
         }
         $this->addLocalizedElements($dc11Description, 'dc:publisher', $publishers);
 
@@ -229,7 +229,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         }
 
         // Source (press title and pages)
-        $sources = $press->getName(null);
+        $sources = $publication->getData('contextName') ?: $press->getName(null);
         $pages = $publication->getData('pages');
         if (!empty($pages)) {
             $pages = '; ' . $pages;
