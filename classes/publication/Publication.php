@@ -22,10 +22,13 @@ use APP\core\Application;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\publication\enums\VersionStage;
+use PKP\context\Context;
 use PKP\publication\PKPPublication;
 
 class Publication extends PKPPublication
 {
+    use HasContextIdentityMetadata;
+
     public const DEFAULT_VERSION_STAGE = VersionStage::VERSION_OF_RECORD;
 
     /**
@@ -110,5 +113,31 @@ class Publication extends PKPPublication
             $pathParts['dirname'],
             Repo::publication()->getThumbnailFilename($pathParts['basename']),
         ]);
+    }
+
+    /**
+     * Stamp the press identity metadata, adding the publisher, the publisher location and the
+     * publisher code from the press settings.
+     */
+    public function stampContextIdentity(Context $context): void
+    {
+        parent::stampContextIdentity($context);
+        $this->setData('publisher', $context->getData('publisher'));
+        $this->setData('publisherLocation', $context->getData('location'));
+        $this->setData('codeType', $context->getData('codeType'));
+        $this->setData('codeValue', $context->getData('codeValue'));
+    }
+
+    /**
+     * @copydoc PKPPublication::clearIdentityMetadata()
+     *
+     * Also clears the publisher and the publisher code.
+     */
+    public function clearIdentityMetadata(): void
+    {
+        parent::clearIdentityMetadata();
+        $this->setData('publisher', null);
+        $this->setData('codeType', null);
+        $this->setData('codeValue', null);
     }
 }

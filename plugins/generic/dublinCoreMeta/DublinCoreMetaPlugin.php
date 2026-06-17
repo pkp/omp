@@ -146,7 +146,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
             $templateMgr->addHeader('dublinCorePagesLicenseUrl', '<meta name="DC.Rights" content="' . htmlspecialchars($licenseURL) . '"/>');
         }
 
-        $templateMgr->addHeader('dublinCoreSource', '<meta name="DC.Source" content="' . htmlspecialchars($press->getName($press->getPrimaryLocale())) . '"/>');
+        $templateMgr->addHeader('dublinCoreSource', '<meta name="DC.Source" content="' . htmlspecialchars($publication->getPrimaryContextName($press)) . '"/>');
         $templateMgr->addHeader('dublinCoreSourceUri', '<meta name="DC.Source.URI" content="' . $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $press->getPath(), urlLocaleForPage: '') . '"/>');
 
         if ($subjects = $publication->getData('subjects')) {
@@ -306,7 +306,7 @@ class DublinCoreMetaPlugin extends GenericPlugin
             $templateMgr->addHeader('dublinCorePagesLicenseUrl', '<meta name="DC.Rights" content="' . htmlspecialchars($licenseURL) . '"/>');
         }
 
-        $templateMgr->addHeader('dublinCoreSource', '<meta name="DC.Source" content="' . htmlspecialchars($press->getName($press->getPrimaryLocale())) . '"/>');
+        $templateMgr->addHeader('dublinCoreSource', '<meta name="DC.Source" content="' . htmlspecialchars($publication->getPrimaryContextName($press)) . '"/>');
         if ($series && $issn = $series->getOnlineISSN()) {
             $templateMgr->addHeader('dublinCoreIssn', '<meta name="DC.Source.ISSN" content="' . htmlspecialchars($issn) . '"/>');
         }
