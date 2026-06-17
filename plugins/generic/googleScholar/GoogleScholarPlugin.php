@@ -173,7 +173,7 @@ class GoogleScholarPlugin extends GenericPlugin
         }
 
         // Publisher
-        $templateMgr->addHeader('googleScholarPublisher', '<meta name="citation_publisher" content="' . htmlspecialchars($press->getName($press->getPrimaryLocale())) . '"/>');
+        $templateMgr->addHeader('googleScholarPublisher', '<meta name="citation_publisher" content="' . htmlspecialchars($publication->getPrimaryContextName($press)) . '"/>');
 
         // Series ISSN (online)
         if ($series && $issn = $series->getOnlineISSN()) {

@@ -66,6 +66,16 @@ class PublicationNativeXmlFilter extends \PKP\plugins\importexport\native\filter
             $this->addChapters($doc, $entityNode, $entity);
         }
 
+        if ($publisher = $entity->getData('publisher')) {
+            $entityNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'publisher', htmlspecialchars($publisher, ENT_COMPAT, 'UTF-8')));
+        }
+        if ($codeType = $entity->getData('codeType')) {
+            $entityNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'codeType', htmlspecialchars($codeType, ENT_COMPAT, 'UTF-8')));
+        }
+        if ($codeValue = $entity->getData('codeValue')) {
+            $entityNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'codeValue', htmlspecialchars($codeValue, ENT_COMPAT, 'UTF-8')));
+        }
+
         // cover images
         $nativeFilterHelper = new PKPNativeFilterHelper();
         $coversNode = $nativeFilterHelper->createPublicationCoversNode($this, $doc, $entity);
