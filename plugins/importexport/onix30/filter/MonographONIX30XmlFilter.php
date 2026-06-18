@@ -3,8 +3,8 @@
 /**
  * @file plugins/importexport/onix30/filter/MonographONIX30XmlFilter.php
  *
- * Copyright (c) 2014-2025 Simon Fraser University
- * Copyright (c) 2000-2025 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2000-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class MonographONIX30XmlFilter
@@ -479,11 +479,10 @@ class MonographONIX30XmlFilter extends NativeExportFilter
         /* --- Add Subject elements --- */
         // Subjects metadata is not included because a controlled vocabulary (BIC/Thema) is not enforced (pkp/pkp-lib#10621)
 
-        if ($publication->getData('keywords')) {
-            $allKeywords = ($publication->getData('keywords')[$pubLocale]);
+        if ($allKeywords = ($publication->getData('keywords')[$pubLocale] ?? null)) {
             $keywordNode = $doc->createElementNS($deployment->getNamespace(), 'Subject');
             $keywordNode->appendChild($this->buildTextNode($doc, 'SubjectSchemeIdentifier', '20')); // Keywords
-            $keywordNode->appendChild($this->buildTextNode($doc, 'SubjectHeadingText', trim(join(', ', $allKeywords))));
+            $keywordNode->appendChild($this->buildTextNode($doc, 'SubjectHeadingText', trim(join('; ', array_column($allKeywords, 'name')))));
             $descDetailNode->appendChild($keywordNode);
         }
 
@@ -590,7 +589,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
 
         /* --- Funders and awards --- */
         $fundingData = $this->getFundingData($context->getId(), $publication->getData('submissionId'));
-        if (!$fundingData->isEmpty()) {
+        if ($fundingData?->isNotEmpty()) {
             foreach ($fundingData as $funder) {
                 $publisherNode = $doc->createElementNS($deployment->getNamespace(), 'Publisher');
                 $publisherNode->appendChild($this->buildTextNode($doc, 'PublishingRole', '16')); // 16 -> Funding body
@@ -991,13 +990,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter
     /**
      * Helper function to retrieve funding data when available.
      */
-    public function getFundingData(int $contextId, int $submissionId): Collection|false
+    public function getFundingData(int $contextId, int $submissionId): ?Collection
     {
         if (!PluginRegistry::getPlugin('generic', 'FundingPlugin')) {
-            return false;
+            return null;
         }
 
-        $fundingData = DB::table('funders AS f')
+        return DB::table('funders AS f')
             ->select(
                 'f.funder_id',
                 'f.funder_identification',
@@ -1015,7 +1014,5 @@ class MonographONIX30XmlFilter extends NativeExportFilter
             ->leftjoin('funder_awards AS fa', 'f.funder_id', '=', 'fa.funder_id')
             ->get()
             ->groupBy('funder_id');
-
-        return $fundingData ?? false;
     }
 }
