@@ -413,6 +413,9 @@ class MonographONIX30XmlFilter extends NativeExportFilter
 
             foreach ($author->getAffiliations() as $affiliation) {
                 $affiliationName = $affiliation->getLocalizedName($pubLocale);
+                if (trim($affiliationName ?? '') === '') {
+                    continue;
+                }
                 $professionalAffiliationNode = $doc->createElementNS($deployment->getNamespace(), 'ProfessionalAffiliation');
                 $professionalAffiliationNode->appendChild($this->buildTextNode($doc, 'Affiliation', $affiliationName));
                 $contributorNode->appendChild($professionalAffiliationNode);
