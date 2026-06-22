@@ -57,7 +57,7 @@ php                  8.2.28     success
 
 </details>
 
-MySQL 5.7.22+, MariaDB 4.1+ or PostgreSQL 9.5+
+MySQL 5.7.22+, MariaDB 10.3+ or PostgreSQL 9.5+
 
 Linux, or one of the following: BSD, Solaris, Mac OS X, Windows
 ## Bugs / Feature Requests
