@@ -339,6 +339,10 @@ msgstr "Catalog Entry"
 msgid "publication.catalogEntry.success"
 msgstr "The catalog entry details have been updated."
 
+msgid "publication.pressIdentity"
+msgstr "Press Identity"
+
+
 msgid "publication.invalidSeries"
 msgstr "The series for this publication could not be found."
 

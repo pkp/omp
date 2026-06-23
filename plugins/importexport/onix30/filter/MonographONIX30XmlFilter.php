@@ -568,7 +568,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
         $publishingDetailNode->appendChild($publisherNode);
 
         $publisherNode->appendChild($this->buildTextNode($doc, 'PublishingRole', '01')); // Publisher
-        $publisherNode->appendChild($this->buildTextNode($doc, 'PublisherName', $context->getData('publisher')));
+        $publisherNode->appendChild($this->buildTextNode($doc, 'PublisherName', $publication->getPublisher($context)));
 
         $websiteNode = $doc->createElementNS($deployment->getNamespace(), 'Website');
         $publisherNode->appendChild($websiteNode);
@@ -615,8 +615,8 @@ class MonographONIX30XmlFilter extends NativeExportFilter
             }
         }
 
-        if ($context->getData('location') != '') {
-            $publishingDetailNode->appendChild($this->buildTextNode($doc, 'CityOfPublication', $context->getData('location')));
+        if ($publisherLocation = $publication->getData('publisherLocation') ?: $context->getData('location')) {
+            $publishingDetailNode->appendChild($this->buildTextNode($doc, 'CityOfPublication', $publisherLocation));
         }
 
         /* --- Publishing Dates --- */
@@ -841,7 +841,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
                 $supplierWebsiteNode->appendChild($this->buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', [$submissionBestId])));
             } else { // No suppliers specified, use the Press settings instead.
                 $supplierNode->appendChild($this->buildTextNode($doc, 'SupplierRole', '09')); // Publisher supplying to end customers
-                $supplierNode->appendChild($this->buildTextNode($doc, 'SupplierName', $context->getData('publisher')));
+                $supplierNode->appendChild($this->buildTextNode($doc, 'SupplierName', $publication->getPublisher($context)));
 
                 if ($context->getData('contactEmail') != '') {
                     $supplierNode->appendChild($this->buildTextNode($doc, 'EmailAddress', $context->getData('contactEmail')));

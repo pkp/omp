@@ -18,9 +18,11 @@
 namespace APP\components\forms\publication;
 
 use APP\facades\Repo;
+use APP\press\Press;
 use APP\publication\Publication;
 use APP\submission\Submission;
 use PKP\components\forms\FieldAutosuggestPreset;
+use PKP\components\forms\FieldHTML;
 use PKP\components\forms\FieldRichTextarea;
 use PKP\components\forms\FieldSelect;
 use PKP\components\forms\FieldText;
@@ -37,6 +39,7 @@ class CatalogEntryForm extends FormComponent
     public const GROUP_VERSION_AND_UPDATES = 'versionAndUpdates';
     public const GROUP_DISPLAY = 'display';
     public const GROUP_ACCESS = 'access';
+    public const GROUP_PRESS_IDENTITY = 'pressIdentity';
 
     public $id = self::FORM_CATALOG_ENTRY;
     public $method = 'PUT';
@@ -53,8 +56,9 @@ class CatalogEntryForm extends FormComponent
      * @param Submission $submission The submission of this publication
      * @param string $baseUrl Site's base URL. Used for image previews.
      * @param string $temporaryFileApiUrl The url to upload the cover image
+     * @param Press $press The press this publication belongs to
      */
-    public function __construct($action, $locales, $publication, $submission, $baseUrl, $temporaryFileApiUrl)
+    public function __construct($action, $locales, $publication, $submission, $baseUrl, $temporaryFileApiUrl, ?Press $press = null)
     {
         $this->action = $action;
         $this->successMessage = __('publication.catalogEntry.success');
@@ -172,5 +176,41 @@ class CatalogEntryForm extends FormComponent
                 'description' => __('publication.urlPath.description'),
                 'value' => $publication->getData('urlPath'),
             ]));
+
+        if ($press) {
+            $this->addStampedIdentityField($publication, $press);
+        }
+    }
+
+    protected function addStampedIdentityField(Publication $publication, Press $press): void
+    {
+        $parts = [];
+
+        if ($publication->getData('contextName')) {
+            $parts[] = '<li><strong>' . htmlspecialchars(__('manager.setup.contextTitle')) . ':</strong> '
+                . htmlspecialchars($publication->getPrimaryContextName($press)) . '</li>';
+        }
+        if ($publisher = $publication->getData('publisher')) {
+            $parts[] = '<li><strong>' . htmlspecialchars(__('manager.setup.publisher')) . ':</strong> '
+                . htmlspecialchars($publisher) . '</li>';
+        }
+        if ($publisherLocation = $publication->getData('publisherLocation')) {
+            $parts[] = '<li><strong>' . htmlspecialchars(__('manager.setup.publisherLocation')) . ':</strong> '
+                . htmlspecialchars($publisherLocation) . '</li>';
+        }
+
+        if (empty($parts)) {
+            return;
+        }
+
+        $this->addGroup(
+            ['id' => self::GROUP_PRESS_IDENTITY, 'label' => __('publication.pressIdentity')]
+        );
+        $this->addField(new FieldHTML('pressIdentity', [
+            'groupId' => self::GROUP_PRESS_IDENTITY,
+            'label' => __('publication.pressIdentity'),
+            'description' => __('publication.identityAtPublication.description')
+                . '<ul>' . implode('', $parts) . '</ul>',
+        ]));
     }
 }

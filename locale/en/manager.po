@@ -731,6 +731,7 @@ msgstr "Publisher"
 msgid "manager.setup.publisherDescription"
 msgstr "The name of the organization publishing the press will appear in About the Press."
 
+
 msgid "manager.setup.referenceLinking"
 msgstr "Reference Linking"
 
