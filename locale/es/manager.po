@@ -1,12 +1,13 @@
 # Jordi LC <jordi.lacruz@uab.cat>, 2021, 2023, 2024.
 # Marc Bria <marc.bria@gmail.com>, 2023.
+# Carlos Muñoz Pozo <carlosmpozo@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2024-11-15 10:40+0000\n"
-"Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
+"PO-Revision-Date: 2026-06-23 13:01+0000\n"
+"Last-Translator: Carlos Muñoz Pozo <carlosmpozo@gmail.com>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/manager/es/>"
 "\n"
 "Language: es\n"
@@ -2245,3 +2246,11 @@ msgstr "Las iniciales de la editorial"
 
 msgid "manager.dois.disabledChaptersDescription"
 msgstr "Los capítulos sin una página de destino no pueden tener DOI."
+
+msgid "manager.series.form.deactivateSeries"
+msgstr "Marca esta colección como inactiva y no permitas nuevos envíos a ella."
+
+msgid "manager.series.form.assignEditors.description"
+msgstr ""
+"Seleciona a los usuarios editores a los que deberían asignarse los nuevo "
+"envíos hechos a esta colección."
