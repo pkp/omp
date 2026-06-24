@@ -54,7 +54,6 @@
 	<migration class="PKP\migration\install\AffiliationsMigration" />
 	<migration class="PKP\migration\install\RorsMigration" />
 	<migration class="PKP\migration\install\ReviewAssignmentSettingsMigration"/>
-	<migration class="PKP\migration\install\EmailTemplateUserGroupAccessMigration"/>
 	<migration class="PKP\migration\install\UserCommentsMigration"/>
 	<migration class="PKP\migration\install\SubmissionSearchMigration" />
 	<migration class="PKP\migration\install\ReviewRoundAuthorResponse" />
