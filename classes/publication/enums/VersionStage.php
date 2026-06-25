@@ -44,4 +44,13 @@ enum VersionStage: string
     {
         return __($this->labelKey(), locale: $locale);
     }
+
+    /**
+     * The version stage that, when published, marks a submission as final /
+     * eligible to move to the Done stage.
+     */
+    public static function finalVersionStage(): self
+    {
+        return self::VERSION_OF_RECORD;
+    }
 }

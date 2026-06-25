@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/decision/Repository.php
  *
@@ -34,6 +35,7 @@ use PKP\decision\types\BackFromProduction;
 use PKP\decision\types\CancelReviewRound;
 use PKP\decision\types\Decline;
 use PKP\decision\types\InitialDecline;
+use PKP\decision\types\MoveToDone;
 use PKP\decision\types\NewExternalReviewRound;
 use PKP\decision\types\RecommendAccept;
 use PKP\decision\types\RecommendDecline;
@@ -41,6 +43,8 @@ use PKP\decision\types\RecommendResubmit;
 use PKP\decision\types\RecommendRevisions;
 use PKP\decision\types\RequestRevisions;
 use PKP\decision\types\Resubmit;
+use PKP\decision\types\ReturnToDone;
+use PKP\decision\types\ReturnToWorkflow;
 use PKP\decision\types\RevertDecline;
 use PKP\decision\types\RevertInitialDecline;
 use PKP\decision\types\SendToProduction;
@@ -88,6 +92,9 @@ class Repository extends \PKP\decision\Repository
                 new BackFromCopyediting(),
                 new CancelInternalReviewRound(),
                 new CancelReviewRound(),
+                new MoveToDone(),
+                new ReturnToWorkflow(),
+                new ReturnToDone(),
             ]);
             Hook::call('Decision::types', [$decisionTypes]);
             $this->decisionTypes = $decisionTypes;
@@ -131,7 +138,7 @@ class Repository extends \PKP\decision\Repository
     public function getDecisionTypesMadeByRecommendingUsers(int $stageId): array
     {
         $recommendatorsAvailableDecisions = [];
-        switch($stageId) {
+        switch ($stageId) {
             case WORKFLOW_STAGE_ID_SUBMISSION:
                 $recommendatorsAvailableDecisions = [
                     new SendInternalReview()
