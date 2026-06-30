@@ -1,12 +1,13 @@
 # Jordi LC <jordi.lacruz@uab.cat>, 2021, 2023, 2024.
 # Ruxandra Berescu <ruxy_berescu@yahoo.com>, 2024.
+# Carlos Muñoz Pozo <carlosmpozo@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2024-11-15 10:40+0000\n"
-"Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
+"PO-Revision-Date: 2026-06-30 14:05+0000\n"
+"Last-Translator: Carlos Muñoz Pozo <carlosmpozo@gmail.com>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/locale/es/>"
 "\n"
 "Language: es\n"
@@ -370,8 +371,8 @@ msgstr "Agente"
 
 msgid "grid.catalogEntry.agentTip"
 msgstr ""
-"Puede asignar a un agente para que le represente en el territorio definido.  "
-"No se necesita."
+"Puede asignar a un agente para que le represente en el territorio definido. "
+"No es obligatorio."
 
 msgid "grid.catalogEntry.supplier"
 msgstr "Proveedor"
@@ -1172,7 +1173,6 @@ msgstr ""
 "<p>2. Es necesario crear un directorio para guardar los archivos subidos y "
 "que sea editable (ver \"Configuración de archivo\" a continuación).</p>"
 
-#, fuzzy
 msgid "installer.upgradeInstructions"
 msgstr ""
 "<h4>Versión de OMP {$version}</h4>\n"
@@ -1806,3 +1806,9 @@ msgstr ""
 ":{$siteAdminEmail}\">{$siteAdminEmail}</a>) para notificarle esta novedad. "
 "Puede encontrar más información en el <a href=\"https://pkp.sfu.ca/"
 "omp_download/\" target=\"_new\">sitio web de PKP</a>."
+
+msgid "navigation.skip.about"
+msgstr "Ir a \"Sobre la editorial\""
+
+msgid "monograph.publicationFormat.onixDeprecated"
+msgstr " (Descatalogado)"
