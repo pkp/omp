@@ -1,11 +1,12 @@
 # Jordi LC <jordi.lacruz@uab.cat>, 2021, 2023, 2025.
+# Carlos Muñoz Pozo <carlosmpozo@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-08T17:42:31+00:00\n"
-"PO-Revision-Date: 2025-04-09 17:28+0000\n"
-"Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
+"PO-Revision-Date: 2026-06-30 14:05+0000\n"
+"Last-Translator: Carlos Muñoz Pozo <carlosmpozo@gmail.com>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/es/>\n"
 "Language: es\n"
@@ -25,15 +26,16 @@ msgid "plugins.themes.default.option.typography.label"
 msgstr "Tipografía"
 
 msgid "plugins.themes.default.option.typography.description"
-msgstr "Elija una combinación de fuentes que se adapte a esta revista."
+msgstr "Elija una combinación de fuentes que se adapte a esta editorial."
 
 msgid "plugins.themes.default.option.typography.notoSans"
 msgstr ""
-"Noto Sans: Una nativa digital diseñada por Google con un extenso soporte "
-"idiomático."
+"Noto Sans: Una fuente nativa digital diseñada por Google con un extenso "
+"soporte idiomático."
 
 msgid "plugins.themes.default.option.typography.notoSerif"
-msgstr "Noto Serif: Una variante de tipo serif."
+msgstr ""
+"Noto Serif: Una variante de tipo serif de la fuente nativa digital de Google."
 
 msgid "plugins.themes.default.option.typography.notoSerif_notoSans"
 msgstr ""
@@ -46,7 +48,7 @@ msgstr ""
 "para textos."
 
 msgid "plugins.themes.default.option.typography.lato"
-msgstr "Lato: Una fuente actual y aclamada de tipo sans-serif."
+msgstr "Lato: Una fuente moderna y de uso frecuente de tipo sans-serif."
 
 msgid "plugins.themes.default.option.typography.lora"
 msgstr "Lora: Una fuente de tipo serif ancha, adecuada para la lectura."
@@ -75,18 +77,18 @@ msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
 msgstr "Mostrar la imagen de página de inicio como el fondo de la cabecera."
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
-msgstr "Mostrar series"
+msgstr "Mostrar colección"
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
 msgstr ""
-"Añadir una lista de enlaces a todas las series de la editorial en la página "
-"del catálogo"
+"Añadir una lista de enlaces a todas las colecciones de la editorial en la "
+"página del catálogo"
 
 msgid "plugins.themes.default.option.displayStats.label"
 msgstr "Opciones de visualización de estadísticas de uso"
 
 msgid "plugins.themes.default.option.displayStats.none"
-msgstr "No mostrar ningún gráfico de estadísticas de uso de envío al lector/a."
+msgstr "No mostrar el gráfico de estadísticas de uso del envío al lector/a."
 
 msgid "plugins.themes.default.option.displayStats.bar"
 msgstr "Usar un gráfico de barras para mostrar las estadísticas de uso."
@@ -95,16 +97,19 @@ msgid "plugins.themes.default.option.displayStats.line"
 msgstr "Usar un gráfico de líneas para mostrar las estadísticas de uso."
 
 msgid "plugins.themes.default.displayStats.monthInitials"
-msgstr "En. Feb. Mar. Abr. May. Jun. Jul. Ag. Sept. Oct. Nov. Dic."
+msgstr "En Feb Mar Abr May Jun Jul Ag Sept Oct Nov Dic"
 
 msgid "plugins.themes.default.displayStats.downloads"
 msgstr "Descargas"
 
 msgid "plugins.themes.default.displayStats.noStats"
-msgstr "Los datos de descarga aún no están disponibles."
+msgstr "Los datos de descargas aún no están disponibles."
 
 msgid "plugins.themes.default.prevSlide"
 msgstr "Anterior diapositiva"
 
 msgid "plugins.themes.default.nextSlide"
 msgstr "Siguiente diapositiva"
+
+msgid "plugins.themes.default.option.showDescriptionInPressIndex.option"
+msgstr "Mostrar la descripción de la editorial en la página de inicio."

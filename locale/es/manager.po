@@ -1,12 +1,13 @@
 # Jordi LC <jordi.lacruz@uab.cat>, 2021, 2023, 2024.
 # Marc Bria <marc.bria@gmail.com>, 2023.
+# Carlos Muñoz Pozo <carlosmpozo@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2024-11-15 10:40+0000\n"
-"Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
+"PO-Revision-Date: 2026-06-30 14:05+0000\n"
+"Last-Translator: Carlos Muñoz Pozo <carlosmpozo@gmail.com>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/manager/es/>"
 "\n"
 "Language: es\n"
@@ -39,15 +40,15 @@ msgstr ""
 "Por favor, asegúrate de que has elegido un formulario de revisión válido."
 
 msgid "manager.series.submissionIndexing"
-msgstr "No se incluirá en la indexación de la publicación"
+msgstr "No se incluirá en la indexación de la editorial"
 
 msgid "manager.series.editorRestriction"
 msgstr ""
-"Solo los coordinadores y coordinadores de colección pueden presentar "
-"elementos."
+"Solo los coordinadores y coordinadoras de colección pueden presentar títulos."
 
 msgid "manager.series.confirmDelete"
-msgstr "¿Estás seguro de que deseas eliminar esta serie de forma permanente?"
+msgstr ""
+"¿Estás seguro de que deseas eliminar esta colección de forma permanente?"
 
 msgid "manager.series.indexed"
 msgstr "Indizado"
@@ -59,10 +60,10 @@ msgid "manager.series.readingTools"
 msgstr "Herramientas de lectura"
 
 msgid "manager.series.submissionReview"
-msgstr "No se revisará por pares"
+msgstr "No será revisado por pares"
 
 msgid "manager.series.submissionsToThisSection"
-msgstr "Propuesta realizada para esta colección"
+msgstr "Propuesta enviada para esta colección"
 
 msgid "manager.series.abstractsNotRequired"
 msgstr "No se necesitan resúmenes"
@@ -2245,3 +2246,16 @@ msgstr "Las iniciales de la editorial"
 
 msgid "manager.dois.disabledChaptersDescription"
 msgstr "Los capítulos sin una página de destino no pueden tener DOI."
+
+msgid "manager.series.form.deactivateSeries"
+msgstr "Marca esta colección como inactiva y no permitas nuevos envíos a ella."
+
+msgid "manager.series.form.assignEditors.description"
+msgstr ""
+"Seleciona a los usuarios editores a los que deberían asignarse los nuevo "
+"envíos hechos a esta colección."
+
+msgid "manager.setup.contextSummary.description"
+msgstr ""
+"Proporcione una breve descripción de su editorial para dar a conocer sus "
+"contenidos y objetivos."
