@@ -28,15 +28,11 @@ use DOMDocument;
 use DOMElement;
 use DOMException;
 use Exception;
-use Illuminate\Database\Query\JoinClause;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 use PKP\author\contributorRole\ContributorRoleIdentifier;
 use PKP\db\DAORegistry;
 use PKP\filter\FilterGroup;
 use PKP\i18n\LocaleConversion;
 use PKP\plugins\importexport\native\filter\NativeExportFilter;
-use PKP\plugins\PluginRegistry;
 
 class MonographONIX30XmlFilter extends NativeExportFilter
 {
@@ -589,27 +585,51 @@ class MonographONIX30XmlFilter extends NativeExportFilter
         $websiteNode->appendChild($this->buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', [$submissionBestId])));
 
         /* --- Funders and awards --- */
-        $fundingData = $this->getFundingData($context->getId(), $publication->getData('submissionId'));
-        if ($fundingData?->isNotEmpty()) {
-            foreach ($fundingData as $funder) {
+        $funders = $publication->getData('funders');
+        if (!empty($funders)) {
+            foreach ($funders as $funder) {
+                $funderName = $funder->getLocalizedData('name', $pubLocale);
+                if (empty($funderName)) {
+                    continue;
+                }
+
                 $publisherNode = $doc->createElementNS($deployment->getNamespace(), 'Publisher');
                 $publisherNode->appendChild($this->buildTextNode($doc, 'PublishingRole', '16')); // 16 -> Funding body
-                $publisherIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'PublisherIdentifier');
-                $publisherIdentifierNode->appendChild($this->buildTextNode($doc, 'PublisherIDType', '32')); // 32 -> FundRef DOI
-                $publisherIdentifierNode->appendChild($this->buildTextNode($doc, 'IDValue', $funder[0]->funder_identification));
-                $publisherNode->appendChild($publisherIdentifierNode);
-                $publisherNode->appendChild($this->buildTextNode($doc, 'PublisherName', $funder[0]->funder_name));
-                foreach ($funder as $awards) {
-                    if (isset($awards->funder_award_number)) {
-                        $fundingNode = $doc->createElementNS($deployment->getNamespace(), 'Funding');
-                        $fundingIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'FundingIdentifier');
-                        $fundingIdentifierNode->appendChild($this->buildTextNode($doc, 'FundingIDType', '01')); // 01 -> proprietary
-                        $fundingIdentifierNode->appendChild($this->buildTextNode($doc, 'IDTypeName', 'Award/Grant Number'));
-                        $fundingIdentifierNode->appendChild($this->buildTextNode($doc, 'IDValue', $awards->funder_award_number));
-                        $fundingNode->appendChild($fundingIdentifierNode);
-                        $publisherNode->appendChild($fundingNode);
-                    }
+
+                if (!empty($funder->ror)) {
+                    $publisherIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'PublisherIdentifier');
+                    $publisherIdentifierNode->appendChild($this->buildTextNode($doc, 'PublisherIDType', '40')); // ROR
+                    $publisherIdentifierNode->appendChild($this->buildTextNode($doc, 'IDValue', $funder->ror));
+                    $publisherNode->appendChild($publisherIdentifierNode);
                 }
+
+                $publisherNode->appendChild($this->buildTextNode($doc, 'PublisherName', $funderName));
+
+                foreach ($funder->grants ?? [] as $grant) {
+                    if (empty($grant['grantNumber']) && empty($grant['grantDoi'])) {
+                        continue;
+                    }
+
+                    $fundingNode = $doc->createElementNS($deployment->getNamespace(), 'Funding');
+
+                    if (!empty($grant['grantNumber'])) {
+                        $fundingIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'FundingIdentifier');
+                        $fundingIdentifierNode->appendChild($this->buildTextNode($doc, 'FundingIDType', '01')); // Proprietary
+                        $fundingIdentifierNode->appendChild($this->buildTextNode($doc, 'IDTypeName', 'Award/Grant Number'));
+                        $fundingIdentifierNode->appendChild($this->buildTextNode($doc, 'IDValue', $grant['grantNumber']));
+                        $fundingNode->appendChild($fundingIdentifierNode);
+                    }
+
+                    if (!empty($grant['grantDoi'])) {
+                        $fundingIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'FundingIdentifier');
+                        $fundingIdentifierNode->appendChild($this->buildTextNode($doc, 'FundingIDType', '06')); // DOI
+                        $fundingIdentifierNode->appendChild($this->buildTextNode($doc, 'IDValue', $grant['grantDoi']));
+                        $fundingNode->appendChild($fundingIdentifierNode);
+                    }
+
+                    $publisherNode->appendChild($fundingNode);
+                }
+
                 $publishingDetailNode->appendChild($publisherNode);
             }
         }
@@ -988,32 +1008,4 @@ class MonographONIX30XmlFilter extends NativeExportFilter
         return $node;
     }
 
-    /**
-     * Helper function to retrieve funding data when available.
-     */
-    public function getFundingData(int $contextId, int $submissionId): ?Collection
-    {
-        if (!PluginRegistry::getPlugin('generic', 'FundingPlugin')) {
-            return null;
-        }
-
-        return DB::table('funders AS f')
-            ->select(
-                'f.funder_id',
-                'f.funder_identification',
-                'fs.setting_value as funder_name',
-                'fa.funder_award_id',
-                'fa.funder_award_number'
-            )
-            ->where('f.submission_id', $submissionId)
-            ->where('f.context_id', $contextId)
-            ->leftJoin(
-                'funder_settings AS fs',
-                fn (JoinClause $j) => $j->on('f.funder_id', '=', 'fs.funder_id')
-                    ->where('fs.setting_name', '=', 'funderName')
-            )
-            ->leftjoin('funder_awards AS fa', 'f.funder_id', '=', 'fa.funder_id')
-            ->get()
-            ->groupBy('funder_id');
-    }
 }

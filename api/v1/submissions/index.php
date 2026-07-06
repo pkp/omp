@@ -29,6 +29,8 @@ if (strpos($requestPath, '/files')) {
     return new \PKP\handler\APIHandler(new \PKP\API\v1\submissions\tasks\EditorialTaskController());
 } elseif (strpos($requestPath, '/dataCitations')) {
     return new \PKP\handler\APIHandler(new \PKP\API\v1\dataCitations\PKPDataCitationController());
+} elseif (strpos($requestPath, '/funders')) {
+    return new \PKP\handler\APIHandler(new \PKP\API\v1\funders\PKPFunderController());
 } elseif (strpos($requestPath, '/mediaFiles')) {
     return new \PKP\handler\APIHandler(new \PKP\API\v1\submissions\MediaFilesController());
 } else {
