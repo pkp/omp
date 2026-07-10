@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-08T17:42:31+00:00\n"
-"PO-Revision-Date: 2026-07-10 07:16+0000\n"
+"PO-Revision-Date: 2026-07-10 17:19+0000\n"
 "Last-Translator: Matevž Rudolf <matevz.rudolf@uni-lj.si>\n"
 "Language-Team: Slovenian <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/sl/>\n"
@@ -64,31 +64,33 @@ msgid "plugins.themes.default.option.colour.description"
 msgstr "Izberite barvo glave."
 
 msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
-msgstr ""
+msgstr "Slika v ozadju glave strani"
 
 msgid "plugins.themes.default.option.useHomepageImageAsHeader.description"
 msgstr ""
+"Ko je naložena slika domače strani, jo prikaži v ozadju glave strani namesto "
+"na običajnem mestu na domači strani."
 
 msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
-msgstr ""
+msgstr "Prikaži sliko domače strani kot ozadje glave."
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
-msgstr ""
+msgstr "Prikaži zbirke"
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
-msgstr ""
+msgstr "Dodaj seznam povezav do vseh zbirk založbe na strani kataloga"
 
 msgid "plugins.themes.default.option.displayStats.label"
-msgstr ""
+msgstr "Nastavitve prikaza statistike uporabe"
 
 msgid "plugins.themes.default.option.displayStats.none"
-msgstr ""
+msgstr "Ne prikazuj grafa statistike ogleda za bralca."
 
 msgid "plugins.themes.default.option.displayStats.bar"
-msgstr ""
+msgstr "Statistike uporabe naj se prikazujejo kot stolpični diagram."
 
 msgid "plugins.themes.default.option.displayStats.line"
-msgstr ""
+msgstr "Statistike ogledov naj se prikazujejo kot črtni grafikon."
 
 msgid "plugins.themes.default.displayStats.monthInitials"
 msgstr "Jan Feb Mar Apr Maj Jun Jul Avg Sep Okt Nov Dec"
@@ -98,3 +100,12 @@ msgstr "Prenosi"
 
 msgid "plugins.themes.default.displayStats.noStats"
 msgstr "Podatki o prenosih še niso na voljo."
+
+msgid "plugins.themes.default.prevSlide"
+msgstr "Prejšnja stran"
+
+msgid "plugins.themes.default.nextSlide"
+msgstr "Naslednja stran"
+
+msgid "plugins.themes.default.option.showDescriptionInPressIndex.option"
+msgstr "Prikaži povzetek založbe na osnovni strani."
