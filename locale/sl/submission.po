@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:10-08:00\n"
-"PO-Revision-Date: 2026-07-10 07:16+0000\n"
+"PO-Revision-Date: 2026-07-10 17:19+0000\n"
 "Last-Translator: Matevž Rudolf <matevz.rudolf@uni-lj.si>\n"
 "Language-Team: Slovenian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/sl/>\n"
@@ -331,37 +331,39 @@ msgstr ""
 "navzdol, da spremenite njihov vrstni red v »{$title}«."
 
 msgid "submission.list.saveFeatureOrder"
-msgstr ""
+msgstr "Shrani vrstni red"
 
 msgid "submission.list.viewEntry"
-msgstr ""
+msgstr "Prikaži vnos"
 
 msgid "catalog.browseTitles"
-msgstr ""
+msgstr "{$numTitles} naslovov"
 
 msgid "publication.catalogEntry"
 msgstr "Vnos v katalog"
 
 msgid "publication.catalogEntry.success"
-msgstr ""
+msgstr "Podatki kataložnega vnosa so bili posodobljeni."
 
 msgid "publication.invalidSeries"
-msgstr ""
+msgstr "Zbirke za to publikacijo ni bilo mogoče najti."
 
 msgid "publication.inactiveSeries"
-msgstr ""
+msgstr "{$series} (Inactive)"
 
 msgid "publication.required.issue"
-msgstr ""
+msgstr "Članek mora biti dodeljen v številko revije, preden ga lahko objavite."
 
 msgid "publication.publishedIn"
-msgstr ""
+msgstr "Objavljeno v <a href=\"{$issueUrl}\">{$issueName}</a>."
 
 msgid "publication.publish.confirmation"
 msgstr ""
+"Vse zahteve za objavo so izpolnjene. Ali ste prepričani, da želite ta vnos v "
+"katalog objaviti?"
 
 msgid "publication.scheduledIn"
-msgstr ""
+msgstr "Načrtovano za objavo v <a href=\"{$issueUrl}\">{$issueName}</a>."
 
 msgid "submission.publication"
 msgstr "Objava"
@@ -455,127 +457,168 @@ msgid "submission.queries.production"
 msgstr "Produkcijska diskusija"
 
 msgid "publication.chapter.landingPage"
-msgstr ""
+msgstr "Strani poglavja"
 
 msgid "publication.chapter.hasLandingPage"
 msgstr ""
+"Prikaži to poglavje na samostojni strani in ustvari povezavo do te strani iz "
+"kazala knjige."
 
 msgid "publication.publish.success"
-msgstr ""
+msgstr "Status publikacije je bil uspešno spremenjen."
 
 msgid "chapter.volume"
-msgstr ""
+msgstr "Letnik"
 
 msgid "submission.withoutChapter"
-msgstr ""
+msgstr "{$name} — Brez tega poglavja"
 
 msgid "submission.chapterCreated"
-msgstr ""
+msgstr " – Poglavje ustvarjeno"
 
 msgid "chapter.pages"
-msgstr ""
+msgstr "Strani"
 
 msgid "editor.submission.decision.sendInternalReview"
-msgstr ""
+msgstr "Poslano v interni pregled"
 
 msgid "editor.submission.decision.sendInternalReview.description"
-msgstr ""
+msgstr "Ta prispevek je pripravljen za pošiljanje v interni pregled."
 
 msgid "editor.submission.decision.sendInternalReview.log"
-msgstr ""
+msgstr "{$editorName} je poslal ta prispevek v fazo internega pregleda."
 
 msgid "editor.submission.decision.sendInternalReview.completed"
-msgstr ""
+msgstr "Poslano v interni pregled"
 
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr ""
+"Prispevek, {$title}, je bil poslan v fazo internega pregleda. Avtor je bil o "
+"tem obveščen, razen če ste izbrali možnost, da se to e-poštno sporočilo "
+"preskoči."
 
 msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
 msgstr ""
+"Pošljite avtorjem e-poštno sporočilo, da jih obvestite, da bo ta prispevek "
+"poslan v interni pregled. Če je mogoče, avtorjem navedite okvirni čas "
+"trajanja postopka internega pregleda in kdaj lahko pričakujejo ponovni "
+"odgovor urednikov."
 
 msgid "editor.submission.decision.promoteFiles.internalReview"
-msgstr ""
+msgstr "Izberite datoteke, ki naj bodo poslane v interni pregled."
 
 msgid "editor.submission.decision.sendExternalReview.log"
-msgstr ""
+msgstr "{$editorName} je poslal ta prispevek v zunanji recenzentski postopek."
 
 msgid "editor.submission.decision.sendExternalReview.completed"
-msgstr ""
+msgstr "Poslano v zunanji recenzentski postopek"
 
 msgid "editor.submission.decision.sendExternalReview.completed.description"
 msgstr ""
+"Prispevek, {$title}, je bil poslan v fazo zunanjega recenzentskega postopka."
 
 msgid "editor.submission.decision.backToReview"
-msgstr ""
+msgstr "Nazaj na recenzijo"
 
 msgid "editor.submission.decision.backToReview.description"
 msgstr ""
+"Razveljavite odločitev o sprejemu tega prispevka in ga vrnite v fazo "
+"recenzentskega postopka."
 
 msgid "editor.submission.decision.backToReview.log"
 msgstr ""
+"{$editorName} je preklical odločitev o sprejetju prispevka in ga je poslal "
+"nazaj v fazo recenzije."
 
 msgid "editor.submission.decision.backToReview.completed"
-msgstr ""
+msgstr "Pošlji nazaj v recenzijo"
 
 msgid "editor.submission.decision.backToReview.completed.description"
-msgstr ""
+msgstr "Prispevek, {$title}, je bil poslan nazaj v fazo recenzije."
 
 msgid "editor.submission.decision.backToReview.notifyAuthorsDescription"
 msgstr ""
+"Pošljite avtorjem e-pošto z obvestilom, da je bil njihov prispevek vrnjen "
+"nazaj v fazo recenzije. Razložite, zakaj je do tega prišlo in razložite "
+"avtorjem naslednje korake."
 
 msgid "editor.submission.decision.sendExternalReview.notifyAuthorsDescription"
 msgstr ""
+"Pošljite avtorjem email z obvestilom, da bo njihov prispevek poslan v fazo "
+"recenzije. Če je le mogoče, namignite avtorjem, kako dolgo naj bi "
+"precenzijski proces trajal in kdaj naj bi dobili ocene recenzentov. Email bo "
+"poslan šele, ko bo zabeležena odločitev."
 
 msgid "editor.submission.decision.promoteFiles.externalReview"
-msgstr ""
+msgstr "Izberite datoteke za fazo recenzije."
 
 msgid "editor.submission.recommend.sendExternalReview"
-msgstr ""
+msgstr "Priporoči pošiljanje v zunanji recenzentski postopek"
 
 msgid "editor.submission.recommend.sendExternalReview.description"
 msgstr ""
+"Priporočite pošiljanje tega prispevka v fazo zunanjega recenzentskega "
+"postopka."
 
 msgid "editor.submission.recommend.sendExternalReview.log"
 msgstr ""
+"{$editorName} je priporočil pošiljanje tega prispevka v fazo zunanjega "
+"recenzentskega postopka."
 
 msgid "doi.submission.incorrectContext"
 msgstr ""
+"DOI-ja za naslednji prispevek ni bilo mogoče ustvariti: {$pubObjectTitle}. "
+"Ta ne obstaja v trenutnem katalogu publikacij."
 
 msgid "publication.chapter.licenseUrl"
-msgstr ""
+msgstr "URL licence"
 
 msgid "publication.chapterDefaultLicenseURL"
-msgstr ""
+msgstr "Privzeti URL licence za poglavja"
 
 msgid "submission.copyright.description"
 msgstr ""
+"Prosimo, preberite in se seznanite s pogoji avtorskih pravic za prispevke, "
+"oddane tej založbi."
 
 msgid "submission.wizard.notAllowed.description"
 msgstr ""
+"Nimate dovoljenja za oddajo prispevkov tej založbi, ker morajo avtorje "
+"registrirati člani uredništva. Če menite, da gre za napako, se obrnite na <a "
+"href='mailto:{$email}'>{$name}</a>."
 
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
+"{$contextName} trenutno ne sprejema prispevkov v zbirko {$section}. Če "
+"potrebujete pomoč pri obnovitvi svojega prispevka, se obrnite na <a "
+"href='mailto:{$email}'>{$name}</a>."
 
 msgid "submission.sectionNotFound"
-msgstr ""
+msgstr "Zbirke za ta prispevek ni bilo mogoče najti."
 
 msgid "submission.sectionRestrictedToEditors"
-msgstr ""
+msgstr "V to zbirko lahko prispevke oddajajo samo člani uredništva."
 
 msgid "submission.wizard.submitting.monograph"
-msgstr ""
+msgstr "Oddajanje <strong>monografije</strong>."
 
 msgid "submission.wizard.submitting.monographInLanguage"
 msgstr ""
+"Oddajanje <strong>monografije</strong> v jeziku <strong>{$language}</strong>."
 
 msgid "submission.wizard.submitting.editedVolume"
-msgstr ""
+msgstr "Oddajanje <strong>uredniškega zbornika</strong>."
 
 msgid "submission.wizard.submitting.editedVolumeInLanguage"
 msgstr ""
+"Oddajanje <strong>uredniškega zbornika</strong> v jeziku: "
+"<strong>{$language}</strong>."
 
 msgid "submission.wizard.chapters.description"
 msgstr ""
+"Prosimo, navedite vsa poglavja tega prispevka. Če oddajate uredniški "
+"zbornik, se prepričajte, da so pri vsakem poglavju navedeni sodelujoči "
+"avtorji tega poglavja."
 
 #~ msgid "submission.title.tip"
 #~ msgstr ""
@@ -586,3 +629,16 @@ msgstr ""
 #~ "dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type"
 #~ "\">http://dublincore.org/documents/2001/04/12/usageguide/generic."
 #~ "shtml#type</a>"
+
+msgid "publication.chapter.landingPage.doi.description"
+msgstr ""
+"(To poglavje bo vedno prikazano tudi na samostojni strani, ker ima svoj DOI.)"
+
+msgid "submission.dashboard.view.reviewInternal"
+msgstr "Vse v interni pregled"
+
+msgid "submission.stage.externalReviewWithRound"
+msgstr "Zunanji recenzentski postopek (krog {$round})"
+
+msgid "submission.stage.internalReviewWithRound"
+msgstr "Interni pregled (krog {$round})"
