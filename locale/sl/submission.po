@@ -1,10 +1,10 @@
-# Matevž Rudolf <matevz.rudolf@uni-lj.si>, 2022, 2025.
+# Matevž Rudolf <matevz.rudolf@uni-lj.si>, 2022, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:10-08:00\n"
-"PO-Revision-Date: 2025-03-27 11:18+0000\n"
+"PO-Revision-Date: 2026-07-10 07:16+0000\n"
 "Last-Translator: Matevž Rudolf <matevz.rudolf@uni-lj.si>\n"
 "Language-Team: Slovenian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/sl/>\n"
@@ -47,10 +47,10 @@ msgid "submission.workflowType.authoredWork"
 msgstr "Monografska publikacija: Knjiga ima enega avtorja."
 
 msgid "submission.workflowType.change"
-msgstr ""
+msgstr "Spremeni"
 
 msgid "submission.editorName"
-msgstr ""
+msgstr "{$editorName} (ur.)"
 
 msgid "submission.monograph"
 msgstr "Monografska publikacija"
@@ -80,7 +80,7 @@ msgid "submission.chapter.editChapter"
 msgstr "Uredi poglavje"
 
 msgid "submission.chapter.pages"
-msgstr ""
+msgstr "Strani"
 
 msgid "submission.copyedit"
 msgstr "Lektoriranje"
@@ -137,10 +137,10 @@ msgid "submission.submit.upload"
 msgstr "Naloži prispevek"
 
 msgid "author.volumeEditor"
-msgstr ""
+msgstr "Urednik publikacije"
 
 msgid "author.isVolumeEditor"
-msgstr ""
+msgstr "Označite tega avtorja kot urednika te publikacije."
 
 msgid "submission.submit.seriesPosition"
 msgstr "Mesto nove zbirke"
@@ -199,7 +199,7 @@ msgid "submission.submit.userGroup"
 msgstr "Izberi vlogo ..."
 
 msgid "submission.submit.noContext"
-msgstr ""
+msgstr "Publikacije te založbe ni bilo mogoče najti."
 
 msgid "grid.chapters.title"
 msgstr "Poglavja"
@@ -220,13 +220,13 @@ msgid "submission.catalogEntry.new"
 msgstr "Nov vnos v katalog"
 
 msgid "submission.catalogEntry.add"
-msgstr ""
+msgstr "Dodaj izbrane v katalog"
 
 msgid "submission.catalogEntry.select"
-msgstr ""
+msgstr "Izberite monografije, ki jih želite dodati v katalog"
 
 msgid "submission.catalogEntry.selectionMissing"
-msgstr ""
+msgstr "Izbrati morate vsaj eno monografijo, ki jo želite dodati v katalog."
 
 msgid "submission.catalogEntry.confirm"
 msgstr "Dodajte knjigo v javni katalog"
@@ -238,16 +238,16 @@ msgid "submission.catalogEntry.isAvailable"
 msgstr "Monografska publikacija je pripravljena za vnos v javni katalog."
 
 msgid "submission.catalogEntry.viewSubmission"
-msgstr ""
+msgstr "Ogled prispevka"
 
 msgid "submission.catalogEntry.chapterPublicationDates"
-msgstr ""
+msgstr "Datumi objave"
 
 msgid "submission.catalogEntry.disableChapterPublicationDates"
-msgstr ""
+msgstr "Za vsa poglavja bo uporabljen datum objave monografije."
 
 msgid "submission.catalogEntry.enableChapterPublicationDates"
-msgstr ""
+msgstr "Vsako poglavje ima lahko svoj datum objave."
 
 msgid "submission.catalogEntry.monographMetadata"
 msgstr "Monografska publikacija"
@@ -309,22 +309,26 @@ msgid "section.any"
 msgstr "Vse zbirke"
 
 msgid "submission.list.monographs"
-msgstr ""
+msgstr "Publikacije"
 
 msgid "submission.list.countMonographs"
-msgstr ""
+msgstr "{$count} monografij"
 
 msgid "submission.list.itemsOfTotalMonographs"
-msgstr ""
+msgstr "{$count} od {$total} monografij"
 
 msgid "submission.list.orderFeatures"
-msgstr ""
+msgstr "Možnosti naročanja"
 
 msgid "submission.list.orderingFeatures"
 msgstr ""
+"Povlecite in spustite elemente ali uporabite gumba za pomik navzgor in "
+"navzdol, da spremenite vrstni red elementov na domači strani."
 
 msgid "submission.list.orderingFeaturesSection"
 msgstr ""
+"Povlecite in spustite elemente ali uporabite gumba za pomik navzgor in "
+"navzdol, da spremenite njihov vrstni red v »{$title}«."
 
 msgid "submission.list.saveFeatureOrder"
 msgstr ""
