@@ -1,10 +1,10 @@
-# Matevž Rudolf <matevz.rudolf@uni-lj.si>, 2025.
+# Matevž Rudolf <matevz.rudolf@uni-lj.si>, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:10-08:00\n"
-"PO-Revision-Date: 2025-03-27 11:31+0000\n"
+"PO-Revision-Date: 2026-07-10 07:16+0000\n"
 "Last-Translator: Matevž Rudolf <matevz.rudolf@uni-lj.si>\n"
 "Language-Team: Slovenian <http://translate.pkp.sfu.ca/projects/omp/locale/sl/"
 ">\n"
@@ -986,7 +986,7 @@ msgstr ""
 "{$privacyUrl}\" target=\"_blank\">izjavo o zasebnosti</a> te založbe."
 
 msgid "site.noPresses"
-msgstr ""
+msgstr "Na voljo ni nobene založbe."
 
 msgid "site.pressView"
 msgstr "Poglej spletišče založbe"
@@ -1067,7 +1067,7 @@ msgid "about.aboutThisPublishingSystem.altText"
 msgstr "Uredniški postopek in postopek objave OMP"
 
 msgid "about.aboutSoftware"
-msgstr ""
+msgstr "O sistemu Open Monograph Press"
 
 #, fuzzy
 msgid "about.aboutOMPPress"
@@ -1102,6 +1102,8 @@ msgstr "Namestitev Open Monograph Press"
 
 msgid "installer.updatingInstructions"
 msgstr ""
+"Če nadgrajujete obstoječo namestitev OMP, <a href=\"{$upgradeUrl}\">kliknite "
+"tukaj</a> za nadaljevanje."
 
 #, fuzzy
 msgid "installer.installationInstructions"
@@ -1269,6 +1271,8 @@ msgstr ""
 
 msgid "log.editor.recommendation"
 msgstr ""
+"Uredniško priporočilo ({$decision}) za monografijo {$submissionId} je "
+"zabeležil {$editorName}."
 
 msgid "log.editor.archived"
 msgstr "Prispevek {$articleId} je arhiviran."
@@ -1376,7 +1380,7 @@ msgid "notification.type.userComment"
 msgstr "Bralec je dodal komentar na prispevek \"{$title}\""
 
 msgid "notification.type.public"
-msgstr ""
+msgstr "Javna obvestila"
 
 msgid "notification.type.editorAssignmentTask"
 msgstr ""
@@ -1402,6 +1406,8 @@ msgstr "Čaka na odobritev."
 
 msgid "notification.type.formatNeedsApprovedSubmission"
 msgstr ""
+"Monografija ne bo prikazana v katalogu, dokler ne bo objavljena. Če želite "
+"knjigo dodati v katalog, kliknite zavihek »Objava«."
 
 msgid "notification.type.configurePaymentMethod.title"
 msgstr "Ni konfiguriranih načinov plačila."
@@ -1416,6 +1422,8 @@ msgstr "Upravljanje kataloga"
 
 msgid "notification.type.visitCatalog"
 msgstr ""
+"Monografija je bila odobrena. Za urejanje podatkov o njeni uvrstitvi v "
+"katalog obiščite razdelka »Marketin« in »Objava« prek zgornjih povezav."
 
 msgid "user.authorization.invalidReviewAssignment"
 msgstr ""
@@ -1535,28 +1543,28 @@ msgid "submission.round"
 msgstr "Krog &nbsp;{$round}"
 
 msgid "user.authorization.invalidPublishedSubmission"
-msgstr ""
+msgstr "Določena je bila neveljavna objavljena oddaja."
 
 msgid "catalog.coverImageTitle"
-msgstr ""
+msgstr "Slika naslovnice"
 
 msgid "grid.catalogEntry.chapters"
-msgstr ""
+msgstr "Poglavja"
 
 msgid "search.results.orderBy.article"
-msgstr ""
+msgstr "Naslov članka"
 
 msgid "search.results.orderBy.author"
-msgstr ""
+msgstr "Avtor"
 
 msgid "search.results.orderBy.date"
-msgstr ""
+msgstr "Datum objave"
 
 msgid "search.results.orderBy.monograph"
-msgstr ""
+msgstr "Naslov monografije"
 
 msgid "search.results.orderBy.press"
-msgstr ""
+msgstr "Ime založbe"
 
 msgid "search.results.orderBy.popularityAll"
 msgstr ""
@@ -1589,3 +1597,6 @@ msgstr "Zbirka"
 
 msgid "monograph.publicationFormat.onixDeprecated"
 msgstr " (Prekinjeno)"
+
+msgid "navigation.skip.about"
+msgstr "Preskoči na informacije o založbi"
