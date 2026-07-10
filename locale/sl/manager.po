@@ -1,10 +1,10 @@
-# Matevž Rudolf <matevz.rudolf@uni-lj.si>, 2025.
+# Matevž Rudolf <matevz.rudolf@uni-lj.si>, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:10-08:00\n"
-"PO-Revision-Date: 2025-03-27 11:18+0000\n"
+"PO-Revision-Date: 2026-07-10 07:16+0000\n"
 "Last-Translator: Matevž Rudolf <matevz.rudolf@uni-lj.si>\n"
 "Language-Team: Slovenian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "sl/>\n"
@@ -429,9 +429,11 @@ msgstr ""
 "Dovolite dodelitev digitalnih identifikatorjev objektov (DOI) delom, ki jih "
 "je izdala ta založba."
 
-#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
-msgstr "Izberite objekte, ki jim boste dodelili DOI."
+msgstr ""
+"Izberite vrste publikacij, ki jih objavlja ta založba in ki jim bodo "
+"dodeljeni DOI. Večina založb dodeli DOI monografijam in poglavjem, lahko pa "
+"jih dodelite vsem objavljenim vsebinam."
 
 msgid "doi.manager.settings.doiSuffixLegacy"
 msgstr ""
@@ -592,6 +594,9 @@ msgstr "Število elementov na stran"
 
 msgid "manager.setup.itemsPerPage.description"
 msgstr ""
+"Omejite število elementov (na primer št. prikazanih monografij, uporabnikov "
+"ali uredniških zadolžitev), prikazanih na posamezni strani seznama. "
+"Preostali elementi bodo prikazani na naslednjih straneh."
 
 msgid "manager.setup.labelName"
 msgstr "Ime oznake"
@@ -630,7 +635,7 @@ msgid "manager.setup.lists"
 msgstr "Seznami"
 
 msgid "manager.setup.lists.success"
-msgstr ""
+msgstr "Nastavitve seznama so bile posodobljene."
 
 msgid "manager.setup.look"
 msgstr "Izgled"
@@ -658,7 +663,7 @@ msgid "manager.setup.managingThePress"
 msgstr "4. korak Upravljanje z nastavitvami"
 
 msgid "manager.setup.masthead.success"
-msgstr ""
+msgstr "Podatki kolofona te založbe so bili posodobljeni."
 
 msgid "manager.setup.noImageFileUploaded"
 msgstr "Naložena ni bila nobena slika."
@@ -692,7 +697,7 @@ msgid "manager.setup.numPageLinks"
 msgstr "Število prikazanih strani"
 
 msgid "manager.setup.numPageLinks.description"
-msgstr ""
+msgstr "Omejite število povezav za pomikanje med stranmi, prikazanih v seznamu."
 
 msgid "manager.setup.onlineAccessManagement"
 msgstr "Dostop do vsebine publikacije"
@@ -709,7 +714,7 @@ msgstr ""
 "publikaciji."
 
 msgid "manager.setup.privacyStatement.success"
-msgstr ""
+msgstr "Izjava o zasebnosti je bila posodobljena."
 
 msgid "manager.setup.appearanceDescription"
 msgstr ""
@@ -758,7 +763,7 @@ msgid "manager.setup.contextInitials"
 msgstr "Začetnice založbe"
 
 msgid "manager.setup.selectCountry"
-msgstr ""
+msgstr "Izberite državo, v kateri ima založba oz. izdajatelj sedež."
 
 msgid "manager.setup.layout"
 msgstr "Postavitev spletišča"
@@ -785,10 +790,12 @@ msgid "manager.setup.pressTheme"
 msgstr "Tema publikacije"
 
 msgid "manager.setup.pressThumbnail"
-msgstr ""
+msgstr "Sličica založbe"
 
 msgid "manager.setup.pressThumbnail.description"
 msgstr ""
+"Manjši logotip ali grafična predstavitev založbe za prikaz na seznamih "
+"založb."
 
 msgid "manager.setup.contextTitle"
 msgstr "Ime publikacije"
@@ -1395,15 +1402,15 @@ msgid "doi.displayName"
 msgstr "DOI"
 
 msgid "doi.manager.displayName"
-msgstr ""
+msgstr "DOI"
 
 msgid "doi.description"
 msgstr ""
-"Vtičnik omogoča dodeljevanje indentifikatorjev digitalnih objektov "
+"Vtičnik omogoča dodeljevanje identifikatorjev digitalnih objektov "
 "monografijam, formatom publikacij in datotekam v OMP."
 
 msgid "doi.readerDisplayName"
-msgstr ""
+msgstr "DOI:"
 
 msgid "doi.manager.settings.description"
 msgstr ""
@@ -1418,7 +1425,7 @@ msgid "doi.manager.settings.enablePublicationDoi"
 msgstr "Monografije"
 
 msgid "doi.manager.settings.enableChapterDoi"
-msgstr ""
+msgstr "Poglavja"
 
 msgid "doi.manager.settings.enableRepresentationDoi"
 msgstr "Formati publikacij"
@@ -1456,7 +1463,7 @@ msgid "doi.manager.settings.doiSuffixPattern.submissions"
 msgstr "za monografije"
 
 msgid "doi.manager.settings.doiSuffixPattern.chapters"
-msgstr ""
+msgstr "za poglavja"
 
 msgid "doi.manager.settings.doiSuffixPattern.representations"
 msgstr "za formate publikacij"
@@ -1468,7 +1475,7 @@ msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
 msgstr "Vnesite vzorec za pripono DOI za monografije."
 
 msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
-msgstr ""
+msgstr "Vnesite vzorec pripone DOI za poglavja."
 
 msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
 msgstr "Vnesite vzorec za pripono DOI za formate publikacij."
@@ -1492,16 +1499,16 @@ msgid "doi.editor.doi"
 msgstr "DOI"
 
 msgid "doi.editor.doi.description"
-msgstr ""
+msgstr "DOI se mora začeti s predpono {$prefix}."
 
 msgid "doi.editor.doi.assignDoi"
-msgstr ""
+msgstr "Dodeli"
 
 msgid "doi.editor.doiObjectTypeSubmission"
 msgstr "monografija"
 
 msgid "doi.editor.doiObjectTypeChapter"
-msgstr ""
+msgstr "poglavje"
 
 msgid "doi.editor.doiObjectTypeRepresentation"
 msgstr "format publikacije"
@@ -1514,6 +1521,8 @@ msgstr "DOI ni mogoče dodeliti, ker spremenjena pripona ni na voljo."
 
 msgid "doi.editor.missingParts"
 msgstr ""
+"DOI ni mogoče ustvariti, ker za enega ali več delov vzorca DOI manjkajo "
+"podatki."
 
 msgid "doi.editor.patternNotResolved"
 msgstr "DOI ni mogoče dodeliti, ker vsebuje nerešen vzorec."
@@ -1544,7 +1553,7 @@ msgid "doi.editor.assignDoi.emptySuffix"
 msgstr "DOI ni mogoče dodeliti, ker spremenjena pripona ni na voljo."
 
 msgid "doi.editor.assignDoi.pattern"
-msgstr "DOI  {$pubId} ni mogoče dodeliti, ker vsebuje nerešen vzorec."
+msgstr "DOI {$pubId} ni mogoče dodeliti, ker vsebuje nerazrešen vzorec."
 
 msgid "doi.editor.assignDoi.assigned"
 msgstr "Odobrili boste DOI {$pubId}."
@@ -1646,3 +1655,11 @@ msgstr ""
 
 msgid "manager.dois.disabledChaptersDescription"
 msgstr "Poglavja brez svoje samostojne strani ne morejo imeti DOI."
+
+msgid "manager.series.form.deactivateSeries"
+msgstr "Označite to zbirko kot neaktivno in ne dovolite novih oddaj vanjo."
+
+msgid "manager.series.form.assignEditors.description"
+msgstr ""
+"Izberite urednike, ki bodo samodejno dodeljeni vsem novim predložitvam v tej "
+"zbirki."
