@@ -28,6 +28,7 @@ use APP\decision\types\SkipInternalReview;
 use APP\facades\Repo;
 use APP\press\FeatureDAO;
 use APP\press\NewReleaseDAO;
+use APP\publication\Publication;
 use APP\submission\Submission;
 use Illuminate\Support\Collection;
 use PKP\db\DAORegistry;
@@ -256,9 +257,13 @@ class Schema extends \PKP\submission\maps\Schema
             }
         }
 
-        // Offer ReturnToDone in any active stage when the submission was previously in Done.
+        // Offer ReturnToDone in any active stage when the submission was previously in Done
+        // and currently has a published publication (any version stage) for Done to represent.
         if ($stageId !== WORKFLOW_STAGE_ID_DONE && $submission->getData('stageId') === $stageId) {
-            if (Repo::decision()->hasDoneHistory($submission->getId())) {
+            $hasPublishedPublication = collect($submission->getData('publications'))
+                ->contains(fn (Publication $publication) => $publication->getData('status') === Publication::STATUS_PUBLISHED);
+
+            if ($hasPublishedPublication && Repo::decision()->hasDoneHistory($submission->getId())) {
                 $decisionTypes[] = new ReturnToDone();
             }
         }
