@@ -198,6 +198,19 @@ class Repository extends \PKP\publication\Repository
             ->filterByPublicationIds([$newPublication->getId()])
             ->getMany();
 
+        // Map old author IDs to their duplicated counterparts by position (both lists are
+        // ordered by seq, and parent::version() clones authors in that same order) — not by
+        // `seq` equality, which isn't unique per author and previously caused every chapter's
+        // authors to leak into every other chapter.
+        $oldAuthorsList = array_values($oldAuthors->all());
+        $newAuthorsList = array_values($newAuthors->all());
+        $oldToNewAuthorId = [];
+        foreach ($oldAuthorsList as $index => $oldAuthor) {
+            if (isset($newAuthorsList[$index])) {
+                $oldToNewAuthorId[$oldAuthor->getId()] = $newAuthorsList[$index]->getId();
+            }
+        }
+
         while ($oldChapter = $oldChaptersIterator->next()) {
             $newChapter = clone $oldChapter;
             $newChapter->setData('id', null);
@@ -219,30 +232,22 @@ class Repository extends \PKP\publication\Repository
                 }
             }
 
-            // We need to link new authors to chapters. To do this, we need a way to
-            // link old authors to the new ones. We use seq property, which should be
-            // unique for each author to determine which new author is a copy of the
-            // old one. We then map the old chapter author associations to the new
-            // authors.
+            // Link the new chapter's authors using the old chapter's author associations,
+            // resolving each old author to its duplicated counterpart via $oldToNewAuthorId.
             $oldChapterAuthors = Repo::author()->getCollector()
                 ->filterByChapterId($oldChapter->getId())
                 ->filterByPublicationIds([$oldPublicationId])
                 ->getMany();
 
-            foreach ($newAuthors as $newAuthor) {
-                foreach ($oldAuthors as $oldAuthor) {
-                    if ($newAuthor->getData('seq') === $oldAuthor->getData('seq')) {
-                        foreach ($oldChapterAuthors as $oldChapterAuthor) {
-                            if ($oldChapterAuthor->getId() === $oldAuthor->getId()) {
-                                Repo::author()->addToChapter(
-                                    $newAuthor->getId(),
-                                    $newChapter->getId(),
-                                    $newAuthor->getId() === $newPublication->getData('primaryContactId'),
-                                    $oldChapterAuthor->getData('seq')
-                                );
-                            }
-                        }
-                    }
+            foreach ($oldChapterAuthors as $oldChapterAuthor) {
+                $newAuthorId = $oldToNewAuthorId[$oldChapterAuthor->getId()] ?? null;
+                if ($newAuthorId !== null) {
+                    Repo::author()->addToChapter(
+                        $newAuthorId,
+                        $newChapter->getId(),
+                        $newAuthorId === $newPublication->getData('primaryContactId'),
+                        $oldChapterAuthor->getData('seq')
+                    );
                 }
             }
         }
