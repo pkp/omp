@@ -301,6 +301,20 @@ class PublicationService extends PKPPublicationService {
 		$oldAuthors = iterator_to_array($oldAuthorsIterator);
 		$newAuthorsIterator = Services::get('author')->getMany(['publicationIds' => $newPublication->getId()]);
 		$newAuthors = iterator_to_array($newAuthorsIterator);
+
+		// Map old author IDs to their duplicated counterparts by position (both lists are
+		// ordered by seq, and authors are cloned in that same order) — not by `seq` equality,
+		// which isn't unique per author and previously caused every chapter's authors to leak
+		// into every other chapter.
+		$oldAuthorsList = array_values($oldAuthors);
+		$newAuthorsList = array_values($newAuthors);
+		$oldToNewAuthorId = [];
+		foreach ($oldAuthorsList as $index => $oldAuthor) {
+			if (isset($newAuthorsList[$index])) {
+				$oldToNewAuthorId[$oldAuthor->getId()] = $newAuthorsList[$index]->getId();
+			}
+		}
+
 		$result = DAORegistry::getDAO('ChapterDAO')->getByPublicationId($oldPublication->getId());
 		while (!$result->eof()) {
 			$oldChapter = $result->next();
@@ -317,26 +331,18 @@ class PublicationService extends PKPPublicationService {
 				}
 			}
 
-			// We need to link new authors to chapters. To do this, we need a way to
-			// link old authors to the new ones. We use seq property, which should be
-			// unique for each author to determine which new author is a copy of the
-			// old one. We then map the old chapter author associations to the new
-			// authors.
+			// Link the new chapter's authors using the old chapter's author associations,
+			// resolving each old author to its duplicated counterpart via $oldToNewAuthorId.
 			$oldChapterAuthors = DAORegistry::getDAO('ChapterAuthorDAO')->getAuthors($oldPublication->getId(), $oldChapter->getId())->toArray();
-			foreach ($newAuthors as $newAuthor) {
-				foreach ($oldAuthors as $oldAuthor) {
-					if ($newAuthor->getData('seq') === $oldAuthor->getData('seq')) {
-						foreach ($oldChapterAuthors as $oldChapterAuthor) {
-							if ($oldChapterAuthor->getId() === $oldAuthor->getId()) {
-								DAORegistry::getDAO('ChapterAuthorDAO')->insertChapterAuthor(
-									$newAuthor->getId(),
-									$newChapter->getId(),
-									$newAuthor->getId() === $newPublication->getData('primaryContactId'),
-									$oldChapterAuthor->getData('seq')
-								);
-							}
-						}
-					}
+			foreach ($oldChapterAuthors as $oldChapterAuthor) {
+				$newAuthorId = $oldToNewAuthorId[$oldChapterAuthor->getId()] ?? null;
+				if ($newAuthorId !== null) {
+					DAORegistry::getDAO('ChapterAuthorDAO')->insertChapterAuthor(
+						$newAuthorId,
+						$newChapter->getId(),
+						$newAuthorId === $newPublication->getData('primaryContactId'),
+						$oldChapterAuthor->getData('seq')
+					);
 				}
 			}
 		}
