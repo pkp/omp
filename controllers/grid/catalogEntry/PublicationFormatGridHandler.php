@@ -46,9 +46,8 @@ use PKP\linkAction\request\AjaxModal;
 use PKP\log\event\SubmissionFileEventLogEntry;
 use PKP\notification\Notification;
 use PKP\plugins\PluginRegistry;
-use PKP\publication\PKPPublication;
-use PKP\security\authorization\internal\RepresentationRequiredPolicy;
 use PKP\security\authorization\PublicationAccessPolicy;
+use PKP\security\authorization\RepresentationRequiredPolicy;
 use PKP\security\Role;
 use PKP\submissionFile\SubmissionFile;
 
