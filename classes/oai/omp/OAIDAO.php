@@ -3,8 +3,8 @@
 /**
  * @file classes/oai/omp/OAIDAO.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2003-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class OAIDAO
@@ -24,7 +24,9 @@ use APP\press\Press;
 use APP\press\PressDAO;
 use APP\publicationFormat\PublicationFormatDAO;
 use APP\section\Section;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
+use PKP\db\DAO;
 use PKP\db\DAORegistry;
 use PKP\oai\OAISet;
 use PKP\oai\PKPOAIDAO;
@@ -34,17 +36,10 @@ use PKP\tombstone\DataObjectTombstoneDAO;
 
 class OAIDAO extends PKPOAIDAO
 {
-    /** @var PublicationFormatDAO */
-    public $_publicationFormatDao;
-
-    /** @var PressDAO */
-    public $_pressDao;
-
-    /** @var array */
-    public $_pressCache;
-
-    /** @var array */
-    public $_seriesCache;
+    public DAO|PublicationFormatDAO $publicationFormatDao;
+    public DAO|PressDAO $pressDao;
+    public array $pressCache;
+    public array $seriesCache;
 
     /**
      * Constructor.
@@ -53,33 +48,27 @@ class OAIDAO extends PKPOAIDAO
     {
         parent::__construct();
 
-        $this->_publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-        $this->_pressDao = DAORegistry::getDAO('PressDAO');
+        $this->publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+        $this->pressDao = DAORegistry::getDAO('PressDAO');
     }
 
     /**
      * Cached function to get a press
-     *
-     * @return Press
      */
-    public function getPress(int $pressId)
+    public function getPress(int $pressId): Press
     {
-        return $this->_pressCache[$pressId] ??= $this->_pressDao->getById($pressId);
+        return $this->pressCache[$pressId] ??= $this->pressDao->getById($pressId);
     }
 
     /**
      * Cached function to get a press series
-     *
-     * @param int $seriesId
-     *
-     * @return Section
      */
-    public function getSeries($seriesId)
+    public function getSeries(?int $seriesId): ?Section
     {
-        if (!isset($this->_seriesCache[$seriesId])) {
-            $this->_seriesCache[$seriesId] = $seriesId ? Repo::section()->get($seriesId) : null;
+        if (!isset($this->seriesCache[$seriesId])) {
+            $this->seriesCache[$seriesId] = $seriesId ? Repo::section()->get($seriesId) : null;
         }
-        return $this->_seriesCache[$seriesId];
+        return $this->seriesCache[$seriesId];
     }
 
     //
@@ -89,19 +78,14 @@ class OAIDAO extends PKPOAIDAO
     /**
      * Return hierarchy of OAI sets (presses plus press series).
      *
-     * @param int $offset
-     * @param int $total
-     *
-     * @return array OAISet
-     *
      * @hook OAIDAO::getSets [[&$this, $pressId, $offset, $limit, $total, &$sets]]
      */
-    public function getSets(?int $pressId, $offset, $limit, &$total)
+    public function getSets(?int $pressId, int $offset, int $limit, int &$total): array
     {
         if (isset($pressId)) {
             $presses = [$this->getPress($pressId)];
         } else {
-            $pressFactory = $this->_pressDao->getAll();
+            $pressFactory = $this->pressDao->getAll();
             $presses = $pressFactory->toArray();
         }
 
@@ -110,11 +94,12 @@ class OAIDAO extends PKPOAIDAO
         foreach ($presses as $press) {
             $title = $press->getLocalizedName();
 
-            $dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO'); /** @var DataObjectTombstoneDAO $dataObjectTombstoneDao */
+            /** @var DataObjectTombstoneDAO $dataObjectTombstoneDao */
+            $dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO');
             $publicationFormatSets = $dataObjectTombstoneDao->getSets(Application::ASSOC_TYPE_PRESS, $press->getId());
 
             if (!array_key_exists(self::setSpec($press), $publicationFormatSets)) {
-                array_push($sets, new OAISet(self::setSpec($press), $title, ''));
+                $sets[] = new OAISet(self::setSpec($press), $title, '');
             }
 
             $seriesFactory = Repo::section()
@@ -126,33 +111,27 @@ class OAIDAO extends PKPOAIDAO
                 if (array_key_exists($setSpec, $publicationFormatSets)) {
                     unset($publicationFormatSets[$setSpec]);
                 }
-                array_push($sets, new OAISet($setSpec, $series->getLocalizedTitle(), ''));
+                $sets[] = new OAISet($setSpec, $series->getLocalizedTitle(), '');
             }
             foreach ($publicationFormatSets as $publicationFormatSetSpec => $publicationFormatSetName) {
-                array_push($sets, new OAISet($publicationFormatSetSpec, $publicationFormatSetName, ''));
+                $sets[] = new OAISet($publicationFormatSetSpec, $publicationFormatSetName, '');
             }
         }
 
         Hook::call('OAIDAO::getSets', [&$this, $pressId, $offset, $limit, $total, &$sets]);
 
         $total = count($sets);
-        $sets = array_slice($sets, $offset, $limit);
-
-        return $sets;
+        return array_slice($sets, $offset, $limit);
     }
 
     /**
      * Return the press ID and series ID corresponding to a press/series pairing.
      *
-     * @param string $pressSpec
-     * @param string $seriesSpec
-     * @param int $restrictPressId
-     *
      * @return int[] (int, int)
      */
-    public function getSetPressSeriesId($pressSpec, $seriesSpec, $restrictPressId = null)
+    public function getSetPressSeriesId(string $pressSpec, ?string $seriesSpec, ?int $restrictPressId = null): array
     {
-        $press = $this->_pressDao->getByPath($pressSpec);
+        $press = $this->pressDao->getByPath($pressSpec);
         if (!isset($press) || (isset($restrictPressId) && $press->getId() != $restrictPressId)) {
             return [0, 0];
         }
@@ -189,13 +168,12 @@ class OAIDAO extends PKPOAIDAO
         $series = $this->getSeries($row['series_id']);
         $publicationFormatId = $row['data_object_id'];
 
-        /** @var PressOAI */
         $oai = $this->oai;
         $record->identifier = $oai->publicationFormatIdToIdentifier($publicationFormatId);
         $record->sets = [self::setSpec($press, $series)];
 
         if ($isRecord) {
-            $publicationFormat = $this->_publicationFormatDao->getById($publicationFormatId);
+            $publicationFormat = $this->publicationFormatDao->getById($publicationFormatId);
             $publication = Repo::publication()->get($publicationFormat->getData('publicationId'));
             $submission = Repo::submission()->get($publication->getData('submissionId'));
             $record->setData('publicationFormat', $publicationFormat);
@@ -208,12 +186,20 @@ class OAIDAO extends PKPOAIDAO
     }
 
     /**
-     * @copydoc PKPOAIDAO::_getRecordsRecordSet
+     * @copydoc PKPOAIDAO::getRecordsRecordSetQuery
      *
-     * @param null|mixed $submissionId
+     * The $publicationId parameter is unused here; it is kept for signature
+     * compatibility with the base class per-version OAI record support.
      */
-    public function _getRecordsRecordSetQuery($setIds, $from, $until, $set, $submissionId = null, $orderBy = 'press_id, data_object_id')
-    {
+    public function getRecordsRecordSetQuery(
+        array $setIds,
+        int|string|null $from,
+        int|string|null $until,
+        ?string $set,
+        ?int $submissionId = null,
+        string $orderBy = 'press_id, data_object_id',
+        ?int $publicationId = null
+    ): Builder {
         $pressId = array_shift($setIds);
         $seriesId = array_shift($setIds);
 

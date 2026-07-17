@@ -7,8 +7,8 @@
 /**
  * @file classes/oai/omp/PressOAI.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2003-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PressOAI
@@ -26,8 +26,10 @@ namespace APP\oai\omp;
 
 use APP\core\Application;
 use APP\press\Press;
+use PKP\db\DAO;
 use PKP\db\DAORegistry;
 use PKP\oai\OAI;
+use PKP\oai\OAIRecord;
 use PKP\oai\OAIRepository;
 use PKP\oai\OAIResumptionToken;
 use PKP\plugins\Hook;
@@ -36,17 +38,10 @@ use PKP\site\VersionDAO;
 
 class PressOAI extends OAI
 {
-    /** @var Site $site associated site object */
-    public $site;
-
-    /** @var Press $press associated press object */
-    public $press;
-
+    public ?Site $site;
+    public ?Press $press;
     public ?int $pressId;
-
-    /** @var OAIDAO $dao DAO for retrieving OAI records/tokens from database */
-    public $dao;
-
+    public DAO|OAIDAO $dao;
 
     /**
      * @see OAI#OAI
@@ -60,33 +55,24 @@ class PressOAI extends OAI
         $this->site = $request->getSite();
         $this->press = $request->getPress();
         $this->pressId = isset($this->press) ? $this->press->getId() : null;
-        /** @var OAIDAO */
         $this->dao = DAORegistry::getDAO('OAIDAO');
         $this->dao->setOAI($this);
     }
 
     /**
      * Convert monograph ID to OAI identifier.
-     *
-     * @param int $publicationFormatId
-     *
-     * @return string
      */
-    public function publicationFormatIdToIdentifier($publicationFormatId)
+    public function publicationFormatIdToIdentifier(int $publicationFormatId): string
     {
-        return $this->_getIdentifierPrefix() . $publicationFormatId;
+        return $this->getIdentifierPrefix() . $publicationFormatId;
     }
 
     /**
      * Convert OAI identifier to monograph ID.
-     *
-     * @param string $identifier
-     *
-     * @return int
      */
-    public function identifierToPublicationFormatId($identifier)
+    public function identifierToPublicationFormatId(string $identifier): false|int
     {
-        $prefix = $this->_getIdentifierPrefix();
+        $prefix = $this->getIdentifierPrefix();
         if (strstr($identifier, $prefix)) {
             return (int) str_replace($prefix, '', $identifier);
         } else {
@@ -96,14 +82,10 @@ class PressOAI extends OAI
 
     /**
      * Get press ID and series ID corresponding to a set specifier.
-     *
-     * @param string $setSpec
-     *
-     * @return array
      */
-    public function setSpecToSeriesId($setSpec, ?int $pressId = null)
+    public function setSpecToSeriesId(string $setSpec, ?int $pressId = null): array
     {
-        $tmpArray = preg_split('/:/', $setSpec);
+        $tmpArray = explode(':', $setSpec);
         if (count($tmpArray) == 1) {
             [$pressSpec] = $tmpArray;
             $seriesSpec = null;
@@ -123,13 +105,13 @@ class PressOAI extends OAI
     /**
      * @see OAI#repositoryInfo
      */
-    public function repositoryInfo()
+    public function repositoryInfo(): OAIRepository
     {
         $info = new OAIRepository();
 
         if (isset($this->press)) {
             $info->repositoryName = $this->press->getLocalizedName();
-            $info->adminEmail = $this->press->getSetting('contactEmail');
+            $info->adminEmail = $this->press->getData('contactEmail');
         } else {
             $info->repositoryName = $this->site->getLocalizedTitle();
             $info->adminEmail = $this->site->getLocalizedContactEmail();
@@ -139,7 +121,8 @@ class PressOAI extends OAI
         $info->earliestDatestamp = $this->dao->getEarliestDatestamp([$this->pressId]);
 
         $info->toolkitTitle = 'Open Monograph Press';
-        $versionDao = DAORegistry::getDAO('VersionDAO'); /** @var VersionDAO $versionDao */
+        /** @var VersionDAO $versionDao */
+        $versionDao = DAORegistry::getDAO('VersionDAO');
         $currentVersion = $versionDao->getCurrentVersion();
         $info->toolkitVersion = $currentVersion->getVersionString(false);
         $info->toolkitURL = 'https://pkp.sfu.ca/omp/';
@@ -150,7 +133,7 @@ class PressOAI extends OAI
     /**
      * @see OAI#validIdentifier
      */
-    public function validIdentifier($identifier)
+    public function validIdentifier(string $identifier): bool
     {
         return $this->identifierToPublicationFormatId($identifier) !== false;
     }
@@ -158,7 +141,7 @@ class PressOAI extends OAI
     /**
      * @see OAI#identifierExists
      */
-    public function identifierExists($identifier)
+    public function identifierExists(string $identifier): bool
     {
         $recordExists = false;
         $publicationFormatId = $this->identifierToPublicationFormatId($identifier);
@@ -171,7 +154,7 @@ class PressOAI extends OAI
     /**
      * @see OAI#record
      */
-    public function record($identifier)
+    public function record(string $identifier): OAIRecord|false
     {
         $publicationFormatId = $this->identifierToPublicationFormatId($identifier);
         if ($publicationFormatId) {
@@ -188,8 +171,15 @@ class PressOAI extends OAI
      *
      * @hook PressOAI::records [[&$this, $from, $until, $set, $offset, $limit, &$total, &$records]]
      */
-    public function records($metadataPrefix, $from, $until, $set, $offset, $limit, &$total)
-    {
+    public function records(
+        string $metadataPrefix,
+        ?int $from,
+        ?int $until,
+        ?string $set,
+        int $offset,
+        int $limit,
+        int &$total
+    ): ?array {
         $records = null;
         if (!Hook::call('PressOAI::records', [&$this, $from, $until, $set, $offset, $limit, &$total, &$records])) {
             $seriesId = null;
@@ -208,7 +198,7 @@ class PressOAI extends OAI
      *
      * @hook PressOAI::identifiers [[&$this, $from, $until, $set, $offset, $limit, &$total, &$records]]
      */
-    public function identifiers($metadataPrefix, $from, $until, $set, $offset, $limit, &$total)
+    public function identifiers($metadataPrefix, $from, $until, $set, $offset, $limit, &$total): ?array
     {
         $records = null;
         if (!Hook::call('PressOAI::identifiers', [&$this, $from, $until, $set, $offset, $limit, &$total, &$records])) {
@@ -228,7 +218,7 @@ class PressOAI extends OAI
      *
      * @hook PressOAI::sets [[&$this, $offset, $limit, &$total, &$sets]]
      */
-    public function sets($offset, $limit, &$total)
+    public function sets(int $offset, int $limit, int &$total): ?array
     {
         $sets = null;
         if (!Hook::call('PressOAI::sets', [&$this, $offset, $limit, &$total, &$sets])) {
@@ -240,7 +230,7 @@ class PressOAI extends OAI
     /**
      * @see OAI#resumptionToken
      */
-    public function resumptionToken($tokenId)
+    public function resumptionToken(string $tokenId): false|OAIResumptionToken
     {
         $this->dao->clearTokens();
         $token = $this->dao->getToken($tokenId);
@@ -253,7 +243,7 @@ class PressOAI extends OAI
     /**
      * @see OAI#saveResumptionToken
      */
-    public function saveResumptionToken($offset, $params)
+    public function saveResumptionToken(int $offset, array $params): OAIResumptionToken
     {
         $token = new OAIResumptionToken(null, $offset, $params, time() + $this->config->tokenLifetime);
         $this->dao->insertToken($token);
@@ -266,10 +256,8 @@ class PressOAI extends OAI
     //
     /**
      * Get the OAI identifier prefix.
-     *
-     * @return string
      */
-    public function _getIdentifierPrefix()
+    public function getIdentifierPrefix(): string
     {
         return 'oai:' . $this->config->repositoryId . ':' . 'publicationFormat/';
     }
