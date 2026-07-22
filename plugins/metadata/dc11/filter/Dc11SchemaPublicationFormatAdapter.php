@@ -3,8 +3,8 @@
 /**
  * @file plugins/metadata/dc11/filter/Dc11SchemaPublicationFormatAdapter.php
  *
- * Copyright (c) 2014-2025 Simon Fraser University
- * Copyright (c) 2000-2025 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2000-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Dc11SchemaPublicationFormatAdapter
@@ -72,7 +72,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         // metadata framework. We're using the OAIDAO here because it
         // contains cached entities and avoids extra database access if this
         // adapter is called from an OAI context.
-        $oaiDao = DAORegistry::getDAO('OAIDAO'); /** @var OAIDAO $oaiDao */
+        /** @var OAIDAO $oaiDao */
+        $oaiDao = DAORegistry::getDAO('OAIDAO');
         $publication = Repo::publication()->get($publicationFormat->getData('publicationId'));
         $monograph = Repo::submission()->get($publication->getData('submissionId'));
         $press = $oaiDao->getPress($monograph->getData('contextId'));
@@ -81,11 +82,11 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
 
         // Title
         $publication = $monograph->getCurrentPublication();
-        $this->_addLocalizedElements($dc11Description, 'dc:title', $publication->getFullTitles());
+        $this->addLocalizedElements($dc11Description, 'dc:title', $publication->getFullTitles());
 
         // Creator
         foreach ($publication->getData('authors') as $author) {
-            $this->_addLocalizedElements($dc11Description, 'dc:creator', $author->getFullNames(false, true));
+            $this->addLocalizedElements($dc11Description, 'dc:creator', $author->getFullNames(false, true));
         }
 
         // Subject
@@ -105,19 +106,19 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
                 )
                 ->all()
         );
-        $this->_addLocalizedElements($dc11Description, 'dc:subject', $subjects);
+        $this->addLocalizedElements($dc11Description, 'dc:subject', $subjects);
 
         // Description
-        $this->_addLocalizedElements($dc11Description, 'dc:description', $publication->getData('abstract'));
+        $this->addLocalizedElements($dc11Description, 'dc:description', $publication->getData('abstract'));
 
         // Publisher
-        $publisher = $press->getSetting('publisher');
+        $publisher = $press->getData('publisher');
         if (!empty($publisher)) {
             $publishers = [$press->getPrimaryLocale() => $publisher];
         } else {
             $publishers = $press->getName(null); // Default
         }
-        $this->_addLocalizedElements($dc11Description, 'dc:publisher', $publishers);
+        $this->addLocalizedElements($dc11Description, 'dc:publisher', $publishers);
 
         // Contributor
         $contributors = $monograph->getData('sponsor');
@@ -125,7 +126,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             foreach ($contributors as $locale => $contributor) {
                 $contributors[$locale] = array_map(trim(...), explode(';', $contributor));
             }
-            $this->_addLocalizedElements($dc11Description, 'dc:contributor', $contributors);
+            $this->addLocalizedElements($dc11Description, 'dc:contributor', $contributors);
         }
 
         // Date
@@ -142,10 +143,11 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             [Locale::getLocale() => __('rt.metadata.pkp.dctype')],
             (array) $publication->getData('type')
         );
-        $this->_addLocalizedElements($dc11Description, 'dc:type', $types);
+        $this->addLocalizedElements($dc11Description, 'dc:type', $types);
 
         // Format
-        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
+        /** @var ONIXCodelistItemDAO $onixCodelistItemDao */
+        $onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
         $entryKeys = $onixCodelistItemDao->getCodes('150'); // List150 is for object formats
         if ($publicationFormat->getEntryKey()) {
             $formatName = $entryKeys[$publicationFormat->getEntryKey()];
@@ -155,7 +157,18 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         // Identifier: URL
         $request = Application::get()->getRequest();
         if ($monograph instanceof Submission) {
-            $dc11Description->addStatement('dc:identifier', $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $press->getPath(), 'catalog', 'book', [$publication->getData('urlPath') ?? $monograph->getId()], urlLocaleForPage: ''));
+            $dc11Description->addStatement(
+                'dc:identifier',
+                $request->getDispatcher()->url(
+                    $request,
+                    Application::ROUTE_PAGE,
+                    $press->getPath(),
+                    'catalog',
+                    'book',
+                    [$publication->getData('urlPath') ?? $monograph->getId()],
+                    urlLocaleForPage: ''
+                )
+            );
         }
 
         // Public identifiers (e.g. DOI, URN)
@@ -174,7 +187,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $context = $request->getContext();
         if (!$context) {
             $contextDao = Application::getContextDAO();
-            /** @var Press */
+            /** @var Press $context */
             $context = $contextDao->getById($monograph->getData('contextId'));
         }
         if ($context->areDoisEnabled()) {
@@ -185,6 +198,27 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             $publicationDoi = $publication->getData('doiObject');
             if ($publicationDoi) {
                 $dc11Description->addStatement('dc:relation', $publicationDoi->getData('doi'));
+            }
+        }
+
+        // Relation: the immediately preceding published version of this monograph
+        $versionRelation = Repo::publication()->getVersionRelation($publication, $monograph, $context);
+        if ($versionRelation) {
+            if ($versionRelation->doiUrl) {
+                $dc11Description->addStatement('dc:relation', $versionRelation->doiUrl);
+            } else {
+                $dc11Description->addStatement(
+                    'dc:relation',
+                    $request->getDispatcher()->url(
+                        $request,
+                        Application::ROUTE_PAGE,
+                        $press->getPath(),
+                        'catalog',
+                        'book',
+                        [$monograph->getBestId(), 'version', $versionRelation->publicationId],
+                        urlLocaleForPage: ''
+                    )
+                );
             }
         }
 
@@ -204,7 +238,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             $sources[$locale] .= '; ';
             $sources[$locale] .= $pages;
         }
-        $this->_addLocalizedElements($dc11Description, 'dc:source', $sources);
+        $this->addLocalizedElements($dc11Description, 'dc:source', $sources);
 
         // Language
         $submissionLanguage = $monograph->getData('locale');
@@ -220,17 +254,23 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
 
         // Relation (Add publication file format to monograph / edited volume)
         foreach ($pubFormatFiles as $file) {
-            {
-                if ($file->getData('assocId') == $publicationFormat->getData('id')) {
-                    $relation = $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $press->getData('urlPath'), 'catalog', 'view', [$publication->getData('urlPath') ?? $monograph->getId(), $publicationFormat->getId(), $file->getId()], urlLocaleForPage: '');
-                    $dc11Description->addStatement('dc:relation', $relation);
-                }
+            if ($file->getData('assocId') == $publicationFormat->getData('id')) {
+                $relation = $request->getDispatcher()->url(
+                    $request,
+                    Application::ROUTE_PAGE,
+                    $press->getPath(),
+                    'catalog',
+                    'view',
+                    [$publication->getData('urlPath') ?? $monograph->getId(), $publicationFormat->getId(), $file->getId()],
+                    urlLocaleForPage: ''
+                );
+                $dc11Description->addStatement('dc:relation', $relation);
             }
         }
 
         // Coverage
         $coverage = (array) $publication->getData('coverage');
-        $this->_addLocalizedElements($dc11Description, 'dc:coverage', $coverage);
+        $this->addLocalizedElements($dc11Description, 'dc:coverage', $coverage);
 
         // Rights
         $salesRightsFactory = $publicationFormat->getSalesRights();
@@ -238,7 +278,10 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
             $dc11Description->addStatement('dc:rights', $salesRight->getNameForONIXCode());
         }
 
-        Hook::call('Dc11SchemaPublicationFormatAdapter::extractMetadataFromDataObject', [&$this, $monograph, $press, &$dc11Description]);
+        Hook::call(
+            'Dc11SchemaPublicationFormatAdapter::extractMetadataFromDataObject',
+            [&$this, $monograph, $press, &$dc11Description]
+        );
 
         return $dc11Description;
     }
@@ -248,7 +291,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
      *
      * @param bool $translated
      */
-    public function getDataObjectMetadataFieldNames($translated = true)
+    public function getDataObjectMetadataFieldNames($translated = true): array
     {
         // All DC fields are mapped.
         return [];
@@ -260,13 +303,12 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
     //
     /**
      * Add an array of localized values to the given description.
-     *
-     * @param MetadataDescription $description
-     * @param string $propertyName
-     * @param array $localizedValues
      */
-    public function _addLocalizedElements(&$description, $propertyName, $localizedValues)
-    {
+    private function addLocalizedElements(
+        MetadataDescription &$description,
+        string $propertyName,
+        array $localizedValues
+    ): void {
         foreach (stripAssocArray((array) $localizedValues) as $locale => $values) {
             if (is_scalar($values)) {
                 $values = [$values];
