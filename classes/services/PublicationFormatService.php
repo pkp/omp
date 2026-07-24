@@ -28,6 +28,7 @@ use APP\submission\Submission;
 use PKP\core\Core;
 use PKP\core\PKPApplication;
 use PKP\db\DAORegistry;
+use PKP\security\Validation;
 
 class PublicationFormatService
 {
@@ -73,7 +74,8 @@ class PublicationFormatService
             'assocType' => PKPApplication::ASSOC_TYPE_SUBMISSION,
             'assocId' => $submission->getId(),
             'eventType' => SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE,
-            'userId' => Application::get()->getRequest()->getUser()?->getId(),
+            'userId' => Validation::loggedInAs() ?? Application::get()->getRequest()->getUser()?->getId(),
+            'impersonatedAsUserId' => Validation::loggedInAs() ? Application::get()->getRequest()->getUser()?->getId() : null,
             'message' => 'submission.event.publicationFormatRemoved',
             'isTranslated' => false,
             'dateLogged' => Core::getCurrentDate(),
