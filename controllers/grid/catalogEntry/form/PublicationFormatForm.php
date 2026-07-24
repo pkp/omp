@@ -31,6 +31,7 @@ use PKP\core\Core;
 use PKP\core\PKPApplication;
 use PKP\db\DAORegistry;
 use PKP\form\Form;
+use PKP\security\Validation;
 
 class PublicationFormatForm extends Form
 {
@@ -275,7 +276,8 @@ class PublicationFormatForm extends Form
                 'assocType' => PKPApplication::ASSOC_TYPE_SUBMISSION,
                 'assocId' => $this->getMonograph()->getId(),
                 'eventType' => SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE,
-                'userId' => Application::get()->getRequest()->getUser()?->getId(),
+                'userId' => Validation::loggedInAs() ?? Application::get()->getRequest()->getUser()?->getId(),
+                'impersonatedAsUserId' => Validation::loggedInAs() ? Application::get()->getRequest()->getUser()?->getId() : null,
                 'message' => 'submission.event.publicationFormatCreated',
                 'isTranslate' => false,
                 'dateLogged' => Core::getCurrentDate(),
