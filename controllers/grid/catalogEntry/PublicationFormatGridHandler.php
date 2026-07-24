@@ -50,6 +50,7 @@ use PKP\security\authorization\PublicationAccessPolicy;
 use PKP\security\authorization\RepresentationRequiredPolicy;
 use PKP\security\Role;
 use PKP\submissionFile\SubmissionFile;
+use PKP\security\Validation;
 
 class PublicationFormatGridHandler extends CategoryGridHandler
 {
@@ -400,7 +401,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler
             'assocType' => PKPApplication::ASSOC_TYPE_SUBMISSION,
             'assocId' => $this->getSubmission()->getId(),
             'eventType' => $newApprovedState ? SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_PUBLISH : SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_UNPUBLISH,
-            'userId' => $request->getUser()?->getId(),
+            'userId' => Validation::loggedInAs() ?? $request->getUser()?->getId(),
+            'impersonatedAsUserId' => Validation::loggedInAs() ? $request->getUser()?->getId() : null,
             'message' => $newApprovedState ? 'submission.event.publicationFormatPublished' : 'submission.event.publicationFormatUnpublished',
             'isTranslated' => false,
             'dateLogged' => Core::getCurrentDate(),
@@ -449,7 +451,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler
             'assocType' => PKPApplication::ASSOC_TYPE_SUBMISSION,
             'assocId' => $this->getSubmission()->getId(),
             'eventType' => $newAvailableState ? SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_AVAILABLE : SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_UNAVAILABLE,
-            'userId' => $request->getUser()?->getId(),
+            'userId' => Validation::loggedInAs() ?? $request->getUser()?->getId(),
+            'impersonatedAsUserId' => Validation::loggedInAs() ? $request->getUser()?->getId() : null,
             'message' => $newAvailableState ? 'submission.event.publicationFormatMadeAvailable' : 'submission.event.publicationFormatMadeUnavailable',
             'isTranslated' => false,
             'dateLogged' => Core::getCurrentDate(),
@@ -610,7 +613,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler
                 'assocType' => PKPApplication::ASSOC_TYPE_SUBMISSION_FILE,
                 'assocId' => $submissionFile->getId(),
                 'eventType' => SubmissionFileEventLogEntry::SUBMISSION_LOG_FILE_SIGNOFF_SIGNOFF,
-                'userId' => $user->getId(),
+                'userId' => Validation::loggedInAs() ?? $user?->getId(),
+                'impersonatedAsUserId' => Validation::loggedInAs() ? $user?->getId() : null,
                 'message' => 'submission.event.signoffSignoff',
                 'isTranslated' => false,
                 'dateLogged' => Core::getCurrentDate(),
