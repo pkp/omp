@@ -83,7 +83,13 @@ class SubmissionScenarioController extends PKPSubmissionScenarioController
             // Redeclares the shared `reviewRounds` property, adding `stage`.
             // SpecValidator::withOverlay() merges overlay properties over the
             // core schema, so this REPLACES the shared definition rather than
-            // extending it — the rest of the shape is kept identical on purpose.
+            // extending it — the rest of the shape is kept identical on purpose,
+            // INCLUDING every per-reviewer key the shared builder understands.
+            // A key the shared schema grows must be mirrored here or the overlay
+            // silently narrows it away for OMP alone (this bit U26: `method`,
+            // the completed/confirmed statuses, the comment keys and the
+            // attachment were all live in the shared processor and rejected by
+            // this overlay).
             'reviewRounds' => [
                 'type' => 'array',
                 'description' => 'Reviewers per review round. OMP has two review stages: each entry names its `stage`, and entry i targets round i+1 OF THAT STAGE. Rounds beyond the first must be opened by a decision in `decisions` (newInternalReviewRound / newExternalReviewRound).',
@@ -106,8 +112,29 @@ class SubmissionScenarioController extends PKPSubmissionScenarioController
                                     'user' => ['type' => 'string', 'minLength' => 1, 'description' => 'username of the reviewer. Reviewers must be enrolled in the group that reaches this stage: internalReviewer for Internal Review, externalReviewer for External Review.'],
                                     'status' => [
                                         'type' => 'string',
-                                        'enum' => ['invited', 'accepted', 'declined'],
-                                        'description' => "Defaults to invited. 'accepted'/'declined' additionally run the reviewer's own confirm action.",
+                                        'enum' => ['invited', 'accepted', 'declined', 'completed', 'confirmed'],
+                                        'description' => "Defaults to invited. 'accepted'/'declined' run the reviewer's own confirm action; 'completed' additionally submits the review through the reviewer's own step-3 form; 'confirmed' additionally has the editor confirm it, the way reading the review from the Reviewers panel does.",
+                                    ],
+                                    'method' => [
+                                        'type' => 'string',
+                                        'enum' => ['open', 'anonymous', 'doubleAnonymous'],
+                                        'description' => "Review method for this assignment; defaults to the press's default review mode. Only an open review is readable by the author.",
+                                    ],
+                                    'commentsForAuthor' => [
+                                        'type' => 'string',
+                                        'description' => 'The review comment the reviewer shares with the author. Requires a completed status.',
+                                    ],
+                                    'commentsForEditor' => [
+                                        'type' => 'string',
+                                        'description' => 'The review comment the reviewer addresses to the editor alone. Requires a completed status.',
+                                    ],
+                                    'recommendation' => [
+                                        'type' => 'string',
+                                        'description' => "Localized title of one of the press's reviewer recommendation options. Presses ship with NONE (spec register OMP4), so on an unconfigured press this key always throws, naming the empty option list.",
+                                    ],
+                                    'attachment' => [
+                                        'type' => 'boolean',
+                                        'description' => 'Attach a reviewer file to the completed review, the way the reviewer\'s upload step does.',
                                     ],
                                 ],
                             ],
