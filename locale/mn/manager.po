@@ -1,7 +1,7 @@
 # Gantulga <cybermon@gmail.com>, 2026.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-02-08 07:52+0000\n"
+"PO-Revision-Date: 2026-07-29 09:30+0000\n"
 "Last-Translator: Gantulga <cybermon@gmail.com>\n"
 "Language-Team: Mongolian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "mn/>\n"
@@ -177,7 +177,7 @@ msgid "manager.payment.success"
 msgstr "Төлбөрийн тохиргоо шинэчлэгдлээ."
 
 msgid "manager.settings"
-msgstr "Тохиргоо"
+msgstr "Тохиргоонууд"
 
 msgid "manager.settings.pressSettings"
 msgstr "Хэвлэлийн газрын тохиргоо"
@@ -1625,3 +1625,13 @@ msgid "mailable.submissionNeedsEditor.description"
 msgstr ""
 "Шинэ илгээлт ирсэн боловч редактор оноогоогүй үед хэвлэлийн газрын "
 "менежерүүдэд илгээгдэх имэйл."
+
+msgid "manager.series.form.deactivateSeries"
+msgstr ""
+"Энэ цувралыг идэвхгүй гэж тэмдэглээд, шинээр бүтээл хүлээн авахыг бүү "
+"зөвшөөр."
+
+msgid "manager.series.form.assignEditors.description"
+msgstr ""
+"Энэ цувралын бүх шинээр ирүүлсэн материалуудад автоматаар оноогдох редакцийн "
+"хэрэглэгчдийг сонгоно уу."
