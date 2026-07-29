@@ -33,7 +33,7 @@ describe('Data suite tests', function() {
 		cy.get('button:contains("Accept Review, Continue to Step #2")').click();
 		cy.get('button:contains("Continue to Step #3")').click();
 		cy.wait(2000); // Give TinyMCE control time to load
-		cy.get('textarea[id^="comments-"]').then(node => {
+		cy.get('textarea#reviewStep3Form-comments-control').then(node => {
 			cy.setTinyMceContent(node.attr('id'), 'This paper is suitable for publication.');
 		});
 		cy.get('button:contains("Submit Review")').click();
@@ -86,7 +86,7 @@ describe('Data suite tests', function() {
 		cy.get('button:contains("Accept Review, Continue to Step #2")').click();
 		cy.get('button:contains("Continue to Step #3")').click();
 		cy.wait(2000); // Give TinyMCE control time to load
-		cy.get('textarea[id^="comments-"]').then(node => {
+		cy.get('textarea#reviewStep3Form-comments-control').then(node => {
 			cy.setTinyMceContent(node.attr('id'), 'This paper is suitable for publication.');
 		});
 		cy.get('button:contains("Submit Review")').click();
