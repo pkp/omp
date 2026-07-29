@@ -77,6 +77,7 @@
 const {test, expect} = require('../support/fixtures.js');
 const {BasePage} = require('../../lib/pkp/playwright/pages/BasePage.js');
 const {LoginPage} = require('../../lib/pkp/playwright/pages/LoginPage.js');
+const {UsersAndRolesPage} = require('../pages/UsersAndRolesPage.js');
 
 /** The subject the invitation mailable ships with. */
 const INVITATION_SUBJECT = 'You are invited to new roles';
@@ -84,67 +85,6 @@ const INVITATION_SUBJECT = 'You are invited to new roles';
 /** Per-app, per-worker, per-run tag: one hyphenless alphanumeric token. */
 function tagFor(name, testInfo) {
 	return `u6tomp${name}w${testInfo.parallelIndex}${Math.random().toString(36).slice(2, 6)}`;
-}
-
-/**
- * Users & Roles → Users, and the invitation surfaces that live on it.
- *
- * Both tables on the tab are addressed by their own heading — each `<table>` is
- * `aria-labelledby` the "Invitations (n)" / "Current Users (n)" heading beside
- * it — which is the only hook that survives the two tables sharing five of their
- * six column names.
- */
-class UsersAndRolesPage extends BasePage {
-	/**
-	 * @param {import('@playwright/test').Page} page
-	 * @param {string} press urlPath of the press
-	 */
-	constructor(page, press) {
-		super(page);
-		this.press = press;
-		this.heading = page.getByRole('heading', {name: 'Users & Roles', exact: true});
-		this.invitationsTable = page.getByRole('table', {name: /^Invitations \(/});
-		this.usersTable = page.getByRole('table', {name: /^Current Users \(/});
-		this.invitationsHeading = page.getByRole('heading', {name: /^Invitations \(/});
-		this.inviteButton = page.getByRole('button', {name: 'Invite to a role', exact: true});
-	}
-
-	async goto() {
-		await this.page.goto(BasePage.contextUrl(this.press, '/management/settings/access'));
-		await expect(this.heading).toBeVisible();
-		await expect(this.invitationsHeading).toBeVisible();
-	}
-
-	/** @param {string} email */
-	invitationRow(email) {
-		return this.invitationsTable.getByRole('row').filter({hasText: email});
-	}
-
-	/** @param {string} email */
-	userRow(email) {
-		return this.usersTable.getByRole('row').filter({hasText: email});
-	}
-
-	/**
-	 * The row's "Invitation management options" menu. Headless UI portals the
-	 * menu to the document root, so the items are looked up on the page.
-	 *
-	 * @param {string} email
-	 * @param {string|RegExp} item
-	 */
-	async chooseRowAction(email, item) {
-		await this.invitationRow(email)
-			.getByRole('button', {name: 'Invitation management options'})
-			.click();
-		await this.page.getByRole('menuitem', {name: item}).click();
-	}
-
-	/** The wizard, reached the way the screen offers it. */
-	async openInviteWizard() {
-		await this.inviteButton.click();
-
-		return new InviteWizard(this.page);
-	}
 }
 
 /**
@@ -373,7 +313,9 @@ test.describe('User invitations', () => {
 		const usersAndRoles = new UsersAndRolesPage(managerPage, press.urlPath);
 		await usersAndRoles.goto();
 
-		const wizard = await usersAndRoles.openInviteWizard();
+		await usersAndRoles.inviteButton.click();
+
+		const wizard = new InviteWizard(managerPage);
 		await expect(wizard.pageHeading).toBeVisible();
 		await expect(wizard.stepHeading).toHaveText('STEP 1 - Search User');
 
@@ -469,7 +411,9 @@ test.describe('User invitations', () => {
 		const usersAndRoles = new UsersAndRolesPage(managerPage, press.urlPath);
 		await usersAndRoles.goto();
 
-		const wizard = await usersAndRoles.openInviteWizard();
+		await usersAndRoles.inviteButton.click();
+
+		const wizard = new InviteWizard(managerPage);
 		await wizard.search(inviteeEmail);
 
 		// Someone who already holds a role in this press: the details are read
@@ -577,7 +521,7 @@ test.describe('User invitations', () => {
 		await usersAndRoles.goto();
 		await expect(usersAndRoles.invitationRow(invitee)).toBeVisible();
 
-		await usersAndRoles.chooseRowAction(invitee, 'Cancel Invite');
+		await usersAndRoles.chooseInvitationAction(invitee, 'Cancel Invite');
 
 		// The dialog reads the invitation back: address, roles, status,
 		// affiliation — and nothing else.
@@ -616,7 +560,7 @@ test.describe('User invitations', () => {
 		const usersAndRoles = new UsersAndRolesPage(managerPage, press.urlPath);
 		await usersAndRoles.goto();
 
-		await usersAndRoles.chooseRowAction(invitee, /^Edit$/);
+		await usersAndRoles.chooseInvitationAction(invitee, /^Edit$/);
 
 		const warning = managerPage.getByRole('dialog').filter({hasText: 'Edit Invitation'});
 		await expect(warning).toContainText(
