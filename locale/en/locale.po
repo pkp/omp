@@ -1172,11 +1172,13 @@ msgstr ""
 msgid "log.review.reviewDueDateSet"
 msgstr "The due date for the round {$round} review of submission {$submissionId} by {$reviewerName} has been set to {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
-msgstr "{$reviewerName} has declined the round {$round} review for submission {$submissionId}."
+msgstr "The round {$round} review assigned to {$reviewerName} for submission {$submissionId} has been declined."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
-msgstr "{$reviewerName} has accepted the round {$round} review for submission {$submissionId}."
+msgstr "The round {$round} review assigned to {$reviewerName} for submission {$submissionId} has been accepted."
 
 msgid "log.review.reviewUnconsidered"
 msgstr "{$editorName} has marked the round {$round} review for submission {$submissionId} as unconsidered."
