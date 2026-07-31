@@ -35,6 +35,8 @@ if (strpos($requestPath, '/files')) {
     return new \PKP\handler\APIHandler(new \PKP\API\v1\funders\PKPFunderController());
 } elseif (strpos($requestPath, '/mediaFiles')) {
     return new \PKP\handler\APIHandler(new \PKP\API\v1\submissions\MediaFilesController());
+} elseif (strpos($requestPath, '/reviewAssignments')) {
+    return new \PKP\handler\APIHandler(new \PKP\API\v1\submissions\reviewAssignments\ReviewAssignmentController());
 } else {
     return new \PKP\handler\APIHandler(new \APP\API\v1\submissions\SubmissionController());
 }
