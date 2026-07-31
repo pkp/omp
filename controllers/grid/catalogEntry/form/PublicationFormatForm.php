@@ -277,7 +277,7 @@ class PublicationFormatForm extends Form
                 'assocId' => $this->getMonograph()->getId(),
                 'eventType' => SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE,
                 'userId' => Validation::loggedInAs() ?? Application::get()->getRequest()->getUser()?->getId(),
-                'impersonatedAsUserId' => Validation::loggedInAs() ? Application::get()->getRequest()->getUser()?->getId() : null,
+                'impersonatedUserId' => Validation::loggedInAs() ? Application::get()->getRequest()->getUser()?->getId() : null,
                 'message' => 'submission.event.publicationFormatCreated',
                 'isTranslate' => false,
                 'dateLogged' => Core::getCurrentDate(),

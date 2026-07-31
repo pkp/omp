@@ -75,7 +75,7 @@ class PublicationFormatService
             'assocId' => $submission->getId(),
             'eventType' => SubmissionEventLogEntry::SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE,
             'userId' => Validation::loggedInAs() ?? Application::get()->getRequest()->getUser()?->getId(),
-            'impersonatedAsUserId' => Validation::loggedInAs() ? Application::get()->getRequest()->getUser()?->getId() : null,
+            'impersonatedUserId' => Validation::loggedInAs() ? Application::get()->getRequest()->getUser()?->getId() : null,
             'message' => 'submission.event.publicationFormatRemoved',
             'isTranslated' => false,
             'dateLogged' => Core::getCurrentDate(),
