@@ -102,3 +102,8 @@ msgstr "An error ocurred while saving the Submission file."
 msgid "plugin.importexport.csv.seriesPathNotFound"
 msgstr "Could not found a series by path \"{$seriesPath}\"."
 
+msgid "plugins.importexport.csv.invalidDateFormat"
+msgstr "Invalid date format for \"{$date}\". Please use YYYY-MM-DD format (e.g., 2024-03-15)."
+
+msgid "plugins.importexport.csv.invalidDate"
+msgstr "Invalid date \"{$date}\". Please provide a valid date in YYYY-MM-DD format."

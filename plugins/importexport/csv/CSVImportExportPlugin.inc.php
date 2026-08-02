@@ -27,6 +27,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 		'title',
 		'abstract',
 		'seriesPath',
+		'datePublished',
 		'year',
 		'isEditedVolume',
 		'locale',
@@ -257,6 +258,12 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 				continue;
 			}
 
+			$reason = $this->_validateDatePublishedFormat($data->datePublished);
+            if ($reason) {
+				$this->_processFailedRow($fields, $reason);
+                continue;
+            }
+
 			$fieldsList = array_pad($fields, $this->_expectedRowSize, null);
 
 			$press = $this->_getCachedPress($data->pressPath);
@@ -406,7 +413,10 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 			// Submission is done.  Create a publication format for it.
 			$publicationFormatId = $this->_processPublicationFormat($submissionId, $publicationId, $extension, $data);
 
-			$this->_processPublicationDate($data->year, $publicationFormatId);
+			// The year field is related to the publication date.
+			if ($data->year) {
+				$this->_processPublicationDate($data->year, $publicationFormatId);
+			}
 
 			// Submission File.
 			$this->_processPublicationFile($data, $submissionId, $filePath, $publicationFormatId, $genreId, $fileId);
@@ -612,6 +622,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	private function _requiredFieldsPresent($row) {
 		 return !!$row->pressPath
 		 	&& !!$row->authorString
+			&& !!$row->datePublished
 			&& !!$row->title
 			&& !!$row->abstract
 			&& !!$row->locale
@@ -751,7 +762,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	/**
 	 * Process initial data for Publication
 	 *
-	 * @param Submission $submissionId
+	 * @param Submission $submission
 	 * @param object $data
 	 * @param Press $press
 	 * @param ?int $pressSeriesId Null if no seriesPath on data object
@@ -767,7 +778,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 		$publication->setData('submissionId', $submission->getId());
 		$publication->setData('version', 1);
 		$publication->setData('status', STATUS_PUBLISHED);
-		$publication->setData('datePublished', Core::getCurrentDate());
+		$publication->setData('datePublished', $data->datePublished);
 		$publication->setData('abstract', $sanitizedAbstract, $locale);
 		$publication->setData('title', $data->title, $locale);
 		$publication->setData('copyrightNotice', $press->getLocalizedData('copyrightNotice', $locale), $locale);
@@ -777,6 +788,16 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 		}
 
 		$publicationDao->insertObject($publication);
+
+		$copyrightHolder = $submission->_getContextLicenseFieldValue(null, PERMISSIONS_FIELD_COPYRIGHT_HOLDER, $publication);
+        $publication->setData('copyrightHolder', $copyrightHolder);
+
+        $copyrightYear = $submission->_getContextLicenseFieldValue(null, PERMISSIONS_FIELD_COPYRIGHT_YEAR, $publication);
+        $publication->setData('copyrightYear', $copyrightYear);
+
+        $licenseUrl = $submission->_getContextLicenseFieldValue(null, PERMISSIONS_FIELD_LICENSE_URL, $publication);
+        $publication->setData('licenseUrl', $licenseUrl);
+		$publicationDao->updateObject($publication);
 
 		// Add this publication as the current one, now that we have its ID
 		$submission->setData('currentPublicationId', $publication->getId());
@@ -986,4 +1007,28 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 		$publicationDao = $this->_getCachedDao('PublicationDAO');
 		$publicationDao->updateObject($publication);
 	}
+
+	/**
+     * Validates whether the datePublished field is in the correct format (YYYY-MM-DD).
+     * Returns the reason if an error occurred, or null if everything is correct.
+	 *
+	 * @param string $datePublished
+	 * @return string|null
+     */
+    public static function _validateDatePublishedFormat($datePublished)
+    {
+        $datePattern = '/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/';
+        if (!preg_match($datePattern, $datePublished)) {
+            return __('plugins.importexport.csv.invalidDateFormat', ['date' => $datePublished]);
+        }
+
+        $dateParts = explode('-', $datePublished);
+        [$year, $month, $day] = $dateParts;
+
+        if (!checkdate((int)$month, (int)$day, (int)$year)) {
+            return __('plugins.importexport.csv.invalidDate', ['date' => $datePublished]);
+        }
+
+        return null;
+    }
 }
