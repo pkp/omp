@@ -1,10 +1,10 @@
-# Matevž Rudolf <matevz.rudolf@uni-lj.si>, 2025.
+# Matevž Rudolf <matevz.rudolf@uni-lj.si>, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:10-08:00\n"
-"PO-Revision-Date: 2025-03-27 11:18+0000\n"
+"PO-Revision-Date: 2026-07-10 17:19+0000\n"
 "Last-Translator: Matevž Rudolf <matevz.rudolf@uni-lj.si>\n"
 "Language-Team: Slovenian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "sl/>\n"
@@ -429,9 +429,11 @@ msgstr ""
 "Dovolite dodelitev digitalnih identifikatorjev objektov (DOI) delom, ki jih "
 "je izdala ta založba."
 
-#, fuzzy
 msgid "doi.manager.settings.doiObjectsRequired"
-msgstr "Izberite objekte, ki jim boste dodelili DOI."
+msgstr ""
+"Izberite vrste publikacij, ki jih objavlja ta založba in ki jim bodo "
+"dodeljeni DOI. Večina založb dodeli DOI monografijam in poglavjem, lahko pa "
+"jih dodelite vsem objavljenim vsebinam."
 
 msgid "doi.manager.settings.doiSuffixLegacy"
 msgstr ""
@@ -592,6 +594,9 @@ msgstr "Število elementov na stran"
 
 msgid "manager.setup.itemsPerPage.description"
 msgstr ""
+"Omejite število elementov (na primer oddanih prispevkov, uporabnikov ali "
+"nalog urejanja), ki jih želite prikazati na seznamu, preden prikažete "
+"naslednje elemente na drugi strani."
 
 msgid "manager.setup.labelName"
 msgstr "Ime oznake"
@@ -630,7 +635,7 @@ msgid "manager.setup.lists"
 msgstr "Seznami"
 
 msgid "manager.setup.lists.success"
-msgstr ""
+msgstr "Nastavitve seznama so bile posodobljene."
 
 msgid "manager.setup.look"
 msgstr "Izgled"
@@ -658,7 +663,7 @@ msgid "manager.setup.managingThePress"
 msgstr "4. korak Upravljanje z nastavitvami"
 
 msgid "manager.setup.masthead.success"
-msgstr ""
+msgstr "Podatki kolofona te založbe so bili posodobljeni."
 
 msgid "manager.setup.noImageFileUploaded"
 msgstr "Naložena ni bila nobena slika."
@@ -693,6 +698,7 @@ msgstr "Število prikazanih strani"
 
 msgid "manager.setup.numPageLinks.description"
 msgstr ""
+"Omejite število povezav, ki se prikažejo na naslednjih straneh na seznamu."
 
 msgid "manager.setup.onlineAccessManagement"
 msgstr "Dostop do vsebine publikacije"
@@ -709,7 +715,7 @@ msgstr ""
 "publikaciji."
 
 msgid "manager.setup.privacyStatement.success"
-msgstr ""
+msgstr "Izjava o zasebnosti je bila posodobljena."
 
 msgid "manager.setup.appearanceDescription"
 msgstr ""
@@ -758,7 +764,7 @@ msgid "manager.setup.contextInitials"
 msgstr "Začetnice založbe"
 
 msgid "manager.setup.selectCountry"
-msgstr ""
+msgstr "Izberite državo, v kateri ima založba oz. izdajatelj sedež."
 
 msgid "manager.setup.layout"
 msgstr "Postavitev spletišča"
@@ -785,10 +791,12 @@ msgid "manager.setup.pressTheme"
 msgstr "Tema publikacije"
 
 msgid "manager.setup.pressThumbnail"
-msgstr ""
+msgstr "Sličica založbe"
 
 msgid "manager.setup.pressThumbnail.description"
 msgstr ""
+"Manjši logotip ali grafična predstavitev založbe za prikaz na seznamih "
+"založb."
 
 msgid "manager.setup.contextTitle"
 msgstr "Ime publikacije"
@@ -876,7 +884,7 @@ msgstr ""
 "oceno od 1 do 5."
 
 msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
-msgstr ""
+msgstr "Omeji dostop do datoteke"
 
 msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
 msgstr ""
@@ -887,13 +895,13 @@ msgid "manager.setup.reviewOptions.reviewerAccess"
 msgstr "Dostop za recenzente"
 
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
-msgstr ""
+msgstr "Dostop recenzenta do recenzij z enim klikom (brez prijave)"
 
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
 msgstr ""
 
 msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
-msgstr ""
+msgstr "Recenzentom v e-poštno vabilo vključite varno povezavo."
 
 msgid "manager.setup.reviewOptions.reviewerRatings"
 msgstr "Ocene recenzentov"
@@ -906,6 +914,8 @@ msgstr "Recenzijska politika"
 
 msgid "manager.setup.searchDescription.description"
 msgstr ""
+"Vnesite kratek opis založbe (50–300 znakov), ki ga lahko spletni iskalniki "
+"prikažejo med rezultati iskanja."
 
 msgid "manager.setup.searchEngineIndexing"
 msgstr "Indeksiranje publikacije za iskalnike"
@@ -917,7 +927,7 @@ msgstr ""
 "\"_blank\">sitemap</a>."
 
 msgid "manager.setup.searchEngineIndexing.success"
-msgstr ""
+msgstr "Nastavitve indeksiranja za iskalnike so bile posodobljene."
 
 msgid "manager.setup.sectionsAndSectionEditors"
 msgstr "Rubrike in uredniki rubrik"
@@ -953,10 +963,10 @@ msgstr ""
 "Vedno pokaži povezavo do celotnega prispevka in opozori na omejen dostop."
 
 msgid "manager.setup.siteAccess.view"
-msgstr ""
+msgstr "Dostopnost spletne strani"
 
 msgid "manager.setup.siteAccess.viewContent"
-msgstr ""
+msgstr "Ogled vsebine monografije"
 
 msgid "manager.setup.stepsToPressSite"
 msgstr "Pet korakov za postavitev spletne strani publikacije"
@@ -1062,9 +1072,14 @@ msgstr ""
 
 msgid "manager.setup.disableSubmissions.notAccepting"
 msgstr ""
+"Založba trenutno ne sprejema prispevkov. Če želite omogočiti oddajo "
+"prispevkov, naj upravljavec ponastavi Delovni tok portala."
 
 msgid "manager.setup.disableSubmissions.description"
 msgstr ""
+"Uporabnikom preprečite oddajanje novih prispevkov . Oddajo prispevkov lahko "
+"za posamezne zbirke založbe onemogočite na strani z nastavitvami <a href=\""
+"{$url}\">zbirke založbe</a>."
 
 msgid "manager.setup.genres"
 msgstr "Žanri"
@@ -1163,43 +1178,49 @@ msgstr ""
 
 msgid "manager.setup.copyrightNotice.sample"
 msgstr ""
-"<h3>predlagani podatki o avtorskih pravicah organizacije Creative Commons</"
-"h3> \n"
-"<h4>predlagana politika za spletišča, ki ponujajo odprt dostop</h4>\n"
-"Avtorji, ki bodo izdajali pri tej založbi, se strinjajo z naslednjimi pogoji:"
+"<h3>Predlagana obvestila o avtorskih pravicah Creative Commons</h3>\n"
+"<h4>Predlagana politika za založbe, ki omogočajo odprti dostop</h4>\n"
+"Avtorji, ki objavljajo pri tej založbi, se strinjajo z naslednjimi pogoji:\n"
+"<ol type=\"a\">\n"
+"\t<li>Avtorji obdržijo avtorske pravice in založbi podelijo pravico do prve "
+"objave, delo pa je hkrati objavljeno pod licenco <a target=\"_blank\" href="
+"\"https://creativecommons.org/licenses/by/3.0\">Creative Commons Attribution "
+"License</a>, ki drugim omogoča deljenje dela ob navedbi avtorja in prvotne "
+"objave pri tej založbi.</li>\n"
+"\t<li>Avtorji lahko sklenejo ločene dodatne pogodbe za neizključno "
+"razširjanje različice dela, objavljene pri tej založbi (npr. jo shranijo v "
+"institucionalni repozitorij ali objavijo v knjigi), pri čemer mora biti "
+"navedeno, da je bilo delo prvotno objavljeno pri tej založbi.</li>\n"
+"\t<li>Avtorjem je dovoljeno in priporočljivo, da svoje delo objavijo na "
+"spletu (npr. v institucionalnih repozitorijih ali na svoji spletni strani) "
+"pred oddajo prispevka in med postopkom oddaje, saj to lahko spodbuja "
+"strokovno izmenjavo ter prispeva k zgodnejšemu in pogostejšemu citiranju "
+"objavljenega dela (glejte <a target=\"_blank\" href=\"https://web-archive."
+"southampton.ac.uk/opcit.eprints.org/oacitation-biblio.html\">The Effect of "
+"Open Access</a>).</li>\n"
+"</ol>\n"
 "\n"
-"<ol type=\"a\"> \n"
-"<li>Avtorji obržijo avtorske pravice in založbi dajo pravico za prvo objavo, "
-"delo pa ima hkrati tudi licenco <a target=\"_blank\" href=\"http"
-"://creativecommons.org/licenses/by/3.0/\"> Creative Commons (priznanje "
-"avtorstva)</a>, ki drugim omogoča, da delo s citiranjem avtorja in prvotne "
-"objave pri tej založbi delijo naprej. </li> <li>Avtorji lahko vstopajo v "
-"dodatna ločena pogodbena razmerja za neekskluzivno distribucijo dela, ki je "
-"bilo prvotno objavljeno pri tej založbi (npr. za hrambo v repozitoriju "
-"institucije ali objavo v knjigi), kar mora biti ob objavi izrecno zapisano. "
-"</li> <li> Avtorjem se dovoli in se jih pri tem podpira, da svoje delo pred "
-"objavo in v procesu oddajanja objavijo na spletu (npr. v institucionalnih "
-"repozitorijih ali na svoji spletni strani), saj to pripelje do koristnih "
-"izmenjav in pa predčasnega in bolj pogostega citiranja dela (Glej <a target="
-"\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\">Učinek "
-"odprtega dostopa</a>).</li> </ol> <h4>Predlagana politika za založbe, ki "
-"ponujajo zakasnjeni odprti dostop</h4> Authors who publish with this press "
-"agree to the following terms: <ol type=\"a\"> <li> Avtorji, ki bodo izdajali "
-"pri tej založbi, se strinjajo z naslednjimi pogoji: <ol type=\"a\"> "
-"<li>Avtorji obržijo avtorske pravice in založbi dajo pravico za prvo objavo "
-"za dobo [določite časovno obdobje], potem ko delo dobi tudi licenco <a "
-"target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0/\"> "
-"Creative Commons (priznanje avtorstva)</a>, ki drugim omogoča, da delo s "
-"citiranjem avtorja in prvotne objave pri tej založbi delijo naprej. </li> "
-"<li>Avtorji lahko vstopajo v dodatna ločena pogodbena razmerja za "
-"neekskluzivno distribucijo dela, ki je bilo prvotno objavljeno pri tej "
-"založbi (npr. za hrambo v repozitoriju institucije ali objavo v knjigi), kar "
-"mora biti ob objavi izrecno zapisano. </li> <li> Avtorjem se dovoli in se "
-"jih pri tem podpira, da svoje delo pred objavo in v procesu oddajanja "
-"objavijo na spletu (npr. v institucionalnih repozitorijih ali na svoji "
-"spletni strani), saj to pripelje do koristnih izmenjav in pa predčasnega in "
-"bolj pogostega citiranja dela (Glej <a target=\"_blank\" href=\"http://opcit."
-"eprints.org/oacitation-biblio.html\">Učinek odprtega dostopa</a>).</li> </ol>"
+"<h4>Predlagana politika za založbe, ki omogočajo zakasnjeni odprti "
+"dostop</h4>\n"
+"Avtorji, ki objavljajo pri tej založbi, se strinjajo z naslednjimi pogoji:\n"
+"<ol type=\"a\">\n"
+"\t<li>Avtorji obdržijo avtorske pravice in založbi podelijo pravico do prve "
+"objave, delo pa je [SPECIFY PERIOD OF TIME] po objavi hkrati objavljeno pod "
+"licenco <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by/3"
+".0\">Creative Commons Attribution License</a>, ki drugim omogoča deljenje "
+"dela ob navedbi avtorja in prvotne objave pri tej založbi.</li>\n"
+"\t<li>Avtorji lahko sklenejo ločene dodatne pogodbe za neizključno "
+"razširjanje različice dela, objavljene pri tej založbi (npr. jo shranijo v "
+"institucionalni repozitorij ali objavijo v knjigi), pri čemer mora biti "
+"navedeno, da je bilo delo prvotno objavljeno pri tej založbi.</li>\n"
+"\t<li>Avtorjem je dovoljeno in priporočljivo, da svoje delo objavijo na "
+"spletu (npr. v institucionalnih repozitorijih ali na svoji spletni strani) "
+"pred oddajo prispevka in med postopkom oddaje, saj to lahko spodbuja "
+"strokovno izmenjavo ter prispeva k zgodnejšemu in pogostejšemu citiranju "
+"objavljenega dela (glejte <a target=\"_blank\" href=\"https://web-archive."
+"southampton.ac.uk/opcit.eprints.org/oacitation-biblio.html\">The Effect of "
+"Open Access</a>).</li>\n"
+"</ol>"
 
 msgid "manager.setup.basicEditorialStepsDescription"
 msgstr ""
@@ -1210,17 +1231,17 @@ msgstr ""
 
 msgid "manager.setup.referenceLinkingDescription"
 msgstr ""
-"<p>Če želite omogočiti bralcem, da najdejo dostop do spletnih različic "
-"virov, ki jih je avtor uporabil, imate naslednje možnosti.</p> \n"
+"<p>Če želite bralcem omogočiti iskanje spletnih različic del, navedenih v "
+"virih, ki jih citira avtor, so na voljo naslednje možnosti.</p>\n"
 "\n"
 "<ol>\n"
-" <li><strong>Dodaj orodje za branje</strong><p>Urednik publikacije lahko "
-"doda \"Poišči referenco\" med orodja za branje, ki so na voljo poleg "
-"publikacije. S tem omogoči bralcu, da skopira naslov citirane literature in "
-"nato išče po predizbranih bazah za citirano delo.</p></li> \n"
-"<li><strong>Spletne povezave citirane literature</strong><p>Grafični urednik "
-"lahko doda povezavo do literature, ki je na voljo na spletu , s pomčjo "
-"naslednjih navodil (ki jih je možno urediti).</p></li> \n"
+"\t<li><strong>Dodaj orodje za branje</strong><p>Upravitelj založbe lahko med "
+"orodja za branje, ki spremljajo objavljena dela, doda možnost »Poišči "
+"reference«. Tako lahko bralci kopirajo naslov citiranega dela in ga poiščejo "
+"v vnaprej izbranih znanstvenih podatkovnih zbirkah.</p></li>\n"
+"<li><strong>Vstavi povezave v seznam virov</strong><p>Grafični urednik lahko "
+"v vire doda povezave do del, ki so dostopna na spletu, po spodnjih navodilih "
+"(ki jih je mogoče urediti).</p></li>\n"
 "\n"
 "</ol>"
 
@@ -1244,7 +1265,7 @@ msgstr ""
 "spodnji gumb."
 
 msgid "manager.setup.resetPermissions.success"
-msgstr ""
+msgstr "Dovoljenja za monografijo so bila uspešno ponastavljena."
 
 msgid "grid.genres.title.short"
 msgstr "Komponente"
@@ -1264,146 +1285,159 @@ msgid "grid.series.pathExists"
 msgstr "Ta naslov zbirke že obstaja. Vnesite edinstveno pot."
 
 msgid "manager.navigationMenus.form.navigationMenuItem.series"
-msgstr ""
+msgstr "Izberi zbirke"
 
 msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
-msgstr ""
+msgstr "Izberite zbirko, na katero naj vodi ta element menija."
 
 msgid "manager.navigationMenus.form.navigationMenuItem.category"
-msgstr ""
+msgstr "Izberi kategorijo"
 
 msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
-msgstr ""
+msgstr "Izberite kategorijo, na katero naj vodi ta element menija."
 
 msgid "grid.series.urlWillBe"
 msgstr "URL zbirke bo {$sampleUrl}"
 
 msgid "stats.contextStats"
-msgstr ""
+msgstr "Statistika založbe"
 
 msgid "stats.context.tooltip.text"
 msgstr ""
+"Število obiskovalcev, ki so si ogledali domačo stran založbe in kataloga."
 
 msgid "stats.context.tooltip.label"
-msgstr ""
+msgstr "O statistiki založbe"
 
 msgid "stats.context.downloadReport.description"
 msgstr ""
+"Prenesite datoteko CSV ali Excel s statistiko uporabe za to založbo glede na "
+"izbrane parametre."
 
 msgid "stats.context.downloadReport.downloadContext.description"
-msgstr ""
+msgstr "Število ogledov domače strani založbe in kataloga."
 
 msgid "stats.context.downloadReport.downloadContext"
-msgstr ""
+msgstr "Prenesi poročila o založbi"
 
 msgid "stats.publications.downloadReport.description"
 msgstr ""
+"Prenesite datoteko CSV ali Excel s statistiko uporabe monografij glede na "
+"izbrane parametre."
 
 msgid "stats.publications.downloadReport.downloadSubmissions"
-msgstr ""
+msgstr "Prenesi poročila o monografijah"
 
 msgid "stats.publications.downloadReport.downloadSubmissions.description"
-msgstr ""
+msgstr "Število ogledov povzetka in prenosov datotek za posamezno monografijo."
 
 msgid "stats.publicationStats"
-msgstr ""
+msgstr "Statistika monografije"
 
 msgid "stats.publications.details"
-msgstr ""
+msgstr "Podrobnost monografije"
 
 msgid "stats.publications.none"
 msgstr ""
+"Ni bilo najdenih monografij s statistiko uporabe, ki bi ustrezala izbranim "
+"parametrom."
 
 msgid "stats.publications.totalAbstractViews.timelineInterval"
-msgstr ""
+msgstr "Skupno število ogledov kataloga po datumih"
 
 msgid "stats.publications.totalGalleyViews.timelineInterval"
-msgstr ""
+msgstr "Skupno število ogledov datotek po datumih"
 
 msgid "stats.publications.countOfTotal"
-msgstr ""
+msgstr "{$count} od {$total} monografij"
 
 msgid "stats.publications.abstracts"
-msgstr ""
+msgstr "Ogledi opisov monografije"
 
 msgid "plugins.importexport.common.error.noObjectsSelected"
-msgstr ""
+msgstr "Noben predmet ni bil izbran."
 
 msgid "plugins.importexport.common.error.validation"
-msgstr ""
+msgstr "Izbranih elementov ni bilo mogoče pretvoriti."
 
 msgid "plugins.importexport.common.invalidXML"
-msgstr ""
+msgstr "Neveljaven XML:"
 
 msgid "plugins.importexport.native.exportSubmissions"
-msgstr ""
+msgstr "Izvozi prispevke"
 
 msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
 msgstr ""
+"Pošlji kopijo potrditvenega e-poštnega sporočila o prejemu prispevka "
+"glavnemu kontaktu te založbe."
 
 msgid ""
 "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled."
 "description"
 msgstr ""
+"Za to založbo ni določen glavni kontakt. Glavni kontakt lahko določite v <a "
+"href=\"{$url}\">nastavitvah založbe</a>."
 
 msgid "plugins.importexport.common.error.unknownObjects"
-msgstr ""
+msgstr "Navedenih elementov ni bilo mogoče najti."
 
 msgid "plugins.importexport.native.error.unknownUser"
-msgstr ""
+msgstr "Navedeni uporabnik »{$userName}« ne obstaja."
 
 msgid "plugins.importexport.publicationformat.exportFailed"
-msgstr ""
+msgstr "Razčlenjevanje oblik objave ni uspelo"
 
 msgid "plugins.importexport.chapter.exportFailed"
-msgstr ""
+msgstr "Razčlenjevanje poglavij ni uspelo"
 
 msgid "emailTemplate.variable.context.contextName"
-msgstr ""
+msgstr "Ime založbe"
 
 msgid "emailTemplate.variable.context.contextUrl"
-msgstr ""
+msgstr "URL domače strani založbe"
 
 msgid "emailTemplate.variable.context.contactName"
-msgstr ""
+msgstr "Ime glavnega kontakta založbe"
 
 msgid "emailTemplate.variable.context.contextSignature"
-msgstr ""
+msgstr "E-poštni podpis založbe za samodejna e-poštna sporočila"
 
 msgid "emailTemplate.variable.context.contactEmail"
-msgstr ""
+msgstr "E-poštni naslov glavnega kontakta založbe"
 
 msgid "emailTemplate.variable.queuedPayment.itemName"
-msgstr ""
+msgstr "Naziv vrste plačila"
 
 msgid "emailTemplate.variable.queuedPayment.itemCost"
-msgstr ""
+msgstr "Znesek plačila"
 
 msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
-msgstr ""
+msgstr "Valuta zneska plačila, na primer EUR"
 
 msgid "emailTemplate.variable.site.siteTitle"
-msgstr ""
+msgstr "Ime spletišča, kadar gostuje več založb"
 
 msgid "mailable.validateEmailContext.name"
-msgstr ""
+msgstr "Preverjanje e-poštnega naslova (registracija založbe)"
 
 msgid "mailable.validateEmailContext.description"
 msgstr ""
+"To e-poštno sporočilo se samodejno pošlje novemu uporabniku ob registraciji "
+"pri založbi, kadar nastavitve zahtevajo preverjanje e-poštnega naslova."
 
 msgid "doi.displayName"
 msgstr "DOI"
 
 msgid "doi.manager.displayName"
-msgstr ""
+msgstr "DOI"
 
 msgid "doi.description"
 msgstr ""
-"Vtičnik omogoča dodeljevanje indentifikatorjev digitalnih objektov "
+"Vtičnik omogoča dodeljevanje identifikatorjev digitalnih objektov "
 "monografijam, formatom publikacij in datotekam v OMP."
 
 msgid "doi.readerDisplayName"
-msgstr ""
+msgstr "DOI:"
 
 msgid "doi.manager.settings.description"
 msgstr ""
@@ -1418,7 +1452,7 @@ msgid "doi.manager.settings.enablePublicationDoi"
 msgstr "Monografije"
 
 msgid "doi.manager.settings.enableChapterDoi"
-msgstr ""
+msgstr "Poglavja"
 
 msgid "doi.manager.settings.enableRepresentationDoi"
 msgstr "Formati publikacij"
@@ -1456,7 +1490,7 @@ msgid "doi.manager.settings.doiSuffixPattern.submissions"
 msgstr "za monografije"
 
 msgid "doi.manager.settings.doiSuffixPattern.chapters"
-msgstr ""
+msgstr "za poglavja"
 
 msgid "doi.manager.settings.doiSuffixPattern.representations"
 msgstr "za formate publikacij"
@@ -1468,7 +1502,7 @@ msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
 msgstr "Vnesite vzorec za pripono DOI za monografije."
 
 msgid "doi.manager.settings.doiChapterSuffixPatternRequired"
-msgstr ""
+msgstr "Vnesite vzorec pripone DOI za poglavja."
 
 msgid "doi.manager.settings.doiRepresentationSuffixPatternRequired"
 msgstr "Vnesite vzorec za pripono DOI za formate publikacij."
@@ -1492,16 +1526,16 @@ msgid "doi.editor.doi"
 msgstr "DOI"
 
 msgid "doi.editor.doi.description"
-msgstr ""
+msgstr "DOI se mora začeti s predpono {$prefix}."
 
 msgid "doi.editor.doi.assignDoi"
-msgstr ""
+msgstr "Dodeli"
 
 msgid "doi.editor.doiObjectTypeSubmission"
 msgstr "monografija"
 
 msgid "doi.editor.doiObjectTypeChapter"
-msgstr ""
+msgstr "poglavje"
 
 msgid "doi.editor.doiObjectTypeRepresentation"
 msgstr "format publikacije"
@@ -1514,6 +1548,8 @@ msgstr "DOI ni mogoče dodeliti, ker spremenjena pripona ni na voljo."
 
 msgid "doi.editor.missingParts"
 msgstr ""
+"DOI ni mogoče ustvariti, ker za enega ali več delov vzorca DOI manjkajo "
+"podatki."
 
 msgid "doi.editor.patternNotResolved"
 msgstr "DOI ni mogoče dodeliti, ker vsebuje nerešen vzorec."
@@ -1544,64 +1580,73 @@ msgid "doi.editor.assignDoi.emptySuffix"
 msgstr "DOI ni mogoče dodeliti, ker spremenjena pripona ni na voljo."
 
 msgid "doi.editor.assignDoi.pattern"
-msgstr "DOI  {$pubId} ni mogoče dodeliti, ker vsebuje nerešen vzorec."
+msgstr "DOI {$pubId} ni mogoče dodeliti, ker vsebuje nerazrešen vzorec."
 
 msgid "doi.editor.assignDoi.assigned"
 msgstr "Odobrili boste DOI {$pubId}."
 
 msgid "doi.editor.missingPrefix"
-msgstr ""
+msgstr "DOI se mora začeti s predpono {$doiPrefix}."
 
 msgid "doi.editor.preview.publication"
-msgstr ""
+msgstr "DOI za to publikacijo bo {$doi}."
 
 msgid "doi.editor.preview.publication.none"
-msgstr ""
+msgstr "Tej publikaciji DOI ni bil dodeljen."
 
 msgid "doi.editor.preview.chapters"
-msgstr ""
+msgstr "Poglavje: {$title}"
 
 msgid "doi.editor.preview.publicationFormats"
-msgstr ""
+msgstr "Format publikacije: {$title}"
 
 msgid "doi.editor.preview.files"
-msgstr ""
+msgstr "Datoteka: {$title}"
 
 msgid "doi.editor.preview.objects"
-msgstr ""
+msgstr "Element"
 
 msgid "doi.manager.submissionDois"
-msgstr ""
+msgstr "DOI-ji monografije"
 
 msgid "mailable.decision.sendInternalReview.notifyAuthor.description"
 msgstr ""
+"To e-poštno sporočilo avtorja obvesti, da je njegov prispevek poslan v fazo "
+"internega pregleda."
 
 msgid "mailable.decision.initialDecline.notifyAuthor.description"
 msgstr ""
+"To e-poštno sporočilo obvesti avtorja, da je njegov prispevek zavrnjen pred "
+"pošiljanjem v recenzijski postopek, ker ne izpolnjuje zahtev založbe za "
+"objavo."
 
 msgid "manager.institutions.noContext"
-msgstr ""
+msgstr "Založbe te ustanove ni bilo mogoče najti."
 
 msgid "manager.manageEmails.description"
-msgstr ""
+msgstr "Uredite sporočila, ki jih ta založba pošilja po e-pošti."
 
 msgid "mailable.decision.sendInternalReview.notifyAuthor.name"
-msgstr ""
+msgstr "Poslano v interni pregled"
 
 msgid "mailable.indexRequest.name"
-msgstr ""
+msgstr "Zahteva za indeksiranje"
 
 msgid "mailable.indexComplete.name"
-msgstr ""
+msgstr "Indeksiranje zaključeno"
 
 msgid "mailable.publicationVersionNotify.name"
-msgstr ""
+msgstr "Ustvarjena je bila nova različica"
 
 msgid "mailable.publicationVersionNotify.description"
 msgstr ""
+"To e-poštno sporočilo samodejno obvesti dodeljene urednike, da je bila "
+"ustvarjena nova različica prispevka."
 
 msgid "mailable.submissionNeedsEditor.description"
 msgstr ""
+"To e-poštno sporočilo se pošlje upraviteljem založbe, kadar je oddan nov "
+"prispevek in ni dodeljen noben urednik."
 
 #~ msgid "manager.people.existingUserRequired"
 #~ msgstr "Vnesen mora biti obstoječi uporabnik"
@@ -1646,3 +1691,33 @@ msgstr ""
 
 msgid "manager.dois.disabledChaptersDescription"
 msgstr "Poglavja brez svoje samostojne strani ne morejo imeti DOI."
+
+msgid "manager.series.form.deactivateSeries"
+msgstr "Označite to zbirko kot neaktivno in ne dovolite novih oddaj vanjo."
+
+msgid "manager.series.form.assignEditors.description"
+msgstr ""
+"Izberite urednike, ki bodo samodejno dodeljeni vsem novim predložitvam v tej "
+"zbirki."
+
+msgid "emailTemplate.variable.context.contextAcronym"
+msgstr "Kratica založbe"
+
+msgid "emailTemplate.variable.statisticsReportNotify.publicationStatsLink"
+msgstr "Povezava do strani s statistiko monografij"
+
+msgid "mailable.layoutComplete.name"
+msgstr "Prelomi dokončani"
+
+msgid "mailable.statisticsReportNotify.description"
+msgstr ""
+"To e-poštno sporočilo se samodejno pošlje vsak mesec urednikom in "
+"upraviteljem založbe ter jim zagotavlja pregled stanja sistema."
+
+msgid "plugins.importexport.common.error.salesRightRequiresTerritory"
+msgstr ""
+"Zapis o pravicah prodaje je bil preskočen, ker mu ni bila dodeljena nobena "
+"država ali regija."
+
+msgid "emailTemplate.variable.context.mailingAddress"
+msgstr "Poštni naslov založbe"

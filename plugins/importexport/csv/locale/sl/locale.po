@@ -1,10 +1,10 @@
-# Matevž Rudolf <matevz.rudolf@uni-lj.si>, 2025.
+# Matevž Rudolf <matevz.rudolf@uni-lj.si>, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-08T17:42:26+00:00\n"
-"PO-Revision-Date: 2025-03-26 14:15+0000\n"
+"PO-Revision-Date: 2026-07-10 17:19+0000\n"
 "Last-Translator: Matevž Rudolf <matevz.rudolf@uni-lj.si>\n"
 "Language-Team: Slovenian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-csv/sl/>\n"
@@ -33,10 +33,11 @@ msgstr ""
 
 msgid "plugins.importexport.csv.cliUsage"
 msgstr ""
-"Orodje ukazne vrstice za vnos podatkov CSV v uporabo OMP: {$scriptName} [--"
-"dry-run] fileName.csv username Možnost --dry-run omogoča testiranje brez "
-"vnašanja sprememb.  Navedite uporabniško ime, ki mu želite dodeliti "
-"prispevek.\n"
+"Orodje ukazne vrstice za uvoz podatkov CSV v OMP\n"
+"\t\t\tUporaba:\n"
+"\t\t\t{$scriptName} [--dry-run] fileName.csv username\n"
+"\t\t\tMožnost --dry-run omogoča preizkus brez uveljavitve sprememb.\n"
+"\t\t\tNavedite uporabniško ime, ki mu želite.\n"
 
 msgid "plugins.importexport.csv.fileDoesNotExist"
 msgstr "Datoteka \"{$filename}\" ne obstaja. Izhod."
