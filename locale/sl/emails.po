@@ -28,7 +28,7 @@ msgstr ""
 "ne bo spremenjeno. Če želite ponastaviti geslo, kliknite spodnjo "
 "povezavo.<br />\n"
 " <br />\n"
-" Ponastavi geslo: {$passwordResetUrl}<br /> \n"
+" Ponastavi geslo: <a href=\"{$passwordResetUrl}\">{$passwordResetUrl}</a><br /> \n"
 "<br />\n"
 " {$siteContactName}"
 
