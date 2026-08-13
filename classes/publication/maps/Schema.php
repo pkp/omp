@@ -25,14 +25,14 @@ use PKP\submissionFile\SubmissionFile;
 class Schema extends \PKP\publication\maps\Schema
 {
     /** @copydoc \PKP\publication\maps\Schema::mapByProperties() */
-    protected function mapByProperties(array $props, Publication $publication, bool $anonymize): array
+    protected function mapByProperties(array $props, Publication $publication, bool $anonymizeAuthors): array
     {
-        $output = parent::mapByProperties($props, $publication, $anonymize);
+        $output = parent::mapByProperties($props, $publication, $anonymizeAuthors);
 
         if (in_array('chapters', $props)) {
-            $output['chapters'] = array_map(function ($chapter) use ($anonymize, $publication) {
+            $output['chapters'] = array_map(function ($chapter) use ($anonymizeAuthors, $publication) {
                 $data = $chapter->_data;
-                if ($anonymize) {
+                if ($anonymizeAuthors) {
                     $data['authors'] = [];
                 } else {
                     $data['authors'] = Repo::author()

@@ -69,9 +69,20 @@ class Schema extends \PKP\submission\maps\Schema
     }
 
     /** @copydoc \PKP\submission\maps\Schema::mapByProperties() */
-    protected function mapByProperties(array $props, Submission $submission, bool|Collection $anonymizeReviews = false): array
+    protected function mapByProperties(array $props, Submission $submission, array $reviewsToAnonymize = [], array $submissionsToAnonymizeByAuthor = []): array
     {
-        $output = parent::mapByProperties(array_diff($props, ['recommendationsIn', 'reviewersNotAssigned', 'reviewRounds', 'revisionsRequested', 'revisionsSubmitted']), $submission, $anonymizeReviews);
+        $output = parent::mapByProperties(
+            array_diff($props, [
+                'recommendationsIn',
+                'reviewersNotAssigned',
+                'reviewRounds',
+                'revisionsRequested',
+                'revisionsSubmitted',
+            ]),
+            $submission,
+            $reviewsToAnonymize,
+            $submissionsToAnonymizeByAuthor
+        );
 
         $locales = $this->context->getSupportedSubmissionMetaDataLocales();
 
