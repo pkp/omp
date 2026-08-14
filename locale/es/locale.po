@@ -1284,11 +1284,13 @@ msgstr ""
 "{$reviewerName} cambió a {$dueDate} la fecha de entrega de la revisión para "
 "envío {$submissionId} de la ronda {$round}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} rechazó la revisión para envío {$submissionId} de la ronda "
 "{$round}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} aceptó la revisión para envío {$submissionId} de la ronda "

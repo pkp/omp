@@ -1247,11 +1247,13 @@ msgstr ""
 "Termín pro kolo č. {$round} recenzního řízení příspěvku č. {$submissionId} "
 "(Recenzent: {$reviewerName}) byl nastaven na datum {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "Recenzent {$reviewerName} odmítl kolo č. {$round} recenzního řízení pro "
 "návrh č. {$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "Recenzent {$reviewerName} odsouhlasil kolo č. {$round} recenzního řízení pro "

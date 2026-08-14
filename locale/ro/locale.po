@@ -1282,11 +1282,13 @@ msgstr ""
 "Data scadentă pentru tura {$round} de revizii de propuneri {$submissionId} "
 "de {$reviewerName} a fost setată la {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} a respins revizia pentru propunerea {$submissionId} din tura "
 "{$round}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} a acceptat tura {$round} de revizii pentru propuneri "

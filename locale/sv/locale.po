@@ -1146,11 +1146,13 @@ msgstr ""
 "Sista datumet för granskningsomgång {$round} för bidrag {$submissionId} av "
 "{$reviewerName} är {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} har nekat granskningsrunda {$round} för bidrag "
 "{$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} har accepterat granskningsrunda {$round} för bidrag "

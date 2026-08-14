@@ -1263,11 +1263,13 @@ msgstr ""
 "Końcowy termin rundy {$round} recenzji zgłoszenia {$submissionId} przez "
 "{$reviewerName} został ustalony na {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} odmówił udziału w rundzie {$round} recenzji dla zgłoszenia "
 "{$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} weźmie udział w rundzie {$round} recenzji dla zgłoszenia "

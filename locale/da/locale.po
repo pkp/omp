@@ -1264,11 +1264,13 @@ msgstr ""
 "Forfaldsdato for runde {$round}-bedømmelsen af indsendelse {$submissionId} "
 "af {$reviewerName} er sat til {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} har afvist runde {$round}-bedømmelsen i forbindelse med "
 "indsendelse {$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} har accepteret runde {$round}-bedømmelsen i forbindelse med "

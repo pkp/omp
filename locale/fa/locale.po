@@ -1164,10 +1164,12 @@ msgstr ""
 "موعد مقرر برای دور {$round} داوری نوشته ارسالی {$submissionId} توسط "
 "{$reviewerName} در تاریخ {$dueDate} تنظیم شد."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} داوری دور {$round} برای مقاله {$submissionId} را رد کرد."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} داوری دور {$round} برای مقاله {$submissionId} را پذیرفت."

@@ -1307,11 +1307,13 @@ msgstr ""
 "Chaidh {$dueDate} a shuidheachadh le {$reviewerName} mar cheann-là "
 "lìbhrigidh airson lèirmheas cuairt {$round} dhen tagradh {$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "Dhiùlt {$userName} lèirmheas cuairt {$round} mu choinneamh tagradh "
 "{$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "Ghabh {$reviewerName} ri lèirmheas cuairt {$round} mu choinneamh tagraidh "

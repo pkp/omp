@@ -1316,11 +1316,13 @@ msgstr ""
 "Batas waktu untuk tinjauan tahap {$round} atas kiriman {$submissionId} oleh "
 "{$reviewerName} telah ditetapkan ke {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} telah menolak tahap peninjauan {$round} untuk submisi "
 "{$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} telah menerima tahap peninjauan {$round} untuk submisi "

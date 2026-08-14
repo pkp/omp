@@ -1286,11 +1286,13 @@ msgstr ""
 "Датумот на достасување за кружниот преглед на {$round} прегледот на "
 "поднесувањето {$submissionId} од {$reviewerName} е поставен на {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} го одби целосниот преглед на {$round} прегледот за "
 "доставување {$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} го прифати целосниот преглед на {$round} прегледот за "

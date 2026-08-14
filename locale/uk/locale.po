@@ -1263,11 +1263,13 @@ msgstr ""
 "Граничним терміном {$round}-го раунду рецензування подання {$submissionId} "
 "рецензентом {$reviewerName} було встановлено {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "Рецензент {$reviewerName} відмовився дати рецензію на {$round}-м раунді "
 "рецензування для подання {$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "Рецензент {$reviewerName} погодився дати рецензію на {$round}-м раунді "

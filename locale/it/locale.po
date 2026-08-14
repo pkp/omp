@@ -1282,11 +1282,13 @@ msgstr ""
 "La data di scadenza per il round {$round} di revisione della proposta "
 "{$submissionId} da parte di {$reviewerName} è stata impostata a {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} ha rifiutato il round {$round} di revisione per la proposta "
 "{$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} ha accettato il round {$round} di revisione della proposta "

@@ -1265,11 +1265,13 @@ msgstr ""
 "A data de entrega da rodada {$round} de avaliação da submissão "
 "{$submissionId} por {$reviewerName} foi definida para {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} recusou realizar a rodada {$round} de avaliação da submissão "
 "{$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} aceitou realizar a rodada {$round} de avaliação da submissão "

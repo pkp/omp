@@ -1104,9 +1104,11 @@ msgstr ""
 msgid "log.review.reviewDueDateSet"
 msgstr ""
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 

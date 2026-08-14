@@ -1265,11 +1265,13 @@ msgstr ""
 "Крайният срок за кръга {$round} преглед (рецензия) на изпратени материали "
 "{$submissionId} от {$reviewerName} е зададен на {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} отказа поканата за кръг {$round} преглед (рецензия) на "
 "изпратени материали {$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} прие поканата за кръг {$round} преглед (рецензия) на "

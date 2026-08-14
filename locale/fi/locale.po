@@ -1266,11 +1266,13 @@ msgstr ""
 "Kierroksen {$round} määräpäivä {$reviewerName}:n arvioinnille "
 "käsikirjoituksesta {$submissionId} on {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} on kieltäytynyt arvioimasta käsikirjoitusta {$submissionId} "
 "kierroksella {$round}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} on suostunut arvioimaan käsikirjoituksen {$submissionId} "
