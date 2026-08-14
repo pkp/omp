@@ -1306,11 +1306,13 @@ msgstr ""
 "Das Abgabedatum für Begutachtungsrunde {$round} von Manuskript "
 "{$submissionId} durch {$reviewerName} wurde auf den {$dueDate} festgesetzt."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} hat es abgelehnt, an der Begutachtungsrunde {$round} für "
 "Manuskript {$submissionId} teilzunehmen."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} hat der Teilnahme an der Begutachtungsrunde {$round} für "

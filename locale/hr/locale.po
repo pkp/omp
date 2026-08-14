@@ -1208,6 +1208,7 @@ msgstr ""
 "Rok za pregled kruga {$round} prijave {$submissionId} od strane "
 "{$reviewerName} postavljen je na {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} je odbio krug {$round} recenzije za prijavu {$submissionId}."
@@ -1245,6 +1246,7 @@ msgstr ""
 "tt> u odgovarajućem uređivaču teksta i zamijenite njegov sadržaj sadržajem "
 "tekstualnog polja ispod.</p>"
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} je prihvatio krug {$round} recenziju za prijavu "

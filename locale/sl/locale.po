@@ -1251,10 +1251,12 @@ msgstr ""
 "Končni datum za {$round} krog recenzije prispevka {$submissionId} recenzenta "
 "{$reviewerName} je bil postavljen na {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} je zavrnil {$round} recenzijo za prispevek {$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} je sprejel {$round}. krog recenzije za prispevek "

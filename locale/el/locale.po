@@ -1270,11 +1270,13 @@ msgstr ""
 "Η ημερομηνία προθεσμίας για τον γύρο αξιολόγησης {$round} της υποβολής "
 "{$monographId} από τον/ην {$reviewerName} έχει οριστεί η {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "Ο/Η {$reviewerName} έχει απορρίψει τον γύρο αξιολόγησης {$round} για την "
 "υποβολή {$monographId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "Ο/Η {$reviewerName} έχει αποδεχτεί τον γύρο αξιολόγησης {$round} για την "

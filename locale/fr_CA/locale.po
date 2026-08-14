@@ -1280,11 +1280,13 @@ msgstr ""
 "La date limite pour la {$round}e série de révisions de la soumission "
 "{$monographId} par {$reviewerName} est {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} n'a pas accepté la {$round}e série de révisions de la "
 "soumission {$monographId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} a accepté la {$round}e série de révisions de la soumission "

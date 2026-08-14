@@ -1260,11 +1260,13 @@ msgstr ""
 "{$reviewerName} tarafından yapılan {$submissionId} gönderinin {$round}. tur "
 "değerlendirmesi için son tarih {$dueDate} olarak belirlendi."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName}, {$submissionId} gönderisi için {$round} tur "
 "değerlendirmesini reddetti."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName}, {$submissionId} gönderisi için {$round} tur "

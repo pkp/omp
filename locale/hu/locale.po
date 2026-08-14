@@ -1290,11 +1290,13 @@ msgstr ""
 "A(z) {$reviewerName} által lektorálandó {$submissionId} számú kézirat "
 "{$round} körének lektorálási határideje megváltozott:  {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} elutasította a {$submissionId} számú kézirat {$round} "
 "körének szakmai lektorálását."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} elfogadta a {$submissionId} számú kézirat {$round} körének "

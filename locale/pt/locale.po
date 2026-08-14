@@ -1256,10 +1256,12 @@ msgstr ""
 "A data prevista para a {$round} ronda de revisão da submissão "
 "{$submissionId} atribuída a {$reviewerName} foi definida para {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} rejeitou a {$round} de revisão da submissão {$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} aceitou a {$round} ronda de revisão da submissão "

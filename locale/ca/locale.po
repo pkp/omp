@@ -1290,11 +1290,13 @@ msgstr ""
 "La data de venciment per a la ronda {$round} de revisió de la tramesa "
 "{$submissionId} feta per {$reviewerName} s'ha enviat a {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} ha rebutjat la ronda {$round} de revisió per a la tramesa "
 "{$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} ha acceptat la ronda {$round} de revisió per a la tramesa "

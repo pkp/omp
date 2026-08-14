@@ -1261,11 +1261,13 @@ msgstr ""
 "Ventet-datoen for vurderingsrunde {$round}  av manuskriptet {$submissionId} "
 "ved {$reviewerName} er satt til {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} har avslått runde {$round} vurdering av manuskript "
 "{$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} har akseptert runde {$round} vurdering av manuskript "

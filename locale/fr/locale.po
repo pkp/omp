@@ -1388,11 +1388,13 @@ msgstr ""
 "sur les prochaines versions, les nouveaux modules et les fonctionnalités "
 "prévues.</p>"
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} a refusé le cycle {$round} d’évaluation de la soumission "
 "{$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} a accepté le cycle {$round} d’évaluation de la soumission "

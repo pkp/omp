@@ -1279,11 +1279,13 @@ msgstr ""
 "материала {$submissionId} рецензентом {$reviewerName} был установлен равным "
 "{$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "Рецензент {$reviewerName} отказался дать рецензию на {$round}-м раунде "
 "рецензирования для материала {$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "Рецензент {$reviewerName} согласился дать рецензию на {$round}-м раунде "

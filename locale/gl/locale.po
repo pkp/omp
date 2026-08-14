@@ -1270,11 +1270,13 @@ msgstr ""
 "A data límite da rolda {$round} de revisión do envío {$submissionId} por "
 "{$reviewerName} estableceuse en {$dueDate}."
 
+#, fuzzy
 msgid "log.review.reviewDeclined"
 msgstr ""
 "{$reviewerName} rexeitou a revisión da rolda {$round} para o envío "
 "{$submissionId}."
 
+#, fuzzy
 msgid "log.review.reviewAccepted"
 msgstr ""
 "{$reviewerName} aceptou a revisión da rolda {$round} para o envío "
