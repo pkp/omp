@@ -222,7 +222,7 @@ class Application extends PKPApplication
      */
     public function hasCustomizableReviewerRecommendation(): bool
     {
-        return true;
+        return false;
     }
 
     /**
