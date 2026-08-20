@@ -227,7 +227,7 @@ describe('Data suite tests', function() {
 		cy.get('.pkpFormField:contains("Email")').find('input').clear().type(submission.authors[0].email);
 		cy.get('div[role=dialog]:contains("Add Contributor")').find('button').contains('Save').click();
 		cy.wait(3000);
-		cy.get('button').contains('Order').click();
+		cy.get('.contributorsListPanel button:contains("Order")').click();
 		cy.wait(3000);
 		cy.get('button:contains("Decrease position of Alvin Finkel")').click();
 		cy.get('button').contains('Save Order').click();
