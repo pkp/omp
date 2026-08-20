@@ -27,3 +27,4 @@ registry/uiLocaleKeysBackend.json
 .env.playwright
 playwright/.auth/
 playwright/test-results/
+playwright/.server-logs/

@@ -75,7 +75,9 @@ function makeTag(scenario, testInfo) {
     return `u4${scenario}ompw${testInfo.parallelIndex}${Math.random().toString(36).slice(2, 8)}`;
 }
 
-test.describe('ORCID integration', () => {
+// Suite disabled 2026-08-20 (maintainer): pending a decision on how ORCID's
+// external communication is handled in tests (mock server vs dead-port proxy).
+test.describe.skip('ORCID integration', () => {
     test('S1: turning ORCID on adds the profile block; off removes it', {tag: '@smoke'}, async ({asUser, ompApi}, testInfo) => {
         const tag = makeTag('s1', testInfo);
         const manager = `mgr${tag}`;
