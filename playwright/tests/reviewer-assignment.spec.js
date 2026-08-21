@@ -183,7 +183,7 @@ test.describe('Reviewer assignment & management (U27)', () => {
     test('S2: the list warns before anonymity breaks', async ({ompApi, asUser}, testInfo) => {
         const tag = makeTag(testInfo, 'u27s2');
         // Scratch press: the lock needs a reviewer who is also a Press
-        // Manager, and no seeded user may gain a role (PRINCIPLES 7).
+        // Manager, and no seeded user may gain a role (PRINCIPLES A7).
         const assigned = `rva${tag}`;
         const lockedMgr = `rvb${tag}`;
         const {manager, seeded} = await seedScratchPress(

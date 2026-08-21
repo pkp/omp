@@ -58,7 +58,7 @@ class UsersAccessPage {
     /**
      * Filter the Current Users list and wait for the list's own response to
      * the full phrase — presence AND absence assertions after this call are
-     * bounded by the filter's response (PRINCIPLES multi-app convention 4).
+     * bounded by the filter's response (PRINCIPLES M4).
      */
     async searchUsers(phrase) {
         const box = this.page.getByRole('searchbox').first();

@@ -51,7 +51,7 @@ async function openAddReviewer(page, modal) {
 /**
  * Run a name search in the Add Reviewer list. The Search component commits
  * on Enter only; the list's own filtered response bounds presence AND
- * absence assertions after this call (PRINCIPLES multi-app convention 4).
+ * absence assertions after this call (PRINCIPLES M4).
  */
 async function searchReviewerList(page, addModal, phrase) {
     const box = addModal.getByRole('searchbox').first();

@@ -11,7 +11,7 @@
  * - Scenario 9 / Rule 16 (Confirm Access): config-gated on
  *   `[security] password_timeout`, which is off in the shared test config.
  *   Turning it on mid-run is a global config edit that hits every parallel
- *   worker (PRINCIPLES design record 9) — declared non-covered rather than
+ *   worker (PRINCIPLES D9) — declared non-covered rather than
  *   covered unsafely.
  * - Rule 5 (session lifetimes / "Keep me logged in" windows), Rule 18
  *   (session_check_ip, Expire User Sessions tool) and the spam checks
