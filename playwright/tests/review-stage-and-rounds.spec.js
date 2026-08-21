@@ -3,7 +3,7 @@
  * @file playwright/tests/review-stage-and-rounds.spec.js
  *
  * U26 — Review stage & rounds, OMP suite (spec:
- * lib/pkp/docs/product/specs/review-stage-and-rounds.md). One test per
+ * lib/pkp/docs/e2e/specs/U26-review-stage-and-rounds.md). One test per
  * canonical scenario the spec runs on a press: common scenarios 1–12 in OMP
  * vocabulary (press, monograph, External Review — glossary substitution)
  * plus OMP-specific scenario 13 (skip-internal entry). Scenario 14 is

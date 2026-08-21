@@ -2,7 +2,7 @@
  * @file playwright/support/app.context.js
  *
  * OMP capability map + seeded-actor roster. Capability names are canonical in
- * lib/pkp/docs/product/APP-GLOSSARY.md §2 — verbatim. OMP splits the four
+ * lib/pkp/docs/e2e/specs/GLOSSARY.md Part II §2 — verbatim. OMP splits the four
  * roster reviewers across its two reviewer groups (julia/paul → External,
  * amara/adam → Internal) and uses series (by path, no abbrev) instead of
  * sections.

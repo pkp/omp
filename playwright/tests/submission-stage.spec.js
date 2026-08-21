@@ -3,7 +3,7 @@
  * @file playwright/tests/submission-stage.spec.js
  *
  * U25 — Submission stage, OMP suite (spec:
- * lib/pkp/docs/product/specs/submission-stage.md). One test per canonical
+ * lib/pkp/docs/e2e/specs/U25-submission-stage.md). One test per canonical
  * scenario a press runs, in OMP vocabulary (press, monograph, series —
  * glossary substitution): common scenarios 1–7 with the press decision
  * roster ("Send to External Review" in place of "Send for Review", plus

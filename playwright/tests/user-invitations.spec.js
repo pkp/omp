@@ -3,7 +3,7 @@
  * @file playwright/tests/user-invitations.spec.js
  *
  * U6 — User invitations, OMP suite (spec:
- * lib/pkp/docs/product/specs/user-invitations.md). One test per canonical
+ * lib/pkp/docs/e2e/specs/U06-user-invitations.md). One test per canonical
  * scenario the spec runs on OMP (common scenarios 1–8, in OMP vocabulary:
  * press, Press Manager, Press Masthead, "Accept And Continue to OMP");
  * scenario 9 is OPS-only.

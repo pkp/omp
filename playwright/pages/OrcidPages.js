@@ -3,7 +3,7 @@
  * @file playwright/pages/OrcidPages.js
  *
  * OMP-local Page Objects and helpers for the ORCID integration feature
- * (spec: lib/pkp/docs/product/specs/orcid-integration.md, read in press
+ * (spec: lib/pkp/docs/e2e/specs/U04-orcid-integration.md, read in press
  * vocabulary per the application glossary).
  *
  * Surfaces:

@@ -3,7 +3,7 @@
  * @file playwright/tests/login-and-sessions.spec.js
  *
  * U1 — Login & sessions, OMP suite (spec:
- * lib/pkp/docs/product/specs/login-and-sessions.md). One test per canonical
+ * lib/pkp/docs/e2e/specs/U01-login-and-sessions.md). One test per canonical
  * scenario the spec runs on a press (common scenarios 1–8, in OMP
  * vocabulary: press, Press Manager, Series Editor — glossary substitution).
  *

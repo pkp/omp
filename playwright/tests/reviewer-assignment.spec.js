@@ -3,7 +3,7 @@
  * @file playwright/tests/reviewer-assignment.spec.js
  *
  * U27 — Reviewer assignment & management, OMP suite (spec:
- * lib/pkp/docs/product/specs/reviewer-assignment-and-management.md). One test
+ * lib/pkp/docs/e2e/specs/U27-reviewer-assignment-and-management.md). One test
  * per canonical scenario the spec runs on a press, in OMP vocabulary (press,
  * monograph, External Review per the glossary; the reviewer roster splits
  * julia/paul → External, amara/adam → Internal): common scenarios 1–12 run on

@@ -10,7 +10,7 @@
  * Mailpit after an explicit queue-worker run, which must never happen while
  * parallel agents seed (patterns.md parallel lesson 7). The spec's
  * scenario 9 is {OJS}-only (review deposits) and does not run on the press.
- * Spec: lib/pkp/docs/product/specs/orcid-integration.md
+ * Spec: lib/pkp/docs/e2e/specs/U04-orcid-integration.md
  *
  * Deliberately NOT covered (one line per omission, citing the register ID):
  * - A8 🐞: S6 asserts the verification-failure explanation, never the
