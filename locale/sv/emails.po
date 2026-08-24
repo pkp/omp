@@ -24,7 +24,7 @@ msgstr ""
 "lösenord kommer då inte att ändras. Om du vill återställa ditt lösenord, "
 "klicka på länken nedan.<br />\n"
 "<br />\n"
-"Återställ mitt lösenord: {$passwordResetUrl}<br />\n"
+"Återställ mitt lösenord: <a href=\"{$passwordResetUrl}\">{$passwordResetUrl}</a><br />\n"
 "<br />\n"
 "{$siteContactName}"
 
