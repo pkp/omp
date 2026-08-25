@@ -25,8 +25,9 @@
  * - A10 (bug): no assertion that viewing changes (or fails to change) a
  *   row's status; S9's "Review Viewed" arrives via Revert Decision, which
  *   Rule 16 owns as contract.
- * - A11/A12 (bugs): S6 asserts the change-notice email arrives — nothing
- *   about the deadlines it reports or its unsubscribe link.
+ * - A11 (retired 2026-08-25, fixed upstream pkp/pkp-lib#13162) / A12 (bug):
+ *   S6 asserts the change-notice email arrives — nothing about the
+ *   deadlines it reports or its unsubscribe link.
  * - A13/A14 (bugs): Email Reviewer is exercised with both fields filled;
  *   the enroll form's spurious "This field is required." is not asserted.
  * - A16 (bug): all date entry is by calendar pick; typed-date behavior is
@@ -442,7 +443,8 @@ test.describe('Reviewer assignment & management (U27)', () => {
         await revPage.keyboard.press('Escape');
 
         // …and their mailbox holds the change notice (its deadline contents
-        // are register finding A11, unasserted).
+        // were register finding A11, retired 2026-08-25 — fixed upstream;
+        // still unasserted).
         await pkpMail.find({
             to: reviewerEmail,
             subject: 'Your review assignment has been changed',
