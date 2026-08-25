@@ -17,7 +17,7 @@
 namespace APP\testing;
 
 use PKP\context\Context;
-use PKP\testing\scenario\PKPSubmissionScenarioBuilder;
+use PKP\testing\PKPSubmissionScenarioBuilder;
 use PKP\testing\Spec;
 use PKP\testing\SpecException;
 
