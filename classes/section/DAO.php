@@ -68,7 +68,7 @@ class DAO extends \PKP\section\DAO
             ->where('path', $path)
             ->when($pressId !== null, fn (Builder $query) => $query->where($this->getParentColumn(), $pressId))
             ->first();
-        return $row ? $this->fromRow($row) : null;
+        return $row ? $this->fromRow($row, [$row->section_id], (object) []) : null;
     }
 
     /**
