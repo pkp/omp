@@ -1,7 +1,7 @@
-# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023, 2024, 2025.
+# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-03-01 13:10+0000\n"
+"PO-Revision-Date: 2026-08-26 13:14+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/submission/cs/"
 ">\n"
@@ -79,7 +79,7 @@ msgid "submission.chapter.pages"
 msgstr "Strany"
 
 msgid "submission.copyedit"
-msgstr "Redakce"
+msgstr "Jazyková redakce"
 
 msgid "submission.publicationFormats"
 msgstr "Publikační formáty"
@@ -201,7 +201,7 @@ msgid "grid.chapters.title"
 msgstr "Kapitoly"
 
 msgid "grid.copyediting.deleteCopyeditorResponse"
-msgstr "Odstranit redigovanou verzi"
+msgstr "Odstranit nahrávku jazykové redakce"
 
 msgid "submission.complete"
 msgstr "Schváleno"
@@ -423,7 +423,7 @@ msgid "publication.required.declined"
 msgstr "Odmítnutý příspěvek nelze zveřejnit."
 
 msgid "publication.required.reviewStage"
-msgstr "Před zveřejněním musí být ve fázi editace nebo produkce."
+msgstr "Před zveřejněním musí být ve fázi jazykové redakce nebo produkce."
 
 msgid "submission.license.description"
 msgstr ""
