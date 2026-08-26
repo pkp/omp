@@ -1,7 +1,7 @@
-# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023.
+# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023, 2026.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-05-26 22:09+0000\n"
+"PO-Revision-Date: 2026-08-26 13:14+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/emails/cs/>\n"
 "Language: cs\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "emails.passwordResetConfirm.subject"
 msgstr "Potvrzení obnovení hesla"
@@ -296,7 +296,7 @@ msgstr ""
 "p><p>{$signature}</p>"
 
 msgid "emails.editorDecisionSkipReview.subject"
-msgstr "Váš příspěvek byl odeslán k copyeditingu"
+msgstr "Váš příspěvek byl odeslán k jazykové redakci"
 
 msgid "emails.editorDecisionSkipReview.body"
 msgstr ""
