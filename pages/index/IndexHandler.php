@@ -147,7 +147,7 @@ class IndexHandler extends PKPIndexHandler
         }
 
         $templateMgr->display('frontend/pages/index.tpl');
-        event(new UsageEvent(Application::ASSOC_TYPE_PRESS, $press));
+        event(new UsageEvent(assocType: Application::ASSOC_TYPE_PRESS, context: $press));
         return;
     }
 }
