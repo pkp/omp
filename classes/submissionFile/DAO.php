@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/submissionFile/DAO.php
  *
@@ -15,6 +16,7 @@ namespace APP\submissionFile;
 
 use APP\facades\Repo;
 use Illuminate\Support\Facades\DB;
+use PKP\core\interfaces\CollectorInterface;
 use PKP\submissionFile\DAO as BaseDAO;
 use PKP\submissionFile\SubmissionFile;
 
@@ -69,9 +71,9 @@ class DAO extends BaseDAO
     /**
      * @copydoc SchemaDAO::fromRow()
      */
-    public function fromRow(object $primaryRow): SubmissionFile
+    public function fromRow(object $row, array $ids, object $cache, ?CollectorInterface $query = null): SubmissionFile
     {
-        $submissionFile = parent::fromRow($primaryRow);
+        $submissionFile = parent::fromRow($row, $ids, $cache, $query);
 
         if (!empty($submissionFile->getData('doiId'))) {
             $submissionFile->setData('doiObject', Repo::doi()->get($submissionFile->getData('doiId')));

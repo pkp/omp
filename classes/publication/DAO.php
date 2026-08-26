@@ -16,6 +16,7 @@ namespace APP\publication;
 
 use APP\core\Application;
 use APP\monograph\ChapterDAO;
+use PKP\core\interfaces\CollectorInterface;
 use PKP\db\DAORegistry;
 
 class DAO extends \PKP\publication\DAO
@@ -44,13 +45,12 @@ class DAO extends \PKP\publication\DAO
     ];
 
     /**
-     * @copydoc SchemaDAO::_fromRow()
+     * @copydoc SchemaDAO::fromRow()
      */
-    public function fromRow(object $primaryRow): Publication
+    public function fromRow(object $row, array $ids, object $cache, ?CollectorInterface $query = null): Publication
     {
-        /** @var ChapterDAO */
-        $chapterDao = DAORegistry::getDAO('ChapterDAO');
-        $publication = parent::fromRow($primaryRow);
+        $publication = parent::fromRow($row, $ids, $cache, $query);
+        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO */
         $publication->setData('publicationFormats', Application::getRepresentationDao()->getByPublicationId($publication->getId()));
         $publication->setData('chapters', $chapterDao->getByPublicationId($publication->getId())->toArray());
         return $publication;

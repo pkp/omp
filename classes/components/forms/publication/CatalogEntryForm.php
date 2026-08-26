@@ -117,7 +117,7 @@ class CatalogEntryForm extends FormComponent
             $this->addField(new FieldAutosuggestPreset('categoryIds', [
                 'groupId' => self::GROUP_PLACEMENT,
                 'label' => __('submission.submit.placement.categories'),
-                'value' => (array) $publication->getData('categoryIds'),
+                'value' => $publication->getData('categoryIds')->toArray(),
                 'description' => __('publication.categories.description') . ($hasAllBreadcrumbs ? '' : ' ' . __('submission.categories.circularReferenceWarning')),
                 'options' => $categoryOptions,
                 'vocabularies' => [
