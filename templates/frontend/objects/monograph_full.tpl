@@ -433,14 +433,14 @@
 			{/if}
 
 			{* Funders *}
-			{if $publication->getData('funders')}
+			{if $monograph->getData('funders')->isNotEmpty()}
 			<section class="item funders" id="funding-data">
 				<h2 class="label">
 					{translate key="submission.funders"}
 				</h2>
 				<div class="value">
 					<ul>
-						{foreach from=$publication->getData('funders') item=funder}
+						{foreach from=$monograph->getData('funders') item=funder}
 							<li>
 								<span class="funder">
 									{$funder->getLocalizedData('name')|escape}

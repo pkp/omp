@@ -176,6 +176,7 @@ class MonographONIX30XmlFilterTest extends PKPTestCase
             ->onlyMethods(['getCurrentPublication'])
             ->getMock();
         $submission->method('getCurrentPublication')->willReturn($publication);
+        $submission->setData('funders', collect());
 
         return $submission;
     }

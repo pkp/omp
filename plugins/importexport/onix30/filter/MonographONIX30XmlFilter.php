@@ -585,7 +585,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
         $websiteNode->appendChild($this->buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', [$submissionBestId])));
 
         /* --- Funders and awards --- */
-        $funders = $publication->getData('funders');
+        $funders = $submission->getData('funders')->toArray();
         if (!empty($funders)) {
             foreach ($funders as $funder) {
                 $funderName = $funder->getLocalizedData('name', $pubLocale);
