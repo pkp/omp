@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-08-26 13:14+0000\n"
+"PO-Revision-Date: 2026-08-27 07:23+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/submission/cs/"
 ">\n"
@@ -399,7 +399,7 @@ msgid "publication.event.scheduled"
 msgstr "Příspěvek byl naplánován k publikaci."
 
 msgid "publication.event.unpublished"
-msgstr "Příspěvek nebyl publikován."
+msgstr "Bylo zrušeno zveřejnění příspěvku."
 
 msgid "publication.event.versionPublished"
 msgstr "Byla vydána nová verze."
