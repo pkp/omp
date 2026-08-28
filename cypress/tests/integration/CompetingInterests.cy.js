@@ -49,8 +49,8 @@ describe('Data suite tests', function() {
 		})
 
 		// There should not be a visible CI statement.
-		cy.get('h3:contains("Reviewer Comments")');
-		cy.get('h3:contains("Competing Interests")').should('not.exist');
+		cy.get('div:contains("Reviewer Comments")');
+		cy.get('div:contains("Competing Interests")').should('not.exist');
 	});
 
 	it('Tests with Competing Interests enabled', function() {
@@ -102,9 +102,12 @@ describe('Data suite tests', function() {
 		})
 
 		// There should be a visible CI statement.
-		cy.get('h3:contains("Reviewer Comments")');
+		cy.get('div:contains("Reviewer Comments")');
 		cy.get('p').contains(competingInterests);
-		cy.get('form[id="readReviewForm"] a.cancelButton').click();
+		cy.get('[data-cy="active-modal"]')
+            .last()
+            .contains('button', 'Cancel')
+            .click({force: true});
 		cy.waitJQuery();
 		cy.logout();
 
@@ -126,7 +129,7 @@ describe('Data suite tests', function() {
 		cy.contains('table tr', 'Al Zacharia').within(() => {
 			cy.get('button').contains("Read Review").click()
 		})
-		cy.get('h3:contains("Reviewer Comments")');
+		cy.get('div:contains("Reviewer Comments")');
 		cy.get('p').contains(competingInterests);
 	});
 });
