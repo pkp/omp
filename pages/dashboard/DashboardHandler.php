@@ -3,8 +3,8 @@
 /**
  * @file pages/dashboard/DashboardHandler.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2003-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class DashboardHandler
@@ -70,6 +70,8 @@ class DashboardHandler extends PKPDashboardHandler
             'DECISION_REVERT_INTERNAL_DECLINE' => Decision::REVERT_INTERNAL_DECLINE,
             'DECISION_NEW_INTERNAL_ROUND' => Decision::NEW_INTERNAL_ROUND,
             'DECISION_CANCEL_INTERNAL_REVIEW_ROUND' => Decision::CANCEL_INTERNAL_REVIEW_ROUND,
+            'DECISION_WITHDRAW_INTERNAL_REVIEW' => Decision::WITHDRAW_INTERNAL_REVIEW,
+            'DECISION_REVERT_WITHDRAW_INTERNAL_REVIEW' => Decision::REVERT_WITHDRAW_INTERNAL_REVIEW,
 
             'SUBMISSION_FILE_INTERNAL_REVIEW_FILE' => SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_FILE,
             'SUBMISSION_FILE_INTERNAL_REVIEW_REVISION' => SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_REVISION,
