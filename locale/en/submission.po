@@ -190,6 +190,12 @@ msgstr "Submit in my role as..."
 msgid "submission.submit.noContext"
 msgstr "This submission's press could not be found."
 
+msgid "submission.dashboard.view.withdrawn"
+msgstr "Withdrawn"
+
+msgid "submissions.withdrawn"
+msgstr "Withdrawn"
+
 msgid "grid.chapters.title"
 msgstr "Chapters"
 
@@ -553,6 +559,45 @@ msgstr ""
 
 msgid "editor.submission.decision.promoteFiles.externalReview"
 msgstr "Select files that should be sent to the review stage."
+
+msgid "editor.submission.decision.withdraw"
+msgstr "Withdraw Submission"
+
+msgid "editor.submission.decision.withdraw.description"
+msgstr "Withdraw this submission from consideration."
+
+msgid "editor.submission.decision.withdraw.log"
+msgstr "The submission was withdrawn."
+
+msgid "editor.submission.decision.withdraw.completed"
+msgstr "Submission Withdrawn"
+
+msgid "editor.submission.decision.withdraw.completed.description"
+msgstr "The submission \"{$title}\" has been withdrawn."
+
+msgid "editor.submission.decision.withdraw.errorPublished"
+msgstr "This submission cannot be withdrawn because it has already been published."
+
+msgid "editor.submission.decision.withdraw.notifyAuthorsDescription"
+msgstr "Send an email to notify the author(s) that their submission has been withdrawn."
+
+msgid "editor.submission.decision.revertWithdraw"
+msgstr "Revert Withdrawal"
+
+msgid "editor.submission.decision.revertWithdraw.description"
+msgstr "Return this submission to the active queue."
+
+msgid "editor.submission.decision.revertWithdraw.log"
+msgstr "The withdrawal of the submission was reverted."
+
+msgid "editor.submission.decision.revertWithdraw.completed"
+msgstr "Withdrawal Reverted"
+
+msgid "editor.submission.decision.revertWithdraw.completed.description"
+msgstr "The withdrawal of \"{$title}\" has been reverted. The submission has been returned to the active queue."
+
+msgid "editor.submission.decision.revertWithdraw.notifyAuthorsDescription"
+msgstr "Send an email to notify the author(s) that the withdrawal of their submission has been reverted."
 
 msgid "editor.submission.recommend.sendExternalReview"
 msgstr "Recommend Send to External Review"

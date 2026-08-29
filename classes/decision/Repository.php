@@ -3,8 +3,8 @@
 /**
  * @file classes/decision/Repository.php
  *
- * Copyright (c) 2014-2022 Simon Fraser University
- * Copyright (c) 2000-2022 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2000-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Repository
@@ -25,9 +25,11 @@ use APP\decision\types\RecommendRevisionsInternal;
 use APP\decision\types\RecommendSendExternalReview;
 use APP\decision\types\RequestRevisionsInternal;
 use APP\decision\types\RevertDeclineInternal;
+use APP\decision\types\RevertWithdrawInInternalReview;
 use APP\decision\types\SendExternalReview;
 use APP\decision\types\SendInternalReview;
 use APP\decision\types\SkipInternalReview;
+use APP\decision\types\WithdrawInInternalReview;
 use Illuminate\Database\Eloquent\Collection;
 use PKP\decision\types\Accept;
 use PKP\decision\types\BackFromCopyediting;
@@ -47,8 +49,16 @@ use PKP\decision\types\ReturnToDone;
 use PKP\decision\types\ReturnToWorkflow;
 use PKP\decision\types\RevertDecline;
 use PKP\decision\types\RevertInitialDecline;
+use PKP\decision\types\RevertWithdraw;
+use PKP\decision\types\RevertWithdrawInCopyediting;
+use PKP\decision\types\RevertWithdrawInProduction;
+use PKP\decision\types\RevertWithdrawInReview;
 use PKP\decision\types\SendToProduction;
 use PKP\decision\types\SkipExternalReview;
+use PKP\decision\types\Withdraw;
+use PKP\decision\types\WithdrawInCopyediting;
+use PKP\decision\types\WithdrawInProduction;
+use PKP\decision\types\WithdrawInReview;
 use PKP\notification\Notification;
 use PKP\plugins\Hook;
 
@@ -83,6 +93,11 @@ class Repository extends \PKP\decision\Repository
                 new RevertDecline(),
                 new RevertDeclineInternal(),
                 new RevertInitialDecline(),
+                new RevertWithdraw(),
+                new RevertWithdrawInReview(),
+                new RevertWithdrawInCopyediting(),
+                new RevertWithdrawInProduction(),
+                new RevertWithdrawInInternalReview(),
                 new SendExternalReview(),
                 new SendInternalReview(),
                 new SendToProduction(),
@@ -95,6 +110,11 @@ class Repository extends \PKP\decision\Repository
                 new MoveToDone(),
                 new ReturnToWorkflow(),
                 new ReturnToDone(),
+                new Withdraw(),
+                new WithdrawInReview(),
+                new WithdrawInCopyediting(),
+                new WithdrawInProduction(),
+                new WithdrawInInternalReview(),
             ]);
             Hook::call('Decision::types', [$decisionTypes]);
             $this->decisionTypes = $decisionTypes;
