@@ -1,9 +1,10 @@
 <?php
+
 /**
  * @file classes/services/StatsEditorialService.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2000-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class StatsEditorialService
@@ -50,6 +51,17 @@ class StatsEditorialService extends \PKP\services\PKPStatsEditorialService
             Decision::DECLINE,
             Decision::INITIAL_DECLINE,
             Decision::DECLINE_INTERNAL,
+        ];
+    }
+
+    protected function getWithdrawnDecisions(): array
+    {
+        return [
+            Decision::WITHDRAW,
+            Decision::WITHDRAW_REVIEW,
+            Decision::WITHDRAW_COPYEDITING,
+            Decision::WITHDRAW_PRODUCTION,
+            Decision::WITHDRAW_INTERNAL_REVIEW,
         ];
     }
 }

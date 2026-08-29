@@ -3,8 +3,8 @@
 /**
  * @file classes/submission/maps/Schema.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2000-2020 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2000-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Schema
@@ -22,9 +22,11 @@ use APP\decision\types\DeclineInternal;
 use APP\decision\types\NewInternalReviewRound;
 use APP\decision\types\RequestRevisionsInternal;
 use APP\decision\types\RevertDeclineInternal;
+use APP\decision\types\RevertWithdrawInInternalReview;
 use APP\decision\types\SendExternalReview;
 use APP\decision\types\SendInternalReview;
 use APP\decision\types\SkipInternalReview;
+use APP\decision\types\WithdrawInInternalReview;
 use APP\facades\Repo;
 use APP\press\FeatureDAO;
 use APP\press\NewReleaseDAO;
@@ -46,8 +48,16 @@ use PKP\decision\types\ReturnToDone;
 use PKP\decision\types\ReturnToWorkflow;
 use PKP\decision\types\RevertDecline;
 use PKP\decision\types\RevertInitialDecline;
+use PKP\decision\types\RevertWithdraw;
+use PKP\decision\types\RevertWithdrawInCopyediting;
+use PKP\decision\types\RevertWithdrawInProduction;
+use PKP\decision\types\RevertWithdrawInReview;
 use PKP\decision\types\SendToProduction;
 use PKP\decision\types\SkipExternalReview;
+use PKP\decision\types\Withdraw;
+use PKP\decision\types\WithdrawInCopyediting;
+use PKP\decision\types\WithdrawInProduction;
+use PKP\decision\types\WithdrawInReview;
 use PKP\plugins\Hook;
 use PKP\security\Role;
 use PKP\stageAssignment\StageAssignment;
@@ -203,13 +213,15 @@ class Schema extends \PKP\submission\maps\Schema
                         new SkipExternalReview(),
                     ];
 
-                    if ($submission->getData('status') === Submission::STATUS_DECLINED) {
+                    if ($submission->getData('status') === Submission::STATUS_WITHDRAWN) {
+                        $decisionTypes = [new RevertWithdraw()];
+                    } elseif ($submission->getData('status') === Submission::STATUS_DECLINED) {
                         // when the submission is declined, allow only reverting declined status
                         $decisionTypes = [new RevertInitialDecline()];
                     } elseif ($submission->getData('status') === Submission::STATUS_QUEUED) {
                         $decisionTypes[] = new InitialDecline();
                         $decisionTypes[] = new SendInternalReview();
-
+                        $decisionTypes[] = new Withdraw();
                     }
                     break;
                 case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
@@ -226,11 +238,14 @@ class Schema extends \PKP\submission\maps\Schema
                         $decisionTypes[] = $cancelInternalReviewRound;
                     }
 
-                    if ($submission->getData('status') === Submission::STATUS_DECLINED) {
+                    if ($submission->getData('status') === Submission::STATUS_WITHDRAWN) {
+                        $decisionTypes = [new RevertWithdrawInInternalReview()];
+                    } elseif ($submission->getData('status') === Submission::STATUS_DECLINED) {
                         // when the submission is declined, allow only reverting declined status
                         $decisionTypes = [new RevertDeclineInternal()];
                     } elseif ($submission->getData('status') === Submission::STATUS_QUEUED) {
                         $decisionTypes[] = new DeclineInternal();
+                        $decisionTypes[] = new WithdrawInInternalReview();
                     }
                     break;
                 case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
@@ -246,11 +261,14 @@ class Schema extends \PKP\submission\maps\Schema
                     if ($cancelReviewRound->canRetract($submission, $reviewRound->getId())) {
                         $decisionTypes[] = $cancelReviewRound;
                     }
-                    if ($submission->getData('status') === Submission::STATUS_DECLINED) {
+                    if ($submission->getData('status') === Submission::STATUS_WITHDRAWN) {
+                        $decisionTypes = [new RevertWithdrawInReview()];
+                    } elseif ($submission->getData('status') === Submission::STATUS_DECLINED) {
                         // when the submission is declined, allow only reverting declined status
                         $decisionTypes = [new RevertDecline()];
                     } elseif ($submission->getData('status') === Submission::STATUS_QUEUED) {
                         $decisionTypes[] = new Decline();
+                        $decisionTypes[] = new WithdrawInReview();
                     }
                     break;
                 case WORKFLOW_STAGE_ID_EDITING:
@@ -258,9 +276,19 @@ class Schema extends \PKP\submission\maps\Schema
                         new SendToProduction(),
                         new BackFromCopyediting(),
                     ];
+                    if ($submission->getData('status') === Submission::STATUS_WITHDRAWN) {
+                        $decisionTypes = [new RevertWithdrawInCopyediting()];
+                    } elseif ($submission->getData('status') === Submission::STATUS_QUEUED) {
+                        $decisionTypes[] = new WithdrawInCopyediting();
+                    }
                     break;
                 case WORKFLOW_STAGE_ID_PRODUCTION:
                     $decisionTypes[] = new BackFromProduction();
+                    if ($submission->getData('status') === Submission::STATUS_WITHDRAWN) {
+                        $decisionTypes = [new RevertWithdrawInProduction()];
+                    } elseif ($submission->getData('status') === Submission::STATUS_QUEUED) {
+                        $decisionTypes[] = new WithdrawInProduction();
+                    }
                     break;
                 case WORKFLOW_STAGE_ID_DONE:
                     $decisionTypes = [new ReturnToWorkflow()];
