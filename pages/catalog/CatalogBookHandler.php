@@ -348,9 +348,20 @@ class CatalogBookHandler extends Handler
         if (!Hook::call('CatalogBookHandler::book', [&$request, &$submission, &$this->publication, &$this->chapter])) {
             $templateMgr->display('frontend/pages/book.tpl');
             if ($this->isChapterRequest) {
-                event(new UsageEvent(Application::ASSOC_TYPE_CHAPTER, $request->getContext(), $submission, null, null, $this->chapter));
+                event(new UsageEvent(
+                    assocType: Application::ASSOC_TYPE_CHAPTER,
+                    context: $request->getContext(),
+                    submission: $submission,
+                    chapter: $this->chapter,
+                    publication: $this->publication,
+                ));
             } else {
-                event(new UsageEvent(Application::ASSOC_TYPE_SUBMISSION, $request->getContext(), $submission));
+                event(new UsageEvent(
+                    assocType: Application::ASSOC_TYPE_SUBMISSION,
+                    context: $request->getContext(),
+                    submission: $submission,
+                    publication: $this->publication,
+                ));
             }
             return;
         }
@@ -512,7 +523,15 @@ class CatalogBookHandler extends Handler
                 if ($genre->getCategory() != Genre::GENRE_CATEGORY_DOCUMENT || $genre->getSupplementary() || $genre->getDependent()) {
                     $assocType = Application::ASSOC_TYPE_SUBMISSION_FILE_COUNTER_OTHER;
                 }
-                event(new UsageEvent($assocType, $request->getContext(), $submission, $publicationFormat, $submissionFile, $chapter));
+                event(new UsageEvent(
+                    assocType: $assocType,
+                    context: $request->getContext(),
+                    submission: $submission,
+                    publicationFormat: $publicationFormat,
+                    submissionFile: $submissionFile,
+                    chapter: $chapter,
+                    publication: $this->publication,
+                ));
             }
             $returner = true;
             Hook::call('FileManager::downloadFileFinished', [&$returner]);

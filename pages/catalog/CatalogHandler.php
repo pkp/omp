@@ -109,7 +109,7 @@ class CatalogHandler extends PKPCatalogHandler
         ]);
 
         $templateMgr->display('frontend/pages/catalog.tpl');
-        event(new UsageEvent(Application::ASSOC_TYPE_PRESS, $context));
+        event(new UsageEvent(assocType: Application::ASSOC_TYPE_PRESS, context: $context));
         return;
     }
 
@@ -200,7 +200,7 @@ class CatalogHandler extends PKPCatalogHandler
         ]);
 
         $templateMgr->display('frontend/pages/catalogSeries.tpl');
-        event(new UsageEvent(Application::ASSOC_TYPE_SERIES, $context, null, null, null, null, $series));
+        event(new UsageEvent(assocType: Application::ASSOC_TYPE_SERIES, context: $context, series: $series));
     }
 
     /**
