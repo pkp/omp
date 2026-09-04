@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2023, 2026.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-09-04 06:59+0000\n"
+"PO-Revision-Date: 2026-09-05 08:59+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-native/cs/>\n"
@@ -41,8 +41,8 @@ msgstr "Import byl úspěšně dokončen. Byly importovány následující polo�
 
 msgid "plugins.importexport.native.onix30.pressMissingFields"
 msgstr ""
-"V nakladatelství je potřeba vyplnit nějaké chybějící informace pro ONIX "
-"metadata. Prosím, jděte do<a href=\"{$url}\">Nastavení tisku</a> a vyplňte "
+"V nakladatelství je potřeba doplnit chybějící informace pro ONIX metadata. "
+"Prosím, jděte do<a href=\"{$url}\">Nastavení nakladateství</a> a vyplňte "
 "chybějící podrobnosti."
 
 msgid "plugins.importexport.native.error.unknownSeries"
