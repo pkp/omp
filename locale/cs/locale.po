@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-08-27 07:23+0000\n"
+"PO-Revision-Date: 2026-09-04 06:59+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/locale/cs/>\n"
 "Language: cs\n"
@@ -454,7 +454,7 @@ msgid "grid.action.manageCategories"
 msgstr "Nastavit kategorie tohoto nakladatelství"
 
 msgid "grid.action.manageSeries"
-msgstr "Nastavit edice tohoto nakladatelství"
+msgstr "Nastavit ediční řady tohoto nakladatelství"
 
 msgid "grid.action.addCode"
 msgstr "Přidat identifikační kód"
@@ -523,10 +523,10 @@ msgid "grid.reviewAttachments.availableFiles"
 msgstr "Dostupné soubory"
 
 msgid "series.series"
-msgstr "Edice"
+msgstr "Ediční řada"
 
 msgid "series.featured.description"
-msgstr "Tato edice se zobrazí v hlavní nabídce"
+msgstr "Tato ediční řada se zobrazí v hlavní nabídce"
 
 msgid "series.path"
 msgstr "Cesta"
@@ -535,13 +535,13 @@ msgid "catalog.manage"
 msgstr "Správa katalogu"
 
 msgid "catalog.manage.newReleases"
-msgstr "Novinky"
+msgstr "Nové tituly"
 
 msgid "catalog.manage.category"
 msgstr "Kategorie"
 
 msgid "catalog.manage.series"
-msgstr "Edice"
+msgstr "Ediční řada"
 
 msgid "catalog.manage.series.issn"
 msgstr "ISSN"
@@ -559,7 +559,7 @@ msgid "catalog.manage.series.printIssn"
 msgstr "ISSN tisk"
 
 msgid "catalog.selectSeries"
-msgstr "Vybrat edici"
+msgstr "Vybrat ediční řadu"
 
 msgid "catalog.selectCategory"
 msgstr "Vybrat kategorii"
@@ -578,10 +578,10 @@ msgstr ""
 
 msgid "catalog.manage.seriesDescription"
 msgstr ""
-"Klikněte na \"Důležité\". Hvězdičkou označíte danou knihu jako důležitou v "
-"rámci její kategorie. Kliknutím a tažením můžete měnit pořadí. Edice se "
-"vyznačují tím, že je spravuje jeden editor a že mají společný název řady - "
-"buď v rámci kategorie nebo nezávisle."
+"Klikněte na „Vybrat“ a poté na hvězdičku, abyste vybrali doporučenou knihu "
+"pro tuto ediční řadu; pořadí určete přetažením. Ediční řady jsou označeny "
+"jménem redaktora (redaktorů) a názvem ediční řady, a to buď v rámci "
+"kategorie, nebo samostatně."
 
 msgid "catalog.manage.placeIntoCarousel"
 msgstr "Kolotoč"
@@ -590,7 +590,7 @@ msgid "catalog.manage.newRelease"
 msgstr "Publikace"
 
 msgid "catalog.manage.manageSeries"
-msgstr "Spravovat edice"
+msgstr "Spravovat ediční řady"
 
 msgid "catalog.manage.manageCategories"
 msgstr "Spravovat kategorie"
@@ -605,7 +605,7 @@ msgid "catalog.manage.categoryFeatured"
 msgstr "Doporučené v kategorii"
 
 msgid "catalog.manage.seriesFeatured"
-msgstr "Doporučené v edici"
+msgstr "Doporučené v ediční řadě"
 
 msgid "catalog.manage.featuredSuccess"
 msgstr "Monografie je doporučená."
@@ -620,13 +620,13 @@ msgid "catalog.manage.notNewReleaseSuccess"
 msgstr "Monografie již není označena jako novinka."
 
 msgid "catalog.manage.feature.newRelease"
-msgstr "Novinka"
+msgstr "Nové tituly"
 
 msgid "catalog.manage.feature.categoryNewRelease"
 msgstr "Novinka v kategorii"
 
 msgid "catalog.manage.feature.seriesNewRelease"
-msgstr "Novinka v edici"
+msgstr "Novinka v ediční řadě"
 
 msgid "catalog.manage.nonOrderable"
 msgstr ""
@@ -685,7 +685,7 @@ msgid "catalog.category.heading"
 msgstr "Všechny knihy"
 
 msgid "catalog.newReleases"
-msgstr "Novinky"
+msgstr "Nové tituly"
 
 msgid "catalog.dateAdded"
 msgstr "Přidáno"
@@ -721,7 +721,7 @@ msgid "catalog.sortBy"
 msgstr "Řazení monografií"
 
 msgid "catalog.sortBy.seriesDescription"
-msgstr "Vyberte jak se budou řadit monografie v edicích."
+msgstr "Vyberte, jak se budou řadit monografie v ediční řadě."
 
 msgid "catalog.sortBy.categoryDescription"
 msgstr "Vyberte jak se budou řadit monografie v kategoriích."
@@ -730,10 +730,10 @@ msgid "catalog.sortBy.catalogDescription"
 msgstr "Vyberte jak se budou řadit monografie v katalogu."
 
 msgid "catalog.sortBy.seriesPositionAsc"
-msgstr "Pozice v edici (od nejnižší)"
+msgstr "Pozice v ediční řadě (od nejnižší)"
 
 msgid "catalog.sortBy.seriesPositionDesc"
-msgstr "Pozice v edici (od nejvyšší)"
+msgstr "Pozice v ediční řadě (od nejvyšší)"
 
 msgid "catalog.viewableFile.title"
 msgstr "{$type} prohlížení souboru {$title}"
@@ -805,7 +805,7 @@ msgid "navigation.catalog.administration.categories"
 msgstr "Kategorie"
 
 msgid "navigation.catalog.administration.series"
-msgstr "Edice"
+msgstr "Ediční řada"
 
 msgid "navigation.infoForAuthors"
 msgstr "Pro autory"
@@ -835,10 +835,10 @@ msgid "navigation.navigationMenus.catalog.description"
 msgstr "Odkázat do katalogu."
 
 msgid "navigation.navigationMenus.series.generic"
-msgstr "Edice"
+msgstr "Ediční řada"
 
 msgid "navigation.navigationMenus.series.description"
-msgstr "Odkázat do edice."
+msgstr "Odkaz do ediční řady."
 
 msgid "navigation.navigationMenus.category.generic"
 msgstr "Kategorie"
@@ -847,10 +847,10 @@ msgid "navigation.navigationMenus.category.description"
 msgstr "Odkázat do kategorie."
 
 msgid "navigation.navigationMenus.newRelease"
-msgstr "Novinky"
+msgstr "Nové tituly"
 
 msgid "navigation.navigationMenus.newRelease.description"
-msgstr "Odkázat do novinek."
+msgstr "Odkázat na nové tituly."
 
 msgid "context.contexts"
 msgstr "Nakladatelství"
@@ -911,7 +911,7 @@ msgid "user.role.pressEditor"
 msgstr "Vedoucí editor/ka"
 
 msgid "user.role.subEditor"
-msgstr "Odpovědný redaktor/ka"
+msgstr "Redaktor ediční řady"
 
 msgid "user.role.copyeditor"
 msgstr "Jazykový redaktor/ka"
@@ -926,7 +926,7 @@ msgid "user.role.managers"
 msgstr "Vedoucí vydavatelství"
 
 msgid "user.role.subEditors"
-msgstr "Odpovědní redaktoři"
+msgstr "Redaktoři ediční řady"
 
 msgid "user.role.editors"
 msgstr "Editoři"
@@ -1001,7 +1001,7 @@ msgid "about.focusAndScope"
 msgstr "Zaměření a oblast působnosti"
 
 msgid "about.seriesPolicies"
-msgstr "Zásady pro edice a kategorie"
+msgstr "Zásady pro ediční řady a kategorie"
 
 msgid "about.submissions"
 msgstr "Příspěvky"
@@ -1445,8 +1445,8 @@ msgstr "Žádné nakladatelství neodpovídá vašemu požadavku."
 
 msgid "user.authorization.seriesAssignment"
 msgstr ""
-"Pokoušíte se získat přístup k monografii, která není součástí edice, jíž "
-"spravujete."
+"Pokoušíte se získat přístup k monografii, která není součástí ediční řady, "
+"kterou spravujete."
 
 msgid "user.authorization.workflowStageAssignmentMissing"
 msgstr ""
@@ -1580,7 +1580,7 @@ msgstr "Sestupně"
 #~ msgstr "Seznam měn \"{$filename}\" načtený z XML"
 
 msgid "section.section"
-msgstr "Edice"
+msgstr "Ediční řada"
 
 msgid "search.cli.rebuildIndex.indexingByPressNotSupported"
 msgstr ""
