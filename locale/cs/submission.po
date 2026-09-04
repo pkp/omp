@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-08-27 07:23+0000\n"
+"PO-Revision-Date: 2026-09-04 06:59+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/submission/cs/"
 ">\n"
@@ -139,7 +139,7 @@ msgid "author.isVolumeEditor"
 msgstr "Určit připěvatele jako editora sborníku."
 
 msgid "submission.submit.seriesPosition"
-msgstr "Číslo svazku v edici"
+msgstr "Číslo svazku v ediční řadě"
 
 msgid "submission.submit.seriesPosition.description"
 msgstr "např. Kniha 2, Sborník 2"
@@ -303,7 +303,7 @@ msgstr ""
 "Core, který je využíván k popisu obsahu nakladatelství."
 
 msgid "section.any"
-msgstr "Libovolná edice"
+msgstr "Libovolná ediční řada"
 
 msgid "submission.list.monographs"
 msgstr "Monografie"
@@ -343,7 +343,7 @@ msgid "publication.catalogEntry.success"
 msgstr "Detaily příspěvku byly aktualizovány."
 
 msgid "publication.invalidSeries"
-msgstr "Edice publikace nebyla nalezena."
+msgstr "Nelze nalézt ediční řadu pro tuto publikaci."
 
 msgid "publication.inactiveSeries"
 msgstr "{$series} (Neaktivní)"
@@ -488,8 +488,8 @@ msgstr "Odeslat k interní recenzi"
 
 msgid "editor.submission.decision.sendInternalReview.completed.description"
 msgstr ""
-"Příspěvek, {$title}, byl odeslán k interní recenzi. Pokud jste nezadali "
-"„neodeslat email autorovi“, tak bude autor upozorněn."
+"Příspěvek, {$title}, byl odeslán k interní recenzi. Pokud jste nezadali „"
+"neodeslat e-mail autorovi“, tak bude autor upozorněn."
 
 msgid "editor.submission.decision.sendInternalReview.notifyAuthorsDescription"
 msgstr ""
@@ -583,15 +583,15 @@ msgstr ""
 
 msgid "submission.wizard.sectionClosed.message"
 msgstr ""
-"{$contextName} nepřijímá příspěvky do seriálu {$section}. Pokud potřebujete "
-"pomoc s obnovou svého příspěvku, obraťte se na <a href='mailto:"
-"{$email}'>{$name}</a>."
+"{$contextName} nepřijímá příspěvky do ediční řady {$section}. Pokud "
+"potřebujete pomoc s obnovou svého příspěvku, obraťte se na <a "
+"href='mailto:{$email}'>{$name}</a>."
 
 msgid "submission.sectionNotFound"
-msgstr "Sérii pro tento příspěvek se nepodařilo najít."
+msgstr "Ediční řadu pro tento příspěvek se nepodařilo najít."
 
 msgid "submission.sectionRestrictedToEditors"
-msgstr "Do této série mohou přispívat pouze redaktoři."
+msgstr "Do této ediční řady mohou přispívat pouze redaktoři."
 
 msgid "submission.wizard.submitting.monograph"
 msgstr "Odeslání <strong>monografie</strong>."
