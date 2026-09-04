@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-09-04 06:59+0000\n"
+"PO-Revision-Date: 2026-09-05 08:59+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/locale/cs/>\n"
 "Language: cs\n"
@@ -1059,7 +1059,8 @@ msgid "about.pressSponsorship"
 msgstr "Informace o sponzorech"
 
 msgid "about.aboutThisPublishingSystem"
-msgstr "Informace o tomto publikačním systému. Platforma a workflow OMP/PKP."
+msgstr ""
+"Informace o tomto publikačním systému. Platforma a redakční proces OMP/PKP."
 
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "Proces redakce a publikace v OMP"
@@ -1259,18 +1260,18 @@ msgstr ""
 
 msgid "log.review.reviewUnconsidered"
 msgstr ""
-"Editor {$editorName} označil kolo č. {$round} recenzního řízení pro návrh č. "
-"{$submissionId} za nerozhodnuté."
+"Redaktor {$editorName} označil kolo číslo {$round} recenzního řízení pro "
+"příspěvek {$submissionId} za nerozhodnuté."
 
 msgid "log.editor.decision"
 msgstr ""
-"Rozhodnutí editora č. ({$decision}) pro rukopis č. {$submissionId} "
-"zaznamenal editor {$editorName}."
+"Rozhodnutí redaktora ({$decision}) pro příspěvek {$submissionId} zaznamenal "
+"redaktor {$editorName}."
 
 msgid "log.editor.recommendation"
 msgstr ""
-"Doporučení editora č. ({$decision}) pro rukopis č. {$submissionId} "
-"zaznamenal redaktor{$editorName}."
+"Doporučení redaktora ({$decision}) pro příspěvek {$submissionId} zaznamenal "
+"redaktor {$editorName}."
 
 msgid "log.editor.archived"
 msgstr "Příspěvek {$submissionId} byl archivován."
@@ -1280,7 +1281,7 @@ msgstr "Příspěvek {$submissionId} byl obnoven do fronty."
 
 msgid "log.editor.editorAssigned"
 msgstr ""
-"Editor {$editorName} byl přiřazen jako editor příspěvku č. {$submissionId}."
+"Redaktor {$editorName} byl přiřazen jako redaktor příspěvku {$submissionId}."
 
 msgid "log.proofread.assign"
 msgstr ""
@@ -1383,7 +1384,7 @@ msgid "notification.type.public"
 msgstr "Veřejná oznámení"
 
 msgid "notification.type.editorAssignmentTask"
-msgstr "Byl předložen nový rukopis, k němuž je třeba přiřadit editora."
+msgstr "Byl předložen nový rukopis, k němuž je třeba přiřadit redaktora."
 
 msgid "notification.type.layouteditorRequest"
 msgstr ""
@@ -1450,13 +1451,13 @@ msgstr ""
 
 msgid "user.authorization.workflowStageAssignmentMissing"
 msgstr ""
-"Přístup odepřen! Nebyla Vám přiřazena žádná funkce v této fázi publikačního "
+"Přístup odepřen! Nebyla Vám přiřazena žádná funkce v této fázi redakčního "
 "procesu."
 
 msgid "user.authorization.workflowStageSettingMissing"
 msgstr ""
 "Přístup odepřen! Uživatelské skupině, kterou právě zastupujete, nebyla "
-"přiřazena žádná funkce v této fázi publikačního procesu. Zkontrolujte prosím "
+"přiřazena žádná funkce v této fázi redakčního procesu. Zkontrolujte prosím "
 "nastavení Vašeho nakladatelství."
 
 msgid "payment.directSales"
