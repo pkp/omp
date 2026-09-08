@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @defgroup api_v1_vocabs Controlled vocabulary API requests
  */
@@ -15,4 +16,4 @@
  * @brief Handle API requests for vocabs.
  */
 
-return new \PKP\handler\APIHandler(new \PKP\API\v1\vocabs\PKPVocabController());
+return new \PKP\handler\APIHandler(new \APP\API\v1\vocabs\VocabController());

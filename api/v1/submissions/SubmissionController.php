@@ -3,8 +3,8 @@
 /**
  * @file api/v1/submissions/SubmissionController.php
  *
- * Copyright (c) 2024 Simon Fraser University
- * Copyright (c) 2024 John Willinsky
+ * Copyright (c) 2024-2026 Simon Fraser University
+ * Copyright (c) 2024-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SubmissionController
@@ -18,6 +18,7 @@
 namespace APP\API\v1\submissions;
 
 use APP\components\forms\publication\CatalogEntryForm;
+use APP\components\forms\publication\MetadataForm;
 use APP\components\forms\publication\PublicationLicenseForm;
 use APP\components\forms\submission\AudienceForm;
 use APP\components\forms\submission\PublicationDatesForm;
@@ -131,6 +132,34 @@ class SubmissionController extends PKPSubmissionController
         $publicationDatesForm = new PublicationDatesForm($submissionApiUrl, $submission);
 
         return response()->json($publicationDatesForm->getConfig());
+    }
+
+    /**
+     * Get the publication metadata form, using the press-specific form that
+     * restricts subjects to Thema categories when required.
+     */
+    protected function getPublicationMetadataForm(Request $illuminateRequest): JsonResponse
+    {
+        $data = $this->getSubmissionAndPublicationData($illuminateRequest);
+
+        if (isset($data['error'])) {
+            return response()->json(['error' => $data['error']], $data['status']);
+        }
+
+        $submission = $data['submission']; /** @var Submission $submission */
+        $publication = $data['publication']; /** @var Publication $publication */
+        $context = $data['context']; /** @var Context $context */
+        $publicationApiUrl = $data['publicationApiUrl']; /** @var String $publicationApiUrl */
+
+        $submissionLocale = $submission->getData('locale');
+        $locales = $this->getPublicationFormLocales($context, $submission);
+
+        $request = $this->getRequest();
+        $vocabSuggestionUrlBase = $request->getDispatcher()->url($request, PKPApplication::ROUTE_API, $context->getData('urlPath'), 'vocabs', null, null, ['vocab' => '__vocab__', 'submissionId' => $submission->getId()]);
+
+        $metadataForm = new MetadataForm($publicationApiUrl, $locales, $publication, $context, $vocabSuggestionUrlBase);
+
+        return response()->json($this->getLocalizedForm($metadataForm, $submissionLocale, $locales), Response::HTTP_OK);
     }
 
     /**

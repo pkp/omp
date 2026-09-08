@@ -17,6 +17,7 @@
 namespace APP\plugins\importexport\onix30\tests;
 
 use APP\codelist\ONIXCodelistItemDAO;
+use APP\codelist\Thema;
 use APP\core\Request;
 use APP\monograph\RepresentativeDAO;
 use APP\plugins\importexport\onix30\filter\MonographONIX30XmlFilter;
@@ -28,7 +29,9 @@ use APP\publicationFormat\PublicationFormat;
 use APP\submission\Submission;
 use DOMXPath;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
+use PKP\context\Context;
 use PKP\core\Dispatcher;
 use PKP\core\Registry;
 use PKP\db\DAORegistry;
@@ -41,6 +44,15 @@ class MonographONIX30XmlFilterTest extends PKPTestCase
     private const ONIX_NS = 'http://ns.editeur.org/onix/3.0/reference';
     private const TEST_ISBN = '9780000000001';
     private const FORMAT_ID = 100;
+    private const THEMA_SUBJECT_XPATH = "//onix:Subject[onix:SubjectSchemeIdentifier='93']";
+
+    /** Subjects fixture: two Thema entries, one free-text entry and one legacy string entry. */
+    private const SUBJECTS = [
+        ['name' => 'Theory of art', 'source' => Thema::SOURCE, 'identifier' => 'ABA'],
+        ['name' => 'Free text subject'],
+        'Legacy string subject',
+        ['name' => 'Paintings and painting in watercolours or pastels', 'source' => Thema::SOURCE, 'identifier' => 'AFCC'],
+    ];
 
     /**
      * @see PKPTestCase::getMockedDAOs()
@@ -69,12 +81,10 @@ class MonographONIX30XmlFilterTest extends PKPTestCase
         $filter = $this->createFilter();
         $submission = $this->createMonograph();
 
-        $doc = $filter->process($submission);
-        $xpath = new DOMXPath($doc);
-        $xpath->registerNamespace('onix', self::ONIX_NS);
+        $xpath = $this->processToXPath($filter, $submission);
 
         // Root message
-        $root = $doc->documentElement;
+        $root = $xpath->document->documentElement;
         self::assertSame('ONIXMessage', $root->localName);
         self::assertSame('3.0', $root->getAttribute('release'));
 
@@ -117,6 +127,82 @@ class MonographONIX30XmlFilterTest extends PKPTestCase
     }
 
     /**
+     * Subjects chosen from the Thema vocabulary are exported as coded subjects
+     * (subject scheme 93) when the press has enabled or required Thema, with the
+     * first flagged as the main subject, while free-text and legacy string
+     * subjects are never exported as coded subjects.
+     */
+    #[DataProvider('themaSettingsProvider')]
+    public function testProcessExportsThemaSubjectsWhenEnabled(array $pressData): void
+    {
+        $this->registerMockDaos();
+        $this->registerMockRequest();
+
+        $filter = $this->createFilter($pressData);
+        $submission = $this->createMonograph(['subjects' => ['en' => self::SUBJECTS]]);
+
+        $xpath = $this->processToXPath($filter, $submission);
+
+        $themaSubjects = $xpath->query(self::THEMA_SUBJECT_XPATH);
+        self::assertSame(2, $themaSubjects->length);
+        self::assertSame(
+            ['ABA', 'AFCC'],
+            array_map(fn ($node) => $xpath->evaluate('string(onix:SubjectCode)', $node), iterator_to_array($themaSubjects))
+        );
+        self::assertSame(
+            'Theory of art',
+            $this->xpathString($xpath, self::THEMA_SUBJECT_XPATH . '[1]/onix:SubjectHeadingText')
+        );
+        self::assertSame(
+            ['1.6', '1.6'],
+            array_map(fn ($node) => $xpath->evaluate('string(onix:SubjectSchemeVersion)', $node), iterator_to_array($themaSubjects))
+        );
+        self::assertSame(
+            ['MainSubject', 'SubjectSchemeIdentifier', 'SubjectSchemeVersion', 'SubjectCode', 'SubjectHeadingText'],
+            array_map(fn ($node) => $node->localName, iterator_to_array($themaSubjects->item(0)->childNodes)),
+            'Subject children must follow the ONIX schema order'
+        );
+        self::assertSame(1, $xpath->query('//onix:Subject/onix:MainSubject')->length);
+        self::assertSame('ABA', $this->xpathString($xpath, '//onix:Subject[onix:MainSubject]/onix:SubjectCode'));
+        self::assertSame(
+            'MainSubject',
+            $themaSubjects->item(0)->firstChild->localName,
+            'MainSubject must be the first child of the Subject composite'
+        );
+        self::assertSame(0, $xpath->query("//onix:Subject[onix:SubjectHeadingText='Free text subject']")->length);
+        self::assertSame(0, $xpath->query("//onix:Subject[onix:SubjectHeadingText='Legacy string subject']")->length);
+    }
+
+    /**
+     * Press settings under which Thema subjects are exported.
+     */
+    public static function themaSettingsProvider(): array
+    {
+        return [
+            'enabled' => [[Thema::SETTING => Context::METADATA_ENABLE]],
+            'required' => [[Thema::SETTING => Context::METADATA_REQUIRE]],
+        ];
+    }
+
+    /**
+     * No coded Thema subjects are exported when the press has not enabled Thema,
+     * even if Thema entries are stored on the publication.
+     */
+    public function testProcessOmitsThemaSubjectsWhenDisabled(): void
+    {
+        $this->registerMockDaos();
+        $this->registerMockRequest();
+
+        $filter = $this->createFilter();
+        $submission = $this->createMonograph(['subjects' => ['en' => self::SUBJECTS]]);
+
+        $xpath = $this->processToXPath($filter, $submission);
+
+        self::assertSame(0, $xpath->query(self::THEMA_SUBJECT_XPATH)->length);
+        self::assertSame(0, $xpath->query('//onix:Subject/onix:SubjectCode')->length);
+    }
+
+    /**
      * getFundingData() returns null when the FundingPlugin is not installed.
      */
     public function testGetFundingDataReturnsNullWhenFundingPluginDisabled(): void
@@ -130,24 +216,25 @@ class MonographONIX30XmlFilterTest extends PKPTestCase
     //
 
     /**
-     * Construct the filter with a deployment and press.
+     * Construct the filter with a deployment and press. Extra press settings can
+     * be supplied to exercise setting-dependent behaviour.
      */
-    private function createFilter(): MonographONIX30XmlFilter
+    private function createFilter(array $pressData = []): MonographONIX30XmlFilter
     {
         $filterGroup = new FilterGroup();
         $filterGroup->setInputType('primitive::string');
         $filterGroup->setOutputType('primitive::string');
 
         $filter = new MonographONIX30XmlFilter($filterGroup);
-        $filter->setDeployment(new Onix30ExportDeployment($this->createPress(), null));
+        $filter->setDeployment(new Onix30ExportDeployment($this->createPress($pressData), null));
 
         return $filter;
     }
 
     /**
-     * Create a minimal press.
+     * Create a minimal press, with any extra settings applied on top.
      */
-    private function createPress(): Press
+    private function createPress(array $data = []): Press
     {
         $press = new Press();
         $press->setId(1);
@@ -159,13 +246,16 @@ class MonographONIX30XmlFilterTest extends PKPTestCase
         $press->setData('publisher', 'Test Publisher');
         $press->setData('codeType', '01');
         $press->setData('codeValue', 'TEST');
+        foreach ($data as $key => $value) {
+            $press->setData($key, $value);
+        }
         return $press;
     }
 
     /**
-     * Create a minimal monograph.
+     * Create a minimal monograph, with any extra publication data applied on top.
      */
-    private function createMonograph(): Submission
+    private function createMonograph(array $publicationData = []): Submission
     {
         $publicationFormat = $this->createPublicationFormat();
 
@@ -181,6 +271,9 @@ class MonographONIX30XmlFilterTest extends PKPTestCase
         $publication->setData('keywords', ['en' => [['name' => 'History'], ['name' => 'Science']]]);
         $publication->setData('authors', collect([]));
         $publication->setData('publicationFormats', collect([$publicationFormat]));
+        foreach ($publicationData as $key => $value) {
+            $publication->setData($key, $value);
+        }
 
         /** @var Submission&MockObject $submission */
         $submission = $this->getMockBuilder(Submission::class)
@@ -285,6 +378,16 @@ class MonographONIX30XmlFilterTest extends PKPTestCase
                 return array_shift($this->items) ?? false;
             }
         };
+    }
+
+    /**
+     * Run the filter and return an XPath evaluator over the resulting ONIX document.
+     */
+    private function processToXPath(MonographONIX30XmlFilter $filter, Submission $submission): DOMXPath
+    {
+        $xpath = new DOMXPath($filter->process($submission));
+        $xpath->registerNamespace('onix', self::ONIX_NS);
+        return $xpath;
     }
 
     private function xpathString(DOMXPath $xpath, string $query): string
