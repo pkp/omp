@@ -1420,3 +1420,31 @@ msgstr "This email automatically notifies the assigned editors when a new versio
 msgid "mailable.submissionNeedsEditor.description"
 msgstr ""
 "This email is sent to press managers when a new submission is made and no editors are assigned."
+
+msgid "manager.setup.metadata.subjects.thema"
+msgstr "Thema Subjects"
+
+msgid "manager.setup.metadata.subjects.thema.description"
+msgstr ""
+"Thema is a subject classification scheme for books. When enabled, Thema subject categories can be selected in the Subjects field and included in exported metadata."
+
+msgid "manager.setup.metadata.subjects.thema.enable"
+msgstr "Enable Thema subject categories"
+
+msgid "manager.setup.metadata.subjects.thema.allowFreeText"
+msgstr "Allow free-text subjects alongside Thema subject categories."
+
+msgid "manager.setup.metadata.subjects.thema.require"
+msgstr "Only allow Thema subject categories."
+
+msgid "manager.setup.metadata.subjects.thema.invalid"
+msgstr "All subjects must be selected from the Thema subject classification."
+
+msgid "manager.setup.metadata.subjects.thema.unknownCode"
+msgstr "{$code} is not a Thema subject category."
+
+msgid "manager.setup.metadata.subjects.thema.ancestorConflict"
+msgstr "Do not assign a Thema category together with one of its broader parent categories ({$ancestor} and {$descendant}). Keep only the more specific category."
+
+msgid "manager.setup.metadata.subjects.thema.tooltip"
+msgstr "Select the Thema subject categories that best describe the subject and scope of the book. The first category listed is treated as the main subject. Do not assign a category together with one of its parent categories."

@@ -129,6 +129,14 @@
 				"nullable"
 			]
 		},
+		"thema": {
+			"type": "string",
+			"description": "Enable Thema subject categories in the subjects field. `0` is disabled. `enable` will allow Thema subjects alongside free-text subjects. `require` will only allow Thema subjects.",
+			"validation": [
+				"nullable",
+				"in:0,enable,require"
+			]
+		},
 		"type": {
 			"type": "string",
 			"default": "enable",

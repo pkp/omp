@@ -14,6 +14,7 @@
 
 namespace APP\publication;
 
+use APP\codelist\Thema;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
@@ -56,6 +57,16 @@ class Repository extends \PKP\publication\Repository
             $series = Repo::section()->get($props['seriesId']);
             if (!$series) {
                 $errors['seriesId'] = [__('publication.invalidSeries')];
+            }
+        }
+
+        if (isset($props['subjects']) && Thema::isEnabled($context)) {
+            $thema = new Thema();
+            $required = Thema::isRequired($context);
+            foreach ((array) $props['subjects'] as $locale => $entries) {
+                foreach ($thema->getSubjectErrors((array) $entries, $required, $locale) as $message) {
+                    $errors['subjects'][$locale][] = $message;
+                }
             }
         }
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/components/form/publication/ForTheEditors.php
  *
@@ -15,21 +16,33 @@
 
 namespace APP\components\forms\submission;
 
+use APP\codelist\Thema;
 use APP\publication\Publication;
 use APP\section\Section;
 use APP\submission\Submission;
 use Illuminate\Support\LazyCollection;
+use PKP\components\forms\FieldControlledVocab;
 use PKP\components\forms\FieldOptions;
 use PKP\context\Context;
 
 class ForTheEditors extends \PKP\components\forms\submission\ForTheEditors
 {
     /**
+     * When the press requires Thema subject categories, the subjects field
+     * disallows free-text entries, matching the workflow metadata form. The
+     * field's existing description is kept.
+     *
      * @param Section[] $series
      */
     public function __construct(string $action, array $locales, Publication $publication, Submission $submission, Context $context, string $suggestionUrlBase, array $series, LazyCollection $categories)
     {
         parent::__construct($action, $locales, $publication, $submission, $context, $suggestionUrlBase, $categories);
+
+        /** @var ?FieldControlledVocab $subjectsField */
+        $subjectsField = $this->getField('subjects');
+        if ($subjectsField) {
+            Thema::configureSubjectsField($subjectsField, $context, false);
+        }
 
         $this->addSeriesField($series, $publication);
     }
