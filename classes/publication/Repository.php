@@ -3,8 +3,8 @@
 /**
  * @file classes/publication/Repository.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2000-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Repository
@@ -14,6 +14,7 @@
 
 namespace APP\publication;
 
+use APP\codelist\Thema;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
@@ -46,7 +47,15 @@ class Repository extends \PKP\publication\Repository
         return App::makeWith(Collector::class, ['dao' => $this->dao]);
     }
 
-    /** @copydoc PKP\publication\Repository::validate() */
+    /**
+     * @copydoc PKP\publication\Repository::validate()
+     *
+     * Thema subject rules are checked here for submitted work. While a
+     * submission is still in the wizard they are checked at submit time
+     * instead (see \APP\submission\Repository::validateSubmit()), so that the
+     * wizard's autosaves are not rejected and the problems are reported on the
+     * review step.
+     */
     public function validate($publication, array $props, Submission $submission, Context $context): array
     {
         $errors = parent::validate($publication, $props, $submission, $context);
@@ -57,6 +66,10 @@ class Repository extends \PKP\publication\Repository
             if (!$series) {
                 $errors['seriesId'] = [__('publication.invalidSeries')];
             }
+        }
+
+        if (isset($props['subjects']) && !$submission->getData('submissionProgress')) {
+            $errors = Thema::mergeSubjectsErrors($errors, (new Thema())->getSubjectsErrorsByLocale((array) $props['subjects'], $context));
         }
 
         return $errors;
