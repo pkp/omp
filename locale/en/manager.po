@@ -1446,5 +1446,8 @@ msgstr "{$code} is not a Thema subject category."
 msgid "manager.setup.metadata.subjects.thema.ancestorConflict"
 msgstr "Do not assign a Thema category together with one of its broader parent categories ({$ancestor} and {$descendant}). Keep only the more specific category."
 
+msgid "manager.setup.metadata.subjects.thema.freeTextNotAllowed"
+msgstr "Select the Thema subject categories that best describe the subject and scope of the submission. Free-text subjects are not allowed."
+
 msgid "manager.setup.metadata.subjects.thema.tooltip"
-msgstr "Select the Thema subject categories that best describe the subject and scope of the book. The first category listed is treated as the main subject. Do not assign a category together with one of its parent categories."
+msgstr "Select the Thema subject categories that best describe the subject and scope of the submission. The first category listed is treated as the main subject. Do not assign a category together with one of its parent categories."

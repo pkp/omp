@@ -29,8 +29,8 @@ class ForTheEditors extends \PKP\components\forms\submission\ForTheEditors
 {
     /**
      * When the press requires Thema subject categories, the subjects field
-     * disallows free-text entries, matching the workflow metadata form. The
-     * field's existing description is kept.
+     * disallows free-text entries and says so in its description, matching the
+     * workflow metadata form. The field's existing description is kept.
      *
      * @param Section[] $series
      */
