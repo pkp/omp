@@ -1421,10 +1421,9 @@ msgid "mailable.submissionNeedsEditor.description"
 msgstr ""
 "This email is sent to press managers when a new submission is made and no editors are assigned."
 
-<<<<<<< HEAD
 msgid "manager.setup.enableEnrollmentMasthead.description"
 msgstr "If desired, a masthead can be generated automatically based on user enrollments, including start and end dates. See also Settings > Press > Masthead."
-=======
+
 msgid "manager.setup.metadata.subjects.thema"
 msgstr "Thema Subjects"
 
@@ -1450,6 +1449,8 @@ msgstr "{$code} is not a Thema subject category."
 msgid "manager.setup.metadata.subjects.thema.ancestorConflict"
 msgstr "Do not assign a Thema category together with one of its broader parent categories ({$ancestor} and {$descendant}). Keep only the more specific category."
 
+msgid "manager.setup.metadata.subjects.thema.freeTextNotAllowed"
+msgstr "Select the Thema subject categories that best describe the subject and scope of the submission. Free-text subjects are not allowed."
+
 msgid "manager.setup.metadata.subjects.thema.tooltip"
 msgstr "Select the Thema subject categories that best describe the subject and scope of the book. The first category listed is treated as the main subject. Do not assign a category together with one of its parent categories."
->>>>>>> b24a15592 (pkp/pkp-lib#9906 implement thema subjects and export in ONIX)

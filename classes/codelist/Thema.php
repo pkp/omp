@@ -155,20 +155,28 @@ class Thema
 
     /**
      * Configure a subjects form field for a context that uses Thema. When Thema
-     * is required, free-text entries are disallowed so that only suggested Thema
-     * codes can be selected. Optionally the field's tooltip is replaced with the
-     * Thema selection guidance. Does nothing when Thema is disabled.
+     * is required, free-text entries are disallowed and a note saying so is
+     * added to the field's guidance. The workflow metadata form ($asTooltip)
+     * has its tooltip replaced with the Thema selection guidance plus that note;
+     * the submission wizard presents descriptions rather than tooltips, so it
+     * keeps its own description and only has the note appended to it. Does
+     * nothing when Thema is disabled.
      */
-    public static function configureSubjectsField(FieldControlledVocab $field, ?Context $context, bool $addGuidance = true): void
+    public static function configureSubjectsField(FieldControlledVocab $field, ?Context $context, bool $asTooltip = true): void
     {
         if (!self::isEnabled($context)) {
             return;
         }
 
-        if ($addGuidance) {
-            $field->tooltip = __('manager.setup.metadata.subjects.thema.tooltip');
+        $required = self::isRequired($context);
+        $field->allowCustom = !$required;
+
+        $freeTextNote = $required ? __('manager.setup.metadata.subjects.thema.freeTextNotAllowed') : null;
+        if ($asTooltip) {
+            $field->tooltip = implode(' ', array_filter([__('manager.setup.metadata.subjects.thema.tooltip'), $freeTextNote]));
+        } elseif ($freeTextNote) {
+            $field->description = implode(' ', array_filter([$field->description, $freeTextNote]));
         }
-        $field->allowCustom = !self::isRequired($context);
     }
 
     /**
