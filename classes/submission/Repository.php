@@ -14,6 +14,7 @@
 
 namespace APP\submission;
 
+use APP\codelist\Thema;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\monograph\Chapter;
@@ -36,6 +37,25 @@ class Repository extends \PKP\submission\Repository
 {
     /** @copydoc \PKP\submission\Repository::$schemaMap */
     public $schemaMap = maps\Schema::class;
+
+    /**
+     * @copydoc \PKP\submission\Repository::validateSubmit()
+     *
+     * Adds the Thema subject rules for every locale that has subjects, so that
+     * problems are reported on the wizard's review step and block submission.
+     */
+    public function validateSubmit(Submission $submission, Context $context): array
+    {
+        $errors = parent::validateSubmit($submission, $context);
+
+        $subjects = (array) $submission->getCurrentPublication()?->getData('subjects');
+        $subjectsErrors = (new Thema())->getSubjectsErrorsByLocale($subjects, $context);
+        if ($subjectsErrors) {
+            $errors['subjects'] = $subjectsErrors;
+        }
+
+        return $errors;
+    }
 
     /** @copydoc \PKP\submission\Repository::getSortSelectOptions() */
     public function getSortSelectOptions(): array
