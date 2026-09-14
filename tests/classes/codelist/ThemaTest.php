@@ -19,8 +19,10 @@
 namespace APP\tests\classes\codelist;
 
 use APP\codelist\Thema;
+use APP\press\Press;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PKP\context\Context;
 use PKP\tests\PKPTestCase;
 use RuntimeException;
 
@@ -184,6 +186,32 @@ class ThemaTest extends PKPTestCase
     }
 
     /**
+     * The multilingual wrapper checks every locale that has subjects, keys the
+     * messages by locale, and is inert when Thema is disabled.
+     */
+    public function testGetSubjectsErrorsByLocale(): void
+    {
+        $thema = $this->themaWithEntries($this->parseFile($this->fixturePath));
+        $aba = ['name' => 'Theory of art', 'source' => Thema::SOURCE, 'identifier' => 'ABA'];
+        $ab = ['name' => 'The arts: general topics', 'source' => Thema::SOURCE, 'identifier' => 'AB'];
+        $subjects = [
+            'en' => [$aba, $ab],
+            'fr_CA' => [$aba, ['name' => 'Texte libre']],
+            'de' => [$aba],
+        ];
+
+        self::assertSame([], $thema->getSubjectsErrorsByLocale($subjects, $this->pressWithThema(Context::METADATA_DISABLE)));
+
+        $enabled = $thema->getSubjectsErrorsByLocale($subjects, $this->pressWithThema(Context::METADATA_ENABLE));
+        self::assertSame(['en'], array_keys($enabled));
+        self::assertStringContainsString('AB and ABA', $enabled['en'][0]);
+
+        $required = $thema->getSubjectsErrorsByLocale($subjects, $this->pressWithThema(Context::METADATA_REQUIRE));
+        self::assertSame(['en', 'fr_CA'], array_keys($required));
+        self::assertStringContainsString('Thema subject classification', $required['fr_CA'][0]);
+    }
+
+    /**
      * The list version comes from the header, not from a code's own issue number.
      */
     public function testParseVersionReadsTheHeaderIssueNumber(): void
@@ -216,6 +244,16 @@ class ThemaTest extends PKPTestCase
                 return $this->parseFile($filename);
             }
         })->parse($filename);
+    }
+
+    /**
+     * A press with the Thema setting at the given value.
+     */
+    private function pressWithThema(string|int $value): Press
+    {
+        $press = new Press();
+        $press->setData(Thema::SETTING, $value);
+        return $press;
     }
 
     /**

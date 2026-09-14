@@ -100,6 +100,32 @@ class Thema
     }
 
     /**
+     * Validate a multilingual subjects value ([locale => entries]) against the
+     * Thema rules for a context and return the messages keyed by locale, in the
+     * shape used for publication validation errors. Every locale that has
+     * subjects is checked. Empty when Thema is disabled or nothing is wrong.
+     *
+     * @return array<string, string[]>
+     */
+    public function getSubjectsErrorsByLocale(array $subjects, ?Context $context): array
+    {
+        if (!self::isEnabled($context)) {
+            return [];
+        }
+
+        $required = self::isRequired($context);
+        $errors = [];
+        foreach ($subjects as $locale => $entries) {
+            $messages = $this->getSubjectErrors((array) $entries, $required, $locale);
+            if ($messages) {
+                $errors[$locale] = $messages;
+            }
+        }
+
+        return $errors;
+    }
+
+    /**
      * Validate one locale's subject entries against the Thema rules and return
      * translated error messages. Thema entries must carry a known code and must
      * not be combined with one of their ancestors. When $required is set,
