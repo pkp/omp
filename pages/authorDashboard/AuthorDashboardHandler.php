@@ -16,12 +16,14 @@
 
 namespace APP\pages\authorDashboard;
 
+use APP\components\forms\publication\MetadataForm;
 use APP\components\listPanels\ContributorsListPanel;
 use APP\core\Application;
 use APP\core\Request;
 use APP\publication\Publication;
 use APP\submission\Submission;
 use APP\template\TemplateManager;
+use PKP\components\forms\publication\PKPMetadataForm;
 use PKP\components\forms\publication\TitleAbstractForm;
 use PKP\context\Context;
 use PKP\core\PKPApplication;
@@ -135,6 +137,14 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler
                 'publicationId' => '__publicationId__',
             ]
         );
+    }
+
+    /**
+     * @copydoc PKPAuthorDashboardHandler::getMetadataForm()
+     */
+    protected function getMetadataForm(string $latestPublicationApiUrl, array $locales, Publication $latestPublication, Context $context, string $vocabSuggestionUrlBase): PKPMetadataForm
+    {
+        return new MetadataForm($latestPublicationApiUrl, $locales, $latestPublication, $context, $vocabSuggestionUrlBase);
     }
 
     protected function getTitleAbstractForm(string $latestPublicationApiUrl, array $locales, Publication $latestPublication, Context $context): TitleAbstractForm

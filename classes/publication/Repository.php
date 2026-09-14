@@ -14,6 +14,7 @@
 
 namespace APP\publication;
 
+use APP\codelist\Thema;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
@@ -46,7 +47,15 @@ class Repository extends \PKP\publication\Repository
         return App::makeWith(Collector::class, ['dao' => $this->dao]);
     }
 
-    /** @copydoc PKP\publication\Repository::validate() */
+    /**
+     * @copydoc PKP\publication\Repository::validate()
+     *
+     * Thema subject rules are checked here for submitted work. While a
+     * submission is still in the wizard they are checked at submit time
+     * instead (see \APP\submission\Repository::validateSubmit()), so that the
+     * wizard's autosaves are not rejected and the problems are reported on the
+     * review step.
+     */
     public function validate($publication, array $props, Submission $submission, Context $context): array
     {
         $errors = parent::validate($publication, $props, $submission, $context);
@@ -56,6 +65,13 @@ class Repository extends \PKP\publication\Repository
             $series = Repo::section()->get($props['seriesId']);
             if (!$series) {
                 $errors['seriesId'] = [__('publication.invalidSeries')];
+            }
+        }
+
+        if (isset($props['subjects']) && !$submission->getData('submissionProgress')) {
+            $subjectsErrors = (new Thema())->getSubjectsErrorsByLocale((array) $props['subjects'], $context);
+            if ($subjectsErrors) {
+                $errors['subjects'] = $subjectsErrors;
             }
         }
 
