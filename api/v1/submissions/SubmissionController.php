@@ -105,7 +105,7 @@ class SubmissionController extends PKPSubmissionController
         $publicFileManager = new PublicFileManager();
         $baseUrl = $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getId());
 
-        $catalogEntryForm = new CatalogEntryForm($publicationApiUrl, $locales, $publication, $submission, $baseUrl, $temporaryFileApiUrl);
+        $catalogEntryForm = new CatalogEntryForm($publicationApiUrl, $locales, $publication, $submission, $baseUrl, $temporaryFileApiUrl, $context);
         $submissionLocale = $submission->getData('locale');
 
         return response()->json($this->getLocalizedForm($catalogEntryForm, $submissionLocale, $locales), Response::HTTP_OK);
