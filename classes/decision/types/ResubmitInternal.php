@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/decision/types/ResubmitInternal.php
  *
@@ -23,6 +24,6 @@ class ResubmitInternal extends Resubmit
 
     public function getDecision(): int
     {
-        return Decision::PENDING_REVISIONS_INTERNAL;
+        return Decision::RESUBMIT_INTERNAL;
     }
 }
