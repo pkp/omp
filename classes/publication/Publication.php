@@ -22,10 +22,13 @@ use APP\core\Application;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\publication\enums\VersionStage;
+use PKP\context\Context;
 use PKP\publication\PKPPublication;
 
 class Publication extends PKPPublication
 {
+    use HasContextIdentityMetadata;
+
     public const DEFAULT_VERSION_STAGE = VersionStage::VERSION_OF_RECORD;
 
     /**
@@ -110,5 +113,26 @@ class Publication extends PKPPublication
             $pathParts['dirname'],
             Repo::publication()->getThumbnailFilename($pathParts['basename']),
         ]);
+    }
+
+    /**
+     * Stamp press identity onto the publication.
+     */
+    public function stampContextIdentity(?Context $context = null): void
+    {
+        $context ??= $this->getStampingContext();
+        parent::stampContextIdentity($context);
+        $this->setData('publisher', $context->getData('publisher'));
+        $this->setData('publisherLocation', $context->getData('location'));
+        $this->setData('codeType', $context->getData('codeType'));
+        $this->setData('codeValue', $context->getData('codeValue'));
+    }
+
+    public function clearIdentityMetadata(): void
+    {
+        parent::clearIdentityMetadata();
+        $this->setData('publisher', null);
+        $this->setData('codeType', null);
+        $this->setData('codeValue', null);
     }
 }
