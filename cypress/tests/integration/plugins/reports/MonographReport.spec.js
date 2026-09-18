@@ -10,7 +10,7 @@
 describe('Monograph report plugin tests', () => {
 	it('The report is visible and generated properly', () => {
 		cy.login('admin', 'admin', 'publicknowledge');
-		cy.visit('publicknowledge/stats/reports');
+		cy.visit('/index.php/publicknowledge/stats/reports');
 		cy.get('a:contains("Monograph Report")').then(link => {
 			cy.request(link.attr('href')).then(validateReport);
 		});
@@ -18,7 +18,7 @@ describe('Monograph report plugin tests', () => {
 
 	// Just checks whether some key data is present
 	function validateReport(reportResponse) {
-		cy.request(`publicknowledge/api/v1/submissions`).then(submissionResponse => {
+		cy.request(`/index.php/publicknowledge/api/v1/submissions`).then(submissionResponse => {
 			const {itemsMax: submissionCount, items: [firstMonograph]} = submissionResponse.body;
 			const publication = firstMonograph.publications.pop();
 			expect(reportResponse.headers['content-type']).to.contain('text/comma-separated-values');
