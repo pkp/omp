@@ -1,7 +1,7 @@
-# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2025.
+# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2025, 2026.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-05-05 20:55+0000\n"
+"PO-Revision-Date: 2026-09-05 08:59+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/cs/>\n"
@@ -74,7 +74,9 @@ msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
 msgstr "Zobrazit Serie"
 
 msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
-msgstr "Přidání seznamu odkazů na všechny série tisku na stránku katalogu"
+msgstr ""
+"Přidání seznamu odkazů na všechny ediční řady nakladatelství na stránku "
+"katalogu"
 
 msgid "plugins.themes.default.option.displayStats.label"
 msgstr "Možnosti zobrazení statistik používání"
