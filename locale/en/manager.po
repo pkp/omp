@@ -1420,3 +1420,6 @@ msgstr "This email automatically notifies the assigned editors when a new versio
 msgid "mailable.submissionNeedsEditor.description"
 msgstr ""
 "This email is sent to press managers when a new submission is made and no editors are assigned."
+
+msgid "manager.setup.enableEnrollmentMasthead.description"
+msgstr "If desired, a masthead can be generated automatically based on user enrollments, including start and end dates. See also Settings > Press > Masthead."
