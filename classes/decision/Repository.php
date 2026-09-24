@@ -23,6 +23,7 @@ use APP\decision\types\RecommendResubmitInternal;
 use APP\decision\types\RecommendRevisionsInternal;
 use APP\decision\types\RecommendSendExternalReview;
 use APP\decision\types\RequestRevisionsInternal;
+use APP\decision\types\ResubmitInternal;
 use APP\decision\types\RevertDeclineInternal;
 use APP\decision\types\SendExternalReview;
 use APP\decision\types\SendInternalReview;
@@ -76,6 +77,7 @@ class Repository extends \PKP\decision\Repository
                 new RequestRevisionsInternal(),
                 new RequestRevisions(),
                 new Resubmit(),
+                new ResubmitInternal(),
                 new RevertDecline(),
                 new RevertDeclineInternal(),
                 new RevertInitialDecline(),
