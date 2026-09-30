@@ -244,6 +244,17 @@ class Application extends PKPApplication
     }
 
     /**
+     * @copydoc PKPApplication::hasSingleFileRepresentations()
+     *
+     * In OMP a publication format may hold several proof files at once, so an
+     * upload has to be able to target a specific one.
+     */
+    public static function hasSingleFileRepresentations(): bool
+    {
+        return false;
+    }
+
+    /**
      * Get the help URL of this application
      */
     public static function getHelpUrl(): string
