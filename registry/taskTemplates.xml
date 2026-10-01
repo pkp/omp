@@ -12,6 +12,7 @@
 <templates>
 	<template title="mailable.discussionSubmission.name" description="emails.discussion.body" key="DISCUSSION_NOTIFICATION_SUBMISSION" stageId="WORKFLOW_STAGE_ID_SUBMISSION"/>
 	<template title="mailable.discussionReview.name" description="emails.discussion.body" key="DISCUSSION_NOTIFICATION_REVIEW" stageId="WORKFLOW_STAGE_ID_EXTERNAL_REVIEW"/>
+	<template title="mailable.discussionReview.name" description="emails.discussion.body" key="DISCUSSION_NOTIFICATION_INTERNAL_REVIEW" stageId="WORKFLOW_STAGE_ID_INTERNAL_REVIEW"/>
 	<template title="mailable.discussionCopyediting.name" description="emails.discussion.body" key="DISCUSSION_NOTIFICATION_COPYEDITING" stageId="WORKFLOW_STAGE_ID_EDITING"/>
 	<template title="mailable.discussionProduction.name" description="emails.discussion.body" key="DISCUSSION_NOTIFICATION_PRODUCTION" stageId="WORKFLOW_STAGE_ID_PRODUCTION"/>
 	<template title="mailable.copyeditRequest.name" description="emails.copyeditRequest.body" key="COPYEDIT_REQUEST" stageId="WORKFLOW_STAGE_ID_EDITING"/>
