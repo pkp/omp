@@ -56,7 +56,7 @@ class I12593_DiscussionInternalReviewTemplate extends Migration
                     'edit_task_template_id' => $templateId,
                     'locale' => $locale,
                     'setting_name' => 'description',
-                    'setting_value' => __('mailable.discussionReview.description', [], $locale),
+                    'setting_value' => __('emails.discussion.body', [], $locale),
                 ]);
             }
         }
