@@ -31,7 +31,7 @@ msgid "plugins.importexport.onix30.export.error.couldNotWrite"
 msgstr "Could not write to the file \"{$fileName}\"."
 
 msgid "plugins.importexport.onix30.export.warning.publisherNotStamped"
-msgstr "No publisher was recorded for \"{$title}\" when it was published, so the press name is used as publisher. To record the correct publisher, use the command-line tool tools/stampIdentityMetadata.php with --publisher."
+msgstr "No publisher is recorded for \"{$title}\", so the press name is used as the publisher. To record a publisher, use the command-line tool tools/stampIdentityMetadata.php."
 
 msgid "plugins.importexport.onix30.export.error.monographNotFound"
 msgstr "No monograph matched the specified monograph ID \"{$monographId}\"."
