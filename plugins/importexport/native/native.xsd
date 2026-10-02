@@ -99,6 +99,10 @@
 						<element ref="pkp:series" maxOccurs="1" minOccurs="0" />
 						<element ref="pkp:chapters" maxOccurs="1" minOccurs="0" />
 						<element ref="pkp:covers" minOccurs="0" maxOccurs="1" />
+						<!-- Stamped identity fields specific to OMP -->
+						<element name="publisher" type="string" minOccurs="0" maxOccurs="1" />
+						<element name="codeType" type="string" minOccurs="0" maxOccurs="1" />
+						<element name="codeValue" type="string" minOccurs="0" maxOccurs="1" />
 					</sequence>
 					<attribute name="series" type="normalizedString" />
 					<attribute name="series_position" type="normalizedString" />
