@@ -22,6 +22,7 @@ use APP\core\Application;
 use APP\facades\Repo;
 use APP\monograph\RepresentativeDAO;
 use APP\plugins\importexport\onix30\Onix30ExportDeployment;
+use APP\publication\Publication;
 use APP\publicationFormat\PublicationFormat;
 use APP\submission\Submission;
 use DOMDocument;
@@ -29,6 +30,7 @@ use DOMElement;
 use DOMException;
 use Exception;
 use PKP\author\contributorRole\ContributorRoleIdentifier;
+use PKP\context\Context;
 use PKP\db\DAORegistry;
 use PKP\filter\FilterGroup;
 use PKP\i18n\LocaleConversion;
@@ -37,6 +39,9 @@ use PKP\plugins\importexport\native\filter\NativeExportFilter;
 class MonographONIX30XmlFilter extends NativeExportFilter
 {
     public DOMDocument $doc;
+
+    /** @var int[] Submissions already warned about a missing stamped publisher */
+    protected array $publisherWarnedSubmissionIds = [];
 
     /**
      * Constructor
@@ -563,7 +568,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
         $publishingDetailNode->appendChild($publisherNode);
 
         $publisherNode->appendChild($this->buildTextNode($doc, 'PublishingRole', '01')); // Publisher
-        $publisherNode->appendChild($this->buildTextNode($doc, 'PublisherName', $context->getData('publisher')));
+        $publisherNode->appendChild($this->buildTextNode($doc, 'PublisherName', $this->getPublisherName($submission, $publication, $context)));
 
         $websiteNode = $doc->createElementNS($deployment->getNamespace(), 'Website');
         $publisherNode->appendChild($websiteNode);
@@ -634,8 +639,8 @@ class MonographONIX30XmlFilter extends NativeExportFilter
             }
         }
 
-        if ($context->getData('location') != '') {
-            $publishingDetailNode->appendChild($this->buildTextNode($doc, 'CityOfPublication', $context->getData('location')));
+        if ($publisherLocation = $publication->hasContextIdentity() ? $publication->getData('publisherLocation') : $context->getData('location')) {
+            $publishingDetailNode->appendChild($this->buildTextNode($doc, 'CityOfPublication', $publisherLocation));
         }
 
         /* --- Publishing Dates --- */
@@ -860,7 +865,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter
                 $supplierWebsiteNode->appendChild($this->buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath(), 'catalog', 'book', [$submissionBestId])));
             } else { // No suppliers specified, use the Press settings instead.
                 $supplierNode->appendChild($this->buildTextNode($doc, 'SupplierRole', '09')); // Publisher supplying to end customers
-                $supplierNode->appendChild($this->buildTextNode($doc, 'SupplierName', $context->getData('publisher')));
+                $supplierNode->appendChild($this->buildTextNode($doc, 'SupplierName', $this->getPublisherName($submission, $publication, $context)));
 
                 if ($context->getData('contactEmail') != '') {
                     $supplierNode->appendChild($this->buildTextNode($doc, 'EmailAddress', $context->getData('contactEmail')));
@@ -992,6 +997,26 @@ class MonographONIX30XmlFilter extends NativeExportFilter
         $extentNode->appendChild($unitNode);
 
         return $extentNode;
+    }
+
+    /**
+     * Get the publisher name, which ONIX requires. A book stamped without a publisher gets the
+     * stamped press name, and a warning so the stamp can be corrected.
+     */
+    protected function getPublisherName(Submission $submission, Publication $publication, Context $context): string
+    {
+        if ($publisher = $publication->getPublisher($context)) {
+            return $publisher;
+        }
+        if ($publication->hasContextIdentity() && !in_array($submission->getId(), $this->publisherWarnedSubmissionIds)) {
+            $this->publisherWarnedSubmissionIds[] = $submission->getId();
+            $this->getDeployment()->addWarning(
+                Application::ASSOC_TYPE_SUBMISSION,
+                $submission->getId(),
+                __('plugins.importexport.onix30.export.warning.publisherNotStamped', ['title' => $publication->getLocalizedFullTitle()])
+            );
+        }
+        return $publication->getPrimaryContextName($context);
     }
 
     /**
