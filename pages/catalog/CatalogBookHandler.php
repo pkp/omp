@@ -530,7 +530,7 @@ class CatalogBookHandler extends Handler
                     publicationFormat: $publicationFormat,
                     submissionFile: $submissionFile,
                     chapter: $chapter,
-                    publication: $this->publication,
+                    publication: $publication,
                 ));
             }
             $returner = true;
