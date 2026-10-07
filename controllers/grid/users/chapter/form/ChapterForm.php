@@ -347,6 +347,9 @@ class ChapterForm extends Form
             $this->getChapter()->getId()
         );
 
+        // Also when its page is enabled later, as only chapters with a page get a DOI
+        Repo::publication()->createDoisOnCreation($this->getPublication()->getId());
+
         return true;
     }
 }

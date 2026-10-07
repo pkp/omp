@@ -412,6 +412,12 @@ msgstr "Chapters without a landing page cannot have a DOI."
 msgid "manager.dois.formatIdentifier.file"
 msgstr "Format / {$format}"
 
+msgid "manager.dois.filters.workflow"
+msgstr "Workflow"
+
+msgid "manager.dois.filters.inEditingOrPublished"
+msgstr "In Copyediting, Production, Published or with DOIs"
+
 msgid "manager.setup.editorDecision"
 msgstr "Editor Decision"
 

@@ -52,6 +52,15 @@ class DoiListPanel extends PKPDoiListPanel
                 ]
             ]
         ];
-
+        $config['filters'][] = [
+            'heading' => __('manager.dois.filters.workflow'),
+            'filters' => [
+                [
+                    'title' => __('manager.dois.filters.inEditingOrPublished'),
+                    'param' => 'inEditingOrPublished',
+                    'value' => '1',
+                ],
+            ],
+        ];
     }
 }
