@@ -1,13 +1,13 @@
 # Fulvio Delle Donne <fulviodelledonne@libero.it>, 2022.
-# Gabriele Raimondi <gabriele.raimondi5@unibo.it>, 2025.
+# Gabriele Raimondi <gabriele.raimondi5@unibo.it>, 2025, 2026.
 # Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-22T20:59:47+00:00\n"
-"PO-Revision-Date: 2025-09-24 13:47+0000\n"
-"Last-Translator: Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>\n"
+"PO-Revision-Date: 2026-10-09 09:59+0000\n"
+"Last-Translator: Gabriele Raimondi <gabriele.raimondi5@unibo.it>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/default/it/>"
 "\n"
 "Language: it\n"
@@ -146,7 +146,7 @@ msgstr ""
 msgid "default.contextSettings.privacyStatement"
 msgstr ""
 "<p>I nomi e gli indirizzi di posta elettronica indicati nel sito di questa "
-"casa editrice saranno usati esclusivamente per gli scopi dichiarati di della "
+"casa editrice saranno usati esclusivamente per gli scopi dichiarati della "
 "stessa e non saranno resi disponibili per nessun altro scopo o a nessun "
 "altro soggetto.</p>"
 
