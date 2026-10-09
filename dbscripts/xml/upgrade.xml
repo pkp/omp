@@ -164,6 +164,7 @@
 		<migration class="APP\migration\upgrade\v3_5_0\I11241_MissingDecisionConstantsUpdate"/>
 		<migration class="APP\migration\upgrade\v3_5_0\I11125_UpdateEmailTemplateVariables"/>
 		<migration class="PKP\migration\upgrade\v3_5_0\I10962_UpdateEmailTemplateVariables"/>
+        <migration class="PKP\migration\upgrade\v3_5_0\I13283_RestoreDegradedOrcidFunctionality"/>
 		<code function="downloadIPGeoDB"/>
 		<note file="docs/release-notes/README-3.5.0" />
 	</upgrade>
@@ -177,6 +178,7 @@
 		<migration class="PKP\migration\upgrade\v3_5_0\I12513_MissingSiteLocaleUserNames"/>
 		<migration class="APP\migration\upgrade\v3_5_0\I12357_FixDecisionConstantsMissedStageId"/>
 		<migration class="APP\migration\upgrade\v3_5_0\I13128_FixEmailUrlLinks"/>
+        <migration class="PKP\migration\upgrade\v3_5_0\I13283_RestoreDegradedOrcidFunctionality"/>
 	</upgrade>
 
 	<upgrade minversion="3.3.0.0" maxversion="3.5.9.9">
