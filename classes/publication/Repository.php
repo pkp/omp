@@ -38,6 +38,7 @@ use PKP\core\Core;
 use PKP\db\DAORegistry;
 use PKP\doi\exceptions\DoiException;
 use PKP\notification\Notification;
+use PKP\observers\events\PublicationVersioned;
 use PKP\plugins\Hook;
 use PKP\publication\Collector;
 use PKP\publication\PKPPublication;
@@ -251,6 +252,8 @@ class Repository extends \PKP\publication\Repository
                 }
             }
         }
+
+        event(new PublicationVersioned($this->get($newId), $publication, Repo::submission()->get($submissionId), $context));
 
         return $newId;
     }
@@ -483,6 +486,24 @@ class Repository extends \PKP\publication\Repository
         imagedestroy($thumb);
     }
 
+    /**
+     * Assign DOIs to a publication's new chapters, formats or files, if DOIs are assigned on item creation
+     */
+    public function createDoisOnCreation(int $publicationId): void
+    {
+        $publication = $this->get($publicationId);
+        $submission = Repo::submission()->get($publication->getData('submissionId'));
+        // Objects added during the submission wizard get their DOIs on submit
+        if ($submission->getData('submissionProgress')) {
+            return;
+        }
+
+        $context = Application::getContextDAO()->getById($submission->getData('contextId'));
+        if (Repo::doi()->assignOnItemCreation($context)) {
+            $this->createDois($publication);
+        }
+    }
+
     /** @copydoc \PKP\publication\Repository::createDois() */
     public function createDois(Publication $publication): array
     {
@@ -544,11 +565,13 @@ class Repository extends \PKP\publication\Repository
 
         // Submission files
         if ($context->isDoiTypeEnabled(Repo::doi()::TYPE_SUBMISSION_FILE)) {
-            // Get all submission files assigned to a publication format
-            $submissionFiles = Repo::submissionFile()
+            // Only the files of this version's publication formats
+            $publicationFormatIds = collect($publicationFormats)->map(fn (PublicationFormat $publicationFormat) => $publicationFormat->getId())->all();
+            $submissionFiles = empty($publicationFormatIds) ? [] : Repo::submissionFile()
                 ->getCollector()
                 ->filterBySubmissionIds([$publication->getData('submissionId')])
                 ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
+                ->filterByAssoc(Application::ASSOC_TYPE_PUBLICATION_FORMAT, $publicationFormatIds)
                 ->getMany();
 
             /** @var SubmissionFile $submissionFile */

@@ -26,6 +26,14 @@ describe('DOI tests', function() {
 		cy.get('button#submission-doi-management-button').click();
 	};
 
+	// The submissions the DOI page listed before it showed all submitted submissions
+	const filterInEditingPublishedOrWithDois = () => {
+		cy.get(
+			'#submission-doi-management button:contains("In Copyediting, Production, Published or with DOIs")'
+		).click();
+		cy.get('#submission-doi-management .pkpSpinner').should('not.exist');
+	};
+
 	const clearFilter = () => {
 		cy.get('#submission-doi-management button:contains("Clear filter")').each(
 			($el, index, $list) => {
@@ -79,9 +87,11 @@ describe('DOI tests', function() {
 	it('Check filters and mark registered', function() {
 		cy.log('Check Submission Filter Behaviour (pre-deposit)');
 		loginAndGoToDoiPage();
+		filterInEditingPublishedOrWithDois();
 		cy.checkDoiFilterResults('Needs DOI', 'Allan — Bomb Canada and Other Unkind Remarks in the American Media', 6);
 		cy.checkDoiFilterResults('DOI Assigned', 'Dawson et al. — From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots', 1);
 		clearFilter();
+		filterInEditingPublishedOrWithDois();
 		cy.checkDoiFilterResults('Unregistered', 'Dawson et al. — From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots', 1);
 		clearFilter();
 

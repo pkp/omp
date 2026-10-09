@@ -18,6 +18,7 @@
 
 namespace APP\doi;
 
+use APP\core\Application;
 use APP\facades\Repo;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
@@ -38,62 +39,66 @@ class DAO extends \PKP\doi\DAO
     public function getAllDepositableSubmissionIds(Context $context): Collection
     {
         $enabledDoiTypes = $context->getData(Context::SETTING_ENABLED_DOI_TYPES) ?? [];
+        $doiVersioning = (bool) $context->getData(Context::SETTING_DOI_VERSIONING);
 
         $q = DB::table($this->table, 'd')
+            // Minor versions share their major version's DOIs, so a DOI can match several publications/objects
             ->leftJoin('publications as p', 'd.doi_id', '=', 'p.doi_id')
-            ->leftJoin('submissions as s', 'p.publication_id', '=', 's.current_publication_id')
+            ->leftJoin('submission_chapters as cd', 'd.doi_id', '=', 'cd.doi_id')
+            ->leftJoin('publications as cp', 'cd.publication_id', '=', 'cp.publication_id')
+            ->leftJoin('publication_formats as pfd', 'd.doi_id', '=', 'pfd.doi_id')
+            ->leftJoin('publications as pfp', 'pfd.publication_id', '=', 'pfp.publication_id')
+            ->leftJoin('submission_files as sfd', 'd.doi_id', '=', 'sfd.doi_id')
             ->where('d.context_id', '=', $context->getId())
-            ->where(function (Builder $q) use ($enabledDoiTypes) {
+            ->where(function (Builder $q) use ($enabledDoiTypes, $doiVersioning) {
                 // Publication DOIs
-                $q->when(in_array(Repo::doi()::TYPE_PUBLICATION, $enabledDoiTypes), function (Builder $q) {
-                    $q->whereIn('d.doi_id', function (Builder $q) {
+                $q->when(in_array(Repo::doi()::TYPE_PUBLICATION, $enabledDoiTypes), function (Builder $q) use ($doiVersioning) {
+                    $q->whereIn('d.doi_id', function (Builder $q) use ($doiVersioning) {
                         $q->select('p.doi_id')
                             ->from('publications', 'p')
-                            ->leftJoin('submissions as s', 'p.publication_id', '=', 's.current_publication_id')
-                            ->whereColumn('p.publication_id', '=', 's.current_publication_id')
                             ->whereNotNull('p.doi_id')
                             ->where('p.status', '=', PKPPublication::STATUS_PUBLISHED);
+                        $this->whereDepositablePublication($q, $doiVersioning);
                     });
                 });
                 // Chapter DOIs
-                $q->when(in_array(Repo::doi()::TYPE_CHAPTER, $enabledDoiTypes), function (Builder $q) {
-                    $q->orWhereIn('d.doi_id', function (Builder $q) {
+                $q->when(in_array(Repo::doi()::TYPE_CHAPTER, $enabledDoiTypes), function (Builder $q) use ($doiVersioning) {
+                    $q->orWhereIn('d.doi_id', function (Builder $q) use ($doiVersioning) {
                         $q->select('spc.doi_id')
                             ->from('submission_chapters', 'spc')
                             ->join('publications as p', 'spc.publication_id', '=', 'p.publication_id')
-                            ->leftJoin('submissions as s', 'p.publication_id', '=', 's.current_publication_id')
-                            ->whereColumn('p.publication_id', '=', 's.current_publication_id')
                             ->whereNotNull('spc.doi_id')
                             ->where('p.status', '=', PKPPublication::STATUS_PUBLISHED);
+                        $this->whereDepositablePublication($q, $doiVersioning, false);
                     });
                 });
                 // Publication format DOIs
-                $q->when(in_array(Repo::doi()::TYPE_REPRESENTATION, $enabledDoiTypes), function (Builder $q) {
-                    $q->orWhereIn('d.doi_id', function (Builder $q) {
+                $q->when(in_array(Repo::doi()::TYPE_REPRESENTATION, $enabledDoiTypes), function (Builder $q) use ($doiVersioning) {
+                    $q->orWhereIn('d.doi_id', function (Builder $q) use ($doiVersioning) {
                         $q->select('pf.doi_id')
                             ->from('publication_formats', 'pf')
                             ->join('publications as p', 'pf.publication_id', '=', 'p.publication_id')
-                            ->leftJoin('submissions as s', 'p.publication_id', '=', 's.current_publication_id')
-                            ->whereColumn('p.publication_id', '=', 's.current_publication_id')
                             ->whereNotNull('pf.doi_id')
                             ->where('p.status', '=', PKPPublication::STATUS_PUBLISHED);
+                        $this->whereDepositablePublication($q, $doiVersioning, false);
                     });
                 });
-                // Submission file DOIs
-                $q->when(in_array(Repo::doi()::TYPE_SUBMISSION_FILE, $enabledDoiTypes), function (Builder $q) {
-                    $q->orWhereIn('d.doi_id', function (Builder $q) {
+                // Submission file DOIs, of the proof files of a publication format
+                $q->when(in_array(Repo::doi()::TYPE_SUBMISSION_FILE, $enabledDoiTypes), function (Builder $q) use ($doiVersioning) {
+                    $q->orWhereIn('d.doi_id', function (Builder $q) use ($doiVersioning) {
                         $q->select('sf.doi_id')
                             ->from('submission_files', 'sf')
-                            ->join('submissions as s', 's.submission_id', '=', 'sf.submission_id')
-                            ->leftJoin('publications as p', 's.current_publication_id', '=', 'p.publication_id')
-                            ->whereColumn('p.publication_id', '=', 's.current_publication_id')
+                            ->join('publication_formats as pf', 'sf.assoc_id', '=', 'pf.publication_format_id')
+                            ->join('publications as p', 'pf.publication_id', '=', 'p.publication_id')
+                            ->where('sf.assoc_type', '=', Application::ASSOC_TYPE_PUBLICATION_FORMAT)
                             ->where('sf.file_stage', '=', SubmissionFile::SUBMISSION_FILE_PROOF)
                             ->whereNotNull('sf.doi_id')
                             ->where('p.status', '=', PKPPublication::STATUS_PUBLISHED);
+                        $this->whereDepositablePublication($q, $doiVersioning, false);
                     });
                 });
             })
             ->whereIn('d.status', [Doi::STATUS_UNREGISTERED, Doi::STATUS_ERROR, Doi::STATUS_STALE]);
-        return $q->get(['s.submission_id', 'd.doi_id']);
+        return $q->distinct()->get([DB::raw('COALESCE(p.submission_id, cp.submission_id, pfp.submission_id, sfd.submission_id) AS submission_id'), 'd.doi_id']);
     }
 }

@@ -113,61 +113,12 @@ class Repository extends \PKP\doi\Repository
 
     public function getDoisForSubmission(int $submissionId): array
     {
-        $doiIds = Collection::make();
-
         $submission = Repo::submission()->get($submissionId);
-        /** @var Publication[] $publications */
-        $publications = [$submission->getCurrentPublication()];
-
-        /** @var PressDAO $contextDao */
-        $contextDao = Application::getContextDAO();
-        /** @var Press */
-        $context = $contextDao->getById($submission->getData('contextId'));
-
-        foreach ($publications as $publication) {
-            $publicationDoiId = $publication->getData('doiId');
-            if (!empty($publicationDoiId) && $context->isDoiTypeEnabled(self::TYPE_PUBLICATION)) {
-                $doiIds->add($publicationDoiId);
-            }
-
-            // Chapters
-            $chapters = $publication->getData('chapters');
-            foreach ($chapters as $chapter) {
-                $chapterDoiId = $chapter->getData('doiId');
-                if (!empty($chapterDoiId) && $context->isDoiTypeEnabled(self::TYPE_CHAPTER)) {
-                    $doiIds->add($chapterDoiId);
-                }
-            }
-
-            // Publication formats
-            $publicationFormats = $publication->getData('publicationFormats');
-            foreach ($publicationFormats as $publicationFormat) {
-                $publicationFormatDoiId
-                    = $publicationFormat->getData('doiId');
-                if (!empty($publicationFormatDoiId) && $context->isDoiTypeEnabled(self::TYPE_REPRESENTATION)) {
-                    $doiIds->add($publicationFormatDoiId);
-                }
-            }
-
-            // Submission files
-            if ($context->isDoiTypeEnabled(self::TYPE_SUBMISSION_FILE)) {
-                $submissionFiles = Repo::submissionFile()
-                    ->getCollector()
-                    ->filterBySubmissionIds([$publication->getData('submissionId')])
-                    ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
-                    ->getMany();
-
-                /** @var SubmissionFile $submissionFile */
-                foreach ($submissionFiles as $submissionFile) {
-                    $submissionFileDoiId = $submissionFile->getData('doiId');
-                    if (!empty($submissionFileDoiId)) {
-                        $doiIds->add($submissionFileDoiId);
-                    }
-                }
-            }
-        }
-
-        return $doiIds->unique()->toArray();
+        return collect($submission->getData('publications'))
+            ->flatMap(fn (Publication $publication) => $this->getDoisForPublication($publication))
+            ->unique()
+            ->values()
+            ->all();
     }
 
     /**
@@ -212,10 +163,13 @@ class Repository extends \PKP\doi\Repository
 
         // Submission files
         if ($context->isDoiTypeEnabled(self::TYPE_SUBMISSION_FILE)) {
-            $submissionFiles = Repo::submissionFile()
+            // Only the files of this version's publication formats
+            $publicationFormatIds = collect($publicationFormats)->map(fn (PublicationFormat $publicationFormat) => $publicationFormat->getId())->all();
+            $submissionFiles = empty($publicationFormatIds) ? [] : Repo::submissionFile()
                 ->getCollector()
                 ->filterBySubmissionIds([$publication->getData('submissionId')])
                 ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
+                ->filterByAssoc(Application::ASSOC_TYPE_PUBLICATION_FORMAT, $publicationFormatIds)
                 ->getMany();
 
             /** @var SubmissionFile $submissionFile */

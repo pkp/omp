@@ -284,6 +284,8 @@ class PublicationFormatForm extends Form
                 'publicationFormatName' => $publicationFormat->getData('name')
             ]);
             Repo::eventLog()->add($logEntry);
+
+            Repo::publication()->createDoisOnCreation($this->getPublication()->getId());
         }
 
         return $representationId;

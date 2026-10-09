@@ -16,8 +16,11 @@ namespace APP\publication;
 
 use APP\core\Application;
 use APP\monograph\ChapterDAO;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Facades\DB;
 use PKP\core\interfaces\CollectorInterface;
 use PKP\db\DAORegistry;
+use PKP\submissionFile\SubmissionFile;
 
 class DAO extends \PKP\publication\DAO
 {
@@ -54,5 +57,35 @@ class DAO extends \PKP\publication\DAO
         $publication->setData('publicationFormats', Application::getRepresentationDao()->getByPublicationId($publication->getId()));
         $publication->setData('chapters', $chapterDao->getByPublicationId($publication->getId())->toArray());
         return $publication;
+    }
+
+    /**
+     * @copydoc \PKP\publication\DAO::whereHasDoi()
+     */
+    protected function whereHasDoi(Builder $q): Builder
+    {
+        return parent::whereHasDoi($q)
+            ->orWhereExists(
+                fn (Builder $q) => $q->select(DB::raw(1))
+                    ->from('submission_chapters as spc')
+                    ->whereColumn('spc.publication_id', '=', 'p.publication_id')
+                    ->whereNotNull('spc.doi_id')
+            )
+            ->orWhereExists(
+                fn (Builder $q) => $q->select(DB::raw(1))
+                    ->from('publication_formats as pf')
+                    ->whereColumn('pf.publication_id', '=', 'p.publication_id')
+                    ->where(
+                        fn (Builder $q) => $q->whereNotNull('pf.doi_id')
+                            ->orWhereExists(
+                                fn (Builder $q) => $q->select(DB::raw(1))
+                                    ->from('submission_files as sf')
+                                    ->where('sf.assoc_type', '=', Application::ASSOC_TYPE_PUBLICATION_FORMAT)
+                                    ->whereColumn('sf.assoc_id', '=', 'pf.publication_format_id')
+                                    ->where('sf.file_stage', '=', SubmissionFile::SUBMISSION_FILE_PROOF)
+                                    ->whereNotNull('sf.doi_id')
+                            )
+                    )
+            );
     }
 }

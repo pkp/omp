@@ -53,6 +53,28 @@ class Repository extends SubmissionFileRepository
         return App::makeWith(Collector::class, ['dao' => $this->dao]);
     }
 
+    /** @copydoc SubmissionFileRepository::add() */
+    public function add(SubmissionFile $submissionFile): int
+    {
+        $submissionFileId = parent::add($submissionFile);
+
+        // Only proof files of a publication format get a DOI
+        if (
+            !$submissionFile->getData('doiId')
+            && $submissionFile->getData('fileStage') == SubmissionFile::SUBMISSION_FILE_PROOF
+            && $submissionFile->getData('assocType') == Application::ASSOC_TYPE_PUBLICATION_FORMAT
+        ) {
+            $publicationId = DB::table('publication_formats')
+                ->where('publication_format_id', '=', $submissionFile->getData('assocId'))
+                ->value('publication_id');
+            if ($publicationId) {
+                Repo::publication()->createDoisOnCreation($publicationId);
+            }
+        }
+
+        return $submissionFileId;
+    }
+
     public function getFileStages(): array
     {
         $stages = [

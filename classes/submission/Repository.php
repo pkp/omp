@@ -116,11 +116,13 @@ class Repository extends \PKP\submission\Repository
 
         // Submission files
         if ($context->isDoiTypeEnabled(Repo::doi()::TYPE_SUBMISSION_FILE)) {
-            // Get all submission files assigned to a publication format
-            $submissionFiles = Repo::submissionFile()
+            // Only the files of this version's publication formats
+            $publicationFormatIds = collect($publicationFormats)->map(fn (PublicationFormat $publicationFormat) => $publicationFormat->getId())->all();
+            $submissionFiles = empty($publicationFormatIds) ? [] : Repo::submissionFile()
                 ->getCollector()
                 ->filterBySubmissionIds([$publication->getData('submissionId')])
                 ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
+                ->filterByAssoc(Application::ASSOC_TYPE_PUBLICATION_FORMAT, $publicationFormatIds)
                 ->getMany();
 
             /** @var SubmissionFile $submissionFile */
