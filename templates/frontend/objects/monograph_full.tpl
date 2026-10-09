@@ -272,13 +272,13 @@
 			{/if}
 
 			{* References *}
-			{if $citations || (string) $publication->getData('citationsRaw')}
+			{if count($citations) || (string) $publication->getData('citationsRaw')}
 				<div class="item references">
 					<h2 class="label">
 						{translate key="submission.citations"}
 					</h2>
 					<div class="value">
-						{if $citations}
+						{if count($citations)}
 							{foreach from=$citations item=$citation}
 								<p>{$citation->getCitationWithLinks()|strip_unsafe_html}</p>
 							{/foreach}
