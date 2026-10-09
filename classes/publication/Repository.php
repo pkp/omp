@@ -499,7 +499,7 @@ class Repository extends \PKP\publication\Repository
         }
 
         $context = Application::getContextDAO()->getById($submission->getData('contextId'));
-        if (Repo::doi()->assignOnCreation($context)) {
+        if (Repo::doi()->assignOnItemCreation($context)) {
             $this->createDois($publication);
         }
     }
