@@ -23,6 +23,6 @@ class RecommendDeclineInternal extends RecommendDecline
 
     public function getDecision(): int
     {
-        return Decision::RECOMMEND_ACCEPT_INTERNAL;
+        return Decision::RECOMMEND_DECLINE_INTERNAL;
     }
 }
