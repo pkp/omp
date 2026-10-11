@@ -482,6 +482,11 @@ class ChapterGridHandler extends CategoryGridHandler {
 
 		$chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
 		$chapterDao->deleteById($chapterId);
+
+		// call publication::edit hook when chapter data is updated
+		$publication = $this->getPublication();
+		$publication = Services::get('publication')->edit($publication, [], $request);
+
 		return DAO::getDataChangedEvent();
 	}
 

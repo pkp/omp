@@ -198,8 +198,6 @@ class ChapterForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute(...$functionParams) {
-		parent::execute(...$functionParams);
-
 		$chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
 		$chapter = $this->getChapter();
 		$isEdit = !!$chapter;
@@ -237,6 +235,9 @@ class ChapterForm extends Form {
 			$selectedFiles = (array) $this->getData('files');
 			DAORegistry::getDAO('SubmissionFileDAO')->updateChapterFiles($selectedFiles, $this->getChapter()->getId());
 		}
+
+		// in order to be able to use the hook
+		parent::execute(...$functionParams);
 
 		return true;
 	}
