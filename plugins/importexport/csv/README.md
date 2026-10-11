@@ -1,56 +1,130 @@
-# CSV Import Plugin for OMP
-This application will convert a CSV file into a list of OMP publications/submissions. All book cover images and submission PDFs should be kept in the same path as the CSV file. It makes the management easier for the user.
+# CSV Import Export Plugin
 
-> Note: This is NOT a comprehensive CSV converter, and many fields are left out.
+## Table of Contents
+- [Overview](#overview)
+- [Usage Instructions](#usage-instructions)
+- [CSV File Structure and Field Descriptions](#csv-file-structure-and-field-descriptions)
+  - [Required Fields and Headers](#required-fields-and-headers)
+- [Authors Data Organization](#authors-data-organization)
+- [Examples](#examples)
+- [Common Use Cases](#common-use-cases)
+- [Best Practices and Troubleshooting](#best-practices-and-troubleshooting)
+- [Limitations and Special Considerations](#limitations-and-special-considerations)
 
-## 1. How to Use
-From the CLI command, you should use this way, starting on the OMP root directory:
+## Overview
+The CSV Import Export Plugin is a command-line tool for importing submission data from a CSV file into OMP. It allows you to batch-import submissions using a properly formatted CSV file.
 
+## Usage Instructions
+### How to Run
+Use the following command in your terminal:
 ```
-php tools/importExport.php CSVImportExportPlugin <BASE_PATH>/<CSV_FILE_NAME>.csv <USERNAME>
+php tools/importExport.php CSVImportExportPlugin [path_to_csv_file] [username]
+```
+- **[path_to_csv_file]**: The path to the CSV file containing submission data.
+- **[username]**: The username to assign the imported submissions.
+
+**Example:**
+```
+php tools/importExport.php CSVImportExportPlugin /home/user/submissions.csv johndoe
 ```
 
-, where `<BASE_PATH>` is where the CSV file is located, `<CSV_FILE_NAME>` is the name of the CSV file you want to add the books and `<USERNAME>` is a valid OMP username registered.
+### Command Parameters Table
 
-> Note: The `<BASE_PATH>` will be used also to get the assets (the Book PDF and the cover image). It'll be explained later.
+| Parameter         | Description                                             | Example                        |
+|-------------------|---------------------------------------------------------|--------------------------------|
+| [path_to_csv_file]| Path to the CSV file containing submission data       | /home/user/submissions.csv     |
+| [username]        | Username to assign the imported submissions           | johndoe                        |
 
-## 2. About the CSV file
+## CSV File Structure and Field Descriptions
 
-### 2.1. Description
-The CSV must be in this format:
+The CSV file should have the following structure and fields:
 
-`pressPath,authorString,title,abstract,seriesPath,year,isEditedVolume,locale,filename,doi,keywords,subjects,bookCoverImage,bookCoverImageAltText,categories,genreName`
+| Column Name             | Description                                                  | Required | Example Value                                  |
+|-------------------------|--------------------------------------------------------------|:--------:|------------------------------------------------|
+| pressPath               | Identifier for the press                                     | Yes      | leo                                            |
+| authorString            | Authors list; separate multiple authors with semicolons      | Yes      | "Given1,Family1,email@example.com;John,Doe,john@example.com" |
+| title                   | Title of the submission                                      | Yes      | Title text                                     |
+| abstract                | Summary or abstract of the submission                        | Yes      | Abstract text                                  |
+| seriesPath              | Series identifier (optional if not applicable)               | No       | (leave empty if not applicable)                |
+| datePublished           | Publication date in YYYY-MM-DD format                       | Yes      | 2024-03-15                                     |
+| year                    | Year of the submission                                       | No      | 2024 (leave empty if not applicable)                                           |
+| isEditedVolume          | Flag indicating if it's an edited volume (1 = Yes, 0 = No)     | Yes      | 1 (leave empty if not applicable)                                               |
+| locale                  | Locale code (e.g., en)                                         | Yes      | en                                             |
+| filename                | Name of the file with submission content                     | Yes      | submission.pdf                                 |
+| doi                     | Digital Object Identifier (if applicable)                    | No       | 10.1111/hex.12487                              |
+| keywords                | Keywords separated by semicolons                             | No       | keyword1;keyword2;keyword3                      |
+| subjects                | Subjects separated by semicolons                             | No       | subject1;subject2                              |
+| bookCoverImage          | Filename for the cover image                                 | No       | coverImage.png                                 |
+| bookCoverImageAltText   | Alternative text for the cover image                         | No       | Alt text, with commas                          |
+| categories              | Categories separated by semicolons                           | No      | Category 1;Category 2;Category 3 (leave empty if not applicable)                |
+| genreName               | Genre of the submission                                      | No      | MANUSCRIPT (leave empty if not applicable)                                     |
 
-1. **pressPath**: **(required)** is the path for the press the user wants to insert a publication. If this field is not present, the tool will jump for the other line of CSV file.
-2. **authorString**: **(required)** is the list of authors presents on the submission. For each author, it contains the given name, the surname and the email address. For each author, the string format must be on the following format: `Author1,Surname1,author@pkp.sfu.ca`.
-	2.1. The author's data must be inside double quotes as follows: `"Author1,Surname1,author@pkp.sfu.ca;Author2,Surname2,author2@sfu.pkp.ca"`;
-	2.2. The information between the authors must be separated by a semicolon as shown above;
-	2.3. The family name and email address are both optional, so if some of these fields are not present, continue using the comma and leave the space for this field blank (e.g. `"Author1,,email@email.com;Author2,Surname2,;Author3,,"`).
-3. **title**: **(required)** the submission's title.
-4. **abstract**: **(required)** the submission's abstract.
-5. **seriesPath**: the path for the series this submission is included.
-6. **year**: the submission's year.
-7. **isEditedVolume**: sets the `work_type` for the submission.
-8. **locale**: **(required)** the submission's locale. Must be one of the supported locales for this press. If it's not present, the tool will jump for the next CSV line and will not include this submission.
-9. **filename**: **(required)** the submission file name. It must be present on the same directory as the `CSV` file.
-10. **doi**: the submission's DOI link.
-11. **keywords**: the submission's keywords. If the submission presents more than one keyword, they need to be separated by a semicolon (e.g. `keyword1;keyword2`);
-12. **subjects**: the submission's subjects. If the submission presents more than one subject, they need to be separated by a semicolon (e.g. `subject1;subject2`);
-13. **bookCoverImage**: the book cover image filename. This file must be on the same directory as the `CSV` file and ought to be in one of these formats: *gif, jpg, png or webp*. If the image isn't in one of these formats, it won't be added to the submission.
-14. **bookCoverImageAltText**: the alt text for the book cover image. It'll only work if the bookCoverImage is present.
-15. **categories**: the submission's categories. All categories present here must be already added to the Press to work correctly. If the submission presents more than one category, they must be separated by a semicolon (e.g. `Category 1;Category 2`).
-16. **genreName**: the submission's genre. If this field comes empty, the system will assume the **MANUSCRIPT** genre by default
+**Note:** Ensure that fields with commas are properly quoted.
 
-## 3. Instructions
-1. Fill the CSV file correctly. You can use the `sample.csv` file as an example.
-2. Place your CSV file in a place of your preference.
-3. Place all cover images and submission files in the same directory as the CSV file.
-	> Note: the Submission PDFs and the cover images must have the same name as in the CSV file.
-5. Run the command present on the [How to Use](#1-how-to-use) section.
-6. The commands should run correctly and add all the submissions present on it.
+### Required Fields and Headers
 
-## 4. Main Observations
-  - The tool will generate the publications/submissions for every row where all data was correctly filled.
-  - In the end of the command, the terminal will show all incorrect rows and the reason for each one of them to failed.
-  - If there's any incorrect row, the command will also generate a CSV file called `invalid_rows.csv` with only the rows the tool encountered errors or inconsistencies.
-  - Even with errors, it's important to highlight that all data where the row is correct will be inserted into the system.
+The CSV must contain exactly the following headers in the specified order:
+
+**Expected Headers:**
+```
+pressPath,authorString,title,abstract,seriesPath,datePublished,year,isEditedVolume,locale,filename,doi,keywords,subjects,bookCoverImage,bookCoverImageAltText,categories,genreName
+```
+
+**Required Headers (mandatory):**
+```
+pressPath,authorString,datePublished,title,abstract,locale,filename
+```
+
+**Warning:** The CSV header order must match exactly as provided in sample.csv. Any deviation, such as additional headers, missing headers, or reordering, will cause the CLI command to crash.
+
+## Authors Data Organization
+
+Author's information is processed via the AuthorsProcessor (see AuthorsProcessor.php). In the CSV, author details should be provided in the `authorString` field following these rules:
+- Multiple authors must be separated by a semicolon (`;`).
+- Each author entry must contain comma-separated values in the following order:
+  - Given Name (required)
+  - Family Name (required)
+  - Email Address (optional; if omitted, the tool defaults to the provided contact email)
+
+**Example:**
+```
+"Given1,Family1,email@example.com;John,Doe,"
+```
+
+**Note:** All assets referenced in the CSV (e.g., files specified in `filename` or `bookCoverImage`) must reside in the same directory as the CSV file.
+
+## Examples
+
+### Command Example
+**Command:**
+```
+php tools/importExport.php CSVImportExportPlugin /home/user/submissions.csv johndoe
+```
+
+**Example Output:**
+```
+Submission: "Title text" successfully imported.
+Submission: "Another Title" successfully imported.
+...
+All submissions imported. 2 successes, 0 failures.
+```
+
+### Sample CSV File Snippet
+```
+pressPath,authorString,title,abstract,seriesPath,datePublished,year,isEditedVolume,locale,filename,doi,keywords,subjects,bookCoverImage,bookCoverImageAltText,categories,genreName
+leo,"Given1,Family1,given1@example.com;John,Doe,john@example.com",Title text,Abstract text,,2024-03-15,2024,1,en,submission.pdf,10.1111/hex.12487,keyword1;keyword2,subject1;subject2,coverImage.png,"Alt text, with commas",Category 1;Category 2,MANUSCRIPT
+```
+
+## Common Use Cases
+- **Batch Importing Submissions:** Import multiple submissions at once using a CSV file.
+- **Data Migration:** Transfer submission data from legacy systems to OMP.
+- **Automated Imports:** Integrate the tool into scripts for periodic data imports.
+
+## Best Practices and Troubleshooting
+- **Verify CSV Structure:** Always check your CSV against the sample structure provided above and ensure it strictly adheres to the required header order.
+- **Check for Required Fields:** Ensure all mandatory fields (e.g., pressPath, authorString, title, abstract, locale, filename) are provided.
+- **Validate Authors Format:** Confirm that the `authorString` field follows the format: Given Name, Family Name, Email (with multiple authors separated by semicolons).
+
+## Limitations and Special Considerations
+- The tool is command-line only; no web interface is available.
+- **Warning:** CSV header mismatches—such as extra headers, missing headers, or headers in an incorrect order—will cause the CLI command to crash. Ensure the CSV exactly matches the header format provided in sample.csv.
