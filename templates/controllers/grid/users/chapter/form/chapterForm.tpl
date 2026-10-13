@@ -42,6 +42,11 @@
 	    {fbvElement type="text" id="pages" value=$pages inline=true size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 
+	{fbvFormSection title="submission.citations"}
+		<div class="pkpFormField__description">{translate key="submission.citations.description"}</div>
+		{fbvElement type="textarea" name="chapterCitationsRaw" id="chapterCitationsRaw"  value=$chapterCitationsRaw multilingual=false}
+	{/fbvFormSection}
+
 	{if $enableChapterPublicationDates}
 		{fbvFormSection title="publication.datePublished" for="customExtras"}
 		{fbvElement type="text" id="datePublished" value=$datePublished inline=true size=$fbvStyles.size.LARGE  class="datepicker"}
