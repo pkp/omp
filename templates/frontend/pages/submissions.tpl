@@ -1,8 +1,8 @@
 {**
  * templates/frontend/pages/submissions.tpl
  *
- * Copyright (c) 2014-2024 Simon Fraser University
- * Copyright (c) 2003-2024 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2003-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Display the page to view information about submissions.
@@ -63,7 +63,7 @@
 		<div class="copyright_notice">
 			<h2>
 				{translate key="about.copyrightNotice"}
-				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="workflow" anchor="submission/authorGuidelines" sectionTitleKey="about.copyrightNotice"}
+				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="workflow" anchor="submission/instructions" sectionTitleKey="about.copyrightNotice"}
 			</h2>
 			{$currentContext->getLocalizedData('copyrightNotice')}
 		</div>
