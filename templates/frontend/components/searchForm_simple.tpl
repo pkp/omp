@@ -16,8 +16,13 @@
 	{foreach from=$formUrlParameters key=paramKey item=paramValue}
 		<input type="hidden" name="{$paramKey|escape}" value="{$paramValue|escape}"/>
 	{/foreach}
+	{* The label must stay visible: its text is the accessible name, so
+	   hiding it leaves speech-input users with no term to speak *}
+	<label for="query">
+		{translate key="common.searchQuery"}
+	</label>
 	{block name=searchQuerySimple}
-		<input name="query" value="{$query|escape}" type="search" aria-label="{translate|escape key="common.searchQuery"}">
+		<input name="query" id="query" value="{$query|escape}" type="search">
 	{/block}
 
 	<button class="cmp_button" type="submit">
