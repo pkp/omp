@@ -133,7 +133,7 @@ class ContextService extends \PKP\services\PKPContextService
                     $newContext,
                     $params['pressThumbnail'][$localeKey],
                     'pressThumbnail',
-                    $request->getUser()->getId(),
+                    $request->getUser(),
                     $localeKey,
                     true
                 );
