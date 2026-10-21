@@ -1,7 +1,7 @@
-# Carla Marques <carla.marques@usdb.uminho.pt>, 2023.
+# Carla Marques <carla.marques@usdb.uminho.pt>, 2023, 2026.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-03-03 11:16+0000\n"
+"PO-Revision-Date: 2026-10-21 15:38+0000\n"
 "Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/pt/>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "plugins.themes.default.name"
 msgstr "Tema Padrão"
@@ -99,3 +99,12 @@ msgstr "Use um gráfico de linhas para exibição das estatísticas de uso."
 
 msgid "plugins.themes.default.displayStats.monthInitials"
 msgstr "Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez"
+
+msgid "plugins.themes.default.option.showDescriptionInPressIndex.option"
+msgstr "Exibir o resumo da editora na página inicial."
+
+msgid "plugins.themes.default.prevSlide"
+msgstr "Slide anterior"
+
+msgid "plugins.themes.default.nextSlide"
+msgstr "Slide seguinte"
