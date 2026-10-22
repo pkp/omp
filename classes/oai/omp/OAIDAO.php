@@ -245,7 +245,7 @@ class OAIDAO extends PKPOAIDAO
                         'dot.set_spec',
                         'dot.oai_identifier',
                     ])
-                    ->when(isset($pressId), function ($query, $pressId) {
+                    ->when(isset($pressId), function ($query) use ($pressId) {
                         return $query->join('data_object_tombstone_oai_set_objects AS tsop', function ($join) use ($pressId) {
                             $join->on('tsop.tombstone_id', '=', 'dot.tombstone_id');
                             $join->where('tsop.assoc_type', '=', Application::ASSOC_TYPE_PRESS);
@@ -254,7 +254,7 @@ class OAIDAO extends PKPOAIDAO
                     }, function ($query) {
                         return $query->addSelect([DB::raw('NULL AS press_id')]);
                     })
-                    ->when(isset($seriesId), function ($query, $seriesId) {
+                    ->when(isset($seriesId), function ($query) use ($seriesId) {
                         return $query->join('data_object_tombstone_oai_set_objects AS tsos', function ($join) use ($seriesId) {
                             $join->on('tsos.tombstone_id', '=', 'dot.tombstone_id');
                             $join->where('tsos.assoc_type', '=', Application::ASSOC_TYPE_SERIES);
