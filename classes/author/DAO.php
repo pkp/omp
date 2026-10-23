@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/author/DAO.php
  *
@@ -14,6 +15,7 @@
 namespace APP\author;
 
 use APP\monograph\Chapter;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class DAO extends \PKP\author\DAO
@@ -31,6 +33,19 @@ class DAO extends \PKP\author\DAO
             'primary_contact' => $isPrimary,
             'seq' => $sequence,
         ]);
+    }
+
+    /**
+     * Get the sequence and primary contact flag of each author assigned to a chapter
+     *
+     * @return Collection<int,object> Rows with authorId, seq and primaryContact, keyed by author ID
+     */
+    public function getChapterAuthorData(int $chapterId): Collection
+    {
+        return DB::table($this->chapterAuthorsTable)
+            ->where('chapter_id', '=', $chapterId)
+            ->get(['author_id as authorId', 'seq', 'primary_contact as primaryContact'])
+            ->keyBy('authorId');
     }
 
     /**

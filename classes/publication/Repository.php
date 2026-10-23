@@ -134,7 +134,7 @@ class Repository extends \PKP\publication\Repository
             // Duplicate publication format metadata
             $metadataDaos = ['IdentificationCodeDAO', 'MarketDAO', 'PublicationDateDAO', 'SalesRightsDAO'];
             foreach ($metadataDaos as $metadataDao) {
-                /** @var IdentificationCodeDAO|MarketDAO|PublicationDateDAO|SalesRightsDAO */
+                /** @var IdentificationCodeDAO|MarketDAO|PublicationDateDAO|SalesRightsDAO $dao */
                 $dao = DAORegistry::getDAO($metadataDao);
                 $result = $dao->getByPublicationFormatId($oldPublicationFormat->getId());
                 while (!$result->eof()) {
@@ -231,15 +231,17 @@ class Repository extends \PKP\publication\Repository
                 ->filterByChapterId($oldChapter->getId())
                 ->filterByPublicationIds([$oldPublicationId])
                 ->getMany();
+            $oldChapterAuthorData = Repo::author()->getChapterAuthorData($oldChapter->getId());
 
             foreach ($oldChapterAuthors as $oldChapterAuthor) {
                 $newAuthorId = $oldToNewAuthorId[$oldChapterAuthor->getId()] ?? null;
+                $chapterAuthorData = $oldChapterAuthorData->get($oldChapterAuthor->getId());
                 if ($newAuthorId !== null) {
                     Repo::author()->addToChapter(
                         $newAuthorId,
                         $newChapter->getId(),
-                        $newAuthorId === $newPublication->getData('primaryContactId'),
-                        $oldChapterAuthor->getData('seq')
+                        (bool) $chapterAuthorData->primaryContact,
+                        (int) $chapterAuthorData->seq
                     );
                 }
             }
