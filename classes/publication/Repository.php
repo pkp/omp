@@ -3,8 +3,8 @@
 /**
  * @file classes/publication/Repository.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2000-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Repository
@@ -142,7 +142,7 @@ class Repository extends \PKP\publication\Repository
             // Duplicate publication format metadata
             $metadataDaos = ['IdentificationCodeDAO', 'MarketDAO', 'PublicationDateDAO', 'SalesRightsDAO'];
             foreach ($metadataDaos as $metadataDao) {
-                /** @var IdentificationCodeDAO|MarketDAO|PublicationDateDAO|SalesRightsDAO */
+                /** @var IdentificationCodeDAO|MarketDAO|PublicationDateDAO|SalesRightsDAO $dao */
                 $dao = DAORegistry::getDAO($metadataDao);
                 $result = $dao->getByPublicationFormatId($oldPublicationFormat->getId());
                 while (!$result->eof()) {
@@ -212,7 +212,7 @@ class Repository extends \PKP\publication\Repository
             }
         }
 
-        while ($oldChapter = $oldChaptersIterator->next()) {
+        while ($oldChapter = $oldChaptersIterator->next()) { /** @var Chapter $oldChapter */
             $newChapter = clone $oldChapter;
             $newChapter->setData('id', null);
             $newChapter->setData('publicationId', $newPublication->getId());
@@ -239,6 +239,7 @@ class Repository extends \PKP\publication\Repository
                 ->filterByChapterId($oldChapter->getId())
                 ->filterByPublicationIds([$oldPublicationId])
                 ->getMany();
+            $oldChapterAuthorSequences = Repo::author()->getChapterAuthorSequences($oldChapter->getId());
 
             foreach ($oldChapterAuthors as $oldChapterAuthor) {
                 $newAuthorId = $oldToNewAuthorId[$oldChapterAuthor->getId()] ?? null;
@@ -246,8 +247,8 @@ class Repository extends \PKP\publication\Repository
                     Repo::author()->addToChapter(
                         $newAuthorId,
                         $newChapter->getId(),
-                        $newAuthorId === $newPublication->getData('primaryContactId'),
-                        $oldChapterAuthor->getData('seq')
+                        false,
+                        (int) $oldChapterAuthorSequences->get($oldChapterAuthor->getId())
                     );
                 }
             }
@@ -343,7 +344,7 @@ class Repository extends \PKP\publication\Repository
     }
 
     /** @copydoc \PKP\publication\Repository::setStatusOnPublish() */
-    protected function setStatusOnPublish(Publication $publication)
+    protected function setStatusOnPublish(Publication $publication): void
     {
         // If the publish date is in the future, set the status to scheduled
         $datePublished = $publication->getData('datePublished');
@@ -360,7 +361,7 @@ class Repository extends \PKP\publication\Repository
     }
 
     /** @copydoc \PKP\publication\Repository::unpublish() */
-    public function unpublish(Publication $publication, false|int|null $submissionStatus = null)
+    public function unpublish(Publication $publication, false|int|null $submissionStatus = null): void
     {
         parent::unpublish($publication, $submissionStatus);
 
@@ -409,7 +410,7 @@ class Repository extends \PKP\publication\Repository
         // Delete chapters and assigned chapter authors.
         $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
         $chapters = $chapterDao->getByPublicationId($publication->getId());
-        while ($chapter = $chapters->next()) {
+        while ($chapter = $chapters->next()) { /** @var Chapter $chapter */
             // also removes Chapter Author and file associations
             $chapterDao->deleteObject($chapter);
         }
@@ -421,12 +422,8 @@ class Repository extends \PKP\publication\Repository
      * Derive a thumbnail filename from the cover image filename
      *
      * book_1_1_cover.png --> book_1_1_cover_t.png
-     *
-     * @param string $fileName
-     *
-     * @return string The thumbnail filename
      */
-    public function getThumbnailFileName($fileName)
+    public function getThumbnailFileName(string $fileName): string
     {
         $pathInfo = pathinfo($fileName);
         return $pathInfo['filename'] . '_t.' . $pathInfo['extension'];
@@ -439,20 +436,24 @@ class Repository extends \PKP\publication\Repository
      * @param int $maxWidth The maximum allowed width of the thumbnail
      * @param int $maxHeight The maximum allowed height of the thumbnail
      */
-    public function makeThumbnail($filePath, $thumbFileName, $maxWidth, $maxHeight)
+    public function makeThumbnail(string $filePath, string $thumbFileName, int $maxWidth, int $maxHeight): void
     {
         $pathParts = pathinfo($filePath);
         $thumbFilePath = $pathParts['dirname'] . '/' . $thumbFileName;
 
         $cover = null;
         switch ($pathParts['extension']) {
-            case 'jpg': $cover = imagecreatefromjpeg($filePath);
+            case 'jpg':
+                $cover = imagecreatefromjpeg($filePath);
                 break;
-            case 'png': $cover = imagecreatefrompng($filePath);
+            case 'png':
+                $cover = imagecreatefrompng($filePath);
                 break;
-            case 'gif': $cover = imagecreatefromgif($filePath);
+            case 'gif':
+                $cover = imagecreatefromgif($filePath);
                 break;
-            case 'webp': $cover = imagecreatefromwebp($filePath);
+            case 'webp':
+                $cover = imagecreatefromwebp($filePath);
                 break;
         }
         if (!isset($cover)) {
@@ -473,13 +474,17 @@ class Repository extends \PKP\publication\Repository
         imagecopyresampled($thumb, $cover, 0, 0, 0, 0, $thumbWidth, $thumbHeight, $originalSizeArray[0], $originalSizeArray[1]);
 
         switch ($pathParts['extension']) {
-            case 'jpg': imagejpeg($thumb, $pathParts['dirname'] . '/' . $thumbFileName);
+            case 'jpg':
+                imagejpeg($thumb, $pathParts['dirname'] . '/' . $thumbFileName);
                 break;
-            case 'png': imagepng($thumb, $pathParts['dirname'] . '/' . $thumbFileName);
+            case 'png':
+                imagepng($thumb, $pathParts['dirname'] . '/' . $thumbFileName);
                 break;
-            case 'gif': imagegif($thumb, $pathParts['dirname'] . '/' . $thumbFileName);
+            case 'gif':
+                imagegif($thumb, $pathParts['dirname'] . '/' . $thumbFileName);
                 break;
-            case 'webp': imagewebp($thumb, $thumbFilePath);
+            case 'webp':
+                imagewebp($thumb, $thumbFilePath);
                 break;
         }
 
@@ -605,7 +610,7 @@ class Repository extends \PKP\publication\Repository
             $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
             $chaptersIterator = $chapterDao->getByPublicationId($newPublication->getId());
 
-            while ($chapter = $chaptersIterator->next()) {
+            while ($chapter = $chaptersIterator->next()) { /** @var Chapter $chapter */
                 if (!$chapter->getLicenseUrl()) {
                     $chapter->setLicenseUrl($newPublication->getData('chapterLicenseUrl'));
                     $chapterDao->updateLocaleFields($chapter);
