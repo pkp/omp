@@ -1,9 +1,10 @@
 <?php
+
 /**
  * @file classes/author/DAO.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2000-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class DAO
@@ -18,12 +19,12 @@ use Illuminate\Support\Facades\DB;
 
 class DAO extends \PKP\author\DAO
 {
-    public $chapterAuthorsTable = 'submission_chapter_authors';
+    public string $chapterAuthorsTable = 'submission_chapter_authors';
 
     /**
      * Add an author to a chapter.
      */
-    public function insertChapterAuthor(int $authorId, int $chapterId, bool $isPrimary = false, int $sequence = 0)
+    public function insertChapterAuthor(int $authorId, int $chapterId, bool $isPrimary = false, int $sequence = 0): void
     {
         DB::table($this->chapterAuthorsTable)->insert([
             'author_id' => $authorId,
@@ -36,7 +37,7 @@ class DAO extends \PKP\author\DAO
     /**
      * Remove an author from a chapter
      */
-    public function deleteChapterAuthorById(int $authorId, int $chapterId)
+    public function deleteChapterAuthorById(int $authorId, int $chapterId): void
     {
         DB::table($this->chapterAuthorsTable)
             ->where('author_id', '=', $authorId)
@@ -49,7 +50,7 @@ class DAO extends \PKP\author\DAO
      *
      * TODO: May need to go (or taken into consideration) to \chapter\DAO when available
      */
-    public function deleteChapterAuthors(Chapter $chapter)
+    public function deleteChapterAuthors(Chapter $chapter): void
     {
         DB::table($this->chapterAuthorsTable)
             ->where('chapter_id', '=', $chapter->getId())
