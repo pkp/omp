@@ -3872,7 +3872,7 @@ const defaultOptions = {
     kind: OptionKind.API
   },
   isEvalSupported: {
-    value: true,
+    value: false,
     kind: OptionKind.API
   },
   maxImageSize: {
