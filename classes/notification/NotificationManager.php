@@ -3,8 +3,8 @@
 /**
  * @file classes/notification/NotificationManager.php
  *
- * Copyright (c) 2014-2024 Simon Fraser University
- * Copyright (c) 2000-2024 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2000-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class NotificationManager
@@ -115,6 +115,8 @@ class NotificationManager extends PKPNotificationManager
         return match ($decision->getData('decision')) {
             Decision::INTERNAL_REVIEW => Notification::NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW,
             Decision::PENDING_REVISIONS_INTERNAL => Notification::NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS,
+            Decision::WITHDRAW_INTERNAL_REVIEW => Notification::NOTIFICATION_TYPE_EDITOR_DECISION_WITHDRAW,
+            Decision::REVERT_WITHDRAW_INTERNAL_REVIEW => Notification::NOTIFICATION_TYPE_EDITOR_DECISION_REVERT_WITHDRAW,
             default => parent::getNotificationTypeByEditorDecision($decision)
         };
     }
