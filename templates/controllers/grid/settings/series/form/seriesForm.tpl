@@ -103,7 +103,7 @@
 					id="subEditors[{$userGroupId}][]"
 					value=$id
 					checked=(isset($subeditorUserGroups[$id]) && in_array($userGroupId, $subeditorUserGroups[$id]))
-					label={translate key="manager.sections.form.assignEditorAs" name=$username role=$role}
+					label={translate key="manager.sections.form.assignEditorAs" name=$username|escape role=$role|escape}
 					translate=false
 				}
 			{/foreach}
