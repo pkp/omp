@@ -2,7 +2,7 @@
 # José Carvalho <jcarvalho@keep.pt>, 2023, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-10-21 15:38+0000\n"
+"PO-Revision-Date: 2026-10-28 11:06+0000\n"
 "Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "pt/>\n"
@@ -1702,3 +1702,9 @@ msgid "manager.setup.contextSummary.description"
 msgstr ""
 "Ofereça uma breve descrição da sua editora para fornecer informações sobre o "
 "seu conteúdo e propósito."
+
+msgid "manager.setup.enableEnrollmentMasthead.description"
+msgstr ""
+"Se o pretender, uma página mestre pode ser gerada automaticamente de acordo "
+"com os papéis dos utilizadores, incluindo datas de início e fim. Ver mais em "
+"Configurações > Editora > Cabeçalho."
