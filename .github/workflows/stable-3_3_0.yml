@@ -45,6 +45,9 @@ jobs:
           - php-version: 8.2
             database: pgsql
             test: 'test'
+          - php-version: 8.3
+            database: pgsql
+            test: 'test'
     name: omp
     steps:
       - uses: pkp/pkp-github-actions@v1
