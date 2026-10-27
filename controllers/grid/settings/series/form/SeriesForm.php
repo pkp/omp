@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/settings/series/form/SeriesForm.php
  *
- * Copyright (c) 2014-2025 Simon Fraser University
- * Copyright (c) 2003-2025 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2003-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SeriesForm
@@ -182,7 +182,7 @@ class SeriesForm extends PKPSectionForm
 
         // Cover image delete link action
         $series = $this->getSeriesId() ? Repo::section()->get($this->getSeriesId(), $context->getId()) : null;
-        if ($series && $coverImage = $series->getImage()) {
+        if ($series?->getImage()) {
             $templateMgr->assign(
                 'deleteCoverImageLinkAction',
                 new LinkAction(
@@ -198,8 +198,6 @@ class SeriesForm extends PKPSectionForm
                             'deleteImage',
                             null,
                             [
-                                'name' => $coverImage['name'] ?? null,
-                                'thumbnailName' => $coverImage['thumbnailName'] ?? null,
                                 'seriesId' => $this->getSeriesId(),
                             ]
                         ),
