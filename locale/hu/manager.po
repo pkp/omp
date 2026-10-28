@@ -355,9 +355,6 @@ msgstr ""
 "menedzser által bármikor módosítható vagy lecserélhető (HTML-ben vagy "
 "egyszerű szövegben)."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Szerzői jogi nyilatkozat"
-
 msgid "manager.setup.coverage"
 msgstr "Lefedettség"
 
@@ -1491,12 +1488,6 @@ msgstr "Kiadványformátumok"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Fájlok"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "DOI előtag"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "A DOI előtag kötelező, és 10.xxxx formátumúnak kell lennie."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""

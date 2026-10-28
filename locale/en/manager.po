@@ -111,6 +111,12 @@ msgstr "Don't allow authors to submit directly to this series."
 msgid "manager.sections.alertDelete"
 msgstr "Before this series can be deleted, you must move associated submissions with this series to other series."
 
+msgid "manager.sections.confirmDeactivateSection"
+msgstr "Are you sure you wish to deactivate this series?"
+
+msgid "manager.sections.confirmActivateSection"
+msgstr "Are you sure you wish to activate this series?"
+
 msgid "manager.payment.generalOptions"
 msgstr "General Options"
 
@@ -319,9 +325,6 @@ msgstr "Copyedit Instructions"
 
 msgid "manager.setup.copyeditInstructionsDescription"
 msgstr "The Copyedit Instructions will be made available to Copyeditors, Authors, and Section Editors in the Submission Editing stage. Below is a default set of instructions in HTML, which can be modified or replaced by the Press Manager at any point (in HTML or plain text)."
-
-msgid "manager.setup.copyrightNotice"
-msgstr "Copyright notice"
 
 msgid "manager.setup.coverage"
 msgstr "Coverage"
@@ -912,7 +915,7 @@ msgid "manager.setup.disableSubmissions.notAccepting"
 msgstr "This press is not accepting submissions at this time. Visit the workflow settings to allow submissions."
 
 msgid "manager.setup.disableSubmissions.description"
-msgstr "Prevent users from submitting new articles to the press. Submissions can be disabled for individual press series on the <a href=\"{$url}\">press series</a> settings page."
+msgstr "Prevent users from submitting new monographs to the press. Submissions can be disabled for individual press series on the <a href=\"{$url}\">press series</a> settings page."
 
 msgid "manager.setup.genres"
 msgstr "Genres"
@@ -944,7 +947,7 @@ msgstr "Allow series submissions"
 msgid "manager.setup.issnDescription"
 msgstr ""
 "The ISSN (International Standard Serial Number) is an eight-digit number "
-"which identifying periodical publications including electronic serials. A "
+"which identifies periodical publications including electronic serials. A "
 "number can be obtained from the <a href=\"https://www.issn.org\" target=\""
 "_blank\">ISSN International Centre</a>."
 
@@ -1114,6 +1117,14 @@ msgstr "The number of press's and catalog's index page views."
 msgid "stats.context.downloadReport.downloadContext"
 msgstr "Download Press"
 
+msgid "stats.description.daysToDecision"
+msgstr ""
+"The number of days it takes for most submissions to receive the first "
+"editorial decision, such as desk rejection or send for review.<br><br>These "
+"figures indicate that 80% of submissions reach the decision within the given "
+"number of days.<br><br>This statistic attempts to describe when the majority "
+"of authors submitting to your press can expect a decision."
+
 msgid "stats.publications.downloadReport.description"
 msgstr "Download a CSV/Excel spreadsheet with usage statistics for monographs matching the following parameters."
 
@@ -1253,12 +1264,6 @@ msgstr "Publication Formats"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Files"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "DOI Prefix"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "The DOI prefix is mandatory and must be in the form 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr "Enter a custom suffix pattern for each publication type. The custom suffix pattern may use the following symbols to generate the suffix:<br><br> "

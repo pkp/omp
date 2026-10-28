@@ -351,9 +351,6 @@ msgstr ""
 "instruções em HTML, que pode ser modificado ou substituído pelo gerente da "
 "editora a qualquer momento (em HTML ou texto puro)."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Aviso de direito autoral"
-
 msgid "manager.setup.coverage"
 msgstr "Cobertura"
 
@@ -1490,12 +1487,6 @@ msgstr "Formatos de publicação"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Arquivos"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "Prefixo DOI"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "O prefixo DOI é obrigatório e deve ser na forma 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""
