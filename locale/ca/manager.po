@@ -355,9 +355,6 @@ msgstr ""
 "format HTML, que el cap editorial pot modificar o reemplaçar en qualsevol "
 "moment (en HTML o en text net)."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Avís de drets d’autor/a"
-
 msgid "manager.setup.coverage"
 msgstr "Cobertura"
 
@@ -1499,12 +1496,6 @@ msgstr "Formats de publicació"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Arxius"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "Prefix DOI"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "El prefix DOI és obligatori i ha de tenir la forma 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""

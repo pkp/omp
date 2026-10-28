@@ -365,9 +365,6 @@ msgstr ""
 "Sie können von der/dem Verlagsleiter/in an jeder Stelle verändert oder "
 "ersetzt werden (in HTML oder im Klartext)."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Copyright-Vermerk"
-
 msgid "manager.setup.coverage"
 msgstr "Inhaltlicher Umfang"
 
@@ -1545,12 +1542,6 @@ msgstr "Publikationsformate"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Dateien"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "DOI-Präfix"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "Das DOI-Präfix ist obligatorisch und muss die Form 10.xxxx haben."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""

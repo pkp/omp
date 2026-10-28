@@ -37,9 +37,6 @@ msgstr "За библиотекари"
 msgid "manager.setup.files"
 msgstr "Файлове"
 
-msgid "doi.manager.settings.doiPrefix"
-msgstr "DOI префикс"
-
 msgid "manager.setup.editorialTeam"
 msgstr "Редакционен екип"
 
@@ -50,9 +47,6 @@ msgstr ""
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Файлове"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "Префиксът DOI е задължителен и трябва да бъде във формата 10.xxxx."
 
 msgid "manager.setup.focusScope"
 msgstr "Фокус и обхват"
@@ -268,9 +262,6 @@ msgstr "Редактори на оформление"
 
 msgid "manager.setup.copyeditInstructions"
 msgstr "Ръководство за оформление"
-
-msgid "manager.setup.copyrightNotice"
-msgstr "Известие за авторските права"
 
 msgid "manager.setup.coverage"
 msgstr "Покритие (корица)"

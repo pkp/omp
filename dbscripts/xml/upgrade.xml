@@ -168,6 +168,7 @@
 		<migration class="PKP\migration\upgrade\v3_5_0\I12133_FixCategorySort"/>
         <migration class="PKP\migration\upgrade\v3_5_0\I13283_RestoreDegradedOrcidFunctionality"/>
 		<migration class="APP\migration\upgrade\v3_5_0\I13617_FixSeriesSort"/>
+		<migration class="APP\migration\upgrade\v3_5_0\I13646_ReviewCompleteEmailTemplate"/>
 		<code function="downloadIPGeoDB"/>
 		<note file="docs/release-notes/README-3.5.0" />
 	</upgrade>
@@ -185,6 +186,7 @@
 		<migration class="APP\migration\upgrade\v3_5_0\I13128_FixEmailUrlLinks"/>
         <migration class="PKP\migration\upgrade\v3_5_0\I13283_RestoreDegradedOrcidFunctionality"/>
 		<migration class="APP\migration\upgrade\v3_5_0\I13617_FixSeriesSort"/>
+		<migration class="APP\migration\upgrade\v3_5_0\I13646_ReviewCompleteEmailTemplate"/>
 	</upgrade>
 
 	<!-- Update plugin configuration - should be done as the final upgrade task -->

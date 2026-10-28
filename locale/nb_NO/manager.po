@@ -347,9 +347,6 @@ msgstr ""
 "kan endres eller erstattes av utgiveren når som helst (i HTML eller ren "
 "tekst)."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Erklæring om opphavsrett"
-
 msgid "manager.setup.coverage"
 msgstr "Dekning"
 
@@ -1453,14 +1450,6 @@ msgstr "Publikasjonsformater"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Filer"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "DOI Prefiks"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr ""
-"DOI-prefikset er obligatorisk og må være på formatet 10.xxxx, hvor x er et "
-"tall."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""
