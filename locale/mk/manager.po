@@ -350,9 +350,6 @@ msgstr ""
 "Подолу е зададен пакет инструкции во HTML, што може да се измени или замени "
 "со Менаџерот на изданието во која било точка (во HTML или обичен текст)."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Известување за авторски права"
-
 msgid "manager.setup.coverage"
 msgstr "Покриеност"
 
@@ -1489,12 +1486,6 @@ msgstr "Формати на публикации"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Датотеки"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "Префикс на ДОИ"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "Префиксот DOI е задолжителен и мора да биде во форма 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""

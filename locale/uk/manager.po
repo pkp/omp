@@ -349,9 +349,6 @@ msgstr ""
 "бути в будь-який момент змінений чи замінений менеджером е-видавництва (у "
 "форматі HTML або звичайного тексту)."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Інформація про авторське право"
-
 msgid "manager.setup.coverage"
 msgstr "Охоплення"
 
@@ -1511,12 +1508,6 @@ msgstr "Формати публікацій"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Файли"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "Префікс DOI"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "Префікс DOI є обов'язковим і має мати значення у форматі 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""

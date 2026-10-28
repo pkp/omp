@@ -351,9 +351,6 @@ msgstr ""
 "HTML, ki jih lahko glavni urednik publikacije kadar koli spremeni (HTML ali "
 "navadno besedilo)."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Avtorske pravice"
-
 msgid "manager.setup.coverage"
 msgstr "Pokritost"
 
@@ -1459,12 +1456,6 @@ msgstr "Formati publikacij"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Datoteke"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "Predpona DOI"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "Predpona DOI je obvezna in mora biti v formatu 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""
