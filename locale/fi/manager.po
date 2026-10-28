@@ -351,9 +351,6 @@ msgstr ""
 "muokata tai korvata missä tahansa vaiheessa (HTML-muodossa tai pelkkänä "
 "tekstinä)."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Tekijänoikeushuomautus"
-
 msgid "manager.setup.coverage"
 msgstr "Kattavuus"
 
@@ -1487,12 +1484,6 @@ msgstr "Julkaisumuodot"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Tiedostot"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "DOI-prefiksi"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "DOI-prefiksi on pakollinen, ja sen on oltava muodossa 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""

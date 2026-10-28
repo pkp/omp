@@ -349,9 +349,6 @@ msgstr ""
 "instrukcji w HTML, które mogą być modyfikowane lub zastąpione przez "
 "menedżerów wydania w każdym momencie (w HTML lub w tekście odkrytym)."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Informacja o prawach autorskich"
-
 msgid "manager.setup.coverage"
 msgstr "Pokrycie"
 
@@ -1468,12 +1465,6 @@ msgstr "Formaty publikacji"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Pliki"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "Prefiks DOI"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "Prefiks DOI jest obowiązkowy i musi mieć format 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""

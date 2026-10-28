@@ -232,6 +232,17 @@ msgstr ""
 "<br />\n"
 "{$senderName}"
 
+msgid "emails.reviewComplete.subject"
+msgstr "Review complete: {$reviewerName} reviewed #{$submissionId} {$authorsShort} — \"{$submissionTitle}\""
+
+msgid "emails.reviewComplete.body"
+msgstr ""
+"<p>Dear {$recipientName},</p>"
+"<p>{$reviewerName} completed the following review:</p>"
+"<p><a href=\"{$submissionUrl}\">#{$submissionId} {$authorsShort} — \"{$submissionTitle}\"</a><br />"
+"<b>Type:</b> {$reviewMethod}</p>"
+"<p>Login to <a href=\"{$submissionUrl}\">view all files and comments</a> provided by this reviewer.</p>"
+
 msgid "emails.reviewRemind.subject"
 msgstr "A reminder to please complete your review"
 

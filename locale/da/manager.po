@@ -355,9 +355,6 @@ msgstr ""
 "i HTML, som kan ændres eller erstattes af chefen for udgiveren på ethvert "
 "tidspunkt (i HTML eller almindelig tekst)."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Oplysninger om ophavsret"
-
 msgid "manager.setup.coverage"
 msgstr "Dækning"
 
@@ -1481,12 +1478,6 @@ msgstr "Pulikationsformater"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Filer"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "DOI-præfiks"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "DOI-præfikset er obligatorisk og skal være som 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""

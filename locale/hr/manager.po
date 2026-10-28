@@ -32,9 +32,6 @@ msgstr ""
 "unaprijed postavljenih postavki. Upravitelj izdavanja može ih promijeniti "
 "ili zamijeniti u bilo kojem trenutku (u HTML-u ili u običnom tekstu)."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Obavijest o autorskim pravima"
-
 msgid "manager.setup.details.description"
 msgstr "Ime izdavača, kontakt osoba, sponzori i tražilice."
 
@@ -1468,12 +1465,6 @@ msgstr ""
 
 msgid "doi.manager.settings.enablePublicationDoi"
 msgstr "Monografije"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "DOI Prefiks"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "DOI prefiks je obavezan i mora biti u obliku 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""

@@ -141,12 +141,6 @@ msgstr "Formats de publication"
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Fichiers"
 
-msgid "doi.manager.settings.doiPrefix"
-msgstr "Préfixe DOI"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "Le préfixe DOI est obligatoire et doit être sous la forme 10.xxxx."
-
 msgid "doi.manager.settings.doiSuffixPattern.example"
 msgstr ""
 "Par exemple, press%ppub%r pourrait créer un DOI tel que 10.1234/"
@@ -980,9 +974,6 @@ msgstr "À propos de la maison d’édition"
 
 msgid "manager.setup.copyeditInstructions"
 msgstr "Instructions d’édition"
-
-msgid "manager.setup.copyrightNotice"
-msgstr "Avis de droits d’auteur"
 
 msgid "manager.setup.coverage"
 msgstr "Couverture"

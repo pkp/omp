@@ -356,9 +356,6 @@ msgstr ""
 "înlocuite de managerul editurii în orice moment ( în HTML sau în text "
 "simplu)."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Notificare privind dreptul de autor"
-
 msgid "manager.setup.coverage"
 msgstr "Raport"
 
@@ -1582,12 +1579,6 @@ msgstr "Formate de publicare"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Fișiere"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "Prefix DOI"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "Prefixul DOI este obligatoriu și trebuie să respecte forma 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern.submissions"
 msgstr "pentru monografii"

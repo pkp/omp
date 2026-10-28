@@ -291,9 +291,6 @@ msgstr "ڕێنماییەکانی وردبینی"
 msgid "manager.setup.copyeditInstructionsDescription"
 msgstr ""
 
-msgid "manager.setup.copyrightNotice"
-msgstr "ئاگادارکردنەوەی وردبینی"
-
 msgid "manager.setup.coverage"
 msgstr ""
 
@@ -1137,12 +1134,6 @@ msgid "doi.manager.settings.enableRepresentationDoi"
 msgstr ""
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
-msgstr ""
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr ""
-
-msgid "doi.manager.settings.doiPrefixPattern"
 msgstr ""
 
 msgid "doi.manager.settings.doiSuffixPattern"
