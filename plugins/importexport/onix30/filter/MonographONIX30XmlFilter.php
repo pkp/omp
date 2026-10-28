@@ -18,6 +18,7 @@ namespace APP\plugins\importexport\onix30\filter;
 
 use APP\author\Author;
 use APP\codelist\ONIXCodelistItemDAO;
+use APP\codelist\Thema;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\monograph\RepresentativeDAO;
@@ -477,13 +478,47 @@ class MonographONIX30XmlFilter extends NativeExportFilter
         }
 
         /* --- Add Subject elements --- */
-        // Subjects metadata is not included because a controlled vocabulary (BIC/Thema) is not enforced (pkp/pkp-lib#10621)
 
         if ($allKeywords = ($publication->getData('keywords')[$pubLocale] ?? null)) {
             $keywordNode = $doc->createElementNS($deployment->getNamespace(), 'Subject');
             $keywordNode->appendChild($this->buildTextNode($doc, 'SubjectSchemeIdentifier', '20')); // Keywords
             $keywordNode->appendChild($this->buildTextNode($doc, 'SubjectHeadingText', trim(join('; ', array_column($allKeywords, 'name')))));
             $descDetailNode->appendChild($keywordNode);
+        }
+
+        // Export Thema subject categories (subject scheme 93) when the press has enabled Thema.
+        // Only subjects chosen from the Thema controlled vocabulary (source "thema") are exported as coded subjects.
+        // The first Thema subject is flagged as the main subject. The heading text is the
+        // code's description in the current code list, falling back to the stored name.
+        if (Thema::isEnabled($context)) {
+            $thema = new Thema();
+            $themaVersion = $thema->getVersion($pubLocale);
+            $themaDescriptions = $thema->getEntries($pubLocale);
+            $isMainSubject = true;
+            foreach ($publication->getData('subjects')[$pubLocale] ?? [] as $subject) {
+                if (
+                    !is_array($subject) ||
+                    (($subject['source'] ?? null) !== Thema::SOURCE) ||
+                    empty($subject['identifier'])
+                ) {
+                    continue;
+                }
+                $themaNode = $doc->createElementNS($deployment->getNamespace(), 'Subject');
+                if ($isMainSubject) {
+                    $themaNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'MainSubject')); // empty flag element
+                    $isMainSubject = false;
+                }
+                $themaNode->appendChild($this->buildTextNode($doc, 'SubjectSchemeIdentifier', '93')); // Thema subject category
+                if ($themaVersion) {
+                    $themaNode->appendChild($this->buildTextNode($doc, 'SubjectSchemeVersion', $themaVersion));
+                }
+                $themaNode->appendChild($this->buildTextNode($doc, 'SubjectCode', $subject['identifier']));
+                $headingText = $themaDescriptions[$subject['identifier']] ?? ($subject['name'] ?? null);
+                if (!empty($headingText)) {
+                    $themaNode->appendChild($this->buildTextNode($doc, 'SubjectHeadingText', $headingText));
+                }
+                $descDetailNode->appendChild($themaNode);
+            }
         }
 
         /* --- Add Audience elements --- */

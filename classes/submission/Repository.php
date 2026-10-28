@@ -3,8 +3,8 @@
 /**
  * @file classes/submission/Repository.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2000-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Repository
@@ -14,6 +14,7 @@
 
 namespace APP\submission;
 
+use APP\codelist\Thema;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\monograph\Chapter;
@@ -36,6 +37,22 @@ class Repository extends \PKP\submission\Repository
 {
     /** @copydoc \PKP\submission\Repository::$schemaMap */
     public $schemaMap = maps\Schema::class;
+
+    /**
+     * @copydoc \PKP\submission\Repository::validateSubmit()
+     *
+     * Adds the Thema subject rules for every locale that has subjects, so that
+     * problems are reported on the wizard's review step and block submission.
+     */
+    public function validateSubmit(Submission $submission, Context $context): array
+    {
+        $errors = parent::validateSubmit($submission, $context);
+
+        $subjects = (array) $submission->getCurrentPublication()?->getData('subjects');
+        $errors = Thema::mergeSubjectsErrors($errors, (new Thema())->getSubjectsErrorsByLocale($subjects, $context));
+
+        return $errors;
+    }
 
     /** @copydoc \PKP\submission\Repository::getSortSelectOptions() */
     public function getSortSelectOptions(): array

@@ -3,8 +3,8 @@
 /**
  * @file api/v1/submissions/SubmissionController.php
  *
- * Copyright (c) 2024 Simon Fraser University
- * Copyright (c) 2024 John Willinsky
+ * Copyright (c) 2024-2026 Simon Fraser University
+ * Copyright (c) 2024-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SubmissionController
@@ -18,6 +18,7 @@
 namespace APP\API\v1\submissions;
 
 use APP\components\forms\publication\CatalogEntryForm;
+use APP\components\forms\publication\MetadataForm;
 use APP\components\forms\publication\PublicationLicenseForm;
 use APP\components\forms\submission\AudienceForm;
 use APP\components\forms\submission\PublicationDatesForm;
@@ -29,6 +30,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 use PKP\API\v1\submissions\PKPSubmissionController;
+use PKP\components\forms\publication\PKPMetadataForm;
 use PKP\context\Context;
 use PKP\core\PKPApplication;
 use PKP\security\Role;
@@ -131,6 +133,16 @@ class SubmissionController extends PKPSubmissionController
         $publicationDatesForm = new PublicationDatesForm($submissionApiUrl, $submission);
 
         return response()->json($publicationDatesForm->getConfig());
+    }
+
+    /**
+     * Get the form for entering the publication metadata, using the
+     * press-specific form that restricts subjects to Thema categories when
+     * required.
+     */
+    protected function getMetadataForm(string $publicationApiUrl, array $locales, Publication $publication, Context $context, string $vocabSuggestionUrlBase): PKPMetadataForm
+    {
+        return new MetadataForm($publicationApiUrl, $locales, $publication, $context, $vocabSuggestionUrlBase);
     }
 
     /**
