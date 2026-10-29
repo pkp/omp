@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/settings/series/SeriesGridHandler.php
  *
- * Copyright (c) 2014-2025 Simon Fraser University
- * Copyright (c) 2003-2025 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2003-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SeriesGridHandler
@@ -392,16 +392,18 @@ class SeriesGridHandler extends SetupGridHandler
      * Handle file deletion for cover images for series.
      *
      * @param array $args
-     *    `name` string Filename of the cover image to be deleted.
-     *    `thumbnailName` string Filename of the cover image thumbnail to be deleted.
      *    `seriesId` int ID of the series this cover image is attached to.
      *
      * @throws \Exception
      */
     public function deleteImage(array $args, PKPRequest $request): JSONMessage
     {
-        if (empty($args['name']) || empty($args['thumbnailName']) || empty($args['seriesId'])) {
-            throw new \Exception('File name, thumbnail name, or series ID not provided');
+        if (!$request->checkCSRF()) {
+            return new JSONMessage(false);
+        }
+
+        if (empty($args['seriesId'])) {
+            throw new \Exception('Series ID not provided');
         }
 
         // Check that the series exists and is in the current context.
@@ -411,6 +413,11 @@ class SeriesGridHandler extends SetupGridHandler
             return new JSONMessage(false, __('manager.categories.form.removeCoverImageOnDifferentContextNowAllowed'));
         }
 
+        $image = $series->getImage();
+        if (!$image) {
+            return new JSONMessage(false, __('manager.categories.form.removeCoverImageFileNotFound'));
+        }
+
         // Remove the image from the series.
         $series->setImage([]);
         Repo::section()->edit($series, []);
@@ -418,11 +425,9 @@ class SeriesGridHandler extends SetupGridHandler
         // Remove the image files.
         $contextFileManager = new ContextFileManager($series->getContextId());
         $basePath = $contextFileManager->getBasePath() . '/series/';
-        $name = $args['name'];
-        $thumbnailName = $args['thumbnailName'];
         if (
-            $contextFileManager->deleteByPath($basePath . $thumbnailName) &&
-            $contextFileManager->deleteByPath($basePath . $name)
+            $contextFileManager->deleteByPath($basePath . basename($image['thumbnailName'])) &&
+            $contextFileManager->deleteByPath($basePath . basename($image['name']))
         ) {
             $json = new JSONMessage(true);
             $json->setEvent('fileDeleted');
