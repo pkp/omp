@@ -49,7 +49,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CatalogBookHandler extends Handler
 {
-    public Publication $publication;
+    public ?Publication $publication = null;
     public ?Chapter $chapter = null;
     public array $chapterPublicationIds = [];
     public bool $isVersionRequest = false;
@@ -107,7 +107,11 @@ class CatalogBookHandler extends Handler
         $subPath = empty($args) ? 0 : array_shift($args);
         if ($subPath === 'version') {
             $this->isVersionRequest = true;
-            $publicationId = (int) array_shift($args);
+            $publicationId = (string) array_shift($args);
+            if (!ctype_digit($publicationId)) {
+                throw new NotFoundHttpException();
+            }
+            $publicationId = (int) $publicationId;
             foreach ($submission->getData('publications') as $publication) {
                 if ($publication->getId() === $publicationId) {
                     $this->publication = $publication;
@@ -350,7 +354,11 @@ class CatalogBookHandler extends Handler
         $monographId = array_shift($args); // Validated thru auth
         $subPath = array_shift($args);
         if ($subPath === 'version') {
-            $publicationId = array_shift($args);
+            $publicationId = (string) array_shift($args);
+            if (!ctype_digit($publicationId)) {
+                throw new NotFoundHttpException();
+            }
+            $publicationId = (int) $publicationId;
             $representationId = array_shift($args);
         } else {
             $publicationId = $submission->getCurrentPublication()->getId();
