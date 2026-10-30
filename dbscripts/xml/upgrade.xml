@@ -216,6 +216,11 @@
 		<migration class="APP\migration\upgrade\v3_4_0\I12140_MissingDecisionConstantsUpdate"/>
 	</upgrade>
 
+	<upgrade minversion="3.4.0.0" maxversion="3.4.9.9">
+		<!-- Needs to be re-executed on every minor upgrade: only runs if a region codes fixing job failed and left its temporary data behind -->
+		<migration class="PKP\migration\upgrade\v3_4_0\I11758_RedispatchRegionCodesFixingJobs"/>
+	</upgrade>
+
 	<!-- Update plugin configuration - should be done as the final upgrade task -->
 	<code function="addPluginVersions" />
 </install>
