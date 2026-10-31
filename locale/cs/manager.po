@@ -1,7 +1,7 @@
 # Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2022, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-09-05 08:59+0000\n"
+"PO-Revision-Date: 2026-10-24 13:41+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/manager/cs/>\n"
 "Language: cs\n"
@@ -1707,3 +1707,9 @@ msgid "manager.series.form.assignEditors.description"
 msgstr ""
 "Vyberte redaktory, kteří by měli být automaticky přiřazeni ke všem novým "
 "příspěvkům v této ediční řadě."
+
+msgid "manager.setup.enableEnrollmentMasthead.description"
+msgstr ""
+"V případě zájmu lze automaticky vygenerovat záhlaví na základě registrací "
+"uživatelů, včetně dat zahájení a ukončení. Viz také Nastavení > Tisk > "
+"Záhlaví."

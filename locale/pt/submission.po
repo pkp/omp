@@ -1,15 +1,15 @@
-# Carla Marques <carla.marques@usdb.uminho.pt>, 2021, 2022.
+# Carla Marques <carla.marques@usdb.uminho.pt>, 2021, 2022, 2026.
 # José Carvalho <jcarvalho@keep.pt>, 2022, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-22 20:40+0000\n"
-"PO-Revision-Date: 2024-09-03 08:40+0000\n"
-"Last-Translator: José Carvalho <jcarvalho@keep.pt>\n"
-"Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
-"omp/submission/pt_PT/>\n"
-"Language: pt_PT\n"
+"PO-Revision-Date: 2026-10-21 15:38+0000\n"
+"Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
+"Language-Team: Portuguese <http://translate.pkp.sfu.ca/projects/omp/"
+"submission/pt/>\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -526,7 +526,7 @@ msgid "editor.submission.decision.sendExternalReview.log"
 msgstr "{$editorName} enviou esta submissão para a etapa de revisão externa."
 
 msgid "editor.submission.decision.sendExternalReview.completed"
-msgstr "Enviar para Revisão Externa"
+msgstr "Enviado para Revisão Externa"
 
 msgid "editor.submission.decision.sendExternalReview.completed.description"
 msgstr "A submissão, {$title}, foi enviada para a etapa de revisão externa."
@@ -637,3 +637,12 @@ msgstr ""
 msgid "publication.chapter.landingPage.doi.description"
 msgstr ""
 "(Este capítulo será sempre apresentado na sua página porque possui um DOI.)"
+
+msgid "submission.dashboard.view.reviewInternal"
+msgstr "Tudo em revisão interna"
+
+msgid "submission.stage.externalReviewWithRound"
+msgstr "Revisão Externa (Ronda {$round})"
+
+msgid "submission.stage.internalReviewWithRound"
+msgstr "Revisão Interna (Ronda {$round})"

@@ -2,7 +2,7 @@
 # Ana Vucurevic <ana.vucurevic97@yahoo.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-04-22 19:02+0000\n"
+"PO-Revision-Date: 2026-10-26 00:49+0000\n"
 "Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "mk/>\n"
@@ -1730,3 +1730,9 @@ msgid "manager.series.form.assignEditors.description"
 msgstr ""
 "Изберете ги уредничките корисници кои треба автоматски да бидат доделени на "
 "сите нови поднесоци во оваа серија."
+
+msgid "manager.setup.enableEnrollmentMasthead.description"
+msgstr ""
+"Ако сакате, може автоматски да се генерира насловната страница врз основа на "
+"пријавувањата на корисниците, вклучувајќи ги датумите на почеток и крај. "
+"Види и Поставки > Прес > Најавна страница."

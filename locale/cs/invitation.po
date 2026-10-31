@@ -1,0 +1,83 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2026-10-24 18:32+0000\n"
+"Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
+"Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/"
+"omp-invitation/cs/>\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 4.18.2\n"
+
+msgid "acceptInvitation.accountDetails.stepDescription"
+msgstr ""
+"Abyste mohli začít používat OMP a přijmout novou roli, musíte si u nás "
+"vytvořit účet. Za tímto účelem, prosím, zadejte uživatelské jméno a heslo."
+
+msgid "acceptInvitation.accountDetails.stepLabel"
+msgstr "{$step} – Vytvořte si účet OMP"
+
+msgid "acceptInvitation.accountDetails.stepName"
+msgstr "Vytvořit účet OMP"
+
+msgid "acceptInvitation.detailsReview.nextButtonLabel"
+msgstr "Přijmout a pokračovat do OMP"
+
+msgid "acceptInvitation.detailsReview.stepDescription"
+msgstr "Prostudujte si podrobnosti, abyste mohli začít své nové role v OMP"
+
+msgid "acceptInvitation.modal.title"
+msgstr "V systému OMP vám byla přidělena nová role"
+
+msgid "invitation.role.masthead"
+msgstr "Tiráž vydavatelství"
+
+msgid "userInvitation.enterDetails.stepDescription"
+msgstr "Můžete je pozvat, aby se zapojili do činnosti v rámci OMP"
+
+msgid "acceptInvitation.modal.message"
+msgstr ""
+"Gratulujeme k vaší nové pozici v OMP! Měli byste nyní mít přístup k novým "
+"funkcím. Pokud potřebujete pomoc s orientací v systému, klikněte prosím "
+"kdekoli v systému na tlačítko „Nápověda“, kde najdete potřebné pokyny."
+
+msgid "acceptInvitation.verifyOrcid.stepDescription"
+msgstr ""
+"Můžete si vybrat, zda chcete své ORCID iD ověřit, nebo tento krok přeskočit. "
+"Pokud se nyní rozhodnete tento krok přeskočit, můžete své ORCID iD ověřit "
+"později v sekci svého profilu v OMP"
+
+msgid "invitation.wizard.pageTitleDescription"
+msgstr ""
+"Zvete uživatele, aby zastával určitou funkci v rámci OMP a zároveň se "
+"objevil v tiráži tiskoviny"
+
+msgid "userInvitation.modal.message"
+msgstr ""
+"{$email} byl pozván k převzetí nové role v OMP. O rozhodnutí tohoto "
+"uživatele se můžete dozvědět na stránce „Uživatelé a role“, prostřednictvím "
+"oznámení v OMP a/nebo e-mailem"
+
+msgid "userInvitation.roleTable.journalMasthead"
+msgstr "Tiráž vydavatelství"
+
+msgid "userInvitation.search.userFound"
+msgstr "Uživatel již ve vydavatelství existuje"
+
+msgid "userInvitation.search.userNotFound"
+msgstr "Uživatel nemá v tomto vydavatelství žádnou roli"
+
+msgid "userInvitation.searchUser.stepDescription"
+msgstr ""
+"Vyhledejte uživatele podle e-mailové adresy, uživatelského jména nebo "
+"identifikátoru ORCID. Pro zahájení vyhledávání zadejte alespoň jeden údaj. "
+"Pokud uživatel neexistuje, můžete ho pozvat, aby přijal určité role a stal "
+"se součástí vašeho vydavatelství. Pokud uživatel v systému již existuje, "
+"můžete si zobrazit jeho informace a pozvat ho, aby přijal další role."
+
+msgid "userInvitation.sendMail.stepDescription"
+msgstr ""
+"Zašlete uživateli e-mail, ve kterém ho informujete o pozvánce, dalších "
+"krocích, zásadách GDPR a ověření ORCID"
