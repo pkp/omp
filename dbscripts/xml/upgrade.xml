@@ -117,6 +117,11 @@
 		<migration class="APP\migration\upgrade\v3_4_0\I9822_ChangeUsageStatsTemporaryTablesIndexes"/>
 	</upgrade>
 
+	<upgrade minversion="3.4.0.0" maxversion="3.4.9.9">
+		<!-- Needs to be re-executed on every minor upgrade: only runs if a region codes fixing job failed and left its temporary data behind -->
+		<migration class="PKP\migration\upgrade\v3_4_0\I11758_RedispatchRegionCodesFixingJobs"/>
+	</upgrade>
+
 	<upgrade minversion="3.1.0.0" maxversion="3.4.9.9">
 		<migration class="PKP\migration\upgrade\v3_5_0\PreflightCheckMigration" fallback="3.4.9.9" />
 		<migration class="APP\migration\upgrade\v3_5_0\I8333_AddMissingForeignKeys" />
@@ -179,6 +184,7 @@
 		<migration class="APP\migration\upgrade\v3_5_0\I12357_FixDecisionConstantsMissedStageId"/>
 		<migration class="APP\migration\upgrade\v3_5_0\I13128_FixEmailUrlLinks"/>
         <migration class="PKP\migration\upgrade\v3_5_0\I13283_RestoreDegradedOrcidFunctionality"/>
+		<migration class="PKP\migration\upgrade\v3_4_0\I11758_RedispatchRegionCodesFixingJobs"/>
 	</upgrade>
 
 	<upgrade minversion="3.3.0.0" maxversion="3.5.9.9">
