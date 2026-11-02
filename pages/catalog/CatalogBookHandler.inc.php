@@ -232,7 +232,9 @@ class CatalogBookHandler extends Handler {
 		$monographId = array_shift($args); // Validated thru auth
 		$subPath = array_shift($args);
 		if ($subPath === 'version') {
-			$publicationId = array_shift($args);
+			$publicationId = (string) array_shift($args);
+			if (!ctype_digit($publicationId)) $dispatcher->handle404();
+			$publicationId = (int) $publicationId;
 			$representationId = array_shift($args);
 			$bestFileId = array_shift($args);
 		} else {
