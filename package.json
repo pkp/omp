@@ -54,7 +54,7 @@
     "vue-draggable-plus": "^0.6.0"
   },
   "overrides": {
-    "vite": "^8.0.0-beta.14"
+    "vite": "^8.3.5"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.11.0",
@@ -66,7 +66,7 @@
     "cypress-file-upload": "^5.0.8",
     "cypress-iframe": "^1.0.1",
     "cypress-wait-until": "^2.0.1",
-    "dompurify": "^3.2.5",
+    "dompurify": "^3.4.17",
     "eslint": "^8.57.1",
     "eslint-plugin-vue": "^9.33.0",
     "google-closure-compiler-java": "^20200719.0.0",
@@ -76,7 +76,7 @@
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "tailwindcss": "^3.4.17",
-    "vite": "^8.0.0-beta.14",
+    "vite": "^8.3.5",
     "vite-plugin-static-copy": "^3.1.1"
   },
   "prettier": {
