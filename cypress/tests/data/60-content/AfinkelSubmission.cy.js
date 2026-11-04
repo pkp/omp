@@ -295,7 +295,7 @@ describe('Data suite tests', function() {
 		cy.get('h2').contains('Review and Submit');
 		submission.files.forEach(function(file) {
 			cy
-				.get('h3')
+				.get('.submissionWizard__reviewPanel h3')
 				.contains('Files')
 				.parents('.submissionWizard__reviewPanel')
 				.contains(file.fileName)
@@ -305,7 +305,7 @@ describe('Data suite tests', function() {
 		});
 		submission.authorNames.forEach(function(author) {
 			cy
-				.get('h3')
+				.get('.submissionWizard__reviewPanel h3')
 				.contains('Contributors')
 				.parents('.submissionWizard__reviewPanel')
 				.contains(author)
