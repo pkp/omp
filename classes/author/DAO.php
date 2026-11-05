@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/author/DAO.php
  *
@@ -14,6 +15,7 @@
 namespace APP\author;
 
 use APP\monograph\Chapter;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class DAO extends \PKP\author\DAO
@@ -31,6 +33,18 @@ class DAO extends \PKP\author\DAO
             'primary_contact' => $isPrimary,
             'seq' => $sequence,
         ]);
+    }
+
+    /**
+     * Get the sequence of each author assigned to a chapter
+     *
+     * @return Collection<int,float> Sequences keyed by author ID
+     */
+    public function getChapterAuthorSequences(int $chapterId): Collection
+    {
+        return DB::table($this->chapterAuthorsTable)
+            ->where('chapter_id', '=', $chapterId)
+            ->pluck('seq', 'author_id');
     }
 
     /**

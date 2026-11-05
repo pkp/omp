@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/author/Repository.php
  *
@@ -14,6 +15,7 @@
 namespace APP\author;
 
 use APP\monograph\Chapter;
+use Illuminate\Support\Collection;
 
 class Repository extends \PKP\author\Repository
 {
@@ -34,6 +36,16 @@ class Repository extends \PKP\author\Repository
             $isPrimary,
             $sequence
         );
+    }
+
+    /**
+     * Get the sequence of each author assigned to a chapter.
+     *
+     * @return Collection<int,float> Sequences keyed by author ID
+     */
+    public function getChapterAuthorSequences(int $chapterId): Collection
+    {
+        return $this->dao->getChapterAuthorSequences($chapterId);
     }
 
     /**

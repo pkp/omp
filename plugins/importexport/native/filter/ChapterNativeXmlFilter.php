@@ -100,9 +100,10 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
             ->filterByChapterId($chapter->getId())
             ->filterByPublicationIds([$chapter->getData('publicationId')])
             ->getMany();
+        $chapterAuthorSequences = Repo::author()->getChapterAuthorSequences($chapter->getId());
 
         foreach ($chapterAuthors as $chapterAuthor) {
-            $entityNode->appendChild($this->createChapterAuthorNode($doc, $chapterAuthor));
+            $entityNode->appendChild($this->createChapterAuthorNode($doc, $chapterAuthor, $chapterAuthorSequences->get($chapterAuthor->getId())));
         }
 
         $submissionFiles = Repo::submissionFile()
@@ -125,10 +126,12 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
      * Create and return an author node.
      *
      * @param \DOMDocument $doc
+     * @param \APP\author\Author $chapterAuthor
+     * @param float|null $seq The author's sequence in the chapter
      *
      * @return \DOMElement
      */
-    public function createChapterAuthorNode($doc, $chapterAuthor)
+    public function createChapterAuthorNode($doc, $chapterAuthor, $seq = null)
     {
         $deployment = $this->getDeployment();
         $context = $deployment->getContext();
@@ -136,7 +139,7 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
         // Create the entity node
         $entityNode = $doc->createElementNS($deployment->getNamespace(), 'chapterAuthor');
         $entityNode->setAttribute('author_id', $chapterAuthor->getId());
-        $entityNode->setAttribute('seq', $chapterAuthor->getData('seq'));
+        $entityNode->setAttribute('seq', (int) ($seq ?? $chapterAuthor->getData('seq')));
 
         return $entityNode;
     }
