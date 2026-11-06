@@ -155,9 +155,6 @@ msgstr "Resumo da Editora"
 msgid "manager.setup.copyeditInstructions"
 msgstr "Instruções para Edição de Texto"
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Aviso de Direitos de Autor"
-
 msgid "manager.setup.coverage"
 msgstr "Cobertura"
 
@@ -1635,12 +1632,6 @@ msgstr "Capítulos"
 
 msgid "doi.manager.settings.enableRepresentationDoi"
 msgstr "Formatos de publicação"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "Prefixo DOI"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "O prefixo DOI é obrigatório e deve estar no formato 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""
