@@ -400,9 +400,6 @@ msgstr ""
 "форматтай үндсэн зааварчилгаа бөгөөд үүнийг Хэвлэлийн газрын менежер хүссэн "
 "үедээ өөрчилж эсвэл сольж болно."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Зохиогчийн эрхийн мэдэгдэл"
-
 msgid "manager.setup.coverThumbnailsMaxHeight"
 msgstr "Нүүр зургийн дээд өндөр"
 
@@ -1456,12 +1453,6 @@ msgstr "Нийтлэх форматууд"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Файлууд"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "DOI префикс"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "DOI префикс заавал байх ёстой бөгөөд 10.xxxx хэлбэртэй байна."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""
