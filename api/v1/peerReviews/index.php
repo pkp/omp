@@ -13,4 +13,4 @@
  *
  */
 
-return new \PKP\handler\APIHandler(new \PKP\API\v1\publicationPeerReviews\PublicationPeerReviewController());
+return new \PKP\handler\APIHandler(new \PKP\API\v1\peerReviews\PeerReviewController());
