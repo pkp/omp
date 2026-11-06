@@ -7,7 +7,7 @@ name: schedule
 jobs:
   omp-main:
     if: github.repository == 'pkp/omp'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
@@ -44,7 +44,7 @@ jobs:
 
   omp-stable-3_5_0:
     if: github.repository == 'pkp/omp'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
@@ -77,7 +77,7 @@ jobs:
 
   omp-stable-3_4_0:
     if: github.repository == 'pkp/omp'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
@@ -111,7 +111,7 @@ jobs:
 
   omp-stable-3_3_0:
     if: github.repository == 'pkp/omp'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
