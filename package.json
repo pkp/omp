@@ -54,7 +54,10 @@
     "vue-draggable-plus": "^0.6.0"
   },
   "overrides": {
-    "vite": "^8.0.0-beta.14"
+    "vite": "^8.0.0-beta.14",
+    "vue": {
+      "@vue/server-renderer": "3.5.42"
+    }
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.11.0",
