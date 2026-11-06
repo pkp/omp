@@ -216,11 +216,7 @@ class CatalogHandler extends PKPCatalogHandler
 
         switch ($type) {
             case 'category':
-                $path = '/categories/';
-                $category = Repo::category()->get((int) $id);
-                if ($category && $category->getContextId() == $press->getId()) {
-                    $imageInfo = $category->getImage();
-                }
+                parent::fullSize($args, $request);
                 break;
             case 'series':
                 $path = '/series/';
@@ -253,11 +249,7 @@ class CatalogHandler extends PKPCatalogHandler
 
         switch ($type) {
             case 'category':
-                $path = '/categories/';
-                $category = Repo::category()->get((int) $id);
-                if ($category && $category->getContextId() == $press->getId()) {
-                    $imageInfo = $category->getImage();
-                }
+                parent::thumbnail($args, $request);
                 break;
             case 'series':
                 $path = '/series/';
