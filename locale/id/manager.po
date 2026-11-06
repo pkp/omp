@@ -173,9 +173,6 @@ msgstr "Copyeditor"
 msgid "manager.setup.copyeditInstructions"
 msgstr "Instruksi Copyedit"
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Pemberitahuan hak cipta"
-
 msgid "manager.setup.coverage"
 msgstr "Cakupan"
 
@@ -770,9 +767,6 @@ msgstr "Alamat surat-menyurat penerbit"
 
 msgid "emailTemplate.variable.queuedPayment.itemName"
 msgstr "Nama jenis pembayaran"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "Prefiks DOI wajib diisi dan harus dalam format 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""
@@ -1489,9 +1483,6 @@ msgstr "Format Terbitan"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "File"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "Prefiks DOI"
 
 msgid "doi.manager.settings.doiPublicationSuffixPatternRequired"
 msgstr "Harap masukkan pola sufiks DOI untuk monograf."
