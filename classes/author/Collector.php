@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/author/Collector.php
  *
@@ -47,9 +48,11 @@ class Collector extends \PKP\author\Collector
                     ->where('sca.chapter_id', '=', $this->chapterId);
             });
             // Use the order specified by the submission_chapter_authors table,
-            // to ensure that the order of authors reflects the order from the manually sorted chapters grid
+            // to ensure that the order of authors reflects the order from the manually sorted chapters grid.
+            // Break ties, e.g. for chapter authors that were never sorted, using insertion order
             $query->orders = null;
-            $query->orderBy('sca.seq');
+            $query->orderBy('sca.seq')
+                ->orderBy('a.author_id');
         });
         return $q;
     }

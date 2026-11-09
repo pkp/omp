@@ -3,8 +3,8 @@
 /**
  * @file plugins/importexport/native/filter/ChapterNativeXmlFilter.php
  *
- * Copyright (c) 2014-2022 Simon Fraser University
- * Copyright (c) 2000-2022 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2000-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ChapterNativeXmlFilter
@@ -14,8 +14,11 @@
 
 namespace APP\plugins\importexport\native\filter;
 
+use APP\author\Author;
 use APP\facades\Repo;
+use APP\monograph\Chapter;
 use DOMDocument;
+use DOMElement;
 use PKP\filter\FilterGroup;
 use PKP\plugins\PluginRegistry;
 use PKP\submissionFile\SubmissionFile;
@@ -39,11 +42,9 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
     /**
      * @see Filter::process()
      *
-     * @param \APP\monograph\Chapter[] $chapters
-     *
-     * @return \DOMDocument
+     * @param Chapter[] $chapters
      */
-    public function &process(&$chapters)
+    public function &process(&$chapters): DOMDocument
     {
         // Create the XML document
         $doc = new DOMDocument('1.0', 'utf-8');
@@ -68,17 +69,10 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
     //
     /**
      * Create and return an author node.
-     *
-     * @param \DOMDocument $doc
-     * @param \APP\monograph\Chapter $chapter
-     *
-     * @return \DOMElement
      */
-    public function createChapterNode($doc, $chapter)
+    public function createChapterNode(DOMDocument $doc, Chapter $chapter): DOMElement
     {
         $deployment = $this->getDeployment();
-        $context = $deployment->getContext();
-
         $publication = $deployment->getPublication();
 
         // Create the entity node
@@ -100,9 +94,10 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
             ->filterByChapterId($chapter->getId())
             ->filterByPublicationIds([$chapter->getData('publicationId')])
             ->getMany();
+        $chapterAuthorSequences = Repo::author()->getChapterAuthorSequences($chapter->getId());
 
         foreach ($chapterAuthors as $chapterAuthor) {
-            $entityNode->appendChild($this->createChapterAuthorNode($doc, $chapterAuthor));
+            $entityNode->appendChild($this->createChapterAuthorNode($doc, $chapterAuthor, $chapterAuthorSequences->get($chapterAuthor->getId())));
         }
 
         $submissionFiles = Repo::submissionFile()
@@ -123,12 +118,8 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
 
     /**
      * Create and return an author node.
-     *
-     * @param \DOMDocument $doc
-     *
-     * @return \DOMElement
      */
-    public function createChapterAuthorNode($doc, $chapterAuthor)
+    public function createChapterAuthorNode(DOMDocument $doc, Author $chapterAuthor, ?float $seq = null): DOMElement
     {
         $deployment = $this->getDeployment();
         $context = $deployment->getContext();
@@ -136,21 +127,15 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
         // Create the entity node
         $entityNode = $doc->createElementNS($deployment->getNamespace(), 'chapterAuthor');
         $entityNode->setAttribute('author_id', $chapterAuthor->getId());
-        $entityNode->setAttribute('seq', $chapterAuthor->getData('seq'));
+        $entityNode->setAttribute('seq', (int) ($seq ?? $chapterAuthor->getData('seq')));
 
         return $entityNode;
     }
 
     /**
      * Add a single pub ID element for a given plugin to the document.
-     *
-     * @param \DOMDocument $doc
-     * @param \DOMElement $entityNode
-     * @param \APP\monograph\Chapter $entity
-     *
-     * @return \DOMElement|null
      */
-    public function addPubIdentifier($doc, $entityNode, $entity, $pubIdType)
+    public function addPubIdentifier(DOMDocument $doc, DOMElement $entityNode, Chapter $entity, $pubIdType): ?DOMElement
     {
         $pubId = $entity->getStoredPubId($pubIdType);
         if ($pubId) {
@@ -165,12 +150,8 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
 
     /**
      * Create and add identifier nodes to a submission node.
-     *
-     * @param \DOMDocument $doc
-     * @param \DOMElement $entityNode
-     * @param \APP\monograph\Chapter $entity
      */
-    public function addIdentifiers($doc, $entityNode, $entity)
+    public function addIdentifiers(DOMDocument $doc, DOMElement $entityNode, Chapter $entity): void
     {
         $deployment = $this->getDeployment();
 
