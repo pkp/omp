@@ -345,9 +345,6 @@ msgstr ""
 "výchozí sada pokynů v jazyce HTML, kterou může správce tisku kdykoli upravit "
 "nebo nahradit (v jazyce HTML nebo prostém textu)."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Upozornění na autorská práva"
-
 msgid "manager.setup.coverage"
 msgstr "Pokrytí"
 
@@ -1467,12 +1464,6 @@ msgstr "Publikační formáty"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Soubory"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "Prefix DOI"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "Prefix DOI je povinný a musí být ve formátu 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""
