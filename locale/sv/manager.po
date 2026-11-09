@@ -339,9 +339,6 @@ msgstr ""
 "instruktioner i HTML, dessa kan ändras och/eller ersättas av pressansvarig "
 "(i HTML eller fritext)."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Upphovsrättsvillkor"
-
 msgid "manager.setup.coverage"
 msgstr "Täckning"
 
@@ -1284,12 +1281,6 @@ msgstr "Publiceringsformat"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Filer"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "DOI-prefix"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "DOI-prefix är obligatoriskt och måste formateras som 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""

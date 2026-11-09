@@ -348,9 +348,6 @@ msgstr ""
 "olarak) düzenlenebilen veya değiştirilebilen, HTML biçiminde varsayılan bir "
 "talimatlar dizisi bulunmaktadır."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Telif Hakkı Bildirimi"
-
 msgid "manager.setup.coverage"
 msgstr "Kapsama"
 
@@ -1460,12 +1457,6 @@ msgstr "Yayın Biçimleri"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Dosyalar"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "DOI Ön eki"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "DOI ön eki zorunludur ve 10.xxxx biçiminde olmalıdır."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""

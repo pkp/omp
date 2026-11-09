@@ -354,9 +354,6 @@ msgstr ""
 "который может быть в любой момент изменен или заменен управляющим журнала (в "
 "формате HTML или простого текста)."
 
-msgid "manager.setup.copyrightNotice"
-msgstr "Условия передачи авторских прав"
-
 msgid "manager.setup.coverage"
 msgstr "Охват"
 
@@ -1480,12 +1477,6 @@ msgstr "Форматы публикации"
 
 msgid "doi.manager.settings.enableSubmissionFileDoi"
 msgstr "Файлы"
-
-msgid "doi.manager.settings.doiPrefix"
-msgstr "Префикс DOI"
-
-msgid "doi.manager.settings.doiPrefixPattern"
-msgstr "Префикс DOI обязателен и должен быть в форме 10.xxxx."
 
 msgid "doi.manager.settings.doiSuffixPattern"
 msgstr ""
