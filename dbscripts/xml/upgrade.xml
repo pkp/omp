@@ -169,6 +169,7 @@
         <migration class="PKP\migration\upgrade\v3_5_0\I13283_RestoreDegradedOrcidFunctionality"/>
 		<migration class="APP\migration\upgrade\v3_5_0\I13617_FixSeriesSort"/>
 		<migration class="APP\migration\upgrade\v3_5_0\I13646_ReviewCompleteEmailTemplate"/>
+		<migration class="PKP\migration\upgrade\v3_5_0\I13778_RepairRenamedLocaleDefaults"/>
 		<code function="downloadIPGeoDB"/>
 		<note file="docs/release-notes/README-3.5.0" />
 	</upgrade>
@@ -187,6 +188,7 @@
         <migration class="PKP\migration\upgrade\v3_5_0\I13283_RestoreDegradedOrcidFunctionality"/>
 		<migration class="APP\migration\upgrade\v3_5_0\I13617_FixSeriesSort"/>
 		<migration class="APP\migration\upgrade\v3_5_0\I13646_ReviewCompleteEmailTemplate"/>
+		<migration class="PKP\migration\upgrade\v3_5_0\I13778_RepairRenamedLocaleDefaults"/>
 	</upgrade>
 
 	<!-- Update plugin configuration - should be done as the final upgrade task -->
