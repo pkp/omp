@@ -162,10 +162,10 @@ class GoogleScholarPlugin extends GenericPlugin
                                 $templateMgr->addHeader('googleScholarIsbn' . $i++, '<meta name="citation_isbn" content="' . htmlspecialchars($identificationCode->getValue()) . '"/>');
                             }
                         }
-                        $this->_setFileUrl($availableFile, $templateMgr, $i, $request, $submission);
+                        $this->_setFileUrl($availableFile, $publicationFormat, $templateMgr, $i, $request, $submission);
                     } elseif ($isChapterRequest) {
                         if ($chapter->getId() == $availableFile->getData('chapterId')) {
-                            $this->_setFileUrl($availableFile, $templateMgr, $i, $request, $submission);
+                            $this->_setFileUrl($availableFile, $publicationFormat, $templateMgr, $i, $request, $submission);
                         }
                     }
                 }
@@ -210,14 +210,16 @@ class GoogleScholarPlugin extends GenericPlugin
         return __('plugins.generic.googleScholar.description');
     }
 
-    private function _setFileUrl($availableFile, TemplateManager $templateMgr, int $i, \APP\Core\Request $request, \APP\submission\Submission $submission): void
+    private function _setFileUrl($availableFile, $publicationFormat, TemplateManager $templateMgr, int &$i, \APP\Core\Request $request, \APP\submission\Submission $submission): void
     {
+        $url = $request->getDispatcher()->url($request, Application::ROUTE_PAGE, null, 'catalog', 'download', [$submission->getBestId(), $publicationFormat->getBestId(), $availableFile->getBestId()], urlLocaleForPage: '');
         switch ($availableFile->getData('mimetype')) {
             case 'application/pdf':
-                $templateMgr->addHeader('googleScholarPdfUrl' . $i++, '<meta name="citation_pdf_url" content="' . $request->getDispatcher()->url($request, Application::ROUTE_PAGE, null, 'catalog', 'download', [$submission->getId(), $availableFile->getData('assocId'), $availableFile->getId()], urlLocaleForPage: '') . '"/>');
+                $templateMgr->addHeader('googleScholarPdfUrl' . $i++, '<meta name="citation_pdf_url" content="' . $url . '"/>');
                 break;
-            case 'text/xml' or 'text/html':
-                $templateMgr->addHeader('googleScholarHtmlUrl' . $i++, '<meta name="citation_fulltext_html_url" content="' . $request->getDispatcher()->url($request, Application::ROUTE_PAGE, null, 'catalog', 'download', [$submission->getId(), $availableFile->getData('assocId'), $availableFile->getId()], urlLocaleForPage: '') . '"/>');
+            case 'text/xml':
+            case 'text/html':
+                $templateMgr->addHeader('googleScholarHtmlUrl' . $i++, '<meta name="citation_fulltext_html_url" content="' . $url . '"/>');
                 break;
         }
     }
