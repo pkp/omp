@@ -20,6 +20,8 @@
 namespace APP\monograph;
 
 use APP\facades\Repo;
+use Illuminate\Database\Query\JoinClause;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use PKP\db\DAOResultFactory;
 use PKP\plugins\Hook;
@@ -64,6 +66,34 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
             $this,
             '_fromRow'
         );
+    }
+
+    /**
+     * Get the source chapter ids, used in the chapter URLs, of the chapters that have a landing page,
+     * in chapter order, without loading the chapters (see Chapter::isPageEnabled() and Chapter::getSourceChapterId())
+     *
+     * A chapter with a DOI always has a landing page.
+     *
+     * @param int[] $publicationIds
+     *
+     * @return Collection<int,Collection<int,int>> Source chapter ids grouped by publication id
+     */
+    public function getSourceChapterIdsWithPage(array $publicationIds): Collection
+    {
+        return DB::table('submission_chapters AS sc')
+            ->leftJoin(
+                'submission_chapter_settings AS scs',
+                fn (JoinClause $join) => $join->on('scs.chapter_id', '=', 'sc.chapter_id')
+                    ->where('scs.setting_name', '=', 'isPageEnabled')
+                    ->where('scs.locale', '=', '')
+            )
+            ->whereIn('sc.publication_id', $publicationIds)
+            ->orderBy('sc.seq')
+            ->orderBy('sc.chapter_id')
+            ->get(['sc.chapter_id', 'sc.source_chapter_id', 'sc.publication_id', 'sc.doi_id', 'scs.setting_value', 'scs.setting_type'])
+            ->filter(fn (object $row) => $row->doi_id !== null || ($row->setting_type !== null && $this->convertFromDB($row->setting_value, $row->setting_type)))
+            ->groupBy(fn (object $row) => (int) $row->publication_id)
+            ->map(fn (Collection $rows) => $rows->map(fn (object $row) => (int) ($row->source_chapter_id ?: $row->chapter_id))->values());
     }
 
     /**

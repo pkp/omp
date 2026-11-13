@@ -19,6 +19,7 @@
 namespace APP\publicationFormat;
 
 use APP\facades\Repo;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use PKP\db\DAO;
 use PKP\db\DAOResultFactory;
@@ -246,6 +247,30 @@ class PublicationFormatDAO extends DAO implements RepresentationDAOInterface
             $this,
             '_fromRow'
         );
+    }
+
+    /**
+     * Get the ids and best ids of the approved and available formats of the given publications,
+     * in format order, without loading the formats (see PublicationFormat::getBestId())
+     *
+     * @param int[] $publicationIds
+     *
+     * @return Collection<int,Collection<int,object{formatId:int,bestId:int|string}>> Grouped by publication id
+     */
+    public function getAvailableBestIds(array $publicationIds): Collection
+    {
+        return DB::table('publication_formats')
+            ->whereIn('publication_id', $publicationIds)
+            ->where('is_approved', 1)
+            ->where('is_available', 1)
+            ->orderBy('seq')
+            ->orderBy('publication_format_id')
+            ->get(['publication_format_id', 'publication_id', 'url_path'])
+            ->groupBy(fn (object $row) => (int) $row->publication_id)
+            ->map(fn (Collection $rows) => $rows->map(fn (object $row) => (object) [
+                'formatId' => (int) $row->publication_format_id,
+                'bestId' => strlen((string) $row->url_path) ? $row->url_path : (int) $row->publication_format_id,
+            ])->values());
     }
 
     /**
