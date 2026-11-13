@@ -107,14 +107,7 @@ class SitemapHandler extends PKPSitemapHandler
             ->get(['s.submission_id', 's.current_publication_id', 'p.url_path'])
             ->keyBy('submission_id');
 
-        // Chapters are listed from the latest publication (see Submission::getLatestPublication())
-        $latestPublicationIds = DB::table('publications')
-            ->whereIn('submission_id', $submissionIds)
-            ->groupBy('submission_id')
-            ->select(['submission_id', DB::raw('MAX(publication_id) AS publication_id')])
-            ->pluck('publication_id', 'submission_id');
-
-        // Chapters with a landing page (see Chapter::isPageEnabled())
+        // Chapters of the current publication with a landing page (see Chapter::isPageEnabled())
         /** @var ChapterDAO $chapterDao */
         $chapterDao = DAORegistry::getDAO('ChapterDAO');
         $chapterIds = [];
@@ -126,14 +119,15 @@ class SitemapHandler extends PKPSitemapHandler
                     ->whereRaw("COALESCE(scs.locale, '') = ''")
             )
             ->leftJoin('dois AS d', 'd.doi_id', '=', 'sc.doi_id')
-            ->whereIn('sc.publication_id', $latestPublicationIds->values()->all())
+            ->whereIn('sc.publication_id', $submissions->pluck('current_publication_id')->filter()->all())
             ->orderBy('sc.seq')
             ->orderBy('sc.chapter_id')
-            ->get(['sc.chapter_id', 'sc.publication_id', 'scs.setting_name', 'scs.setting_value', 'scs.setting_type', 'd.doi']);
+            ->get(['sc.chapter_id', 'sc.source_chapter_id', 'sc.publication_id', 'scs.setting_name', 'scs.setting_value', 'scs.setting_type', 'd.doi']);
         foreach ($chapters as $chapter) {
             $isPageEnabled = $chapter->setting_name === null ? null : $chapterDao->convertFromDB($chapter->setting_value, $chapter->setting_type);
             if ($isPageEnabled || !empty($chapter->doi)) {
-                $chapterIds[$chapter->publication_id][$chapter->chapter_id] = $chapter->chapter_id;
+                // Chapter URLs use the id that is shared by all versions (see Chapter::getSourceChapterId())
+                $chapterIds[$chapter->publication_id][$chapter->chapter_id] = $chapter->source_chapter_id ?: $chapter->chapter_id;
             }
         }
 
@@ -163,7 +157,7 @@ class SitemapHandler extends PKPSitemapHandler
                 ->filterBySubmissionIds($submissionIds)
                 ->getQueryBuilder()
                 ->whereNotNull('sf.direct_sales_price')
-                ->select(['sf.submission_file_id', 'sf.submission_id', 'sf.assoc_id']);
+                ->select(['sf.submission_file_id', 'sf.submission_id', 'sf.assoc_id', 'f.mimetype']);
             // SubmissionFile::getBestId() only finds a publisher id that is part of the schema
             $schema = app()->get('schema')->get(PKPSchemaService::SCHEMA_SUBMISSION_FILE);
             if (isset($schema->properties->{'pub-id::publisher-id'})) {
@@ -189,7 +183,7 @@ class SitemapHandler extends PKPSitemapHandler
             // Book
             $root->appendChild($this->_createUrlTree($doc, $request->url($pressPath, 'catalog', 'book', [$bestId])));
             // Chapters
-            foreach ($chapterIds[$latestPublicationIds->get($submissionId) ?? 0] ?? [] as $chapterId) {
+            foreach ($chapterIds[$submission->current_publication_id] ?? [] as $chapterId) {
                 $root->appendChild($this->_createUrlTree($doc, $request->url($pressPath, 'catalog', 'book', [$bestId, 'chapter', $chapterId])));
             }
             // Files
@@ -197,7 +191,11 @@ class SitemapHandler extends PKPSitemapHandler
                 $formatBestId = strlen((string) $format->url_path) ? $format->url_path : $format->publication_format_id;
                 foreach ($files[$submissionId][$format->publication_format_id] ?? [] as $file) {
                     $fileBestId = strlen((string) ($file->publisher_id ?? '')) ? $file->publisher_id : $file->submission_file_id;
-                    $root->appendChild($this->_createUrlTree($doc, $request->url($pressPath, 'catalog', 'view', [$bestId, $formatBestId, $fileBestId])));
+                    // Same PDF URL as citation_pdf_url, which Google Scholar indexes
+                    $url = $file->mimetype === 'application/pdf'
+                        ? $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $pressPath, 'catalog', 'download', [$bestId, $formatBestId, $fileBestId], urlLocaleForPage: '')
+                        : $request->url($pressPath, 'catalog', 'view', [$bestId, $formatBestId, $fileBestId]);
+                    $root->appendChild($this->_createUrlTree($doc, $url));
                 }
             }
         }
