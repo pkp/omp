@@ -370,7 +370,7 @@ describe('Monograph View Metadata - DC Plugin', function() {
 
 		// Login as admin
 		cy.login('admin', 'admin');
-		cy.get('#navigationUser').find('a:visible, button:visible').contains('admin').click();
+		cy.get('#navigationUser').contains('admin').click();
 		cy.get('a').contains('Dashboard').click();
 
 		// Enable metadata settings
