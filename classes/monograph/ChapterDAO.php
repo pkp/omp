@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\DB;
 use PKP\db\DAOResultFactory;
 use PKP\plugins\Hook;
 use PKP\plugins\PKPPubIdPluginDAO;
+use PKP\observers\events\MetadataChanged;
 
 class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
 {
@@ -260,6 +261,8 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
             ]
         );
         $this->updateLocaleFields($chapter);
+
+        $this->dispatchMetadataChanged((int) $chapter->getData('publicationId')); // #13074
     }
 
     /**
@@ -275,11 +278,21 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
      */
     public function deleteById(int $chapterId): int
     {
+        $publicationId = $this->getChapter($chapterId)?->getData('publicationId'); // #13074
+
         DB::table('submission_file_settings')
             ->where('setting_name', '=', 'chapterId')
             ->where('setting_value', '=', $chapterId)
             ->delete();
-        return DB::table('submission_chapters')->where('chapter_id', '=', $chapterId)->delete();
+
+        // #13074
+        $result = DB::table('submission_chapters')->where('chapter_id', '=', $chapterId)->delete();
+
+        if ($publicationId !== null) {
+            $this->dispatchMetadataChanged((int) $publicationId);
+        }
+
+        return $result;
     }
 
     /**
@@ -307,6 +320,11 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
                 'UPDATE submission_chapters SET seq = ? WHERE chapter_id = ?',
                 [++$i, $row->chapter_id]
             );
+        }
+
+        // #13074 (once for the whole batch)
+        if ($publicationId !== null) {
+            $this->dispatchMetadataChanged((int) $publicationId);
         }
     }
 
@@ -359,6 +377,25 @@ class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
             $affectedRows += $this->deletePubId($chapter->getId(), $pubIdType);
         }
         return $affectedRows;
+    }
+
+    /**
+     * Dispatch MetadataChanged for the submission owning the given publication.
+     * Silently no-ops if the publication or submission can't be resolved.
+     *
+     * @see https://github.com/pkp/pkp-lib/issues/13074
+     */
+    private function dispatchMetadataChanged(int $publicationId): void
+    {
+        $publication = Repo::publication()->get($publicationId);
+        if (!$publication) {
+            return;
+        }
+        $submission = Repo::submission()->get($publication->getData('submissionId'));
+        if (!$submission) {
+            return;
+        }
+        event(new MetadataChanged($submission));
     }
 }
 
