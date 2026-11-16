@@ -481,7 +481,7 @@ class CatalogBookHandler extends Handler
             $urlPath[] = $publicationId;
         }
         $urlPath[] = $publicationFormat->getBestId();
-        $urlPath[] = $submissionFile->getBestId();
+        $urlPath[] = $submissionFile->getId();
 
         $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
         $chapterId = $submissionFile->getData('chapterId');

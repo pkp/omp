@@ -84,7 +84,7 @@ class SitemapHandler extends PKPSitemapHandler
                         }
                     );
                     foreach ($availableFiles as $file) {
-                        $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', [$submission->getBestId(), $format->getBestId(), $file->getBestId()])));
+                        $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', [$submission->getBestId(), $format->getBestId(), $file->getId()])));
                     }
                 }
             }

@@ -81,7 +81,7 @@ class HtmlGalleyHelper
             ->toArray();
 
         foreach ($embeddableFiles as $embeddableFile) {
-            $fileUrl = $request->url(null, 'catalog', 'download', [$monograph->getBestId(), 'version', $publicationFormat->getData('publicationId'), $publicationFormat->getBestId(), $embeddableFile->getBestId()], ['inline' => true]);
+            $fileUrl = $request->url(null, 'catalog', 'download', [$monograph->getBestId(), 'version', $publicationFormat->getData('publicationId'), $publicationFormat->getBestId(), $embeddableFile->getId()], ['inline' => true]);
             $pattern = preg_quote($embeddableFile->getLocalizedData('name'), '/');
 
             $contents = preg_replace(

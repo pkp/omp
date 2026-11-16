@@ -33,7 +33,7 @@
 			</span>
 		</a>
 
-		<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:$publicationFormat->getBestId():$downloadFile->getBestId()}" class="title">
+		<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:$publicationFormat->getBestId():$downloadFile->getId()}" class="title">
 			{$filePublication->getLocalizedFullTitle()|escape}
 		</a>
 	</header>
