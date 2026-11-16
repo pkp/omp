@@ -100,10 +100,12 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
             ->filterByChapterId($chapter->getId())
             ->filterByPublicationIds([$chapter->getData('publicationId')])
             ->getMany();
-        $chapterAuthorSequences = Repo::author()->getChapterAuthorSequences($chapter->getId());
+        // Number the authors in the order the chapter reads (seq, then author ID), so that tied seq
+        // values aren't ordered by the author IDs assigned on import
+        $chapterAuthorSequence = 0;
 
         foreach ($chapterAuthors as $chapterAuthor) {
-            $entityNode->appendChild($this->createChapterAuthorNode($doc, $chapterAuthor, $chapterAuthorSequences->get($chapterAuthor->getId())));
+            $entityNode->appendChild($this->createChapterAuthorNode($doc, $chapterAuthor, $chapterAuthorSequence++));
         }
 
         $submissionFiles = Repo::submissionFile()
@@ -127,7 +129,7 @@ class ChapterNativeXmlFilter extends \PKP\plugins\importexport\native\filter\Nat
      *
      * @param \DOMDocument $doc
      * @param \APP\author\Author $chapterAuthor
-     * @param float|null $seq The author's sequence in the chapter
+     * @param int|null $seq The author's sequence in the chapter
      *
      * @return \DOMElement
      */

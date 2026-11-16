@@ -231,7 +231,8 @@ class Repository extends \PKP\publication\Repository
                 ->filterByChapterId($oldChapter->getId())
                 ->filterByPublicationIds([$oldPublicationId])
                 ->getMany();
-            $oldChapterAuthorSequences = Repo::author()->getChapterAuthorSequences($oldChapter->getId());
+            // Number the new chapter's authors in the order the old chapter reads (seq, then author ID).
+            $newSequence = 0;
 
             foreach ($oldChapterAuthors as $oldChapterAuthor) {
                 $newAuthorId = $oldToNewAuthorId[$oldChapterAuthor->getId()] ?? null;
@@ -240,7 +241,7 @@ class Repository extends \PKP\publication\Repository
                         $newAuthorId,
                         $newChapter->getId(),
                         false,
-                        (int) $oldChapterAuthorSequences->get($oldChapterAuthor->getId())
+                        $newSequence++
                     );
                 }
             }
