@@ -242,6 +242,7 @@
 		<migration class="APP\migration\upgrade\v3_6_0\I12593_DiscussionInternalReviewTemplate"/>
 		<migration class="APP\migration\upgrade\v3_5_0\I13617_FixSeriesSort"/>
 		<migration class="APP\migration\upgrade\v3_5_0\I13646_ReviewCompleteEmailTemplate"/>
+		<migration class="PKP\migration\upgrade\v3_6_0\I13593_AddDateConfirmedAndDateRevertedToReviewRoundAuthorResponses"/>
 		<code function="rebuildSearchIndex" />
 		<note file="docs/release-notes/README-3.6.0" />
 	</upgrade>
