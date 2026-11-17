@@ -1,9 +1,10 @@
 <?php
+
 /**
  * @file classes/author/Repository.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2000-2021 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2000-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Repository
@@ -26,7 +27,7 @@ class Repository extends \PKP\author\Repository
     /**
      * Add an author to a chapter.
      */
-    public function addToChapter(int $authorId, int $chapterId, bool $isPrimary = false, int $sequence = 0)
+    public function addToChapter(int $authorId, int $chapterId, bool $isPrimary = false, int $sequence = 0): void
     {
         $this->dao->insertChapterAuthor(
             $authorId,
@@ -39,7 +40,7 @@ class Repository extends \PKP\author\Repository
     /**
      * Remove an author from a chapter.
      */
-    public function removeFromChapter(int $authorId, int $chapterId)
+    public function removeFromChapter(int $authorId, int $chapterId): void
     {
         $this->dao->deleteChapterAuthorById(
             $authorId,
@@ -50,7 +51,7 @@ class Repository extends \PKP\author\Repository
     /**
      * Remove all authors from a chapter.
      */
-    public function removeChapterAuthors(Chapter $chapter)
+    public function removeChapterAuthors(Chapter $chapter): void
     {
         $this->dao->deleteChapterAuthors(
             $chapter
