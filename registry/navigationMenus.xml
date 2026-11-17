@@ -26,6 +26,7 @@
 	</navigationMenu>
 
 	<navigationMenu title="Primary Navigation Menu" area="primary">
+		<navigationMenuItem title="navigation.home" type="NMI_TYPE_HOME" />
 		<navigationMenuItem title="navigation.catalog" type="NMI_TYPE_CATALOG" />
 		<navigationMenuItem title="manager.announcements" type="NMI_TYPE_ANNOUNCEMENTS" />
 		<navigationMenuItem title="navigation.about" type="NMI_TYPE_ABOUT">
