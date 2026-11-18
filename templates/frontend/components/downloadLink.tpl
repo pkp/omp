@@ -18,9 +18,9 @@
 
 {* Generate the download URL *}
 {if $publication->getId() == $monograph->getData('currentPublicationId')}
-	{capture assign=downloadUrl}{url op="view" path=$monograph->getBestId()|to_array:$publicationFormatId:$downloadFile->getBestId()}{/capture}
+	{capture assign=downloadUrl}{url op="view" path=$monograph->getBestId()|to_array:$publicationFormatId:$downloadFile->getId()}{/capture}
 {else}
-	{capture assign=downloadUrl}{url op="view" path=$monograph->getBestId()|to_array:"version":$publication->getId():$publicationFormatId:$downloadFile->getBestId()}{/capture}
+	{capture assign=downloadUrl}{url op="view" path=$monograph->getBestId()|to_array:"version":$publication->getId():$publicationFormatId:$downloadFile->getId()}{/capture}
 {/if}
 
 {* Display the download link *}
