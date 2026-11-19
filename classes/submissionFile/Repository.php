@@ -22,7 +22,6 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use PKP\plugins\Hook;
 use PKP\services\PKPSchemaService;
-use PKP\submissionFile\Collector;
 use PKP\submissionFile\Repository as SubmissionFileRepository;
 use PKP\submissionFile\SubmissionFile;
 
