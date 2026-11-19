@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/submissionFile/Repository.php
  *
@@ -18,7 +19,6 @@ use APP\submissionFile\maps\Schema;
 use Illuminate\Support\Facades\App;
 use PKP\plugins\Hook;
 use PKP\services\PKPSchemaService;
-use PKP\submissionFile\Collector;
 use PKP\submissionFile\Repository as SubmissionFileRepository;
 use PKP\submissionFile\SubmissionFile;
 
