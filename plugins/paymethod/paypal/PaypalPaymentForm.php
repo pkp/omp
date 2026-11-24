@@ -53,9 +53,11 @@ class PaypalPaymentForm extends Form
         // Application is set to sandbox mode and will not run the features of plugin
         if (Config::getVar('general', 'sandbox', false)) {
             error_log('Application is set to sandbox mode and no payment will be done via paypal');
-            TemplateManager::getManager($request)
-                ->assign('message', 'common.sandbox')
-                ->display('frontend/pages/message.tpl');
+            $templateMgr = TemplateManager::getManager($request);
+            $templateMgr->displaySystemMessage(
+                title: __('common.sandbox'),
+                message: __('common.sandbox'),
+            );
             return;
         }
 
@@ -87,8 +89,10 @@ class PaypalPaymentForm extends Form
         } catch (Exception $e) {
             error_log('PayPal transaction exception: ' . $e->getMessage());
             $templateMgr = TemplateManager::getManager($request);
-            $templateMgr->assign('message', 'plugins.paymethod.paypal.error');
-            $templateMgr->display('frontend/pages/message.tpl');
+            $templateMgr->displaySystemMessage(
+                title: __('common.error'),
+                message: __('plugins.paymethod.paypal.error'),
+            );
         }
     }
 }
