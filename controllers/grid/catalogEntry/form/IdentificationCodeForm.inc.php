@@ -177,7 +177,6 @@ class IdentificationCodeForm extends Form {
 	 * @copydoc Form::execute()
 	 */
 	public function execute(...$functionArgs) {
-		parent::execute(...$functionArgs);
 		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 
@@ -208,6 +207,9 @@ class IdentificationCodeForm extends Form {
 		} else {
 			$identificationCodeId = $identificationCodeDao->insertObject($identificationCode);
 		}
+
+		// in order to be able to use the hook
+		parent::execute(...$functionArgs);
 
 		return $identificationCodeId;
 	}
