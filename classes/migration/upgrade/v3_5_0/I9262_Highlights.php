@@ -303,7 +303,8 @@ class I9262_Highlights extends \PKP\migration\upgrade\v3_5_0\I9262_Highlights
         $initialLocale = Locale::getLocale();
 
         foreach ($locales as $locale) {
-            Locale::setLocale($locale);
+            // The locale code is only renamed later, by I9707, but the translations exist only under the new one
+            Locale::setLocale(I9707_WeblateUILocales::getAffectedLocales()[$locale] ?? $locale);
             $newRows->add([
                 'highlight_id' => $highlightId,
                 'locale' => $locale,
