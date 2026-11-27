@@ -14,7 +14,7 @@
 		{if $activeTheme && $activeTheme->getOption('showDescriptionInPressIndex')}
 			<a href="#homepageAbout">{translate key="navigation.skip.about"}</a>
 		{/if}
-		{if $numAnnouncementsHomepage && $announcements|@count}
+		{if $numAnnouncementsHomepage && $announcements && $announcements|@count}
 			<a href="#homepageAnnouncements">{translate key="navigation.skip.announcements"}</a>
 		{/if}
 	{/if}
